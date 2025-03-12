@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validateThread = exports.threadSchema = void 0;
+exports.threadSchema = void 0;
 /**
  * Thread Schemas
  *
@@ -43,16 +43,9 @@ const yup = __importStar(require("yup"));
 const timestampSchema_1 = require("../utils/timestampSchema");
 // Thread Schema
 exports.threadSchema = yup.object({
-    id: yup.string().required(),
     title: yup.string().required(),
-    createdAt: timestampSchema_1.timestampSchema.required(),
-    updatedAt: timestampSchema_1.timestampSchema.required(),
-    lastUpdated: timestampSchema_1.timestampSchema.required(), // For UI display purposes
     isImpulseMoment: yup.boolean().optional(),
-    tactics: yup.array().of(yup.string()).optional()
+    tactics: yup.array().of(yup.string()).optional(),
+    updatedAt: timestampSchema_1.timestampSchema,
+    createdAt: timestampSchema_1.timestampSchema,
 });
-// Helper function for validation
-const validateThread = (data) => {
-    return exports.threadSchema.validate(data);
-};
-exports.validateThread = validateThread;

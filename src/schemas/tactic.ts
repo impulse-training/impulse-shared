@@ -1,19 +1,19 @@
 /**
  * Tactic Schemas
- * 
+ *
  * Defines Yup schemas for tactic data
  */
-import * as yup from 'yup';
+import * as yup from "yup";
 
 // Tactic Types
 export const tacticTypes = [
-  'task',
-  'affirmation',
-  'image',
-  'video',
-  'link',
-  'supportGroup',
-  'breathingExercise'
+  "task",
+  "affirmation",
+  "image",
+  "video",
+  "link",
+  "supportGroup",
+  "breathingExercise",
 ] as const;
 
 // Tactic Schema
@@ -36,10 +36,5 @@ export const tacticSchema = yup.object({
   createdAt: yup.date().optional(),
   updatedAt: yup.date().optional(),
   userId: yup.string().optional(),
-  isPublic: yup.boolean().optional()
+  isPublic: yup.boolean().optional(),
 });
-
-// Helper function for validation
-export const validateTactic = (data: unknown) => {
-  return tacticSchema.validate(data);
-};

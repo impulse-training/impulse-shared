@@ -46,20 +46,17 @@ const yup = __importStar(require("yup"));
  *
  * This schema accepts:
  * - Firestore Timestamp objects (from either react-native-firebase or firebase-admin)
+ * - Objects with seconds and nanoseconds properties
+ * - Date objects (to be converted by the consuming application)
  */
-exports.timestampSchema = yup
-    .mixed()
-    .test("is-timestamp", "${path} must be a valid timestamp", (value) => {
+exports.timestampSchema = yup.mixed()
+    .test('is-timestamp', '${path} must be a valid timestamp', (value) => {
     if (value === null || value === undefined) {
         return true;
     }
     // Check if it's a Timestamp-like object
-    return ((value &&
-        typeof value === "object" &&
-        "toDate" in value &&
-        typeof value.toDate === "function") ||
+    return (value && typeof value === 'object' &&
+        'toDate' in value && typeof value.toDate === 'function') ||
         value instanceof Date ||
-        (typeof value === "object" &&
-            "seconds" in value &&
-            "nanoseconds" in value));
+        (typeof value === 'object' && 'seconds' in value && 'nanoseconds' in value);
 });

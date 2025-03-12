@@ -16,3 +16,33 @@ export interface Timestamp {
     isEqual(other: Timestamp): boolean;
     valueOf(): string;
 }
+/**
+ * Interface for Firestore document
+ */
+export interface FirestoreDocument {
+    id: string;
+    exists: boolean;
+    data: () => any;
+}
+/**
+ * Interface for Firestore instance
+ */
+export interface FirestoreInstance {
+    collection: (path: string) => {
+        doc: (id: string) => {
+            get: () => Promise<FirestoreDocument>;
+            set: (data: any, options?: {
+                merge?: boolean;
+            }) => Promise<any>;
+            update: (data: any) => Promise<any>;
+        };
+    };
+    runTransaction: <T>(updateFunction: (transaction: any) => Promise<T>) => Promise<T>;
+    batch: () => {
+        set: (ref: any, data: any, options?: {
+            merge?: boolean;
+        }) => any;
+        update: (ref: any, data: any) => any;
+        commit: () => Promise<any>;
+    };
+}

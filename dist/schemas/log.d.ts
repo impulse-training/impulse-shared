@@ -3,47 +3,51 @@
  *
  * Defines Yup schemas for thread log data
  */
-import * as yup from 'yup';
+import * as yup from "yup";
 export declare const activityTypes: readonly ["message", "tactic_completed", "tactic_uncompleted", "impulse_button_pressed", "behavior_tracked"];
 export declare const activityLogSchema: yup.ObjectSchema<{
-    id: string;
     type: NonNullable<"message" | "tactic_completed" | "tactic_uncompleted" | "impulse_button_pressed" | "behavior_tracked" | undefined>;
-    timestamp: {};
+    timestamp: import("..").Timestamp;
     data: {};
+    createdAt: import("..").Timestamp | undefined;
+    updatedAt: import("..").Timestamp | undefined;
 }, yup.AnyObject, {
-    id: undefined;
     type: undefined;
     timestamp: undefined;
     data: {};
+    createdAt: undefined;
+    updatedAt: undefined;
 }, "">;
 export declare const messageLogSchema: yup.ObjectSchema<{
-    id: string;
     type: "message";
-    timestamp: {};
+    timestamp: import("..").Timestamp;
     data: {
-        role: NonNullable<"user" | "assistant" | undefined>;
         content: string;
+        role: NonNullable<"user" | "assistant" | undefined>;
     };
+    createdAt: import("..").Timestamp | undefined;
+    updatedAt: import("..").Timestamp | undefined;
 }, yup.AnyObject, {
-    id: undefined;
     type: undefined;
     timestamp: undefined;
     data: {
         role: undefined;
         content: undefined;
     };
+    createdAt: undefined;
+    updatedAt: undefined;
 }, "">;
 export declare const tacticActivityLogSchema: yup.ObjectSchema<{
-    id: string;
     type: NonNullable<"tactic_completed" | "tactic_uncompleted" | "tactic_viewed" | undefined>;
-    timestamp: {};
+    timestamp: import("..").Timestamp;
     data: {
         tacticId: string;
         tacticTitle: string;
         tacticType: string;
     };
+    createdAt: import("..").Timestamp | undefined;
+    updatedAt: import("..").Timestamp | undefined;
 }, yup.AnyObject, {
-    id: undefined;
     type: undefined;
     timestamp: undefined;
     data: {
@@ -51,22 +55,25 @@ export declare const tacticActivityLogSchema: yup.ObjectSchema<{
         tacticTitle: undefined;
         tacticType: undefined;
     };
+    createdAt: undefined;
+    updatedAt: undefined;
 }, "">;
 export declare const impulseLogSchema: yup.ObjectSchema<{
-    id: string;
     type: "impulse_button_pressed";
-    timestamp: {};
+    timestamp: import("..").Timestamp;
     data: {};
+    createdAt: import("..").Timestamp | undefined;
+    updatedAt: import("..").Timestamp | undefined;
 }, yup.AnyObject, {
-    id: undefined;
     type: undefined;
     timestamp: undefined;
     data: {};
+    createdAt: undefined;
+    updatedAt: undefined;
 }, "">;
 export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
-    id: string;
     type: "behavior_tracked";
-    timestamp: {};
+    timestamp: import("..").Timestamp;
     data: {
         notes?: string | null | undefined;
         behaviorId: string;
@@ -74,8 +81,9 @@ export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
         trackingType: NonNullable<"counter" | "timer" | undefined>;
         value: number;
     };
+    createdAt: import("..").Timestamp | undefined;
+    updatedAt: import("..").Timestamp | undefined;
 }, yup.AnyObject, {
-    id: undefined;
     type: undefined;
     timestamp: undefined;
     data: {
@@ -85,47 +93,6 @@ export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
         value: undefined;
         notes: undefined;
     };
+    createdAt: undefined;
+    updatedAt: undefined;
 }, "">;
-export declare const validateActivityLog: (data: unknown) => Promise<{
-    id: string;
-    type: NonNullable<"message" | "tactic_completed" | "tactic_uncompleted" | "impulse_button_pressed" | "behavior_tracked" | undefined>;
-    timestamp: {};
-    data: {};
-}>;
-export declare const validateMessageLog: (data: unknown) => Promise<{
-    id: string;
-    type: "message";
-    timestamp: {};
-    data: {
-        role: NonNullable<"user" | "assistant" | undefined>;
-        content: string;
-    };
-}>;
-export declare const validateTacticActivityLog: (data: unknown) => Promise<{
-    id: string;
-    type: NonNullable<"tactic_completed" | "tactic_uncompleted" | "tactic_viewed" | undefined>;
-    timestamp: {};
-    data: {
-        tacticId: string;
-        tacticTitle: string;
-        tacticType: string;
-    };
-}>;
-export declare const validateImpulseLog: (data: unknown) => Promise<{
-    id: string;
-    type: "impulse_button_pressed";
-    timestamp: {};
-    data: {};
-}>;
-export declare const validateBehaviorTrackedLog: (data: unknown) => Promise<{
-    id: string;
-    type: "behavior_tracked";
-    timestamp: {};
-    data: {
-        notes?: string | null | undefined;
-        behaviorId: string;
-        behaviorName: string;
-        trackingType: NonNullable<"counter" | "timer" | undefined>;
-        value: number;
-    };
-}>;

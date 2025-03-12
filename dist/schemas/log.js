@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validateBehaviorTrackedLog = exports.validateImpulseLog = exports.validateTacticActivityLog = exports.validateMessageLog = exports.validateActivityLog = exports.behaviorTrackedLogSchema = exports.impulseLogSchema = exports.tacticActivityLogSchema = exports.messageLogSchema = exports.activityLogSchema = exports.activityTypes = void 0;
+exports.behaviorTrackedLogSchema = exports.impulseLogSchema = exports.tacticActivityLogSchema = exports.messageLogSchema = exports.activityLogSchema = exports.activityTypes = void 0;
 /**
  * Log Schemas
  *
@@ -43,70 +43,59 @@ const yup = __importStar(require("yup"));
 const timestampSchema_1 = require("../utils/timestampSchema");
 // Activity Types
 exports.activityTypes = [
-    'message',
-    'tactic_completed',
-    'tactic_uncompleted',
-    'impulse_button_pressed',
-    'behavior_tracked'
+    "message",
+    "tactic_completed",
+    "tactic_uncompleted",
+    "impulse_button_pressed",
+    "behavior_tracked",
 ];
 // Base Activity Log Schema
 exports.activityLogSchema = yup.object({
-    id: yup.string().required(),
     type: yup.string().oneOf(exports.activityTypes).required(),
     timestamp: timestampSchema_1.timestampSchema.required(),
-    data: yup.object().default({})
+    data: yup.object().default({}),
+    createdAt: timestampSchema_1.timestampSchema,
+    updatedAt: timestampSchema_1.timestampSchema,
 });
 // Message Log Schema
 exports.messageLogSchema = exports.activityLogSchema.shape({
-    type: yup.string().oneOf(['message']).required(),
-    data: yup.object({
-        role: yup.string().oneOf(['user', 'assistant']).required(),
-        content: yup.string().required()
-    }).required()
+    type: yup.string().oneOf(["message"]).required(),
+    data: yup
+        .object({
+        role: yup.string().oneOf(["user", "assistant"]).required(),
+        content: yup.string().required(),
+    })
+        .required(),
 });
 // Tactic Activity Log Schema
 exports.tacticActivityLogSchema = exports.activityLogSchema.shape({
-    type: yup.string().oneOf(['tactic_completed', 'tactic_uncompleted', 'tactic_viewed']).required(),
-    data: yup.object({
+    type: yup
+        .string()
+        .oneOf(["tactic_completed", "tactic_uncompleted", "tactic_viewed"])
+        .required(),
+    data: yup
+        .object({
         tacticId: yup.string().required(),
         tacticTitle: yup.string().required(),
-        tacticType: yup.string().required()
-    }).required()
+        tacticType: yup.string().required(),
+    })
+        .required(),
 });
 // Impulse Log Schema
 exports.impulseLogSchema = exports.activityLogSchema.shape({
-    type: yup.string().oneOf(['impulse_button_pressed']).required(),
-    data: yup.object({}).required()
+    type: yup.string().oneOf(["impulse_button_pressed"]).required(),
+    data: yup.object({}).required(),
 });
 // Behavior Tracked Log Schema
 exports.behaviorTrackedLogSchema = exports.activityLogSchema.shape({
-    type: yup.string().oneOf(['behavior_tracked']).required(),
-    data: yup.object({
+    type: yup.string().oneOf(["behavior_tracked"]).required(),
+    data: yup
+        .object({
         behaviorId: yup.string().required(),
         behaviorName: yup.string().required(),
-        trackingType: yup.string().oneOf(['counter', 'timer']).required(),
+        trackingType: yup.string().oneOf(["counter", "timer"]).required(),
         value: yup.number().required(), // Count or time in seconds
-        notes: yup.string().nullable()
-    }).required()
+        notes: yup.string().nullable(),
+    })
+        .required(),
 });
-// Helper functions for validation
-const validateActivityLog = (data) => {
-    return exports.activityLogSchema.validate(data);
-};
-exports.validateActivityLog = validateActivityLog;
-const validateMessageLog = (data) => {
-    return exports.messageLogSchema.validate(data);
-};
-exports.validateMessageLog = validateMessageLog;
-const validateTacticActivityLog = (data) => {
-    return exports.tacticActivityLogSchema.validate(data);
-};
-exports.validateTacticActivityLog = validateTacticActivityLog;
-const validateImpulseLog = (data) => {
-    return exports.impulseLogSchema.validate(data);
-};
-exports.validateImpulseLog = validateImpulseLog;
-const validateBehaviorTrackedLog = (data) => {
-    return exports.behaviorTrackedLogSchema.validate(data);
-};
-exports.validateBehaviorTrackedLog = validateBehaviorTrackedLog;

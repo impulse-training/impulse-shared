@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validateTactic = exports.tacticSchema = exports.tacticTypes = void 0;
+exports.tacticSchema = exports.tacticTypes = void 0;
 /**
  * Tactic Schemas
  *
@@ -42,13 +42,13 @@ exports.validateTactic = exports.tacticSchema = exports.tacticTypes = void 0;
 const yup = __importStar(require("yup"));
 // Tactic Types
 exports.tacticTypes = [
-    'task',
-    'affirmation',
-    'image',
-    'video',
-    'link',
-    'supportGroup',
-    'breathingExercise'
+    "task",
+    "affirmation",
+    "image",
+    "video",
+    "link",
+    "supportGroup",
+    "breathingExercise",
 ];
 // Tactic Schema
 exports.tacticSchema = yup.object({
@@ -70,10 +70,5 @@ exports.tacticSchema = yup.object({
     createdAt: yup.date().optional(),
     updatedAt: yup.date().optional(),
     userId: yup.string().optional(),
-    isPublic: yup.boolean().optional()
+    isPublic: yup.boolean().optional(),
 });
-// Helper function for validation
-const validateTactic = (data) => {
-    return exports.tacticSchema.validate(data);
-};
-exports.validateTactic = validateTactic;

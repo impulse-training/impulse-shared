@@ -33,56 +33,44 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validateSupportGroup = exports.validateSupportGroupMessage = exports.validateSupportGroupMember = exports.supportGroupSchema = exports.supportGroupMessageSchema = exports.messageTypes = exports.supportGroupMemberSchema = void 0;
+exports.supportGroupSchema = exports.supportGroupMessageSchema = exports.messageTypes = exports.supportGroupMemberSchema = void 0;
 /**
  * Support Group Schemas
  *
  * Defines Yup schemas for support group data
  */
 const yup = __importStar(require("yup"));
+const utils_1 = require("../utils");
 // Support Group Member Schema
 exports.supportGroupMemberSchema = yup.object({
-    id: yup.string().required(),
     name: yup.string().required(),
     email: yup.string().email().required(),
     photoURL: yup.string().optional(),
-    role: yup.string().oneOf(['owner', 'member']).required(),
-    joinedAt: yup.date().required()
+    role: yup.string().oneOf(["owner", "member"]).required(),
+    joinedAt: utils_1.timestampSchema,
 });
 // Support Group Message Types
-exports.messageTypes = ['text', 'impulse_alert', 'system'];
+exports.messageTypes = ["text", "impulse_alert", "system"];
 // Support Group Message Schema
 exports.supportGroupMessageSchema = yup.object({
-    id: yup.string().required(),
     senderId: yup.string().required(),
     senderName: yup.string().required(),
     content: yup.string().required(),
-    timestamp: yup.date().required(),
+    timestamp: utils_1.timestampSchema.required(),
     type: yup.string().oneOf(exports.messageTypes).required(),
-    threadId: yup.string().optional() // Reference to an impulse thread if this is an impulse alert
+    threadId: yup.string().optional(), // Reference to an impulse thread if this is an impulse alert
+    createdAt: utils_1.timestampSchema,
+    updatedAt: utils_1.timestampSchema,
 });
 // Support Group Schema
 exports.supportGroupSchema = yup.object({
     id: yup.string().required(),
     name: yup.string().required(),
     description: yup.string().optional(),
-    createdAt: yup.date().required(),
-    updatedAt: yup.date().required(),
     ownerId: yup.string().required(),
     members: yup.array().of(exports.supportGroupMemberSchema).required(),
     isPublic: yup.boolean().optional(),
-    inviteCode: yup.string().optional()
+    inviteCode: yup.string().optional(),
+    createdAt: utils_1.timestampSchema,
+    updatedAt: utils_1.timestampSchema,
 });
-// Helper functions for validation
-const validateSupportGroupMember = (data) => {
-    return exports.supportGroupMemberSchema.validate(data);
-};
-exports.validateSupportGroupMember = validateSupportGroupMember;
-const validateSupportGroupMessage = (data) => {
-    return exports.supportGroupMessageSchema.validate(data);
-};
-exports.validateSupportGroupMessage = validateSupportGroupMessage;
-const validateSupportGroup = (data) => {
-    return exports.supportGroupSchema.validate(data);
-};
-exports.validateSupportGroup = validateSupportGroup;

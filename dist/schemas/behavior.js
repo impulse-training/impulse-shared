@@ -33,27 +33,15 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validateBehavior = exports.behaviorSchema = exports.trackingTypes = void 0;
-/**
- * Behavior Schemas
- *
- * Defines Yup schemas for behavior data
- */
+exports.behaviorSchema = exports.trackingTypes = void 0;
 const yup = __importStar(require("yup"));
-// Tracking Types
-exports.trackingTypes = ['counter', 'timer'];
-// Behavior Schema
+const utils_1 = require("../utils");
+exports.trackingTypes = ["counter", "timer"];
 exports.behaviorSchema = yup.object({
-    id: yup.string().required(),
     name: yup.string().required(),
     description: yup.string().required(),
     trackingType: yup.string().oneOf(exports.trackingTypes).required(),
     gameplanTacticIds: yup.array().of(yup.string()).default([]),
-    createdAt: yup.date().required(),
-    updatedAt: yup.date().required()
+    createdAt: utils_1.timestampSchema,
+    updatedAt: utils_1.timestampSchema,
 });
-// Helper functions for validation
-const validateBehavior = (data) => {
-    return exports.behaviorSchema.validate(data);
-};
-exports.validateBehavior = validateBehavior;

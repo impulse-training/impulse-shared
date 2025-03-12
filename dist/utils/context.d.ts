@@ -3,37 +3,7 @@
  *
  * Functions for retrieving and managing user context
  */
-import { UserContext, BehaviorContext, TacticContext, AIMemory } from '../types/userContext';
-/**
- * Interface for Firestore document
- */
-export interface FirestoreDocument {
-    id: string;
-    exists: boolean;
-    data: () => any;
-}
-/**
- * Interface for Firestore instance
- */
-export interface FirestoreInstance {
-    collection: (path: string) => {
-        doc: (id: string) => {
-            get: () => Promise<FirestoreDocument>;
-            set: (data: any, options?: {
-                merge?: boolean;
-            }) => Promise<any>;
-            update: (data: any) => Promise<any>;
-        };
-    };
-    runTransaction: <T>(updateFunction: (transaction: any) => Promise<T>) => Promise<T>;
-    batch: () => {
-        set: (ref: any, data: any, options?: {
-            merge?: boolean;
-        }) => any;
-        update: (ref: any, data: any) => any;
-        commit: () => Promise<any>;
-    };
-}
+import { AIMemory, BehaviorContext, TacticContext, UserContext } from "../types/userContext";
 /**
  * Get user context from Firestore
  *
@@ -95,4 +65,4 @@ export declare function updateTacticContext(db: FirestoreInstance, userId: strin
  * @param memory Memory to add
  * @returns Promise resolving to the added memory
  */
-export declare function addMemoryToUserContext(db: FirestoreInstance, userId: string, memory: Omit<AIMemory, 'id'>): Promise<AIMemory>;
+export declare function addMemoryToUserContext(db: FirestoreInstance, userId: string, memory: Omit<AIMemory, "id">): Promise<AIMemory>;

@@ -3,7 +3,7 @@
  *
  * Defines Yup schemas for tactic data
  */
-import * as yup from 'yup';
+import * as yup from "yup";
 export declare const tacticTypes: readonly ["task", "affirmation", "image", "video", "link", "supportGroup", "breathingExercise"];
 export declare const tacticSchema: yup.ObjectSchema<{
     id: string;
@@ -46,24 +46,3 @@ export declare const tacticSchema: yup.ObjectSchema<{
     userId: undefined;
     isPublic: undefined;
 }, "">;
-export declare const validateTactic: (data: unknown) => Promise<{
-    content?: string | undefined;
-    createdAt?: Date | undefined;
-    userId?: string | undefined;
-    description?: string | undefined;
-    updatedAt?: Date | undefined;
-    imageUri?: string | undefined;
-    videoUri?: string | undefined;
-    audioUri?: string | undefined;
-    linkUrl?: string | undefined;
-    supportGroupId?: string | undefined;
-    supportGroupName?: string | undefined;
-    completed?: boolean | undefined;
-    durationSeconds?: number | undefined;
-    allBehaviors?: boolean | undefined;
-    behaviorIds?: (string | undefined)[] | undefined;
-    isPublic?: boolean | undefined;
-    id: string;
-    type: NonNullable<"task" | "affirmation" | "image" | "video" | "link" | "supportGroup" | "breathingExercise" | undefined>;
-    title: string;
-}>;

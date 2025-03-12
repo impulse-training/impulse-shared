@@ -5,7 +5,6 @@ exports.updateUserContext = updateUserContext;
 exports.updateBehaviorContext = updateBehaviorContext;
 exports.updateTacticContext = updateTacticContext;
 exports.addMemoryToUserContext = addMemoryToUserContext;
-const userContext_1 = require("../schemas/userContext");
 /**
  * Get user context from Firestore
  *
@@ -20,16 +19,13 @@ const userContext_1 = require("../schemas/userContext");
 async function getUserContext(db, userId) {
     try {
         // Get the user context document
-        const userContextRef = db.collection('userContexts').doc(userId);
+        const userContextRef = db.collection("userContexts").doc(userId);
         const userContextDoc = await userContextRef.get();
         // If the document exists, validate and return it
         if (userContextDoc.exists) {
             const data = userContextDoc.data();
             // Convert Firestore timestamps to Date objects
-            const processedData = processTimestamps(data);
-            // Validate the data against the schema
-            const validatedData = await (0, userContext_1.validateUserContext)(processedData);
-            return validatedData;
+            return processTimestamps(data);
         }
         // If the document doesn't exist, create a default user context
         const defaultContext = {
@@ -38,14 +34,14 @@ async function getUserContext(db, userId) {
             tactics: {},
             memories: [],
             overallInsights: [],
-            lastUpdatedAt: new Date()
+            lastUpdatedAt: new Date(),
         };
         // Save the default context to Firestore
         await userContextRef.set(defaultContext);
         return defaultContext;
     }
     catch (error) {
-        console.error('Error getting user context:', error);
+        console.error("Error getting user context:", error);
         // Return a default user context in case of error
         return {
             userId,
@@ -53,7 +49,7 @@ async function getUserContext(db, userId) {
             tactics: {},
             memories: [],
             overallInsights: [],
-            lastUpdatedAt: new Date()
+            lastUpdatedAt: new Date(),
         };
     }
 }
@@ -78,17 +74,17 @@ async function updateUserContext(db, userId, contextData) {
             ...currentContext,
             ...contextData,
             userId, // Ensure userId is set correctly
-            lastUpdatedAt: new Date() // Update the lastUpdatedAt timestamp
+            lastUpdatedAt: new Date(), // Update the lastUpdatedAt timestamp
         };
         // Validate the updated context
-        const validatedContext = await (0, userContext_1.validateUserContext)(updatedContext);
+        const validatedContext = await validateUserContext(updatedContext);
         // Update the user context document in Firestore
-        const userContextRef = db.collection('userContexts').doc(userId);
+        const userContextRef = db.collection("userContexts").doc(userId);
         await userContextRef.set(validatedContext);
         return validatedContext;
     }
     catch (error) {
-        console.error('Error updating user context:', error);
+        console.error("Error updating user context:", error);
         throw error;
     }
 }
@@ -111,37 +107,37 @@ async function updateBehaviorContext(db, userId, behaviorId, behaviorData) {
         // Get the current behavior context or create a new one
         const currentBehaviorContext = currentContext.behaviors[behaviorId] || {
             behaviorId,
-            behaviorName: behaviorData.behaviorName || '',
-            trackingType: behaviorData.trackingType || 'counter',
+            behaviorName: behaviorData.behaviorName || "",
+            trackingType: behaviorData.trackingType || "counter",
             streakDays: 0,
             totalTracked: 0,
             insights: [],
             effectiveTactics: [],
-            gameplanTacticIds: []
+            gameplanTacticIds: [],
         };
         // Merge the current behavior context with the updated data
         const updatedBehaviorContext = {
             ...currentBehaviorContext,
             ...behaviorData,
-            behaviorId // Ensure behaviorId is set correctly
+            behaviorId, // Ensure behaviorId is set correctly
         };
         // Validate the updated behavior context
-        const validatedBehaviorContext = await (0, userContext_1.validateBehaviorContext)(updatedBehaviorContext);
+        const validatedBehaviorContext = await validateBehaviorContext(updatedBehaviorContext);
         // Update the behavior context in the user context
         await db.runTransaction(async (transaction) => {
-            const userContextRef = db.collection('userContexts').doc(userId);
+            const userContextRef = db.collection("userContexts").doc(userId);
             const userContextDoc = await transaction.get(userContextRef);
             if (!userContextDoc.exists) {
                 // Create a new user context with the behavior context
                 const newContext = {
                     userId,
                     behaviors: {
-                        [behaviorId]: validatedBehaviorContext
+                        [behaviorId]: validatedBehaviorContext,
                     },
                     tactics: {},
                     memories: [],
                     overallInsights: [],
-                    lastUpdatedAt: new Date()
+                    lastUpdatedAt: new Date(),
                 };
                 transaction.set(userContextRef, newContext);
             }
@@ -149,14 +145,14 @@ async function updateBehaviorContext(db, userId, behaviorId, behaviorData) {
                 // Update the existing user context with the behavior context
                 transaction.update(userContextRef, {
                     [`behaviors.${behaviorId}`]: validatedBehaviorContext,
-                    lastUpdatedAt: new Date()
+                    lastUpdatedAt: new Date(),
                 });
             }
         });
         return validatedBehaviorContext;
     }
     catch (error) {
-        console.error('Error updating behavior context:', error);
+        console.error("Error updating behavior context:", error);
         throw error;
     }
 }
@@ -179,22 +175,22 @@ async function updateTacticContext(db, userId, tacticId, tacticData) {
         // Get the current tactic context or create a new one
         const currentTacticContext = currentContext.tactics[tacticId] || {
             tacticId,
-            tacticTitle: tacticData.tacticTitle || '',
-            tacticType: tacticData.tacticType || '',
+            tacticTitle: tacticData.tacticTitle || "",
+            tacticType: tacticData.tacticType || "",
             completedCount: 0,
-            effectiveness: 5
+            effectiveness: 5,
         };
         // Merge the current tactic context with the updated data
         const updatedTacticContext = {
             ...currentTacticContext,
             ...tacticData,
-            tacticId // Ensure tacticId is set correctly
+            tacticId, // Ensure tacticId is set correctly
         };
         // Validate the updated tactic context
-        const validatedTacticContext = await (0, userContext_1.validateTacticContext)(updatedTacticContext);
+        const validatedTacticContext = await validateTacticContext(updatedTacticContext);
         // Update the tactic context in the user context
         await db.runTransaction(async (transaction) => {
-            const userContextRef = db.collection('userContexts').doc(userId);
+            const userContextRef = db.collection("userContexts").doc(userId);
             const userContextDoc = await transaction.get(userContextRef);
             if (!userContextDoc.exists) {
                 // Create a new user context with the tactic context
@@ -202,11 +198,11 @@ async function updateTacticContext(db, userId, tacticId, tacticData) {
                     userId,
                     behaviors: {},
                     tactics: {
-                        [tacticId]: validatedTacticContext
+                        [tacticId]: validatedTacticContext,
                     },
                     memories: [],
                     overallInsights: [],
-                    lastUpdatedAt: new Date()
+                    lastUpdatedAt: new Date(),
                 };
                 transaction.set(userContextRef, newContext);
             }
@@ -214,14 +210,14 @@ async function updateTacticContext(db, userId, tacticId, tacticData) {
                 // Update the existing user context with the tactic context
                 transaction.update(userContextRef, {
                     [`tactics.${tacticId}`]: validatedTacticContext,
-                    lastUpdatedAt: new Date()
+                    lastUpdatedAt: new Date(),
                 });
             }
         });
         return validatedTacticContext;
     }
     catch (error) {
-        console.error('Error updating tactic context:', error);
+        console.error("Error updating tactic context:", error);
         throw error;
     }
 }
@@ -238,16 +234,18 @@ async function updateTacticContext(db, userId, tacticId, tacticData) {
 async function addMemoryToUserContext(db, userId, memory) {
     try {
         // Generate a unique ID for the memory
-        const memoryId = `memory_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+        const memoryId = `memory_${Date.now()}_${Math.random()
+            .toString(36)
+            .substr(2, 9)}`;
         // Create the memory object
         const newMemory = {
             ...memory,
             id: memoryId,
-            createdAt: memory.createdAt || new Date()
+            createdAt: memory.createdAt || new Date(),
         };
         // Update the user context with the new memory
         await db.runTransaction(async (transaction) => {
-            const userContextRef = db.collection('userContexts').doc(userId);
+            const userContextRef = db.collection("userContexts").doc(userId);
             const userContextDoc = await transaction.get(userContextRef);
             if (!userContextDoc.exists) {
                 // Create a new user context with the memory
@@ -257,7 +255,7 @@ async function addMemoryToUserContext(db, userId, memory) {
                     tactics: {},
                     memories: [newMemory],
                     overallInsights: [],
-                    lastUpdatedAt: new Date()
+                    lastUpdatedAt: new Date(),
                 };
                 transaction.set(userContextRef, newContext);
             }
@@ -270,14 +268,14 @@ async function addMemoryToUserContext(db, userId, memory) {
                 // Update the user context
                 transaction.update(userContextRef, {
                     memories: updatedMemories,
-                    lastUpdatedAt: new Date()
+                    lastUpdatedAt: new Date(),
                 });
             }
         });
         return newMemory;
     }
     catch (error) {
-        console.error('Error adding memory to user context:', error);
+        console.error("Error adding memory to user context:", error);
         throw error;
     }
 }
@@ -293,11 +291,11 @@ function processTimestamps(obj) {
     if (!obj)
         return obj;
     if (Array.isArray(obj)) {
-        return obj.map(item => processTimestamps(item));
+        return obj.map((item) => processTimestamps(item));
     }
-    if (typeof obj === 'object') {
+    if (typeof obj === "object") {
         // Check if the object is a Firestore timestamp
-        if (obj.toDate && typeof obj.toDate === 'function') {
+        if (obj.toDate && typeof obj.toDate === "function") {
             return obj.toDate();
         }
         // Process each property of the object
