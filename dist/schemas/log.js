@@ -40,6 +40,7 @@ exports.validateBehaviorTrackedLog = exports.validateImpulseLog = exports.valida
  * Defines Yup schemas for thread log data
  */
 const yup = __importStar(require("yup"));
+const timestampSchema_1 = require("../utils/timestampSchema");
 // Activity Types
 exports.activityTypes = [
     'message',
@@ -52,8 +53,8 @@ exports.activityTypes = [
 exports.activityLogSchema = yup.object({
     id: yup.string().required(),
     type: yup.string().oneOf(exports.activityTypes).required(),
-    timestamp: yup.date().required(),
-    data: yup.mixed().required()
+    timestamp: timestampSchema_1.timestampSchema.required(),
+    data: yup.object().default({})
 });
 // Message Log Schema
 exports.messageLogSchema = exports.activityLogSchema.shape({
@@ -75,10 +76,7 @@ exports.tacticActivityLogSchema = exports.activityLogSchema.shape({
 // Impulse Log Schema
 exports.impulseLogSchema = exports.activityLogSchema.shape({
     type: yup.string().oneOf(['impulse_button_pressed']).required(),
-    data: yup.object({
-        behaviorId: yup.string().required(),
-        behaviorName: yup.string().required()
-    }).required()
+    data: yup.object({}).required()
 });
 // Behavior Tracked Log Schema
 exports.behaviorTrackedLogSchema = exports.activityLogSchema.shape({

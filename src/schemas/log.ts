@@ -4,6 +4,7 @@
  * Defines Yup schemas for thread log data
  */
 import * as yup from 'yup';
+import { timestampSchema } from '../utils/timestampSchema';
 
 // Activity Types
 export const activityTypes = [
@@ -18,8 +19,8 @@ export const activityTypes = [
 export const activityLogSchema = yup.object({
   id: yup.string().required(),
   type: yup.string().oneOf(activityTypes).required(),
-  timestamp: yup.date().required(),
-  data: yup.mixed().required()
+  timestamp: timestampSchema.required(),
+  data: yup.object().default({})
 });
 
 // Message Log Schema

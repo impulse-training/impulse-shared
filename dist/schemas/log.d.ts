@@ -8,46 +8,65 @@ export declare const activityTypes: readonly ["message", "tactic_completed", "ta
 export declare const activityLogSchema: yup.ObjectSchema<{
     id: string;
     type: NonNullable<"message" | "tactic_completed" | "tactic_uncompleted" | "impulse_button_pressed" | "behavior_tracked" | undefined>;
-    timestamp: Date;
+    timestamp: {};
     data: {};
 }, yup.AnyObject, {
     id: undefined;
     type: undefined;
     timestamp: undefined;
-    data: undefined;
+    data: {};
 }, "">;
 export declare const messageLogSchema: yup.ObjectSchema<{
     id: string;
     type: "message";
-    timestamp: Date;
+    timestamp: {};
     data: {
-        content: string;
         role: NonNullable<"user" | "assistant" | undefined>;
+        content: string;
     };
-}, yup.AnyObject, never, "">;
+}, yup.AnyObject, {
+    id: undefined;
+    type: undefined;
+    timestamp: undefined;
+    data: {
+        role: undefined;
+        content: undefined;
+    };
+}, "">;
 export declare const tacticActivityLogSchema: yup.ObjectSchema<{
     id: string;
     type: NonNullable<"tactic_completed" | "tactic_uncompleted" | "tactic_viewed" | undefined>;
-    timestamp: Date;
+    timestamp: {};
     data: {
         tacticId: string;
         tacticTitle: string;
         tacticType: string;
     };
-}, yup.AnyObject, never, "">;
+}, yup.AnyObject, {
+    id: undefined;
+    type: undefined;
+    timestamp: undefined;
+    data: {
+        tacticId: undefined;
+        tacticTitle: undefined;
+        tacticType: undefined;
+    };
+}, "">;
 export declare const impulseLogSchema: yup.ObjectSchema<{
     id: string;
     type: "impulse_button_pressed";
-    timestamp: Date;
-    data: {
-        behaviorId: string;
-        behaviorName: string;
-    };
-}, yup.AnyObject, never, "">;
+    timestamp: {};
+    data: {};
+}, yup.AnyObject, {
+    id: undefined;
+    type: undefined;
+    timestamp: undefined;
+    data: {};
+}, "">;
 export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
     id: string;
     type: "behavior_tracked";
-    timestamp: Date;
+    timestamp: {};
     data: {
         notes?: string | null | undefined;
         behaviorId: string;
@@ -55,26 +74,37 @@ export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
         trackingType: NonNullable<"counter" | "timer" | undefined>;
         value: number;
     };
-}, yup.AnyObject, never, "">;
+}, yup.AnyObject, {
+    id: undefined;
+    type: undefined;
+    timestamp: undefined;
+    data: {
+        behaviorId: undefined;
+        behaviorName: undefined;
+        trackingType: undefined;
+        value: undefined;
+        notes: undefined;
+    };
+}, "">;
 export declare const validateActivityLog: (data: unknown) => Promise<{
     id: string;
     type: NonNullable<"message" | "tactic_completed" | "tactic_uncompleted" | "impulse_button_pressed" | "behavior_tracked" | undefined>;
-    timestamp: Date;
+    timestamp: {};
     data: {};
 }>;
 export declare const validateMessageLog: (data: unknown) => Promise<{
     id: string;
     type: "message";
-    timestamp: Date;
+    timestamp: {};
     data: {
-        content: string;
         role: NonNullable<"user" | "assistant" | undefined>;
+        content: string;
     };
 }>;
 export declare const validateTacticActivityLog: (data: unknown) => Promise<{
     id: string;
     type: NonNullable<"tactic_completed" | "tactic_uncompleted" | "tactic_viewed" | undefined>;
-    timestamp: Date;
+    timestamp: {};
     data: {
         tacticId: string;
         tacticTitle: string;
@@ -84,16 +114,13 @@ export declare const validateTacticActivityLog: (data: unknown) => Promise<{
 export declare const validateImpulseLog: (data: unknown) => Promise<{
     id: string;
     type: "impulse_button_pressed";
-    timestamp: Date;
-    data: {
-        behaviorId: string;
-        behaviorName: string;
-    };
+    timestamp: {};
+    data: {};
 }>;
 export declare const validateBehaviorTrackedLog: (data: unknown) => Promise<{
     id: string;
     type: "behavior_tracked";
-    timestamp: Date;
+    timestamp: {};
     data: {
         notes?: string | null | undefined;
         behaviorId: string;

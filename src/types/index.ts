@@ -9,3 +9,4 @@ export * from './log';
 export * from './thread';
 export * from './tactic';
 export * from './supportGroup';
+export * from './firebase';

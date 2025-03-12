@@ -21,3 +21,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./userContext"), exports);
 __exportStar(require("./behavior"), exports);
 __exportStar(require("./log"), exports);
+__exportStar(require("./thread"), exports);
+__exportStar(require("./tactic"), exports);
+__exportStar(require("./supportGroup"), exports);
+__exportStar(require("./firebase"), exports);
