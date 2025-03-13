@@ -38,7 +38,7 @@ export declare const supportGroupMessageSchema: yup.ObjectSchema<{
     updatedAt: undefined;
 }, "">;
 export declare const supportGroupSchema: yup.ObjectSchema<{
-    id: string;
+    id: string | undefined;
     name: string;
     description: string | undefined;
     ownerId: string;

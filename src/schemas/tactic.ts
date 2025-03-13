@@ -4,6 +4,7 @@
  * Defines Yup schemas for tactic data
  */
 import * as yup from "yup";
+import { timestampSchema } from "../utils";
 
 // Tactic Types
 export const tacticTypes = [
@@ -18,7 +19,7 @@ export const tacticTypes = [
 
 // Tactic Schema
 export const tacticSchema = yup.object({
-  id: yup.string().required(),
+  id: yup.string(),
   type: yup.string().oneOf(tacticTypes).required(),
   title: yup.string().required(),
   description: yup.string().optional(),
@@ -33,8 +34,8 @@ export const tacticSchema = yup.object({
   durationSeconds: yup.number().optional(), // Total duration in seconds
   allBehaviors: yup.boolean().optional(),
   behaviorIds: yup.array().of(yup.string()).optional(),
-  createdAt: yup.date().optional(),
-  updatedAt: yup.date().optional(),
   userId: yup.string().optional(),
   isPublic: yup.boolean().optional(),
+  createdAt: timestampSchema,
+  updatedAt: timestampSchema,
 });

@@ -75,6 +75,7 @@ export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
     type: "behavior_tracked";
     timestamp: import("..").Timestamp;
     data: {
+        id?: string | undefined;
         notes?: string | null | undefined;
         behaviorId: string;
         behaviorName: string;
@@ -87,6 +88,7 @@ export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
     type: undefined;
     timestamp: undefined;
     data: {
+        id: undefined;
         behaviorId: undefined;
         behaviorName: undefined;
         trackingType: undefined;

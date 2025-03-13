@@ -6,7 +6,7 @@
 import * as yup from "yup";
 export declare const tacticTypes: readonly ["task", "affirmation", "image", "video", "link", "supportGroup", "breathingExercise"];
 export declare const tacticSchema: yup.ObjectSchema<{
-    id: string;
+    id: string | undefined;
     type: NonNullable<"task" | "affirmation" | "image" | "video" | "link" | "supportGroup" | "breathingExercise" | undefined>;
     title: string;
     description: string | undefined;
@@ -21,10 +21,10 @@ export declare const tacticSchema: yup.ObjectSchema<{
     durationSeconds: number | undefined;
     allBehaviors: boolean | undefined;
     behaviorIds: (string | undefined)[] | undefined;
-    createdAt: Date | undefined;
-    updatedAt: Date | undefined;
     userId: string | undefined;
     isPublic: boolean | undefined;
+    createdAt: import("..").Timestamp | undefined;
+    updatedAt: import("..").Timestamp | undefined;
 }, yup.AnyObject, {
     id: undefined;
     type: undefined;
@@ -41,8 +41,8 @@ export declare const tacticSchema: yup.ObjectSchema<{
     durationSeconds: undefined;
     allBehaviors: undefined;
     behaviorIds: "";
-    createdAt: undefined;
-    updatedAt: undefined;
     userId: undefined;
     isPublic: undefined;
+    createdAt: undefined;
+    updatedAt: undefined;
 }, "">;

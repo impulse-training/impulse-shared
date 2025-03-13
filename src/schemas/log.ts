@@ -61,6 +61,7 @@ export const behaviorTrackedLogSchema = activityLogSchema.shape({
   type: yup.string().oneOf(["behavior_tracked"]).required(),
   data: yup
     .object({
+      id: yup.string(),
       behaviorId: yup.string().required(),
       behaviorName: yup.string().required(),
       trackingType: yup.string().oneOf(["counter", "timer"]).required(),

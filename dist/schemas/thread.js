@@ -43,6 +43,7 @@ const yup = __importStar(require("yup"));
 const timestampSchema_1 = require("../utils/timestampSchema");
 // Thread Schema
 exports.threadSchema = yup.object({
+    id: yup.string(),
     title: yup.string().required(),
     isImpulseMoment: yup.boolean().optional(),
     tactics: yup.array().of(yup.string()).optional(),

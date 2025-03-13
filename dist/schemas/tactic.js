@@ -40,6 +40,7 @@ exports.tacticSchema = exports.tacticTypes = void 0;
  * Defines Yup schemas for tactic data
  */
 const yup = __importStar(require("yup"));
+const utils_1 = require("../utils");
 // Tactic Types
 exports.tacticTypes = [
     "task",
@@ -52,7 +53,7 @@ exports.tacticTypes = [
 ];
 // Tactic Schema
 exports.tacticSchema = yup.object({
-    id: yup.string().required(),
+    id: yup.string(),
     type: yup.string().oneOf(exports.tacticTypes).required(),
     title: yup.string().required(),
     description: yup.string().optional(),
@@ -67,8 +68,8 @@ exports.tacticSchema = yup.object({
     durationSeconds: yup.number().optional(), // Total duration in seconds
     allBehaviors: yup.boolean().optional(),
     behaviorIds: yup.array().of(yup.string()).optional(),
-    createdAt: yup.date().optional(),
-    updatedAt: yup.date().optional(),
     userId: yup.string().optional(),
     isPublic: yup.boolean().optional(),
+    createdAt: utils_1.timestampSchema,
+    updatedAt: utils_1.timestampSchema,
 });

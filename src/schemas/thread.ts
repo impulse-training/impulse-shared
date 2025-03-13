@@ -8,6 +8,7 @@ import { timestampSchema } from "../utils/timestampSchema";
 
 // Thread Schema
 export const threadSchema = yup.object({
+  id: yup.string(),
   title: yup.string().required(),
   isImpulseMoment: yup.boolean().optional(),
   tactics: yup.array().of(yup.string()).optional(),
