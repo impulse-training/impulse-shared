@@ -10,3 +10,4 @@ export * from './thread';
 export * from './tactic';
 export * from './supportGroup';
 export * from './firebase';
+export * from './user';

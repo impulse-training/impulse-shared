@@ -25,3 +25,4 @@ __exportStar(require("./thread"), exports);
 __exportStar(require("./tactic"), exports);
 __exportStar(require("./supportGroup"), exports);
 __exportStar(require("./firebase"), exports);
+__exportStar(require("./user"), exports);

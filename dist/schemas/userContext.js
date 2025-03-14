@@ -77,7 +77,6 @@ exports.aiMemorySchema = yup.object({
  * Schema for user context
  */
 exports.userContextSchema = yup.object({
-    id: yup.string(),
     userId: yup.string().required(),
     // Use lazy to create a record type schema
     behaviors: yup.lazy(() => yup.object().default({})),

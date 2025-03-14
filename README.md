@@ -28,7 +28,7 @@ Or add it to your package.json:
 
 ```typescript
 // Import types
-import { UserContext, BehaviorContext, ActivityLog } from 'impulse-shared';
+import { UserContext, BehaviorContext, Log } from 'impulse-shared';
 
 // Import schemas for validation
 import { validateUserContext, behaviorSchema } from 'impulse-shared';

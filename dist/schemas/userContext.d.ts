@@ -60,7 +60,6 @@ export declare const aiMemorySchema: yup.ObjectSchema<{
  * Schema for user context
  */
 export declare const userContextSchema: yup.ObjectSchema<{
-    id: string | undefined;
     userId: string;
     behaviors: {};
     tactics: {};
@@ -74,7 +73,6 @@ export declare const userContextSchema: yup.ObjectSchema<{
     createdAt: import("..").Timestamp | undefined;
     updatedAt: import("..").Timestamp | undefined;
 }, yup.AnyObject, {
-    id: undefined;
     userId: undefined;
     behaviors: undefined;
     tactics: undefined;

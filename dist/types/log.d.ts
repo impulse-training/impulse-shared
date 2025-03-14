@@ -4,16 +4,12 @@
  * TypeScript type definitions for thread log data
  */
 import { InferType } from "yup";
-import { activityLogSchema, activityTypes, behaviorTrackedLogSchema, impulseLogSchema, messageLogSchema, tacticActivityLogSchema } from "../schemas/log";
+import { activityTypes, behaviorTrackedLogSchema, impulseLogSchema, messageLogSchema, questionLogSchema, tacticLogSchema } from "../schemas/log";
 export type ActivityType = (typeof activityTypes)[number];
-export type ActivityLog = InferType<typeof activityLogSchema>;
 export type MessageLog = InferType<typeof messageLogSchema>;
-export type TacticActivityLog = InferType<typeof tacticActivityLogSchema>;
+export type TacticLog = InferType<typeof tacticLogSchema>;
 export type ImpulseLog = InferType<typeof impulseLogSchema>;
 export type BehaviorTrackedLog = InferType<typeof behaviorTrackedLogSchema>;
-export type Log = ActivityLog | MessageLog | TacticActivityLog | ImpulseLog | BehaviorTrackedLog;
-export declare const isActivityLog: (value: unknown) => value is ActivityLog;
-export declare const isMessageLog: (value: unknown) => value is MessageLog;
-export declare const isTacticActivityLog: (value: unknown) => value is TacticActivityLog;
-export declare const isImpulseLog: (value: unknown) => value is ImpulseLog;
-export declare const isBehaviorTrackedLog: (value: unknown) => value is BehaviorTrackedLog;
+export type QuestionLog = InferType<typeof questionLogSchema>;
+export type Log = MessageLog | TacticLog | ImpulseLog | BehaviorTrackedLog | QuestionLog;
+export declare const isLog: (value: unknown) => value is Log;

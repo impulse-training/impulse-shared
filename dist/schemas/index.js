@@ -1,7 +1,4 @@
 "use strict";
-/**
- * Schema exports
- */
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -18,9 +15,11 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 // Export all schema types and validation functions
-__exportStar(require("./userContext"), exports);
 __exportStar(require("./behavior"), exports);
 __exportStar(require("./log"), exports);
-__exportStar(require("./thread"), exports);
-__exportStar(require("./tactic"), exports);
+__exportStar(require("./question"), exports);
 __exportStar(require("./supportGroup"), exports);
+__exportStar(require("./tactic"), exports);
+__exportStar(require("./thread"), exports);
+__exportStar(require("./user"), exports);
+__exportStar(require("./userContext"), exports);

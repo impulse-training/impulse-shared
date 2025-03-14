@@ -64,7 +64,7 @@ exports.supportGroupMessageSchema = yup.object({
 });
 // Support Group Schema
 exports.supportGroupSchema = yup.object({
-    id: yup.string(),
+    id: yup.string().required(),
     name: yup.string().required(),
     description: yup.string().optional(),
     ownerId: yup.string().required(),

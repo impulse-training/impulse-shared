@@ -1,17 +1,11 @@
-/**
- * Thread Schemas
- *
- * Defines Yup schemas for thread data
- */
 import * as yup from "yup";
 import { timestampSchema } from "../utils/timestampSchema";
 
-// Thread Schema
+// Thread schema
 export const threadSchema = yup.object({
   id: yup.string(),
   title: yup.string().required(),
-  isImpulseMoment: yup.boolean().optional(),
-  tactics: yup.array().of(yup.string()).optional(),
+  type: yup.string().oneOf(['impulse', 'general', 'dayRecap']).default('general'),
   updatedAt: timestampSchema,
   createdAt: timestampSchema,
 });

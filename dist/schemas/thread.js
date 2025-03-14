@@ -34,19 +34,13 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.threadSchema = void 0;
-/**
- * Thread Schemas
- *
- * Defines Yup schemas for thread data
- */
 const yup = __importStar(require("yup"));
 const timestampSchema_1 = require("../utils/timestampSchema");
-// Thread Schema
+// Thread schema
 exports.threadSchema = yup.object({
     id: yup.string(),
     title: yup.string().required(),
-    isImpulseMoment: yup.boolean().optional(),
-    tactics: yup.array().of(yup.string()).optional(),
+    type: yup.string().oneOf(['impulse', 'general', 'dayRecap']).default('general'),
     updatedAt: timestampSchema_1.timestampSchema,
     createdAt: timestampSchema_1.timestampSchema,
 });

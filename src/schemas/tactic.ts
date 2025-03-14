@@ -8,7 +8,7 @@ import { timestampSchema } from "../utils";
 
 // Tactic Types
 export const tacticTypes = [
-  "task",
+  "action",
   "affirmation",
   "image",
   "video",

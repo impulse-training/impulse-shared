@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.behaviorTrackedLogSchema = exports.impulseLogSchema = exports.tacticActivityLogSchema = exports.messageLogSchema = exports.activityLogSchema = exports.activityTypes = void 0;
+exports.behaviorTrackedLogSchema = exports.impulseLogSchema = exports.tacticLogSchema = exports.messageLogSchema = exports.logBaseSchema = exports.activityTypes = void 0;
 /**
  * Log Schemas
  *
@@ -50,15 +50,17 @@ exports.activityTypes = [
     "behavior_tracked",
 ];
 // Base Activity Log Schema
-exports.activityLogSchema = yup.object({
+exports.logBaseSchema = yup.object({
     type: yup.string().oneOf(exports.activityTypes).required(),
+    // This is required for collection group queries security rules
+    userId: yup.string().required(),
     timestamp: timestampSchema_1.timestampSchema.required(),
     data: yup.object().default({}),
     createdAt: timestampSchema_1.timestampSchema,
     updatedAt: timestampSchema_1.timestampSchema,
 });
 // Message Log Schema
-exports.messageLogSchema = exports.activityLogSchema.shape({
+exports.messageLogSchema = exports.logBaseSchema.shape({
     type: yup.string().oneOf(["message"]).required(),
     data: yup
         .object({
@@ -68,7 +70,7 @@ exports.messageLogSchema = exports.activityLogSchema.shape({
         .required(),
 });
 // Tactic Activity Log Schema
-exports.tacticActivityLogSchema = exports.activityLogSchema.shape({
+exports.tacticLogSchema = exports.logBaseSchema.shape({
     type: yup
         .string()
         .oneOf(["tactic_completed", "tactic_uncompleted", "tactic_viewed"])
@@ -82,16 +84,15 @@ exports.tacticActivityLogSchema = exports.activityLogSchema.shape({
         .required(),
 });
 // Impulse Log Schema
-exports.impulseLogSchema = exports.activityLogSchema.shape({
+exports.impulseLogSchema = exports.logBaseSchema.shape({
     type: yup.string().oneOf(["impulse_button_pressed"]).required(),
     data: yup.object({}).required(),
 });
 // Behavior Tracked Log Schema
-exports.behaviorTrackedLogSchema = exports.activityLogSchema.shape({
+exports.behaviorTrackedLogSchema = exports.logBaseSchema.shape({
     type: yup.string().oneOf(["behavior_tracked"]).required(),
     data: yup
         .object({
-        id: yup.string(),
         behaviorId: yup.string().required(),
         behaviorName: yup.string().required(),
         trackingType: yup.string().oneOf(["counter", "timer"]).required(),

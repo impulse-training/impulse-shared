@@ -10,6 +10,7 @@ import { Log } from './log';
 // Export type inferred from schema
 export type Thread = InferType<typeof threadSchema> & {
   logs?: Log[];
+  type: 'impulse' | 'general' | 'dayRecap';
 };
 
 // Type guard function

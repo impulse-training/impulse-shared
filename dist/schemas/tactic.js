@@ -43,7 +43,7 @@ const yup = __importStar(require("yup"));
 const utils_1 = require("../utils");
 // Tactic Types
 exports.tacticTypes = [
-    "task",
+    "action",
     "affirmation",
     "image",
     "video",
