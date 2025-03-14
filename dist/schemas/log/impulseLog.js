@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isImpulseLog = exports.impulseLogSchema = void 0;
+exports.impulseLogSchema = void 0;
 const yup = __importStar(require("yup"));
 const _1 = require(".");
 // Impulse Log Schema
@@ -41,13 +41,3 @@ exports.impulseLogSchema = _1.logBaseSchema.shape({
     type: yup.string().oneOf(["impulse_button_pressed"]).required(),
     data: yup.object({}).required(),
 });
-const isImpulseLog = (value) => {
-    try {
-        exports.impulseLogSchema.validateSync(value);
-        return true;
-    }
-    catch (error) {
-        return false;
-    }
-};
-exports.isImpulseLog = isImpulseLog;

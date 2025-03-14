@@ -4,12 +4,13 @@
  * Defines Yup schemas for support group data
  */
 import * as yup from "yup";
+import { SupportGroup, SupportGroupMember, SupportGroupMessage } from "../types";
 export declare const supportGroupMemberSchema: yup.ObjectSchema<{
     name: string;
     email: string;
     photoURL: string | undefined;
     role: NonNullable<"owner" | "member" | undefined>;
-    joinedAt: import("..").Timestamp | undefined;
+    joinedAt: import("../types").Timestamp | undefined;
 }, yup.AnyObject, {
     name: undefined;
     email: undefined;
@@ -22,11 +23,11 @@ export declare const supportGroupMessageSchema: yup.ObjectSchema<{
     senderId: string;
     senderName: string;
     content: string;
-    timestamp: import("..").Timestamp;
-    type: NonNullable<"text" | "impulse_alert" | "system" | undefined>;
+    timestamp: import("../types").Timestamp;
+    type: NonNullable<"text" | "system" | "impulse_alert" | undefined>;
     threadId: string | undefined;
-    createdAt: import("..").Timestamp | undefined;
-    updatedAt: import("..").Timestamp | undefined;
+    createdAt: import("../types").Timestamp | undefined;
+    updatedAt: import("../types").Timestamp | undefined;
 }, yup.AnyObject, {
     senderId: undefined;
     senderName: undefined;
@@ -43,16 +44,16 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
     description: string | undefined;
     ownerId: string;
     members: {
-        joinedAt?: import("..").Timestamp | undefined;
+        joinedAt?: import("../types").Timestamp | undefined;
         photoURL?: string | undefined;
         name: string;
-        role: NonNullable<"owner" | "member" | undefined>;
         email: string;
+        role: NonNullable<"owner" | "member" | undefined>;
     }[];
     isPublic: boolean | undefined;
     inviteCode: string | undefined;
-    createdAt: import("..").Timestamp | undefined;
-    updatedAt: import("..").Timestamp | undefined;
+    createdAt: import("../types").Timestamp | undefined;
+    updatedAt: import("../types").Timestamp | undefined;
 }, yup.AnyObject, {
     id: undefined;
     name: undefined;
@@ -64,3 +65,6 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
     createdAt: undefined;
     updatedAt: undefined;
 }, "">;
+export declare const isSupportGroupMember: (value: unknown) => value is SupportGroupMember;
+export declare const isSupportGroupMessage: (value: unknown) => value is SupportGroupMessage;
+export declare const isSupportGroup: (value: unknown) => value is SupportGroup;

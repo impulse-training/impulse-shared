@@ -1,6 +1,5 @@
 import * as yup from "yup";
 import { logBaseSchema } from ".";
-import { TacticLog } from "../../types";
 
 // Tactic Activity Log Schema
 export const tacticLogSchema = logBaseSchema.shape({
@@ -13,12 +12,3 @@ export const tacticLogSchema = logBaseSchema.shape({
     })
     .required(),
 });
-
-export const isTacticLog = (value: unknown): value is TacticLog => {
-  try {
-    tacticLogSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
-};

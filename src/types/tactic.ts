@@ -1,10 +1,10 @@
 /**
  * Tactic Types
- * 
+ *
  * TypeScript type definitions for tactic data
  */
-import { InferType } from 'yup';
-import { tacticSchema, tacticTypes } from '../schemas/tactic';
+import { InferType } from "yup";
+import { tacticSchema, tacticTypes } from "../schemas/tactic";
 
 // Export tactic type
 export type TacticType = (typeof tacticTypes)[number];

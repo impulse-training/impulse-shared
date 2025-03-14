@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.supportGroupSchema = exports.supportGroupMessageSchema = exports.messageTypes = exports.supportGroupMemberSchema = void 0;
+exports.isSupportGroup = exports.isSupportGroupMessage = exports.isSupportGroupMember = exports.supportGroupSchema = exports.supportGroupMessageSchema = exports.messageTypes = exports.supportGroupMemberSchema = void 0;
 /**
  * Support Group Schemas
  *
@@ -74,3 +74,34 @@ exports.supportGroupSchema = yup.object({
     createdAt: utils_1.timestampSchema,
     updatedAt: utils_1.timestampSchema,
 });
+// Type guard functions
+const isSupportGroupMember = (value) => {
+    try {
+        exports.supportGroupMemberSchema.validateSync(value);
+        return true;
+    }
+    catch (error) {
+        return false;
+    }
+};
+exports.isSupportGroupMember = isSupportGroupMember;
+const isSupportGroupMessage = (value) => {
+    try {
+        exports.supportGroupMessageSchema.validateSync(value);
+        return true;
+    }
+    catch (error) {
+        return false;
+    }
+};
+exports.isSupportGroupMessage = isSupportGroupMessage;
+const isSupportGroup = (value) => {
+    try {
+        exports.supportGroupSchema.validateSync(value);
+        return true;
+    }
+    catch (error) {
+        return false;
+    }
+};
+exports.isSupportGroup = isSupportGroup;

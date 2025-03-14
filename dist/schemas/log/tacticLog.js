@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isTacticLog = exports.tacticLogSchema = void 0;
+exports.tacticLogSchema = void 0;
 const yup = __importStar(require("yup"));
 const _1 = require(".");
 // Tactic Activity Log Schema
@@ -47,13 +47,3 @@ exports.tacticLogSchema = _1.logBaseSchema.shape({
     })
         .required(),
 });
-const isTacticLog = (value) => {
-    try {
-        exports.tacticLogSchema.validateSync(value);
-        return true;
-    }
-    catch (error) {
-        return false;
-    }
-};
-exports.isTacticLog = isTacticLog;

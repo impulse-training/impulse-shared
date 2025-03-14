@@ -1,9 +1,8 @@
 import * as yup from "yup";
-import { QuestionLog } from "../../types";
 export declare const questionLogSchema: yup.ObjectSchema<{
     type: "question";
     userId: string;
-    timestamp: import("../../types").Timestamp;
+    timestamp: import("../..").Timestamp;
     data: {
         suggestedResponses?: (string | undefined)[] | undefined;
         content: string;
@@ -18,8 +17,8 @@ export declare const questionLogSchema: yup.ObjectSchema<{
         };
         response: {} | null;
     };
-    createdAt: import("../../types").Timestamp | undefined;
-    updatedAt: import("../../types").Timestamp | undefined;
+    createdAt: import("../..").Timestamp | undefined;
+    updatedAt: import("../..").Timestamp | undefined;
 }, yup.AnyObject, {
     type: undefined;
     userId: undefined;
@@ -41,4 +40,3 @@ export declare const questionLogSchema: yup.ObjectSchema<{
     createdAt: undefined;
     updatedAt: undefined;
 }, "">;
-export declare const isQuestionLog: (value: unknown) => value is QuestionLog;

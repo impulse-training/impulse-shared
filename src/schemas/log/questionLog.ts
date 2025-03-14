@@ -1,6 +1,5 @@
 import * as yup from "yup";
 import { logBaseSchema } from ".";
-import { QuestionLog } from "../../types";
 
 const responseTypes = ["text", "slider"] as const;
 
@@ -40,12 +39,3 @@ export const questionLogSchema = logBaseSchema.shape({
     })
     .required(),
 });
-
-export const isQuestionLog = (value: unknown): value is QuestionLog => {
-  try {
-    questionLogSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
-};

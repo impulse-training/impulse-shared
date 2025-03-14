@@ -1,18 +1,17 @@
 import * as yup from "yup";
-import { BehaviorTrackedLog } from "../../types";
 export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
     type: "behavior_tracked";
     userId: string;
-    timestamp: import("../../types").Timestamp;
+    timestamp: import("../..").Timestamp;
     data: {
         notes?: string | null | undefined;
-        trackingType: NonNullable<"counter" | "timer" | undefined>;
         behaviorId: string;
         behaviorName: string;
+        trackingType: NonNullable<"counter" | "timer" | undefined>;
         value: number;
     };
-    createdAt: import("../../types").Timestamp | undefined;
-    updatedAt: import("../../types").Timestamp | undefined;
+    createdAt: import("../..").Timestamp | undefined;
+    updatedAt: import("../..").Timestamp | undefined;
 }, yup.AnyObject, {
     type: undefined;
     userId: undefined;
@@ -27,4 +26,3 @@ export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
     createdAt: undefined;
     updatedAt: undefined;
 }, "">;
-export declare const isBehaviorTrackedLog: (value: unknown) => value is BehaviorTrackedLog;

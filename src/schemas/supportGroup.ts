@@ -4,6 +4,11 @@
  * Defines Yup schemas for support group data
  */
 import * as yup from "yup";
+import {
+  SupportGroup,
+  SupportGroupMember,
+  SupportGroupMessage,
+} from "../types";
 import { timestampSchema } from "../utils";
 
 // Support Group Member Schema
@@ -42,3 +47,35 @@ export const supportGroupSchema = yup.object({
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
 });
+
+// Type guard functions
+export const isSupportGroupMember = (
+  value: unknown
+): value is SupportGroupMember => {
+  try {
+    supportGroupMemberSchema.validateSync(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+export const isSupportGroupMessage = (
+  value: unknown
+): value is SupportGroupMessage => {
+  try {
+    supportGroupMessageSchema.validateSync(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+export const isSupportGroup = (value: unknown): value is SupportGroup => {
+  try {
+    supportGroupSchema.validateSync(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};

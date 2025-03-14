@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isQuestionLog = exports.questionLogSchema = void 0;
+exports.questionLogSchema = void 0;
 const yup = __importStar(require("yup"));
 const _1 = require(".");
 const responseTypes = ["text", "slider"];
@@ -73,13 +73,3 @@ exports.questionLogSchema = _1.logBaseSchema.shape({
     })
         .required(),
 });
-const isQuestionLog = (value) => {
-    try {
-        exports.questionLogSchema.validateSync(value);
-        return true;
-    }
-    catch (error) {
-        return false;
-    }
-};
-exports.isQuestionLog = isQuestionLog;

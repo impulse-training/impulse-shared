@@ -65,8 +65,8 @@ export declare const userContextSchema: yup.ObjectSchema<{
     tactics: {};
     memories: {
         createdAt?: import("..").Timestamp | undefined;
-        id: string;
         content: string;
+        id: string;
         source: string;
     }[];
     overallInsights: (string | undefined)[];

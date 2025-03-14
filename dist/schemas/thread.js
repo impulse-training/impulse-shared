@@ -40,7 +40,10 @@ const timestampSchema_1 = require("../utils/timestampSchema");
 exports.threadSchema = yup.object({
     id: yup.string(),
     title: yup.string().required(),
-    type: yup.string().oneOf(['impulse', 'general', 'dayRecap']).default('general'),
+    type: yup
+        .string()
+        .oneOf(["impulse", "general", "dayRecap"])
+        .default("general"),
     updatedAt: timestampSchema_1.timestampSchema,
     createdAt: timestampSchema_1.timestampSchema,
 });

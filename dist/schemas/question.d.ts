@@ -1,4 +1,5 @@
 import * as yup from "yup";
+import { Question } from "../types/question";
 export declare const responseTypes: readonly ["text", "slider"];
 export declare const questionSchema: yup.ObjectSchema<{
     content: string;
@@ -25,3 +26,4 @@ export declare const questionSchema: yup.ObjectSchema<{
         defaultValue: undefined;
     };
 }, "">;
+export declare const isQuestion: (value: unknown) => value is Question;

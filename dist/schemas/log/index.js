@@ -41,7 +41,9 @@ const yup = __importStar(require("yup"));
 const timestampSchema_1 = require("../../utils/timestampSchema");
 // Activity Types
 exports.activityTypes = [
-    "message",
+    "message", // Legacy message type (for backward compatibility)
+    "user", // User message type
+    "agent", // Agent/AI message type
     "tactic_completed",
     "tactic_uncompleted",
     "impulse_button_pressed",
@@ -57,8 +59,9 @@ exports.logBaseSchema = yup.object({
     createdAt: timestampSchema_1.timestampSchema,
     updatedAt: timestampSchema_1.timestampSchema,
 });
+__exportStar(require("./agentLog"), exports);
 __exportStar(require("./behaviorTrackedLog"), exports);
 __exportStar(require("./impulseLog"), exports);
-__exportStar(require("./messageLog"), exports);
 __exportStar(require("./questionLog"), exports);
 __exportStar(require("./tacticLog"), exports);
+__exportStar(require("./userLog"), exports);

@@ -1,8 +1,8 @@
 /**
- * Impulse Shared Package
+ * Impulse Shared Library
  *
- * This package contains shared types, schemas, and utilities for Impulse applications
+ * Common types and utilities for Impulse applications
  */
-export * from './schemas/index';
-export * from './types/index';
-export * from './utils/index';
+export * from "./schemas";
+export * from "./types";
+export * from "./utils";

@@ -5,7 +5,10 @@ import { timestampSchema } from "../utils/timestampSchema";
 export const threadSchema = yup.object({
   id: yup.string(),
   title: yup.string().required(),
-  type: yup.string().oneOf(['impulse', 'general', 'dayRecap']).default('general'),
+  type: yup
+    .string()
+    .oneOf(["impulse", "general", "dayRecap"])
+    .default("general"),
   updatedAt: timestampSchema,
   createdAt: timestampSchema,
 });

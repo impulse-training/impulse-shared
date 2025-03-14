@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isBehaviorTrackedLog = exports.behaviorTrackedLogSchema = void 0;
+exports.behaviorTrackedLogSchema = void 0;
 const yup = __importStar(require("yup"));
 const _1 = require(".");
 // Behavior Tracked Log Schema
@@ -49,13 +49,3 @@ exports.behaviorTrackedLogSchema = _1.logBaseSchema.shape({
     })
         .required(),
 });
-const isBehaviorTrackedLog = (value) => {
-    try {
-        exports.behaviorTrackedLogSchema.validateSync(value);
-        return true;
-    }
-    catch (error) {
-        return false;
-    }
-};
-exports.isBehaviorTrackedLog = isBehaviorTrackedLog;

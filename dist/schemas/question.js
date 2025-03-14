@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.questionSchema = exports.responseTypes = void 0;
+exports.isQuestion = exports.questionSchema = exports.responseTypes = void 0;
 const yup = __importStar(require("yup"));
 // Response types for questions
 exports.responseTypes = ["text", "slider"];
@@ -64,3 +64,13 @@ exports.questionSchema = yup.object({
         otherwise: (schema) => schema.optional().default(undefined),
     }),
 });
+const isQuestion = (value) => {
+    try {
+        exports.questionSchema.validateSync(value);
+        return true;
+    }
+    catch (error) {
+        return false;
+    }
+};
+exports.isQuestion = isQuestion;

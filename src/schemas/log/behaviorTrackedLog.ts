@@ -1,6 +1,5 @@
 import * as yup from "yup";
 import { logBaseSchema } from ".";
-import { BehaviorTrackedLog } from "../../types";
 
 // Behavior Tracked Log Schema
 export const behaviorTrackedLogSchema = logBaseSchema.shape({
@@ -15,14 +14,3 @@ export const behaviorTrackedLogSchema = logBaseSchema.shape({
     })
     .required(),
 });
-
-export const isBehaviorTrackedLog = (
-  value: unknown
-): value is BehaviorTrackedLog => {
-  try {
-    behaviorTrackedLogSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
-};
