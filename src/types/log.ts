@@ -42,7 +42,9 @@ export type Log =
   | UserLog // New user message type
   | AgentLog; // New agent message type with tool calls and results
 
-export const isAgentLog = (value: unknown): value is AgentLog => {
+export const logIsAgentLog = (value: Log): value is AgentLog =>
+  value.type === "agent";
+export const isValidAgentLog = (value: unknown): value is AgentLog => {
   try {
     agentLogSchema.validateSync(value);
     return true;
@@ -50,7 +52,10 @@ export const isAgentLog = (value: unknown): value is AgentLog => {
     return false;
   }
 };
-export const isBehaviorTrackedLog = (
+export const logIsBehaviorTrackedLog = (
+  value: Log
+): value is BehaviorTrackedLog => value.type === "behavior_tracked";
+export const isValidBehaviorTrackedLog = (
   value: unknown
 ): value is BehaviorTrackedLog => {
   try {
@@ -61,7 +66,9 @@ export const isBehaviorTrackedLog = (
   }
 };
 
-export const isImpulseLog = (value: unknown): value is ImpulseLog => {
+export const logIsImpulseLog = (value: Log): value is ImpulseLog =>
+  value.type === "impulse_button_pressed";
+export const isValidImpulseLog = (value: unknown): value is ImpulseLog => {
   try {
     impulseLogSchema.validateSync(value);
     return true;
@@ -70,7 +77,9 @@ export const isImpulseLog = (value: unknown): value is ImpulseLog => {
   }
 };
 
-export const isQuestionLog = (value: unknown): value is QuestionLog => {
+export const logIsQuestionLog = (value: Log): value is QuestionLog =>
+  value.type === "question";
+export const isValidQuestionLog = (value: unknown): value is QuestionLog => {
   try {
     questionLogSchema.validateSync(value);
     return true;
@@ -79,7 +88,9 @@ export const isQuestionLog = (value: unknown): value is QuestionLog => {
   }
 };
 
-export const isTacticLog = (value: unknown): value is TacticLog => {
+export const logIsTacticLog = (value: Log): value is TacticLog =>
+  value.type === "tactic_completed";
+export const isValidTacticLog = (value: unknown): value is TacticLog => {
   try {
     tacticLogSchema.validateSync(value);
     return true;
@@ -87,7 +98,9 @@ export const isTacticLog = (value: unknown): value is TacticLog => {
     return false;
   }
 };
-export const isUserLog = (value: unknown): value is UserLog => {
+export const logIsUserLog = (value: Log): value is UserLog =>
+  value.type === "user";
+export const isValidUserLog = (value: unknown): value is UserLog => {
   try {
     userLogSchema.validateSync(value);
     return true;

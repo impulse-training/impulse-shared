@@ -1,8 +1,13 @@
 import { ChatCompletionMessageParam } from "openai/resources/chat";
-import { Log, isAgentLog, isQuestionLog, isUserLog } from "../types/log";
+import {
+  Log,
+  logIsAgentLog,
+  logIsQuestionLog,
+  logIsUserLog,
+} from "../types/log";
 
 export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
-  if (isUserLog(log)) {
+  if (logIsUserLog(log)) {
     return [
       {
         role: "user",
@@ -12,7 +17,7 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
   }
 
   // Handle AgentLog
-  if (isAgentLog(log)) {
+  if (logIsAgentLog(log)) {
     const messages: ChatCompletionMessageParam[] = [];
     messages.push(log.data.message);
 
@@ -27,10 +32,10 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
   }
 
   // Handle QuestionLog
-  if (isQuestionLog(log)) {
+  if (logIsQuestionLog(log)) {
     return [
       {
-        role: "user",
+        role: "assistant",
         content: log.data.content,
       },
     ];
