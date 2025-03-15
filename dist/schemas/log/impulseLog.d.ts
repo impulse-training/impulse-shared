@@ -6,6 +6,7 @@ export declare const impulseLogSchema: yup.ObjectSchema<{
     data: {};
     createdAt: import("../..").Timestamp | undefined;
     updatedAt: import("../..").Timestamp | undefined;
+    isDisplayable: true;
 }, yup.AnyObject, {
     type: undefined;
     userId: undefined;
@@ -13,4 +14,5 @@ export declare const impulseLogSchema: yup.ObjectSchema<{
     data: {};
     createdAt: undefined;
     updatedAt: undefined;
+    isDisplayable: undefined;
 }, "">;

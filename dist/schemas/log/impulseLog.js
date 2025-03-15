@@ -39,5 +39,6 @@ const _1 = require(".");
 // Impulse Log Schema
 exports.impulseLogSchema = _1.logBaseSchema.shape({
     type: yup.string().oneOf(["impulse_button_pressed"]).required(),
-    data: yup.object({}).required(),
+    // Impulse logs are always displayed in the UI
+    isDisplayable: yup.mixed().oneOf([true]).required(),
 });

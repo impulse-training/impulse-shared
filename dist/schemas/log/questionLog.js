@@ -40,6 +40,8 @@ const responseTypes = ["text", "slider"];
 // Question Log Schema
 exports.questionLogSchema = _1.logBaseSchema.shape({
     type: yup.string().oneOf(["question"]).required(),
+    // Question logs are always displayed in the UI
+    isDisplayable: yup.mixed().oneOf([true]).required(),
     data: yup
         .object({
         content: yup.string().required(),

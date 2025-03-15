@@ -11,10 +11,16 @@ import { logBaseSchema } from ".";
  * Can include tool calls and tool results
  */
 export const agentLogSchema = logBaseSchema.shape({
+  // Agent logs are never displayed in the UI
+  isDisplayable: yup.mixed<false>().oneOf([false]).required(),
   type: yup.string().oneOf(["agent"]).required(),
-  data: yup.mixed<ChatCompletionAssistantMessageParam>().required(),
-  toolCallResults: yup
-    .array()
-    .of(yup.mixed<ChatCompletionToolMessageParam>().required())
-    .optional(),
+  data: yup
+    .object({
+      message: yup.mixed<ChatCompletionAssistantMessageParam>().required(),
+      toolCallResults: yup
+        .array()
+        .of(yup.mixed<ChatCompletionToolMessageParam>().required())
+        .optional(),
+    })
+    .required(),
 });

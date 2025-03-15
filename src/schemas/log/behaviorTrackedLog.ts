@@ -4,6 +4,8 @@ import { logBaseSchema } from ".";
 // Behavior Tracked Log Schema
 export const behaviorTrackedLogSchema = logBaseSchema.shape({
   type: yup.string().oneOf(["behavior_tracked"]).required(),
+  // Behavior tracked logs are always displayed in the UI
+  isDisplayable: yup.mixed<true>().oneOf([true]).required(),
   data: yup
     .object({
       behaviorId: yup.string().required(),

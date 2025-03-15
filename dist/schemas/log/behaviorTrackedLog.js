@@ -39,6 +39,8 @@ const _1 = require(".");
 // Behavior Tracked Log Schema
 exports.behaviorTrackedLogSchema = _1.logBaseSchema.shape({
     type: yup.string().oneOf(["behavior_tracked"]).required(),
+    // Behavior tracked logs are always displayed in the UI
+    isDisplayable: yup.mixed().oneOf([true]).required(),
     data: yup
         .object({
         behaviorId: yup.string().required(),

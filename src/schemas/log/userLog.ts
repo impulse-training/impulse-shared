@@ -7,6 +7,8 @@ import { logBaseSchema } from ".";
  */
 export const userLogSchema = logBaseSchema.shape({
   type: yup.string().oneOf(["user"]).required(),
+  // User logs are always displayed in the UI
+  isDisplayable: yup.mixed<true>().oneOf([true]).required(),
   data: yup
     .object({
       content: yup.string().required(),

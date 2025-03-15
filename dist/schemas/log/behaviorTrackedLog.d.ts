@@ -12,6 +12,7 @@ export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
     };
     createdAt: import("../..").Timestamp | undefined;
     updatedAt: import("../..").Timestamp | undefined;
+    isDisplayable: true;
 }, yup.AnyObject, {
     type: undefined;
     userId: undefined;
@@ -25,4 +26,5 @@ export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
     };
     createdAt: undefined;
     updatedAt: undefined;
+    isDisplayable: undefined;
 }, "">;

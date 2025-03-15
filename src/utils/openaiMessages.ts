@@ -14,11 +14,11 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
   // Handle AgentLog
   if (isAgentLog(log)) {
     const messages: ChatCompletionMessageParam[] = [];
-    messages.push(log.data);
+    messages.push(log.data.message);
 
     // Add tool result messages
-    if (log.toolCallResults && log.toolCallResults.length > 0) {
-      log.toolCallResults.forEach((result) => {
+    if (log.data.toolCallResults && log.data.toolCallResults.length > 0) {
+      log.data.toolCallResults.forEach((result) => {
         messages.push(result);
       });
     }
