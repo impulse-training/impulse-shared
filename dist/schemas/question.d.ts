@@ -2,6 +2,7 @@ import * as yup from "yup";
 import { Question } from "../types/question";
 export declare const responseTypes: readonly ["text", "slider"];
 export declare const questionSchema: yup.ObjectSchema<{
+    id: string | undefined;
     content: string;
     responseType: NonNullable<"text" | "slider" | undefined>;
     suggestedResponses: (string | undefined)[] | undefined;
@@ -14,6 +15,7 @@ export declare const questionSchema: yup.ObjectSchema<{
         step: number;
     };
 }, yup.AnyObject, {
+    id: undefined;
     content: undefined;
     responseType: undefined;
     suggestedResponses: "";

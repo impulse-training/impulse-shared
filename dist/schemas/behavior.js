@@ -38,6 +38,7 @@ const yup = __importStar(require("yup"));
 const utils_1 = require("../utils");
 exports.trackingTypes = ["counter", "timer"];
 exports.behaviorSchema = yup.object({
+    id: yup.string(),
     name: yup.string().required(),
     description: yup.string().required(),
     trackingType: yup.string().oneOf(exports.trackingTypes).required(),

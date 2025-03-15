@@ -6,6 +6,7 @@ export const responseTypes = ["text", "slider"] as const;
 
 // Base Question Schema
 export const questionSchema = yup.object({
+  id: yup.string(),
   content: yup.string().required(),
   responseType: yup.mixed<"text" | "slider">().oneOf(responseTypes).required(),
   suggestedResponses: yup

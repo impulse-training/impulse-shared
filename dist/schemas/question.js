@@ -39,6 +39,7 @@ const yup = __importStar(require("yup"));
 exports.responseTypes = ["text", "slider"];
 // Base Question Schema
 exports.questionSchema = yup.object({
+    id: yup.string(),
     content: yup.string().required(),
     responseType: yup.mixed().oneOf(exports.responseTypes).required(),
     suggestedResponses: yup
