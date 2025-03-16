@@ -34,16 +34,9 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.userContextSchema = exports.aiMemorySchema = exports.tacticContextSchema = exports.behaviorContextSchema = void 0;
-/**
- * User Context Schemas
- *
- * Yup schemas for user context data validation
- */
 const yup = __importStar(require("yup"));
 const utils_1 = require("../utils");
-/**
- * Schema for behavior context
- */
+const objectOf_1 = require("../utils/objectOf");
 exports.behaviorContextSchema = yup.object({
     behaviorId: yup.string().required(),
     behaviorName: yup.string().required(),
@@ -54,9 +47,6 @@ exports.behaviorContextSchema = yup.object({
     effectiveTactics: yup.array().of(yup.string()).default([]),
     gameplanTacticIds: yup.array().of(yup.string()).default([]),
 });
-/**
- * Schema for tactic context
- */
 exports.tacticContextSchema = yup.object({
     tacticId: yup.string().required(),
     tacticTitle: yup.string().required(),
@@ -64,24 +54,16 @@ exports.tacticContextSchema = yup.object({
     completedCount: yup.number().default(0),
     effectiveness: yup.number().min(1).max(10).default(5),
 });
-/**
- * Schema for AI memory
- */
 exports.aiMemorySchema = yup.object({
     id: yup.string().required(),
     content: yup.string().required(),
     source: yup.string().required(),
     createdAt: utils_1.timestampSchema,
 });
-/**
- * Schema for user context
- */
 exports.userContextSchema = yup.object({
-    userId: yup.string().required(),
-    // Use lazy to create a record type schema
-    behaviors: yup.lazy(() => yup.object().default({})),
-    tactics: yup.lazy(() => yup.object().default({})),
-    memories: yup.array().of(exports.aiMemorySchema).default([]),
+    behaviors: (0, objectOf_1.objectOf)(exports.behaviorContextSchema),
+    tactics: (0, objectOf_1.objectOf)(exports.tacticContextSchema),
+    aiMemories: yup.array().of(exports.aiMemorySchema).default([]),
     overallInsights: yup.array().of(yup.string()).default([]),
     createdAt: utils_1.timestampSchema,
     updatedAt: utils_1.timestampSchema,

@@ -1,12 +1,4 @@
-/**
- * User Context Schemas
- *
- * Yup schemas for user context data validation
- */
 import * as yup from "yup";
-/**
- * Schema for behavior context
- */
 export declare const behaviorContextSchema: yup.ObjectSchema<{
     behaviorId: string;
     behaviorName: string;
@@ -26,9 +18,6 @@ export declare const behaviorContextSchema: yup.ObjectSchema<{
     effectiveTactics: never[];
     gameplanTacticIds: never[];
 }, "">;
-/**
- * Schema for tactic context
- */
 export declare const tacticContextSchema: yup.ObjectSchema<{
     tacticId: string;
     tacticTitle: string;
@@ -42,9 +31,6 @@ export declare const tacticContextSchema: yup.ObjectSchema<{
     completedCount: 0;
     effectiveness: 5;
 }, "">;
-/**
- * Schema for AI memory
- */
 export declare const aiMemorySchema: yup.ObjectSchema<{
     id: string;
     content: string;
@@ -56,14 +42,29 @@ export declare const aiMemorySchema: yup.ObjectSchema<{
     source: undefined;
     createdAt: undefined;
 }, "">;
-/**
- * Schema for user context
- */
 export declare const userContextSchema: yup.ObjectSchema<{
-    userId: string;
-    behaviors: {};
-    tactics: {};
-    memories: {
+    behaviors: {
+        [x: string]: {
+            behaviorId: string;
+            behaviorName: string;
+            trackingType: NonNullable<"boolean" | "counter" | "timer" | undefined>;
+            gameplanTacticIds: (string | undefined)[];
+            streakDays: number;
+            totalTracked: number;
+            insights: (string | undefined)[];
+            effectiveTactics: (string | undefined)[];
+        };
+    };
+    tactics: {
+        [x: string]: {
+            tacticId: string;
+            tacticTitle: string;
+            tacticType: string;
+            completedCount: number;
+            effectiveness: number;
+        };
+    };
+    aiMemories: {
         createdAt?: import("..").Timestamp | undefined;
         content: string;
         id: string;
@@ -73,10 +74,9 @@ export declare const userContextSchema: yup.ObjectSchema<{
     createdAt: import("..").Timestamp | undefined;
     updatedAt: import("..").Timestamp | undefined;
 }, yup.AnyObject, {
-    userId: undefined;
     behaviors: undefined;
     tactics: undefined;
-    memories: never[];
+    aiMemories: never[];
     overallInsights: never[];
     createdAt: undefined;
     updatedAt: undefined;
