@@ -44,6 +44,7 @@ exports.threadSchema = yup.object({
         .string()
         .oneOf(["impulse", "general", "dayRecap"])
         .default("general"),
+    date: timestampSchema_1.timestampSchema.required(),
     updatedAt: timestampSchema_1.timestampSchema,
     createdAt: timestampSchema_1.timestampSchema,
 });

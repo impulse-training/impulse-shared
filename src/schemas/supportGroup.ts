@@ -13,6 +13,7 @@ import { timestampSchema } from "../utils";
 
 // Support Group Member Schema
 export const supportGroupMemberSchema = yup.object({
+  userId: yup.string().required(),
   name: yup.string().required(),
   email: yup.string().email().required(),
   photoURL: yup.string().optional(),

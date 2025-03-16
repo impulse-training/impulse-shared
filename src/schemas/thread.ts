@@ -9,6 +9,7 @@ export const threadSchema = yup.object({
     .string()
     .oneOf(["impulse", "general", "dayRecap"])
     .default("general"),
+  date: timestampSchema.required(),
   updatedAt: timestampSchema,
   createdAt: timestampSchema,
 });

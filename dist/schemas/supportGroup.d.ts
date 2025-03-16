@@ -6,12 +6,14 @@
 import * as yup from "yup";
 import { SupportGroup, SupportGroupMember, SupportGroupMessage } from "../types";
 export declare const supportGroupMemberSchema: yup.ObjectSchema<{
+    userId: string;
     name: string;
     email: string;
     photoURL: string | undefined;
     role: NonNullable<"owner" | "member" | undefined>;
     joinedAt: import("../types").Timestamp | undefined;
 }, yup.AnyObject, {
+    userId: undefined;
     name: undefined;
     email: undefined;
     photoURL: undefined;
@@ -46,6 +48,7 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
     members: {
         joinedAt?: import("../types").Timestamp | undefined;
         photoURL?: string | undefined;
+        userId: string;
         name: string;
         email: string;
         role: NonNullable<"owner" | "member" | undefined>;

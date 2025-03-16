@@ -43,6 +43,7 @@ const yup = __importStar(require("yup"));
 const utils_1 = require("../utils");
 // Support Group Member Schema
 exports.supportGroupMemberSchema = yup.object({
+    userId: yup.string().required(),
     name: yup.string().required(),
     email: yup.string().email().required(),
     photoURL: yup.string().optional(),
