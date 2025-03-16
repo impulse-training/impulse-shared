@@ -1,12 +1,4 @@
-/**
- * User Schema
- *
- * Yup schema for user data validation
- */
 import * as yup from "yup";
-/**
- * Schema for user data
- */
 export declare const userSchema: yup.ObjectSchema<{
     id: string | undefined;
     email: string | undefined;
@@ -18,9 +10,7 @@ export declare const userSchema: yup.ObjectSchema<{
     dayRecapEnabled: boolean;
     dayRecapTime: import("..").Timestamp | undefined;
     lastDayRecapDate: import("..").Timestamp | undefined;
-    theme: "system" | "light" | "dark";
-    isAdmin: boolean;
-    role: "user" | "admin" | "coach";
+    theme: NonNullable<"system" | "light" | "dark" | undefined>;
 }, yup.AnyObject, {
     id: undefined;
     email: undefined;
@@ -33,6 +23,4 @@ export declare const userSchema: yup.ObjectSchema<{
     dayRecapTime: undefined;
     lastDayRecapDate: undefined;
     theme: "system";
-    isAdmin: false;
-    role: "user";
 }, "">;

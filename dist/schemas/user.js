@@ -34,16 +34,8 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.userSchema = void 0;
-/**
- * User Schema
- *
- * Yup schema for user data validation
- */
 const yup = __importStar(require("yup"));
 const timestampSchema_1 = require("../utils/timestampSchema");
-/**
- * Schema for user data
- */
 exports.userSchema = yup.object({
     id: yup.string(),
     email: yup.string().email(),
@@ -58,8 +50,9 @@ exports.userSchema = yup.object({
     dayRecapTime: timestampSchema_1.timestampSchema,
     lastDayRecapDate: timestampSchema_1.timestampSchema,
     // User preferences
-    theme: yup.string().oneOf(['light', 'dark', 'system']).default('system'),
-    // Admin and role settings
-    isAdmin: yup.boolean().default(false),
-    role: yup.string().oneOf(['user', 'admin', 'coach']).default('user'),
+    theme: yup
+        .string()
+        .oneOf(["light", "dark", "system"])
+        .default("system")
+        .required(),
 });
