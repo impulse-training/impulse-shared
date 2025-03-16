@@ -16,7 +16,6 @@ export const attachmentSchema = yup.object({
   uri: yup.string().required(),
   storagePath: yup.string().required(),
   contentType: yup.string().required(),
-  fileName: yup.string().required(),
   sizeBytes: yup.number().optional(),
 
   // Type-specific metadata

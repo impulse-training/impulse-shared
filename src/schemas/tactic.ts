@@ -22,14 +22,14 @@ export const tacticTypes = [
 export const tacticSchema = yup.object({
   id: yup.string(),
   type: yup.string().oneOf(tacticTypes).required(),
-  title: yup.string().required(),
+  title: yup.string(),
   description: yup.string().optional(),
   content: yup.string().optional(),
 
   // Media attachments - each can be present independently
-  imageAttachment: attachmentSchema.optional(),
-  videoAttachment: attachmentSchema.optional(),
-  audioAttachment: attachmentSchema.optional(),
+  imageAttachment: attachmentSchema.optional().default(undefined),
+  videoAttachment: attachmentSchema.optional().default(undefined),
+  audioAttachment: attachmentSchema.optional().default(undefined),
 
   linkUrl: yup.string().optional(),
   supportGroupId: yup.string().optional(),

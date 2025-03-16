@@ -8,7 +8,7 @@ export declare const tacticTypes: readonly ["action", "affirmation", "image", "v
 export declare const tacticSchema: yup.ObjectSchema<{
     id: string | undefined;
     type: NonNullable<"image" | "video" | "action" | "affirmation" | "link" | "supportGroup" | "breathingExercise" | undefined>;
-    title: string;
+    title: string | undefined;
     description: string | undefined;
     content: string | undefined;
     imageAttachment: {
@@ -23,7 +23,6 @@ export declare const tacticSchema: yup.ObjectSchema<{
         uri: string;
         storagePath: string;
         contentType: string;
-        fileName: string;
     } | undefined;
     videoAttachment: {
         sizeBytes?: number | undefined;
@@ -37,7 +36,6 @@ export declare const tacticSchema: yup.ObjectSchema<{
         uri: string;
         storagePath: string;
         contentType: string;
-        fileName: string;
     } | undefined;
     audioAttachment: {
         sizeBytes?: number | undefined;
@@ -51,7 +49,6 @@ export declare const tacticSchema: yup.ObjectSchema<{
         uri: string;
         storagePath: string;
         contentType: string;
-        fileName: string;
     } | undefined;
     linkUrl: string | undefined;
     supportGroupId: string | undefined;
@@ -70,48 +67,9 @@ export declare const tacticSchema: yup.ObjectSchema<{
     title: undefined;
     description: undefined;
     content: undefined;
-    imageAttachment: {
-        uri: undefined;
-        storagePath: undefined;
-        contentType: undefined;
-        fileName: undefined;
-        sizeBytes: undefined;
-        type: undefined;
-        metadata: {
-            width: undefined;
-            height: undefined;
-            durationMs: undefined;
-            transcript: undefined;
-        };
-    };
-    videoAttachment: {
-        uri: undefined;
-        storagePath: undefined;
-        contentType: undefined;
-        fileName: undefined;
-        sizeBytes: undefined;
-        type: undefined;
-        metadata: {
-            width: undefined;
-            height: undefined;
-            durationMs: undefined;
-            transcript: undefined;
-        };
-    };
-    audioAttachment: {
-        uri: undefined;
-        storagePath: undefined;
-        contentType: undefined;
-        fileName: undefined;
-        sizeBytes: undefined;
-        type: undefined;
-        metadata: {
-            width: undefined;
-            height: undefined;
-            durationMs: undefined;
-            transcript: undefined;
-        };
-    };
+    imageAttachment: undefined;
+    videoAttachment: undefined;
+    audioAttachment: undefined;
     linkUrl: undefined;
     supportGroupId: undefined;
     supportGroupName: undefined;

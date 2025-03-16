@@ -56,13 +56,13 @@ exports.tacticTypes = [
 exports.tacticSchema = yup.object({
     id: yup.string(),
     type: yup.string().oneOf(exports.tacticTypes).required(),
-    title: yup.string().required(),
+    title: yup.string(),
     description: yup.string().optional(),
     content: yup.string().optional(),
     // Media attachments - each can be present independently
-    imageAttachment: attachment_1.attachmentSchema.optional(),
-    videoAttachment: attachment_1.attachmentSchema.optional(),
-    audioAttachment: attachment_1.attachmentSchema.optional(),
+    imageAttachment: attachment_1.attachmentSchema.optional().default(undefined),
+    videoAttachment: attachment_1.attachmentSchema.optional().default(undefined),
+    audioAttachment: attachment_1.attachmentSchema.optional().default(undefined),
     linkUrl: yup.string().optional(),
     supportGroupId: yup.string().optional(),
     supportGroupName: yup.string().optional(),
