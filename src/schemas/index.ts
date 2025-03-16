@@ -7,3 +7,4 @@ export * from "./tactic";
 export * from "./thread";
 export * from "./user";
 export * from "./userContext";
+export * from "./attachment";

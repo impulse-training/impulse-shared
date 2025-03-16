@@ -41,6 +41,7 @@ exports.tacticSchema = exports.tacticTypes = void 0;
  */
 const yup = __importStar(require("yup"));
 const utils_1 = require("../utils");
+const attachment_1 = require("./attachment");
 // Tactic Types
 exports.tacticTypes = [
     "action",
@@ -58,9 +59,10 @@ exports.tacticSchema = yup.object({
     title: yup.string().required(),
     description: yup.string().optional(),
     content: yup.string().optional(),
-    imageUri: yup.string().optional(),
-    videoUri: yup.string().optional(),
-    audioUri: yup.string().optional(),
+    // Media attachments - each can be present independently
+    imageAttachment: attachment_1.attachmentSchema.optional(),
+    videoAttachment: attachment_1.attachmentSchema.optional(),
+    audioAttachment: attachment_1.attachmentSchema.optional(),
     linkUrl: yup.string().optional(),
     supportGroupId: yup.string().optional(),
     supportGroupName: yup.string().optional(),

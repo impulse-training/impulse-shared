@@ -23,3 +23,4 @@ __exportStar(require("./tactic"), exports);
 __exportStar(require("./thread"), exports);
 __exportStar(require("./user"), exports);
 __exportStar(require("./userContext"), exports);
+__exportStar(require("./attachment"), exports);
