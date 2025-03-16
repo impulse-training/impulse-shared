@@ -20,7 +20,7 @@ export declare const tacticSchema: yup.ObjectSchema<{
     completed: boolean | undefined;
     durationSeconds: number | undefined;
     allBehaviors: boolean | undefined;
-    behaviorIds: (string | undefined)[] | undefined;
+    behaviorIds: string[] | undefined;
     userId: string | undefined;
     isPublic: boolean | undefined;
     createdAt: import("..").Timestamp | undefined;

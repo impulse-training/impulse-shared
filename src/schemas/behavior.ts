@@ -11,4 +11,5 @@ export const behaviorSchema = yup.object({
   gameplanTacticIds: yup.array().of(yup.string()).default([]),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
+  lastTrackedAt: timestampSchema,
 });

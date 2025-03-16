@@ -8,6 +8,7 @@ export declare const behaviorSchema: yup.ObjectSchema<{
     gameplanTacticIds: (string | undefined)[];
     createdAt: import("..").Timestamp | undefined;
     updatedAt: import("..").Timestamp | undefined;
+    lastTrackedAt: import("..").Timestamp | undefined;
 }, yup.AnyObject, {
     id: undefined;
     name: undefined;
@@ -16,4 +17,5 @@ export declare const behaviorSchema: yup.ObjectSchema<{
     gameplanTacticIds: never[];
     createdAt: undefined;
     updatedAt: undefined;
+    lastTrackedAt: undefined;
 }, "">;

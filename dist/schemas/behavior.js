@@ -45,4 +45,5 @@ exports.behaviorSchema = yup.object({
     gameplanTacticIds: yup.array().of(yup.string()).default([]),
     createdAt: utils_1.timestampSchema,
     updatedAt: utils_1.timestampSchema,
+    lastTrackedAt: utils_1.timestampSchema,
 });

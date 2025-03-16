@@ -67,7 +67,7 @@ exports.tacticSchema = yup.object({
     completed: yup.boolean().optional(),
     durationSeconds: yup.number().optional(), // Total duration in seconds
     allBehaviors: yup.boolean().optional(),
-    behaviorIds: yup.array().of(yup.string()).optional(),
+    behaviorIds: yup.array().of(yup.string().required()).optional(),
     userId: yup.string().optional(),
     isPublic: yup.boolean().optional(),
     createdAt: utils_1.timestampSchema,
