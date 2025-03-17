@@ -33,10 +33,10 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.userSchema = void 0;
+exports.isUserData = exports.userDataSchema = void 0;
 const yup = __importStar(require("yup"));
 const timestampSchema_1 = require("../utils/timestampSchema");
-exports.userSchema = yup.object({
+exports.userDataSchema = yup.object({
     id: yup.string(),
     email: yup.string().email(),
     displayName: yup.string(),
@@ -56,3 +56,14 @@ exports.userSchema = yup.object({
         .default("system")
         .required(),
 });
+// Type guard for User
+const isUserData = (value) => {
+    try {
+        exports.userDataSchema.validateSync(value);
+        return true;
+    }
+    catch (error) {
+        return false;
+    }
+};
+exports.isUserData = isUserData;

@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.behaviorSchema = exports.trackingTypes = void 0;
+exports.isBehavior = exports.behaviorSchema = exports.trackingTypes = void 0;
 const yup = __importStar(require("yup"));
 const utils_1 = require("../utils");
 exports.trackingTypes = ["counter", "timer"];
@@ -47,3 +47,13 @@ exports.behaviorSchema = yup.object({
     updatedAt: utils_1.timestampSchema,
     lastTrackedAt: utils_1.timestampSchema,
 });
+const isBehavior = (value) => {
+    try {
+        exports.behaviorSchema.validateSync(value);
+        return true;
+    }
+    catch (error) {
+        return false;
+    }
+};
+exports.isBehavior = isBehavior;

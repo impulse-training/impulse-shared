@@ -1,17 +1,11 @@
-/**
- * Tactic Schemas
- *
- * Defines Yup schemas for tactic data
- */
 import * as yup from "yup";
 import { timestampSchema } from "../../utils";
 import { attachmentSchema } from "../attachment";
-import { tacticTypes } from "./types";
 
 // Tactic Schema
 export const tacticBaseSchema = yup.object({
   id: yup.string(),
-  type: yup.string().oneOf(tacticTypes).required(),
+  type: yup.string().required(),
   title: yup.string(),
   description: yup.string().optional(),
   content: yup.string().optional(),

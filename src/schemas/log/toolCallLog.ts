@@ -6,9 +6,9 @@ import * as yup from "yup";
 import { logBaseSchema } from ".";
 
 /**
- * Agent Log Schema
- * Represents an agent message in a conversation thread
- * Can include tool calls and tool results
+ * Tool Call Log Schema
+ * Represents a log of a tool call in a conversation thread
+ * Must include tool calls and tool results
  */
 export const toolCallLogSchema = logBaseSchema.shape({
   // Tool call logs are never displayed in the UI
@@ -24,3 +24,5 @@ export const toolCallLogSchema = logBaseSchema.shape({
     })
     .required(),
 });
+
+export type ToolCallLog = yup.InferType<typeof toolCallLogSchema>;

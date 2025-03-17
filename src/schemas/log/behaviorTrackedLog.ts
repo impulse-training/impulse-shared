@@ -16,3 +16,5 @@ export const behaviorTrackedLogSchema = logBaseSchema.shape({
     })
     .required(),
 });
+
+export type BehaviorTrackedLog = yup.InferType<typeof behaviorTrackedLogSchema>;

@@ -6,3 +6,5 @@ export const audioTacticSchema = tacticBaseSchema.shape({
   type: yup.string().oneOf(["audio"]).required(),
   audioAttachment: attachmentSchema.required(),
 });
+
+export type AudioTactic = yup.InferType<typeof audioTacticSchema>;

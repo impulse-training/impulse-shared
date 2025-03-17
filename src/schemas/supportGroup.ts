@@ -4,11 +4,6 @@
  * Defines Yup schemas for support group data
  */
 import * as yup from "yup";
-import {
-  SupportGroup,
-  SupportGroupMember,
-  SupportGroupMessage,
-} from "../types";
 import { timestampSchema } from "../utils";
 
 // Support Group Member Schema
@@ -48,6 +43,16 @@ export const supportGroupSchema = yup.object({
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
 });
+
+// Export message type
+export type MessageType = (typeof messageTypes)[number];
+
+// Export types inferred from schemas
+export type SupportGroupMember = yup.InferType<typeof supportGroupMemberSchema>;
+export type SupportGroupMessage = yup.InferType<
+  typeof supportGroupMessageSchema
+>;
+export type SupportGroup = yup.InferType<typeof supportGroupSchema>;
 
 // Type guard functions
 export const isSupportGroupMember = (

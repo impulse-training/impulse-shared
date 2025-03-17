@@ -41,3 +41,5 @@ export const questionLogSchema = logBaseSchema.shape({
     })
     .required(),
 });
+
+export type QuestionLog = yup.InferType<typeof questionLogSchema>;

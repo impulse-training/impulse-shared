@@ -3,9 +3,9 @@ export declare const threadSchema: yup.ObjectSchema<{
     id: string | undefined;
     title: string;
     type: "impulse" | "general" | "dayRecap";
-    date: import("..").Timestamp;
-    updatedAt: import("..").Timestamp | undefined;
-    createdAt: import("..").Timestamp | undefined;
+    date: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp | undefined;
+    createdAt: import("../types").Timestamp | undefined;
 }, yup.AnyObject, {
     id: undefined;
     title: undefined;
@@ -14,3 +14,5 @@ export declare const threadSchema: yup.ObjectSchema<{
     updatedAt: undefined;
     createdAt: undefined;
 }, "">;
+export type Thread = yup.InferType<typeof threadSchema>;
+export declare const isThread: (value: unknown) => value is Thread;

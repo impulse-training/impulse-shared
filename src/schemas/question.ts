@@ -1,5 +1,4 @@
 import * as yup from "yup";
-import { Question } from "../types/question";
 
 // Response types for questions
 export const responseTypes = ["text", "slider"] as const;
@@ -32,6 +31,12 @@ export const questionSchema = yup.object({
       otherwise: (schema) => schema.optional().default(undefined),
     }),
 });
+
+// Export response type
+export type ResponseType = (typeof responseTypes)[number];
+
+// Export types inferred from schemas
+export type Question = yup.InferType<typeof questionSchema>;
 
 export const isQuestion = (value: unknown): value is Question => {
   try {

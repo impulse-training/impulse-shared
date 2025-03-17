@@ -8,3 +8,4 @@ export const supportGroupTacticSchema = tacticBaseSchema.shape({
     supportGroupDoc: documentReferenceSchema,
   }),
 });
+export type SupportGroupTactic = yup.InferType<typeof supportGroupTacticSchema>;

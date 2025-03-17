@@ -14,3 +14,5 @@ export const tacticLogSchema = logBaseSchema.shape({
     })
     .required(),
 });
+
+export type TacticLog = yup.InferType<typeof tacticLogSchema>;

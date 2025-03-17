@@ -1,7 +1,7 @@
 import * as yup from "yup";
 import { timestampSchema } from "../utils/timestampSchema";
 
-export const userSchema = yup.object({
+export const userDataSchema = yup.object({
   id: yup.string(),
   email: yup.string().email(),
   displayName: yup.string(),
@@ -24,3 +24,16 @@ export const userSchema = yup.object({
     .default("system")
     .required(),
 });
+
+// Export User type inferred from schema
+export type UserData = yup.InferType<typeof userDataSchema>;
+
+// Type guard for User
+export const isUserData = (value: unknown): value is UserData => {
+  try {
+    userDataSchema.validateSync(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};

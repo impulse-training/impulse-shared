@@ -8,7 +8,7 @@ import {
   logIsQuestionLog,
   logIsToolCallLog,
   logIsUserLog,
-} from "../types/log";
+} from "../schemas/log";
 
 export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
   if (logIsUserLog(log)) {

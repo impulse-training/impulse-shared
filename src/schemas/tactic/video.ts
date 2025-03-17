@@ -7,3 +7,4 @@ export const videoTacticSchema = tacticBaseSchema.shape({
   videoAttachment: attachmentSchema.required(),
   imageAttachment: attachmentSchema.required(),
 });
+export type VideoTactic = yup.InferType<typeof videoTacticSchema>;

@@ -13,3 +13,17 @@ export const behaviorSchema = yup.object({
   updatedAt: timestampSchema,
   lastTrackedAt: timestampSchema,
 });
+
+export type TrackingType = (typeof trackingTypes)[number];
+
+// Export types inferred from schemas
+export type Behavior = yup.InferType<typeof behaviorSchema>;
+
+export const isBehavior = (value: unknown): value is Behavior => {
+  try {
+    behaviorSchema.validateSync(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};

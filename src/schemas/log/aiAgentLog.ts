@@ -17,3 +17,5 @@ export const aiAgentLogSchema = logBaseSchema.shape({
     })
     .required(),
 });
+
+export type AiAgentLog = yup.InferType<typeof aiAgentLogSchema>;

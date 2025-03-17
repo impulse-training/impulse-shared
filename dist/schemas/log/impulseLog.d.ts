@@ -2,10 +2,10 @@ import * as yup from "yup";
 export declare const impulseLogSchema: yup.ObjectSchema<{
     type: "impulse_button_pressed";
     userId: string;
-    timestamp: import("../..").Timestamp;
+    timestamp: import("../../types").Timestamp;
     data: {};
-    createdAt: import("../..").Timestamp | undefined;
-    updatedAt: import("../..").Timestamp | undefined;
+    createdAt: import("../../types").Timestamp | undefined;
+    updatedAt: import("../../types").Timestamp | undefined;
     isDisplayable: true;
 }, yup.AnyObject, {
     type: undefined;
@@ -16,3 +16,4 @@ export declare const impulseLogSchema: yup.ObjectSchema<{
     updatedAt: undefined;
     isDisplayable: undefined;
 }, "">;
+export type ImpulseLog = yup.InferType<typeof impulseLogSchema>;

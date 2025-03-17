@@ -35,7 +35,7 @@ export declare const aiMemorySchema: yup.ObjectSchema<{
     id: string;
     content: string;
     source: string;
-    createdAt: import("..").Timestamp | undefined;
+    createdAt: import("../types").Timestamp | undefined;
 }, yup.AnyObject, {
     id: undefined;
     content: undefined;
@@ -65,14 +65,14 @@ export declare const userContextSchema: yup.ObjectSchema<{
         };
     };
     aiMemories: {
-        createdAt?: import("..").Timestamp | undefined;
+        createdAt?: import("../types").Timestamp | undefined;
         content: string;
         id: string;
         source: string;
     }[];
     overallInsights: (string | undefined)[];
-    createdAt: import("..").Timestamp | undefined;
-    updatedAt: import("..").Timestamp | undefined;
+    createdAt: import("../types").Timestamp | undefined;
+    updatedAt: import("../types").Timestamp | undefined;
 }, yup.AnyObject, {
     behaviors: undefined;
     tactics: undefined;
@@ -81,3 +81,14 @@ export declare const userContextSchema: yup.ObjectSchema<{
     createdAt: undefined;
     updatedAt: undefined;
 }, "">;
+export type BehaviorContext = yup.InferType<typeof behaviorContextSchema>;
+export type TacticContext = yup.InferType<typeof tacticContextSchema>;
+export type AIMemory = yup.InferType<typeof aiMemorySchema>;
+export interface UserContext extends Omit<yup.InferType<typeof userContextSchema>, "behaviors" | "tactics"> {
+    behaviors: Record<string, BehaviorContext>;
+    tactics: Record<string, TacticContext>;
+}
+export declare const isBehaviorContext: (value: unknown) => value is BehaviorContext;
+export declare const isTacticContext: (value: unknown) => value is TacticContext;
+export declare const isAIMemory: (value: unknown) => value is AIMemory;
+export declare const isUserContext: (value: unknown) => value is UserContext;

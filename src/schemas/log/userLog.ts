@@ -15,3 +15,5 @@ export const userLogSchema = logBaseSchema.shape({
     })
     .required(),
 });
+
+export type UserLog = yup.InferType<typeof userLogSchema>;

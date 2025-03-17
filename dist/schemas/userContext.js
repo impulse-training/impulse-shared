@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.userContextSchema = exports.aiMemorySchema = exports.tacticContextSchema = exports.behaviorContextSchema = void 0;
+exports.isUserContext = exports.isAIMemory = exports.isTacticContext = exports.isBehaviorContext = exports.userContextSchema = exports.aiMemorySchema = exports.tacticContextSchema = exports.behaviorContextSchema = void 0;
 const yup = __importStar(require("yup"));
 const utils_1 = require("../utils");
 const objectOf_1 = require("../utils/objectOf");
@@ -68,3 +68,44 @@ exports.userContextSchema = yup.object({
     createdAt: utils_1.timestampSchema,
     updatedAt: utils_1.timestampSchema,
 });
+// Type guard functions
+const isBehaviorContext = (value) => {
+    try {
+        exports.behaviorContextSchema.validateSync(value);
+        return true;
+    }
+    catch (error) {
+        return false;
+    }
+};
+exports.isBehaviorContext = isBehaviorContext;
+const isTacticContext = (value) => {
+    try {
+        exports.tacticContextSchema.validateSync(value);
+        return true;
+    }
+    catch (error) {
+        return false;
+    }
+};
+exports.isTacticContext = isTacticContext;
+const isAIMemory = (value) => {
+    try {
+        exports.aiMemorySchema.validateSync(value);
+        return true;
+    }
+    catch (error) {
+        return false;
+    }
+};
+exports.isAIMemory = isAIMemory;
+const isUserContext = (value) => {
+    try {
+        exports.userContextSchema.validateSync(value);
+        return true;
+    }
+    catch (error) {
+        return false;
+    }
+};
+exports.isUserContext = isUserContext;

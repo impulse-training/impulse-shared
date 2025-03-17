@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.threadSchema = void 0;
+exports.isThread = exports.threadSchema = void 0;
 const yup = __importStar(require("yup"));
 const timestampSchema_1 = require("../utils/timestampSchema");
 // Thread schema
@@ -41,10 +41,21 @@ exports.threadSchema = yup.object({
     id: yup.string(),
     title: yup.string().required(),
     type: yup
-        .string()
+        .mixed()
         .oneOf(["impulse", "general", "dayRecap"])
         .default("general"),
     date: timestampSchema_1.timestampSchema.required(),
     updatedAt: timestampSchema_1.timestampSchema,
     createdAt: timestampSchema_1.timestampSchema,
 });
+// Type guard function
+const isThread = (value) => {
+    try {
+        exports.threadSchema.validateSync(value);
+        return true;
+    }
+    catch (error) {
+        return false;
+    }
+};
+exports.isThread = isThread;

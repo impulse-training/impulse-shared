@@ -4,7 +4,6 @@
  * Defines Yup schemas for support group data
  */
 import * as yup from "yup";
-import { SupportGroup, SupportGroupMember, SupportGroupMessage } from "../types";
 export declare const supportGroupMemberSchema: yup.ObjectSchema<{
     userId: string;
     name: string;
@@ -68,6 +67,10 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
     createdAt: undefined;
     updatedAt: undefined;
 }, "">;
+export type MessageType = (typeof messageTypes)[number];
+export type SupportGroupMember = yup.InferType<typeof supportGroupMemberSchema>;
+export type SupportGroupMessage = yup.InferType<typeof supportGroupMessageSchema>;
+export type SupportGroup = yup.InferType<typeof supportGroupSchema>;
 export declare const isSupportGroupMember: (value: unknown) => value is SupportGroupMember;
 export declare const isSupportGroupMessage: (value: unknown) => value is SupportGroupMessage;
 export declare const isSupportGroup: (value: unknown) => value is SupportGroup;

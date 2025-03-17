@@ -2,7 +2,7 @@ import * as yup from "yup";
 export declare const questionLogSchema: yup.ObjectSchema<{
     type: "question";
     userId: string;
-    timestamp: import("../..").Timestamp;
+    timestamp: import("../../types").Timestamp;
     data: {
         suggestedResponses?: (string | undefined)[] | undefined;
         content: string;
@@ -17,8 +17,8 @@ export declare const questionLogSchema: yup.ObjectSchema<{
         };
         response: {} | null;
     };
-    createdAt: import("../..").Timestamp | undefined;
-    updatedAt: import("../..").Timestamp | undefined;
+    createdAt: import("../../types").Timestamp | undefined;
+    updatedAt: import("../../types").Timestamp | undefined;
     isDisplayable: true;
 }, yup.AnyObject, {
     type: undefined;
@@ -42,3 +42,4 @@ export declare const questionLogSchema: yup.ObjectSchema<{
     updatedAt: undefined;
     isDisplayable: undefined;
 }, "">;
+export type QuestionLog = yup.InferType<typeof questionLogSchema>;

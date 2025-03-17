@@ -7,3 +7,5 @@ export const impulseLogSchema = logBaseSchema.shape({
   // Impulse logs are always displayed in the UI
   isDisplayable: yup.mixed<true>().oneOf([true]).required(),
 });
+
+export type ImpulseLog = yup.InferType<typeof impulseLogSchema>;

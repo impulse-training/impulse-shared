@@ -2,7 +2,7 @@ import * as yup from "yup";
 export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
     type: "behavior_tracked";
     userId: string;
-    timestamp: import("../..").Timestamp;
+    timestamp: import("../../types").Timestamp;
     data: {
         notes?: string | null | undefined;
         behaviorId: string;
@@ -10,8 +10,8 @@ export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
         trackingType: NonNullable<"counter" | "timer" | undefined>;
         value: number;
     };
-    createdAt: import("../..").Timestamp | undefined;
-    updatedAt: import("../..").Timestamp | undefined;
+    createdAt: import("../../types").Timestamp | undefined;
+    updatedAt: import("../../types").Timestamp | undefined;
     isDisplayable: true;
 }, yup.AnyObject, {
     type: undefined;
@@ -28,3 +28,4 @@ export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
     updatedAt: undefined;
     isDisplayable: undefined;
 }, "">;
+export type BehaviorTrackedLog = yup.InferType<typeof behaviorTrackedLogSchema>;

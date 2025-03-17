@@ -9,3 +9,5 @@ export const linkTacticSchema = tacticBaseSchema.shape({
     })
     .required(),
 });
+
+export type LinkTactic = yup.InferType<typeof linkTacticSchema>;

@@ -6,9 +6,9 @@ export declare const behaviorSchema: yup.ObjectSchema<{
     description: string;
     trackingType: NonNullable<"counter" | "timer" | undefined>;
     gameplanTacticIds: (string | undefined)[];
-    createdAt: import("..").Timestamp | undefined;
-    updatedAt: import("..").Timestamp | undefined;
-    lastTrackedAt: import("..").Timestamp | undefined;
+    createdAt: import("../types").Timestamp | undefined;
+    updatedAt: import("../types").Timestamp | undefined;
+    lastTrackedAt: import("../types").Timestamp | undefined;
 }, yup.AnyObject, {
     id: undefined;
     name: undefined;
@@ -19,3 +19,6 @@ export declare const behaviorSchema: yup.ObjectSchema<{
     updatedAt: undefined;
     lastTrackedAt: undefined;
 }, "">;
+export type TrackingType = (typeof trackingTypes)[number];
+export type Behavior = yup.InferType<typeof behaviorSchema>;
+export declare const isBehavior: (value: unknown) => value is Behavior;
