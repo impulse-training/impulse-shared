@@ -17,17 +17,17 @@ export type AffirmationTactic = InferType<typeof affirmationTacticSchema>;
 export type AudioTactic = InferType<typeof audioTacticSchema>;
 export type ImageTactic = InferType<typeof imageTacticSchema>;
 export type LinkTactic = InferType<typeof linkTacticSchema>;
-export type SupportTactic = InferType<typeof supportGroupTacticSchema>;
+export type SupportGroupTactic = InferType<typeof supportGroupTacticSchema>;
 export type VideoTactic = InferType<typeof videoTacticSchema>;
 
-// Union type of all logs
+// Union type of all tactics
 export type Tactic =
   | ActionTactic
   | AffirmationTactic
   | AudioTactic
   | ImageTactic
   | LinkTactic
-  | SupportTactic
+  | SupportGroupTactic
   | VideoTactic;
 
 export const tacticIsActionTactic = (value: Tactic): value is ActionTactic =>
@@ -88,10 +88,10 @@ export const isValidLinkTactic = (value: unknown): value is LinkTactic => {
 };
 export const tacticIsSupportGroupTactic = (
   value: Tactic
-): value is SupportTactic => value.type === "supportGroup";
+): value is SupportGroupTactic => value.type === "supportGroup";
 export const isValidSupportGroupTactic = (
   value: unknown
-): value is SupportTactic => {
+): value is SupportGroupTactic => {
   try {
     supportGroupTacticSchema.validateSync(value);
     return true;

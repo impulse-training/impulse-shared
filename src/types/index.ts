@@ -3,11 +3,11 @@
  */
 
 // Export all types
-export * from './userContext';
-export * from './behavior';
-export * from './log';
-export * from './thread';
-export * from './tactic';
-export * from './supportGroup';
-export * from './firebase';
-export * from './user';
+export * from "./behavior";
+export * from "./firebase";
+export * from "./log";
+export * from "./supportGroup";
+export * from "./tactic";
+export * from "./thread";
+export * from "./user";
+export * from "./userContext";
