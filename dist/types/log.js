@@ -1,19 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidUserLog = exports.logIsUserLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidBehaviorTrackedLog = exports.logIsBehaviorTrackedLog = exports.isValidAgentLog = exports.logIsAgentLog = void 0;
+exports.isValidUserLog = exports.logIsUserLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidBehaviorTrackedLog = exports.logIsBehaviorTrackedLog = exports.isValidAiAgentLog = exports.logIsAiAgentLog = void 0;
 const log_1 = require("../schemas/log");
-const logIsAgentLog = (value) => value.type === "agent";
-exports.logIsAgentLog = logIsAgentLog;
-const isValidAgentLog = (value) => {
+const toolCallLog_1 = require("../schemas/log/toolCallLog");
+const logIsAiAgentLog = (value) => value.type === "ai_agent";
+exports.logIsAiAgentLog = logIsAiAgentLog;
+const isValidAiAgentLog = (value) => {
     try {
-        log_1.agentLogSchema.validateSync(value);
+        log_1.aiAgentLogSchema.validateSync(value);
         return true;
     }
     catch (error) {
         return false;
     }
 };
-exports.isValidAgentLog = isValidAgentLog;
+exports.isValidAiAgentLog = isValidAiAgentLog;
 const logIsBehaviorTrackedLog = (value) => value.type === "behavior_tracked";
 exports.logIsBehaviorTrackedLog = logIsBehaviorTrackedLog;
 const isValidBehaviorTrackedLog = (value) => {
@@ -38,6 +39,18 @@ const isValidImpulseLog = (value) => {
     }
 };
 exports.isValidImpulseLog = isValidImpulseLog;
+const logIsToolCallLog = (value) => value.type === "tool_call";
+exports.logIsToolCallLog = logIsToolCallLog;
+const isValidToolCallLog = (value) => {
+    try {
+        toolCallLog_1.toolCallLogSchema.validateSync(value);
+        return true;
+    }
+    catch (error) {
+        return false;
+    }
+};
+exports.isValidToolCallLog = isValidToolCallLog;
 const logIsQuestionLog = (value) => value.type === "question";
 exports.logIsQuestionLog = logIsQuestionLog;
 const isValidQuestionLog = (value) => {

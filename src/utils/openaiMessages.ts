@@ -1,8 +1,12 @@
-import { ChatCompletionMessageParam } from "openai/resources/chat";
+import {
+  ChatCompletionAssistantMessageParam,
+  ChatCompletionMessageParam,
+} from "openai/resources/chat";
 import {
   Log,
-  logIsAgentLog,
+  logIsAiAgentLog,
   logIsQuestionLog,
+  logIsToolCallLog,
   logIsUserLog,
 } from "../types/log";
 
@@ -16,8 +20,16 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
     ];
   }
 
-  // Handle AgentLog
-  if (logIsAgentLog(log)) {
+  // Handle AiAgentLog
+  if (logIsAiAgentLog(log)) {
+    const messages: ChatCompletionAssistantMessageParam[] = [];
+    messages.push(log.data.message);
+
+    return messages;
+  }
+
+  // Handle ToolCallLog
+  if (logIsToolCallLog(log)) {
     const messages: ChatCompletionMessageParam[] = [];
     messages.push(log.data.message);
 

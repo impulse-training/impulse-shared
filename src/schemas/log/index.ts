@@ -4,7 +4,8 @@ import { timestampSchema } from "../../utils/timestampSchema";
 // Activity Types
 export const logTypes = [
   "user", // User message type
-  "agent", // Agent/AI message type
+  "ai_agent", // Agent/AI message type
+  "tool_call", // Tool call type
   "tactic_completed",
   "tactic_uncompleted",
   "impulse_button_pressed",
@@ -22,7 +23,7 @@ export const logBaseSchema = yup.object({
   updatedAt: timestampSchema,
 });
 
-export * from "./agentLog";
+export * from "./aiAgentLog";
 export * from "./behaviorTrackedLog";
 export * from "./impulseLog";
 export * from "./questionLog";

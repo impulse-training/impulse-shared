@@ -9,7 +9,7 @@ import {
 } from "openai/resources/chat";
 import { InferType } from "yup";
 import {
-  agentLogSchema,
+  aiAgentLogSchema,
   behaviorTrackedLogSchema,
   impulseLogSchema,
   logTypes,
@@ -17,6 +17,7 @@ import {
   tacticLogSchema,
   userLogSchema,
 } from "../schemas/log";
+import { toolCallLogSchema } from "../schemas/log/toolCallLog";
 
 // Export log type
 export type LogType = (typeof logTypes)[number];
@@ -31,7 +32,8 @@ export type ImpulseLog = InferType<typeof impulseLogSchema>;
 export type BehaviorTrackedLog = InferType<typeof behaviorTrackedLogSchema>;
 export type QuestionLog = InferType<typeof questionLogSchema>;
 export type UserLog = InferType<typeof userLogSchema>;
-export type AgentLog = InferType<typeof agentLogSchema>;
+export type ToolCallLog = InferType<typeof toolCallLogSchema>;
+export type AiAgentLog = InferType<typeof aiAgentLogSchema>;
 
 // Union type of all logs
 export type Log =
@@ -39,14 +41,15 @@ export type Log =
   | ImpulseLog
   | BehaviorTrackedLog
   | QuestionLog
+  | ToolCallLog
   | UserLog // New user message type
-  | AgentLog; // New agent message type with tool calls and results
+  | AiAgentLog; // New agent message type with tool calls and results
 
-export const logIsAgentLog = (value: Log): value is AgentLog =>
-  value.type === "agent";
-export const isValidAgentLog = (value: unknown): value is AgentLog => {
+export const logIsAiAgentLog = (value: Log): value is AiAgentLog =>
+  value.type === "ai_agent";
+export const isValidAiAgentLog = (value: unknown): value is AiAgentLog => {
   try {
-    agentLogSchema.validateSync(value);
+    aiAgentLogSchema.validateSync(value);
     return true;
   } catch (error) {
     return false;
@@ -71,6 +74,17 @@ export const logIsImpulseLog = (value: Log): value is ImpulseLog =>
 export const isValidImpulseLog = (value: unknown): value is ImpulseLog => {
   try {
     impulseLogSchema.validateSync(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+export const logIsToolCallLog = (value: Log): value is ToolCallLog =>
+  value.type === "tool_call";
+export const isValidToolCallLog = (value: unknown): value is ToolCallLog => {
+  try {
+    toolCallLogSchema.validateSync(value);
     return true;
   } catch (error) {
     return false;
