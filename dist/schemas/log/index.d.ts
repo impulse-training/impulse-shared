@@ -1,7 +1,7 @@
 import * as yup from "yup";
-export declare const activityTypes: readonly ["message", "user", "agent", "tactic_completed", "tactic_uncompleted", "impulse_button_pressed", "behavior_tracked", "question"];
+export declare const logTypes: readonly ["user", "agent", "tactic_completed", "tactic_uncompleted", "impulse_button_pressed", "behavior_tracked", "question"];
 export declare const logBaseSchema: yup.ObjectSchema<{
-    type: NonNullable<"message" | "user" | "agent" | "tactic_completed" | "tactic_uncompleted" | "impulse_button_pressed" | "behavior_tracked" | "question" | undefined>;
+    type: NonNullable<"user" | "agent" | "tactic_completed" | "tactic_uncompleted" | "impulse_button_pressed" | "behavior_tracked" | "question" | undefined>;
     userId: string;
     timestamp: import("../..").Timestamp;
     data: {};

@@ -5,8 +5,8 @@
  */
 import { ChatCompletionMessageToolCall, ChatCompletionToolMessageParam } from "openai/resources/chat";
 import { InferType } from "yup";
-import { activityTypes, agentLogSchema, behaviorTrackedLogSchema, impulseLogSchema, questionLogSchema, tacticLogSchema, userLogSchema } from "../schemas/log";
-export type ActivityType = (typeof activityTypes)[number];
+import { agentLogSchema, behaviorTrackedLogSchema, impulseLogSchema, logTypes, questionLogSchema, tacticLogSchema, userLogSchema } from "../schemas/log";
+export type LogType = (typeof logTypes)[number];
 export type ToolCall = ChatCompletionMessageToolCall;
 export type ToolResult = ChatCompletionToolMessageParam;
 export type TacticLog = InferType<typeof tacticLogSchema>;

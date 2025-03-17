@@ -36,12 +36,11 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.logBaseSchema = exports.activityTypes = void 0;
+exports.logBaseSchema = exports.logTypes = void 0;
 const yup = __importStar(require("yup"));
 const timestampSchema_1 = require("../../utils/timestampSchema");
 // Activity Types
-exports.activityTypes = [
-    "message", // Legacy message type (for backward compatibility)
+exports.logTypes = [
     "user", // User message type
     "agent", // Agent/AI message type
     "tactic_completed",
@@ -52,7 +51,7 @@ exports.activityTypes = [
 ];
 // Base Log Schema
 exports.logBaseSchema = yup.object({
-    type: yup.string().oneOf(exports.activityTypes).required(),
+    type: yup.string().oneOf(exports.logTypes).required(),
     userId: yup.string().required(), // This is required for collection group queries security rules
     timestamp: timestampSchema_1.timestampSchema.required(),
     data: yup.object().default({}),

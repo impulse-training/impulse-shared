@@ -47,3 +47,24 @@ export interface FirestoreInstance {
     commit: () => Promise<any>;
   };
 }
+
+export class DocumentSnapshotLike<T> {
+  constructor(
+    public readonly exists: boolean,
+    public readonly ref: any,
+    public readonly id: string,
+    private _data?: T
+  ) {}
+
+  data(): T | undefined {
+    return this._data;
+  }
+
+  get(fieldPath: any): any {
+    return null;
+  }
+
+  isEqual(other: DocumentSnapshotLike<T>): boolean {
+    return this.id === other.id && this.ref.path === other.ref.path;
+  }
+}

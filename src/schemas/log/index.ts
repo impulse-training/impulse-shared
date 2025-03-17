@@ -2,8 +2,7 @@ import * as yup from "yup";
 import { timestampSchema } from "../../utils/timestampSchema";
 
 // Activity Types
-export const activityTypes = [
-  "message", // Legacy message type (for backward compatibility)
+export const logTypes = [
   "user", // User message type
   "agent", // Agent/AI message type
   "tactic_completed",
@@ -15,7 +14,7 @@ export const activityTypes = [
 
 // Base Log Schema
 export const logBaseSchema = yup.object({
-  type: yup.string().oneOf(activityTypes).required(),
+  type: yup.string().oneOf(logTypes).required(),
   userId: yup.string().required(), // This is required for collection group queries security rules
   timestamp: timestampSchema.required(),
   data: yup.object().default({}),

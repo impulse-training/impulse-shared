@@ -15,6 +15,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 // Export all schema types and validation functions
+__exportStar(require("./attachment"), exports);
 __exportStar(require("./behavior"), exports);
 __exportStar(require("./log"), exports);
 __exportStar(require("./question"), exports);
@@ -23,4 +24,3 @@ __exportStar(require("./tactic"), exports);
 __exportStar(require("./thread"), exports);
 __exportStar(require("./user"), exports);
 __exportStar(require("./userContext"), exports);
-__exportStar(require("./attachment"), exports);

@@ -9,17 +9,17 @@ import {
 } from "openai/resources/chat";
 import { InferType } from "yup";
 import {
-  activityTypes,
   agentLogSchema,
   behaviorTrackedLogSchema,
   impulseLogSchema,
+  logTypes,
   questionLogSchema,
   tacticLogSchema,
   userLogSchema,
 } from "../schemas/log";
 
-// Export activity type
-export type ActivityType = (typeof activityTypes)[number];
+// Export log type
+export type LogType = (typeof logTypes)[number];
 
 // Export the OpenAI tool types we need
 export type ToolCall = ChatCompletionMessageToolCall;

@@ -4,22 +4,12 @@
  * Defines Yup schemas for tactic data
  */
 import * as yup from "yup";
-import { timestampSchema } from "../utils";
-import { attachmentSchema } from "./attachment";
-
-// Tactic Types
-export const tacticTypes = [
-  "action",
-  "affirmation",
-  "image",
-  "video",
-  "link",
-  "supportGroup",
-  "breathingExercise",
-] as const;
+import { timestampSchema } from "../../utils";
+import { attachmentSchema } from "../attachment";
+import { tacticTypes } from "./types";
 
 // Tactic Schema
-export const tacticSchema = yup.object({
+export const tacticBaseSchema = yup.object({
   id: yup.string(),
   type: yup.string().oneOf(tacticTypes).required(),
   title: yup.string(),
@@ -31,13 +21,10 @@ export const tacticSchema = yup.object({
   videoAttachment: attachmentSchema.optional().default(undefined),
   audioAttachment: attachmentSchema.optional().default(undefined),
 
-  linkUrl: yup.string().optional(),
-  supportGroupId: yup.string().optional(),
-  supportGroupName: yup.string().optional(),
-  completed: yup.boolean().optional(),
-  durationSeconds: yup.number().optional(), // Total duration in seconds
+  // Which behaviors the tactic should be associated wit
   allBehaviors: yup.boolean().optional(),
   behaviorIds: yup.array().of(yup.string().required()).optional(),
+
   userId: yup.string().optional(),
   isPublic: yup.boolean().optional(),
   createdAt: timestampSchema,
