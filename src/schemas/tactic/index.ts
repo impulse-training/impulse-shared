@@ -11,6 +11,15 @@ import { LinkTactic, linkTacticSchema } from "./link";
 import { SupportGroupTactic, supportGroupTacticSchema } from "./supportGroup";
 import { VideoTactic, videoTacticSchema } from "./video";
 
+export * from "./action";
+export * from "./affirmation";
+export * from "./audio";
+export * from "./breathingExercise";
+export * from "./image";
+export * from "./link";
+export * from "./supportGroup";
+export * from "./video";
+
 // Map of tactic types to their schemas
 export const tacticSchemas = {
   action: actionTacticSchema,
