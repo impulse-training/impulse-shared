@@ -36,6 +36,7 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
     name: string;
     description: string | undefined;
     ownerId: string;
+    memberIds: (string | undefined)[];
     members: {
         joinedAt?: import("../types").Timestamp | undefined;
         emojiId?: {
@@ -59,6 +60,7 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
     name: undefined;
     description: undefined;
     ownerId: undefined;
+    memberIds: "";
     members: "";
     isPublic: undefined;
     inviteCode: undefined;

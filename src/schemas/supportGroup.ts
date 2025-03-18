@@ -35,6 +35,7 @@ export const supportGroupSchema = yup.object({
   name: yup.string().required(),
   description: yup.string().optional(),
   ownerId: yup.string().required(),
+  memberIds: yup.array().of(yup.string()).required(),
   members: yup.array().of(supportGroupMemberSchema).required(),
   isPublic: yup.boolean().optional(),
   inviteCode: yup.string().optional(),
