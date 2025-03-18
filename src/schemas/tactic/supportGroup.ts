@@ -6,6 +6,7 @@ export const supportGroupTacticSchema = tacticBaseSchema.shape({
   type: yup.string().oneOf(["supportGroup"]).required(),
   data: yup.object({
     supportGroupDoc: documentReferenceSchema,
+    defaultMessage: yup.string().required(),
   }),
 });
 export type SupportGroupTactic = yup.InferType<typeof supportGroupTacticSchema>;
