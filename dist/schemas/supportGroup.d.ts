@@ -1,22 +1,14 @@
-/**
- * Support Group Schemas
- *
- * Defines Yup schemas for support group data
- */
 import * as yup from "yup";
 export declare const supportGroupMemberSchema: yup.ObjectSchema<{
     userId: string;
-    name: string;
-    email: string;
-    photoURL: string | undefined;
-    role: NonNullable<"owner" | "member" | undefined>;
+    emojiId: {
+        color: string;
+        emoji: string;
+    } | undefined;
     joinedAt: import("../types").Timestamp | undefined;
 }, yup.AnyObject, {
     userId: undefined;
-    name: undefined;
-    email: undefined;
-    photoURL: undefined;
-    role: undefined;
+    emojiId: undefined;
     joinedAt: undefined;
 }, "">;
 export declare const messageTypes: readonly ["text", "impulse_alert", "system"];
@@ -40,20 +32,26 @@ export declare const supportGroupMessageSchema: yup.ObjectSchema<{
     updatedAt: undefined;
 }, "">;
 export declare const supportGroupSchema: yup.ObjectSchema<{
-    id: string;
+    id: string | undefined;
     name: string;
     description: string | undefined;
     ownerId: string;
     members: {
         joinedAt?: import("../types").Timestamp | undefined;
-        photoURL?: string | undefined;
+        emojiId?: {
+            color: string;
+            emoji: string;
+        } | undefined;
         userId: string;
-        name: string;
-        email: string;
-        role: NonNullable<"owner" | "member" | undefined>;
     }[];
     isPublic: boolean | undefined;
     inviteCode: string | undefined;
+    streaksByUserId: {
+        [x: string]: {
+            streakStart?: import("../types").Timestamp | undefined;
+            color: string;
+        };
+    };
     createdAt: import("../types").Timestamp | undefined;
     updatedAt: import("../types").Timestamp | undefined;
 }, yup.AnyObject, {
@@ -64,6 +62,7 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
     members: "";
     isPublic: undefined;
     inviteCode: undefined;
+    streaksByUserId: undefined;
     createdAt: undefined;
     updatedAt: undefined;
 }, "">;

@@ -1,4 +1,3 @@
-import * as yup from "yup";
 import { AiAgentLog } from "./aiAgentLog";
 import { BehaviorTrackedLog } from "./behaviorTrackedLog";
 import { ImpulseLog } from "./impulseLog";
@@ -7,21 +6,6 @@ import { TacticLog } from "./tacticLog";
 import { ToolCallLog } from "./toolCallLog";
 import { UserLog } from "./userLog";
 export declare const logTypes: readonly ["user", "ai_agent", "tool_call", "tactic_completed", "tactic_uncompleted", "impulse_button_pressed", "behavior_tracked", "question"];
-export declare const logBaseSchema: yup.ObjectSchema<{
-    type: NonNullable<"user" | "ai_agent" | "tool_call" | "tactic_completed" | "tactic_uncompleted" | "impulse_button_pressed" | "behavior_tracked" | "question" | undefined>;
-    userId: string;
-    timestamp: import("../../types").Timestamp;
-    data: {};
-    createdAt: import("../../types").Timestamp | undefined;
-    updatedAt: import("../../types").Timestamp | undefined;
-}, yup.AnyObject, {
-    type: undefined;
-    userId: undefined;
-    timestamp: undefined;
-    data: {};
-    createdAt: undefined;
-    updatedAt: undefined;
-}, "">;
 export type LogType = (typeof logTypes)[number];
 export type Log = TacticLog | ImpulseLog | BehaviorTrackedLog | QuestionLog | ToolCallLog | UserLog | AiAgentLog;
 export * from "./aiAgentLog";
@@ -29,6 +13,7 @@ export * from "./behaviorTrackedLog";
 export * from "./impulseLog";
 export * from "./questionLog";
 export * from "./tacticLog";
+export * from "./toolCallLog";
 export * from "./userLog";
 export declare const logIsAiAgentLog: (value: Omit<Log, "id">) => value is AiAgentLog;
 export declare const isValidAiAgentLog: (value: unknown) => value is AiAgentLog;

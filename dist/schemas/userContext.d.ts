@@ -66,8 +66,8 @@ export declare const userContextSchema: yup.ObjectSchema<{
     };
     aiMemories: {
         createdAt?: import("../types").Timestamp | undefined;
-        content: string;
         id: string;
+        content: string;
         source: string;
     }[];
     overallInsights: (string | undefined)[];

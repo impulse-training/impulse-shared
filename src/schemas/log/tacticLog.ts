@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { logBaseSchema } from ".";
+import { logBaseSchema } from "./base";
 
 // Tactic Activity Log Schema
 export const tacticLogSchema = logBaseSchema.shape({

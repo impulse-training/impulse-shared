@@ -1,5 +1,3 @@
-import * as yup from "yup";
-import { timestampSchema } from "../../utils/timestampSchema";
 import { AiAgentLog, aiAgentLogSchema } from "./aiAgentLog";
 import {
   BehaviorTrackedLog,
@@ -23,16 +21,6 @@ export const logTypes = [
   "question",
 ] as const;
 
-// Base Log Schema
-export const logBaseSchema = yup.object({
-  type: yup.string().oneOf(logTypes).required(),
-  userId: yup.string().required(), // This is required for collection group queries security rules
-  timestamp: timestampSchema.required(),
-  data: yup.object().default({}),
-  createdAt: timestampSchema,
-  updatedAt: timestampSchema,
-});
-
 export type LogType = (typeof logTypes)[number];
 
 // Union type of all logs
@@ -50,6 +38,7 @@ export * from "./behaviorTrackedLog";
 export * from "./impulseLog";
 export * from "./questionLog";
 export * from "./tacticLog";
+export * from "./toolCallLog";
 export * from "./userLog";
 
 // Export log type guards

@@ -1,18 +1,16 @@
-/**
- * Support Group Schemas
- *
- * Defines Yup schemas for support group data
- */
 import * as yup from "yup";
-import { timestampSchema } from "../utils";
+import { objectOf, timestampSchema } from "../utils";
 
 // Support Group Member Schema
 export const supportGroupMemberSchema = yup.object({
   userId: yup.string().required(),
-  name: yup.string().required(),
-  email: yup.string().email().required(),
-  photoURL: yup.string().optional(),
-  role: yup.string().oneOf(["owner", "member"]).required(),
+  emojiId: yup
+    .object({
+      color: yup.string().required(),
+      emoji: yup.string().required(),
+    })
+    .optional()
+    .default(undefined),
   joinedAt: timestampSchema,
 });
 
@@ -33,13 +31,19 @@ export const supportGroupMessageSchema = yup.object({
 
 // Support Group Schema
 export const supportGroupSchema = yup.object({
-  id: yup.string().required(),
+  id: yup.string(), // IDS are never passed when creating
   name: yup.string().required(),
   description: yup.string().optional(),
   ownerId: yup.string().required(),
   members: yup.array().of(supportGroupMemberSchema).required(),
   isPublic: yup.boolean().optional(),
   inviteCode: yup.string().optional(),
+  streaksByUserId: objectOf(
+    yup.object({
+      streakStart: timestampSchema,
+      color: yup.string().required(),
+    })
+  ),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
 });

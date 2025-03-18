@@ -35,10 +35,10 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.questionLogSchema = void 0;
 const yup = __importStar(require("yup"));
-const _1 = require(".");
+const base_1 = require("./base");
 const responseTypes = ["text", "slider"];
 // Question Log Schema
-exports.questionLogSchema = _1.logBaseSchema.shape({
+exports.questionLogSchema = base_1.logBaseSchema.shape({
     type: yup.string().oneOf(["question"]).required(),
     // Question logs are always displayed in the UI
     isDisplayable: yup.mixed().oneOf([true]).required(),

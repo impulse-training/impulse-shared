@@ -35,9 +35,9 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.impulseLogSchema = void 0;
 const yup = __importStar(require("yup"));
-const _1 = require(".");
+const base_1 = require("./base");
 // Impulse Log Schema
-exports.impulseLogSchema = _1.logBaseSchema.shape({
+exports.impulseLogSchema = base_1.logBaseSchema.shape({
     type: yup.string().oneOf(["impulse_button_pressed"]).required(),
     // Impulse logs are always displayed in the UI
     isDisplayable: yup.mixed().oneOf([true]).required(),

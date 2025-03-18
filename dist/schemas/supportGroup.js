@@ -34,20 +34,18 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isSupportGroup = exports.isSupportGroupMessage = exports.isSupportGroupMember = exports.supportGroupSchema = exports.supportGroupMessageSchema = exports.messageTypes = exports.supportGroupMemberSchema = void 0;
-/**
- * Support Group Schemas
- *
- * Defines Yup schemas for support group data
- */
 const yup = __importStar(require("yup"));
 const utils_1 = require("../utils");
 // Support Group Member Schema
 exports.supportGroupMemberSchema = yup.object({
     userId: yup.string().required(),
-    name: yup.string().required(),
-    email: yup.string().email().required(),
-    photoURL: yup.string().optional(),
-    role: yup.string().oneOf(["owner", "member"]).required(),
+    emojiId: yup
+        .object({
+        color: yup.string().required(),
+        emoji: yup.string().required(),
+    })
+        .optional()
+        .default(undefined),
     joinedAt: utils_1.timestampSchema,
 });
 // Support Group Message Types
@@ -65,13 +63,17 @@ exports.supportGroupMessageSchema = yup.object({
 });
 // Support Group Schema
 exports.supportGroupSchema = yup.object({
-    id: yup.string().required(),
+    id: yup.string(), // IDS are never passed when creating
     name: yup.string().required(),
     description: yup.string().optional(),
     ownerId: yup.string().required(),
     members: yup.array().of(exports.supportGroupMemberSchema).required(),
     isPublic: yup.boolean().optional(),
     inviteCode: yup.string().optional(),
+    streaksByUserId: (0, utils_1.objectOf)(yup.object({
+        streakStart: utils_1.timestampSchema,
+        color: yup.string().required(),
+    })),
     createdAt: utils_1.timestampSchema,
     updatedAt: utils_1.timestampSchema,
 });

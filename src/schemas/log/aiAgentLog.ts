@@ -1,6 +1,6 @@
 import { ChatCompletionAssistantMessageParam } from "openai/resources/chat";
 import * as yup from "yup";
-import { logBaseSchema } from ".";
+import { logBaseSchema } from "./base";
 
 /**
  * Agent Log Schema

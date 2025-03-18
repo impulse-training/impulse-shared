@@ -35,9 +35,9 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.tacticLogSchema = void 0;
 const yup = __importStar(require("yup"));
-const _1 = require(".");
+const base_1 = require("./base");
 // Tactic Activity Log Schema
-exports.tacticLogSchema = _1.logBaseSchema.shape({
+exports.tacticLogSchema = base_1.logBaseSchema.shape({
     type: yup.string().oneOf(["tactic_completed", "tactic_viewed"]).required(),
     // Tactic logs are always displayed in the UI
     isDisplayable: yup.mixed().oneOf([true]).required(),

@@ -3,7 +3,7 @@ import {
   ChatCompletionToolMessageParam,
 } from "openai/resources/chat";
 import * as yup from "yup";
-import { logBaseSchema } from ".";
+import { logBaseSchema } from "./base";
 
 /**
  * Tool Call Log Schema
@@ -19,10 +19,11 @@ export const toolCallLogSchema = logBaseSchema.shape({
       message: yup.mixed<ChatCompletionAssistantMessageParam>().required(),
       toolCallResults: yup
         .array()
-        .of(yup.mixed<ChatCompletionToolMessageParam>().required())
+        .of(yup.mixed<ToolCallResult>().required())
         .required(),
     })
     .required(),
 });
 
 export type ToolCallLog = yup.InferType<typeof toolCallLogSchema>;
+export type ToolCallResult = ChatCompletionToolMessageParam;

@@ -35,9 +35,9 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.behaviorTrackedLogSchema = void 0;
 const yup = __importStar(require("yup"));
-const _1 = require(".");
+const base_1 = require("./base");
 // Behavior Tracked Log Schema
-exports.behaviorTrackedLogSchema = _1.logBaseSchema.shape({
+exports.behaviorTrackedLogSchema = base_1.logBaseSchema.shape({
     type: yup.string().oneOf(["behavior_tracked"]).required(),
     // Behavior tracked logs are always displayed in the UI
     isDisplayable: yup.mixed().oneOf([true]).required(),
