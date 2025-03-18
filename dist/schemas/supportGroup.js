@@ -36,6 +36,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.isValidSupportGroup = exports.isValidSupportGroupMember = exports.supportGroupSchema = exports.supportGroupMemberSchema = void 0;
 const yup = __importStar(require("yup"));
 const utils_1 = require("../utils");
+const attachment_1 = require("./attachment");
 // Support Group Member Schema
 exports.supportGroupMemberSchema = yup.object({
     userId: yup.string().required(),
@@ -61,6 +62,7 @@ exports.supportGroupSchema = yup.object({
     name: yup.string().required(),
     description: yup.string().optional(),
     ownerId: yup.string().required(),
+    backgroundImage: attachment_1.attachmentSchema,
     membersById: (0, utils_1.objectOf)(exports.supportGroupMemberSchema),
     isPublic: yup.boolean().optional(),
     inviteCode: yup.string().optional(),

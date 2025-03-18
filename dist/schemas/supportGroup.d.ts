@@ -21,6 +21,19 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
     name: string;
     description: string | undefined;
     ownerId: string;
+    backgroundImage: {
+        sizeBytes?: number | undefined;
+        metadata?: {
+            width?: number | undefined;
+            height?: number | undefined;
+            durationMs?: number | undefined;
+            transcript?: string | undefined;
+        } | undefined;
+        uri: string;
+        storagePath: string;
+        contentType: string;
+        type: NonNullable<"image" | "video" | "audio" | "document" | undefined>;
+    };
     membersById: {
         [x: string]: {
             joinedAt?: import("../types").Timestamp | undefined;
@@ -44,6 +57,19 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
     name: undefined;
     description: undefined;
     ownerId: undefined;
+    backgroundImage: {
+        uri: undefined;
+        storagePath: undefined;
+        contentType: undefined;
+        sizeBytes: undefined;
+        type: undefined;
+        metadata: {
+            width: undefined;
+            height: undefined;
+            durationMs: undefined;
+            transcript: undefined;
+        };
+    };
     membersById: undefined;
     isPublic: undefined;
     inviteCode: undefined;
