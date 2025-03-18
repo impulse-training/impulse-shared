@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isSupportGroup = exports.isSupportGroupMessage = exports.isSupportGroupMember = exports.supportGroupSchema = exports.supportGroupMessageSchema = exports.messageTypes = exports.supportGroupMemberSchema = void 0;
+exports.isValidSupportGroup = exports.isValidSupportGroupMember = exports.supportGroupSchema = exports.supportGroupMemberSchema = void 0;
 const yup = __importStar(require("yup"));
 const utils_1 = require("../utils");
 // Support Group Member Schema
@@ -46,20 +46,14 @@ exports.supportGroupMemberSchema = yup.object({
     })
         .optional()
         .default(undefined),
+    currentStreak: yup
+        .object({
+        streakStart: utils_1.timestampSchema,
+        color: yup.string().required(),
+    })
+        .optional()
+        .default(undefined),
     joinedAt: utils_1.timestampSchema,
-});
-// Support Group Message Types
-exports.messageTypes = ["text", "impulse_alert", "system"];
-// Support Group Message Schema
-exports.supportGroupMessageSchema = yup.object({
-    senderId: yup.string().required(),
-    senderName: yup.string().required(),
-    content: yup.string().required(),
-    timestamp: utils_1.timestampSchema.required(),
-    type: yup.string().oneOf(exports.messageTypes).required(),
-    threadId: yup.string().optional(), // Reference to an impulse thread if this is an impulse alert
-    createdAt: utils_1.timestampSchema,
-    updatedAt: utils_1.timestampSchema,
 });
 // Support Group Schema
 exports.supportGroupSchema = yup.object({
@@ -67,19 +61,14 @@ exports.supportGroupSchema = yup.object({
     name: yup.string().required(),
     description: yup.string().optional(),
     ownerId: yup.string().required(),
-    memberIds: yup.array().of(yup.string()).required(),
-    members: yup.array().of(exports.supportGroupMemberSchema).required(),
+    membersById: (0, utils_1.objectOf)(exports.supportGroupMemberSchema),
     isPublic: yup.boolean().optional(),
     inviteCode: yup.string().optional(),
-    streaksByUserId: (0, utils_1.objectOf)(yup.object({
-        streakStart: utils_1.timestampSchema,
-        color: yup.string().required(),
-    })),
     createdAt: utils_1.timestampSchema,
     updatedAt: utils_1.timestampSchema,
 });
 // Type guard functions
-const isSupportGroupMember = (value) => {
+const isValidSupportGroupMember = (value) => {
     try {
         exports.supportGroupMemberSchema.validateSync(value);
         return true;
@@ -88,18 +77,8 @@ const isSupportGroupMember = (value) => {
         return false;
     }
 };
-exports.isSupportGroupMember = isSupportGroupMember;
-const isSupportGroupMessage = (value) => {
-    try {
-        exports.supportGroupMessageSchema.validateSync(value);
-        return true;
-    }
-    catch (error) {
-        return false;
-    }
-};
-exports.isSupportGroupMessage = isSupportGroupMessage;
-const isSupportGroup = (value) => {
+exports.isValidSupportGroupMember = isValidSupportGroupMember;
+const isValidSupportGroup = (value) => {
     try {
         exports.supportGroupSchema.validateSync(value);
         return true;
@@ -108,4 +87,4 @@ const isSupportGroup = (value) => {
         return false;
     }
 };
-exports.isSupportGroup = isSupportGroup;
+exports.isValidSupportGroup = isValidSupportGroup;
