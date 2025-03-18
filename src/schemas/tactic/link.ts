@@ -3,6 +3,7 @@ import { tacticBaseSchema } from "./base";
 
 export const linkTacticSchema = tacticBaseSchema.shape({
   type: yup.string().oneOf(["link"]).required(),
+  canBeManuallyMarkedAsCompleted: yup.mixed<true>().oneOf([true]),
   data: yup
     .object({
       url: yup.string().required(),

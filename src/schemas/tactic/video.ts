@@ -4,6 +4,7 @@ import { tacticBaseSchema } from "./base";
 
 export const videoTacticSchema = tacticBaseSchema.shape({
   type: yup.string().oneOf(["video"]).required(),
+  canBeManuallyMarkedAsCompleted: yup.mixed<false>().oneOf([false]),
   videoAttachment: attachmentSchema.required(),
   imageAttachment: attachmentSchema.required(),
 });

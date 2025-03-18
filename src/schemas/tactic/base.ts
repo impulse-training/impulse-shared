@@ -10,6 +10,8 @@ export const tacticBaseSchema = yup.object({
   description: yup.string().optional(),
   content: yup.string().optional(),
 
+  canBeManuallyMarkedAsCompleted: yup.boolean().required(),
+
   // Media attachments - each can be present independently
   imageAttachment: attachmentSchema.optional().default(undefined),
   videoAttachment: attachmentSchema.optional().default(undefined),
