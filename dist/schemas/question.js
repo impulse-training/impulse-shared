@@ -33,10 +33,14 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isQuestion = exports.questionSchema = exports.responseTypes = void 0;
+exports.isQuestion = exports.questionSchema = exports.questionConditions = exports.questionOutcomes = exports.responseTypes = void 0;
 const yup = __importStar(require("yup"));
 // Response types for questions
-exports.responseTypes = ["text", "slider"];
+exports.responseTypes = ["text", "slider", "multiple_choice"];
+// Define outcome types for questions
+exports.questionOutcomes = ["setback", "partial", "success"];
+// Define condition types for next question rules
+exports.questionConditions = ["equals", "contains", "greater_than", "less_than"];
 // Base Question Schema
 exports.questionSchema = yup.object({
     id: yup.string(),
@@ -46,7 +50,7 @@ exports.questionSchema = yup.object({
         .array()
         .of(yup.string())
         .when("responseType", {
-        is: "text",
+        is: (val) => val === "text" || val === "multiple_choice",
         then: (schema) => schema.required().min(1),
         otherwise: (schema) => schema.default([]),
     }),
@@ -64,6 +68,20 @@ exports.questionSchema = yup.object({
         then: (schema) => schema.required(),
         otherwise: (schema) => schema.optional().default(undefined),
     }),
+    scope: yup.string().oneOf(["debrief"]).optional(),
+    order: yup.number().optional(),
+    requiresOutcome: yup.boolean().optional().default(false),
+    visibleForOutcomes: yup
+        .array()
+        .of(yup.string().oneOf(exports.questionOutcomes))
+        .optional(),
+    nextQuestionRule: yup
+        .object({
+        condition: yup.mixed().oneOf(exports.questionConditions).required(),
+        value: yup.mixed().required(),
+        nextQuestionId: yup.string().required(),
+    })
+        .optional(),
 });
 const isQuestion = (value) => {
     try {

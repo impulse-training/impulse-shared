@@ -8,6 +8,11 @@ export const logTypes = [
   "impulse_button_pressed",
   "behavior_tracked",
   "question",
+  "debrief_answer",
+  "debrief_outcome",
+  "debrief_summary_request",
+  "debrief_summary",
+  "debrief_summary_edited"
 ] as const;
 
 export type LogType = (typeof logTypes)[number];

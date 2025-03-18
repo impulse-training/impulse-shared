@@ -14,9 +14,10 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidUserLog = exports.logIsUserLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidBehaviorTrackedLog = exports.logIsBehaviorTrackedLog = exports.isValidAiAgentLog = exports.logIsAiAgentLog = exports.logTypes = void 0;
+exports.isValidDebriefSummaryEditedLog = exports.logIsDebriefSummaryEditedLog = exports.isValidDebriefSummaryLog = exports.logIsDebriefSummaryLog = exports.isValidDebriefSummaryRequestLog = exports.logIsDebriefSummaryRequestLog = exports.isValidDebriefOutcomeLog = exports.logIsDebriefOutcomeLog = exports.isValidDebriefAnswerLog = exports.logIsDebriefAnswerLog = exports.isValidUserLog = exports.logIsUserLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidBehaviorTrackedLog = exports.logIsBehaviorTrackedLog = exports.isValidAiAgentLog = exports.logIsAiAgentLog = exports.logTypes = void 0;
 const aiAgentLog_1 = require("./aiAgentLog");
 const behaviorTrackedLog_1 = require("./behaviorTrackedLog");
+const debriefLog_1 = require("./debriefLog");
 const impulseLog_1 = require("./impulseLog");
 const questionLog_1 = require("./questionLog");
 const tacticLog_1 = require("./tacticLog");
@@ -28,13 +29,19 @@ exports.logTypes = [
     "ai_agent", // Agent/AI message type
     "tool_call", // Tool call type
     "tactic_completed",
-    "tactic_uncompleted",
+    "tactic_viewed",
     "impulse_button_pressed",
     "behavior_tracked",
     "question",
+    "debrief_answer",
+    "debrief_outcome",
+    "debrief_summary_request",
+    "debrief_summary",
+    "debrief_summary_edited",
 ];
 __exportStar(require("./aiAgentLog"), exports);
 __exportStar(require("./behaviorTrackedLog"), exports);
+__exportStar(require("./debriefLog"), exports);
 __exportStar(require("./impulseLog"), exports);
 __exportStar(require("./questionLog"), exports);
 __exportStar(require("./tacticLog"), exports);
@@ -125,3 +132,64 @@ const isValidUserLog = (value) => {
     }
 };
 exports.isValidUserLog = isValidUserLog;
+// Debrief log type guards
+const logIsDebriefAnswerLog = (value) => value.type === "debrief_answer";
+exports.logIsDebriefAnswerLog = logIsDebriefAnswerLog;
+const isValidDebriefAnswerLog = (value) => {
+    try {
+        debriefLog_1.debriefAnswerLogSchema.validateSync(value);
+        return true;
+    }
+    catch (error) {
+        return false;
+    }
+};
+exports.isValidDebriefAnswerLog = isValidDebriefAnswerLog;
+const logIsDebriefOutcomeLog = (value) => value.type === "debrief_outcome";
+exports.logIsDebriefOutcomeLog = logIsDebriefOutcomeLog;
+const isValidDebriefOutcomeLog = (value) => {
+    try {
+        debriefLog_1.debriefOutcomeLogSchema.validateSync(value);
+        return true;
+    }
+    catch (error) {
+        return false;
+    }
+};
+exports.isValidDebriefOutcomeLog = isValidDebriefOutcomeLog;
+const logIsDebriefSummaryRequestLog = (value) => value.type === "debrief_summary_request";
+exports.logIsDebriefSummaryRequestLog = logIsDebriefSummaryRequestLog;
+const isValidDebriefSummaryRequestLog = (value) => {
+    try {
+        debriefLog_1.debriefSummaryRequestLogSchema.validateSync(value);
+        return true;
+    }
+    catch (error) {
+        return false;
+    }
+};
+exports.isValidDebriefSummaryRequestLog = isValidDebriefSummaryRequestLog;
+const logIsDebriefSummaryLog = (value) => value.type === "debrief_summary";
+exports.logIsDebriefSummaryLog = logIsDebriefSummaryLog;
+const isValidDebriefSummaryLog = (value) => {
+    try {
+        debriefLog_1.debriefSummaryLogSchema.validateSync(value);
+        return true;
+    }
+    catch (error) {
+        return false;
+    }
+};
+exports.isValidDebriefSummaryLog = isValidDebriefSummaryLog;
+const logIsDebriefSummaryEditedLog = (value) => value.type === "debrief_summary_edited";
+exports.logIsDebriefSummaryEditedLog = logIsDebriefSummaryEditedLog;
+const isValidDebriefSummaryEditedLog = (value) => {
+    try {
+        debriefLog_1.debriefSummaryEditedLogSchema.validateSync(value);
+        return true;
+    }
+    catch (error) {
+        return false;
+    }
+};
+exports.isValidDebriefSummaryEditedLog = isValidDebriefSummaryEditedLog;

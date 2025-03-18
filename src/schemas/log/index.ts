@@ -3,6 +3,18 @@ import {
   BehaviorTrackedLog,
   behaviorTrackedLogSchema,
 } from "./behaviorTrackedLog";
+import {
+  DebriefAnswerLog,
+  DebriefOutcomeLog,
+  DebriefSummaryLog,
+  DebriefSummaryRequestLog,
+  DebriefSummaryEditedLog,
+  debriefAnswerLogSchema,
+  debriefOutcomeLogSchema,
+  debriefSummaryLogSchema,
+  debriefSummaryRequestLogSchema,
+  debriefSummaryEditedLogSchema,
+} from "./debriefLog";
 import { ImpulseLog, impulseLogSchema } from "./impulseLog";
 import { QuestionLog, questionLogSchema } from "./questionLog";
 import { TacticLog, tacticLogSchema } from "./tacticLog";
@@ -15,10 +27,15 @@ export const logTypes = [
   "ai_agent", // Agent/AI message type
   "tool_call", // Tool call type
   "tactic_completed",
-  "tactic_uncompleted",
+  "tactic_viewed",
   "impulse_button_pressed",
   "behavior_tracked",
   "question",
+  "debrief_answer",
+  "debrief_outcome",
+  "debrief_summary_request",
+  "debrief_summary",
+  "debrief_summary_edited",
 ] as const;
 
 export type LogType = (typeof logTypes)[number];
@@ -30,11 +47,17 @@ export type Log =
   | BehaviorTrackedLog
   | QuestionLog
   | ToolCallLog
-  | UserLog // New user message type
-  | AiAgentLog; // New agent message type with tool calls and results
+  | UserLog
+  | AiAgentLog
+  | DebriefAnswerLog
+  | DebriefOutcomeLog
+  | DebriefSummaryRequestLog
+  | DebriefSummaryLog
+  | DebriefSummaryEditedLog;
 
 export * from "./aiAgentLog";
 export * from "./behaviorTrackedLog";
+export * from "./debriefLog";
 export * from "./impulseLog";
 export * from "./questionLog";
 export * from "./tacticLog";
@@ -52,6 +75,7 @@ export const isValidAiAgentLog = (value: unknown): value is AiAgentLog => {
     return false;
   }
 };
+
 export const logIsBehaviorTrackedLog = (
   value: Omit<Log, "id">
 ): value is BehaviorTrackedLog => value.type === "behavior_tracked";
@@ -117,6 +141,67 @@ export const logIsUserLog = (value: Omit<Log, "id">): value is UserLog =>
 export const isValidUserLog = (value: unknown): value is UserLog => {
   try {
     userLogSchema.validateSync(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+// Debrief log type guards
+export const logIsDebriefAnswerLog = (value: Omit<Log, "id">): value is DebriefAnswerLog =>
+  value.type === "debrief_answer";
+
+export const isValidDebriefAnswerLog = (value: unknown): value is DebriefAnswerLog => {
+  try {
+    debriefAnswerLogSchema.validateSync(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+export const logIsDebriefOutcomeLog = (value: Omit<Log, "id">): value is DebriefOutcomeLog =>
+  value.type === "debrief_outcome";
+
+export const isValidDebriefOutcomeLog = (value: unknown): value is DebriefOutcomeLog => {
+  try {
+    debriefOutcomeLogSchema.validateSync(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+export const logIsDebriefSummaryRequestLog = (value: Omit<Log, "id">): value is DebriefSummaryRequestLog =>
+  value.type === "debrief_summary_request";
+
+export const isValidDebriefSummaryRequestLog = (value: unknown): value is DebriefSummaryRequestLog => {
+  try {
+    debriefSummaryRequestLogSchema.validateSync(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+export const logIsDebriefSummaryLog = (value: Omit<Log, "id">): value is DebriefSummaryLog =>
+  value.type === "debrief_summary";
+
+export const isValidDebriefSummaryLog = (value: unknown): value is DebriefSummaryLog => {
+  try {
+    debriefSummaryLogSchema.validateSync(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+export const logIsDebriefSummaryEditedLog = (value: Omit<Log, "id">): value is DebriefSummaryEditedLog =>
+  value.type === "debrief_summary_edited";
+
+export const isValidDebriefSummaryEditedLog = (value: unknown): value is DebriefSummaryEditedLog => {
+  try {
+    debriefSummaryEditedLogSchema.validateSync(value);
     return true;
   } catch (error) {
     return false;
