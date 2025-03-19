@@ -12,6 +12,8 @@ export const tacticBaseSchema = yup.object({
 
   canBeManuallyMarkedAsCompleted: yup.boolean().required(),
 
+  durationSeconds: yup.number().optional(), // Target duration in seconds
+
   // Media attachments - each can be present independently
   imageAttachment: attachmentSchema.optional().default(undefined),
   videoAttachment: attachmentSchema.optional().default(undefined),
