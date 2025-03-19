@@ -1,5 +1,6 @@
 import * as yup from "yup";
 export declare const questionLogSchema: yup.ObjectSchema<{
+    id: string | undefined;
     type: "question";
     userId: string;
     timestamp: import("../../types").Timestamp;
@@ -21,6 +22,7 @@ export declare const questionLogSchema: yup.ObjectSchema<{
     updatedAt: import("../../types").Timestamp | undefined;
     isDisplayable: true;
 }, yup.AnyObject, {
+    id: undefined;
     type: undefined;
     userId: undefined;
     timestamp: undefined;

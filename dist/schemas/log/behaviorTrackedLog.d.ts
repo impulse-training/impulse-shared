@@ -1,5 +1,6 @@
 import * as yup from "yup";
 export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
+    id: string | undefined;
     type: "behavior_tracked";
     userId: string;
     timestamp: import("../../types").Timestamp;
@@ -14,6 +15,7 @@ export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
     updatedAt: import("../../types").Timestamp | undefined;
     isDisplayable: true;
 }, yup.AnyObject, {
+    id: undefined;
     type: undefined;
     userId: undefined;
     timestamp: undefined;

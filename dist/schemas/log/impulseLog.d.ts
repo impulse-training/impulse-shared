@@ -1,5 +1,6 @@
 import * as yup from "yup";
 export declare const impulseLogSchema: yup.ObjectSchema<{
+    id: string | undefined;
     type: "impulse_button_pressed";
     userId: string;
     timestamp: import("../../types").Timestamp;
@@ -8,6 +9,7 @@ export declare const impulseLogSchema: yup.ObjectSchema<{
     updatedAt: import("../../types").Timestamp | undefined;
     isDisplayable: true;
 }, yup.AnyObject, {
+    id: undefined;
     type: undefined;
     userId: undefined;
     timestamp: undefined;
