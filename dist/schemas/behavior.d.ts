@@ -5,6 +5,7 @@ export declare const behaviorSchema: yup.ObjectSchema<{
     name: string;
     description: string;
     trackingType: NonNullable<"counter" | "timer" | undefined>;
+    trackingUnit: string | undefined;
     gameplanTacticIds: (string | undefined)[];
     createdAt: import("../types").Timestamp | undefined;
     updatedAt: import("../types").Timestamp | undefined;
@@ -14,6 +15,7 @@ export declare const behaviorSchema: yup.ObjectSchema<{
     name: undefined;
     description: undefined;
     trackingType: undefined;
+    trackingUnit: undefined;
     gameplanTacticIds: never[];
     createdAt: undefined;
     updatedAt: undefined;

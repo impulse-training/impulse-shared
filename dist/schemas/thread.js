@@ -48,7 +48,7 @@ exports.threadSchema = yup.object({
         .default("general"),
     date: timestampSchema_1.timestampSchema.required(),
     behaviorDataByLogId: (0, utils_1.objectOf)(log_1.behaviorTrackingDataSchema),
-    behaviorDataTotalsByBehaviorId: (0, utils_1.objectOf)(log_1.behaviorTrackingDataSchema),
+    behaviorDataTotals: yup.array().of(log_1.behaviorTrackingDataSchema),
     // The date string is the date in the user's timezone
     dateString: yup.string().required(),
     updatedAt: timestampSchema_1.timestampSchema,

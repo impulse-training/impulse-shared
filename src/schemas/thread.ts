@@ -13,7 +13,7 @@ export const threadSchema = yup.object({
     .default("general"),
   date: timestampSchema.required(),
   behaviorDataByLogId: objectOf(behaviorTrackingDataSchema),
-  behaviorDataTotalsByBehaviorId: objectOf(behaviorTrackingDataSchema),
+  behaviorDataTotals: yup.array().of(behaviorTrackingDataSchema),
   // The date string is the date in the user's timezone
   dateString: yup.string().required(),
   updatedAt: timestampSchema,

@@ -2,27 +2,31 @@ import * as yup from "yup";
 export declare const behaviorTrackingDataSchema: yup.ObjectSchema<{
     behaviorId: string;
     behaviorName: string;
+    behaviorTrackingUnit: string | undefined;
     trackingType: NonNullable<"counter" | "timer" | undefined>;
     value: number;
-    notes: string | null | undefined;
+    formattedValue: string;
 }, yup.AnyObject, {
     behaviorId: undefined;
     behaviorName: undefined;
+    behaviorTrackingUnit: undefined;
     trackingType: undefined;
     value: undefined;
-    notes: undefined;
+    formattedValue: undefined;
 }, "">;
+export type BehaviorTrackingData = yup.InferType<typeof behaviorTrackingDataSchema>;
 export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
     id: string | undefined;
     type: "behavior_tracked";
     userId: string;
     timestamp: import("../../types").Timestamp;
     data: {
-        notes?: string | null | undefined;
+        behaviorTrackingUnit?: string | undefined;
         behaviorId: string;
         behaviorName: string;
         trackingType: NonNullable<"counter" | "timer" | undefined>;
         value: number;
+        formattedValue: string;
     };
     createdAt: import("../../types").Timestamp | undefined;
     updatedAt: import("../../types").Timestamp | undefined;
@@ -35,9 +39,10 @@ export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
     data: {
         behaviorId: undefined;
         behaviorName: undefined;
+        behaviorTrackingUnit: undefined;
         trackingType: undefined;
         value: undefined;
-        notes: undefined;
+        formattedValue: undefined;
     };
     createdAt: undefined;
     updatedAt: undefined;

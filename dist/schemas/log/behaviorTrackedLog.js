@@ -39,9 +39,10 @@ const base_1 = require("./base");
 exports.behaviorTrackingDataSchema = yup.object({
     behaviorId: yup.string().required(),
     behaviorName: yup.string().required(),
+    behaviorTrackingUnit: yup.string(),
     trackingType: yup.string().oneOf(["counter", "timer"]).required(),
     value: yup.number().required(), // Count or time in seconds
-    notes: yup.string().nullable(),
+    formattedValue: yup.string().required(),
 });
 // Behavior Tracked Log Schema
 exports.behaviorTrackedLogSchema = base_1.logBaseSchema.shape({

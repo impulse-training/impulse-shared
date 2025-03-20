@@ -1,3 +1,4 @@
+export * from "./behaviorData";
 export * from "./documentReferenceSchema";
 export * from "./objectOf";
 export * from "./openaiMessages";
