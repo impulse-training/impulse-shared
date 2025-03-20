@@ -1,4 +1,17 @@
 import * as yup from "yup";
+export declare const behaviorTrackingDataSchema: yup.ObjectSchema<{
+    behaviorId: string;
+    behaviorName: string;
+    trackingType: NonNullable<"counter" | "timer" | undefined>;
+    value: number;
+    notes: string | null | undefined;
+}, yup.AnyObject, {
+    behaviorId: undefined;
+    behaviorName: undefined;
+    trackingType: undefined;
+    value: undefined;
+    notes: undefined;
+}, "">;
 export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
     id: string | undefined;
     type: "behavior_tracked";

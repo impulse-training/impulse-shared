@@ -33,21 +33,20 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.behaviorTrackedLogSchema = void 0;
+exports.behaviorTrackedLogSchema = exports.behaviorTrackingDataSchema = void 0;
 const yup = __importStar(require("yup"));
 const base_1 = require("./base");
+exports.behaviorTrackingDataSchema = yup.object({
+    behaviorId: yup.string().required(),
+    behaviorName: yup.string().required(),
+    trackingType: yup.string().oneOf(["counter", "timer"]).required(),
+    value: yup.number().required(), // Count or time in seconds
+    notes: yup.string().nullable(),
+});
 // Behavior Tracked Log Schema
 exports.behaviorTrackedLogSchema = base_1.logBaseSchema.shape({
     type: yup.string().oneOf(["behavior_tracked"]).required(),
     // Behavior tracked logs are always displayed in the UI
     isDisplayable: yup.mixed().oneOf([true]).required(),
-    data: yup
-        .object({
-        behaviorId: yup.string().required(),
-        behaviorName: yup.string().required(),
-        trackingType: yup.string().oneOf(["counter", "timer"]).required(),
-        value: yup.number().required(), // Count or time in seconds
-        notes: yup.string().nullable(),
-    })
-        .required(),
+    data: exports.behaviorTrackingDataSchema.required(),
 });

@@ -35,7 +35,9 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isThread = exports.threadSchema = void 0;
 const yup = __importStar(require("yup"));
+const utils_1 = require("../utils");
 const timestampSchema_1 = require("../utils/timestampSchema");
+const log_1 = require("./log");
 // Thread schema
 exports.threadSchema = yup.object({
     id: yup.string(),
@@ -45,6 +47,10 @@ exports.threadSchema = yup.object({
         .oneOf(["impulse", "general", "dayRecap"])
         .default("general"),
     date: timestampSchema_1.timestampSchema.required(),
+    behaviorDataByLogId: (0, utils_1.objectOf)(log_1.behaviorTrackingDataSchema),
+    behaviorDataTotalsByBehaviorId: (0, utils_1.objectOf)(log_1.behaviorTrackingDataSchema),
+    // The date string is the date in the user's timezone
+    dateString: yup.string().required(),
     updatedAt: timestampSchema_1.timestampSchema,
     createdAt: timestampSchema_1.timestampSchema,
 });
