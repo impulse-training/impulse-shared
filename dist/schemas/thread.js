@@ -47,10 +47,10 @@ exports.threadSchema = yup.object({
         .oneOf(["impulse", "general", "dayRecap"])
         .default("general"),
     date: timestampSchema_1.timestampSchema.required(),
+    dateString: yup.string().required(),
     behaviorDataByLogId: (0, utils_1.objectOf)(log_1.behaviorTrackingDataSchema),
     behaviorDataTotals: yup.array().of(log_1.behaviorTrackingDataSchema),
-    // The date string is the date in the user's timezone
-    dateString: yup.string().required(),
+    outcome: yup.string().oneOf(["success", "partial", "setback"]),
     updatedAt: timestampSchema_1.timestampSchema,
     createdAt: timestampSchema_1.timestampSchema,
 });

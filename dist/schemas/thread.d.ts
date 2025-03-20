@@ -4,6 +4,7 @@ export declare const threadSchema: yup.ObjectSchema<{
     title: string;
     type: "impulse" | "general" | "dayRecap";
     date: import("../types").Timestamp;
+    dateString: string;
     behaviorDataByLogId: {
         [x: string]: {
             behaviorTrackingUnit?: string | undefined;
@@ -22,7 +23,7 @@ export declare const threadSchema: yup.ObjectSchema<{
         value: number;
         formattedValue: string;
     }[] | undefined;
-    dateString: string;
+    outcome: string | undefined;
     updatedAt: import("../types").Timestamp | undefined;
     createdAt: import("../types").Timestamp | undefined;
 }, yup.AnyObject, {
@@ -30,9 +31,10 @@ export declare const threadSchema: yup.ObjectSchema<{
     title: undefined;
     type: "general";
     date: undefined;
+    dateString: undefined;
     behaviorDataByLogId: undefined;
     behaviorDataTotals: "";
-    dateString: undefined;
+    outcome: undefined;
     updatedAt: undefined;
     createdAt: undefined;
 }, "">;

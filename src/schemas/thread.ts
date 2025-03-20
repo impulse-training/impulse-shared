@@ -12,10 +12,10 @@ export const threadSchema = yup.object({
     .oneOf(["impulse", "general", "dayRecap"])
     .default("general"),
   date: timestampSchema.required(),
+  dateString: yup.string().required(),
   behaviorDataByLogId: objectOf(behaviorTrackingDataSchema),
   behaviorDataTotals: yup.array().of(behaviorTrackingDataSchema),
-  // The date string is the date in the user's timezone
-  dateString: yup.string().required(),
+  outcome: yup.string().oneOf(["success", "partial", "setback"]),
   updatedAt: timestampSchema,
   createdAt: timestampSchema,
 });

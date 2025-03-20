@@ -20,3 +20,4 @@ __exportStar(require("./documentReferenceSchema"), exports);
 __exportStar(require("./objectOf"), exports);
 __exportStar(require("./openaiMessages"), exports);
 __exportStar(require("./timestampSchema"), exports);
+__exportStar(require("./withId"), exports);
