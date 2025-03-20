@@ -25,7 +25,7 @@ const toolCallLog_1 = require("./toolCallLog");
 const userLog_1 = require("./userLog");
 // Activity Types
 exports.logTypes = [
-    "user", // User message type
+    "user", // A simple message from a user or AI
     "ai_agent", // Agent/AI message type
     "tool_call", // Tool call type
     "tactic_completed",

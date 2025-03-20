@@ -5,7 +5,6 @@ import { logBaseSchema } from "./base";
 /**
  * Agent Log Schema
  * Represents an agent message in a conversation thread
- * Can include tool calls and tool results
  */
 export const aiAgentLogSchema = logBaseSchema.shape({
   // AI agent logs are always displayed in the UI

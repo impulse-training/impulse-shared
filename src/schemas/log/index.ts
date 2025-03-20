@@ -6,14 +6,14 @@ import {
 import {
   DebriefAnswerLog,
   DebriefOutcomeLog,
+  DebriefSummaryEditedLog,
   DebriefSummaryLog,
   DebriefSummaryRequestLog,
-  DebriefSummaryEditedLog,
   debriefAnswerLogSchema,
   debriefOutcomeLogSchema,
+  debriefSummaryEditedLogSchema,
   debriefSummaryLogSchema,
   debriefSummaryRequestLogSchema,
-  debriefSummaryEditedLogSchema,
 } from "./debriefLog";
 import { ImpulseLog, impulseLogSchema } from "./impulseLog";
 import { QuestionLog, questionLogSchema } from "./questionLog";
@@ -23,7 +23,7 @@ import { UserLog, userLogSchema } from "./userLog";
 
 // Activity Types
 export const logTypes = [
-  "user", // User message type
+  "user", // A simple message from a user or AI
   "ai_agent", // Agent/AI message type
   "tool_call", // Tool call type
   "tactic_completed",
@@ -148,10 +148,13 @@ export const isValidUserLog = (value: unknown): value is UserLog => {
 };
 
 // Debrief log type guards
-export const logIsDebriefAnswerLog = (value: Omit<Log, "id">): value is DebriefAnswerLog =>
-  value.type === "debrief_answer";
+export const logIsDebriefAnswerLog = (
+  value: Omit<Log, "id">
+): value is DebriefAnswerLog => value.type === "debrief_answer";
 
-export const isValidDebriefAnswerLog = (value: unknown): value is DebriefAnswerLog => {
+export const isValidDebriefAnswerLog = (
+  value: unknown
+): value is DebriefAnswerLog => {
   try {
     debriefAnswerLogSchema.validateSync(value);
     return true;
@@ -160,10 +163,13 @@ export const isValidDebriefAnswerLog = (value: unknown): value is DebriefAnswerL
   }
 };
 
-export const logIsDebriefOutcomeLog = (value: Omit<Log, "id">): value is DebriefOutcomeLog =>
-  value.type === "debrief_outcome";
+export const logIsDebriefOutcomeLog = (
+  value: Omit<Log, "id">
+): value is DebriefOutcomeLog => value.type === "debrief_outcome";
 
-export const isValidDebriefOutcomeLog = (value: unknown): value is DebriefOutcomeLog => {
+export const isValidDebriefOutcomeLog = (
+  value: unknown
+): value is DebriefOutcomeLog => {
   try {
     debriefOutcomeLogSchema.validateSync(value);
     return true;
@@ -172,10 +178,14 @@ export const isValidDebriefOutcomeLog = (value: unknown): value is DebriefOutcom
   }
 };
 
-export const logIsDebriefSummaryRequestLog = (value: Omit<Log, "id">): value is DebriefSummaryRequestLog =>
+export const logIsDebriefSummaryRequestLog = (
+  value: Omit<Log, "id">
+): value is DebriefSummaryRequestLog =>
   value.type === "debrief_summary_request";
 
-export const isValidDebriefSummaryRequestLog = (value: unknown): value is DebriefSummaryRequestLog => {
+export const isValidDebriefSummaryRequestLog = (
+  value: unknown
+): value is DebriefSummaryRequestLog => {
   try {
     debriefSummaryRequestLogSchema.validateSync(value);
     return true;
@@ -184,10 +194,13 @@ export const isValidDebriefSummaryRequestLog = (value: unknown): value is Debrie
   }
 };
 
-export const logIsDebriefSummaryLog = (value: Omit<Log, "id">): value is DebriefSummaryLog =>
-  value.type === "debrief_summary";
+export const logIsDebriefSummaryLog = (
+  value: Omit<Log, "id">
+): value is DebriefSummaryLog => value.type === "debrief_summary";
 
-export const isValidDebriefSummaryLog = (value: unknown): value is DebriefSummaryLog => {
+export const isValidDebriefSummaryLog = (
+  value: unknown
+): value is DebriefSummaryLog => {
   try {
     debriefSummaryLogSchema.validateSync(value);
     return true;
@@ -196,10 +209,13 @@ export const isValidDebriefSummaryLog = (value: unknown): value is DebriefSummar
   }
 };
 
-export const logIsDebriefSummaryEditedLog = (value: Omit<Log, "id">): value is DebriefSummaryEditedLog =>
-  value.type === "debrief_summary_edited";
+export const logIsDebriefSummaryEditedLog = (
+  value: Omit<Log, "id">
+): value is DebriefSummaryEditedLog => value.type === "debrief_summary_edited";
 
-export const isValidDebriefSummaryEditedLog = (value: unknown): value is DebriefSummaryEditedLog => {
+export const isValidDebriefSummaryEditedLog = (
+  value: unknown
+): value is DebriefSummaryEditedLog => {
   try {
     debriefSummaryEditedLogSchema.validateSync(value);
     return true;

@@ -1,10 +1,6 @@
 import * as yup from "yup";
 import { logBaseSchema } from "./base";
 
-/**
- * User Log Schema
- * Represents a user message in a conversation thread
- */
 export const userLogSchema = logBaseSchema.shape({
   type: yup.string().oneOf(["user"]).required(),
   // User logs are always displayed in the UI
@@ -12,6 +8,7 @@ export const userLogSchema = logBaseSchema.shape({
   data: yup
     .object({
       content: yup.string().required(),
+      role: yup.string().oneOf(["user"]).required(),
     })
     .required(),
 });

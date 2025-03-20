@@ -17,7 +17,14 @@ export function getFormattedValue({
   if (trackingType === "timer") {
     const hours = Math.floor(value / 3600);
     const minutes = Math.floor((value % 3600) / 60);
-    return `${hours}h ${minutes}m`;
+    
+    if (hours === 0) {
+      return `${minutes}m`;
+    } else if (minutes === 0) {
+      return `${hours}h`;
+    } else {
+      return `${hours}h ${minutes}m`;
+    }
   }
 
   return pluralize(behaviorTrackingUnit || "times", value, true);

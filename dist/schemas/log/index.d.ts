@@ -1,6 +1,6 @@
 import { AiAgentLog } from "./aiAgentLog";
 import { BehaviorTrackedLog } from "./behaviorTrackedLog";
-import { DebriefAnswerLog, DebriefOutcomeLog, DebriefSummaryLog, DebriefSummaryRequestLog, DebriefSummaryEditedLog } from "./debriefLog";
+import { DebriefAnswerLog, DebriefOutcomeLog, DebriefSummaryEditedLog, DebriefSummaryLog, DebriefSummaryRequestLog } from "./debriefLog";
 import { ImpulseLog } from "./impulseLog";
 import { QuestionLog } from "./questionLog";
 import { TacticLog } from "./tacticLog";
