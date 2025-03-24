@@ -3,6 +3,8 @@ import {
   BehaviorTrackedLog,
   behaviorTrackedLogSchema,
 } from "./behaviorTrackedLog";
+
+// TODO: this is too complex / no good
 import {
   DebriefAnswerLog,
   DebriefOutcomeLog,
@@ -15,6 +17,8 @@ import {
   debriefSummaryLogSchema,
   debriefSummaryRequestLogSchema,
 } from "./debriefLog";
+
+import { GameplanLog, gameplanLogSchema } from "./gameplanLog";
 import { ImpulseLog, impulseLogSchema } from "./impulseLog";
 import { QuestionLog, questionLogSchema } from "./questionLog";
 import { TacticLog, tacticLogSchema } from "./tacticLog";
@@ -31,6 +35,7 @@ export const logTypes = [
   "impulse_button_pressed",
   "behavior_tracked",
   "question",
+  "gameplan",
   "debrief_answer",
   "debrief_outcome",
   "debrief_summary_request",
@@ -46,6 +51,7 @@ export type Log =
   | ImpulseLog
   | BehaviorTrackedLog
   | QuestionLog
+  | GameplanLog
   | ToolCallLog
   | UserLog
   | AiAgentLog
@@ -58,6 +64,7 @@ export type Log =
 export * from "./aiAgentLog";
 export * from "./behaviorTrackedLog";
 export * from "./debriefLog";
+export * from "./gameplanLog";
 export * from "./impulseLog";
 export * from "./questionLog";
 export * from "./tacticLog";
@@ -141,6 +148,18 @@ export const logIsUserLog = (value: Omit<Log, "id">): value is UserLog =>
 export const isValidUserLog = (value: unknown): value is UserLog => {
   try {
     userLogSchema.validateSync(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+export const logIsGameplanLog = (
+  value: Omit<Log, "id">
+): value is GameplanLog => value.type === "gameplan";
+export const isValidGameplanLog = (value: unknown): value is GameplanLog => {
+  try {
+    gameplanLogSchema.validateSync(value);
     return true;
   } catch (error) {
     return false;
