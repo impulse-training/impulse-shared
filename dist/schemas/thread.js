@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isThread = exports.threadSchema = void 0;
+exports.isValidThread = exports.threadSchema = void 0;
 const yup = __importStar(require("yup"));
 const utils_1 = require("../utils");
 const timestampSchema_1 = require("../utils/timestampSchema");
@@ -47,6 +47,7 @@ exports.threadSchema = yup.object({
         .oneOf(["impulse", "general", "dayRecap"])
         .default("general"),
     date: timestampSchema_1.timestampSchema.required(),
+    gameplan: log_1.gameplanSchema, // The gameplan is a list of tactics that the user has agreed to use
     dateString: yup.string().required(),
     behaviorDataByLogId: (0, utils_1.objectOf)(log_1.behaviorTrackingDataSchema),
     behaviorDataTotals: yup.array().of(log_1.behaviorTrackingDataSchema),
@@ -55,7 +56,7 @@ exports.threadSchema = yup.object({
     createdAt: timestampSchema_1.timestampSchema,
 });
 // Type guard function
-const isThread = (value) => {
+const isValidThread = (value) => {
     try {
         exports.threadSchema.validateSync(value);
         return true;
@@ -64,4 +65,4 @@ const isThread = (value) => {
         return false;
     }
 };
-exports.isThread = isThread;
+exports.isValidThread = isValidThread;

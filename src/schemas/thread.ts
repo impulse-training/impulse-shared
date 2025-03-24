@@ -1,7 +1,7 @@
 import * as yup from "yup";
 import { objectOf } from "../utils";
 import { timestampSchema } from "../utils/timestampSchema";
-import { behaviorTrackingDataSchema } from "./log";
+import { behaviorTrackingDataSchema, gameplanSchema } from "./log";
 
 // Thread schema
 export const threadSchema = yup.object({
@@ -12,6 +12,7 @@ export const threadSchema = yup.object({
     .oneOf(["impulse", "general", "dayRecap"])
     .default("general"),
   date: timestampSchema.required(),
+  gameplan: gameplanSchema, // The gameplan is a list of tactics that the user has agreed to use
   dateString: yup.string().required(),
   behaviorDataByLogId: objectOf(behaviorTrackingDataSchema),
   behaviorDataTotals: yup.array().of(behaviorTrackingDataSchema),
@@ -24,7 +25,7 @@ export const threadSchema = yup.object({
 export type Thread = yup.InferType<typeof threadSchema>;
 
 // Type guard function
-export const isThread = (value: unknown): value is Thread => {
+export const isValidThread = (value: unknown): value is Thread => {
   try {
     threadSchema.validateSync(value);
     return true;

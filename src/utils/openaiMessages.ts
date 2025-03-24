@@ -4,24 +4,24 @@ import {
 } from "openai/resources/chat";
 import {
   Log,
-  logIsAiAgentLog,
+  logIsAssistantMessageLog,
   logIsQuestionLog,
   logIsToolCallLog,
-  logIsUserLog,
+  logIsUserMessageLog,
 } from "../schemas/log";
 
 export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
-  if (logIsUserLog(log)) {
+  if (logIsUserMessageLog(log)) {
     return [
       {
         role: "user",
-        content: log.data.content,
+        content: log.data.message.content,
       },
     ];
   }
 
-  // Handle AiAgentLog
-  if (logIsAiAgentLog(log)) {
+  // Handle AssistantMessageLog
+  if (logIsAssistantMessageLog(log)) {
     const messages: ChatCompletionAssistantMessageParam[] = [];
     messages.push(log.data.message);
 
@@ -53,6 +53,6 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
     ];
   }
 
-  // Return empty array for unsupported log types
+  // Return empty array for other (unsupported) log types
   return [];
 }

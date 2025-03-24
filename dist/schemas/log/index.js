@@ -14,21 +14,21 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidDebriefSummaryEditedLog = exports.logIsDebriefSummaryEditedLog = exports.isValidDebriefSummaryLog = exports.logIsDebriefSummaryLog = exports.isValidDebriefSummaryRequestLog = exports.logIsDebriefSummaryRequestLog = exports.isValidDebriefOutcomeLog = exports.logIsDebriefOutcomeLog = exports.isValidDebriefAnswerLog = exports.logIsDebriefAnswerLog = exports.isValidGameplanLog = exports.logIsGameplanLog = exports.isValidUserLog = exports.logIsUserLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidBehaviorTrackedLog = exports.logIsBehaviorTrackedLog = exports.isValidAiAgentLog = exports.logIsAiAgentLog = exports.logTypes = void 0;
-const aiAgentLog_1 = require("./aiAgentLog");
+exports.isValidDebriefSummaryEditedLog = exports.logIsDebriefSummaryEditedLog = exports.isValidDebriefSummaryLog = exports.logIsDebriefSummaryLog = exports.isValidDebriefSummaryRequestLog = exports.logIsDebriefSummaryRequestLog = exports.isValidDebriefOutcomeLog = exports.logIsDebriefOutcomeLog = exports.isValidDebriefAnswerLog = exports.logIsDebriefAnswerLog = exports.isValidGameplanLog = exports.logIsGameplanLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidBehaviorTrackedLog = exports.logIsBehaviorTrackedLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logTypes = void 0;
 const behaviorTrackedLog_1 = require("./behaviorTrackedLog");
 // TODO: this is too complex / no good
 const debriefLog_1 = require("./debriefLog");
 const gameplanLog_1 = require("./gameplanLog");
 const impulseLog_1 = require("./impulseLog");
+const messageLog_1 = require("./messageLog");
+const userMessageLog_1 = require("./messageLog/userMessageLog");
 const questionLog_1 = require("./questionLog");
 const tacticLog_1 = require("./tacticLog");
 const toolCallLog_1 = require("./toolCallLog");
-const userLog_1 = require("./userLog");
 // Activity Types
 exports.logTypes = [
     "user", // A simple message from a user or AI
-    "ai_agent", // Agent/AI message type
+    "assistant_message", // Agent/AI message type
     "tool_call", // Tool call type
     "tactic_completed",
     "tactic_viewed",
@@ -42,28 +42,27 @@ exports.logTypes = [
     "debrief_summary",
     "debrief_summary_edited",
 ];
-__exportStar(require("./aiAgentLog"), exports);
 __exportStar(require("./behaviorTrackedLog"), exports);
 __exportStar(require("./debriefLog"), exports);
 __exportStar(require("./gameplanLog"), exports);
 __exportStar(require("./impulseLog"), exports);
+__exportStar(require("./messageLog"), exports);
 __exportStar(require("./questionLog"), exports);
 __exportStar(require("./tacticLog"), exports);
 __exportStar(require("./toolCallLog"), exports);
-__exportStar(require("./userLog"), exports);
 // Export log type guards
-const logIsAiAgentLog = (value) => value.type === "ai_agent";
-exports.logIsAiAgentLog = logIsAiAgentLog;
-const isValidAiAgentLog = (value) => {
+const logIsAssistantMessageLog = (value) => value.type === "assistant_message";
+exports.logIsAssistantMessageLog = logIsAssistantMessageLog;
+const isValidAssistantMessageLog = (value) => {
     try {
-        aiAgentLog_1.aiAgentLogSchema.validateSync(value);
+        messageLog_1.assistantMessageLogSchema.validateSync(value);
         return true;
     }
     catch (error) {
         return false;
     }
 };
-exports.isValidAiAgentLog = isValidAiAgentLog;
+exports.isValidAssistantMessageLog = isValidAssistantMessageLog;
 const logIsBehaviorTrackedLog = (value) => value.type === "behavior_tracked";
 exports.logIsBehaviorTrackedLog = logIsBehaviorTrackedLog;
 const isValidBehaviorTrackedLog = (value) => {
@@ -124,18 +123,18 @@ const isValidTacticLog = (value) => {
     }
 };
 exports.isValidTacticLog = isValidTacticLog;
-const logIsUserLog = (value) => value.type === "user";
-exports.logIsUserLog = logIsUserLog;
-const isValidUserLog = (value) => {
+const logIsUserMessageLog = (value) => value.type === "user_message";
+exports.logIsUserMessageLog = logIsUserMessageLog;
+const isValidUserMessageLog = (value) => {
     try {
-        userLog_1.userLogSchema.validateSync(value);
+        userMessageLog_1.userMessageLogSchema.validateSync(value);
         return true;
     }
     catch (error) {
         return false;
     }
 };
-exports.isValidUserLog = isValidUserLog;
+exports.isValidUserMessageLog = isValidUserMessageLog;
 const logIsGameplanLog = (value) => value.type === "gameplan";
 exports.logIsGameplanLog = logIsGameplanLog;
 const isValidGameplanLog = (value) => {

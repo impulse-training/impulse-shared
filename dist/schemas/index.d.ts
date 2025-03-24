@@ -5,5 +5,5 @@ export * from "./question";
 export * from "./supportGroup";
 export * from "./tactic";
 export * from "./thread";
-export * from "./user";
 export * from "./userContext";
+export * from "./userData";

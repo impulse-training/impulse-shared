@@ -4,6 +4,12 @@ export declare const threadSchema: yup.ObjectSchema<{
     title: string;
     type: "impulse" | "general" | "dayRecap";
     date: import("../types").Timestamp;
+    gameplan: {
+        tactic: {
+            type: string;
+        };
+        exists: NonNullable<boolean | undefined>;
+    }[] | undefined;
     dateString: string;
     behaviorDataByLogId: {
         [x: string]: {
@@ -31,6 +37,7 @@ export declare const threadSchema: yup.ObjectSchema<{
     title: undefined;
     type: "general";
     date: undefined;
+    gameplan: "";
     dateString: undefined;
     behaviorDataByLogId: undefined;
     behaviorDataTotals: "";
@@ -39,4 +46,4 @@ export declare const threadSchema: yup.ObjectSchema<{
     createdAt: undefined;
 }, "">;
 export type Thread = yup.InferType<typeof threadSchema>;
-export declare const isThread: (value: unknown) => value is Thread;
+export declare const isValidThread: (value: unknown) => value is Thread;

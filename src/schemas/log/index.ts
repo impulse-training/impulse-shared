@@ -1,4 +1,3 @@
-import { AiAgentLog, aiAgentLogSchema } from "./aiAgentLog";
 import {
   BehaviorTrackedLog,
   behaviorTrackedLogSchema,
@@ -17,18 +16,25 @@ import {
   debriefSummaryLogSchema,
   debriefSummaryRequestLogSchema,
 } from "./debriefLog";
-
 import { GameplanLog, gameplanLogSchema } from "./gameplanLog";
 import { ImpulseLog, impulseLogSchema } from "./impulseLog";
+import {
+  AssistantMessageLog,
+  MessageLog,
+  assistantMessageLogSchema,
+} from "./messageLog";
+import {
+  UserMessageLog,
+  userMessageLogSchema,
+} from "./messageLog/userMessageLog";
 import { QuestionLog, questionLogSchema } from "./questionLog";
 import { TacticLog, tacticLogSchema } from "./tacticLog";
 import { ToolCallLog, toolCallLogSchema } from "./toolCallLog";
-import { UserLog, userLogSchema } from "./userLog";
 
 // Activity Types
 export const logTypes = [
   "user", // A simple message from a user or AI
-  "ai_agent", // Agent/AI message type
+  "assistant_message", // Agent/AI message type
   "tool_call", // Tool call type
   "tactic_completed",
   "tactic_viewed",
@@ -53,30 +59,31 @@ export type Log =
   | QuestionLog
   | GameplanLog
   | ToolCallLog
-  | UserLog
-  | AiAgentLog
+  | MessageLog
   | DebriefAnswerLog
   | DebriefOutcomeLog
   | DebriefSummaryRequestLog
   | DebriefSummaryLog
   | DebriefSummaryEditedLog;
 
-export * from "./aiAgentLog";
 export * from "./behaviorTrackedLog";
 export * from "./debriefLog";
 export * from "./gameplanLog";
 export * from "./impulseLog";
+export * from "./messageLog";
 export * from "./questionLog";
 export * from "./tacticLog";
 export * from "./toolCallLog";
-export * from "./userLog";
 
 // Export log type guards
-export const logIsAiAgentLog = (value: Omit<Log, "id">): value is AiAgentLog =>
-  value.type === "ai_agent";
-export const isValidAiAgentLog = (value: unknown): value is AiAgentLog => {
+export const logIsAssistantMessageLog = (
+  value: Omit<Log, "id">
+): value is AssistantMessageLog => value.type === "assistant_message";
+export const isValidAssistantMessageLog = (
+  value: unknown
+): value is AssistantMessageLog => {
   try {
-    aiAgentLogSchema.validateSync(value);
+    assistantMessageLogSchema.validateSync(value);
     return true;
   } catch (error) {
     return false;
@@ -143,11 +150,14 @@ export const isValidTacticLog = (value: unknown): value is TacticLog => {
   }
 };
 
-export const logIsUserLog = (value: Omit<Log, "id">): value is UserLog =>
-  value.type === "user";
-export const isValidUserLog = (value: unknown): value is UserLog => {
+export const logIsUserMessageLog = (
+  value: Omit<Log, "id">
+): value is UserMessageLog => value.type === "user_message";
+export const isValidUserMessageLog = (
+  value: unknown
+): value is UserMessageLog => {
   try {
-    userLogSchema.validateSync(value);
+    userMessageLogSchema.validateSync(value);
     return true;
   } catch (error) {
     return false;
@@ -157,6 +167,7 @@ export const isValidUserLog = (value: unknown): value is UserLog => {
 export const logIsGameplanLog = (
   value: Omit<Log, "id">
 ): value is GameplanLog => value.type === "gameplan";
+
 export const isValidGameplanLog = (value: unknown): value is GameplanLog => {
   try {
     gameplanLogSchema.validateSync(value);

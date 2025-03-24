@@ -22,5 +22,5 @@ __exportStar(require("./question"), exports);
 __exportStar(require("./supportGroup"), exports);
 __exportStar(require("./tactic"), exports);
 __exportStar(require("./thread"), exports);
-__exportStar(require("./user"), exports);
 __exportStar(require("./userContext"), exports);
+__exportStar(require("./userData"), exports);
