@@ -33,19 +33,19 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isQuestion = exports.questionSchema = exports.questionConditions = exports.questionOutcomes = exports.responseTypes = void 0;
+exports.isQuestion = exports.questionSchema = exports.responseTypes = void 0;
 const yup = __importStar(require("yup"));
+const thread_1 = require("./thread");
 // Response types for questions
 exports.responseTypes = ["text", "slider", "multiple_choice"];
-// Define outcome types for questions
-exports.questionOutcomes = ["setback", "partial", "success"];
-// Define condition types for next question rules
-exports.questionConditions = ["equals", "contains", "greater_than", "less_than"];
 // Base Question Schema
 exports.questionSchema = yup.object({
     id: yup.string(),
     content: yup.string().required(),
-    responseType: yup.mixed().oneOf(exports.responseTypes).required(),
+    responseType: yup
+        .mixed()
+        .oneOf(exports.responseTypes)
+        .required(),
     suggestedResponses: yup
         .array()
         .of(yup.string())
@@ -63,24 +63,17 @@ exports.questionSchema = yup.object({
         maxLabel: yup.string(),
         defaultValue: yup.number(),
     })
+        .optional()
+        .default(undefined)
         .when("responseType", {
         is: "slider",
         then: (schema) => schema.required(),
-        otherwise: (schema) => schema.optional().default(undefined),
     }),
     scope: yup.string().oneOf(["debrief"]).optional(),
     order: yup.number().optional(),
-    requiresOutcome: yup.boolean().optional().default(false),
     visibleForOutcomes: yup
         .array()
-        .of(yup.string().oneOf(exports.questionOutcomes))
-        .optional(),
-    nextQuestionRule: yup
-        .object({
-        condition: yup.mixed().oneOf(exports.questionConditions).required(),
-        value: yup.mixed().required(),
-        nextQuestionId: yup.string().required(),
-    })
+        .of(yup.mixed().oneOf(thread_1.outcomes))
         .optional(),
 });
 const isQuestion = (value) => {

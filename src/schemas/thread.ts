@@ -3,6 +3,10 @@ import { objectOf } from "../utils";
 import { timestampSchema } from "../utils/timestampSchema";
 import { behaviorTrackingDataSchema, gameplanSchema } from "./log";
 
+export type Outcome = "success" | "partial" | "setback";
+export const outcomes: Outcome[] = ["success", "partial", "setback"];
+export const outcomeSchema = yup.string().oneOf(outcomes);
+
 // Thread schema
 export const threadSchema = yup.object({
   id: yup.string(),
@@ -16,7 +20,7 @@ export const threadSchema = yup.object({
   dateString: yup.string().required(),
   behaviorDataByLogId: objectOf(behaviorTrackingDataSchema),
   behaviorDataTotals: yup.array().of(behaviorTrackingDataSchema),
-  outcome: yup.string().oneOf(["success", "partial", "setback"]),
+  outcome: outcomeSchema,
   updatedAt: timestampSchema,
   createdAt: timestampSchema,
 });

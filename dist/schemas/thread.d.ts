@@ -1,4 +1,7 @@
 import * as yup from "yup";
+export type Outcome = "success" | "partial" | "setback";
+export declare const outcomes: Outcome[];
+export declare const outcomeSchema: yup.StringSchema<"setback" | "partial" | "success" | undefined, yup.AnyObject, undefined, "">;
 export declare const threadSchema: yup.ObjectSchema<{
     id: string | undefined;
     title: string;
@@ -29,7 +32,7 @@ export declare const threadSchema: yup.ObjectSchema<{
         value: number;
         formattedValue: string;
     }[] | undefined;
-    outcome: string | undefined;
+    outcome: "setback" | "partial" | "success" | undefined;
     updatedAt: import("../types").Timestamp | undefined;
     createdAt: import("../types").Timestamp | undefined;
 }, yup.AnyObject, {

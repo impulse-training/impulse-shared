@@ -13,8 +13,6 @@ export const tacticBaseSchema = yup.object({
 
   // Media attachments - each can be present independently
   imageAttachment: attachmentSchema.optional().default(undefined),
-  videoAttachment: attachmentSchema.optional().default(undefined),
-  audioAttachment: attachmentSchema.optional().default(undefined),
 
   // Which behaviors the tactic should be associated wit
   allBehaviors: yup.boolean().optional(),
