@@ -8,7 +8,6 @@ export const tacticBaseSchema = yup.object({
   type: yup.string().required(),
   title: yup.string(),
   description: yup.string().optional(),
-  content: yup.string().optional(),
 
   canBeManuallyMarkedAsCompleted: yup.boolean().required(),
 
