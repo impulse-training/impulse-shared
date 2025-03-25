@@ -31,6 +31,7 @@ export declare const threadSchema: yup.ObjectSchema<{
     }[] | undefined;
     outcome: "success" | "partial" | "setback" | undefined;
     summary: string | undefined;
+    debriefedAt: import("../types").Timestamp | undefined;
     updatedAt: import("../types").Timestamp | undefined;
     createdAt: import("../types").Timestamp | undefined;
 }, yup.AnyObject, {
@@ -44,6 +45,7 @@ export declare const threadSchema: yup.ObjectSchema<{
     behaviorDataTotals: "";
     outcome: undefined;
     summary: undefined;
+    debriefedAt: undefined;
     updatedAt: undefined;
     createdAt: undefined;
 }, "">;
