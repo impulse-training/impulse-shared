@@ -29,7 +29,7 @@ export declare const threadSchema: yup.ObjectSchema<{
         value: number;
         formattedValue: string;
     }[] | undefined;
-    outcome: "setback" | "partial" | "success" | undefined;
+    outcome: "success" | "partial" | "setback" | undefined;
     summary: string | undefined;
     updatedAt: import("../types").Timestamp | undefined;
     createdAt: import("../types").Timestamp | undefined;

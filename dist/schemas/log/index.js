@@ -14,10 +14,8 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidDebriefSummaryEditedLog = exports.logIsDebriefSummaryEditedLog = exports.isValidDebriefSummaryLog = exports.logIsDebriefSummaryLog = exports.isValidDebriefSummaryRequestLog = exports.logIsDebriefSummaryRequestLog = exports.isValidDebriefOutcomeLog = exports.logIsDebriefOutcomeLog = exports.isValidDebriefAnswerLog = exports.logIsDebriefAnswerLog = exports.isValidGameplanLog = exports.logIsGameplanLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidBehaviorTrackedLog = exports.logIsBehaviorTrackedLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logTypes = void 0;
+exports.isValidGameplanLog = exports.logIsGameplanLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidBehaviorTrackedLog = exports.logIsBehaviorTrackedLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logTypes = void 0;
 const behaviorTrackedLog_1 = require("./behaviorTrackedLog");
-// TODO: this is too complex / no good
-const debriefLog_1 = require("./debriefLog");
 const gameplanLog_1 = require("./gameplanLog");
 const impulseLog_1 = require("./impulseLog");
 const messageLog_1 = require("./messageLog");
@@ -36,14 +34,8 @@ exports.logTypes = [
     "behavior_tracked",
     "question",
     "gameplan",
-    "debrief_answer",
-    "debrief_outcome",
-    "debrief_summary_request",
-    "debrief_summary",
-    "debrief_summary_edited",
 ];
 __exportStar(require("./behaviorTrackedLog"), exports);
-__exportStar(require("./debriefLog"), exports);
 __exportStar(require("./gameplanLog"), exports);
 __exportStar(require("./impulseLog"), exports);
 __exportStar(require("./messageLog"), exports);
@@ -147,64 +139,3 @@ const isValidGameplanLog = (value) => {
     }
 };
 exports.isValidGameplanLog = isValidGameplanLog;
-// Debrief log type guards
-const logIsDebriefAnswerLog = (value) => value.type === "debrief_answer";
-exports.logIsDebriefAnswerLog = logIsDebriefAnswerLog;
-const isValidDebriefAnswerLog = (value) => {
-    try {
-        debriefLog_1.debriefAnswerLogSchema.validateSync(value);
-        return true;
-    }
-    catch (error) {
-        return false;
-    }
-};
-exports.isValidDebriefAnswerLog = isValidDebriefAnswerLog;
-const logIsDebriefOutcomeLog = (value) => value.type === "debrief_outcome";
-exports.logIsDebriefOutcomeLog = logIsDebriefOutcomeLog;
-const isValidDebriefOutcomeLog = (value) => {
-    try {
-        debriefLog_1.debriefOutcomeLogSchema.validateSync(value);
-        return true;
-    }
-    catch (error) {
-        return false;
-    }
-};
-exports.isValidDebriefOutcomeLog = isValidDebriefOutcomeLog;
-const logIsDebriefSummaryRequestLog = (value) => value.type === "debrief_summary_request";
-exports.logIsDebriefSummaryRequestLog = logIsDebriefSummaryRequestLog;
-const isValidDebriefSummaryRequestLog = (value) => {
-    try {
-        debriefLog_1.debriefSummaryRequestLogSchema.validateSync(value);
-        return true;
-    }
-    catch (error) {
-        return false;
-    }
-};
-exports.isValidDebriefSummaryRequestLog = isValidDebriefSummaryRequestLog;
-const logIsDebriefSummaryLog = (value) => value.type === "debrief_summary";
-exports.logIsDebriefSummaryLog = logIsDebriefSummaryLog;
-const isValidDebriefSummaryLog = (value) => {
-    try {
-        debriefLog_1.debriefSummaryLogSchema.validateSync(value);
-        return true;
-    }
-    catch (error) {
-        return false;
-    }
-};
-exports.isValidDebriefSummaryLog = isValidDebriefSummaryLog;
-const logIsDebriefSummaryEditedLog = (value) => value.type === "debrief_summary_edited";
-exports.logIsDebriefSummaryEditedLog = logIsDebriefSummaryEditedLog;
-const isValidDebriefSummaryEditedLog = (value) => {
-    try {
-        debriefLog_1.debriefSummaryEditedLogSchema.validateSync(value);
-        return true;
-    }
-    catch (error) {
-        return false;
-    }
-};
-exports.isValidDebriefSummaryEditedLog = isValidDebriefSummaryEditedLog;

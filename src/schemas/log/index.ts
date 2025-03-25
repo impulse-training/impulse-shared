@@ -2,20 +2,6 @@ import {
   BehaviorTrackedLog,
   behaviorTrackedLogSchema,
 } from "./behaviorTrackedLog";
-
-// TODO: this is too complex / no good
-import {
-  DebriefAnswerLog,
-  DebriefOutcomeLog,
-  DebriefSummaryEditedLog,
-  DebriefSummaryLog,
-  DebriefSummaryRequestLog,
-  debriefAnswerLogSchema,
-  debriefOutcomeLogSchema,
-  debriefSummaryEditedLogSchema,
-  debriefSummaryLogSchema,
-  debriefSummaryRequestLogSchema,
-} from "./debriefLog";
 import { GameplanLog, gameplanLogSchema } from "./gameplanLog";
 import { ImpulseLog, impulseLogSchema } from "./impulseLog";
 import {
@@ -42,11 +28,6 @@ export const logTypes = [
   "behavior_tracked",
   "question",
   "gameplan",
-  "debrief_answer",
-  "debrief_outcome",
-  "debrief_summary_request",
-  "debrief_summary",
-  "debrief_summary_edited",
 ] as const;
 
 export type LogType = (typeof logTypes)[number];
@@ -59,15 +40,9 @@ export type Log =
   | QuestionLog
   | GameplanLog
   | ToolCallLog
-  | MessageLog
-  | DebriefAnswerLog
-  | DebriefOutcomeLog
-  | DebriefSummaryRequestLog
-  | DebriefSummaryLog
-  | DebriefSummaryEditedLog;
+  | MessageLog;
 
 export * from "./behaviorTrackedLog";
-export * from "./debriefLog";
 export * from "./gameplanLog";
 export * from "./impulseLog";
 export * from "./messageLog";
@@ -171,83 +146,6 @@ export const logIsGameplanLog = (
 export const isValidGameplanLog = (value: unknown): value is GameplanLog => {
   try {
     gameplanLogSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
-};
-
-// Debrief log type guards
-export const logIsDebriefAnswerLog = (
-  value: Omit<Log, "id">
-): value is DebriefAnswerLog => value.type === "debrief_answer";
-
-export const isValidDebriefAnswerLog = (
-  value: unknown
-): value is DebriefAnswerLog => {
-  try {
-    debriefAnswerLogSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
-};
-
-export const logIsDebriefOutcomeLog = (
-  value: Omit<Log, "id">
-): value is DebriefOutcomeLog => value.type === "debrief_outcome";
-
-export const isValidDebriefOutcomeLog = (
-  value: unknown
-): value is DebriefOutcomeLog => {
-  try {
-    debriefOutcomeLogSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
-};
-
-export const logIsDebriefSummaryRequestLog = (
-  value: Omit<Log, "id">
-): value is DebriefSummaryRequestLog =>
-  value.type === "debrief_summary_request";
-
-export const isValidDebriefSummaryRequestLog = (
-  value: unknown
-): value is DebriefSummaryRequestLog => {
-  try {
-    debriefSummaryRequestLogSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
-};
-
-export const logIsDebriefSummaryLog = (
-  value: Omit<Log, "id">
-): value is DebriefSummaryLog => value.type === "debrief_summary";
-
-export const isValidDebriefSummaryLog = (
-  value: unknown
-): value is DebriefSummaryLog => {
-  try {
-    debriefSummaryLogSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
-};
-
-export const logIsDebriefSummaryEditedLog = (
-  value: Omit<Log, "id">
-): value is DebriefSummaryEditedLog => value.type === "debrief_summary_edited";
-
-export const isValidDebriefSummaryEditedLog = (
-  value: unknown
-): value is DebriefSummaryEditedLog => {
-  try {
-    debriefSummaryEditedLogSchema.validateSync(value);
     return true;
   } catch (error) {
     return false;

@@ -8,3 +8,4 @@ export * from "./tactic";
 export * from "./thread";
 export * from "./userContext";
 export * from "./userData";
+export * from "./userProfile";

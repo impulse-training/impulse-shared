@@ -24,3 +24,4 @@ __exportStar(require("./tactic"), exports);
 __exportStar(require("./thread"), exports);
 __exportStar(require("./userContext"), exports);
 __exportStar(require("./userData"), exports);
+__exportStar(require("./userProfile"), exports);
