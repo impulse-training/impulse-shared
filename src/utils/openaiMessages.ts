@@ -45,12 +45,20 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
 
   // Handle QuestionLog
   if (logIsQuestionLog(log)) {
-    return [
-      {
-        role: "assistant",
-        content: log.data.question.content,
-      },
-    ];
+    const messages: ChatCompletionMessageParam[] = [];
+    messages.push({
+      role: "assistant",
+      content: log.data.question.content,
+    });
+
+    if (log.data.response) {
+      messages.push({
+        role: "user",
+        content: log.data.response.toString(),
+      });
+    }
+
+    return messages;
   }
 
   // Return empty array for other (unsupported) log types
