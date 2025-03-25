@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { Outcome } from "./thread";
+import { Outcome } from "../utils/outcomes";
 export declare const responseTypes: readonly ["text", "slider", "multiple_choice"];
 export declare const questionSchema: yup.ObjectSchema<{
     id: string | undefined;

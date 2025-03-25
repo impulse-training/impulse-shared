@@ -48,7 +48,7 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
     return [
       {
         role: "assistant",
-        content: log.data.content,
+        content: log.data.question.content,
       },
     ];
   }

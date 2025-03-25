@@ -35,7 +35,7 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isQuestion = exports.questionSchema = exports.responseTypes = void 0;
 const yup = __importStar(require("yup"));
-const thread_1 = require("./thread");
+const outcomes_1 = require("../utils/outcomes");
 // Response types for questions
 exports.responseTypes = ["text", "slider", "multiple_choice"];
 // Base Question Schema
@@ -73,7 +73,7 @@ exports.questionSchema = yup.object({
     order: yup.number().optional(),
     visibleForOutcomes: yup
         .array()
-        .of(yup.mixed().oneOf(thread_1.outcomes))
+        .of(yup.mixed().oneOf(outcomes_1.outcomes))
         .optional(),
 });
 const isQuestion = (value) => {

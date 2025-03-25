@@ -33,13 +33,12 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidThread = exports.threadSchema = exports.outcomeSchema = exports.outcomes = void 0;
+exports.isValidThread = exports.threadSchema = void 0;
 const yup = __importStar(require("yup"));
 const utils_1 = require("../utils");
+const outcomes_1 = require("../utils/outcomes");
 const timestampSchema_1 = require("../utils/timestampSchema");
 const log_1 = require("./log");
-exports.outcomes = ["success", "partial", "setback"];
-exports.outcomeSchema = yup.string().oneOf(exports.outcomes);
 // Thread schema
 exports.threadSchema = yup.object({
     id: yup.string(),
@@ -53,7 +52,8 @@ exports.threadSchema = yup.object({
     dateString: yup.string().required(),
     behaviorDataByLogId: (0, utils_1.objectOf)(log_1.behaviorTrackingDataSchema),
     behaviorDataTotals: yup.array().of(log_1.behaviorTrackingDataSchema),
-    outcome: exports.outcomeSchema,
+    outcome: outcomes_1.outcomeSchema,
+    summary: yup.string().optional(),
     updatedAt: timestampSchema_1.timestampSchema,
     createdAt: timestampSchema_1.timestampSchema,
 });

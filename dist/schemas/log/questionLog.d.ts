@@ -5,16 +5,22 @@ export declare const questionLogSchema: yup.ObjectSchema<{
     userId: string;
     timestamp: import("../../types").Timestamp;
     data: {
-        suggestedResponses?: (string | undefined)[] | undefined;
-        content: string;
-        responseType: NonNullable<"text" | "slider" | undefined>;
-        sliderConfig: {
-            minLabel?: string | undefined;
-            maxLabel?: string | undefined;
-            defaultValue?: number | undefined;
-            min: number;
-            max: number;
-            step: number;
+        question: {
+            id?: string | undefined;
+            suggestedResponses?: (string | undefined)[] | undefined;
+            sliderConfig?: {
+                minLabel?: string | undefined;
+                maxLabel?: string | undefined;
+                defaultValue?: number | undefined;
+                min: number;
+                max: number;
+                step: number;
+            } | undefined;
+            scope?: "debrief" | undefined;
+            order?: number | undefined;
+            visibleForOutcomes?: (import("../../utils/outcomes").Outcome | undefined)[] | undefined;
+            content: string;
+            responseType: NonNullable<"text" | "slider" | "multiple_choice" | undefined>;
         };
         response: {} | null;
     };
@@ -27,16 +33,15 @@ export declare const questionLogSchema: yup.ObjectSchema<{
     userId: undefined;
     timestamp: undefined;
     data: {
-        content: undefined;
-        responseType: undefined;
-        suggestedResponses: "";
-        sliderConfig: {
-            min: undefined;
-            max: undefined;
-            step: 1;
-            minLabel: undefined;
-            maxLabel: undefined;
-            defaultValue: undefined;
+        question: {
+            id: undefined;
+            content: undefined;
+            responseType: undefined;
+            suggestedResponses: "";
+            sliderConfig: undefined;
+            scope: undefined;
+            order: undefined;
+            visibleForOutcomes: "";
         };
         response: null;
     };

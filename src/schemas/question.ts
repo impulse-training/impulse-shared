@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { Outcome, outcomes } from "./thread";
+import { Outcome, outcomes } from "../utils/outcomes";
 
 // Response types for questions
 export const responseTypes = ["text", "slider", "multiple_choice"] as const;
