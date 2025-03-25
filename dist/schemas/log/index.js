@@ -14,13 +14,14 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidGameplanLog = exports.logIsGameplanLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidBehaviorTrackedLog = exports.logIsBehaviorTrackedLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logTypes = void 0;
+exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidGameplanLog = exports.logIsGameplanLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidBehaviorTrackedLog = exports.logIsBehaviorTrackedLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logTypes = void 0;
 const behaviorTrackedLog_1 = require("./behaviorTrackedLog");
 const gameplanLog_1 = require("./gameplanLog");
 const impulseLog_1 = require("./impulseLog");
 const messageLog_1 = require("./messageLog");
 const userMessageLog_1 = require("./messageLog/userMessageLog");
 const questionLog_1 = require("./questionLog");
+const summaryLog_1 = require("./summaryLog");
 const tacticLog_1 = require("./tacticLog");
 const toolCallLog_1 = require("./toolCallLog");
 // Activity Types
@@ -34,12 +35,14 @@ exports.logTypes = [
     "behavior_tracked",
     "question",
     "gameplan",
+    "summary",
 ];
 __exportStar(require("./behaviorTrackedLog"), exports);
 __exportStar(require("./gameplanLog"), exports);
 __exportStar(require("./impulseLog"), exports);
 __exportStar(require("./messageLog"), exports);
 __exportStar(require("./questionLog"), exports);
+__exportStar(require("./summaryLog"), exports);
 __exportStar(require("./tacticLog"), exports);
 __exportStar(require("./toolCallLog"), exports);
 // Export log type guards
@@ -139,3 +142,15 @@ const isValidGameplanLog = (value) => {
     }
 };
 exports.isValidGameplanLog = isValidGameplanLog;
+const logIsSummaryLog = (value) => value.type === "summary";
+exports.logIsSummaryLog = logIsSummaryLog;
+const isValidSummaryLog = (value) => {
+    try {
+        summaryLog_1.summaryLogSchema.validateSync(value);
+        return true;
+    }
+    catch (error) {
+        return false;
+    }
+};
+exports.isValidSummaryLog = isValidSummaryLog;

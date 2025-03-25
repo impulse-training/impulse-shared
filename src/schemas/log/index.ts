@@ -14,6 +14,7 @@ import {
   userMessageLogSchema,
 } from "./messageLog/userMessageLog";
 import { QuestionLog, questionLogSchema } from "./questionLog";
+import { SummaryLog, summaryLogSchema } from "./summaryLog";
 import { TacticLog, tacticLogSchema } from "./tacticLog";
 import { ToolCallLog, toolCallLogSchema } from "./toolCallLog";
 
@@ -28,6 +29,7 @@ export const logTypes = [
   "behavior_tracked",
   "question",
   "gameplan",
+  "summary",
 ] as const;
 
 export type LogType = (typeof logTypes)[number];
@@ -40,13 +42,15 @@ export type Log =
   | QuestionLog
   | GameplanLog
   | ToolCallLog
-  | MessageLog;
+  | MessageLog
+  | SummaryLog;
 
 export * from "./behaviorTrackedLog";
 export * from "./gameplanLog";
 export * from "./impulseLog";
 export * from "./messageLog";
 export * from "./questionLog";
+export * from "./summaryLog";
 export * from "./tacticLog";
 export * from "./toolCallLog";
 
@@ -146,6 +150,17 @@ export const logIsGameplanLog = (
 export const isValidGameplanLog = (value: unknown): value is GameplanLog => {
   try {
     gameplanLogSchema.validateSync(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+export const logIsSummaryLog = (value: Omit<Log, "id">): value is SummaryLog =>
+  value.type === "summary";
+export const isValidSummaryLog = (value: unknown): value is SummaryLog => {
+  try {
+    summaryLogSchema.validateSync(value);
     return true;
   } catch (error) {
     return false;
