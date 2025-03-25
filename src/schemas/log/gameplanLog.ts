@@ -19,6 +19,7 @@ export const gameplanLogSchema = logBaseSchema.shape({
   isDisplayable: yup.mixed<true>().oneOf([true]).required(),
   data: yup.object({
     gameplan: gameplanSchema,
+    introduction: yup.string(),
     acceptedAt: timestampSchema,
   }),
 });
