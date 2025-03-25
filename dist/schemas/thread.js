@@ -52,6 +52,7 @@ exports.threadSchema = yup.object({
     dateString: yup.string().required(),
     behaviorDataByLogId: (0, utils_1.objectOf)(log_1.behaviorTrackingDataSchema),
     behaviorDataTotals: yup.array().of(log_1.behaviorTrackingDataSchema),
+    behaviorId: yup.string().defined().nullable(),
     outcome: outcomes_1.outcomeSchema,
     summary: yup.string().optional(),
     debriefedAt: timestampSchema_1.timestampSchema,

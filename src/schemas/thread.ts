@@ -17,6 +17,7 @@ export const threadSchema = yup.object({
   dateString: yup.string().required(),
   behaviorDataByLogId: objectOf(behaviorTrackingDataSchema),
   behaviorDataTotals: yup.array().of(behaviorTrackingDataSchema),
+  behaviorId: yup.string().defined().nullable(),
   outcome: outcomeSchema,
   summary: yup.string().optional(),
   debriefedAt: timestampSchema,

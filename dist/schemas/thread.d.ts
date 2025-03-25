@@ -29,6 +29,7 @@ export declare const threadSchema: yup.ObjectSchema<{
         value: number;
         formattedValue: string;
     }[] | undefined;
+    behaviorId: string | null;
     outcome: "success" | "partial" | "setback" | undefined;
     summary: string | undefined;
     debriefedAt: import("../types").Timestamp | undefined;
@@ -43,6 +44,7 @@ export declare const threadSchema: yup.ObjectSchema<{
     dateString: undefined;
     behaviorDataByLogId: undefined;
     behaviorDataTotals: "";
+    behaviorId: undefined;
     outcome: undefined;
     summary: undefined;
     debriefedAt: undefined;
