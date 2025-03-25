@@ -5,12 +5,23 @@ import {
 import {
   Log,
   logIsAssistantMessageLog,
+  logIsImpulseLog,
   logIsQuestionLog,
   logIsToolCallLog,
   logIsUserMessageLog,
 } from "../schemas/log";
 
 export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
+  if (logIsImpulseLog(log)) {
+    return [
+      {
+        role: "user",
+        content:
+          "The user has pressed the impulse button: they are facing a craving or urge",
+      },
+    ];
+  }
+
   if (logIsUserMessageLog(log)) {
     return [
       {
