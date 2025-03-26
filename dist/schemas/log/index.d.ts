@@ -1,4 +1,5 @@
 import { BehaviorTrackedLog } from "./behaviorTrackedLog";
+import { DayRecapLog } from "./dayRecapLog";
 import { GameplanLog } from "./gameplanLog";
 import { ImpulseLog } from "./impulseLog";
 import { AssistantMessageLog, MessageLog } from "./messageLog";
@@ -7,10 +8,11 @@ import { QuestionLog } from "./questionLog";
 import { SummaryLog } from "./summaryLog";
 import { TacticLog } from "./tacticLog";
 import { ToolCallLog } from "./toolCallLog";
-export declare const logTypes: readonly ["user", "assistant_message", "tool_call", "tactic_completed", "tactic_viewed", "impulse_button_pressed", "behavior_tracked", "question", "gameplan", "summary"];
+export declare const logTypes: readonly ["user", "assistant_message", "tool_call", "tactic_completed", "tactic_viewed", "impulse_button_pressed", "behavior_tracked", "question", "gameplan", "summary", "day_recap"];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | ImpulseLog | BehaviorTrackedLog | QuestionLog | GameplanLog | ToolCallLog | MessageLog | SummaryLog;
+export type Log = TacticLog | ImpulseLog | BehaviorTrackedLog | QuestionLog | GameplanLog | ToolCallLog | MessageLog | DayRecapLog | SummaryLog;
 export * from "./behaviorTrackedLog";
+export * from "./dayRecapLog";
 export * from "./gameplanLog";
 export * from "./impulseLog";
 export * from "./messageLog";
@@ -26,6 +28,8 @@ export declare const logIsImpulseLog: (value: Omit<Log, "id">) => value is Impul
 export declare const isValidImpulseLog: (value: unknown) => value is ImpulseLog;
 export declare const logIsToolCallLog: (value: Omit<Log, "id">) => value is ToolCallLog;
 export declare const isValidToolCallLog: (value: unknown) => value is ToolCallLog;
+export declare const logIsDayRecapLog: (value: Omit<Log, "id">) => value is DayRecapLog;
+export declare const isValidDayRecapLog: (value: unknown) => value is DayRecapLog;
 export declare const logIsQuestionLog: (value: Omit<Log, "id">) => value is QuestionLog;
 export declare const isValidQuestionLog: (value: unknown) => value is QuestionLog;
 export declare const logIsTacticLog: (value: Omit<Log, "id">) => value is TacticLog;

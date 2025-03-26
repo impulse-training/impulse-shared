@@ -14,8 +14,9 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidGameplanLog = exports.logIsGameplanLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidBehaviorTrackedLog = exports.logIsBehaviorTrackedLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logTypes = void 0;
+exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidGameplanLog = exports.logIsGameplanLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidDayRecapLog = exports.logIsDayRecapLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidBehaviorTrackedLog = exports.logIsBehaviorTrackedLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logTypes = void 0;
 const behaviorTrackedLog_1 = require("./behaviorTrackedLog");
+const dayRecapLog_1 = require("./dayRecapLog");
 const gameplanLog_1 = require("./gameplanLog");
 const impulseLog_1 = require("./impulseLog");
 const messageLog_1 = require("./messageLog");
@@ -36,8 +37,10 @@ exports.logTypes = [
     "question",
     "gameplan",
     "summary",
+    "day_recap",
 ];
 __exportStar(require("./behaviorTrackedLog"), exports);
+__exportStar(require("./dayRecapLog"), exports);
 __exportStar(require("./gameplanLog"), exports);
 __exportStar(require("./impulseLog"), exports);
 __exportStar(require("./messageLog"), exports);
@@ -94,6 +97,18 @@ const isValidToolCallLog = (value) => {
     }
 };
 exports.isValidToolCallLog = isValidToolCallLog;
+const logIsDayRecapLog = (value) => value.type === "day_recap";
+exports.logIsDayRecapLog = logIsDayRecapLog;
+const isValidDayRecapLog = (value) => {
+    try {
+        dayRecapLog_1.dayRecapLogSchema.validateSync(value);
+        return true;
+    }
+    catch (error) {
+        return false;
+    }
+};
+exports.isValidDayRecapLog = isValidDayRecapLog;
 const logIsQuestionLog = (value) => value.type === "question";
 exports.logIsQuestionLog = logIsQuestionLog;
 const isValidQuestionLog = (value) => {
