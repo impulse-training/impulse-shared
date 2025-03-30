@@ -3,11 +3,11 @@ import { timestampSchema } from "../utils/timestampSchema";
 
 export const userDataSchema = yup.object({
   id: yup.string(),
-  email: yup.string().email(),
-  displayName: yup.string(),
-  photoURL: yup.string(),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
+  
+  // Authentication
+  recoveryKeyHash: yup.string(),
 
   // Notification settings
   notificationsEnabled: yup.boolean().default(true),

@@ -1,3 +1,4 @@
+import * as yup from "yup";
 import {
   BehaviorTrackedLog,
   behaviorTrackedLogSchema,
@@ -19,20 +20,20 @@ import { SummaryLog, summaryLogSchema } from "./summaryLog";
 import { TacticLog, tacticLogSchema } from "./tacticLog";
 import { ToolCallLog, toolCallLogSchema } from "./toolCallLog";
 
-// Activity Types
-export const logTypes = [
-  "user", // A simple message from a user or AI
-  "assistant_message", // Agent/AI message type
-  "tool_call", // Tool call type
-  "tactic_completed",
-  "tactic_viewed",
-  "impulse_button_pressed",
-  "behavior_tracked",
-  "question",
-  "gameplan",
-  "summary",
-  "day_recap",
-] as const;
+export const logSchemas = {
+  user: userMessageLogSchema,
+  assistant_message: assistantMessageLogSchema,
+  tool_call: toolCallLogSchema,
+  tactic_completed: tacticLogSchema,
+  tactic_viewed: tacticLogSchema,
+  impulse_button_pressed: impulseLogSchema,
+  behavior_tracked: behaviorTrackedLogSchema,
+  question: questionLogSchema,
+  gameplan: gameplanLogSchema,
+  summary: summaryLogSchema,
+  day_recap: dayRecapLogSchema,
+};
+export const logTypes = Object.keys(logSchemas);
 
 export type LogType = (typeof logTypes)[number];
 
@@ -57,6 +58,21 @@ export * from "./questionLog";
 export * from "./summaryLog";
 export * from "./tacticLog";
 export * from "./toolCallLog";
+
+// Dynamic schema that selects the appropriate schema based on the tactic type
+export const logSchema = yup.lazy((value) => {
+  if (typeof value?.type === "string" && value.type in logSchemas) {
+    return logSchemas[value.type as keyof typeof logSchemas] as yup.Schema<Log>;
+  }
+
+  // Fallback schema for validation when type is missing or invalid
+  return yup.object({
+    type: yup
+      .string()
+      .oneOf(Object.keys(logSchemas))
+      .required("Tactic type is required"),
+  }) as unknown as yup.Schema<Log>;
+});
 
 // Export log type guards
 export const logIsAssistantMessageLog = (

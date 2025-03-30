@@ -1,9 +1,9 @@
 import * as yup from "yup";
 export declare const questionLogSchema: yup.ObjectSchema<{
     id: string | undefined;
-    type: "question";
     userId: string;
     timestamp: import("../../types").Timestamp;
+    dateString: string;
     data: {
         question: {
             id?: string | undefined;
@@ -26,12 +26,13 @@ export declare const questionLogSchema: yup.ObjectSchema<{
     };
     createdAt: import("../../types").Timestamp | undefined;
     updatedAt: import("../../types").Timestamp | undefined;
+    type: "question";
     isDisplayable: true;
 }, yup.AnyObject, {
     id: undefined;
-    type: undefined;
     userId: undefined;
     timestamp: undefined;
+    dateString: undefined;
     data: {
         question: {
             id: undefined;
@@ -47,6 +48,7 @@ export declare const questionLogSchema: yup.ObjectSchema<{
     };
     createdAt: undefined;
     updatedAt: undefined;
+    type: undefined;
     isDisplayable: undefined;
 }, "">;
 export type QuestionLog = yup.InferType<typeof questionLogSchema>;

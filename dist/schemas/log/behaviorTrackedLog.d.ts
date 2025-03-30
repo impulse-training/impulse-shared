@@ -17,9 +17,9 @@ export declare const behaviorTrackingDataSchema: yup.ObjectSchema<{
 export type BehaviorTrackingData = yup.InferType<typeof behaviorTrackingDataSchema>;
 export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
     id: string | undefined;
-    type: "behavior_tracked";
     userId: string;
     timestamp: import("../../types").Timestamp;
+    dateString: string;
     data: {
         behaviorTrackingUnit?: string | undefined;
         behaviorId: string;
@@ -30,12 +30,13 @@ export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
     };
     createdAt: import("../../types").Timestamp | undefined;
     updatedAt: import("../../types").Timestamp | undefined;
+    type: "behavior_tracked";
     isDisplayable: true;
 }, yup.AnyObject, {
     id: undefined;
-    type: undefined;
     userId: undefined;
     timestamp: undefined;
+    dateString: undefined;
     data: {
         behaviorId: undefined;
         behaviorName: undefined;
@@ -46,6 +47,7 @@ export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
     };
     createdAt: undefined;
     updatedAt: undefined;
+    type: undefined;
     isDisplayable: undefined;
 }, "">;
 export type BehaviorTrackedLog = yup.InferType<typeof behaviorTrackedLogSchema>;

@@ -1,6 +1,8 @@
 // Export all schema types and validation functions
 export * from "./attachment";
 export * from "./behavior";
+export * from "./dayData";
+export * from "./daySummary";
 export * from "./log";
 export * from "./question";
 export * from "./supportGroup";

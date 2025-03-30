@@ -35,6 +35,7 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.tacticLogSchema = void 0;
 const yup = __importStar(require("yup"));
+const tactic_1 = require("../tactic");
 const base_1 = require("./base");
 // Tactic Activity Log Schema
 exports.tacticLogSchema = base_1.logBaseSchema.shape({
@@ -43,9 +44,7 @@ exports.tacticLogSchema = base_1.logBaseSchema.shape({
     isDisplayable: yup.mixed().oneOf([true]).required(),
     data: yup
         .object({
-        tacticId: yup.string().required(),
-        tacticTitle: yup.string().required(),
-        tacticType: yup.string().required(),
+        tactic: tactic_1.tacticSchema,
     })
         .required(),
 });

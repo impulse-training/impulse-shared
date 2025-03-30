@@ -35,7 +35,9 @@ export const tacticSchemas = {
 // Dynamic schema that selects the appropriate schema based on the tactic type
 export const tacticSchema = yup.lazy((value) => {
   if (typeof value?.type === "string" && value.type in tacticSchemas) {
-    return tacticSchemas[value.type as keyof typeof tacticSchemas];
+    return tacticSchemas[
+      value.type as keyof typeof tacticSchemas
+    ] as yup.Schema<Tactic>;
   }
 
   // Fallback schema for validation when type is missing or invalid
@@ -44,7 +46,7 @@ export const tacticSchema = yup.lazy((value) => {
       .string()
       .oneOf(Object.keys(tacticSchemas))
       .required("Tactic type is required"),
-  });
+  }) as yup.Schema<Tactic>;
 });
 
 export const tacticIsActionTactic = (value: Tactic): value is ActionTactic =>

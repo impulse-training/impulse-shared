@@ -1,4 +1,5 @@
 import * as yup from "yup";
+import { tacticSchema } from "../tactic";
 import { logBaseSchema } from "./base";
 
 // Tactic Activity Log Schema
@@ -8,9 +9,7 @@ export const tacticLogSchema = logBaseSchema.shape({
   isDisplayable: yup.mixed<true>().oneOf([true]).required(),
   data: yup
     .object({
-      tacticId: yup.string().required(),
-      tacticTitle: yup.string().required(),
-      tacticType: yup.string().required(),
+      tactic: tacticSchema,
     })
     .required(),
 });
