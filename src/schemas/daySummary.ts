@@ -20,7 +20,6 @@ export const daySummarySchema = yup.object({
   ),
   tacticsUsed: yup.array().of(tacticSchema).default([]),
   summaryText: yup.string().default(""),
-  lastUpdated: yup.date().default(() => new Date()),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
 });

@@ -7,7 +7,7 @@ export const dayDataSchema = yup.object({
   dateString: yup.string().required(),
   userId: yup.string().required(),
   logsById: objectOf(logSchema),
-  threadsOutcomesById: objectOf(outcomeSchema),
+  threadsOutcomesById: objectOf(outcomeSchema.required()),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
 });
