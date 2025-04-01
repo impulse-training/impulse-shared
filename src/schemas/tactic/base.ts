@@ -14,9 +14,12 @@ export const tacticBaseSchema = yup.object({
   // Media attachments - each can be present independently
   imageAttachment: attachmentSchema.optional().default(undefined),
 
-  // Which behaviors the tactic should be associated wit
+  // Which behaviors the tactic should be associated with
   allBehaviors: yup.boolean().optional(),
   behaviorIds: yup.array().of(yup.string().required()).optional(),
+
+  // Ordinal for display ordering
+  ordinal: yup.number().required(),
 
   userId: yup.string().optional(),
   isPublic: yup.boolean().optional(),

@@ -46,7 +46,7 @@ export const tacticSchema = yup.lazy((value) => {
       .string()
       .oneOf(Object.keys(tacticSchemas))
       .required("Tactic type is required"),
-  }) as yup.Schema<Tactic>;
+  }) as unknown as yup.Schema<Tactic>;
 });
 
 export const tacticIsActionTactic = (value: Tactic): value is ActionTactic =>

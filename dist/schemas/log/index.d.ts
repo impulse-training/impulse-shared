@@ -363,6 +363,7 @@ export declare const logSchemas: {
                 behaviorIds?: string[] | undefined;
                 isPublic?: boolean | undefined;
                 type: "action";
+                ordinal: number;
             } | {
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
@@ -388,6 +389,7 @@ export declare const logSchemas: {
                 behaviorIds?: string[] | undefined;
                 isPublic?: boolean | undefined;
                 type: "affirmation";
+                ordinal: number;
             } | {
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
@@ -413,6 +415,7 @@ export declare const logSchemas: {
                 behaviorIds?: string[] | undefined;
                 isPublic?: boolean | undefined;
                 type: "audio";
+                ordinal: number;
                 audioAttachment: {
                     sizeBytes?: number | undefined;
                     metadata?: {
@@ -451,6 +454,7 @@ export declare const logSchemas: {
                 isPublic?: boolean | undefined;
                 type: "breathingExercise";
                 durationSeconds: number;
+                ordinal: number;
             } | {
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
@@ -476,6 +480,7 @@ export declare const logSchemas: {
                     contentType: string;
                     type: NonNullable<"image" | "video" | "audio" | "document" | undefined>;
                 };
+                ordinal: number;
             } | {
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
@@ -504,6 +509,7 @@ export declare const logSchemas: {
                 data: {
                     url: string;
                 };
+                ordinal: number;
             } | {
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
@@ -533,6 +539,7 @@ export declare const logSchemas: {
                     supportGroupDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
                     defaultMessage: string;
                 };
+                ordinal: number;
             } | {
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
@@ -558,6 +565,7 @@ export declare const logSchemas: {
                     contentType: string;
                     type: NonNullable<"image" | "video" | "audio" | "document" | undefined>;
                 };
+                ordinal: number;
                 videoAttachment: {
                     sizeBytes?: number | undefined;
                     metadata?: {
