@@ -7,6 +7,7 @@ export const behaviorSchema = yup.object({
   id: yup.string(),
   name: yup.string().required(),
   description: yup.string().required(),
+  ordinal: yup.number().default(0),
   trackingType: yup.string().oneOf(trackingTypes).required(),
   trackingUnit: yup.string().when("trackingType", {
     is: "counter",
