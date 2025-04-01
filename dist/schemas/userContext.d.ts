@@ -48,11 +48,11 @@ export declare const userContextSchema: yup.ObjectSchema<{
             behaviorId: string;
             behaviorName: string;
             trackingType: NonNullable<"boolean" | "counter" | "timer" | undefined>;
-            gameplanTacticIds: (string | undefined)[];
             streakDays: number;
             totalTracked: number;
             insights: (string | undefined)[];
             effectiveTactics: (string | undefined)[];
+            gameplanTacticIds: (string | undefined)[];
         };
     };
     tactics: {

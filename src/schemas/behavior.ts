@@ -17,7 +17,6 @@ export const behaviorSchema = yup.object({
       ),
     otherwise: (schema) => schema.notRequired(),
   }),
-  gameplanTacticIds: yup.array().of(yup.string()).default([]),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
   lastTrackedAt: timestampSchema,

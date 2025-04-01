@@ -48,7 +48,6 @@ exports.behaviorSchema = yup.object({
         then: (schema) => schema.required("Tracking unit is required when tracking type is 'counter'"),
         otherwise: (schema) => schema.notRequired(),
     }),
-    gameplanTacticIds: yup.array().of(yup.string()).default([]),
     createdAt: utils_1.timestampSchema,
     updatedAt: utils_1.timestampSchema,
     lastTrackedAt: utils_1.timestampSchema,

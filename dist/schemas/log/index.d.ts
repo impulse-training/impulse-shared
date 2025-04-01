@@ -34,7 +34,7 @@ export declare const logSchemas: {
             storagePath: string;
             contentType: string;
             type: NonNullable<"image" | "video" | "audio" | "document" | undefined>;
-        };
+        } | undefined;
     }, yup.AnyObject, {
         id: undefined;
         userId: undefined;
