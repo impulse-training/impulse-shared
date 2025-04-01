@@ -18,7 +18,7 @@ export const gameplanLogSchema = logBaseSchema.shape({
   // Gameplan logs are always displayed in the UI
   isDisplayable: yup.mixed<true>().oneOf([true]).required(),
   data: yup.object({
-    gameplan: gameplanSchema,
+    gameplan: gameplanSchema.required(),
     introduction: yup.string(),
     acceptedAt: timestampSchema,
   }),

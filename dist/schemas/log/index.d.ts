@@ -281,12 +281,12 @@ export declare const logSchemas: {
         timestamp: import("../../types").Timestamp;
         dateString: string;
         data: {
-            gameplan?: {
-                tactic: import("..").Tactic;
-                exists: NonNullable<boolean | undefined>;
-            }[] | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
             introduction?: string | undefined;
+            gameplan: {
+                tactic: import("..").Tactic;
+                exists: NonNullable<boolean | undefined>;
+            }[];
         };
         createdAt: import("../../types").Timestamp | undefined;
         updatedAt: import("../../types").Timestamp | undefined;
