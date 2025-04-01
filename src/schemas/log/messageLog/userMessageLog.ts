@@ -5,7 +5,7 @@ import { messageBaseLogSchema } from "./base";
 
 export const userMessageLogSchema = messageBaseLogSchema.shape({
   type: yup.string().oneOf(["user_message"]).required(),
-  audioAttachment: attachmentSchema,
+  audioAttachment: attachmentSchema.optional(),
   data: yup
     .object({
       message: yup.mixed<ChatCompletionUserMessageParam>().required(),
