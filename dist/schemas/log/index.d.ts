@@ -282,6 +282,11 @@ export declare const logSchemas: {
         dateString: string;
         data: {
             acceptedAt?: import("../../types").Timestamp | undefined;
+            shufflePressedAt?: import("../../types").Timestamp | undefined;
+            pastGameplans?: {
+                tactic: import("..").Tactic;
+                exists: NonNullable<boolean | undefined>;
+            }[][] | undefined;
             introduction?: string | undefined;
             gameplan: {
                 tactic: import("..").Tactic;
@@ -299,8 +304,10 @@ export declare const logSchemas: {
         dateString: undefined;
         data: {
             gameplan: "";
+            pastGameplans: "";
             introduction: undefined;
             acceptedAt: undefined;
+            shufflePressedAt: undefined;
         };
         createdAt: undefined;
         updatedAt: undefined;
