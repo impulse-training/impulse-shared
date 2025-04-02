@@ -17,6 +17,8 @@ export declare const behaviorTrackingDataSchema: yup.ObjectSchema<{
 export type BehaviorTrackingData = yup.InferType<typeof behaviorTrackingDataSchema>;
 export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
     id: string | undefined;
+    createdAt: import("../../types").Timestamp | undefined;
+    updatedAt: import("../../types").Timestamp | undefined;
     userId: string;
     timestamp: import("../../types").Timestamp;
     dateString: string;
@@ -28,12 +30,13 @@ export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
         value: number;
         formattedValue: string;
     };
-    createdAt: import("../../types").Timestamp | undefined;
-    updatedAt: import("../../types").Timestamp | undefined;
+    callLogDocPath: string | undefined;
     type: "behavior_tracked";
     isDisplayable: true;
 }, yup.AnyObject, {
     id: undefined;
+    createdAt: undefined;
+    updatedAt: undefined;
     userId: undefined;
     timestamp: undefined;
     dateString: undefined;
@@ -45,8 +48,7 @@ export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
         value: undefined;
         formattedValue: undefined;
     };
-    createdAt: undefined;
-    updatedAt: undefined;
+    callLogDocPath: undefined;
     type: undefined;
     isDisplayable: undefined;
 }, "">;

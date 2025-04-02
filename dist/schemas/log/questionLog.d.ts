@@ -1,6 +1,8 @@
 import * as yup from "yup";
 export declare const questionLogSchema: yup.ObjectSchema<{
     id: string | undefined;
+    createdAt: import("../../types").Timestamp | undefined;
+    updatedAt: import("../../types").Timestamp | undefined;
     userId: string;
     timestamp: import("../../types").Timestamp;
     dateString: string;
@@ -24,12 +26,13 @@ export declare const questionLogSchema: yup.ObjectSchema<{
         };
         response: {} | null;
     };
-    createdAt: import("../../types").Timestamp | undefined;
-    updatedAt: import("../../types").Timestamp | undefined;
+    callLogDocPath: string | undefined;
     type: "question";
     isDisplayable: true;
 }, yup.AnyObject, {
     id: undefined;
+    createdAt: undefined;
+    updatedAt: undefined;
     userId: undefined;
     timestamp: undefined;
     dateString: undefined;
@@ -46,8 +49,7 @@ export declare const questionLogSchema: yup.ObjectSchema<{
         };
         response: null;
     };
-    createdAt: undefined;
-    updatedAt: undefined;
+    callLogDocPath: undefined;
     type: undefined;
     isDisplayable: undefined;
 }, "">;

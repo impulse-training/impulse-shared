@@ -1,22 +1,24 @@
 import * as yup from "yup";
 export declare const impulseLogSchema: yup.ObjectSchema<{
     id: string | undefined;
+    createdAt: import("../../types").Timestamp | undefined;
+    updatedAt: import("../../types").Timestamp | undefined;
     userId: string;
     timestamp: import("../../types").Timestamp;
     dateString: string;
     data: {};
-    createdAt: import("../../types").Timestamp | undefined;
-    updatedAt: import("../../types").Timestamp | undefined;
+    callLogDocPath: string | undefined;
     type: "impulse_button_pressed";
     isDisplayable: true;
 }, yup.AnyObject, {
     id: undefined;
+    createdAt: undefined;
+    updatedAt: undefined;
     userId: undefined;
     timestamp: undefined;
     dateString: undefined;
     data: {};
-    createdAt: undefined;
-    updatedAt: undefined;
+    callLogDocPath: undefined;
     type: undefined;
     isDisplayable: undefined;
 }, "">;

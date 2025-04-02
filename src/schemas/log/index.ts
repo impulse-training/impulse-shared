@@ -3,6 +3,7 @@ import {
   BehaviorTrackedLog,
   behaviorTrackedLogSchema,
 } from "./behaviorTrackedLog";
+import { CallLog, callLogSchema } from "./callLog";
 import { DayRecapLog, dayRecapLogSchema } from "./dayRecapLog";
 import { GameplanLog, gameplanLogSchema } from "./gameplanLog";
 import { ImpulseLog, impulseLogSchema } from "./impulseLog";
@@ -23,6 +24,7 @@ import { ToolCallLog, toolCallLogSchema } from "./toolCallLog";
 export const logSchemas = {
   user: userMessageLogSchema,
   assistant_message: assistantMessageLogSchema,
+  call: callLogSchema,
   tool_call: toolCallLogSchema,
   tactic_completed: tacticLogSchema,
   tactic_viewed: tacticLogSchema,
@@ -47,9 +49,11 @@ export type Log =
   | ToolCallLog
   | MessageLog
   | DayRecapLog
-  | SummaryLog;
+  | SummaryLog
+  | CallLog;
 
 export * from "./behaviorTrackedLog";
+export * from "./callLog";
 export * from "./dayRecapLog";
 export * from "./gameplanLog";
 export * from "./impulseLog";
@@ -97,6 +101,17 @@ export const isValidBehaviorTrackedLog = (
 ): value is BehaviorTrackedLog => {
   try {
     behaviorTrackedLogSchema.validateSync(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+export const logIsCallLog = (value: Omit<Log, "id">): value is CallLog =>
+  value.type === "call";
+export const isValidCallLog = (value: unknown): value is CallLog => {
+  try {
+    callLogSchema.validateSync(value);
     return true;
   } catch (error) {
     return false;

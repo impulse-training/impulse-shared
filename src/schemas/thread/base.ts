@@ -18,6 +18,7 @@ export const threadBaseSchema = yup.object({
   behaviorDataByLogId: objectOf(behaviorTrackingDataSchema),
   behaviorDataTotals: yup.array().of(behaviorTrackingDataSchema),
   outcome: outcomeSchema,
+  systemMessage: yup.string(),
   summary: yup.string().optional(),
   debriefedAt: timestampSchema,
   updatedAt: timestampSchema,
