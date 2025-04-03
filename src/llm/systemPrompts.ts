@@ -1,5 +1,5 @@
 // Create the system prompt for a thread
-export function createSystemPrompt(_userContext: any): string {
+export function generateSystemPrompt(_userContext: any): string {
   // Extract relevant context for the behavior
   // const { behaviorContext, relevantTactics, relevantMemories } =
   // extractRelevantContext(userContext, behaviorId);
