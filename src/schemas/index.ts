@@ -5,6 +5,7 @@ export * from "./dayData";
 export * from "./daySummary";
 export * from "./log";
 export * from "./question";
+export * from "./routine";
 export * from "./supportGroup";
 export * from "./tactic";
 export * from "./thread";
