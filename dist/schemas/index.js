@@ -17,7 +17,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // Export all schema types and validation functions
 __exportStar(require("./attachment"), exports);
 __exportStar(require("./behavior"), exports);
-__exportStar(require("./dayData"), exports);
+__exportStar(require("./dayLogs"), exports);
 __exportStar(require("./daySummary"), exports);
 __exportStar(require("./log"), exports);
 __exportStar(require("./question"), exports);

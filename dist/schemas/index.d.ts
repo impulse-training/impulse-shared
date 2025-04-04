@@ -1,6 +1,6 @@
 export * from "./attachment";
 export * from "./behavior";
-export * from "./dayData";
+export * from "./dayLogs";
 export * from "./daySummary";
 export * from "./log";
 export * from "./question";
