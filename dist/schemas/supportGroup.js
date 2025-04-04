@@ -37,6 +37,7 @@ exports.isValidSupportGroup = exports.isValidSupportGroupMember = exports.suppor
 const yup = __importStar(require("yup"));
 const utils_1 = require("../utils");
 const attachment_1 = require("./attachment");
+const log_1 = require("./log");
 // Support Group Member Schema
 exports.supportGroupMemberSchema = yup.object({
     userId: yup.string().required(),
@@ -66,6 +67,7 @@ exports.supportGroupSchema = yup.object({
     membersById: (0, utils_1.objectOf)(exports.supportGroupMemberSchema),
     isPublic: yup.boolean().optional(),
     inviteCode: yup.string().optional(),
+    lastMessage: log_1.userMessageLogSchema.optional(),
     createdAt: utils_1.timestampSchema,
     updatedAt: utils_1.timestampSchema,
 });

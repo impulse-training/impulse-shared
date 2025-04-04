@@ -1,6 +1,7 @@
 import * as yup from "yup";
 import { objectOf, timestampSchema } from "../utils";
 import { attachmentSchema } from "./attachment";
+import { userMessageLogSchema } from "./log";
 
 // Support Group Member Schema
 export const supportGroupMemberSchema = yup.object({
@@ -32,6 +33,7 @@ export const supportGroupSchema = yup.object({
   membersById: objectOf(supportGroupMemberSchema),
   isPublic: yup.boolean().optional(),
   inviteCode: yup.string().optional(),
+  lastMessage: userMessageLogSchema.optional(),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
 });
