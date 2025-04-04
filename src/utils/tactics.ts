@@ -11,7 +11,7 @@ export function canTacticBeManuallyMarkedAsCompleted(tactic: Tactic): boolean {
     case "link":
       return true;
     case "video":
-      return true;
+      return false;
     case "audio":
       return true;
     default:
