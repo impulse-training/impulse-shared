@@ -57,6 +57,19 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
     unreadMessageCountsById: {
         [x: string]: number;
     };
+    image: {
+        sizeBytes?: number | undefined;
+        metadata?: {
+            width?: number | undefined;
+            height?: number | undefined;
+            durationMs?: number | undefined;
+            transcript?: string | undefined;
+        } | undefined;
+        uri: string;
+        storagePath: string;
+        contentType: string;
+        type: NonNullable<"image" | "video" | "audio" | "document" | undefined>;
+    };
     isPublic: boolean | undefined;
     inviteCode: string | undefined;
     lastMessage: {
@@ -108,6 +121,19 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
     };
     membersById: undefined;
     unreadMessageCountsById: undefined;
+    image: {
+        uri: undefined;
+        storagePath: undefined;
+        contentType: undefined;
+        sizeBytes: undefined;
+        type: undefined;
+        metadata: {
+            width: undefined;
+            height: undefined;
+            durationMs: undefined;
+            transcript: undefined;
+        };
+    };
     isPublic: undefined;
     inviteCode: undefined;
     lastMessage: {

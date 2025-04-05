@@ -3,6 +3,7 @@ export * from "./attachment";
 export * from "./behavior";
 export * from "./dayLogs";
 export * from "./daySummary";
+export * from "./insight";
 export * from "./log";
 export * from "./question";
 export * from "./routine";

@@ -61,6 +61,7 @@ exports.supportGroupSchema = yup.object({
     backgroundImage: attachment_1.attachmentSchema,
     membersById: (0, utils_1.objectOf)(exports.supportGroupMemberSchema),
     unreadMessageCountsById: (0, utils_1.objectOf)(yup.number().required()),
+    image: attachment_1.attachmentSchema,
     isPublic: yup.boolean().optional(),
     inviteCode: yup.string().optional(),
     lastMessage: log_1.userMessageLogSchema.optional(),

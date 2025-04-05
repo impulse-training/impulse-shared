@@ -4,12 +4,6 @@ import { outcomeSchema } from "../utils/outcomes";
 import { behaviorTrackingDataSchema } from "./log";
 import { tacticSchema } from "./tactic";
 
-export const insightSchema = yup.object({
-  type: yup.string().required(),
-  text: yup.string().required(),
-});
-export type Insight = yup.InferType<typeof insightSchema>;
-
 export const daySummarySchema = yup.object({
   id: yup.string(),
   dateString: yup.string().required(),
