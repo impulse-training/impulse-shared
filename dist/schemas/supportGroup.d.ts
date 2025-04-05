@@ -1,10 +1,12 @@
 import * as yup from "yup";
 export declare const supportGroupMemberSchema: yup.ObjectSchema<{
     userId: string;
-    emojiId: {
-        color: string;
-        emoji: string;
-    } | undefined;
+    userProfile: {
+        emojiId?: {
+            color: string;
+            emoji: string;
+        } | undefined;
+    };
     currentStreak: {
         streakStart?: import("../types").Timestamp | undefined;
         color: string;
@@ -12,7 +14,9 @@ export declare const supportGroupMemberSchema: yup.ObjectSchema<{
     joinedAt: import("../types").Timestamp | undefined;
 }, yup.AnyObject, {
     userId: undefined;
-    emojiId: undefined;
+    userProfile: {
+        emojiId: undefined;
+    };
     currentStreak: undefined;
     joinedAt: undefined;
 }, "">;
@@ -37,16 +41,21 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
     membersById: {
         [x: string]: {
             joinedAt?: import("../types").Timestamp | undefined;
-            emojiId?: {
-                color: string;
-                emoji: string;
-            } | undefined;
             currentStreak?: {
                 streakStart?: import("../types").Timestamp | undefined;
                 color: string;
             } | undefined;
             userId: string;
+            userProfile: {
+                emojiId?: {
+                    color: string;
+                    emoji: string;
+                } | undefined;
+            };
         };
+    };
+    unreadMessageCountsById: {
+        [x: string]: number;
     };
     isPublic: boolean | undefined;
     inviteCode: string | undefined;
@@ -98,6 +107,7 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
         };
     };
     membersById: undefined;
+    unreadMessageCountsById: undefined;
     isPublic: undefined;
     inviteCode: undefined;
     lastMessage: {

@@ -2,17 +2,12 @@ import * as yup from "yup";
 import { objectOf, timestampSchema } from "../utils";
 import { attachmentSchema } from "./attachment";
 import { userMessageLogSchema } from "./log";
+import { userProfileSchema } from "./userProfile";
 
 // Support Group Member Schema
 export const supportGroupMemberSchema = yup.object({
   userId: yup.string().required(),
-  emojiId: yup
-    .object({
-      color: yup.string().required(),
-      emoji: yup.string().required(),
-    })
-    .optional()
-    .default(undefined),
+  userProfile: userProfileSchema,
   currentStreak: yup
     .object({
       streakStart: timestampSchema,
@@ -31,6 +26,7 @@ export const supportGroupSchema = yup.object({
   ownerId: yup.string().required(),
   backgroundImage: attachmentSchema,
   membersById: objectOf(supportGroupMemberSchema),
+  unreadMessageCountsById: objectOf(yup.number().required()),
   isPublic: yup.boolean().optional(),
   inviteCode: yup.string().optional(),
   lastMessage: userMessageLogSchema.optional(),

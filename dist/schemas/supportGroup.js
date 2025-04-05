@@ -38,16 +38,11 @@ const yup = __importStar(require("yup"));
 const utils_1 = require("../utils");
 const attachment_1 = require("./attachment");
 const log_1 = require("./log");
+const userProfile_1 = require("./userProfile");
 // Support Group Member Schema
 exports.supportGroupMemberSchema = yup.object({
     userId: yup.string().required(),
-    emojiId: yup
-        .object({
-        color: yup.string().required(),
-        emoji: yup.string().required(),
-    })
-        .optional()
-        .default(undefined),
+    userProfile: userProfile_1.userProfileSchema,
     currentStreak: yup
         .object({
         streakStart: utils_1.timestampSchema,
@@ -65,6 +60,7 @@ exports.supportGroupSchema = yup.object({
     ownerId: yup.string().required(),
     backgroundImage: attachment_1.attachmentSchema,
     membersById: (0, utils_1.objectOf)(exports.supportGroupMemberSchema),
+    unreadMessageCountsById: (0, utils_1.objectOf)(yup.number().required()),
     isPublic: yup.boolean().optional(),
     inviteCode: yup.string().optional(),
     lastMessage: log_1.userMessageLogSchema.optional(),
