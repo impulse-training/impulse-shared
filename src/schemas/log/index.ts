@@ -4,7 +4,6 @@ import {
   behaviorTrackedLogSchema,
 } from "./behaviorTrackedLog";
 import { CallLog, callLogSchema } from "./callLog";
-import { DayRecapLog, dayRecapLogSchema } from "./dayRecapLog";
 import { GameplanLog, gameplanLogSchema } from "./gameplanLog";
 import { ImpulseLog, impulseLogSchema } from "./impulseLog";
 import {
@@ -33,7 +32,6 @@ export const logSchemas = {
   question: questionLogSchema,
   gameplan: gameplanLogSchema,
   summary: summaryLogSchema,
-  day_recap: dayRecapLogSchema,
 };
 export const logTypes = Object.keys(logSchemas);
 
@@ -48,13 +46,11 @@ export type Log =
   | GameplanLog
   | ToolCallLog
   | MessageLog
-  | DayRecapLog
   | SummaryLog
   | CallLog;
 
 export * from "./behaviorTrackedLog";
 export * from "./callLog";
-export * from "./dayRecapLog";
 export * from "./gameplanLog";
 export * from "./impulseLog";
 export * from "./messageLog";
@@ -135,18 +131,6 @@ export const logIsToolCallLog = (
 export const isValidToolCallLog = (value: unknown): value is ToolCallLog => {
   try {
     toolCallLogSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
-};
-
-export const logIsDayRecapLog = (
-  value: Omit<Log, "id">
-): value is DayRecapLog => value.type === "day_recap";
-export const isValidDayRecapLog = (value: unknown): value is DayRecapLog => {
-  try {
-    dayRecapLogSchema.validateSync(value);
     return true;
   } catch (error) {
     return false;

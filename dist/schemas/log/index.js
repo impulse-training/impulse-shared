@@ -36,11 +36,10 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidGameplanLog = exports.logIsGameplanLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidDayRecapLog = exports.logIsDayRecapLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorTrackedLog = exports.logIsBehaviorTrackedLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
+exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidGameplanLog = exports.logIsGameplanLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorTrackedLog = exports.logIsBehaviorTrackedLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
 const yup = __importStar(require("yup"));
 const behaviorTrackedLog_1 = require("./behaviorTrackedLog");
 const callLog_1 = require("./callLog");
-const dayRecapLog_1 = require("./dayRecapLog");
 const gameplanLog_1 = require("./gameplanLog");
 const impulseLog_1 = require("./impulseLog");
 const messageLog_1 = require("./messageLog");
@@ -61,12 +60,10 @@ exports.logSchemas = {
     question: questionLog_1.questionLogSchema,
     gameplan: gameplanLog_1.gameplanLogSchema,
     summary: summaryLog_1.summaryLogSchema,
-    day_recap: dayRecapLog_1.dayRecapLogSchema,
 };
 exports.logTypes = Object.keys(exports.logSchemas);
 __exportStar(require("./behaviorTrackedLog"), exports);
 __exportStar(require("./callLog"), exports);
-__exportStar(require("./dayRecapLog"), exports);
 __exportStar(require("./gameplanLog"), exports);
 __exportStar(require("./impulseLog"), exports);
 __exportStar(require("./messageLog"), exports);
@@ -148,18 +145,6 @@ const isValidToolCallLog = (value) => {
     }
 };
 exports.isValidToolCallLog = isValidToolCallLog;
-const logIsDayRecapLog = (value) => value.type === "day_recap";
-exports.logIsDayRecapLog = logIsDayRecapLog;
-const isValidDayRecapLog = (value) => {
-    try {
-        dayRecapLog_1.dayRecapLogSchema.validateSync(value);
-        return true;
-    }
-    catch (error) {
-        return false;
-    }
-};
-exports.isValidDayRecapLog = isValidDayRecapLog;
 const logIsQuestionLog = (value) => value.type === "question";
 exports.logIsQuestionLog = logIsQuestionLog;
 const isValidQuestionLog = (value) => {

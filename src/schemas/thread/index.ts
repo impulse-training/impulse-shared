@@ -1,9 +1,7 @@
 import * as yup from "yup";
-import { DayRecapThread, dayRecapThreadSchema } from "./dayRecap";
 import { GeneralThread, generalThreadSchema } from "./general";
 import { ImpulseThread, impulseThreadSchema } from "./impulse";
 
-export * from "./dayRecap";
 export * from "./general";
 export * from "./impulse";
 
@@ -11,7 +9,6 @@ export * from "./impulse";
 export const threadSchemas = {
   general: generalThreadSchema,
   impulse: impulseThreadSchema,
-  dayRecap: dayRecapThreadSchema,
 };
 
 // Dynamic schema that selects the appropriate schema based on the thread type
@@ -41,19 +38,6 @@ export const isValidGeneralThread = (
     return false;
   }
 };
-export const threadIsDayRecapThread = (
-  value: Thread
-): value is DayRecapThread => value.type === "dayRecap";
-export const isValidDayRecapThread = (
-  value: unknown
-): value is DayRecapThread => {
-  try {
-    dayRecapThreadSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
-};
 
 export const threadIsImpulseThread = (value: Thread): value is ImpulseThread =>
   value.type === "impulse";
@@ -68,4 +52,4 @@ export const isValidImpulseThread = (
   }
 };
 
-export type Thread = ImpulseThread | GeneralThread | DayRecapThread;
+export type Thread = ImpulseThread | GeneralThread;
