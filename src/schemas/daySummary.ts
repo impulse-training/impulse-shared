@@ -4,7 +4,7 @@ import { outcomeSchema } from "../utils/outcomes";
 import { behaviorTrackingDataSchema } from "./log";
 import { tacticSchema } from "./tactic";
 
-const supportGroupSharingSchema = yup.object({
+const supportGroupSharingPermissionsSchema = yup.object({
   impulseMoments: yup.boolean().default(false),
   conversations: yup.boolean().default(false),
   tactics: yup.boolean().default(false),
@@ -23,7 +23,12 @@ export const daySummarySchema = yup.object({
   ),
   tacticsUsed: yup.array().of(tacticSchema).default([]),
   summaryText: yup.string().default(""),
-  supportGroupSharing: objectOf(supportGroupSharingSchema),
+  sharedWithSupportGroupIds: yup
+    .array()
+    .of(yup.string().required())
+    .default([]),
+  sharedWithUserIds: yup.array().of(yup.string().required()),
+  supportGroupPermissions: objectOf(supportGroupSharingPermissionsSchema),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
 });
