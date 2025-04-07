@@ -1,24 +1,35 @@
+import { Thread, UserContext } from "../schemas";
+import { DocumentSnapshotLike, FirestoreInstance } from "../types";
+
 // Create the system prompt for a thread
-export function generateSystemPrompt(_userContext: any): string {
-  // Extract relevant context for the behavior
-  // const { behaviorContext, relevantTactics, relevantMemories } =
-  // extractRelevantContext(userContext, behaviorId);
+export async function generateSystemPrompt(
+  db: FirestoreInstance,
+  thread: DocumentSnapshotLike<Thread>
+): Promise<string> {
+  // Get the user context doc
+  const userId = thread.ref.parent.parent!.id;
+  const userContextDoc = await db.collection("users").doc(userId).get();
 
-  //   // Get overall insights and ensure it's a string array
-  //   const overallInsights =
-  //   userContext.overallInsights?.filter(
-  //     (insight): insight is string => typeof insight === "string"
-  //   ) || [];
+  const userContext = userContextDoc.data() as UserContext;
 
-  // // Get user's questions for context (if any)
-  // const userQuestions = (userContext as any).questions || [];
+  const behaviorsDescription = `The user is facing: ${Object.values(
+    userContext.behaviors
+  )
+    .map((behavior) => {
+      return `${behavior.behaviorName}`;
+    })
+    .join(", ")}`;
 
   // Base system prompt
   let prompt = `You are a compassionate and supportive ai coach designed to help users overcome addictive impulses and build healthier habits.
 
+${behaviorsDescription}
+
 Ask questions to understand the user's current state and help them take action. When you ask questions, always use the askQuestion tool.
 
-Tactics are short activities, exercises, or affirmations that help users overcome cravings or urges. When suggesting a tactic, call it a 'tactic' and briefly explain its potential benefit.
+Tactics are short activities, exercises, or affirmations that help users overcome cravings or urges in the moment. When suggesting a tactic, call it a 'tactic' and briefly explain its potential benefit.You can suggest tactics using the suggestTactics tool, but they must be useful for helping the user immediately.
+
+Routines are scheduled tactics that the user performs a scheduled time or location. You can suggest routines with the suggestRoutine tool.
   `;
 
   // // Add relevant memories if available
