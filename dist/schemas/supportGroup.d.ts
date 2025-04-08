@@ -57,6 +57,7 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
     unreadMessageCountsById: {
         [x: string]: number;
     };
+    memberCount: number;
     image: {
         sizeBytes?: number | undefined;
         metadata?: {
@@ -121,6 +122,7 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
     };
     membersById: undefined;
     unreadMessageCountsById: undefined;
+    memberCount: 0;
     image: {
         uri: undefined;
         storagePath: undefined;

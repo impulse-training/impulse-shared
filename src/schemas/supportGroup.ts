@@ -27,6 +27,7 @@ export const supportGroupSchema = yup.object({
   backgroundImage: attachmentSchema,
   membersById: objectOf(supportGroupMemberSchema),
   unreadMessageCountsById: objectOf(yup.number().required()),
+  memberCount: yup.number().default(0), // Count of members for easier querying
   image: attachmentSchema,
   isPublic: yup.boolean().optional(),
   inviteCode: yup.string().optional(),

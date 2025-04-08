@@ -9,6 +9,13 @@ export const userDataSchema = yup.object({
   // Authentication
   recoveryKeyHash: yup.string(),
 
+  // User role
+  role: yup
+    .string()
+    .oneOf(["user", "coach"])
+    .default("user")
+    .required(),
+
   // Notification settings
   notificationsEnabled: yup.boolean().default(true),
 
