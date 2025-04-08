@@ -23,7 +23,14 @@ export const tacticBaseSchema = yup.object({
   // Ordinal for display ordering
   ordinal: yup.number().required(),
 
+  // The owner of the tactic
   userId: yup.string().optional(),
+
+  // The original creator of the tactic
+  createdBy: yup.string(),
+  // When shared with a support group, this is set
+  supportGroupId: yup.string(),
+
   isPublic: yup.boolean().optional(),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
