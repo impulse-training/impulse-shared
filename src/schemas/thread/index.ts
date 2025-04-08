@@ -1,9 +1,11 @@
 import * as yup from "yup";
 import { GeneralThread, generalThreadSchema } from "./general";
 import { ImpulseThread, impulseThreadSchema } from "./impulse";
+import { OnboardingThread, onboardingThreadSchema } from "./onboarding";
 
 export * from "./general";
 export * from "./impulse";
+export * from "./onboarding";
 
 // Map of thread types to their schemas
 export const threadSchemas = {
@@ -39,6 +41,20 @@ export const isValidGeneralThread = (
   }
 };
 
+export const threadIsOnboardingThread = (
+  value: Thread
+): value is OnboardingThread => value.type === "onboarding";
+export const isValidOnboardingThread = (
+  value: unknown
+): value is OnboardingThread => {
+  try {
+    onboardingThreadSchema.validateSync(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
 export const threadIsImpulseThread = (value: Thread): value is ImpulseThread =>
   value.type === "impulse";
 export const isValidImpulseThread = (
@@ -52,4 +68,4 @@ export const isValidImpulseThread = (
   }
 };
 
-export type Thread = ImpulseThread | GeneralThread;
+export type Thread = ImpulseThread | GeneralThread | OnboardingThread;

@@ -9,8 +9,8 @@ export const threadBaseSchema = yup.object({
   id: yup.string(),
   title: yup.string().required(),
   type: yup
-    .mixed<"impulse" | "general" | "dayRecap">()
-    .oneOf(["impulse", "general", "dayRecap"])
+    .mixed<"impulse" | "general" | "onboarding" | "dayRecap">()
+    .oneOf(["impulse", "general", "onboarding", "dayRecap"])
     .default("general"),
   date: timestampSchema.required(),
   gameplan: gameplanSchema, // The gameplan is a list of tactics that the user has agreed to use

@@ -5,16 +5,12 @@ export const userDataSchema = yup.object({
   id: yup.string(),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
-  
+
   // Authentication
   recoveryKeyHash: yup.string(),
 
   // User role
-  role: yup
-    .string()
-    .oneOf(["user", "coach"])
-    .default("user")
-    .required(),
+  role: yup.string().oneOf(["user", "coach"]).default("user").required(),
 
   // Notification settings
   notificationsEnabled: yup.boolean().default(true),

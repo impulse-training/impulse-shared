@@ -1,27 +1,26 @@
-import { Thread, UserContext } from "../schemas";
-import { DocumentSnapshotLike, FirestoreInstance } from "../types";
+import { Thread, UserContext } from "../../schemas";
+import { DocumentSnapshotLike, FirestoreInstance } from "../../types";
 
 // Create the system prompt for a thread
-export async function generateSystemPrompt(
+export async function generateImpulseSystemPrompt(
   db: FirestoreInstance,
   thread: DocumentSnapshotLike<Thread>
 ): Promise<string> {
   // Get the user context doc
   const userId = thread.ref.parent.parent!.id;
   const userContextDoc = await db.collection("users").doc(userId).get();
+  const userContext = userContextDoc.data() as UserContext | undefined;
 
-  const userContext = userContextDoc.data() as UserContext;
-
-  const behaviorsDescription = `The user is facing: ${Object.values(
-    userContext.behaviors
-  )
-    .map((behavior) => {
-      return `${behavior.behaviorName}`;
-    })
-    .join(", ")}`;
+  const behaviorsDescription = userContext
+    ? `The user is facing: ${Object.values(userContext.behaviors)
+        .map((behavior) => {
+          return `${behavior.behaviorName}`;
+        })
+        .join(", ")}`
+    : null;
 
   // Base system prompt
-  let prompt = `You are a compassionate and supportive ai coach designed to help users overcome addictive impulses and build healthier habits.
+  let prompt = `You are Zara, a compassionate and supportive AI coach designed to help users overcome addictive impulses and build healthier habits.
 
 ${behaviorsDescription}
 
