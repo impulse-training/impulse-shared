@@ -8,14 +8,15 @@ import { GameplanLog, gameplanLogSchema } from "./gameplanLog";
 import { ImpulseLog, impulseLogSchema } from "./impulseLog";
 import {
   AssistantMessageLog,
-  MessageLog,
   assistantMessageLogSchema,
+  MessageLog,
 } from "./messageLog";
 import {
   UserMessageLog,
   userMessageLogSchema,
 } from "./messageLog/userMessageLog";
 import { QuestionLog, questionLogSchema } from "./questionLog";
+import { ShowTourLog, showTourLogSchema } from "./showTourLog";
 import { SummaryLog, summaryLogSchema } from "./summaryLog";
 import { TacticLog, tacticLogSchema } from "./tacticLog";
 import { ToolCallLog, toolCallLogSchema } from "./toolCallLog";
@@ -34,6 +35,7 @@ export const logSchemas = {
   gameplan: gameplanLogSchema,
   summary: summaryLogSchema,
   widget_setup: widgetSetupLogSchema,
+  show_tour: showTourLogSchema,
 };
 export const logTypes = Object.keys(logSchemas);
 
@@ -50,7 +52,8 @@ export type Log =
   | MessageLog
   | SummaryLog
   | CallLog
-  | WidgetSetupLog;
+  | WidgetSetupLog
+  | ShowTourLog;
 
 export * from "./behaviorTrackedLog";
 export * from "./callLog";
@@ -58,6 +61,7 @@ export * from "./gameplanLog";
 export * from "./impulseLog";
 export * from "./messageLog";
 export * from "./questionLog";
+export * from "./showTourLog";
 export * from "./summaryLog";
 export * from "./tacticLog";
 export * from "./toolCallLog";
@@ -87,6 +91,18 @@ export const isValidAssistantMessageLog = (
 ): value is AssistantMessageLog => {
   try {
     assistantMessageLogSchema.validateSync(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+export const logIsShowTourLog = (
+  value: Omit<Log, "id">
+): value is ShowTourLog => value.type === "show_tour";
+export const isValidShowTourLog = (value: unknown): value is ShowTourLog => {
+  try {
+    showTourLogSchema.validateSync(value);
     return true;
   } catch (error) {
     return false;
