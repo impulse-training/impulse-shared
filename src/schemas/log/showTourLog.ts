@@ -21,6 +21,7 @@ export type TourStep = yup.InferType<typeof tourStepSchema>;
 export const showTourLogSchema = logBaseSchema.shape({
   type: yup.mixed<"show_tour">().oneOf(["show_tour"]).required(),
   isDisplayable: yup.mixed<true>().oneOf([true]).required(),
+  text: yup.string().required(),
   data: yup.object({
     steps: yup.array().of(tourStepSchema).required(),
     firstNavigateToRoute: yup.string(),

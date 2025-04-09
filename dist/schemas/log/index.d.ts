@@ -427,6 +427,7 @@ export declare const logSchemas: {
         callLogDocPath: string | undefined;
         type: "show_tour";
         isDisplayable: true;
+        text: string;
         data: {
             completedAt?: import("../../types").Timestamp | undefined;
             firstNavigateToRoute?: string | undefined;
@@ -451,6 +452,7 @@ export declare const logSchemas: {
         callLogDocPath: undefined;
         type: undefined;
         isDisplayable: undefined;
+        text: undefined;
         data: {
             steps: "";
             firstNavigateToRoute: undefined;
