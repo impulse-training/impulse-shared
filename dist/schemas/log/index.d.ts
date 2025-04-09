@@ -9,6 +9,7 @@ import { QuestionLog } from "./questionLog";
 import { SummaryLog } from "./summaryLog";
 import { TacticLog } from "./tacticLog";
 import { ToolCallLog } from "./toolCallLog";
+import { WidgetSetupLog } from "./widgetSetupLog";
 export declare const logSchemas: {
     user: yup.ObjectSchema<{
         id: string | undefined;
@@ -17,12 +18,12 @@ export declare const logSchemas: {
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
-        data: {
-            message: import("openai/resources").ChatCompletionUserMessageParam;
-        };
         callLogDocPath: string | undefined;
         type: "user_message";
         isDisplayable: true;
+        data: {
+            message: import("openai/resources").ChatCompletionUserMessageParam;
+        };
         audioAttachment: {
             sizeBytes?: number | undefined;
             metadata?: {
@@ -31,10 +32,10 @@ export declare const logSchemas: {
                 durationMs?: number | undefined;
                 transcript?: string | undefined;
             } | undefined;
+            type: NonNullable<"image" | "video" | "audio" | "document" | undefined>;
             uri: string;
             storagePath: string;
             contentType: string;
-            type: NonNullable<"image" | "video" | "audio" | "document" | undefined>;
         } | undefined;
     }, yup.AnyObject, {
         id: undefined;
@@ -43,14 +44,14 @@ export declare const logSchemas: {
         userId: undefined;
         timestamp: undefined;
         dateString: undefined;
+        callLogDocPath: undefined;
+        type: undefined;
+        isDisplayable: undefined;
         data: {
             message: undefined;
         } & {
             message: undefined;
         };
-        callLogDocPath: undefined;
-        type: undefined;
-        isDisplayable: undefined;
         audioAttachment: {
             uri: undefined;
             storagePath: undefined;
@@ -72,12 +73,12 @@ export declare const logSchemas: {
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
-        data: {
-            message: import("openai/resources").ChatCompletionAssistantMessageParam;
-        };
         callLogDocPath: string | undefined;
         type: "assistant_message";
         isDisplayable: true;
+        data: {
+            message: import("openai/resources").ChatCompletionAssistantMessageParam;
+        };
     }, yup.AnyObject, {
         id: undefined;
         createdAt: undefined;
@@ -85,14 +86,14 @@ export declare const logSchemas: {
         userId: undefined;
         timestamp: undefined;
         dateString: undefined;
+        callLogDocPath: undefined;
+        type: undefined;
+        isDisplayable: undefined;
         data: {
             message: undefined;
         } & {
             message: undefined;
         };
-        callLogDocPath: undefined;
-        type: undefined;
-        isDisplayable: undefined;
     }, "">;
     call: yup.ObjectSchema<{
         id: string | undefined;
@@ -101,14 +102,14 @@ export declare const logSchemas: {
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
+        callLogDocPath: string | undefined;
+        type: "call";
         data: {
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
             livekitSessionId: string;
             livekitRoomName: string;
         };
-        callLogDocPath: string | undefined;
-        type: "call";
     }, yup.AnyObject, {
         id: undefined;
         createdAt: undefined;
@@ -116,14 +117,14 @@ export declare const logSchemas: {
         userId: undefined;
         timestamp: undefined;
         dateString: undefined;
+        callLogDocPath: undefined;
+        type: undefined;
         data: {
             agentConnectedAt: undefined;
             endedAt: undefined;
             livekitSessionId: undefined;
             livekitRoomName: undefined;
         };
-        callLogDocPath: undefined;
-        type: undefined;
     }, "">;
     tool_call: yup.ObjectSchema<{
         id: string | undefined;
@@ -132,13 +133,13 @@ export declare const logSchemas: {
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
+        callLogDocPath: string | undefined;
+        isDisplayable: false;
+        type: "tool_call";
         data: {
             message: import("openai/resources").ChatCompletionAssistantMessageParam;
             toolCallResults: import("openai/resources").ChatCompletionToolMessageParam[];
         };
-        callLogDocPath: string | undefined;
-        isDisplayable: false;
-        type: "tool_call";
     }, yup.AnyObject, {
         id: undefined;
         createdAt: undefined;
@@ -146,13 +147,13 @@ export declare const logSchemas: {
         userId: undefined;
         timestamp: undefined;
         dateString: undefined;
+        callLogDocPath: undefined;
+        isDisplayable: undefined;
+        type: undefined;
         data: {
             message: undefined;
             toolCallResults: "";
         };
-        callLogDocPath: undefined;
-        isDisplayable: undefined;
-        type: undefined;
     }, "">;
     tactic_completed: yup.ObjectSchema<{
         id: string | undefined;
@@ -161,12 +162,12 @@ export declare const logSchemas: {
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
-        data: {
-            tactic: import("..").Tactic;
-        };
         callLogDocPath: string | undefined;
         type: NonNullable<"tactic_completed" | "tactic_viewed" | undefined>;
         isDisplayable: true;
+        data: {
+            tactic: import("..").Tactic;
+        };
     }, yup.AnyObject, {
         id: undefined;
         createdAt: undefined;
@@ -174,12 +175,12 @@ export declare const logSchemas: {
         userId: undefined;
         timestamp: undefined;
         dateString: undefined;
-        data: {
-            tactic: undefined;
-        };
         callLogDocPath: undefined;
         type: undefined;
         isDisplayable: undefined;
+        data: {
+            tactic: undefined;
+        };
     }, "">;
     tactic_viewed: yup.ObjectSchema<{
         id: string | undefined;
@@ -188,12 +189,12 @@ export declare const logSchemas: {
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
-        data: {
-            tactic: import("..").Tactic;
-        };
         callLogDocPath: string | undefined;
         type: NonNullable<"tactic_completed" | "tactic_viewed" | undefined>;
         isDisplayable: true;
+        data: {
+            tactic: import("..").Tactic;
+        };
     }, yup.AnyObject, {
         id: undefined;
         createdAt: undefined;
@@ -201,12 +202,12 @@ export declare const logSchemas: {
         userId: undefined;
         timestamp: undefined;
         dateString: undefined;
-        data: {
-            tactic: undefined;
-        };
         callLogDocPath: undefined;
         type: undefined;
         isDisplayable: undefined;
+        data: {
+            tactic: undefined;
+        };
     }, "">;
     impulse_button_pressed: yup.ObjectSchema<{
         id: string | undefined;
@@ -215,7 +216,6 @@ export declare const logSchemas: {
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
-        data: {};
         callLogDocPath: string | undefined;
         type: "impulse_button_pressed";
         isDisplayable: true;
@@ -226,7 +226,6 @@ export declare const logSchemas: {
         userId: undefined;
         timestamp: undefined;
         dateString: undefined;
-        data: {};
         callLogDocPath: undefined;
         type: undefined;
         isDisplayable: undefined;
@@ -238,6 +237,9 @@ export declare const logSchemas: {
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
+        callLogDocPath: string | undefined;
+        type: "behavior_tracked";
+        isDisplayable: true;
         data: {
             behaviorTrackingUnit?: string | undefined;
             behaviorId: string;
@@ -246,9 +248,6 @@ export declare const logSchemas: {
             value: number;
             formattedValue: string;
         };
-        callLogDocPath: string | undefined;
-        type: "behavior_tracked";
-        isDisplayable: true;
     }, yup.AnyObject, {
         id: undefined;
         createdAt: undefined;
@@ -256,6 +255,9 @@ export declare const logSchemas: {
         userId: undefined;
         timestamp: undefined;
         dateString: undefined;
+        callLogDocPath: undefined;
+        type: undefined;
+        isDisplayable: undefined;
         data: {
             behaviorId: undefined;
             behaviorName: undefined;
@@ -264,9 +266,6 @@ export declare const logSchemas: {
             value: undefined;
             formattedValue: undefined;
         };
-        callLogDocPath: undefined;
-        type: undefined;
-        isDisplayable: undefined;
     }, "">;
     question: yup.ObjectSchema<{
         id: string | undefined;
@@ -275,6 +274,9 @@ export declare const logSchemas: {
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
+        callLogDocPath: string | undefined;
+        type: "question";
+        isDisplayable: true;
         data: {
             question: {
                 id?: string | undefined;
@@ -295,9 +297,6 @@ export declare const logSchemas: {
             };
             response: {} | null;
         };
-        callLogDocPath: string | undefined;
-        type: "question";
-        isDisplayable: true;
     }, yup.AnyObject, {
         id: undefined;
         createdAt: undefined;
@@ -305,6 +304,9 @@ export declare const logSchemas: {
         userId: undefined;
         timestamp: undefined;
         dateString: undefined;
+        callLogDocPath: undefined;
+        type: undefined;
+        isDisplayable: undefined;
         data: {
             question: {
                 id: undefined;
@@ -318,9 +320,6 @@ export declare const logSchemas: {
             };
             response: null;
         };
-        callLogDocPath: undefined;
-        type: undefined;
-        isDisplayable: undefined;
     }, "">;
     gameplan: yup.ObjectSchema<{
         id: string | undefined;
@@ -329,6 +328,9 @@ export declare const logSchemas: {
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
+        callLogDocPath: string | undefined;
+        type: "gameplan";
+        isDisplayable: true;
         data: {
             acceptedAt?: import("../../types").Timestamp | undefined;
             shufflePressedAt?: import("../../types").Timestamp | undefined;
@@ -342,9 +344,6 @@ export declare const logSchemas: {
                 exists: NonNullable<boolean | undefined>;
             }[];
         };
-        callLogDocPath: string | undefined;
-        type: "gameplan";
-        isDisplayable: true;
     }, yup.AnyObject, {
         id: undefined;
         createdAt: undefined;
@@ -352,6 +351,9 @@ export declare const logSchemas: {
         userId: undefined;
         timestamp: undefined;
         dateString: undefined;
+        callLogDocPath: undefined;
+        type: undefined;
+        isDisplayable: undefined;
         data: {
             gameplan: "";
             pastGameplans: "";
@@ -359,9 +361,6 @@ export declare const logSchemas: {
             acceptedAt: undefined;
             shufflePressedAt: undefined;
         };
-        callLogDocPath: undefined;
-        type: undefined;
-        isDisplayable: undefined;
     }, "">;
     summary: yup.ObjectSchema<{
         id: string | undefined;
@@ -370,12 +369,12 @@ export declare const logSchemas: {
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
-        data: {
-            summary: string;
-        };
         callLogDocPath: string | undefined;
         type: "summary";
         isDisplayable: true;
+        data: {
+            summary: string;
+        };
     }, yup.AnyObject, {
         id: undefined;
         createdAt: undefined;
@@ -383,17 +382,44 @@ export declare const logSchemas: {
         userId: undefined;
         timestamp: undefined;
         dateString: undefined;
-        data: {
-            summary: undefined;
-        };
         callLogDocPath: undefined;
         type: undefined;
         isDisplayable: undefined;
+        data: {
+            summary: undefined;
+        };
+    }, "">;
+    widget_setup: yup.ObjectSchema<{
+        id: string | undefined;
+        createdAt: import("../../types").Timestamp | undefined;
+        updatedAt: import("../../types").Timestamp | undefined;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        callLogDocPath: string | undefined;
+        type: "widget_setup";
+        isDisplayable: true;
+        data: {
+            impulseWidgetInstalled: NonNullable<boolean | undefined>;
+        };
+    }, yup.AnyObject, {
+        id: undefined;
+        createdAt: undefined;
+        updatedAt: undefined;
+        userId: undefined;
+        timestamp: undefined;
+        dateString: undefined;
+        callLogDocPath: undefined;
+        type: undefined;
+        isDisplayable: undefined;
+        data: {
+            impulseWidgetInstalled: undefined;
+        };
     }, "">;
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | ImpulseLog | BehaviorTrackedLog | QuestionLog | GameplanLog | ToolCallLog | MessageLog | SummaryLog | CallLog;
+export type Log = TacticLog | ImpulseLog | BehaviorTrackedLog | QuestionLog | GameplanLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog;
 export * from "./behaviorTrackedLog";
 export * from "./callLog";
 export * from "./gameplanLog";
@@ -403,6 +429,7 @@ export * from "./questionLog";
 export * from "./summaryLog";
 export * from "./tacticLog";
 export * from "./toolCallLog";
+export * from "./widgetSetupLog";
 export declare const logSchema: yup.Lazy<Log, yup.AnyObject, any>;
 export declare const logIsAssistantMessageLog: (value: Omit<Log, "id">) => value is AssistantMessageLog;
 export declare const isValidAssistantMessageLog: (value: unknown) => value is AssistantMessageLog;
@@ -414,6 +441,8 @@ export declare const logIsImpulseLog: (value: Omit<Log, "id">) => value is Impul
 export declare const isValidImpulseLog: (value: unknown) => value is ImpulseLog;
 export declare const logIsToolCallLog: (value: Omit<Log, "id">) => value is ToolCallLog;
 export declare const isValidToolCallLog: (value: unknown) => value is ToolCallLog;
+export declare const logIsWidgetSetupLog: (value: Omit<Log, "id">) => value is WidgetSetupLog;
+export declare const isValidWidgetSetupLog: (value: unknown) => value is ToolCallLog;
 export declare const logIsQuestionLog: (value: Omit<Log, "id">) => value is QuestionLog;
 export declare const isValidQuestionLog: (value: unknown) => value is QuestionLog;
 export declare const logIsTacticLog: (value: Omit<Log, "id">) => value is TacticLog;

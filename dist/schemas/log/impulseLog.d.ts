@@ -6,7 +6,6 @@ export declare const impulseLogSchema: yup.ObjectSchema<{
     userId: string;
     timestamp: import("../../types").Timestamp;
     dateString: string;
-    data: {};
     callLogDocPath: string | undefined;
     type: "impulse_button_pressed";
     isDisplayable: true;
@@ -17,7 +16,6 @@ export declare const impulseLogSchema: yup.ObjectSchema<{
     userId: undefined;
     timestamp: undefined;
     dateString: undefined;
-    data: {};
     callLogDocPath: undefined;
     type: undefined;
     isDisplayable: undefined;

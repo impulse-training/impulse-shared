@@ -33,10 +33,10 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
             durationMs?: number | undefined;
             transcript?: string | undefined;
         } | undefined;
+        type: NonNullable<"image" | "video" | "audio" | "document" | undefined>;
         uri: string;
         storagePath: string;
         contentType: string;
-        type: NonNullable<"image" | "video" | "audio" | "document" | undefined>;
     };
     membersById: {
         [x: string]: {
@@ -66,17 +66,17 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
             durationMs?: number | undefined;
             transcript?: string | undefined;
         } | undefined;
+        type: NonNullable<"image" | "video" | "audio" | "document" | undefined>;
         uri: string;
         storagePath: string;
         contentType: string;
-        type: NonNullable<"image" | "video" | "audio" | "document" | undefined>;
     };
     isPublic: boolean | undefined;
     inviteCode: string | undefined;
     lastMessage: {
-        id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
         audioAttachment?: {
             sizeBytes?: number | undefined;
@@ -86,19 +86,19 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
                 durationMs?: number | undefined;
                 transcript?: string | undefined;
             } | undefined;
+            type: NonNullable<"image" | "video" | "audio" | "document" | undefined>;
             uri: string;
             storagePath: string;
             contentType: string;
-            type: NonNullable<"image" | "video" | "audio" | "document" | undefined>;
         } | undefined;
-        type: "user_message";
         userId: string;
         timestamp: import("../types").Timestamp;
         dateString: string;
+        type: "user_message";
+        isDisplayable: true;
         data: {
             message: import("openai/resources").ChatCompletionUserMessageParam;
         };
-        isDisplayable: true;
     } | undefined;
     createdAt: import("../types").Timestamp | undefined;
     updatedAt: import("../types").Timestamp | undefined;
@@ -145,14 +145,14 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
         userId: undefined;
         timestamp: undefined;
         dateString: undefined;
+        callLogDocPath: undefined;
+        type: undefined;
+        isDisplayable: undefined;
         data: {
             message: undefined;
         } & {
             message: undefined;
         };
-        callLogDocPath: undefined;
-        type: undefined;
-        isDisplayable: undefined;
         audioAttachment: {
             uri: undefined;
             storagePath: undefined;

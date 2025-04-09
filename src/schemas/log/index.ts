@@ -19,6 +19,7 @@ import { QuestionLog, questionLogSchema } from "./questionLog";
 import { SummaryLog, summaryLogSchema } from "./summaryLog";
 import { TacticLog, tacticLogSchema } from "./tacticLog";
 import { ToolCallLog, toolCallLogSchema } from "./toolCallLog";
+import { WidgetSetupLog, widgetSetupLogSchema } from "./widgetSetupLog";
 
 export const logSchemas = {
   user: userMessageLogSchema,
@@ -32,6 +33,7 @@ export const logSchemas = {
   question: questionLogSchema,
   gameplan: gameplanLogSchema,
   summary: summaryLogSchema,
+  widget_setup: widgetSetupLogSchema,
 };
 export const logTypes = Object.keys(logSchemas);
 
@@ -47,7 +49,8 @@ export type Log =
   | ToolCallLog
   | MessageLog
   | SummaryLog
-  | CallLog;
+  | CallLog
+  | WidgetSetupLog;
 
 export * from "./behaviorTrackedLog";
 export * from "./callLog";
@@ -58,6 +61,7 @@ export * from "./questionLog";
 export * from "./summaryLog";
 export * from "./tacticLog";
 export * from "./toolCallLog";
+export * from "./widgetSetupLog";
 
 // Dynamic schema that selects the appropriate schema based on the tactic type
 export const logSchema = yup.lazy((value) => {
@@ -129,6 +133,18 @@ export const logIsToolCallLog = (
   value: Omit<Log, "id">
 ): value is ToolCallLog => value.type === "tool_call";
 export const isValidToolCallLog = (value: unknown): value is ToolCallLog => {
+  try {
+    toolCallLogSchema.validateSync(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+export const logIsWidgetSetupLog = (
+  value: Omit<Log, "id">
+): value is WidgetSetupLog => value.type === "widget_setup";
+export const isValidWidgetSetupLog = (value: unknown): value is ToolCallLog => {
   try {
     toolCallLogSchema.validateSync(value);
     return true;

@@ -36,7 +36,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidGameplanLog = exports.logIsGameplanLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorTrackedLog = exports.logIsBehaviorTrackedLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
+exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidGameplanLog = exports.logIsGameplanLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorTrackedLog = exports.logIsBehaviorTrackedLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
 const yup = __importStar(require("yup"));
 const behaviorTrackedLog_1 = require("./behaviorTrackedLog");
 const callLog_1 = require("./callLog");
@@ -48,6 +48,7 @@ const questionLog_1 = require("./questionLog");
 const summaryLog_1 = require("./summaryLog");
 const tacticLog_1 = require("./tacticLog");
 const toolCallLog_1 = require("./toolCallLog");
+const widgetSetupLog_1 = require("./widgetSetupLog");
 exports.logSchemas = {
     user: userMessageLog_1.userMessageLogSchema,
     assistant_message: messageLog_1.assistantMessageLogSchema,
@@ -60,6 +61,7 @@ exports.logSchemas = {
     question: questionLog_1.questionLogSchema,
     gameplan: gameplanLog_1.gameplanLogSchema,
     summary: summaryLog_1.summaryLogSchema,
+    widget_setup: widgetSetupLog_1.widgetSetupLogSchema,
 };
 exports.logTypes = Object.keys(exports.logSchemas);
 __exportStar(require("./behaviorTrackedLog"), exports);
@@ -71,6 +73,7 @@ __exportStar(require("./questionLog"), exports);
 __exportStar(require("./summaryLog"), exports);
 __exportStar(require("./tacticLog"), exports);
 __exportStar(require("./toolCallLog"), exports);
+__exportStar(require("./widgetSetupLog"), exports);
 // Dynamic schema that selects the appropriate schema based on the tactic type
 exports.logSchema = yup.lazy((value) => {
     if (typeof (value === null || value === void 0 ? void 0 : value.type) === "string" && value.type in exports.logSchemas) {
@@ -145,6 +148,18 @@ const isValidToolCallLog = (value) => {
     }
 };
 exports.isValidToolCallLog = isValidToolCallLog;
+const logIsWidgetSetupLog = (value) => value.type === "widget_setup";
+exports.logIsWidgetSetupLog = logIsWidgetSetupLog;
+const isValidWidgetSetupLog = (value) => {
+    try {
+        toolCallLog_1.toolCallLogSchema.validateSync(value);
+        return true;
+    }
+    catch (error) {
+        return false;
+    }
+};
+exports.isValidWidgetSetupLog = isValidWidgetSetupLog;
 const logIsQuestionLog = (value) => value.type === "question";
 exports.logIsQuestionLog = logIsQuestionLog;
 const isValidQuestionLog = (value) => {

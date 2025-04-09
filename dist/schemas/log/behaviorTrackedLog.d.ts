@@ -22,6 +22,9 @@ export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
     userId: string;
     timestamp: import("../../types").Timestamp;
     dateString: string;
+    callLogDocPath: string | undefined;
+    type: "behavior_tracked";
+    isDisplayable: true;
     data: {
         behaviorTrackingUnit?: string | undefined;
         behaviorId: string;
@@ -30,9 +33,6 @@ export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
         value: number;
         formattedValue: string;
     };
-    callLogDocPath: string | undefined;
-    type: "behavior_tracked";
-    isDisplayable: true;
 }, yup.AnyObject, {
     id: undefined;
     createdAt: undefined;
@@ -40,6 +40,9 @@ export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
     userId: undefined;
     timestamp: undefined;
     dateString: undefined;
+    callLogDocPath: undefined;
+    type: undefined;
+    isDisplayable: undefined;
     data: {
         behaviorId: undefined;
         behaviorName: undefined;
@@ -48,8 +51,5 @@ export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
         value: undefined;
         formattedValue: undefined;
     };
-    callLogDocPath: undefined;
-    type: undefined;
-    isDisplayable: undefined;
 }, "">;
 export type BehaviorTrackedLog = yup.InferType<typeof behaviorTrackedLogSchema>;

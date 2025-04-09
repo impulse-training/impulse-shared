@@ -6,12 +6,12 @@ export declare const tacticLogSchema: yup.ObjectSchema<{
     userId: string;
     timestamp: import("../../types").Timestamp;
     dateString: string;
-    data: {
-        tactic: import("../tactic").Tactic;
-    };
     callLogDocPath: string | undefined;
     type: NonNullable<"tactic_completed" | "tactic_viewed" | undefined>;
     isDisplayable: true;
+    data: {
+        tactic: import("../tactic").Tactic;
+    };
 }, yup.AnyObject, {
     id: undefined;
     createdAt: undefined;
@@ -19,11 +19,11 @@ export declare const tacticLogSchema: yup.ObjectSchema<{
     userId: undefined;
     timestamp: undefined;
     dateString: undefined;
-    data: {
-        tactic: undefined;
-    };
     callLogDocPath: undefined;
     type: undefined;
     isDisplayable: undefined;
+    data: {
+        tactic: undefined;
+    };
 }, "">;
 export type TacticLog = yup.InferType<typeof tacticLogSchema>;

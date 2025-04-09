@@ -6,6 +6,9 @@ export declare const questionLogSchema: yup.ObjectSchema<{
     userId: string;
     timestamp: import("../../types").Timestamp;
     dateString: string;
+    callLogDocPath: string | undefined;
+    type: "question";
+    isDisplayable: true;
     data: {
         question: {
             id?: string | undefined;
@@ -26,9 +29,6 @@ export declare const questionLogSchema: yup.ObjectSchema<{
         };
         response: {} | null;
     };
-    callLogDocPath: string | undefined;
-    type: "question";
-    isDisplayable: true;
 }, yup.AnyObject, {
     id: undefined;
     createdAt: undefined;
@@ -36,6 +36,9 @@ export declare const questionLogSchema: yup.ObjectSchema<{
     userId: undefined;
     timestamp: undefined;
     dateString: undefined;
+    callLogDocPath: undefined;
+    type: undefined;
+    isDisplayable: undefined;
     data: {
         question: {
             id: undefined;
@@ -49,8 +52,5 @@ export declare const questionLogSchema: yup.ObjectSchema<{
         };
         response: null;
     };
-    callLogDocPath: undefined;
-    type: undefined;
-    isDisplayable: undefined;
 }, "">;
 export type QuestionLog = yup.InferType<typeof questionLogSchema>;
