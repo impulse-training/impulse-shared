@@ -20,6 +20,7 @@ __exportStar(require("./behavior"), exports);
 __exportStar(require("./dayLogs"), exports);
 __exportStar(require("./daySummary"), exports);
 __exportStar(require("./insight"), exports);
+__exportStar(require("./llmAuditEntries"), exports);
 __exportStar(require("./log"), exports);
 __exportStar(require("./question"), exports);
 __exportStar(require("./routine"), exports);
