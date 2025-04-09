@@ -6,6 +6,7 @@ import {
 import { CallLog, callLogSchema } from "./callLog";
 import { GameplanLog, gameplanLogSchema } from "./gameplanLog";
 import { ImpulseLog, impulseLogSchema } from "./impulseLog";
+import { LinkLog, linkLogSchema } from "./linkLog";
 import {
   AssistantMessageLog,
   assistantMessageLogSchema,
@@ -36,6 +37,7 @@ export const logSchemas = {
   summary: summaryLogSchema,
   widget_setup: widgetSetupLogSchema,
   show_tour: showTourLogSchema,
+  link: linkLogSchema,
 };
 export const logTypes = Object.keys(logSchemas);
 
@@ -53,12 +55,14 @@ export type Log =
   | SummaryLog
   | CallLog
   | WidgetSetupLog
-  | ShowTourLog;
+  | ShowTourLog
+  | LinkLog;
 
 export * from "./behaviorTrackedLog";
 export * from "./callLog";
 export * from "./gameplanLog";
 export * from "./impulseLog";
+export * from "./linkLog";
 export * from "./messageLog";
 export * from "./questionLog";
 export * from "./showTourLog";
@@ -83,6 +87,7 @@ export const logSchema = yup.lazy((value) => {
 });
 
 // Export log type guards
+
 export const logIsAssistantMessageLog = (
   value: Omit<Log, "id">
 ): value is AssistantMessageLog => value.type === "assistant_message";
@@ -224,6 +229,17 @@ export const logIsSummaryLog = (value: Omit<Log, "id">): value is SummaryLog =>
 export const isValidSummaryLog = (value: unknown): value is SummaryLog => {
   try {
     summaryLogSchema.validateSync(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+export const logIsLinkLog = (value: Omit<Log, "id">): value is LinkLog =>
+  value.type === "link";
+export const isValidLinkLog = (value: unknown): value is LinkLog => {
+  try {
+    linkLogSchema.validateSync(value);
     return true;
   } catch (error) {
     return false;
