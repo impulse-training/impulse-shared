@@ -7,6 +7,7 @@ import {
   logIsAssistantMessageLog,
   logIsImpulseLog,
   logIsQuestionLog,
+  logIsShowTourLog,
   logIsToolCallLog,
   logIsUserMessageLog,
   logIsWidgetSetupLog,
@@ -82,6 +83,27 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
       messages.push({
         role: "user",
         content: formattedResponse,
+      });
+    }
+
+    return messages;
+  }
+
+  // Handle ShowTourLog
+  if (logIsShowTourLog(log)) {
+    const messages: ChatCompletionMessageParam[] = [];
+
+    // Always include an assistant message about the tour being shown
+    messages.push({
+      role: "assistant",
+      content: `<SYSTEM>Tour has been shown to the user: ${log.text}</SYSTEM>`,
+    });
+
+    // If the tour is completed, include a user message
+    if (log.data.completedAt) {
+      messages.push({
+        role: "user",
+        content: "<SYSTEM>The user has completed the tour</SYSTEM>",
       });
     }
 
