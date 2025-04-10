@@ -11,6 +11,7 @@ export * from "./onboarding";
 export const threadSchemas = {
   general: generalThreadSchema,
   impulse: impulseThreadSchema,
+  onboarding: onboardingThreadSchema,
 };
 
 // Dynamic schema that selects the appropriate schema based on the thread type
