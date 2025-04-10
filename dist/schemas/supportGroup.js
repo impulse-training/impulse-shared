@@ -66,6 +66,7 @@ exports.supportGroupSchema = yup.object({
     isPublic: yup.boolean().optional(),
     inviteCode: yup.string().optional(),
     lastMessage: log_1.userMessageLogSchema.optional(),
+    tacticCount: yup.number().default(0),
     createdAt: utils_1.timestampSchema,
     updatedAt: utils_1.timestampSchema,
 });

@@ -32,6 +32,7 @@ export const supportGroupSchema = yup.object({
   isPublic: yup.boolean().optional(),
   inviteCode: yup.string().optional(),
   lastMessage: userMessageLogSchema.optional(),
+  tacticCount: yup.number().default(0),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
 });

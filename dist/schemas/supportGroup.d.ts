@@ -100,6 +100,7 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
             message: import("openai/resources").ChatCompletionUserMessageParam;
         };
     } | undefined;
+    tacticCount: number;
     createdAt: import("../types").Timestamp | undefined;
     updatedAt: import("../types").Timestamp | undefined;
 }, yup.AnyObject, {
@@ -167,6 +168,7 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
             };
         };
     };
+    tacticCount: 0;
     createdAt: undefined;
     updatedAt: undefined;
 }, "">;
