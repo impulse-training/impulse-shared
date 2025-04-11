@@ -18,6 +18,7 @@ export const daySummarySchema = yup.object({
   dateString: yup.string().required(),
   userId: yup.string().required(),
   impulseThreadOutcomesById: objectOf(outcomeSchema.required()),
+  outcome: outcomeSchema,
   behaviorDataTotalByBehaviorId: objectOf(
     behaviorTrackingDataSchema.required()
   ),
@@ -29,6 +30,7 @@ export const daySummarySchema = yup.object({
     .default([]),
   sharedWithUserIds: yup.array().of(yup.string().required()),
   supportGroupPermissions: objectOf(supportGroupSharingPermissionsSchema),
+  recapCompletedAt: timestampSchema,
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
 });
