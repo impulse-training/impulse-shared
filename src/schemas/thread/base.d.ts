@@ -1,0 +1,51 @@
+import * as yup from "yup";
+export declare const threadBaseSchema: yup.ObjectSchema<{
+    id: string | undefined;
+    title: string;
+    type: "onboarding" | "impulse" | "general" | "dayRecap";
+    date: import("../../types").Timestamp;
+    gameplan: {
+        tactic: import("..").Tactic;
+        exists: NonNullable<boolean | undefined>;
+    }[] | undefined;
+    dateString: string;
+    behaviorDataByLogId: {
+        [x: string]: {
+            behaviorTrackingUnit?: string | undefined;
+            trackingType: NonNullable<"counter" | "timer" | undefined>;
+            behaviorId: string;
+            behaviorName: string;
+            value: number;
+            formattedValue: string;
+        };
+    };
+    behaviorDataTotals: {
+        behaviorTrackingUnit?: string | undefined;
+        trackingType: NonNullable<"counter" | "timer" | undefined>;
+        behaviorId: string;
+        behaviorName: string;
+        value: number;
+        formattedValue: string;
+    }[] | undefined;
+    outcome: "success" | "partial" | "setback" | undefined;
+    systemPrompt: string | undefined;
+    summary: string | undefined;
+    debriefedAt: import("../../types").Timestamp | undefined;
+    updatedAt: import("../../types").Timestamp | undefined;
+    createdAt: import("../../types").Timestamp | undefined;
+}, yup.AnyObject, {
+    id: undefined;
+    title: undefined;
+    type: "general";
+    date: undefined;
+    gameplan: "";
+    dateString: undefined;
+    behaviorDataByLogId: undefined;
+    behaviorDataTotals: "";
+    outcome: undefined;
+    systemPrompt: undefined;
+    summary: undefined;
+    debriefedAt: undefined;
+    updatedAt: undefined;
+    createdAt: undefined;
+}, "">;

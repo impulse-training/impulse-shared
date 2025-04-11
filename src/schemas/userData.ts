@@ -9,6 +9,8 @@ export const userDataSchema = yup.object({
   // Authentication
   recoveryKeyHash: yup.string(),
 
+  defaultThreadMode: yup.string().oneOf(["text", "voice"]).default("text"),
+
   // User role
   role: yup.string().oneOf(["user", "coach"]).default("user").required(),
 
