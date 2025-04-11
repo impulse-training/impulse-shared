@@ -442,6 +442,9 @@ export declare const logSchemas: {
                 elementRefName: string;
                 confirmButtonLabel: string;
             }[];
+            includeCloseButton: boolean;
+            closeButtonText: string;
+            closeButtonHref: string;
         };
     }, yup.AnyObject, {
         id: undefined;
@@ -459,6 +462,9 @@ export declare const logSchemas: {
             firstNavigateToRoute: undefined;
             startButtonLabel: undefined;
             completedAt: undefined;
+            includeCloseButton: false;
+            closeButtonText: "Close";
+            closeButtonHref: "/";
         };
     }, "">;
     link: yup.ObjectSchema<{

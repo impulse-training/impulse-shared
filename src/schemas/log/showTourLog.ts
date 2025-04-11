@@ -27,6 +27,9 @@ export const showTourLogSchema = logBaseSchema.shape({
     firstNavigateToRoute: yup.string(),
     startButtonLabel: yup.string(),
     completedAt: timestampSchema,
+    includeCloseButton: yup.boolean().default(false),
+    closeButtonText: yup.string().default("Close"),
+    closeButtonHref: yup.string().default("/"),
   }),
 });
 
