@@ -4,7 +4,7 @@ import { logBaseSchema } from "./base";
 
 // Tactic Activity Log Schema
 export const tacticLogSchema = logBaseSchema.shape({
-  type: yup.string().oneOf(["tactic_completed", "tactic_viewed"]).required(),
+  type: yup.string().oneOf(["tactic_completed"]).required(),
   // Tactic logs are always displayed in the UI
   isDisplayable: yup.mixed<true>().oneOf([true]).required(),
   data: yup
