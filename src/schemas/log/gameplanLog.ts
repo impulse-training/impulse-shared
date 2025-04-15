@@ -4,7 +4,7 @@ import { tacticSchema } from "../tactic";
 import { logBaseSchema } from "./base";
 
 // A gameplan is a set of tactics
-export const gameplanSchema = yup.array().of(
+export const tacticsByIdSchema = yup.array().of(
   // We always provide the tactic with an id, but the document may or may not exist
   yup.object({
     tactic: tacticSchema,
@@ -18,13 +18,13 @@ export const gameplanLogSchema = logBaseSchema.shape({
   // Gameplan logs are always displayed in the UI
   isDisplayable: yup.mixed<true>().oneOf([true]).required(),
   data: yup.object({
-    gameplan: gameplanSchema.required(),
-    pastGameplans: yup.array().of(gameplanSchema.required()),
+    gameplan: tacticsByIdSchema.required(),
+    pastGameplans: yup.array().of(tacticsByIdSchema.required()),
     introduction: yup.string(),
     acceptedAt: timestampSchema,
     shufflePressedAt: timestampSchema,
   }),
 });
 
-export type Gameplan = yup.InferType<typeof gameplanSchema>;
+export type TacticsById = yup.InferType<typeof tacticsByIdSchema>;
 export type GameplanLog = yup.InferType<typeof gameplanLogSchema>;

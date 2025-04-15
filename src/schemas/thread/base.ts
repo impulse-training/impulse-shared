@@ -2,7 +2,7 @@ import * as yup from "yup";
 import { objectOf } from "../../utils";
 import { outcomeSchema } from "../../utils/outcomes";
 import { timestampSchema } from "../../utils/timestampSchema";
-import { gameplanSchema, logSchema } from "../log";
+import { logSchema, tacticsByIdSchema } from "../log";
 
 // Thread schema
 export const threadBaseSchema = yup.object({
@@ -13,7 +13,7 @@ export const threadBaseSchema = yup.object({
     .oneOf(["impulse", "general", "onboarding", "dayRecap"])
     .default("general"),
   date: timestampSchema.required(),
-  gameplan: gameplanSchema, // The gameplan is a list of tactics that the user has agreed to use
+  gameplan: tacticsByIdSchema, // The gameplan is a list of tactics that the user has agreed to use
   dateString: yup.string().required(),
 
   // Log summary data - written in after log write functions. We store tactic and behavior tracking

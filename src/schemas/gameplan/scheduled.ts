@@ -1,7 +1,7 @@
 import * as yup from "yup";
-import { routineBaseSchema } from "./base";
+import { gameplanBaseSchema } from "./base";
 
-export const scheduledRoutineSchema = routineBaseSchema("scheduled").shape({
+export const scheduledGameplanSchema = gameplanBaseSchema("scheduled").shape({
   data: yup.object({
     hour: yup.number().required(),
     minute: yup.number().required(),
@@ -17,4 +17,4 @@ export const scheduledRoutineSchema = routineBaseSchema("scheduled").shape({
   }),
 });
 
-export type ScheduledRoutine = yup.InferType<typeof scheduledRoutineSchema>;
+export type ScheduledGameplan = yup.InferType<typeof scheduledGameplanSchema>;
