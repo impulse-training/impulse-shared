@@ -39,7 +39,7 @@ const tactic_1 = require("../tactic");
 const base_1 = require("./base");
 // Tactic Activity Log Schema
 exports.tacticLogSchema = base_1.logBaseSchema.shape({
-    type: yup.string().oneOf(["tactic_completed", "tactic_viewed"]).required(),
+    type: yup.string().oneOf(["tactic_completed"]).required(),
     // Tactic logs are always displayed in the UI
     isDisplayable: yup.mixed().oneOf([true]).required(),
     data: yup

@@ -49,6 +49,18 @@ export const attachmentSchema = yup.object({
         then: () => yup.string().optional(),
         otherwise: () => yup.string().strip(),
       }),
+      meterings: yup
+        .array(
+          yup.object({
+            db: yup.number().required(),
+            timestampMs: yup.number().optional(),
+          })
+        )
+        .when("type", {
+          is: "audio",
+          then: () => yup.array().optional(),
+          otherwise: () => yup.array().strip(),
+        }),
     })
     .optional(),
 });

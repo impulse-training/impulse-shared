@@ -32,6 +32,10 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
             height?: number | undefined;
             durationMs?: number | undefined;
             transcript?: string | undefined;
+            meterings?: {
+                timestampMs?: number | undefined;
+                db: number;
+            }[] | undefined;
         } | undefined;
         type: NonNullable<"image" | "video" | "audio" | "document" | undefined>;
         uri: string;
@@ -65,6 +69,10 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
             height?: number | undefined;
             durationMs?: number | undefined;
             transcript?: string | undefined;
+            meterings?: {
+                timestampMs?: number | undefined;
+                db: number;
+            }[] | undefined;
         } | undefined;
         type: NonNullable<"image" | "video" | "audio" | "document" | undefined>;
         uri: string;
@@ -85,6 +93,10 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
                 height?: number | undefined;
                 durationMs?: number | undefined;
                 transcript?: string | undefined;
+                meterings?: {
+                    timestampMs?: number | undefined;
+                    db: number;
+                }[] | undefined;
             } | undefined;
             type: NonNullable<"image" | "video" | "audio" | "document" | undefined>;
             uri: string;
@@ -119,6 +131,7 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
             height: undefined;
             durationMs: undefined;
             transcript: undefined;
+            meterings: undefined;
         };
     };
     membersById: undefined;
@@ -135,6 +148,7 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
             height: undefined;
             durationMs: undefined;
             transcript: undefined;
+            meterings: undefined;
         };
     };
     isPublic: undefined;
@@ -165,6 +179,7 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
                 height: undefined;
                 durationMs: undefined;
                 transcript: undefined;
+                meterings: undefined;
             };
         };
     };

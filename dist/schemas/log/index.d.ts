@@ -33,6 +33,10 @@ export declare const logSchemas: {
                 height?: number | undefined;
                 durationMs?: number | undefined;
                 transcript?: string | undefined;
+                meterings?: {
+                    timestampMs?: number | undefined;
+                    db: number;
+                }[] | undefined;
             } | undefined;
             type: NonNullable<"image" | "video" | "audio" | "document" | undefined>;
             uri: string;
@@ -65,6 +69,7 @@ export declare const logSchemas: {
                 height: undefined;
                 durationMs: undefined;
                 transcript: undefined;
+                meterings: undefined;
             };
         };
     }, "">;
@@ -165,7 +170,7 @@ export declare const logSchemas: {
         timestamp: import("../../types").Timestamp;
         dateString: string;
         callLogDocPath: string | undefined;
-        type: NonNullable<"tactic_completed" | "tactic_viewed" | undefined>;
+        type: "tactic_completed";
         isDisplayable: true;
         data: {
             tactic: import("..").Tactic;
@@ -192,7 +197,7 @@ export declare const logSchemas: {
         timestamp: import("../../types").Timestamp;
         dateString: string;
         callLogDocPath: string | undefined;
-        type: NonNullable<"tactic_completed" | "tactic_viewed" | undefined>;
+        type: "tactic_completed";
         isDisplayable: true;
         data: {
             tactic: import("..").Tactic;

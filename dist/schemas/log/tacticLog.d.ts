@@ -7,7 +7,7 @@ export declare const tacticLogSchema: yup.ObjectSchema<{
     timestamp: import("../../types").Timestamp;
     dateString: string;
     callLogDocPath: string | undefined;
-    type: NonNullable<"tactic_completed" | "tactic_viewed" | undefined>;
+    type: "tactic_completed";
     isDisplayable: true;
     data: {
         tactic: import("../tactic").Tactic;
