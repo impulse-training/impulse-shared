@@ -7,6 +7,7 @@ export * from "./insight";
 export * from "./llmAuditEntries";
 export * from "./log";
 export * from "./question";
+export * from "./session";
 export * from "./supportGroup";
 export * from "./tactic";
 export * from "./thread";
