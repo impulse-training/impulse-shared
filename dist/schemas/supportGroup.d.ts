@@ -25,7 +25,7 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
     name: string;
     description: string | undefined;
     ownerId: string;
-    backgroundImage: {
+    coverPhoto: {
         sizeBytes?: number | undefined;
         metadata?: {
             width?: number | undefined;
@@ -41,7 +41,7 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
         uri: string;
         storagePath: string;
         contentType: string;
-    };
+    } | undefined;
     membersById: {
         [x: string]: {
             joinedAt?: import("../types").Timestamp | undefined;
@@ -120,7 +120,7 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
     name: undefined;
     description: undefined;
     ownerId: undefined;
-    backgroundImage: {
+    coverPhoto: {
         uri: undefined;
         storagePath: undefined;
         contentType: undefined;

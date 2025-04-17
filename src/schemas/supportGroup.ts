@@ -24,7 +24,7 @@ export const supportGroupSchema = yup.object({
   name: yup.string().required(),
   description: yup.string().optional(),
   ownerId: yup.string().required(),
-  backgroundImage: attachmentSchema,
+  coverPhoto: attachmentSchema.optional(), // Optional cover photo for the group
   membersById: objectOf(supportGroupMemberSchema),
   unreadMessageCountsById: objectOf(yup.number().required()),
   memberCount: yup.number().default(0), // Count of members for easier querying

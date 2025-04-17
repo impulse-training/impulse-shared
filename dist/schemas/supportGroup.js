@@ -58,7 +58,7 @@ exports.supportGroupSchema = yup.object({
     name: yup.string().required(),
     description: yup.string().optional(),
     ownerId: yup.string().required(),
-    backgroundImage: attachment_1.attachmentSchema,
+    coverPhoto: attachment_1.attachmentSchema.optional(), // Optional cover photo for the group
     membersById: (0, utils_1.objectOf)(exports.supportGroupMemberSchema),
     unreadMessageCountsById: (0, utils_1.objectOf)(yup.number().required()),
     memberCount: yup.number().default(0), // Count of members for easier querying
