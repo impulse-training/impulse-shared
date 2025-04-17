@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { timestampSchema } from "../../utils";
+import { documentReferenceSchema, timestampSchema } from "../../utils";
 
 export function gameplanBaseSchema<T extends string>(type: T) {
   return yup.object({
@@ -7,6 +7,7 @@ export function gameplanBaseSchema<T extends string>(type: T) {
     name: yup.string().required(),
     type: yup.mixed<T>().oneOf([type]).required(),
     ordinal: yup.number(),
+    tactics: yup.array().of(documentReferenceSchema.required()).required(),
     createdAt: timestampSchema,
     updatedAt: timestampSchema,
   });
