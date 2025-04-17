@@ -3,7 +3,7 @@ import { gameplanBaseSchema } from "./base";
 
 export const impulseGameplanSchema = gameplanBaseSchema("impulse").shape({
   data: yup.object({
-    behaviorIds: yup.array().of(yup.string()).required(),
+    behaviorIds: yup.array().of(yup.string().required()).required(),
   }),
 });
 

@@ -3,14 +3,6 @@ import { timestampSchema } from "../../utils";
 import { attachmentSchema } from "../attachment";
 
 // Tactic Schema
-export interface Tactic {
-  /**
-   * The icon name for this tactic, e.g. 'lightbulb-outline'.
-   * Optional.
-   */
-  icon?: string;
-}
-
 export const tacticBaseSchema = yup.object({
   id: yup.string(),
   type: yup.string().required(),

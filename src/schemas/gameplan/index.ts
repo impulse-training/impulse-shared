@@ -36,3 +36,45 @@ export const gameplanSchema = yup.lazy((value) => {
 export type GameplanTypes = {
   [K in Gameplan["type"]]: yup.InferType<(typeof GameplanSchemas)[K]>;
 };
+
+export const gameplanIsScheduledGameplan = (
+  value: Omit<Gameplan, "id">
+): value is ScheduledGameplan => value.type === "scheduled";
+export const isValidScheduledGameplan = (
+  value: unknown
+): value is ScheduledGameplan => {
+  try {
+    scheduledGameplanSchema.validateSync(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+export const gameplanIsLocationGameplan = (
+  value: Omit<Gameplan, "id">
+): value is LocationGameplan => value.type === "location";
+export const isValidLocationGameplan = (
+  value: unknown
+): value is LocationGameplan => {
+  try {
+    locationGameplanSchema.validateSync(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+export const gameplanIsImpulseGameplan = (
+  value: Omit<Gameplan, "id">
+): value is ImpulseGameplan => value.type === "impulse";
+export const isValidImpulseGameplan = (
+  value: unknown
+): value is ImpulseGameplan => {
+  try {
+    impulseGameplanSchema.validateSync(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
