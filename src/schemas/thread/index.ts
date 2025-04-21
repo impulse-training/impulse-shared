@@ -2,16 +2,19 @@ import * as yup from "yup";
 import { GeneralThread, generalThreadSchema } from "./general";
 import { ImpulseThread, impulseThreadSchema } from "./impulse";
 import { OnboardingThread, onboardingThreadSchema } from "./onboarding";
+import { ScheduledThread, scheduledThreadSchema } from "./scheduled";
 
 export * from "./general";
 export * from "./impulse";
 export * from "./onboarding";
+export * from "./scheduled";
 
 // Map of thread types to their schemas
 export const threadSchemas = {
   general: generalThreadSchema,
   impulse: impulseThreadSchema,
   onboarding: onboardingThreadSchema,
+  scheduled: scheduledThreadSchema,
 };
 
 // Dynamic schema that selects the appropriate schema based on the thread type
@@ -69,4 +72,22 @@ export const isValidImpulseThread = (
   }
 };
 
-export type Thread = ImpulseThread | GeneralThread | OnboardingThread;
+export const threadIsScheduledThread = (
+  value: Thread
+): value is ScheduledThread => value.type === "scheduled";
+export const isValidScheduledThread = (
+  value: unknown
+): value is ScheduledThread => {
+  try {
+    scheduledThreadSchema.validateSync(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+export type Thread =
+  | ImpulseThread
+  | GeneralThread
+  | OnboardingThread
+  | ScheduledThread;
