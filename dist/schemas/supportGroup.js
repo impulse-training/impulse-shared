@@ -33,16 +33,20 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidSupportGroup = exports.isValidSupportGroupMember = exports.supportGroupSchema = exports.supportGroupMemberSchema = void 0;
+exports.isValidSupportGroup = exports.isValidSupportGroupMember = exports.supportGroupSchema = exports.supportGroupMemberSchema = exports.supportGroupPermissionsSchema = void 0;
 const yup = __importStar(require("yup"));
 const utils_1 = require("../utils");
 const attachment_1 = require("./attachment");
 const log_1 = require("./log");
 const userProfile_1 = require("./userProfile");
+exports.supportGroupPermissionsSchema = yup.object({
+    shareDayOutcomes: yup.boolean().default(false),
+});
 // Support Group Member Schema
 exports.supportGroupMemberSchema = yup.object({
     userId: yup.string().required(),
     userProfile: userProfile_1.userProfileSchema,
+    permissions: exports.supportGroupPermissionsSchema.optional().default(undefined),
     currentStreak: yup
         .object({
         streakStart: utils_1.timestampSchema,

@@ -1,7 +1,8 @@
 import * as yup from "yup";
-import { objectOf, timestampSchema } from "../utils";
+import { objectOf, optionalObjectOf, timestampSchema } from "../utils";
 import { outcomeSchema } from "../utils/outcomes";
 import { behaviorTrackingDataSchema } from "./log";
+import { supportGroupPermissionsSchema } from "./supportGroup";
 import { tacticSchema } from "./tactic";
 
 const supportGroupSharingPermissionsSchema = yup.object({
@@ -24,10 +25,7 @@ export const daySummarySchema = yup.object({
   ),
   tacticsUsed: yup.array().of(tacticSchema).default([]),
   summaryText: yup.string().default(""),
-  sharedWithSupportGroupIds: yup
-    .array()
-    .of(yup.string().required())
-    .default([]),
+  supportGroupPermissionsById: optionalObjectOf(supportGroupPermissionsSchema),
   sharedWithUserIds: yup.array().of(yup.string().required()),
   supportGroupPermissions: objectOf(supportGroupSharingPermissionsSchema),
   recapCompletedAt: timestampSchema,

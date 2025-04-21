@@ -9,11 +9,10 @@ export const threadBaseSchema = yup.object({
   id: yup.string(),
   title: yup.string().required(),
   type: yup
-    .mixed<"impulse" | "general" | "onboarding" | "dayRecap">()
-    .oneOf(["impulse", "general", "onboarding", "dayRecap"])
+    .mixed<"impulse" | "general" | "onboarding" | "dayRecap" | "scheduled">()
+    .oneOf(["impulse", "general", "onboarding", "dayRecap", "scheduled"])
     .default("general"),
   date: timestampSchema.required(),
-  gameplanId: yup.string().optional(),
   gameplan: tacticsByIdSchema, // The gameplan is a list of tactics that the user has agreed to use
   dateString: yup.string().required(),
 

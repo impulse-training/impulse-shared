@@ -4,10 +4,18 @@ import { attachmentSchema } from "./attachment";
 import { userMessageLogSchema } from "./log";
 import { userProfileSchema } from "./userProfile";
 
+export const supportGroupPermissionsSchema = yup.object({
+  shareDayOutcomes: yup.boolean().default(false),
+});
+export type SupportGroupPermissions = yup.InferType<
+  typeof supportGroupPermissionsSchema
+>;
+
 // Support Group Member Schema
 export const supportGroupMemberSchema = yup.object({
   userId: yup.string().required(),
   userProfile: userProfileSchema,
+  permissions: supportGroupPermissionsSchema.optional().default(undefined),
   currentStreak: yup
     .object({
       streakStart: timestampSchema,
