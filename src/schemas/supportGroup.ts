@@ -27,6 +27,7 @@ export const supportGroupSchema = yup.object({
   coverPhoto: attachmentSchema.optional(), // Optional cover photo for the group
   membersById: objectOf(supportGroupMemberSchema),
   unreadMessageCountsById: objectOf(yup.number().required()),
+  hiddenTacticIdsByUserId: objectOf(yup.array().of(yup.string().required())),
   memberCount: yup.number().default(0), // Count of members for easier querying
   image: attachmentSchema,
   isPublic: yup.boolean().optional(),
