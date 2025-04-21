@@ -13,6 +13,7 @@ export const threadBaseSchema = yup.object({
     .oneOf(["impulse", "general", "onboarding", "dayRecap"])
     .default("general"),
   date: timestampSchema.required(),
+  gameplanId: yup.string().optional(),
   gameplan: tacticsByIdSchema, // The gameplan is a list of tactics that the user has agreed to use
   dateString: yup.string().required(),
 
