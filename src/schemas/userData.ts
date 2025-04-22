@@ -22,6 +22,8 @@ export const userDataSchema = yup.object({
   dayRecapTime: timestampSchema,
   lastDayRecapDate: timestampSchema,
 
+  appVersion: yup.string(),
+
   // User preferences
   theme: yup
     .string()
