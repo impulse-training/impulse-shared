@@ -1,6 +1,5 @@
 export * from "./attachment";
 export * from "./behavior";
-export * from "./dayLogs";
 export * from "./daySummary";
 export * from "./gameplan";
 export * from "./insight";

@@ -285,6 +285,7 @@ export declare const logSchemas: {
         type: "question";
         isDisplayable: true;
         data: {
+            response: {} | null;
             question: {
                 id?: string | undefined;
                 suggestedResponses?: (string | undefined)[] | undefined;
@@ -302,7 +303,6 @@ export declare const logSchemas: {
                 content: string;
                 responseType: NonNullable<"text" | "slider" | "multiple_choice" | undefined>;
             };
-            response: {} | null;
         };
     }, yup.AnyObject, {
         id: undefined;

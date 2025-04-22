@@ -10,6 +10,7 @@ export declare const questionLogSchema: yup.ObjectSchema<{
     type: "question";
     isDisplayable: true;
     data: {
+        response: {} | null;
         question: {
             id?: string | undefined;
             suggestedResponses?: (string | undefined)[] | undefined;
@@ -27,7 +28,6 @@ export declare const questionLogSchema: yup.ObjectSchema<{
             content: string;
             responseType: NonNullable<"text" | "slider" | "multiple_choice" | undefined>;
         };
-        response: {} | null;
     };
 }, yup.AnyObject, {
     id: undefined;

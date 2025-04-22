@@ -18,9 +18,9 @@ export declare const supportGroupMemberSchema: yup.ObjectSchema<{
         } | undefined;
     };
     permissions: {
-        summary: boolean;
         dayOutcomes: boolean;
         threads: boolean;
+        summary: boolean;
     } | undefined;
     currentStreak: {
         streakStart?: import("../types").Timestamp | undefined;
@@ -62,9 +62,9 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
         [x: string]: {
             joinedAt?: import("../types").Timestamp | undefined;
             permissions?: {
-                summary: boolean;
                 dayOutcomes: boolean;
                 threads: boolean;
+                summary: boolean;
             } | undefined;
             currentStreak?: {
                 streakStart?: import("../types").Timestamp | undefined;
