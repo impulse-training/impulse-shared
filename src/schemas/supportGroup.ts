@@ -5,7 +5,9 @@ import { userMessageLogSchema } from "./log";
 import { userProfileSchema } from "./userProfile";
 
 export const supportGroupPermissionsSchema = yup.object({
-  shareDayOutcomes: yup.boolean().default(false),
+  dayOutcomes: yup.boolean().default(false),
+  threads: yup.boolean().default(false),
+  summary: yup.boolean().default(false),
 });
 export type SupportGroupPermissions = yup.InferType<
   typeof supportGroupPermissionsSchema

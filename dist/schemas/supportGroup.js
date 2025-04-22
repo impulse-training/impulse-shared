@@ -40,7 +40,9 @@ const attachment_1 = require("./attachment");
 const log_1 = require("./log");
 const userProfile_1 = require("./userProfile");
 exports.supportGroupPermissionsSchema = yup.object({
-    shareDayOutcomes: yup.boolean().default(false),
+    dayOutcomes: yup.boolean().default(false),
+    threads: yup.boolean().default(false),
+    summary: yup.boolean().default(false),
 });
 // Support Group Member Schema
 exports.supportGroupMemberSchema = yup.object({

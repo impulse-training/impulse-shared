@@ -1,8 +1,12 @@
 import * as yup from "yup";
 export declare const supportGroupPermissionsSchema: yup.ObjectSchema<{
-    shareDayOutcomes: boolean;
+    dayOutcomes: boolean;
+    threads: boolean;
+    summary: boolean;
 }, yup.AnyObject, {
-    shareDayOutcomes: false;
+    dayOutcomes: false;
+    threads: false;
+    summary: false;
 }, "">;
 export type SupportGroupPermissions = yup.InferType<typeof supportGroupPermissionsSchema>;
 export declare const supportGroupMemberSchema: yup.ObjectSchema<{
@@ -14,7 +18,9 @@ export declare const supportGroupMemberSchema: yup.ObjectSchema<{
         } | undefined;
     };
     permissions: {
-        shareDayOutcomes: boolean;
+        summary: boolean;
+        dayOutcomes: boolean;
+        threads: boolean;
     } | undefined;
     currentStreak: {
         streakStart?: import("../types").Timestamp | undefined;
@@ -56,7 +62,9 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
         [x: string]: {
             joinedAt?: import("../types").Timestamp | undefined;
             permissions?: {
-                shareDayOutcomes: boolean;
+                summary: boolean;
+                dayOutcomes: boolean;
+                threads: boolean;
             } | undefined;
             currentStreak?: {
                 streakStart?: import("../types").Timestamp | undefined;

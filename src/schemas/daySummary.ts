@@ -5,15 +5,6 @@ import { behaviorTrackingDataSchema } from "./log";
 import { supportGroupPermissionsSchema } from "./supportGroup";
 import { tacticSchema } from "./tactic";
 
-const supportGroupSharingPermissionsSchema = yup.object({
-  impulseMoments: yup.boolean().default(false),
-  conversations: yup.boolean().default(false),
-  tactics: yup.boolean().default(false),
-  behaviorData: yup.boolean().default(false),
-  insights: yup.boolean().default(false),
-  summary: yup.boolean().default(false),
-});
-
 export const daySummarySchema = yup.object({
   id: yup.string(),
   dateString: yup.string().required(),
@@ -27,7 +18,6 @@ export const daySummarySchema = yup.object({
   summaryText: yup.string().default(""),
   supportGroupPermissionsById: optionalObjectOf(supportGroupPermissionsSchema),
   sharedWithUserIds: yup.array().of(yup.string().required()),
-  supportGroupPermissions: objectOf(supportGroupSharingPermissionsSchema),
   recapCompletedAt: timestampSchema,
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
