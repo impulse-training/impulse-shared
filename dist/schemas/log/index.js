@@ -51,6 +51,7 @@ const showTourLog_1 = require("./showTourLog");
 const summaryLog_1 = require("./summaryLog");
 const tacticLog_1 = require("./tacticLog");
 const toolCallLog_1 = require("./toolCallLog");
+const videoLog_1 = require("./videoLog");
 const widgetSetupLog_1 = require("./widgetSetupLog");
 exports.logSchemas = {
     user: userMessageLog_1.userMessageLogSchema,
@@ -68,6 +69,7 @@ exports.logSchemas = {
     widget_setup: widgetSetupLog_1.widgetSetupLogSchema,
     show_tour: showTourLog_1.showTourLogSchema,
     link: linkLog_1.linkLogSchema,
+    video: videoLog_1.videoLogSchema,
 };
 exports.logTypes = Object.keys(exports.logSchemas);
 __exportStar(require("./behaviorTrackedLog"), exports);
@@ -82,6 +84,7 @@ __exportStar(require("./showTourLog"), exports);
 __exportStar(require("./summaryLog"), exports);
 __exportStar(require("./tacticLog"), exports);
 __exportStar(require("./toolCallLog"), exports);
+__exportStar(require("./videoLog"), exports);
 __exportStar(require("./widgetSetupLog"), exports);
 // Dynamic schema that selects the appropriate schema based on the tactic type
 exports.logSchema = yup.lazy((value) => {

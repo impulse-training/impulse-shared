@@ -12,6 +12,7 @@ import { ShowTourLog } from "./showTourLog";
 import { SummaryLog } from "./summaryLog";
 import { TacticLog } from "./tacticLog";
 import { ToolCallLog } from "./toolCallLog";
+import { VideoLog } from "./videoLog";
 import { WidgetSetupLog } from "./widgetSetupLog";
 export declare const logSchemas: {
     user: yup.ObjectSchema<{
@@ -527,10 +528,41 @@ export declare const logSchemas: {
         link: undefined;
         buttonText: undefined;
     }, "">;
+    video: yup.ObjectSchema<{
+        id: string | undefined;
+        createdAt: import("../../types").Timestamp | undefined;
+        updatedAt: import("../../types").Timestamp | undefined;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        callLogDocPath: string | undefined;
+        type: "video";
+        isDisplayable: true;
+        title: string | undefined;
+        text: string | undefined;
+        data: {
+            sourceUri: string;
+        };
+    }, yup.AnyObject, {
+        id: undefined;
+        createdAt: undefined;
+        updatedAt: undefined;
+        userId: undefined;
+        timestamp: undefined;
+        dateString: undefined;
+        callLogDocPath: undefined;
+        type: undefined;
+        isDisplayable: undefined;
+        title: undefined;
+        text: undefined;
+        data: {
+            sourceUri: undefined;
+        };
+    }, "">;
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | ImpulseLog | BehaviorTrackedLog | QuestionLog | GameplanLog | OutcomeLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog;
+export type Log = TacticLog | ImpulseLog | BehaviorTrackedLog | QuestionLog | GameplanLog | OutcomeLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | VideoLog;
 export * from "./behaviorTrackedLog";
 export * from "./callLog";
 export * from "./gameplanLog";
@@ -543,6 +575,7 @@ export * from "./showTourLog";
 export * from "./summaryLog";
 export * from "./tacticLog";
 export * from "./toolCallLog";
+export * from "./videoLog";
 export * from "./widgetSetupLog";
 export declare const logSchema: yup.Lazy<Log, yup.AnyObject, any>;
 export declare const logIsAssistantMessageLog: (value: Omit<Log, "id">) => value is AssistantMessageLog;

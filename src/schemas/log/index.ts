@@ -22,6 +22,7 @@ import { ShowTourLog, showTourLogSchema } from "./showTourLog";
 import { SummaryLog, summaryLogSchema } from "./summaryLog";
 import { TacticLog, tacticLogSchema } from "./tacticLog";
 import { ToolCallLog, toolCallLogSchema } from "./toolCallLog";
+import { VideoLog, videoLogSchema } from "./videoLog";
 import { WidgetSetupLog, widgetSetupLogSchema } from "./widgetSetupLog";
 
 export const logSchemas = {
@@ -40,6 +41,7 @@ export const logSchemas = {
   widget_setup: widgetSetupLogSchema,
   show_tour: showTourLogSchema,
   link: linkLogSchema,
+  video: videoLogSchema,
 };
 export const logTypes = Object.keys(logSchemas);
 
@@ -59,7 +61,8 @@ export type Log =
   | CallLog
   | WidgetSetupLog
   | ShowTourLog
-  | LinkLog;
+  | LinkLog
+  | VideoLog;
 
 export * from "./behaviorTrackedLog";
 export * from "./callLog";
@@ -73,6 +76,7 @@ export * from "./showTourLog";
 export * from "./summaryLog";
 export * from "./tacticLog";
 export * from "./toolCallLog";
+export * from "./videoLog";
 export * from "./widgetSetupLog";
 
 // Dynamic schema that selects the appropriate schema based on the tactic type
