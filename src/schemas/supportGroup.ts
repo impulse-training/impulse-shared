@@ -13,11 +13,22 @@ export type SupportGroupPermissions = yup.InferType<
   typeof supportGroupPermissionsSchema
 >;
 
+export const supportGroupNotificationPreferencesSchema = yup.object({
+  messages: yup.boolean().default(false),
+  gameplan: yup.boolean().default(false),
+});
+export type SupportGroupNotificationPreferences = yup.InferType<
+  typeof supportGroupNotificationPreferencesSchema
+>;
+
 // Support Group Member Schema
 export const supportGroupMemberSchema = yup.object({
   userId: yup.string().required(),
   userProfile: userProfileSchema,
   permissions: supportGroupPermissionsSchema.optional().default(undefined),
+  notificationPreferences: supportGroupNotificationPreferencesSchema
+    .optional()
+    .default(undefined),
   currentStreak: yup
     .object({
       streakStart: timestampSchema,

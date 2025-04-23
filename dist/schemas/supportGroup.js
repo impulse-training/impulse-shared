@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidSupportGroup = exports.isValidSupportGroupMember = exports.supportGroupSchema = exports.supportGroupMemberSchema = exports.supportGroupPermissionsSchema = void 0;
+exports.isValidSupportGroup = exports.isValidSupportGroupMember = exports.supportGroupSchema = exports.supportGroupMemberSchema = exports.supportGroupNotificationPreferencesSchema = exports.supportGroupPermissionsSchema = void 0;
 const yup = __importStar(require("yup"));
 const utils_1 = require("../utils");
 const attachment_1 = require("./attachment");
@@ -44,11 +44,18 @@ exports.supportGroupPermissionsSchema = yup.object({
     threads: yup.boolean().default(false),
     summary: yup.boolean().default(false),
 });
+exports.supportGroupNotificationPreferencesSchema = yup.object({
+    messages: yup.boolean().default(false),
+    gameplan: yup.boolean().default(false),
+});
 // Support Group Member Schema
 exports.supportGroupMemberSchema = yup.object({
     userId: yup.string().required(),
     userProfile: userProfile_1.userProfileSchema,
     permissions: exports.supportGroupPermissionsSchema.optional().default(undefined),
+    notificationPreferences: exports.supportGroupNotificationPreferencesSchema
+        .optional()
+        .default(undefined),
     currentStreak: yup
         .object({
         streakStart: utils_1.timestampSchema,

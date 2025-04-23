@@ -16,6 +16,7 @@ export const userDataSchema = yup.object({
 
   // Notification settings
   notificationsEnabled: yup.boolean().default(true),
+  expoPushToken: yup.string().nullable().default(null),
 
   // Daily recap settings
   dayRecapEnabled: yup.boolean().default(true),

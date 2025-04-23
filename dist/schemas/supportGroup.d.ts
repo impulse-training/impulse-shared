@@ -9,6 +9,14 @@ export declare const supportGroupPermissionsSchema: yup.ObjectSchema<{
     summary: false;
 }, "">;
 export type SupportGroupPermissions = yup.InferType<typeof supportGroupPermissionsSchema>;
+export declare const supportGroupNotificationPreferencesSchema: yup.ObjectSchema<{
+    messages: boolean;
+    gameplan: boolean;
+}, yup.AnyObject, {
+    messages: false;
+    gameplan: false;
+}, "">;
+export type SupportGroupNotificationPreferences = yup.InferType<typeof supportGroupNotificationPreferencesSchema>;
 export declare const supportGroupMemberSchema: yup.ObjectSchema<{
     userId: string;
     userProfile: {
@@ -22,6 +30,10 @@ export declare const supportGroupMemberSchema: yup.ObjectSchema<{
         threads: boolean;
         summary: boolean;
     } | undefined;
+    notificationPreferences: {
+        messages: boolean;
+        gameplan: boolean;
+    } | undefined;
     currentStreak: {
         streakStart?: import("../types").Timestamp | undefined;
         color: string;
@@ -33,6 +45,7 @@ export declare const supportGroupMemberSchema: yup.ObjectSchema<{
         emojiId: undefined;
     };
     permissions: undefined;
+    notificationPreferences: undefined;
     currentStreak: undefined;
     joinedAt: undefined;
 }, "">;
@@ -65,6 +78,10 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
                 dayOutcomes: boolean;
                 threads: boolean;
                 summary: boolean;
+            } | undefined;
+            notificationPreferences?: {
+                messages: boolean;
+                gameplan: boolean;
             } | undefined;
             currentStreak?: {
                 streakStart?: import("../types").Timestamp | undefined;
