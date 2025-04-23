@@ -29,6 +29,29 @@ export const notificationSchema = yup.object({
 
   // Time to live in seconds
   ttl: yup.number().default(3600),
+  
+  // Expo Push Receipt Tracking
+  // Array of Expo receipt IDs (used to track delivery status)
+  expoReceiptIds: yup.array().of(yup.string()).nullable().default(null),
+  
+  // Status of receipt tracking (pending, complete)
+  receiptStatus: yup.string().oneOf(["pending", "complete"]).default("pending"),
+  
+  // Object mapping receipt IDs to their status objects returned from Expo
+  pushReceipts: yup.object().nullable().default(null),
+  
+  // Error that occurred during receipt fetching, if any
+  pushReceiptFetchError: yup.string().nullable().default(null),
+  
+  // When all receipts were processed
+  completedAt: yup.mixed().nullable().default(null),
+  
+  // User ID who should receive this notification
+  userId: yup.string().nullable().default(null),
+  
+  // Timestamps
+  createdAt: yup.mixed().nullable().default(null),
+  updatedAt: yup.mixed().nullable().default(null),
 });
 
 export type Notification = yup.InferType<typeof notificationSchema>;
