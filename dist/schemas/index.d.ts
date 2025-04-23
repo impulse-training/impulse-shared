@@ -5,6 +5,7 @@ export * from "./gameplan";
 export * from "./insight";
 export * from "./llmAuditEntries";
 export * from "./log";
+export * from "./notification";
 export * from "./question";
 export * from "./session";
 export * from "./supportGroup";

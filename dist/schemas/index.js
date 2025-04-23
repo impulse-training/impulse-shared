@@ -22,6 +22,7 @@ __exportStar(require("./gameplan"), exports);
 __exportStar(require("./insight"), exports);
 __exportStar(require("./llmAuditEntries"), exports);
 __exportStar(require("./log"), exports);
+__exportStar(require("./notification"), exports);
 __exportStar(require("./question"), exports);
 __exportStar(require("./session"), exports);
 __exportStar(require("./supportGroup"), exports);
