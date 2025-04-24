@@ -435,9 +435,6 @@ export declare const logSchemas: {
         callLogDocPath: string | undefined;
         type: "widget_setup";
         isDisplayable: true;
-        data: {
-            impulseWidgetInstalled: NonNullable<boolean | undefined>;
-        };
     }, yup.AnyObject, {
         id: undefined;
         createdAt: undefined;
@@ -448,9 +445,6 @@ export declare const logSchemas: {
         callLogDocPath: undefined;
         type: undefined;
         isDisplayable: undefined;
-        data: {
-            impulseWidgetInstalled: undefined;
-        };
     }, "">;
     show_tour: yup.ObjectSchema<{
         id: string | undefined;

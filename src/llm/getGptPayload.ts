@@ -60,9 +60,7 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
     return [
       {
         role: "user",
-        content: log.data.impulseWidgetInstalled
-          ? "<SYSTEM>The user has installed the Impulse widget!</SYSTEM>"
-          : "<SYSTEM>The user skipped widget install setup. The impulse widget can be pressed in an 'impulse moment' (when the user has a craving or urge), alllowing easy access to strategies and support. Their decision to skip this setup is not good. They may have encountered difficulties installing the widget. If they just skipped it absent-mindedly, encourage them to go back and try again.</SYSTEM>",
+        content: "<SYSTEM>The user has installed the Impulse widget!</SYSTEM>",
       },
     ];
   }
