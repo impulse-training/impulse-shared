@@ -1,6 +1,5 @@
 import * as yup from "yup";
 import { objectOf } from "../../utils";
-import { outcomeSchema } from "../../utils/outcomes";
 import { timestampSchema } from "../../utils/timestampSchema";
 import { logSchema, tacticsByIdSchema } from "../log";
 
@@ -19,11 +18,9 @@ export const threadBaseSchema = yup.object({
   // Log summary data - written in after log write functions. We store tactic and behavior tracking
   // logs here
   trackingLogsById: objectOf(logSchema),
-
-  outcome: outcomeSchema,
   systemPrompt: yup.string(),
   summary: yup.string().optional(),
-  debriefedAt: timestampSchema,
+
   updatedAt: timestampSchema,
   createdAt: timestampSchema,
 });

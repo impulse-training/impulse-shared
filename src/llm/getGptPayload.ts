@@ -8,6 +8,7 @@ import {
   logIsImpulseLog,
   logIsQuestionLog,
   logIsShowTourLog,
+  logIsTacticLog,
   logIsToolCallLog,
   logIsUserMessageLog,
   logIsWidgetSetupLog,
@@ -56,11 +57,20 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
     return messages;
   }
 
+  if (logIsTacticLog(log)) {
+    return [
+      {
+        role: "user",
+        content: `<SYSTEM>User completed tactic: ${log.data.tactic.title}</SYSTEM>`,
+      },
+    ];
+  }
+
   if (logIsWidgetSetupLog(log)) {
     return [
       {
         role: "user",
-        content: "<SYSTEM>The user has installed the Impulse widget!</SYSTEM>",
+        content: `<SYSTEM>The user has installed the Impulse widget!</SYSTEM>`,
       },
     ];
   }
