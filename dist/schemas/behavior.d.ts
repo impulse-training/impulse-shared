@@ -7,6 +7,7 @@ export declare const behaviorSchema: yup.ObjectSchema<{
     ordinal: number;
     trackingType: NonNullable<"counter" | "timer" | undefined>;
     trackingUnit: string | undefined;
+    category: NonNullable<"mixed" | "helpful" | "unhelpful" | undefined>;
     createdAt: import("../types").Timestamp | undefined;
     updatedAt: import("../types").Timestamp | undefined;
     lastTrackedAt: import("../types").Timestamp | undefined;
@@ -17,6 +18,7 @@ export declare const behaviorSchema: yup.ObjectSchema<{
     ordinal: 0;
     trackingType: undefined;
     trackingUnit: undefined;
+    category: undefined;
     createdAt: undefined;
     updatedAt: undefined;
     lastTrackedAt: undefined;

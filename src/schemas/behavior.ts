@@ -17,6 +17,10 @@ export const behaviorSchema = yup.object({
       ),
     otherwise: (schema) => schema.notRequired(),
   }),
+  category: yup
+    .mixed<"mixed" | "helpful" | "unhelpful">()
+    .oneOf(["helpful", "mixed", "unhelpful"])
+    .required(),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
   lastTrackedAt: timestampSchema,

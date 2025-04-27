@@ -290,20 +290,30 @@ export declare const logSchemas: {
             response: {} | null;
             question: {
                 id?: string | undefined;
-                suggestedResponses?: (string | undefined)[] | undefined;
-                sliderConfig?: {
+                scope?: "debrief" | undefined;
+                content: string;
+                responseType: "text";
+                suggestedResponses: (string | undefined)[];
+            } | {
+                id?: string | undefined;
+                scope?: "debrief" | undefined;
+                content: string;
+                responseType: "slider";
+                suggestedResponses: (string | undefined)[];
+                sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                     defaultValue?: number | undefined;
                     min: number;
                     max: number;
                     step: number;
-                } | undefined;
+                };
+            } | {
+                id?: string | undefined;
                 scope?: "debrief" | undefined;
-                order?: number | undefined;
-                visibleForOutcomes?: (import("../../utils/outcomes").Outcome | undefined)[] | undefined;
                 content: string;
-                responseType: NonNullable<"text" | "slider" | "multiple_choice" | undefined>;
+                responseType: "multiple_choice";
+                suggestedResponses: (string | undefined)[];
             };
         };
     }, yup.AnyObject, {
@@ -317,16 +327,7 @@ export declare const logSchemas: {
         type: undefined;
         isDisplayable: undefined;
         data: {
-            question: {
-                id: undefined;
-                content: undefined;
-                responseType: undefined;
-                suggestedResponses: "";
-                sliderConfig: undefined;
-                scope: undefined;
-                order: undefined;
-                visibleForOutcomes: "";
-            };
+            question: undefined;
             response: null;
         };
     }, "">;
