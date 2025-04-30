@@ -1,13 +1,19 @@
 import * as yup from "yup";
-import { ImpulseGameplan, impulseGameplanSchema } from "./impulse";
+import { CravingGameplan, cravingGameplanSchema } from "./craving";
+import { FeelingGameplan, feelingGameplanSchema } from "./feeling";
 import { LocationGameplan, locationGameplanSchema } from "./location";
 import { ScheduledGameplan, scheduledGameplanSchema } from "./scheduled";
 
-export * from "./impulse";
+export * from "./craving";
+export * from "./feeling";
 export * from "./location";
 export * from "./scheduled";
 
-export type Gameplan = ScheduledGameplan | LocationGameplan | ImpulseGameplan;
+export type Gameplan =
+  | ScheduledGameplan
+  | LocationGameplan
+  | CravingGameplan
+  | FeelingGameplan;
 
 // Utility to dynamically select the correct schema based on the Gameplan type
 export const GameplanSchemas: Record<
@@ -16,7 +22,8 @@ export const GameplanSchemas: Record<
 > = {
   scheduled: scheduledGameplanSchema,
   location: locationGameplanSchema,
-  impulse: impulseGameplanSchema,
+  craving: cravingGameplanSchema,
+  feeling: feelingGameplanSchema,
 } as any;
 
 export const gameplanSchema = yup.lazy((value) => {
@@ -51,6 +58,20 @@ export const isValidScheduledGameplan = (
   }
 };
 
+export const gameplanIsCravingGameplan = (
+  value: Omit<Gameplan, "id">
+): value is CravingGameplan => value.type === "craving";
+export const isValidCravingGameplan = (
+  value: unknown
+): value is CravingGameplan => {
+  try {
+    cravingGameplanSchema.validateSync(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
 export const gameplanIsLocationGameplan = (
   value: Omit<Gameplan, "id">
 ): value is LocationGameplan => value.type === "location";
@@ -65,14 +86,14 @@ export const isValidLocationGameplan = (
   }
 };
 
-export const gameplanIsImpulseGameplan = (
+export const gameplanIsFeelingGameplan = (
   value: Omit<Gameplan, "id">
-): value is ImpulseGameplan => value.type === "impulse";
-export const isValidImpulseGameplan = (
+): value is FeelingGameplan => value.type === "feeling";
+export const isValidFeelingGameplan = (
   value: unknown
-): value is ImpulseGameplan => {
+): value is FeelingGameplan => {
   try {
-    impulseGameplanSchema.validateSync(value);
+    feelingGameplanSchema.validateSync(value);
     return true;
   } catch (error) {
     return false;
