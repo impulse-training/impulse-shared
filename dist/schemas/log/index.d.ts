@@ -291,9 +291,9 @@ export declare const logSchemas: {
             question: {
                 id?: string | undefined;
                 scope?: "debrief" | undefined;
+                suggestedResponses?: string[] | undefined;
                 content: string;
                 responseType: "text";
-                suggestedResponses: (string | undefined)[];
             } | {
                 id?: string | undefined;
                 scope?: "debrief" | undefined;
