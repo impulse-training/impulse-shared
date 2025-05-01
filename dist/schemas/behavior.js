@@ -37,6 +37,13 @@ exports.isBehavior = exports.behaviorSchema = exports.trackingTypes = void 0;
 const yup = __importStar(require("yup"));
 const utils_1 = require("../utils");
 exports.trackingTypes = ["counter", "timer"];
+const goalSchema = yup.object({
+    type: yup
+        .mixed()
+        .oneOf(["greaterThan", "lessThanOrEqualTo"])
+        .required(),
+    target: yup.number().required(),
+});
 exports.behaviorSchema = yup.object({
     id: yup.string(),
     name: yup.string().required(),
@@ -52,6 +59,7 @@ exports.behaviorSchema = yup.object({
         .mixed()
         .oneOf(["helpful", "mixed", "unhelpful"])
         .required(),
+    goal: goalSchema,
     createdAt: utils_1.timestampSchema,
     updatedAt: utils_1.timestampSchema,
     lastTrackedAt: utils_1.timestampSchema,

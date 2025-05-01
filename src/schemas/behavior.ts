@@ -3,6 +3,14 @@ import { timestampSchema } from "../utils";
 
 export const trackingTypes = ["counter", "timer"] as const;
 
+const goalSchema = yup.object({
+  type: yup
+    .mixed<"greaterThan" | "lessThanOrEqualTo">()
+    .oneOf(["greaterThan", "lessThanOrEqualTo"])
+    .required(),
+  target: yup.number().required(),
+});
+
 export const behaviorSchema = yup.object({
   id: yup.string(),
   name: yup.string().required(),
@@ -21,6 +29,7 @@ export const behaviorSchema = yup.object({
     .mixed<"mixed" | "helpful" | "unhelpful">()
     .oneOf(["helpful", "mixed", "unhelpful"])
     .required(),
+  goal: goalSchema,
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
   lastTrackedAt: timestampSchema,
