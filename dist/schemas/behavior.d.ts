@@ -5,6 +5,8 @@ export declare const behaviorSchema: yup.ObjectSchema<{
     name: string;
     description: string;
     ordinal: number;
+    benefits: string[] | undefined;
+    drawbacks: string[] | undefined;
     trackingType: NonNullable<"counter" | "timer" | undefined>;
     trackingUnit: string | undefined;
     category: NonNullable<"mixed" | "helpful" | "unhelpful" | undefined>;
@@ -20,6 +22,8 @@ export declare const behaviorSchema: yup.ObjectSchema<{
     name: undefined;
     description: undefined;
     ordinal: 0;
+    benefits: "";
+    drawbacks: "";
     trackingType: undefined;
     trackingUnit: undefined;
     category: undefined;

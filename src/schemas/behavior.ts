@@ -3,6 +3,8 @@ import { timestampSchema } from "../utils";
 
 export const trackingTypes = ["counter", "timer"] as const;
 
+// We're using simple string arrays for benefits and drawbacks
+
 const goalSchema = yup.object({
   type: yup
     .mixed<"greaterThan" | "lessThanOrEqualTo">()
@@ -16,6 +18,8 @@ export const behaviorSchema = yup.object({
   name: yup.string().required(),
   description: yup.string().required(),
   ordinal: yup.number().default(0),
+  benefits: yup.array().of(yup.string().required()),
+  drawbacks: yup.array().of(yup.string().required()),
   trackingType: yup.string().oneOf(trackingTypes).required(),
   trackingUnit: yup.string().when("trackingType", {
     is: "counter",

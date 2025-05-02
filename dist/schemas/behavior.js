@@ -37,6 +37,7 @@ exports.isBehavior = exports.behaviorSchema = exports.trackingTypes = void 0;
 const yup = __importStar(require("yup"));
 const utils_1 = require("../utils");
 exports.trackingTypes = ["counter", "timer"];
+// We're using simple string arrays for benefits and drawbacks
 const goalSchema = yup.object({
     type: yup
         .mixed()
@@ -49,6 +50,8 @@ exports.behaviorSchema = yup.object({
     name: yup.string().required(),
     description: yup.string().required(),
     ordinal: yup.number().default(0),
+    benefits: yup.array().of(yup.string().required()),
+    drawbacks: yup.array().of(yup.string().required()),
     trackingType: yup.string().oneOf(exports.trackingTypes).required(),
     trackingUnit: yup.string().when("trackingType", {
         is: "counter",
