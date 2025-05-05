@@ -45,7 +45,7 @@ exports.behaviorContextSchema = yup.object({
     totalTracked: yup.number().default(0),
     insights: yup.array().of(yup.string()).default([]),
     effectiveTactics: yup.array().of(yup.string()).default([]),
-    gameplanTacticIds: yup.array().of(yup.string()).default([]),
+    guidelineTacticIds: yup.array().of(yup.string()).default([]),
 });
 exports.tacticContextSchema = yup.object({
     tacticId: yup.string().required(),

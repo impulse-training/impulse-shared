@@ -4,7 +4,7 @@ import {
   behaviorTrackedLogSchema,
 } from "./behaviorTrackedLog";
 import { CallLog, callLogSchema } from "./callLog";
-import { GameplanLog, gameplanLogSchema } from "./gameplanLog";
+import { GuidelineLog, guidelineLogSchema } from "./guidelineLog";
 import { ImpulseLog, impulseLogSchema } from "./impulseLog";
 import { LinkLog, linkLogSchema } from "./linkLog";
 import {
@@ -35,7 +35,7 @@ export const logSchemas = {
   impulse_button_pressed: impulseLogSchema,
   behavior_tracked: behaviorTrackedLogSchema,
   question: questionLogSchema,
-  gameplan: gameplanLogSchema,
+  guideline: guidelineLogSchema,
   summary: summaryLogSchema,
   outcome: outcomeLogSchema,
   widget_setup: widgetSetupLogSchema,
@@ -53,7 +53,7 @@ export type Log =
   | ImpulseLog
   | BehaviorTrackedLog
   | QuestionLog
-  | GameplanLog
+  | GuidelineLog
   | OutcomeLog
   | ToolCallLog
   | MessageLog
@@ -66,7 +66,7 @@ export type Log =
 
 export * from "./behaviorTrackedLog";
 export * from "./callLog";
-export * from "./gameplanLog";
+export * from "./guidelineLog";
 export * from "./impulseLog";
 export * from "./linkLog";
 export * from "./messageLog";
@@ -230,13 +230,13 @@ export const isValidUserMessageLog = (
   }
 };
 
-export const logIsGameplanLog = (
+export const logIsGuidelineLog = (
   value: Omit<Log, "id">
-): value is GameplanLog => value.type === "gameplan";
+): value is GuidelineLog => value.type === "guideline";
 
-export const isValidGameplanLog = (value: unknown): value is GameplanLog => {
+export const isValidGuidelineLog = (value: unknown): value is GuidelineLog => {
   try {
-    gameplanLogSchema.validateSync(value);
+    guidelineLogSchema.validateSync(value);
     return true;
   } catch (error) {
     return false;

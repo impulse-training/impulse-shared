@@ -7,7 +7,7 @@ export declare const behaviorContextSchema: yup.ObjectSchema<{
     totalTracked: number;
     insights: (string | undefined)[];
     effectiveTactics: (string | undefined)[];
-    gameplanTacticIds: (string | undefined)[];
+    guidelineTacticIds: (string | undefined)[];
 }, yup.AnyObject, {
     behaviorId: undefined;
     behaviorName: undefined;
@@ -16,7 +16,7 @@ export declare const behaviorContextSchema: yup.ObjectSchema<{
     totalTracked: 0;
     insights: never[];
     effectiveTactics: never[];
-    gameplanTacticIds: never[];
+    guidelineTacticIds: never[];
 }, "">;
 export declare const tacticContextSchema: yup.ObjectSchema<{
     tacticId: string;
@@ -52,7 +52,7 @@ export declare const userContextSchema: yup.ObjectSchema<{
             totalTracked: number;
             insights: (string | undefined)[];
             effectiveTactics: (string | undefined)[];
-            gameplanTacticIds: (string | undefined)[];
+            guidelineTacticIds: (string | undefined)[];
         };
     };
     tactics: {

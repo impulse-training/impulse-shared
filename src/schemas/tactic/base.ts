@@ -18,7 +18,7 @@ export const tacticBaseSchema = yup.object({
   allBehaviors: yup.boolean().optional(),
   behaviorIds: yup.array().of(yup.string().required()).optional(),
 
-  gameplanIds: yup.array().of(yup.string().required()).optional(),
+  guidelineIds: yup.array().of(yup.string().required()).optional(),
 
   // Ordinal for display ordering
   ordinal: yup.number().required(),
