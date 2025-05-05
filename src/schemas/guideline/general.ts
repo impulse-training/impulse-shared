@@ -1,10 +1,10 @@
 import * as yup from "yup";
 import { guidelineBaseSchema } from "./base";
 
-export const feelingGuidelineSchema = guidelineBaseSchema("feeling").shape({
+export const generalGuidelineSchema = guidelineBaseSchema("general").shape({
   data: yup.object({
-    trigger: yup.string().required(),
+    text: yup.string().required(),
   }),
 });
 
-export type FeelingGuideline = yup.InferType<typeof feelingGuidelineSchema>;
+export type GeneralGuideline = yup.InferType<typeof generalGuidelineSchema>;

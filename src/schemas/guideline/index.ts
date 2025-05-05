@@ -1,6 +1,6 @@
 import * as yup from "yup";
 import { CravingGuideline, cravingGuidelineSchema } from "./craving";
-import { FeelingGuideline, feelingGuidelineSchema } from "./general";
+import { GeneralGuideline, generalGuidelineSchema } from "./general";
 import { LocationGuideline, locationGuidelineSchema } from "./location";
 import { ScheduledGuideline, scheduledGuidelineSchema } from "./scheduled";
 
@@ -13,7 +13,7 @@ export type Guideline =
   | ScheduledGuideline
   | LocationGuideline
   | CravingGuideline
-  | FeelingGuideline;
+  | GeneralGuideline;
 
 // Utility to dynamically select the correct schema based on the Guideline type
 export const GuidelineSchemas: Record<
@@ -23,7 +23,7 @@ export const GuidelineSchemas: Record<
   scheduled: scheduledGuidelineSchema,
   location: locationGuidelineSchema,
   craving: cravingGuidelineSchema,
-  feeling: feelingGuidelineSchema,
+  general: generalGuidelineSchema,
 } as any;
 
 export const guidelineSchema = yup.lazy((value) => {
@@ -86,14 +86,14 @@ export const isValidLocationGuideline = (
   }
 };
 
-export const guidelineIsFeelingGuideline = (
+export const guidelineIsGeneralGuideline = (
   value: Omit<Guideline, "id">
-): value is FeelingGuideline => value.type === "feeling";
-export const isValidFeelingGuideline = (
+): value is GeneralGuideline => value.type === "general";
+export const isValidGeneralGuideline = (
   value: unknown
-): value is FeelingGuideline => {
+): value is GeneralGuideline => {
   try {
-    feelingGuidelineSchema.validateSync(value);
+    generalGuidelineSchema.validateSync(value);
     return true;
   } catch (error) {
     return false;
