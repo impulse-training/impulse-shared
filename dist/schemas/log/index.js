@@ -36,11 +36,11 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidGuidelineLog = exports.logIsGuidelineLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorTrackedLog = exports.logIsBehaviorTrackedLog = exports.isValidOutcomeLog = exports.logIsOutcomeLog = exports.isValidShowTourLog = exports.logIsShowTourLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
+exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidGameplanLog = exports.logIsGameplanLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorTrackedLog = exports.logIsBehaviorTrackedLog = exports.isValidOutcomeLog = exports.logIsOutcomeLog = exports.isValidShowTourLog = exports.logIsShowTourLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
 const yup = __importStar(require("yup"));
 const behaviorTrackedLog_1 = require("./behaviorTrackedLog");
 const callLog_1 = require("./callLog");
-const guidelineLog_1 = require("./guidelineLog");
+const gameplanLog_1 = require("./gameplanLog");
 const impulseLog_1 = require("./impulseLog");
 const linkLog_1 = require("./linkLog");
 const messageLog_1 = require("./messageLog");
@@ -63,7 +63,7 @@ exports.logSchemas = {
     impulse_button_pressed: impulseLog_1.impulseLogSchema,
     behavior_tracked: behaviorTrackedLog_1.behaviorTrackedLogSchema,
     question: questionLog_1.questionLogSchema,
-    guideline: guidelineLog_1.guidelineLogSchema,
+    gameplan: gameplanLog_1.gameplanLogSchema,
     summary: summaryLog_1.summaryLogSchema,
     outcome: outcomeLog_1.outcomeLogSchema,
     widget_setup: widgetSetupLog_1.widgetSetupLogSchema,
@@ -74,7 +74,7 @@ exports.logSchemas = {
 exports.logTypes = Object.keys(exports.logSchemas);
 __exportStar(require("./behaviorTrackedLog"), exports);
 __exportStar(require("./callLog"), exports);
-__exportStar(require("./guidelineLog"), exports);
+__exportStar(require("./gameplanLog"), exports);
 __exportStar(require("./impulseLog"), exports);
 __exportStar(require("./linkLog"), exports);
 __exportStar(require("./messageLog"), exports);
@@ -232,18 +232,18 @@ const isValidUserMessageLog = (value) => {
     }
 };
 exports.isValidUserMessageLog = isValidUserMessageLog;
-const logIsGuidelineLog = (value) => value.type === "guideline";
-exports.logIsGuidelineLog = logIsGuidelineLog;
-const isValidGuidelineLog = (value) => {
+const logIsGameplanLog = (value) => value.type === "gameplan";
+exports.logIsGameplanLog = logIsGameplanLog;
+const isValidGameplanLog = (value) => {
     try {
-        guidelineLog_1.guidelineLogSchema.validateSync(value);
+        gameplanLog_1.gameplanLogSchema.validateSync(value);
         return true;
     }
     catch (error) {
         return false;
     }
 };
-exports.isValidGuidelineLog = isValidGuidelineLog;
+exports.isValidGameplanLog = isValidGameplanLog;
 const logIsSummaryLog = (value) => value.type === "summary";
 exports.logIsSummaryLog = logIsSummaryLog;
 const isValidSummaryLog = (value) => {

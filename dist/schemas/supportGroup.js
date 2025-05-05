@@ -46,7 +46,7 @@ exports.supportGroupPermissionsSchema = yup.object({
 });
 exports.supportGroupNotificationPreferencesSchema = yup.object({
     messages: yup.boolean().default(false),
-    guideline: yup.boolean().default(false),
+    gameplan: yup.boolean().default(false),
 });
 // Support Group Member Schema
 exports.supportGroupMemberSchema = yup.object({

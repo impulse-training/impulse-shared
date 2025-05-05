@@ -11,10 +11,10 @@ export declare const supportGroupPermissionsSchema: yup.ObjectSchema<{
 export type SupportGroupPermissions = yup.InferType<typeof supportGroupPermissionsSchema>;
 export declare const supportGroupNotificationPreferencesSchema: yup.ObjectSchema<{
     messages: boolean;
-    guideline: boolean;
+    gameplan: boolean;
 }, yup.AnyObject, {
     messages: false;
-    guideline: false;
+    gameplan: false;
 }, "">;
 export type SupportGroupNotificationPreferences = yup.InferType<typeof supportGroupNotificationPreferencesSchema>;
 export declare const supportGroupMemberSchema: yup.ObjectSchema<{
@@ -32,7 +32,7 @@ export declare const supportGroupMemberSchema: yup.ObjectSchema<{
     } | undefined;
     notificationPreferences: {
         messages: boolean;
-        guideline: boolean;
+        gameplan: boolean;
     } | undefined;
     currentStreak: {
         streakStart?: import("../types").Timestamp | undefined;
@@ -81,7 +81,7 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
             } | undefined;
             notificationPreferences?: {
                 messages: boolean;
-                guideline: boolean;
+                gameplan: boolean;
             } | undefined;
             currentStreak?: {
                 streakStart?: import("../types").Timestamp | undefined;

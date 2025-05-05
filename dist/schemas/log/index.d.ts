@@ -1,7 +1,7 @@
 import * as yup from "yup";
 import { BehaviorTrackedLog } from "./behaviorTrackedLog";
 import { CallLog } from "./callLog";
-import { GuidelineLog } from "./guidelineLog";
+import { GameplanLog } from "./gameplanLog";
 import { ImpulseLog } from "./impulseLog";
 import { LinkLog } from "./linkLog";
 import { AssistantMessageLog, MessageLog } from "./messageLog";
@@ -331,7 +331,7 @@ export declare const logSchemas: {
             response: null;
         };
     }, "">;
-    guideline: yup.ObjectSchema<{
+    gameplan: yup.ObjectSchema<{
         id: string | undefined;
         createdAt: import("../../types").Timestamp | undefined;
         updatedAt: import("../../types").Timestamp | undefined;
@@ -339,17 +339,17 @@ export declare const logSchemas: {
         timestamp: import("../../types").Timestamp;
         dateString: string;
         callLogDocPath: string | undefined;
-        type: "guideline";
+        type: "gameplan";
         isDisplayable: true;
         data: {
             acceptedAt?: import("../../types").Timestamp | undefined;
             shufflePressedAt?: import("../../types").Timestamp | undefined;
-            pastGuidelines?: {
+            pastGameplans?: {
                 tactic: import("..").Tactic;
                 exists: NonNullable<boolean | undefined>;
             }[][] | undefined;
             introduction?: string | undefined;
-            guideline: {
+            gameplan: {
                 tactic: import("..").Tactic;
                 exists: NonNullable<boolean | undefined>;
             }[];
@@ -365,8 +365,8 @@ export declare const logSchemas: {
         type: undefined;
         isDisplayable: undefined;
         data: {
-            guideline: "";
-            pastGuidelines: "";
+            gameplan: "";
+            pastGameplans: "";
             introduction: undefined;
             acceptedAt: undefined;
             shufflePressedAt: undefined;
@@ -557,10 +557,10 @@ export declare const logSchemas: {
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | ImpulseLog | BehaviorTrackedLog | QuestionLog | GuidelineLog | OutcomeLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | VideoLog;
+export type Log = TacticLog | ImpulseLog | BehaviorTrackedLog | QuestionLog | GameplanLog | OutcomeLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | VideoLog;
 export * from "./behaviorTrackedLog";
 export * from "./callLog";
-export * from "./guidelineLog";
+export * from "./gameplanLog";
 export * from "./impulseLog";
 export * from "./linkLog";
 export * from "./messageLog";
@@ -595,8 +595,8 @@ export declare const logIsTacticLog: (value: Omit<Log, "id">) => value is Tactic
 export declare const isValidTacticLog: (value: unknown) => value is TacticLog;
 export declare const logIsUserMessageLog: (value: Omit<Log, "id">) => value is UserMessageLog;
 export declare const isValidUserMessageLog: (value: unknown) => value is UserMessageLog;
-export declare const logIsGuidelineLog: (value: Omit<Log, "id">) => value is GuidelineLog;
-export declare const isValidGuidelineLog: (value: unknown) => value is GuidelineLog;
+export declare const logIsGameplanLog: (value: Omit<Log, "id">) => value is GameplanLog;
+export declare const isValidGameplanLog: (value: unknown) => value is GameplanLog;
 export declare const logIsSummaryLog: (value: Omit<Log, "id">) => value is SummaryLog;
 export declare const isValidSummaryLog: (value: unknown) => value is SummaryLog;
 export declare const logIsLinkLog: (value: Omit<Log, "id">) => value is LinkLog;

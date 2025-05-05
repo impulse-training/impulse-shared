@@ -15,7 +15,7 @@ export type SupportGroupPermissions = yup.InferType<
 
 export const supportGroupNotificationPreferencesSchema = yup.object({
   messages: yup.boolean().default(false),
-  guideline: yup.boolean().default(false),
+  gameplan: yup.boolean().default(false),
 });
 export type SupportGroupNotificationPreferences = yup.InferType<
   typeof supportGroupNotificationPreferencesSchema

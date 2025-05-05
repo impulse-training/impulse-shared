@@ -3,7 +3,7 @@ import { timestampSchema } from "../../utils";
 import { tacticSchema } from "../tactic";
 import { logBaseSchema } from "./base";
 
-// A guideline is a set of tactics
+// A gameplan is a set of tactics
 export const tacticsByIdSchema = yup.array().of(
   // We always provide the tactic with an id, but the document may or may not exist
   yup.object({
@@ -12,14 +12,14 @@ export const tacticsByIdSchema = yup.array().of(
   })
 );
 
-// Guideline Log Schema
-export const guidelineLogSchema = logBaseSchema.shape({
-  type: yup.mixed<"guideline">().oneOf(["guideline"]).required(),
-  // Guideline logs are always displayed in the UI
+// Gameplan Log Schema
+export const gameplanLogSchema = logBaseSchema.shape({
+  type: yup.mixed<"gameplan">().oneOf(["gameplan"]).required(),
+  // Gameplan logs are always displayed in the UI
   isDisplayable: yup.mixed<true>().oneOf([true]).required(),
   data: yup.object({
-    guideline: tacticsByIdSchema.required(),
-    pastGuidelines: yup.array().of(tacticsByIdSchema.required()),
+    gameplan: tacticsByIdSchema.required(),
+    pastGameplans: yup.array().of(tacticsByIdSchema.required()),
     introduction: yup.string(),
     acceptedAt: timestampSchema,
     shufflePressedAt: timestampSchema,
@@ -27,4 +27,4 @@ export const guidelineLogSchema = logBaseSchema.shape({
 });
 
 export type TacticsById = yup.InferType<typeof tacticsByIdSchema>;
-export type GuidelineLog = yup.InferType<typeof guidelineLogSchema>;
+export type GameplanLog = yup.InferType<typeof gameplanLogSchema>;

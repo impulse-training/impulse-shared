@@ -1,7 +1,7 @@
 import * as yup from "yup";
-import { guidelineBaseSchema } from "./base";
+import { gameplanBaseSchema } from "./base";
 
-export const locationGuidelineSchema = guidelineBaseSchema("location").shape({
+export const locationGameplanSchema = gameplanBaseSchema("location").shape({
   data: yup.object({
     locationName: yup.string().required(),
     triggerType: yup.string().oneOf(["arrival", "departure"]).required(),
@@ -10,4 +10,4 @@ export const locationGuidelineSchema = guidelineBaseSchema("location").shape({
   }),
 });
 
-export type LocationGuideline = yup.InferType<typeof locationGuidelineSchema>;
+export type LocationGameplan = yup.InferType<typeof locationGameplanSchema>;
