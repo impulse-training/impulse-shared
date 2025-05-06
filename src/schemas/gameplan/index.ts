@@ -1,19 +1,13 @@
 import * as yup from "yup";
-import { CravingGameplan, cravingGameplanSchema } from "./craving";
-import { GeneralGameplan, generalGameplanSchema } from "./general";
+import { ImpulseGameplan, impulseGameplanSchema } from "./impulse";
 import { LocationGameplan, locationGameplanSchema } from "./location";
 import { ScheduledGameplan, scheduledGameplanSchema } from "./scheduled";
 
-export * from "./craving";
-export * from "./general";
+export * from "./impulse";
 export * from "./location";
 export * from "./scheduled";
 
-export type Gameplan =
-  | ScheduledGameplan
-  | LocationGameplan
-  | CravingGameplan
-  | GeneralGameplan;
+export type Gameplan = ScheduledGameplan | LocationGameplan | ImpulseGameplan;
 
 // Utility to dynamically select the correct schema based on the Gameplan type
 export const GameplanSchemas: Record<
@@ -22,8 +16,7 @@ export const GameplanSchemas: Record<
 > = {
   scheduled: scheduledGameplanSchema,
   location: locationGameplanSchema,
-  craving: cravingGameplanSchema,
-  general: generalGameplanSchema,
+  impulse: impulseGameplanSchema,
 } as any;
 
 export const gameplanSchema = yup.lazy((value) => {
@@ -58,14 +51,14 @@ export const isValidScheduledGameplan = (
   }
 };
 
-export const gameplanIsCravingGameplan = (
+export const gameplanIsImpulseGameplan = (
   value: Omit<Gameplan, "id">
-): value is CravingGameplan => value.type === "craving";
-export const isValidCravingGameplan = (
+): value is ImpulseGameplan => value.type === "impulse";
+export const isValidImpulseGameplan = (
   value: unknown
-): value is CravingGameplan => {
+): value is ImpulseGameplan => {
   try {
-    cravingGameplanSchema.validateSync(value);
+    impulseGameplanSchema.validateSync(value);
     return true;
   } catch (error) {
     return false;
@@ -80,20 +73,6 @@ export const isValidLocationGameplan = (
 ): value is LocationGameplan => {
   try {
     locationGameplanSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
-};
-
-export const gameplanIsGeneralGameplan = (
-  value: Omit<Gameplan, "id">
-): value is GeneralGameplan => value.type === "general";
-export const isValidGeneralGameplan = (
-  value: unknown
-): value is GeneralGameplan => {
-  try {
-    generalGameplanSchema.validateSync(value);
     return true;
   } catch (error) {
     return false;
