@@ -4,7 +4,6 @@ import { timestampSchema } from "../utils";
 export const trackingTypes = ["counter", "timer"] as const;
 
 // We're using simple string arrays for benefits and drawbacks
-
 const goalSchema = yup.object({
   type: yup
     .mixed<"greaterThan" | "lessThanOrEqualTo">()
@@ -30,8 +29,8 @@ export const behaviorSchema = yup.object({
     otherwise: (schema) => schema.notRequired(),
   }),
   category: yup
-    .mixed<"mixed" | "helpful" | "unhelpful">()
-    .oneOf(["helpful", "mixed", "unhelpful"])
+    .mixed<"mixed" | "helpful" | "unhelpful" | "unsure">()
+    .oneOf(["helpful", "mixed", "unhelpful", "unsure"])
     .required(),
   goal: goalSchema,
   createdAt: timestampSchema,

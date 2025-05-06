@@ -60,7 +60,7 @@ exports.behaviorSchema = yup.object({
     }),
     category: yup
         .mixed()
-        .oneOf(["helpful", "mixed", "unhelpful"])
+        .oneOf(["helpful", "mixed", "unhelpful", "unsure"])
         .required(),
     goal: goalSchema,
     createdAt: utils_1.timestampSchema,

@@ -9,7 +9,7 @@ export declare const behaviorSchema: yup.ObjectSchema<{
     drawbacks: string[] | undefined;
     trackingType: NonNullable<"counter" | "timer" | undefined>;
     trackingUnit: string | undefined;
-    category: NonNullable<"mixed" | "helpful" | "unhelpful" | undefined>;
+    category: NonNullable<"mixed" | "helpful" | "unhelpful" | "unsure" | undefined>;
     goal: {
         type: NonNullable<"greaterThan" | "lessThanOrEqualTo" | undefined>;
         target: number;
