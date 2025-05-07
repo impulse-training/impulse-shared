@@ -10,5 +10,6 @@ export function gameplanBaseSchema<T extends string>(type: T) {
     tactics: yup.array().of(documentReferenceSchema.required()).required(),
     createdAt: timestampSchema,
     updatedAt: timestampSchema,
+    deletedAt: timestampSchema,
   });
 }
