@@ -6,7 +6,6 @@ import { ImpulseLog } from "./impulseLog";
 import { LinkLog } from "./linkLog";
 import { AssistantMessageLog, MessageLog } from "./messageLog";
 import { UserMessageLog } from "./messageLog/userMessageLog";
-import { OutcomeLog } from "./outcomeLog";
 import { QuestionLog } from "./questionLog";
 import { ShowTourLog } from "./showTourLog";
 import { SummaryLog } from "./summaryLog";
@@ -399,33 +398,6 @@ export declare const logSchemas: {
             summary: undefined;
         };
     }, "">;
-    outcome: yup.ObjectSchema<{
-        id: string | undefined;
-        createdAt: import("../../types").Timestamp | undefined;
-        updatedAt: import("../../types").Timestamp | undefined;
-        userId: string;
-        timestamp: import("../../types").Timestamp;
-        dateString: string;
-        callLogDocPath: string | undefined;
-        type: "outcome";
-        isDisplayable: true;
-        data: {
-            outcome?: "success" | "partial" | "setback" | undefined;
-        };
-    }, yup.AnyObject, {
-        id: undefined;
-        createdAt: undefined;
-        updatedAt: undefined;
-        userId: undefined;
-        timestamp: undefined;
-        dateString: undefined;
-        callLogDocPath: undefined;
-        type: undefined;
-        isDisplayable: undefined;
-        data: {
-            outcome: undefined;
-        };
-    }, "">;
     widget_setup: yup.ObjectSchema<{
         id: string | undefined;
         createdAt: import("../../types").Timestamp | undefined;
@@ -557,14 +529,13 @@ export declare const logSchemas: {
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | ImpulseLog | BehaviorTrackedLog | QuestionLog | GameplanLog | OutcomeLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | VideoLog;
+export type Log = TacticLog | ImpulseLog | BehaviorTrackedLog | QuestionLog | GameplanLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | VideoLog;
 export * from "./behaviorTrackedLog";
 export * from "./callLog";
 export * from "./gameplanLog";
 export * from "./impulseLog";
 export * from "./linkLog";
 export * from "./messageLog";
-export * from "./outcomeLog";
 export * from "./questionLog";
 export * from "./showTourLog";
 export * from "./summaryLog";
@@ -577,8 +548,6 @@ export declare const logIsAssistantMessageLog: (value: Omit<Log, "id">) => value
 export declare const isValidAssistantMessageLog: (value: unknown) => value is AssistantMessageLog;
 export declare const logIsShowTourLog: (value: Omit<Log, "id">) => value is ShowTourLog;
 export declare const isValidShowTourLog: (value: unknown) => value is ShowTourLog;
-export declare const logIsOutcomeLog: (value: Omit<Log, "id">) => value is OutcomeLog;
-export declare const isValidOutcomeLog: (value: unknown) => value is OutcomeLog;
 export declare const logIsBehaviorTrackedLog: (value: Omit<Log, "id">) => value is BehaviorTrackedLog;
 export declare const isValidBehaviorTrackedLog: (value: unknown) => value is BehaviorTrackedLog;
 export declare const logIsCallLog: (value: Omit<Log, "id">) => value is CallLog;

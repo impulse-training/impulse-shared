@@ -16,7 +16,6 @@ import {
   UserMessageLog,
   userMessageLogSchema,
 } from "./messageLog/userMessageLog";
-import { OutcomeLog, outcomeLogSchema } from "./outcomeLog";
 import { QuestionLog, questionLogSchema } from "./questionLog";
 import { ShowTourLog, showTourLogSchema } from "./showTourLog";
 import { SummaryLog, summaryLogSchema } from "./summaryLog";
@@ -37,7 +36,6 @@ export const logSchemas = {
   question: questionLogSchema,
   gameplan: gameplanLogSchema,
   summary: summaryLogSchema,
-  outcome: outcomeLogSchema,
   widget_setup: widgetSetupLogSchema,
   show_tour: showTourLogSchema,
   link: linkLogSchema,
@@ -54,7 +52,6 @@ export type Log =
   | BehaviorTrackedLog
   | QuestionLog
   | GameplanLog
-  | OutcomeLog
   | ToolCallLog
   | MessageLog
   | SummaryLog
@@ -70,7 +67,6 @@ export * from "./gameplanLog";
 export * from "./impulseLog";
 export * from "./linkLog";
 export * from "./messageLog";
-export * from "./outcomeLog";
 export * from "./questionLog";
 export * from "./showTourLog";
 export * from "./summaryLog";
@@ -116,17 +112,6 @@ export const logIsShowTourLog = (
 export const isValidShowTourLog = (value: unknown): value is ShowTourLog => {
   try {
     showTourLogSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
-};
-
-export const logIsOutcomeLog = (value: Omit<Log, "id">): value is OutcomeLog =>
-  value.type === "outcome";
-export const isValidOutcomeLog = (value: unknown): value is OutcomeLog => {
-  try {
-    outcomeLogSchema.validateSync(value);
     return true;
   } catch (error) {
     return false;

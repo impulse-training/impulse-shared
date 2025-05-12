@@ -2,6 +2,7 @@
 export * from "./attachment";
 export * from "./behavior";
 export * from "./daySummary";
+export * from "./folder";
 export * from "./gameplan";
 export * from "./insight";
 export * from "./llmAuditEntries";

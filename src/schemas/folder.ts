@@ -1,0 +1,14 @@
+import * as yup from "yup";
+import { documentReferenceSchema, timestampSchema } from "../utils";
+
+export const folderSchema = yup.object({
+  id: yup.string(),
+  name: yup.string().required(),
+  ordinal: yup.number(),
+  tactics: yup.array().of(documentReferenceSchema.required()).required(),
+  createdAt: timestampSchema,
+  updatedAt: timestampSchema,
+  deletedAt: timestampSchema,
+});
+
+export type Folder = yup.InferType<typeof folderSchema>;
