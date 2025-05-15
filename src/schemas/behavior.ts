@@ -3,6 +3,11 @@ import { timestampSchema } from "../utils";
 
 export const trackingTypes = ["counter", "timer"] as const;
 
+export const categorySchema = yup
+  .mixed<"mixed" | "helpful" | "unhelpful" | "unsure">()
+  .oneOf(["helpful", "mixed", "unhelpful", "unsure"])
+  .required();
+
 // We're using simple string arrays for benefits and drawbacks
 const goalSchema = yup.object({
   type: yup
@@ -28,10 +33,7 @@ export const behaviorSchema = yup.object({
       ),
     otherwise: (schema) => schema.notRequired(),
   }),
-  category: yup
-    .mixed<"mixed" | "helpful" | "unhelpful" | "unsure">()
-    .oneOf(["helpful", "mixed", "unhelpful", "unsure"])
-    .required(),
+  category: categorySchema,
   goal: goalSchema,
   createdAt: timestampSchema,
   updatedAt: timestampSchema,

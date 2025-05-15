@@ -35,12 +35,14 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.behaviorTrackedLogSchema = exports.behaviorTrackingDataSchema = void 0;
 const yup = __importStar(require("yup"));
+const behavior_1 = require("../behavior");
 const base_1 = require("./base");
 exports.behaviorTrackingDataSchema = yup.object({
     behaviorId: yup.string().required(),
     behaviorName: yup.string().required(),
     behaviorTrackingUnit: yup.string(),
     trackingType: yup.string().oneOf(["counter", "timer"]).required(),
+    category: behavior_1.categorySchema,
     value: yup.number().required(), // Count or time in seconds
     formattedValue: yup.string().required(),
 });

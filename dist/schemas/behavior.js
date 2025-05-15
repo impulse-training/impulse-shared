@@ -33,10 +33,14 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isBehavior = exports.behaviorSchema = exports.trackingTypes = void 0;
+exports.isBehavior = exports.behaviorSchema = exports.categorySchema = exports.trackingTypes = void 0;
 const yup = __importStar(require("yup"));
 const utils_1 = require("../utils");
 exports.trackingTypes = ["counter", "timer"];
+exports.categorySchema = yup
+    .mixed()
+    .oneOf(["helpful", "mixed", "unhelpful", "unsure"])
+    .required();
 // We're using simple string arrays for benefits and drawbacks
 const goalSchema = yup.object({
     type: yup
@@ -58,10 +62,7 @@ exports.behaviorSchema = yup.object({
         then: (schema) => schema.required("Tracking unit is required when tracking type is 'counter'"),
         otherwise: (schema) => schema.notRequired(),
     }),
-    category: yup
-        .mixed()
-        .oneOf(["helpful", "mixed", "unhelpful", "unsure"])
-        .required(),
+    category: exports.categorySchema,
     goal: goalSchema,
     createdAt: utils_1.timestampSchema,
     updatedAt: utils_1.timestampSchema,

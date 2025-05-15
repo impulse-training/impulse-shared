@@ -1,5 +1,6 @@
 import * as yup from "yup";
 export declare const trackingTypes: readonly ["counter", "timer"];
+export declare const categorySchema: yup.MixedSchema<NonNullable<"mixed" | "helpful" | "unhelpful" | "unsure" | undefined>, yup.AnyObject, undefined, "">;
 export declare const behaviorSchema: yup.ObjectSchema<{
     id: string | undefined;
     name: string;

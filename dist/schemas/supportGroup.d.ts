@@ -66,10 +66,10 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
                 db: number;
             }[] | undefined;
         } | undefined;
-        type: NonNullable<"image" | "video" | "audio" | "document" | undefined>;
         uri: string;
         storagePath: string;
         contentType: string;
+        type: NonNullable<"image" | "video" | "audio" | "document" | undefined>;
     } | undefined;
     membersById: {
         [x: string]: {
@@ -87,13 +87,13 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
                 streakStart?: import("../types").Timestamp | undefined;
                 color: string;
             } | undefined;
-            userId: string;
             userProfile: {
                 emojiId?: {
                     color: string;
                     emoji: string;
                 } | undefined;
             };
+            userId: string;
         };
     };
     unreadMessageCountsById: {
@@ -115,10 +115,10 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
                 db: number;
             }[] | undefined;
         } | undefined;
-        type: NonNullable<"image" | "video" | "audio" | "document" | undefined>;
         uri: string;
         storagePath: string;
         contentType: string;
+        type: NonNullable<"image" | "video" | "audio" | "document" | undefined>;
     };
     isPublic: boolean | undefined;
     inviteCode: string | undefined;
@@ -139,15 +139,15 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
                     db: number;
                 }[] | undefined;
             } | undefined;
-            type: NonNullable<"image" | "video" | "audio" | "document" | undefined>;
             uri: string;
             storagePath: string;
             contentType: string;
+            type: NonNullable<"image" | "video" | "audio" | "document" | undefined>;
         } | undefined;
+        type: "user_message";
         userId: string;
         timestamp: import("../types").Timestamp;
         dateString: string;
-        type: "user_message";
         isDisplayable: true;
         data: {
             message: import("openai/resources").ChatCompletionUserMessageParam;

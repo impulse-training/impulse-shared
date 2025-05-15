@@ -1,4 +1,5 @@
 import * as yup from "yup";
+import { categorySchema } from "../behavior";
 import { logBaseSchema } from "./base";
 
 export const behaviorTrackingDataSchema = yup.object({
@@ -6,6 +7,7 @@ export const behaviorTrackingDataSchema = yup.object({
   behaviorName: yup.string().required(),
   behaviorTrackingUnit: yup.string(),
   trackingType: yup.string().oneOf(["counter", "timer"]).required(),
+  category: categorySchema,
   value: yup.number().required(), // Count or time in seconds
   formattedValue: yup.string().required(),
 });

@@ -4,6 +4,7 @@ export declare const behaviorTrackingDataSchema: yup.ObjectSchema<{
     behaviorName: string;
     behaviorTrackingUnit: string | undefined;
     trackingType: NonNullable<"counter" | "timer" | undefined>;
+    category: NonNullable<"mixed" | "helpful" | "unhelpful" | "unsure" | undefined>;
     value: number;
     formattedValue: string;
 }, yup.AnyObject, {
@@ -11,6 +12,7 @@ export declare const behaviorTrackingDataSchema: yup.ObjectSchema<{
     behaviorName: undefined;
     behaviorTrackingUnit: undefined;
     trackingType: undefined;
+    category: undefined;
     value: undefined;
     formattedValue: undefined;
 }, "">;
@@ -27,6 +29,7 @@ export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
     isDisplayable: true;
     data: {
         behaviorTrackingUnit?: string | undefined;
+        category: NonNullable<"mixed" | "helpful" | "unhelpful" | "unsure" | undefined>;
         behaviorId: string;
         behaviorName: string;
         trackingType: NonNullable<"counter" | "timer" | undefined>;
@@ -48,6 +51,7 @@ export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
         behaviorName: undefined;
         behaviorTrackingUnit: undefined;
         trackingType: undefined;
+        category: undefined;
         value: undefined;
         formattedValue: undefined;
     };

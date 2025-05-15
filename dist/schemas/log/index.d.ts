@@ -39,10 +39,10 @@ export declare const logSchemas: {
                     db: number;
                 }[] | undefined;
             } | undefined;
-            type: NonNullable<"image" | "video" | "audio" | "document" | undefined>;
             uri: string;
             storagePath: string;
             contentType: string;
+            type: NonNullable<"image" | "video" | "audio" | "document" | undefined>;
         } | undefined;
     }, yup.AnyObject, {
         id: undefined;
@@ -250,6 +250,7 @@ export declare const logSchemas: {
         isDisplayable: true;
         data: {
             behaviorTrackingUnit?: string | undefined;
+            category: NonNullable<"mixed" | "helpful" | "unhelpful" | "unsure" | undefined>;
             behaviorId: string;
             behaviorName: string;
             trackingType: NonNullable<"counter" | "timer" | undefined>;
@@ -271,6 +272,7 @@ export declare const logSchemas: {
             behaviorName: undefined;
             behaviorTrackingUnit: undefined;
             trackingType: undefined;
+            category: undefined;
             value: undefined;
             formattedValue: undefined;
         };
