@@ -250,7 +250,7 @@ export declare const logSchemas: {
         isDisplayable: true;
         data: {
             behaviorTrackingUnit?: string | undefined;
-            category: NonNullable<"mixed" | "helpful" | "unhelpful" | "unsure" | undefined>;
+            category: NonNullable<"helpful" | "mixed" | "unhelpful" | "unsure" | undefined>;
             behaviorId: string;
             behaviorName: string;
             trackingType: NonNullable<"counter" | "timer" | undefined>;
@@ -292,15 +292,8 @@ export declare const logSchemas: {
             question: {
                 id?: string | undefined;
                 scope?: "impulse" | "recap" | undefined;
-                suggestedResponses?: string[] | undefined;
-                content: string;
-                responseType: "text";
-            } | {
-                id?: string | undefined;
-                scope?: "impulse" | "recap" | undefined;
                 content: string;
                 responseType: "slider";
-                suggestedResponses: (string | undefined)[];
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
@@ -309,12 +302,13 @@ export declare const logSchemas: {
                     max: number;
                     step: number;
                 };
+                suggestedResponses: (string | undefined)[];
             } | {
                 id?: string | undefined;
                 scope?: "impulse" | "recap" | undefined;
+                suggestedResponses?: string[] | undefined;
                 content: string;
-                responseType: "multiple_choice";
-                suggestedResponses: (string | undefined)[];
+                responseType: "text";
             };
         };
     }, yup.AnyObject, {

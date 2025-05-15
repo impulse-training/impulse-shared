@@ -14,15 +14,8 @@ export declare const questionLogSchema: yup.ObjectSchema<{
         question: {
             id?: string | undefined;
             scope?: "impulse" | "recap" | undefined;
-            suggestedResponses?: string[] | undefined;
-            content: string;
-            responseType: "text";
-        } | {
-            id?: string | undefined;
-            scope?: "impulse" | "recap" | undefined;
             content: string;
             responseType: "slider";
-            suggestedResponses: (string | undefined)[];
             sliderConfig: {
                 minLabel?: string | undefined;
                 maxLabel?: string | undefined;
@@ -31,12 +24,13 @@ export declare const questionLogSchema: yup.ObjectSchema<{
                 max: number;
                 step: number;
             };
+            suggestedResponses: (string | undefined)[];
         } | {
             id?: string | undefined;
             scope?: "impulse" | "recap" | undefined;
+            suggestedResponses?: string[] | undefined;
             content: string;
-            responseType: "multiple_choice";
-            suggestedResponses: (string | undefined)[];
+            responseType: "text";
         };
     };
 }, yup.AnyObject, {

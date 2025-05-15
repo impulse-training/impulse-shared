@@ -46,7 +46,7 @@ exports.behaviorTrackingDataSchema = yup.object({
     value: yup.number().required(), // Count or time in seconds
     formattedValue: yup.string().required(),
 });
-// Behavior Tracked Log Schema
+// TODO: rename to behaviorLog
 exports.behaviorTrackedLogSchema = base_1.logBaseSchema.shape({
     type: yup.string().oneOf(["behavior_tracked"]).required(),
     // Behavior tracked logs are always displayed in the UI

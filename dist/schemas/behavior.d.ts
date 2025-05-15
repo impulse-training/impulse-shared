@@ -1,6 +1,6 @@
 import * as yup from "yup";
 export declare const trackingTypes: readonly ["counter", "timer"];
-export declare const categorySchema: yup.MixedSchema<NonNullable<"mixed" | "helpful" | "unhelpful" | "unsure" | undefined>, yup.AnyObject, undefined, "">;
+export declare const categorySchema: yup.MixedSchema<NonNullable<"helpful" | "mixed" | "unhelpful" | "unsure" | undefined>, yup.AnyObject, undefined, "">;
 export declare const behaviorSchema: yup.ObjectSchema<{
     id: string | undefined;
     name: string;
@@ -10,7 +10,7 @@ export declare const behaviorSchema: yup.ObjectSchema<{
     drawbacks: string[] | undefined;
     trackingType: NonNullable<"counter" | "timer" | undefined>;
     trackingUnit: string | undefined;
-    category: NonNullable<"mixed" | "helpful" | "unhelpful" | "unsure" | undefined>;
+    category: NonNullable<"helpful" | "mixed" | "unhelpful" | "unsure" | undefined>;
     goal: {
         type: NonNullable<"greaterThan" | "lessThanOrEqualTo" | undefined>;
         target: number;

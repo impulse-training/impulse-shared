@@ -1,11 +1,15 @@
 import * as yup from "yup";
 import { timestampSchema } from "../utils";
+import { BEHAVIOR_CATEGORIES, BehaviorCategoryKey } from "../constants";
 
 export const trackingTypes = ["counter", "timer"] as const;
 
+// Use the category keys from our constants
+const categoryKeys = Object.keys(BEHAVIOR_CATEGORIES) as BehaviorCategoryKey[];
+
 export const categorySchema = yup
-  .mixed<"mixed" | "helpful" | "unhelpful" | "unsure">()
-  .oneOf(["helpful", "mixed", "unhelpful", "unsure"])
+  .mixed<BehaviorCategoryKey>()
+  .oneOf(categoryKeys)
   .required();
 
 // We're using simple string arrays for benefits and drawbacks

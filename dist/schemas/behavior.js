@@ -36,10 +36,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.isBehavior = exports.behaviorSchema = exports.categorySchema = exports.trackingTypes = void 0;
 const yup = __importStar(require("yup"));
 const utils_1 = require("../utils");
+const constants_1 = require("../constants");
 exports.trackingTypes = ["counter", "timer"];
+// Use the category keys from our constants
+const categoryKeys = Object.keys(constants_1.BEHAVIOR_CATEGORIES);
 exports.categorySchema = yup
     .mixed()
-    .oneOf(["helpful", "mixed", "unhelpful", "unsure"])
+    .oneOf(categoryKeys)
     .required();
 // We're using simple string arrays for benefits and drawbacks
 const goalSchema = yup.object({
