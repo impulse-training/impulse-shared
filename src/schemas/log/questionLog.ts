@@ -8,6 +8,7 @@ export const questionLogSchema = logBaseSchema.shape({
   isDisplayable: yup.mixed<true>().oneOf([true]).required(),
   data: yup
     .object({
+      questionId: yup.string().required(),
       question: questionSchema,
       response: yup.mixed().nullable().default(null), // This will store the user's response
     })

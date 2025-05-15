@@ -310,6 +310,7 @@ export declare const logSchemas: {
                 content: string;
                 responseType: "text";
             };
+            questionId: string;
         };
     }, yup.AnyObject, {
         id: undefined;
@@ -322,6 +323,7 @@ export declare const logSchemas: {
         type: undefined;
         isDisplayable: undefined;
         data: {
+            questionId: undefined;
             question: undefined;
             response: null;
         };

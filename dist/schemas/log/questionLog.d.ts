@@ -32,6 +32,7 @@ export declare const questionLogSchema: yup.ObjectSchema<{
             content: string;
             responseType: "text";
         };
+        questionId: string;
     };
 }, yup.AnyObject, {
     id: undefined;
@@ -44,6 +45,7 @@ export declare const questionLogSchema: yup.ObjectSchema<{
     type: undefined;
     isDisplayable: undefined;
     data: {
+        questionId: undefined;
         question: undefined;
         response: null;
     };
