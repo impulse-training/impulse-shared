@@ -5,6 +5,6 @@ export function questionBaseSchema<T extends string>(type: T) {
     id: yup.string(),
     content: yup.string().required(),
     responseType: yup.mixed<T>().oneOf([type]).required(),
-    scope: yup.string().oneOf(["debrief"]).optional(),
+    scope: yup.string().oneOf(["impulse", "recap"]).optional(),
   });
 }

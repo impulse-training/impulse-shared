@@ -289,13 +289,13 @@ export declare const logSchemas: {
             response: {} | null;
             question: {
                 id?: string | undefined;
-                scope?: "debrief" | undefined;
+                scope?: "impulse" | "recap" | undefined;
                 suggestedResponses?: string[] | undefined;
                 content: string;
                 responseType: "text";
             } | {
                 id?: string | undefined;
-                scope?: "debrief" | undefined;
+                scope?: "impulse" | "recap" | undefined;
                 content: string;
                 responseType: "slider";
                 suggestedResponses: (string | undefined)[];
@@ -309,7 +309,7 @@ export declare const logSchemas: {
                 };
             } | {
                 id?: string | undefined;
-                scope?: "debrief" | undefined;
+                scope?: "impulse" | "recap" | undefined;
                 content: string;
                 responseType: "multiple_choice";
                 suggestedResponses: (string | undefined)[];
