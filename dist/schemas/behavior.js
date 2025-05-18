@@ -33,10 +33,10 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isBehavior = exports.behaviorSchema = exports.categorySchema = exports.trackingTypes = void 0;
+exports.isBehavior = exports.behaviorSchema = exports.behaviorTemplateSchema = exports.categorySchema = exports.trackingTypes = void 0;
 const yup = __importStar(require("yup"));
-const utils_1 = require("../utils");
 const constants_1 = require("../constants");
+const utils_1 = require("../utils");
 exports.trackingTypes = ["counter", "timer"];
 // Use the category keys from our constants
 const categoryKeys = Object.keys(constants_1.BEHAVIOR_CATEGORIES);
@@ -52,20 +52,25 @@ const goalSchema = yup.object({
         .required(),
     target: yup.number().required(),
 });
-exports.behaviorSchema = yup.object({
-    id: yup.string(),
+// These are foundational attributes, and correspond to documents in a top-level behaviorTemplates
+// collection. We then extend that schema to be the full behavior schema.
+exports.behaviorTemplateSchema = yup.object({
     name: yup.string().required(),
-    description: yup.string().required(),
-    ordinal: yup.number().default(0),
-    benefits: yup.array().of(yup.string().required()),
-    drawbacks: yup.array().of(yup.string().required()),
+    category: exports.categorySchema,
     trackingType: yup.string().oneOf(exports.trackingTypes).required(),
     trackingUnit: yup.string().when("trackingType", {
         is: "counter",
         then: (schema) => schema.required("Tracking unit is required when tracking type is 'counter'"),
         otherwise: (schema) => schema.notRequired(),
     }),
-    category: exports.categorySchema,
+});
+// These are stored at the user-level, as in, users/$userId/behaviors/$behaviorId
+exports.behaviorSchema = exports.behaviorTemplateSchema.shape({
+    id: yup.string(),
+    description: yup.string().required(),
+    ordinal: yup.number().default(0),
+    benefits: yup.array().of(yup.string().required()),
+    drawbacks: yup.array().of(yup.string().required()),
     goal: goalSchema,
     createdAt: utils_1.timestampSchema,
     updatedAt: utils_1.timestampSchema,

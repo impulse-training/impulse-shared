@@ -1,6 +1,6 @@
 import * as yup from "yup";
-import { timestampSchema } from "../utils";
 import { BEHAVIOR_CATEGORIES, BehaviorCategoryKey } from "../constants";
+import { timestampSchema } from "../utils";
 
 export const trackingTypes = ["counter", "timer"] as const;
 
@@ -21,13 +21,11 @@ const goalSchema = yup.object({
   target: yup.number().required(),
 });
 
-export const behaviorSchema = yup.object({
-  id: yup.string(),
+// These are foundational attributes, and correspond to documents in a top-level behaviorTemplates
+// collection. We then extend that schema to be the full behavior schema.
+export const behaviorTemplateSchema = yup.object({
   name: yup.string().required(),
-  description: yup.string().required(),
-  ordinal: yup.number().default(0),
-  benefits: yup.array().of(yup.string().required()),
-  drawbacks: yup.array().of(yup.string().required()),
+  category: categorySchema,
   trackingType: yup.string().oneOf(trackingTypes).required(),
   trackingUnit: yup.string().when("trackingType", {
     is: "counter",
@@ -37,7 +35,16 @@ export const behaviorSchema = yup.object({
       ),
     otherwise: (schema) => schema.notRequired(),
   }),
-  category: categorySchema,
+});
+export type BehaviorTemplate = yup.InferType<typeof behaviorTemplateSchema>;
+
+// These are stored at the user-level, as in, users/$userId/behaviors/$behaviorId
+export const behaviorSchema = behaviorTemplateSchema.shape({
+  id: yup.string(),
+  description: yup.string().required(),
+  ordinal: yup.number().default(0),
+  benefits: yup.array().of(yup.string().required()),
+  drawbacks: yup.array().of(yup.string().required()),
   goal: goalSchema,
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
