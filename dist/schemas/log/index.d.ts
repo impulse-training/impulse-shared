@@ -25,12 +25,6 @@ export declare const logSchemas: {
         type: "user_message";
         isDisplayable: true;
         data: {
-            userProfile: {
-                emojiId?: {
-                    color: string;
-                    emoji: string;
-                } | undefined;
-            };
             message: import("openai/resources").ChatCompletionUserMessageParam;
         };
         audioAttachment: {
@@ -64,9 +58,6 @@ export declare const logSchemas: {
             message: undefined;
         } & {
             message: undefined;
-            userProfile: {
-                emojiId: undefined;
-            };
         };
         audioAttachment: {
             uri: undefined;
