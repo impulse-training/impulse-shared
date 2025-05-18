@@ -25,6 +25,12 @@ export declare const logSchemas: {
         type: "user_message";
         isDisplayable: true;
         data: {
+            userProfile: {
+                emojiId?: {
+                    color: string;
+                    emoji: string;
+                } | undefined;
+            };
             message: import("openai/resources").ChatCompletionUserMessageParam;
         };
         audioAttachment: {
@@ -58,6 +64,9 @@ export declare const logSchemas: {
             message: undefined;
         } & {
             message: undefined;
+            userProfile: {
+                emojiId: undefined;
+            };
         };
         audioAttachment: {
             uri: undefined;
@@ -291,6 +300,7 @@ export declare const logSchemas: {
             response: {} | null;
             question: {
                 id?: string | undefined;
+                gameplans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 scope?: "impulse" | "recap" | undefined;
                 content: string;
                 responseType: "slider";
@@ -305,6 +315,7 @@ export declare const logSchemas: {
                 suggestedResponses: (string | undefined)[];
             } | {
                 id?: string | undefined;
+                gameplans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 scope?: "impulse" | "recap" | undefined;
                 suggestedResponses?: string[] | undefined;
                 content: string;

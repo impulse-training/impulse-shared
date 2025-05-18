@@ -150,6 +150,12 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
         dateString: string;
         isDisplayable: true;
         data: {
+            userProfile: {
+                emojiId?: {
+                    color: string;
+                    emoji: string;
+                } | undefined;
+            };
             message: import("openai/resources").ChatCompletionUserMessageParam;
         };
     } | undefined;
@@ -209,6 +215,9 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
             message: undefined;
         } & {
             message: undefined;
+            userProfile: {
+                emojiId: undefined;
+            };
         };
         audioAttachment: {
             uri: undefined;
