@@ -4,6 +4,7 @@ import {
   behaviorTrackedLogSchema,
 } from "./behaviorTrackedLog";
 import { CallLog, callLogSchema } from "./callLog";
+import { CheckInLog, checkInLogSchema } from "./checkInLog";
 import { GameplanLog, gameplanLogSchema } from "./gameplanLog";
 import { ImpulseLog, impulseLogSchema } from "./impulseLog";
 import { LinkLog, linkLogSchema } from "./linkLog";
@@ -30,6 +31,7 @@ export const logSchemas = {
   call: callLogSchema,
   tool_call: toolCallLogSchema,
   tactic_completed: tacticLogSchema,
+  check_in: checkInLogSchema,
   tactic_viewed: tacticLogSchema,
   impulse_button_pressed: impulseLogSchema,
   behavior_tracked: behaviorTrackedLogSchema,
@@ -59,10 +61,12 @@ export type Log =
   | WidgetSetupLog
   | ShowTourLog
   | LinkLog
-  | VideoLog;
+  | VideoLog
+  | CheckInLog;
 
 export * from "./behaviorTrackedLog";
 export * from "./callLog";
+export * from "./checkInLog";
 export * from "./gameplanLog";
 export * from "./impulseLog";
 export * from "./linkLog";
@@ -110,6 +114,17 @@ export const logIsShowTourLog = (
   value: Omit<Log, "id">
 ): value is ShowTourLog => value.type === "show_tour";
 export const isValidShowTourLog = (value: unknown): value is ShowTourLog => {
+  try {
+    showTourLogSchema.validateSync(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+export const logIsCheckInLog = (value: Omit<Log, "id">): value is CheckInLog =>
+  value.type === "check_in";
+export const isValidCheckInLog = (value: unknown): value is CheckInLog => {
   try {
     showTourLogSchema.validateSync(value);
     return true;

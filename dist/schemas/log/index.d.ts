@@ -1,6 +1,7 @@
 import * as yup from "yup";
 import { BehaviorTrackedLog } from "./behaviorTrackedLog";
 import { CallLog } from "./callLog";
+import { CheckInLog } from "./checkInLog";
 import { GameplanLog } from "./gameplanLog";
 import { ImpulseLog } from "./impulseLog";
 import { LinkLog } from "./linkLog";
@@ -188,6 +189,65 @@ export declare const logSchemas: {
         isDisplayable: undefined;
         data: {
             tactic: undefined;
+        };
+    }, "">;
+    check_in: yup.ObjectSchema<{
+        id: string | undefined;
+        createdAt: import("../../types").Timestamp | undefined;
+        updatedAt: import("../../types").Timestamp | undefined;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        callLogDocPath: string | undefined;
+        type: "check_in";
+        data: {
+            questions?: ({
+                id?: string | undefined;
+                lastAskedAt?: import("../../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                gameplans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                isPinned?: boolean | undefined;
+                scope?: "impulse" | "recap" | undefined;
+                content: string;
+                numberOfAnswers: number;
+                responseType: "slider";
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                    defaultValue?: number | undefined;
+                    min: number;
+                    max: number;
+                    step: number;
+                };
+                suggestedResponses: (string | undefined)[];
+            } | {
+                id?: string | undefined;
+                lastAskedAt?: import("../../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                gameplans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                isPinned?: boolean | undefined;
+                scope?: "impulse" | "recap" | undefined;
+                suggestedResponses?: string[] | undefined;
+                content: string;
+                numberOfAnswers: number;
+                responseType: "text";
+            })[] | undefined;
+            answersByQuestionId: {
+                [x: string]: {};
+            };
+        };
+    }, yup.AnyObject, {
+        id: undefined;
+        createdAt: undefined;
+        updatedAt: undefined;
+        userId: undefined;
+        timestamp: undefined;
+        dateString: undefined;
+        callLogDocPath: undefined;
+        type: undefined;
+        data: {
+            questions: "";
+            answersByQuestionId: undefined;
         };
     }, "">;
     tactic_viewed: yup.ObjectSchema<{
@@ -537,9 +597,10 @@ export declare const logSchemas: {
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | ImpulseLog | BehaviorTrackedLog | QuestionLog | GameplanLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | VideoLog;
+export type Log = TacticLog | ImpulseLog | BehaviorTrackedLog | QuestionLog | GameplanLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | VideoLog | CheckInLog;
 export * from "./behaviorTrackedLog";
 export * from "./callLog";
+export * from "./checkInLog";
 export * from "./gameplanLog";
 export * from "./impulseLog";
 export * from "./linkLog";
@@ -556,6 +617,8 @@ export declare const logIsAssistantMessageLog: (value: Omit<Log, "id">) => value
 export declare const isValidAssistantMessageLog: (value: unknown) => value is AssistantMessageLog;
 export declare const logIsShowTourLog: (value: Omit<Log, "id">) => value is ShowTourLog;
 export declare const isValidShowTourLog: (value: unknown) => value is ShowTourLog;
+export declare const logIsCheckInLog: (value: Omit<Log, "id">) => value is CheckInLog;
+export declare const isValidCheckInLog: (value: unknown) => value is CheckInLog;
 export declare const logIsBehaviorTrackedLog: (value: Omit<Log, "id">) => value is BehaviorTrackedLog;
 export declare const isValidBehaviorTrackedLog: (value: unknown) => value is BehaviorTrackedLog;
 export declare const logIsCallLog: (value: Omit<Log, "id">) => value is CallLog;
