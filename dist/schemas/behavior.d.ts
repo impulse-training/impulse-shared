@@ -4,20 +4,29 @@ export declare const categorySchema: yup.MixedSchema<NonNullable<"helpful" | "mi
 export declare const behaviorTemplateSchema: yup.ObjectSchema<{
     name: string;
     category: NonNullable<"helpful" | "mixed" | "unhelpful" | "unsure" | undefined>;
+    hasQuestions: boolean;
     trackingType: NonNullable<"counter" | "timer" | undefined>;
     trackingUnit: string | undefined;
+    createdAt: import("../types").Timestamp | undefined;
+    updatedAt: import("../types").Timestamp | undefined;
 }, yup.AnyObject, {
     name: undefined;
     category: undefined;
+    hasQuestions: false;
     trackingType: undefined;
     trackingUnit: undefined;
+    createdAt: undefined;
+    updatedAt: undefined;
 }, "">;
 export type BehaviorTemplate = yup.InferType<typeof behaviorTemplateSchema>;
 export declare const behaviorSchema: yup.ObjectSchema<{
     name: string;
     category: NonNullable<"helpful" | "mixed" | "unhelpful" | "unsure" | undefined>;
+    hasQuestions: boolean;
     trackingType: NonNullable<"counter" | "timer" | undefined>;
     trackingUnit: string | undefined;
+    createdAt: import("../types").Timestamp | undefined;
+    updatedAt: import("../types").Timestamp | undefined;
     id: string | undefined;
     description: string;
     ordinal: number;
@@ -27,14 +36,15 @@ export declare const behaviorSchema: yup.ObjectSchema<{
         type: NonNullable<"greaterThan" | "lessThanOrEqualTo" | undefined>;
         target: number;
     };
-    createdAt: import("../types").Timestamp | undefined;
-    updatedAt: import("../types").Timestamp | undefined;
     lastTrackedAt: import("../types").Timestamp | undefined;
 }, yup.AnyObject, {
     name: undefined;
     category: undefined;
+    hasQuestions: false;
     trackingType: undefined;
     trackingUnit: undefined;
+    createdAt: undefined;
+    updatedAt: undefined;
     id: undefined;
     description: undefined;
     ordinal: 0;
@@ -44,8 +54,6 @@ export declare const behaviorSchema: yup.ObjectSchema<{
         type: undefined;
         target: undefined;
     };
-    createdAt: undefined;
-    updatedAt: undefined;
     lastTrackedAt: undefined;
 }, "">;
 export type TrackingType = (typeof trackingTypes)[number];

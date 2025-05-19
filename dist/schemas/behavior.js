@@ -57,12 +57,15 @@ const goalSchema = yup.object({
 exports.behaviorTemplateSchema = yup.object({
     name: yup.string().required(),
     category: exports.categorySchema,
+    hasQuestions: yup.boolean().optional().default(false),
     trackingType: yup.string().oneOf(exports.trackingTypes).required(),
     trackingUnit: yup.string().when("trackingType", {
         is: "counter",
         then: (schema) => schema.required("Tracking unit is required when tracking type is 'counter'"),
         otherwise: (schema) => schema.notRequired(),
     }),
+    createdAt: utils_1.timestampSchema,
+    updatedAt: utils_1.timestampSchema,
 });
 // These are stored at the user-level, as in, users/$userId/behaviors/$behaviorId
 exports.behaviorSchema = exports.behaviorTemplateSchema.shape({
@@ -72,8 +75,6 @@ exports.behaviorSchema = exports.behaviorTemplateSchema.shape({
     benefits: yup.array().of(yup.string().required()),
     drawbacks: yup.array().of(yup.string().required()),
     goal: goalSchema,
-    createdAt: utils_1.timestampSchema,
-    updatedAt: utils_1.timestampSchema,
     lastTrackedAt: utils_1.timestampSchema,
 });
 const isBehavior = (value) => {

@@ -26,6 +26,7 @@ const goalSchema = yup.object({
 export const behaviorTemplateSchema = yup.object({
   name: yup.string().required(),
   category: categorySchema,
+  hasQuestions: yup.boolean().optional().default(false),
   trackingType: yup.string().oneOf(trackingTypes).required(),
   trackingUnit: yup.string().when("trackingType", {
     is: "counter",
@@ -35,6 +36,8 @@ export const behaviorTemplateSchema = yup.object({
       ),
     otherwise: (schema) => schema.notRequired(),
   }),
+  createdAt: timestampSchema,
+  updatedAt: timestampSchema,
 });
 export type BehaviorTemplate = yup.InferType<typeof behaviorTemplateSchema>;
 
@@ -46,8 +49,6 @@ export const behaviorSchema = behaviorTemplateSchema.shape({
   benefits: yup.array().of(yup.string().required()),
   drawbacks: yup.array().of(yup.string().required()),
   goal: goalSchema,
-  createdAt: timestampSchema,
-  updatedAt: timestampSchema,
   lastTrackedAt: timestampSchema,
 });
 
