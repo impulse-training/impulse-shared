@@ -8,6 +8,7 @@ export function gameplanBaseSchema<T extends string>(type: T) {
     type: yup.mixed<T>().oneOf([type]).required(),
     ordinal: yup.number(),
     tactics: yup.array().of(documentReferenceSchema.required()).required(),
+    lastUsedAt: timestampSchema,
     createdAt: timestampSchema,
     updatedAt: timestampSchema,
     deletedAt: timestampSchema,
