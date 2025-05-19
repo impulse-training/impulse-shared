@@ -292,6 +292,7 @@ export declare const logSchemas: {
             question: {
                 id?: string | undefined;
                 gameplans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                isPinned?: boolean | undefined;
                 scope?: "impulse" | "recap" | undefined;
                 content: string;
                 responseType: "slider";
@@ -307,6 +308,7 @@ export declare const logSchemas: {
             } | {
                 id?: string | undefined;
                 gameplans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                isPinned?: boolean | undefined;
                 scope?: "impulse" | "recap" | undefined;
                 suggestedResponses?: string[] | undefined;
                 content: string;

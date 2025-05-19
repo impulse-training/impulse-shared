@@ -14,6 +14,7 @@ export declare const questionLogSchema: yup.ObjectSchema<{
         question: {
             id?: string | undefined;
             gameplans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+            isPinned?: boolean | undefined;
             scope?: "impulse" | "recap" | undefined;
             content: string;
             responseType: "slider";
@@ -29,6 +30,7 @@ export declare const questionLogSchema: yup.ObjectSchema<{
         } | {
             id?: string | undefined;
             gameplans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+            isPinned?: boolean | undefined;
             scope?: "impulse" | "recap" | undefined;
             suggestedResponses?: string[] | undefined;
             content: string;
