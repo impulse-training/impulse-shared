@@ -10,8 +10,8 @@ export const threadBaseSchema = yup.object({
   id: yup.string(),
   title: yup.string().required(),
   type: yup
-    .mixed<"impulse" | "general" | "onboarding" | "dayRecap" | "scheduled">()
-    .oneOf(["impulse", "general", "onboarding", "dayRecap", "scheduled"])
+    .mixed<"impulse" | "general" | "onboarding" | "dayRecap" | "routine">()
+    .oneOf(["impulse", "general", "onboarding", "dayRecap", "routine"])
     .default("general"),
   date: timestampSchema.required(),
   gameplan: withId<Gameplan>(gameplanSchema),
