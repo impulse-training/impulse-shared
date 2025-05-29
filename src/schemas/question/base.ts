@@ -11,6 +11,6 @@ export function questionBaseSchema<T extends string>(type: T) {
     numberOfAnswers: yup.number().optional().default(0),
     isPinned: yup.boolean(),
     responseType: yup.mixed<T>().oneOf([type]).required(),
-    scope: yup.string().oneOf(["impulse", "recap"]).optional(),
+    scope: yup.string().oneOf(["impulse", "checkIn"]).optional(),
   });
 }

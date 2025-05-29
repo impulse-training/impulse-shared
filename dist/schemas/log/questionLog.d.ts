@@ -17,7 +17,7 @@ export declare const questionLogSchema: yup.ObjectSchema<{
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             gameplans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
             isPinned?: boolean | undefined;
-            scope?: "impulse" | "recap" | undefined;
+            scope?: "impulse" | "checkIn" | undefined;
             content: string;
             numberOfAnswers: number;
             responseType: "slider";
@@ -36,7 +36,7 @@ export declare const questionLogSchema: yup.ObjectSchema<{
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             gameplans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
             isPinned?: boolean | undefined;
-            scope?: "impulse" | "recap" | undefined;
+            scope?: "impulse" | "checkIn" | undefined;
             suggestedResponses?: string[] | undefined;
             content: string;
             numberOfAnswers: number;

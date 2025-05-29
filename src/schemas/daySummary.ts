@@ -18,7 +18,7 @@ export const daySummarySchema = yup.object({
   summaryText: yup.string().default(""),
   supportGroupPermissionsById: optionalObjectOf(supportGroupPermissionsSchema),
   sharedWithUserIds: yup.array().of(yup.string().required()),
-  recapCompletedAt: timestampSchema,
+  checkInCompletedAt: timestampSchema,
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
 });

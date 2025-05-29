@@ -18,7 +18,7 @@ export const userDataSchema = yup.object({
   notificationsEnabled: yup.boolean().default(true),
   expoPushToken: yup.string().nullable().default(null),
 
-  // Daily recap settings
+  // Daily checkIn settings
   dayRecapEnabled: yup.boolean().default(true),
   dayRecapTime: timestampSchema,
   lastDayRecapDate: timestampSchema,

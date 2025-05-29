@@ -207,7 +207,7 @@ export declare const logSchemas: {
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 gameplans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 isPinned?: boolean | undefined;
-                scope?: "impulse" | "recap" | undefined;
+                scope?: "impulse" | "checkIn" | undefined;
                 content: string;
                 numberOfAnswers: number;
                 responseType: "slider";
@@ -226,7 +226,7 @@ export declare const logSchemas: {
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 gameplans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 isPinned?: boolean | undefined;
-                scope?: "impulse" | "recap" | undefined;
+                scope?: "impulse" | "checkIn" | undefined;
                 suggestedResponses?: string[] | undefined;
                 content: string;
                 numberOfAnswers: number;
@@ -355,7 +355,7 @@ export declare const logSchemas: {
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 gameplans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 isPinned?: boolean | undefined;
-                scope?: "impulse" | "recap" | undefined;
+                scope?: "impulse" | "checkIn" | undefined;
                 content: string;
                 numberOfAnswers: number;
                 responseType: "slider";
@@ -374,7 +374,7 @@ export declare const logSchemas: {
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 gameplans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 isPinned?: boolean | undefined;
-                scope?: "impulse" | "recap" | undefined;
+                scope?: "impulse" | "checkIn" | undefined;
                 suggestedResponses?: string[] | undefined;
                 content: string;
                 numberOfAnswers: number;

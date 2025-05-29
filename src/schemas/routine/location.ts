@@ -1,7 +1,7 @@
 import * as yup from "yup";
-import { gameplanBaseSchema } from "./base";
+import { routineBaseSchema } from "./base";
 
-export const locationGameplanSchema = gameplanBaseSchema("location").shape({
+export const locationRoutineSchema = routineBaseSchema("location").shape({
   data: yup.object({
     locationName: yup.string().required(),
     triggerType: yup.string().oneOf(["arrival", "departure"]).required(),
@@ -10,4 +10,4 @@ export const locationGameplanSchema = gameplanBaseSchema("location").shape({
   }),
 });
 
-export type LocationGameplan = yup.InferType<typeof locationGameplanSchema>;
+export type LocationRoutine = yup.InferType<typeof locationRoutineSchema>;
