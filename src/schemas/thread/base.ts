@@ -1,7 +1,6 @@
 import * as yup from "yup";
-import { objectOf, optionalObjectOf, withId } from "../../utils";
+import { objectOf, optionalObjectOf } from "../../utils";
 import { timestampSchema } from "../../utils/timestampSchema";
-import { Gameplan, gameplanSchema } from "../gameplan";
 import { logSchema } from "../log";
 import { tacticSchema } from "../tactic";
 
@@ -14,7 +13,6 @@ export const threadBaseSchema = yup.object({
     .oneOf(["impulse", "general", "onboarding", "dayRecap", "routine"])
     .default("general"),
   date: timestampSchema.required(),
-  gameplan: withId<Gameplan>(gameplanSchema),
   tacticsByPath: optionalObjectOf(tacticSchema),
 
   dateString: yup.string().required(),
