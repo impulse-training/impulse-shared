@@ -1,18 +1,18 @@
 import * as yup from "yup";
 import { LocationRoutine, locationRoutineSchema } from "./location";
-import { ScheduledRoutine, scheduledRoutineSchema } from "./scheduled";
+import { TimeRoutine, timeRoutineSchema } from "./time";
 
 export * from "./location";
-export * from "./scheduled";
+export * from "./time";
 
-export type Routine = ScheduledRoutine | LocationRoutine;
+export type Routine = TimeRoutine | LocationRoutine;
 
 // Utility to dynamically select the correct schema based on the Routine type
 export const RoutineSchemas: Record<
   Routine["type"],
   yup.ObjectSchema<Routine>
 > = {
-  scheduled: scheduledRoutineSchema,
+  time: timeRoutineSchema,
   location: locationRoutineSchema,
 } as any;
 
@@ -34,14 +34,12 @@ export type RoutineTypes = {
   [K in Routine["type"]]: yup.InferType<(typeof RoutineSchemas)[K]>;
 };
 
-export const routineIsScheduledRoutine = (
+export const routineIsTimeRoutine = (
   value: Omit<Routine, "id">
-): value is ScheduledRoutine => value.type === "scheduled";
-export const isValidScheduledRoutine = (
-  value: unknown
-): value is ScheduledRoutine => {
+): value is TimeRoutine => value.type === "time";
+export const isValidTimeRoutine = (value: unknown): value is TimeRoutine => {
   try {
-    scheduledRoutineSchema.validateSync(value);
+    timeRoutineSchema.validateSync(value);
     return true;
   } catch (error) {
     return false;
