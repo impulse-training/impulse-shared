@@ -3,6 +3,7 @@ import { timestampSchema } from "../utils";
 import { folderSchema } from "./folder";
 import { gameplanSchema } from "./gameplan";
 import { routineSchema } from "./routine";
+import { userProfileSchema } from "./userProfile";
 
 export const strategySchema = yup.object({
   id: yup.string(),
@@ -11,6 +12,7 @@ export const strategySchema = yup.object({
   gameplans: yup.array().of(gameplanSchema).required(),
   routines: yup.array().of(routineSchema).required(),
   folders: yup.array().of(folderSchema).required(),
+  createdByProfile: userProfileSchema,
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
 });
