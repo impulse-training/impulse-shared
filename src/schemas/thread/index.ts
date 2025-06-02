@@ -2,7 +2,12 @@ import * as yup from "yup";
 import { GeneralThread, generalThreadSchema } from "./general";
 import { ImpulseThread, impulseThreadSchema } from "./impulse";
 import { OnboardingThread, onboardingThreadSchema } from "./onboarding";
-import { RoutineThread, routineThreadSchema } from "./routine";
+import {
+  LocationRoutineThread,
+  locationRoutineThreadSchema,
+  TimeRoutineThread,
+  timeRoutineThreadSchema,
+} from "./routine";
 
 export * from "./general";
 export * from "./impulse";
@@ -14,7 +19,8 @@ export const threadSchemas = {
   general: generalThreadSchema,
   impulse: impulseThreadSchema,
   onboarding: onboardingThreadSchema,
-  routine: routineThreadSchema,
+  timeRoutine: timeRoutineThreadSchema,
+  locationRoutine: locationRoutineThreadSchema,
 };
 
 // Dynamic schema that selects the appropriate schema based on the thread type
@@ -72,13 +78,28 @@ export const isValidImpulseThread = (
   }
 };
 
-export const threadIsRoutineThread = (value: Thread): value is RoutineThread =>
-  value.type === "routine";
-export const isValidRoutineThread = (
+export const threadIsTimeRoutineThread = (
+  value: Thread
+): value is TimeRoutineThread => value.type === "timeRoutine";
+export const isValidTimeRoutineThread = (
   value: unknown
-): value is RoutineThread => {
+): value is TimeRoutineThread => {
   try {
-    routineThreadSchema.validateSync(value);
+    timeRoutineThreadSchema.validateSync(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+export const threadIsLocationRoutineThread = (
+  value: Thread
+): value is LocationRoutineThread => value.type === "locationRoutine";
+export const isValidLocationRoutineThread = (
+  value: unknown
+): value is LocationRoutineThread => {
+  try {
+    locationRoutineThreadSchema.validateSync(value);
     return true;
   } catch (error) {
     return false;
@@ -89,4 +110,5 @@ export type Thread =
   | ImpulseThread
   | GeneralThread
   | OnboardingThread
-  | RoutineThread;
+  | TimeRoutineThread
+  | LocationRoutineThread;

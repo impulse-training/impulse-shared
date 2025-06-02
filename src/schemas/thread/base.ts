@@ -9,8 +9,22 @@ export const threadBaseSchema = yup.object({
   id: yup.string(),
   title: yup.string().required(),
   type: yup
-    .mixed<"impulse" | "general" | "onboarding" | "dayRecap" | "routine">()
-    .oneOf(["impulse", "general", "onboarding", "dayRecap", "routine"])
+    .mixed<
+      | "impulse"
+      | "general"
+      | "onboarding"
+      | "dayRecap"
+      | "timeRoutine"
+      | "locationRoutine"
+    >()
+    .oneOf([
+      "impulse",
+      "general",
+      "onboarding",
+      "dayRecap",
+      "timeRoutine",
+      "locationRoutine",
+    ])
     .default("general"),
   date: timestampSchema.required(),
   tacticsByPath: optionalObjectOf(tacticSchema),
