@@ -1,4 +1,5 @@
 import * as yup from "yup";
+import { documentReferenceSchema } from "../utils";
 import { timestampSchema } from "../utils/timestampSchema";
 
 export const userDataSchema = yup.object({
@@ -24,6 +25,9 @@ export const userDataSchema = yup.object({
   lastDayRecapDate: timestampSchema,
 
   appVersion: yup.string(),
+
+  // This points to the user's active strategy. It can be updated to rollback.
+  activeStrategyDoc: documentReferenceSchema,
 
   // User preferences
   theme: yup
