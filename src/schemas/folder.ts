@@ -6,6 +6,7 @@ export const folderSchema = yup.object({
   name: yup.string().required(),
   ordinal: yup.number(),
   tactics: yup.array().of(documentReferenceSchema.required()).required(),
+  isCollaborative: yup.boolean().optional().default(undefined),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
   deletedAt: timestampSchema,
