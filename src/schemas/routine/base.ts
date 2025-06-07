@@ -7,7 +7,8 @@ export function routineBaseSchema<T extends string>(type: T) {
     name: yup.string().required(),
     type: yup.mixed<T>().oneOf([type]).required(),
     ordinal: yup.number(),
-    tactics: yup.array().of(documentReferenceSchema.required()).required(),
+    // items can be tactics or folders
+    items: yup.array().of(documentReferenceSchema.required()).required(),
     lastUsedAt: timestampSchema,
     createdAt: timestampSchema,
     updatedAt: timestampSchema,

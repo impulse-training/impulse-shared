@@ -5,7 +5,8 @@ export const gameplanSchema = yup.object({
   id: yup.string(),
   name: yup.string().required(),
   ordinal: yup.number(),
-  tactics: yup.array().of(documentReferenceSchema.required()).required(),
+  // items can be tactics or folders
+  items: yup.array().of(documentReferenceSchema.required()).required(),
   behaviorIds: yup.array().of(yup.string().required()).required(),
   lastUsedAt: timestampSchema,
   createdAt: timestampSchema,
