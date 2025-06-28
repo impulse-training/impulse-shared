@@ -5,10 +5,6 @@ export const timeRoutineSchema = routineBaseSchema("time").shape({
   data: yup.object({
     hour: yup.number().required(),
     minute: yup.number().required(),
-    triggerType: yup
-      .mixed<"arrive" | "leave">()
-      .oneOf(["arrive", "leave"])
-      .required(),
     weekdays: yup
       .array()
       .of(yup.number().min(0).max(6).required())
