@@ -4,7 +4,7 @@ export declare const categorySchema: yup.MixedSchema<NonNullable<"helpful" | "mi
 export declare const behaviorTemplateSchema: yup.ObjectSchema<{
     name: string;
     category: NonNullable<"helpful" | "mixed" | "unhelpful" | "unsure" | undefined>;
-    hasQuestions: boolean;
+    hasQuestions: boolean | undefined;
     trackingType: NonNullable<"counter" | "timer" | undefined>;
     trackingUnit: string | undefined;
     createdAt: import("../types").Timestamp | undefined;
@@ -12,7 +12,7 @@ export declare const behaviorTemplateSchema: yup.ObjectSchema<{
 }, yup.AnyObject, {
     name: undefined;
     category: undefined;
-    hasQuestions: false;
+    hasQuestions: undefined;
     trackingType: undefined;
     trackingUnit: undefined;
     createdAt: undefined;
@@ -22,7 +22,7 @@ export type BehaviorTemplate = yup.InferType<typeof behaviorTemplateSchema>;
 export declare const behaviorSchema: yup.ObjectSchema<{
     name: string;
     category: NonNullable<"helpful" | "mixed" | "unhelpful" | "unsure" | undefined>;
-    hasQuestions: boolean;
+    hasQuestions: boolean | undefined;
     trackingType: NonNullable<"counter" | "timer" | undefined>;
     trackingUnit: string | undefined;
     createdAt: import("../types").Timestamp | undefined;
@@ -35,12 +35,12 @@ export declare const behaviorSchema: yup.ObjectSchema<{
     goal: {
         type: NonNullable<"greaterThan" | "lessThanOrEqualTo" | undefined>;
         target: number;
-    };
+    } | undefined;
     lastTrackedAt: import("../types").Timestamp | undefined;
 }, yup.AnyObject, {
     name: undefined;
     category: undefined;
-    hasQuestions: false;
+    hasQuestions: undefined;
     trackingType: undefined;
     trackingUnit: undefined;
     createdAt: undefined;
@@ -50,10 +50,7 @@ export declare const behaviorSchema: yup.ObjectSchema<{
     ordinal: 0;
     benefits: "";
     drawbacks: "";
-    goal: {
-        type: undefined;
-        target: undefined;
-    };
+    goal: undefined;
     lastTrackedAt: undefined;
 }, "">;
 export type TrackingType = (typeof trackingTypes)[number];

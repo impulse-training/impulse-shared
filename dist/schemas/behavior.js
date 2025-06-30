@@ -57,7 +57,7 @@ const goalSchema = yup.object({
 exports.behaviorTemplateSchema = yup.object({
     name: yup.string().required(),
     category: exports.categorySchema,
-    hasQuestions: yup.boolean().optional().default(false),
+    hasQuestions: yup.boolean().optional().default(undefined),
     trackingType: yup.string().oneOf(exports.trackingTypes).required(),
     trackingUnit: yup.string().when("trackingType", {
         is: "counter",
@@ -74,7 +74,7 @@ exports.behaviorSchema = exports.behaviorTemplateSchema.shape({
     ordinal: yup.number().default(0),
     benefits: yup.array().of(yup.string().required()),
     drawbacks: yup.array().of(yup.string().required()),
-    goal: goalSchema,
+    goal: goalSchema.optional().default(undefined),
     lastTrackedAt: utils_1.timestampSchema,
 });
 const isBehavior = (value) => {
