@@ -45,6 +45,7 @@ exports.questionLogSchema = base_1.logBaseSchema.shape({
         .object({
         questionId: yup.string().required(),
         question: question_1.questionSchema,
+        isFinalQuestion: yup.boolean().optional().default(false),
         response: yup.mixed().nullable().default(null), // This will store the user's response
     })
         .required(),

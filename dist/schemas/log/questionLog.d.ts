@@ -43,6 +43,7 @@ export declare const questionLogSchema: yup.ObjectSchema<{
             responseType: "text";
         };
         questionId: string;
+        isFinalQuestion: boolean;
     };
 }, yup.AnyObject, {
     id: undefined;
@@ -57,6 +58,7 @@ export declare const questionLogSchema: yup.ObjectSchema<{
     data: {
         questionId: undefined;
         question: undefined;
+        isFinalQuestion: false;
         response: null;
     };
 }, "">;
