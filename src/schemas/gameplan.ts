@@ -7,9 +7,9 @@ export const gameplanSchema = yup.object({
   ordinal: yup.number(),
   // items can be tactics or folders
   items: yup.array().of(documentReferenceSchema.required()).required(),
-  lastUsedAt: timestampSchema,
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
-  deletedAt: timestampSchema,
+  lastUsedAt: timestampSchema.optional().default(undefined),
+  deletedAt: timestampSchema.optional().default(undefined),
 });
 export type Gameplan = yup.InferType<typeof gameplanSchema>;
