@@ -1,7 +1,7 @@
 import { forEach, mapValues } from "lodash";
-import { Thread } from "../schemas/thread";
-import { BehaviorTrackingData } from "../schemas/log/behaviorTrackedLog";
 import { logIsBehaviorTrackedLog } from "../schemas/log";
+import { BehaviorTrackingData } from "../schemas/log/behaviorTrackedLog";
+import { Thread } from "../schemas/thread";
 
 // Helper function to format values like "6 cigarettes"
 function getFormattedValue(data: BehaviorTrackingData): string {
@@ -25,6 +25,8 @@ export function sumBehaviorDataTotalsFromThreads(
   // Get the totals for the behavior across all threads
   const totalsByBehaviorId: Record<string, BehaviorTrackingData> = {};
 
+  console.log("Summing");
+
   // Process each thread
   threads.forEach((thread) => {
     if (!thread.trackingLogsById) return;
@@ -40,7 +42,8 @@ export function sumBehaviorDataTotalsFromThreads(
           behaviorData.trackingType ===
           totalsByBehaviorId[behaviorData.behaviorId].trackingType
         ) {
-          totalsByBehaviorId[behaviorData.behaviorId].value += behaviorData.value;
+          totalsByBehaviorId[behaviorData.behaviorId].value +=
+            behaviorData.value;
         } else {
           // Rare (unlikely) edge case where the user has tracked a behavior using a counter, then
           // changed to track it by time, or vice-versa. We just simply don't add the values up.
