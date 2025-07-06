@@ -88,6 +88,7 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
         typeof log.data.response === "string"
           ? log.data.response
           : `${log.data.response.toString()}/10`;
+
       messages.push({
         role: "user",
         content: formattedResponse,

@@ -6,7 +6,7 @@ import {
 
 type WithMaybeId = { id?: string | undefined };
 
-export const withId = <T extends yup.AnyObject>(
+export const withIdSchema = <T extends yup.AnyObject>(
   schema: yup.ObjectSchema<T> | yup.Lazy<yup.AnyObject>
 ): yup.Lazy<WithId<T>> =>
   yup.lazy(() => {
