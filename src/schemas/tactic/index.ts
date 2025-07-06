@@ -8,6 +8,7 @@ import {
 } from "./breathingExercise";
 import { ImageTactic, imageTacticSchema } from "./image";
 import { LinkTactic, linkTacticSchema } from "./link";
+import { RecapTactic, recapTacticSchema } from "./recap";
 import { SupportGroupTactic, supportGroupTacticSchema } from "./supportGroup";
 import { VideoTactic, videoTacticSchema } from "./video";
 
@@ -17,6 +18,7 @@ export * from "./audio";
 export * from "./breathingExercise";
 export * from "./image";
 export * from "./link";
+export * from "./recap";
 export * from "./supportGroup";
 export * from "./video";
 
@@ -28,6 +30,7 @@ export const tacticSchemas = {
   breathingExercise: breathingExerciseTacticSchema,
   image: imageTacticSchema,
   link: linkTacticSchema,
+  recap: recapTacticSchema,
   supportGroup: supportGroupTacticSchema,
   video: videoTacticSchema,
 };
@@ -95,6 +98,17 @@ export const isValidImageTactic = (value: unknown): value is ImageTactic => {
   }
 };
 
+export const tacticIsRecapTactic = (value: Tactic): value is RecapTactic =>
+  value.type === "recap";
+export const isValidRecapTactic = (value: unknown): value is RecapTactic => {
+  try {
+    recapTacticSchema.validateSync(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
 export const tacticIsLinkTactic = (value: Tactic): value is LinkTactic =>
   value.type === "link";
 export const isValidLinkTactic = (value: unknown): value is LinkTactic => {
@@ -152,4 +166,5 @@ export type Tactic =
   | LinkTactic
   | SupportGroupTactic
   | VideoTactic
+  | RecapTactic
   | BreathingExerciseTactic;
