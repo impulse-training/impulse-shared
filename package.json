@@ -10,7 +10,6 @@
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc -w",
-    "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -30,7 +29,8 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.17.16",
-    "@types/node": "^20.11.5"
+    "@types/node": "^20.11.5",
+    "yup": "^1.6.1"
   },
   "peerDependencies": {
     "yup": "^1.6.1"
