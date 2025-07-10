@@ -5,6 +5,8 @@ import { OnboardingThread, onboardingThreadSchema } from "./onboarding";
 import {
   LocationRoutineThread,
   locationRoutineThreadSchema,
+  RecapRoutineThread,
+  recapRoutineThreadSchema,
   TimeRoutineThread,
   timeRoutineThreadSchema,
 } from "./routine";
@@ -20,6 +22,7 @@ export const threadSchemas = {
   impulse: impulseThreadSchema,
   onboarding: onboardingThreadSchema,
   timeRoutine: timeRoutineThreadSchema,
+  recapRoutine: recapRoutineThreadSchema,
   locationRoutine: locationRoutineThreadSchema,
 };
 
@@ -92,6 +95,20 @@ export const isValidTimeRoutineThread = (
   }
 };
 
+export const threadIsRecapRoutineThread = (
+  value: Thread
+): value is RecapRoutineThread => value.type === "recapRoutine";
+export const isValidRecapRoutineThread = (
+  value: unknown
+): value is RecapRoutineThread => {
+  try {
+    timeRoutineThreadSchema.validateSync(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
 export const threadIsLocationRoutineThread = (
   value: Thread
 ): value is LocationRoutineThread => value.type === "locationRoutine";
@@ -111,4 +128,5 @@ export type Thread =
   | GeneralThread
   | OnboardingThread
   | TimeRoutineThread
-  | LocationRoutineThread;
+  | LocationRoutineThread
+  | RecapRoutineThread;

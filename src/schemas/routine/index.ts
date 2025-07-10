@@ -1,11 +1,12 @@
 import * as yup from "yup";
 import { LocationRoutine, locationRoutineSchema } from "./location";
+import { RecapRoutine, recapRoutineSchema } from "./recap";
 import { TimeRoutine, timeRoutineSchema } from "./time";
 
 export * from "./location";
 export * from "./time";
 
-export type Routine = TimeRoutine | LocationRoutine;
+export type Routine = TimeRoutine | LocationRoutine | RecapRoutine;
 
 // Utility to dynamically select the correct schema based on the Routine type
 export const RoutineSchemas: Record<
@@ -14,6 +15,7 @@ export const RoutineSchemas: Record<
 > = {
   time: timeRoutineSchema,
   location: locationRoutineSchema,
+  recap: recapRoutineSchema,
 } as any;
 
 export const routineSchema = yup.lazy((value) => {
@@ -40,6 +42,18 @@ export const routineIsTimeRoutine = (
 export const isValidTimeRoutine = (value: unknown): value is TimeRoutine => {
   try {
     timeRoutineSchema.validateSync(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+export const routineIsRecapRoutine = (
+  value: Omit<Routine, "id">
+): value is RecapRoutine => value.type === "recap";
+export const isValidRecapRoutine = (value: unknown): value is RecapRoutine => {
+  try {
+    recapRoutineSchema.validateSync(value);
     return true;
   } catch (error) {
     return false;
