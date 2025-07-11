@@ -10,6 +10,7 @@ export declare const questionLogSchema: yup.ObjectSchema<{
     type: "question";
     isDisplayable: true;
     data: {
+        questionId?: string | undefined;
         response: {} | null;
         question: {
             id?: string | undefined;
@@ -20,6 +21,7 @@ export declare const questionLogSchema: yup.ObjectSchema<{
             scope?: "impulse" | "checkIn" | undefined;
             content: string;
             numberOfAnswers: number;
+            isTemplate: boolean;
             responseType: "recap";
         } | {
             id?: string | undefined;
@@ -30,6 +32,7 @@ export declare const questionLogSchema: yup.ObjectSchema<{
             scope?: "impulse" | "checkIn" | undefined;
             content: string;
             numberOfAnswers: number;
+            isTemplate: boolean;
             responseType: "slider";
             sliderConfig: {
                 minLabel?: string | undefined;
@@ -50,10 +53,9 @@ export declare const questionLogSchema: yup.ObjectSchema<{
             suggestedResponses?: string[] | undefined;
             content: string;
             numberOfAnswers: number;
+            isTemplate: boolean;
             responseType: "text";
         };
-        questionId: string;
-        isFinalQuestion: boolean;
     };
 }, yup.AnyObject, {
     id: undefined;
@@ -68,7 +70,6 @@ export declare const questionLogSchema: yup.ObjectSchema<{
     data: {
         questionId: undefined;
         question: undefined;
-        isFinalQuestion: false;
         response: null;
     };
 }, "">;
