@@ -1,4 +1,16 @@
 import * as yup from "yup";
+declare const responseSchema: yup.ObjectSchema<{
+    responseType: NonNullable<"text" | "recap" | "slider" | undefined>;
+    value: any;
+    color: string | undefined;
+    iconName: string | undefined;
+}, yup.AnyObject, {
+    responseType: undefined;
+    value: undefined;
+    color: undefined;
+    iconName: undefined;
+}, "">;
+export type Response = yup.InferType<typeof responseSchema>;
 export declare const questionLogSchema: yup.ObjectSchema<{
     id: string | undefined;
     createdAt: import("../../types").Timestamp | undefined;
@@ -11,7 +23,12 @@ export declare const questionLogSchema: yup.ObjectSchema<{
     isDisplayable: true;
     data: {
         questionId?: string | undefined;
-        response: {} | null;
+        response: {
+            color?: string | undefined;
+            value?: any;
+            iconName?: string | undefined;
+            responseType: NonNullable<"text" | "recap" | "slider" | undefined>;
+        };
         question: {
             id?: string | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -70,7 +87,13 @@ export declare const questionLogSchema: yup.ObjectSchema<{
     data: {
         questionId: undefined;
         question: undefined;
-        response: null;
+        response: {
+            responseType: undefined;
+            value: undefined;
+            color: undefined;
+            iconName: undefined;
+        };
     };
 }, "">;
 export type QuestionLog = yup.InferType<typeof questionLogSchema>;
+export {};

@@ -37,6 +37,12 @@ exports.questionLogSchema = void 0;
 const yup = __importStar(require("yup"));
 const question_1 = require("../question");
 const base_1 = require("./base");
+const responseSchema = yup.object({
+    responseType: question_1.responseTypeSchema,
+    value: yup.mixed(),
+    color: yup.string(),
+    iconName: yup.string(),
+});
 exports.questionLogSchema = base_1.logBaseSchema.shape({
     type: yup.string().oneOf(["question"]).required(),
     // Question logs are always displayed in the UI
@@ -45,7 +51,7 @@ exports.questionLogSchema = base_1.logBaseSchema.shape({
         .object({
         questionId: yup.string(),
         question: question_1.questionSchema,
-        response: yup.mixed().nullable().default(null), // This will store the user's response
+        response: responseSchema,
     })
         .required(),
 });

@@ -11,6 +11,11 @@ export * from "./text";
 export const responseTypes = ["text", "slider", "recap"] as const;
 export type ResponseType = (typeof responseTypes)[number];
 
+export const responseTypeSchema = yup
+  .mixed<Question["responseType"]>()
+  .oneOf(responseTypes)
+  .required();
+
 // Union type for all question types
 export type Question = TextQuestion | SliderQuestion | RecapQuestion;
 
@@ -33,10 +38,7 @@ export const questionSchema = yup.lazy((value) => {
   }
 
   return yup.object({
-    responseType: yup
-      .mixed<Question["responseType"]>()
-      .oneOf(responseTypes)
-      .required(),
+    responseType: responseTypeSchema,
   });
 }) as yup.Lazy<QuestionTypes[Question["responseType"]]>;
 

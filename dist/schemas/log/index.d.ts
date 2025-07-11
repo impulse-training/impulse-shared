@@ -317,7 +317,12 @@ export declare const logSchemas: {
         isDisplayable: true;
         data: {
             questionId?: string | undefined;
-            response: {} | null;
+            response: {
+                color?: string | undefined;
+                value?: any;
+                iconName?: string | undefined;
+                responseType: NonNullable<"text" | "recap" | "slider" | undefined>;
+            };
             question: {
                 id?: string | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -376,7 +381,12 @@ export declare const logSchemas: {
         data: {
             questionId: undefined;
             question: undefined;
-            response: null;
+            response: {
+                responseType: undefined;
+                value: undefined;
+                color: undefined;
+                iconName: undefined;
+            };
         };
     }, "">;
     gameplan: yup.ObjectSchema<{
