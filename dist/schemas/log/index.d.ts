@@ -1,7 +1,7 @@
 import * as yup from "yup";
 import { BehaviorTrackedLog } from "./behaviorTrackedLog";
 import { CallLog } from "./callLog";
-import { CheckInLog } from "./checkInLog";
+import { DaySummaryLog } from "./daySummaryLog";
 import { GameplanLog } from "./gameplanLog";
 import { ImpulseLog } from "./impulseLog";
 import { LinkLog } from "./linkLog";
@@ -191,7 +191,7 @@ export declare const logSchemas: {
             tactic: undefined;
         };
     }, "">;
-    check_in: yup.ObjectSchema<{
+    day_summary: yup.ObjectSchema<{
         id: string | undefined;
         createdAt: import("../../types").Timestamp | undefined;
         updatedAt: import("../../types").Timestamp | undefined;
@@ -199,55 +199,10 @@ export declare const logSchemas: {
         timestamp: import("../../types").Timestamp;
         dateString: string;
         callLogDocPath: string | undefined;
-        type: "check_in";
+        type: "day_summary";
+        isDisplayable: true;
         data: {
-            questions?: ({
-                id?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                gameplans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
-                isPinned?: boolean | undefined;
-                scope?: "impulse" | "recapRoutine" | undefined;
-                content: string;
-                numberOfAnswers: number;
-                isTemplate: boolean;
-                responseType: "recap";
-            } | {
-                id?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                gameplans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
-                isPinned?: boolean | undefined;
-                scope?: "impulse" | "recapRoutine" | undefined;
-                content: string;
-                numberOfAnswers: number;
-                isTemplate: boolean;
-                responseType: "slider";
-                sliderConfig: {
-                    minLabel?: string | undefined;
-                    maxLabel?: string | undefined;
-                    defaultValue?: number | undefined;
-                    min: number;
-                    max: number;
-                    step: number;
-                };
-                suggestedResponses: (string | undefined)[];
-            } | {
-                id?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                gameplans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
-                isPinned?: boolean | undefined;
-                scope?: "impulse" | "recapRoutine" | undefined;
-                suggestedResponses?: string[] | undefined;
-                content: string;
-                numberOfAnswers: number;
-                isTemplate: boolean;
-                responseType: "text";
-            })[] | undefined;
-            answersByQuestionId: {
-                [x: string]: {};
-            };
+            targetDayDateString: string;
         };
     }, yup.AnyObject, {
         id: undefined;
@@ -258,9 +213,9 @@ export declare const logSchemas: {
         dateString: undefined;
         callLogDocPath: undefined;
         type: undefined;
+        isDisplayable: undefined;
         data: {
-            questions: "";
-            answersByQuestionId: undefined;
+            targetDayDateString: undefined;
         };
     }, "">;
     tactic_viewed: yup.ObjectSchema<{
@@ -623,10 +578,10 @@ export declare const logSchemas: {
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | ImpulseLog | BehaviorTrackedLog | QuestionLog | GameplanLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | VideoLog | CheckInLog;
+export type Log = TacticLog | ImpulseLog | BehaviorTrackedLog | QuestionLog | GameplanLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | VideoLog | DaySummaryLog;
 export * from "./behaviorTrackedLog";
 export * from "./callLog";
-export * from "./checkInLog";
+export * from "./daySummaryLog";
 export * from "./gameplanLog";
 export * from "./impulseLog";
 export * from "./linkLog";
@@ -643,8 +598,8 @@ export declare const logIsAssistantMessageLog: (value: Omit<Log, "id">) => value
 export declare const isValidAssistantMessageLog: (value: unknown) => value is AssistantMessageLog;
 export declare const logIsShowTourLog: (value: Omit<Log, "id">) => value is ShowTourLog;
 export declare const isValidShowTourLog: (value: unknown) => value is ShowTourLog;
-export declare const logIsCheckInLog: (value: Omit<Log, "id">) => value is CheckInLog;
-export declare const isValidCheckInLog: (value: unknown) => value is CheckInLog;
+export declare const logIsDaySummaryLog: (value: Omit<Log, "id">) => value is DaySummaryLog;
+export declare const isValidCheckInLog: (value: unknown) => value is DaySummaryLog;
 export declare const logIsBehaviorTrackedLog: (value: Omit<Log, "id">) => value is BehaviorTrackedLog;
 export declare const isValidBehaviorTrackedLog: (value: unknown) => value is BehaviorTrackedLog;
 export declare const logIsCallLog: (value: Omit<Log, "id">) => value is CallLog;

@@ -4,7 +4,7 @@ import {
   behaviorTrackedLogSchema,
 } from "./behaviorTrackedLog";
 import { CallLog, callLogSchema } from "./callLog";
-import { CheckInLog, checkInLogSchema } from "./checkInLog";
+import { DaySummaryLog, daySummaryLogSchema } from "./daySummaryLog";
 import { GameplanLog, gameplanLogSchema } from "./gameplanLog";
 import { ImpulseLog, impulseLogSchema } from "./impulseLog";
 import { LinkLog, linkLogSchema } from "./linkLog";
@@ -31,7 +31,7 @@ export const logSchemas = {
   call: callLogSchema,
   tool_call: toolCallLogSchema,
   tactic_completed: tacticLogSchema,
-  check_in: checkInLogSchema,
+  day_summary: daySummaryLogSchema,
   tactic_viewed: tacticLogSchema,
   impulse_button_pressed: impulseLogSchema,
   behavior_tracked: behaviorTrackedLogSchema,
@@ -62,11 +62,11 @@ export type Log =
   | ShowTourLog
   | LinkLog
   | VideoLog
-  | CheckInLog;
+  | DaySummaryLog;
 
 export * from "./behaviorTrackedLog";
 export * from "./callLog";
-export * from "./checkInLog";
+export * from "./daySummaryLog";
 export * from "./gameplanLog";
 export * from "./impulseLog";
 export * from "./linkLog";
@@ -122,9 +122,10 @@ export const isValidShowTourLog = (value: unknown): value is ShowTourLog => {
   }
 };
 
-export const logIsCheckInLog = (value: Omit<Log, "id">): value is CheckInLog =>
-  value.type === "check_in";
-export const isValidCheckInLog = (value: unknown): value is CheckInLog => {
+export const logIsDaySummaryLog = (
+  value: Omit<Log, "id">
+): value is DaySummaryLog => value.type === "day_summary";
+export const isValidCheckInLog = (value: unknown): value is DaySummaryLog => {
   try {
     showTourLogSchema.validateSync(value);
     return true;

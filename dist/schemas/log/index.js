@@ -36,11 +36,11 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidGameplanLog = exports.logIsGameplanLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorTrackedLog = exports.logIsBehaviorTrackedLog = exports.isValidCheckInLog = exports.logIsCheckInLog = exports.isValidShowTourLog = exports.logIsShowTourLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
+exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidGameplanLog = exports.logIsGameplanLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorTrackedLog = exports.logIsBehaviorTrackedLog = exports.isValidCheckInLog = exports.logIsDaySummaryLog = exports.isValidShowTourLog = exports.logIsShowTourLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
 const yup = __importStar(require("yup"));
 const behaviorTrackedLog_1 = require("./behaviorTrackedLog");
 const callLog_1 = require("./callLog");
-const checkInLog_1 = require("./checkInLog");
+const daySummaryLog_1 = require("./daySummaryLog");
 const gameplanLog_1 = require("./gameplanLog");
 const impulseLog_1 = require("./impulseLog");
 const linkLog_1 = require("./linkLog");
@@ -59,7 +59,7 @@ exports.logSchemas = {
     call: callLog_1.callLogSchema,
     tool_call: toolCallLog_1.toolCallLogSchema,
     tactic_completed: tacticLog_1.tacticLogSchema,
-    check_in: checkInLog_1.checkInLogSchema,
+    day_summary: daySummaryLog_1.daySummaryLogSchema,
     tactic_viewed: tacticLog_1.tacticLogSchema,
     impulse_button_pressed: impulseLog_1.impulseLogSchema,
     behavior_tracked: behaviorTrackedLog_1.behaviorTrackedLogSchema,
@@ -74,7 +74,7 @@ exports.logSchemas = {
 exports.logTypes = Object.keys(exports.logSchemas);
 __exportStar(require("./behaviorTrackedLog"), exports);
 __exportStar(require("./callLog"), exports);
-__exportStar(require("./checkInLog"), exports);
+__exportStar(require("./daySummaryLog"), exports);
 __exportStar(require("./gameplanLog"), exports);
 __exportStar(require("./impulseLog"), exports);
 __exportStar(require("./linkLog"), exports);
@@ -124,8 +124,8 @@ const isValidShowTourLog = (value) => {
     }
 };
 exports.isValidShowTourLog = isValidShowTourLog;
-const logIsCheckInLog = (value) => value.type === "check_in";
-exports.logIsCheckInLog = logIsCheckInLog;
+const logIsDaySummaryLog = (value) => value.type === "day_summary";
+exports.logIsDaySummaryLog = logIsDaySummaryLog;
 const isValidCheckInLog = (value) => {
     try {
         showTourLog_1.showTourLogSchema.validateSync(value);
