@@ -20,6 +20,16 @@ export declare const questionLogSchema: yup.ObjectSchema<{
             scope?: "impulse" | "checkIn" | undefined;
             content: string;
             numberOfAnswers: number;
+            responseType: "recap";
+        } | {
+            id?: string | undefined;
+            lastAskedAt?: import("../../types").Timestamp | undefined;
+            lastAnsweredAt?: import("../../types").Timestamp | undefined;
+            gameplans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+            isPinned?: boolean | undefined;
+            scope?: "impulse" | "checkIn" | undefined;
+            content: string;
+            numberOfAnswers: number;
             responseType: "slider";
             sliderConfig: {
                 minLabel?: string | undefined;

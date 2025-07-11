@@ -1,16 +1,18 @@
 import * as yup from "yup";
+import { RecapQuestion, recapQuestionSchema } from "./recap";
 import { SliderQuestion, sliderQuestionSchema } from "./slider";
 import { TextQuestion, textQuestionSchema } from "./text";
 
+export * from "./recap";
 export * from "./slider";
 export * from "./text";
 
 // Response types for questions
-export const responseTypes = ["text", "slider"] as const;
+export const responseTypes = ["text", "slider", "recap"] as const;
 export type ResponseType = (typeof responseTypes)[number];
 
 // Union type for all question types
-export type Question = TextQuestion | SliderQuestion;
+export type Question = TextQuestion | SliderQuestion | RecapQuestion;
 
 // Utility to dynamically select the correct schema based on the Question type
 export const QuestionSchemas: Record<
@@ -19,6 +21,7 @@ export const QuestionSchemas: Record<
 > = {
   text: textQuestionSchema,
   slider: sliderQuestionSchema,
+  recap: recapQuestionSchema,
 } as any;
 
 export const questionSchema = yup.lazy((value) => {
@@ -50,6 +53,21 @@ export const isTextQuestion = (
 export const isValidTextQuestion = (value: unknown): value is TextQuestion => {
   try {
     textQuestionSchema.validateSync(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+export const isRecapQuestion = (
+  value: Omit<Question, "id">
+): value is RecapQuestion => value.responseType === "recap";
+
+export const isValidRecapQuestion = (
+  value: unknown
+): value is RecapQuestion => {
+  try {
+    recapQuestionSchema.validateSync(value);
     return true;
   } catch (error) {
     return false;
