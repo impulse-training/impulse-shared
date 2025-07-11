@@ -11,6 +11,7 @@ export const timeRoutineThreadSchema = routineThreadBaseSchema.shape({
   type: yup.mixed<"timeRoutine">().oneOf(["timeRoutine"]).required(),
 });
 
+// Recap routines are hidden by default
 export const recapRoutineThreadSchema = routineThreadBaseSchema.shape({
   type: yup.mixed<"recapRoutine">().oneOf(["recapRoutine"]).required(),
 });
