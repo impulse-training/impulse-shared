@@ -37,6 +37,7 @@ export const threadBaseSchema = yup.object({
   systemPrompt: yup.string(),
   summary: yup.string().optional(),
 
+  firstOpenedAt: timestampSchema,
   updatedAt: timestampSchema,
   createdAt: timestampSchema,
 });
