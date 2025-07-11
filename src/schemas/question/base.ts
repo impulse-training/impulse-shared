@@ -12,6 +12,9 @@ export function questionBaseSchema<T extends string>(type: T) {
     isTemplate: yup.boolean().optional().default(false),
     isPinned: yup.boolean(),
     responseType: yup.mixed<T>().oneOf([type]).required(),
-    scope: yup.string().oneOf(["impulse", "checkIn"]).optional(),
+    scope: yup
+      .mixed<"impulse" | "recapRoutine">()
+      .oneOf(["impulse", "recapRoutine"])
+      .optional(),
   });
 }
