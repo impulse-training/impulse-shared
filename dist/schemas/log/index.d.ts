@@ -278,6 +278,7 @@ export declare const logSchemas: {
         isDisplayable: true;
         data: {
             behaviorTrackingUnit?: string | undefined;
+            notes?: string | undefined;
             category: NonNullable<"helpful" | "mixed" | "unhelpful" | "unsure" | undefined>;
             behaviorId: string;
             behaviorName: string;
@@ -303,6 +304,7 @@ export declare const logSchemas: {
             category: undefined;
             value: undefined;
             formattedValue: undefined;
+            notes: undefined;
         };
     }, "">;
     question: yup.ObjectSchema<{
@@ -316,13 +318,13 @@ export declare const logSchemas: {
         type: "question";
         isDisplayable: true;
         data: {
-            questionId?: string | undefined;
-            response: {
+            response?: {
                 color?: string | undefined;
                 value?: any;
                 iconName?: string | undefined;
                 responseType: NonNullable<"text" | "recap" | "slider" | undefined>;
-            };
+            } | undefined;
+            questionId?: string | undefined;
             question: {
                 id?: string | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -381,12 +383,7 @@ export declare const logSchemas: {
         data: {
             questionId: undefined;
             question: undefined;
-            response: {
-                responseType: undefined;
-                value: undefined;
-                color: undefined;
-                iconName: undefined;
-            };
+            response: undefined;
         };
     }, "">;
     gameplan: yup.ObjectSchema<{

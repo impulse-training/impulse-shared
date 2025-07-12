@@ -51,7 +51,7 @@ exports.questionLogSchema = base_1.logBaseSchema.shape({
         .object({
         questionId: yup.string(),
         question: question_1.questionSchema,
-        response: responseSchema,
+        response: responseSchema.optional().default(undefined),
     })
         .required(),
 });

@@ -8,6 +8,7 @@ export const folderSchema = yup.object({
   // items are always tactics
   items: yup.array().of(documentReferenceSchema.required()).required(),
   isCollaborative: yup.boolean().optional().default(undefined),
+  shareViaWhatsappUrl: yup.string().optional(),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
   deletedAt: timestampSchema,

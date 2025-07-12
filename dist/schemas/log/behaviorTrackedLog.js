@@ -45,6 +45,7 @@ exports.behaviorTrackingDataSchema = yup.object({
     category: behavior_1.categorySchema,
     value: yup.number().required(), // Count or time in seconds
     formattedValue: yup.string().required(),
+    notes: yup.string(), // Optional notes for the behavior tracking
 });
 // TODO: rename to behaviorLog
 exports.behaviorTrackedLogSchema = base_1.logBaseSchema.shape({

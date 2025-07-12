@@ -7,6 +7,7 @@ export declare const behaviorTrackingDataSchema: yup.ObjectSchema<{
     category: NonNullable<"helpful" | "mixed" | "unhelpful" | "unsure" | undefined>;
     value: number;
     formattedValue: string;
+    notes: string | undefined;
 }, yup.AnyObject, {
     behaviorId: undefined;
     behaviorName: undefined;
@@ -15,6 +16,7 @@ export declare const behaviorTrackingDataSchema: yup.ObjectSchema<{
     category: undefined;
     value: undefined;
     formattedValue: undefined;
+    notes: undefined;
 }, "">;
 export type BehaviorTrackingData = yup.InferType<typeof behaviorTrackingDataSchema>;
 export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
@@ -29,6 +31,7 @@ export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
     isDisplayable: true;
     data: {
         behaviorTrackingUnit?: string | undefined;
+        notes?: string | undefined;
         category: NonNullable<"helpful" | "mixed" | "unhelpful" | "unsure" | undefined>;
         behaviorId: string;
         behaviorName: string;
@@ -54,6 +57,7 @@ export declare const behaviorTrackedLogSchema: yup.ObjectSchema<{
         category: undefined;
         value: undefined;
         formattedValue: undefined;
+        notes: undefined;
     };
 }, "">;
 export type BehaviorTrackedLog = yup.InferType<typeof behaviorTrackedLogSchema>;
