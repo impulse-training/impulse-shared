@@ -40,6 +40,7 @@ const base_1 = require("./base");
 const responseSchema = yup.object({
     responseType: question_1.responseTypeSchema,
     value: yup.mixed(),
+    formattedValue: yup.string(),
     color: yup.string(),
     iconName: yup.string(),
 });
