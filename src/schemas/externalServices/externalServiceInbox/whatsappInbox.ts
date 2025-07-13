@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { timestampSchema } from "../../utils";
+import { timestampSchema } from "../../../utils";
 import { externalServiceInboxBaseSchema } from "./base";
 
 export const whatsappInbox = externalServiceInboxBaseSchema("whatsapp").shape({

@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { timestampSchema } from "../../utils";
+import { timestampSchema } from "../../../utils";
 
 export function externalServiceInboxBaseSchema<K extends string>(type: K) {
   return yup.object({
