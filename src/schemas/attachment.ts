@@ -4,6 +4,7 @@
  * Defines Yup schemas for file/media attachments
  */
 import * as yup from "yup";
+import { timestampSchema } from "../utils";
 
 // Attachment Types
 export const attachmentTypes = ["image", "video", "audio", "document"] as const;
@@ -12,6 +13,9 @@ export type AttachmentType = (typeof attachmentTypes)[number];
 
 // Base Attachment Schema
 export const attachmentSchema = yup.object({
+  createdAt: timestampSchema,
+  updatedAt: timestampSchema,
+
   // Basic file info
   uri: yup.string().required(),
   storagePath: yup.string().required(),

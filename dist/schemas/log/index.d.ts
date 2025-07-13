@@ -29,6 +29,8 @@ export declare const logSchemas: {
             message: import("openai/resources").ChatCompletionUserMessageParam;
         };
         audioAttachment: {
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
             sizeBytes?: number | undefined;
             metadata?: {
                 width?: number | undefined;
@@ -61,6 +63,8 @@ export declare const logSchemas: {
             message: undefined;
         };
         audioAttachment: {
+            createdAt: undefined;
+            updatedAt: undefined;
             uri: undefined;
             storagePath: undefined;
             contentType: undefined;

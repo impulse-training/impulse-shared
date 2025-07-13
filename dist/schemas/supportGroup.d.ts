@@ -55,6 +55,8 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
     description: string | undefined;
     ownerId: string;
     coverPhoto: {
+        createdAt?: import("../types").Timestamp | undefined;
+        updatedAt?: import("../types").Timestamp | undefined;
         sizeBytes?: number | undefined;
         metadata?: {
             width?: number | undefined;
@@ -104,6 +106,8 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
     };
     memberCount: number;
     image: {
+        createdAt?: import("../types").Timestamp | undefined;
+        updatedAt?: import("../types").Timestamp | undefined;
         sizeBytes?: number | undefined;
         metadata?: {
             width?: number | undefined;
@@ -128,6 +132,8 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
         id?: string | undefined;
         callLogDocPath?: string | undefined;
         audioAttachment?: {
+            createdAt?: import("../types").Timestamp | undefined;
+            updatedAt?: import("../types").Timestamp | undefined;
             sizeBytes?: number | undefined;
             metadata?: {
                 width?: number | undefined;
@@ -162,6 +168,8 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
     description: undefined;
     ownerId: undefined;
     coverPhoto: {
+        createdAt: undefined;
+        updatedAt: undefined;
         uri: undefined;
         storagePath: undefined;
         contentType: undefined;
@@ -180,6 +188,8 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
     hiddenTacticIdsByUserId: undefined;
     memberCount: 0;
     image: {
+        createdAt: undefined;
+        updatedAt: undefined;
         uri: undefined;
         storagePath: undefined;
         contentType: undefined;
@@ -211,6 +221,8 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
             message: undefined;
         };
         audioAttachment: {
+            createdAt: undefined;
+            updatedAt: undefined;
             uri: undefined;
             storagePath: undefined;
             contentType: undefined;
