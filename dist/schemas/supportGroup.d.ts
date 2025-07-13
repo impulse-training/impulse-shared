@@ -71,7 +71,6 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
         uri: string;
         storagePath: string;
         contentType: string;
-        type: NonNullable<"image" | "video" | "audio" | "document" | undefined>;
     } | undefined;
     membersById: {
         [x: string]: {
@@ -122,7 +121,6 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
         uri: string;
         storagePath: string;
         contentType: string;
-        type: NonNullable<"image" | "video" | "audio" | "document" | undefined>;
     };
     isPublic: boolean | undefined;
     inviteCode: string | undefined;
@@ -148,7 +146,6 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
             uri: string;
             storagePath: string;
             contentType: string;
-            type: NonNullable<"image" | "video" | "audio" | "document" | undefined>;
         } | undefined;
         type: "user_message";
         userId: string;
@@ -174,7 +171,6 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
         storagePath: undefined;
         contentType: undefined;
         sizeBytes: undefined;
-        type: undefined;
         metadata: {
             width: undefined;
             height: undefined;
@@ -194,7 +190,6 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
         storagePath: undefined;
         contentType: undefined;
         sizeBytes: undefined;
-        type: undefined;
         metadata: {
             width: undefined;
             height: undefined;
@@ -227,7 +222,6 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
             storagePath: undefined;
             contentType: undefined;
             sizeBytes: undefined;
-            type: undefined;
             metadata: {
                 width: undefined;
                 height: undefined;

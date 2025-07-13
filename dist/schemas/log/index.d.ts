@@ -45,7 +45,6 @@ export declare const logSchemas: {
             uri: string;
             storagePath: string;
             contentType: string;
-            type: NonNullable<"image" | "video" | "audio" | "document" | undefined>;
         } | undefined;
     }, yup.AnyObject, {
         id: undefined;
@@ -69,7 +68,6 @@ export declare const logSchemas: {
             storagePath: undefined;
             contentType: undefined;
             sizeBytes: undefined;
-            type: undefined;
             metadata: {
                 width: undefined;
                 height: undefined;

@@ -7,7 +7,13 @@ import * as yup from "yup";
 import { timestampSchema } from "../utils";
 
 // Attachment Types
-export const attachmentTypes = ["image", "video", "audio", "document"] as const;
+export const attachmentTypes = [
+  "image",
+  "video",
+  "audio",
+  "text",
+  "document",
+] as const;
 
 export type AttachmentType = (typeof attachmentTypes)[number];
 
@@ -21,9 +27,6 @@ export const attachmentSchema = yup.object({
   storagePath: yup.string().required(),
   contentType: yup.string().required(),
   sizeBytes: yup.number().optional(),
-
-  // Type-specific metadata
-  type: yup.string().oneOf(attachmentTypes).required(),
 
   // For any additional type-specific data
   metadata: yup
