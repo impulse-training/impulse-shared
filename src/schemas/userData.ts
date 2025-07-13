@@ -19,11 +19,6 @@ export const userDataSchema = yup.object({
   notificationsEnabled: yup.boolean().default(true),
   expoPushToken: yup.string().nullable().default(null),
 
-  // Daily checkIn settings
-  dayRecapEnabled: yup.boolean().default(true),
-  dayRecapTime: timestampSchema,
-  lastDayRecapDate: timestampSchema,
-
   appVersion: yup.string(),
 
   // This points to the user's active strategy. It can be updated to rollback.

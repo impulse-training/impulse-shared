@@ -1,6 +1,7 @@
 export * from "./attachment";
 export * from "./behavior";
 export * from "./daySummary";
+export * from "./externalServiceInbox";
 export * from "./folder";
 export * from "./gameplan";
 export * from "./insight";
