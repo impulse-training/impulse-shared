@@ -8,6 +8,8 @@ export const whatsappExternalSender = externalSenderBaseSchema(
   phoneNumber: yup.string().required(),
   // Default system message for new sessions
   defaultSystemMessage: yup.string().required(),
+  // Default target folder ID for tactics generation
+  defaultTargetFolderId: yup.string(),
 });
 
 export type WhatsappExternalSender = yup.InferType<

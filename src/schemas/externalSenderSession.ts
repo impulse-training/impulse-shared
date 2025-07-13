@@ -1,6 +1,11 @@
 import * as yup from "yup";
 import { Timestamp } from "../types";
-import { documentReferenceSchema, timestampSchema } from "../utils";
+import {
+  DocumentReferenceLike,
+  documentReferenceSchema,
+  timestampSchema,
+} from "../utils";
+import { Folder } from "./folder";
 
 export interface ExternalSenderSession {
   createdAt: Timestamp;
@@ -10,7 +15,7 @@ export interface ExternalSenderSession {
   // Timestamp that gets updated when files are added to the session
   filesUpdatedAt?: Timestamp;
   // Reference to a strategy/folder where tactics should be created from files
-  targetFolderRef?: any;
+  targetFolderRef?: DocumentReferenceLike<Folder>;
 }
 
 export const externalSenderSessionSchema = yup.object().shape({
