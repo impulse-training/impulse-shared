@@ -1,8 +1,8 @@
 import * as yup from "yup";
-import { documentReferenceSchema, timestampSchema } from "../../utils";
+import { documentReferenceSchema, timestampSchema } from "../utils";
 
 // This is a message from an external service, like Whatsapp, delivered to an inbox
-export const inboxMessageSchema = yup.object({
+export const externalSenderMessageSchema = yup.object({
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
   date: timestampSchema,
@@ -15,4 +15,6 @@ export const inboxMessageSchema = yup.object({
     .oneOf(["assistant", "user", "system", "tool"])
     .required(),
 });
-export type InboxMessage = yup.InferType<typeof inboxMessageSchema>;
+export type ExternalSenderMessage = yup.InferType<
+  typeof externalSenderMessageSchema
+>;
