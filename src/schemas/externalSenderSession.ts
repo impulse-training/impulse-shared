@@ -1,12 +1,16 @@
 import * as yup from "yup";
 import { Timestamp } from "../types";
-import { timestampSchema } from "../utils";
+import { documentReferenceSchema, timestampSchema } from "../utils";
 
 export interface ExternalSenderSession {
   createdAt: Timestamp;
   updatedAt: Timestamp;
   expiresAt: Timestamp;
   systemMessage: string;
+  // Timestamp that gets updated when files are added to the session
+  filesUpdatedAt?: Timestamp;
+  // Reference to a strategy/folder where tactics should be created from files
+  targetFolderRef?: any;
 }
 
 export const externalSenderSessionSchema = yup.object().shape({
@@ -14,4 +18,6 @@ export const externalSenderSessionSchema = yup.object().shape({
   updatedAt: timestampSchema.required(),
   expiresAt: timestampSchema.required(),
   systemMessage: yup.string().required(),
+  filesUpdatedAt: timestampSchema,
+  targetFolderRef: documentReferenceSchema,
 });

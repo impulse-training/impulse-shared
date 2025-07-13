@@ -3,6 +3,7 @@ export * from "./attachment";
 export * from "./behavior";
 export * from "./daySummary";
 export * from "./externalSender";
+export * from "./externalSenderMessage";
 export * from "./externalSenderSession";
 export * from "./folder";
 export * from "./gameplan";

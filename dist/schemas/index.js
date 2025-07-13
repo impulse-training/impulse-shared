@@ -19,6 +19,7 @@ __exportStar(require("./attachment"), exports);
 __exportStar(require("./behavior"), exports);
 __exportStar(require("./daySummary"), exports);
 __exportStar(require("./externalSender"), exports);
+__exportStar(require("./externalSenderMessage"), exports);
 __exportStar(require("./externalSenderSession"), exports);
 __exportStar(require("./folder"), exports);
 __exportStar(require("./gameplan"), exports);
