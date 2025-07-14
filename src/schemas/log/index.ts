@@ -15,6 +15,7 @@ import {
   userMessageLogSchema,
 } from "./messageLog/userMessageLog";
 import { QuestionLog, questionLogSchema } from "./questionLog";
+import { ResistedLog, resistedLogSchema } from "./resistedLog";
 import { ShowTourLog, showTourLogSchema } from "./showTourLog";
 import { SummaryLog, summaryLogSchema } from "./summaryLog";
 import { TacticLog, tacticLogSchema } from "./tacticLog";
@@ -35,6 +36,7 @@ export const logSchemas = {
   question: questionLogSchema,
   gameplan: gameplanLogSchema,
   summary: summaryLogSchema,
+  resisted: resistedLogSchema,
   widget_setup: widgetSetupLogSchema,
   show_tour: showTourLogSchema,
   link: linkLogSchema,
@@ -59,6 +61,7 @@ export type Log =
   | ShowTourLog
   | LinkLog
   | VideoLog
+  | ResistedLog
   | DaySummaryLog;
 
 export * from "./behaviorLog";
@@ -69,6 +72,7 @@ export * from "./impulseLog";
 export * from "./linkLog";
 export * from "./messageLog";
 export * from "./questionLog";
+export * from "./resistedLog";
 export * from "./showTourLog";
 export * from "./summaryLog";
 export * from "./tacticLog";
@@ -113,6 +117,18 @@ export const logIsShowTourLog = (
 export const isValidShowTourLog = (value: unknown): value is ShowTourLog => {
   try {
     showTourLogSchema.validateSync(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+export const logIsResistedLog = (
+  value: Omit<Log, "id">
+): value is ResistedLog => value.type === "resisted";
+export const isValidResistedLog = (value: unknown): value is ResistedLog => {
+  try {
+    resistedLogSchema.validateSync(value);
     return true;
   } catch (error) {
     return false;

@@ -8,6 +8,7 @@ import { LinkLog } from "./linkLog";
 import { AssistantMessageLog, MessageLog } from "./messageLog";
 import { UserMessageLog } from "./messageLog/userMessageLog";
 import { QuestionLog } from "./questionLog";
+import { ResistedLog } from "./resistedLog";
 import { ShowTourLog } from "./showTourLog";
 import { SummaryLog } from "./summaryLog";
 import { TacticLog } from "./tacticLog";
@@ -280,7 +281,6 @@ export declare const logSchemas: {
         isDisplayable: true;
         data: {
             behaviorTrackingUnit?: string | undefined;
-            resistedImpulse?: boolean | undefined;
             category: NonNullable<"helpful" | "mixed" | "unhelpful" | "unsure" | undefined>;
             behaviorId: string;
             behaviorName: string;
@@ -306,7 +306,6 @@ export declare const logSchemas: {
             category: undefined;
             value: undefined;
             formattedValue: undefined;
-            resistedImpulse: undefined;
         };
     }, "">;
     question: yup.ObjectSchema<{
@@ -457,6 +456,35 @@ export declare const logSchemas: {
             summary: undefined;
         };
     }, "">;
+    resisted: yup.ObjectSchema<{
+        id: string | undefined;
+        createdAt: import("../../types").Timestamp | undefined;
+        updatedAt: import("../../types").Timestamp | undefined;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        callLogDocPath: string | undefined;
+        type: "resisted";
+        isDisplayable: true;
+        data: {
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+        };
+    }, yup.AnyObject, {
+        id: undefined;
+        createdAt: undefined;
+        updatedAt: undefined;
+        userId: undefined;
+        timestamp: undefined;
+        dateString: undefined;
+        callLogDocPath: undefined;
+        type: undefined;
+        isDisplayable: undefined;
+        data: {
+            behaviorId: undefined;
+            behaviorName: undefined;
+        };
+    }, "">;
     widget_setup: yup.ObjectSchema<{
         id: string | undefined;
         createdAt: import("../../types").Timestamp | undefined;
@@ -588,7 +616,7 @@ export declare const logSchemas: {
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | ImpulseLog | BehaviorLog | QuestionLog | GameplanLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | VideoLog | DaySummaryLog;
+export type Log = TacticLog | ImpulseLog | BehaviorLog | QuestionLog | GameplanLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | VideoLog | ResistedLog | DaySummaryLog;
 export * from "./behaviorLog";
 export * from "./callLog";
 export * from "./daySummaryLog";
@@ -597,6 +625,7 @@ export * from "./impulseLog";
 export * from "./linkLog";
 export * from "./messageLog";
 export * from "./questionLog";
+export * from "./resistedLog";
 export * from "./showTourLog";
 export * from "./summaryLog";
 export * from "./tacticLog";
@@ -608,6 +637,8 @@ export declare const logIsAssistantMessageLog: (value: Omit<Log, "id">) => value
 export declare const isValidAssistantMessageLog: (value: unknown) => value is AssistantMessageLog;
 export declare const logIsShowTourLog: (value: Omit<Log, "id">) => value is ShowTourLog;
 export declare const isValidShowTourLog: (value: unknown) => value is ShowTourLog;
+export declare const logIsResistedLog: (value: Omit<Log, "id">) => value is ResistedLog;
+export declare const isValidResistedLog: (value: unknown) => value is ResistedLog;
 export declare const logIsDaySummaryLog: (value: Omit<Log, "id">) => value is DaySummaryLog;
 export declare const isValidCheckInLog: (value: unknown) => value is DaySummaryLog;
 export declare const logIsBehaviorLog: (value: Omit<Log, "id">) => value is BehaviorLog;
