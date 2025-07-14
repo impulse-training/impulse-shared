@@ -138,7 +138,9 @@ export const isValidResistedLog = (value: unknown): value is ResistedLog => {
 export const logIsDaySummaryLog = (
   value: Omit<Log, "id">
 ): value is DaySummaryLog => value.type === "day_summary";
-export const isValidCheckInLog = (value: unknown): value is DaySummaryLog => {
+export const isValidDaySummaryLog = (
+  value: unknown
+): value is DaySummaryLog => {
   try {
     showTourLogSchema.validateSync(value);
     return true;
