@@ -2,17 +2,9 @@ import { forEach, mapValues } from "lodash";
 import { logIsBehaviorLog } from "../schemas/log";
 import { BehaviorTrackingData } from "../schemas/log/behaviorLog";
 import { Thread } from "../schemas/thread";
+import { getFormattedValue } from "./behaviorData";
 
-// Helper function to format values like "6 cigarettes"
-function getFormattedValue(data: BehaviorTrackingData): string {
-  if (data.trackingType === "counter") {
-    return `${data.value} ${data.behaviorName.toLowerCase()}`;
-  } else if (data.trackingType === "timer") {
-    // Format time in minutes
-    return `${Math.round(data.value / 60)} minutes`;
-  }
-  return String(data.value);
-}
+
 
 /**
  * Calculate behavior totals from multiple threads
@@ -55,7 +47,11 @@ export function sumBehaviorDataTotalsFromThreads(
   // If we sum "2 cigarettes" and "4 cigarettes", we also need a formatted value of "6 cigarettes"
   const valuesWithFormattedValues = mapValues(totalsByBehaviorId, (totals) => ({
     ...totals,
-    formattedValue: getFormattedValue(totals),
+    formattedValue: getFormattedValue({
+      trackingType: totals.trackingType,
+      value: totals.value,
+      behaviorTrackingUnit: totals.behaviorTrackingUnit || totals.behaviorName.toLowerCase()
+    }),
   }));
 
   return valuesWithFormattedValues;
