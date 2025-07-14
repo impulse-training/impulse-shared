@@ -280,7 +280,7 @@ export declare const logSchemas: {
         isDisplayable: true;
         data: {
             behaviorTrackingUnit?: string | undefined;
-            notes?: string | undefined;
+            resistedImpulse?: boolean | undefined;
             category: NonNullable<"helpful" | "mixed" | "unhelpful" | "unsure" | undefined>;
             behaviorId: string;
             behaviorName: string;
@@ -306,7 +306,7 @@ export declare const logSchemas: {
             category: undefined;
             value: undefined;
             formattedValue: undefined;
-            notes: undefined;
+            resistedImpulse: undefined;
         };
     }, "">;
     question: yup.ObjectSchema<{

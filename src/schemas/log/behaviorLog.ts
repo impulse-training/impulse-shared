@@ -10,7 +10,7 @@ export const behaviorTrackingDataSchema = yup.object({
   category: categorySchema,
   value: yup.number().required(), // Count or time in seconds
   formattedValue: yup.string().required(),
-  notes: yup.string(), // Optional notes for the behavior tracking
+  resistedImpulse: yup.boolean(),
 });
 export type BehaviorTrackingData = yup.InferType<
   typeof behaviorTrackingDataSchema
