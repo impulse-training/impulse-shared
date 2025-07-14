@@ -1,8 +1,5 @@
 import * as yup from "yup";
-import {
-  BehaviorTrackedLog,
-  behaviorTrackedLogSchema,
-} from "./behaviorTrackedLog";
+import { BehaviorLog, behaviorLogSchema } from "./behaviorLog";
 import { CallLog, callLogSchema } from "./callLog";
 import { DaySummaryLog, daySummaryLogSchema } from "./daySummaryLog";
 import { GameplanLog, gameplanLogSchema } from "./gameplanLog";
@@ -34,7 +31,7 @@ export const logSchemas = {
   day_summary: daySummaryLogSchema,
   tactic_viewed: tacticLogSchema,
   impulse_button_pressed: impulseLogSchema,
-  behavior_tracked: behaviorTrackedLogSchema,
+  behavior: behaviorLogSchema,
   question: questionLogSchema,
   gameplan: gameplanLogSchema,
   summary: summaryLogSchema,
@@ -51,7 +48,7 @@ export type LogType = (typeof logTypes)[number];
 export type Log =
   | TacticLog
   | ImpulseLog
-  | BehaviorTrackedLog
+  | BehaviorLog
   | QuestionLog
   | GameplanLog
   | ToolCallLog
@@ -64,7 +61,7 @@ export type Log =
   | VideoLog
   | DaySummaryLog;
 
-export * from "./behaviorTrackedLog";
+export * from "./behaviorLog";
 export * from "./callLog";
 export * from "./daySummaryLog";
 export * from "./gameplanLog";
@@ -134,14 +131,12 @@ export const isValidCheckInLog = (value: unknown): value is DaySummaryLog => {
   }
 };
 
-export const logIsBehaviorTrackedLog = (
+export const logIsBehaviorLog = (
   value: Omit<Log, "id">
-): value is BehaviorTrackedLog => value.type === "behavior_tracked";
-export const isValidBehaviorTrackedLog = (
-  value: unknown
-): value is BehaviorTrackedLog => {
+): value is BehaviorLog => value.type === "behavior";
+export const isValidBehaviorLog = (value: unknown): value is BehaviorLog => {
   try {
-    behaviorTrackedLogSchema.validateSync(value);
+    behaviorLogSchema.validateSync(value);
     return true;
   } catch (error) {
     return false;

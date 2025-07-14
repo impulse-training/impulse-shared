@@ -1,6 +1,6 @@
 import { forEach, mapValues } from "lodash";
-import { logIsBehaviorTrackedLog } from "../schemas/log";
-import { BehaviorTrackingData } from "../schemas/log/behaviorTrackedLog";
+import { logIsBehaviorLog } from "../schemas/log";
+import { BehaviorTrackingData } from "../schemas/log/behaviorLog";
 import { Thread } from "../schemas/thread";
 
 // Helper function to format values like "6 cigarettes"
@@ -33,7 +33,7 @@ export function sumBehaviorDataTotalsFromThreads(
 
     // Process logs within the thread
     forEach(thread.trackingLogsById, (logData) => {
-      if (logIsBehaviorTrackedLog(logData)) {
+      if (logIsBehaviorLog(logData)) {
         const behaviorData = logData.data;
 
         if (!totalsByBehaviorId[behaviorData.behaviorId]) {

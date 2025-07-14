@@ -6,7 +6,7 @@ export const logTypes = [
   "tactic_completed",
   "tactic_uncompleted",
   "impulse_button_pressed",
-  "behavior_tracked",
+  "behavior",
   "question",
   "debrief_answer",
   "debrief_outcome",

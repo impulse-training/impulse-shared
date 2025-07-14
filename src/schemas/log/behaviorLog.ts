@@ -16,12 +16,11 @@ export type BehaviorTrackingData = yup.InferType<
   typeof behaviorTrackingDataSchema
 >;
 
-// TODO: rename to behaviorLog
-export const behaviorTrackedLogSchema = logBaseSchema.shape({
-  type: yup.string().oneOf(["behavior_tracked"]).required(),
+export const behaviorLogSchema = logBaseSchema.shape({
+  type: yup.string().oneOf(["behavior"]).required(),
   // Behavior tracked logs are always displayed in the UI
   isDisplayable: yup.mixed<true>().oneOf([true]).required(),
   data: behaviorTrackingDataSchema.required(),
 });
 
-export type BehaviorTrackedLog = yup.InferType<typeof behaviorTrackedLogSchema>;
+export type BehaviorLog = yup.InferType<typeof behaviorLogSchema>;

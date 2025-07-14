@@ -36,9 +36,9 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidGameplanLog = exports.logIsGameplanLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorTrackedLog = exports.logIsBehaviorTrackedLog = exports.isValidCheckInLog = exports.logIsDaySummaryLog = exports.isValidShowTourLog = exports.logIsShowTourLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
+exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidGameplanLog = exports.logIsGameplanLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorLog = exports.logIsBehaviorLog = exports.isValidCheckInLog = exports.logIsDaySummaryLog = exports.isValidShowTourLog = exports.logIsShowTourLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
 const yup = __importStar(require("yup"));
-const behaviorTrackedLog_1 = require("./behaviorTrackedLog");
+const behaviorLog_1 = require("./behaviorLog");
 const callLog_1 = require("./callLog");
 const daySummaryLog_1 = require("./daySummaryLog");
 const gameplanLog_1 = require("./gameplanLog");
@@ -62,7 +62,7 @@ exports.logSchemas = {
     day_summary: daySummaryLog_1.daySummaryLogSchema,
     tactic_viewed: tacticLog_1.tacticLogSchema,
     impulse_button_pressed: impulseLog_1.impulseLogSchema,
-    behavior_tracked: behaviorTrackedLog_1.behaviorTrackedLogSchema,
+    behavior: behaviorLog_1.behaviorLogSchema,
     question: questionLog_1.questionLogSchema,
     gameplan: gameplanLog_1.gameplanLogSchema,
     summary: summaryLog_1.summaryLogSchema,
@@ -72,7 +72,7 @@ exports.logSchemas = {
     video: videoLog_1.videoLogSchema,
 };
 exports.logTypes = Object.keys(exports.logSchemas);
-__exportStar(require("./behaviorTrackedLog"), exports);
+__exportStar(require("./behaviorLog"), exports);
 __exportStar(require("./callLog"), exports);
 __exportStar(require("./daySummaryLog"), exports);
 __exportStar(require("./gameplanLog"), exports);
@@ -136,18 +136,18 @@ const isValidCheckInLog = (value) => {
     }
 };
 exports.isValidCheckInLog = isValidCheckInLog;
-const logIsBehaviorTrackedLog = (value) => value.type === "behavior_tracked";
-exports.logIsBehaviorTrackedLog = logIsBehaviorTrackedLog;
-const isValidBehaviorTrackedLog = (value) => {
+const logIsBehaviorLog = (value) => value.type === "behavior";
+exports.logIsBehaviorLog = logIsBehaviorLog;
+const isValidBehaviorLog = (value) => {
     try {
-        behaviorTrackedLog_1.behaviorTrackedLogSchema.validateSync(value);
+        behaviorLog_1.behaviorLogSchema.validateSync(value);
         return true;
     }
     catch (error) {
         return false;
     }
 };
-exports.isValidBehaviorTrackedLog = isValidBehaviorTrackedLog;
+exports.isValidBehaviorLog = isValidBehaviorLog;
 const logIsCallLog = (value) => value.type === "call";
 exports.logIsCallLog = logIsCallLog;
 const isValidCallLog = (value) => {

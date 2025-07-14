@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { BehaviorTrackedLog } from "./behaviorTrackedLog";
+import { BehaviorLog } from "./behaviorLog";
 import { CallLog } from "./callLog";
 import { DaySummaryLog } from "./daySummaryLog";
 import { GameplanLog } from "./gameplanLog";
@@ -268,7 +268,7 @@ export declare const logSchemas: {
         type: undefined;
         isDisplayable: undefined;
     }, "">;
-    behavior_tracked: yup.ObjectSchema<{
+    behavior: yup.ObjectSchema<{
         id: string | undefined;
         createdAt: import("../../types").Timestamp | undefined;
         updatedAt: import("../../types").Timestamp | undefined;
@@ -276,7 +276,7 @@ export declare const logSchemas: {
         timestamp: import("../../types").Timestamp;
         dateString: string;
         callLogDocPath: string | undefined;
-        type: "behavior_tracked";
+        type: "behavior";
         isDisplayable: true;
         data: {
             behaviorTrackingUnit?: string | undefined;
@@ -588,8 +588,8 @@ export declare const logSchemas: {
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | ImpulseLog | BehaviorTrackedLog | QuestionLog | GameplanLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | VideoLog | DaySummaryLog;
-export * from "./behaviorTrackedLog";
+export type Log = TacticLog | ImpulseLog | BehaviorLog | QuestionLog | GameplanLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | VideoLog | DaySummaryLog;
+export * from "./behaviorLog";
 export * from "./callLog";
 export * from "./daySummaryLog";
 export * from "./gameplanLog";
@@ -610,8 +610,8 @@ export declare const logIsShowTourLog: (value: Omit<Log, "id">) => value is Show
 export declare const isValidShowTourLog: (value: unknown) => value is ShowTourLog;
 export declare const logIsDaySummaryLog: (value: Omit<Log, "id">) => value is DaySummaryLog;
 export declare const isValidCheckInLog: (value: unknown) => value is DaySummaryLog;
-export declare const logIsBehaviorTrackedLog: (value: Omit<Log, "id">) => value is BehaviorTrackedLog;
-export declare const isValidBehaviorTrackedLog: (value: unknown) => value is BehaviorTrackedLog;
+export declare const logIsBehaviorLog: (value: Omit<Log, "id">) => value is BehaviorLog;
+export declare const isValidBehaviorLog: (value: unknown) => value is BehaviorLog;
 export declare const logIsCallLog: (value: Omit<Log, "id">) => value is CallLog;
 export declare const isValidCallLog: (value: unknown) => value is CallLog;
 export declare const logIsImpulseLog: (value: Omit<Log, "id">) => value is ImpulseLog;
