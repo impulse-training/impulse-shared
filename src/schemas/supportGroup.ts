@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { objectOf, timestampSchema } from "../utils";
+import { documentReferenceSchema, objectOf, timestampSchema } from "../utils";
 import { attachmentSchema } from "./attachment";
 import { userMessageLogSchema } from "./log";
 import { userProfileSchema } from "./userProfile";
@@ -51,6 +51,10 @@ export const supportGroupSchema = yup.object({
   hiddenTacticIdsByUserId: objectOf(yup.array().of(yup.string().required())),
   memberCount: yup.number().default(0), // Count of members for easier querying
   image: attachmentSchema,
+  tacticCollections: yup
+    .array()
+    .of(documentReferenceSchema.required())
+    .required(),
   isPublic: yup.boolean().optional(),
   inviteCode: yup.string().optional(),
   lastMessage: userMessageLogSchema.optional(),

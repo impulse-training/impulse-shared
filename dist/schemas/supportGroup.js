@@ -77,6 +77,10 @@ exports.supportGroupSchema = yup.object({
     hiddenTacticIdsByUserId: (0, utils_1.objectOf)(yup.array().of(yup.string().required())),
     memberCount: yup.number().default(0), // Count of members for easier querying
     image: attachment_1.attachmentSchema,
+    tacticCollections: yup
+        .array()
+        .of(utils_1.documentReferenceSchema.required())
+        .required(),
     isPublic: yup.boolean().optional(),
     inviteCode: yup.string().optional(),
     lastMessage: log_1.userMessageLogSchema.optional(),

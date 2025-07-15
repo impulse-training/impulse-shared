@@ -122,6 +122,7 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
         storagePath: string;
         contentType: string;
     };
+    tacticCollections: import("../utils").DocumentReferenceLike<unknown>[];
     isPublic: boolean | undefined;
     inviteCode: string | undefined;
     lastMessage: {
@@ -198,6 +199,7 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
             meterings: undefined;
         };
     };
+    tacticCollections: "";
     isPublic: undefined;
     inviteCode: undefined;
     lastMessage: {
