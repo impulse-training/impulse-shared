@@ -7,6 +7,8 @@ export const folderSchema = yup.object({
   ordinal: yup.number(),
   // items are always tactics
   items: yup.array().of(documentReferenceSchema.required()).required(),
+  // Map of userId to array of tactic IDs that are hidden for that user
+  userHiddenTactics: yup.object().optional().default({}),
   isCollaborative: yup.boolean().optional().default(undefined),
   inboxCode: yup.string().optional(),
   createdAt: timestampSchema,
