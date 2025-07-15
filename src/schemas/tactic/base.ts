@@ -10,6 +10,9 @@ export const tacticBaseSchema = yup.object({
   description: yup.string().optional(),
   tacticCollection: documentReferenceSchema.required(),
 
+  // Ordinal for display ordering
+  ordinal: yup.number().required(),
+
   durationSeconds: yup.number().optional(), // Target duration in seconds
 
   // Media attachments - each can be present independently
