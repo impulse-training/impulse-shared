@@ -8,6 +8,7 @@ export const tacticCollectionSchema = yup.object({
   // Map of userId to array of tactic IDs that are hidden for that user
   userHiddenTactics: yup.object().optional().default({}),
   isCollaborative: yup.boolean().optional().default(undefined),
+  isDefault: yup.boolean().optional().default(undefined),
   inboxCode: yup.string().optional(),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
