@@ -23,6 +23,10 @@ export const userDataSchema = yup.object({
 
   // This points to the user's active strategy. It can be updated to rollback.
   activeStrategyDoc: documentReferenceSchema,
+  tacticCollections: yup
+    .array()
+    .of(documentReferenceSchema.required())
+    .required(),
 
   // User preferences
   theme: yup
