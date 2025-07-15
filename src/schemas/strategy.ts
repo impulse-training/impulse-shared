@@ -9,7 +9,10 @@ export const strategySchema = yup.object({
   isImported: yup.boolean().optional().default(undefined),
   gameplans: yup.array().of(documentReferenceSchema.required()).required(),
   routines: yup.array().of(documentReferenceSchema.required()).required(),
-  folders: yup.array().of(documentReferenceSchema.required()).required(),
+  tacticCollections: yup
+    .array()
+    .of(documentReferenceSchema.required())
+    .required(),
   createdByProfile: userProfileSchema.optional(),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,

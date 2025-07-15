@@ -6,7 +6,7 @@ export function externalSenderBaseSchema<K extends string>(type: K) {
     type: yup.mixed<K>().required().oneOf([type]),
     uid: yup.string().required(),
     senderName: yup.string(),
-    defaultTargetFolderRef: documentReferenceSchema,
+    defaultTargetTacticCollectionRef: documentReferenceSchema,
     createdAt: timestampSchema,
     updatedAt: timestampSchema,
     filesUpdatedAt: timestampSchema,

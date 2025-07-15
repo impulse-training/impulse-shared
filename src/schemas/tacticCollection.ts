@@ -1,7 +1,7 @@
 import * as yup from "yup";
 import { documentReferenceSchema, timestampSchema } from "../utils";
 
-export const folderSchema = yup.object({
+export const tacticCollectionSchema = yup.object({
   id: yup.string(),
   name: yup.string().required(),
   ordinal: yup.number(),
@@ -16,4 +16,4 @@ export const folderSchema = yup.object({
   deletedAt: timestampSchema,
 });
 
-export type Folder = yup.InferType<typeof folderSchema>;
+export type TacticCollection = yup.InferType<typeof tacticCollectionSchema>;
