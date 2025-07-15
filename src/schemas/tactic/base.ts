@@ -31,6 +31,8 @@ export const tacticBaseSchema = yup.object({
   // When shared with a support group, this is set
   supportGroupId: yup.string(),
 
+  notificationSound: yup.string().optional(),
+
   isPublic: yup.boolean().optional(),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
