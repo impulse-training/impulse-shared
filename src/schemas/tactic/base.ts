@@ -21,16 +21,11 @@ export const tacticBaseSchema = yup.object({
 
   gameplanIds: yup.array().of(yup.string().required()).optional(),
 
-  // Ordinal for display ordering
-  ordinal: yup.number().required(),
-
   // The owner of the tactic
   userId: yup.string().optional(),
 
   // The original creator of the tactic
   createdBy: yup.string(),
-  // When shared with a support group, this is set
-  supportGroupId: yup.string(),
 
   notificationSound: yup.string().optional(),
 
