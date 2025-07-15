@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { timestampSchema } from "../../utils";
+import { documentReferenceSchema, timestampSchema } from "../../utils";
 import { attachmentSchema } from "../attachment";
 
 // Tactic Schema
@@ -8,6 +8,7 @@ export const tacticBaseSchema = yup.object({
   type: yup.string().required(),
   title: yup.string(),
   description: yup.string().optional(),
+  tacticCollection: documentReferenceSchema.required(),
 
   durationSeconds: yup.number().optional(), // Target duration in seconds
 
