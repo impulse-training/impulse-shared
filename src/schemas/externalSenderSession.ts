@@ -24,5 +24,6 @@ export const externalSenderSessionSchema = yup.object().shape({
   expiresAt: timestampSchema.required(),
   systemMessage: yup.string().required(),
   filesUpdatedAt: timestampSchema,
+  senderName: yup.string(),
   targetTacticCollectionRef: documentReferenceSchema,
 });
