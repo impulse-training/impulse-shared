@@ -1,13 +1,16 @@
 import * as yup from "yup";
-import { objectOf, optionalObjectOf } from "../../utils";
+import { objectOf, optionalObjectOf, withIdSchema } from "../../utils";
 import { timestampSchema } from "../../utils/timestampSchema";
 import { logSchema } from "../log";
+import { Plan, planSchema } from "../plan";
 import { tacticSchema } from "../tactic";
 
 // Thread schema
 export const threadBaseSchema = yup.object({
   id: yup.string(),
   title: yup.string().required(),
+  // Any thread may have an optional plan
+  plan: withIdSchema<Plan>(planSchema).optional(),
   type: yup
     .mixed<
       | "impulse"

@@ -1,10 +1,10 @@
 import * as yup from "yup";
-import { planSchema } from "../plan";
+import { withIdSchema } from "../../utils";
+import { Plan, planSchema } from "../plan";
 import { threadBaseSchema } from "./base";
 
 const planThreadBaseSchema = threadBaseSchema.shape({
-  planId: yup.string().required(),
-  plan: planSchema,
+  plan: withIdSchema<Plan>(planSchema),
 });
 
 export const timePlanThreadSchema = planThreadBaseSchema.shape({
