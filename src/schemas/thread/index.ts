@@ -3,27 +3,27 @@ import { GeneralThread, generalThreadSchema } from "./general";
 import { ImpulseThread, impulseThreadSchema } from "./impulse";
 import { OnboardingThread, onboardingThreadSchema } from "./onboarding";
 import {
-  LocationRoutineThread,
-  locationRoutineThreadSchema,
-  RecapRoutineThread,
-  recapRoutineThreadSchema,
-  TimeRoutineThread,
-  timeRoutineThreadSchema,
-} from "./routine";
+  LocationPlanThread,
+  locationPlanThreadSchema,
+  RecapPlanThread,
+  recapPlanThreadSchema,
+  TimePlanThread,
+  timePlanThreadSchema,
+} from "./plan";
 
 export * from "./general";
 export * from "./impulse";
 export * from "./onboarding";
-export * from "./routine";
+export * from "./plan";
 
 // Map of thread types to their schemas
 export const threadSchemas = {
   general: generalThreadSchema,
   impulse: impulseThreadSchema,
   onboarding: onboardingThreadSchema,
-  timeRoutine: timeRoutineThreadSchema,
-  recapRoutine: recapRoutineThreadSchema,
-  locationRoutine: locationRoutineThreadSchema,
+  timePlan: timePlanThreadSchema,
+  recapPlan: recapPlanThreadSchema,
+  locationPlan: locationPlanThreadSchema,
 };
 
 // Dynamic schema that selects the appropriate schema based on the thread type
@@ -81,42 +81,42 @@ export const isValidImpulseThread = (
   }
 };
 
-export const threadIsTimeRoutineThread = (
+export const threadIsTimePlanThread = (
   value: Thread
-): value is TimeRoutineThread => value.type === "timeRoutine";
-export const isValidTimeRoutineThread = (
+): value is TimePlanThread => value.type === "timePlan";
+export const isValidTimePlanThread = (
   value: unknown
-): value is TimeRoutineThread => {
+): value is TimePlanThread => {
   try {
-    timeRoutineThreadSchema.validateSync(value);
+    timePlanThreadSchema.validateSync(value);
     return true;
   } catch (error) {
     return false;
   }
 };
 
-export const threadIsRecapRoutineThread = (
+export const threadIsRecapPlanThread = (
   value: Thread
-): value is RecapRoutineThread => value.type === "recapRoutine";
-export const isValidRecapRoutineThread = (
+): value is RecapPlanThread => value.type === "recapPlan";
+export const isValidRecapPlanThread = (
   value: unknown
-): value is RecapRoutineThread => {
+): value is RecapPlanThread => {
   try {
-    timeRoutineThreadSchema.validateSync(value);
+    timePlanThreadSchema.validateSync(value);
     return true;
   } catch (error) {
     return false;
   }
 };
 
-export const threadIsLocationRoutineThread = (
+export const threadIsLocationPlanThread = (
   value: Thread
-): value is LocationRoutineThread => value.type === "locationRoutine";
-export const isValidLocationRoutineThread = (
+): value is LocationPlanThread => value.type === "locationPlan";
+export const isValidLocationPlanThread = (
   value: unknown
-): value is LocationRoutineThread => {
+): value is LocationPlanThread => {
   try {
-    locationRoutineThreadSchema.validateSync(value);
+    locationPlanThreadSchema.validateSync(value);
     return true;
   } catch (error) {
     return false;
@@ -127,6 +127,6 @@ export type Thread =
   | ImpulseThread
   | GeneralThread
   | OnboardingThread
-  | TimeRoutineThread
-  | LocationRoutineThread
-  | RecapRoutineThread;
+  | TimePlanThread
+  | LocationPlanThread
+  | RecapPlanThread;

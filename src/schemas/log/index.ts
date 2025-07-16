@@ -2,7 +2,6 @@ import * as yup from "yup";
 import { BehaviorLog, behaviorLogSchema } from "./behaviorLog";
 import { CallLog, callLogSchema } from "./callLog";
 import { DaySummaryLog, daySummaryLogSchema } from "./daySummaryLog";
-import { GameplanLog, gameplanLogSchema } from "./gameplanLog";
 import { ImpulseLog, impulseLogSchema } from "./impulseLog";
 import { LinkLog, linkLogSchema } from "./linkLog";
 import {
@@ -14,6 +13,7 @@ import {
   UserMessageLog,
   userMessageLogSchema,
 } from "./messageLog/userMessageLog";
+import { PlanLog, planLogSchema } from "./planLog";
 import { QuestionLog, questionLogSchema } from "./questionLog";
 import { ResistedLog, resistedLogSchema } from "./resistedLog";
 import { ShowTourLog, showTourLogSchema } from "./showTourLog";
@@ -34,7 +34,7 @@ export const logSchemas = {
   impulse_button_pressed: impulseLogSchema,
   behavior: behaviorLogSchema,
   question: questionLogSchema,
-  gameplan: gameplanLogSchema,
+  plan: planLogSchema,
   summary: summaryLogSchema,
   resisted: resistedLogSchema,
   widget_setup: widgetSetupLogSchema,
@@ -52,7 +52,7 @@ export type Log =
   | ImpulseLog
   | BehaviorLog
   | QuestionLog
-  | GameplanLog
+  | PlanLog
   | ToolCallLog
   | MessageLog
   | SummaryLog
@@ -67,10 +67,10 @@ export type Log =
 export * from "./behaviorLog";
 export * from "./callLog";
 export * from "./daySummaryLog";
-export * from "./gameplanLog";
 export * from "./impulseLog";
 export * from "./linkLog";
 export * from "./messageLog";
+export * from "./planLog";
 export * from "./questionLog";
 export * from "./resistedLog";
 export * from "./showTourLog";
@@ -244,13 +244,12 @@ export const isValidUserMessageLog = (
   }
 };
 
-export const logIsGameplanLog = (
-  value: Omit<Log, "id">
-): value is GameplanLog => value.type === "gameplan";
+export const logIsPlanLog = (value: Omit<Log, "id">): value is PlanLog =>
+  value.type === "plan";
 
-export const isValidGameplanLog = (value: unknown): value is GameplanLog => {
+export const isValidPlanLog = (value: unknown): value is PlanLog => {
   try {
-    gameplanLogSchema.validateSync(value);
+    planLogSchema.validateSync(value);
     return true;
   } catch (error) {
     return false;

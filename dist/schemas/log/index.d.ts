@@ -2,11 +2,11 @@ import * as yup from "yup";
 import { BehaviorLog } from "./behaviorLog";
 import { CallLog } from "./callLog";
 import { DaySummaryLog } from "./daySummaryLog";
-import { GameplanLog } from "./gameplanLog";
 import { ImpulseLog } from "./impulseLog";
 import { LinkLog } from "./linkLog";
 import { AssistantMessageLog, MessageLog } from "./messageLog";
 import { UserMessageLog } from "./messageLog/userMessageLog";
+import { PlanLog } from "./planLog";
 import { QuestionLog } from "./questionLog";
 import { ResistedLog } from "./resistedLog";
 import { ShowTourLog } from "./showTourLog";
@@ -331,23 +331,23 @@ export declare const logSchemas: {
                 id?: string | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                gameplans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 isPinned?: boolean | undefined;
-                scope?: "impulse" | "recapRoutine" | undefined;
+                scope?: "impulse" | "recapPlan" | undefined;
                 content: string;
-                numberOfAnswers: number;
                 isTemplate: boolean;
+                numberOfAnswers: number;
                 responseType: "recap";
             } | {
                 id?: string | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                gameplans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 isPinned?: boolean | undefined;
-                scope?: "impulse" | "recapRoutine" | undefined;
+                scope?: "impulse" | "recapPlan" | undefined;
                 content: string;
-                numberOfAnswers: number;
                 isTemplate: boolean;
+                numberOfAnswers: number;
                 responseType: "slider";
                 sliderConfig: {
                     minLabel?: string | undefined;
@@ -362,13 +362,13 @@ export declare const logSchemas: {
                 id?: string | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                gameplans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 isPinned?: boolean | undefined;
-                scope?: "impulse" | "recapRoutine" | undefined;
+                scope?: "impulse" | "recapPlan" | undefined;
                 suggestedResponses?: string[] | undefined;
                 content: string;
-                numberOfAnswers: number;
                 isTemplate: boolean;
+                numberOfAnswers: number;
                 responseType: "text";
             };
         };
@@ -388,7 +388,7 @@ export declare const logSchemas: {
             response: undefined;
         };
     }, "">;
-    gameplan: yup.ObjectSchema<{
+    plan: yup.ObjectSchema<{
         id: string | undefined;
         createdAt: import("../../types").Timestamp | undefined;
         updatedAt: import("../../types").Timestamp | undefined;
@@ -396,17 +396,17 @@ export declare const logSchemas: {
         timestamp: import("../../types").Timestamp;
         dateString: string;
         callLogDocPath: string | undefined;
-        type: "gameplan";
+        type: "plan";
         isDisplayable: true;
         data: {
             acceptedAt?: import("../../types").Timestamp | undefined;
             shufflePressedAt?: import("../../types").Timestamp | undefined;
-            pastGameplans?: {
+            pastPlans?: {
                 tactic: import("..").Tactic;
                 exists: NonNullable<boolean | undefined>;
             }[][] | undefined;
             introduction?: string | undefined;
-            gameplan: {
+            plan: {
                 tactic: import("..").Tactic;
                 exists: NonNullable<boolean | undefined>;
             }[];
@@ -422,8 +422,8 @@ export declare const logSchemas: {
         type: undefined;
         isDisplayable: undefined;
         data: {
-            gameplan: "";
-            pastGameplans: "";
+            plan: "";
+            pastPlans: "";
             introduction: undefined;
             acceptedAt: undefined;
             shufflePressedAt: undefined;
@@ -616,14 +616,14 @@ export declare const logSchemas: {
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | ImpulseLog | BehaviorLog | QuestionLog | GameplanLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | VideoLog | ResistedLog | DaySummaryLog;
+export type Log = TacticLog | ImpulseLog | BehaviorLog | QuestionLog | PlanLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | VideoLog | ResistedLog | DaySummaryLog;
 export * from "./behaviorLog";
 export * from "./callLog";
 export * from "./daySummaryLog";
-export * from "./gameplanLog";
 export * from "./impulseLog";
 export * from "./linkLog";
 export * from "./messageLog";
+export * from "./planLog";
 export * from "./questionLog";
 export * from "./resistedLog";
 export * from "./showTourLog";
@@ -657,8 +657,8 @@ export declare const logIsTacticLog: (value: Omit<Log, "id">) => value is Tactic
 export declare const isValidTacticLog: (value: unknown) => value is TacticLog;
 export declare const logIsUserMessageLog: (value: Omit<Log, "id">) => value is UserMessageLog;
 export declare const isValidUserMessageLog: (value: unknown) => value is UserMessageLog;
-export declare const logIsGameplanLog: (value: Omit<Log, "id">) => value is GameplanLog;
-export declare const isValidGameplanLog: (value: unknown) => value is GameplanLog;
+export declare const logIsPlanLog: (value: Omit<Log, "id">) => value is PlanLog;
+export declare const isValidPlanLog: (value: unknown) => value is PlanLog;
 export declare const logIsSummaryLog: (value: Omit<Log, "id">) => value is SummaryLog;
 export declare const isValidSummaryLog: (value: unknown) => value is SummaryLog;
 export declare const logIsLinkLog: (value: Omit<Log, "id">) => value is LinkLog;

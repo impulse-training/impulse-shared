@@ -22,7 +22,7 @@ export const tacticBaseSchema = yup.object({
   allBehaviors: yup.boolean().optional(),
   behaviorIds: yup.array().of(yup.string().required()).optional(),
 
-  gameplanIds: yup.array().of(yup.string().required()).optional(),
+  planIds: yup.array().of(yup.string().required()).optional(),
 
   // The owner of the tactic
   userId: yup.string().optional(),

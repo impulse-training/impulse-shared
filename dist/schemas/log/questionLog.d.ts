@@ -36,23 +36,23 @@ export declare const questionLogSchema: yup.ObjectSchema<{
             id?: string | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
-            gameplans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+            plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
             isPinned?: boolean | undefined;
-            scope?: "impulse" | "recapRoutine" | undefined;
+            scope?: "impulse" | "recapPlan" | undefined;
             content: string;
-            numberOfAnswers: number;
             isTemplate: boolean;
+            numberOfAnswers: number;
             responseType: "recap";
         } | {
             id?: string | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
-            gameplans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+            plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
             isPinned?: boolean | undefined;
-            scope?: "impulse" | "recapRoutine" | undefined;
+            scope?: "impulse" | "recapPlan" | undefined;
             content: string;
-            numberOfAnswers: number;
             isTemplate: boolean;
+            numberOfAnswers: number;
             responseType: "slider";
             sliderConfig: {
                 minLabel?: string | undefined;
@@ -67,13 +67,13 @@ export declare const questionLogSchema: yup.ObjectSchema<{
             id?: string | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
-            gameplans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+            plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
             isPinned?: boolean | undefined;
-            scope?: "impulse" | "recapRoutine" | undefined;
+            scope?: "impulse" | "recapPlan" | undefined;
             suggestedResponses?: string[] | undefined;
             content: string;
-            numberOfAnswers: number;
             isTemplate: boolean;
+            numberOfAnswers: number;
             responseType: "text";
         };
     };

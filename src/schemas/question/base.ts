@@ -4,7 +4,7 @@ import { documentReferenceSchema, timestampSchema } from "../../utils";
 export function questionBaseSchema<T extends string>(type: T) {
   return yup.object({
     id: yup.string(),
-    gameplans: yup.array().of(documentReferenceSchema.required()).optional(),
+    plans: yup.array().of(documentReferenceSchema.required()).optional(),
     content: yup.string().required(),
     lastAskedAt: timestampSchema,
     lastAnsweredAt: timestampSchema,
@@ -13,8 +13,8 @@ export function questionBaseSchema<T extends string>(type: T) {
     isPinned: yup.boolean(),
     responseType: yup.mixed<T>().oneOf([type]).required(),
     scope: yup
-      .mixed<"impulse" | "recapRoutine">()
-      .oneOf(["impulse", "recapRoutine"])
+      .mixed<"impulse" | "recapPlan">()
+      .oneOf(["impulse", "recapPlan"])
       .optional(),
   });
 }

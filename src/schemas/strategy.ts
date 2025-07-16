@@ -7,8 +7,7 @@ export const strategySchema = yup.object({
   name: yup.string().required(),
   description: yup.string(),
   isImported: yup.boolean().optional().default(undefined),
-  gameplans: yup.array().of(documentReferenceSchema.required()).required(),
-  routines: yup.array().of(documentReferenceSchema.required()).required(),
+  plans: yup.array().of(documentReferenceSchema.required()).required(),
   tacticCollections: yup
     .array()
     .of(documentReferenceSchema.required())

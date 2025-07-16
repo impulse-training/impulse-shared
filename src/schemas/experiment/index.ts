@@ -3,10 +3,7 @@ import {
   BehaviorInsightExperiment,
   behaviorInsightExperiment,
 } from "./behaviorInsightExperiment";
-import {
-  GameplanExperiment,
-  gameplanExperiment,
-} from "./gameplanExperiment";
+import { GameplanExperiment, gameplanExperiment } from "./gameplanExperiment";
 
 export * from "./behaviorInsightExperiment";
 export * from "./gameplanExperiment";
@@ -29,18 +26,14 @@ export const experimentSchema = yup.lazy((value: any) => {
   return yup.object({
     type: yup
       .mixed<ExperimentValue["type"]>()
-      .oneOf(
-        Object.keys(experimentSchemas) as ExperimentValue["type"][]
-      )
+      .oneOf(Object.keys(experimentSchemas) as ExperimentValue["type"][])
       .required(),
   });
 }) as yup.Lazy<ValidatedExperimentValue>;
 
 // This type represents the union of all possible validated experiment objects
 type ValidatedExperimentValue = {
-  [K in ExperimentValue["type"]]: yup.InferType<
-    (typeof experimentSchemas)[K]
-  >;
+  [K in ExperimentValue["type"]]: yup.InferType<(typeof experimentSchemas)[K]>;
 }[ExperimentValue["type"]];
 
 export type ExperimentValue = BehaviorInsightExperiment | GameplanExperiment;

@@ -43,7 +43,7 @@ export function extractRelevantContext(
 
     // Get relevant tactics
     const tacticIds = [
-      ...(userContext.behaviors[behaviorId].gameplanTacticIds || []),
+      ...(userContext.behaviors[behaviorId].planTacticIds || []),
       ...(userContext.behaviors[behaviorId].effectiveTactics || []),
     ];
 

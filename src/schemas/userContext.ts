@@ -10,7 +10,7 @@ export const behaviorContextSchema = yup.object({
   totalTracked: yup.number().default(0),
   insights: yup.array().of(yup.string()).default([]),
   effectiveTactics: yup.array().of(yup.string()).default([]),
-  gameplanTacticIds: yup.array().of(yup.string()).default([]),
+  planTacticIds: yup.array().of(yup.string()).default([]),
 });
 
 export const tacticContextSchema = yup.object({

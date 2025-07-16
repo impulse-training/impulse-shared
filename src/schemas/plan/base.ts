@@ -1,7 +1,7 @@
 import * as yup from "yup";
 import { documentReferenceSchema, timestampSchema } from "../../utils";
 
-export function routineBaseSchema<T extends string>(type: T) {
+export function planBaseSchema<T extends string>(type: T) {
   return yup.object({
     id: yup.string(),
     name: yup.string().required(),

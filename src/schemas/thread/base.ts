@@ -14,16 +14,16 @@ export const threadBaseSchema = yup.object({
       | "general"
       | "onboarding"
       | "dayRecap"
-      | "timeRoutine"
-      | "locationRoutine"
+      | "timePlan"
+      | "locationPlan"
     >()
     .oneOf([
       "impulse",
       "general",
       "onboarding",
       "dayRecap",
-      "timeRoutine",
-      "locationRoutine",
+      "timePlan",
+      "locationPlan",
     ])
     .default("general"),
   date: timestampSchema.required(),
