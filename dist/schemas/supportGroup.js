@@ -82,6 +82,7 @@ exports.supportGroupSchema = yup.object({
         .of(utils_1.documentReferenceSchema.required())
         .required(),
     isPublic: yup.boolean().optional(),
+    isTemplate: yup.boolean().optional().default(false),
     inviteCode: yup.string().optional(),
     lastMessage: log_1.userMessageLogSchema.optional(),
     tacticCount: yup.number().default(0),

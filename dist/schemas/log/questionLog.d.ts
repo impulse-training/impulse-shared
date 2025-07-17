@@ -39,8 +39,8 @@ export declare const questionLogSchema: yup.ObjectSchema<{
             plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
             isPinned?: boolean | undefined;
             scope?: "impulse" | "recapPlan" | undefined;
-            content: string;
             isTemplate: boolean;
+            content: string;
             numberOfAnswers: number;
             responseType: "recap";
         } | {
@@ -50,8 +50,8 @@ export declare const questionLogSchema: yup.ObjectSchema<{
             plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
             isPinned?: boolean | undefined;
             scope?: "impulse" | "recapPlan" | undefined;
-            content: string;
             isTemplate: boolean;
+            content: string;
             numberOfAnswers: number;
             responseType: "slider";
             sliderConfig: {
@@ -71,8 +71,8 @@ export declare const questionLogSchema: yup.ObjectSchema<{
             isPinned?: boolean | undefined;
             scope?: "impulse" | "recapPlan" | undefined;
             suggestedResponses?: string[] | undefined;
-            content: string;
             isTemplate: boolean;
+            content: string;
             numberOfAnswers: number;
             responseType: "text";
         };

@@ -334,8 +334,8 @@ export declare const logSchemas: {
                 plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 isPinned?: boolean | undefined;
                 scope?: "impulse" | "recapPlan" | undefined;
-                content: string;
                 isTemplate: boolean;
+                content: string;
                 numberOfAnswers: number;
                 responseType: "recap";
             } | {
@@ -345,8 +345,8 @@ export declare const logSchemas: {
                 plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 isPinned?: boolean | undefined;
                 scope?: "impulse" | "recapPlan" | undefined;
-                content: string;
                 isTemplate: boolean;
+                content: string;
                 numberOfAnswers: number;
                 responseType: "slider";
                 sliderConfig: {
@@ -366,8 +366,8 @@ export declare const logSchemas: {
                 isPinned?: boolean | undefined;
                 scope?: "impulse" | "recapPlan" | undefined;
                 suggestedResponses?: string[] | undefined;
-                content: string;
                 isTemplate: boolean;
+                content: string;
                 numberOfAnswers: number;
                 responseType: "text";
             };

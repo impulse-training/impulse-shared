@@ -124,6 +124,7 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
     };
     tacticCollections: import("../utils").DocumentReferenceLike<unknown>[];
     isPublic: boolean | undefined;
+    isTemplate: boolean;
     inviteCode: string | undefined;
     lastMessage: {
         createdAt?: import("../types").Timestamp | undefined;
@@ -201,6 +202,7 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
     };
     tacticCollections: "";
     isPublic: undefined;
+    isTemplate: false;
     inviteCode: undefined;
     lastMessage: {
         id: undefined;

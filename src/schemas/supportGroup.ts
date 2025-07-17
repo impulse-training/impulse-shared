@@ -56,6 +56,7 @@ export const supportGroupSchema = yup.object({
     .of(documentReferenceSchema.required())
     .required(),
   isPublic: yup.boolean().optional(),
+  isTemplate: yup.boolean().optional().default(false),
   inviteCode: yup.string().optional(),
   lastMessage: userMessageLogSchema.optional(),
   tacticCount: yup.number().default(0),
