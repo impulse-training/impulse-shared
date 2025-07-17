@@ -13,7 +13,11 @@ export const userDataSchema = yup.object({
   defaultThreadMode: yup.string().oneOf(["text", "voice"]).default("text"),
 
   // User role
-  role: yup.string().oneOf(["user", "coach"]).default("user").required(),
+  role: yup
+    .string()
+    .oneOf(["user", "coach", "support"])
+    .default("user")
+    .required(),
 
   // Notification settings
   notificationsEnabled: yup.boolean().default(true),
