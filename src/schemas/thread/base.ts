@@ -41,6 +41,7 @@ export const threadBaseSchema = yup.object({
   summary: yup.string().optional(),
 
   firstOpenedAt: timestampSchema,
+  responseStartedProcessingAt: timestampSchema,
   updatedAt: timestampSchema,
   createdAt: timestampSchema,
 });
