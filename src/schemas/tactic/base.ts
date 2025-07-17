@@ -23,11 +23,8 @@ export const tacticBaseSchema = yup.object({
 
   planIds: yup.array().of(yup.string().required()).optional(),
 
-  // The owner of the tactic
-  userId: yup.string().optional(),
-
   // The original creator of the tactic
-  createdBy: yup.string(),
+  createdByUid: yup.string(),
 
   notificationSound: yup.string().optional(),
 
