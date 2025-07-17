@@ -1,7 +1,9 @@
 import * as yup from "yup";
 import { questionBaseSchema } from "./base";
 
-export const sliderQuestionSchema = questionBaseSchema("slider").shape({
+export const slider1To10QuestionSchema = questionBaseSchema(
+  "slider1To10"
+).shape({
   sliderConfig: yup
     .object({
       min: yup.number().required(),
@@ -15,4 +17,6 @@ export const sliderQuestionSchema = questionBaseSchema("slider").shape({
   suggestedResponses: yup.array().of(yup.string()).default([]),
 });
 
-export type SliderQuestion = yup.InferType<typeof sliderQuestionSchema>;
+export type Slider1To10Question = yup.InferType<
+  typeof slider1To10QuestionSchema
+>;

@@ -1,14 +1,14 @@
 import * as yup from "yup";
 import { RecapQuestion, recapQuestionSchema } from "./recap";
-import { SliderQuestion, sliderQuestionSchema } from "./slider";
+import { Slider1To10Question, slider1To10QuestionSchema } from "./slider1To10";
 import { TextQuestion, textQuestionSchema } from "./text";
 
 export * from "./recap";
-export * from "./slider";
+export * from "./slider1To10";
 export * from "./text";
 
 // Response types for questions
-export const responseTypes = ["text", "slider", "recap"] as const;
+export const responseTypes = ["text", "slider1To10", "recap"] as const;
 export type ResponseType = (typeof responseTypes)[number];
 
 export const responseTypeSchema = yup
@@ -17,7 +17,7 @@ export const responseTypeSchema = yup
   .required();
 
 // Union type for all question types
-export type Question = TextQuestion | SliderQuestion | RecapQuestion;
+export type Question = TextQuestion | Slider1To10Question | RecapQuestion;
 
 // Utility to dynamically select the correct schema based on the Question type
 export const QuestionSchemas: Record<
@@ -25,7 +25,7 @@ export const QuestionSchemas: Record<
   yup.ObjectSchema<Question>
 > = {
   text: textQuestionSchema,
-  slider: sliderQuestionSchema,
+  slider1To10: slider1To10QuestionSchema,
   recap: recapQuestionSchema,
 } as any;
 
@@ -48,7 +48,7 @@ export type QuestionTypes = {
 };
 
 // Type guards for each question type
-export const isTextQuestion = (
+export const questionIsTextQuestion = (
   value: Omit<Question, "id">
 ): value is TextQuestion => value.responseType === "text";
 
@@ -61,7 +61,7 @@ export const isValidTextQuestion = (value: unknown): value is TextQuestion => {
   }
 };
 
-export const isRecapQuestion = (
+export const questionIsRecapQuestion = (
   value: Omit<Question, "id">
 ): value is RecapQuestion => value.responseType === "recap";
 
@@ -76,15 +76,15 @@ export const isValidRecapQuestion = (
   }
 };
 
-export const isSliderQuestion = (
+export const questionIsSlider1To10Question = (
   value: Omit<Question, "id">
-): value is SliderQuestion => value.responseType === "slider";
+): value is Slider1To10Question => value.responseType === "slider1To10";
 
-export const isValidSliderQuestion = (
+export const isValidSlider1To10Question = (
   value: unknown
-): value is SliderQuestion => {
+): value is Slider1To10Question => {
   try {
-    sliderQuestionSchema.validateSync(value);
+    slider1To10QuestionSchema.validateSync(value);
     return true;
   } catch (error) {
     return false;

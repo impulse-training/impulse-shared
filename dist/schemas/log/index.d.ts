@@ -324,7 +324,7 @@ export declare const logSchemas: {
                 value?: any;
                 formattedValue?: string | undefined;
                 iconName?: string | undefined;
-                responseType: NonNullable<"text" | "recap" | "slider" | undefined>;
+                responseType: NonNullable<"text" | "recap" | "slider1To10" | undefined>;
             } | undefined;
             questionId?: string | undefined;
             question: {
@@ -348,7 +348,7 @@ export declare const logSchemas: {
                 isTemplate: boolean;
                 content: string;
                 numberOfAnswers: number;
-                responseType: "slider";
+                responseType: "slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;

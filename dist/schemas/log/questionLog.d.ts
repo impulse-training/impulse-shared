@@ -1,6 +1,6 @@
 import * as yup from "yup";
 declare const responseSchema: yup.ObjectSchema<{
-    responseType: NonNullable<"text" | "recap" | "slider" | undefined>;
+    responseType: NonNullable<"text" | "recap" | "slider1To10" | undefined>;
     value: any;
     formattedValue: string | undefined;
     color: string | undefined;
@@ -29,7 +29,7 @@ export declare const questionLogSchema: yup.ObjectSchema<{
             value?: any;
             formattedValue?: string | undefined;
             iconName?: string | undefined;
-            responseType: NonNullable<"text" | "recap" | "slider" | undefined>;
+            responseType: NonNullable<"text" | "recap" | "slider1To10" | undefined>;
         } | undefined;
         questionId?: string | undefined;
         question: {
@@ -53,7 +53,7 @@ export declare const questionLogSchema: yup.ObjectSchema<{
             isTemplate: boolean;
             content: string;
             numberOfAnswers: number;
-            responseType: "slider";
+            responseType: "slider1To10";
             sliderConfig: {
                 minLabel?: string | undefined;
                 maxLabel?: string | undefined;
