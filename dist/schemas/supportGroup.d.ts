@@ -100,9 +100,6 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
     unreadMessageCountsById: {
         [x: string]: number;
     };
-    hiddenTacticIdsByUserId: {
-        [x: string]: string[] | undefined;
-    };
     memberCount: number;
     image: {
         createdAt?: import("../types").Timestamp | undefined;
@@ -183,7 +180,6 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
     };
     membersById: undefined;
     unreadMessageCountsById: undefined;
-    hiddenTacticIdsByUserId: undefined;
     memberCount: 0;
     image: {
         createdAt: undefined;

@@ -74,7 +74,6 @@ exports.supportGroupSchema = yup.object({
     coverPhoto: attachment_1.attachmentSchema.optional(), // Optional cover photo for the group
     membersById: (0, utils_1.objectOf)(exports.supportGroupMemberSchema),
     unreadMessageCountsById: (0, utils_1.objectOf)(yup.number().required()),
-    hiddenTacticIdsByUserId: (0, utils_1.objectOf)(yup.array().of(yup.string().required())),
     memberCount: yup.number().default(0), // Count of members for easier querying
     image: attachment_1.attachmentSchema,
     tacticCollections: yup

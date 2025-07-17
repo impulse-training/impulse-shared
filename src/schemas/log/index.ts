@@ -13,6 +13,10 @@ import {
   UserMessageLog,
   userMessageLogSchema,
 } from "./messageLog/userMessageLog";
+import {
+  NotifySupportGroupLog,
+  notifySupportGroupLogSchema,
+} from "./notifySupportGroupLog";
 import { PlanLog, planLogSchema } from "./planLog";
 import { QuestionLog, questionLogSchema } from "./questionLog";
 import { ResistedLog, resistedLogSchema } from "./resistedLog";
@@ -40,6 +44,7 @@ export const logSchemas = {
   widget_setup: widgetSetupLogSchema,
   show_tour: showTourLogSchema,
   link: linkLogSchema,
+  notify_support_group: notifySupportGroupLogSchema,
   video: videoLogSchema,
 };
 export const logTypes = Object.keys(logSchemas);
@@ -60,6 +65,7 @@ export type Log =
   | WidgetSetupLog
   | ShowTourLog
   | LinkLog
+  | NotifySupportGroupLog
   | VideoLog
   | ResistedLog
   | DaySummaryLog;
@@ -70,6 +76,7 @@ export * from "./daySummaryLog";
 export * from "./impulseLog";
 export * from "./linkLog";
 export * from "./messageLog";
+export * from "./notifySupportGroupLog";
 export * from "./planLog";
 export * from "./questionLog";
 export * from "./resistedLog";
@@ -117,6 +124,20 @@ export const logIsShowTourLog = (
 export const isValidShowTourLog = (value: unknown): value is ShowTourLog => {
   try {
     showTourLogSchema.validateSync(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+export const logIsNotifySupportGroupLog = (
+  value: Omit<Log, "id">
+): value is NotifySupportGroupLog => value.type === "notify_support_group";
+export const isValidNotifySupportGroupLog = (
+  value: unknown
+): value is NotifySupportGroupLog => {
+  try {
+    notifySupportGroupLogSchema.validateSync(value);
     return true;
   } catch (error) {
     return false;

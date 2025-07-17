@@ -36,7 +36,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidPlanLog = exports.logIsPlanLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorLog = exports.logIsBehaviorLog = exports.isValidDaySummaryLog = exports.logIsDaySummaryLog = exports.isValidResistedLog = exports.logIsResistedLog = exports.isValidShowTourLog = exports.logIsShowTourLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
+exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidPlanLog = exports.logIsPlanLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorLog = exports.logIsBehaviorLog = exports.isValidDaySummaryLog = exports.logIsDaySummaryLog = exports.isValidResistedLog = exports.logIsResistedLog = exports.isValidNotifySupportGroupLog = exports.logIsNotifySupportGroupLog = exports.isValidShowTourLog = exports.logIsShowTourLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
 const yup = __importStar(require("yup"));
 const behaviorLog_1 = require("./behaviorLog");
 const callLog_1 = require("./callLog");
@@ -45,6 +45,7 @@ const impulseLog_1 = require("./impulseLog");
 const linkLog_1 = require("./linkLog");
 const messageLog_1 = require("./messageLog");
 const userMessageLog_1 = require("./messageLog/userMessageLog");
+const notifySupportGroupLog_1 = require("./notifySupportGroupLog");
 const planLog_1 = require("./planLog");
 const questionLog_1 = require("./questionLog");
 const resistedLog_1 = require("./resistedLog");
@@ -71,6 +72,7 @@ exports.logSchemas = {
     widget_setup: widgetSetupLog_1.widgetSetupLogSchema,
     show_tour: showTourLog_1.showTourLogSchema,
     link: linkLog_1.linkLogSchema,
+    notify_support_group: notifySupportGroupLog_1.notifySupportGroupLogSchema,
     video: videoLog_1.videoLogSchema,
 };
 exports.logTypes = Object.keys(exports.logSchemas);
@@ -80,6 +82,7 @@ __exportStar(require("./daySummaryLog"), exports);
 __exportStar(require("./impulseLog"), exports);
 __exportStar(require("./linkLog"), exports);
 __exportStar(require("./messageLog"), exports);
+__exportStar(require("./notifySupportGroupLog"), exports);
 __exportStar(require("./planLog"), exports);
 __exportStar(require("./questionLog"), exports);
 __exportStar(require("./resistedLog"), exports);
@@ -127,6 +130,18 @@ const isValidShowTourLog = (value) => {
     }
 };
 exports.isValidShowTourLog = isValidShowTourLog;
+const logIsNotifySupportGroupLog = (value) => value.type === "notify_support_group";
+exports.logIsNotifySupportGroupLog = logIsNotifySupportGroupLog;
+const isValidNotifySupportGroupLog = (value) => {
+    try {
+        notifySupportGroupLog_1.notifySupportGroupLogSchema.validateSync(value);
+        return true;
+    }
+    catch (error) {
+        return false;
+    }
+};
+exports.isValidNotifySupportGroupLog = isValidNotifySupportGroupLog;
 const logIsResistedLog = (value) => value.type === "resisted";
 exports.logIsResistedLog = logIsResistedLog;
 const isValidResistedLog = (value) => {

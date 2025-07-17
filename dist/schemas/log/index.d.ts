@@ -6,6 +6,7 @@ import { ImpulseLog } from "./impulseLog";
 import { LinkLog } from "./linkLog";
 import { AssistantMessageLog, MessageLog } from "./messageLog";
 import { UserMessageLog } from "./messageLog/userMessageLog";
+import { NotifySupportGroupLog } from "./notifySupportGroupLog";
 import { PlanLog } from "./planLog";
 import { QuestionLog } from "./questionLog";
 import { ResistedLog } from "./resistedLog";
@@ -582,6 +583,33 @@ export declare const logSchemas: {
         link: undefined;
         buttonText: undefined;
     }, "">;
+    notify_support_group: yup.ObjectSchema<{
+        id: string | undefined;
+        createdAt: import("../../types").Timestamp | undefined;
+        updatedAt: import("../../types").Timestamp | undefined;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        callLogDocPath: string | undefined;
+        type: "notify_support_group";
+        isDisplayable: true;
+        data: {
+            message: import("openai/resources").ChatCompletionUserMessageParam;
+        };
+    }, yup.AnyObject, {
+        id: undefined;
+        createdAt: undefined;
+        updatedAt: undefined;
+        userId: undefined;
+        timestamp: undefined;
+        dateString: undefined;
+        callLogDocPath: undefined;
+        type: undefined;
+        isDisplayable: undefined;
+        data: {
+            message: undefined;
+        };
+    }, "">;
     video: yup.ObjectSchema<{
         id: string | undefined;
         createdAt: import("../../types").Timestamp | undefined;
@@ -616,13 +644,14 @@ export declare const logSchemas: {
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | ImpulseLog | BehaviorLog | QuestionLog | PlanLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | VideoLog | ResistedLog | DaySummaryLog;
+export type Log = TacticLog | ImpulseLog | BehaviorLog | QuestionLog | PlanLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | NotifySupportGroupLog | VideoLog | ResistedLog | DaySummaryLog;
 export * from "./behaviorLog";
 export * from "./callLog";
 export * from "./daySummaryLog";
 export * from "./impulseLog";
 export * from "./linkLog";
 export * from "./messageLog";
+export * from "./notifySupportGroupLog";
 export * from "./planLog";
 export * from "./questionLog";
 export * from "./resistedLog";
@@ -637,6 +666,8 @@ export declare const logIsAssistantMessageLog: (value: Omit<Log, "id">) => value
 export declare const isValidAssistantMessageLog: (value: unknown) => value is AssistantMessageLog;
 export declare const logIsShowTourLog: (value: Omit<Log, "id">) => value is ShowTourLog;
 export declare const isValidShowTourLog: (value: unknown) => value is ShowTourLog;
+export declare const logIsNotifySupportGroupLog: (value: Omit<Log, "id">) => value is NotifySupportGroupLog;
+export declare const isValidNotifySupportGroupLog: (value: unknown) => value is NotifySupportGroupLog;
 export declare const logIsResistedLog: (value: Omit<Log, "id">) => value is ResistedLog;
 export declare const isValidResistedLog: (value: unknown) => value is ResistedLog;
 export declare const logIsDaySummaryLog: (value: Omit<Log, "id">) => value is DaySummaryLog;
