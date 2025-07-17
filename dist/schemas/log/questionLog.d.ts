@@ -2,7 +2,7 @@ import * as yup from "yup";
 declare const responseSchema: yup.ObjectSchema<{
     responseType: NonNullable<"text" | "recap" | "slider1To10" | undefined>;
     value: any;
-    formattedValue: string | undefined;
+    formattedValue: string;
     color: string | undefined;
     iconName: string | undefined;
 }, yup.AnyObject, {
@@ -27,8 +27,8 @@ export declare const questionLogSchema: yup.ObjectSchema<{
         response?: {
             color?: string | undefined;
             value?: any;
-            formattedValue?: string | undefined;
             iconName?: string | undefined;
+            formattedValue: string;
             responseType: NonNullable<"text" | "recap" | "slider1To10" | undefined>;
         } | undefined;
         questionId?: string | undefined;

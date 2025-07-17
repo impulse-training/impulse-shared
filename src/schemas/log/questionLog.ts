@@ -5,7 +5,7 @@ import { logBaseSchema } from "./base";
 const responseSchema = yup.object({
   responseType: responseTypeSchema,
   value: yup.mixed(),
-  formattedValue: yup.string(),
+  formattedValue: yup.string().required(),
   color: yup.string(),
   iconName: yup.string(),
 });
