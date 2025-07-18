@@ -467,10 +467,6 @@ export declare const logSchemas: {
         callLogDocPath: string | undefined;
         type: "resisted";
         isDisplayable: true;
-        data: {
-            behaviorId?: string | undefined;
-            behaviorName?: string | undefined;
-        };
     }, yup.AnyObject, {
         id: undefined;
         createdAt: undefined;
@@ -481,10 +477,6 @@ export declare const logSchemas: {
         callLogDocPath: undefined;
         type: undefined;
         isDisplayable: undefined;
-        data: {
-            behaviorId: undefined;
-            behaviorName: undefined;
-        };
     }, "">;
     widget_setup: yup.ObjectSchema<{
         id: string | undefined;
