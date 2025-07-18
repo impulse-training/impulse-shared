@@ -7,6 +7,7 @@ import {
   logIsAssistantMessageLog,
   logIsImpulseLog,
   logIsQuestionLog,
+  logIsResistedLog,
   logIsShowTourLog,
   logIsTacticLog,
   logIsToolCallLog,
@@ -112,6 +113,16 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
     }
 
     return messages;
+  }
+
+  // Handle ResistedLog
+  if (logIsResistedLog(log)) {
+    return [
+      {
+        role: "user",
+        content: "<SYSTEM>The user successfully resisted an impulse</SYSTEM>",
+      },
+    ];
   }
 
   // Return empty array for other (unsupported) log types
