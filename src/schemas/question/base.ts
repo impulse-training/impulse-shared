@@ -9,7 +9,7 @@ export function questionBaseSchema<T extends string>(type: T) {
     question: yup.string().required(), // The actual question content
     lastAskedAt: timestampSchema,
     lastAnsweredAt: timestampSchema,
-    numberOfAnswers: yup.number().optional().default(0),
+    numberOfAnswers: yup.number().optional().default(undefined),
     isTemplate: yup.boolean().optional().default(false),
     isPinned: yup.boolean(),
     responseType: yup.mixed<T>().oneOf([type]).required(),

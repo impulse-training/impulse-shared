@@ -334,11 +334,11 @@ export declare const logSchemas: {
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 scope?: "impulse" | "recapPlan" | undefined;
                 isTemplate: boolean;
                 question: string;
-                numberOfAnswers: number;
                 responseType: "recap";
             } | {
                 text?: string | undefined;
@@ -346,33 +346,28 @@ export declare const logSchemas: {
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 scope?: "impulse" | "recapPlan" | undefined;
                 isTemplate: boolean;
                 question: string;
-                numberOfAnswers: number;
                 responseType: "slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
-                    defaultValue?: number | undefined;
-                    min: number;
-                    max: number;
-                    step: number;
                 };
-                suggestedResponses: (string | undefined)[];
             } | {
                 text?: string | undefined;
                 id?: string | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 scope?: "impulse" | "recapPlan" | undefined;
                 suggestedResponses?: string[] | undefined;
                 isTemplate: boolean;
                 question: string;
-                numberOfAnswers: number;
                 responseType: "text";
             };
         };
