@@ -5,7 +5,8 @@ export function questionBaseSchema<T extends string>(type: T) {
   return yup.object({
     id: yup.string(),
     plans: yup.array().of(documentReferenceSchema.required()).optional(),
-    content: yup.string().required(),
+    text: yup.string().optional(), // Optional text to display before the question
+    question: yup.string().required(), // The actual question content
     lastAskedAt: timestampSchema,
     lastAnsweredAt: timestampSchema,
     numberOfAnswers: yup.number().optional().default(0),

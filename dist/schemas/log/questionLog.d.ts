@@ -33,6 +33,7 @@ export declare const questionLogSchema: yup.ObjectSchema<{
         } | undefined;
         questionId?: string | undefined;
         question: {
+            text?: string | undefined;
             id?: string | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
@@ -40,10 +41,11 @@ export declare const questionLogSchema: yup.ObjectSchema<{
             isPinned?: boolean | undefined;
             scope?: "impulse" | "recapPlan" | undefined;
             isTemplate: boolean;
-            content: string;
+            question: string;
             numberOfAnswers: number;
             responseType: "recap";
         } | {
+            text?: string | undefined;
             id?: string | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
@@ -51,7 +53,7 @@ export declare const questionLogSchema: yup.ObjectSchema<{
             isPinned?: boolean | undefined;
             scope?: "impulse" | "recapPlan" | undefined;
             isTemplate: boolean;
-            content: string;
+            question: string;
             numberOfAnswers: number;
             responseType: "slider1To10";
             sliderConfig: {
@@ -64,6 +66,7 @@ export declare const questionLogSchema: yup.ObjectSchema<{
             };
             suggestedResponses: (string | undefined)[];
         } | {
+            text?: string | undefined;
             id?: string | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
@@ -72,7 +75,7 @@ export declare const questionLogSchema: yup.ObjectSchema<{
             scope?: "impulse" | "recapPlan" | undefined;
             suggestedResponses?: string[] | undefined;
             isTemplate: boolean;
-            content: string;
+            question: string;
             numberOfAnswers: number;
             responseType: "text";
         };
