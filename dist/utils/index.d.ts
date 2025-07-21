@@ -7,4 +7,4 @@ export * from "./sumBehaviorDataTotals";
 export * from "./tactics";
 export * from "./timestampSchema";
 export * from "./validation";
-export * from "./withIdSchema";
+export * from "./withId";

@@ -24,4 +24,4 @@ __exportStar(require("./sumBehaviorDataTotals"), exports);
 __exportStar(require("./tactics"), exports);
 __exportStar(require("./timestampSchema"), exports);
 __exportStar(require("./validation"), exports);
-__exportStar(require("./withIdSchema"), exports);
+__exportStar(require("./withId"), exports);
