@@ -42,7 +42,6 @@ const responseSchema = yup.object({
     value: yup.mixed(),
     formattedValue: yup.string().required(),
     color: yup.string(),
-    iconName: yup.string(),
 });
 exports.questionLogSchema = base_1.logBaseSchema.shape({
     type: yup.string().oneOf(["question"]).required(),

@@ -7,7 +7,6 @@ const responseSchema = yup.object({
   value: yup.mixed(),
   formattedValue: yup.string().required(),
   color: yup.string(),
-  iconName: yup.string(),
 });
 export type Response = yup.InferType<typeof responseSchema>;
 

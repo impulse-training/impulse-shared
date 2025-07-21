@@ -1,5 +1,10 @@
 import * as yup from "yup";
-import { objectOf, optionalObjectOf, withIdSchema } from "../../utils";
+import {
+  documentReferenceSchema,
+  objectOf,
+  optionalObjectOf,
+  withIdSchema,
+} from "../../utils";
 import { timestampSchema } from "../../utils/timestampSchema";
 import { logSchema } from "../log";
 import { Plan, planSchema } from "../plan";
@@ -39,6 +44,7 @@ export const threadBaseSchema = yup.object({
   trackingLogsById: objectOf(logSchema),
   systemPrompt: yup.string(),
   summary: yup.string().optional(),
+  strategyDoc: documentReferenceSchema,
 
   firstOpenedAt: timestampSchema,
   responseStartedProcessingAt: timestampSchema,

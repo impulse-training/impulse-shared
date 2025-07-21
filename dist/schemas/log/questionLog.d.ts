@@ -4,13 +4,11 @@ declare const responseSchema: yup.ObjectSchema<{
     value: any;
     formattedValue: string;
     color: string | undefined;
-    iconName: string | undefined;
 }, yup.AnyObject, {
     responseType: undefined;
     value: undefined;
     formattedValue: undefined;
     color: undefined;
-    iconName: undefined;
 }, "">;
 export type Response = yup.InferType<typeof responseSchema>;
 export declare const questionLogSchema: yup.ObjectSchema<{
@@ -27,7 +25,6 @@ export declare const questionLogSchema: yup.ObjectSchema<{
         response?: {
             color?: string | undefined;
             value?: any;
-            iconName?: string | undefined;
             formattedValue: string;
             responseType: NonNullable<"text" | "recap" | "slider1To10" | undefined>;
         } | undefined;
