@@ -21,6 +21,8 @@ export const tacticBaseSchema = yup.object({
   allBehaviors: yup.boolean().optional(),
   behaviorIds: yup.array().of(yup.string().required()).optional(),
 
+  summaryForAI: yup.string(),
+
   // The original creator of the tactic
   createdByUid: yup.string(),
 

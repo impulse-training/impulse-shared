@@ -10,6 +10,7 @@ export const tacticCollectionSchema = yup.object({
   isCollaborative: yup.boolean().optional().default(undefined),
   isDefault: yup.boolean().optional().default(undefined),
   inboxCode: yup.string().optional(),
+  summaryForAI: yup.string().optional(),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
   deletedAt: timestampSchema,
