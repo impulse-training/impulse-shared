@@ -31,6 +31,8 @@ export declare const questionLogSchema: yup.ObjectSchema<{
         questionId?: string | undefined;
         question: {
             text?: string | undefined;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
@@ -43,6 +45,8 @@ export declare const questionLogSchema: yup.ObjectSchema<{
             responseType: "recap";
         } | {
             text?: string | undefined;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
@@ -59,6 +63,8 @@ export declare const questionLogSchema: yup.ObjectSchema<{
             };
         } | {
             text?: string | undefined;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;

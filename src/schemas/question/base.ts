@@ -4,6 +4,8 @@ import { documentReferenceSchema, timestampSchema } from "../../utils";
 export function questionBaseSchema<T extends string>(type: T) {
   return yup.object({
     id: yup.string(),
+    createdAt: timestampSchema,
+    updatedAt: timestampSchema,
     plans: yup.array().of(documentReferenceSchema.required()).optional(),
     text: yup.string().optional(), // Optional text to display before the question
     question: yup.string().required(), // The actual question content
