@@ -10,8 +10,8 @@ export const QUESTION_SCOPES = {
   },
   recapPlan: {
     id: "recapPlan",
-    label: "Morning Recap",
-    description: "Asked during your regular morning recap",
+    label: "Daily Recap",
+    description: "Asked during your regular daily recap",
   },
 } as const;
 
