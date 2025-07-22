@@ -398,16 +398,8 @@ export declare const logSchemas: {
         isDisplayable: true;
         data: {
             acceptedAt?: import("../../types").Timestamp | undefined;
-            shufflePressedAt?: import("../../types").Timestamp | undefined;
-            pastPlans?: {
-                tactic: import("..").Tactic;
-                exists: NonNullable<boolean | undefined>;
-            }[][] | undefined;
             introduction?: string | undefined;
-            plan: {
-                tactic: import("..").Tactic;
-                exists: NonNullable<boolean | undefined>;
-            }[];
+            plan: import("../..").WithId<import("..").Plan>;
         };
     }, yup.AnyObject, {
         id: undefined;
@@ -420,11 +412,9 @@ export declare const logSchemas: {
         type: undefined;
         isDisplayable: undefined;
         data: {
-            plan: "";
-            pastPlans: "";
+            plan: undefined;
             introduction: undefined;
             acceptedAt: undefined;
-            shufflePressedAt: undefined;
         };
     }, "">;
     summary: yup.ObjectSchema<{
