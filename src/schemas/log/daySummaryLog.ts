@@ -6,6 +6,7 @@ export const daySummaryLogSchema = logBaseSchema.shape({
   isDisplayable: yup.mixed<true>().oneOf([true]).required(),
   data: yup.object({
     targetDayDateString: yup.string().required(),
+    behaviorDataTotalByBehaviorId: yup.object().optional(),
   }),
 });
 

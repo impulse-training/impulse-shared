@@ -206,6 +206,7 @@ export declare const logSchemas: {
         type: "day_summary";
         isDisplayable: true;
         data: {
+            behaviorDataTotalByBehaviorId?: {} | undefined;
             targetDayDateString: string;
         };
     }, yup.AnyObject, {
@@ -220,6 +221,7 @@ export declare const logSchemas: {
         isDisplayable: undefined;
         data: {
             targetDayDateString: undefined;
+            behaviorDataTotalByBehaviorId: {};
         };
     }, "">;
     tactic_viewed: yup.ObjectSchema<{
