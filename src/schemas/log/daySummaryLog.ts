@@ -7,6 +7,7 @@ export const daySummaryLogSchema = logBaseSchema.shape({
   data: yup.object({
     targetDayDateString: yup.string().required(),
     behaviorDataTotalByBehaviorId: yup.object().optional(),
+    trackingLogsById: yup.object().optional(),
   }),
 });
 
