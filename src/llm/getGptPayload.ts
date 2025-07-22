@@ -5,6 +5,7 @@ import {
 import {
   Log,
   logIsAssistantMessageLog,
+  logIsDaySummaryLog,
   logIsImpulseLog,
   logIsQuestionLog,
   logIsResistedLog,
@@ -124,6 +125,33 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
       {
         role: "user",
         content: "<SYSTEM>The user successfully resisted an impulse</SYSTEM>",
+      },
+    ];
+  }
+
+  // Handle DaySummaryLog
+  if (logIsDaySummaryLog(log)) {
+    // Check if behaviorDataTotalByBehaviorId exists in the log data
+    const behaviorTotals = (log.data as any)?.behaviorDataTotalByBehaviorId;
+    
+    if (!behaviorTotals || Object.keys(behaviorTotals).length === 0) {
+      return [
+        {
+          role: "user",
+          content: `<SYSTEM>Day summary for ${log.dateString}, but no behavior data recorded.</SYSTEM>`,
+        },
+      ];
+    }
+
+    // Format behavior totals into a readable summary
+    const behaviorSummaries = Object.values(behaviorTotals)
+      .map((behavior: any) => `${behavior.behaviorName}: ${behavior.formattedValue}`)
+      .join("\n");
+
+    return [
+      {
+        role: "user",
+        content: `<SYSTEM>Day summary for ${log.dateString}:\n${behaviorSummaries}</SYSTEM>`,
       },
     ];
   }
