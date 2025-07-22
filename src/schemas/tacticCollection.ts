@@ -11,6 +11,7 @@ export const tacticCollectionSchema = yup.object({
   isDefault: yup.boolean().optional().default(undefined),
   inboxCode: yup.string().optional(),
   summaryForAI: yup.string().optional(),
+  needsSummaryRebuild: yup.boolean().optional().default(undefined),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
   deletedAt: timestampSchema,
