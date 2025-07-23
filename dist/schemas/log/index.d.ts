@@ -324,18 +324,18 @@ export declare const logSchemas: {
         type: "question";
         isDisplayable: true;
         data: {
+            questionId?: string | undefined;
             response?: {
-                color?: string | undefined;
                 value?: any;
+                color?: string | undefined;
                 formattedValue: string;
                 responseType: NonNullable<"text" | "recap" | "slider1To10" | undefined>;
             } | undefined;
-            questionId?: string | undefined;
             question: {
-                text?: string | undefined;
+                id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                id?: string | undefined;
+                text?: string | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -346,10 +346,10 @@ export declare const logSchemas: {
                 question: string;
                 responseType: "recap";
             } | {
-                text?: string | undefined;
+                id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                id?: string | undefined;
+                text?: string | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -364,10 +364,10 @@ export declare const logSchemas: {
                     maxLabel?: string | undefined;
                 };
             } | {
-                text?: string | undefined;
+                id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                id?: string | undefined;
+                text?: string | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -516,8 +516,8 @@ export declare const logSchemas: {
                 borderRadius?: number | undefined;
                 innerPadding?: number | undefined;
                 description: string;
-                title: string;
                 elementRefName: string;
+                title: string;
                 confirmButtonLabel: string;
             }[];
             includeCloseButton: boolean;

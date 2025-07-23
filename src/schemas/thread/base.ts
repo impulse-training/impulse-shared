@@ -13,7 +13,6 @@ import { tacticSchema } from "../tactic";
 // Thread schema
 export const threadBaseSchema = yup.object({
   id: yup.string(),
-  title: yup.string().required(),
   // Any thread may have an optional plan
   plan: withIdSchema<Plan>(planSchema).optional(),
   type: yup

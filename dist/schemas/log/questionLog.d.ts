@@ -22,18 +22,18 @@ export declare const questionLogSchema: yup.ObjectSchema<{
     type: "question";
     isDisplayable: true;
     data: {
+        questionId?: string | undefined;
         response?: {
-            color?: string | undefined;
             value?: any;
+            color?: string | undefined;
             formattedValue: string;
             responseType: NonNullable<"text" | "recap" | "slider1To10" | undefined>;
         } | undefined;
-        questionId?: string | undefined;
         question: {
-            text?: string | undefined;
+            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
-            id?: string | undefined;
+            text?: string | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -44,10 +44,10 @@ export declare const questionLogSchema: yup.ObjectSchema<{
             question: string;
             responseType: "recap";
         } | {
-            text?: string | undefined;
+            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
-            id?: string | undefined;
+            text?: string | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -62,10 +62,10 @@ export declare const questionLogSchema: yup.ObjectSchema<{
                 maxLabel?: string | undefined;
             };
         } | {
-            text?: string | undefined;
+            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
-            id?: string | undefined;
+            text?: string | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;

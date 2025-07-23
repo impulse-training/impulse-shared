@@ -26,13 +26,13 @@ export declare const supportGroupMemberSchema: yup.ObjectSchema<{
         } | undefined;
     };
     permissions: {
+        summary: boolean;
         dayOutcomes: boolean;
         threads: boolean;
-        summary: boolean;
     } | undefined;
     notificationPreferences: {
-        messages: boolean;
         plan: boolean;
+        messages: boolean;
     } | undefined;
     currentStreak: {
         streakStart?: import("../types").Timestamp | undefined;
@@ -76,25 +76,25 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
         [x: string]: {
             joinedAt?: import("../types").Timestamp | undefined;
             permissions?: {
+                summary: boolean;
                 dayOutcomes: boolean;
                 threads: boolean;
-                summary: boolean;
             } | undefined;
             notificationPreferences?: {
-                messages: boolean;
                 plan: boolean;
+                messages: boolean;
             } | undefined;
             currentStreak?: {
                 streakStart?: import("../types").Timestamp | undefined;
                 color: string;
             } | undefined;
+            userId: string;
             userProfile: {
                 emojiId?: {
                     color: string;
                     emoji: string;
                 } | undefined;
             };
-            userId: string;
         };
     };
     unreadMessageCountsById: {
@@ -124,9 +124,9 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
     isTemplate: boolean;
     inviteCode: string | undefined;
     lastMessage: {
+        id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
-        id?: string | undefined;
         callLogDocPath?: string | undefined;
         audioAttachment?: {
             createdAt?: import("../types").Timestamp | undefined;
