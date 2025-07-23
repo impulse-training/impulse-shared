@@ -39,7 +39,7 @@ export declare const questionLogSchema: yup.ObjectSchema<{
             plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
-            scope?: "impulse" | "recapPlan" | undefined;
+            scope?: "impulse" | "recap" | undefined;
             isTemplate: boolean;
             question: string;
             responseType: "recap";
@@ -53,7 +53,7 @@ export declare const questionLogSchema: yup.ObjectSchema<{
             plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
-            scope?: "impulse" | "recapPlan" | undefined;
+            scope?: "impulse" | "recap" | undefined;
             isTemplate: boolean;
             question: string;
             responseType: "slider1To10";
@@ -71,7 +71,7 @@ export declare const questionLogSchema: yup.ObjectSchema<{
             plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
-            scope?: "impulse" | "recapPlan" | undefined;
+            scope?: "impulse" | "recap" | undefined;
             suggestedResponses?: string[] | undefined;
             isTemplate: boolean;
             question: string;

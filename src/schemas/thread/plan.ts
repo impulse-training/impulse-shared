@@ -8,16 +8,16 @@ const planThreadBaseSchema = threadBaseSchema.shape({
 });
 
 export const timePlanThreadSchema = planThreadBaseSchema.shape({
-  type: yup.mixed<"timePlan">().oneOf(["timePlan"]).required(),
+  type: yup.mixed<"time">().oneOf(["time"]).required(),
 });
 
 // Recap plans are hidden by default
 export const recapPlanThreadSchema = planThreadBaseSchema.shape({
-  type: yup.mixed<"recapPlan">().oneOf(["recapPlan"]).required(),
+  type: yup.mixed<"recap">().oneOf(["recap"]).required(),
 });
 
 export const locationPlanThreadSchema = planThreadBaseSchema.shape({
-  type: yup.mixed<"locationPlan">().oneOf(["locationPlan"]).required(),
+  type: yup.mixed<"location">().oneOf(["location"]).required(),
 });
 
 export type TimePlanThread = yup.InferType<typeof timePlanThreadSchema>;

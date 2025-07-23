@@ -21,9 +21,9 @@ export const threadSchemas = {
   general: generalThreadSchema,
   impulse: impulseThreadSchema,
   onboarding: onboardingThreadSchema,
-  timePlan: timePlanThreadSchema,
-  recapPlan: recapPlanThreadSchema,
-  locationPlan: locationPlanThreadSchema,
+  time: timePlanThreadSchema,
+  recap: recapPlanThreadSchema,
+  location: locationPlanThreadSchema,
 };
 
 // Dynamic schema that selects the appropriate schema based on the thread type
@@ -83,7 +83,7 @@ export const isValidImpulseThread = (
 
 export const threadIsTimePlanThread = (
   value: Thread
-): value is TimePlanThread => value.type === "timePlan";
+): value is TimePlanThread => value.type === "time";
 export const isValidTimePlanThread = (
   value: unknown
 ): value is TimePlanThread => {
@@ -97,7 +97,7 @@ export const isValidTimePlanThread = (
 
 export const threadIsRecapPlanThread = (
   value: Thread
-): value is RecapPlanThread => value.type === "recapPlan";
+): value is RecapPlanThread => value.type === "recap";
 export const isValidRecapPlanThread = (
   value: unknown
 ): value is RecapPlanThread => {
@@ -111,7 +111,7 @@ export const isValidRecapPlanThread = (
 
 export const threadIsLocationPlanThread = (
   value: Thread
-): value is LocationPlanThread => value.type === "locationPlan";
+): value is LocationPlanThread => value.type === "location";
 export const isValidLocationPlanThread = (
   value: unknown
 ): value is LocationPlanThread => {
