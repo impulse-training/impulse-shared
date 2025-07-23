@@ -6,6 +6,7 @@
 
 export * as api from "./api";
 export * from "./constants";
+export * from "./defaultImages";
 export * from "./llm";
 export * from "./schemas";
 export * from "./utils";
