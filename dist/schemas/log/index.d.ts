@@ -329,7 +329,7 @@ export declare const logSchemas: {
                 value?: any;
                 color?: string | undefined;
                 formattedValue: string;
-                responseType: NonNullable<"text" | "recap" | "slider1To10" | undefined>;
+                responseType: NonNullable<"recap" | "text" | "slider1To10" | undefined>;
             } | undefined;
             question: {
                 id?: string | undefined;

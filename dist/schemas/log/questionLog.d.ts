@@ -1,6 +1,6 @@
 import * as yup from "yup";
 declare const responseSchema: yup.ObjectSchema<{
-    responseType: NonNullable<"text" | "recap" | "slider1To10" | undefined>;
+    responseType: NonNullable<"recap" | "text" | "slider1To10" | undefined>;
     value: any;
     formattedValue: string;
     color: string | undefined;
@@ -27,7 +27,7 @@ export declare const questionLogSchema: yup.ObjectSchema<{
             value?: any;
             color?: string | undefined;
             formattedValue: string;
-            responseType: NonNullable<"text" | "recap" | "slider1To10" | undefined>;
+            responseType: NonNullable<"recap" | "text" | "slider1To10" | undefined>;
         } | undefined;
         question: {
             id?: string | undefined;

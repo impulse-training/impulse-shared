@@ -9,7 +9,7 @@ export const QUESTION_SCOPES = {
     description: "Asked whenever you press the impulse button",
   },
   recapPlan: {
-    id: "recapPlan",
+    id: "recap",
     label: "Daily Recap",
     description: "Asked during your regular daily recap",
   },
