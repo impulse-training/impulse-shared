@@ -49,7 +49,7 @@ export function shouldRespondWithAI(
     return true;
   }
 
-  // Case 4: The user has answered a question, and it's the final question
+  // Case 4: The user has answered a question
   if (
     beforeData &&
     afterData &&

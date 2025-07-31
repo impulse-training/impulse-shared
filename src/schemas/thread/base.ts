@@ -45,6 +45,19 @@ export const threadBaseSchema = yup.object({
   summary: yup.string().optional(),
   strategyDoc: documentReferenceSchema,
 
+  sharingLevels: yup
+    .object({
+      impulseMoment: yup.boolean().required(),
+      plansUsed: yup.boolean().required(),
+      outcome: yup.boolean().required(),
+    })
+    .optional()
+    .default(undefined),
+
+  // Allow for sharing with users
+  sharedWithUserIds: yup.array().of(yup.string().required()),
+
+  openAfter: timestampSchema,
   firstOpenedAt: timestampSchema,
   responseStartedProcessingAt: timestampSchema,
   updatedAt: timestampSchema,

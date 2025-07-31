@@ -16,8 +16,8 @@ export function questionBaseSchema<T extends string>(type: T) {
     isPinned: yup.boolean(),
     responseType: yup.mixed<T>().oneOf([type]).required(),
     scope: yup
-      .mixed<"impulse" | "recap">()
-      .oneOf(["impulse", "recap"])
+      .mixed<"impulse" | "plan">()
+      .oneOf(["impulse", "plan"])
       .optional(),
   });
 }
