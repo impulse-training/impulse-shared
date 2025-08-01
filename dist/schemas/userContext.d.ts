@@ -71,6 +71,7 @@ export declare const userContextSchema: yup.ObjectSchema<{
         source: string;
     }[];
     overallInsights: (string | undefined)[];
+    consolidatedMemory: string;
     createdAt: import("../types").Timestamp | undefined;
     updatedAt: import("../types").Timestamp | undefined;
 }, yup.AnyObject, {
@@ -78,6 +79,7 @@ export declare const userContextSchema: yup.ObjectSchema<{
     tactics: undefined;
     aiMemories: never[];
     overallInsights: never[];
+    consolidatedMemory: "";
     createdAt: undefined;
     updatedAt: undefined;
 }, "">;

@@ -7,6 +7,7 @@ export * from "./externalSenderSession";
 export * from "./insight";
 export * from "./llmAuditEntries";
 export * from "./log";
+export * from "./memory";
 export * from "./notification";
 export * from "./plan";
 export * from "./question";

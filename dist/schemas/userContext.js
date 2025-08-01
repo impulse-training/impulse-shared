@@ -65,6 +65,7 @@ exports.userContextSchema = yup.object({
     tactics: (0, objectOf_1.objectOf)(exports.tacticContextSchema),
     aiMemories: yup.array().of(exports.aiMemorySchema).default([]),
     overallInsights: yup.array().of(yup.string()).default([]),
+    consolidatedMemory: yup.string().default(""),
     createdAt: utils_1.timestampSchema,
     updatedAt: utils_1.timestampSchema,
 });

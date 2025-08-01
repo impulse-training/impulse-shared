@@ -33,6 +33,7 @@ export const userContextSchema = yup.object({
   tactics: objectOf(tacticContextSchema),
   aiMemories: yup.array().of(aiMemorySchema).default([]),
   overallInsights: yup.array().of(yup.string()).default([]),
+  consolidatedMemory: yup.string().default(""),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
 });

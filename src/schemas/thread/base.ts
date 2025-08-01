@@ -59,6 +59,7 @@ export const threadBaseSchema = yup.object({
 
   // Allow for sharing with users
   sharedWithUserIds: yup.array().of(yup.string().required()),
+  sharedWithSupportGroups: yup.array().of(documentReferenceSchema.required()),
 
   openAfter: timestampSchema,
   firstOpenedAt: timestampSchema,
