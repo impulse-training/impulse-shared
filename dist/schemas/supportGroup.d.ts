@@ -20,6 +20,7 @@ export type SupportGroupNotificationPreferences = yup.InferType<typeof supportGr
 export declare const supportGroupMemberSchema: yup.ObjectSchema<{
     userId: string;
     userProfile: {
+        id?: string | undefined;
         emojiId?: {
             color: string;
             emoji: string;
@@ -43,6 +44,7 @@ export declare const supportGroupMemberSchema: yup.ObjectSchema<{
 }, yup.AnyObject, {
     userId: undefined;
     userProfile: {
+        id: undefined;
         invitationCode: undefined;
         emojiId: undefined;
     };
@@ -92,6 +94,7 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
             } | undefined;
             userId: string;
             userProfile: {
+                id?: string | undefined;
                 emojiId?: {
                     color: string;
                     emoji: string;
