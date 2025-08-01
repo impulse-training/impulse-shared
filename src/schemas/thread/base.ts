@@ -9,6 +9,7 @@ import { timestampSchema } from "../../utils/timestampSchema";
 import { logSchema } from "../log";
 import { Plan, planSchema } from "../plan";
 import { tacticSchema } from "../tactic";
+import { emojiIdSchema } from "../userProfile";
 
 // Thread schema
 export const threadBaseSchema = yup.object({
@@ -37,6 +38,8 @@ export const threadBaseSchema = yup.object({
   tacticsByPath: optionalObjectOf(tacticSchema),
 
   dateString: yup.string().required(),
+
+  emojiId: emojiIdSchema,
 
   // Log summary data - written in after log write functions. We store tactic and behavior tracking
   // logs here
