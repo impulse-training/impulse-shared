@@ -9,6 +9,7 @@ export const emojiIdSchema = yup
   .default(undefined);
 
 export const userProfileSchema = yup.object({
+  invitationCode: yup.string().required(),
   emojiId: emojiIdSchema,
 });
 

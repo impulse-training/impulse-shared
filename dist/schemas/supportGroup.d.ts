@@ -24,6 +24,7 @@ export declare const supportGroupMemberSchema: yup.ObjectSchema<{
             color: string;
             emoji: string;
         } | undefined;
+        invitationCode: string;
     };
     permissions: {
         summary: boolean;
@@ -42,6 +43,7 @@ export declare const supportGroupMemberSchema: yup.ObjectSchema<{
 }, yup.AnyObject, {
     userId: undefined;
     userProfile: {
+        invitationCode: undefined;
         emojiId: undefined;
     };
     permissions: undefined;
@@ -94,6 +96,7 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
                     color: string;
                     emoji: string;
                 } | undefined;
+                invitationCode: string;
             };
         };
     };
