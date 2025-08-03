@@ -13,7 +13,6 @@ export const planLogSchema = logBaseSchema.shape({
     plan: withIdSchema<Plan>(planSchema),
     introduction: yup.string(),
     acceptedAt: timestampSchema,
-    // Store tactic preview data for efficient display
     tacticsByPath: objectOf(tacticSchema),
     // For future use: shuffle feature
     // pastPlans: yup.array().of(planSchema),

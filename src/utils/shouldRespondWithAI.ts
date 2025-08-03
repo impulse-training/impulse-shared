@@ -1,5 +1,7 @@
 import {
   Log,
+  logIsBehaviorLog,
+  logIsDaySummaryLog,
   logIsImpulseLog,
   logIsQuestionLog,
   logIsResistedLog,
@@ -29,15 +31,15 @@ export function shouldRespondWithAI(
     return true;
   }
 
-  // Impulse can respond when the user marks that they resisted the impulse
+  // Case 2: Impulse can respond when the user marks that they resisted the impulse
   if (!beforeData && afterData && logIsResistedLog(afterData)) {
     return true;
   }
 
-  // Case 2: Widget setup log with changed response field
+  // Case 3: Widget setup log with changed response field
   if (afterData && logIsWidgetSetupLog(afterData)) return true;
 
-  // Case 3: The user has completed a tour
+  // Case 4: The user has completed a tour
   if (
     beforeData &&
     afterData &&
@@ -49,7 +51,7 @@ export function shouldRespondWithAI(
     return true;
   }
 
-  // Case 4: The user has answered a question
+  // Case 5: The user has answered a question
   if (
     beforeData &&
     afterData &&
@@ -59,6 +61,25 @@ export function shouldRespondWithAI(
       afterData,
       "data.response" as keyof typeof beforeData
     )
+  ) {
+    return true;
+  }
+
+  // Case 6: The user has completed a day summary
+  if (
+    beforeData &&
+    afterData &&
+    logIsDaySummaryLog(afterData) &&
+    fieldChanged(beforeData, afterData, "data.behaviorDataTotalByBehaviorId")
+  ) {
+    return true;
+  }
+
+  // Case 7: The user has tracked a behavior
+  if (
+    afterData &&
+    logIsBehaviorLog(afterData) &&
+    fieldChanged(beforeData, afterData, "formattedValue")
   ) {
     return true;
   }
