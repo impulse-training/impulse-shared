@@ -12,6 +12,7 @@ export const userProfileSchema = yup.object({
   id: yup.string(),
   invitationCode: yup.string().required(),
   emojiId: emojiIdSchema,
+  name: yup.string().optional(),
 });
 
 export type UserProfile = yup.InferType<typeof userProfileSchema>;

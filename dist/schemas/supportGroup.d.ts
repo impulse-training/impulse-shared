@@ -21,6 +21,7 @@ export declare const supportGroupMemberSchema: yup.ObjectSchema<{
     userId: string;
     userProfile: {
         id?: string | undefined;
+        name?: string | undefined;
         emojiId?: {
             color: string;
             emoji: string;
@@ -47,6 +48,7 @@ export declare const supportGroupMemberSchema: yup.ObjectSchema<{
         id: undefined;
         invitationCode: undefined;
         emojiId: undefined;
+        name: undefined;
     };
     permissions: undefined;
     notificationPreferences: undefined;
@@ -95,6 +97,7 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
             userId: string;
             userProfile: {
                 id?: string | undefined;
+                name?: string | undefined;
                 emojiId?: {
                     color: string;
                     emoji: string;

@@ -410,6 +410,9 @@ export declare const logSchemas: {
             acceptedAt?: import("../../types").Timestamp | undefined;
             introduction?: string | undefined;
             plan: import("../..").WithId<import("..").Plan>;
+            tacticsByPath: {
+                [x: string]: import("..").Tactic;
+            };
         };
     }, yup.AnyObject, {
         id: undefined;
@@ -425,6 +428,7 @@ export declare const logSchemas: {
             plan: undefined;
             introduction: undefined;
             acceptedAt: undefined;
+            tacticsByPath: undefined;
         };
     }, "">;
     summary: yup.ObjectSchema<{
@@ -516,8 +520,8 @@ export declare const logSchemas: {
                 borderRadius?: number | undefined;
                 innerPadding?: number | undefined;
                 description: string;
-                elementRefName: string;
                 title: string;
+                elementRefName: string;
                 confirmButtonLabel: string;
             }[];
             includeCloseButton: boolean;

@@ -1,6 +1,7 @@
 import * as yup from "yup";
-import { timestampSchema, withIdSchema } from "../../utils";
+import { objectOf, timestampSchema, withIdSchema } from "../../utils";
 import { Plan, planSchema } from "../plan";
+import { tacticSchema } from "../tactic";
 import { logBaseSchema } from "./base";
 
 // Plan Log Schema
@@ -12,6 +13,8 @@ export const planLogSchema = logBaseSchema.shape({
     plan: withIdSchema<Plan>(planSchema),
     introduction: yup.string(),
     acceptedAt: timestampSchema,
+    // Store tactic preview data for efficient display
+    tacticsByPath: objectOf(tacticSchema),
     // For future use: shuffle feature
     // pastPlans: yup.array().of(planSchema),
     // shufflePressedAt: timestampSchema,
