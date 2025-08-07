@@ -46,6 +46,8 @@ export const threadBaseSchema = yup.object({
   trackingLogsById: objectOf(logSchema),
   systemPrompt: yup.string(),
   summary: yup.string().optional(),
+  summaryRequestedAt: timestampSchema.optional(),
+  summarizedAt: timestampSchema.optional(),
   strategyDoc: documentReferenceSchema,
 
   agentConnectedAt: timestampSchema,
