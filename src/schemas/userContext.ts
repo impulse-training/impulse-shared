@@ -34,6 +34,7 @@ export const userContextSchema = yup.object({
   aiMemories: yup.array().of(aiMemorySchema).default([]),
   overallInsights: yup.array().of(yup.string()).default([]),
   consolidatedMemory: yup.string().default(""),
+  userSummary: yup.string().optional(),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
 });
@@ -51,6 +52,7 @@ export interface UserContext
   > {
   behaviors: Record<string, BehaviorContext>;
   tactics: Record<string, TacticContext>;
+  userSummary?: string;
 }
 
 // Type guard functions
