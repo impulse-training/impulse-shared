@@ -21,4 +21,5 @@ export * from "./thread";
 export * from "./userContext";
 export * from "./userData";
 export * from "./userProfile";
+export * from "./userSummary";
 export * from "./userTimezones";

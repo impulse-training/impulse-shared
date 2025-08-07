@@ -3,6 +3,11 @@ export declare const behaviorContextSchema: yup.ObjectSchema<{
     behaviorId: string;
     behaviorName: string;
     trackingType: NonNullable<"boolean" | "counter" | "timer" | undefined>;
+    description: string | undefined;
+    benefits: (string | undefined)[] | undefined;
+    drawbacks: (string | undefined)[] | undefined;
+    category: string | undefined;
+    trackingUnit: string | undefined;
     streakDays: number;
     totalTracked: number;
     insights: (string | undefined)[];
@@ -12,6 +17,11 @@ export declare const behaviorContextSchema: yup.ObjectSchema<{
     behaviorId: undefined;
     behaviorName: undefined;
     trackingType: undefined;
+    description: undefined;
+    benefits: "";
+    drawbacks: "";
+    category: undefined;
+    trackingUnit: undefined;
     streakDays: 0;
     totalTracked: 0;
     insights: never[];
@@ -45,6 +55,11 @@ export declare const aiMemorySchema: yup.ObjectSchema<{
 export declare const userContextSchema: yup.ObjectSchema<{
     behaviors: {
         [x: string]: {
+            category?: string | undefined;
+            trackingUnit?: string | undefined;
+            description?: string | undefined;
+            benefits?: (string | undefined)[] | undefined;
+            drawbacks?: (string | undefined)[] | undefined;
             behaviorId: string;
             behaviorName: string;
             trackingType: NonNullable<"boolean" | "counter" | "timer" | undefined>;
@@ -72,7 +87,6 @@ export declare const userContextSchema: yup.ObjectSchema<{
     }[];
     overallInsights: (string | undefined)[];
     consolidatedMemory: string;
-    userSummary: string | undefined;
     createdAt: import("../types").Timestamp | undefined;
     updatedAt: import("../types").Timestamp | undefined;
 }, yup.AnyObject, {
@@ -81,7 +95,6 @@ export declare const userContextSchema: yup.ObjectSchema<{
     aiMemories: never[];
     overallInsights: never[];
     consolidatedMemory: "";
-    userSummary: undefined;
     createdAt: undefined;
     updatedAt: undefined;
 }, "">;
@@ -91,7 +104,6 @@ export type AIMemory = yup.InferType<typeof aiMemorySchema>;
 export interface UserContext extends Omit<yup.InferType<typeof userContextSchema>, "behaviors" | "tactics"> {
     behaviors: Record<string, BehaviorContext>;
     tactics: Record<string, TacticContext>;
-    userSummary?: string;
 }
 export declare const isBehaviorContext: (value: unknown) => value is BehaviorContext;
 export declare const isTacticContext: (value: unknown) => value is TacticContext;

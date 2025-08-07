@@ -6,6 +6,11 @@ export const behaviorContextSchema = yup.object({
   behaviorId: yup.string().required(),
   behaviorName: yup.string().required(),
   trackingType: yup.string().oneOf(["counter", "timer", "boolean"]).required(),
+  description: yup.string().optional(),
+  benefits: yup.array().of(yup.string()).optional(),
+  drawbacks: yup.array().of(yup.string()).optional(),
+  category: yup.string().optional(),
+  trackingUnit: yup.string().optional(),
   streakDays: yup.number().default(0),
   totalTracked: yup.number().default(0),
   insights: yup.array().of(yup.string()).default([]),
@@ -34,7 +39,6 @@ export const userContextSchema = yup.object({
   aiMemories: yup.array().of(aiMemorySchema).default([]),
   overallInsights: yup.array().of(yup.string()).default([]),
   consolidatedMemory: yup.string().default(""),
-  userSummary: yup.string().optional(),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
 });
@@ -52,7 +56,6 @@ export interface UserContext
   > {
   behaviors: Record<string, BehaviorContext>;
   tactics: Record<string, TacticContext>;
-  userSummary?: string;
 }
 
 // Type guard functions
