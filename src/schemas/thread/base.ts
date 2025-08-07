@@ -48,6 +48,8 @@ export const threadBaseSchema = yup.object({
   summary: yup.string().optional(),
   strategyDoc: documentReferenceSchema,
 
+  agentConnectedAt: timestampSchema,
+
   sharingLevels: yup
     .object({
       impulseMoment: yup.boolean().required(),
