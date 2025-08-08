@@ -117,6 +117,7 @@ export declare const logSchemas: {
         dateString: string;
         callLogDocPath: string | undefined;
         type: "call";
+        isDisplayable: true;
         data: {
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
@@ -133,6 +134,7 @@ export declare const logSchemas: {
         dateString: undefined;
         callLogDocPath: undefined;
         type: undefined;
+        isDisplayable: undefined;
         data: {
             agentConnectedAt: undefined;
             endedAt: undefined;

@@ -5,6 +5,7 @@ import { logBaseSchema } from "./base";
 // Call log Schema
 export const callLogSchema = logBaseSchema.shape({
   type: yup.string().oneOf(["call"]).required(),
+  isDisplayable: yup.mixed<true>().oneOf([true]).required(),
   data: yup.object({
     agentConnectedAt: timestampSchema,
     endedAt: timestampSchema,
