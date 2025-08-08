@@ -120,6 +120,7 @@ export declare const logSchemas: {
         data: {
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
+            summary?: string | undefined;
             livekitSessionId: string;
             livekitRoomName: string;
         };
@@ -137,6 +138,7 @@ export declare const logSchemas: {
             endedAt: undefined;
             livekitSessionId: undefined;
             livekitRoomName: undefined;
+            summary: undefined;
         };
     }, "">;
     tool_call: yup.ObjectSchema<{
@@ -180,6 +182,7 @@ export declare const logSchemas: {
         isDisplayable: true;
         data: {
             tactic: import("..").Tactic;
+            tacticCollectionId: string;
         };
     }, yup.AnyObject, {
         id: undefined;
@@ -193,6 +196,7 @@ export declare const logSchemas: {
         isDisplayable: undefined;
         data: {
             tactic: undefined;
+            tacticCollectionId: undefined;
         };
     }, "">;
     day_summary: yup.ObjectSchema<{
@@ -238,6 +242,7 @@ export declare const logSchemas: {
         isDisplayable: true;
         data: {
             tactic: import("..").Tactic;
+            tacticCollectionId: string;
         };
     }, yup.AnyObject, {
         id: undefined;
@@ -251,6 +256,7 @@ export declare const logSchemas: {
         isDisplayable: undefined;
         data: {
             tactic: undefined;
+            tacticCollectionId: undefined;
         };
     }, "">;
     impulse_button_pressed: yup.ObjectSchema<{

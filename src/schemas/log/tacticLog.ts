@@ -10,6 +10,7 @@ export const tacticLogSchema = logBaseSchema.shape({
   data: yup
     .object({
       tactic: tacticSchema,
+      tacticCollectionId: yup.string().required(),
     })
     .required(),
 });

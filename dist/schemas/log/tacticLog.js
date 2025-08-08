@@ -45,6 +45,7 @@ exports.tacticLogSchema = base_1.logBaseSchema.shape({
     data: yup
         .object({
         tactic: tactic_1.tacticSchema,
+        tacticCollectionId: yup.string().required(),
     })
         .required(),
 });

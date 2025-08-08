@@ -11,6 +11,7 @@ export declare const tacticLogSchema: yup.ObjectSchema<{
     isDisplayable: true;
     data: {
         tactic: import("../tactic").Tactic;
+        tacticCollectionId: string;
     };
 }, yup.AnyObject, {
     id: undefined;
@@ -24,6 +25,7 @@ export declare const tacticLogSchema: yup.ObjectSchema<{
     isDisplayable: undefined;
     data: {
         tactic: undefined;
+        tacticCollectionId: undefined;
     };
 }, "">;
 export type TacticLog = yup.InferType<typeof tacticLogSchema>;

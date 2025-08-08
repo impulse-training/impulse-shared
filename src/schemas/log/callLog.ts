@@ -10,6 +10,7 @@ export const callLogSchema = logBaseSchema.shape({
     endedAt: timestampSchema,
     livekitSessionId: yup.string().required(),
     livekitRoomName: yup.string().required(),
+    summary: yup.string().optional(),
   }),
 });
 
