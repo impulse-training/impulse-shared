@@ -7,6 +7,7 @@ import {
   Log,
   logIsAssistantMessageLog,
   logIsBehaviorLog,
+  logIsCallLog,
   logIsDaySummaryLog,
   logIsImpulseLog,
   logIsQuestionLog,
@@ -60,6 +61,25 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
       });
     }
 
+    return messages;
+  }
+
+  // Handle CallLog
+  if (logIsCallLog(log)) {
+    const messages: ChatCompletionMessageParam[] = [];
+    
+    if (log.data.summary) {
+      messages.push({
+        role: "user",
+        content: `<SYSTEM>Previous call summary: ${log.data.summary}</SYSTEM>`,
+      });
+    } else {
+      messages.push({
+        role: "user",
+        content: "<SYSTEM>User had a previous call with the assistant</SYSTEM>",
+      });
+    }
+    
     return messages;
   }
 
