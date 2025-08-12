@@ -4,6 +4,7 @@ export const emojiIdSchema = yup
   .object({
     color: yup.string().required(),
     emoji: yup.string().required(),
+    name: yup.string().optional(),
   })
   .optional()
   .default(undefined);
@@ -12,7 +13,6 @@ export const userProfileSchema = yup.object({
   id: yup.string(),
   invitationCode: yup.string().required(),
   emojiId: emojiIdSchema,
-  name: yup.string().optional(),
 });
 
 export type UserProfile = yup.InferType<typeof userProfileSchema>;
