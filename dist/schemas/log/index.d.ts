@@ -596,6 +596,26 @@ export declare const logSchemas: {
         isDisplayable: true;
         data: {
             message: import("openai/resources").ChatCompletionUserMessageParam;
+            supportGroupsById: {
+                [x: string]: {
+                    id: string;
+                    name: string;
+                    membersById: {
+                        [x: string]: {
+                            userId: string;
+                            userProfile: {
+                                id?: string | undefined;
+                                emojiId?: {
+                                    name?: string | undefined;
+                                    color: string;
+                                    emoji: string;
+                                } | undefined;
+                                invitationCode: string;
+                            };
+                        };
+                    };
+                };
+            };
         };
     }, yup.AnyObject, {
         id: undefined;
@@ -609,6 +629,7 @@ export declare const logSchemas: {
         isDisplayable: undefined;
         data: {
             message: undefined;
+            supportGroupsById: undefined;
         };
     }, "">;
     video: yup.ObjectSchema<{
