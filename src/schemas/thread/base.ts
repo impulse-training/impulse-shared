@@ -37,6 +37,47 @@ export const threadBaseSchema = yup.object({
   date: timestampSchema.required(),
   tacticsByPath: optionalObjectOf(tacticSchema),
 
+  // Inferred trigger hypothesis for this thread (computed asynchronously)
+  triggerHypothesis: yup
+    .object({
+      text: yup.string().required(),
+      category: yup.string().optional(),
+      confidence: yup.mixed<"low" | "med" | "high">().oneOf(["low", "med", "high"]).optional(),
+      inferredAt: timestampSchema.required(),
+    })
+    .optional(),
+
+  // Background-prepared suggested plan snapshot for quick access by UI/agent
+  suggestedPlan: yup
+    .object({
+      planRefPath: yup.string().optional(),
+      name: yup.string().optional(),
+      // Array of tactic or collection document paths in order
+      items: yup.array().of(yup.string().required()).required(),
+      // Resolved tactic previews keyed by doc path (mirrors PlanLogView optimization)
+      tacticsByPath: optionalObjectOf(tacticSchema),
+      preparedAt: timestampSchema.required(),
+      source: yup.mixed<"userPlan" | "library" | "improvised">().oneOf(["userPlan", "library", "improvised"]).required(),
+    })
+    .optional(),
+
+  // Ranked candidate tactics the agent can pick from
+  candidateTactics: yup
+    .array()
+    .of(
+      yup
+        .object({
+          tacticPath: yup.string().required(),
+          title: yup.string().optional(),
+          type: yup.string().optional(),
+          reason: yup.string().optional(),
+          source: yup.mixed<"userPlan" | "library" | "improvised">().oneOf(["userPlan", "library", "improvised"]).optional(),
+          collectionRefPath: yup.string().optional(),
+        })
+        .required()
+    )
+    .optional(),
+
   dateString: yup.string().required(),
 
   emojiId: emojiIdSchema,
