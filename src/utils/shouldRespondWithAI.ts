@@ -79,7 +79,7 @@ export function shouldRespondWithAI(
   if (
     afterData &&
     logIsBehaviorLog(afterData) &&
-    fieldChanged(beforeData, afterData, "formattedValue")
+    fieldChanged(beforeData, afterData, "data.formattedValue")
   ) {
     return true;
   }

@@ -26,6 +26,10 @@ import { TacticLog, tacticLogSchema } from "./tacticLog";
 import { ToolCallLog, toolCallLogSchema } from "./toolCallLog";
 import { VideoLog, videoLogSchema } from "./videoLog";
 import { WidgetSetupLog, widgetSetupLogSchema } from "./widgetSetupLog";
+import {
+  TacticSuggestionLog,
+  tacticSuggestionLogSchema,
+} from "./tacticSuggestionLog";
 
 export const logSchemas = {
   user: userMessageLogSchema,
@@ -33,6 +37,7 @@ export const logSchemas = {
   call: callLogSchema,
   tool_call: toolCallLogSchema,
   tactic_completed: tacticLogSchema,
+  tactic_suggestion: tacticSuggestionLogSchema,
   day_summary: daySummaryLogSchema,
   tactic_viewed: tacticLogSchema,
   impulse_button_pressed: impulseLogSchema,
@@ -54,6 +59,7 @@ export type LogType = (typeof logTypes)[number];
 // Union type of all logs
 export type Log =
   | TacticLog
+  | TacticSuggestionLog
   | ImpulseLog
   | BehaviorLog
   | QuestionLog
@@ -83,6 +89,7 @@ export * from "./resistedLog";
 export * from "./showTourLog";
 export * from "./summaryLog";
 export * from "./tacticLog";
+export * from "./tacticSuggestionLog";
 export * from "./toolCallLog";
 export * from "./videoLog";
 export * from "./widgetSetupLog";
@@ -245,6 +252,20 @@ export const logIsTacticLog = (value: Omit<Log, "id">): value is TacticLog =>
 export const isValidTacticLog = (value: unknown): value is TacticLog => {
   try {
     tacticLogSchema.validateSync(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+export const logIsTacticSuggestionLog = (
+  value: Omit<Log, "id">
+): value is TacticSuggestionLog => value.type === "tactic_suggestion";
+export const isValidTacticSuggestionLog = (
+  value: unknown
+): value is TacticSuggestionLog => {
+  try {
+    tacticSuggestionLogSchema.validateSync(value);
     return true;
   } catch (error) {
     return false;

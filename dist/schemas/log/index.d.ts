@@ -16,6 +16,7 @@ import { TacticLog } from "./tacticLog";
 import { ToolCallLog } from "./toolCallLog";
 import { VideoLog } from "./videoLog";
 import { WidgetSetupLog } from "./widgetSetupLog";
+import { TacticSuggestionLog } from "./tacticSuggestionLog";
 export declare const logSchemas: {
     user: yup.ObjectSchema<{
         id: string | undefined;
@@ -199,6 +200,41 @@ export declare const logSchemas: {
         data: {
             tactic: undefined;
             tacticCollectionId: undefined;
+        };
+    }, "">;
+    tactic_suggestion: yup.ObjectSchema<{
+        id: string | undefined;
+        createdAt: import("../../types").Timestamp | undefined;
+        updatedAt: import("../../types").Timestamp | undefined;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        callLogDocPath: string | undefined;
+        type: "tactic_suggestion";
+        isDisplayable: true;
+        data: {
+            reason?: string | undefined;
+            source?: "userPlan" | "library" | "improvised" | undefined;
+            collectionRefPath?: string | undefined;
+            tactic: import("..").Tactic;
+            tacticPath: string;
+        };
+    }, yup.AnyObject, {
+        id: undefined;
+        createdAt: undefined;
+        updatedAt: undefined;
+        userId: undefined;
+        timestamp: undefined;
+        dateString: undefined;
+        callLogDocPath: undefined;
+        type: undefined;
+        isDisplayable: undefined;
+        data: {
+            tactic: undefined;
+            tacticPath: undefined;
+            reason: undefined;
+            source: undefined;
+            collectionRefPath: undefined;
         };
     }, "">;
     day_summary: yup.ObjectSchema<{
@@ -666,7 +702,7 @@ export declare const logSchemas: {
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | ImpulseLog | BehaviorLog | QuestionLog | PlanLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | NotifySupportGroupLog | VideoLog | ResistedLog | DaySummaryLog;
+export type Log = TacticLog | TacticSuggestionLog | ImpulseLog | BehaviorLog | QuestionLog | PlanLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | NotifySupportGroupLog | VideoLog | ResistedLog | DaySummaryLog;
 export * from "./behaviorLog";
 export * from "./callLog";
 export * from "./daySummaryLog";
@@ -680,6 +716,7 @@ export * from "./resistedLog";
 export * from "./showTourLog";
 export * from "./summaryLog";
 export * from "./tacticLog";
+export * from "./tacticSuggestionLog";
 export * from "./toolCallLog";
 export * from "./videoLog";
 export * from "./widgetSetupLog";
@@ -708,6 +745,8 @@ export declare const logIsQuestionLog: (value: Omit<Log, "id">) => value is Ques
 export declare const isValidQuestionLog: (value: unknown) => value is QuestionLog;
 export declare const logIsTacticLog: (value: Omit<Log, "id">) => value is TacticLog;
 export declare const isValidTacticLog: (value: unknown) => value is TacticLog;
+export declare const logIsTacticSuggestionLog: (value: Omit<Log, "id">) => value is TacticSuggestionLog;
+export declare const isValidTacticSuggestionLog: (value: unknown) => value is TacticSuggestionLog;
 export declare const logIsUserMessageLog: (value: Omit<Log, "id">) => value is UserMessageLog;
 export declare const isValidUserMessageLog: (value: unknown) => value is UserMessageLog;
 export declare const logIsPlanLog: (value: Omit<Log, "id">) => value is PlanLog;

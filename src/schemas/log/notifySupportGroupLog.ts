@@ -16,6 +16,8 @@ export const notifySupportGroupLogSchema = logBaseSchema.shape({
       // A snapshot of the support groups this thread was shared with at the time of notification,
       // including member details so clients can display who was notified.
       supportGroupsById: objectOf(
+        // We need a partial type for support groups instead of supportGroupSchema, to prevent
+        // circular dependencies
         yup.object({
           id: yup.string().required(),
           name: yup.string().required(),
