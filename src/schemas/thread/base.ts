@@ -35,14 +35,18 @@ export const threadBaseSchema = yup.object({
     ])
     .default("general"),
   date: timestampSchema.required(),
-  tacticsByPath: optionalObjectOf(tacticSchema),
+  // For now, don't type this
+  tacticsByPath: yup.mixed(),
 
   // Inferred trigger hypothesis for this thread (computed asynchronously)
   triggerHypothesis: yup
     .object({
       text: yup.string().required(),
       category: yup.string().optional(),
-      confidence: yup.mixed<"low" | "med" | "high">().oneOf(["low", "med", "high"]).optional(),
+      confidence: yup
+        .mixed<"low" | "med" | "high">()
+        .oneOf(["low", "med", "high"])
+        .optional(),
       inferredAt: timestampSchema.required(),
     })
     .optional(),
@@ -57,7 +61,10 @@ export const threadBaseSchema = yup.object({
       // Resolved tactic previews keyed by doc path (mirrors PlanLogView optimization)
       tacticsByPath: optionalObjectOf(tacticSchema),
       preparedAt: timestampSchema.required(),
-      source: yup.mixed<"userPlan" | "library" | "improvised">().oneOf(["userPlan", "library", "improvised"]).required(),
+      source: yup
+        .mixed<"userPlan" | "library" | "improvised">()
+        .oneOf(["userPlan", "library", "improvised"])
+        .required(),
     })
     .optional(),
 
@@ -71,7 +78,10 @@ export const threadBaseSchema = yup.object({
           title: yup.string().optional(),
           type: yup.string().optional(),
           reason: yup.string().optional(),
-          source: yup.mixed<"userPlan" | "library" | "improvised">().oneOf(["userPlan", "library", "improvised"]).optional(),
+          source: yup
+            .mixed<"userPlan" | "library" | "improvised">()
+            .oneOf(["userPlan", "library", "improvised"])
+            .optional(),
           collectionRefPath: yup.string().optional(),
         })
         .required()
