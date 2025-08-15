@@ -16,7 +16,6 @@ export * from "./session";
 export * from "./strategy";
 export * from "./supportGroup";
 export * from "./tactic";
-export * from "./tacticCollection";
 export * from "./thread";
 export * from "./userContext";
 export * from "./userData";

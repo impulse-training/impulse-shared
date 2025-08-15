@@ -32,7 +32,6 @@ __exportStar(require("./session"), exports);
 __exportStar(require("./strategy"), exports);
 __exportStar(require("./supportGroup"), exports);
 __exportStar(require("./tactic"), exports);
-__exportStar(require("./tacticCollection"), exports);
 __exportStar(require("./thread"), exports);
 __exportStar(require("./userContext"), exports);
 __exportStar(require("./userData"), exports);

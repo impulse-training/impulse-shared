@@ -5,7 +5,6 @@ import {
   documentReferenceSchema,
   timestampSchema,
 } from "../utils";
-import { TacticCollection } from "./tacticCollection";
 
 export interface ExternalSenderSession {
   createdAt: Timestamp;
@@ -15,7 +14,7 @@ export interface ExternalSenderSession {
   // Timestamp that gets updated when files are added to the session
   filesUpdatedAt?: Timestamp;
   // Reference to a strategy/tacticCollection where tactics should be created from files
-  targetTacticCollectionRef?: DocumentReferenceLike<TacticCollection>;
+  targetTacticCollectionRef?: DocumentReferenceLike<any>;
 }
 
 export const externalSenderSessionSchema = yup.object().shape({
