@@ -4,6 +4,7 @@ import { mediaItemSchema } from "./media";
 const baseStepSchema = z.object({
   id: z.string(),
   text: z.string().min(1), // label/instruction
+  aiInstructions: z.string().optional(),
 });
 
 const defaultStepSchema = baseStepSchema.extend({

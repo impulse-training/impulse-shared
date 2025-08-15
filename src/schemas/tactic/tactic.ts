@@ -6,6 +6,7 @@ export const tacticSchema = z.object({
   id: z.string(),
   title: z.string().min(1),
   description: z.string().optional(),
+  aiInstructions: z.string().optional(),
   media: z.array(mediaItemSchema).optional(),
   steps: z.array(tacticStepSchema).optional(),
   tags: z.array(z.string()).optional(),

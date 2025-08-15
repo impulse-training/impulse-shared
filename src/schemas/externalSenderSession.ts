@@ -14,7 +14,7 @@ export interface ExternalSenderSession {
   // Timestamp that gets updated when files are added to the session
   filesUpdatedAt?: Timestamp;
   // Reference to a strategy/tacticCollection where tactics should be created from files
-  targetTacticCollectionRef?: DocumentReferenceLike<any>;
+  targetTacticRef?: DocumentReferenceLike<any>;
 }
 
 export const externalSenderSessionSchema = yup.object().shape({
@@ -24,5 +24,5 @@ export const externalSenderSessionSchema = yup.object().shape({
   systemMessage: yup.string().required(),
   filesUpdatedAt: timestampSchema,
   senderName: yup.string(),
-  targetTacticCollectionRef: documentReferenceSchema,
+  targetTacticRef: documentReferenceSchema,
 });
