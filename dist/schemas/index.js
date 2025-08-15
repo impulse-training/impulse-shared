@@ -38,3 +38,4 @@ __exportStar(require("./userData"), exports);
 __exportStar(require("./userProfile"), exports);
 __exportStar(require("./userSummary"), exports);
 __exportStar(require("./userTimezones"), exports);
+__exportStar(require("./audioGenerationJob"), exports);

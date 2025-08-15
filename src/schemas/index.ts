@@ -22,3 +22,4 @@ export * from "./userData";
 export * from "./userProfile";
 export * from "./userSummary";
 export * from "./userTimezones";
+export * from "./audioGenerationJob";
