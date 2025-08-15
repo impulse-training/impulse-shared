@@ -8,7 +8,7 @@ import {
 import { timestampSchema } from "../../utils/timestampSchema";
 import { logSchema } from "../log";
 import { Plan, planSchema } from "../plan";
-import { tacticSchema } from "../tactic";
+import { tacticSchema } from "../tactic.old";
 import { emojiIdSchema } from "../userProfile";
 
 // Thread schema

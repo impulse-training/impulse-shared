@@ -1,4 +1,4 @@
-import { Tactic } from "../schemas";
+import { Tactic } from "../schemas/tactic.old";
 
 export function canTacticBeManuallyMarkedAsCompleted(tactic: Tactic): boolean {
   switch (tactic.type) {

@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { tacticSchema } from "../tactic";
+import { tacticSchema } from "../tactic.old";
 import { logBaseSchema } from "./base";
 
 // Tactic Activity Log Schema

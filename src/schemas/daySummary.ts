@@ -3,7 +3,7 @@ import { objectOf, optionalObjectOf, timestampSchema } from "../utils";
 import { outcomeSchema } from "../utils/outcomes";
 import { behaviorTrackingDataSchema } from "./log";
 import { supportGroupPermissionsSchema } from "./supportGroup";
-import { tacticSchema } from "./tactic";
+import { tacticSchema } from "./tactic.old";
 
 export const daySummarySchema = yup.object({
   id: yup.string(),

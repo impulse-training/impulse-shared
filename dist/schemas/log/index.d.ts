@@ -184,7 +184,7 @@ export declare const logSchemas: {
         type: "tactic_completed";
         isDisplayable: true;
         data: {
-            tactic: import("..").Tactic;
+            tactic: import("../tactic.old").Tactic;
             tacticCollectionId: string;
         };
     }, yup.AnyObject, {
@@ -216,7 +216,7 @@ export declare const logSchemas: {
             reason?: string | undefined;
             source?: "userPlan" | "library" | "improvised" | undefined;
             collectionRefPath?: string | undefined;
-            tactic: import("..").Tactic;
+            tactic: import("../tactic.old").Tactic;
             tacticPath: string;
         };
     }, yup.AnyObject, {
@@ -279,7 +279,7 @@ export declare const logSchemas: {
         type: "tactic_completed";
         isDisplayable: true;
         data: {
-            tactic: import("..").Tactic;
+            tactic: import("../tactic.old").Tactic;
             tacticCollectionId: string;
         };
     }, yup.AnyObject, {
@@ -455,7 +455,7 @@ export declare const logSchemas: {
             introduction?: string | undefined;
             plan: import("../..").WithId<import("..").Plan>;
             tacticsByPath: {
-                [x: string]: import("..").Tactic;
+                [x: string]: import("../tactic.old").Tactic;
             };
         };
     }, yup.AnyObject, {

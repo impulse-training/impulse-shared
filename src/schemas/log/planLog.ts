@@ -1,7 +1,7 @@
 import * as yup from "yup";
 import { objectOf, timestampSchema, withIdSchema } from "../../utils";
 import { Plan, planSchema } from "../plan";
-import { tacticSchema } from "../tactic";
+import { tacticSchema } from "../tactic.old";
 import { logBaseSchema } from "./base";
 
 // Plan Log Schema

@@ -10,7 +10,7 @@ export declare const tacticLogSchema: yup.ObjectSchema<{
     type: "tactic_completed";
     isDisplayable: true;
     data: {
-        tactic: import("../tactic").Tactic;
+        tactic: import("../tactic.old").Tactic;
         tacticCollectionId: string;
     };
 }, yup.AnyObject, {
