@@ -24,7 +24,7 @@ export const audioGenerationJobSchema = z.object({
   providerJobId: z.string().optional(),
   status: audioGenerationJobStatus,
   error: z.string().optional(),
-  result: audioGenerationResultSchema.optional(),
+  results: z.array(audioGenerationResultSchema).optional(),
   createdAt: z.any(),
   updatedAt: z.any(),
   statusUpdatedAt: z.any().optional(),
