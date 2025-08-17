@@ -7,11 +7,9 @@ export const audioGenerationJobStatus = z.enum([
   "failed",
 ]);
 
-export const audioGenerationResultSchema = z.object({
-  storagePath: z.string(),
-  contentType: z.string().optional(),
-  url: z.string().url().optional(),
-});
+// Results will store attachment-shaped objects (see attachment.ts in shared),
+// including audio metadata like meterings. We keep this permissive to avoid
+// duplicating the yup schema in zod here.
 
 export const audioGenerationJobSchema = z.object({
   userId: z.string(),
@@ -24,7 +22,7 @@ export const audioGenerationJobSchema = z.object({
   providerJobId: z.string().optional(),
   status: audioGenerationJobStatus,
   error: z.string().optional(),
-  results: z.array(audioGenerationResultSchema).optional(),
+  results: z.array(z.any()).optional(),
   createdAt: z.any(),
   updatedAt: z.any(),
   statusUpdatedAt: z.any().optional(),
