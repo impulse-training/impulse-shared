@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { attachmentSchema } from "../attachment";
+import { questionSchema } from "../question";
 
 const baseStepSchema = z.object({
   id: z.string(),
@@ -33,9 +33,10 @@ const notifySupportStepSchema = baseStepSchema.extend({
   messageTemplate: z.string().optional(),
 });
 
-const mediaStepSchema = baseStepSchema.extend({
-  mode: z.literal("media"),
-  media: z.array(attachmentSchema).min(1),
+const questionStepSchema = baseStepSchema.extend({
+  mode: z.literal("question"),
+  // Embed a question object; question itself remains a distinct schema/type
+  question: questionSchema,
 });
 
 export const tacticStepSchema = z.discriminatedUnion("mode", [
@@ -43,7 +44,7 @@ export const tacticStepSchema = z.discriminatedUnion("mode", [
   breathingStepSchema,
   timerStepSchema,
   notifySupportStepSchema,
-  mediaStepSchema,
+  questionStepSchema,
 ]);
 
 export type TacticStep = z.infer<typeof tacticStepSchema>;
