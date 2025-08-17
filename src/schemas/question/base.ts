@@ -8,7 +8,7 @@ export function questionBaseSchema<T extends string>(type: T) {
     updatedAt: timestampSchema.optional(),
     plans: z.array(documentReferenceSchema).optional(),
     text: z.string().optional(), // Optional text to display before the question
-    question: z.string(), // The actual question content
+    question: z.string().min(1, "Question text is required"), // The actual question content
     lastAskedAt: timestampSchema.optional(),
     lastAnsweredAt: timestampSchema.optional(),
     numberOfAnswers: z.number().optional(),
