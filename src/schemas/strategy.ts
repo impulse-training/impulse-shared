@@ -10,7 +10,7 @@ export const strategySchema = z.object({
   plans: z.array(documentReferenceSchema),
   tacticCollections: z.array(documentReferenceSchema),
   createdByProfile: userProfileSchema.optional(),
-  createdAt: timestampSchema,
-  updatedAt: timestampSchema,
+  createdAt: timestampSchema.optional(),
+  updatedAt: timestampSchema.optional(),
 });
 export type Strategy = z.infer<typeof strategySchema>;

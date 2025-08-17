@@ -1,10 +1,10 @@
 import { z } from "zod";
 export declare const impulseLogSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
-    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     userId: z.ZodString;
-    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     dateString: z.ZodString;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
@@ -12,23 +12,23 @@ export declare const impulseLogSchema: z.ZodObject<{
     isDisplayable: z.ZodLiteral<true>;
 }, "strip", z.ZodTypeAny, {
     type: "impulse_button_pressed";
-    createdAt: import("../../types").Timestamp;
-    updatedAt: import("../../types").Timestamp;
     userId: string;
-    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     id?: string | undefined;
+    createdAt?: import("../../types").Timestamp | undefined;
+    updatedAt?: import("../../types").Timestamp | undefined;
+    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "impulse_button_pressed";
-    createdAt: import("../../types").Timestamp;
-    updatedAt: import("../../types").Timestamp;
     userId: string;
-    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     id?: string | undefined;
+    createdAt?: import("../../types").Timestamp | undefined;
+    updatedAt?: import("../../types").Timestamp | undefined;
+    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }>;
 export type ImpulseLog = z.infer<typeof impulseLogSchema>;

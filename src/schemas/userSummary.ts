@@ -8,8 +8,8 @@ import { timestampSchema } from "../utils";
 export const userSummarySchema = z.object({
   userId: z.string(),
   summary: z.string(),
-  createdAt: timestampSchema,
-  updatedAt: timestampSchema,
+  createdAt: timestampSchema.optional(),
+  updatedAt: timestampSchema.optional(),
 });
 
 export type UserSummary = z.infer<typeof userSummarySchema>;

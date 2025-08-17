@@ -4,8 +4,8 @@ import { timestampSchema } from "../utils/timestampSchema";
 
 export const userDataSchema = z.object({
   id: z.string().optional(),
-  createdAt: timestampSchema,
-  updatedAt: timestampSchema,
+  createdAt: timestampSchema.optional(),
+  updatedAt: timestampSchema.optional(),
 
   // Authentication
   recoveryKeyHash: z.string(),
@@ -22,7 +22,7 @@ export const userDataSchema = z.object({
   appVersion: z.string().optional(),
 
   // This points to the user's active strategy. It can be updated to rollback.
-  activeStrategyDoc: documentReferenceSchema,
+  activeStrategyDoc: documentReferenceSchema.optional(),
 
   // User preferences
   theme: z.enum(["light", "dark", "system"]).default("system"),

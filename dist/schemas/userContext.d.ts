@@ -65,17 +65,17 @@ export declare const aiMemorySchema: z.ZodObject<{
     id: z.ZodString;
     content: z.ZodString;
     source: z.ZodString;
-    createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
     id: string;
-    createdAt: import("../types").Timestamp;
     source: string;
     content: string;
+    createdAt?: import("../types").Timestamp | undefined;
 }, {
     id: string;
-    createdAt: import("../types").Timestamp;
     source: string;
     content: string;
+    createdAt?: import("../types").Timestamp | undefined;
 }>;
 export declare const userContextSchema: z.ZodObject<{
     behaviors: z.ZodRecord<z.ZodString, z.ZodObject<{
@@ -144,25 +144,23 @@ export declare const userContextSchema: z.ZodObject<{
         id: z.ZodString;
         content: z.ZodString;
         source: z.ZodString;
-        createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+        createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
         id: string;
-        createdAt: import("../types").Timestamp;
         source: string;
         content: string;
+        createdAt?: import("../types").Timestamp | undefined;
     }, {
         id: string;
-        createdAt: import("../types").Timestamp;
         source: string;
         content: string;
+        createdAt?: import("../types").Timestamp | undefined;
     }>, "many">>;
     overallInsights: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
     consolidatedMemory: z.ZodDefault<z.ZodString>;
-    createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
-    updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
-    createdAt: import("../types").Timestamp;
-    updatedAt: import("../types").Timestamp;
     behaviors: Record<string, {
         behaviorId: string;
         behaviorName: string;
@@ -187,15 +185,15 @@ export declare const userContextSchema: z.ZodObject<{
     }>;
     aiMemories: {
         id: string;
-        createdAt: import("../types").Timestamp;
         source: string;
         content: string;
+        createdAt?: import("../types").Timestamp | undefined;
     }[];
     overallInsights: string[];
     consolidatedMemory: string;
+    createdAt?: import("../types").Timestamp | undefined;
+    updatedAt?: import("../types").Timestamp | undefined;
 }, {
-    createdAt: import("../types").Timestamp;
-    updatedAt: import("../types").Timestamp;
     behaviors: Record<string, {
         behaviorId: string;
         behaviorName: string;
@@ -218,11 +216,13 @@ export declare const userContextSchema: z.ZodObject<{
         completedCount?: number | undefined;
         effectiveness?: number | undefined;
     }>;
+    createdAt?: import("../types").Timestamp | undefined;
+    updatedAt?: import("../types").Timestamp | undefined;
     aiMemories?: {
         id: string;
-        createdAt: import("../types").Timestamp;
         source: string;
         content: string;
+        createdAt?: import("../types").Timestamp | undefined;
     }[] | undefined;
     overallInsights?: string[] | undefined;
     consolidatedMemory?: string | undefined;

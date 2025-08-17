@@ -1,8 +1,8 @@
 import { z } from "zod";
 import { documentReferenceSchema } from "../../utils";
 import { timestampSchema } from "../../utils/timestampSchema";
-import { emojiIdSchema } from "../userProfile";
 import { planWithIdSchema } from "../plan";
+import { emojiIdSchema } from "../userProfile";
 
 // Thread schema
 export const threadBaseSchema = z.object({
@@ -12,7 +12,7 @@ export const threadBaseSchema = z.object({
   type: z
     .enum(["impulse", "general", "onboarding", "dayRecap", "timePlan", "locationPlan"])
     .default("general"),
-  date: timestampSchema,
+  date: timestampSchema.optional(),
   // For now, don't type this
   tacticsByPath: z.record(z.string(), z.any()).optional(),
 
@@ -22,7 +22,7 @@ export const threadBaseSchema = z.object({
       text: z.string(),
       category: z.string().optional(),
       confidence: z.enum(["low", "med", "high"]).optional(),
-      inferredAt: timestampSchema,
+      inferredAt: timestampSchema.optional(),
     })
     .optional(),
 
@@ -35,7 +35,7 @@ export const threadBaseSchema = z.object({
       items: z.array(z.string()),
       // Resolved tactic previews keyed by doc path (mirrors PlanLogView optimization) - loosely typed for now
       tacticsByPath: z.record(z.string(), z.any()).optional(),
-      preparedAt: timestampSchema,
+      preparedAt: timestampSchema.optional(),
       source: z.enum(["userPlan", "library", "improvised"]),
     })
     .optional(),
@@ -65,9 +65,9 @@ export const threadBaseSchema = z.object({
   summary: z.string().optional(),
   summaryRequestedAt: timestampSchema.optional(),
   summarizedAt: timestampSchema.optional(),
-  strategyDoc: documentReferenceSchema,
+  strategyDoc: documentReferenceSchema.optional(),
 
-  agentConnectedAt: timestampSchema,
+  agentConnectedAt: timestampSchema.optional(),
 
   sharingLevels: z
     .object({
@@ -81,9 +81,9 @@ export const threadBaseSchema = z.object({
   sharedWithUserIds: z.array(z.string()),
   sharedWithSupportGroups: z.array(documentReferenceSchema),
 
-  openAfter: timestampSchema,
-  firstOpenedAt: timestampSchema,
-  responseStartedProcessingAt: timestampSchema,
-  updatedAt: timestampSchema,
-  createdAt: timestampSchema,
+  openAfter: timestampSchema.optional(),
+  firstOpenedAt: timestampSchema.optional(),
+  responseStartedProcessingAt: timestampSchema.optional(),
+  updatedAt: timestampSchema.optional(),
+  createdAt: timestampSchema.optional(),
 });

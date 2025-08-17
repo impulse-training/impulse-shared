@@ -29,7 +29,7 @@ exports.aiMemorySchema = zod_1.z.object({
     id: zod_1.z.string(),
     content: zod_1.z.string(),
     source: zod_1.z.string(),
-    createdAt: utils_1.timestampSchema,
+    createdAt: utils_1.timestampSchema.optional(),
 });
 exports.userContextSchema = zod_1.z.object({
     behaviors: zod_1.z.record(exports.behaviorContextSchema),
@@ -37,8 +37,8 @@ exports.userContextSchema = zod_1.z.object({
     aiMemories: zod_1.z.array(exports.aiMemorySchema).default([]),
     overallInsights: zod_1.z.array(zod_1.z.string()).default([]),
     consolidatedMemory: zod_1.z.string().default(""),
-    createdAt: utils_1.timestampSchema,
-    updatedAt: utils_1.timestampSchema,
+    createdAt: utils_1.timestampSchema.optional(),
+    updatedAt: utils_1.timestampSchema.optional(),
 });
 // Type guard functions
 const isBehaviorContext = (value) => {

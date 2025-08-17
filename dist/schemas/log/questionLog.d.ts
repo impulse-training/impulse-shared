@@ -18,10 +18,10 @@ declare const responseSchema: z.ZodObject<{
 export type Response = z.infer<typeof responseSchema>;
 export declare const questionLogSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
-    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     userId: z.ZodString;
-    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     dateString: z.ZodString;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
@@ -67,10 +67,7 @@ export declare const questionLogSchema: z.ZodObject<{
     }>;
 }, "strip", z.ZodTypeAny, {
     type: "question";
-    createdAt: import("../../types").Timestamp;
-    updatedAt: import("../../types").Timestamp;
     userId: string;
-    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     data: {
@@ -84,13 +81,13 @@ export declare const questionLogSchema: z.ZodObject<{
         } | undefined;
     };
     id?: string | undefined;
+    createdAt?: import("../../types").Timestamp | undefined;
+    updatedAt?: import("../../types").Timestamp | undefined;
+    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "question";
-    createdAt: import("../../types").Timestamp;
-    updatedAt: import("../../types").Timestamp;
     userId: string;
-    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     data: {
@@ -104,6 +101,9 @@ export declare const questionLogSchema: z.ZodObject<{
         } | undefined;
     };
     id?: string | undefined;
+    createdAt?: import("../../types").Timestamp | undefined;
+    updatedAt?: import("../../types").Timestamp | undefined;
+    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }>;
 export type QuestionLog = z.infer<typeof questionLogSchema>;

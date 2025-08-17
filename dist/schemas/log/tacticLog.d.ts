@@ -1,10 +1,10 @@
 import { z } from "zod";
 export declare const tacticLogSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
-    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     userId: z.ZodString;
-    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     dateString: z.ZodString;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
@@ -22,10 +22,7 @@ export declare const tacticLogSchema: z.ZodObject<{
     }>;
 }, "strip", z.ZodTypeAny, {
     type: "tactic_completed";
-    createdAt: import("../../types").Timestamp;
-    updatedAt: import("../../types").Timestamp;
     userId: string;
-    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     data: {
@@ -33,13 +30,13 @@ export declare const tacticLogSchema: z.ZodObject<{
         tactic?: any;
     };
     id?: string | undefined;
+    createdAt?: import("../../types").Timestamp | undefined;
+    updatedAt?: import("../../types").Timestamp | undefined;
+    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "tactic_completed";
-    createdAt: import("../../types").Timestamp;
-    updatedAt: import("../../types").Timestamp;
     userId: string;
-    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     data: {
@@ -47,6 +44,9 @@ export declare const tacticLogSchema: z.ZodObject<{
         tactic?: any;
     };
     id?: string | undefined;
+    createdAt?: import("../../types").Timestamp | undefined;
+    updatedAt?: import("../../types").Timestamp | undefined;
+    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }>;
 export type TacticLog = z.infer<typeof tacticLogSchema>;

@@ -18,9 +18,9 @@ export interface ExternalSenderSession {
 }
 
 export const externalSenderSessionSchema = z.object({
-  createdAt: timestampSchema,
-  updatedAt: timestampSchema,
-  expiresAt: timestampSchema,
+  createdAt: timestampSchema.optional(),
+  updatedAt: timestampSchema.optional(),
+  expiresAt: timestampSchema.optional(),
   systemMessage: z.string(),
   filesUpdatedAt: timestampSchema.optional(),
   senderName: z.string().optional(),

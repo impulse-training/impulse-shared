@@ -19,8 +19,8 @@ export type AttachmentType = (typeof attachmentTypes)[number];
 
 // Base Attachment Schema
 export const attachmentSchema = z.object({
-  createdAt: timestampSchema,
-  updatedAt: timestampSchema,
+  createdAt: timestampSchema.optional(),
+  updatedAt: timestampSchema.optional(),
 
   // Basic file info
   uri: z.string(),

@@ -13,9 +13,9 @@ export function planBaseSchema<T extends string>(type: T) {
 
     // items can be tactics or tacticCollections
     items: z.array(documentReferenceSchema),
-    lastUsedAt: timestampSchema,
-    createdAt: timestampSchema,
-    updatedAt: timestampSchema,
-    deletedAt: timestampSchema,
+    lastUsedAt: timestampSchema.optional(),
+    createdAt: timestampSchema.optional(),
+    updatedAt: timestampSchema.optional(),
+    deletedAt: timestampSchema.optional(),
   });
 }

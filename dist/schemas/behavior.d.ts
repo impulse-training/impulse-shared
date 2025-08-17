@@ -7,40 +7,40 @@ export declare const behaviorTemplateSchema: z.ZodEffects<z.ZodObject<{
     hasQuestions: z.ZodOptional<z.ZodBoolean>;
     trackingType: z.ZodEnum<["counter", "timer"]>;
     trackingUnit: z.ZodOptional<z.ZodString>;
-    createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
-    updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
     trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
     name: string;
-    createdAt: import("../types").Timestamp;
-    updatedAt: import("../types").Timestamp;
     hasQuestions?: boolean | undefined;
     trackingUnit?: string | undefined;
+    createdAt?: import("../types").Timestamp | undefined;
+    updatedAt?: import("../types").Timestamp | undefined;
 }, {
     trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
     name: string;
-    createdAt: import("../types").Timestamp;
-    updatedAt: import("../types").Timestamp;
     hasQuestions?: boolean | undefined;
     trackingUnit?: string | undefined;
+    createdAt?: import("../types").Timestamp | undefined;
+    updatedAt?: import("../types").Timestamp | undefined;
 }>, {
     trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
     name: string;
-    createdAt: import("../types").Timestamp;
-    updatedAt: import("../types").Timestamp;
     hasQuestions?: boolean | undefined;
     trackingUnit?: string | undefined;
+    createdAt?: import("../types").Timestamp | undefined;
+    updatedAt?: import("../types").Timestamp | undefined;
 }, {
     trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
     name: string;
-    createdAt: import("../types").Timestamp;
-    updatedAt: import("../types").Timestamp;
     hasQuestions?: boolean | undefined;
     trackingUnit?: string | undefined;
+    createdAt?: import("../types").Timestamp | undefined;
+    updatedAt?: import("../types").Timestamp | undefined;
 }>;
 export type BehaviorTemplate = z.infer<typeof behaviorTemplateSchema>;
 export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
@@ -49,8 +49,8 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     hasQuestions: z.ZodOptional<z.ZodBoolean>;
     trackingType: z.ZodEnum<["counter", "timer"]>;
     trackingUnit: z.ZodOptional<z.ZodString>;
-    createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
-    updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 } & {
     id: z.ZodOptional<z.ZodString>;
     description: z.ZodString;
@@ -67,79 +67,79 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         type: "greaterThan" | "lessThanOrEqualTo";
         target: number;
     }>>;
-    lastTrackedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    lastTrackedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
     trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
     name: string;
-    createdAt: import("../types").Timestamp;
-    updatedAt: import("../types").Timestamp;
     description: string;
     ordinal: number;
     benefits: string[];
     drawbacks: string[];
-    lastTrackedAt: import("../types").Timestamp;
     id?: string | undefined;
     hasQuestions?: boolean | undefined;
     trackingUnit?: string | undefined;
+    createdAt?: import("../types").Timestamp | undefined;
+    updatedAt?: import("../types").Timestamp | undefined;
     goal?: {
         type: "greaterThan" | "lessThanOrEqualTo";
         target: number;
     } | undefined;
+    lastTrackedAt?: import("../types").Timestamp | undefined;
 }, {
     trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
     name: string;
-    createdAt: import("../types").Timestamp;
-    updatedAt: import("../types").Timestamp;
     description: string;
     benefits: string[];
     drawbacks: string[];
-    lastTrackedAt: import("../types").Timestamp;
     id?: string | undefined;
     hasQuestions?: boolean | undefined;
     trackingUnit?: string | undefined;
+    createdAt?: import("../types").Timestamp | undefined;
+    updatedAt?: import("../types").Timestamp | undefined;
     ordinal?: number | undefined;
     goal?: {
         type: "greaterThan" | "lessThanOrEqualTo";
         target: number;
     } | undefined;
+    lastTrackedAt?: import("../types").Timestamp | undefined;
 }>, {
     trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
     name: string;
-    createdAt: import("../types").Timestamp;
-    updatedAt: import("../types").Timestamp;
     description: string;
     ordinal: number;
     benefits: string[];
     drawbacks: string[];
-    lastTrackedAt: import("../types").Timestamp;
     id?: string | undefined;
     hasQuestions?: boolean | undefined;
     trackingUnit?: string | undefined;
+    createdAt?: import("../types").Timestamp | undefined;
+    updatedAt?: import("../types").Timestamp | undefined;
     goal?: {
         type: "greaterThan" | "lessThanOrEqualTo";
         target: number;
     } | undefined;
+    lastTrackedAt?: import("../types").Timestamp | undefined;
 }, {
     trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
     name: string;
-    createdAt: import("../types").Timestamp;
-    updatedAt: import("../types").Timestamp;
     description: string;
     benefits: string[];
     drawbacks: string[];
-    lastTrackedAt: import("../types").Timestamp;
     id?: string | undefined;
     hasQuestions?: boolean | undefined;
     trackingUnit?: string | undefined;
+    createdAt?: import("../types").Timestamp | undefined;
+    updatedAt?: import("../types").Timestamp | undefined;
     ordinal?: number | undefined;
     goal?: {
         type: "greaterThan" | "lessThanOrEqualTo";
         target: number;
     } | undefined;
+    lastTrackedAt?: import("../types").Timestamp | undefined;
 }>;
 export type TrackingType = (typeof trackingTypes)[number];
 export type Behavior = z.infer<typeof behaviorSchema>;

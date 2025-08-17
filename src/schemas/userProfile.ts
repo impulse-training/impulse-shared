@@ -9,7 +9,7 @@ export const emojiIdSchema = z
   .optional();
 
 export const userProfileSchema = z.object({
-  id: z.string(),
+  id: z.string().optional(),
   invitationCode: z.string(),
   emojiId: emojiIdSchema,
 });

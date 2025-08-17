@@ -3,7 +3,7 @@ import { timestampSchema } from "../utils";
 
 export const sessionSchema = z.object({
   participantUids: z.array(z.string()),
-  startTime: timestampSchema,
+  startTime: timestampSchema.optional(),
   durationMinutes: z.number(),
   title: z.string().optional(),
   transcriptSummary: z.string().optional(),

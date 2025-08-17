@@ -27,7 +27,7 @@ export type SupportGroupNotificationPreferences = z.infer<typeof supportGroupNot
 export declare const supportGroupMemberSchema: z.ZodObject<{
     userId: z.ZodString;
     userProfile: z.ZodObject<{
-        id: z.ZodString;
+        id: z.ZodOptional<z.ZodString>;
         invitationCode: z.ZodString;
         emojiId: z.ZodOptional<z.ZodObject<{
             color: z.ZodString;
@@ -43,16 +43,16 @@ export declare const supportGroupMemberSchema: z.ZodObject<{
             name?: string | undefined;
         }>>;
     }, "strip", z.ZodTypeAny, {
-        id: string;
         invitationCode: string;
+        id?: string | undefined;
         emojiId?: {
             color: string;
             emoji: string;
             name?: string | undefined;
         } | undefined;
     }, {
-        id: string;
         invitationCode: string;
+        id?: string | undefined;
         emojiId?: {
             color: string;
             emoji: string;
@@ -83,28 +83,27 @@ export declare const supportGroupMemberSchema: z.ZodObject<{
         messages?: boolean | undefined;
     }>>;
     currentStreak: z.ZodOptional<z.ZodObject<{
-        streakStart: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+        streakStart: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         color: z.ZodString;
     }, "strip", z.ZodTypeAny, {
         color: string;
-        streakStart: import("../types").Timestamp;
+        streakStart?: import("../types").Timestamp | undefined;
     }, {
         color: string;
-        streakStart: import("../types").Timestamp;
+        streakStart?: import("../types").Timestamp | undefined;
     }>>;
-    joinedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    joinedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
     userId: string;
     userProfile: {
-        id: string;
         invitationCode: string;
+        id?: string | undefined;
         emojiId?: {
             color: string;
             emoji: string;
             name?: string | undefined;
         } | undefined;
     };
-    joinedAt: import("../types").Timestamp;
     permissions?: {
         summary: boolean;
         dayOutcomes: boolean;
@@ -116,20 +115,20 @@ export declare const supportGroupMemberSchema: z.ZodObject<{
     } | undefined;
     currentStreak?: {
         color: string;
-        streakStart: import("../types").Timestamp;
+        streakStart?: import("../types").Timestamp | undefined;
     } | undefined;
+    joinedAt?: import("../types").Timestamp | undefined;
 }, {
     userId: string;
     userProfile: {
-        id: string;
         invitationCode: string;
+        id?: string | undefined;
         emojiId?: {
             color: string;
             emoji: string;
             name?: string | undefined;
         } | undefined;
     };
-    joinedAt: import("../types").Timestamp;
     permissions?: {
         summary?: boolean | undefined;
         dayOutcomes?: boolean | undefined;
@@ -141,8 +140,9 @@ export declare const supportGroupMemberSchema: z.ZodObject<{
     } | undefined;
     currentStreak?: {
         color: string;
-        streakStart: import("../types").Timestamp;
+        streakStart?: import("../types").Timestamp | undefined;
     } | undefined;
+    joinedAt?: import("../types").Timestamp | undefined;
 }>;
 export declare const supportGroupSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -150,8 +150,8 @@ export declare const supportGroupSchema: z.ZodObject<{
     description: z.ZodOptional<z.ZodString>;
     ownerId: z.ZodString;
     coverPhoto: z.ZodOptional<z.ZodObject<{
-        createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
-        updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+        createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+        updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         uri: z.ZodString;
         storagePath: z.ZodString;
         contentType: z.ZodString;
@@ -192,11 +192,11 @@ export declare const supportGroupSchema: z.ZodObject<{
             }[] | undefined;
         }>>;
     }, "strip", z.ZodTypeAny, {
-        createdAt: import("../types").Timestamp;
-        updatedAt: import("../types").Timestamp;
         uri: string;
         storagePath: string;
         contentType: string;
+        createdAt?: import("../types").Timestamp | undefined;
+        updatedAt?: import("../types").Timestamp | undefined;
         title?: string | undefined;
         sizeBytes?: number | undefined;
         metadata?: {
@@ -210,11 +210,11 @@ export declare const supportGroupSchema: z.ZodObject<{
             }[] | undefined;
         } | undefined;
     }, {
-        createdAt: import("../types").Timestamp;
-        updatedAt: import("../types").Timestamp;
         uri: string;
         storagePath: string;
         contentType: string;
+        createdAt?: import("../types").Timestamp | undefined;
+        updatedAt?: import("../types").Timestamp | undefined;
         title?: string | undefined;
         sizeBytes?: number | undefined;
         metadata?: {
@@ -231,7 +231,7 @@ export declare const supportGroupSchema: z.ZodObject<{
     membersById: z.ZodRecord<z.ZodString, z.ZodObject<{
         userId: z.ZodString;
         userProfile: z.ZodObject<{
-            id: z.ZodString;
+            id: z.ZodOptional<z.ZodString>;
             invitationCode: z.ZodString;
             emojiId: z.ZodOptional<z.ZodObject<{
                 color: z.ZodString;
@@ -247,16 +247,16 @@ export declare const supportGroupSchema: z.ZodObject<{
                 name?: string | undefined;
             }>>;
         }, "strip", z.ZodTypeAny, {
-            id: string;
             invitationCode: string;
+            id?: string | undefined;
             emojiId?: {
                 color: string;
                 emoji: string;
                 name?: string | undefined;
             } | undefined;
         }, {
-            id: string;
             invitationCode: string;
+            id?: string | undefined;
             emojiId?: {
                 color: string;
                 emoji: string;
@@ -287,28 +287,27 @@ export declare const supportGroupSchema: z.ZodObject<{
             messages?: boolean | undefined;
         }>>;
         currentStreak: z.ZodOptional<z.ZodObject<{
-            streakStart: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+            streakStart: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
             color: z.ZodString;
         }, "strip", z.ZodTypeAny, {
             color: string;
-            streakStart: import("../types").Timestamp;
+            streakStart?: import("../types").Timestamp | undefined;
         }, {
             color: string;
-            streakStart: import("../types").Timestamp;
+            streakStart?: import("../types").Timestamp | undefined;
         }>>;
-        joinedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+        joinedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
         userId: string;
         userProfile: {
-            id: string;
             invitationCode: string;
+            id?: string | undefined;
             emojiId?: {
                 color: string;
                 emoji: string;
                 name?: string | undefined;
             } | undefined;
         };
-        joinedAt: import("../types").Timestamp;
         permissions?: {
             summary: boolean;
             dayOutcomes: boolean;
@@ -320,20 +319,20 @@ export declare const supportGroupSchema: z.ZodObject<{
         } | undefined;
         currentStreak?: {
             color: string;
-            streakStart: import("../types").Timestamp;
+            streakStart?: import("../types").Timestamp | undefined;
         } | undefined;
+        joinedAt?: import("../types").Timestamp | undefined;
     }, {
         userId: string;
         userProfile: {
-            id: string;
             invitationCode: string;
+            id?: string | undefined;
             emojiId?: {
                 color: string;
                 emoji: string;
                 name?: string | undefined;
             } | undefined;
         };
-        joinedAt: import("../types").Timestamp;
         permissions?: {
             summary?: boolean | undefined;
             dayOutcomes?: boolean | undefined;
@@ -345,14 +344,15 @@ export declare const supportGroupSchema: z.ZodObject<{
         } | undefined;
         currentStreak?: {
             color: string;
-            streakStart: import("../types").Timestamp;
+            streakStart?: import("../types").Timestamp | undefined;
         } | undefined;
+        joinedAt?: import("../types").Timestamp | undefined;
     }>>;
     unreadMessageCountsById: z.ZodRecord<z.ZodString, z.ZodNumber>;
     memberCount: z.ZodDefault<z.ZodNumber>;
     image: z.ZodObject<{
-        createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
-        updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+        createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+        updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         uri: z.ZodString;
         storagePath: z.ZodString;
         contentType: z.ZodString;
@@ -393,11 +393,11 @@ export declare const supportGroupSchema: z.ZodObject<{
             }[] | undefined;
         }>>;
     }, "strip", z.ZodTypeAny, {
-        createdAt: import("../types").Timestamp;
-        updatedAt: import("../types").Timestamp;
         uri: string;
         storagePath: string;
         contentType: string;
+        createdAt?: import("../types").Timestamp | undefined;
+        updatedAt?: import("../types").Timestamp | undefined;
         title?: string | undefined;
         sizeBytes?: number | undefined;
         metadata?: {
@@ -411,11 +411,11 @@ export declare const supportGroupSchema: z.ZodObject<{
             }[] | undefined;
         } | undefined;
     }, {
-        createdAt: import("../types").Timestamp;
-        updatedAt: import("../types").Timestamp;
         uri: string;
         storagePath: string;
         contentType: string;
+        createdAt?: import("../types").Timestamp | undefined;
+        updatedAt?: import("../types").Timestamp | undefined;
         title?: string | undefined;
         sizeBytes?: number | undefined;
         metadata?: {
@@ -435,10 +435,10 @@ export declare const supportGroupSchema: z.ZodObject<{
     inviteCode: z.ZodOptional<z.ZodString>;
     lastMessage: z.ZodOptional<z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
-        createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
-        updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+        createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+        updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         userId: z.ZodString;
-        timestamp: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+        timestamp: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         dateString: z.ZodString;
         callLogDocPath: z.ZodOptional<z.ZodString>;
         isDisplayable: z.ZodLiteral<true>;
@@ -452,8 +452,8 @@ export declare const supportGroupSchema: z.ZodObject<{
     } & {
         type: z.ZodLiteral<"user_message">;
         audioAttachment: z.ZodOptional<z.ZodObject<{
-            createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
-            updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+            createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+            updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
             uri: z.ZodString;
             storagePath: z.ZodString;
             contentType: z.ZodString;
@@ -494,11 +494,11 @@ export declare const supportGroupSchema: z.ZodObject<{
                 }[] | undefined;
             }>>;
         }, "strip", z.ZodTypeAny, {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
             uri: string;
             storagePath: string;
             contentType: string;
+            createdAt?: import("../types").Timestamp | undefined;
+            updatedAt?: import("../types").Timestamp | undefined;
             title?: string | undefined;
             sizeBytes?: number | undefined;
             metadata?: {
@@ -512,11 +512,11 @@ export declare const supportGroupSchema: z.ZodObject<{
                 }[] | undefined;
             } | undefined;
         }, {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
             uri: string;
             storagePath: string;
             contentType: string;
+            createdAt?: import("../types").Timestamp | undefined;
+            updatedAt?: import("../types").Timestamp | undefined;
             title?: string | undefined;
             sizeBytes?: number | undefined;
             metadata?: {
@@ -532,23 +532,23 @@ export declare const supportGroupSchema: z.ZodObject<{
         }>>;
     }, "strip", z.ZodTypeAny, {
         type: "user_message";
-        createdAt: import("../types").Timestamp;
-        updatedAt: import("../types").Timestamp;
         userId: string;
-        timestamp: import("../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
             message?: any;
         };
         id?: string | undefined;
+        createdAt?: import("../types").Timestamp | undefined;
+        updatedAt?: import("../types").Timestamp | undefined;
+        timestamp?: import("../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
         audioAttachment?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
             uri: string;
             storagePath: string;
             contentType: string;
+            createdAt?: import("../types").Timestamp | undefined;
+            updatedAt?: import("../types").Timestamp | undefined;
             title?: string | undefined;
             sizeBytes?: number | undefined;
             metadata?: {
@@ -564,23 +564,23 @@ export declare const supportGroupSchema: z.ZodObject<{
         } | undefined;
     }, {
         type: "user_message";
-        createdAt: import("../types").Timestamp;
-        updatedAt: import("../types").Timestamp;
         userId: string;
-        timestamp: import("../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
             message?: any;
         };
         id?: string | undefined;
+        createdAt?: import("../types").Timestamp | undefined;
+        updatedAt?: import("../types").Timestamp | undefined;
+        timestamp?: import("../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
         audioAttachment?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
             uri: string;
             storagePath: string;
             contentType: string;
+            createdAt?: import("../types").Timestamp | undefined;
+            updatedAt?: import("../types").Timestamp | undefined;
             title?: string | undefined;
             sizeBytes?: number | undefined;
             metadata?: {
@@ -596,24 +596,21 @@ export declare const supportGroupSchema: z.ZodObject<{
         } | undefined;
     }>>;
     tacticCount: z.ZodDefault<z.ZodNumber>;
-    createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
-    updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
     name: string;
-    createdAt: import("../types").Timestamp;
-    updatedAt: import("../types").Timestamp;
     membersById: Record<string, {
         userId: string;
         userProfile: {
-            id: string;
             invitationCode: string;
+            id?: string | undefined;
             emojiId?: {
                 color: string;
                 emoji: string;
                 name?: string | undefined;
             } | undefined;
         };
-        joinedAt: import("../types").Timestamp;
         permissions?: {
             summary: boolean;
             dayOutcomes: boolean;
@@ -625,16 +622,17 @@ export declare const supportGroupSchema: z.ZodObject<{
         } | undefined;
         currentStreak?: {
             color: string;
-            streakStart: import("../types").Timestamp;
+            streakStart?: import("../types").Timestamp | undefined;
         } | undefined;
+        joinedAt?: import("../types").Timestamp | undefined;
     }>;
     isTemplate: boolean;
     image: {
-        createdAt: import("../types").Timestamp;
-        updatedAt: import("../types").Timestamp;
         uri: string;
         storagePath: string;
         contentType: string;
+        createdAt?: import("../types").Timestamp | undefined;
+        updatedAt?: import("../types").Timestamp | undefined;
         title?: string | undefined;
         sizeBytes?: number | undefined;
         metadata?: {
@@ -654,13 +652,15 @@ export declare const supportGroupSchema: z.ZodObject<{
     memberCount: number;
     tacticCount: number;
     id?: string | undefined;
+    createdAt?: import("../types").Timestamp | undefined;
+    updatedAt?: import("../types").Timestamp | undefined;
     description?: string | undefined;
     coverPhoto?: {
-        createdAt: import("../types").Timestamp;
-        updatedAt: import("../types").Timestamp;
         uri: string;
         storagePath: string;
         contentType: string;
+        createdAt?: import("../types").Timestamp | undefined;
+        updatedAt?: import("../types").Timestamp | undefined;
         title?: string | undefined;
         sizeBytes?: number | undefined;
         metadata?: {
@@ -678,23 +678,23 @@ export declare const supportGroupSchema: z.ZodObject<{
     inviteCode?: string | undefined;
     lastMessage?: {
         type: "user_message";
-        createdAt: import("../types").Timestamp;
-        updatedAt: import("../types").Timestamp;
         userId: string;
-        timestamp: import("../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
             message?: any;
         };
         id?: string | undefined;
+        createdAt?: import("../types").Timestamp | undefined;
+        updatedAt?: import("../types").Timestamp | undefined;
+        timestamp?: import("../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
         audioAttachment?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
             uri: string;
             storagePath: string;
             contentType: string;
+            createdAt?: import("../types").Timestamp | undefined;
+            updatedAt?: import("../types").Timestamp | undefined;
             title?: string | undefined;
             sizeBytes?: number | undefined;
             metadata?: {
@@ -711,20 +711,17 @@ export declare const supportGroupSchema: z.ZodObject<{
     } | undefined;
 }, {
     name: string;
-    createdAt: import("../types").Timestamp;
-    updatedAt: import("../types").Timestamp;
     membersById: Record<string, {
         userId: string;
         userProfile: {
-            id: string;
             invitationCode: string;
+            id?: string | undefined;
             emojiId?: {
                 color: string;
                 emoji: string;
                 name?: string | undefined;
             } | undefined;
         };
-        joinedAt: import("../types").Timestamp;
         permissions?: {
             summary?: boolean | undefined;
             dayOutcomes?: boolean | undefined;
@@ -736,15 +733,16 @@ export declare const supportGroupSchema: z.ZodObject<{
         } | undefined;
         currentStreak?: {
             color: string;
-            streakStart: import("../types").Timestamp;
+            streakStart?: import("../types").Timestamp | undefined;
         } | undefined;
+        joinedAt?: import("../types").Timestamp | undefined;
     }>;
     image: {
-        createdAt: import("../types").Timestamp;
-        updatedAt: import("../types").Timestamp;
         uri: string;
         storagePath: string;
         contentType: string;
+        createdAt?: import("../types").Timestamp | undefined;
+        updatedAt?: import("../types").Timestamp | undefined;
         title?: string | undefined;
         sizeBytes?: number | undefined;
         metadata?: {
@@ -762,14 +760,16 @@ export declare const supportGroupSchema: z.ZodObject<{
     ownerId: string;
     unreadMessageCountsById: Record<string, number>;
     id?: string | undefined;
+    createdAt?: import("../types").Timestamp | undefined;
+    updatedAt?: import("../types").Timestamp | undefined;
     description?: string | undefined;
     isTemplate?: boolean | undefined;
     coverPhoto?: {
-        createdAt: import("../types").Timestamp;
-        updatedAt: import("../types").Timestamp;
         uri: string;
         storagePath: string;
         contentType: string;
+        createdAt?: import("../types").Timestamp | undefined;
+        updatedAt?: import("../types").Timestamp | undefined;
         title?: string | undefined;
         sizeBytes?: number | undefined;
         metadata?: {
@@ -788,23 +788,23 @@ export declare const supportGroupSchema: z.ZodObject<{
     inviteCode?: string | undefined;
     lastMessage?: {
         type: "user_message";
-        createdAt: import("../types").Timestamp;
-        updatedAt: import("../types").Timestamp;
         userId: string;
-        timestamp: import("../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
             message?: any;
         };
         id?: string | undefined;
+        createdAt?: import("../types").Timestamp | undefined;
+        updatedAt?: import("../types").Timestamp | undefined;
+        timestamp?: import("../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
         audioAttachment?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
             uri: string;
             storagePath: string;
             contentType: string;
+            createdAt?: import("../types").Timestamp | undefined;
+            updatedAt?: import("../types").Timestamp | undefined;
             title?: string | undefined;
             sizeBytes?: number | undefined;
             metadata?: {

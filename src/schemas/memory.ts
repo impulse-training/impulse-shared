@@ -10,8 +10,8 @@ export const memorySchema = z.object({
   tags: z.array(z.string()).default([]),
   importance: z.number().min(1).max(10).default(5), // 1-10 scale for memory importance
   context: z.record(z.any()).default({}), // Additional context data as key-value pairs
-  createdAt: timestampSchema,
-  updatedAt: timestampSchema,
+  createdAt: timestampSchema.optional(),
+  updatedAt: timestampSchema.optional(),
 });
 
 // Export type inferred from schema

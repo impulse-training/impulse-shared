@@ -23,11 +23,11 @@ exports.supportGroupMemberSchema = zod_1.z.object({
     notificationPreferences: exports.supportGroupNotificationPreferencesSchema.optional(),
     currentStreak: zod_1.z
         .object({
-        streakStart: utils_1.timestampSchema,
+        streakStart: utils_1.timestampSchema.optional(),
         color: zod_1.z.string(),
     })
         .optional(),
-    joinedAt: utils_1.timestampSchema,
+    joinedAt: utils_1.timestampSchema.optional(),
 });
 // Support Group Schema
 exports.supportGroupSchema = zod_1.z.object({
@@ -46,8 +46,8 @@ exports.supportGroupSchema = zod_1.z.object({
     inviteCode: zod_1.z.string().optional(),
     lastMessage: log_1.userMessageLogSchema.optional(),
     tacticCount: zod_1.z.number().default(0),
-    createdAt: utils_1.timestampSchema,
-    updatedAt: utils_1.timestampSchema,
+    createdAt: utils_1.timestampSchema.optional(),
+    updatedAt: utils_1.timestampSchema.optional(),
 });
 // Type guard functions
 const isValidSupportGroupMember = (value) => {

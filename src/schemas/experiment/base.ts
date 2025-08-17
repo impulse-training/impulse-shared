@@ -4,7 +4,7 @@ import { timestampSchema } from "../../utils";
 export function experimentBaseSchema<K extends string>(type: K) {
   return z.object({
     type: z.literal(type),
-    startedAt: timestampSchema,
+    startedAt: timestampSchema.optional(),
     hypothesis: z.string(),
   });
 }

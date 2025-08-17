@@ -25,8 +25,8 @@ const behaviorTemplateBase = z.object({
   hasQuestions: z.boolean().optional(),
   trackingType: z.enum(trackingTypes),
   trackingUnit: z.string().optional(),
-  createdAt: timestampSchema,
-  updatedAt: timestampSchema,
+  createdAt: timestampSchema.optional(),
+  updatedAt: timestampSchema.optional(),
 });
 
 export const behaviorTemplateSchema = behaviorTemplateBase.superRefine(
@@ -51,7 +51,7 @@ export const behaviorSchema = behaviorTemplateBase.extend({
   benefits: z.array(z.string()),
   drawbacks: z.array(z.string()),
   goal: goalSchema.optional(),
-  lastTrackedAt: timestampSchema,
+  lastTrackedAt: timestampSchema.optional(),
 }).superRefine((val, ctx) => {
   if (val.trackingType === "counter" && !val.trackingUnit) {
     ctx.addIssue({

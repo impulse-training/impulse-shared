@@ -29,7 +29,7 @@ export const aiMemorySchema = z.object({
   id: z.string(),
   content: z.string(),
   source: z.string(),
-  createdAt: timestampSchema,
+  createdAt: timestampSchema.optional(),
 });
 
 export const userContextSchema = z.object({
@@ -38,8 +38,8 @@ export const userContextSchema = z.object({
   aiMemories: z.array(aiMemorySchema).default([]),
   overallInsights: z.array(z.string()).default([]),
   consolidatedMemory: z.string().default(""),
-  createdAt: timestampSchema,
-  updatedAt: timestampSchema,
+  createdAt: timestampSchema.optional(),
+  updatedAt: timestampSchema.optional(),
 });
 
 // Export types inferred from schemas

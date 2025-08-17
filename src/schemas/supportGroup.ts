@@ -27,11 +27,11 @@ export const supportGroupMemberSchema = z.object({
   notificationPreferences: supportGroupNotificationPreferencesSchema.optional(),
   currentStreak: z
     .object({
-      streakStart: timestampSchema,
+      streakStart: timestampSchema.optional(),
       color: z.string(),
     })
     .optional(),
-  joinedAt: timestampSchema,
+  joinedAt: timestampSchema.optional(),
 });
 
 // Support Group Schema
@@ -51,8 +51,8 @@ export const supportGroupSchema = z.object({
   inviteCode: z.string().optional(),
   lastMessage: userMessageLogSchema.optional(),
   tacticCount: z.number().default(0),
-  createdAt: timestampSchema,
-  updatedAt: timestampSchema,
+  createdAt: timestampSchema.optional(),
+  updatedAt: timestampSchema.optional(),
 });
 
 // Export types inferred from schemas
