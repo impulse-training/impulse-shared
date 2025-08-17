@@ -1,4 +1,4 @@
-import * as yup from "yup";
+import { z } from "zod";
 import { GeneralThread, generalThreadSchema } from "./general";
 import { ImpulseThread, impulseThreadSchema } from "./impulse";
 import { OnboardingThread, onboardingThreadSchema } from "./onboarding";
@@ -21,112 +21,60 @@ export const threadSchemas = {
   general: generalThreadSchema,
   impulse: impulseThreadSchema,
   onboarding: onboardingThreadSchema,
-  time: timePlanThreadSchema,
-  recap: recapPlanThreadSchema,
-  location: locationPlanThreadSchema,
+  timePlan: timePlanThreadSchema,
+  dayRecap: recapPlanThreadSchema,
+  locationPlan: locationPlanThreadSchema,
 };
 
-// Dynamic schema that selects the appropriate schema based on the thread type
-export const threadSchema = yup.lazy((value) => {
-  if (typeof value?.type === "string" && value.type in threadSchemas) {
-    return threadSchemas[value.type as keyof typeof threadSchemas];
-  }
-
-  // Fallback schema for validation when type is missing or invalid
-  return yup.object({
-    type: yup
-      .string()
-      .oneOf(Object.keys(threadSchemas))
-      .required("Tactic type is required"),
-  });
-});
+// Discriminated union over type
+export const threadSchema = z.discriminatedUnion("type", [
+  generalThreadSchema,
+  impulseThreadSchema,
+  onboardingThreadSchema,
+  timePlanThreadSchema,
+  recapPlanThreadSchema,
+  locationPlanThreadSchema,
+]);
 
 export const threadIsGeneralThread = (value: Thread): value is GeneralThread =>
   value.type === "general";
 export const isValidGeneralThread = (
   value: unknown
-): value is GeneralThread => {
-  try {
-    generalThreadSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
-};
+): value is GeneralThread => generalThreadSchema.safeParse(value).success;
 
 export const threadIsOnboardingThread = (
   value: Thread
 ): value is OnboardingThread => value.type === "onboarding";
 export const isValidOnboardingThread = (
   value: unknown
-): value is OnboardingThread => {
-  try {
-    onboardingThreadSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
-};
+): value is OnboardingThread => onboardingThreadSchema.safeParse(value).success;
 
 export const threadIsImpulseThread = (value: Thread): value is ImpulseThread =>
   value.type === "impulse";
 export const isValidImpulseThread = (
   value: unknown
-): value is ImpulseThread => {
-  try {
-    impulseThreadSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
-};
+): value is ImpulseThread => impulseThreadSchema.safeParse(value).success;
 
 export const threadIsTimePlanThread = (
   value: Thread
-): value is TimePlanThread => value.type === "time";
+): value is TimePlanThread => value.type === "timePlan";
 export const isValidTimePlanThread = (
   value: unknown
-): value is TimePlanThread => {
-  try {
-    timePlanThreadSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
-};
+): value is TimePlanThread => timePlanThreadSchema.safeParse(value).success;
 
 export const threadIsRecapPlanThread = (
   value: Thread
-): value is RecapPlanThread => value.type === "recap";
+): value is RecapPlanThread => value.type === "dayRecap";
 export const isValidRecapPlanThread = (
   value: unknown
-): value is RecapPlanThread => {
-  try {
-    timePlanThreadSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
-};
+): value is RecapPlanThread => recapPlanThreadSchema.safeParse(value).success;
 
 export const threadIsLocationPlanThread = (
   value: Thread
-): value is LocationPlanThread => value.type === "location";
+): value is LocationPlanThread => value.type === "locationPlan";
 export const isValidLocationPlanThread = (
   value: unknown
-): value is LocationPlanThread => {
-  try {
-    locationPlanThreadSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
-};
+): value is LocationPlanThread =>
+  locationPlanThreadSchema.safeParse(value).success;
 
-export type Thread =
-  | ImpulseThread
-  | GeneralThread
-  | OnboardingThread
-  | TimePlanThread
-  | LocationPlanThread
-  | RecapPlanThread;
+export type Thread = z.infer<typeof threadSchema>;

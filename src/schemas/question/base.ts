@@ -1,23 +1,20 @@
-import * as yup from "yup";
+import { z } from "zod";
 import { documentReferenceSchema, timestampSchema } from "../../utils";
 
 export function questionBaseSchema<T extends string>(type: T) {
-  return yup.object({
-    id: yup.string(),
-    createdAt: timestampSchema,
-    updatedAt: timestampSchema,
-    plans: yup.array().of(documentReferenceSchema.required()).optional(),
-    text: yup.string().optional(), // Optional text to display before the question
-    question: yup.string().required(), // The actual question content
-    lastAskedAt: timestampSchema,
-    lastAnsweredAt: timestampSchema,
-    numberOfAnswers: yup.number().optional().default(undefined),
-    isTemplate: yup.boolean().optional().default(false),
-    isPinned: yup.boolean(),
-    responseType: yup.mixed<T>().oneOf([type]).required(),
-    scope: yup
-      .mixed<"impulse" | "plan">()
-      .oneOf(["impulse", "plan"])
-      .optional(),
+  return z.object({
+    id: z.string().optional(),
+    createdAt: timestampSchema.optional(),
+    updatedAt: timestampSchema.optional(),
+    plans: z.array(documentReferenceSchema).optional(),
+    text: z.string().optional(), // Optional text to display before the question
+    question: z.string(), // The actual question content
+    lastAskedAt: timestampSchema.optional(),
+    lastAnsweredAt: timestampSchema.optional(),
+    numberOfAnswers: z.number().optional(),
+    isTemplate: z.boolean().optional().default(false),
+    isPinned: z.boolean().optional(),
+    responseType: z.literal(type),
+    scope: z.enum(["impulse", "plan"]).optional(),
   });
 }

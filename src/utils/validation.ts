@@ -1,32 +1,23 @@
-import { ValidationError } from "yup";
+import { z } from "zod";
 
 export type ErrorObject = {
   [field: string]: string[];
 };
 
-type YupSchemaLike = {
-  validateSync: (value: unknown, options?: any) => void;
-};
-
-export function makeValidationFn<S extends YupSchemaLike>(schema: S) {
+export function makeValidationFn<S extends z.ZodTypeAny>(schema: S) {
   return function validate(input: unknown) {
-    try {
-      schema.validateSync(input, { abortEarly: false });
-      return {};
-    } catch (error: any) {
-      return yupErrorToErrorObject(error);
-    }
+    const result = schema.safeParse(input);
+    if (result.success) return {};
+    return zodErrorToErrorObject(result.error);
   };
 }
 
-export function yupErrorToErrorObject(err: ValidationError): ErrorObject {
+export function zodErrorToErrorObject(err: z.ZodError): ErrorObject {
   const object: ErrorObject = {};
-
-  err.inner.forEach((x) => {
-    if (x.path !== undefined) {
-      object[x.path] = x.errors;
-    }
-  });
-
+  for (const issue of err.issues) {
+    const path = issue.path.join(".");
+    if (!object[path]) object[path] = [];
+    object[path].push(issue.message);
+  }
   return object;
 }

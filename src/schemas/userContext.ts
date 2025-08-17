@@ -1,96 +1,68 @@
-import * as yup from "yup";
+import { z } from "zod";
 import { timestampSchema } from "../utils";
-import { objectOf } from "../utils/objectOf";
 
-export const behaviorContextSchema = yup.object({
-  behaviorId: yup.string().required(),
-  behaviorName: yup.string().required(),
-  trackingType: yup.string().oneOf(["counter", "timer", "boolean"]).required(),
-  description: yup.string().optional(),
-  benefits: yup.array().of(yup.string()).optional(),
-  drawbacks: yup.array().of(yup.string()).optional(),
-  category: yup.string().optional(),
-  trackingUnit: yup.string().optional(),
-  streakDays: yup.number().default(0),
-  totalTracked: yup.number().default(0),
-  insights: yup.array().of(yup.string()).default([]),
-  effectiveTactics: yup.array().of(yup.string()).default([]),
-  planTacticIds: yup.array().of(yup.string()).default([]),
+export const behaviorContextSchema = z.object({
+  behaviorId: z.string(),
+  behaviorName: z.string(),
+  trackingType: z.enum(["counter", "timer", "boolean"]),
+  description: z.string().optional(),
+  benefits: z.array(z.string()).optional(),
+  drawbacks: z.array(z.string()).optional(),
+  category: z.string().optional(),
+  trackingUnit: z.string().optional(),
+  streakDays: z.number().default(0),
+  totalTracked: z.number().default(0),
+  insights: z.array(z.string()).default([]),
+  effectiveTactics: z.array(z.string()).default([]),
+  planTacticIds: z.array(z.string()).default([]),
 });
 
-export const tacticContextSchema = yup.object({
-  tacticId: yup.string().required(),
-  tacticTitle: yup.string().required(),
-  tacticType: yup.string().required(),
-  completedCount: yup.number().default(0),
-  effectiveness: yup.number().min(1).max(10).default(5),
+export const tacticContextSchema = z.object({
+  tacticId: z.string(),
+  tacticTitle: z.string(),
+  tacticType: z.string(),
+  completedCount: z.number().default(0),
+  effectiveness: z.number().min(1).max(10).default(5),
 });
 
-export const aiMemorySchema = yup.object({
-  id: yup.string().required(),
-  content: yup.string().required(),
-  source: yup.string().required(),
+export const aiMemorySchema = z.object({
+  id: z.string(),
+  content: z.string(),
+  source: z.string(),
   createdAt: timestampSchema,
 });
 
-export const userContextSchema = yup.object({
-  behaviors: objectOf(behaviorContextSchema),
-  tactics: objectOf(tacticContextSchema),
-  aiMemories: yup.array().of(aiMemorySchema).default([]),
-  overallInsights: yup.array().of(yup.string()).default([]),
-  consolidatedMemory: yup.string().default(""),
+export const userContextSchema = z.object({
+  behaviors: z.record(behaviorContextSchema),
+  tactics: z.record(tacticContextSchema),
+  aiMemories: z.array(aiMemorySchema).default([]),
+  overallInsights: z.array(z.string()).default([]),
+  consolidatedMemory: z.string().default(""),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
 });
 
 // Export types inferred from schemas
-export type BehaviorContext = yup.InferType<typeof behaviorContextSchema>;
-export type TacticContext = yup.InferType<typeof tacticContextSchema>;
-export type AIMemory = yup.InferType<typeof aiMemorySchema>;
+export type BehaviorContext = z.infer<typeof behaviorContextSchema>;
+export type TacticContext = z.infer<typeof tacticContextSchema>;
+export type AIMemory = z.infer<typeof aiMemorySchema>;
 
 // Extend the inferred UserContext type to properly type the record fields
-export interface UserContext
-  extends Omit<
-    yup.InferType<typeof userContextSchema>,
-    "behaviors" | "tactics"
-  > {
-  behaviors: Record<string, BehaviorContext>;
-  tactics: Record<string, TacticContext>;
-}
+export type UserContext = z.infer<typeof userContextSchema>;
 
 // Type guard functions
 export const isBehaviorContext = (value: unknown): value is BehaviorContext => {
-  try {
-    behaviorContextSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
+  return behaviorContextSchema.safeParse(value).success;
 };
 
 export const isTacticContext = (value: unknown): value is TacticContext => {
-  try {
-    tacticContextSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
+  return tacticContextSchema.safeParse(value).success;
 };
 
 export const isAIMemory = (value: unknown): value is AIMemory => {
-  try {
-    aiMemorySchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
+  return aiMemorySchema.safeParse(value).success;
 };
 
 export const isUserContext = (value: unknown): value is UserContext => {
-  try {
-    userContextSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
+  return userContextSchema.safeParse(value).success;
 };

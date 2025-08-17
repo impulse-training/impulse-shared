@@ -1,5 +1,5 @@
-import * as yup from "yup";
+import { z } from "zod";
 
 export type Outcome = "success" | "partial" | "setback";
 export const outcomes: Outcome[] = ["success", "partial", "setback"];
-export const outcomeSchema = yup.string().oneOf(outcomes);
+export const outcomeSchema = z.enum(["success", "partial", "setback"]);

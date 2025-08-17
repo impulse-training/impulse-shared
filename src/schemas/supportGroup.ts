@@ -1,89 +1,71 @@
-import * as yup from "yup";
+import { z } from "zod";
 import { documentReferenceSchema, objectOf, timestampSchema } from "../utils";
 import { attachmentSchema } from "./attachment";
 import { userMessageLogSchema } from "./log";
 import { userProfileSchema } from "./userProfile";
 
-export const supportGroupPermissionsSchema = yup.object({
-  dayOutcomes: yup.boolean().default(false),
-  threads: yup.boolean().default(false),
-  summary: yup.boolean().default(false),
+export const supportGroupPermissionsSchema = z.object({
+  dayOutcomes: z.boolean().default(false),
+  threads: z.boolean().default(false),
+  summary: z.boolean().default(false),
 });
-export type SupportGroupPermissions = yup.InferType<
-  typeof supportGroupPermissionsSchema
->;
+export type SupportGroupPermissions = z.infer<typeof supportGroupPermissionsSchema>;
 
-export const supportGroupNotificationPreferencesSchema = yup.object({
-  messages: yup.boolean().default(false),
-  plan: yup.boolean().default(false),
+export const supportGroupNotificationPreferencesSchema = z.object({
+  messages: z.boolean().default(false),
+  plan: z.boolean().default(false),
 });
-export type SupportGroupNotificationPreferences = yup.InferType<
+export type SupportGroupNotificationPreferences = z.infer<
   typeof supportGroupNotificationPreferencesSchema
 >;
 
 // Support Group Member Schema
-export const supportGroupMemberSchema = yup.object({
-  userId: yup.string().required(),
+export const supportGroupMemberSchema = z.object({
+  userId: z.string(),
   userProfile: userProfileSchema,
-  permissions: supportGroupPermissionsSchema.optional().default(undefined),
-  notificationPreferences: supportGroupNotificationPreferencesSchema
-    .optional()
-    .default(undefined),
-  currentStreak: yup
+  permissions: supportGroupPermissionsSchema.optional(),
+  notificationPreferences: supportGroupNotificationPreferencesSchema.optional(),
+  currentStreak: z
     .object({
       streakStart: timestampSchema,
-      color: yup.string().required(),
+      color: z.string(),
     })
-    .optional()
-    .default(undefined),
+    .optional(),
   joinedAt: timestampSchema,
 });
 
 // Support Group Schema
-export const supportGroupSchema = yup.object({
-  id: yup.string(), // IDS are never passed when creating
-  name: yup.string().required(),
-  description: yup.string().optional(),
-  ownerId: yup.string().required(),
+export const supportGroupSchema = z.object({
+  id: z.string().optional(), // IDS are never passed when creating
+  name: z.string(),
+  description: z.string().optional(),
+  ownerId: z.string(),
   coverPhoto: attachmentSchema.optional(), // Optional cover photo for the group
   membersById: objectOf(supportGroupMemberSchema),
-  unreadMessageCountsById: objectOf(yup.number().required()),
-  memberCount: yup.number().default(0), // Count of members for easier querying
+  unreadMessageCountsById: objectOf(z.number()),
+  memberCount: z.number().default(0), // Count of members for easier querying
   image: attachmentSchema,
-  tacticCollections: yup
-    .array()
-    .of(documentReferenceSchema.required())
-    .required(),
-  isPublic: yup.boolean().optional(),
-  isTemplate: yup.boolean().optional().default(false),
-  inviteCode: yup.string().optional(),
+  tacticCollections: z.array(documentReferenceSchema),
+  isPublic: z.boolean().optional(),
+  isTemplate: z.boolean().optional().default(false),
+  inviteCode: z.string().optional(),
   lastMessage: userMessageLogSchema.optional(),
-  tacticCount: yup.number().default(0),
+  tacticCount: z.number().default(0),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
 });
 
 // Export types inferred from schemas
-export type SupportGroupMember = yup.InferType<typeof supportGroupMemberSchema>;
-export type SupportGroup = yup.InferType<typeof supportGroupSchema>;
+export type SupportGroupMember = z.infer<typeof supportGroupMemberSchema>;
+export type SupportGroup = z.infer<typeof supportGroupSchema>;
 
 // Type guard functions
 export const isValidSupportGroupMember = (
   value: unknown
 ): value is SupportGroupMember => {
-  try {
-    supportGroupMemberSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
+  return supportGroupMemberSchema.safeParse(value).success;
 };
 
 export const isValidSupportGroup = (value: unknown): value is SupportGroup => {
-  try {
-    supportGroupSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
+  return supportGroupSchema.safeParse(value).success;
 };

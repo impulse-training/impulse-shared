@@ -1,13 +1,14 @@
-import * as yup from "yup";
+import { z } from "zod";
 import { objectOf } from "../../utils";
 import { questionSchema } from "../question";
 import { threadBaseSchema } from "./base";
 
-export const impulseThreadSchema = threadBaseSchema.shape({
-  type: yup.mixed<"impulse">().oneOf(["impulse"]).required(),
-  behaviorId: yup.string().defined().nullable(),
-  questionsCompleted: yup.boolean().optional().default(undefined),
+export const impulseThreadSchema = threadBaseSchema.extend({
+  type: z.literal("impulse"),
+  // Present key, may be null
+  behaviorId: z.string().nullable(),
+  questionsCompleted: z.boolean().optional(),
   questionsById: objectOf(questionSchema),
 });
 
-export type ImpulseThread = yup.InferType<typeof impulseThreadSchema>;
+export type ImpulseThread = z.infer<typeof impulseThreadSchema>;

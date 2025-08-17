@@ -1,14 +1,14 @@
-import * as yup from "yup";
+import { z } from "zod";
 import { documentReferenceSchema } from "../../utils";
 import { experimentBaseSchema } from "./base";
 
 export const behaviorInsightExperiment = experimentBaseSchema(
   "behaviorInsight"
-).shape({
-  behavior: documentReferenceSchema.required(),
-  question: documentReferenceSchema.required(),
+).extend({
+  behavior: documentReferenceSchema,
+  question: documentReferenceSchema,
 });
 
-export type BehaviorInsightExperiment = yup.InferType<
+export type BehaviorInsightExperiment = z.infer<
   typeof behaviorInsightExperiment
 >;

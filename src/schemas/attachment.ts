@@ -1,9 +1,9 @@
 /**
- * Attachment Schemas
+ * Attachment Schemas (Zod)
  *
- * Defines Yup schemas for file/media attachments
+ * Defines Zod schemas for file/media attachments
  */
-import * as yup from "yup";
+import { z } from "zod";
 import { timestampSchema } from "../utils";
 
 // Attachment Types
@@ -18,71 +18,46 @@ export const attachmentTypes = [
 export type AttachmentType = (typeof attachmentTypes)[number];
 
 // Base Attachment Schema
-export const attachmentSchema = yup.object({
+export const attachmentSchema = z.object({
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
 
   // Basic file info
-  uri: yup.string().required(),
-  storagePath: yup.string().required(),
-  contentType: yup.string().required(),
+  uri: z.string(),
+  storagePath: z.string(),
+  contentType: z.string(),
   // Optional display title for the attachment
-  title: yup.string().optional(),
-  sizeBytes: yup.number().optional(),
+  title: z.string().optional(),
+  sizeBytes: z.number().optional(),
 
   // For any additional type-specific data
-  metadata: yup
+  metadata: z
     .object({
       // Image-specific fields
-      width: yup.number().when("type", {
-        is: "image",
-        then: () => yup.number().optional(),
-        otherwise: () => yup.number().strip(),
-      }),
-      height: yup.number().when("type", {
-        is: "image",
-        then: () => yup.number().optional(),
-        otherwise: () => yup.number().strip(),
-      }),
+      width: z.number().optional(),
+      height: z.number().optional(),
 
       // Audio/video specific fields
-      durationMs: yup.number().when("type", {
-        is: (val: string) => val === "audio" || val === "video",
-        then: () => yup.number().optional(),
-        otherwise: () => yup.number().strip(),
-      }),
+      durationMs: z.number().optional(),
 
       // Audio-specific fields
-      transcript: yup.string().when("type", {
-        is: "audio",
-        then: () => yup.string().optional(),
-        otherwise: () => yup.string().strip(),
-      }),
-      meterings: yup
+      transcript: z.string().optional(),
+      meterings: z
         .array(
-          yup.object({
-            db: yup.number().required(),
-            timestampMs: yup.number().optional(),
+          z.object({
+            db: z.number(),
+            timestampMs: z.number().optional(),
           })
         )
-        .when("type", {
-          is: "audio",
-          then: () => yup.array().optional(),
-          otherwise: () => yup.array().strip(),
-        }),
+        .optional(),
     })
     .optional(),
 });
 
 // Export types
-export type Attachment = yup.InferType<typeof attachmentSchema>;
+export type Attachment = z.infer<typeof attachmentSchema>;
 
 // Type guard
 export function isAttachment(value: unknown): value is Attachment {
-  try {
-    attachmentSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
+  return attachmentSchema.safeParse(value).success;
 }

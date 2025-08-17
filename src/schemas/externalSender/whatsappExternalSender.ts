@@ -1,15 +1,10 @@
-import * as yup from "yup";
-import { timestampSchema } from "../../utils";
+import { z } from "zod";
 import { externalSenderBaseSchema } from "./base";
 
-export const whatsappExternalSender = externalSenderBaseSchema(
-  "whatsapp"
-).shape({
-  phoneNumber: yup.string().required(),
+export const whatsappExternalSender = externalSenderBaseSchema("whatsapp").extend({
+  phoneNumber: z.string(),
   // Default system message for new sessions
-  defaultSystemMessage: yup.string().required(),
+  defaultSystemMessage: z.string(),
 });
 
-export type WhatsappExternalSender = yup.InferType<
-  typeof whatsappExternalSender
->;
+export type WhatsappExternalSender = z.infer<typeof whatsappExternalSender>;

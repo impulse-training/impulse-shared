@@ -1,7 +1,7 @@
-import * as yup from "yup";
+import { z } from "zod";
 import { threadBaseSchema } from "./base";
 
-export const generalThreadSchema = threadBaseSchema.shape({
-  type: yup.mixed<"general">().oneOf(["general"]).required(),
+export const generalThreadSchema = threadBaseSchema.extend({
+  type: z.literal("general"),
 });
-export type GeneralThread = yup.InferType<typeof generalThreadSchema>;
+export type GeneralThread = z.infer<typeof generalThreadSchema>;

@@ -1,18 +1,18 @@
-import * as yup from "yup";
+import { z } from "zod";
 import { documentReferenceSchema, timestampSchema } from "../../utils";
 
 export function planBaseSchema<T extends string>(type: T) {
-  return yup.object({
-    id: yup.string(),
-    name: yup.string().required(),
-    type: yup.mixed<T>().oneOf([type]).required(),
-    ordinal: yup.number(),
-    isTemplate: yup.boolean().optional().default(undefined),
-    summary: yup.string().optional(),
-    summaryRefreshRequired: yup.boolean().optional().default(undefined),
+  return z.object({
+    id: z.string().optional(),
+    name: z.string(),
+    type: z.literal(type) as unknown as z.ZodType<T>,
+    ordinal: z.number().optional(),
+    isTemplate: z.boolean().optional(),
+    summary: z.string().optional(),
+    summaryRefreshRequired: z.boolean().optional(),
 
     // items can be tactics or tacticCollections
-    items: yup.array().of(documentReferenceSchema.required()).required(),
+    items: z.array(documentReferenceSchema),
     lastUsedAt: timestampSchema,
     createdAt: timestampSchema,
     updatedAt: timestampSchema,

@@ -1,35 +1,30 @@
 /**
- * Custom Yup schema for Firestore Timestamp
+ * Custom Zod schema for Firestore Timestamp
  *
  * This schema validates that a value is a Firestore Timestamp-like object.
  * Each consuming project (frontend/backend) should use its own Firebase implementation.
  */
-import * as yup from "yup";
+import { z } from "zod";
 import { Timestamp } from "../types/firebase";
 
 /**
- * Yup schema for Firestore Timestamp
+ * Zod schema for Firestore Timestamp
  *
  * This schema accepts:
  * - Firestore Timestamp objects (from either react-native-firebase or firebase-admin)
+ * - Date objects
  * - Objects with seconds and nanoseconds properties
  */
-export const timestampSchema = yup
-  .mixed<Timestamp>()
-  .test("is-timestamp", "${path} must be a valid timestamp", (value) => {
-    if (value === null || value === undefined) {
-      return true;
-    }
+export const timestampSchema = z.custom<Timestamp>((value) => {
+  if (value === null || value === undefined) return true;
 
-    // Check if it's a Timestamp-like object
-    return (
-      (value &&
-        typeof value === "object" &&
-        "toDate" in value &&
-        typeof value.toDate === "function") ||
-      value instanceof Date ||
-      (typeof value === "object" &&
-        "seconds" in value &&
-        "nanoseconds" in value)
-    );
-  });
+  const isTimestampLike =
+    typeof value === "object" &&
+    value !== null &&
+    ("toDate" in (value as any) && typeof (value as any).toDate === "function");
+
+  return isTimestampLike;
+}, {
+  message: "Must be a Firestore Timestamp-like object",
+});
+

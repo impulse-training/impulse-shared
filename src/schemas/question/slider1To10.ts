@@ -1,17 +1,11 @@
-import * as yup from "yup";
+import { z } from "zod";
 import { questionBaseSchema } from "./base";
 
-export const slider1To10QuestionSchema = questionBaseSchema(
-  "slider1To10"
-).shape({
-  sliderConfig: yup
-    .object({
-      minLabel: yup.string(),
-      maxLabel: yup.string(),
-    })
-    .required(),
+export const slider1To10QuestionSchema = questionBaseSchema("slider1To10").extend({
+  sliderConfig: z.object({
+    minLabel: z.string().optional(),
+    maxLabel: z.string().optional(),
+  }),
 });
 
-export type Slider1To10Question = yup.InferType<
-  typeof slider1To10QuestionSchema
->;
+export type Slider1To10Question = z.infer<typeof slider1To10QuestionSchema>;

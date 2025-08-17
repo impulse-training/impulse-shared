@@ -1,7 +1,7 @@
-import * as yup from "yup";
+import { z } from "zod";
 import { threadBaseSchema } from "./base";
 
-export const onboardingThreadSchema = threadBaseSchema.shape({
-  type: yup.mixed<"onboarding">().oneOf(["onboarding"]).required(),
+export const onboardingThreadSchema = threadBaseSchema.extend({
+  type: z.literal("onboarding"),
 });
-export type OnboardingThread = yup.InferType<typeof onboardingThreadSchema>;
+export type OnboardingThread = z.infer<typeof onboardingThreadSchema>;

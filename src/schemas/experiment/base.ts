@@ -1,10 +1,10 @@
-import * as yup from "yup";
+import { z } from "zod";
 import { timestampSchema } from "../../utils";
 
 export function experimentBaseSchema<K extends string>(type: K) {
-  return yup.object({
-    type: yup.mixed<K>().required().oneOf([type]),
-    startedAt: timestampSchema.required(),
-    hypothesis: yup.string().required(),
+  return z.object({
+    type: z.literal(type),
+    startedAt: timestampSchema,
+    hypothesis: z.string(),
   });
 }

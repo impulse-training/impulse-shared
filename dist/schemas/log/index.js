@@ -10,34 +10,12 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
 }));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || (function () {
-    var ownKeys = function(o) {
-        ownKeys = Object.getOwnPropertyNames || function (o) {
-            var ar = [];
-            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
-            return ar;
-        };
-        return ownKeys(o);
-    };
-    return function (mod) {
-        if (mod && mod.__esModule) return mod;
-        var result = {};
-        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
-        __setModuleDefault(result, mod);
-        return result;
-    };
-})();
 var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidPlanLog = exports.logIsPlanLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticSuggestionLog = exports.logIsTacticSuggestionLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorLog = exports.logIsBehaviorLog = exports.isValidDaySummaryLog = exports.logIsDaySummaryLog = exports.isValidResistedLog = exports.logIsResistedLog = exports.isValidNotifySupportGroupLog = exports.logIsNotifySupportGroupLog = exports.isValidShowTourLog = exports.logIsShowTourLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
-const yup = __importStar(require("yup"));
+const zod_1 = require("zod");
 const behaviorLog_1 = require("./behaviorLog");
 const callLog_1 = require("./callLog");
 const daySummaryLog_1 = require("./daySummaryLog");
@@ -95,221 +73,127 @@ __exportStar(require("./tacticSuggestionLog"), exports);
 __exportStar(require("./toolCallLog"), exports);
 __exportStar(require("./videoLog"), exports);
 __exportStar(require("./widgetSetupLog"), exports);
-// Dynamic schema that selects the appropriate schema based on the tactic type
-exports.logSchema = yup.lazy((value) => {
-    if (typeof (value === null || value === void 0 ? void 0 : value.type) === "string" && value.type in exports.logSchemas) {
-        return exports.logSchemas[value.type];
-    }
-    // Fallback schema for validation when type is missing or invalid
-    return yup.object({
-        type: yup
-            .string()
-            .oneOf(Object.keys(exports.logSchemas))
-            .required("Tactic type is required"),
-    });
-});
+// Discriminated union schema across all log variants
+exports.logSchema = zod_1.z.discriminatedUnion("type", [
+    userMessageLog_1.userMessageLogSchema,
+    messageLog_1.assistantMessageLogSchema,
+    callLog_1.callLogSchema,
+    toolCallLog_1.toolCallLogSchema,
+    tacticLog_1.tacticLogSchema,
+    tacticSuggestionLog_1.tacticSuggestionLogSchema,
+    daySummaryLog_1.daySummaryLogSchema,
+    impulseLog_1.impulseLogSchema,
+    behaviorLog_1.behaviorLogSchema,
+    questionLog_1.questionLogSchema,
+    planLog_1.planLogSchema,
+    summaryLog_1.summaryLogSchema,
+    resistedLog_1.resistedLogSchema,
+    widgetSetupLog_1.widgetSetupLogSchema,
+    showTourLog_1.showTourLogSchema,
+    linkLog_1.linkLogSchema,
+    notifySupportGroupLog_1.notifySupportGroupLogSchema,
+    videoLog_1.videoLogSchema,
+]);
 // Export log type guards
 const logIsAssistantMessageLog = (value) => value.type === "assistant_message";
 exports.logIsAssistantMessageLog = logIsAssistantMessageLog;
 const isValidAssistantMessageLog = (value) => {
-    try {
-        messageLog_1.assistantMessageLogSchema.validateSync(value);
-        return true;
-    }
-    catch (error) {
-        return false;
-    }
+    return messageLog_1.assistantMessageLogSchema.safeParse(value).success;
 };
 exports.isValidAssistantMessageLog = isValidAssistantMessageLog;
 const logIsShowTourLog = (value) => value.type === "show_tour";
 exports.logIsShowTourLog = logIsShowTourLog;
 const isValidShowTourLog = (value) => {
-    try {
-        showTourLog_1.showTourLogSchema.validateSync(value);
-        return true;
-    }
-    catch (error) {
-        return false;
-    }
+    return showTourLog_1.showTourLogSchema.safeParse(value).success;
 };
 exports.isValidShowTourLog = isValidShowTourLog;
 const logIsNotifySupportGroupLog = (value) => value.type === "notify_support_group";
 exports.logIsNotifySupportGroupLog = logIsNotifySupportGroupLog;
 const isValidNotifySupportGroupLog = (value) => {
-    try {
-        notifySupportGroupLog_1.notifySupportGroupLogSchema.validateSync(value);
-        return true;
-    }
-    catch (error) {
-        return false;
-    }
+    return notifySupportGroupLog_1.notifySupportGroupLogSchema.safeParse(value).success;
 };
 exports.isValidNotifySupportGroupLog = isValidNotifySupportGroupLog;
 const logIsResistedLog = (value) => value.type === "resisted";
 exports.logIsResistedLog = logIsResistedLog;
 const isValidResistedLog = (value) => {
-    try {
-        resistedLog_1.resistedLogSchema.validateSync(value);
-        return true;
-    }
-    catch (error) {
-        return false;
-    }
+    return resistedLog_1.resistedLogSchema.safeParse(value).success;
 };
 exports.isValidResistedLog = isValidResistedLog;
 const logIsDaySummaryLog = (value) => value.type === "day_summary";
 exports.logIsDaySummaryLog = logIsDaySummaryLog;
 const isValidDaySummaryLog = (value) => {
-    try {
-        showTourLog_1.showTourLogSchema.validateSync(value);
-        return true;
-    }
-    catch (error) {
-        return false;
-    }
+    return daySummaryLog_1.daySummaryLogSchema.safeParse(value).success;
 };
 exports.isValidDaySummaryLog = isValidDaySummaryLog;
 const logIsBehaviorLog = (value) => value.type === "behavior";
 exports.logIsBehaviorLog = logIsBehaviorLog;
 const isValidBehaviorLog = (value) => {
-    try {
-        behaviorLog_1.behaviorLogSchema.validateSync(value);
-        return true;
-    }
-    catch (error) {
-        return false;
-    }
+    return behaviorLog_1.behaviorLogSchema.safeParse(value).success;
 };
 exports.isValidBehaviorLog = isValidBehaviorLog;
 const logIsCallLog = (value) => value.type === "call";
 exports.logIsCallLog = logIsCallLog;
 const isValidCallLog = (value) => {
-    try {
-        callLog_1.callLogSchema.validateSync(value);
-        return true;
-    }
-    catch (error) {
-        return false;
-    }
+    return callLog_1.callLogSchema.safeParse(value).success;
 };
 exports.isValidCallLog = isValidCallLog;
 const logIsImpulseLog = (value) => value.type === "impulse_button_pressed";
 exports.logIsImpulseLog = logIsImpulseLog;
 const isValidImpulseLog = (value) => {
-    try {
-        impulseLog_1.impulseLogSchema.validateSync(value);
-        return true;
-    }
-    catch (error) {
-        return false;
-    }
+    return impulseLog_1.impulseLogSchema.safeParse(value).success;
 };
 exports.isValidImpulseLog = isValidImpulseLog;
 const logIsToolCallLog = (value) => value.type === "tool_call";
 exports.logIsToolCallLog = logIsToolCallLog;
 const isValidToolCallLog = (value) => {
-    try {
-        toolCallLog_1.toolCallLogSchema.validateSync(value);
-        return true;
-    }
-    catch (error) {
-        return false;
-    }
+    return toolCallLog_1.toolCallLogSchema.safeParse(value).success;
 };
 exports.isValidToolCallLog = isValidToolCallLog;
 const logIsWidgetSetupLog = (value) => value.type === "widget_setup";
 exports.logIsWidgetSetupLog = logIsWidgetSetupLog;
 const isValidWidgetSetupLog = (value) => {
-    try {
-        toolCallLog_1.toolCallLogSchema.validateSync(value);
-        return true;
-    }
-    catch (error) {
-        return false;
-    }
+    return widgetSetupLog_1.widgetSetupLogSchema.safeParse(value).success;
 };
 exports.isValidWidgetSetupLog = isValidWidgetSetupLog;
 const logIsQuestionLog = (value) => value.type === "question";
 exports.logIsQuestionLog = logIsQuestionLog;
 const isValidQuestionLog = (value) => {
-    try {
-        questionLog_1.questionLogSchema.validateSync(value);
-        return true;
-    }
-    catch (error) {
-        return false;
-    }
+    return questionLog_1.questionLogSchema.safeParse(value).success;
 };
 exports.isValidQuestionLog = isValidQuestionLog;
 const logIsTacticLog = (value) => value.type === "tactic_completed";
 exports.logIsTacticLog = logIsTacticLog;
 const isValidTacticLog = (value) => {
-    try {
-        tacticLog_1.tacticLogSchema.validateSync(value);
-        return true;
-    }
-    catch (error) {
-        return false;
-    }
+    return tacticLog_1.tacticLogSchema.safeParse(value).success;
 };
 exports.isValidTacticLog = isValidTacticLog;
 const logIsTacticSuggestionLog = (value) => value.type === "tactic_suggestion";
 exports.logIsTacticSuggestionLog = logIsTacticSuggestionLog;
 const isValidTacticSuggestionLog = (value) => {
-    try {
-        tacticSuggestionLog_1.tacticSuggestionLogSchema.validateSync(value);
-        return true;
-    }
-    catch (error) {
-        return false;
-    }
+    return tacticSuggestionLog_1.tacticSuggestionLogSchema.safeParse(value).success;
 };
 exports.isValidTacticSuggestionLog = isValidTacticSuggestionLog;
 const logIsUserMessageLog = (value) => value.type === "user_message";
 exports.logIsUserMessageLog = logIsUserMessageLog;
 const isValidUserMessageLog = (value) => {
-    try {
-        userMessageLog_1.userMessageLogSchema.validateSync(value);
-        return true;
-    }
-    catch (error) {
-        return false;
-    }
+    return userMessageLog_1.userMessageLogSchema.safeParse(value).success;
 };
 exports.isValidUserMessageLog = isValidUserMessageLog;
 const logIsPlanLog = (value) => value.type === "plan";
 exports.logIsPlanLog = logIsPlanLog;
 const isValidPlanLog = (value) => {
-    try {
-        planLog_1.planLogSchema.validateSync(value);
-        return true;
-    }
-    catch (error) {
-        return false;
-    }
+    return planLog_1.planLogSchema.safeParse(value).success;
 };
 exports.isValidPlanLog = isValidPlanLog;
 const logIsSummaryLog = (value) => value.type === "summary";
 exports.logIsSummaryLog = logIsSummaryLog;
 const isValidSummaryLog = (value) => {
-    try {
-        summaryLog_1.summaryLogSchema.validateSync(value);
-        return true;
-    }
-    catch (error) {
-        return false;
-    }
+    return summaryLog_1.summaryLogSchema.safeParse(value).success;
 };
 exports.isValidSummaryLog = isValidSummaryLog;
 const logIsLinkLog = (value) => value.type === "link";
 exports.logIsLinkLog = logIsLinkLog;
 const isValidLinkLog = (value) => {
-    try {
-        linkLog_1.linkLogSchema.validateSync(value);
-        return true;
-    }
-    catch (error) {
-        return false;
-    }
+    return linkLog_1.linkLogSchema.safeParse(value).success;
 };
 exports.isValidLinkLog = isValidLinkLog;

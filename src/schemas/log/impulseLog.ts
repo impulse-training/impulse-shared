@@ -1,11 +1,11 @@
-import * as yup from "yup";
+import { z } from "zod";
 import { logBaseSchema } from "./base";
 
 // Impulse Log Schema
-export const impulseLogSchema = logBaseSchema.shape({
-  type: yup.string().oneOf(["impulse_button_pressed"]).required(),
+export const impulseLogSchema = logBaseSchema.extend({
+  type: z.literal("impulse_button_pressed"),
   // Impulse logs are always displayed in the UI
-  isDisplayable: yup.mixed<true>().oneOf([true]).required(),
+  isDisplayable: z.literal(true),
 });
 
-export type ImpulseLog = yup.InferType<typeof impulseLogSchema>;
+export type ImpulseLog = z.infer<typeof impulseLogSchema>;

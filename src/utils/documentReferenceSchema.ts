@@ -1,4 +1,4 @@
-import * as yup from "yup";
+import { z } from "zod";
 import { DocumentSnapshotLike } from "../types/firebase";
 
 // Ultimately, we have a problem because our "core" types include references to firestore
@@ -20,16 +20,17 @@ export interface DocumentReferenceLike<T> {
   delete(): Promise<any>;
 }
 
-export const documentReferenceSchema = yup
-  .mixed<DocumentReferenceLike<unknown>>()
-  .test({
-    name: "has-id-property",
-    message: '${path} must be an object with an "id" property',
-    test: (value) =>
-      value == null ||
-      (typeof value === "object" &&
-        "id" in value &&
-        typeof value.id === "string"),
-  });
+export const documentReferenceSchema = z.custom<DocumentReferenceLike<unknown>>(
+  (value) => {
+    if (value == null) return true;
+    return (
+      typeof value === "object" &&
+      value !== null &&
+      "id" in (value as any) &&
+      typeof (value as any).id === "string"
+    );
+  },
+  { message: 'Must be an object with an "id" property' }
+);
 
-export const collectionReferenceSchema = yup.mixed();
+export const collectionReferenceSchema = z.custom<unknown>(() => true);

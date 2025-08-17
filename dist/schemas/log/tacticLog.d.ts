@@ -1,31 +1,52 @@
-import * as yup from "yup";
-export declare const tacticLogSchema: yup.ObjectSchema<{
-    id: string | undefined;
-    createdAt: import("../../types").Timestamp | undefined;
-    updatedAt: import("../../types").Timestamp | undefined;
+import { z } from "zod";
+export declare const tacticLogSchema: z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    callLogDocPath: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"tactic_completed">;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        tactic: z.ZodAny;
+        tacticCollectionId: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        tacticCollectionId: string;
+        tactic?: any;
+    }, {
+        tacticCollectionId: string;
+        tactic?: any;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    type: "tactic_completed";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
     userId: string;
     timestamp: import("../../types").Timestamp;
     dateString: string;
-    callLogDocPath: string | undefined;
-    type: "tactic_completed";
     isDisplayable: true;
     data: {
-        tactic: import("../tactic.old").Tactic;
         tacticCollectionId: string;
+        tactic?: any;
     };
-}, yup.AnyObject, {
-    id: undefined;
-    createdAt: undefined;
-    updatedAt: undefined;
-    userId: undefined;
-    timestamp: undefined;
-    dateString: undefined;
-    callLogDocPath: undefined;
-    type: undefined;
-    isDisplayable: undefined;
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}, {
+    type: "tactic_completed";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
     data: {
-        tactic: undefined;
-        tacticCollectionId: undefined;
+        tacticCollectionId: string;
+        tactic?: any;
     };
-}, "">;
-export type TacticLog = yup.InferType<typeof tacticLogSchema>;
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}>;
+export type TacticLog = z.infer<typeof tacticLogSchema>;

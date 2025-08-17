@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { mediaItemSchema } from "./media";
+import { attachmentSchema } from "../attachment";
 
 const baseStepSchema = z.object({
   id: z.string(),
@@ -35,7 +35,7 @@ const notifySupportStepSchema = baseStepSchema.extend({
 
 const mediaStepSchema = baseStepSchema.extend({
   mode: z.literal("media"),
-  media: z.array(mediaItemSchema).min(1),
+  media: z.array(attachmentSchema).min(1),
 });
 
 export const tacticStepSchema = z.discriminatedUnion("mode", [

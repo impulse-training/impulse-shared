@@ -1,15 +1,15 @@
-import * as yup from "yup";
+import { z } from "zod";
 import { logBaseSchema } from "./base";
 
 // Define the LinkLog schema
 
-export const linkLogSchema = logBaseSchema.shape({
-  type: yup.mixed<"link">().oneOf(["link"]).required(),
-  isDisplayable: yup.mixed<true>().oneOf([true]).required(),
-  text: yup.string().required(),
-  link: yup.string().required(),
-  buttonText: yup.string().required(),
+export const linkLogSchema = logBaseSchema.extend({
+  type: z.literal("link"),
+  isDisplayable: z.literal(true),
+  text: z.string(),
+  link: z.string(),
+  buttonText: z.string(),
 });
 
 // Export the LinkLog type using yup.InferType
-export type LinkLog = yup.InferType<typeof linkLogSchema>;
+export type LinkLog = z.infer<typeof linkLogSchema>;

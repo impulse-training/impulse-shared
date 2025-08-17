@@ -1,4 +1,4 @@
-import * as yup from "yup";
+import { z } from "zod";
 import { Timestamp } from "../types";
 import {
   DocumentReferenceLike,
@@ -17,12 +17,12 @@ export interface ExternalSenderSession {
   targetTacticRef?: DocumentReferenceLike<any>;
 }
 
-export const externalSenderSessionSchema = yup.object().shape({
-  createdAt: timestampSchema.required(),
-  updatedAt: timestampSchema.required(),
-  expiresAt: timestampSchema.required(),
-  systemMessage: yup.string().required(),
-  filesUpdatedAt: timestampSchema,
-  senderName: yup.string(),
-  targetTacticRef: documentReferenceSchema,
+export const externalSenderSessionSchema = z.object({
+  createdAt: timestampSchema,
+  updatedAt: timestampSchema,
+  expiresAt: timestampSchema,
+  systemMessage: z.string(),
+  filesUpdatedAt: timestampSchema.optional(),
+  senderName: z.string().optional(),
+  targetTacticRef: documentReferenceSchema.optional(),
 });

@@ -1,4 +1,4 @@
-import * as yup from "yup";
+import { z } from "zod";
 import { BehaviorLog, behaviorLogSchema } from "./behaviorLog";
 import { CallLog, callLogSchema } from "./callLog";
 import { DaySummaryLog, daySummaryLogSchema } from "./daySummaryLog";
@@ -94,20 +94,27 @@ export * from "./toolCallLog";
 export * from "./videoLog";
 export * from "./widgetSetupLog";
 
-// Dynamic schema that selects the appropriate schema based on the tactic type
-export const logSchema = yup.lazy((value) => {
-  if (typeof value?.type === "string" && value.type in logSchemas) {
-    return logSchemas[value.type as keyof typeof logSchemas] as yup.Schema<Log>;
-  }
-
-  // Fallback schema for validation when type is missing or invalid
-  return yup.object({
-    type: yup
-      .string()
-      .oneOf(Object.keys(logSchemas))
-      .required("Tactic type is required"),
-  }) as unknown as yup.Schema<Log>;
-});
+// Discriminated union schema across all log variants
+export const logSchema = z.discriminatedUnion("type", [
+  userMessageLogSchema,
+  assistantMessageLogSchema,
+  callLogSchema,
+  toolCallLogSchema,
+  tacticLogSchema,
+  tacticSuggestionLogSchema,
+  daySummaryLogSchema,
+  impulseLogSchema,
+  behaviorLogSchema,
+  questionLogSchema,
+  planLogSchema,
+  summaryLogSchema,
+  resistedLogSchema,
+  widgetSetupLogSchema,
+  showTourLogSchema,
+  linkLogSchema,
+  notifySupportGroupLogSchema,
+  videoLogSchema,
+]);
 
 // Export log type guards
 
@@ -117,24 +124,14 @@ export const logIsAssistantMessageLog = (
 export const isValidAssistantMessageLog = (
   value: unknown
 ): value is AssistantMessageLog => {
-  try {
-    assistantMessageLogSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
+  return assistantMessageLogSchema.safeParse(value).success;
 };
 
 export const logIsShowTourLog = (
   value: Omit<Log, "id">
 ): value is ShowTourLog => value.type === "show_tour";
 export const isValidShowTourLog = (value: unknown): value is ShowTourLog => {
-  try {
-    showTourLogSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
+  return showTourLogSchema.safeParse(value).success;
 };
 
 export const logIsNotifySupportGroupLog = (
@@ -143,24 +140,14 @@ export const logIsNotifySupportGroupLog = (
 export const isValidNotifySupportGroupLog = (
   value: unknown
 ): value is NotifySupportGroupLog => {
-  try {
-    notifySupportGroupLogSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
+  return notifySupportGroupLogSchema.safeParse(value).success;
 };
 
 export const logIsResistedLog = (
   value: Omit<Log, "id">
 ): value is ResistedLog => value.type === "resisted";
 export const isValidResistedLog = (value: unknown): value is ResistedLog => {
-  try {
-    resistedLogSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
+  return resistedLogSchema.safeParse(value).success;
 };
 
 export const logIsDaySummaryLog = (
@@ -169,93 +156,55 @@ export const logIsDaySummaryLog = (
 export const isValidDaySummaryLog = (
   value: unknown
 ): value is DaySummaryLog => {
-  try {
-    showTourLogSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
+  return daySummaryLogSchema.safeParse(value).success;
 };
 
 export const logIsBehaviorLog = (
   value: Omit<Log, "id">
 ): value is BehaviorLog => value.type === "behavior";
 export const isValidBehaviorLog = (value: unknown): value is BehaviorLog => {
-  try {
-    behaviorLogSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
+  return behaviorLogSchema.safeParse(value).success;
 };
 
 export const logIsCallLog = (value: Omit<Log, "id">): value is CallLog =>
   value.type === "call";
 export const isValidCallLog = (value: unknown): value is CallLog => {
-  try {
-    callLogSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
+  return callLogSchema.safeParse(value).success;
 };
 
 export const logIsImpulseLog = (value: Omit<Log, "id">): value is ImpulseLog =>
   value.type === "impulse_button_pressed";
 export const isValidImpulseLog = (value: unknown): value is ImpulseLog => {
-  try {
-    impulseLogSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
+  return impulseLogSchema.safeParse(value).success;
 };
 
 export const logIsToolCallLog = (
   value: Omit<Log, "id">
 ): value is ToolCallLog => value.type === "tool_call";
 export const isValidToolCallLog = (value: unknown): value is ToolCallLog => {
-  try {
-    toolCallLogSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
+  return toolCallLogSchema.safeParse(value).success;
 };
 
 export const logIsWidgetSetupLog = (
   value: Omit<Log, "id">
 ): value is WidgetSetupLog => value.type === "widget_setup";
-export const isValidWidgetSetupLog = (value: unknown): value is ToolCallLog => {
-  try {
-    toolCallLogSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
+export const isValidWidgetSetupLog = (
+  value: unknown
+): value is WidgetSetupLog => {
+  return widgetSetupLogSchema.safeParse(value).success;
 };
 
 export const logIsQuestionLog = (
   value: Omit<Log, "id">
 ): value is QuestionLog => value.type === "question";
 export const isValidQuestionLog = (value: unknown): value is QuestionLog => {
-  try {
-    questionLogSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
+  return questionLogSchema.safeParse(value).success;
 };
 
 export const logIsTacticLog = (value: Omit<Log, "id">): value is TacticLog =>
   value.type === "tactic_completed";
 export const isValidTacticLog = (value: unknown): value is TacticLog => {
-  try {
-    tacticLogSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
+  return tacticLogSchema.safeParse(value).success;
 };
 
 export const logIsTacticSuggestionLog = (
@@ -264,12 +213,7 @@ export const logIsTacticSuggestionLog = (
 export const isValidTacticSuggestionLog = (
   value: unknown
 ): value is TacticSuggestionLog => {
-  try {
-    tacticSuggestionLogSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
+  return tacticSuggestionLogSchema.safeParse(value).success;
 };
 
 export const logIsUserMessageLog = (
@@ -278,44 +222,24 @@ export const logIsUserMessageLog = (
 export const isValidUserMessageLog = (
   value: unknown
 ): value is UserMessageLog => {
-  try {
-    userMessageLogSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
+  return userMessageLogSchema.safeParse(value).success;
 };
 
 export const logIsPlanLog = (value: Omit<Log, "id">): value is PlanLog =>
   value.type === "plan";
 
 export const isValidPlanLog = (value: unknown): value is PlanLog => {
-  try {
-    planLogSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
+  return planLogSchema.safeParse(value).success;
 };
 
 export const logIsSummaryLog = (value: Omit<Log, "id">): value is SummaryLog =>
   value.type === "summary";
 export const isValidSummaryLog = (value: unknown): value is SummaryLog => {
-  try {
-    summaryLogSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
+  return summaryLogSchema.safeParse(value).success;
 };
 
 export const logIsLinkLog = (value: Omit<Log, "id">): value is LinkLog =>
   value.type === "link";
 export const isValidLinkLog = (value: unknown): value is LinkLog => {
-  try {
-    linkLogSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
+  return linkLogSchema.safeParse(value).success;
 };

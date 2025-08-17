@@ -1,4 +1,4 @@
-import * as yup from "yup";
+import { z } from "zod";
 import {
   WhatsappExternalSender,
   whatsappExternalSender,
@@ -6,35 +6,13 @@ import {
 
 export * from "./whatsappExternalSender";
 
-export const externalSenderSchemas: Record<
-  ExternalSenderValue["type"],
-  yup.ObjectSchema<ExternalSenderValue>
-> = {
+// Map is retained for compatibility if referenced elsewhere
+export const externalSenderSchemas = {
   whatsapp: whatsappExternalSender,
-} as any;
+} as const;
 
-export const externalSenderSchema = yup.lazy((value: any) => {
-  if (!value) return yup.mixed().required();
-
-  if (typeof value.type === "string" && value.type in externalSenderSchemas) {
-    return externalSenderSchemas[value.type as ExternalSenderValue["type"]];
-  }
-
-  return yup.object({
-    type: yup
-      .mixed<ExternalSenderValue["type"]>()
-      .oneOf(
-        Object.keys(externalSenderSchemas) as ExternalSenderValue["type"][]
-      )
-      .required(),
-  });
-}) as yup.Lazy<ValidatedExternalSenderValue>;
-
-// / This type represents the union of all possible validated tactic objects
-type ValidatedExternalSenderValue = {
-  [K in ExternalSenderValue["type"]]: yup.InferType<
-    (typeof externalSenderSchemas)[K]
-  >;
-}[ExternalSenderValue["type"]];
+export const externalSenderSchema = z.discriminatedUnion("type", [
+  externalSenderSchemas.whatsapp,
+]);
 
 export type ExternalSenderValue = WhatsappExternalSender;

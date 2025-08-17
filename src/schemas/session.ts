@@ -1,13 +1,13 @@
-import * as yup from "yup";
+import { z } from "zod";
 import { timestampSchema } from "../utils";
 
-export const sessionSchema = yup.object({
-  participantUids: yup.array().of(yup.string()).required(),
+export const sessionSchema = z.object({
+  participantUids: z.array(z.string()),
   startTime: timestampSchema,
-  durationMinutes: yup.number().required(),
-  title: yup.string(),
-  transcriptSummary: yup.string(),
-  code: yup.string().required(),
+  durationMinutes: z.number(),
+  title: z.string().optional(),
+  transcriptSummary: z.string().optional(),
+  code: z.string(),
 });
 
-export type Session = yup.InferType<typeof sessionSchema>;
+export type Session = z.infer<typeof sessionSchema>;

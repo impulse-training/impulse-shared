@@ -1,18 +1,13 @@
-import {
-  ChatCompletionMessage,
-  ChatCompletionMessageParam,
-  ChatCompletionTool,
-} from "openai/resources";
-import * as yup from "yup";
+import { z } from "zod";
 import { timestampSchema } from "../utils";
 
-export const llmAuditEntrySchema = yup.object({
-  userId: yup.string().required(),
-  logId: yup.string().required(),
+export const llmAuditEntrySchema = z.object({
+  userId: z.string(),
+  logId: z.string(),
   timestamp: timestampSchema,
-  messages: yup.array().of(yup.mixed<ChatCompletionMessageParam>()).required(),
-  response: yup.mixed<ChatCompletionMessage>().required(),
-  toolDefinitions: yup.array().of(yup.mixed<ChatCompletionTool>()).required(),
+  messages: z.array(z.any()),
+  response: z.any(),
+  toolDefinitions: z.array(z.any()),
 });
 
-export type LLMAuditEntry = yup.InferType<typeof llmAuditEntrySchema>;
+export type LLMAuditEntry = z.infer<typeof llmAuditEntrySchema>;

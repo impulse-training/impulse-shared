@@ -1,4 +1,4 @@
-import * as yup from "yup";
+import { z } from "zod";
 import { BehaviorLog } from "./behaviorLog";
 import { CallLog } from "./callLog";
 import { DaySummaryLog } from "./daySummaryLog";
@@ -18,22 +18,72 @@ import { VideoLog } from "./videoLog";
 import { WidgetSetupLog } from "./widgetSetupLog";
 import { TacticSuggestionLog } from "./tacticSuggestionLog";
 export declare const logSchemas: {
-    user: yup.ObjectSchema<{
-        id: string | undefined;
-        createdAt: import("../../types").Timestamp | undefined;
-        updatedAt: import("../../types").Timestamp | undefined;
-        userId: string;
-        timestamp: import("../../types").Timestamp;
-        dateString: string;
-        callLogDocPath: string | undefined;
-        type: "user_message";
-        isDisplayable: true;
-        data: {
-            message: import("openai/resources").ChatCompletionUserMessageParam;
-        };
-        audioAttachment: {
-            createdAt?: import("../../types").Timestamp | undefined;
-            updatedAt?: import("../../types").Timestamp | undefined;
+    user: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        callLogDocPath: z.ZodOptional<z.ZodString>;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            message: z.ZodAny;
+        }, "strip", z.ZodTypeAny, {
+            message?: any;
+        }, {
+            message?: any;
+        }>;
+    } & {
+        type: z.ZodLiteral<"user_message">;
+        audioAttachment: z.ZodOptional<z.ZodObject<{
+            createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+            updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+            uri: z.ZodString;
+            storagePath: z.ZodString;
+            contentType: z.ZodString;
+            title: z.ZodOptional<z.ZodString>;
+            sizeBytes: z.ZodOptional<z.ZodNumber>;
+            metadata: z.ZodOptional<z.ZodObject<{
+                width: z.ZodOptional<z.ZodNumber>;
+                height: z.ZodOptional<z.ZodNumber>;
+                durationMs: z.ZodOptional<z.ZodNumber>;
+                transcript: z.ZodOptional<z.ZodString>;
+                meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                    db: z.ZodNumber;
+                    timestampMs: z.ZodOptional<z.ZodNumber>;
+                }, "strip", z.ZodTypeAny, {
+                    db: number;
+                    timestampMs?: number | undefined;
+                }, {
+                    db: number;
+                    timestampMs?: number | undefined;
+                }>, "many">>;
+            }, "strip", z.ZodTypeAny, {
+                width?: number | undefined;
+                height?: number | undefined;
+                durationMs?: number | undefined;
+                transcript?: string | undefined;
+                meterings?: {
+                    db: number;
+                    timestampMs?: number | undefined;
+                }[] | undefined;
+            }, {
+                width?: number | undefined;
+                height?: number | undefined;
+                durationMs?: number | undefined;
+                transcript?: string | undefined;
+                meterings?: {
+                    db: number;
+                    timestampMs?: number | undefined;
+                }[] | undefined;
+            }>>;
+        }, "strip", z.ZodTypeAny, {
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
+            uri: string;
+            storagePath: string;
+            contentType: string;
             title?: string | undefined;
             sizeBytes?: number | undefined;
             metadata?: {
@@ -42,665 +92,1864 @@ export declare const logSchemas: {
                 durationMs?: number | undefined;
                 transcript?: string | undefined;
                 meterings?: {
-                    timestampMs?: number | undefined;
                     db: number;
+                    timestampMs?: number | undefined;
                 }[] | undefined;
             } | undefined;
+        }, {
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
             uri: string;
             storagePath: string;
             contentType: string;
+            title?: string | undefined;
+            sizeBytes?: number | undefined;
+            metadata?: {
+                width?: number | undefined;
+                height?: number | undefined;
+                durationMs?: number | undefined;
+                transcript?: string | undefined;
+                meterings?: {
+                    db: number;
+                    timestampMs?: number | undefined;
+                }[] | undefined;
+            } | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        type: "user_message";
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        isDisplayable: true;
+        data: {
+            message?: any;
+        };
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+        audioAttachment?: {
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
+            uri: string;
+            storagePath: string;
+            contentType: string;
+            title?: string | undefined;
+            sizeBytes?: number | undefined;
+            metadata?: {
+                width?: number | undefined;
+                height?: number | undefined;
+                durationMs?: number | undefined;
+                transcript?: string | undefined;
+                meterings?: {
+                    db: number;
+                    timestampMs?: number | undefined;
+                }[] | undefined;
+            } | undefined;
         } | undefined;
-    }, yup.AnyObject, {
-        id: undefined;
-        createdAt: undefined;
-        updatedAt: undefined;
-        userId: undefined;
-        timestamp: undefined;
-        dateString: undefined;
-        callLogDocPath: undefined;
-        type: undefined;
-        isDisplayable: undefined;
-        data: {
-            message: undefined;
-        } & {
-            message: undefined;
-        };
-        audioAttachment: {
-            createdAt: undefined;
-            updatedAt: undefined;
-            uri: undefined;
-            storagePath: undefined;
-            contentType: undefined;
-            title: undefined;
-            sizeBytes: undefined;
-            metadata: {
-                width: undefined;
-                height: undefined;
-                durationMs: undefined;
-                transcript: undefined;
-                meterings: undefined;
-            };
-        };
-    }, "">;
-    assistant_message: yup.ObjectSchema<{
-        id: string | undefined;
-        createdAt: import("../../types").Timestamp | undefined;
-        updatedAt: import("../../types").Timestamp | undefined;
+    }, {
+        type: "user_message";
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
-        callLogDocPath: string | undefined;
+        isDisplayable: true;
+        data: {
+            message?: any;
+        };
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+        audioAttachment?: {
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
+            uri: string;
+            storagePath: string;
+            contentType: string;
+            title?: string | undefined;
+            sizeBytes?: number | undefined;
+            metadata?: {
+                width?: number | undefined;
+                height?: number | undefined;
+                durationMs?: number | undefined;
+                transcript?: string | undefined;
+                meterings?: {
+                    db: number;
+                    timestampMs?: number | undefined;
+                }[] | undefined;
+            } | undefined;
+        } | undefined;
+    }>;
+    assistant_message: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        callLogDocPath: z.ZodOptional<z.ZodString>;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            message: z.ZodAny;
+        }, "strip", z.ZodTypeAny, {
+            message?: any;
+        }, {
+            message?: any;
+        }>;
+    } & {
+        type: z.ZodLiteral<"assistant_message">;
+    }, "strip", z.ZodTypeAny, {
         type: "assistant_message";
-        isDisplayable: true;
-        data: {
-            message: import("openai/resources").ChatCompletionAssistantMessageParam;
-        };
-    }, yup.AnyObject, {
-        id: undefined;
-        createdAt: undefined;
-        updatedAt: undefined;
-        userId: undefined;
-        timestamp: undefined;
-        dateString: undefined;
-        callLogDocPath: undefined;
-        type: undefined;
-        isDisplayable: undefined;
-        data: {
-            message: undefined;
-        } & {
-            message: undefined;
-        };
-    }, "">;
-    call: yup.ObjectSchema<{
-        id: string | undefined;
-        createdAt: import("../../types").Timestamp | undefined;
-        updatedAt: import("../../types").Timestamp | undefined;
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
-        callLogDocPath: string | undefined;
-        type: "call";
         isDisplayable: true;
         data: {
-            agentConnectedAt?: import("../../types").Timestamp | undefined;
-            endedAt?: import("../../types").Timestamp | undefined;
-            summary?: string | undefined;
+            message?: any;
+        };
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }, {
+        type: "assistant_message";
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        isDisplayable: true;
+        data: {
+            message?: any;
+        };
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }>;
+    call: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        callLogDocPath: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"call">;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            agentConnectedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+            endedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+            livekitSessionId: z.ZodString;
+            livekitRoomName: z.ZodString;
+            summary: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            agentConnectedAt: import("../../types").Timestamp;
+            endedAt: import("../../types").Timestamp;
             livekitSessionId: string;
             livekitRoomName: string;
-        };
-    }, yup.AnyObject, {
-        id: undefined;
-        createdAt: undefined;
-        updatedAt: undefined;
-        userId: undefined;
-        timestamp: undefined;
-        dateString: undefined;
-        callLogDocPath: undefined;
-        type: undefined;
-        isDisplayable: undefined;
-        data: {
-            agentConnectedAt: undefined;
-            endedAt: undefined;
-            livekitSessionId: undefined;
-            livekitRoomName: undefined;
-            summary: undefined;
-        };
-    }, "">;
-    tool_call: yup.ObjectSchema<{
-        id: string | undefined;
-        createdAt: import("../../types").Timestamp | undefined;
-        updatedAt: import("../../types").Timestamp | undefined;
+            summary?: string | undefined;
+        }, {
+            agentConnectedAt: import("../../types").Timestamp;
+            endedAt: import("../../types").Timestamp;
+            livekitSessionId: string;
+            livekitRoomName: string;
+            summary?: string | undefined;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        type: "call";
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
-        callLogDocPath: string | undefined;
-        isDisplayable: false;
+        isDisplayable: true;
+        data: {
+            agentConnectedAt: import("../../types").Timestamp;
+            endedAt: import("../../types").Timestamp;
+            livekitSessionId: string;
+            livekitRoomName: string;
+            summary?: string | undefined;
+        };
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }, {
+        type: "call";
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        isDisplayable: true;
+        data: {
+            agentConnectedAt: import("../../types").Timestamp;
+            endedAt: import("../../types").Timestamp;
+            livekitSessionId: string;
+            livekitRoomName: string;
+            summary?: string | undefined;
+        };
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }>;
+    tool_call: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        callLogDocPath: z.ZodOptional<z.ZodString>;
+    } & {
+        isDisplayable: z.ZodLiteral<false>;
+        type: z.ZodLiteral<"tool_call">;
+        data: z.ZodObject<{
+            message: z.ZodAny;
+            toolCallResults: z.ZodArray<z.ZodAny, "many">;
+        }, "strip", z.ZodTypeAny, {
+            toolCallResults: any[];
+            message?: any;
+        }, {
+            toolCallResults: any[];
+            message?: any;
+        }>;
+    }, "strip", z.ZodTypeAny, {
         type: "tool_call";
-        data: {
-            message: import("openai/resources").ChatCompletionAssistantMessageParam;
-            toolCallResults: import("openai/resources").ChatCompletionToolMessageParam[];
-        };
-    }, yup.AnyObject, {
-        id: undefined;
-        createdAt: undefined;
-        updatedAt: undefined;
-        userId: undefined;
-        timestamp: undefined;
-        dateString: undefined;
-        callLogDocPath: undefined;
-        isDisplayable: undefined;
-        type: undefined;
-        data: {
-            message: undefined;
-            toolCallResults: "";
-        };
-    }, "">;
-    tactic_completed: yup.ObjectSchema<{
-        id: string | undefined;
-        createdAt: import("../../types").Timestamp | undefined;
-        updatedAt: import("../../types").Timestamp | undefined;
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
-        callLogDocPath: string | undefined;
-        type: "tactic_completed";
-        isDisplayable: true;
+        isDisplayable: false;
         data: {
-            tactic: import("../tactic.old").Tactic;
+            toolCallResults: any[];
+            message?: any;
+        };
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }, {
+        type: "tool_call";
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        isDisplayable: false;
+        data: {
+            toolCallResults: any[];
+            message?: any;
+        };
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }>;
+    tactic_completed: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        callLogDocPath: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"tactic_completed">;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            tactic: z.ZodAny;
+            tacticCollectionId: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
             tacticCollectionId: string;
-        };
-    }, yup.AnyObject, {
-        id: undefined;
-        createdAt: undefined;
-        updatedAt: undefined;
-        userId: undefined;
-        timestamp: undefined;
-        dateString: undefined;
-        callLogDocPath: undefined;
-        type: undefined;
-        isDisplayable: undefined;
-        data: {
-            tactic: undefined;
-            tacticCollectionId: undefined;
-        };
-    }, "">;
-    tactic_suggestion: yup.ObjectSchema<{
-        id: string | undefined;
-        createdAt: import("../../types").Timestamp | undefined;
-        updatedAt: import("../../types").Timestamp | undefined;
+            tactic?: any;
+        }, {
+            tacticCollectionId: string;
+            tactic?: any;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        type: "tactic_completed";
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
-        callLogDocPath: string | undefined;
-        type: "tactic_suggestion";
         isDisplayable: true;
         data: {
+            tacticCollectionId: string;
+            tactic?: any;
+        };
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }, {
+        type: "tactic_completed";
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        isDisplayable: true;
+        data: {
+            tacticCollectionId: string;
+            tactic?: any;
+        };
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }>;
+    tactic_suggestion: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        callLogDocPath: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"tactic_suggestion">;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            tactic: z.ZodAny;
+            tacticPath: z.ZodString;
+            reason: z.ZodOptional<z.ZodString>;
+            source: z.ZodOptional<z.ZodEnum<["userPlan", "library", "improvised"]>>;
+            collectionRefPath: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            tacticPath: string;
+            tactic?: any;
             reason?: string | undefined;
             source?: "userPlan" | "library" | "improvised" | undefined;
             collectionRefPath?: string | undefined;
-            tactic: import("../tactic.old").Tactic;
+        }, {
             tacticPath: string;
-        };
-    }, yup.AnyObject, {
-        id: undefined;
-        createdAt: undefined;
-        updatedAt: undefined;
-        userId: undefined;
-        timestamp: undefined;
-        dateString: undefined;
-        callLogDocPath: undefined;
-        type: undefined;
-        isDisplayable: undefined;
-        data: {
-            tactic: undefined;
-            tacticPath: undefined;
-            reason: undefined;
-            source: undefined;
-            collectionRefPath: undefined;
-        };
-    }, "">;
-    day_summary: yup.ObjectSchema<{
-        id: string | undefined;
-        createdAt: import("../../types").Timestamp | undefined;
-        updatedAt: import("../../types").Timestamp | undefined;
+            tactic?: any;
+            reason?: string | undefined;
+            source?: "userPlan" | "library" | "improvised" | undefined;
+            collectionRefPath?: string | undefined;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        type: "tactic_suggestion";
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
-        callLogDocPath: string | undefined;
-        type: "day_summary";
         isDisplayable: true;
         data: {
-            behaviorDataTotalByBehaviorId?: {} | undefined;
-            trackingLogsById?: {} | undefined;
+            tacticPath: string;
+            tactic?: any;
+            reason?: string | undefined;
+            source?: "userPlan" | "library" | "improvised" | undefined;
+            collectionRefPath?: string | undefined;
+        };
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }, {
+        type: "tactic_suggestion";
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        isDisplayable: true;
+        data: {
+            tacticPath: string;
+            tactic?: any;
+            reason?: string | undefined;
+            source?: "userPlan" | "library" | "improvised" | undefined;
+            collectionRefPath?: string | undefined;
+        };
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }>;
+    day_summary: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        callLogDocPath: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"day_summary">;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            targetDayDateString: z.ZodString;
+            behaviorDataTotalByBehaviorId: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+            trackingLogsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+        }, "strip", z.ZodTypeAny, {
             targetDayDateString: string;
-        };
-    }, yup.AnyObject, {
-        id: undefined;
-        createdAt: undefined;
-        updatedAt: undefined;
-        userId: undefined;
-        timestamp: undefined;
-        dateString: undefined;
-        callLogDocPath: undefined;
-        type: undefined;
-        isDisplayable: undefined;
-        data: {
-            targetDayDateString: undefined;
-            behaviorDataTotalByBehaviorId: {};
-            trackingLogsById: {};
-        };
-    }, "">;
-    tactic_viewed: yup.ObjectSchema<{
-        id: string | undefined;
-        createdAt: import("../../types").Timestamp | undefined;
-        updatedAt: import("../../types").Timestamp | undefined;
+            behaviorDataTotalByBehaviorId?: Record<string, any> | undefined;
+            trackingLogsById?: Record<string, any> | undefined;
+        }, {
+            targetDayDateString: string;
+            behaviorDataTotalByBehaviorId?: Record<string, any> | undefined;
+            trackingLogsById?: Record<string, any> | undefined;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        type: "day_summary";
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
-        callLogDocPath: string | undefined;
-        type: "tactic_completed";
         isDisplayable: true;
         data: {
-            tactic: import("../tactic.old").Tactic;
+            targetDayDateString: string;
+            behaviorDataTotalByBehaviorId?: Record<string, any> | undefined;
+            trackingLogsById?: Record<string, any> | undefined;
+        };
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }, {
+        type: "day_summary";
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        isDisplayable: true;
+        data: {
+            targetDayDateString: string;
+            behaviorDataTotalByBehaviorId?: Record<string, any> | undefined;
+            trackingLogsById?: Record<string, any> | undefined;
+        };
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }>;
+    tactic_viewed: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        callLogDocPath: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"tactic_completed">;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            tactic: z.ZodAny;
+            tacticCollectionId: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
             tacticCollectionId: string;
-        };
-    }, yup.AnyObject, {
-        id: undefined;
-        createdAt: undefined;
-        updatedAt: undefined;
-        userId: undefined;
-        timestamp: undefined;
-        dateString: undefined;
-        callLogDocPath: undefined;
-        type: undefined;
-        isDisplayable: undefined;
-        data: {
-            tactic: undefined;
-            tacticCollectionId: undefined;
-        };
-    }, "">;
-    impulse_button_pressed: yup.ObjectSchema<{
-        id: string | undefined;
-        createdAt: import("../../types").Timestamp | undefined;
-        updatedAt: import("../../types").Timestamp | undefined;
+            tactic?: any;
+        }, {
+            tacticCollectionId: string;
+            tactic?: any;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        type: "tactic_completed";
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
-        callLogDocPath: string | undefined;
+        isDisplayable: true;
+        data: {
+            tacticCollectionId: string;
+            tactic?: any;
+        };
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }, {
+        type: "tactic_completed";
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        isDisplayable: true;
+        data: {
+            tacticCollectionId: string;
+            tactic?: any;
+        };
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }>;
+    impulse_button_pressed: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        callLogDocPath: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"impulse_button_pressed">;
+        isDisplayable: z.ZodLiteral<true>;
+    }, "strip", z.ZodTypeAny, {
         type: "impulse_button_pressed";
-        isDisplayable: true;
-    }, yup.AnyObject, {
-        id: undefined;
-        createdAt: undefined;
-        updatedAt: undefined;
-        userId: undefined;
-        timestamp: undefined;
-        dateString: undefined;
-        callLogDocPath: undefined;
-        type: undefined;
-        isDisplayable: undefined;
-    }, "">;
-    behavior: yup.ObjectSchema<{
-        id: string | undefined;
-        createdAt: import("../../types").Timestamp | undefined;
-        updatedAt: import("../../types").Timestamp | undefined;
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
-        callLogDocPath: string | undefined;
-        type: "behavior";
         isDisplayable: true;
-        data: {
-            behaviorTrackingUnit?: string | undefined;
-            category: NonNullable<"helpful" | "mixed" | "unhelpful" | "unsure" | undefined>;
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }, {
+        type: "impulse_button_pressed";
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        isDisplayable: true;
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }>;
+    behavior: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        callLogDocPath: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"behavior">;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            behaviorId: z.ZodString;
+            behaviorName: z.ZodString;
+            behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
+            trackingType: z.ZodEnum<["counter", "timer"]>;
+            category: z.ZodType<"helpful" | "mixed" | "unhelpful" | "unsure", z.ZodTypeDef, "helpful" | "mixed" | "unhelpful" | "unsure">;
+            value: z.ZodNumber;
+            formattedValue: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
             behaviorId: string;
             behaviorName: string;
-            trackingType: NonNullable<"counter" | "timer" | undefined>;
+            trackingType: "counter" | "timer";
             value: number;
+            category: "helpful" | "mixed" | "unhelpful" | "unsure";
             formattedValue: string;
-        };
-    }, yup.AnyObject, {
-        id: undefined;
-        createdAt: undefined;
-        updatedAt: undefined;
-        userId: undefined;
-        timestamp: undefined;
-        dateString: undefined;
-        callLogDocPath: undefined;
-        type: undefined;
-        isDisplayable: undefined;
-        data: {
-            behaviorId: undefined;
-            behaviorName: undefined;
-            behaviorTrackingUnit: undefined;
-            trackingType: undefined;
-            category: undefined;
-            value: undefined;
-            formattedValue: undefined;
-        };
-    }, "">;
-    question: yup.ObjectSchema<{
-        id: string | undefined;
-        createdAt: import("../../types").Timestamp | undefined;
-        updatedAt: import("../../types").Timestamp | undefined;
+            behaviorTrackingUnit?: string | undefined;
+        }, {
+            behaviorId: string;
+            behaviorName: string;
+            trackingType: "counter" | "timer";
+            value: number;
+            category: "helpful" | "mixed" | "unhelpful" | "unsure";
+            formattedValue: string;
+            behaviorTrackingUnit?: string | undefined;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        type: "behavior";
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
-        callLogDocPath: string | undefined;
-        type: "question";
         isDisplayable: true;
         data: {
-            questionId?: string | undefined;
-            response?: {
+            behaviorId: string;
+            behaviorName: string;
+            trackingType: "counter" | "timer";
+            value: number;
+            category: "helpful" | "mixed" | "unhelpful" | "unsure";
+            formattedValue: string;
+            behaviorTrackingUnit?: string | undefined;
+        };
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }, {
+        type: "behavior";
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        isDisplayable: true;
+        data: {
+            behaviorId: string;
+            behaviorName: string;
+            trackingType: "counter" | "timer";
+            value: number;
+            category: "helpful" | "mixed" | "unhelpful" | "unsure";
+            formattedValue: string;
+            behaviorTrackingUnit?: string | undefined;
+        };
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }>;
+    question: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        callLogDocPath: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"question">;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            questionId: z.ZodOptional<z.ZodString>;
+            question: z.ZodAny;
+            response: z.ZodOptional<z.ZodObject<{
+                responseType: z.ZodEnum<["text", "slider1To10", "recap"]>;
+                value: z.ZodAny;
+                formattedValue: z.ZodString;
+                color: z.ZodOptional<z.ZodString>;
+            }, "strip", z.ZodTypeAny, {
+                formattedValue: string;
+                responseType: "recap" | "text" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
+            }, {
                 formattedValue: string;
-                responseType: NonNullable<"recap" | "text" | "slider1To10" | undefined>;
+                responseType: "recap" | "text" | "slider1To10";
+                value?: any;
+                color?: string | undefined;
+            }>>;
+        }, "strip", z.ZodTypeAny, {
+            question?: any;
+            questionId?: string | undefined;
+            response?: {
+                formattedValue: string;
+                responseType: "recap" | "text" | "slider1To10";
+                value?: any;
+                color?: string | undefined;
             } | undefined;
-            question: {
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                text?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
-                numberOfAnswers?: number | undefined;
-                isPinned?: boolean | undefined;
-                scope?: "impulse" | "plan" | undefined;
-                isTemplate: boolean;
-                question: string;
-                responseType: "recap";
-            } | {
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                text?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
-                numberOfAnswers?: number | undefined;
-                isPinned?: boolean | undefined;
-                scope?: "impulse" | "plan" | undefined;
-                isTemplate: boolean;
-                question: string;
-                responseType: "slider1To10";
-                sliderConfig: {
-                    minLabel?: string | undefined;
-                    maxLabel?: string | undefined;
-                };
-            } | {
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                text?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
-                numberOfAnswers?: number | undefined;
-                isPinned?: boolean | undefined;
-                scope?: "impulse" | "plan" | undefined;
-                suggestedResponses?: string[] | undefined;
-                isTemplate: boolean;
-                question: string;
-                responseType: "text";
-            };
-        };
-    }, yup.AnyObject, {
-        id: undefined;
-        createdAt: undefined;
-        updatedAt: undefined;
-        userId: undefined;
-        timestamp: undefined;
-        dateString: undefined;
-        callLogDocPath: undefined;
-        type: undefined;
-        isDisplayable: undefined;
-        data: {
-            questionId: undefined;
-            question: undefined;
-            response: undefined;
-        };
-    }, "">;
-    plan: yup.ObjectSchema<{
-        id: string | undefined;
-        createdAt: import("../../types").Timestamp | undefined;
-        updatedAt: import("../../types").Timestamp | undefined;
+        }, {
+            question?: any;
+            questionId?: string | undefined;
+            response?: {
+                formattedValue: string;
+                responseType: "recap" | "text" | "slider1To10";
+                value?: any;
+                color?: string | undefined;
+            } | undefined;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        type: "question";
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
-        callLogDocPath: string | undefined;
-        type: "plan";
         isDisplayable: true;
         data: {
-            acceptedAt?: import("../../types").Timestamp | undefined;
-            introduction?: string | undefined;
-            plan: import("../..").WithId<import("..").Plan>;
-            tacticsByPath: {
-                [x: string]: import("../tactic.old").Tactic;
-            };
+            question?: any;
+            questionId?: string | undefined;
+            response?: {
+                formattedValue: string;
+                responseType: "recap" | "text" | "slider1To10";
+                value?: any;
+                color?: string | undefined;
+            } | undefined;
         };
-    }, yup.AnyObject, {
-        id: undefined;
-        createdAt: undefined;
-        updatedAt: undefined;
-        userId: undefined;
-        timestamp: undefined;
-        dateString: undefined;
-        callLogDocPath: undefined;
-        type: undefined;
-        isDisplayable: undefined;
-        data: {
-            plan: undefined;
-            introduction: undefined;
-            acceptedAt: undefined;
-            tacticsByPath: undefined;
-        };
-    }, "">;
-    summary: yup.ObjectSchema<{
-        id: string | undefined;
-        createdAt: import("../../types").Timestamp | undefined;
-        updatedAt: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }, {
+        type: "question";
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
-        callLogDocPath: string | undefined;
+        isDisplayable: true;
+        data: {
+            question?: any;
+            questionId?: string | undefined;
+            response?: {
+                formattedValue: string;
+                responseType: "recap" | "text" | "slider1To10";
+                value?: any;
+                color?: string | undefined;
+            } | undefined;
+        };
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }>;
+    plan: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        callLogDocPath: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"plan">;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            plan: z.ZodUnion<[z.ZodIntersection<z.ZodObject<{
+                id: z.ZodString;
+                _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
+            }, "strip", z.ZodTypeAny, {
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            }, {
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            }>, z.ZodObject<{
+                id: z.ZodOptional<z.ZodString>;
+                name: z.ZodString;
+                type: z.ZodType<"time", z.ZodTypeDef, "time">;
+                ordinal: z.ZodOptional<z.ZodNumber>;
+                isTemplate: z.ZodOptional<z.ZodBoolean>;
+                summary: z.ZodOptional<z.ZodString>;
+                summaryRefreshRequired: z.ZodOptional<z.ZodBoolean>;
+                items: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+                lastUsedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+                createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+                updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+                deletedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+            } & {
+                trigger: z.ZodObject<{
+                    hour: z.ZodNumber;
+                    minute: z.ZodNumber;
+                    weekdays: z.ZodArray<z.ZodNumber, "many">;
+                }, "strip", z.ZodTypeAny, {
+                    hour: number;
+                    minute: number;
+                    weekdays: number[];
+                }, {
+                    hour: number;
+                    minute: number;
+                    weekdays: number[];
+                }>;
+            }, z.UnknownKeysParam, z.ZodTypeAny, {
+                type: "time";
+                name: string;
+                createdAt: import("../../types").Timestamp;
+                updatedAt: import("../../types").Timestamp;
+                items: import("../..").DocumentReferenceLike<unknown>[];
+                lastUsedAt: import("../../types").Timestamp;
+                deletedAt: import("../../types").Timestamp;
+                trigger: {
+                    hour: number;
+                    minute: number;
+                    weekdays: number[];
+                };
+                id?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                summaryRefreshRequired?: boolean | undefined;
+            }, {
+                type: "time";
+                name: string;
+                createdAt: import("../../types").Timestamp;
+                updatedAt: import("../../types").Timestamp;
+                items: import("../..").DocumentReferenceLike<unknown>[];
+                lastUsedAt: import("../../types").Timestamp;
+                deletedAt: import("../../types").Timestamp;
+                trigger: {
+                    hour: number;
+                    minute: number;
+                    weekdays: number[];
+                };
+                id?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                summaryRefreshRequired?: boolean | undefined;
+            }>>, z.ZodIntersection<z.ZodObject<{
+                id: z.ZodString;
+                _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
+            }, "strip", z.ZodTypeAny, {
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            }, {
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            }>, z.ZodObject<{
+                id: z.ZodOptional<z.ZodString>;
+                name: z.ZodString;
+                type: z.ZodType<"location", z.ZodTypeDef, "location">;
+                ordinal: z.ZodOptional<z.ZodNumber>;
+                isTemplate: z.ZodOptional<z.ZodBoolean>;
+                summary: z.ZodOptional<z.ZodString>;
+                summaryRefreshRequired: z.ZodOptional<z.ZodBoolean>;
+                items: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+                lastUsedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+                createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+                updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+                deletedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+            } & {
+                trigger: z.ZodObject<{
+                    locationName: z.ZodString;
+                    triggerType: z.ZodEnum<["arrival", "departure"]>;
+                    latitude: z.ZodNumber;
+                    longitude: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    locationName: string;
+                    triggerType: "arrival" | "departure";
+                    latitude: number;
+                    longitude: number;
+                }, {
+                    locationName: string;
+                    triggerType: "arrival" | "departure";
+                    latitude: number;
+                    longitude: number;
+                }>;
+            }, z.UnknownKeysParam, z.ZodTypeAny, {
+                type: "location";
+                name: string;
+                createdAt: import("../../types").Timestamp;
+                updatedAt: import("../../types").Timestamp;
+                items: import("../..").DocumentReferenceLike<unknown>[];
+                lastUsedAt: import("../../types").Timestamp;
+                deletedAt: import("../../types").Timestamp;
+                trigger: {
+                    locationName: string;
+                    triggerType: "arrival" | "departure";
+                    latitude: number;
+                    longitude: number;
+                };
+                id?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                summaryRefreshRequired?: boolean | undefined;
+            }, {
+                type: "location";
+                name: string;
+                createdAt: import("../../types").Timestamp;
+                updatedAt: import("../../types").Timestamp;
+                items: import("../..").DocumentReferenceLike<unknown>[];
+                lastUsedAt: import("../../types").Timestamp;
+                deletedAt: import("../../types").Timestamp;
+                trigger: {
+                    locationName: string;
+                    triggerType: "arrival" | "departure";
+                    latitude: number;
+                    longitude: number;
+                };
+                id?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                summaryRefreshRequired?: boolean | undefined;
+            }>>, z.ZodIntersection<z.ZodObject<{
+                id: z.ZodString;
+                _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
+            }, "strip", z.ZodTypeAny, {
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            }, {
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            }>, z.ZodObject<{
+                id: z.ZodOptional<z.ZodString>;
+                name: z.ZodString;
+                type: z.ZodType<"recap", z.ZodTypeDef, "recap">;
+                ordinal: z.ZodOptional<z.ZodNumber>;
+                isTemplate: z.ZodOptional<z.ZodBoolean>;
+                summary: z.ZodOptional<z.ZodString>;
+                summaryRefreshRequired: z.ZodOptional<z.ZodBoolean>;
+                items: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+                lastUsedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+                createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+                updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+                deletedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+            } & {
+                trigger: z.ZodObject<{
+                    hour: z.ZodNumber;
+                    minute: z.ZodNumber;
+                    weekdays: z.ZodArray<z.ZodNumber, "many">;
+                }, "strip", z.ZodTypeAny, {
+                    hour: number;
+                    minute: number;
+                    weekdays: number[];
+                }, {
+                    hour: number;
+                    minute: number;
+                    weekdays: number[];
+                }>;
+            }, z.UnknownKeysParam, z.ZodTypeAny, {
+                type: "recap";
+                name: string;
+                createdAt: import("../../types").Timestamp;
+                updatedAt: import("../../types").Timestamp;
+                items: import("../..").DocumentReferenceLike<unknown>[];
+                lastUsedAt: import("../../types").Timestamp;
+                deletedAt: import("../../types").Timestamp;
+                trigger: {
+                    hour: number;
+                    minute: number;
+                    weekdays: number[];
+                };
+                id?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                summaryRefreshRequired?: boolean | undefined;
+            }, {
+                type: "recap";
+                name: string;
+                createdAt: import("../../types").Timestamp;
+                updatedAt: import("../../types").Timestamp;
+                items: import("../..").DocumentReferenceLike<unknown>[];
+                lastUsedAt: import("../../types").Timestamp;
+                deletedAt: import("../../types").Timestamp;
+                trigger: {
+                    hour: number;
+                    minute: number;
+                    weekdays: number[];
+                };
+                id?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                summaryRefreshRequired?: boolean | undefined;
+            }>>, z.ZodIntersection<z.ZodObject<{
+                id: z.ZodString;
+                _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
+            }, "strip", z.ZodTypeAny, {
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            }, {
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            }>, z.ZodObject<{
+                id: z.ZodOptional<z.ZodString>;
+                name: z.ZodString;
+                type: z.ZodType<"impulse", z.ZodTypeDef, "impulse">;
+                ordinal: z.ZodOptional<z.ZodNumber>;
+                isTemplate: z.ZodOptional<z.ZodBoolean>;
+                summary: z.ZodOptional<z.ZodString>;
+                summaryRefreshRequired: z.ZodOptional<z.ZodBoolean>;
+                items: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+                lastUsedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+                createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+                updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+                deletedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+            } & {
+                triggerKeywords: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+            }, z.UnknownKeysParam, z.ZodTypeAny, {
+                type: "impulse";
+                name: string;
+                createdAt: import("../../types").Timestamp;
+                updatedAt: import("../../types").Timestamp;
+                items: import("../..").DocumentReferenceLike<unknown>[];
+                lastUsedAt: import("../../types").Timestamp;
+                deletedAt: import("../../types").Timestamp;
+                id?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                summaryRefreshRequired?: boolean | undefined;
+                triggerKeywords?: string[] | undefined;
+            }, {
+                type: "impulse";
+                name: string;
+                createdAt: import("../../types").Timestamp;
+                updatedAt: import("../../types").Timestamp;
+                items: import("../..").DocumentReferenceLike<unknown>[];
+                lastUsedAt: import("../../types").Timestamp;
+                deletedAt: import("../../types").Timestamp;
+                id?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                summaryRefreshRequired?: boolean | undefined;
+                triggerKeywords?: string[] | undefined;
+            }>>]>;
+            introduction: z.ZodOptional<z.ZodString>;
+            acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+        }, "strip", z.ZodTypeAny, {
+            plan: ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "time";
+                name: string;
+                createdAt: import("../../types").Timestamp;
+                updatedAt: import("../../types").Timestamp;
+                items: import("../..").DocumentReferenceLike<unknown>[];
+                lastUsedAt: import("../../types").Timestamp;
+                deletedAt: import("../../types").Timestamp;
+                trigger: {
+                    hour: number;
+                    minute: number;
+                    weekdays: number[];
+                };
+                id?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                summaryRefreshRequired?: boolean | undefined;
+            }) | ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "location";
+                name: string;
+                createdAt: import("../../types").Timestamp;
+                updatedAt: import("../../types").Timestamp;
+                items: import("../..").DocumentReferenceLike<unknown>[];
+                lastUsedAt: import("../../types").Timestamp;
+                deletedAt: import("../../types").Timestamp;
+                trigger: {
+                    locationName: string;
+                    triggerType: "arrival" | "departure";
+                    latitude: number;
+                    longitude: number;
+                };
+                id?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                summaryRefreshRequired?: boolean | undefined;
+            }) | ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "recap";
+                name: string;
+                createdAt: import("../../types").Timestamp;
+                updatedAt: import("../../types").Timestamp;
+                items: import("../..").DocumentReferenceLike<unknown>[];
+                lastUsedAt: import("../../types").Timestamp;
+                deletedAt: import("../../types").Timestamp;
+                trigger: {
+                    hour: number;
+                    minute: number;
+                    weekdays: number[];
+                };
+                id?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                summaryRefreshRequired?: boolean | undefined;
+            }) | ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "impulse";
+                name: string;
+                createdAt: import("../../types").Timestamp;
+                updatedAt: import("../../types").Timestamp;
+                items: import("../..").DocumentReferenceLike<unknown>[];
+                lastUsedAt: import("../../types").Timestamp;
+                deletedAt: import("../../types").Timestamp;
+                id?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                summaryRefreshRequired?: boolean | undefined;
+                triggerKeywords?: string[] | undefined;
+            });
+            introduction?: string | undefined;
+            acceptedAt?: import("../../types").Timestamp | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+        }, {
+            plan: ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "time";
+                name: string;
+                createdAt: import("../../types").Timestamp;
+                updatedAt: import("../../types").Timestamp;
+                items: import("../..").DocumentReferenceLike<unknown>[];
+                lastUsedAt: import("../../types").Timestamp;
+                deletedAt: import("../../types").Timestamp;
+                trigger: {
+                    hour: number;
+                    minute: number;
+                    weekdays: number[];
+                };
+                id?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                summaryRefreshRequired?: boolean | undefined;
+            }) | ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "location";
+                name: string;
+                createdAt: import("../../types").Timestamp;
+                updatedAt: import("../../types").Timestamp;
+                items: import("../..").DocumentReferenceLike<unknown>[];
+                lastUsedAt: import("../../types").Timestamp;
+                deletedAt: import("../../types").Timestamp;
+                trigger: {
+                    locationName: string;
+                    triggerType: "arrival" | "departure";
+                    latitude: number;
+                    longitude: number;
+                };
+                id?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                summaryRefreshRequired?: boolean | undefined;
+            }) | ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "recap";
+                name: string;
+                createdAt: import("../../types").Timestamp;
+                updatedAt: import("../../types").Timestamp;
+                items: import("../..").DocumentReferenceLike<unknown>[];
+                lastUsedAt: import("../../types").Timestamp;
+                deletedAt: import("../../types").Timestamp;
+                trigger: {
+                    hour: number;
+                    minute: number;
+                    weekdays: number[];
+                };
+                id?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                summaryRefreshRequired?: boolean | undefined;
+            }) | ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "impulse";
+                name: string;
+                createdAt: import("../../types").Timestamp;
+                updatedAt: import("../../types").Timestamp;
+                items: import("../..").DocumentReferenceLike<unknown>[];
+                lastUsedAt: import("../../types").Timestamp;
+                deletedAt: import("../../types").Timestamp;
+                id?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                summaryRefreshRequired?: boolean | undefined;
+                triggerKeywords?: string[] | undefined;
+            });
+            introduction?: string | undefined;
+            acceptedAt?: import("../../types").Timestamp | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        type: "plan";
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        isDisplayable: true;
+        data: {
+            plan: ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "time";
+                name: string;
+                createdAt: import("../../types").Timestamp;
+                updatedAt: import("../../types").Timestamp;
+                items: import("../..").DocumentReferenceLike<unknown>[];
+                lastUsedAt: import("../../types").Timestamp;
+                deletedAt: import("../../types").Timestamp;
+                trigger: {
+                    hour: number;
+                    minute: number;
+                    weekdays: number[];
+                };
+                id?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                summaryRefreshRequired?: boolean | undefined;
+            }) | ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "location";
+                name: string;
+                createdAt: import("../../types").Timestamp;
+                updatedAt: import("../../types").Timestamp;
+                items: import("../..").DocumentReferenceLike<unknown>[];
+                lastUsedAt: import("../../types").Timestamp;
+                deletedAt: import("../../types").Timestamp;
+                trigger: {
+                    locationName: string;
+                    triggerType: "arrival" | "departure";
+                    latitude: number;
+                    longitude: number;
+                };
+                id?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                summaryRefreshRequired?: boolean | undefined;
+            }) | ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "recap";
+                name: string;
+                createdAt: import("../../types").Timestamp;
+                updatedAt: import("../../types").Timestamp;
+                items: import("../..").DocumentReferenceLike<unknown>[];
+                lastUsedAt: import("../../types").Timestamp;
+                deletedAt: import("../../types").Timestamp;
+                trigger: {
+                    hour: number;
+                    minute: number;
+                    weekdays: number[];
+                };
+                id?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                summaryRefreshRequired?: boolean | undefined;
+            }) | ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "impulse";
+                name: string;
+                createdAt: import("../../types").Timestamp;
+                updatedAt: import("../../types").Timestamp;
+                items: import("../..").DocumentReferenceLike<unknown>[];
+                lastUsedAt: import("../../types").Timestamp;
+                deletedAt: import("../../types").Timestamp;
+                id?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                summaryRefreshRequired?: boolean | undefined;
+                triggerKeywords?: string[] | undefined;
+            });
+            introduction?: string | undefined;
+            acceptedAt?: import("../../types").Timestamp | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+        };
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }, {
+        type: "plan";
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        isDisplayable: true;
+        data: {
+            plan: ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "time";
+                name: string;
+                createdAt: import("../../types").Timestamp;
+                updatedAt: import("../../types").Timestamp;
+                items: import("../..").DocumentReferenceLike<unknown>[];
+                lastUsedAt: import("../../types").Timestamp;
+                deletedAt: import("../../types").Timestamp;
+                trigger: {
+                    hour: number;
+                    minute: number;
+                    weekdays: number[];
+                };
+                id?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                summaryRefreshRequired?: boolean | undefined;
+            }) | ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "location";
+                name: string;
+                createdAt: import("../../types").Timestamp;
+                updatedAt: import("../../types").Timestamp;
+                items: import("../..").DocumentReferenceLike<unknown>[];
+                lastUsedAt: import("../../types").Timestamp;
+                deletedAt: import("../../types").Timestamp;
+                trigger: {
+                    locationName: string;
+                    triggerType: "arrival" | "departure";
+                    latitude: number;
+                    longitude: number;
+                };
+                id?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                summaryRefreshRequired?: boolean | undefined;
+            }) | ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "recap";
+                name: string;
+                createdAt: import("../../types").Timestamp;
+                updatedAt: import("../../types").Timestamp;
+                items: import("../..").DocumentReferenceLike<unknown>[];
+                lastUsedAt: import("../../types").Timestamp;
+                deletedAt: import("../../types").Timestamp;
+                trigger: {
+                    hour: number;
+                    minute: number;
+                    weekdays: number[];
+                };
+                id?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                summaryRefreshRequired?: boolean | undefined;
+            }) | ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "impulse";
+                name: string;
+                createdAt: import("../../types").Timestamp;
+                updatedAt: import("../../types").Timestamp;
+                items: import("../..").DocumentReferenceLike<unknown>[];
+                lastUsedAt: import("../../types").Timestamp;
+                deletedAt: import("../../types").Timestamp;
+                id?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                summaryRefreshRequired?: boolean | undefined;
+                triggerKeywords?: string[] | undefined;
+            });
+            introduction?: string | undefined;
+            acceptedAt?: import("../../types").Timestamp | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+        };
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }>;
+    summary: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        callLogDocPath: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"summary">;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            summary: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
+            summary: string;
+        }, {
+            summary: string;
+        }>;
+    }, "strip", z.ZodTypeAny, {
         type: "summary";
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
         isDisplayable: true;
         data: {
             summary: string;
         };
-    }, yup.AnyObject, {
-        id: undefined;
-        createdAt: undefined;
-        updatedAt: undefined;
-        userId: undefined;
-        timestamp: undefined;
-        dateString: undefined;
-        callLogDocPath: undefined;
-        type: undefined;
-        isDisplayable: undefined;
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }, {
+        type: "summary";
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        isDisplayable: true;
         data: {
-            summary: undefined;
+            summary: string;
         };
-    }, "">;
-    resisted: yup.ObjectSchema<{
-        id: string | undefined;
-        createdAt: import("../../types").Timestamp | undefined;
-        updatedAt: import("../../types").Timestamp | undefined;
-        userId: string;
-        timestamp: import("../../types").Timestamp;
-        dateString: string;
-        callLogDocPath: string | undefined;
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }>;
+    resisted: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        callLogDocPath: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"resisted">;
+        isDisplayable: z.ZodLiteral<true>;
+    }, "strip", z.ZodTypeAny, {
         type: "resisted";
-        isDisplayable: true;
-    }, yup.AnyObject, {
-        id: undefined;
-        createdAt: undefined;
-        updatedAt: undefined;
-        userId: undefined;
-        timestamp: undefined;
-        dateString: undefined;
-        callLogDocPath: undefined;
-        type: undefined;
-        isDisplayable: undefined;
-    }, "">;
-    widget_setup: yup.ObjectSchema<{
-        id: string | undefined;
-        createdAt: import("../../types").Timestamp | undefined;
-        updatedAt: import("../../types").Timestamp | undefined;
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
-        callLogDocPath: string | undefined;
+        isDisplayable: true;
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }, {
+        type: "resisted";
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        isDisplayable: true;
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }>;
+    widget_setup: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        callLogDocPath: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"widget_setup">;
+        isDisplayable: z.ZodLiteral<true>;
+    }, "strip", z.ZodTypeAny, {
         type: "widget_setup";
-        isDisplayable: true;
-    }, yup.AnyObject, {
-        id: undefined;
-        createdAt: undefined;
-        updatedAt: undefined;
-        userId: undefined;
-        timestamp: undefined;
-        dateString: undefined;
-        callLogDocPath: undefined;
-        type: undefined;
-        isDisplayable: undefined;
-    }, "">;
-    show_tour: yup.ObjectSchema<{
-        id: string | undefined;
-        createdAt: import("../../types").Timestamp | undefined;
-        updatedAt: import("../../types").Timestamp | undefined;
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
-        callLogDocPath: string | undefined;
-        type: "show_tour";
         isDisplayable: true;
-        text: string;
-        data: {
-            completedAt?: import("../../types").Timestamp | undefined;
-            firstNavigateToRoute?: string | undefined;
-            startButtonLabel?: string | undefined;
-            steps: {
-                nextOnImpulseButtonPress?: boolean | undefined;
-                borderRadius?: number | undefined;
-                innerPadding?: number | undefined;
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }, {
+        type: "widget_setup";
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        isDisplayable: true;
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }>;
+    show_tour: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        callLogDocPath: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"show_tour">;
+        isDisplayable: z.ZodLiteral<true>;
+        text: z.ZodString;
+        data: z.ZodObject<{
+            steps: z.ZodArray<z.ZodObject<{
+                elementRefName: z.ZodString;
+                title: z.ZodString;
+                description: z.ZodString;
+                confirmButtonLabel: z.ZodDefault<z.ZodString>;
+                nextOnImpulseButtonPress: z.ZodOptional<z.ZodBoolean>;
+                borderRadius: z.ZodOptional<z.ZodNumber>;
+                innerPadding: z.ZodOptional<z.ZodNumber>;
+            }, "strip", z.ZodTypeAny, {
                 description: string;
                 title: string;
                 elementRefName: string;
                 confirmButtonLabel: string;
+                nextOnImpulseButtonPress?: boolean | undefined;
+                borderRadius?: number | undefined;
+                innerPadding?: number | undefined;
+            }, {
+                description: string;
+                title: string;
+                elementRefName: string;
+                confirmButtonLabel?: string | undefined;
+                nextOnImpulseButtonPress?: boolean | undefined;
+                borderRadius?: number | undefined;
+                innerPadding?: number | undefined;
+            }>, "many">;
+            firstNavigateToRoute: z.ZodOptional<z.ZodString>;
+            startButtonLabel: z.ZodOptional<z.ZodString>;
+            completedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            includeCloseButton: z.ZodDefault<z.ZodBoolean>;
+            closeButtonText: z.ZodDefault<z.ZodString>;
+            closeButtonHref: z.ZodDefault<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            steps: {
+                description: string;
+                title: string;
+                elementRefName: string;
+                confirmButtonLabel: string;
+                nextOnImpulseButtonPress?: boolean | undefined;
+                borderRadius?: number | undefined;
+                innerPadding?: number | undefined;
             }[];
             includeCloseButton: boolean;
             closeButtonText: string;
             closeButtonHref: string;
-        };
-    }, yup.AnyObject, {
-        id: undefined;
-        createdAt: undefined;
-        updatedAt: undefined;
-        userId: undefined;
-        timestamp: undefined;
-        dateString: undefined;
-        callLogDocPath: undefined;
-        type: undefined;
-        isDisplayable: undefined;
-        text: undefined;
-        data: {
-            steps: "";
-            firstNavigateToRoute: undefined;
-            startButtonLabel: undefined;
-            completedAt: undefined;
-            includeCloseButton: false;
-            closeButtonText: "Close";
-            closeButtonHref: "/";
-        };
-    }, "">;
-    link: yup.ObjectSchema<{
-        id: string | undefined;
-        createdAt: import("../../types").Timestamp | undefined;
-        updatedAt: import("../../types").Timestamp | undefined;
+            firstNavigateToRoute?: string | undefined;
+            startButtonLabel?: string | undefined;
+            completedAt?: import("../../types").Timestamp | undefined;
+        }, {
+            steps: {
+                description: string;
+                title: string;
+                elementRefName: string;
+                confirmButtonLabel?: string | undefined;
+                nextOnImpulseButtonPress?: boolean | undefined;
+                borderRadius?: number | undefined;
+                innerPadding?: number | undefined;
+            }[];
+            firstNavigateToRoute?: string | undefined;
+            startButtonLabel?: string | undefined;
+            completedAt?: import("../../types").Timestamp | undefined;
+            includeCloseButton?: boolean | undefined;
+            closeButtonText?: string | undefined;
+            closeButtonHref?: string | undefined;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        type: "show_tour";
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
-        callLogDocPath: string | undefined;
-        type: "link";
         isDisplayable: true;
+        data: {
+            steps: {
+                description: string;
+                title: string;
+                elementRefName: string;
+                confirmButtonLabel: string;
+                nextOnImpulseButtonPress?: boolean | undefined;
+                borderRadius?: number | undefined;
+                innerPadding?: number | undefined;
+            }[];
+            includeCloseButton: boolean;
+            closeButtonText: string;
+            closeButtonHref: string;
+            firstNavigateToRoute?: string | undefined;
+            startButtonLabel?: string | undefined;
+            completedAt?: import("../../types").Timestamp | undefined;
+        };
         text: string;
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }, {
+        type: "show_tour";
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        isDisplayable: true;
+        data: {
+            steps: {
+                description: string;
+                title: string;
+                elementRefName: string;
+                confirmButtonLabel?: string | undefined;
+                nextOnImpulseButtonPress?: boolean | undefined;
+                borderRadius?: number | undefined;
+                innerPadding?: number | undefined;
+            }[];
+            firstNavigateToRoute?: string | undefined;
+            startButtonLabel?: string | undefined;
+            completedAt?: import("../../types").Timestamp | undefined;
+            includeCloseButton?: boolean | undefined;
+            closeButtonText?: string | undefined;
+            closeButtonHref?: string | undefined;
+        };
+        text: string;
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }>;
+    link: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        callLogDocPath: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"link">;
+        isDisplayable: z.ZodLiteral<true>;
+        text: z.ZodString;
+        link: z.ZodString;
+        buttonText: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        type: "link";
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        isDisplayable: true;
         link: string;
+        text: string;
         buttonText: string;
-    }, yup.AnyObject, {
-        id: undefined;
-        createdAt: undefined;
-        updatedAt: undefined;
-        userId: undefined;
-        timestamp: undefined;
-        dateString: undefined;
-        callLogDocPath: undefined;
-        type: undefined;
-        isDisplayable: undefined;
-        text: undefined;
-        link: undefined;
-        buttonText: undefined;
-    }, "">;
-    notify_support_group: yup.ObjectSchema<{
-        id: string | undefined;
-        createdAt: import("../../types").Timestamp | undefined;
-        updatedAt: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }, {
+        type: "link";
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
-        callLogDocPath: string | undefined;
-        type: "notify_support_group";
         isDisplayable: true;
-        data: {
-            message: import("openai/resources").ChatCompletionUserMessageParam;
-            supportGroupsById: {
-                [x: string]: {
-                    id: string;
-                    name: string;
-                    membersById: {
-                        [x: string]: {
-                            userId: string;
-                            userProfile: {
-                                id?: string | undefined;
-                                emojiId?: {
-                                    name?: string | undefined;
-                                    color: string;
-                                    emoji: string;
-                                } | undefined;
-                                invitationCode: string;
-                            };
-                        };
+        link: string;
+        text: string;
+        buttonText: string;
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }>;
+    notify_support_group: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        callLogDocPath: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"notify_support_group">;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            message: z.ZodAny;
+            supportGroupsById: z.ZodRecord<z.ZodString, z.ZodObject<{
+                id: z.ZodString;
+                name: z.ZodString;
+                membersById: z.ZodRecord<z.ZodString, z.ZodObject<{
+                    userId: z.ZodString;
+                    userProfile: z.ZodObject<{
+                        id: z.ZodString;
+                        invitationCode: z.ZodString;
+                        emojiId: z.ZodOptional<z.ZodObject<{
+                            color: z.ZodString;
+                            emoji: z.ZodString;
+                            name: z.ZodOptional<z.ZodString>;
+                        }, "strip", z.ZodTypeAny, {
+                            color: string;
+                            emoji: string;
+                            name?: string | undefined;
+                        }, {
+                            color: string;
+                            emoji: string;
+                            name?: string | undefined;
+                        }>>;
+                    }, "strip", z.ZodTypeAny, {
+                        id: string;
+                        invitationCode: string;
+                        emojiId?: {
+                            color: string;
+                            emoji: string;
+                            name?: string | undefined;
+                        } | undefined;
+                    }, {
+                        id: string;
+                        invitationCode: string;
+                        emojiId?: {
+                            color: string;
+                            emoji: string;
+                            name?: string | undefined;
+                        } | undefined;
+                    }>;
+                }, "strip", z.ZodTypeAny, {
+                    userId: string;
+                    userProfile: {
+                        id: string;
+                        invitationCode: string;
+                        emojiId?: {
+                            color: string;
+                            emoji: string;
+                            name?: string | undefined;
+                        } | undefined;
                     };
-                };
-            };
-        };
-    }, yup.AnyObject, {
-        id: undefined;
-        createdAt: undefined;
-        updatedAt: undefined;
-        userId: undefined;
-        timestamp: undefined;
-        dateString: undefined;
-        callLogDocPath: undefined;
-        type: undefined;
-        isDisplayable: undefined;
-        data: {
-            message: undefined;
-            supportGroupsById: undefined;
-        };
-    }, "">;
-    video: yup.ObjectSchema<{
-        id: string | undefined;
-        createdAt: import("../../types").Timestamp | undefined;
-        updatedAt: import("../../types").Timestamp | undefined;
+                }, {
+                    userId: string;
+                    userProfile: {
+                        id: string;
+                        invitationCode: string;
+                        emojiId?: {
+                            color: string;
+                            emoji: string;
+                            name?: string | undefined;
+                        } | undefined;
+                    };
+                }>>;
+            }, "strip", z.ZodTypeAny, {
+                id: string;
+                name: string;
+                membersById: Record<string, {
+                    userId: string;
+                    userProfile: {
+                        id: string;
+                        invitationCode: string;
+                        emojiId?: {
+                            color: string;
+                            emoji: string;
+                            name?: string | undefined;
+                        } | undefined;
+                    };
+                }>;
+            }, {
+                id: string;
+                name: string;
+                membersById: Record<string, {
+                    userId: string;
+                    userProfile: {
+                        id: string;
+                        invitationCode: string;
+                        emojiId?: {
+                            color: string;
+                            emoji: string;
+                            name?: string | undefined;
+                        } | undefined;
+                    };
+                }>;
+            }>>;
+        }, "strip", z.ZodTypeAny, {
+            supportGroupsById: Record<string, {
+                id: string;
+                name: string;
+                membersById: Record<string, {
+                    userId: string;
+                    userProfile: {
+                        id: string;
+                        invitationCode: string;
+                        emojiId?: {
+                            color: string;
+                            emoji: string;
+                            name?: string | undefined;
+                        } | undefined;
+                    };
+                }>;
+            }>;
+            message?: any;
+        }, {
+            supportGroupsById: Record<string, {
+                id: string;
+                name: string;
+                membersById: Record<string, {
+                    userId: string;
+                    userProfile: {
+                        id: string;
+                        invitationCode: string;
+                        emojiId?: {
+                            color: string;
+                            emoji: string;
+                            name?: string | undefined;
+                        } | undefined;
+                    };
+                }>;
+            }>;
+            message?: any;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        type: "notify_support_group";
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
-        callLogDocPath: string | undefined;
-        type: "video";
         isDisplayable: true;
-        title: string | undefined;
-        text: string | undefined;
+        data: {
+            supportGroupsById: Record<string, {
+                id: string;
+                name: string;
+                membersById: Record<string, {
+                    userId: string;
+                    userProfile: {
+                        id: string;
+                        invitationCode: string;
+                        emojiId?: {
+                            color: string;
+                            emoji: string;
+                            name?: string | undefined;
+                        } | undefined;
+                    };
+                }>;
+            }>;
+            message?: any;
+        };
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }, {
+        type: "notify_support_group";
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        isDisplayable: true;
+        data: {
+            supportGroupsById: Record<string, {
+                id: string;
+                name: string;
+                membersById: Record<string, {
+                    userId: string;
+                    userProfile: {
+                        id: string;
+                        invitationCode: string;
+                        emojiId?: {
+                            color: string;
+                            emoji: string;
+                            name?: string | undefined;
+                        } | undefined;
+                    };
+                }>;
+            }>;
+            message?: any;
+        };
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }>;
+    video: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        callLogDocPath: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"video">;
+        isDisplayable: z.ZodLiteral<true>;
+        title: z.ZodOptional<z.ZodString>;
+        text: z.ZodOptional<z.ZodString>;
+        data: z.ZodObject<{
+            sourceUri: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
+            sourceUri: string;
+        }, {
+            sourceUri: string;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        type: "video";
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        isDisplayable: true;
         data: {
             sourceUri: string;
         };
-    }, yup.AnyObject, {
-        id: undefined;
-        createdAt: undefined;
-        updatedAt: undefined;
-        userId: undefined;
-        timestamp: undefined;
-        dateString: undefined;
-        callLogDocPath: undefined;
-        type: undefined;
-        isDisplayable: undefined;
-        title: undefined;
-        text: undefined;
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+        text?: string | undefined;
+        title?: string | undefined;
+    }, {
+        type: "video";
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        isDisplayable: true;
         data: {
-            sourceUri: undefined;
+            sourceUri: string;
         };
-    }, "">;
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+        text?: string | undefined;
+        title?: string | undefined;
+    }>;
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
@@ -722,7 +1971,1871 @@ export * from "./tacticSuggestionLog";
 export * from "./toolCallLog";
 export * from "./videoLog";
 export * from "./widgetSetupLog";
-export declare const logSchema: yup.Lazy<Log, yup.AnyObject, any>;
+export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    callLogDocPath: z.ZodOptional<z.ZodString>;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        message: z.ZodAny;
+    }, "strip", z.ZodTypeAny, {
+        message?: any;
+    }, {
+        message?: any;
+    }>;
+} & {
+    type: z.ZodLiteral<"user_message">;
+    audioAttachment: z.ZodOptional<z.ZodObject<{
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        uri: z.ZodString;
+        storagePath: z.ZodString;
+        contentType: z.ZodString;
+        title: z.ZodOptional<z.ZodString>;
+        sizeBytes: z.ZodOptional<z.ZodNumber>;
+        metadata: z.ZodOptional<z.ZodObject<{
+            width: z.ZodOptional<z.ZodNumber>;
+            height: z.ZodOptional<z.ZodNumber>;
+            durationMs: z.ZodOptional<z.ZodNumber>;
+            transcript: z.ZodOptional<z.ZodString>;
+            meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                db: z.ZodNumber;
+                timestampMs: z.ZodOptional<z.ZodNumber>;
+            }, "strip", z.ZodTypeAny, {
+                db: number;
+                timestampMs?: number | undefined;
+            }, {
+                db: number;
+                timestampMs?: number | undefined;
+            }>, "many">>;
+        }, "strip", z.ZodTypeAny, {
+            width?: number | undefined;
+            height?: number | undefined;
+            durationMs?: number | undefined;
+            transcript?: string | undefined;
+            meterings?: {
+                db: number;
+                timestampMs?: number | undefined;
+            }[] | undefined;
+        }, {
+            width?: number | undefined;
+            height?: number | undefined;
+            durationMs?: number | undefined;
+            transcript?: string | undefined;
+            meterings?: {
+                db: number;
+                timestampMs?: number | undefined;
+            }[] | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        uri: string;
+        storagePath: string;
+        contentType: string;
+        title?: string | undefined;
+        sizeBytes?: number | undefined;
+        metadata?: {
+            width?: number | undefined;
+            height?: number | undefined;
+            durationMs?: number | undefined;
+            transcript?: string | undefined;
+            meterings?: {
+                db: number;
+                timestampMs?: number | undefined;
+            }[] | undefined;
+        } | undefined;
+    }, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        uri: string;
+        storagePath: string;
+        contentType: string;
+        title?: string | undefined;
+        sizeBytes?: number | undefined;
+        metadata?: {
+            width?: number | undefined;
+            height?: number | undefined;
+            durationMs?: number | undefined;
+            transcript?: string | undefined;
+            meterings?: {
+                db: number;
+                timestampMs?: number | undefined;
+            }[] | undefined;
+        } | undefined;
+    }>>;
+}, "strip", z.ZodTypeAny, {
+    type: "user_message";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        message?: any;
+    };
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+    audioAttachment?: {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        uri: string;
+        storagePath: string;
+        contentType: string;
+        title?: string | undefined;
+        sizeBytes?: number | undefined;
+        metadata?: {
+            width?: number | undefined;
+            height?: number | undefined;
+            durationMs?: number | undefined;
+            transcript?: string | undefined;
+            meterings?: {
+                db: number;
+                timestampMs?: number | undefined;
+            }[] | undefined;
+        } | undefined;
+    } | undefined;
+}, {
+    type: "user_message";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        message?: any;
+    };
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+    audioAttachment?: {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        uri: string;
+        storagePath: string;
+        contentType: string;
+        title?: string | undefined;
+        sizeBytes?: number | undefined;
+        metadata?: {
+            width?: number | undefined;
+            height?: number | undefined;
+            durationMs?: number | undefined;
+            transcript?: string | undefined;
+            meterings?: {
+                db: number;
+                timestampMs?: number | undefined;
+            }[] | undefined;
+        } | undefined;
+    } | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    callLogDocPath: z.ZodOptional<z.ZodString>;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        message: z.ZodAny;
+    }, "strip", z.ZodTypeAny, {
+        message?: any;
+    }, {
+        message?: any;
+    }>;
+} & {
+    type: z.ZodLiteral<"assistant_message">;
+}, "strip", z.ZodTypeAny, {
+    type: "assistant_message";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        message?: any;
+    };
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}, {
+    type: "assistant_message";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        message?: any;
+    };
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    callLogDocPath: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"call">;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        agentConnectedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        endedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        livekitSessionId: z.ZodString;
+        livekitRoomName: z.ZodString;
+        summary: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        agentConnectedAt: import("../../types").Timestamp;
+        endedAt: import("../../types").Timestamp;
+        livekitSessionId: string;
+        livekitRoomName: string;
+        summary?: string | undefined;
+    }, {
+        agentConnectedAt: import("../../types").Timestamp;
+        endedAt: import("../../types").Timestamp;
+        livekitSessionId: string;
+        livekitRoomName: string;
+        summary?: string | undefined;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    type: "call";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        agentConnectedAt: import("../../types").Timestamp;
+        endedAt: import("../../types").Timestamp;
+        livekitSessionId: string;
+        livekitRoomName: string;
+        summary?: string | undefined;
+    };
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}, {
+    type: "call";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        agentConnectedAt: import("../../types").Timestamp;
+        endedAt: import("../../types").Timestamp;
+        livekitSessionId: string;
+        livekitRoomName: string;
+        summary?: string | undefined;
+    };
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    callLogDocPath: z.ZodOptional<z.ZodString>;
+} & {
+    isDisplayable: z.ZodLiteral<false>;
+    type: z.ZodLiteral<"tool_call">;
+    data: z.ZodObject<{
+        message: z.ZodAny;
+        toolCallResults: z.ZodArray<z.ZodAny, "many">;
+    }, "strip", z.ZodTypeAny, {
+        toolCallResults: any[];
+        message?: any;
+    }, {
+        toolCallResults: any[];
+        message?: any;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    type: "tool_call";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: false;
+    data: {
+        toolCallResults: any[];
+        message?: any;
+    };
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}, {
+    type: "tool_call";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: false;
+    data: {
+        toolCallResults: any[];
+        message?: any;
+    };
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    callLogDocPath: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"tactic_completed">;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        tactic: z.ZodAny;
+        tacticCollectionId: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        tacticCollectionId: string;
+        tactic?: any;
+    }, {
+        tacticCollectionId: string;
+        tactic?: any;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    type: "tactic_completed";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        tacticCollectionId: string;
+        tactic?: any;
+    };
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}, {
+    type: "tactic_completed";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        tacticCollectionId: string;
+        tactic?: any;
+    };
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    callLogDocPath: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"tactic_suggestion">;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        tactic: z.ZodAny;
+        tacticPath: z.ZodString;
+        reason: z.ZodOptional<z.ZodString>;
+        source: z.ZodOptional<z.ZodEnum<["userPlan", "library", "improvised"]>>;
+        collectionRefPath: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        tacticPath: string;
+        tactic?: any;
+        reason?: string | undefined;
+        source?: "userPlan" | "library" | "improvised" | undefined;
+        collectionRefPath?: string | undefined;
+    }, {
+        tacticPath: string;
+        tactic?: any;
+        reason?: string | undefined;
+        source?: "userPlan" | "library" | "improvised" | undefined;
+        collectionRefPath?: string | undefined;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    type: "tactic_suggestion";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        tacticPath: string;
+        tactic?: any;
+        reason?: string | undefined;
+        source?: "userPlan" | "library" | "improvised" | undefined;
+        collectionRefPath?: string | undefined;
+    };
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}, {
+    type: "tactic_suggestion";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        tacticPath: string;
+        tactic?: any;
+        reason?: string | undefined;
+        source?: "userPlan" | "library" | "improvised" | undefined;
+        collectionRefPath?: string | undefined;
+    };
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    callLogDocPath: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"day_summary">;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        targetDayDateString: z.ZodString;
+        behaviorDataTotalByBehaviorId: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+        trackingLogsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+    }, "strip", z.ZodTypeAny, {
+        targetDayDateString: string;
+        behaviorDataTotalByBehaviorId?: Record<string, any> | undefined;
+        trackingLogsById?: Record<string, any> | undefined;
+    }, {
+        targetDayDateString: string;
+        behaviorDataTotalByBehaviorId?: Record<string, any> | undefined;
+        trackingLogsById?: Record<string, any> | undefined;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    type: "day_summary";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        targetDayDateString: string;
+        behaviorDataTotalByBehaviorId?: Record<string, any> | undefined;
+        trackingLogsById?: Record<string, any> | undefined;
+    };
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}, {
+    type: "day_summary";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        targetDayDateString: string;
+        behaviorDataTotalByBehaviorId?: Record<string, any> | undefined;
+        trackingLogsById?: Record<string, any> | undefined;
+    };
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    callLogDocPath: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"impulse_button_pressed">;
+    isDisplayable: z.ZodLiteral<true>;
+}, "strip", z.ZodTypeAny, {
+    type: "impulse_button_pressed";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}, {
+    type: "impulse_button_pressed";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    callLogDocPath: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"behavior">;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        behaviorId: z.ZodString;
+        behaviorName: z.ZodString;
+        behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
+        trackingType: z.ZodEnum<["counter", "timer"]>;
+        category: z.ZodType<"helpful" | "mixed" | "unhelpful" | "unsure", z.ZodTypeDef, "helpful" | "mixed" | "unhelpful" | "unsure">;
+        value: z.ZodNumber;
+        formattedValue: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        behaviorId: string;
+        behaviorName: string;
+        trackingType: "counter" | "timer";
+        value: number;
+        category: "helpful" | "mixed" | "unhelpful" | "unsure";
+        formattedValue: string;
+        behaviorTrackingUnit?: string | undefined;
+    }, {
+        behaviorId: string;
+        behaviorName: string;
+        trackingType: "counter" | "timer";
+        value: number;
+        category: "helpful" | "mixed" | "unhelpful" | "unsure";
+        formattedValue: string;
+        behaviorTrackingUnit?: string | undefined;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    type: "behavior";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        behaviorId: string;
+        behaviorName: string;
+        trackingType: "counter" | "timer";
+        value: number;
+        category: "helpful" | "mixed" | "unhelpful" | "unsure";
+        formattedValue: string;
+        behaviorTrackingUnit?: string | undefined;
+    };
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}, {
+    type: "behavior";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        behaviorId: string;
+        behaviorName: string;
+        trackingType: "counter" | "timer";
+        value: number;
+        category: "helpful" | "mixed" | "unhelpful" | "unsure";
+        formattedValue: string;
+        behaviorTrackingUnit?: string | undefined;
+    };
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    callLogDocPath: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"question">;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        questionId: z.ZodOptional<z.ZodString>;
+        question: z.ZodAny;
+        response: z.ZodOptional<z.ZodObject<{
+            responseType: z.ZodEnum<["text", "slider1To10", "recap"]>;
+            value: z.ZodAny;
+            formattedValue: z.ZodString;
+            color: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            formattedValue: string;
+            responseType: "recap" | "text" | "slider1To10";
+            value?: any;
+            color?: string | undefined;
+        }, {
+            formattedValue: string;
+            responseType: "recap" | "text" | "slider1To10";
+            value?: any;
+            color?: string | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        question?: any;
+        questionId?: string | undefined;
+        response?: {
+            formattedValue: string;
+            responseType: "recap" | "text" | "slider1To10";
+            value?: any;
+            color?: string | undefined;
+        } | undefined;
+    }, {
+        question?: any;
+        questionId?: string | undefined;
+        response?: {
+            formattedValue: string;
+            responseType: "recap" | "text" | "slider1To10";
+            value?: any;
+            color?: string | undefined;
+        } | undefined;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    type: "question";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        question?: any;
+        questionId?: string | undefined;
+        response?: {
+            formattedValue: string;
+            responseType: "recap" | "text" | "slider1To10";
+            value?: any;
+            color?: string | undefined;
+        } | undefined;
+    };
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}, {
+    type: "question";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        question?: any;
+        questionId?: string | undefined;
+        response?: {
+            formattedValue: string;
+            responseType: "recap" | "text" | "slider1To10";
+            value?: any;
+            color?: string | undefined;
+        } | undefined;
+    };
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    callLogDocPath: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"plan">;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        plan: z.ZodUnion<[z.ZodIntersection<z.ZodObject<{
+            id: z.ZodString;
+            _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
+        }, "strip", z.ZodTypeAny, {
+            id: string;
+            _ref: import("../..").DocumentReferenceLike<unknown>;
+        }, {
+            id: string;
+            _ref: import("../..").DocumentReferenceLike<unknown>;
+        }>, z.ZodObject<{
+            id: z.ZodOptional<z.ZodString>;
+            name: z.ZodString;
+            type: z.ZodType<"time", z.ZodTypeDef, "time">;
+            ordinal: z.ZodOptional<z.ZodNumber>;
+            isTemplate: z.ZodOptional<z.ZodBoolean>;
+            summary: z.ZodOptional<z.ZodString>;
+            summaryRefreshRequired: z.ZodOptional<z.ZodBoolean>;
+            items: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+            lastUsedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+            createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+            updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+            deletedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        } & {
+            trigger: z.ZodObject<{
+                hour: z.ZodNumber;
+                minute: z.ZodNumber;
+                weekdays: z.ZodArray<z.ZodNumber, "many">;
+            }, "strip", z.ZodTypeAny, {
+                hour: number;
+                minute: number;
+                weekdays: number[];
+            }, {
+                hour: number;
+                minute: number;
+                weekdays: number[];
+            }>;
+        }, z.UnknownKeysParam, z.ZodTypeAny, {
+            type: "time";
+            name: string;
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
+            items: import("../..").DocumentReferenceLike<unknown>[];
+            lastUsedAt: import("../../types").Timestamp;
+            deletedAt: import("../../types").Timestamp;
+            trigger: {
+                hour: number;
+                minute: number;
+                weekdays: number[];
+            };
+            id?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            summaryRefreshRequired?: boolean | undefined;
+        }, {
+            type: "time";
+            name: string;
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
+            items: import("../..").DocumentReferenceLike<unknown>[];
+            lastUsedAt: import("../../types").Timestamp;
+            deletedAt: import("../../types").Timestamp;
+            trigger: {
+                hour: number;
+                minute: number;
+                weekdays: number[];
+            };
+            id?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            summaryRefreshRequired?: boolean | undefined;
+        }>>, z.ZodIntersection<z.ZodObject<{
+            id: z.ZodString;
+            _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
+        }, "strip", z.ZodTypeAny, {
+            id: string;
+            _ref: import("../..").DocumentReferenceLike<unknown>;
+        }, {
+            id: string;
+            _ref: import("../..").DocumentReferenceLike<unknown>;
+        }>, z.ZodObject<{
+            id: z.ZodOptional<z.ZodString>;
+            name: z.ZodString;
+            type: z.ZodType<"location", z.ZodTypeDef, "location">;
+            ordinal: z.ZodOptional<z.ZodNumber>;
+            isTemplate: z.ZodOptional<z.ZodBoolean>;
+            summary: z.ZodOptional<z.ZodString>;
+            summaryRefreshRequired: z.ZodOptional<z.ZodBoolean>;
+            items: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+            lastUsedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+            createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+            updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+            deletedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        } & {
+            trigger: z.ZodObject<{
+                locationName: z.ZodString;
+                triggerType: z.ZodEnum<["arrival", "departure"]>;
+                latitude: z.ZodNumber;
+                longitude: z.ZodNumber;
+            }, "strip", z.ZodTypeAny, {
+                locationName: string;
+                triggerType: "arrival" | "departure";
+                latitude: number;
+                longitude: number;
+            }, {
+                locationName: string;
+                triggerType: "arrival" | "departure";
+                latitude: number;
+                longitude: number;
+            }>;
+        }, z.UnknownKeysParam, z.ZodTypeAny, {
+            type: "location";
+            name: string;
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
+            items: import("../..").DocumentReferenceLike<unknown>[];
+            lastUsedAt: import("../../types").Timestamp;
+            deletedAt: import("../../types").Timestamp;
+            trigger: {
+                locationName: string;
+                triggerType: "arrival" | "departure";
+                latitude: number;
+                longitude: number;
+            };
+            id?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            summaryRefreshRequired?: boolean | undefined;
+        }, {
+            type: "location";
+            name: string;
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
+            items: import("../..").DocumentReferenceLike<unknown>[];
+            lastUsedAt: import("../../types").Timestamp;
+            deletedAt: import("../../types").Timestamp;
+            trigger: {
+                locationName: string;
+                triggerType: "arrival" | "departure";
+                latitude: number;
+                longitude: number;
+            };
+            id?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            summaryRefreshRequired?: boolean | undefined;
+        }>>, z.ZodIntersection<z.ZodObject<{
+            id: z.ZodString;
+            _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
+        }, "strip", z.ZodTypeAny, {
+            id: string;
+            _ref: import("../..").DocumentReferenceLike<unknown>;
+        }, {
+            id: string;
+            _ref: import("../..").DocumentReferenceLike<unknown>;
+        }>, z.ZodObject<{
+            id: z.ZodOptional<z.ZodString>;
+            name: z.ZodString;
+            type: z.ZodType<"recap", z.ZodTypeDef, "recap">;
+            ordinal: z.ZodOptional<z.ZodNumber>;
+            isTemplate: z.ZodOptional<z.ZodBoolean>;
+            summary: z.ZodOptional<z.ZodString>;
+            summaryRefreshRequired: z.ZodOptional<z.ZodBoolean>;
+            items: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+            lastUsedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+            createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+            updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+            deletedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        } & {
+            trigger: z.ZodObject<{
+                hour: z.ZodNumber;
+                minute: z.ZodNumber;
+                weekdays: z.ZodArray<z.ZodNumber, "many">;
+            }, "strip", z.ZodTypeAny, {
+                hour: number;
+                minute: number;
+                weekdays: number[];
+            }, {
+                hour: number;
+                minute: number;
+                weekdays: number[];
+            }>;
+        }, z.UnknownKeysParam, z.ZodTypeAny, {
+            type: "recap";
+            name: string;
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
+            items: import("../..").DocumentReferenceLike<unknown>[];
+            lastUsedAt: import("../../types").Timestamp;
+            deletedAt: import("../../types").Timestamp;
+            trigger: {
+                hour: number;
+                minute: number;
+                weekdays: number[];
+            };
+            id?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            summaryRefreshRequired?: boolean | undefined;
+        }, {
+            type: "recap";
+            name: string;
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
+            items: import("../..").DocumentReferenceLike<unknown>[];
+            lastUsedAt: import("../../types").Timestamp;
+            deletedAt: import("../../types").Timestamp;
+            trigger: {
+                hour: number;
+                minute: number;
+                weekdays: number[];
+            };
+            id?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            summaryRefreshRequired?: boolean | undefined;
+        }>>, z.ZodIntersection<z.ZodObject<{
+            id: z.ZodString;
+            _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
+        }, "strip", z.ZodTypeAny, {
+            id: string;
+            _ref: import("../..").DocumentReferenceLike<unknown>;
+        }, {
+            id: string;
+            _ref: import("../..").DocumentReferenceLike<unknown>;
+        }>, z.ZodObject<{
+            id: z.ZodOptional<z.ZodString>;
+            name: z.ZodString;
+            type: z.ZodType<"impulse", z.ZodTypeDef, "impulse">;
+            ordinal: z.ZodOptional<z.ZodNumber>;
+            isTemplate: z.ZodOptional<z.ZodBoolean>;
+            summary: z.ZodOptional<z.ZodString>;
+            summaryRefreshRequired: z.ZodOptional<z.ZodBoolean>;
+            items: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+            lastUsedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+            createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+            updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+            deletedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        } & {
+            triggerKeywords: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        }, z.UnknownKeysParam, z.ZodTypeAny, {
+            type: "impulse";
+            name: string;
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
+            items: import("../..").DocumentReferenceLike<unknown>[];
+            lastUsedAt: import("../../types").Timestamp;
+            deletedAt: import("../../types").Timestamp;
+            id?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            summaryRefreshRequired?: boolean | undefined;
+            triggerKeywords?: string[] | undefined;
+        }, {
+            type: "impulse";
+            name: string;
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
+            items: import("../..").DocumentReferenceLike<unknown>[];
+            lastUsedAt: import("../../types").Timestamp;
+            deletedAt: import("../../types").Timestamp;
+            id?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            summaryRefreshRequired?: boolean | undefined;
+            triggerKeywords?: string[] | undefined;
+        }>>]>;
+        introduction: z.ZodOptional<z.ZodString>;
+        acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+    }, "strip", z.ZodTypeAny, {
+        plan: ({
+            id: string;
+            _ref: import("../..").DocumentReferenceLike<unknown>;
+        } & {
+            type: "time";
+            name: string;
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
+            items: import("../..").DocumentReferenceLike<unknown>[];
+            lastUsedAt: import("../../types").Timestamp;
+            deletedAt: import("../../types").Timestamp;
+            trigger: {
+                hour: number;
+                minute: number;
+                weekdays: number[];
+            };
+            id?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            summaryRefreshRequired?: boolean | undefined;
+        }) | ({
+            id: string;
+            _ref: import("../..").DocumentReferenceLike<unknown>;
+        } & {
+            type: "location";
+            name: string;
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
+            items: import("../..").DocumentReferenceLike<unknown>[];
+            lastUsedAt: import("../../types").Timestamp;
+            deletedAt: import("../../types").Timestamp;
+            trigger: {
+                locationName: string;
+                triggerType: "arrival" | "departure";
+                latitude: number;
+                longitude: number;
+            };
+            id?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            summaryRefreshRequired?: boolean | undefined;
+        }) | ({
+            id: string;
+            _ref: import("../..").DocumentReferenceLike<unknown>;
+        } & {
+            type: "recap";
+            name: string;
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
+            items: import("../..").DocumentReferenceLike<unknown>[];
+            lastUsedAt: import("../../types").Timestamp;
+            deletedAt: import("../../types").Timestamp;
+            trigger: {
+                hour: number;
+                minute: number;
+                weekdays: number[];
+            };
+            id?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            summaryRefreshRequired?: boolean | undefined;
+        }) | ({
+            id: string;
+            _ref: import("../..").DocumentReferenceLike<unknown>;
+        } & {
+            type: "impulse";
+            name: string;
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
+            items: import("../..").DocumentReferenceLike<unknown>[];
+            lastUsedAt: import("../../types").Timestamp;
+            deletedAt: import("../../types").Timestamp;
+            id?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            summaryRefreshRequired?: boolean | undefined;
+            triggerKeywords?: string[] | undefined;
+        });
+        introduction?: string | undefined;
+        acceptedAt?: import("../../types").Timestamp | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
+    }, {
+        plan: ({
+            id: string;
+            _ref: import("../..").DocumentReferenceLike<unknown>;
+        } & {
+            type: "time";
+            name: string;
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
+            items: import("../..").DocumentReferenceLike<unknown>[];
+            lastUsedAt: import("../../types").Timestamp;
+            deletedAt: import("../../types").Timestamp;
+            trigger: {
+                hour: number;
+                minute: number;
+                weekdays: number[];
+            };
+            id?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            summaryRefreshRequired?: boolean | undefined;
+        }) | ({
+            id: string;
+            _ref: import("../..").DocumentReferenceLike<unknown>;
+        } & {
+            type: "location";
+            name: string;
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
+            items: import("../..").DocumentReferenceLike<unknown>[];
+            lastUsedAt: import("../../types").Timestamp;
+            deletedAt: import("../../types").Timestamp;
+            trigger: {
+                locationName: string;
+                triggerType: "arrival" | "departure";
+                latitude: number;
+                longitude: number;
+            };
+            id?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            summaryRefreshRequired?: boolean | undefined;
+        }) | ({
+            id: string;
+            _ref: import("../..").DocumentReferenceLike<unknown>;
+        } & {
+            type: "recap";
+            name: string;
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
+            items: import("../..").DocumentReferenceLike<unknown>[];
+            lastUsedAt: import("../../types").Timestamp;
+            deletedAt: import("../../types").Timestamp;
+            trigger: {
+                hour: number;
+                minute: number;
+                weekdays: number[];
+            };
+            id?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            summaryRefreshRequired?: boolean | undefined;
+        }) | ({
+            id: string;
+            _ref: import("../..").DocumentReferenceLike<unknown>;
+        } & {
+            type: "impulse";
+            name: string;
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
+            items: import("../..").DocumentReferenceLike<unknown>[];
+            lastUsedAt: import("../../types").Timestamp;
+            deletedAt: import("../../types").Timestamp;
+            id?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            summaryRefreshRequired?: boolean | undefined;
+            triggerKeywords?: string[] | undefined;
+        });
+        introduction?: string | undefined;
+        acceptedAt?: import("../../types").Timestamp | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    type: "plan";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        plan: ({
+            id: string;
+            _ref: import("../..").DocumentReferenceLike<unknown>;
+        } & {
+            type: "time";
+            name: string;
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
+            items: import("../..").DocumentReferenceLike<unknown>[];
+            lastUsedAt: import("../../types").Timestamp;
+            deletedAt: import("../../types").Timestamp;
+            trigger: {
+                hour: number;
+                minute: number;
+                weekdays: number[];
+            };
+            id?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            summaryRefreshRequired?: boolean | undefined;
+        }) | ({
+            id: string;
+            _ref: import("../..").DocumentReferenceLike<unknown>;
+        } & {
+            type: "location";
+            name: string;
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
+            items: import("../..").DocumentReferenceLike<unknown>[];
+            lastUsedAt: import("../../types").Timestamp;
+            deletedAt: import("../../types").Timestamp;
+            trigger: {
+                locationName: string;
+                triggerType: "arrival" | "departure";
+                latitude: number;
+                longitude: number;
+            };
+            id?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            summaryRefreshRequired?: boolean | undefined;
+        }) | ({
+            id: string;
+            _ref: import("../..").DocumentReferenceLike<unknown>;
+        } & {
+            type: "recap";
+            name: string;
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
+            items: import("../..").DocumentReferenceLike<unknown>[];
+            lastUsedAt: import("../../types").Timestamp;
+            deletedAt: import("../../types").Timestamp;
+            trigger: {
+                hour: number;
+                minute: number;
+                weekdays: number[];
+            };
+            id?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            summaryRefreshRequired?: boolean | undefined;
+        }) | ({
+            id: string;
+            _ref: import("../..").DocumentReferenceLike<unknown>;
+        } & {
+            type: "impulse";
+            name: string;
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
+            items: import("../..").DocumentReferenceLike<unknown>[];
+            lastUsedAt: import("../../types").Timestamp;
+            deletedAt: import("../../types").Timestamp;
+            id?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            summaryRefreshRequired?: boolean | undefined;
+            triggerKeywords?: string[] | undefined;
+        });
+        introduction?: string | undefined;
+        acceptedAt?: import("../../types").Timestamp | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
+    };
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}, {
+    type: "plan";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        plan: ({
+            id: string;
+            _ref: import("../..").DocumentReferenceLike<unknown>;
+        } & {
+            type: "time";
+            name: string;
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
+            items: import("../..").DocumentReferenceLike<unknown>[];
+            lastUsedAt: import("../../types").Timestamp;
+            deletedAt: import("../../types").Timestamp;
+            trigger: {
+                hour: number;
+                minute: number;
+                weekdays: number[];
+            };
+            id?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            summaryRefreshRequired?: boolean | undefined;
+        }) | ({
+            id: string;
+            _ref: import("../..").DocumentReferenceLike<unknown>;
+        } & {
+            type: "location";
+            name: string;
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
+            items: import("../..").DocumentReferenceLike<unknown>[];
+            lastUsedAt: import("../../types").Timestamp;
+            deletedAt: import("../../types").Timestamp;
+            trigger: {
+                locationName: string;
+                triggerType: "arrival" | "departure";
+                latitude: number;
+                longitude: number;
+            };
+            id?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            summaryRefreshRequired?: boolean | undefined;
+        }) | ({
+            id: string;
+            _ref: import("../..").DocumentReferenceLike<unknown>;
+        } & {
+            type: "recap";
+            name: string;
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
+            items: import("../..").DocumentReferenceLike<unknown>[];
+            lastUsedAt: import("../../types").Timestamp;
+            deletedAt: import("../../types").Timestamp;
+            trigger: {
+                hour: number;
+                minute: number;
+                weekdays: number[];
+            };
+            id?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            summaryRefreshRequired?: boolean | undefined;
+        }) | ({
+            id: string;
+            _ref: import("../..").DocumentReferenceLike<unknown>;
+        } & {
+            type: "impulse";
+            name: string;
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
+            items: import("../..").DocumentReferenceLike<unknown>[];
+            lastUsedAt: import("../../types").Timestamp;
+            deletedAt: import("../../types").Timestamp;
+            id?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            summaryRefreshRequired?: boolean | undefined;
+            triggerKeywords?: string[] | undefined;
+        });
+        introduction?: string | undefined;
+        acceptedAt?: import("../../types").Timestamp | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
+    };
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    callLogDocPath: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"summary">;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        summary: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        summary: string;
+    }, {
+        summary: string;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    type: "summary";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        summary: string;
+    };
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}, {
+    type: "summary";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        summary: string;
+    };
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    callLogDocPath: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"resisted">;
+    isDisplayable: z.ZodLiteral<true>;
+}, "strip", z.ZodTypeAny, {
+    type: "resisted";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}, {
+    type: "resisted";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    callLogDocPath: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"widget_setup">;
+    isDisplayable: z.ZodLiteral<true>;
+}, "strip", z.ZodTypeAny, {
+    type: "widget_setup";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}, {
+    type: "widget_setup";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    callLogDocPath: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"show_tour">;
+    isDisplayable: z.ZodLiteral<true>;
+    text: z.ZodString;
+    data: z.ZodObject<{
+        steps: z.ZodArray<z.ZodObject<{
+            elementRefName: z.ZodString;
+            title: z.ZodString;
+            description: z.ZodString;
+            confirmButtonLabel: z.ZodDefault<z.ZodString>;
+            nextOnImpulseButtonPress: z.ZodOptional<z.ZodBoolean>;
+            borderRadius: z.ZodOptional<z.ZodNumber>;
+            innerPadding: z.ZodOptional<z.ZodNumber>;
+        }, "strip", z.ZodTypeAny, {
+            description: string;
+            title: string;
+            elementRefName: string;
+            confirmButtonLabel: string;
+            nextOnImpulseButtonPress?: boolean | undefined;
+            borderRadius?: number | undefined;
+            innerPadding?: number | undefined;
+        }, {
+            description: string;
+            title: string;
+            elementRefName: string;
+            confirmButtonLabel?: string | undefined;
+            nextOnImpulseButtonPress?: boolean | undefined;
+            borderRadius?: number | undefined;
+            innerPadding?: number | undefined;
+        }>, "many">;
+        firstNavigateToRoute: z.ZodOptional<z.ZodString>;
+        startButtonLabel: z.ZodOptional<z.ZodString>;
+        completedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        includeCloseButton: z.ZodDefault<z.ZodBoolean>;
+        closeButtonText: z.ZodDefault<z.ZodString>;
+        closeButtonHref: z.ZodDefault<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        steps: {
+            description: string;
+            title: string;
+            elementRefName: string;
+            confirmButtonLabel: string;
+            nextOnImpulseButtonPress?: boolean | undefined;
+            borderRadius?: number | undefined;
+            innerPadding?: number | undefined;
+        }[];
+        includeCloseButton: boolean;
+        closeButtonText: string;
+        closeButtonHref: string;
+        firstNavigateToRoute?: string | undefined;
+        startButtonLabel?: string | undefined;
+        completedAt?: import("../../types").Timestamp | undefined;
+    }, {
+        steps: {
+            description: string;
+            title: string;
+            elementRefName: string;
+            confirmButtonLabel?: string | undefined;
+            nextOnImpulseButtonPress?: boolean | undefined;
+            borderRadius?: number | undefined;
+            innerPadding?: number | undefined;
+        }[];
+        firstNavigateToRoute?: string | undefined;
+        startButtonLabel?: string | undefined;
+        completedAt?: import("../../types").Timestamp | undefined;
+        includeCloseButton?: boolean | undefined;
+        closeButtonText?: string | undefined;
+        closeButtonHref?: string | undefined;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    type: "show_tour";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        steps: {
+            description: string;
+            title: string;
+            elementRefName: string;
+            confirmButtonLabel: string;
+            nextOnImpulseButtonPress?: boolean | undefined;
+            borderRadius?: number | undefined;
+            innerPadding?: number | undefined;
+        }[];
+        includeCloseButton: boolean;
+        closeButtonText: string;
+        closeButtonHref: string;
+        firstNavigateToRoute?: string | undefined;
+        startButtonLabel?: string | undefined;
+        completedAt?: import("../../types").Timestamp | undefined;
+    };
+    text: string;
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}, {
+    type: "show_tour";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        steps: {
+            description: string;
+            title: string;
+            elementRefName: string;
+            confirmButtonLabel?: string | undefined;
+            nextOnImpulseButtonPress?: boolean | undefined;
+            borderRadius?: number | undefined;
+            innerPadding?: number | undefined;
+        }[];
+        firstNavigateToRoute?: string | undefined;
+        startButtonLabel?: string | undefined;
+        completedAt?: import("../../types").Timestamp | undefined;
+        includeCloseButton?: boolean | undefined;
+        closeButtonText?: string | undefined;
+        closeButtonHref?: string | undefined;
+    };
+    text: string;
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    callLogDocPath: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"link">;
+    isDisplayable: z.ZodLiteral<true>;
+    text: z.ZodString;
+    link: z.ZodString;
+    buttonText: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    type: "link";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    link: string;
+    text: string;
+    buttonText: string;
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}, {
+    type: "link";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    link: string;
+    text: string;
+    buttonText: string;
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    callLogDocPath: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"notify_support_group">;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        message: z.ZodAny;
+        supportGroupsById: z.ZodRecord<z.ZodString, z.ZodObject<{
+            id: z.ZodString;
+            name: z.ZodString;
+            membersById: z.ZodRecord<z.ZodString, z.ZodObject<{
+                userId: z.ZodString;
+                userProfile: z.ZodObject<{
+                    id: z.ZodString;
+                    invitationCode: z.ZodString;
+                    emojiId: z.ZodOptional<z.ZodObject<{
+                        color: z.ZodString;
+                        emoji: z.ZodString;
+                        name: z.ZodOptional<z.ZodString>;
+                    }, "strip", z.ZodTypeAny, {
+                        color: string;
+                        emoji: string;
+                        name?: string | undefined;
+                    }, {
+                        color: string;
+                        emoji: string;
+                        name?: string | undefined;
+                    }>>;
+                }, "strip", z.ZodTypeAny, {
+                    id: string;
+                    invitationCode: string;
+                    emojiId?: {
+                        color: string;
+                        emoji: string;
+                        name?: string | undefined;
+                    } | undefined;
+                }, {
+                    id: string;
+                    invitationCode: string;
+                    emojiId?: {
+                        color: string;
+                        emoji: string;
+                        name?: string | undefined;
+                    } | undefined;
+                }>;
+            }, "strip", z.ZodTypeAny, {
+                userId: string;
+                userProfile: {
+                    id: string;
+                    invitationCode: string;
+                    emojiId?: {
+                        color: string;
+                        emoji: string;
+                        name?: string | undefined;
+                    } | undefined;
+                };
+            }, {
+                userId: string;
+                userProfile: {
+                    id: string;
+                    invitationCode: string;
+                    emojiId?: {
+                        color: string;
+                        emoji: string;
+                        name?: string | undefined;
+                    } | undefined;
+                };
+            }>>;
+        }, "strip", z.ZodTypeAny, {
+            id: string;
+            name: string;
+            membersById: Record<string, {
+                userId: string;
+                userProfile: {
+                    id: string;
+                    invitationCode: string;
+                    emojiId?: {
+                        color: string;
+                        emoji: string;
+                        name?: string | undefined;
+                    } | undefined;
+                };
+            }>;
+        }, {
+            id: string;
+            name: string;
+            membersById: Record<string, {
+                userId: string;
+                userProfile: {
+                    id: string;
+                    invitationCode: string;
+                    emojiId?: {
+                        color: string;
+                        emoji: string;
+                        name?: string | undefined;
+                    } | undefined;
+                };
+            }>;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        supportGroupsById: Record<string, {
+            id: string;
+            name: string;
+            membersById: Record<string, {
+                userId: string;
+                userProfile: {
+                    id: string;
+                    invitationCode: string;
+                    emojiId?: {
+                        color: string;
+                        emoji: string;
+                        name?: string | undefined;
+                    } | undefined;
+                };
+            }>;
+        }>;
+        message?: any;
+    }, {
+        supportGroupsById: Record<string, {
+            id: string;
+            name: string;
+            membersById: Record<string, {
+                userId: string;
+                userProfile: {
+                    id: string;
+                    invitationCode: string;
+                    emojiId?: {
+                        color: string;
+                        emoji: string;
+                        name?: string | undefined;
+                    } | undefined;
+                };
+            }>;
+        }>;
+        message?: any;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    type: "notify_support_group";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        supportGroupsById: Record<string, {
+            id: string;
+            name: string;
+            membersById: Record<string, {
+                userId: string;
+                userProfile: {
+                    id: string;
+                    invitationCode: string;
+                    emojiId?: {
+                        color: string;
+                        emoji: string;
+                        name?: string | undefined;
+                    } | undefined;
+                };
+            }>;
+        }>;
+        message?: any;
+    };
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}, {
+    type: "notify_support_group";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        supportGroupsById: Record<string, {
+            id: string;
+            name: string;
+            membersById: Record<string, {
+                userId: string;
+                userProfile: {
+                    id: string;
+                    invitationCode: string;
+                    emojiId?: {
+                        color: string;
+                        emoji: string;
+                        name?: string | undefined;
+                    } | undefined;
+                };
+            }>;
+        }>;
+        message?: any;
+    };
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    callLogDocPath: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"video">;
+    isDisplayable: z.ZodLiteral<true>;
+    title: z.ZodOptional<z.ZodString>;
+    text: z.ZodOptional<z.ZodString>;
+    data: z.ZodObject<{
+        sourceUri: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        sourceUri: string;
+    }, {
+        sourceUri: string;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    type: "video";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        sourceUri: string;
+    };
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+    text?: string | undefined;
+    title?: string | undefined;
+}, {
+    type: "video";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        sourceUri: string;
+    };
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+    text?: string | undefined;
+    title?: string | undefined;
+}>]>;
 export declare const logIsAssistantMessageLog: (value: Omit<Log, "id">) => value is AssistantMessageLog;
 export declare const isValidAssistantMessageLog: (value: unknown) => value is AssistantMessageLog;
 export declare const logIsShowTourLog: (value: Omit<Log, "id">) => value is ShowTourLog;
@@ -742,7 +3855,7 @@ export declare const isValidImpulseLog: (value: unknown) => value is ImpulseLog;
 export declare const logIsToolCallLog: (value: Omit<Log, "id">) => value is ToolCallLog;
 export declare const isValidToolCallLog: (value: unknown) => value is ToolCallLog;
 export declare const logIsWidgetSetupLog: (value: Omit<Log, "id">) => value is WidgetSetupLog;
-export declare const isValidWidgetSetupLog: (value: unknown) => value is ToolCallLog;
+export declare const isValidWidgetSetupLog: (value: unknown) => value is WidgetSetupLog;
 export declare const logIsQuestionLog: (value: Omit<Log, "id">) => value is QuestionLog;
 export declare const isValidQuestionLog: (value: unknown) => value is QuestionLog;
 export declare const logIsTacticLog: (value: Omit<Log, "id">) => value is TacticLog;

@@ -1,7 +1,7 @@
-import * as yup from "yup";
+import { z } from "zod";
 
-export const insightSchema = yup.object({
-  userId: yup.string().required(),
-  text: yup.string().required(),
+export const insightSchema = z.object({
+  userId: z.string(),
+  text: z.string(),
 });
-export type Insight = yup.InferType<typeof insightSchema>;
+export type Insight = z.infer<typeof insightSchema>;

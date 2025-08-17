@@ -1,4 +1,4 @@
-import * as yup from "yup";
+import { z } from "zod";
 import { timestampSchema } from "../../utils";
 import { logBaseSchema } from "./base";
 
@@ -7,30 +7,30 @@ export enum TourIcon {
   DockMetricsButton = "dockMetricsButton",
 }
 
-export const tourStepSchema = yup.object({
-  elementRefName: yup.string().required(),
-  title: yup.string().required(),
-  description: yup.string().required(),
-  confirmButtonLabel: yup.string().required().default("Ok"),
-  nextOnImpulseButtonPress: yup.boolean(),
-  borderRadius: yup.number(),
-  innerPadding: yup.number(),
+export const tourStepSchema = z.object({
+  elementRefName: z.string(),
+  title: z.string(),
+  description: z.string(),
+  confirmButtonLabel: z.string().default("Ok"),
+  nextOnImpulseButtonPress: z.boolean().optional(),
+  borderRadius: z.number().optional(),
+  innerPadding: z.number().optional(),
 });
-export type TourStep = yup.InferType<typeof tourStepSchema>;
+export type TourStep = z.infer<typeof tourStepSchema>;
 
-export const showTourLogSchema = logBaseSchema.shape({
-  type: yup.mixed<"show_tour">().oneOf(["show_tour"]).required(),
-  isDisplayable: yup.mixed<true>().oneOf([true]).required(),
-  text: yup.string().required(),
-  data: yup.object({
-    steps: yup.array().of(tourStepSchema).required(),
-    firstNavigateToRoute: yup.string(),
-    startButtonLabel: yup.string(),
-    completedAt: timestampSchema,
-    includeCloseButton: yup.boolean().default(false),
-    closeButtonText: yup.string().default("Close"),
-    closeButtonHref: yup.string().default("/"),
+export const showTourLogSchema = logBaseSchema.extend({
+  type: z.literal("show_tour"),
+  isDisplayable: z.literal(true),
+  text: z.string(),
+  data: z.object({
+    steps: z.array(tourStepSchema),
+    firstNavigateToRoute: z.string().optional(),
+    startButtonLabel: z.string().optional(),
+    completedAt: timestampSchema.optional(),
+    includeCloseButton: z.boolean().default(false),
+    closeButtonText: z.string().default("Close"),
+    closeButtonHref: z.string().default("/"),
   }),
 });
 
-export type ShowTourLog = yup.InferType<typeof showTourLogSchema>;
+export type ShowTourLog = z.infer<typeof showTourLogSchema>;

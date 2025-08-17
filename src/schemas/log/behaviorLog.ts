@@ -1,25 +1,23 @@
-import * as yup from "yup";
+import { z } from "zod";
 import { categorySchema } from "../behavior";
 import { logBaseSchema } from "./base";
 
-export const behaviorTrackingDataSchema = yup.object({
-  behaviorId: yup.string().required(),
-  behaviorName: yup.string().required(),
-  behaviorTrackingUnit: yup.string(),
-  trackingType: yup.string().oneOf(["counter", "timer"]).required(),
+export const behaviorTrackingDataSchema = z.object({
+  behaviorId: z.string(),
+  behaviorName: z.string(),
+  behaviorTrackingUnit: z.string().optional(),
+  trackingType: z.enum(["counter", "timer"]),
   category: categorySchema,
-  value: yup.number().required(), // Count or time in seconds
-  formattedValue: yup.string().required(),
+  value: z.number(), // Count or time in seconds
+  formattedValue: z.string(),
 });
-export type BehaviorTrackingData = yup.InferType<
-  typeof behaviorTrackingDataSchema
->;
+export type BehaviorTrackingData = z.infer<typeof behaviorTrackingDataSchema>;
 
-export const behaviorLogSchema = logBaseSchema.shape({
-  type: yup.string().oneOf(["behavior"]).required(),
+export const behaviorLogSchema = logBaseSchema.extend({
+  type: z.literal("behavior"),
   // Behavior tracked logs are always displayed in the UI
-  isDisplayable: yup.mixed<true>().oneOf([true]).required(),
-  data: behaviorTrackingDataSchema.required(),
+  isDisplayable: z.literal(true),
+  data: behaviorTrackingDataSchema,
 });
 
-export type BehaviorLog = yup.InferType<typeof behaviorLogSchema>;
+export type BehaviorLog = z.infer<typeof behaviorLogSchema>;

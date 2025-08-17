@@ -1,6 +1,6 @@
-import * as yup from "yup";
+import { z } from "zod";
 import { questionBaseSchema } from "./base";
 
 export const recapQuestionSchema = questionBaseSchema("recap");
 
-export type RecapQuestion = yup.InferType<typeof recapQuestionSchema>;
+export type RecapQuestion = z.infer<typeof recapQuestionSchema>;

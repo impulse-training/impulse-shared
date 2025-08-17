@@ -1,38 +1,28 @@
-import { ChatCompletionUserMessageParam } from "openai/resources";
-import * as yup from "yup";
+import { z } from "zod";
 import { objectOf } from "../../utils";
 import { userProfileSchema } from "../userProfile";
 import { logBaseSchema } from "./base";
 
-export const notifySupportGroupLogSchema = logBaseSchema.shape({
-  type: yup
-    .mixed<"notify_support_group">()
-    .oneOf(["notify_support_group"])
-    .required(),
-  isDisplayable: yup.mixed<true>().oneOf([true]).required(),
-  data: yup
-    .object({
-      message: yup.mixed<ChatCompletionUserMessageParam>().required(),
-      // A snapshot of the support groups this thread was shared with at the time of notification,
-      // including member details so clients can display who was notified.
-      supportGroupsById: objectOf(
-        // We need a partial type for support groups instead of supportGroupSchema, to prevent
-        // circular dependencies
-        yup.object({
-          id: yup.string().required(),
-          name: yup.string().required(),
-          membersById: objectOf(
-            yup.object({
-              userId: yup.string().required(),
-              userProfile: userProfileSchema,
-            })
-          ),
-        })
-      ),
-    })
-    .required(),
+export const notifySupportGroupLogSchema = logBaseSchema.extend({
+  type: z.literal("notify_support_group"),
+  isDisplayable: z.literal(true),
+  data: z.object({
+    message: z.any(),
+    // A snapshot of the support groups this thread was shared with at the time of notification,
+    // including member details so clients can display who was notified.
+    supportGroupsById: objectOf(
+      z.object({
+        id: z.string(),
+        name: z.string(),
+        membersById: objectOf(
+          z.object({
+            userId: z.string(),
+            userProfile: userProfileSchema,
+          })
+        ),
+      })
+    ),
+  }),
 });
 
-export type NotifySupportGroupLog = yup.InferType<
-  typeof notifySupportGroupLogSchema
->;
+export type NotifySupportGroupLog = z.infer<typeof notifySupportGroupLogSchema>;

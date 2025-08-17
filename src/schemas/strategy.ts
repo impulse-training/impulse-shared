@@ -1,19 +1,16 @@
-import * as yup from "yup";
+import { z } from "zod";
 import { documentReferenceSchema, timestampSchema } from "../utils";
 import { userProfileSchema } from "./userProfile";
 
-export const strategySchema = yup.object({
-  id: yup.string(),
-  name: yup.string().required(),
-  description: yup.string(),
-  isImported: yup.boolean().optional().default(undefined),
-  plans: yup.array().of(documentReferenceSchema.required()).required(),
-  tacticCollections: yup
-    .array()
-    .of(documentReferenceSchema.required())
-    .required(),
+export const strategySchema = z.object({
+  id: z.string().optional(),
+  name: z.string(),
+  description: z.string().optional(),
+  isImported: z.boolean().optional(),
+  plans: z.array(documentReferenceSchema),
+  tacticCollections: z.array(documentReferenceSchema),
   createdByProfile: userProfileSchema.optional(),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
 });
-export type Strategy = yup.InferType<typeof strategySchema>;
+export type Strategy = z.infer<typeof strategySchema>;

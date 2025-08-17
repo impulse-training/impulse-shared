@@ -1,20 +1,15 @@
-import * as yup from "yup";
+import { z } from "zod";
 import { documentReferenceSchema, timestampSchema } from "../utils";
 
 // This is a message from an external service, like Whatsapp, delivered to an inbox
-export const externalSenderMessageSchema = yup.object({
+export const externalSenderMessageSchema = z.object({
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
   date: timestampSchema,
-  content: yup.string().nullable().defined(),
-  senderUid: yup.string(),
-  attachments: yup.array().of(documentReferenceSchema),
-  externalId: yup.string(),
-  role: yup
-    .mixed<"user" | "assistant" | "system" | "tool">()
-    .oneOf(["assistant", "user", "system", "tool"])
-    .required(),
+  content: z.string().nullable(),
+  senderUid: z.string(),
+  attachments: z.array(documentReferenceSchema),
+  externalId: z.string(),
+  role: z.enum(["assistant", "user", "system", "tool"]),
 });
-export type ExternalSenderMessage = yup.InferType<
-  typeof externalSenderMessageSchema
->;
+export type ExternalSenderMessage = z.infer<typeof externalSenderMessageSchema>;

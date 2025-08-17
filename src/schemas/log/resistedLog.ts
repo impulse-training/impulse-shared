@@ -1,10 +1,10 @@
-import * as yup from "yup";
+import { z } from "zod";
 import { logBaseSchema } from "./base";
 
-export const resistedLogSchema = logBaseSchema.shape({
-  type: yup.string().oneOf(["resisted"]).required(),
+export const resistedLogSchema = logBaseSchema.extend({
+  type: z.literal("resisted"),
   // Behavior tracked logs are always displayed in the UI
-  isDisplayable: yup.mixed<true>().oneOf([true]).required(),
+  isDisplayable: z.literal(true),
 });
 
-export type ResistedLog = yup.InferType<typeof resistedLogSchema>;
+export type ResistedLog = z.infer<typeof resistedLogSchema>;

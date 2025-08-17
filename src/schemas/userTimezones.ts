@@ -1,10 +1,11 @@
-import * as yup from "yup";
+import { z } from "zod";
+import { timestampSchema } from "../utils";
 
-export const userTimezoneSchema = yup.object({
-  timezone: yup.string().required(),
-  timezoneOffset: yup.number().optional(),
-  createdAt: yup.mixed().optional(),
-  updatedAt: yup.mixed().optional(),
+export const userTimezoneSchema = z.object({
+  timezone: z.string(),
+  timezoneOffset: z.number().optional(),
+  createdAt: timestampSchema.optional(),
+  updatedAt: timestampSchema.optional(),
 });
 
-export type UserTimezones = yup.InferType<typeof userTimezoneSchema>;
+export type UserTimezones = z.infer<typeof userTimezoneSchema>;

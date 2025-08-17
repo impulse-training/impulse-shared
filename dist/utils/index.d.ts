@@ -6,7 +6,7 @@ export * from "./fields";
 export * from "./objectOf";
 export * from "./shouldRespondWithAI";
 export * from "./sumBehaviorDataTotals";
-export * from "./tactics";
 export * from "./timestampSchema";
 export * from "./validation";
 export * from "./withId";
+export * from "./attachments";

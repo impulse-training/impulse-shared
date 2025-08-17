@@ -1,24 +1,9 @@
-import { mapValues } from "lodash";
-import * as yup from "yup";
+import { z } from "zod";
 
-export function objectOf<T extends yup.Schema | yup.Lazy<unknown>>(schema: T) {
-  return yup.lazy((obj) => {
-    const shape: Record<string, T> = mapValues(
-      obj as Record<string, unknown>,
-      () => schema
-    );
-    return yup.object(shape).required();
-  });
+export function objectOf<T extends z.ZodTypeAny>(schema: T) {
+  return z.record(z.string(), schema);
 }
 
-export function optionalObjectOf<T extends yup.Schema | yup.Lazy<unknown>>(
-  schema: T
-) {
-  return yup.lazy((obj) => {
-    const shape: Record<string, T> = mapValues(
-      obj as Record<string, unknown>,
-      () => schema
-    );
-    return yup.object(shape).notRequired();
-  });
+export function optionalObjectOf<T extends z.ZodTypeAny>(schema: T) {
+  return z.record(z.string(), schema).optional();
 }

@@ -1,4 +1,4 @@
-import * as yup from "yup";
+import { z } from "zod";
 import { BEHAVIOR_CATEGORIES, BehaviorCategoryKey } from "../constants";
 import { timestampSchema } from "../utils";
 
@@ -7,61 +7,65 @@ export const trackingTypes = ["counter", "timer"] as const;
 // Use the category keys from our constants
 const categoryKeys = Object.keys(BEHAVIOR_CATEGORIES) as BehaviorCategoryKey[];
 
-export const categorySchema = yup
-  .mixed<BehaviorCategoryKey>()
-  .oneOf(categoryKeys)
-  .required();
+export const categorySchema = z.custom<BehaviorCategoryKey>((val) =>
+  categoryKeys.includes(val as BehaviorCategoryKey)
+);
 
 // We're using simple string arrays for benefits and drawbacks
-const goalSchema = yup.object({
-  type: yup
-    .mixed<"greaterThan" | "lessThanOrEqualTo">()
-    .oneOf(["greaterThan", "lessThanOrEqualTo"])
-    .required(),
-  target: yup.number().required(),
+const goalSchema = z.object({
+  type: z.enum(["greaterThan", "lessThanOrEqualTo"]),
+  target: z.number(),
 });
 
 // These are foundational attributes, and correspond to documents in a top-level behaviorTemplates
 // collection. We then extend that schema to be the full behavior schema.
-export const behaviorTemplateSchema = yup.object({
-  name: yup.string().required(),
+const behaviorTemplateBase = z.object({
+  name: z.string(),
   category: categorySchema,
-  hasQuestions: yup.boolean().optional().default(undefined),
-  trackingType: yup.string().oneOf(trackingTypes).required(),
-  trackingUnit: yup.string().when("trackingType", {
-    is: "counter",
-    then: (schema) =>
-      schema.required(
-        "Tracking unit is required when tracking type is 'counter'"
-      ),
-    otherwise: (schema) => schema.notRequired(),
-  }),
+  hasQuestions: z.boolean().optional(),
+  trackingType: z.enum(trackingTypes),
+  trackingUnit: z.string().optional(),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
 });
-export type BehaviorTemplate = yup.InferType<typeof behaviorTemplateSchema>;
+
+export const behaviorTemplateSchema = behaviorTemplateBase.superRefine(
+  (val, ctx) => {
+    if (val.trackingType === "counter" && !val.trackingUnit) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message:
+          "Tracking unit is required when tracking type is 'counter'",
+        path: ["trackingUnit"],
+      });
+    }
+  }
+);
+export type BehaviorTemplate = z.infer<typeof behaviorTemplateSchema>;
 
 // These are stored at the user-level, as in, users/$userId/behaviors/$behaviorId
-export const behaviorSchema = behaviorTemplateSchema.shape({
-  id: yup.string(),
-  description: yup.string().required(),
-  ordinal: yup.number().default(0),
-  benefits: yup.array().of(yup.string().required()),
-  drawbacks: yup.array().of(yup.string().required()),
-  goal: goalSchema.optional().default(undefined),
+export const behaviorSchema = behaviorTemplateBase.extend({
+  id: z.string().optional(),
+  description: z.string(),
+  ordinal: z.number().default(0),
+  benefits: z.array(z.string()),
+  drawbacks: z.array(z.string()),
+  goal: goalSchema.optional(),
   lastTrackedAt: timestampSchema,
+}).superRefine((val, ctx) => {
+  if (val.trackingType === "counter" && !val.trackingUnit) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: "Tracking unit is required when tracking type is 'counter'",
+      path: ["trackingUnit"],
+    });
+  }
 });
 
 export type TrackingType = (typeof trackingTypes)[number];
 
 // Export types inferred from schemas
-export type Behavior = yup.InferType<typeof behaviorSchema>;
+export type Behavior = z.infer<typeof behaviorSchema>;
 
-export const isBehavior = (value: unknown): value is Behavior => {
-  try {
-    behaviorSchema.validateSync(value);
-    return true;
-  } catch (error) {
-    return false;
-  }
-};
+export const isBehavior = (value: unknown): value is Behavior =>
+  behaviorSchema.safeParse(value).success;

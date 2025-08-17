@@ -1,8 +1,8 @@
-import * as yup from "yup";
+import { z } from "zod";
 import { planBaseSchema } from "./base";
 
-export const impulsePlanSchema = planBaseSchema("impulse").shape({
-  triggerKeywords: yup.array().of(yup.string().required()).optional(),
+export const impulsePlanSchema = planBaseSchema("impulse").extend({
+  triggerKeywords: z.array(z.string()).optional(),
 });
 
-export type ImpulsePlan = yup.InferType<typeof impulsePlanSchema>;
+export type ImpulsePlan = z.infer<typeof impulsePlanSchema>;

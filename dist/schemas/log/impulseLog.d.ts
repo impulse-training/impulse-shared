@@ -1,23 +1,34 @@
-import * as yup from "yup";
-export declare const impulseLogSchema: yup.ObjectSchema<{
-    id: string | undefined;
-    createdAt: import("../../types").Timestamp | undefined;
-    updatedAt: import("../../types").Timestamp | undefined;
+import { z } from "zod";
+export declare const impulseLogSchema: z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    callLogDocPath: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"impulse_button_pressed">;
+    isDisplayable: z.ZodLiteral<true>;
+}, "strip", z.ZodTypeAny, {
+    type: "impulse_button_pressed";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
     userId: string;
     timestamp: import("../../types").Timestamp;
     dateString: string;
-    callLogDocPath: string | undefined;
-    type: "impulse_button_pressed";
     isDisplayable: true;
-}, yup.AnyObject, {
-    id: undefined;
-    createdAt: undefined;
-    updatedAt: undefined;
-    userId: undefined;
-    timestamp: undefined;
-    dateString: undefined;
-    callLogDocPath: undefined;
-    type: undefined;
-    isDisplayable: undefined;
-}, "">;
-export type ImpulseLog = yup.InferType<typeof impulseLogSchema>;
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}, {
+    type: "impulse_button_pressed";
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+}>;
+export type ImpulseLog = z.infer<typeof impulseLogSchema>;

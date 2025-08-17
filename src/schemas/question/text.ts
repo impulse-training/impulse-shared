@@ -1,8 +1,8 @@
-import * as yup from "yup";
+import { z } from "zod";
 import { questionBaseSchema } from "./base";
 
-export const textQuestionSchema = questionBaseSchema("text").shape({
-  suggestedResponses: yup.array().of(yup.string().required()).optional(),
+export const textQuestionSchema = questionBaseSchema("text").extend({
+  suggestedResponses: z.array(z.string()).optional(),
 });
 
-export type TextQuestion = yup.InferType<typeof textQuestionSchema>;
+export type TextQuestion = z.infer<typeof textQuestionSchema>;

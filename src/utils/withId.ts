@@ -1,4 +1,4 @@
-import * as yup from "yup";
+import { z } from "zod";
 import { DocumentSnapshotLike } from "../types";
 import {
   DocumentReferenceLike,
@@ -21,20 +21,15 @@ export function withId<T extends Record<string, any>>(
   };
 }
 
-export const withIdSchema = <T extends yup.AnyObject>(
-  schema: yup.ObjectSchema<T> | yup.Lazy<yup.AnyObject>
-): yup.Lazy<WithId<T>> =>
-  yup.lazy(() => {
-    // -- at resolution time we know the inner schema really is an ObjectSchema
-    const obj = schema instanceof yup.Lazy ? schema.resolve({}) : schema;
-
-    return yup
-      .object({
-        id: yup.string().required(),
-        _ref: documentReferenceSchema.required(),
-      })
-      .concat(obj as yup.ObjectSchema<T>);
-  }) as yup.Lazy<WithId<T>>;
+export const withIdSchema = <T extends z.ZodRawShape>(
+  schema: z.ZodObject<T>
+) =>
+  z
+    .object({
+      id: z.string(),
+      _ref: documentReferenceSchema,
+    })
+    .and(schema);
 
 export type WithId<T extends WithMaybeId> = T & {
   id: string;

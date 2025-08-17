@@ -1,10 +1,10 @@
-import * as yup from "yup";
+import { z } from "zod";
 import { documentReferenceSchema } from "../../utils";
 import { experimentBaseSchema } from "./base";
 
-export const gameplanExperiment = experimentBaseSchema("plan").shape({
-  plan: documentReferenceSchema.required(),
-  behavior: documentReferenceSchema.required(),
+export const gameplanExperiment = experimentBaseSchema("gameplan").extend({
+  plan: documentReferenceSchema,
+  behavior: documentReferenceSchema,
 });
 
-export type GameplanExperiment = yup.InferType<typeof gameplanExperiment>;
+export type GameplanExperiment = z.infer<typeof gameplanExperiment>;

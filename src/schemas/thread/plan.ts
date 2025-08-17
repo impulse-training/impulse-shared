@@ -1,25 +1,24 @@
-import * as yup from "yup";
-import { withIdSchema } from "../../utils";
-import { Plan, planSchema } from "../plan";
+import { z } from "zod";
+import { planWithIdSchema } from "../plan";
 import { threadBaseSchema } from "./base";
 
-const planThreadBaseSchema = threadBaseSchema.shape({
-  plan: withIdSchema<Plan>(planSchema),
+const planThreadBaseSchema = threadBaseSchema.extend({
+  plan: planWithIdSchema,
 });
 
-export const timePlanThreadSchema = planThreadBaseSchema.shape({
-  type: yup.mixed<"time">().oneOf(["time"]).required(),
+export const timePlanThreadSchema = planThreadBaseSchema.extend({
+  type: z.literal("timePlan"),
 });
 
-// Recap plans are hidden by default
-export const recapPlanThreadSchema = planThreadBaseSchema.shape({
-  type: yup.mixed<"recap">().oneOf(["recap"]).required(),
+// Recap plan thread (hidden by default)
+export const recapPlanThreadSchema = planThreadBaseSchema.extend({
+  type: z.literal("dayRecap"),
 });
 
-export const locationPlanThreadSchema = planThreadBaseSchema.shape({
-  type: yup.mixed<"location">().oneOf(["location"]).required(),
+export const locationPlanThreadSchema = planThreadBaseSchema.extend({
+  type: z.literal("locationPlan"),
 });
 
-export type TimePlanThread = yup.InferType<typeof timePlanThreadSchema>;
-export type RecapPlanThread = yup.InferType<typeof recapPlanThreadSchema>;
-export type LocationPlanThread = yup.InferType<typeof locationPlanThreadSchema>;
+export type TimePlanThread = z.infer<typeof timePlanThreadSchema>;
+export type RecapPlanThread = z.infer<typeof recapPlanThreadSchema>;
+export type LocationPlanThread = z.infer<typeof locationPlanThreadSchema>;

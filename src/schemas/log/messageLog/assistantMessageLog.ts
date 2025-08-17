@@ -1,16 +1,8 @@
-import { ChatCompletionAssistantMessageParam } from "openai/resources/chat";
-import * as yup from "yup";
+import { z } from "zod";
 import { messageBaseLogSchema } from "./base";
 
-export const assistantMessageLogSchema = messageBaseLogSchema.shape({
-  type: yup.string().oneOf(["assistant_message"]).required(),
-  data: yup
-    .object({
-      message: yup.mixed<ChatCompletionAssistantMessageParam>().required(),
-    })
-    .required(),
+export const assistantMessageLogSchema = messageBaseLogSchema.extend({
+  type: z.literal("assistant_message"),
 });
 
-export type AssistantMessageLog = yup.InferType<
-  typeof assistantMessageLogSchema
->;
+export type AssistantMessageLog = z.infer<typeof assistantMessageLogSchema>;

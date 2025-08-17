@@ -31,10 +31,6 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.17.16",
-    "@types/node": "^20.11.5",
-    "yup": "^1.6.1"
-  },
-  "peerDependencies": {
-    "yup": "^1.6.1"
+    "@types/node": "^20.11.5"
   }
 }

@@ -1,26 +1,24 @@
-import * as yup from "yup";
-import { questionSchema, responseTypeSchema } from "../question";
+import { z } from "zod";
 import { logBaseSchema } from "./base";
 
-const responseSchema = yup.object({
-  responseType: responseTypeSchema,
-  value: yup.mixed(),
-  formattedValue: yup.string().required(),
-  color: yup.string(),
+const responseSchema = z.object({
+  responseType: z.enum(["text", "slider1To10", "recap"]),
+  value: z.any(),
+  formattedValue: z.string(),
+  color: z.string().optional(),
 });
-export type Response = yup.InferType<typeof responseSchema>;
+export type Response = z.infer<typeof responseSchema>;
 
-export const questionLogSchema = logBaseSchema.shape({
-  type: yup.string().oneOf(["question"]).required(),
+export const questionLogSchema = logBaseSchema.extend({
+  type: z.literal("question"),
   // Question logs are always displayed in the UI
-  isDisplayable: yup.mixed<true>().oneOf([true]).required(),
-  data: yup
-    .object({
-      questionId: yup.string(),
-      question: questionSchema,
-      response: responseSchema.optional().default(undefined),
-    })
-    .required(),
+  isDisplayable: z.literal(true),
+  data: z.object({
+    questionId: z.string().optional(),
+    // TODO: tighten this once ../question is migrated to Zod
+    question: z.any(),
+    response: responseSchema.optional(),
+  }),
 });
 
-export type QuestionLog = yup.InferType<typeof questionLogSchema>;
+export type QuestionLog = z.infer<typeof questionLogSchema>;

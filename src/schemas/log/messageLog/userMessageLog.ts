@@ -1,16 +1,10 @@
-import { ChatCompletionUserMessageParam } from "openai/resources";
-import * as yup from "yup";
+import { z } from "zod";
 import { attachmentSchema } from "../../attachment";
 import { messageBaseLogSchema } from "./base";
 
-export const userMessageLogSchema = messageBaseLogSchema.shape({
-  type: yup.string().oneOf(["user_message"]).required(),
+export const userMessageLogSchema = messageBaseLogSchema.extend({
+  type: z.literal("user_message"),
   audioAttachment: attachmentSchema.optional(),
-  data: yup
-    .object({
-      message: yup.mixed<ChatCompletionUserMessageParam>().required(),
-    })
-    .required(),
 });
 
-export type UserMessageLog = yup.InferType<typeof userMessageLogSchema>;
+export type UserMessageLog = z.infer<typeof userMessageLogSchema>;

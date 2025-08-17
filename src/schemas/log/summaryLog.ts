@@ -1,14 +1,14 @@
-import * as yup from "yup";
+import { z } from "zod";
 import { logBaseSchema } from "./base";
 
-// Impulse Log Schema
-export const summaryLogSchema = logBaseSchema.shape({
-  type: yup.string().oneOf(["summary"]).required(),
-  // Impulse logs are always displayed in the UI
-  isDisplayable: yup.mixed<true>().oneOf([true]).required(),
-  data: yup.object({
-    summary: yup.string().required(),
+// Summary Log Schema
+export const summaryLogSchema = logBaseSchema.extend({
+  type: z.literal("summary"),
+  // Summary logs are always displayed in the UI
+  isDisplayable: z.literal(true),
+  data: z.object({
+    summary: z.string(),
   }),
 });
 
-export type SummaryLog = yup.InferType<typeof summaryLogSchema>;
+export type SummaryLog = z.infer<typeof summaryLogSchema>;

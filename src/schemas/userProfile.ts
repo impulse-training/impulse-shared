@@ -1,18 +1,17 @@
-import * as yup from "yup";
+import { z } from "zod";
 
-export const emojiIdSchema = yup
+export const emojiIdSchema = z
   .object({
-    color: yup.string().required(),
-    emoji: yup.string().required(),
-    name: yup.string().optional(),
+    color: z.string(),
+    emoji: z.string(),
+    name: z.string().optional(),
   })
-  .optional()
-  .default(undefined);
+  .optional();
 
-export const userProfileSchema = yup.object({
-  id: yup.string(),
-  invitationCode: yup.string().required(),
+export const userProfileSchema = z.object({
+  id: z.string(),
+  invitationCode: z.string(),
   emojiId: emojiIdSchema,
 });
 
-export type UserProfile = yup.InferType<typeof userProfileSchema>;
+export type UserProfile = z.infer<typeof userProfileSchema>;

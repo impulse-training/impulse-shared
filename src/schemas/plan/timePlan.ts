@@ -1,9 +1,9 @@
-import * as yup from "yup";
+import { z } from "zod";
 import { planBaseSchema } from "./base";
 import { timeTriggerSchema } from "./trigger/timeTrigger";
 
-export const timePlanSchema = planBaseSchema("time").shape({
+export const timePlanSchema = planBaseSchema("time").extend({
   trigger: timeTriggerSchema,
 });
 
-export type TimePlan = yup.InferType<typeof timePlanSchema>;
+export type TimePlan = z.infer<typeof timePlanSchema>;
