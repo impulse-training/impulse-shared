@@ -62,6 +62,7 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
     coverPhoto: {
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
+        title?: string | undefined;
         sizeBytes?: number | undefined;
         metadata?: {
             width?: number | undefined;
@@ -112,6 +113,7 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
     image: {
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
+        title?: string | undefined;
         sizeBytes?: number | undefined;
         metadata?: {
             width?: number | undefined;
@@ -139,6 +141,7 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
         audioAttachment?: {
             createdAt?: import("../types").Timestamp | undefined;
             updatedAt?: import("../types").Timestamp | undefined;
+            title?: string | undefined;
             sizeBytes?: number | undefined;
             metadata?: {
                 width?: number | undefined;
@@ -177,6 +180,7 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
         uri: undefined;
         storagePath: undefined;
         contentType: undefined;
+        title: undefined;
         sizeBytes: undefined;
         metadata: {
             width: undefined;
@@ -195,6 +199,7 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
         uri: undefined;
         storagePath: undefined;
         contentType: undefined;
+        title: undefined;
         sizeBytes: undefined;
         metadata: {
             width: undefined;
@@ -229,6 +234,7 @@ export declare const supportGroupSchema: yup.ObjectSchema<{
             uri: undefined;
             storagePath: undefined;
             contentType: undefined;
+            title: undefined;
             sizeBytes: undefined;
             metadata: {
                 width: undefined;
