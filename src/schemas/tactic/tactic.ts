@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { timestampSchema } from "../../utils";
 import { tacticStepSchema } from "./steps";
 
 // Zod version of Attachment (yup attachmentSchema exists elsewhere but zod is used here)
@@ -27,8 +28,8 @@ export const tacticSchema = z.object({
   media: z.array(attachmentZSchema).optional(),
   steps: z.array(tacticStepSchema).optional(),
   tags: z.array(z.string()).optional(),
-  createdAt: z.number().int().optional(),
-  updatedAt: z.number().int().optional(),
+  createdAt: timestampSchema,
+  updatedAt: timestampSchema,
 });
 
 export type Tactic = z.infer<typeof tacticSchema>;
