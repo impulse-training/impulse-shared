@@ -23,7 +23,7 @@ export declare const logSchemas: {
         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         userId: z.ZodString;
-        timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
         dateString: z.ZodString;
         callLogDocPath: z.ZodOptional<z.ZodString>;
         isDisplayable: z.ZodLiteral<true>;
@@ -118,6 +118,7 @@ export declare const logSchemas: {
     }, "strip", z.ZodTypeAny, {
         type: "user_message";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
@@ -126,7 +127,6 @@ export declare const logSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
         audioAttachment?: {
             uri: string;
@@ -150,6 +150,7 @@ export declare const logSchemas: {
     }, {
         type: "user_message";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
@@ -158,7 +159,6 @@ export declare const logSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
         audioAttachment?: {
             uri: string;
@@ -185,7 +185,7 @@ export declare const logSchemas: {
         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         userId: z.ZodString;
-        timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
         dateString: z.ZodString;
         callLogDocPath: z.ZodOptional<z.ZodString>;
         isDisplayable: z.ZodLiteral<true>;
@@ -201,6 +201,7 @@ export declare const logSchemas: {
     }, "strip", z.ZodTypeAny, {
         type: "assistant_message";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
@@ -209,11 +210,11 @@ export declare const logSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "assistant_message";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
@@ -222,7 +223,6 @@ export declare const logSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }>;
     call: z.ZodObject<{
@@ -230,7 +230,7 @@ export declare const logSchemas: {
         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         userId: z.ZodString;
-        timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
         dateString: z.ZodString;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
@@ -258,6 +258,7 @@ export declare const logSchemas: {
     }, "strip", z.ZodTypeAny, {
         type: "call";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
@@ -270,11 +271,11 @@ export declare const logSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "call";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
@@ -287,7 +288,6 @@ export declare const logSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }>;
     tool_call: z.ZodObject<{
@@ -295,7 +295,7 @@ export declare const logSchemas: {
         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         userId: z.ZodString;
-        timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
         dateString: z.ZodString;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
@@ -314,6 +314,7 @@ export declare const logSchemas: {
     }, "strip", z.ZodTypeAny, {
         type: "tool_call";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: false;
         data: {
@@ -323,11 +324,11 @@ export declare const logSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "tool_call";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: false;
         data: {
@@ -337,7 +338,6 @@ export declare const logSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }>;
     tactic_completed: z.ZodObject<{
@@ -345,7 +345,7 @@ export declare const logSchemas: {
         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         userId: z.ZodString;
-        timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
         dateString: z.ZodString;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
@@ -364,6 +364,7 @@ export declare const logSchemas: {
     }, "strip", z.ZodTypeAny, {
         type: "tactic_completed";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
@@ -373,11 +374,11 @@ export declare const logSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "tactic_completed";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
@@ -387,7 +388,6 @@ export declare const logSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }>;
     tactic_suggestion: z.ZodObject<{
@@ -395,7 +395,7 @@ export declare const logSchemas: {
         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         userId: z.ZodString;
-        timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
         dateString: z.ZodString;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
@@ -423,6 +423,7 @@ export declare const logSchemas: {
     }, "strip", z.ZodTypeAny, {
         type: "tactic_suggestion";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
@@ -435,11 +436,11 @@ export declare const logSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "tactic_suggestion";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
@@ -452,7 +453,6 @@ export declare const logSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }>;
     day_summary: z.ZodObject<{
@@ -460,7 +460,7 @@ export declare const logSchemas: {
         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         userId: z.ZodString;
-        timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
         dateString: z.ZodString;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
@@ -482,6 +482,7 @@ export declare const logSchemas: {
     }, "strip", z.ZodTypeAny, {
         type: "day_summary";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
@@ -492,11 +493,11 @@ export declare const logSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "day_summary";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
@@ -507,7 +508,6 @@ export declare const logSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }>;
     tactic_viewed: z.ZodObject<{
@@ -515,7 +515,7 @@ export declare const logSchemas: {
         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         userId: z.ZodString;
-        timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
         dateString: z.ZodString;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
@@ -534,6 +534,7 @@ export declare const logSchemas: {
     }, "strip", z.ZodTypeAny, {
         type: "tactic_completed";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
@@ -543,11 +544,11 @@ export declare const logSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "tactic_completed";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
@@ -557,7 +558,6 @@ export declare const logSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }>;
     impulse_button_pressed: z.ZodObject<{
@@ -565,7 +565,7 @@ export declare const logSchemas: {
         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         userId: z.ZodString;
-        timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
         dateString: z.ZodString;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
@@ -574,22 +574,22 @@ export declare const logSchemas: {
     }, "strip", z.ZodTypeAny, {
         type: "impulse_button_pressed";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "impulse_button_pressed";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }>;
     behavior: z.ZodObject<{
@@ -597,7 +597,7 @@ export declare const logSchemas: {
         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         userId: z.ZodString;
-        timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
         dateString: z.ZodString;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
@@ -631,6 +631,7 @@ export declare const logSchemas: {
     }, "strip", z.ZodTypeAny, {
         type: "behavior";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
@@ -645,11 +646,11 @@ export declare const logSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "behavior";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
@@ -664,7 +665,6 @@ export declare const logSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }>;
     question: z.ZodObject<{
@@ -672,7 +672,7 @@ export declare const logSchemas: {
         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         userId: z.ZodString;
-        timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
         dateString: z.ZodString;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
@@ -719,6 +719,7 @@ export declare const logSchemas: {
     }, "strip", z.ZodTypeAny, {
         type: "question";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
@@ -734,11 +735,11 @@ export declare const logSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "question";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
@@ -754,7 +755,6 @@ export declare const logSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }>;
     plan: z.ZodObject<{
@@ -762,7 +762,7 @@ export declare const logSchemas: {
         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         userId: z.ZodString;
-        timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
         dateString: z.ZodString;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
@@ -1222,6 +1222,7 @@ export declare const logSchemas: {
     }, "strip", z.ZodTypeAny, {
         type: "plan";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
@@ -1314,11 +1315,11 @@ export declare const logSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "plan";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
@@ -1411,7 +1412,6 @@ export declare const logSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }>;
     summary: z.ZodObject<{
@@ -1419,7 +1419,7 @@ export declare const logSchemas: {
         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         userId: z.ZodString;
-        timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
         dateString: z.ZodString;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
@@ -1435,6 +1435,7 @@ export declare const logSchemas: {
     }, "strip", z.ZodTypeAny, {
         type: "summary";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
@@ -1443,11 +1444,11 @@ export declare const logSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "summary";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
@@ -1456,7 +1457,6 @@ export declare const logSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }>;
     resisted: z.ZodObject<{
@@ -1464,7 +1464,7 @@ export declare const logSchemas: {
         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         userId: z.ZodString;
-        timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
         dateString: z.ZodString;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
@@ -1473,22 +1473,22 @@ export declare const logSchemas: {
     }, "strip", z.ZodTypeAny, {
         type: "resisted";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "resisted";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }>;
     widget_setup: z.ZodObject<{
@@ -1496,7 +1496,7 @@ export declare const logSchemas: {
         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         userId: z.ZodString;
-        timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
         dateString: z.ZodString;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
@@ -1505,22 +1505,22 @@ export declare const logSchemas: {
     }, "strip", z.ZodTypeAny, {
         type: "widget_setup";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "widget_setup";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }>;
     show_tour: z.ZodObject<{
@@ -1528,7 +1528,7 @@ export declare const logSchemas: {
         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         userId: z.ZodString;
-        timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
         dateString: z.ZodString;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
@@ -1603,6 +1603,7 @@ export declare const logSchemas: {
     }, "strip", z.ZodTypeAny, {
         type: "show_tour";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
@@ -1626,11 +1627,11 @@ export declare const logSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "show_tour";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
@@ -1654,7 +1655,6 @@ export declare const logSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }>;
     link: z.ZodObject<{
@@ -1662,7 +1662,7 @@ export declare const logSchemas: {
         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         userId: z.ZodString;
-        timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
         dateString: z.ZodString;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
@@ -1674,6 +1674,7 @@ export declare const logSchemas: {
     }, "strip", z.ZodTypeAny, {
         type: "link";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         link: string;
@@ -1682,11 +1683,11 @@ export declare const logSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "link";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         link: string;
@@ -1695,7 +1696,6 @@ export declare const logSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }>;
     notify_support_group: z.ZodObject<{
@@ -1703,7 +1703,7 @@ export declare const logSchemas: {
         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         userId: z.ZodString;
-        timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
         dateString: z.ZodString;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
@@ -1843,6 +1843,7 @@ export declare const logSchemas: {
     }, "strip", z.ZodTypeAny, {
         type: "notify_support_group";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
@@ -1867,11 +1868,11 @@ export declare const logSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "notify_support_group";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
@@ -1896,7 +1897,6 @@ export declare const logSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }>;
     video: z.ZodObject<{
@@ -1904,7 +1904,7 @@ export declare const logSchemas: {
         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         userId: z.ZodString;
-        timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
         dateString: z.ZodString;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
@@ -1922,6 +1922,7 @@ export declare const logSchemas: {
     }, "strip", z.ZodTypeAny, {
         type: "video";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
@@ -1930,13 +1931,13 @@ export declare const logSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
         text?: string | undefined;
         title?: string | undefined;
     }, {
         type: "video";
         userId: string;
+        timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
@@ -1945,7 +1946,6 @@ export declare const logSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
         text?: string | undefined;
         title?: string | undefined;
@@ -1976,7 +1976,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     userId: z.ZodString;
-    timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     dateString: z.ZodString;
     callLogDocPath: z.ZodOptional<z.ZodString>;
     isDisplayable: z.ZodLiteral<true>;
@@ -2071,6 +2071,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: "user_message";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     data: {
@@ -2079,7 +2080,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
     audioAttachment?: {
         uri: string;
@@ -2103,6 +2103,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
 }, {
     type: "user_message";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     data: {
@@ -2111,7 +2112,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
     audioAttachment?: {
         uri: string;
@@ -2137,7 +2137,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     userId: z.ZodString;
-    timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     dateString: z.ZodString;
     callLogDocPath: z.ZodOptional<z.ZodString>;
     isDisplayable: z.ZodLiteral<true>;
@@ -2153,6 +2153,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: "assistant_message";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     data: {
@@ -2161,11 +2162,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "assistant_message";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     data: {
@@ -2174,14 +2175,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     userId: z.ZodString;
-    timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     dateString: z.ZodString;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
@@ -2209,6 +2209,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: "call";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     data: {
@@ -2221,11 +2222,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "call";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     data: {
@@ -2238,14 +2239,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     userId: z.ZodString;
-    timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     dateString: z.ZodString;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
@@ -2264,6 +2264,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: "tool_call";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: false;
     data: {
@@ -2273,11 +2274,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "tool_call";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: false;
     data: {
@@ -2287,14 +2288,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     userId: z.ZodString;
-    timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     dateString: z.ZodString;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
@@ -2313,6 +2313,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: "tactic_completed";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     data: {
@@ -2322,11 +2323,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "tactic_completed";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     data: {
@@ -2336,14 +2337,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     userId: z.ZodString;
-    timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     dateString: z.ZodString;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
@@ -2371,6 +2371,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: "tactic_suggestion";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     data: {
@@ -2383,11 +2384,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "tactic_suggestion";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     data: {
@@ -2400,14 +2401,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     userId: z.ZodString;
-    timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     dateString: z.ZodString;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
@@ -2429,6 +2429,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: "day_summary";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     data: {
@@ -2439,11 +2440,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "day_summary";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     data: {
@@ -2454,14 +2455,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     userId: z.ZodString;
-    timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     dateString: z.ZodString;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
@@ -2470,29 +2470,29 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: "impulse_button_pressed";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "impulse_button_pressed";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     userId: z.ZodString;
-    timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     dateString: z.ZodString;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
@@ -2526,6 +2526,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: "behavior";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     data: {
@@ -2540,11 +2541,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "behavior";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     data: {
@@ -2559,14 +2560,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     userId: z.ZodString;
-    timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     dateString: z.ZodString;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
@@ -2613,6 +2613,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: "question";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     data: {
@@ -2628,11 +2629,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "question";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     data: {
@@ -2648,14 +2649,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     userId: z.ZodString;
-    timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     dateString: z.ZodString;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
@@ -3115,6 +3115,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: "plan";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     data: {
@@ -3207,11 +3208,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "plan";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     data: {
@@ -3304,14 +3305,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     userId: z.ZodString;
-    timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     dateString: z.ZodString;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
@@ -3327,6 +3327,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: "summary";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     data: {
@@ -3335,11 +3336,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "summary";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     data: {
@@ -3348,14 +3349,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     userId: z.ZodString;
-    timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     dateString: z.ZodString;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
@@ -3364,29 +3364,29 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: "resisted";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "resisted";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     userId: z.ZodString;
-    timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     dateString: z.ZodString;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
@@ -3395,29 +3395,29 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: "widget_setup";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "widget_setup";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     userId: z.ZodString;
-    timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     dateString: z.ZodString;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
@@ -3492,6 +3492,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: "show_tour";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     data: {
@@ -3515,11 +3516,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "show_tour";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     data: {
@@ -3543,14 +3544,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     userId: z.ZodString;
-    timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     dateString: z.ZodString;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
@@ -3562,6 +3562,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: "link";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     link: string;
@@ -3570,11 +3571,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "link";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     link: string;
@@ -3583,14 +3584,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     userId: z.ZodString;
-    timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     dateString: z.ZodString;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
@@ -3730,6 +3730,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: "notify_support_group";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     data: {
@@ -3754,11 +3755,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "notify_support_group";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     data: {
@@ -3783,14 +3784,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     userId: z.ZodString;
-    timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     dateString: z.ZodString;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
@@ -3808,6 +3808,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: "video";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     data: {
@@ -3816,13 +3817,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
     text?: string | undefined;
     title?: string | undefined;
 }, {
     type: "video";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     data: {
@@ -3831,7 +3832,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
     text?: string | undefined;
     title?: string | undefined;

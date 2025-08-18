@@ -4,7 +4,7 @@ export declare const impulseLogSchema: z.ZodObject<{
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     userId: z.ZodString;
-    timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     dateString: z.ZodString;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
@@ -13,22 +13,22 @@ export declare const impulseLogSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: "impulse_button_pressed";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "impulse_button_pressed";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }>;
 export type ImpulseLog = z.infer<typeof impulseLogSchema>;

@@ -438,7 +438,7 @@ export declare const supportGroupSchema: z.ZodObject<{
         createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         userId: z.ZodString;
-        timestamp: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+        timestamp: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
         dateString: z.ZodString;
         callLogDocPath: z.ZodOptional<z.ZodString>;
         isDisplayable: z.ZodLiteral<true>;
@@ -533,6 +533,7 @@ export declare const supportGroupSchema: z.ZodObject<{
     }, "strip", z.ZodTypeAny, {
         type: "user_message";
         userId: string;
+        timestamp: import("../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
@@ -541,7 +542,6 @@ export declare const supportGroupSchema: z.ZodObject<{
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
-        timestamp?: import("../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
         audioAttachment?: {
             uri: string;
@@ -565,6 +565,7 @@ export declare const supportGroupSchema: z.ZodObject<{
     }, {
         type: "user_message";
         userId: string;
+        timestamp: import("../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
@@ -573,7 +574,6 @@ export declare const supportGroupSchema: z.ZodObject<{
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
-        timestamp?: import("../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
         audioAttachment?: {
             uri: string;
@@ -679,6 +679,7 @@ export declare const supportGroupSchema: z.ZodObject<{
     lastMessage?: {
         type: "user_message";
         userId: string;
+        timestamp: import("../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
@@ -687,7 +688,6 @@ export declare const supportGroupSchema: z.ZodObject<{
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
-        timestamp?: import("../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
         audioAttachment?: {
             uri: string;
@@ -789,6 +789,7 @@ export declare const supportGroupSchema: z.ZodObject<{
     lastMessage?: {
         type: "user_message";
         userId: string;
+        timestamp: import("../types").Timestamp;
         dateString: string;
         isDisplayable: true;
         data: {
@@ -797,7 +798,6 @@ export declare const supportGroupSchema: z.ZodObject<{
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
-        timestamp?: import("../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
         audioAttachment?: {
             uri: string;
