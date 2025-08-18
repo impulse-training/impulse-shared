@@ -44,12 +44,22 @@ const questionStepSchema = baseStepSchema.extend({
   text: z.string().min(1),
 });
 
+const aiConversationStepSchema = baseStepSchema.extend({
+  mode: z.literal("aiConversation"),
+  // High-level objective for the conversation
+  goal: z.string().min(1),
+  // Initial system/user prompt to start the AI conversation
+  prompt: z.string().min(1),
+});
+
 export const tacticStepSchema = z.discriminatedUnion("mode", [
   defaultStepSchema,
   breathingStepSchema,
   timerStepSchema,
   notifySupportStepSchema,
   questionStepSchema,
+  aiConversationStepSchema,
 ]);
 
 export type TacticStep = z.infer<typeof tacticStepSchema>;
+

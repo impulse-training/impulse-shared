@@ -8,7 +8,6 @@ export const strategySchema = z.object({
   description: z.string().optional(),
   isImported: z.boolean().optional(),
   plans: z.array(documentReferenceSchema),
-  tacticCollections: z.array(documentReferenceSchema),
   createdByProfile: userProfileSchema.optional(),
   createdAt: timestampSchema.optional(),
   updatedAt: timestampSchema.optional(),

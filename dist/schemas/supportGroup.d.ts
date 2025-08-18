@@ -646,10 +646,10 @@ export declare const supportGroupSchema: z.ZodObject<{
             }[] | undefined;
         } | undefined;
     };
-    tacticCollections: import("../utils").DocumentReferenceLike<unknown>[];
     ownerId: string;
     unreadMessageCountsById: Record<string, number>;
     memberCount: number;
+    tacticCollections: import("../utils").DocumentReferenceLike<unknown>[];
     tacticCount: number;
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
@@ -756,9 +756,9 @@ export declare const supportGroupSchema: z.ZodObject<{
             }[] | undefined;
         } | undefined;
     };
-    tacticCollections: import("../utils").DocumentReferenceLike<unknown>[];
     ownerId: string;
     unreadMessageCountsById: Record<string, number>;
+    tacticCollections: import("../utils").DocumentReferenceLike<unknown>[];
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
