@@ -22,9 +22,9 @@ export declare const tacticLogSchema: z.ZodObject<{
     }>;
 }, "strip", z.ZodTypeAny, {
     type: "tactic_completed";
+    dateString: string;
     userId: string;
     timestamp: import("../../types").Timestamp;
-    dateString: string;
     isDisplayable: true;
     data: {
         tacticCollectionId: string;
@@ -36,9 +36,9 @@ export declare const tacticLogSchema: z.ZodObject<{
     callLogDocPath?: string | undefined;
 }, {
     type: "tactic_completed";
+    dateString: string;
     userId: string;
     timestamp: import("../../types").Timestamp;
-    dateString: string;
     isDisplayable: true;
     data: {
         tacticCollectionId: string;

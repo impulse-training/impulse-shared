@@ -13,6 +13,8 @@ export const threadBaseSchema = z.object({
     .enum(["impulse", "general", "onboarding", "dayRecap", "timePlan", "locationPlan"])
     .default("general"),
   date: timestampSchema.optional(),
+  conversationStartedAt: timestampSchema.optional(),
+  currentConverationMode: z.enum(["active", "chat"]).optional(),
   // For now, don't type this
   tacticsByPath: z.record(z.string(), z.any()).optional(),
 
@@ -61,7 +63,8 @@ export const threadBaseSchema = z.object({
   // Log summary data - written in after log write functions. We store tactic and behavior tracking
   // logs here (loosely typed until log schemas are migrated)
   trackingLogsById: z.record(z.string(), z.any()),
-  systemPrompt: z.string().optional(),
+  activeSystemPrompt: z.string().optional(),
+  chatSystemPrompt: z.string().optional(),
   summary: z.string().optional(),
   summaryRequestedAt: timestampSchema.optional(),
   summarizedAt: timestampSchema.optional(),

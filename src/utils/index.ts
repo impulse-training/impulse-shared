@@ -1,3 +1,4 @@
+export * from "./systemPrompt";
 // Export all utility functions
 export * from "./behaviorData";
 export * from "./dates";

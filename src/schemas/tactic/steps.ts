@@ -33,7 +33,6 @@ const timerStepSchema = baseStepSchema.extend({
 const notifySupportStepSchema = baseStepSchema.extend({
   mode: z.literal("notifySupport"),
   groupId: z.string(),
-  messageTemplate: z.string().optional(),
   text: z.string().min(1),
 });
 
@@ -62,4 +61,3 @@ export const tacticStepSchema = z.discriminatedUnion("mode", [
 ]);
 
 export type TacticStep = z.infer<typeof tacticStepSchema>;
-

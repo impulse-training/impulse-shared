@@ -5,13 +5,13 @@ declare const responseSchema: z.ZodObject<{
     formattedValue: z.ZodString;
     color: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    formattedValue: string;
     responseType: "recap" | "text" | "slider1To10";
+    formattedValue: string;
     value?: any;
     color?: string | undefined;
 }, {
-    formattedValue: string;
     responseType: "recap" | "text" | "slider1To10";
+    formattedValue: string;
     value?: any;
     color?: string | undefined;
 }>;
@@ -36,13 +36,13 @@ export declare const questionLogSchema: z.ZodObject<{
             formattedValue: z.ZodString;
             color: z.ZodOptional<z.ZodString>;
         }, "strip", z.ZodTypeAny, {
-            formattedValue: string;
             responseType: "recap" | "text" | "slider1To10";
+            formattedValue: string;
             value?: any;
             color?: string | undefined;
         }, {
-            formattedValue: string;
             responseType: "recap" | "text" | "slider1To10";
+            formattedValue: string;
             value?: any;
             color?: string | undefined;
         }>>;
@@ -50,8 +50,8 @@ export declare const questionLogSchema: z.ZodObject<{
         question?: any;
         questionId?: string | undefined;
         response?: {
-            formattedValue: string;
             responseType: "recap" | "text" | "slider1To10";
+            formattedValue: string;
             value?: any;
             color?: string | undefined;
         } | undefined;
@@ -59,24 +59,24 @@ export declare const questionLogSchema: z.ZodObject<{
         question?: any;
         questionId?: string | undefined;
         response?: {
-            formattedValue: string;
             responseType: "recap" | "text" | "slider1To10";
+            formattedValue: string;
             value?: any;
             color?: string | undefined;
         } | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     type: "question";
+    dateString: string;
     userId: string;
     timestamp: import("../../types").Timestamp;
-    dateString: string;
     isDisplayable: true;
     data: {
         question?: any;
         questionId?: string | undefined;
         response?: {
-            formattedValue: string;
             responseType: "recap" | "text" | "slider1To10";
+            formattedValue: string;
             value?: any;
             color?: string | undefined;
         } | undefined;
@@ -87,16 +87,16 @@ export declare const questionLogSchema: z.ZodObject<{
     callLogDocPath?: string | undefined;
 }, {
     type: "question";
+    dateString: string;
     userId: string;
     timestamp: import("../../types").Timestamp;
-    dateString: string;
     isDisplayable: true;
     data: {
         question?: any;
         questionId?: string | undefined;
         response?: {
-            formattedValue: string;
             responseType: "recap" | "text" | "slider1To10";
+            formattedValue: string;
             value?: any;
             color?: string | undefined;
         } | undefined;
