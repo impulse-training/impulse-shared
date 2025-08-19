@@ -161,6 +161,13 @@ export declare const userContextSchema: z.ZodObject<{
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
+    tactics: Record<string, {
+        tacticId: string;
+        tacticTitle: string;
+        tacticType: string;
+        completedCount: number;
+        effectiveness: number;
+    }>;
     behaviors: Record<string, {
         behaviorId: string;
         behaviorName: string;
@@ -176,13 +183,6 @@ export declare const userContextSchema: z.ZodObject<{
         benefits?: string[] | undefined;
         drawbacks?: string[] | undefined;
     }>;
-    tactics: Record<string, {
-        tacticId: string;
-        tacticTitle: string;
-        tacticType: string;
-        completedCount: number;
-        effectiveness: number;
-    }>;
     aiMemories: {
         id: string;
         source: string;
@@ -194,6 +194,13 @@ export declare const userContextSchema: z.ZodObject<{
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
 }, {
+    tactics: Record<string, {
+        tacticId: string;
+        tacticTitle: string;
+        tacticType: string;
+        completedCount?: number | undefined;
+        effectiveness?: number | undefined;
+    }>;
     behaviors: Record<string, {
         behaviorId: string;
         behaviorName: string;
@@ -208,13 +215,6 @@ export declare const userContextSchema: z.ZodObject<{
         insights?: string[] | undefined;
         effectiveTactics?: string[] | undefined;
         planTacticIds?: string[] | undefined;
-    }>;
-    tactics: Record<string, {
-        tacticId: string;
-        tacticTitle: string;
-        tacticType: string;
-        completedCount?: number | undefined;
-        effectiveness?: number | undefined;
     }>;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;

@@ -786,7 +786,7 @@ export declare const logSchemas: {
                 isTemplate: z.ZodOptional<z.ZodBoolean>;
                 summary: z.ZodOptional<z.ZodString>;
                 summaryRefreshRequired: z.ZodOptional<z.ZodBoolean>;
-                items: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+                tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
                 lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -808,7 +808,7 @@ export declare const logSchemas: {
             }, z.UnknownKeysParam, z.ZodTypeAny, {
                 type: "time";
                 name: string;
-                items: import("../..").DocumentReferenceLike<unknown>[];
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
                 trigger: {
                     hour: number;
                     minute: number;
@@ -826,7 +826,7 @@ export declare const logSchemas: {
             }, {
                 type: "time";
                 name: string;
-                items: import("../..").DocumentReferenceLike<unknown>[];
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
                 trigger: {
                     hour: number;
                     minute: number;
@@ -858,7 +858,7 @@ export declare const logSchemas: {
                 isTemplate: z.ZodOptional<z.ZodBoolean>;
                 summary: z.ZodOptional<z.ZodString>;
                 summaryRefreshRequired: z.ZodOptional<z.ZodBoolean>;
-                items: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+                tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
                 lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -883,7 +883,7 @@ export declare const logSchemas: {
             }, z.UnknownKeysParam, z.ZodTypeAny, {
                 type: "location";
                 name: string;
-                items: import("../..").DocumentReferenceLike<unknown>[];
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
                 trigger: {
                     locationName: string;
                     triggerType: "arrival" | "departure";
@@ -902,7 +902,7 @@ export declare const logSchemas: {
             }, {
                 type: "location";
                 name: string;
-                items: import("../..").DocumentReferenceLike<unknown>[];
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
                 trigger: {
                     locationName: string;
                     triggerType: "arrival" | "departure";
@@ -935,7 +935,7 @@ export declare const logSchemas: {
                 isTemplate: z.ZodOptional<z.ZodBoolean>;
                 summary: z.ZodOptional<z.ZodString>;
                 summaryRefreshRequired: z.ZodOptional<z.ZodBoolean>;
-                items: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+                tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
                 lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -957,7 +957,7 @@ export declare const logSchemas: {
             }, z.UnknownKeysParam, z.ZodTypeAny, {
                 type: "recap";
                 name: string;
-                items: import("../..").DocumentReferenceLike<unknown>[];
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
                 trigger: {
                     hour: number;
                     minute: number;
@@ -975,7 +975,7 @@ export declare const logSchemas: {
             }, {
                 type: "recap";
                 name: string;
-                items: import("../..").DocumentReferenceLike<unknown>[];
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
                 trigger: {
                     hour: number;
                     minute: number;
@@ -1007,7 +1007,7 @@ export declare const logSchemas: {
                 isTemplate: z.ZodOptional<z.ZodBoolean>;
                 summary: z.ZodOptional<z.ZodString>;
                 summaryRefreshRequired: z.ZodOptional<z.ZodBoolean>;
-                items: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+                tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
                 lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -1017,7 +1017,7 @@ export declare const logSchemas: {
             }, z.UnknownKeysParam, z.ZodTypeAny, {
                 type: "impulse";
                 name: string;
-                items: import("../..").DocumentReferenceLike<unknown>[];
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1031,7 +1031,7 @@ export declare const logSchemas: {
             }, {
                 type: "impulse";
                 name: string;
-                items: import("../..").DocumentReferenceLike<unknown>[];
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1053,7 +1053,7 @@ export declare const logSchemas: {
             } & {
                 type: "time";
                 name: string;
-                items: import("../..").DocumentReferenceLike<unknown>[];
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
                 trigger: {
                     hour: number;
                     minute: number;
@@ -1074,7 +1074,7 @@ export declare const logSchemas: {
             } & {
                 type: "location";
                 name: string;
-                items: import("../..").DocumentReferenceLike<unknown>[];
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
                 trigger: {
                     locationName: string;
                     triggerType: "arrival" | "departure";
@@ -1096,7 +1096,7 @@ export declare const logSchemas: {
             } & {
                 type: "recap";
                 name: string;
-                items: import("../..").DocumentReferenceLike<unknown>[];
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
                 trigger: {
                     hour: number;
                     minute: number;
@@ -1117,7 +1117,7 @@ export declare const logSchemas: {
             } & {
                 type: "impulse";
                 name: string;
-                items: import("../..").DocumentReferenceLike<unknown>[];
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1139,7 +1139,7 @@ export declare const logSchemas: {
             } & {
                 type: "time";
                 name: string;
-                items: import("../..").DocumentReferenceLike<unknown>[];
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
                 trigger: {
                     hour: number;
                     minute: number;
@@ -1160,7 +1160,7 @@ export declare const logSchemas: {
             } & {
                 type: "location";
                 name: string;
-                items: import("../..").DocumentReferenceLike<unknown>[];
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
                 trigger: {
                     locationName: string;
                     triggerType: "arrival" | "departure";
@@ -1182,7 +1182,7 @@ export declare const logSchemas: {
             } & {
                 type: "recap";
                 name: string;
-                items: import("../..").DocumentReferenceLike<unknown>[];
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
                 trigger: {
                     hour: number;
                     minute: number;
@@ -1203,7 +1203,7 @@ export declare const logSchemas: {
             } & {
                 type: "impulse";
                 name: string;
-                items: import("../..").DocumentReferenceLike<unknown>[];
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1232,7 +1232,7 @@ export declare const logSchemas: {
             } & {
                 type: "time";
                 name: string;
-                items: import("../..").DocumentReferenceLike<unknown>[];
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
                 trigger: {
                     hour: number;
                     minute: number;
@@ -1253,7 +1253,7 @@ export declare const logSchemas: {
             } & {
                 type: "location";
                 name: string;
-                items: import("../..").DocumentReferenceLike<unknown>[];
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
                 trigger: {
                     locationName: string;
                     triggerType: "arrival" | "departure";
@@ -1275,7 +1275,7 @@ export declare const logSchemas: {
             } & {
                 type: "recap";
                 name: string;
-                items: import("../..").DocumentReferenceLike<unknown>[];
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
                 trigger: {
                     hour: number;
                     minute: number;
@@ -1296,7 +1296,7 @@ export declare const logSchemas: {
             } & {
                 type: "impulse";
                 name: string;
-                items: import("../..").DocumentReferenceLike<unknown>[];
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1329,7 +1329,7 @@ export declare const logSchemas: {
             } & {
                 type: "time";
                 name: string;
-                items: import("../..").DocumentReferenceLike<unknown>[];
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
                 trigger: {
                     hour: number;
                     minute: number;
@@ -1350,7 +1350,7 @@ export declare const logSchemas: {
             } & {
                 type: "location";
                 name: string;
-                items: import("../..").DocumentReferenceLike<unknown>[];
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
                 trigger: {
                     locationName: string;
                     triggerType: "arrival" | "departure";
@@ -1372,7 +1372,7 @@ export declare const logSchemas: {
             } & {
                 type: "recap";
                 name: string;
-                items: import("../..").DocumentReferenceLike<unknown>[];
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
                 trigger: {
                     hour: number;
                     minute: number;
@@ -1393,7 +1393,7 @@ export declare const logSchemas: {
             } & {
                 type: "impulse";
                 name: string;
-                items: import("../..").DocumentReferenceLike<unknown>[];
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -2679,7 +2679,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             isTemplate: z.ZodOptional<z.ZodBoolean>;
             summary: z.ZodOptional<z.ZodString>;
             summaryRefreshRequired: z.ZodOptional<z.ZodBoolean>;
-            items: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+            tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
             lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -2701,7 +2701,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }, z.UnknownKeysParam, z.ZodTypeAny, {
             type: "time";
             name: string;
-            items: import("../..").DocumentReferenceLike<unknown>[];
+            tactics: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 hour: number;
                 minute: number;
@@ -2719,7 +2719,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }, {
             type: "time";
             name: string;
-            items: import("../..").DocumentReferenceLike<unknown>[];
+            tactics: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 hour: number;
                 minute: number;
@@ -2751,7 +2751,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             isTemplate: z.ZodOptional<z.ZodBoolean>;
             summary: z.ZodOptional<z.ZodString>;
             summaryRefreshRequired: z.ZodOptional<z.ZodBoolean>;
-            items: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+            tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
             lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -2776,7 +2776,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }, z.UnknownKeysParam, z.ZodTypeAny, {
             type: "location";
             name: string;
-            items: import("../..").DocumentReferenceLike<unknown>[];
+            tactics: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
                 triggerType: "arrival" | "departure";
@@ -2795,7 +2795,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }, {
             type: "location";
             name: string;
-            items: import("../..").DocumentReferenceLike<unknown>[];
+            tactics: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
                 triggerType: "arrival" | "departure";
@@ -2828,7 +2828,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             isTemplate: z.ZodOptional<z.ZodBoolean>;
             summary: z.ZodOptional<z.ZodString>;
             summaryRefreshRequired: z.ZodOptional<z.ZodBoolean>;
-            items: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+            tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
             lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -2850,7 +2850,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }, z.UnknownKeysParam, z.ZodTypeAny, {
             type: "recap";
             name: string;
-            items: import("../..").DocumentReferenceLike<unknown>[];
+            tactics: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 hour: number;
                 minute: number;
@@ -2868,7 +2868,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }, {
             type: "recap";
             name: string;
-            items: import("../..").DocumentReferenceLike<unknown>[];
+            tactics: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 hour: number;
                 minute: number;
@@ -2900,7 +2900,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             isTemplate: z.ZodOptional<z.ZodBoolean>;
             summary: z.ZodOptional<z.ZodString>;
             summaryRefreshRequired: z.ZodOptional<z.ZodBoolean>;
-            items: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+            tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
             lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -2910,7 +2910,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }, z.UnknownKeysParam, z.ZodTypeAny, {
             type: "impulse";
             name: string;
-            items: import("../..").DocumentReferenceLike<unknown>[];
+            tactics: import("../..").DocumentReferenceLike<unknown>[];
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2924,7 +2924,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }, {
             type: "impulse";
             name: string;
-            items: import("../..").DocumentReferenceLike<unknown>[];
+            tactics: import("../..").DocumentReferenceLike<unknown>[];
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2946,7 +2946,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         } & {
             type: "time";
             name: string;
-            items: import("../..").DocumentReferenceLike<unknown>[];
+            tactics: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 hour: number;
                 minute: number;
@@ -2967,7 +2967,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         } & {
             type: "location";
             name: string;
-            items: import("../..").DocumentReferenceLike<unknown>[];
+            tactics: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
                 triggerType: "arrival" | "departure";
@@ -2989,7 +2989,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         } & {
             type: "recap";
             name: string;
-            items: import("../..").DocumentReferenceLike<unknown>[];
+            tactics: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 hour: number;
                 minute: number;
@@ -3010,7 +3010,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         } & {
             type: "impulse";
             name: string;
-            items: import("../..").DocumentReferenceLike<unknown>[];
+            tactics: import("../..").DocumentReferenceLike<unknown>[];
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -3032,7 +3032,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         } & {
             type: "time";
             name: string;
-            items: import("../..").DocumentReferenceLike<unknown>[];
+            tactics: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 hour: number;
                 minute: number;
@@ -3053,7 +3053,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         } & {
             type: "location";
             name: string;
-            items: import("../..").DocumentReferenceLike<unknown>[];
+            tactics: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
                 triggerType: "arrival" | "departure";
@@ -3075,7 +3075,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         } & {
             type: "recap";
             name: string;
-            items: import("../..").DocumentReferenceLike<unknown>[];
+            tactics: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 hour: number;
                 minute: number;
@@ -3096,7 +3096,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         } & {
             type: "impulse";
             name: string;
-            items: import("../..").DocumentReferenceLike<unknown>[];
+            tactics: import("../..").DocumentReferenceLike<unknown>[];
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -3125,7 +3125,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         } & {
             type: "time";
             name: string;
-            items: import("../..").DocumentReferenceLike<unknown>[];
+            tactics: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 hour: number;
                 minute: number;
@@ -3146,7 +3146,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         } & {
             type: "location";
             name: string;
-            items: import("../..").DocumentReferenceLike<unknown>[];
+            tactics: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
                 triggerType: "arrival" | "departure";
@@ -3168,7 +3168,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         } & {
             type: "recap";
             name: string;
-            items: import("../..").DocumentReferenceLike<unknown>[];
+            tactics: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 hour: number;
                 minute: number;
@@ -3189,7 +3189,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         } & {
             type: "impulse";
             name: string;
-            items: import("../..").DocumentReferenceLike<unknown>[];
+            tactics: import("../..").DocumentReferenceLike<unknown>[];
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -3222,7 +3222,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         } & {
             type: "time";
             name: string;
-            items: import("../..").DocumentReferenceLike<unknown>[];
+            tactics: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 hour: number;
                 minute: number;
@@ -3243,7 +3243,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         } & {
             type: "location";
             name: string;
-            items: import("../..").DocumentReferenceLike<unknown>[];
+            tactics: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
                 triggerType: "arrival" | "departure";
@@ -3265,7 +3265,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         } & {
             type: "recap";
             name: string;
-            items: import("../..").DocumentReferenceLike<unknown>[];
+            tactics: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 hour: number;
                 minute: number;
@@ -3286,7 +3286,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         } & {
             type: "impulse";
             name: string;
-            items: import("../..").DocumentReferenceLike<unknown>[];
+            tactics: import("../..").DocumentReferenceLike<unknown>[];
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;

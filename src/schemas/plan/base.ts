@@ -12,7 +12,7 @@ export function planBaseSchema<T extends string>(type: T) {
     summaryRefreshRequired: z.boolean().optional(),
 
     // items can be tactics or tacticCollections
-    items: z.array(documentReferenceSchema),
+    tactics: z.array(documentReferenceSchema),
     lastUsedAt: timestampSchema.optional(),
     createdAt: timestampSchema.optional(),
     updatedAt: timestampSchema.optional(),
