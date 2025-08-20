@@ -50,7 +50,7 @@ const aiConversationStepSchema = baseStepSchema.extend({
   // High-level objective for the conversation
   goal: z.string().min(1),
   // Initial system/user prompt to start the AI conversation
-  prompt: z.string().min(1),
+  prompt: z.string().optional(),
 });
 
 // New: media step for displaying one or more media items as its own step
