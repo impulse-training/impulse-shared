@@ -70,6 +70,14 @@ export const threadBaseSchema = z.object({
   summarizedAt: timestampSchema.optional(),
   strategyDoc: documentReferenceSchema.optional(),
 
+  // Current tactic step context (set by clients when user is viewing a tactic step)
+  currentTacticStep: z
+    .object({
+      tacticRef: documentReferenceSchema,
+      stepId: z.string(),
+    })
+    .optional(),
+
   agentConnectedAt: timestampSchema.optional(),
 
   sharingLevels: z
