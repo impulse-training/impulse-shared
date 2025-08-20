@@ -805,7 +805,6 @@ export declare const logSchemas: {
                 ordinal: z.ZodOptional<z.ZodNumber>;
                 isTemplate: z.ZodOptional<z.ZodBoolean>;
                 summary: z.ZodOptional<z.ZodString>;
-                summaryRefreshRequired: z.ZodOptional<z.ZodBoolean>;
                 tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
                 lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -838,7 +837,6 @@ export declare const logSchemas: {
                 ordinal?: number | undefined;
                 isTemplate?: boolean | undefined;
                 summary?: string | undefined;
-                summaryRefreshRequired?: boolean | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -856,7 +854,6 @@ export declare const logSchemas: {
                 ordinal?: number | undefined;
                 isTemplate?: boolean | undefined;
                 summary?: string | undefined;
-                summaryRefreshRequired?: boolean | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -877,7 +874,6 @@ export declare const logSchemas: {
                 ordinal: z.ZodOptional<z.ZodNumber>;
                 isTemplate: z.ZodOptional<z.ZodBoolean>;
                 summary: z.ZodOptional<z.ZodString>;
-                summaryRefreshRequired: z.ZodOptional<z.ZodBoolean>;
                 tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
                 lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -914,7 +910,6 @@ export declare const logSchemas: {
                 ordinal?: number | undefined;
                 isTemplate?: boolean | undefined;
                 summary?: string | undefined;
-                summaryRefreshRequired?: boolean | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -933,7 +928,6 @@ export declare const logSchemas: {
                 ordinal?: number | undefined;
                 isTemplate?: boolean | undefined;
                 summary?: string | undefined;
-                summaryRefreshRequired?: boolean | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -954,7 +948,6 @@ export declare const logSchemas: {
                 ordinal: z.ZodOptional<z.ZodNumber>;
                 isTemplate: z.ZodOptional<z.ZodBoolean>;
                 summary: z.ZodOptional<z.ZodString>;
-                summaryRefreshRequired: z.ZodOptional<z.ZodBoolean>;
                 tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
                 lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -987,7 +980,6 @@ export declare const logSchemas: {
                 ordinal?: number | undefined;
                 isTemplate?: boolean | undefined;
                 summary?: string | undefined;
-                summaryRefreshRequired?: boolean | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1005,7 +997,6 @@ export declare const logSchemas: {
                 ordinal?: number | undefined;
                 isTemplate?: boolean | undefined;
                 summary?: string | undefined;
-                summaryRefreshRequired?: boolean | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1026,7 +1017,6 @@ export declare const logSchemas: {
                 ordinal: z.ZodOptional<z.ZodNumber>;
                 isTemplate: z.ZodOptional<z.ZodBoolean>;
                 summary: z.ZodOptional<z.ZodString>;
-                summaryRefreshRequired: z.ZodOptional<z.ZodBoolean>;
                 tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
                 lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -1042,7 +1032,6 @@ export declare const logSchemas: {
                 ordinal?: number | undefined;
                 isTemplate?: boolean | undefined;
                 summary?: string | undefined;
-                summaryRefreshRequired?: boolean | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1056,7 +1045,6 @@ export declare const logSchemas: {
                 ordinal?: number | undefined;
                 isTemplate?: boolean | undefined;
                 summary?: string | undefined;
-                summaryRefreshRequired?: boolean | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1083,7 +1071,6 @@ export declare const logSchemas: {
                 ordinal?: number | undefined;
                 isTemplate?: boolean | undefined;
                 summary?: string | undefined;
-                summaryRefreshRequired?: boolean | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1105,7 +1092,6 @@ export declare const logSchemas: {
                 ordinal?: number | undefined;
                 isTemplate?: boolean | undefined;
                 summary?: string | undefined;
-                summaryRefreshRequired?: boolean | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1126,7 +1112,6 @@ export declare const logSchemas: {
                 ordinal?: number | undefined;
                 isTemplate?: boolean | undefined;
                 summary?: string | undefined;
-                summaryRefreshRequired?: boolean | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1142,7 +1127,6 @@ export declare const logSchemas: {
                 ordinal?: number | undefined;
                 isTemplate?: boolean | undefined;
                 summary?: string | undefined;
-                summaryRefreshRequired?: boolean | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1169,7 +1153,6 @@ export declare const logSchemas: {
                 ordinal?: number | undefined;
                 isTemplate?: boolean | undefined;
                 summary?: string | undefined;
-                summaryRefreshRequired?: boolean | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1191,7 +1174,6 @@ export declare const logSchemas: {
                 ordinal?: number | undefined;
                 isTemplate?: boolean | undefined;
                 summary?: string | undefined;
-                summaryRefreshRequired?: boolean | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1212,7 +1194,6 @@ export declare const logSchemas: {
                 ordinal?: number | undefined;
                 isTemplate?: boolean | undefined;
                 summary?: string | undefined;
-                summaryRefreshRequired?: boolean | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1228,7 +1209,6 @@ export declare const logSchemas: {
                 ordinal?: number | undefined;
                 isTemplate?: boolean | undefined;
                 summary?: string | undefined;
-                summaryRefreshRequired?: boolean | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1262,7 +1242,6 @@ export declare const logSchemas: {
                 ordinal?: number | undefined;
                 isTemplate?: boolean | undefined;
                 summary?: string | undefined;
-                summaryRefreshRequired?: boolean | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1284,7 +1263,6 @@ export declare const logSchemas: {
                 ordinal?: number | undefined;
                 isTemplate?: boolean | undefined;
                 summary?: string | undefined;
-                summaryRefreshRequired?: boolean | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1305,7 +1283,6 @@ export declare const logSchemas: {
                 ordinal?: number | undefined;
                 isTemplate?: boolean | undefined;
                 summary?: string | undefined;
-                summaryRefreshRequired?: boolean | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1321,7 +1298,6 @@ export declare const logSchemas: {
                 ordinal?: number | undefined;
                 isTemplate?: boolean | undefined;
                 summary?: string | undefined;
-                summaryRefreshRequired?: boolean | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1359,7 +1335,6 @@ export declare const logSchemas: {
                 ordinal?: number | undefined;
                 isTemplate?: boolean | undefined;
                 summary?: string | undefined;
-                summaryRefreshRequired?: boolean | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1381,7 +1356,6 @@ export declare const logSchemas: {
                 ordinal?: number | undefined;
                 isTemplate?: boolean | undefined;
                 summary?: string | undefined;
-                summaryRefreshRequired?: boolean | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1402,7 +1376,6 @@ export declare const logSchemas: {
                 ordinal?: number | undefined;
                 isTemplate?: boolean | undefined;
                 summary?: string | undefined;
-                summaryRefreshRequired?: boolean | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1418,7 +1391,6 @@ export declare const logSchemas: {
                 ordinal?: number | undefined;
                 isTemplate?: boolean | undefined;
                 summary?: string | undefined;
-                summaryRefreshRequired?: boolean | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -2708,7 +2680,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal: z.ZodOptional<z.ZodNumber>;
             isTemplate: z.ZodOptional<z.ZodBoolean>;
             summary: z.ZodOptional<z.ZodString>;
-            summaryRefreshRequired: z.ZodOptional<z.ZodBoolean>;
             tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
             lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -2741,7 +2712,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal?: number | undefined;
             isTemplate?: boolean | undefined;
             summary?: string | undefined;
-            summaryRefreshRequired?: boolean | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2759,7 +2729,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal?: number | undefined;
             isTemplate?: boolean | undefined;
             summary?: string | undefined;
-            summaryRefreshRequired?: boolean | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2780,7 +2749,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal: z.ZodOptional<z.ZodNumber>;
             isTemplate: z.ZodOptional<z.ZodBoolean>;
             summary: z.ZodOptional<z.ZodString>;
-            summaryRefreshRequired: z.ZodOptional<z.ZodBoolean>;
             tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
             lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -2817,7 +2785,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal?: number | undefined;
             isTemplate?: boolean | undefined;
             summary?: string | undefined;
-            summaryRefreshRequired?: boolean | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2836,7 +2803,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal?: number | undefined;
             isTemplate?: boolean | undefined;
             summary?: string | undefined;
-            summaryRefreshRequired?: boolean | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2857,7 +2823,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal: z.ZodOptional<z.ZodNumber>;
             isTemplate: z.ZodOptional<z.ZodBoolean>;
             summary: z.ZodOptional<z.ZodString>;
-            summaryRefreshRequired: z.ZodOptional<z.ZodBoolean>;
             tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
             lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -2890,7 +2855,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal?: number | undefined;
             isTemplate?: boolean | undefined;
             summary?: string | undefined;
-            summaryRefreshRequired?: boolean | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2908,7 +2872,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal?: number | undefined;
             isTemplate?: boolean | undefined;
             summary?: string | undefined;
-            summaryRefreshRequired?: boolean | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2929,7 +2892,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal: z.ZodOptional<z.ZodNumber>;
             isTemplate: z.ZodOptional<z.ZodBoolean>;
             summary: z.ZodOptional<z.ZodString>;
-            summaryRefreshRequired: z.ZodOptional<z.ZodBoolean>;
             tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
             lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -2945,7 +2907,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal?: number | undefined;
             isTemplate?: boolean | undefined;
             summary?: string | undefined;
-            summaryRefreshRequired?: boolean | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2959,7 +2920,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal?: number | undefined;
             isTemplate?: boolean | undefined;
             summary?: string | undefined;
-            summaryRefreshRequired?: boolean | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2986,7 +2946,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal?: number | undefined;
             isTemplate?: boolean | undefined;
             summary?: string | undefined;
-            summaryRefreshRequired?: boolean | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -3008,7 +2967,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal?: number | undefined;
             isTemplate?: boolean | undefined;
             summary?: string | undefined;
-            summaryRefreshRequired?: boolean | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -3029,7 +2987,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal?: number | undefined;
             isTemplate?: boolean | undefined;
             summary?: string | undefined;
-            summaryRefreshRequired?: boolean | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -3045,7 +3002,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal?: number | undefined;
             isTemplate?: boolean | undefined;
             summary?: string | undefined;
-            summaryRefreshRequired?: boolean | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -3072,7 +3028,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal?: number | undefined;
             isTemplate?: boolean | undefined;
             summary?: string | undefined;
-            summaryRefreshRequired?: boolean | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -3094,7 +3049,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal?: number | undefined;
             isTemplate?: boolean | undefined;
             summary?: string | undefined;
-            summaryRefreshRequired?: boolean | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -3115,7 +3069,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal?: number | undefined;
             isTemplate?: boolean | undefined;
             summary?: string | undefined;
-            summaryRefreshRequired?: boolean | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -3131,7 +3084,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal?: number | undefined;
             isTemplate?: boolean | undefined;
             summary?: string | undefined;
-            summaryRefreshRequired?: boolean | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -3165,7 +3117,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal?: number | undefined;
             isTemplate?: boolean | undefined;
             summary?: string | undefined;
-            summaryRefreshRequired?: boolean | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -3187,7 +3138,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal?: number | undefined;
             isTemplate?: boolean | undefined;
             summary?: string | undefined;
-            summaryRefreshRequired?: boolean | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -3208,7 +3158,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal?: number | undefined;
             isTemplate?: boolean | undefined;
             summary?: string | undefined;
-            summaryRefreshRequired?: boolean | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -3224,7 +3173,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal?: number | undefined;
             isTemplate?: boolean | undefined;
             summary?: string | undefined;
-            summaryRefreshRequired?: boolean | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -3262,7 +3210,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal?: number | undefined;
             isTemplate?: boolean | undefined;
             summary?: string | undefined;
-            summaryRefreshRequired?: boolean | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -3284,7 +3231,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal?: number | undefined;
             isTemplate?: boolean | undefined;
             summary?: string | undefined;
-            summaryRefreshRequired?: boolean | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -3305,7 +3251,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal?: number | undefined;
             isTemplate?: boolean | undefined;
             summary?: string | undefined;
-            summaryRefreshRequired?: boolean | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -3321,7 +3266,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal?: number | undefined;
             isTemplate?: boolean | undefined;
             summary?: string | undefined;
-            summaryRefreshRequired?: boolean | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;

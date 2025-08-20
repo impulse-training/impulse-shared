@@ -9,9 +9,6 @@ export function planBaseSchema<T extends string>(type: T) {
     ordinal: z.number().optional(),
     isTemplate: z.boolean().optional(),
     summary: z.string().optional(),
-    summaryRefreshRequired: z.boolean().optional(),
-
-    // items can be tactics or tacticCollections
     tactics: z.array(documentReferenceSchema),
     lastUsedAt: timestampSchema.optional(),
     createdAt: timestampSchema.optional(),
