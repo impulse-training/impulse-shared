@@ -12,13 +12,19 @@ export declare const tacticLogSchema: z.ZodObject<{
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
         tactic: z.ZodAny;
-        tacticCollectionId: z.ZodString;
+        stepCount: z.ZodOptional<z.ZodNumber>;
+        completedStepIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        completed: z.ZodOptional<z.ZodBoolean>;
     }, "strip", z.ZodTypeAny, {
-        tacticCollectionId: string;
         tactic?: any;
+        stepCount?: number | undefined;
+        completedStepIds?: string[] | undefined;
+        completed?: boolean | undefined;
     }, {
-        tacticCollectionId: string;
         tactic?: any;
+        stepCount?: number | undefined;
+        completedStepIds?: string[] | undefined;
+        completed?: boolean | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     type: "tactic_completed";
@@ -27,8 +33,10 @@ export declare const tacticLogSchema: z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
-        tacticCollectionId: string;
         tactic?: any;
+        stepCount?: number | undefined;
+        completedStepIds?: string[] | undefined;
+        completed?: boolean | undefined;
     };
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
@@ -41,8 +49,10 @@ export declare const tacticLogSchema: z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
-        tacticCollectionId: string;
         tactic?: any;
+        stepCount?: number | undefined;
+        completedStepIds?: string[] | undefined;
+        completed?: boolean | undefined;
     };
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;

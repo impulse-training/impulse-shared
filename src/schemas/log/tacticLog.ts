@@ -4,12 +4,15 @@ import { logBaseSchema } from "./base";
 // Tactic Activity Log Schema
 export const tacticLogSchema = logBaseSchema.extend({
   type: z.literal("tactic_completed"),
-  // Tactic logs are always displayed in the UI
   isDisplayable: z.literal(true),
   data: z.object({
-    // TODO: tighten once ../tactic.old is migrated
     tactic: z.any(),
-    tacticCollectionId: z.string(),
+    // total number of steps in the tactic at the time of logging
+    stepCount: z.number().int().nonnegative().optional(),
+    // 0-based indexes of completed steps (progressive)
+    completedStepIndexes: z.array(z.number().int().nonnegative()).optional(),
+    // whether the tactic is fully completed (all steps done)
+    completed: z.boolean().optional(),
   }),
 });
 

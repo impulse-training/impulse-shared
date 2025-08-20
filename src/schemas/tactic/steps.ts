@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { questionSchema } from "../question";
+import { attachmentSchema } from "../attachment";
 
 const baseStepSchema = z.object({
   id: z.string(),
@@ -7,6 +8,8 @@ const baseStepSchema = z.object({
   // don't require it. Other modes will explicitly require non-empty text.
   text: z.string().optional(), // label/instruction
   aiInstructions: z.string().optional(),
+  // Optional background image for non-media steps
+  backgroundImage: attachmentSchema.optional(),
 });
 
 const defaultStepSchema = baseStepSchema.extend({
@@ -51,6 +54,12 @@ const aiConversationStepSchema = baseStepSchema.extend({
   prompt: z.string().min(1),
 });
 
+// New: media step for displaying one or more media items as its own step
+const mediaStepSchema = baseStepSchema.extend({
+  mode: z.literal("media"),
+  media: z.array(attachmentSchema).min(1),
+});
+
 export const tacticStepSchema = z.discriminatedUnion("mode", [
   defaultStepSchema,
   breathingStepSchema,
@@ -58,6 +67,7 @@ export const tacticStepSchema = z.discriminatedUnion("mode", [
   notifySupportStepSchema,
   questionStepSchema,
   aiConversationStepSchema,
+  mediaStepSchema,
 ]);
 
 export type TacticStep = z.infer<typeof tacticStepSchema>;
