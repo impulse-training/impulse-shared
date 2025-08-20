@@ -3,7 +3,7 @@ import { timestampSchema } from "../../utils";
 import { tacticStepSchema } from "./steps";
 
 export const tacticSchema = z.object({
-  id: z.string(),
+  id: z.string().optional(),
   title: z.string().min(1),
   description: z.string().optional(),
   aiInstructions: z.string().optional(),
