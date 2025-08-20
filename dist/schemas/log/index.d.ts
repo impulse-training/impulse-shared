@@ -636,7 +636,7 @@ export declare const logSchemas: {
             category: "helpful" | "mixed" | "unhelpful" | "unsure";
             behaviorId: string;
             behaviorName: string;
-            trackingType: "counter" | "timer";
+            trackingType: "timer" | "counter";
             formattedValue: string;
             behaviorTrackingUnit?: string | undefined;
         }, {
@@ -644,7 +644,7 @@ export declare const logSchemas: {
             category: "helpful" | "mixed" | "unhelpful" | "unsure";
             behaviorId: string;
             behaviorName: string;
-            trackingType: "counter" | "timer";
+            trackingType: "timer" | "counter";
             formattedValue: string;
             behaviorTrackingUnit?: string | undefined;
         }>;
@@ -659,7 +659,7 @@ export declare const logSchemas: {
             category: "helpful" | "mixed" | "unhelpful" | "unsure";
             behaviorId: string;
             behaviorName: string;
-            trackingType: "counter" | "timer";
+            trackingType: "timer" | "counter";
             formattedValue: string;
             behaviorTrackingUnit?: string | undefined;
         };
@@ -678,7 +678,7 @@ export declare const logSchemas: {
             category: "helpful" | "mixed" | "unhelpful" | "unsure";
             behaviorId: string;
             behaviorName: string;
-            trackingType: "counter" | "timer";
+            trackingType: "timer" | "counter";
             formattedValue: string;
             behaviorTrackingUnit?: string | undefined;
         };
@@ -2541,7 +2541,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         category: "helpful" | "mixed" | "unhelpful" | "unsure";
         behaviorId: string;
         behaviorName: string;
-        trackingType: "counter" | "timer";
+        trackingType: "timer" | "counter";
         formattedValue: string;
         behaviorTrackingUnit?: string | undefined;
     }, {
@@ -2549,7 +2549,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         category: "helpful" | "mixed" | "unhelpful" | "unsure";
         behaviorId: string;
         behaviorName: string;
-        trackingType: "counter" | "timer";
+        trackingType: "timer" | "counter";
         formattedValue: string;
         behaviorTrackingUnit?: string | undefined;
     }>;
@@ -2564,7 +2564,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         category: "helpful" | "mixed" | "unhelpful" | "unsure";
         behaviorId: string;
         behaviorName: string;
-        trackingType: "counter" | "timer";
+        trackingType: "timer" | "counter";
         formattedValue: string;
         behaviorTrackingUnit?: string | undefined;
     };
@@ -2583,7 +2583,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         category: "helpful" | "mixed" | "unhelpful" | "unsure";
         behaviorId: string;
         behaviorName: string;
-        trackingType: "counter" | "timer";
+        trackingType: "timer" | "counter";
         formattedValue: string;
         behaviorTrackingUnit?: string | undefined;
     };

@@ -12,7 +12,7 @@ export declare const behaviorTemplateSchema: z.ZodEffects<z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     name: string;
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
-    trackingType: "counter" | "timer";
+    trackingType: "timer" | "counter";
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     hasQuestions?: boolean | undefined;
@@ -20,7 +20,7 @@ export declare const behaviorTemplateSchema: z.ZodEffects<z.ZodObject<{
 }, {
     name: string;
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
-    trackingType: "counter" | "timer";
+    trackingType: "timer" | "counter";
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     hasQuestions?: boolean | undefined;
@@ -28,7 +28,7 @@ export declare const behaviorTemplateSchema: z.ZodEffects<z.ZodObject<{
 }>, {
     name: string;
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
-    trackingType: "counter" | "timer";
+    trackingType: "timer" | "counter";
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     hasQuestions?: boolean | undefined;
@@ -36,7 +36,7 @@ export declare const behaviorTemplateSchema: z.ZodEffects<z.ZodObject<{
 }, {
     name: string;
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
-    trackingType: "counter" | "timer";
+    trackingType: "timer" | "counter";
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     hasQuestions?: boolean | undefined;
@@ -71,74 +71,74 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     name: string;
     ordinal: number;
-    category: "helpful" | "mixed" | "unhelpful" | "unsure";
-    trackingType: "counter" | "timer";
     description: string;
+    category: "helpful" | "mixed" | "unhelpful" | "unsure";
+    trackingType: "timer" | "counter";
     benefits: string[];
     drawbacks: string[];
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
-    hasQuestions?: boolean | undefined;
-    trackingUnit?: string | undefined;
     goal?: {
         type: "greaterThan" | "lessThanOrEqualTo";
         target: number;
     } | undefined;
+    hasQuestions?: boolean | undefined;
+    trackingUnit?: string | undefined;
     lastTrackedAt?: import("../types").Timestamp | undefined;
 }, {
     name: string;
-    category: "helpful" | "mixed" | "unhelpful" | "unsure";
-    trackingType: "counter" | "timer";
     description: string;
+    category: "helpful" | "mixed" | "unhelpful" | "unsure";
+    trackingType: "timer" | "counter";
     benefits: string[];
     drawbacks: string[];
     id?: string | undefined;
     ordinal?: number | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
-    hasQuestions?: boolean | undefined;
-    trackingUnit?: string | undefined;
     goal?: {
         type: "greaterThan" | "lessThanOrEqualTo";
         target: number;
     } | undefined;
+    hasQuestions?: boolean | undefined;
+    trackingUnit?: string | undefined;
     lastTrackedAt?: import("../types").Timestamp | undefined;
 }>, {
     name: string;
     ordinal: number;
-    category: "helpful" | "mixed" | "unhelpful" | "unsure";
-    trackingType: "counter" | "timer";
     description: string;
+    category: "helpful" | "mixed" | "unhelpful" | "unsure";
+    trackingType: "timer" | "counter";
     benefits: string[];
     drawbacks: string[];
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
-    hasQuestions?: boolean | undefined;
-    trackingUnit?: string | undefined;
     goal?: {
         type: "greaterThan" | "lessThanOrEqualTo";
         target: number;
     } | undefined;
+    hasQuestions?: boolean | undefined;
+    trackingUnit?: string | undefined;
     lastTrackedAt?: import("../types").Timestamp | undefined;
 }, {
     name: string;
-    category: "helpful" | "mixed" | "unhelpful" | "unsure";
-    trackingType: "counter" | "timer";
     description: string;
+    category: "helpful" | "mixed" | "unhelpful" | "unsure";
+    trackingType: "timer" | "counter";
     benefits: string[];
     drawbacks: string[];
     id?: string | undefined;
     ordinal?: number | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
-    hasQuestions?: boolean | undefined;
-    trackingUnit?: string | undefined;
     goal?: {
         type: "greaterThan" | "lessThanOrEqualTo";
         target: number;
     } | undefined;
+    hasQuestions?: boolean | undefined;
+    trackingUnit?: string | undefined;
     lastTrackedAt?: import("../types").Timestamp | undefined;
 }>;
 export type TrackingType = (typeof trackingTypes)[number];

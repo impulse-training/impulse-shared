@@ -2,6 +2,7 @@ import { z } from "zod";
 import { documentReferenceSchema } from "../../utils";
 import { timestampSchema } from "../../utils/timestampSchema";
 import { planWithIdSchema } from "../plan";
+import { tacticStepSchema } from "../tactic";
 import { emojiIdSchema } from "../userProfile";
 
 // Thread schema
@@ -78,14 +79,7 @@ export const threadBaseSchema = z.object({
   strategyDoc: documentReferenceSchema.optional(),
 
   // Current tactic step context (set by clients when user is viewing a tactic step)
-  currentTacticStep: z
-    .object({
-      tacticRef: documentReferenceSchema,
-      stepId: z.string(),
-    })
-    .optional()
-    .nullable(),
-
+  currentTacticStep: tacticStepSchema.optional().nullable(),
   agentConnectedAt: timestampSchema.optional(),
 
   sharingLevels: z

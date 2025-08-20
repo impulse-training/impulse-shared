@@ -1,9 +1,8 @@
 import { z } from "zod";
-import { questionSchema } from "../question";
 import { attachmentSchema } from "../attachment";
+import { questionSchema } from "../question";
 
 const baseStepSchema = z.object({
-  id: z.string(),
   // Make text optional at the base level so certain modes (e.g., breathing)
   // don't require it. Other modes will explicitly require non-empty text.
   text: z.string().optional(), // label/instruction
