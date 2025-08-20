@@ -3,7 +3,7 @@ export const logTypes = [
   "user", // User message type
   "assistant_message", // Agent/AI message type
   "tool_call", // Tool call type
-  "tactic_completed",
+  "tactic",
   "tactic_uncompleted",
   "impulse_button_pressed",
   "behavior",

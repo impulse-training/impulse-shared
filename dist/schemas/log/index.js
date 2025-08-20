@@ -30,16 +30,16 @@ const resistedLog_1 = require("./resistedLog");
 const showTourLog_1 = require("./showTourLog");
 const summaryLog_1 = require("./summaryLog");
 const tacticLog_1 = require("./tacticLog");
+const tacticSuggestionLog_1 = require("./tacticSuggestionLog");
 const toolCallLog_1 = require("./toolCallLog");
 const videoLog_1 = require("./videoLog");
 const widgetSetupLog_1 = require("./widgetSetupLog");
-const tacticSuggestionLog_1 = require("./tacticSuggestionLog");
 exports.logSchemas = {
     user: userMessageLog_1.userMessageLogSchema,
     assistant_message: messageLog_1.assistantMessageLogSchema,
     call: callLog_1.callLogSchema,
     tool_call: toolCallLog_1.toolCallLogSchema,
-    tactic_completed: tacticLog_1.tacticLogSchema,
+    tactic: tacticLog_1.tacticLogSchema,
     tactic_suggestion: tacticSuggestionLog_1.tacticSuggestionLogSchema,
     day_summary: daySummaryLog_1.daySummaryLogSchema,
     tactic_viewed: tacticLog_1.tacticLogSchema,
@@ -161,7 +161,7 @@ const isValidQuestionLog = (value) => {
     return questionLog_1.questionLogSchema.safeParse(value).success;
 };
 exports.isValidQuestionLog = isValidQuestionLog;
-const logIsTacticLog = (value) => value.type === "tactic_completed";
+const logIsTacticLog = (value) => value.type === "tactic";
 exports.logIsTacticLog = logIsTacticLog;
 const isValidTacticLog = (value) => {
     return tacticLog_1.tacticLogSchema.safeParse(value).success;

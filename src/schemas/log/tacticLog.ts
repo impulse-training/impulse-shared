@@ -3,7 +3,7 @@ import { logBaseSchema } from "./base";
 
 // Tactic Activity Log Schema
 export const tacticLogSchema = logBaseSchema.extend({
-  type: z.literal("tactic_completed"),
+  type: z.literal("tactic"),
   isDisplayable: z.literal(true),
   data: z.object({
     tactic: z.any(),

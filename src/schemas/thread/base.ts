@@ -10,7 +10,14 @@ export const threadBaseSchema = z.object({
   // Any thread may have an optional plan
   plan: planWithIdSchema.optional(),
   type: z
-    .enum(["impulse", "general", "onboarding", "dayRecap", "timePlan", "locationPlan"])
+    .enum([
+      "impulse",
+      "general",
+      "onboarding",
+      "dayRecap",
+      "timePlan",
+      "locationPlan",
+    ])
     .default("general"),
   date: timestampSchema.optional(),
   conversationStartedAt: timestampSchema.optional(),
@@ -76,7 +83,8 @@ export const threadBaseSchema = z.object({
       tacticRef: documentReferenceSchema,
       stepId: z.string(),
     })
-    .optional(),
+    .optional()
+    .nullable(),
 
   agentConnectedAt: timestampSchema.optional(),
 

@@ -23,20 +23,20 @@ import { ResistedLog, resistedLogSchema } from "./resistedLog";
 import { ShowTourLog, showTourLogSchema } from "./showTourLog";
 import { SummaryLog, summaryLogSchema } from "./summaryLog";
 import { TacticLog, tacticLogSchema } from "./tacticLog";
-import { ToolCallLog, toolCallLogSchema } from "./toolCallLog";
-import { VideoLog, videoLogSchema } from "./videoLog";
-import { WidgetSetupLog, widgetSetupLogSchema } from "./widgetSetupLog";
 import {
   TacticSuggestionLog,
   tacticSuggestionLogSchema,
 } from "./tacticSuggestionLog";
+import { ToolCallLog, toolCallLogSchema } from "./toolCallLog";
+import { VideoLog, videoLogSchema } from "./videoLog";
+import { WidgetSetupLog, widgetSetupLogSchema } from "./widgetSetupLog";
 
 export const logSchemas = {
   user: userMessageLogSchema,
   assistant_message: assistantMessageLogSchema,
   call: callLogSchema,
   tool_call: toolCallLogSchema,
-  tactic_completed: tacticLogSchema,
+  tactic: tacticLogSchema,
   tactic_suggestion: tacticSuggestionLogSchema,
   day_summary: daySummaryLogSchema,
   tactic_viewed: tacticLogSchema,
@@ -202,7 +202,7 @@ export const isValidQuestionLog = (value: unknown): value is QuestionLog => {
 };
 
 export const logIsTacticLog = (value: Omit<Log, "id">): value is TacticLog =>
-  value.type === "tactic_completed";
+  value.type === "tactic";
 export const isValidTacticLog = (value: unknown): value is TacticLog => {
   return tacticLogSchema.safeParse(value).success;
 };

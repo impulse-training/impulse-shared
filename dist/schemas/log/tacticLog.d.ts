@@ -8,26 +8,26 @@ export declare const tacticLogSchema: z.ZodObject<{
     dateString: z.ZodString;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
-    type: z.ZodLiteral<"tactic_completed">;
+    type: z.ZodLiteral<"tactic">;
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
         tactic: z.ZodAny;
         stepCount: z.ZodOptional<z.ZodNumber>;
-        completedStepIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        completedStepIndexes: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
         completed: z.ZodOptional<z.ZodBoolean>;
     }, "strip", z.ZodTypeAny, {
         tactic?: any;
         stepCount?: number | undefined;
-        completedStepIds?: string[] | undefined;
+        completedStepIndexes?: number[] | undefined;
         completed?: boolean | undefined;
     }, {
         tactic?: any;
         stepCount?: number | undefined;
-        completedStepIds?: string[] | undefined;
+        completedStepIndexes?: number[] | undefined;
         completed?: boolean | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
-    type: "tactic_completed";
+    type: "tactic";
     dateString: string;
     userId: string;
     timestamp: import("../../types").Timestamp;
@@ -35,7 +35,7 @@ export declare const tacticLogSchema: z.ZodObject<{
     data: {
         tactic?: any;
         stepCount?: number | undefined;
-        completedStepIds?: string[] | undefined;
+        completedStepIndexes?: number[] | undefined;
         completed?: boolean | undefined;
     };
     id?: string | undefined;
@@ -43,7 +43,7 @@ export declare const tacticLogSchema: z.ZodObject<{
     updatedAt?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
 }, {
-    type: "tactic_completed";
+    type: "tactic";
     dateString: string;
     userId: string;
     timestamp: import("../../types").Timestamp;
@@ -51,7 +51,7 @@ export declare const tacticLogSchema: z.ZodObject<{
     data: {
         tactic?: any;
         stepCount?: number | undefined;
-        completedStepIds?: string[] | undefined;
+        completedStepIndexes?: number[] | undefined;
         completed?: boolean | undefined;
     };
     id?: string | undefined;
