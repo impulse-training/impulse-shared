@@ -8,7 +8,7 @@ export const tacticSchema = z.object({
   description: z.string().optional(),
   aiInstructions: z.string().optional(),
   createdByUid: z.string().optional(),
-  steps: z.array(tacticStepSchema).optional(),
+  steps: z.array(tacticStepSchema).min(1),
   tags: z.array(z.string()).optional(),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
