@@ -23,7 +23,6 @@ export const threadBaseSchema = z.object({
     .default("general"),
   date: timestampSchema.optional(),
   conversationStartedAt: timestampSchema.optional(),
-  currentConverationMode: z.enum(["active", "chat"]).optional(),
   // For now, don't type this
   tacticsByPath: z.record(z.string(), z.any()).optional(),
 
@@ -80,6 +79,7 @@ export const threadBaseSchema = z.object({
   strategyDoc: documentReferenceSchema.optional(),
 
   // Current tactic step context (set by clients when user is viewing a tactic step)
+  currentConverationMode: z.enum(["active", "debrief"]).optional(),
   currentTacticStep: tacticStepSchema.optional().nullable(),
   agentConnectedAt: timestampSchema.optional(),
 
