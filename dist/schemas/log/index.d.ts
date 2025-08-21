@@ -18,6 +18,7 @@ import { ToolCallLog } from "./toolCallLog";
 import { VideoLog } from "./videoLog";
 import { WidgetSetupLog } from "./widgetSetupLog";
 import { SharedMomentLog } from "./sharedMomentLog";
+import { ReadyToDebriefLog } from "./readyToDebriefLog";
 export declare const logSchemas: {
     user: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
@@ -1988,10 +1989,42 @@ export declare const logSchemas: {
         updatedAt?: import("../../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
     }>;
+    ready_to_debrief: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        callLogDocPath: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"ready_to_debrief">;
+        isDisplayable: z.ZodLiteral<true>;
+    }, "strip", z.ZodTypeAny, {
+        type: "ready_to_debrief";
+        dateString: string;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: true;
+        id?: string | undefined;
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        callLogDocPath?: string | undefined;
+    }, {
+        type: "ready_to_debrief";
+        dateString: string;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: true;
+        id?: string | undefined;
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        callLogDocPath?: string | undefined;
+    }>;
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | TacticSuggestionLog | ImpulseLog | BehaviorLog | QuestionLog | PlanLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | ResistedLog | DaySummaryLog;
+export type Log = TacticLog | TacticSuggestionLog | ImpulseLog | BehaviorLog | QuestionLog | PlanLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | ResistedLog | DaySummaryLog | ReadyToDebriefLog;
 export * from "./behaviorLog";
 export * from "./callLog";
 export * from "./daySummaryLog";
@@ -2010,6 +2043,7 @@ export * from "./tacticSuggestionLog";
 export * from "./toolCallLog";
 export * from "./videoLog";
 export * from "./widgetSetupLog";
+export * from "./readyToDebriefLog";
 export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -3900,6 +3934,37 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     text?: string | undefined;
     title?: string | undefined;
     callLogDocPath?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    callLogDocPath: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"ready_to_debrief">;
+    isDisplayable: z.ZodLiteral<true>;
+}, "strip", z.ZodTypeAny, {
+    type: "ready_to_debrief";
+    dateString: string;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: true;
+    id?: string | undefined;
+    createdAt?: import("../../types").Timestamp | undefined;
+    updatedAt?: import("../../types").Timestamp | undefined;
+    callLogDocPath?: string | undefined;
+}, {
+    type: "ready_to_debrief";
+    dateString: string;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: true;
+    id?: string | undefined;
+    createdAt?: import("../../types").Timestamp | undefined;
+    updatedAt?: import("../../types").Timestamp | undefined;
+    callLogDocPath?: string | undefined;
 }>]>;
 export declare const logIsAssistantMessageLog: (value: Omit<Log, "id">) => value is AssistantMessageLog;
 export declare const isValidAssistantMessageLog: (value: unknown) => value is AssistantMessageLog;
@@ -3937,3 +4002,5 @@ export declare const logIsSummaryLog: (value: Omit<Log, "id">) => value is Summa
 export declare const isValidSummaryLog: (value: unknown) => value is SummaryLog;
 export declare const logIsLinkLog: (value: Omit<Log, "id">) => value is LinkLog;
 export declare const isValidLinkLog: (value: unknown) => value is LinkLog;
+export declare const logIsReadyToDebriefLog: (value: Omit<Log, "id">) => value is ReadyToDebriefLog;
+export declare const isValidReadyToDebriefLog: (value: unknown) => value is ReadyToDebriefLog;

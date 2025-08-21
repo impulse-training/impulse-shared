@@ -17,6 +17,7 @@ import {
   logIsToolCallLog,
   logIsUserMessageLog,
   logIsWidgetSetupLog,
+  logIsReadyToDebriefLog,
 } from "../schemas/log";
 import { formatDaySummary } from "./formatDaySummary";
 import { getBehaviorCategoryExplanation } from "../constants/behaviorCategories";
@@ -28,6 +29,16 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
         role: "user",
         content:
           "The user has pressed the impulse button: they are facing a craving or urge",
+      },
+    ];
+  }
+
+  // Handle ReadyToDebriefLog
+  if (logIsReadyToDebriefLog(log)) {
+    return [
+      {
+        role: "user",
+        content: "<SYSTEM>User finished a tactic and is ready to debrief</SYSTEM>",
       },
     ];
   }

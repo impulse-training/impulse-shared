@@ -8,6 +8,7 @@ import {
   logIsShowTourLog,
   logIsUserMessageLog,
   logIsWidgetSetupLog,
+  logIsReadyToDebriefLog,
 } from "../schemas/log";
 import { fieldChanged } from "./fields";
 
@@ -26,7 +27,9 @@ export function shouldRespondWithAI(
   if (
     !beforeData &&
     afterData &&
-    (logIsUserMessageLog(afterData) || logIsImpulseLog(afterData))
+    (logIsUserMessageLog(afterData) ||
+      logIsImpulseLog(afterData) ||
+      logIsReadyToDebriefLog(afterData))
   ) {
     return true;
   }

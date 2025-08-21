@@ -31,6 +31,10 @@ import { ToolCallLog, toolCallLogSchema } from "./toolCallLog";
 import { VideoLog, videoLogSchema } from "./videoLog";
 import { WidgetSetupLog, widgetSetupLogSchema } from "./widgetSetupLog";
 import { SharedMomentLog, sharedMomentLogSchema } from "./sharedMomentLog";
+import {
+  ReadyToDebriefLog,
+  readyToDebriefLogSchema,
+} from "./readyToDebriefLog";
 
 export const logSchemas = {
   user: userMessageLogSchema,
@@ -53,6 +57,7 @@ export const logSchemas = {
   notify_support_group: notifySupportGroupLogSchema,
   video: videoLogSchema,
   shared_moment: sharedMomentLogSchema,
+  ready_to_debrief: readyToDebriefLogSchema,
 };
 export const logTypes = Object.keys(logSchemas);
 
@@ -77,7 +82,8 @@ export type Log =
   | SharedMomentLog
   | VideoLog
   | ResistedLog
-  | DaySummaryLog;
+  | DaySummaryLog
+  | ReadyToDebriefLog;
 
 export * from "./behaviorLog";
 export * from "./callLog";
@@ -97,6 +103,7 @@ export * from "./tacticSuggestionLog";
 export * from "./toolCallLog";
 export * from "./videoLog";
 export * from "./widgetSetupLog";
+export * from "./readyToDebriefLog";
 
 // Discriminated union schema across all log variants
 export const logSchema = z.discriminatedUnion("type", [
@@ -119,6 +126,7 @@ export const logSchema = z.discriminatedUnion("type", [
   notifySupportGroupLogSchema,
   sharedMomentLogSchema,
   videoLogSchema,
+  readyToDebriefLogSchema,
 ]);
 
 // Export log type guards
@@ -256,4 +264,13 @@ export const logIsLinkLog = (value: Omit<Log, "id">): value is LinkLog =>
   value.type === "link";
 export const isValidLinkLog = (value: unknown): value is LinkLog => {
   return linkLogSchema.safeParse(value).success;
+};
+
+export const logIsReadyToDebriefLog = (
+  value: Omit<Log, "id">
+): value is ReadyToDebriefLog => value.type === "ready_to_debrief";
+export const isValidReadyToDebriefLog = (
+  value: unknown
+): value is ReadyToDebriefLog => {
+  return readyToDebriefLogSchema.safeParse(value).success;
 };
