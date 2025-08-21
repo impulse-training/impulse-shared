@@ -14,7 +14,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidPlanLog = exports.logIsPlanLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticSuggestionLog = exports.logIsTacticSuggestionLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorLog = exports.logIsBehaviorLog = exports.isValidDaySummaryLog = exports.logIsDaySummaryLog = exports.isValidResistedLog = exports.logIsResistedLog = exports.isValidNotifySupportGroupLog = exports.logIsNotifySupportGroupLog = exports.isValidShowTourLog = exports.logIsShowTourLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
+exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidPlanLog = exports.logIsPlanLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticSuggestionLog = exports.logIsTacticSuggestionLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorLog = exports.logIsBehaviorLog = exports.isValidDaySummaryLog = exports.logIsDaySummaryLog = exports.isValidResistedLog = exports.logIsResistedLog = exports.isValidSharedMomentLog = exports.logIsSharedMomentLog = exports.isValidNotifySupportGroupLog = exports.logIsNotifySupportGroupLog = exports.isValidShowTourLog = exports.logIsShowTourLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
 const zod_1 = require("zod");
 const behaviorLog_1 = require("./behaviorLog");
 const callLog_1 = require("./callLog");
@@ -34,6 +34,7 @@ const tacticSuggestionLog_1 = require("./tacticSuggestionLog");
 const toolCallLog_1 = require("./toolCallLog");
 const videoLog_1 = require("./videoLog");
 const widgetSetupLog_1 = require("./widgetSetupLog");
+const sharedMomentLog_1 = require("./sharedMomentLog");
 exports.logSchemas = {
     user: userMessageLog_1.userMessageLogSchema,
     assistant_message: messageLog_1.assistantMessageLogSchema,
@@ -54,6 +55,7 @@ exports.logSchemas = {
     link: linkLog_1.linkLogSchema,
     notify_support_group: notifySupportGroupLog_1.notifySupportGroupLogSchema,
     video: videoLog_1.videoLogSchema,
+    shared_moment: sharedMomentLog_1.sharedMomentLogSchema,
 };
 exports.logTypes = Object.keys(exports.logSchemas);
 __exportStar(require("./behaviorLog"), exports);
@@ -63,6 +65,7 @@ __exportStar(require("./impulseLog"), exports);
 __exportStar(require("./linkLog"), exports);
 __exportStar(require("./messageLog"), exports);
 __exportStar(require("./notifySupportGroupLog"), exports);
+__exportStar(require("./sharedMomentLog"), exports);
 __exportStar(require("./planLog"), exports);
 __exportStar(require("./questionLog"), exports);
 __exportStar(require("./resistedLog"), exports);
@@ -92,6 +95,7 @@ exports.logSchema = zod_1.z.discriminatedUnion("type", [
     showTourLog_1.showTourLogSchema,
     linkLog_1.linkLogSchema,
     notifySupportGroupLog_1.notifySupportGroupLogSchema,
+    sharedMomentLog_1.sharedMomentLogSchema,
     videoLog_1.videoLogSchema,
 ]);
 // Export log type guards
@@ -113,6 +117,12 @@ const isValidNotifySupportGroupLog = (value) => {
     return notifySupportGroupLog_1.notifySupportGroupLogSchema.safeParse(value).success;
 };
 exports.isValidNotifySupportGroupLog = isValidNotifySupportGroupLog;
+const logIsSharedMomentLog = (value) => value.type === "shared_moment";
+exports.logIsSharedMomentLog = logIsSharedMomentLog;
+const isValidSharedMomentLog = (value) => {
+    return sharedMomentLog_1.sharedMomentLogSchema.safeParse(value).success;
+};
+exports.isValidSharedMomentLog = isValidSharedMomentLog;
 const logIsResistedLog = (value) => value.type === "resisted";
 exports.logIsResistedLog = logIsResistedLog;
 const isValidResistedLog = (value) => {

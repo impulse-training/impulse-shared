@@ -38,9 +38,8 @@ export const threadSchema = z.discriminatedUnion("type", [
 
 export const threadIsGeneralThread = (value: Thread): value is GeneralThread =>
   value.type === "general";
-export const isValidGeneralThread = (
-  value: unknown
-): value is GeneralThread => generalThreadSchema.safeParse(value).success;
+export const isValidGeneralThread = (value: unknown): value is GeneralThread =>
+  generalThreadSchema.safeParse(value).success;
 
 export const threadIsOnboardingThread = (
   value: Thread
@@ -51,9 +50,8 @@ export const isValidOnboardingThread = (
 
 export const threadIsImpulseThread = (value: Thread): value is ImpulseThread =>
   value.type === "impulse";
-export const isValidImpulseThread = (
-  value: unknown
-): value is ImpulseThread => impulseThreadSchema.safeParse(value).success;
+export const isValidImpulseThread = (value: unknown): value is ImpulseThread =>
+  impulseThreadSchema.safeParse(value).success;
 
 export const threadIsTimePlanThread = (
   value: Thread
@@ -64,7 +62,7 @@ export const isValidTimePlanThread = (
 
 export const threadIsRecapPlanThread = (
   value: Thread
-): value is RecapPlanThread => value.type === "dayRecap";
+): value is RecapPlanThread => value.type === "recap";
 export const isValidRecapPlanThread = (
   value: unknown
 ): value is RecapPlanThread => recapPlanThreadSchema.safeParse(value).success;

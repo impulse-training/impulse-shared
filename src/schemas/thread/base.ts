@@ -15,6 +15,7 @@ export const threadBaseSchema = z.object({
       "impulse",
       "general",
       "onboarding",
+      "recap",
       "dayRecap",
       "timePlan",
       "locationPlan",

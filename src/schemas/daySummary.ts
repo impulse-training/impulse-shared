@@ -11,6 +11,7 @@ export const daySummarySchema = z.object({
   impulseThreadOutcomesById: objectOf(outcomeEnum),
   outcome: outcomeEnum.optional(),
   behaviorDataTotalByBehaviorId: objectOf(behaviorTrackingDataSchema),
+  trackingLogsById: z.record(z.string(), z.any()).optional(),
   // TODO: tighten once tactic schemas are finalized
   tacticsUsed: z.array(z.any()).default([]),
   summaryText: z.string().default(""),

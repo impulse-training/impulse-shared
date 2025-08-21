@@ -17,6 +17,7 @@ import { TacticSuggestionLog } from "./tacticSuggestionLog";
 import { ToolCallLog } from "./toolCallLog";
 import { VideoLog } from "./videoLog";
 import { WidgetSetupLog } from "./widgetSetupLog";
+import { SharedMomentLog } from "./sharedMomentLog";
 export declare const logSchemas: {
     user: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
@@ -1942,10 +1943,55 @@ export declare const logSchemas: {
         title?: string | undefined;
         callLogDocPath?: string | undefined;
     }>;
+    shared_moment: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        callLogDocPath: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"shared_moment">;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            threadRef: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
+        }, "strip", z.ZodTypeAny, {
+            threadRef: import("../..").DocumentReferenceLike<unknown>;
+        }, {
+            threadRef: import("../..").DocumentReferenceLike<unknown>;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        type: "shared_moment";
+        dateString: string;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: true;
+        data: {
+            threadRef: import("../..").DocumentReferenceLike<unknown>;
+        };
+        id?: string | undefined;
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        callLogDocPath?: string | undefined;
+    }, {
+        type: "shared_moment";
+        dateString: string;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: true;
+        data: {
+            threadRef: import("../..").DocumentReferenceLike<unknown>;
+        };
+        id?: string | undefined;
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        callLogDocPath?: string | undefined;
+    }>;
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | TacticSuggestionLog | ImpulseLog | BehaviorLog | QuestionLog | PlanLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | NotifySupportGroupLog | VideoLog | ResistedLog | DaySummaryLog;
+export type Log = TacticLog | TacticSuggestionLog | ImpulseLog | BehaviorLog | QuestionLog | PlanLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | ResistedLog | DaySummaryLog;
 export * from "./behaviorLog";
 export * from "./callLog";
 export * from "./daySummaryLog";
@@ -1953,6 +1999,7 @@ export * from "./impulseLog";
 export * from "./linkLog";
 export * from "./messageLog";
 export * from "./notifySupportGroupLog";
+export * from "./sharedMomentLog";
 export * from "./planLog";
 export * from "./questionLog";
 export * from "./resistedLog";
@@ -3768,6 +3815,50 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dateString: z.ZodString;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
+    type: z.ZodLiteral<"shared_moment">;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        threadRef: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
+    }, "strip", z.ZodTypeAny, {
+        threadRef: import("../..").DocumentReferenceLike<unknown>;
+    }, {
+        threadRef: import("../..").DocumentReferenceLike<unknown>;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    type: "shared_moment";
+    dateString: string;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: true;
+    data: {
+        threadRef: import("../..").DocumentReferenceLike<unknown>;
+    };
+    id?: string | undefined;
+    createdAt?: import("../../types").Timestamp | undefined;
+    updatedAt?: import("../../types").Timestamp | undefined;
+    callLogDocPath?: string | undefined;
+}, {
+    type: "shared_moment";
+    dateString: string;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: true;
+    data: {
+        threadRef: import("../..").DocumentReferenceLike<unknown>;
+    };
+    id?: string | undefined;
+    createdAt?: import("../../types").Timestamp | undefined;
+    updatedAt?: import("../../types").Timestamp | undefined;
+    callLogDocPath?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    callLogDocPath: z.ZodOptional<z.ZodString>;
+} & {
     type: z.ZodLiteral<"video">;
     isDisplayable: z.ZodLiteral<true>;
     title: z.ZodOptional<z.ZodString>;
@@ -3816,6 +3907,8 @@ export declare const logIsShowTourLog: (value: Omit<Log, "id">) => value is Show
 export declare const isValidShowTourLog: (value: unknown) => value is ShowTourLog;
 export declare const logIsNotifySupportGroupLog: (value: Omit<Log, "id">) => value is NotifySupportGroupLog;
 export declare const isValidNotifySupportGroupLog: (value: unknown) => value is NotifySupportGroupLog;
+export declare const logIsSharedMomentLog: (value: Omit<Log, "id">) => value is SharedMomentLog;
+export declare const isValidSharedMomentLog: (value: unknown) => value is SharedMomentLog;
 export declare const logIsResistedLog: (value: Omit<Log, "id">) => value is ResistedLog;
 export declare const isValidResistedLog: (value: unknown) => value is ResistedLog;
 export declare const logIsDaySummaryLog: (value: Omit<Log, "id">) => value is DaySummaryLog;

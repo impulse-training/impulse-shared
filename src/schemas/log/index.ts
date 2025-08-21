@@ -30,6 +30,7 @@ import {
 import { ToolCallLog, toolCallLogSchema } from "./toolCallLog";
 import { VideoLog, videoLogSchema } from "./videoLog";
 import { WidgetSetupLog, widgetSetupLogSchema } from "./widgetSetupLog";
+import { SharedMomentLog, sharedMomentLogSchema } from "./sharedMomentLog";
 
 export const logSchemas = {
   user: userMessageLogSchema,
@@ -51,6 +52,7 @@ export const logSchemas = {
   link: linkLogSchema,
   notify_support_group: notifySupportGroupLogSchema,
   video: videoLogSchema,
+  shared_moment: sharedMomentLogSchema,
 };
 export const logTypes = Object.keys(logSchemas);
 
@@ -72,6 +74,7 @@ export type Log =
   | ShowTourLog
   | LinkLog
   | NotifySupportGroupLog
+  | SharedMomentLog
   | VideoLog
   | ResistedLog
   | DaySummaryLog;
@@ -83,6 +86,7 @@ export * from "./impulseLog";
 export * from "./linkLog";
 export * from "./messageLog";
 export * from "./notifySupportGroupLog";
+export * from "./sharedMomentLog";
 export * from "./planLog";
 export * from "./questionLog";
 export * from "./resistedLog";
@@ -113,6 +117,7 @@ export const logSchema = z.discriminatedUnion("type", [
   showTourLogSchema,
   linkLogSchema,
   notifySupportGroupLogSchema,
+  sharedMomentLogSchema,
   videoLogSchema,
 ]);
 
@@ -141,6 +146,15 @@ export const isValidNotifySupportGroupLog = (
   value: unknown
 ): value is NotifySupportGroupLog => {
   return notifySupportGroupLogSchema.safeParse(value).success;
+};
+
+export const logIsSharedMomentLog = (
+  value: Omit<Log, "id">
+): value is SharedMomentLog => value.type === "shared_moment";
+export const isValidSharedMomentLog = (
+  value: unknown
+): value is SharedMomentLog => {
+  return sharedMomentLogSchema.safeParse(value).success;
 };
 
 export const logIsResistedLog = (
