@@ -4,11 +4,11 @@ import {
   logIsDaySummaryLog,
   logIsImpulseLog,
   logIsQuestionLog,
+  logIsReadyToDebriefLog,
   logIsResistedLog,
   logIsShowTourLog,
   logIsUserMessageLog,
   logIsWidgetSetupLog,
-  logIsReadyToDebriefLog,
 } from "../schemas/log";
 import { fieldChanged } from "./fields";
 
@@ -70,7 +70,6 @@ export function shouldRespondWithAI(
 
   // Case 6: The user has completed a day summary
   if (
-    beforeData &&
     afterData &&
     logIsDaySummaryLog(afterData) &&
     fieldChanged(beforeData, afterData, "data.behaviorDataTotalByBehaviorId")
