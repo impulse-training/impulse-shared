@@ -45,7 +45,7 @@ const questionStepSchema = baseStepSchema.extend({
   text: z.string().min(1),
 });
 
-const aiConversationStepSchema = baseStepSchema.extend({
+const aiConversationStepSchema = baseStepSchema.omit({ backgroundImage: true }).extend({
   mode: z.literal("aiConversation"),
   // High-level objective for the conversation
   goal: z.string().min(1),
