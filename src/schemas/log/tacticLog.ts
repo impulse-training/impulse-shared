@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { tacticSchema } from "../tactic";
 import { logBaseSchema } from "./base";
 
 // Tactic Activity Log Schema
@@ -6,7 +7,7 @@ export const tacticLogSchema = logBaseSchema.extend({
   type: z.literal("tactic"),
   isDisplayable: z.literal(true),
   data: z.object({
-    tactic: z.any(),
+    tactic: tacticSchema,
     // total number of steps in the tactic at the time of logging
     stepCount: z.number().int().nonnegative().optional(),
     // 0-based indexes of completed steps (progressive)
