@@ -79,6 +79,7 @@ export const threadBaseSchema = z.object({
   strategyDoc: documentReferenceSchema.optional(),
 
   currentConverationMode: z.enum(["default"]).optional(),
+  currentlyViewing: z.enum(["tactics", "chat"]).optional(),
   currentTacticStep: tacticStepSchema.optional().nullable(),
   agentConnectedAt: timestampSchema.optional(),
 
