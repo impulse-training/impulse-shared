@@ -8,6 +8,10 @@ export const llmAuditEntrySchema = z.object({
   messages: z.array(z.any()),
   response: z.any(),
   toolDefinitions: z.array(z.any()),
+  // Timing instrumentation
+  startedAt: timestampSchema.optional(),
+  endedAt: timestampSchema.optional(),
+  durationMs: z.number().optional(),
 });
 
 export type LLMAuditEntry = z.infer<typeof llmAuditEntrySchema>;
