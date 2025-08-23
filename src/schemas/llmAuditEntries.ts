@@ -12,6 +12,8 @@ export const llmAuditEntrySchema = z.object({
   startedAt: timestampSchema.optional(),
   endedAt: timestampSchema.optional(),
   durationMs: z.number().optional(),
+  // Model used for the call
+  model: z.string().optional(),
 });
 
 export type LLMAuditEntry = z.infer<typeof llmAuditEntrySchema>;

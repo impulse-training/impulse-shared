@@ -16,24 +16,24 @@ export declare const behaviorContextSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     behaviorId: string;
     behaviorName: string;
-    trackingType: "boolean" | "timer" | "counter";
+    trackingType: "boolean" | "counter" | "timer";
     streakDays: number;
     totalTracked: number;
     insights: string[];
     effectiveTactics: string[];
     planTacticIds: string[];
-    description?: string | undefined;
     category?: string | undefined;
     trackingUnit?: string | undefined;
+    description?: string | undefined;
     benefits?: string[] | undefined;
     drawbacks?: string[] | undefined;
 }, {
     behaviorId: string;
     behaviorName: string;
-    trackingType: "boolean" | "timer" | "counter";
-    description?: string | undefined;
+    trackingType: "boolean" | "counter" | "timer";
     category?: string | undefined;
     trackingUnit?: string | undefined;
+    description?: string | undefined;
     benefits?: string[] | undefined;
     drawbacks?: string[] | undefined;
     streakDays?: number | undefined;
@@ -95,24 +95,24 @@ export declare const userContextSchema: z.ZodObject<{
     }, "strip", z.ZodTypeAny, {
         behaviorId: string;
         behaviorName: string;
-        trackingType: "boolean" | "timer" | "counter";
+        trackingType: "boolean" | "counter" | "timer";
         streakDays: number;
         totalTracked: number;
         insights: string[];
         effectiveTactics: string[];
         planTacticIds: string[];
-        description?: string | undefined;
         category?: string | undefined;
         trackingUnit?: string | undefined;
+        description?: string | undefined;
         benefits?: string[] | undefined;
         drawbacks?: string[] | undefined;
     }, {
         behaviorId: string;
         behaviorName: string;
-        trackingType: "boolean" | "timer" | "counter";
-        description?: string | undefined;
+        trackingType: "boolean" | "counter" | "timer";
         category?: string | undefined;
         trackingUnit?: string | undefined;
+        description?: string | undefined;
         benefits?: string[] | undefined;
         drawbacks?: string[] | undefined;
         streakDays?: number | undefined;
@@ -171,15 +171,15 @@ export declare const userContextSchema: z.ZodObject<{
     behaviors: Record<string, {
         behaviorId: string;
         behaviorName: string;
-        trackingType: "boolean" | "timer" | "counter";
+        trackingType: "boolean" | "counter" | "timer";
         streakDays: number;
         totalTracked: number;
         insights: string[];
         effectiveTactics: string[];
         planTacticIds: string[];
-        description?: string | undefined;
         category?: string | undefined;
         trackingUnit?: string | undefined;
+        description?: string | undefined;
         benefits?: string[] | undefined;
         drawbacks?: string[] | undefined;
     }>;
@@ -204,10 +204,10 @@ export declare const userContextSchema: z.ZodObject<{
     behaviors: Record<string, {
         behaviorId: string;
         behaviorName: string;
-        trackingType: "boolean" | "timer" | "counter";
-        description?: string | undefined;
+        trackingType: "boolean" | "counter" | "timer";
         category?: string | undefined;
         trackingUnit?: string | undefined;
+        description?: string | undefined;
         benefits?: string[] | undefined;
         drawbacks?: string[] | undefined;
         streakDays?: number | undefined;

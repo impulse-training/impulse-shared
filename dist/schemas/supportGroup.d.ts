@@ -532,9 +532,9 @@ export declare const supportGroupSchema: z.ZodObject<{
         }>>;
     }, "strip", z.ZodTypeAny, {
         type: "user_message";
-        dateString: string;
         userId: string;
         timestamp: import("../types").Timestamp;
+        dateString: string;
         isDisplayable: true;
         data: {
             message?: any;
@@ -564,9 +564,9 @@ export declare const supportGroupSchema: z.ZodObject<{
         } | undefined;
     }, {
         type: "user_message";
-        dateString: string;
         userId: string;
         timestamp: import("../types").Timestamp;
+        dateString: string;
         isDisplayable: true;
         data: {
             message?: any;
@@ -600,7 +600,6 @@ export declare const supportGroupSchema: z.ZodObject<{
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
     name: string;
-    isTemplate: boolean;
     membersById: Record<string, {
         userId: string;
         userProfile: {
@@ -627,6 +626,7 @@ export declare const supportGroupSchema: z.ZodObject<{
         } | undefined;
         joinedAt?: import("../types").Timestamp | undefined;
     }>;
+    isTemplate: boolean;
     image: {
         uri: string;
         storagePath: string;
@@ -678,9 +678,9 @@ export declare const supportGroupSchema: z.ZodObject<{
     inviteCode?: string | undefined;
     lastMessage?: {
         type: "user_message";
-        dateString: string;
         userId: string;
         timestamp: import("../types").Timestamp;
+        dateString: string;
         isDisplayable: true;
         data: {
             message?: any;
@@ -760,10 +760,10 @@ export declare const supportGroupSchema: z.ZodObject<{
     unreadMessageCountsById: Record<string, number>;
     tacticCollections: import("../utils").DocumentReferenceLike<unknown>[];
     id?: string | undefined;
-    isTemplate?: boolean | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     description?: string | undefined;
+    isTemplate?: boolean | undefined;
     coverPhoto?: {
         uri: string;
         storagePath: string;
@@ -788,9 +788,9 @@ export declare const supportGroupSchema: z.ZodObject<{
     inviteCode?: string | undefined;
     lastMessage?: {
         type: "user_message";
-        dateString: string;
         userId: string;
         timestamp: import("../types").Timestamp;
+        dateString: string;
         isDisplayable: true;
         data: {
             message?: any;

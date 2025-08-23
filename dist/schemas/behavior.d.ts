@@ -10,37 +10,37 @@ export declare const behaviorTemplateSchema: z.ZodEffects<z.ZodObject<{
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
-    name: string;
+    trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
-    trackingType: "timer" | "counter";
-    createdAt?: import("../types").Timestamp | undefined;
-    updatedAt?: import("../types").Timestamp | undefined;
+    name: string;
     hasQuestions?: boolean | undefined;
     trackingUnit?: string | undefined;
+    createdAt?: import("../types").Timestamp | undefined;
+    updatedAt?: import("../types").Timestamp | undefined;
 }, {
-    name: string;
+    trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
-    trackingType: "timer" | "counter";
-    createdAt?: import("../types").Timestamp | undefined;
-    updatedAt?: import("../types").Timestamp | undefined;
+    name: string;
     hasQuestions?: boolean | undefined;
     trackingUnit?: string | undefined;
+    createdAt?: import("../types").Timestamp | undefined;
+    updatedAt?: import("../types").Timestamp | undefined;
 }>, {
-    name: string;
+    trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
-    trackingType: "timer" | "counter";
-    createdAt?: import("../types").Timestamp | undefined;
-    updatedAt?: import("../types").Timestamp | undefined;
+    name: string;
     hasQuestions?: boolean | undefined;
     trackingUnit?: string | undefined;
+    createdAt?: import("../types").Timestamp | undefined;
+    updatedAt?: import("../types").Timestamp | undefined;
 }, {
-    name: string;
+    trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
-    trackingType: "timer" | "counter";
-    createdAt?: import("../types").Timestamp | undefined;
-    updatedAt?: import("../types").Timestamp | undefined;
+    name: string;
     hasQuestions?: boolean | undefined;
     trackingUnit?: string | undefined;
+    createdAt?: import("../types").Timestamp | undefined;
+    updatedAt?: import("../types").Timestamp | undefined;
 }>;
 export type BehaviorTemplate = z.infer<typeof behaviorTemplateSchema>;
 export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
@@ -69,76 +69,76 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     }>>;
     lastTrackedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
-    name: string;
-    ordinal: number;
-    description: string;
+    trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
-    trackingType: "timer" | "counter";
+    name: string;
+    description: string;
+    ordinal: number;
     benefits: string[];
     drawbacks: string[];
     id?: string | undefined;
+    hasQuestions?: boolean | undefined;
+    trackingUnit?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     goal?: {
         type: "greaterThan" | "lessThanOrEqualTo";
         target: number;
     } | undefined;
-    hasQuestions?: boolean | undefined;
-    trackingUnit?: string | undefined;
     lastTrackedAt?: import("../types").Timestamp | undefined;
 }, {
+    trackingType: "counter" | "timer";
+    category: "helpful" | "mixed" | "unhelpful" | "unsure";
     name: string;
     description: string;
-    category: "helpful" | "mixed" | "unhelpful" | "unsure";
-    trackingType: "timer" | "counter";
     benefits: string[];
     drawbacks: string[];
     id?: string | undefined;
-    ordinal?: number | undefined;
+    hasQuestions?: boolean | undefined;
+    trackingUnit?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
+    ordinal?: number | undefined;
     goal?: {
         type: "greaterThan" | "lessThanOrEqualTo";
         target: number;
     } | undefined;
-    hasQuestions?: boolean | undefined;
-    trackingUnit?: string | undefined;
     lastTrackedAt?: import("../types").Timestamp | undefined;
 }>, {
-    name: string;
-    ordinal: number;
-    description: string;
+    trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
-    trackingType: "timer" | "counter";
+    name: string;
+    description: string;
+    ordinal: number;
     benefits: string[];
     drawbacks: string[];
     id?: string | undefined;
+    hasQuestions?: boolean | undefined;
+    trackingUnit?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     goal?: {
         type: "greaterThan" | "lessThanOrEqualTo";
         target: number;
     } | undefined;
-    hasQuestions?: boolean | undefined;
-    trackingUnit?: string | undefined;
     lastTrackedAt?: import("../types").Timestamp | undefined;
 }, {
+    trackingType: "counter" | "timer";
+    category: "helpful" | "mixed" | "unhelpful" | "unsure";
     name: string;
     description: string;
-    category: "helpful" | "mixed" | "unhelpful" | "unsure";
-    trackingType: "timer" | "counter";
     benefits: string[];
     drawbacks: string[];
     id?: string | undefined;
-    ordinal?: number | undefined;
+    hasQuestions?: boolean | undefined;
+    trackingUnit?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
+    ordinal?: number | undefined;
     goal?: {
         type: "greaterThan" | "lessThanOrEqualTo";
         target: number;
     } | undefined;
-    hasQuestions?: boolean | undefined;
-    trackingUnit?: string | undefined;
     lastTrackedAt?: import("../types").Timestamp | undefined;
 }>;
 export type TrackingType = (typeof trackingTypes)[number];

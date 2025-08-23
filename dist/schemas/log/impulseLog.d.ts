@@ -12,9 +12,9 @@ export declare const impulseLogSchema: z.ZodObject<{
     isDisplayable: z.ZodLiteral<true>;
 }, "strip", z.ZodTypeAny, {
     type: "impulse_button_pressed";
-    dateString: string;
     userId: string;
     timestamp: import("../../types").Timestamp;
+    dateString: string;
     isDisplayable: true;
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
@@ -22,9 +22,9 @@ export declare const impulseLogSchema: z.ZodObject<{
     callLogDocPath?: string | undefined;
 }, {
     type: "impulse_button_pressed";
-    dateString: string;
     userId: string;
     timestamp: import("../../types").Timestamp;
+    dateString: string;
     isDisplayable: true;
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;

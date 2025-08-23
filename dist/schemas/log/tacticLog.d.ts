@@ -670,33 +670,33 @@ export declare const tacticLogSchema: z.ZodObject<{
                     suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 }, "strip", z.ZodTypeAny, {
                     isTemplate: boolean;
-                    question: string;
                     responseType: "text";
+                    question: string;
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     text?: string | undefined;
+                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "plan" | undefined;
+                    scope?: "impulse" | "plan" | "debrief" | undefined;
                     suggestedResponses?: string[] | undefined;
                 }, {
-                    question: string;
                     responseType: "text";
+                    question: string;
                     id?: string | undefined;
-                    isTemplate?: boolean | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     text?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "plan" | undefined;
+                    scope?: "impulse" | "plan" | "debrief" | undefined;
                     suggestedResponses?: string[] | undefined;
                 }>, z.ZodObject<{
                     id: z.ZodOptional<z.ZodString>;
@@ -725,8 +725,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     }>;
                 }, "strip", z.ZodTypeAny, {
                     isTemplate: boolean;
-                    question: string;
                     responseType: "slider1To10";
+                    question: string;
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
@@ -734,31 +734,31 @@ export declare const tacticLogSchema: z.ZodObject<{
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     text?: string | undefined;
+                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "plan" | undefined;
+                    scope?: "impulse" | "plan" | "debrief" | undefined;
                 }, {
-                    question: string;
                     responseType: "slider1To10";
+                    question: string;
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
                     id?: string | undefined;
-                    isTemplate?: boolean | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     text?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "plan" | undefined;
+                    scope?: "impulse" | "plan" | "debrief" | undefined;
                 }>, z.ZodObject<{
                     id: z.ZodOptional<z.ZodString>;
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -775,54 +775,54 @@ export declare const tacticLogSchema: z.ZodObject<{
                     scope: z.ZodOptional<z.ZodEnum<["impulse", "debrief", "plan"]>>;
                 }, "strip", z.ZodTypeAny, {
                     isTemplate: boolean;
-                    question: string;
                     responseType: "recap";
+                    question: string;
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     text?: string | undefined;
+                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "plan" | undefined;
+                    scope?: "impulse" | "plan" | "debrief" | undefined;
                 }, {
-                    question: string;
                     responseType: "recap";
+                    question: string;
                     id?: string | undefined;
-                    isTemplate?: boolean | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     text?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "plan" | undefined;
+                    scope?: "impulse" | "plan" | "debrief" | undefined;
                 }>]>;
                 text: z.ZodString;
             }, "strip", z.ZodTypeAny, {
                 text: string;
                 question: {
                     isTemplate: boolean;
-                    question: string;
                     responseType: "recap";
+                    question: string;
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     text?: string | undefined;
+                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "plan" | undefined;
+                    scope?: "impulse" | "plan" | "debrief" | undefined;
                 } | {
                     isTemplate: boolean;
-                    question: string;
                     responseType: "slider1To10";
+                    question: string;
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
@@ -830,27 +830,27 @@ export declare const tacticLogSchema: z.ZodObject<{
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     text?: string | undefined;
+                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "plan" | undefined;
+                    scope?: "impulse" | "plan" | "debrief" | undefined;
                 } | {
                     isTemplate: boolean;
-                    question: string;
                     responseType: "text";
+                    question: string;
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     text?: string | undefined;
+                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "plan" | undefined;
+                    scope?: "impulse" | "plan" | "debrief" | undefined;
                     suggestedResponses?: string[] | undefined;
                 };
                 mode: "question";
@@ -877,51 +877,51 @@ export declare const tacticLogSchema: z.ZodObject<{
             }, {
                 text: string;
                 question: {
-                    question: string;
                     responseType: "recap";
+                    question: string;
                     id?: string | undefined;
-                    isTemplate?: boolean | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     text?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "plan" | undefined;
+                    scope?: "impulse" | "plan" | "debrief" | undefined;
                 } | {
-                    question: string;
                     responseType: "slider1To10";
+                    question: string;
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
                     id?: string | undefined;
-                    isTemplate?: boolean | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     text?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "plan" | undefined;
+                    scope?: "impulse" | "plan" | "debrief" | undefined;
                 } | {
-                    question: string;
                     responseType: "text";
+                    question: string;
                     id?: string | undefined;
-                    isTemplate?: boolean | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     text?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "plan" | undefined;
+                    scope?: "impulse" | "plan" | "debrief" | undefined;
                     suggestedResponses?: string[] | undefined;
                 };
                 mode: "question";
@@ -1032,14 +1032,14 @@ export declare const tacticLogSchema: z.ZodObject<{
                 goal: z.ZodString;
                 prompt: z.ZodOptional<z.ZodString>;
             }, "strip", z.ZodTypeAny, {
-                mode: "aiConversation";
                 goal: string;
+                mode: "aiConversation";
                 text?: string | undefined;
                 aiInstructions?: string | undefined;
                 prompt?: string | undefined;
             }, {
-                mode: "aiConversation";
                 goal: string;
+                mode: "aiConversation";
                 text?: string | undefined;
                 aiInstructions?: string | undefined;
                 prompt?: string | undefined;
@@ -1402,22 +1402,22 @@ export declare const tacticLogSchema: z.ZodObject<{
                 text: string;
                 question: {
                     isTemplate: boolean;
-                    question: string;
                     responseType: "recap";
+                    question: string;
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     text?: string | undefined;
+                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "plan" | undefined;
+                    scope?: "impulse" | "plan" | "debrief" | undefined;
                 } | {
                     isTemplate: boolean;
-                    question: string;
                     responseType: "slider1To10";
+                    question: string;
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
@@ -1425,27 +1425,27 @@ export declare const tacticLogSchema: z.ZodObject<{
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     text?: string | undefined;
+                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "plan" | undefined;
+                    scope?: "impulse" | "plan" | "debrief" | undefined;
                 } | {
                     isTemplate: boolean;
-                    question: string;
                     responseType: "text";
+                    question: string;
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     text?: string | undefined;
+                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "plan" | undefined;
+                    scope?: "impulse" | "plan" | "debrief" | undefined;
                     suggestedResponses?: string[] | undefined;
                 };
                 mode: "question";
@@ -1470,8 +1470,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
             } | {
-                mode: "aiConversation";
                 goal: string;
+                mode: "aiConversation";
                 text?: string | undefined;
                 aiInstructions?: string | undefined;
                 prompt?: string | undefined;
@@ -1519,8 +1519,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                 } | undefined;
             })[];
             id?: string | undefined;
-            aiInstructions?: string | undefined;
             description?: string | undefined;
+            aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             tags?: string[] | undefined;
         }, {
@@ -1630,51 +1630,51 @@ export declare const tacticLogSchema: z.ZodObject<{
             } | {
                 text: string;
                 question: {
-                    question: string;
                     responseType: "recap";
+                    question: string;
                     id?: string | undefined;
-                    isTemplate?: boolean | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     text?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "plan" | undefined;
+                    scope?: "impulse" | "plan" | "debrief" | undefined;
                 } | {
-                    question: string;
                     responseType: "slider1To10";
+                    question: string;
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
                     id?: string | undefined;
-                    isTemplate?: boolean | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     text?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "plan" | undefined;
+                    scope?: "impulse" | "plan" | "debrief" | undefined;
                 } | {
-                    question: string;
                     responseType: "text";
+                    question: string;
                     id?: string | undefined;
-                    isTemplate?: boolean | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     text?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "plan" | undefined;
+                    scope?: "impulse" | "plan" | "debrief" | undefined;
                     suggestedResponses?: string[] | undefined;
                 };
                 mode: "question";
@@ -1699,8 +1699,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
             } | {
-                mode: "aiConversation";
                 goal: string;
+                mode: "aiConversation";
                 text?: string | undefined;
                 aiInstructions?: string | undefined;
                 prompt?: string | undefined;
@@ -1748,8 +1748,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                 } | undefined;
             })[];
             id?: string | undefined;
-            aiInstructions?: string | undefined;
             description?: string | undefined;
+            aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             tags?: string[] | undefined;
         }>;
@@ -1865,22 +1865,22 @@ export declare const tacticLogSchema: z.ZodObject<{
                 text: string;
                 question: {
                     isTemplate: boolean;
-                    question: string;
                     responseType: "recap";
+                    question: string;
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     text?: string | undefined;
+                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "plan" | undefined;
+                    scope?: "impulse" | "plan" | "debrief" | undefined;
                 } | {
                     isTemplate: boolean;
-                    question: string;
                     responseType: "slider1To10";
+                    question: string;
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
@@ -1888,27 +1888,27 @@ export declare const tacticLogSchema: z.ZodObject<{
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     text?: string | undefined;
+                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "plan" | undefined;
+                    scope?: "impulse" | "plan" | "debrief" | undefined;
                 } | {
                     isTemplate: boolean;
-                    question: string;
                     responseType: "text";
+                    question: string;
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     text?: string | undefined;
+                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "plan" | undefined;
+                    scope?: "impulse" | "plan" | "debrief" | undefined;
                     suggestedResponses?: string[] | undefined;
                 };
                 mode: "question";
@@ -1933,8 +1933,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
             } | {
-                mode: "aiConversation";
                 goal: string;
+                mode: "aiConversation";
                 text?: string | undefined;
                 aiInstructions?: string | undefined;
                 prompt?: string | undefined;
@@ -1982,8 +1982,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                 } | undefined;
             })[];
             id?: string | undefined;
-            aiInstructions?: string | undefined;
             description?: string | undefined;
+            aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             tags?: string[] | undefined;
         };
@@ -2098,51 +2098,51 @@ export declare const tacticLogSchema: z.ZodObject<{
             } | {
                 text: string;
                 question: {
-                    question: string;
                     responseType: "recap";
+                    question: string;
                     id?: string | undefined;
-                    isTemplate?: boolean | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     text?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "plan" | undefined;
+                    scope?: "impulse" | "plan" | "debrief" | undefined;
                 } | {
-                    question: string;
                     responseType: "slider1To10";
+                    question: string;
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
                     id?: string | undefined;
-                    isTemplate?: boolean | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     text?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "plan" | undefined;
+                    scope?: "impulse" | "plan" | "debrief" | undefined;
                 } | {
-                    question: string;
                     responseType: "text";
+                    question: string;
                     id?: string | undefined;
-                    isTemplate?: boolean | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     text?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "plan" | undefined;
+                    scope?: "impulse" | "plan" | "debrief" | undefined;
                     suggestedResponses?: string[] | undefined;
                 };
                 mode: "question";
@@ -2167,8 +2167,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
             } | {
-                mode: "aiConversation";
                 goal: string;
+                mode: "aiConversation";
                 text?: string | undefined;
                 aiInstructions?: string | undefined;
                 prompt?: string | undefined;
@@ -2216,8 +2216,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                 } | undefined;
             })[];
             id?: string | undefined;
-            aiInstructions?: string | undefined;
             description?: string | undefined;
+            aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             tags?: string[] | undefined;
         };
@@ -2227,9 +2227,9 @@ export declare const tacticLogSchema: z.ZodObject<{
     }>;
 }, "strip", z.ZodTypeAny, {
     type: "tactic";
-    dateString: string;
     userId: string;
     timestamp: import("../../types").Timestamp;
+    dateString: string;
     isDisplayable: true;
     data: {
         tactic: {
@@ -2340,22 +2340,22 @@ export declare const tacticLogSchema: z.ZodObject<{
                 text: string;
                 question: {
                     isTemplate: boolean;
-                    question: string;
                     responseType: "recap";
+                    question: string;
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     text?: string | undefined;
+                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "plan" | undefined;
+                    scope?: "impulse" | "plan" | "debrief" | undefined;
                 } | {
                     isTemplate: boolean;
-                    question: string;
                     responseType: "slider1To10";
+                    question: string;
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
@@ -2363,27 +2363,27 @@ export declare const tacticLogSchema: z.ZodObject<{
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     text?: string | undefined;
+                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "plan" | undefined;
+                    scope?: "impulse" | "plan" | "debrief" | undefined;
                 } | {
                     isTemplate: boolean;
-                    question: string;
                     responseType: "text";
+                    question: string;
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     text?: string | undefined;
+                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "plan" | undefined;
+                    scope?: "impulse" | "plan" | "debrief" | undefined;
                     suggestedResponses?: string[] | undefined;
                 };
                 mode: "question";
@@ -2408,8 +2408,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
             } | {
-                mode: "aiConversation";
                 goal: string;
+                mode: "aiConversation";
                 text?: string | undefined;
                 aiInstructions?: string | undefined;
                 prompt?: string | undefined;
@@ -2457,8 +2457,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                 } | undefined;
             })[];
             id?: string | undefined;
-            aiInstructions?: string | undefined;
             description?: string | undefined;
+            aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             tags?: string[] | undefined;
         };
@@ -2472,9 +2472,9 @@ export declare const tacticLogSchema: z.ZodObject<{
     callLogDocPath?: string | undefined;
 }, {
     type: "tactic";
-    dateString: string;
     userId: string;
     timestamp: import("../../types").Timestamp;
+    dateString: string;
     isDisplayable: true;
     data: {
         tactic: {
@@ -2584,51 +2584,51 @@ export declare const tacticLogSchema: z.ZodObject<{
             } | {
                 text: string;
                 question: {
-                    question: string;
                     responseType: "recap";
+                    question: string;
                     id?: string | undefined;
-                    isTemplate?: boolean | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     text?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "plan" | undefined;
+                    scope?: "impulse" | "plan" | "debrief" | undefined;
                 } | {
-                    question: string;
                     responseType: "slider1To10";
+                    question: string;
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
                     id?: string | undefined;
-                    isTemplate?: boolean | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     text?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "plan" | undefined;
+                    scope?: "impulse" | "plan" | "debrief" | undefined;
                 } | {
-                    question: string;
                     responseType: "text";
+                    question: string;
                     id?: string | undefined;
-                    isTemplate?: boolean | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     text?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "plan" | undefined;
+                    scope?: "impulse" | "plan" | "debrief" | undefined;
                     suggestedResponses?: string[] | undefined;
                 };
                 mode: "question";
@@ -2653,8 +2653,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
             } | {
-                mode: "aiConversation";
                 goal: string;
+                mode: "aiConversation";
                 text?: string | undefined;
                 aiInstructions?: string | undefined;
                 prompt?: string | undefined;
@@ -2702,8 +2702,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                 } | undefined;
             })[];
             id?: string | undefined;
-            aiInstructions?: string | undefined;
             description?: string | undefined;
+            aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             tags?: string[] | undefined;
         };
