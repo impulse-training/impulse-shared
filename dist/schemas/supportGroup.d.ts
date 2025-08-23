@@ -539,9 +539,9 @@ export declare const supportGroupSchema: z.ZodObject<{
         data: {
             message?: any;
         };
-        id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
         audioAttachment?: {
             uri: string;
@@ -571,9 +571,9 @@ export declare const supportGroupSchema: z.ZodObject<{
         data: {
             message?: any;
         };
-        id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
         audioAttachment?: {
             uri: string;
@@ -599,6 +599,25 @@ export declare const supportGroupSchema: z.ZodObject<{
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
+    image: {
+        uri: string;
+        storagePath: string;
+        contentType: string;
+        createdAt?: import("../types").Timestamp | undefined;
+        updatedAt?: import("../types").Timestamp | undefined;
+        title?: string | undefined;
+        sizeBytes?: number | undefined;
+        metadata?: {
+            width?: number | undefined;
+            height?: number | undefined;
+            durationMs?: number | undefined;
+            transcript?: string | undefined;
+            meterings?: {
+                db: number;
+                timestampMs?: number | undefined;
+            }[] | undefined;
+        } | undefined;
+    };
     name: string;
     membersById: Record<string, {
         userId: string;
@@ -627,33 +646,14 @@ export declare const supportGroupSchema: z.ZodObject<{
         joinedAt?: import("../types").Timestamp | undefined;
     }>;
     isTemplate: boolean;
-    image: {
-        uri: string;
-        storagePath: string;
-        contentType: string;
-        createdAt?: import("../types").Timestamp | undefined;
-        updatedAt?: import("../types").Timestamp | undefined;
-        title?: string | undefined;
-        sizeBytes?: number | undefined;
-        metadata?: {
-            width?: number | undefined;
-            height?: number | undefined;
-            durationMs?: number | undefined;
-            transcript?: string | undefined;
-            meterings?: {
-                db: number;
-                timestampMs?: number | undefined;
-            }[] | undefined;
-        } | undefined;
-    };
     ownerId: string;
     unreadMessageCountsById: Record<string, number>;
     memberCount: number;
     tacticCollections: import("../utils").DocumentReferenceLike<unknown>[];
     tacticCount: number;
-    id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
+    id?: string | undefined;
     description?: string | undefined;
     coverPhoto?: {
         uri: string;
@@ -685,9 +685,9 @@ export declare const supportGroupSchema: z.ZodObject<{
         data: {
             message?: any;
         };
-        id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
         audioAttachment?: {
             uri: string;
@@ -710,6 +710,25 @@ export declare const supportGroupSchema: z.ZodObject<{
         } | undefined;
     } | undefined;
 }, {
+    image: {
+        uri: string;
+        storagePath: string;
+        contentType: string;
+        createdAt?: import("../types").Timestamp | undefined;
+        updatedAt?: import("../types").Timestamp | undefined;
+        title?: string | undefined;
+        sizeBytes?: number | undefined;
+        metadata?: {
+            width?: number | undefined;
+            height?: number | undefined;
+            durationMs?: number | undefined;
+            transcript?: string | undefined;
+            meterings?: {
+                db: number;
+                timestampMs?: number | undefined;
+            }[] | undefined;
+        } | undefined;
+    };
     name: string;
     membersById: Record<string, {
         userId: string;
@@ -737,31 +756,12 @@ export declare const supportGroupSchema: z.ZodObject<{
         } | undefined;
         joinedAt?: import("../types").Timestamp | undefined;
     }>;
-    image: {
-        uri: string;
-        storagePath: string;
-        contentType: string;
-        createdAt?: import("../types").Timestamp | undefined;
-        updatedAt?: import("../types").Timestamp | undefined;
-        title?: string | undefined;
-        sizeBytes?: number | undefined;
-        metadata?: {
-            width?: number | undefined;
-            height?: number | undefined;
-            durationMs?: number | undefined;
-            transcript?: string | undefined;
-            meterings?: {
-                db: number;
-                timestampMs?: number | undefined;
-            }[] | undefined;
-        } | undefined;
-    };
     ownerId: string;
     unreadMessageCountsById: Record<string, number>;
     tacticCollections: import("../utils").DocumentReferenceLike<unknown>[];
-    id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
+    id?: string | undefined;
     description?: string | undefined;
     isTemplate?: boolean | undefined;
     coverPhoto?: {
@@ -795,9 +795,9 @@ export declare const supportGroupSchema: z.ZodObject<{
         data: {
             message?: any;
         };
-        id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
         audioAttachment?: {
             uri: string;

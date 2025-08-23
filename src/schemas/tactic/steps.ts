@@ -59,6 +59,15 @@ const mediaStepSchema = baseStepSchema.extend({
   media: z.array(attachmentSchema).min(1),
 });
 
+// New: affirmation step for repeating a positive statement
+const affirmationStepSchema = baseStepSchema.extend({
+  mode: z.literal("affirmation"),
+  // Use base text as a title/label for the step
+  text: z.string().min(1),
+  affirmationText: z.string().min(1),
+  repeatCount: z.number().int().min(1).max(5),
+});
+
 export const tacticStepSchema = z.discriminatedUnion("mode", [
   defaultStepSchema,
   breathingStepSchema,
@@ -67,6 +76,7 @@ export const tacticStepSchema = z.discriminatedUnion("mode", [
   questionStepSchema,
   aiConversationStepSchema,
   mediaStepSchema,
+  affirmationStepSchema,
 ]);
 
 export type TacticStep = z.infer<typeof tacticStepSchema>;

@@ -81,9 +81,9 @@ export declare const questionLogSchema: z.ZodObject<{
             color?: string | undefined;
         } | undefined;
     };
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "question";
@@ -101,9 +101,9 @@ export declare const questionLogSchema: z.ZodObject<{
             color?: string | undefined;
         } | undefined;
     };
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }>;
 export type QuestionLog = z.infer<typeof questionLogSchema>;

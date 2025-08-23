@@ -16,9 +16,9 @@ export declare const impulseLogSchema: z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "impulse_button_pressed";
@@ -26,9 +26,9 @@ export declare const impulseLogSchema: z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }>;
 export type ImpulseLog = z.infer<typeof impulseLogSchema>;

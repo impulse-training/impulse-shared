@@ -126,9 +126,9 @@ export declare const logSchemas: {
         data: {
             message?: any;
         };
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
         audioAttachment?: {
             uri: string;
@@ -158,9 +158,9 @@ export declare const logSchemas: {
         data: {
             message?: any;
         };
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
         audioAttachment?: {
             uri: string;
@@ -209,9 +209,9 @@ export declare const logSchemas: {
         data: {
             message?: any;
         };
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "assistant_message";
@@ -222,9 +222,9 @@ export declare const logSchemas: {
         data: {
             message?: any;
         };
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }>;
     call: z.ZodObject<{
@@ -270,9 +270,9 @@ export declare const logSchemas: {
             endedAt?: import("../../types").Timestamp | undefined;
             summary?: string | undefined;
         };
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "call";
@@ -287,9 +287,9 @@ export declare const logSchemas: {
             endedAt?: import("../../types").Timestamp | undefined;
             summary?: string | undefined;
         };
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }>;
     tool_call: z.ZodObject<{
@@ -323,9 +323,9 @@ export declare const logSchemas: {
             toolCallResults: any[];
             message?: any;
         };
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "tool_call";
@@ -337,9 +337,9 @@ export declare const logSchemas: {
             toolCallResults: any[];
             message?: any;
         };
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }>;
     tactic: z.ZodObject<{
@@ -1015,9 +1015,9 @@ export declare const logSchemas: {
                         isTemplate: boolean;
                         responseType: "text";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                         lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -1029,9 +1029,9 @@ export declare const logSchemas: {
                     }, {
                         responseType: "text";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         isTemplate?: boolean | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -1074,9 +1074,9 @@ export declare const logSchemas: {
                             minLabel?: string | undefined;
                             maxLabel?: string | undefined;
                         };
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                         lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -1091,9 +1091,9 @@ export declare const logSchemas: {
                             minLabel?: string | undefined;
                             maxLabel?: string | undefined;
                         };
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         isTemplate?: boolean | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -1120,9 +1120,9 @@ export declare const logSchemas: {
                         isTemplate: boolean;
                         responseType: "recap";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                         lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -1133,9 +1133,9 @@ export declare const logSchemas: {
                     }, {
                         responseType: "recap";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         isTemplate?: boolean | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -1152,9 +1152,9 @@ export declare const logSchemas: {
                         isTemplate: boolean;
                         responseType: "recap";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                         lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -1170,9 +1170,9 @@ export declare const logSchemas: {
                             minLabel?: string | undefined;
                             maxLabel?: string | undefined;
                         };
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                         lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -1184,9 +1184,9 @@ export declare const logSchemas: {
                         isTemplate: boolean;
                         responseType: "text";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                         lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -1222,9 +1222,9 @@ export declare const logSchemas: {
                     question: {
                         responseType: "recap";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         isTemplate?: boolean | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -1240,9 +1240,9 @@ export declare const logSchemas: {
                             minLabel?: string | undefined;
                             maxLabel?: string | undefined;
                         };
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         isTemplate?: boolean | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -1254,9 +1254,9 @@ export declare const logSchemas: {
                     } | {
                         responseType: "text";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         isTemplate?: boolean | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -1633,6 +1633,142 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                }>, z.ZodObject<{
+                    aiInstructions: z.ZodOptional<z.ZodString>;
+                    backgroundImage: z.ZodOptional<z.ZodObject<{
+                        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        uri: z.ZodString;
+                        storagePath: z.ZodString;
+                        contentType: z.ZodString;
+                        title: z.ZodOptional<z.ZodString>;
+                        sizeBytes: z.ZodOptional<z.ZodNumber>;
+                        metadata: z.ZodOptional<z.ZodObject<{
+                            width: z.ZodOptional<z.ZodNumber>;
+                            height: z.ZodOptional<z.ZodNumber>;
+                            durationMs: z.ZodOptional<z.ZodNumber>;
+                            transcript: z.ZodOptional<z.ZodString>;
+                            meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                                db: z.ZodNumber;
+                                timestampMs: z.ZodOptional<z.ZodNumber>;
+                            }, "strip", z.ZodTypeAny, {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }, {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }>, "many">>;
+                        }, "strip", z.ZodTypeAny, {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        }, {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        }>>;
+                    }, "strip", z.ZodTypeAny, {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }, {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }>>;
+                } & {
+                    mode: z.ZodLiteral<"affirmation">;
+                    text: z.ZodString;
+                    affirmationText: z.ZodString;
+                    repeatCount: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    text: string;
+                    mode: "affirmation";
+                    affirmationText: string;
+                    repeatCount: number;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                }, {
+                    text: string;
+                    mode: "affirmation";
+                    affirmationText: string;
+                    repeatCount: number;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
                 }>]>, "many">;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -1747,9 +1883,9 @@ export declare const logSchemas: {
                         isTemplate: boolean;
                         responseType: "recap";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                         lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -1765,9 +1901,9 @@ export declare const logSchemas: {
                             minLabel?: string | undefined;
                             maxLabel?: string | undefined;
                         };
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                         lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -1779,9 +1915,9 @@ export declare const logSchemas: {
                         isTemplate: boolean;
                         responseType: "text";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                         lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -1840,6 +1976,31 @@ export declare const logSchemas: {
                         } | undefined;
                     }[];
                     text?: string | undefined;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "affirmation";
+                    affirmationText: string;
+                    repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -1975,9 +2136,9 @@ export declare const logSchemas: {
                     question: {
                         responseType: "recap";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         isTemplate?: boolean | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -1993,9 +2154,9 @@ export declare const logSchemas: {
                             minLabel?: string | undefined;
                             maxLabel?: string | undefined;
                         };
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         isTemplate?: boolean | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -2007,9 +2168,9 @@ export declare const logSchemas: {
                     } | {
                         responseType: "text";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         isTemplate?: boolean | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -2069,6 +2230,31 @@ export declare const logSchemas: {
                         } | undefined;
                     }[];
                     text?: string | undefined;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "affirmation";
+                    affirmationText: string;
+                    repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -2210,9 +2396,9 @@ export declare const logSchemas: {
                         isTemplate: boolean;
                         responseType: "recap";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                         lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -2228,9 +2414,9 @@ export declare const logSchemas: {
                             minLabel?: string | undefined;
                             maxLabel?: string | undefined;
                         };
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                         lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -2242,9 +2428,9 @@ export declare const logSchemas: {
                         isTemplate: boolean;
                         responseType: "text";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                         lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -2303,6 +2489,31 @@ export declare const logSchemas: {
                         } | undefined;
                     }[];
                     text?: string | undefined;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "affirmation";
+                    affirmationText: string;
+                    repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -2443,9 +2654,9 @@ export declare const logSchemas: {
                     question: {
                         responseType: "recap";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         isTemplate?: boolean | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -2461,9 +2672,9 @@ export declare const logSchemas: {
                             minLabel?: string | undefined;
                             maxLabel?: string | undefined;
                         };
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         isTemplate?: boolean | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -2475,9 +2686,9 @@ export declare const logSchemas: {
                     } | {
                         responseType: "text";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         isTemplate?: boolean | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -2537,6 +2748,31 @@ export declare const logSchemas: {
                         } | undefined;
                     }[];
                     text?: string | undefined;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "affirmation";
+                    affirmationText: string;
+                    repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -2685,9 +2921,9 @@ export declare const logSchemas: {
                         isTemplate: boolean;
                         responseType: "recap";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                         lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -2703,9 +2939,9 @@ export declare const logSchemas: {
                             minLabel?: string | undefined;
                             maxLabel?: string | undefined;
                         };
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                         lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -2717,9 +2953,9 @@ export declare const logSchemas: {
                         isTemplate: boolean;
                         responseType: "text";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                         lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -2798,6 +3034,31 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                } | {
+                    text: string;
+                    mode: "affirmation";
+                    affirmationText: string;
+                    repeatCount: number;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
                 })[];
                 id?: string | undefined;
                 description?: string | undefined;
@@ -2809,9 +3070,9 @@ export declare const logSchemas: {
             completedStepIndexes?: number[] | undefined;
             completed?: boolean | undefined;
         };
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "tactic";
@@ -2929,9 +3190,9 @@ export declare const logSchemas: {
                     question: {
                         responseType: "recap";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         isTemplate?: boolean | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -2947,9 +3208,9 @@ export declare const logSchemas: {
                             minLabel?: string | undefined;
                             maxLabel?: string | undefined;
                         };
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         isTemplate?: boolean | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -2961,9 +3222,9 @@ export declare const logSchemas: {
                     } | {
                         responseType: "text";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         isTemplate?: boolean | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -3043,6 +3304,31 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                } | {
+                    text: string;
+                    mode: "affirmation";
+                    affirmationText: string;
+                    repeatCount: number;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
                 })[];
                 id?: string | undefined;
                 description?: string | undefined;
@@ -3054,9 +3340,9 @@ export declare const logSchemas: {
             completedStepIndexes?: number[] | undefined;
             completed?: boolean | undefined;
         };
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }>;
     tactic_suggestion: z.ZodObject<{
@@ -3102,9 +3388,9 @@ export declare const logSchemas: {
             source?: "userPlan" | "library" | "improvised" | undefined;
             collectionRefPath?: string | undefined;
         };
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "tactic_suggestion";
@@ -3119,9 +3405,9 @@ export declare const logSchemas: {
             source?: "userPlan" | "library" | "improvised" | undefined;
             collectionRefPath?: string | undefined;
         };
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }>;
     day_summary: z.ZodObject<{
@@ -3159,9 +3445,9 @@ export declare const logSchemas: {
             behaviorDataTotalByBehaviorId?: Record<string, any> | undefined;
             trackingLogsById?: Record<string, any> | undefined;
         };
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "day_summary";
@@ -3174,9 +3460,9 @@ export declare const logSchemas: {
             behaviorDataTotalByBehaviorId?: Record<string, any> | undefined;
             trackingLogsById?: Record<string, any> | undefined;
         };
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }>;
     tactic_viewed: z.ZodObject<{
@@ -3852,9 +4138,9 @@ export declare const logSchemas: {
                         isTemplate: boolean;
                         responseType: "text";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                         lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -3866,9 +4152,9 @@ export declare const logSchemas: {
                     }, {
                         responseType: "text";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         isTemplate?: boolean | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -3911,9 +4197,9 @@ export declare const logSchemas: {
                             minLabel?: string | undefined;
                             maxLabel?: string | undefined;
                         };
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                         lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -3928,9 +4214,9 @@ export declare const logSchemas: {
                             minLabel?: string | undefined;
                             maxLabel?: string | undefined;
                         };
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         isTemplate?: boolean | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -3957,9 +4243,9 @@ export declare const logSchemas: {
                         isTemplate: boolean;
                         responseType: "recap";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                         lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -3970,9 +4256,9 @@ export declare const logSchemas: {
                     }, {
                         responseType: "recap";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         isTemplate?: boolean | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -3989,9 +4275,9 @@ export declare const logSchemas: {
                         isTemplate: boolean;
                         responseType: "recap";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                         lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -4007,9 +4293,9 @@ export declare const logSchemas: {
                             minLabel?: string | undefined;
                             maxLabel?: string | undefined;
                         };
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                         lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -4021,9 +4307,9 @@ export declare const logSchemas: {
                         isTemplate: boolean;
                         responseType: "text";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                         lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -4059,9 +4345,9 @@ export declare const logSchemas: {
                     question: {
                         responseType: "recap";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         isTemplate?: boolean | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -4077,9 +4363,9 @@ export declare const logSchemas: {
                             minLabel?: string | undefined;
                             maxLabel?: string | undefined;
                         };
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         isTemplate?: boolean | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -4091,9 +4377,9 @@ export declare const logSchemas: {
                     } | {
                         responseType: "text";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         isTemplate?: boolean | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -4470,6 +4756,142 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                }>, z.ZodObject<{
+                    aiInstructions: z.ZodOptional<z.ZodString>;
+                    backgroundImage: z.ZodOptional<z.ZodObject<{
+                        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        uri: z.ZodString;
+                        storagePath: z.ZodString;
+                        contentType: z.ZodString;
+                        title: z.ZodOptional<z.ZodString>;
+                        sizeBytes: z.ZodOptional<z.ZodNumber>;
+                        metadata: z.ZodOptional<z.ZodObject<{
+                            width: z.ZodOptional<z.ZodNumber>;
+                            height: z.ZodOptional<z.ZodNumber>;
+                            durationMs: z.ZodOptional<z.ZodNumber>;
+                            transcript: z.ZodOptional<z.ZodString>;
+                            meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                                db: z.ZodNumber;
+                                timestampMs: z.ZodOptional<z.ZodNumber>;
+                            }, "strip", z.ZodTypeAny, {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }, {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }>, "many">>;
+                        }, "strip", z.ZodTypeAny, {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        }, {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        }>>;
+                    }, "strip", z.ZodTypeAny, {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }, {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }>>;
+                } & {
+                    mode: z.ZodLiteral<"affirmation">;
+                    text: z.ZodString;
+                    affirmationText: z.ZodString;
+                    repeatCount: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    text: string;
+                    mode: "affirmation";
+                    affirmationText: string;
+                    repeatCount: number;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                }, {
+                    text: string;
+                    mode: "affirmation";
+                    affirmationText: string;
+                    repeatCount: number;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
                 }>]>, "many">;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -4584,9 +5006,9 @@ export declare const logSchemas: {
                         isTemplate: boolean;
                         responseType: "recap";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                         lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -4602,9 +5024,9 @@ export declare const logSchemas: {
                             minLabel?: string | undefined;
                             maxLabel?: string | undefined;
                         };
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                         lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -4616,9 +5038,9 @@ export declare const logSchemas: {
                         isTemplate: boolean;
                         responseType: "text";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                         lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -4677,6 +5099,31 @@ export declare const logSchemas: {
                         } | undefined;
                     }[];
                     text?: string | undefined;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "affirmation";
+                    affirmationText: string;
+                    repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -4812,9 +5259,9 @@ export declare const logSchemas: {
                     question: {
                         responseType: "recap";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         isTemplate?: boolean | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -4830,9 +5277,9 @@ export declare const logSchemas: {
                             minLabel?: string | undefined;
                             maxLabel?: string | undefined;
                         };
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         isTemplate?: boolean | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -4844,9 +5291,9 @@ export declare const logSchemas: {
                     } | {
                         responseType: "text";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         isTemplate?: boolean | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -4906,6 +5353,31 @@ export declare const logSchemas: {
                         } | undefined;
                     }[];
                     text?: string | undefined;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "affirmation";
+                    affirmationText: string;
+                    repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -5047,9 +5519,9 @@ export declare const logSchemas: {
                         isTemplate: boolean;
                         responseType: "recap";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                         lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -5065,9 +5537,9 @@ export declare const logSchemas: {
                             minLabel?: string | undefined;
                             maxLabel?: string | undefined;
                         };
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                         lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -5079,9 +5551,9 @@ export declare const logSchemas: {
                         isTemplate: boolean;
                         responseType: "text";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                         lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -5140,6 +5612,31 @@ export declare const logSchemas: {
                         } | undefined;
                     }[];
                     text?: string | undefined;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "affirmation";
+                    affirmationText: string;
+                    repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -5280,9 +5777,9 @@ export declare const logSchemas: {
                     question: {
                         responseType: "recap";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         isTemplate?: boolean | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -5298,9 +5795,9 @@ export declare const logSchemas: {
                             minLabel?: string | undefined;
                             maxLabel?: string | undefined;
                         };
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         isTemplate?: boolean | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -5312,9 +5809,9 @@ export declare const logSchemas: {
                     } | {
                         responseType: "text";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         isTemplate?: boolean | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -5374,6 +5871,31 @@ export declare const logSchemas: {
                         } | undefined;
                     }[];
                     text?: string | undefined;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "affirmation";
+                    affirmationText: string;
+                    repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -5522,9 +6044,9 @@ export declare const logSchemas: {
                         isTemplate: boolean;
                         responseType: "recap";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                         lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -5540,9 +6062,9 @@ export declare const logSchemas: {
                             minLabel?: string | undefined;
                             maxLabel?: string | undefined;
                         };
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                         lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -5554,9 +6076,9 @@ export declare const logSchemas: {
                         isTemplate: boolean;
                         responseType: "text";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                         lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -5635,6 +6157,31 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                } | {
+                    text: string;
+                    mode: "affirmation";
+                    affirmationText: string;
+                    repeatCount: number;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
                 })[];
                 id?: string | undefined;
                 description?: string | undefined;
@@ -5646,9 +6193,9 @@ export declare const logSchemas: {
             completedStepIndexes?: number[] | undefined;
             completed?: boolean | undefined;
         };
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "tactic";
@@ -5766,9 +6313,9 @@ export declare const logSchemas: {
                     question: {
                         responseType: "recap";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         isTemplate?: boolean | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -5784,9 +6331,9 @@ export declare const logSchemas: {
                             minLabel?: string | undefined;
                             maxLabel?: string | undefined;
                         };
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         isTemplate?: boolean | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -5798,9 +6345,9 @@ export declare const logSchemas: {
                     } | {
                         responseType: "text";
                         question: string;
-                        id?: string | undefined;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
+                        id?: string | undefined;
                         text?: string | undefined;
                         isTemplate?: boolean | undefined;
                         plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -5880,6 +6427,31 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                } | {
+                    text: string;
+                    mode: "affirmation";
+                    affirmationText: string;
+                    repeatCount: number;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
                 })[];
                 id?: string | undefined;
                 description?: string | undefined;
@@ -5891,9 +6463,9 @@ export declare const logSchemas: {
             completedStepIndexes?: number[] | undefined;
             completed?: boolean | undefined;
         };
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }>;
     impulse_button_pressed: z.ZodObject<{
@@ -5913,9 +6485,9 @@ export declare const logSchemas: {
         timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "impulse_button_pressed";
@@ -5923,9 +6495,9 @@ export declare const logSchemas: {
         timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }>;
     behavior: z.ZodObject<{
@@ -5948,18 +6520,18 @@ export declare const logSchemas: {
             value: z.ZodNumber;
             formattedValue: z.ZodString;
         }, "strip", z.ZodTypeAny, {
+            value: number;
             behaviorId: string;
             behaviorName: string;
             trackingType: "counter" | "timer";
-            value: number;
             category: "helpful" | "mixed" | "unhelpful" | "unsure";
             formattedValue: string;
             behaviorTrackingUnit?: string | undefined;
         }, {
+            value: number;
             behaviorId: string;
             behaviorName: string;
             trackingType: "counter" | "timer";
-            value: number;
             category: "helpful" | "mixed" | "unhelpful" | "unsure";
             formattedValue: string;
             behaviorTrackingUnit?: string | undefined;
@@ -5971,17 +6543,17 @@ export declare const logSchemas: {
         dateString: string;
         isDisplayable: true;
         data: {
+            value: number;
             behaviorId: string;
             behaviorName: string;
             trackingType: "counter" | "timer";
-            value: number;
             category: "helpful" | "mixed" | "unhelpful" | "unsure";
             formattedValue: string;
             behaviorTrackingUnit?: string | undefined;
         };
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "behavior";
@@ -5990,17 +6562,17 @@ export declare const logSchemas: {
         dateString: string;
         isDisplayable: true;
         data: {
+            value: number;
             behaviorId: string;
             behaviorName: string;
             trackingType: "counter" | "timer";
-            value: number;
             category: "helpful" | "mixed" | "unhelpful" | "unsure";
             formattedValue: string;
             behaviorTrackingUnit?: string | undefined;
         };
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }>;
     question: z.ZodObject<{
@@ -6068,9 +6640,9 @@ export declare const logSchemas: {
                 color?: string | undefined;
             } | undefined;
         };
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "question";
@@ -6088,9 +6660,9 @@ export declare const logSchemas: {
                 color?: string | undefined;
             } | undefined;
         };
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }>;
     plan: z.ZodObject<{
@@ -6149,9 +6721,9 @@ export declare const logSchemas: {
                     minute: number;
                     weekdays: number[];
                 };
-                id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
@@ -6166,9 +6738,9 @@ export declare const logSchemas: {
                     minute: number;
                     weekdays: number[];
                 };
-                id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
@@ -6222,9 +6794,9 @@ export declare const logSchemas: {
                     latitude: number;
                     longitude: number;
                 };
-                id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
@@ -6240,9 +6812,9 @@ export declare const logSchemas: {
                     latitude: number;
                     longitude: number;
                 };
-                id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
@@ -6292,9 +6864,9 @@ export declare const logSchemas: {
                     minute: number;
                     weekdays: number[];
                 };
-                id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
@@ -6309,9 +6881,9 @@ export declare const logSchemas: {
                     minute: number;
                     weekdays: number[];
                 };
-                id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
@@ -6344,9 +6916,9 @@ export declare const logSchemas: {
                 type: "impulse";
                 name: string;
                 tactics: import("../..").DocumentReferenceLike<unknown>[];
-                id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
@@ -6357,9 +6929,9 @@ export declare const logSchemas: {
                 type: "impulse";
                 name: string;
                 tactics: import("../..").DocumentReferenceLike<unknown>[];
-                id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
@@ -6383,9 +6955,9 @@ export declare const logSchemas: {
                     minute: number;
                     weekdays: number[];
                 };
-                id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
@@ -6404,9 +6976,9 @@ export declare const logSchemas: {
                     latitude: number;
                     longitude: number;
                 };
-                id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
@@ -6424,9 +6996,9 @@ export declare const logSchemas: {
                     minute: number;
                     weekdays: number[];
                 };
-                id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
@@ -6439,9 +7011,9 @@ export declare const logSchemas: {
                 type: "impulse";
                 name: string;
                 tactics: import("../..").DocumentReferenceLike<unknown>[];
-                id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
@@ -6465,9 +7037,9 @@ export declare const logSchemas: {
                     minute: number;
                     weekdays: number[];
                 };
-                id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
@@ -6486,9 +7058,9 @@ export declare const logSchemas: {
                     latitude: number;
                     longitude: number;
                 };
-                id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
@@ -6506,9 +7078,9 @@ export declare const logSchemas: {
                     minute: number;
                     weekdays: number[];
                 };
-                id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
@@ -6521,9 +7093,9 @@ export declare const logSchemas: {
                 type: "impulse";
                 name: string;
                 tactics: import("../..").DocumentReferenceLike<unknown>[];
-                id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
@@ -6554,9 +7126,9 @@ export declare const logSchemas: {
                     minute: number;
                     weekdays: number[];
                 };
-                id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
@@ -6575,9 +7147,9 @@ export declare const logSchemas: {
                     latitude: number;
                     longitude: number;
                 };
-                id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
@@ -6595,9 +7167,9 @@ export declare const logSchemas: {
                     minute: number;
                     weekdays: number[];
                 };
-                id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
@@ -6610,9 +7182,9 @@ export declare const logSchemas: {
                 type: "impulse";
                 name: string;
                 tactics: import("../..").DocumentReferenceLike<unknown>[];
-                id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
@@ -6624,9 +7196,9 @@ export declare const logSchemas: {
             acceptedAt?: import("../../types").Timestamp | undefined;
             tacticsByPath?: Record<string, any> | undefined;
         };
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "plan";
@@ -6647,9 +7219,9 @@ export declare const logSchemas: {
                     minute: number;
                     weekdays: number[];
                 };
-                id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
@@ -6668,9 +7240,9 @@ export declare const logSchemas: {
                     latitude: number;
                     longitude: number;
                 };
-                id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
@@ -6688,9 +7260,9 @@ export declare const logSchemas: {
                     minute: number;
                     weekdays: number[];
                 };
-                id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
@@ -6703,9 +7275,9 @@ export declare const logSchemas: {
                 type: "impulse";
                 name: string;
                 tactics: import("../..").DocumentReferenceLike<unknown>[];
-                id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
@@ -6717,9 +7289,9 @@ export declare const logSchemas: {
             acceptedAt?: import("../../types").Timestamp | undefined;
             tacticsByPath?: Record<string, any> | undefined;
         };
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }>;
     summary: z.ZodObject<{
@@ -6749,9 +7321,9 @@ export declare const logSchemas: {
         data: {
             summary: string;
         };
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "summary";
@@ -6762,9 +7334,9 @@ export declare const logSchemas: {
         data: {
             summary: string;
         };
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }>;
     resisted: z.ZodObject<{
@@ -6784,9 +7356,9 @@ export declare const logSchemas: {
         timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "resisted";
@@ -6794,9 +7366,9 @@ export declare const logSchemas: {
         timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }>;
     widget_setup: z.ZodObject<{
@@ -6816,9 +7388,9 @@ export declare const logSchemas: {
         timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "widget_setup";
@@ -6826,9 +7398,9 @@ export declare const logSchemas: {
         timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }>;
     show_tour: z.ZodObject<{
@@ -6853,16 +7425,16 @@ export declare const logSchemas: {
                 borderRadius: z.ZodOptional<z.ZodNumber>;
                 innerPadding: z.ZodOptional<z.ZodNumber>;
             }, "strip", z.ZodTypeAny, {
-                description: string;
                 title: string;
+                description: string;
                 elementRefName: string;
                 confirmButtonLabel: string;
                 nextOnImpulseButtonPress?: boolean | undefined;
                 borderRadius?: number | undefined;
                 innerPadding?: number | undefined;
             }, {
-                description: string;
                 title: string;
+                description: string;
                 elementRefName: string;
                 confirmButtonLabel?: string | undefined;
                 nextOnImpulseButtonPress?: boolean | undefined;
@@ -6877,8 +7449,8 @@ export declare const logSchemas: {
             closeButtonHref: z.ZodDefault<z.ZodString>;
         }, "strip", z.ZodTypeAny, {
             steps: {
-                description: string;
                 title: string;
+                description: string;
                 elementRefName: string;
                 confirmButtonLabel: string;
                 nextOnImpulseButtonPress?: boolean | undefined;
@@ -6893,8 +7465,8 @@ export declare const logSchemas: {
             completedAt?: import("../../types").Timestamp | undefined;
         }, {
             steps: {
-                description: string;
                 title: string;
+                description: string;
                 elementRefName: string;
                 confirmButtonLabel?: string | undefined;
                 nextOnImpulseButtonPress?: boolean | undefined;
@@ -6916,8 +7488,8 @@ export declare const logSchemas: {
         isDisplayable: true;
         data: {
             steps: {
-                description: string;
                 title: string;
+                description: string;
                 elementRefName: string;
                 confirmButtonLabel: string;
                 nextOnImpulseButtonPress?: boolean | undefined;
@@ -6932,9 +7504,9 @@ export declare const logSchemas: {
             completedAt?: import("../../types").Timestamp | undefined;
         };
         text: string;
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "show_tour";
@@ -6944,8 +7516,8 @@ export declare const logSchemas: {
         isDisplayable: true;
         data: {
             steps: {
-                description: string;
                 title: string;
+                description: string;
                 elementRefName: string;
                 confirmButtonLabel?: string | undefined;
                 nextOnImpulseButtonPress?: boolean | undefined;
@@ -6960,9 +7532,9 @@ export declare const logSchemas: {
             closeButtonHref?: string | undefined;
         };
         text: string;
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }>;
     link: z.ZodObject<{
@@ -6988,9 +7560,9 @@ export declare const logSchemas: {
         link: string;
         text: string;
         buttonText: string;
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "link";
@@ -7001,9 +7573,9 @@ export declare const logSchemas: {
         link: string;
         text: string;
         buttonText: string;
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }>;
     notify_support_group: z.ZodObject<{
@@ -7173,9 +7745,9 @@ export declare const logSchemas: {
             }>;
             message?: any;
         };
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "notify_support_group";
@@ -7202,9 +7774,9 @@ export declare const logSchemas: {
             }>;
             message?: any;
         };
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }>;
     video: z.ZodObject<{
@@ -7236,12 +7808,12 @@ export declare const logSchemas: {
         data: {
             sourceUri: string;
         };
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        title?: string | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
         text?: string | undefined;
-        title?: string | undefined;
     }, {
         type: "video";
         userId: string;
@@ -7251,12 +7823,12 @@ export declare const logSchemas: {
         data: {
             sourceUri: string;
         };
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        title?: string | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
         text?: string | undefined;
-        title?: string | undefined;
     }>;
     shared_moment: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
@@ -7313,9 +7885,9 @@ export declare const logSchemas: {
                 name?: string | undefined;
             } | undefined;
         };
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "shared_moment";
@@ -7331,9 +7903,9 @@ export declare const logSchemas: {
                 name?: string | undefined;
             } | undefined;
         };
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }>;
     ready_to_debrief: z.ZodObject<{
@@ -7353,9 +7925,9 @@ export declare const logSchemas: {
         timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }, {
         type: "ready_to_debrief";
@@ -7363,9 +7935,9 @@ export declare const logSchemas: {
         timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
-        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
         callLogDocPath?: string | undefined;
     }>;
 };
@@ -7497,9 +8069,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: {
         message?: any;
     };
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
     audioAttachment?: {
         uri: string;
@@ -7529,9 +8101,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: {
         message?: any;
     };
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
     audioAttachment?: {
         uri: string;
@@ -7579,9 +8151,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: {
         message?: any;
     };
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "assistant_message";
@@ -7592,9 +8164,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: {
         message?: any;
     };
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -7639,9 +8211,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         endedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
     };
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "call";
@@ -7656,9 +8228,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         endedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
     };
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -7691,9 +8263,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         toolCallResults: any[];
         message?: any;
     };
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "tool_call";
@@ -7705,9 +8277,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         toolCallResults: any[];
         message?: any;
     };
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -8382,9 +8954,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     isTemplate: boolean;
                     responseType: "text";
                     question: string;
-                    id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
                     text?: string | undefined;
                     plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -8396,9 +8968,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }, {
                     responseType: "text";
                     question: string;
-                    id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
                     text?: string | undefined;
                     isTemplate?: boolean | undefined;
                     plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -8441,9 +9013,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
                     text?: string | undefined;
                     plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -8458,9 +9030,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
                     text?: string | undefined;
                     isTemplate?: boolean | undefined;
                     plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -8487,9 +9059,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     isTemplate: boolean;
                     responseType: "recap";
                     question: string;
-                    id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
                     text?: string | undefined;
                     plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -8500,9 +9072,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }, {
                     responseType: "recap";
                     question: string;
-                    id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
                     text?: string | undefined;
                     isTemplate?: boolean | undefined;
                     plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -8519,9 +9091,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     isTemplate: boolean;
                     responseType: "recap";
                     question: string;
-                    id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
                     text?: string | undefined;
                     plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -8537,9 +9109,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
                     text?: string | undefined;
                     plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -8551,9 +9123,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     isTemplate: boolean;
                     responseType: "text";
                     question: string;
-                    id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
                     text?: string | undefined;
                     plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -8589,9 +9161,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 question: {
                     responseType: "recap";
                     question: string;
-                    id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
                     text?: string | undefined;
                     isTemplate?: boolean | undefined;
                     plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -8607,9 +9179,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
                     text?: string | undefined;
                     isTemplate?: boolean | undefined;
                     plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -8621,9 +9193,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 } | {
                     responseType: "text";
                     question: string;
-                    id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
                     text?: string | undefined;
                     isTemplate?: boolean | undefined;
                     plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -9000,6 +9572,142 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+            }>, z.ZodObject<{
+                aiInstructions: z.ZodOptional<z.ZodString>;
+                backgroundImage: z.ZodOptional<z.ZodObject<{
+                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    uri: z.ZodString;
+                    storagePath: z.ZodString;
+                    contentType: z.ZodString;
+                    title: z.ZodOptional<z.ZodString>;
+                    sizeBytes: z.ZodOptional<z.ZodNumber>;
+                    metadata: z.ZodOptional<z.ZodObject<{
+                        width: z.ZodOptional<z.ZodNumber>;
+                        height: z.ZodOptional<z.ZodNumber>;
+                        durationMs: z.ZodOptional<z.ZodNumber>;
+                        transcript: z.ZodOptional<z.ZodString>;
+                        meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                            db: z.ZodNumber;
+                            timestampMs: z.ZodOptional<z.ZodNumber>;
+                        }, "strip", z.ZodTypeAny, {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }, {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }>, "many">>;
+                    }, "strip", z.ZodTypeAny, {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    }, {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    }>>;
+                }, "strip", z.ZodTypeAny, {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }, {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }>>;
+            } & {
+                mode: z.ZodLiteral<"affirmation">;
+                text: z.ZodString;
+                affirmationText: z.ZodString;
+                repeatCount: z.ZodNumber;
+            }, "strip", z.ZodTypeAny, {
+                text: string;
+                mode: "affirmation";
+                affirmationText: string;
+                repeatCount: number;
+                aiInstructions?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+            }, {
+                text: string;
+                mode: "affirmation";
+                affirmationText: string;
+                repeatCount: number;
+                aiInstructions?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
             }>]>, "many">;
             tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -9114,9 +9822,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     isTemplate: boolean;
                     responseType: "recap";
                     question: string;
-                    id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
                     text?: string | undefined;
                     plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -9132,9 +9840,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
                     text?: string | undefined;
                     plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -9146,9 +9854,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     isTemplate: boolean;
                     responseType: "text";
                     question: string;
-                    id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
                     text?: string | undefined;
                     plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -9207,6 +9915,31 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 }[];
                 text?: string | undefined;
+                aiInstructions?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                mode: "affirmation";
+                affirmationText: string;
+                repeatCount: number;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
@@ -9342,9 +10075,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 question: {
                     responseType: "recap";
                     question: string;
-                    id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
                     text?: string | undefined;
                     isTemplate?: boolean | undefined;
                     plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -9360,9 +10093,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
                     text?: string | undefined;
                     isTemplate?: boolean | undefined;
                     plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -9374,9 +10107,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 } | {
                     responseType: "text";
                     question: string;
-                    id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
                     text?: string | undefined;
                     isTemplate?: boolean | undefined;
                     plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -9436,6 +10169,31 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 }[];
                 text?: string | undefined;
+                aiInstructions?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                mode: "affirmation";
+                affirmationText: string;
+                repeatCount: number;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
@@ -9577,9 +10335,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     isTemplate: boolean;
                     responseType: "recap";
                     question: string;
-                    id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
                     text?: string | undefined;
                     plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -9595,9 +10353,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
                     text?: string | undefined;
                     plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -9609,9 +10367,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     isTemplate: boolean;
                     responseType: "text";
                     question: string;
-                    id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
                     text?: string | undefined;
                     plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -9670,6 +10428,31 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 }[];
                 text?: string | undefined;
+                aiInstructions?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                mode: "affirmation";
+                affirmationText: string;
+                repeatCount: number;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
@@ -9810,9 +10593,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 question: {
                     responseType: "recap";
                     question: string;
-                    id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
                     text?: string | undefined;
                     isTemplate?: boolean | undefined;
                     plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -9828,9 +10611,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
                     text?: string | undefined;
                     isTemplate?: boolean | undefined;
                     plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -9842,9 +10625,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 } | {
                     responseType: "text";
                     question: string;
-                    id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
                     text?: string | undefined;
                     isTemplate?: boolean | undefined;
                     plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -9904,6 +10687,31 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 }[];
                 text?: string | undefined;
+                aiInstructions?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                mode: "affirmation";
+                affirmationText: string;
+                repeatCount: number;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
@@ -10052,9 +10860,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     isTemplate: boolean;
                     responseType: "recap";
                     question: string;
-                    id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
                     text?: string | undefined;
                     plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -10070,9 +10878,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
                     text?: string | undefined;
                     plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -10084,9 +10892,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     isTemplate: boolean;
                     responseType: "text";
                     question: string;
-                    id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
                     text?: string | undefined;
                     plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -10165,6 +10973,31 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+            } | {
+                text: string;
+                mode: "affirmation";
+                affirmationText: string;
+                repeatCount: number;
+                aiInstructions?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
             })[];
             id?: string | undefined;
             description?: string | undefined;
@@ -10176,9 +11009,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         completedStepIndexes?: number[] | undefined;
         completed?: boolean | undefined;
     };
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "tactic";
@@ -10296,9 +11129,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 question: {
                     responseType: "recap";
                     question: string;
-                    id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
                     text?: string | undefined;
                     isTemplate?: boolean | undefined;
                     plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -10314,9 +11147,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
                     text?: string | undefined;
                     isTemplate?: boolean | undefined;
                     plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -10328,9 +11161,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 } | {
                     responseType: "text";
                     question: string;
-                    id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
                     text?: string | undefined;
                     isTemplate?: boolean | undefined;
                     plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
@@ -10410,6 +11243,31 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+            } | {
+                text: string;
+                mode: "affirmation";
+                affirmationText: string;
+                repeatCount: number;
+                aiInstructions?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
             })[];
             id?: string | undefined;
             description?: string | undefined;
@@ -10421,9 +11279,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         completedStepIndexes?: number[] | undefined;
         completed?: boolean | undefined;
     };
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -10468,9 +11326,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         source?: "userPlan" | "library" | "improvised" | undefined;
         collectionRefPath?: string | undefined;
     };
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "tactic_suggestion";
@@ -10485,9 +11343,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         source?: "userPlan" | "library" | "improvised" | undefined;
         collectionRefPath?: string | undefined;
     };
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -10524,9 +11382,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         behaviorDataTotalByBehaviorId?: Record<string, any> | undefined;
         trackingLogsById?: Record<string, any> | undefined;
     };
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "day_summary";
@@ -10539,9 +11397,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         behaviorDataTotalByBehaviorId?: Record<string, any> | undefined;
         trackingLogsById?: Record<string, any> | undefined;
     };
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -10560,9 +11418,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "impulse_button_pressed";
@@ -10570,9 +11428,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -10594,18 +11452,18 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         value: z.ZodNumber;
         formattedValue: z.ZodString;
     }, "strip", z.ZodTypeAny, {
+        value: number;
         behaviorId: string;
         behaviorName: string;
         trackingType: "counter" | "timer";
-        value: number;
         category: "helpful" | "mixed" | "unhelpful" | "unsure";
         formattedValue: string;
         behaviorTrackingUnit?: string | undefined;
     }, {
+        value: number;
         behaviorId: string;
         behaviorName: string;
         trackingType: "counter" | "timer";
-        value: number;
         category: "helpful" | "mixed" | "unhelpful" | "unsure";
         formattedValue: string;
         behaviorTrackingUnit?: string | undefined;
@@ -10617,17 +11475,17 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dateString: string;
     isDisplayable: true;
     data: {
+        value: number;
         behaviorId: string;
         behaviorName: string;
         trackingType: "counter" | "timer";
-        value: number;
         category: "helpful" | "mixed" | "unhelpful" | "unsure";
         formattedValue: string;
         behaviorTrackingUnit?: string | undefined;
     };
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "behavior";
@@ -10636,17 +11494,17 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dateString: string;
     isDisplayable: true;
     data: {
+        value: number;
         behaviorId: string;
         behaviorName: string;
         trackingType: "counter" | "timer";
-        value: number;
         category: "helpful" | "mixed" | "unhelpful" | "unsure";
         formattedValue: string;
         behaviorTrackingUnit?: string | undefined;
     };
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -10713,9 +11571,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             color?: string | undefined;
         } | undefined;
     };
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "question";
@@ -10733,9 +11591,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             color?: string | undefined;
         } | undefined;
     };
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -10793,9 +11651,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 minute: number;
                 weekdays: number[];
             };
-            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
             ordinal?: number | undefined;
             summary?: string | undefined;
             isTemplate?: boolean | undefined;
@@ -10810,9 +11668,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 minute: number;
                 weekdays: number[];
             };
-            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
             ordinal?: number | undefined;
             summary?: string | undefined;
             isTemplate?: boolean | undefined;
@@ -10866,9 +11724,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 latitude: number;
                 longitude: number;
             };
-            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
             ordinal?: number | undefined;
             summary?: string | undefined;
             isTemplate?: boolean | undefined;
@@ -10884,9 +11742,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 latitude: number;
                 longitude: number;
             };
-            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
             ordinal?: number | undefined;
             summary?: string | undefined;
             isTemplate?: boolean | undefined;
@@ -10936,9 +11794,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 minute: number;
                 weekdays: number[];
             };
-            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
             ordinal?: number | undefined;
             summary?: string | undefined;
             isTemplate?: boolean | undefined;
@@ -10953,9 +11811,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 minute: number;
                 weekdays: number[];
             };
-            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
             ordinal?: number | undefined;
             summary?: string | undefined;
             isTemplate?: boolean | undefined;
@@ -10988,9 +11846,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             type: "impulse";
             name: string;
             tactics: import("../..").DocumentReferenceLike<unknown>[];
-            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
             ordinal?: number | undefined;
             summary?: string | undefined;
             isTemplate?: boolean | undefined;
@@ -11001,9 +11859,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             type: "impulse";
             name: string;
             tactics: import("../..").DocumentReferenceLike<unknown>[];
-            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
             ordinal?: number | undefined;
             summary?: string | undefined;
             isTemplate?: boolean | undefined;
@@ -11027,9 +11885,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 minute: number;
                 weekdays: number[];
             };
-            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
             ordinal?: number | undefined;
             summary?: string | undefined;
             isTemplate?: boolean | undefined;
@@ -11048,9 +11906,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 latitude: number;
                 longitude: number;
             };
-            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
             ordinal?: number | undefined;
             summary?: string | undefined;
             isTemplate?: boolean | undefined;
@@ -11068,9 +11926,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 minute: number;
                 weekdays: number[];
             };
-            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
             ordinal?: number | undefined;
             summary?: string | undefined;
             isTemplate?: boolean | undefined;
@@ -11083,9 +11941,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             type: "impulse";
             name: string;
             tactics: import("../..").DocumentReferenceLike<unknown>[];
-            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
             ordinal?: number | undefined;
             summary?: string | undefined;
             isTemplate?: boolean | undefined;
@@ -11109,9 +11967,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 minute: number;
                 weekdays: number[];
             };
-            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
             ordinal?: number | undefined;
             summary?: string | undefined;
             isTemplate?: boolean | undefined;
@@ -11130,9 +11988,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 latitude: number;
                 longitude: number;
             };
-            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
             ordinal?: number | undefined;
             summary?: string | undefined;
             isTemplate?: boolean | undefined;
@@ -11150,9 +12008,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 minute: number;
                 weekdays: number[];
             };
-            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
             ordinal?: number | undefined;
             summary?: string | undefined;
             isTemplate?: boolean | undefined;
@@ -11165,9 +12023,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             type: "impulse";
             name: string;
             tactics: import("../..").DocumentReferenceLike<unknown>[];
-            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
             ordinal?: number | undefined;
             summary?: string | undefined;
             isTemplate?: boolean | undefined;
@@ -11198,9 +12056,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 minute: number;
                 weekdays: number[];
             };
-            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
             ordinal?: number | undefined;
             summary?: string | undefined;
             isTemplate?: boolean | undefined;
@@ -11219,9 +12077,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 latitude: number;
                 longitude: number;
             };
-            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
             ordinal?: number | undefined;
             summary?: string | undefined;
             isTemplate?: boolean | undefined;
@@ -11239,9 +12097,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 minute: number;
                 weekdays: number[];
             };
-            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
             ordinal?: number | undefined;
             summary?: string | undefined;
             isTemplate?: boolean | undefined;
@@ -11254,9 +12112,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             type: "impulse";
             name: string;
             tactics: import("../..").DocumentReferenceLike<unknown>[];
-            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
             ordinal?: number | undefined;
             summary?: string | undefined;
             isTemplate?: boolean | undefined;
@@ -11268,9 +12126,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         acceptedAt?: import("../../types").Timestamp | undefined;
         tacticsByPath?: Record<string, any> | undefined;
     };
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "plan";
@@ -11291,9 +12149,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 minute: number;
                 weekdays: number[];
             };
-            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
             ordinal?: number | undefined;
             summary?: string | undefined;
             isTemplate?: boolean | undefined;
@@ -11312,9 +12170,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 latitude: number;
                 longitude: number;
             };
-            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
             ordinal?: number | undefined;
             summary?: string | undefined;
             isTemplate?: boolean | undefined;
@@ -11332,9 +12190,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 minute: number;
                 weekdays: number[];
             };
-            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
             ordinal?: number | undefined;
             summary?: string | undefined;
             isTemplate?: boolean | undefined;
@@ -11347,9 +12205,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             type: "impulse";
             name: string;
             tactics: import("../..").DocumentReferenceLike<unknown>[];
-            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
             ordinal?: number | undefined;
             summary?: string | undefined;
             isTemplate?: boolean | undefined;
@@ -11361,9 +12219,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         acceptedAt?: import("../../types").Timestamp | undefined;
         tacticsByPath?: Record<string, any> | undefined;
     };
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -11392,9 +12250,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: {
         summary: string;
     };
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "summary";
@@ -11405,9 +12263,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: {
         summary: string;
     };
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -11426,9 +12284,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "resisted";
@@ -11436,9 +12294,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -11457,9 +12315,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "widget_setup";
@@ -11467,9 +12325,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -11493,16 +12351,16 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             borderRadius: z.ZodOptional<z.ZodNumber>;
             innerPadding: z.ZodOptional<z.ZodNumber>;
         }, "strip", z.ZodTypeAny, {
-            description: string;
             title: string;
+            description: string;
             elementRefName: string;
             confirmButtonLabel: string;
             nextOnImpulseButtonPress?: boolean | undefined;
             borderRadius?: number | undefined;
             innerPadding?: number | undefined;
         }, {
-            description: string;
             title: string;
+            description: string;
             elementRefName: string;
             confirmButtonLabel?: string | undefined;
             nextOnImpulseButtonPress?: boolean | undefined;
@@ -11517,8 +12375,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         closeButtonHref: z.ZodDefault<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
         steps: {
-            description: string;
             title: string;
+            description: string;
             elementRefName: string;
             confirmButtonLabel: string;
             nextOnImpulseButtonPress?: boolean | undefined;
@@ -11533,8 +12391,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         completedAt?: import("../../types").Timestamp | undefined;
     }, {
         steps: {
-            description: string;
             title: string;
+            description: string;
             elementRefName: string;
             confirmButtonLabel?: string | undefined;
             nextOnImpulseButtonPress?: boolean | undefined;
@@ -11556,8 +12414,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: true;
     data: {
         steps: {
-            description: string;
             title: string;
+            description: string;
             elementRefName: string;
             confirmButtonLabel: string;
             nextOnImpulseButtonPress?: boolean | undefined;
@@ -11572,9 +12430,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         completedAt?: import("../../types").Timestamp | undefined;
     };
     text: string;
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "show_tour";
@@ -11584,8 +12442,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: true;
     data: {
         steps: {
-            description: string;
             title: string;
+            description: string;
             elementRefName: string;
             confirmButtonLabel?: string | undefined;
             nextOnImpulseButtonPress?: boolean | undefined;
@@ -11600,9 +12458,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         closeButtonHref?: string | undefined;
     };
     text: string;
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -11627,9 +12485,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     link: string;
     text: string;
     buttonText: string;
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "link";
@@ -11640,9 +12498,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     link: string;
     text: string;
     buttonText: string;
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -11811,9 +12669,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }>;
         message?: any;
     };
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "notify_support_group";
@@ -11840,9 +12698,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }>;
         message?: any;
     };
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -11899,9 +12757,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             name?: string | undefined;
         } | undefined;
     };
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "shared_moment";
@@ -11917,9 +12775,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             name?: string | undefined;
         } | undefined;
     };
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -11950,12 +12808,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: {
         sourceUri: string;
     };
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    title?: string | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
     text?: string | undefined;
-    title?: string | undefined;
 }, {
     type: "video";
     userId: string;
@@ -11965,12 +12823,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: {
         sourceUri: string;
     };
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    title?: string | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
     text?: string | undefined;
-    title?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -11988,9 +12846,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }, {
     type: "ready_to_debrief";
@@ -11998,9 +12856,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
-    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
     callLogDocPath?: string | undefined;
 }>]>;
 export declare const logIsAssistantMessageLog: (value: Omit<Log, "id">) => value is AssistantMessageLog;

@@ -13,34 +13,34 @@ export declare const behaviorTemplateSchema: z.ZodEffects<z.ZodObject<{
     trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
     name: string;
-    hasQuestions?: boolean | undefined;
-    trackingUnit?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
+    hasQuestions?: boolean | undefined;
+    trackingUnit?: string | undefined;
 }, {
     trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
     name: string;
-    hasQuestions?: boolean | undefined;
-    trackingUnit?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
+    hasQuestions?: boolean | undefined;
+    trackingUnit?: string | undefined;
 }>, {
     trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
     name: string;
-    hasQuestions?: boolean | undefined;
-    trackingUnit?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
+    hasQuestions?: boolean | undefined;
+    trackingUnit?: string | undefined;
 }, {
     trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
     name: string;
-    hasQuestions?: boolean | undefined;
-    trackingUnit?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
+    hasQuestions?: boolean | undefined;
+    trackingUnit?: string | undefined;
 }>;
 export type BehaviorTemplate = z.infer<typeof behaviorTemplateSchema>;
 export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
@@ -76,11 +76,11 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     ordinal: number;
     benefits: string[];
     drawbacks: string[];
+    createdAt?: import("../types").Timestamp | undefined;
+    updatedAt?: import("../types").Timestamp | undefined;
     id?: string | undefined;
     hasQuestions?: boolean | undefined;
     trackingUnit?: string | undefined;
-    createdAt?: import("../types").Timestamp | undefined;
-    updatedAt?: import("../types").Timestamp | undefined;
     goal?: {
         type: "greaterThan" | "lessThanOrEqualTo";
         target: number;
@@ -93,11 +93,11 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     description: string;
     benefits: string[];
     drawbacks: string[];
+    createdAt?: import("../types").Timestamp | undefined;
+    updatedAt?: import("../types").Timestamp | undefined;
     id?: string | undefined;
     hasQuestions?: boolean | undefined;
     trackingUnit?: string | undefined;
-    createdAt?: import("../types").Timestamp | undefined;
-    updatedAt?: import("../types").Timestamp | undefined;
     ordinal?: number | undefined;
     goal?: {
         type: "greaterThan" | "lessThanOrEqualTo";
@@ -112,11 +112,11 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     ordinal: number;
     benefits: string[];
     drawbacks: string[];
+    createdAt?: import("../types").Timestamp | undefined;
+    updatedAt?: import("../types").Timestamp | undefined;
     id?: string | undefined;
     hasQuestions?: boolean | undefined;
     trackingUnit?: string | undefined;
-    createdAt?: import("../types").Timestamp | undefined;
-    updatedAt?: import("../types").Timestamp | undefined;
     goal?: {
         type: "greaterThan" | "lessThanOrEqualTo";
         target: number;
@@ -129,11 +129,11 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     description: string;
     benefits: string[];
     drawbacks: string[];
+    createdAt?: import("../types").Timestamp | undefined;
+    updatedAt?: import("../types").Timestamp | undefined;
     id?: string | undefined;
     hasQuestions?: boolean | undefined;
     trackingUnit?: string | undefined;
-    createdAt?: import("../types").Timestamp | undefined;
-    updatedAt?: import("../types").Timestamp | undefined;
     ordinal?: number | undefined;
     goal?: {
         type: "greaterThan" | "lessThanOrEqualTo";
