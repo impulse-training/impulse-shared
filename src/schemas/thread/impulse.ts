@@ -9,6 +9,9 @@ export const impulseThreadSchema = threadBaseSchema.extend({
   behaviorId: z.string().nullable(),
   questionsCompleted: z.boolean().optional(),
   questionsById: objectOf(questionSchema),
+
+  // Current tactic step context (set by clients when user is viewing a tactic step)
+  currentConverationMode: z.enum(["default", "debrief"]).optional(),
 });
 
 export type ImpulseThread = z.infer<typeof impulseThreadSchema>;

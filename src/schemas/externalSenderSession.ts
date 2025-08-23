@@ -13,7 +13,7 @@ export interface ExternalSenderSession {
   systemMessage: string;
   // Timestamp that gets updated when files are added to the session
   filesUpdatedAt?: Timestamp;
-  // Reference to a strategy/tacticCollection where tactics should be created from files
+  // Reference to a tactic where steps should be created from files
   targetTacticRef?: DocumentReferenceLike<any>;
 }
 

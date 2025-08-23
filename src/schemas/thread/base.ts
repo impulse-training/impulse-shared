@@ -71,15 +71,14 @@ export const threadBaseSchema = z.object({
   // Log summary data - written in after log write functions. We store tactic and behavior tracking
   // logs here (loosely typed until log schemas are migrated)
   trackingLogsById: z.record(z.string(), z.any()),
-  activeSystemPrompt: z.string().optional(),
-  chatSystemPrompt: z.string().optional(),
+  defaultSystemPrompt: z.string().optional(),
+  debriefSystemPrompt: z.string().optional(),
   summary: z.string().optional(),
   summaryRequestedAt: timestampSchema.optional(),
   summarizedAt: timestampSchema.optional(),
   strategyDoc: documentReferenceSchema.optional(),
 
-  // Current tactic step context (set by clients when user is viewing a tactic step)
-  currentConverationMode: z.enum(["active", "debrief"]).optional(),
+  currentConverationMode: z.enum(["default"]).optional(),
   currentTacticStep: tacticStepSchema.optional().nullable(),
   agentConnectedAt: timestampSchema.optional(),
 
