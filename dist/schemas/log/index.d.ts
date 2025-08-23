@@ -1717,12 +1717,10 @@ export declare const logSchemas: {
                 } & {
                     mode: z.ZodLiteral<"affirmation">;
                     text: z.ZodString;
-                    affirmationText: z.ZodString;
                     repeatCount: z.ZodNumber;
                 }, "strip", z.ZodTypeAny, {
                     text: string;
                     mode: "affirmation";
-                    affirmationText: string;
                     repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
@@ -1747,7 +1745,6 @@ export declare const logSchemas: {
                 }, {
                     text: string;
                     mode: "affirmation";
-                    affirmationText: string;
                     repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
@@ -1999,7 +1996,6 @@ export declare const logSchemas: {
                 } | {
                     text: string;
                     mode: "affirmation";
-                    affirmationText: string;
                     repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
@@ -2253,7 +2249,6 @@ export declare const logSchemas: {
                 } | {
                     text: string;
                     mode: "affirmation";
-                    affirmationText: string;
                     repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
@@ -2512,7 +2507,6 @@ export declare const logSchemas: {
                 } | {
                     text: string;
                     mode: "affirmation";
-                    affirmationText: string;
                     repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
@@ -2771,7 +2765,6 @@ export declare const logSchemas: {
                 } | {
                     text: string;
                     mode: "affirmation";
-                    affirmationText: string;
                     repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
@@ -3037,7 +3030,6 @@ export declare const logSchemas: {
                 } | {
                     text: string;
                     mode: "affirmation";
-                    affirmationText: string;
                     repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
@@ -3307,7 +3299,6 @@ export declare const logSchemas: {
                 } | {
                     text: string;
                     mode: "affirmation";
-                    affirmationText: string;
                     repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
@@ -4840,12 +4831,10 @@ export declare const logSchemas: {
                 } & {
                     mode: z.ZodLiteral<"affirmation">;
                     text: z.ZodString;
-                    affirmationText: z.ZodString;
                     repeatCount: z.ZodNumber;
                 }, "strip", z.ZodTypeAny, {
                     text: string;
                     mode: "affirmation";
-                    affirmationText: string;
                     repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
@@ -4870,7 +4859,6 @@ export declare const logSchemas: {
                 }, {
                     text: string;
                     mode: "affirmation";
-                    affirmationText: string;
                     repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
@@ -5122,7 +5110,6 @@ export declare const logSchemas: {
                 } | {
                     text: string;
                     mode: "affirmation";
-                    affirmationText: string;
                     repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
@@ -5376,7 +5363,6 @@ export declare const logSchemas: {
                 } | {
                     text: string;
                     mode: "affirmation";
-                    affirmationText: string;
                     repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
@@ -5635,7 +5621,6 @@ export declare const logSchemas: {
                 } | {
                     text: string;
                     mode: "affirmation";
-                    affirmationText: string;
                     repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
@@ -5894,7 +5879,6 @@ export declare const logSchemas: {
                 } | {
                     text: string;
                     mode: "affirmation";
-                    affirmationText: string;
                     repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
@@ -6160,7 +6144,6 @@ export declare const logSchemas: {
                 } | {
                     text: string;
                     mode: "affirmation";
-                    affirmationText: string;
                     repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
@@ -6430,7 +6413,6 @@ export declare const logSchemas: {
                 } | {
                     text: string;
                     mode: "affirmation";
-                    affirmationText: string;
                     repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
@@ -9656,12 +9638,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             } & {
                 mode: z.ZodLiteral<"affirmation">;
                 text: z.ZodString;
-                affirmationText: z.ZodString;
                 repeatCount: z.ZodNumber;
             }, "strip", z.ZodTypeAny, {
                 text: string;
                 mode: "affirmation";
-                affirmationText: string;
                 repeatCount: number;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
@@ -9686,7 +9666,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             }, {
                 text: string;
                 mode: "affirmation";
-                affirmationText: string;
                 repeatCount: number;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
@@ -9938,7 +9917,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             } | {
                 text: string;
                 mode: "affirmation";
-                affirmationText: string;
                 repeatCount: number;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
@@ -10192,7 +10170,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             } | {
                 text: string;
                 mode: "affirmation";
-                affirmationText: string;
                 repeatCount: number;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
@@ -10451,7 +10428,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             } | {
                 text: string;
                 mode: "affirmation";
-                affirmationText: string;
                 repeatCount: number;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
@@ -10710,7 +10686,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             } | {
                 text: string;
                 mode: "affirmation";
-                affirmationText: string;
                 repeatCount: number;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
@@ -10976,7 +10951,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             } | {
                 text: string;
                 mode: "affirmation";
-                affirmationText: string;
                 repeatCount: number;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
@@ -11246,7 +11220,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             } | {
                 text: string;
                 mode: "affirmation";
-                affirmationText: string;
                 repeatCount: number;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {

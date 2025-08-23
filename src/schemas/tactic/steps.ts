@@ -45,13 +45,15 @@ const questionStepSchema = baseStepSchema.extend({
   text: z.string().min(1),
 });
 
-const aiConversationStepSchema = baseStepSchema.omit({ backgroundImage: true }).extend({
-  mode: z.literal("aiConversation"),
-  // High-level objective for the conversation
-  goal: z.string().min(1),
-  // Initial system/user prompt to start the AI conversation
-  prompt: z.string().optional(),
-});
+const aiConversationStepSchema = baseStepSchema
+  .omit({ backgroundImage: true })
+  .extend({
+    mode: z.literal("aiConversation"),
+    // High-level objective for the conversation
+    goal: z.string().min(1),
+    // Initial system/user prompt to start the AI conversation
+    prompt: z.string().optional(),
+  });
 
 // New: media step for displaying one or more media items as its own step
 const mediaStepSchema = baseStepSchema.extend({
@@ -64,7 +66,6 @@ const affirmationStepSchema = baseStepSchema.extend({
   mode: z.literal("affirmation"),
   // Use base text as a title/label for the step
   text: z.string().min(1),
-  affirmationText: z.string().min(1),
   repeatCount: z.number().int().min(1).max(5),
 });
 

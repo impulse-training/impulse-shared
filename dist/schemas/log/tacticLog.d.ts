@@ -1374,12 +1374,10 @@ export declare const tacticLogSchema: z.ZodObject<{
             } & {
                 mode: z.ZodLiteral<"affirmation">;
                 text: z.ZodString;
-                affirmationText: z.ZodString;
                 repeatCount: z.ZodNumber;
             }, "strip", z.ZodTypeAny, {
                 text: string;
                 mode: "affirmation";
-                affirmationText: string;
                 repeatCount: number;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
@@ -1404,7 +1402,6 @@ export declare const tacticLogSchema: z.ZodObject<{
             }, {
                 text: string;
                 mode: "affirmation";
-                affirmationText: string;
                 repeatCount: number;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
@@ -1656,7 +1653,6 @@ export declare const tacticLogSchema: z.ZodObject<{
             } | {
                 text: string;
                 mode: "affirmation";
-                affirmationText: string;
                 repeatCount: number;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
@@ -1910,7 +1906,6 @@ export declare const tacticLogSchema: z.ZodObject<{
             } | {
                 text: string;
                 mode: "affirmation";
-                affirmationText: string;
                 repeatCount: number;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
@@ -2169,7 +2164,6 @@ export declare const tacticLogSchema: z.ZodObject<{
             } | {
                 text: string;
                 mode: "affirmation";
-                affirmationText: string;
                 repeatCount: number;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
@@ -2428,7 +2422,6 @@ export declare const tacticLogSchema: z.ZodObject<{
             } | {
                 text: string;
                 mode: "affirmation";
-                affirmationText: string;
                 repeatCount: number;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
@@ -2694,7 +2687,6 @@ export declare const tacticLogSchema: z.ZodObject<{
             } | {
                 text: string;
                 mode: "affirmation";
-                affirmationText: string;
                 repeatCount: number;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
@@ -2964,7 +2956,6 @@ export declare const tacticLogSchema: z.ZodObject<{
             } | {
                 text: string;
                 mode: "affirmation";
-                affirmationText: string;
                 repeatCount: number;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
