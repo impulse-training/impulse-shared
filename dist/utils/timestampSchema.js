@@ -19,10 +19,29 @@ const zod_1 = require("zod");
 exports.timestampSchema = zod_1.z.custom((value) => {
     if (value === null || value === undefined)
         return true;
-    const isTimestampLike = typeof value === "object" &&
+    // Accept Firestore Timestamp-like (has toDate function)
+    const hasToDate = typeof value === "object" &&
         value !== null &&
-        ("toDate" in value && typeof value.toDate === "function");
-    return isTimestampLike;
+        "toDate" in value &&
+        typeof value.toDate === "function";
+    if (hasToDate)
+        return true;
+    // Accept native Date objects
+    if (value instanceof Date && !isNaN(value.getTime()))
+        return true;
+    // Accept plain objects with numeric seconds and nanoseconds
+    if (typeof value === "object" &&
+        value !== null &&
+        "seconds" in value &&
+        "nanoseconds" in value) {
+        const seconds = value.seconds;
+        const nanos = value.nanoseconds;
+        if ((typeof seconds === "number" || typeof seconds === "bigint") &&
+            typeof nanos === "number") {
+            return true;
+        }
+    }
+    return false;
 }, {
     message: "Must be a Firestore Timestamp-like object",
 });
