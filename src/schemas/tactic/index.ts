@@ -1,2 +1,2 @@
-export { tacticStepSchema, type TacticStep } from "./steps";
-export { tacticSchema, type Tactic } from "./tactic";
+export * from "./steps";
+export * from "./tactic";
