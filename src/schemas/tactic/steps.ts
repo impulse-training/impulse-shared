@@ -2,7 +2,7 @@ import { z } from "zod";
 import { attachmentSchema } from "../attachment";
 import { questionSchema } from "../question";
 
-const baseStepSchema = z.object({
+export const baseStepSchema = z.object({
   // Make text optional at the base level so certain modes (e.g., breathing)
   // don't require it. Other modes will explicitly require non-empty text.
   text: z.string().optional(), // label/instruction
@@ -11,12 +11,12 @@ const baseStepSchema = z.object({
   backgroundImage: attachmentSchema.optional(),
 });
 
-const defaultStepSchema = baseStepSchema.extend({
+export const defaultStepSchema = baseStepSchema.extend({
   mode: z.literal("default").optional(),
   text: z.string().min(1),
 });
 
-const breathingStepSchema = baseStepSchema.extend({
+export const breathingStepSchema = baseStepSchema.extend({
   mode: z.literal("breathing"),
   breathingPattern: z.object({
     inhale: z.number().int().positive(),
@@ -26,26 +26,26 @@ const breathingStepSchema = baseStepSchema.extend({
   cycles: z.number().int().positive().optional(),
 });
 
-const timerStepSchema = baseStepSchema.extend({
+export const timerStepSchema = baseStepSchema.extend({
   mode: z.literal("timer"),
   durationSeconds: z.number().int().positive(),
   text: z.string().min(1),
 });
 
-const notifySupportStepSchema = baseStepSchema.extend({
+export const notifySupportStepSchema = baseStepSchema.extend({
   mode: z.literal("notifySupport"),
   groupId: z.string(),
   text: z.string().min(1),
 });
 
-const questionStepSchema = baseStepSchema.extend({
+export const questionStepSchema = baseStepSchema.extend({
   mode: z.literal("question"),
   // Embed a question object; question itself remains a distinct schema/type
   question: questionSchema,
   text: z.string().min(1),
 });
 
-const aiConversationStepSchema = baseStepSchema
+export const aiConversationStepSchema = baseStepSchema
   .omit({ backgroundImage: true })
   .extend({
     mode: z.literal("aiConversation"),
@@ -56,13 +56,13 @@ const aiConversationStepSchema = baseStepSchema
   });
 
 // New: media step for displaying one or more media items as its own step
-const mediaStepSchema = baseStepSchema.extend({
+export const mediaStepSchema = baseStepSchema.extend({
   mode: z.literal("media"),
   media: z.array(attachmentSchema).min(1),
 });
 
 // New: affirmation step for repeating a positive statement
-const affirmationStepSchema = baseStepSchema.extend({
+export const affirmationStepSchema = baseStepSchema.extend({
   mode: z.literal("affirmation"),
   // Use base text as a title/label for the step
   text: z.string().min(1),
@@ -81,3 +81,13 @@ export const tacticStepSchema = z.discriminatedUnion("mode", [
 ]);
 
 export type TacticStep = z.infer<typeof tacticStepSchema>;
+
+// Export concrete step types for precise narrowing
+export type DefaultStep = z.infer<typeof defaultStepSchema>;
+export type BreathingStep = z.infer<typeof breathingStepSchema>;
+export type TimerStep = z.infer<typeof timerStepSchema>;
+export type NotifySupportStep = z.infer<typeof notifySupportStepSchema>;
+export type QuestionStep = z.infer<typeof questionStepSchema>;
+export type AIConversationStep = z.infer<typeof aiConversationStepSchema>;
+export type MediaStep = z.infer<typeof mediaStepSchema>;
+export type AffirmationStep = z.infer<typeof affirmationStepSchema>;
