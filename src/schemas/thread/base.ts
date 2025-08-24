@@ -78,8 +78,9 @@ export const threadBaseSchema = z.object({
   summarizedAt: timestampSchema.optional(),
   strategyDoc: documentReferenceSchema.optional(),
 
-  currentConverationMode: z.enum(["default"]).optional(),
-  currentlyViewing: z.enum(["tactics", "chat"]).optional(),
+  currentConservationMode: z.enum(["default"]).optional(),
+  currentScreen: z.enum(["tactics", "chat"]).optional(),
+
   currentTacticStep: tacticStepSchema.optional().nullable(),
   agentConnectedAt: timestampSchema.optional(),
 

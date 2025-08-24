@@ -656,7 +656,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                     id: z.ZodOptional<z.ZodString>;
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    plans: z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>;
                     text: z.ZodOptional<z.ZodString>;
                     question: z.ZodString;
                     lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -665,7 +664,7 @@ export declare const tacticLogSchema: z.ZodObject<{
                     isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
                     isPinned: z.ZodOptional<z.ZodBoolean>;
                     responseType: z.ZodLiteral<"text">;
-                    scope: z.ZodOptional<z.ZodEnum<["impulse", "debrief", "plan"]>>;
+                    scope: z.ZodOptional<z.ZodEnum<["impulse" | "debrief" | "recap", ...("impulse" | "debrief" | "recap")[]]>>;
                 } & {
                     suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 }, "strip", z.ZodTypeAny, {
@@ -676,12 +675,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
                     text?: string | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "plan" | "debrief" | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                     suggestedResponses?: string[] | undefined;
                 }, {
                     responseType: "text";
@@ -691,18 +689,16 @@ export declare const tacticLogSchema: z.ZodObject<{
                     id?: string | undefined;
                     text?: string | undefined;
                     isTemplate?: boolean | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "plan" | "debrief" | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                     suggestedResponses?: string[] | undefined;
                 }>, z.ZodObject<{
                     id: z.ZodOptional<z.ZodString>;
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    plans: z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>;
                     text: z.ZodOptional<z.ZodString>;
                     question: z.ZodString;
                     lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -711,7 +707,7 @@ export declare const tacticLogSchema: z.ZodObject<{
                     isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
                     isPinned: z.ZodOptional<z.ZodBoolean>;
                     responseType: z.ZodLiteral<"slider1To10">;
-                    scope: z.ZodOptional<z.ZodEnum<["impulse", "debrief", "plan"]>>;
+                    scope: z.ZodOptional<z.ZodEnum<["impulse" | "debrief" | "recap", ...("impulse" | "debrief" | "recap")[]]>>;
                 } & {
                     sliderConfig: z.ZodObject<{
                         minLabel: z.ZodOptional<z.ZodString>;
@@ -735,12 +731,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
                     text?: string | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "plan" | "debrief" | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                 }, {
                     responseType: "slider1To10";
                     question: string;
@@ -753,17 +748,15 @@ export declare const tacticLogSchema: z.ZodObject<{
                     id?: string | undefined;
                     text?: string | undefined;
                     isTemplate?: boolean | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "plan" | "debrief" | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                 }>, z.ZodObject<{
                     id: z.ZodOptional<z.ZodString>;
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    plans: z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>;
                     text: z.ZodOptional<z.ZodString>;
                     question: z.ZodString;
                     lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -772,7 +765,7 @@ export declare const tacticLogSchema: z.ZodObject<{
                     isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
                     isPinned: z.ZodOptional<z.ZodBoolean>;
                     responseType: z.ZodLiteral<"recap">;
-                    scope: z.ZodOptional<z.ZodEnum<["impulse", "debrief", "plan"]>>;
+                    scope: z.ZodOptional<z.ZodEnum<["impulse" | "debrief" | "recap", ...("impulse" | "debrief" | "recap")[]]>>;
                 }, "strip", z.ZodTypeAny, {
                     isTemplate: boolean;
                     responseType: "recap";
@@ -781,12 +774,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
                     text?: string | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "plan" | "debrief" | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                 }, {
                     responseType: "recap";
                     question: string;
@@ -795,12 +787,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                     id?: string | undefined;
                     text?: string | undefined;
                     isTemplate?: boolean | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "plan" | "debrief" | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                 }>]>;
                 text: z.ZodString;
             }, "strip", z.ZodTypeAny, {
@@ -813,12 +804,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
                     text?: string | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "plan" | "debrief" | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                 } | {
                     isTemplate: boolean;
                     responseType: "slider1To10";
@@ -831,12 +821,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
                     text?: string | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "plan" | "debrief" | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                 } | {
                     isTemplate: boolean;
                     responseType: "text";
@@ -845,12 +834,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
                     text?: string | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "plan" | "debrief" | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                     suggestedResponses?: string[] | undefined;
                 };
                 mode: "question";
@@ -884,12 +872,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                     id?: string | undefined;
                     text?: string | undefined;
                     isTemplate?: boolean | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "plan" | "debrief" | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                 } | {
                     responseType: "slider1To10";
                     question: string;
@@ -902,12 +889,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                     id?: string | undefined;
                     text?: string | undefined;
                     isTemplate?: boolean | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "plan" | "debrief" | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                 } | {
                     responseType: "text";
                     question: string;
@@ -916,12 +902,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                     id?: string | undefined;
                     text?: string | undefined;
                     isTemplate?: boolean | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "plan" | "debrief" | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                     suggestedResponses?: string[] | undefined;
                 };
                 mode: "question";
@@ -1541,12 +1526,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
                     text?: string | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "plan" | "debrief" | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                 } | {
                     isTemplate: boolean;
                     responseType: "slider1To10";
@@ -1559,12 +1543,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
                     text?: string | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "plan" | "debrief" | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                 } | {
                     isTemplate: boolean;
                     responseType: "text";
@@ -1573,12 +1556,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
                     text?: string | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "plan" | "debrief" | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                     suggestedResponses?: string[] | undefined;
                 };
                 mode: "question";
@@ -1794,12 +1776,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                     id?: string | undefined;
                     text?: string | undefined;
                     isTemplate?: boolean | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "plan" | "debrief" | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                 } | {
                     responseType: "slider1To10";
                     question: string;
@@ -1812,12 +1793,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                     id?: string | undefined;
                     text?: string | undefined;
                     isTemplate?: boolean | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "plan" | "debrief" | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                 } | {
                     responseType: "text";
                     question: string;
@@ -1826,12 +1806,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                     id?: string | undefined;
                     text?: string | undefined;
                     isTemplate?: boolean | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "plan" | "debrief" | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                     suggestedResponses?: string[] | undefined;
                 };
                 mode: "question";
@@ -2052,12 +2031,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
                     text?: string | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "plan" | "debrief" | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                 } | {
                     isTemplate: boolean;
                     responseType: "slider1To10";
@@ -2070,12 +2048,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
                     text?: string | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "plan" | "debrief" | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                 } | {
                     isTemplate: boolean;
                     responseType: "text";
@@ -2084,12 +2061,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
                     text?: string | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "plan" | "debrief" | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                     suggestedResponses?: string[] | undefined;
                 };
                 mode: "question";
@@ -2310,12 +2286,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                     id?: string | undefined;
                     text?: string | undefined;
                     isTemplate?: boolean | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "plan" | "debrief" | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                 } | {
                     responseType: "slider1To10";
                     question: string;
@@ -2328,12 +2303,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                     id?: string | undefined;
                     text?: string | undefined;
                     isTemplate?: boolean | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "plan" | "debrief" | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                 } | {
                     responseType: "text";
                     question: string;
@@ -2342,12 +2316,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                     id?: string | undefined;
                     text?: string | undefined;
                     isTemplate?: boolean | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "plan" | "debrief" | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                     suggestedResponses?: string[] | undefined;
                 };
                 mode: "question";
@@ -2575,12 +2548,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
                     text?: string | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "plan" | "debrief" | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                 } | {
                     isTemplate: boolean;
                     responseType: "slider1To10";
@@ -2593,12 +2565,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
                     text?: string | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "plan" | "debrief" | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                 } | {
                     isTemplate: boolean;
                     responseType: "text";
@@ -2607,12 +2578,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
                     text?: string | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "plan" | "debrief" | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                     suggestedResponses?: string[] | undefined;
                 };
                 mode: "question";
@@ -2844,12 +2814,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                     id?: string | undefined;
                     text?: string | undefined;
                     isTemplate?: boolean | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "plan" | "debrief" | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                 } | {
                     responseType: "slider1To10";
                     question: string;
@@ -2862,12 +2831,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                     id?: string | undefined;
                     text?: string | undefined;
                     isTemplate?: boolean | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "plan" | "debrief" | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                 } | {
                     responseType: "text";
                     question: string;
@@ -2876,12 +2844,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                     id?: string | undefined;
                     text?: string | undefined;
                     isTemplate?: boolean | undefined;
-                    plans?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastAskedAt?: import("../../types").Timestamp | undefined;
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    scope?: "impulse" | "plan" | "debrief" | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                     suggestedResponses?: string[] | undefined;
                 };
                 mode: "question";

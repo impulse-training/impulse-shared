@@ -13,6 +13,7 @@ export const timePlanThreadSchema = planThreadBaseSchema.extend({
 // Recap plan thread (hidden by default)
 export const recapPlanThreadSchema = planThreadBaseSchema.extend({
   type: z.literal("recap"),
+  currentConservationMode: z.enum(["recap"]).optional(),
 });
 
 export const locationPlanThreadSchema = planThreadBaseSchema.extend({

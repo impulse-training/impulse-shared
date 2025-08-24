@@ -1,5 +1,7 @@
+import { z } from "zod";
+
 /**
- * Constants for question scopes including display properties
+ * Canonical conversation/question scopes and helpers
  */
 
 export const QUESTION_SCOPES = {
@@ -8,37 +10,38 @@ export const QUESTION_SCOPES = {
     label: "Impulse Moment",
     description: "Asked whenever you press the impulse button",
   },
-  recapPlan: {
+  debrief: {
+    id: "debrief",
+    label: "Debrief",
+    description: "Asked during an immediate or reflective debrief",
+  },
+  recap: {
     id: "recap",
     label: "Daily Recap",
     description: "Asked during your regular daily recap",
   },
 } as const;
 
+export type QuestionScope = keyof typeof QUESTION_SCOPES;
+export const QUESTION_SCOPE_VALUES = Object.keys(
+  QUESTION_SCOPES
+) as QuestionScope[];
+export const questionScopeSchema = z.enum(
+  QUESTION_SCOPE_VALUES as [QuestionScope, ...QuestionScope[]]
+);
+
 export type QuestionScopeKey = keyof typeof QUESTION_SCOPES;
 
-/**
- * Get the label for a specific question scope
- */
 export const getQuestionScopeLabel = (
   scope: QuestionScopeKey | null | undefined
 ) => {
-  if (!scope || !(scope in QUESTION_SCOPES)) {
-    return "Unknown Scope";
-  }
-
+  if (!scope || !(scope in QUESTION_SCOPES)) return "Unknown Scope";
   return QUESTION_SCOPES[scope].label;
 };
 
-/**
- * Get the description for a specific question scope
- */
 export const getQuestionScopeDescription = (
   scope: QuestionScopeKey | null | undefined
 ) => {
-  if (!scope || !(scope in QUESTION_SCOPES)) {
-    return "";
-  }
-
+  if (!scope || !(scope in QUESTION_SCOPES)) return "";
   return QUESTION_SCOPES[scope].description;
 };
