@@ -1913,6 +1913,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             createdByUid?: string | undefined;
             tags?: string[] | undefined;
         }>;
+        planId: z.ZodOptional<z.ZodString>;
         stepCount: z.ZodOptional<z.ZodNumber>;
         completedStepIndexes: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
         completed: z.ZodOptional<z.ZodBoolean>;
@@ -2168,6 +2169,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             createdByUid?: string | undefined;
             tags?: string[] | undefined;
         };
+        planId?: string | undefined;
         stepCount?: number | undefined;
         completedStepIndexes?: number[] | undefined;
         completed?: boolean | undefined;
@@ -2423,6 +2425,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             createdByUid?: string | undefined;
             tags?: string[] | undefined;
         };
+        planId?: string | undefined;
         stepCount?: number | undefined;
         completedStepIndexes?: number[] | undefined;
         completed?: boolean | undefined;
@@ -2685,6 +2688,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             createdByUid?: string | undefined;
             tags?: string[] | undefined;
         };
+        planId?: string | undefined;
         stepCount?: number | undefined;
         completedStepIndexes?: number[] | undefined;
         completed?: boolean | undefined;
@@ -2951,6 +2955,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             createdByUid?: string | undefined;
             tags?: string[] | undefined;
         };
+        planId?: string | undefined;
         stepCount?: number | undefined;
         completedStepIndexes?: number[] | undefined;
         completed?: boolean | undefined;

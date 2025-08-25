@@ -83,6 +83,7 @@ export const threadBaseSchema = z.object({
 
   currentTacticStep: tacticStepSchema.optional().nullable(),
   agentConnectedAt: timestampSchema.optional(),
+  allQuestionsAnsweredAt: timestampSchema.optional(),
 
   sharingLevels: z
     .object({
