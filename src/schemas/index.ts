@@ -1,7 +1,9 @@
 // Export all schema types and validation functions
 export * from "./attachment";
+export * from "./audioGenerationJob";
 export * from "./behavior";
 export * from "./daySummary";
+export * from "./emojiId";
 export * from "./externalSender";
 export * from "./externalSenderMessage";
 export * from "./externalSenderSession";
@@ -22,4 +24,3 @@ export * from "./userData";
 export * from "./userProfile";
 export * from "./userSummary";
 export * from "./userTimezones";
-export * from "./audioGenerationJob";

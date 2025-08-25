@@ -1,9 +1,9 @@
 import { z } from "zod";
 import { documentReferenceSchema } from "../../utils";
 import { timestampSchema } from "../../utils/timestampSchema";
+import { emojiIdSchema } from "../emojiId";
 import { planWithIdSchema } from "../plan";
 import { tacticStepSchema } from "../tactic";
-import { emojiIdSchema } from "../userProfile";
 
 // Thread schema
 export const threadBaseSchema = z.object({

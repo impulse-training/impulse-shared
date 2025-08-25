@@ -16,8 +16,10 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 // Export all schema types and validation functions
 __exportStar(require("./attachment"), exports);
+__exportStar(require("./audioGenerationJob"), exports);
 __exportStar(require("./behavior"), exports);
 __exportStar(require("./daySummary"), exports);
+__exportStar(require("./emojiId"), exports);
 __exportStar(require("./externalSender"), exports);
 __exportStar(require("./externalSenderMessage"), exports);
 __exportStar(require("./externalSenderSession"), exports);
@@ -38,4 +40,3 @@ __exportStar(require("./userData"), exports);
 __exportStar(require("./userProfile"), exports);
 __exportStar(require("./userSummary"), exports);
 __exportStar(require("./userTimezones"), exports);
-__exportStar(require("./audioGenerationJob"), exports);

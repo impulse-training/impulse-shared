@@ -1,7 +1,7 @@
 import { z } from "zod";
-import { logBaseSchema } from "./base";
 import { documentReferenceSchema } from "../../utils/documentReferenceSchema";
-import { emojiIdSchema } from "../userProfile";
+import { emojiIdSchema } from "../emojiId";
+import { logBaseSchema } from "./base";
 
 export const sharedMomentLogSchema = logBaseSchema.extend({
   type: z.literal("shared_moment"),

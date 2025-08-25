@@ -7769,15 +7769,33 @@ export declare const logSchemas: {
         isDisplayable: z.ZodLiteral<true>;
         data: z.ZodObject<{
             threadRef: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
-            emojiId: any;
+            emojiId: z.ZodOptional<z.ZodObject<{
+                color: z.ZodString;
+                emoji: z.ZodString;
+                name: z.ZodOptional<z.ZodString>;
+            }, "strip", z.ZodTypeAny, {
+                color: string;
+                emoji: string;
+                name?: string | undefined;
+            }, {
+                color: string;
+                emoji: string;
+                name?: string | undefined;
+            }>>;
         }, "strip", z.ZodTypeAny, {
-            [x: string]: any;
-            threadRef?: unknown;
-            emojiId?: unknown;
+            threadRef: import("../..").DocumentReferenceLike<unknown>;
+            emojiId?: {
+                color: string;
+                emoji: string;
+                name?: string | undefined;
+            } | undefined;
         }, {
-            [x: string]: any;
-            threadRef?: unknown;
-            emojiId?: unknown;
+            threadRef: import("../..").DocumentReferenceLike<unknown>;
+            emojiId?: {
+                color: string;
+                emoji: string;
+                name?: string | undefined;
+            } | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
         type: "shared_moment";
@@ -7786,9 +7804,12 @@ export declare const logSchemas: {
         dateString: string;
         isDisplayable: true;
         data: {
-            [x: string]: any;
-            threadRef?: unknown;
-            emojiId?: unknown;
+            threadRef: import("../..").DocumentReferenceLike<unknown>;
+            emojiId?: {
+                color: string;
+                emoji: string;
+                name?: string | undefined;
+            } | undefined;
         };
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -7801,9 +7822,12 @@ export declare const logSchemas: {
         dateString: string;
         isDisplayable: true;
         data: {
-            [x: string]: any;
-            threadRef?: unknown;
-            emojiId?: unknown;
+            threadRef: import("../..").DocumentReferenceLike<unknown>;
+            emojiId?: {
+                color: string;
+                emoji: string;
+                name?: string | undefined;
+            } | undefined;
         };
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -12580,15 +12604,33 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
         threadRef: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
-        emojiId: any;
+        emojiId: z.ZodOptional<z.ZodObject<{
+            color: z.ZodString;
+            emoji: z.ZodString;
+            name: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            color: string;
+            emoji: string;
+            name?: string | undefined;
+        }, {
+            color: string;
+            emoji: string;
+            name?: string | undefined;
+        }>>;
     }, "strip", z.ZodTypeAny, {
-        [x: string]: any;
-        threadRef?: unknown;
-        emojiId?: unknown;
+        threadRef: import("../..").DocumentReferenceLike<unknown>;
+        emojiId?: {
+            color: string;
+            emoji: string;
+            name?: string | undefined;
+        } | undefined;
     }, {
-        [x: string]: any;
-        threadRef?: unknown;
-        emojiId?: unknown;
+        threadRef: import("../..").DocumentReferenceLike<unknown>;
+        emojiId?: {
+            color: string;
+            emoji: string;
+            name?: string | undefined;
+        } | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     type: "shared_moment";
@@ -12597,9 +12639,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dateString: string;
     isDisplayable: true;
     data: {
-        [x: string]: any;
-        threadRef?: unknown;
-        emojiId?: unknown;
+        threadRef: import("../..").DocumentReferenceLike<unknown>;
+        emojiId?: {
+            color: string;
+            emoji: string;
+            name?: string | undefined;
+        } | undefined;
     };
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
@@ -12612,9 +12657,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dateString: string;
     isDisplayable: true;
     data: {
-        [x: string]: any;
-        threadRef?: unknown;
-        emojiId?: unknown;
+        threadRef: import("../..").DocumentReferenceLike<unknown>;
+        emojiId?: {
+            color: string;
+            emoji: string;
+            name?: string | undefined;
+        } | undefined;
     };
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
