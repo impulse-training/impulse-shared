@@ -22,49 +22,14 @@ export const threadBaseSchema = z.object({
     ])
     .default("general"),
   date: timestampSchema,
-  conversationStartedAt: timestampSchema.optional(),
+  dateString: z.string(),
+
+  // Whether this thread is a draft (created before any logs exist)
+  // Draft threads should be hidden in UI until a log is added
+  isDraft: z.boolean().optional().default(false),
+
   // For now, don't type this
   tacticsByPath: z.record(z.string(), z.any()).optional(),
-
-  // Inferred trigger hypothesis for this thread (computed asynchronously)
-  triggerHypothesis: z
-    .object({
-      text: z.string(),
-      category: z.string().optional(),
-      confidence: z.enum(["low", "med", "high"]).optional(),
-      inferredAt: timestampSchema.optional(),
-    })
-    .optional(),
-
-  // Background-prepared suggested plan snapshot for quick access by UI/agent
-  suggestedPlan: z
-    .object({
-      planRefPath: z.string().optional(),
-      name: z.string().optional(),
-      // Array of tactic or collection document paths in order
-      items: z.array(z.string()),
-      // Resolved tactic previews keyed by doc path (mirrors PlanLogView optimization) - loosely typed for now
-      tacticsByPath: z.record(z.string(), z.any()).optional(),
-      preparedAt: timestampSchema.optional(),
-      source: z.enum(["userPlan", "library", "improvised"]),
-    })
-    .optional(),
-
-  // Ranked candidate tactics the agent can pick from
-  candidateTactics: z
-    .array(
-      z.object({
-        tacticPath: z.string(),
-        title: z.string().optional(),
-        type: z.string().optional(),
-        reason: z.string().optional(),
-        source: z.enum(["userPlan", "library", "improvised"]).optional(),
-        collectionRefPath: z.string().optional(),
-      })
-    )
-    .optional(),
-
-  dateString: z.string(),
 
   emojiId: emojiIdSchema,
 
