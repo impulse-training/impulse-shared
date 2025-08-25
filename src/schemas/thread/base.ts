@@ -85,6 +85,8 @@ export const threadBaseSchema = z.object({
   agentConnectedAt: timestampSchema.optional(),
   allQuestionsAnsweredAt: timestampSchema.optional(),
 
+  archiveAfter: timestampSchema,
+
   sharingLevels: z
     .object({
       impulseMoment: z.boolean(),
