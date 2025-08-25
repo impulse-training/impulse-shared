@@ -1,3 +1,4 @@
+import { Thread } from "../schemas";
 import {
   Log,
   logIsBehaviorLog,
@@ -20,9 +21,12 @@ import { fieldChanged } from "./fields";
  * @returns True if we should respond with AI, false otherwise
  */
 export function shouldRespondToLogWithAI(
+  thread: Thread,
   beforeData: Log | undefined,
   afterData: Log | undefined
 ): boolean {
+  if (thread.currentConservationMode === "debrief") return false;
+
   // Case 1: New message logs (creation event, no before data)
   if (
     !beforeData &&
