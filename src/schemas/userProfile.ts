@@ -1,17 +1,10 @@
 import { z } from "zod";
-
-export const emojiIdSchema = z
-  .object({
-    color: z.string(),
-    emoji: z.string(),
-    name: z.string().optional(),
-  })
-  .optional();
+import { emojiIdSchema } from "./emojiId";
 
 export const userProfileSchema = z.object({
   id: z.string().optional(),
   invitationCode: z.string(),
-  emojiId: emojiIdSchema,
+  emojiId: emojiIdSchema.optional(),
 });
 
 export type UserProfile = z.infer<typeof userProfileSchema>;

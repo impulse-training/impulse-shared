@@ -3,6 +3,7 @@ import {
   Log,
   logIsBehaviorLog,
   logIsDaySummaryLog,
+  logIsImpulseLog,
   logIsQuestionLog,
   logIsResistedLog,
   logIsShowTourLog,
@@ -26,23 +27,30 @@ export function shouldRespondToLogWithAI(
 ): boolean {
   if (thread.currentConservationMode === "debrief") return false;
 
+  const isCreating = !beforeData && afterData;
+  const isUpdating = beforeData && afterData;
+  const isNotDeleting = !!afterData;
+
   // Case 1: New message logs (creation event, no before data)
-  if (!beforeData && afterData && logIsUserMessageLog(afterData)) {
+  if (isCreating && logIsUserMessageLog(afterData)) {
+    return true;
+  }
+
+  if (isCreating && logIsImpulseLog(afterData)) {
     return true;
   }
 
   // Case 2: Impulse can respond when the user marks that they resisted the impulse
-  if (!beforeData && afterData && logIsResistedLog(afterData)) {
+  if (isCreating && logIsResistedLog(afterData)) {
     return true;
   }
 
   // Case 3: Widget setup log with changed response field
-  if (afterData && logIsWidgetSetupLog(afterData)) return true;
+  if (isNotDeleting && logIsWidgetSetupLog(afterData)) return true;
 
   // Case 4: The user has completed a tour
   if (
-    beforeData &&
-    afterData &&
+    isUpdating &&
     logIsShowTourLog(beforeData) &&
     logIsShowTourLog(afterData) &&
     !beforeData?.data.completedAt &&
@@ -53,8 +61,7 @@ export function shouldRespondToLogWithAI(
 
   // Case 5: The user has answered a question
   if (
-    beforeData &&
-    afterData &&
+    isUpdating &&
     logIsQuestionLog(afterData) &&
     fieldChanged(
       beforeData,
@@ -67,7 +74,7 @@ export function shouldRespondToLogWithAI(
 
   // Case 6: The user has completed a day summary
   if (
-    afterData &&
+    isNotDeleting &&
     logIsDaySummaryLog(afterData) &&
     fieldChanged(beforeData, afterData, "data.behaviorDataTotalByBehaviorId")
   ) {
@@ -76,7 +83,7 @@ export function shouldRespondToLogWithAI(
 
   // Case 7: The user has tracked a behavior
   if (
-    afterData &&
+    isNotDeleting &&
     logIsBehaviorLog(afterData) &&
     fieldChanged(beforeData, afterData, "data.formattedValue")
   ) {
