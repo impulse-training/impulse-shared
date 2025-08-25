@@ -15,40 +15,39 @@ import { Timestamp } from "../types/firebase";
  * - Date objects
  * - Objects with seconds and nanoseconds properties
  */
-export const timestampSchema = z.custom<Timestamp>((value) => {
-  if (value === null || value === undefined) return true;
+export const timestampSchema = z.custom<Timestamp>(
+  (value) => {
+    if (value === null || value === undefined) return true;
 
-  // Accept Firestore Timestamp-like (has toDate function)
-  const hasToDate =
-    typeof value === "object" &&
-    value !== null &&
-    "toDate" in (value as any) &&
-    typeof (value as any).toDate === "function";
+    // Accept Firestore Timestamp-like (has toDate function)
+    const hasToDate =
+      typeof value === "object" &&
+      value !== null &&
+      "toDate" in (value as any) &&
+      typeof (value as any).toDate === "function";
 
-  if (hasToDate) return true;
+    if (hasToDate) return true;
 
-  // Accept native Date objects
-  if (value instanceof Date && !isNaN(value.getTime())) return true;
-
-  // Accept plain objects with numeric seconds and nanoseconds
-  if (
-    typeof value === "object" &&
-    value !== null &&
-    "seconds" in (value as any) &&
-    "nanoseconds" in (value as any)
-  ) {
-    const seconds = (value as any).seconds;
-    const nanos = (value as any).nanoseconds;
+    // Accept plain objects with numeric seconds and nanoseconds
     if (
-      (typeof seconds === "number" || typeof seconds === "bigint") &&
-      typeof nanos === "number"
+      typeof value === "object" &&
+      value !== null &&
+      "seconds" in (value as any) &&
+      "nanoseconds" in (value as any)
     ) {
-      return true;
+      const seconds = (value as any).seconds;
+      const nanos = (value as any).nanoseconds;
+      if (
+        (typeof seconds === "number" || typeof seconds === "bigint") &&
+        typeof nanos === "number"
+      ) {
+        return true;
+      }
     }
+
+    return false;
+  },
+  {
+    message: "Must be a Firestore Timestamp-like object",
   }
-
-  return false;
-}, {
-  message: "Must be a Firestore Timestamp-like object",
-});
-
+);

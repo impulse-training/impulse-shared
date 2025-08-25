@@ -3,15 +3,14 @@ import {
   Log,
   logIsBehaviorLog,
   logIsDaySummaryLog,
-  logIsImpulseLog,
   logIsQuestionLog,
-  logIsReadyToDebriefLog,
   logIsResistedLog,
   logIsShowTourLog,
   logIsUserMessageLog,
   logIsWidgetSetupLog,
 } from "../schemas/log";
 import { fieldChanged } from "./fields";
+import { WithId } from "./withId";
 
 /**
  * Check if we should respond to a log write event with AI
@@ -21,20 +20,14 @@ import { fieldChanged } from "./fields";
  * @returns True if we should respond with AI, false otherwise
  */
 export function shouldRespondToLogWithAI(
-  thread: Thread,
+  thread: WithId<Thread>,
   beforeData: Log | undefined,
   afterData: Log | undefined
 ): boolean {
   if (thread.currentConservationMode === "debrief") return false;
 
   // Case 1: New message logs (creation event, no before data)
-  if (
-    !beforeData &&
-    afterData &&
-    (logIsUserMessageLog(afterData) ||
-      logIsImpulseLog(afterData) ||
-      logIsReadyToDebriefLog(afterData))
-  ) {
+  if (!beforeData && afterData && logIsUserMessageLog(afterData)) {
     return true;
   }
 

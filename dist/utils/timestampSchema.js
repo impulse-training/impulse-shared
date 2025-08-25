@@ -26,9 +26,6 @@ exports.timestampSchema = zod_1.z.custom((value) => {
         typeof value.toDate === "function";
     if (hasToDate)
         return true;
-    // Accept native Date objects
-    if (value instanceof Date && !isNaN(value.getTime()))
-        return true;
     // Accept plain objects with numeric seconds and nanoseconds
     if (typeof value === "object" &&
         value !== null &&
