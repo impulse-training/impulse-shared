@@ -5,7 +5,7 @@ export * from "./days";
 export * from "./documentReferenceSchema";
 export * from "./fields";
 export * from "./objectOf";
-export * from "./shouldRespondWithAI";
+export * from "./shouldRespondToLogWithAI";
 export * from "./sumBehaviorDataTotals";
 export * from "./timestampSchema";
 export * from "./validation";

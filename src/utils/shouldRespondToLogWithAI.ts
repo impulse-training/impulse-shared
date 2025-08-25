@@ -7,7 +7,6 @@ import {
   logIsReadyToDebriefLog,
   logIsResistedLog,
   logIsShowTourLog,
-  logIsTacticLog,
   logIsUserMessageLog,
   logIsWidgetSetupLog,
 } from "../schemas/log";
@@ -20,7 +19,7 @@ import { fieldChanged } from "./fields";
  * @param afterData The log data after the write
  * @returns True if we should respond with AI, false otherwise
  */
-export function shouldRespondWithAI(
+export function shouldRespondToLogWithAI(
   beforeData: Log | undefined,
   afterData: Log | undefined
 ): boolean {
@@ -84,11 +83,6 @@ export function shouldRespondWithAI(
     logIsBehaviorLog(afterData) &&
     fieldChanged(beforeData, afterData, "data.formattedValue")
   ) {
-    return true;
-  }
-
-  // Case 8: The user has completed a tactic
-  if (afterData && logIsTacticLog(afterData) && afterData.data.completed) {
     return true;
   }
 
