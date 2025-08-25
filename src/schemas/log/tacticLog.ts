@@ -8,6 +8,8 @@ export const tacticLogSchema = logBaseSchema.extend({
   isDisplayable: z.literal(true),
   data: z.object({
     tactic: tacticSchema,
+    // If this tactic activity originated from displaying a plan, include the planId
+    planId: z.string().optional(),
     // total number of steps in the tactic at the time of logging
     stepCount: z.number().int().nonnegative().optional(),
     // 0-based indexes of completed steps (progressive)
