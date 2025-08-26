@@ -3,6 +3,7 @@ export * from "./audioGenerationJob";
 export * from "./behavior";
 export * from "./daySummary";
 export * from "./emojiId";
+export * from "./audit";
 export * from "./externalSender";
 export * from "./externalSenderMessage";
 export * from "./externalSenderSession";

@@ -20,6 +20,7 @@ __exportStar(require("./audioGenerationJob"), exports);
 __exportStar(require("./behavior"), exports);
 __exportStar(require("./daySummary"), exports);
 __exportStar(require("./emojiId"), exports);
+__exportStar(require("./audit"), exports);
 __exportStar(require("./externalSender"), exports);
 __exportStar(require("./externalSenderMessage"), exports);
 __exportStar(require("./externalSenderSession"), exports);
