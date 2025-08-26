@@ -2,8 +2,8 @@ import {
   ChatCompletionAssistantMessageParam,
   ChatCompletionMessageParam,
 } from "openai/resources/chat";
+import { getBehaviorCategoryExplanation } from "../constants/behaviorCategories";
 import {
-  BehaviorLog,
   Log,
   logIsAssistantMessageLog,
   logIsBehaviorLog,
@@ -11,16 +11,15 @@ import {
   logIsDaySummaryLog,
   logIsImpulseLog,
   logIsQuestionLog,
+  logIsReadyToDebriefLog,
   logIsResistedLog,
   logIsShowTourLog,
   logIsTacticLog,
   logIsToolCallLog,
   logIsUserMessageLog,
   logIsWidgetSetupLog,
-  logIsReadyToDebriefLog,
 } from "../schemas/log";
 import { formatDaySummary } from "./formatDaySummary";
-import { getBehaviorCategoryExplanation } from "../constants/behaviorCategories";
 
 export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
   if (logIsImpulseLog(log)) {
@@ -38,7 +37,8 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
     return [
       {
         role: "user",
-        content: "<SYSTEM>User finished a tactic and is ready to debrief</SYSTEM>",
+        content:
+          "<SYSTEM>User finished a tactic and is ready to debrief</SYSTEM>",
       },
     ];
   }
@@ -63,7 +63,7 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
   // Handle ToolCallLog
   if (logIsToolCallLog(log)) {
     const messages: ChatCompletionMessageParam[] = [];
-    messages.push(log.data.message);
+    messages.push(log.data.message as ChatCompletionMessageParam);
 
     // Add tool result messages
     if (log.data.toolCallResults && log.data.toolCallResults.length > 0) {
@@ -78,7 +78,7 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
   // Handle CallLog
   if (logIsCallLog(log)) {
     const messages: ChatCompletionMessageParam[] = [];
-    
+
     if (log.data.summary) {
       messages.push({
         role: "user",
@@ -90,7 +90,7 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
         content: "<SYSTEM>User had a previous call with the assistant</SYSTEM>",
       });
     }
-    
+
     return messages;
   }
 
@@ -168,7 +168,7 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
   if (logIsBehaviorLog(log)) {
     const { behaviorName, formattedValue, category } = log.data;
     const categoryExplanation = getBehaviorCategoryExplanation(category);
-    
+
     return [
       {
         role: "user",
@@ -180,7 +180,7 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
   // Handle DaySummaryLog
   if (logIsDaySummaryLog(log)) {
     const summary = formatDaySummary(log);
-    
+
     return [
       {
         role: "user",

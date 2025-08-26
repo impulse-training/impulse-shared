@@ -304,14 +304,99 @@ export declare const logSchemas: {
         isDisplayable: z.ZodLiteral<false>;
         type: z.ZodLiteral<"tool_call">;
         data: z.ZodObject<{
-            message: z.ZodAny;
+            message: z.ZodObject<{
+                role: z.ZodEnum<["assistant", "user", "system", "tool"]>;
+                content: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNull, z.ZodArray<z.ZodAny, "many">]>>;
+                tool_call_id: z.ZodOptional<z.ZodString>;
+                tool_calls: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                    id: z.ZodString;
+                    type: z.ZodLiteral<"function">;
+                    function: z.ZodObject<{
+                        name: z.ZodString;
+                        arguments: z.ZodString;
+                    }, "strip", z.ZodTypeAny, {
+                        name: string;
+                        arguments: string;
+                    }, {
+                        name: string;
+                        arguments: string;
+                    }>;
+                }, "strip", z.ZodTypeAny, {
+                    function: {
+                        name: string;
+                        arguments: string;
+                    };
+                    type: "function";
+                    id: string;
+                }, {
+                    function: {
+                        name: string;
+                        arguments: string;
+                    };
+                    type: "function";
+                    id: string;
+                }>, "many">>;
+                name: z.ZodOptional<z.ZodString>;
+            }, "strip", z.ZodTypeAny, {
+                role: "assistant" | "user" | "system" | "tool";
+                name?: string | undefined;
+                content?: string | any[] | null | undefined;
+                tool_call_id?: string | undefined;
+                tool_calls?: {
+                    function: {
+                        name: string;
+                        arguments: string;
+                    };
+                    type: "function";
+                    id: string;
+                }[] | undefined;
+            }, {
+                role: "assistant" | "user" | "system" | "tool";
+                name?: string | undefined;
+                content?: string | any[] | null | undefined;
+                tool_call_id?: string | undefined;
+                tool_calls?: {
+                    function: {
+                        name: string;
+                        arguments: string;
+                    };
+                    type: "function";
+                    id: string;
+                }[] | undefined;
+            }>;
             toolCallResults: z.ZodArray<z.ZodAny, "many">;
         }, "strip", z.ZodTypeAny, {
+            message: {
+                role: "assistant" | "user" | "system" | "tool";
+                name?: string | undefined;
+                content?: string | any[] | null | undefined;
+                tool_call_id?: string | undefined;
+                tool_calls?: {
+                    function: {
+                        name: string;
+                        arguments: string;
+                    };
+                    type: "function";
+                    id: string;
+                }[] | undefined;
+            };
             toolCallResults: any[];
-            message?: any;
         }, {
+            message: {
+                role: "assistant" | "user" | "system" | "tool";
+                name?: string | undefined;
+                content?: string | any[] | null | undefined;
+                tool_call_id?: string | undefined;
+                tool_calls?: {
+                    function: {
+                        name: string;
+                        arguments: string;
+                    };
+                    type: "function";
+                    id: string;
+                }[] | undefined;
+            };
             toolCallResults: any[];
-            message?: any;
         }>;
     }, "strip", z.ZodTypeAny, {
         type: "tool_call";
@@ -320,8 +405,21 @@ export declare const logSchemas: {
         dateString: string;
         isDisplayable: false;
         data: {
+            message: {
+                role: "assistant" | "user" | "system" | "tool";
+                name?: string | undefined;
+                content?: string | any[] | null | undefined;
+                tool_call_id?: string | undefined;
+                tool_calls?: {
+                    function: {
+                        name: string;
+                        arguments: string;
+                    };
+                    type: "function";
+                    id: string;
+                }[] | undefined;
+            };
             toolCallResults: any[];
-            message?: any;
         };
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -334,8 +432,21 @@ export declare const logSchemas: {
         dateString: string;
         isDisplayable: false;
         data: {
+            message: {
+                role: "assistant" | "user" | "system" | "tool";
+                name?: string | undefined;
+                content?: string | any[] | null | undefined;
+                tool_call_id?: string | undefined;
+                tool_calls?: {
+                    function: {
+                        name: string;
+                        arguments: string;
+                    };
+                    type: "function";
+                    id: string;
+                }[] | undefined;
+            };
             toolCallResults: any[];
-            message?: any;
         };
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -8486,14 +8597,99 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: z.ZodLiteral<false>;
     type: z.ZodLiteral<"tool_call">;
     data: z.ZodObject<{
-        message: z.ZodAny;
+        message: z.ZodObject<{
+            role: z.ZodEnum<["assistant", "user", "system", "tool"]>;
+            content: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNull, z.ZodArray<z.ZodAny, "many">]>>;
+            tool_call_id: z.ZodOptional<z.ZodString>;
+            tool_calls: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                id: z.ZodString;
+                type: z.ZodLiteral<"function">;
+                function: z.ZodObject<{
+                    name: z.ZodString;
+                    arguments: z.ZodString;
+                }, "strip", z.ZodTypeAny, {
+                    name: string;
+                    arguments: string;
+                }, {
+                    name: string;
+                    arguments: string;
+                }>;
+            }, "strip", z.ZodTypeAny, {
+                function: {
+                    name: string;
+                    arguments: string;
+                };
+                type: "function";
+                id: string;
+            }, {
+                function: {
+                    name: string;
+                    arguments: string;
+                };
+                type: "function";
+                id: string;
+            }>, "many">>;
+            name: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            role: "assistant" | "user" | "system" | "tool";
+            name?: string | undefined;
+            content?: string | any[] | null | undefined;
+            tool_call_id?: string | undefined;
+            tool_calls?: {
+                function: {
+                    name: string;
+                    arguments: string;
+                };
+                type: "function";
+                id: string;
+            }[] | undefined;
+        }, {
+            role: "assistant" | "user" | "system" | "tool";
+            name?: string | undefined;
+            content?: string | any[] | null | undefined;
+            tool_call_id?: string | undefined;
+            tool_calls?: {
+                function: {
+                    name: string;
+                    arguments: string;
+                };
+                type: "function";
+                id: string;
+            }[] | undefined;
+        }>;
         toolCallResults: z.ZodArray<z.ZodAny, "many">;
     }, "strip", z.ZodTypeAny, {
+        message: {
+            role: "assistant" | "user" | "system" | "tool";
+            name?: string | undefined;
+            content?: string | any[] | null | undefined;
+            tool_call_id?: string | undefined;
+            tool_calls?: {
+                function: {
+                    name: string;
+                    arguments: string;
+                };
+                type: "function";
+                id: string;
+            }[] | undefined;
+        };
         toolCallResults: any[];
-        message?: any;
     }, {
+        message: {
+            role: "assistant" | "user" | "system" | "tool";
+            name?: string | undefined;
+            content?: string | any[] | null | undefined;
+            tool_call_id?: string | undefined;
+            tool_calls?: {
+                function: {
+                    name: string;
+                    arguments: string;
+                };
+                type: "function";
+                id: string;
+            }[] | undefined;
+        };
         toolCallResults: any[];
-        message?: any;
     }>;
 }, "strip", z.ZodTypeAny, {
     type: "tool_call";
@@ -8502,8 +8698,21 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dateString: string;
     isDisplayable: false;
     data: {
+        message: {
+            role: "assistant" | "user" | "system" | "tool";
+            name?: string | undefined;
+            content?: string | any[] | null | undefined;
+            tool_call_id?: string | undefined;
+            tool_calls?: {
+                function: {
+                    name: string;
+                    arguments: string;
+                };
+                type: "function";
+                id: string;
+            }[] | undefined;
+        };
         toolCallResults: any[];
-        message?: any;
     };
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
@@ -8516,8 +8725,21 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dateString: string;
     isDisplayable: false;
     data: {
+        message: {
+            role: "assistant" | "user" | "system" | "tool";
+            name?: string | undefined;
+            content?: string | any[] | null | undefined;
+            tool_call_id?: string | undefined;
+            tool_calls?: {
+                function: {
+                    name: string;
+                    arguments: string;
+                };
+                type: "function";
+                id: string;
+            }[] | undefined;
+        };
         toolCallResults: any[];
-        message?: any;
     };
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
