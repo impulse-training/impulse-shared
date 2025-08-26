@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { questionSchema } from "../question";
 import { logBaseSchema } from "./base";
 
 const responseSchema = z.object({
@@ -15,8 +16,7 @@ export const questionLogSchema = logBaseSchema.extend({
   isDisplayable: z.literal(true),
   data: z.object({
     questionId: z.string().optional(),
-    // TODO: tighten this once ../question is migrated to Zod
-    question: z.any(),
+    question: questionSchema,
     response: responseSchema.optional(),
   }),
 });

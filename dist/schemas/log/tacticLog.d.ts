@@ -669,8 +669,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 }, "strip", z.ZodTypeAny, {
                     isTemplate: boolean;
-                    responseType: "text";
                     question: string;
+                    responseType: "text";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -682,8 +682,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     scope?: "impulse" | "debrief" | "recap" | undefined;
                     suggestedResponses?: string[] | undefined;
                 }, {
-                    responseType: "text";
                     question: string;
+                    responseType: "text";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -721,8 +721,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     }>;
                 }, "strip", z.ZodTypeAny, {
                     isTemplate: boolean;
-                    responseType: "slider1To10";
                     question: string;
+                    responseType: "slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
@@ -737,8 +737,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     isPinned?: boolean | undefined;
                     scope?: "impulse" | "debrief" | "recap" | undefined;
                 }, {
-                    responseType: "slider1To10";
                     question: string;
+                    responseType: "slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
@@ -768,8 +768,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     scope: z.ZodOptional<z.ZodEnum<["impulse" | "debrief" | "recap", ...("impulse" | "debrief" | "recap")[]]>>;
                 }, "strip", z.ZodTypeAny, {
                     isTemplate: boolean;
-                    responseType: "recap";
                     question: string;
+                    responseType: "recap";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -780,8 +780,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     isPinned?: boolean | undefined;
                     scope?: "impulse" | "debrief" | "recap" | undefined;
                 }, {
-                    responseType: "recap";
                     question: string;
+                    responseType: "recap";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -798,8 +798,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                 text: string;
                 question: {
                     isTemplate: boolean;
-                    responseType: "recap";
                     question: string;
+                    responseType: "recap";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -811,8 +811,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     scope?: "impulse" | "debrief" | "recap" | undefined;
                 } | {
                     isTemplate: boolean;
-                    responseType: "slider1To10";
                     question: string;
+                    responseType: "slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
@@ -828,8 +828,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     scope?: "impulse" | "debrief" | "recap" | undefined;
                 } | {
                     isTemplate: boolean;
-                    responseType: "text";
                     question: string;
+                    responseType: "text";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -865,8 +865,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             }, {
                 text: string;
                 question: {
-                    responseType: "recap";
                     question: string;
+                    responseType: "recap";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -878,8 +878,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     isPinned?: boolean | undefined;
                     scope?: "impulse" | "debrief" | "recap" | undefined;
                 } | {
-                    responseType: "slider1To10";
                     question: string;
+                    responseType: "slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
@@ -895,8 +895,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     isPinned?: boolean | undefined;
                     scope?: "impulse" | "debrief" | "recap" | undefined;
                 } | {
-                    responseType: "text";
                     question: string;
+                    responseType: "text";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -1520,8 +1520,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                 text: string;
                 question: {
                     isTemplate: boolean;
-                    responseType: "recap";
                     question: string;
+                    responseType: "recap";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -1533,8 +1533,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     scope?: "impulse" | "debrief" | "recap" | undefined;
                 } | {
                     isTemplate: boolean;
-                    responseType: "slider1To10";
                     question: string;
+                    responseType: "slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
@@ -1550,8 +1550,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     scope?: "impulse" | "debrief" | "recap" | undefined;
                 } | {
                     isTemplate: boolean;
-                    responseType: "text";
                     question: string;
+                    responseType: "text";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -1769,8 +1769,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             } | {
                 text: string;
                 question: {
-                    responseType: "recap";
                     question: string;
+                    responseType: "recap";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -1782,8 +1782,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     isPinned?: boolean | undefined;
                     scope?: "impulse" | "debrief" | "recap" | undefined;
                 } | {
-                    responseType: "slider1To10";
                     question: string;
+                    responseType: "slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
@@ -1799,8 +1799,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     isPinned?: boolean | undefined;
                     scope?: "impulse" | "debrief" | "recap" | undefined;
                 } | {
-                    responseType: "text";
                     question: string;
+                    responseType: "text";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -2026,8 +2026,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                 text: string;
                 question: {
                     isTemplate: boolean;
-                    responseType: "recap";
                     question: string;
+                    responseType: "recap";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -2039,8 +2039,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     scope?: "impulse" | "debrief" | "recap" | undefined;
                 } | {
                     isTemplate: boolean;
-                    responseType: "slider1To10";
                     question: string;
+                    responseType: "slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
@@ -2056,8 +2056,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     scope?: "impulse" | "debrief" | "recap" | undefined;
                 } | {
                     isTemplate: boolean;
-                    responseType: "text";
                     question: string;
+                    responseType: "text";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -2281,8 +2281,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             } | {
                 text: string;
                 question: {
-                    responseType: "recap";
                     question: string;
+                    responseType: "recap";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -2294,8 +2294,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     isPinned?: boolean | undefined;
                     scope?: "impulse" | "debrief" | "recap" | undefined;
                 } | {
-                    responseType: "slider1To10";
                     question: string;
+                    responseType: "slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
@@ -2311,8 +2311,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     isPinned?: boolean | undefined;
                     scope?: "impulse" | "debrief" | "recap" | undefined;
                 } | {
-                    responseType: "text";
                     question: string;
+                    responseType: "text";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -2545,8 +2545,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                 text: string;
                 question: {
                     isTemplate: boolean;
-                    responseType: "recap";
                     question: string;
+                    responseType: "recap";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -2558,8 +2558,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     scope?: "impulse" | "debrief" | "recap" | undefined;
                 } | {
                     isTemplate: boolean;
-                    responseType: "slider1To10";
                     question: string;
+                    responseType: "slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
@@ -2575,8 +2575,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     scope?: "impulse" | "debrief" | "recap" | undefined;
                 } | {
                     isTemplate: boolean;
-                    responseType: "text";
                     question: string;
+                    responseType: "text";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -2811,8 +2811,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             } | {
                 text: string;
                 question: {
-                    responseType: "recap";
                     question: string;
+                    responseType: "recap";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -2824,8 +2824,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     isPinned?: boolean | undefined;
                     scope?: "impulse" | "debrief" | "recap" | undefined;
                 } | {
-                    responseType: "slider1To10";
                     question: string;
+                    responseType: "slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
@@ -2841,8 +2841,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     isPinned?: boolean | undefined;
                     scope?: "impulse" | "debrief" | "recap" | undefined;
                 } | {
-                    responseType: "text";
                     question: string;
+                    responseType: "text";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
