@@ -441,6 +441,16 @@ export declare const supportGroupSchema: z.ZodObject<{
         timestamp: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
         dateString: z.ZodString;
         callLogDocPath: z.ZodOptional<z.ZodString>;
+        replyTactic: z.ZodOptional<z.ZodObject<{
+            tactic: z.ZodAny;
+            currentStepIndex: z.ZodNumber;
+        }, "strip", z.ZodTypeAny, {
+            currentStepIndex: number;
+            tactic?: any;
+        }, {
+            currentStepIndex: number;
+            tactic?: any;
+        }>>;
         isDisplayable: z.ZodLiteral<true>;
         data: z.ZodObject<{
             message: z.ZodAny;
@@ -543,6 +553,10 @@ export declare const supportGroupSchema: z.ZodObject<{
         updatedAt?: import("../types").Timestamp | undefined;
         id?: string | undefined;
         callLogDocPath?: string | undefined;
+        replyTactic?: {
+            currentStepIndex: number;
+            tactic?: any;
+        } | undefined;
         audioAttachment?: {
             uri: string;
             storagePath: string;
@@ -575,6 +589,10 @@ export declare const supportGroupSchema: z.ZodObject<{
         updatedAt?: import("../types").Timestamp | undefined;
         id?: string | undefined;
         callLogDocPath?: string | undefined;
+        replyTactic?: {
+            currentStepIndex: number;
+            tactic?: any;
+        } | undefined;
         audioAttachment?: {
             uri: string;
             storagePath: string;
@@ -689,6 +707,10 @@ export declare const supportGroupSchema: z.ZodObject<{
         updatedAt?: import("../types").Timestamp | undefined;
         id?: string | undefined;
         callLogDocPath?: string | undefined;
+        replyTactic?: {
+            currentStepIndex: number;
+            tactic?: any;
+        } | undefined;
         audioAttachment?: {
             uri: string;
             storagePath: string;
@@ -799,6 +821,10 @@ export declare const supportGroupSchema: z.ZodObject<{
         updatedAt?: import("../types").Timestamp | undefined;
         id?: string | undefined;
         callLogDocPath?: string | undefined;
+        replyTactic?: {
+            currentStepIndex: number;
+            tactic?: any;
+        } | undefined;
         audioAttachment?: {
             uri: string;
             storagePath: string;

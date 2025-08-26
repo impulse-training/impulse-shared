@@ -11,6 +11,14 @@ export const logBaseSchema = z.object({
   dateString: z.string(),
   // A log can be associated with a call, which is also a log. Not all logs should be able to be
   // associated with a call, but it's simplest to just define this as an optional property on our
-  // base log schema
+  // base log schema.
+  // TODO: REVIEW
   callLogDocPath: z.string().optional(),
+
+  replyTactic: z
+    .object({
+      tactic: z.any(),
+      currentStepIndex: z.number(),
+    })
+    .optional(),
 });

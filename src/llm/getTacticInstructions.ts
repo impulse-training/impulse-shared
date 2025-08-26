@@ -64,6 +64,11 @@ export function getTacticInstructions(tactic: Tactic): string {
     return tactic.aiInstructions.trim();
   }
 
+  if (tactic.steps.length === 1) {
+    const only = tactic.steps[0];
+    return `Complete the tactic: "${tactic.title}". ${getTacticStepInstructions(only)}`;
+  }
+
   const parts = tactic.steps.map((s, idx) => `${idx + 1}. ${getTacticStepInstructions(s)}`);
   return `Complete the tactic: "${tactic.title}". Steps:\n` + parts.join("\n");
 }

@@ -3,7 +3,7 @@ import { documentReferenceSchema } from "../../utils";
 import { timestampSchema } from "../../utils/timestampSchema";
 import { emojiIdSchema } from "../emojiId";
 import { planWithIdSchema } from "../plan";
-import { tacticStepSchema } from "../tactic";
+import { tacticSchema } from "../tactic";
 
 // Thread schema
 export const threadBaseSchema = z.object({
@@ -46,7 +46,14 @@ export const threadBaseSchema = z.object({
   currentConservationMode: z.enum(["default"]).optional(),
   currentScreen: z.enum(["tactics", "chat"]).optional(),
 
-  currentTacticStep: tacticStepSchema.optional().nullable(),
+  currentTactic: z
+    .object({
+      tactic: tacticSchema,
+      stepIndex: z.number().optional(),
+    })
+    .optional()
+    .nullable(),
+
   agentConnectedAt: timestampSchema.optional(),
   allQuestionsAnsweredAt: timestampSchema.optional(),
 

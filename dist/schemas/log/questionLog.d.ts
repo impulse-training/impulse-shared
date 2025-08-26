@@ -24,6 +24,16 @@ export declare const questionLogSchema: z.ZodObject<{
     timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     dateString: z.ZodString;
     callLogDocPath: z.ZodOptional<z.ZodString>;
+    replyTactic: z.ZodOptional<z.ZodObject<{
+        tactic: z.ZodAny;
+        currentStepIndex: z.ZodNumber;
+    }, "strip", z.ZodTypeAny, {
+        currentStepIndex: number;
+        tactic?: any;
+    }, {
+        currentStepIndex: number;
+        tactic?: any;
+    }>>;
 } & {
     type: z.ZodLiteral<"question">;
     isDisplayable: z.ZodLiteral<true>;
@@ -357,6 +367,10 @@ export declare const questionLogSchema: z.ZodObject<{
     updatedAt?: import("../../types").Timestamp | undefined;
     id?: string | undefined;
     callLogDocPath?: string | undefined;
+    replyTactic?: {
+        currentStepIndex: number;
+        tactic?: any;
+    } | undefined;
 }, {
     type: "question";
     userId: string;
@@ -421,6 +435,10 @@ export declare const questionLogSchema: z.ZodObject<{
     updatedAt?: import("../../types").Timestamp | undefined;
     id?: string | undefined;
     callLogDocPath?: string | undefined;
+    replyTactic?: {
+        currentStepIndex: number;
+        tactic?: any;
+    } | undefined;
 }>;
 export type QuestionLog = z.infer<typeof questionLogSchema>;
 export {};
