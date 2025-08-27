@@ -76,4 +76,18 @@ export const threadBaseSchema = z.object({
   responseStartedProcessingAt: timestampSchema.optional(),
   updatedAt: timestampSchema.optional(),
   createdAt: timestampSchema.optional(),
+
+  // Current call status for global voice UI
+  currentCall: z
+    .object({
+      logId: z.string(),
+      token: z.string(),
+      livekitRoomName: z.string(),
+      livekitSessionId: z.string(),
+      startedAt: timestampSchema,
+      agentConnectedAt: timestampSchema.optional(),
+      endedAt: timestampSchema.optional(),
+      status: z.enum(["connecting", "connected", "ended"]),
+    })
+    .optional(),
 });
