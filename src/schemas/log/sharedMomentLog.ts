@@ -10,6 +10,8 @@ export const sharedMomentLogSchema = logBaseSchema.extend({
   data: z.object({
     // Reference to the original thread document (users/{uid}/threads/{threadId})
     threadRef: documentReferenceSchema,
+    // thread schema
+    thread: z.any(),
     // Snapshot of the sharer's emoji identity (to avoid extra reads)
     emojiId: emojiIdSchema.optional(),
   }),

@@ -9,6 +9,7 @@ export const planLogSchema = logBaseSchema.extend({
   // Plan logs are always displayed in the UI
   isDisplayable: z.literal(true),
   data: z.object({
+    planId: z.string(),
     plan: planWithIdSchema,
     introduction: z.string().optional(),
     acceptedAt: timestampSchema.optional(),

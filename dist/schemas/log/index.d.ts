@@ -7238,6 +7238,7 @@ export declare const logSchemas: {
         type: z.ZodLiteral<"plan">;
         isDisplayable: z.ZodLiteral<true>;
         data: z.ZodObject<{
+            planId: z.ZodString;
             plan: z.ZodUnion<[z.ZodIntersection<z.ZodObject<{
                 id: z.ZodString;
                 _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
@@ -7582,6 +7583,7 @@ export declare const logSchemas: {
                 deletedAt?: import("../../types").Timestamp | undefined;
                 triggerKeywords?: string[] | undefined;
             });
+            planId: string;
             introduction?: string | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
             tacticsByPath?: Record<string, any> | undefined;
@@ -7664,6 +7666,7 @@ export declare const logSchemas: {
                 deletedAt?: import("../../types").Timestamp | undefined;
                 triggerKeywords?: string[] | undefined;
             });
+            planId: string;
             introduction?: string | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
             tacticsByPath?: Record<string, any> | undefined;
@@ -7753,6 +7756,7 @@ export declare const logSchemas: {
                 deletedAt?: import("../../types").Timestamp | undefined;
                 triggerKeywords?: string[] | undefined;
             });
+            planId: string;
             introduction?: string | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
             tacticsByPath?: Record<string, any> | undefined;
@@ -7850,6 +7854,7 @@ export declare const logSchemas: {
                 deletedAt?: import("../../types").Timestamp | undefined;
                 triggerKeywords?: string[] | undefined;
             });
+            planId: string;
             introduction?: string | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
             tacticsByPath?: Record<string, any> | undefined;
@@ -8548,6 +8553,7 @@ export declare const logSchemas: {
         isDisplayable: z.ZodLiteral<true>;
         data: z.ZodObject<{
             threadRef: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
+            thread: z.ZodAny;
             emojiId: z.ZodOptional<z.ZodObject<{
                 color: z.ZodString;
                 emoji: z.ZodString;
@@ -8568,6 +8574,7 @@ export declare const logSchemas: {
                 emoji: string;
                 name?: string | undefined;
             } | undefined;
+            thread?: any;
         }, {
             threadRef: import("../..").DocumentReferenceLike<unknown>;
             emojiId?: {
@@ -8575,6 +8582,7 @@ export declare const logSchemas: {
                 emoji: string;
                 name?: string | undefined;
             } | undefined;
+            thread?: any;
         }>;
     }, "strip", z.ZodTypeAny, {
         type: "shared_moment";
@@ -8589,6 +8597,7 @@ export declare const logSchemas: {
                 emoji: string;
                 name?: string | undefined;
             } | undefined;
+            thread?: any;
         };
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -8611,6 +8620,7 @@ export declare const logSchemas: {
                 emoji: string;
                 name?: string | undefined;
             } | undefined;
+            thread?: any;
         };
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -12918,6 +12928,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     type: z.ZodLiteral<"plan">;
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
+        planId: z.ZodString;
         plan: z.ZodUnion<[z.ZodIntersection<z.ZodObject<{
             id: z.ZodString;
             _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
@@ -13262,6 +13273,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             deletedAt?: import("../../types").Timestamp | undefined;
             triggerKeywords?: string[] | undefined;
         });
+        planId: string;
         introduction?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
         tacticsByPath?: Record<string, any> | undefined;
@@ -13344,6 +13356,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             deletedAt?: import("../../types").Timestamp | undefined;
             triggerKeywords?: string[] | undefined;
         });
+        planId: string;
         introduction?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
         tacticsByPath?: Record<string, any> | undefined;
@@ -13433,6 +13446,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             deletedAt?: import("../../types").Timestamp | undefined;
             triggerKeywords?: string[] | undefined;
         });
+        planId: string;
         introduction?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
         tacticsByPath?: Record<string, any> | undefined;
@@ -13530,6 +13544,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             deletedAt?: import("../../types").Timestamp | undefined;
             triggerKeywords?: string[] | undefined;
         });
+        planId: string;
         introduction?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
         tacticsByPath?: Record<string, any> | undefined;
@@ -14152,6 +14167,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
         threadRef: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
+        thread: z.ZodAny;
         emojiId: z.ZodOptional<z.ZodObject<{
             color: z.ZodString;
             emoji: z.ZodString;
@@ -14172,6 +14188,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             emoji: string;
             name?: string | undefined;
         } | undefined;
+        thread?: any;
     }, {
         threadRef: import("../..").DocumentReferenceLike<unknown>;
         emojiId?: {
@@ -14179,6 +14196,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             emoji: string;
             name?: string | undefined;
         } | undefined;
+        thread?: any;
     }>;
 }, "strip", z.ZodTypeAny, {
     type: "shared_moment";
@@ -14193,6 +14211,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             emoji: string;
             name?: string | undefined;
         } | undefined;
+        thread?: any;
     };
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
@@ -14215,6 +14234,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             emoji: string;
             name?: string | undefined;
         } | undefined;
+        thread?: any;
     };
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
