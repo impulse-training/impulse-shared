@@ -13,11 +13,7 @@ export const planLogSchema = logBaseSchema.extend({
     plan: planWithIdSchema,
     introduction: z.string().optional(),
     acceptedAt: timestampSchema.optional(),
-    // Loosely typed until tactic.old is migrated
     tacticsByPath: z.record(z.string(), z.any()).optional(),
-    // For future use: shuffle feature
-    // pastPlans: z.array(planSchema).optional(),
-    // shufflePressedAt: timestampSchema.optional(),
   }),
 });
 

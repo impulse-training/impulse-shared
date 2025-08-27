@@ -289,18 +289,21 @@ export declare const logSchemas: {
             endedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             livekitSessionId: z.ZodString;
             livekitRoomName: z.ZodString;
+            token: z.ZodOptional<z.ZodString>;
             summary: z.ZodOptional<z.ZodString>;
         }, "strip", z.ZodTypeAny, {
             livekitSessionId: string;
             livekitRoomName: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
+            token?: string | undefined;
             summary?: string | undefined;
         }, {
             livekitSessionId: string;
             livekitRoomName: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
+            token?: string | undefined;
             summary?: string | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
@@ -314,6 +317,7 @@ export declare const logSchemas: {
             livekitRoomName: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
+            token?: string | undefined;
             summary?: string | undefined;
         };
         createdAt?: import("../../types").Timestamp | undefined;
@@ -335,6 +339,7 @@ export declare const logSchemas: {
             livekitRoomName: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
+            token?: string | undefined;
             summary?: string | undefined;
         };
         createdAt?: import("../../types").Timestamp | undefined;
@@ -8971,18 +8976,21 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         endedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         livekitSessionId: z.ZodString;
         livekitRoomName: z.ZodString;
+        token: z.ZodOptional<z.ZodString>;
         summary: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
         livekitSessionId: string;
         livekitRoomName: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
+        token?: string | undefined;
         summary?: string | undefined;
     }, {
         livekitSessionId: string;
         livekitRoomName: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
+        token?: string | undefined;
         summary?: string | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
@@ -8996,6 +9004,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         livekitRoomName: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
+        token?: string | undefined;
         summary?: string | undefined;
     };
     createdAt?: import("../../types").Timestamp | undefined;
@@ -9017,6 +9026,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         livekitRoomName: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
+        token?: string | undefined;
         summary?: string | undefined;
     };
     createdAt?: import("../../types").Timestamp | undefined;

@@ -11,6 +11,7 @@ export const callLogSchema = logBaseSchema.extend({
     endedAt: timestampSchema.optional(),
     livekitSessionId: z.string(),
     livekitRoomName: z.string(),
+    token: z.string().optional(),
     summary: z.string().optional(),
   }),
 });
