@@ -31,7 +31,7 @@ export const threadBaseSchema = z.object({
   // For now, don't type this
   tacticsByPath: z.record(z.string(), z.any()).optional(),
 
-  emojiId: emojiIdSchema,
+  emojiId: emojiIdSchema.nullable(),
 
   // Log summary data - written in after log write functions. We store tactic and behavior tracking
   // logs here (loosely typed until log schemas are migrated)
