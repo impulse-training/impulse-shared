@@ -1,5 +1,5 @@
-import { Tactic } from "../schemas/tactic/tactic";
 import { TacticStep } from "../schemas/tactic/steps";
+import { Tactic } from "../schemas/tactic/tactic";
 
 // Generate concise, actionable instructions for a single tactic step
 export function getTacticStepInstructions(step: TacticStep): string {
@@ -18,16 +18,19 @@ export function getTacticStepInstructions(step: TacticStep): string {
       const secs = step.durationSeconds;
       const mins = Math.floor(secs / 60);
       const rem = secs % 60;
-      const pretty = mins > 0 ? `${mins}m${rem > 0 ? ` ${rem}s` : ""}` : `${rem}s`;
+      const pretty =
+        mins > 0 ? `${mins}m${rem > 0 ? ` ${rem}s` : ""}` : `${rem}s`;
       const label = step.text?.trim();
-      return `Start a timer for ${pretty}${label ? `: ${label}` : ""}. Stay committed until it completes.`;
+      return `Start a timer for ${pretty}${
+        label ? `: ${label}` : ""
+      }. Stay committed until it completes.`;
     }
     case "notifySupport": {
       const label = step.text?.trim() || "Send a supportive message";
       return `${label}. Reach out to your support group now so they know you could use encouragement.`;
     }
     case "question": {
-      const q = step.question.question.trim();
+      const q = step.question.text.trim();
       const label = step.text?.trim();
       return `Reflect and answer${label ? ` (${label})` : ""}: ${q}`;
     }
@@ -40,12 +43,16 @@ export function getTacticStepInstructions(step: TacticStep): string {
     }
     case "media": {
       const count = step.media.length;
-      return `View the ${count === 1 ? "attached item" : `${count} attached items`} and engage with them mindfully (e.g., watch, listen, or read) before continuing.`;
+      return `View the ${
+        count === 1 ? "attached item" : `${count} attached items`
+      } and engage with them mindfully (e.g., watch, listen, or read) before continuing.`;
     }
     case "affirmation": {
       const text = step.text.trim();
       const n = step.repeatCount;
-      return `Repeat this affirmation ${n} time${n === 1 ? "" : "s"}: "${text}". Say it slowly and with intention.`;
+      return `Repeat this affirmation ${n} time${
+        n === 1 ? "" : "s"
+      }: "${text}". Say it slowly and with intention.`;
     }
     default: {
       // Exhaustive check ensures we handle new modes explicitly in the future
@@ -66,9 +73,13 @@ export function getTacticInstructions(tactic: Tactic): string {
 
   if (tactic.steps.length === 1) {
     const only = tactic.steps[0];
-    return `Complete the tactic: "${tactic.title}". ${getTacticStepInstructions(only)}`;
+    return `Complete the tactic: "${tactic.title}". ${getTacticStepInstructions(
+      only
+    )}`;
   }
 
-  const parts = tactic.steps.map((s, idx) => `${idx + 1}. ${getTacticStepInstructions(s)}`);
+  const parts = tactic.steps.map(
+    (s, idx) => `${idx + 1}. ${getTacticStepInstructions(s)}`
+  );
   return `Complete the tactic: "${tactic.title}". Steps:\n` + parts.join("\n");
 }

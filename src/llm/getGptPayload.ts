@@ -118,9 +118,7 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
 
     messages.push({
       role: "assistant",
-      content: log.data.question.text
-        ? log.data.question.text + "\n\n" + log.data.question.question
-        : log.data.question.question,
+      content: log.data.question.text,
     });
 
     if (log.data.response) {
