@@ -1192,185 +1192,32 @@ export declare const logSchemas: {
                         } | undefined;
                     }>>;
                 } & {
-                    mode: z.ZodLiteral<"question">;
-                    question: z.ZodDiscriminatedUnion<"responseType", [z.ZodObject<{
-                        id: z.ZodOptional<z.ZodString>;
-                        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                        text: z.ZodString;
-                        lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                        lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                        numberOfAnswers: z.ZodOptional<z.ZodNumber>;
-                        isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-                        isPinned: z.ZodOptional<z.ZodBoolean>;
-                        responseType: z.ZodLiteral<"text">;
-                        scope: z.ZodOptional<z.ZodEnum<["impulse" | "debrief" | "recap", ...("impulse" | "debrief" | "recap")[]]>>;
-                    } & {
-                        suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-                    }, "strip", z.ZodTypeAny, {
-                        text: string;
-                        isTemplate: boolean;
-                        responseType: "text";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                        suggestedResponses?: string[] | undefined;
-                    }, {
-                        text: string;
-                        responseType: "text";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        isTemplate?: boolean | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                        suggestedResponses?: string[] | undefined;
-                    }>, z.ZodObject<{
-                        id: z.ZodOptional<z.ZodString>;
-                        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                        text: z.ZodString;
-                        lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                        lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                        numberOfAnswers: z.ZodOptional<z.ZodNumber>;
-                        isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-                        isPinned: z.ZodOptional<z.ZodBoolean>;
-                        responseType: z.ZodLiteral<"slider1To10">;
-                        scope: z.ZodOptional<z.ZodEnum<["impulse" | "debrief" | "recap", ...("impulse" | "debrief" | "recap")[]]>>;
-                    } & {
-                        sliderConfig: z.ZodObject<{
-                            minLabel: z.ZodOptional<z.ZodString>;
-                            maxLabel: z.ZodOptional<z.ZodString>;
-                        }, "strip", z.ZodTypeAny, {
-                            minLabel?: string | undefined;
-                            maxLabel?: string | undefined;
-                        }, {
-                            minLabel?: string | undefined;
-                            maxLabel?: string | undefined;
-                        }>;
-                    }, "strip", z.ZodTypeAny, {
-                        text: string;
-                        isTemplate: boolean;
-                        responseType: "slider1To10";
-                        sliderConfig: {
-                            minLabel?: string | undefined;
-                            maxLabel?: string | undefined;
-                        };
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    }, {
-                        text: string;
-                        responseType: "slider1To10";
-                        sliderConfig: {
-                            minLabel?: string | undefined;
-                            maxLabel?: string | undefined;
-                        };
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        isTemplate?: boolean | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    }>, z.ZodObject<{
-                        id: z.ZodOptional<z.ZodString>;
-                        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                        text: z.ZodString;
-                        lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                        lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                        numberOfAnswers: z.ZodOptional<z.ZodNumber>;
-                        isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-                        isPinned: z.ZodOptional<z.ZodBoolean>;
-                        responseType: z.ZodLiteral<"recap">;
-                        scope: z.ZodOptional<z.ZodEnum<["impulse" | "debrief" | "recap", ...("impulse" | "debrief" | "recap")[]]>>;
-                    }, "strip", z.ZodTypeAny, {
-                        text: string;
-                        isTemplate: boolean;
-                        responseType: "recap";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    }, {
-                        text: string;
-                        responseType: "recap";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        isTemplate?: boolean | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    }>]>;
+                    mode: z.ZodLiteral<"question-text">;
+                    id: z.ZodOptional<z.ZodString>;
+                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     text: z.ZodString;
+                    lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    numberOfAnswers: z.ZodOptional<z.ZodNumber>;
+                    isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+                    isPinned: z.ZodOptional<z.ZodBoolean>;
+                    scope: z.ZodOptional<z.ZodEnum<["impulse" | "debrief" | "recap", ...("impulse" | "debrief" | "recap")[]]>>;
+                } & {
+                    suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 }, "strip", z.ZodTypeAny, {
                     text: string;
-                    question: {
-                        text: string;
-                        isTemplate: boolean;
-                        responseType: "recap";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    } | {
-                        text: string;
-                        isTemplate: boolean;
-                        responseType: "slider1To10";
-                        sliderConfig: {
-                            minLabel?: string | undefined;
-                            maxLabel?: string | undefined;
-                        };
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    } | {
-                        text: string;
-                        isTemplate: boolean;
-                        responseType: "text";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                        suggestedResponses?: string[] | undefined;
-                    };
-                    mode: "question";
+                    isTemplate: boolean;
+                    mode: "question-text";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    lastAskedAt?: import("../../types").Timestamp | undefined;
+                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                    numberOfAnswers?: number | undefined;
+                    isPinned?: boolean | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
+                    suggestedResponses?: string[] | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -1393,49 +1240,193 @@ export declare const logSchemas: {
                     } | undefined;
                 }, {
                     text: string;
-                    question: {
-                        text: string;
-                        responseType: "recap";
+                    mode: "question-text";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    lastAskedAt?: import("../../types").Timestamp | undefined;
+                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                    numberOfAnswers?: number | undefined;
+                    isPinned?: boolean | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
+                    suggestedResponses?: string[] | undefined;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        isTemplate?: boolean | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    } | {
-                        text: string;
-                        responseType: "slider1To10";
-                        sliderConfig: {
-                            minLabel?: string | undefined;
-                            maxLabel?: string | undefined;
-                        };
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                }>, z.ZodObject<{
+                    aiInstructions: z.ZodOptional<z.ZodString>;
+                    backgroundImage: z.ZodOptional<z.ZodObject<{
+                        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        uri: z.ZodString;
+                        storagePath: z.ZodString;
+                        contentType: z.ZodString;
+                        title: z.ZodOptional<z.ZodString>;
+                        sizeBytes: z.ZodOptional<z.ZodNumber>;
+                        metadata: z.ZodOptional<z.ZodObject<{
+                            width: z.ZodOptional<z.ZodNumber>;
+                            height: z.ZodOptional<z.ZodNumber>;
+                            durationMs: z.ZodOptional<z.ZodNumber>;
+                            transcript: z.ZodOptional<z.ZodString>;
+                            meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                                db: z.ZodNumber;
+                                timestampMs: z.ZodOptional<z.ZodNumber>;
+                            }, "strip", z.ZodTypeAny, {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }, {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }>, "many">>;
+                        }, "strip", z.ZodTypeAny, {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        }, {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        }>>;
+                    }, "strip", z.ZodTypeAny, {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        isTemplate?: boolean | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    } | {
-                        text: string;
-                        responseType: "text";
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }, {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        isTemplate?: boolean | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                        suggestedResponses?: string[] | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }>>;
+                } & {
+                    mode: z.ZodLiteral<"question-slider1To10">;
+                    id: z.ZodOptional<z.ZodString>;
+                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    text: z.ZodString;
+                    lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    numberOfAnswers: z.ZodOptional<z.ZodNumber>;
+                    isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+                    isPinned: z.ZodOptional<z.ZodBoolean>;
+                    scope: z.ZodOptional<z.ZodEnum<["impulse" | "debrief" | "recap", ...("impulse" | "debrief" | "recap")[]]>>;
+                } & {
+                    sliderConfig: z.ZodObject<{
+                        minLabel: z.ZodOptional<z.ZodString>;
+                        maxLabel: z.ZodOptional<z.ZodString>;
+                    }, "strip", z.ZodTypeAny, {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
+                    }, {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
+                    }>;
+                }, "strip", z.ZodTypeAny, {
+                    text: string;
+                    isTemplate: boolean;
+                    sliderConfig: {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
                     };
-                    mode: "question";
+                    mode: "question-slider1To10";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    lastAskedAt?: import("../../types").Timestamp | undefined;
+                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                    numberOfAnswers?: number | undefined;
+                    isPinned?: boolean | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                }, {
+                    text: string;
+                    sliderConfig: {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
+                    };
+                    mode: "question-slider1To10";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    lastAskedAt?: import("../../types").Timestamp | undefined;
+                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                    numberOfAnswers?: number | undefined;
+                    isPinned?: boolean | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -1944,6 +1935,8 @@ export declare const logSchemas: {
                 title: string;
                 steps: ({
                     text: string;
+                    mode: "affirmation";
+                    repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -1964,7 +1957,12 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
-                    mode?: "default" | undefined;
+                } | {
+                    goal: string;
+                    mode: "aiConversation";
+                    text?: string | undefined;
+                    aiInstructions?: string | undefined;
+                    prompt?: string | undefined;
                 } | {
                     mode: "breathing";
                     breathingPattern: {
@@ -1996,8 +1994,49 @@ export declare const logSchemas: {
                     cycles?: number | undefined;
                 } | {
                     text: string;
-                    mode: "timer";
-                    durationSeconds: number;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    mode?: "default" | undefined;
+                } | {
+                    mode: "media";
+                    media: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }[];
+                    text?: string | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -2044,97 +2083,20 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
-                    question: {
-                        text: string;
-                        isTemplate: boolean;
-                        responseType: "recap";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    } | {
-                        text: string;
-                        isTemplate: boolean;
-                        responseType: "slider1To10";
-                        sliderConfig: {
-                            minLabel?: string | undefined;
-                            maxLabel?: string | undefined;
-                        };
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    } | {
-                        text: string;
-                        isTemplate: boolean;
-                        responseType: "text";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                        suggestedResponses?: string[] | undefined;
+                    isTemplate: boolean;
+                    sliderConfig: {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
                     };
-                    mode: "question";
-                    aiInstructions?: string | undefined;
-                    backgroundImage?: {
-                        uri: string;
-                        storagePath: string;
-                        contentType: string;
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        title?: string | undefined;
-                        sizeBytes?: number | undefined;
-                        metadata?: {
-                            width?: number | undefined;
-                            height?: number | undefined;
-                            durationMs?: number | undefined;
-                            transcript?: string | undefined;
-                            meterings?: {
-                                db: number;
-                                timestampMs?: number | undefined;
-                            }[] | undefined;
-                        } | undefined;
-                    } | undefined;
-                } | {
-                    goal: string;
-                    mode: "aiConversation";
-                    text?: string | undefined;
-                    aiInstructions?: string | undefined;
-                    prompt?: string | undefined;
-                } | {
-                    mode: "media";
-                    media: {
-                        uri: string;
-                        storagePath: string;
-                        contentType: string;
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        title?: string | undefined;
-                        sizeBytes?: number | undefined;
-                        metadata?: {
-                            width?: number | undefined;
-                            height?: number | undefined;
-                            durationMs?: number | undefined;
-                            transcript?: string | undefined;
-                            meterings?: {
-                                db: number;
-                                timestampMs?: number | undefined;
-                            }[] | undefined;
-                        } | undefined;
-                    }[];
-                    text?: string | undefined;
+                    mode: "question-slider1To10";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    lastAskedAt?: import("../../types").Timestamp | undefined;
+                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                    numberOfAnswers?: number | undefined;
+                    isPinned?: boolean | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -2157,8 +2119,41 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
-                    mode: "affirmation";
-                    repeatCount: number;
+                    isTemplate: boolean;
+                    mode: "question-text";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    lastAskedAt?: import("../../types").Timestamp | undefined;
+                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                    numberOfAnswers?: number | undefined;
+                    isPinned?: boolean | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
+                    suggestedResponses?: string[] | undefined;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "timer";
+                    durationSeconds: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -2191,6 +2186,8 @@ export declare const logSchemas: {
                 title: string;
                 steps: ({
                     text: string;
+                    mode: "affirmation";
+                    repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -2211,7 +2208,12 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
-                    mode?: "default" | undefined;
+                } | {
+                    goal: string;
+                    mode: "aiConversation";
+                    text?: string | undefined;
+                    aiInstructions?: string | undefined;
+                    prompt?: string | undefined;
                 } | {
                     mode: "breathing";
                     breathingPattern: {
@@ -2243,8 +2245,49 @@ export declare const logSchemas: {
                     cycles?: number | undefined;
                 } | {
                     text: string;
-                    mode: "timer";
-                    durationSeconds: number;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    mode?: "default" | undefined;
+                } | {
+                    mode: "media";
+                    media: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }[];
+                    text?: string | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -2291,97 +2334,20 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
-                    question: {
-                        text: string;
-                        responseType: "recap";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        isTemplate?: boolean | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    } | {
-                        text: string;
-                        responseType: "slider1To10";
-                        sliderConfig: {
-                            minLabel?: string | undefined;
-                            maxLabel?: string | undefined;
-                        };
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        isTemplate?: boolean | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    } | {
-                        text: string;
-                        responseType: "text";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        isTemplate?: boolean | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                        suggestedResponses?: string[] | undefined;
+                    sliderConfig: {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
                     };
-                    mode: "question";
-                    aiInstructions?: string | undefined;
-                    backgroundImage?: {
-                        uri: string;
-                        storagePath: string;
-                        contentType: string;
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        title?: string | undefined;
-                        sizeBytes?: number | undefined;
-                        metadata?: {
-                            width?: number | undefined;
-                            height?: number | undefined;
-                            durationMs?: number | undefined;
-                            transcript?: string | undefined;
-                            meterings?: {
-                                db: number;
-                                timestampMs?: number | undefined;
-                            }[] | undefined;
-                        } | undefined;
-                    } | undefined;
-                } | {
-                    goal: string;
-                    mode: "aiConversation";
-                    text?: string | undefined;
-                    aiInstructions?: string | undefined;
-                    prompt?: string | undefined;
-                } | {
-                    mode: "media";
-                    media: {
-                        uri: string;
-                        storagePath: string;
-                        contentType: string;
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        title?: string | undefined;
-                        sizeBytes?: number | undefined;
-                        metadata?: {
-                            width?: number | undefined;
-                            height?: number | undefined;
-                            durationMs?: number | undefined;
-                            transcript?: string | undefined;
-                            meterings?: {
-                                db: number;
-                                timestampMs?: number | undefined;
-                            }[] | undefined;
-                        } | undefined;
-                    }[];
-                    text?: string | undefined;
+                    mode: "question-slider1To10";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    lastAskedAt?: import("../../types").Timestamp | undefined;
+                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                    numberOfAnswers?: number | undefined;
+                    isPinned?: boolean | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -2404,8 +2370,41 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
-                    mode: "affirmation";
-                    repeatCount: number;
+                    mode: "question-text";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    lastAskedAt?: import("../../types").Timestamp | undefined;
+                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                    numberOfAnswers?: number | undefined;
+                    isPinned?: boolean | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
+                    suggestedResponses?: string[] | undefined;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "timer";
+                    durationSeconds: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -2444,6 +2443,8 @@ export declare const logSchemas: {
                 title: string;
                 steps: ({
                     text: string;
+                    mode: "affirmation";
+                    repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -2464,7 +2465,12 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
-                    mode?: "default" | undefined;
+                } | {
+                    goal: string;
+                    mode: "aiConversation";
+                    text?: string | undefined;
+                    aiInstructions?: string | undefined;
+                    prompt?: string | undefined;
                 } | {
                     mode: "breathing";
                     breathingPattern: {
@@ -2496,8 +2502,49 @@ export declare const logSchemas: {
                     cycles?: number | undefined;
                 } | {
                     text: string;
-                    mode: "timer";
-                    durationSeconds: number;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    mode?: "default" | undefined;
+                } | {
+                    mode: "media";
+                    media: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }[];
+                    text?: string | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -2544,97 +2591,20 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
-                    question: {
-                        text: string;
-                        isTemplate: boolean;
-                        responseType: "recap";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    } | {
-                        text: string;
-                        isTemplate: boolean;
-                        responseType: "slider1To10";
-                        sliderConfig: {
-                            minLabel?: string | undefined;
-                            maxLabel?: string | undefined;
-                        };
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    } | {
-                        text: string;
-                        isTemplate: boolean;
-                        responseType: "text";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                        suggestedResponses?: string[] | undefined;
+                    isTemplate: boolean;
+                    sliderConfig: {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
                     };
-                    mode: "question";
-                    aiInstructions?: string | undefined;
-                    backgroundImage?: {
-                        uri: string;
-                        storagePath: string;
-                        contentType: string;
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        title?: string | undefined;
-                        sizeBytes?: number | undefined;
-                        metadata?: {
-                            width?: number | undefined;
-                            height?: number | undefined;
-                            durationMs?: number | undefined;
-                            transcript?: string | undefined;
-                            meterings?: {
-                                db: number;
-                                timestampMs?: number | undefined;
-                            }[] | undefined;
-                        } | undefined;
-                    } | undefined;
-                } | {
-                    goal: string;
-                    mode: "aiConversation";
-                    text?: string | undefined;
-                    aiInstructions?: string | undefined;
-                    prompt?: string | undefined;
-                } | {
-                    mode: "media";
-                    media: {
-                        uri: string;
-                        storagePath: string;
-                        contentType: string;
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        title?: string | undefined;
-                        sizeBytes?: number | undefined;
-                        metadata?: {
-                            width?: number | undefined;
-                            height?: number | undefined;
-                            durationMs?: number | undefined;
-                            transcript?: string | undefined;
-                            meterings?: {
-                                db: number;
-                                timestampMs?: number | undefined;
-                            }[] | undefined;
-                        } | undefined;
-                    }[];
-                    text?: string | undefined;
+                    mode: "question-slider1To10";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    lastAskedAt?: import("../../types").Timestamp | undefined;
+                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                    numberOfAnswers?: number | undefined;
+                    isPinned?: boolean | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -2657,8 +2627,41 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
-                    mode: "affirmation";
-                    repeatCount: number;
+                    isTemplate: boolean;
+                    mode: "question-text";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    lastAskedAt?: import("../../types").Timestamp | undefined;
+                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                    numberOfAnswers?: number | undefined;
+                    isPinned?: boolean | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
+                    suggestedResponses?: string[] | undefined;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "timer";
+                    durationSeconds: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -2697,6 +2700,8 @@ export declare const logSchemas: {
                 title: string;
                 steps: ({
                     text: string;
+                    mode: "affirmation";
+                    repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -2717,7 +2722,12 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
-                    mode?: "default" | undefined;
+                } | {
+                    goal: string;
+                    mode: "aiConversation";
+                    text?: string | undefined;
+                    aiInstructions?: string | undefined;
+                    prompt?: string | undefined;
                 } | {
                     mode: "breathing";
                     breathingPattern: {
@@ -2749,8 +2759,49 @@ export declare const logSchemas: {
                     cycles?: number | undefined;
                 } | {
                     text: string;
-                    mode: "timer";
-                    durationSeconds: number;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    mode?: "default" | undefined;
+                } | {
+                    mode: "media";
+                    media: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }[];
+                    text?: string | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -2797,97 +2848,20 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
-                    question: {
-                        text: string;
-                        responseType: "recap";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        isTemplate?: boolean | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    } | {
-                        text: string;
-                        responseType: "slider1To10";
-                        sliderConfig: {
-                            minLabel?: string | undefined;
-                            maxLabel?: string | undefined;
-                        };
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        isTemplate?: boolean | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    } | {
-                        text: string;
-                        responseType: "text";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        isTemplate?: boolean | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                        suggestedResponses?: string[] | undefined;
+                    sliderConfig: {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
                     };
-                    mode: "question";
-                    aiInstructions?: string | undefined;
-                    backgroundImage?: {
-                        uri: string;
-                        storagePath: string;
-                        contentType: string;
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        title?: string | undefined;
-                        sizeBytes?: number | undefined;
-                        metadata?: {
-                            width?: number | undefined;
-                            height?: number | undefined;
-                            durationMs?: number | undefined;
-                            transcript?: string | undefined;
-                            meterings?: {
-                                db: number;
-                                timestampMs?: number | undefined;
-                            }[] | undefined;
-                        } | undefined;
-                    } | undefined;
-                } | {
-                    goal: string;
-                    mode: "aiConversation";
-                    text?: string | undefined;
-                    aiInstructions?: string | undefined;
-                    prompt?: string | undefined;
-                } | {
-                    mode: "media";
-                    media: {
-                        uri: string;
-                        storagePath: string;
-                        contentType: string;
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        title?: string | undefined;
-                        sizeBytes?: number | undefined;
-                        metadata?: {
-                            width?: number | undefined;
-                            height?: number | undefined;
-                            durationMs?: number | undefined;
-                            transcript?: string | undefined;
-                            meterings?: {
-                                db: number;
-                                timestampMs?: number | undefined;
-                            }[] | undefined;
-                        } | undefined;
-                    }[];
-                    text?: string | undefined;
+                    mode: "question-slider1To10";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    lastAskedAt?: import("../../types").Timestamp | undefined;
+                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                    numberOfAnswers?: number | undefined;
+                    isPinned?: boolean | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -2910,8 +2884,41 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
-                    mode: "affirmation";
-                    repeatCount: number;
+                    mode: "question-text";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    lastAskedAt?: import("../../types").Timestamp | undefined;
+                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                    numberOfAnswers?: number | undefined;
+                    isPinned?: boolean | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
+                    suggestedResponses?: string[] | undefined;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "timer";
+                    durationSeconds: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -2957,6 +2964,8 @@ export declare const logSchemas: {
                 title: string;
                 steps: ({
                     text: string;
+                    mode: "affirmation";
+                    repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -2977,7 +2986,12 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
-                    mode?: "default" | undefined;
+                } | {
+                    goal: string;
+                    mode: "aiConversation";
+                    text?: string | undefined;
+                    aiInstructions?: string | undefined;
+                    prompt?: string | undefined;
                 } | {
                     mode: "breathing";
                     breathingPattern: {
@@ -3009,8 +3023,49 @@ export declare const logSchemas: {
                     cycles?: number | undefined;
                 } | {
                     text: string;
-                    mode: "timer";
-                    durationSeconds: number;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    mode?: "default" | undefined;
+                } | {
+                    mode: "media";
+                    media: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }[];
+                    text?: string | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -3057,97 +3112,20 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
-                    question: {
-                        text: string;
-                        isTemplate: boolean;
-                        responseType: "recap";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    } | {
-                        text: string;
-                        isTemplate: boolean;
-                        responseType: "slider1To10";
-                        sliderConfig: {
-                            minLabel?: string | undefined;
-                            maxLabel?: string | undefined;
-                        };
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    } | {
-                        text: string;
-                        isTemplate: boolean;
-                        responseType: "text";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                        suggestedResponses?: string[] | undefined;
+                    isTemplate: boolean;
+                    sliderConfig: {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
                     };
-                    mode: "question";
-                    aiInstructions?: string | undefined;
-                    backgroundImage?: {
-                        uri: string;
-                        storagePath: string;
-                        contentType: string;
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        title?: string | undefined;
-                        sizeBytes?: number | undefined;
-                        metadata?: {
-                            width?: number | undefined;
-                            height?: number | undefined;
-                            durationMs?: number | undefined;
-                            transcript?: string | undefined;
-                            meterings?: {
-                                db: number;
-                                timestampMs?: number | undefined;
-                            }[] | undefined;
-                        } | undefined;
-                    } | undefined;
-                } | {
-                    goal: string;
-                    mode: "aiConversation";
-                    text?: string | undefined;
-                    aiInstructions?: string | undefined;
-                    prompt?: string | undefined;
-                } | {
-                    mode: "media";
-                    media: {
-                        uri: string;
-                        storagePath: string;
-                        contentType: string;
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        title?: string | undefined;
-                        sizeBytes?: number | undefined;
-                        metadata?: {
-                            width?: number | undefined;
-                            height?: number | undefined;
-                            durationMs?: number | undefined;
-                            transcript?: string | undefined;
-                            meterings?: {
-                                db: number;
-                                timestampMs?: number | undefined;
-                            }[] | undefined;
-                        } | undefined;
-                    }[];
-                    text?: string | undefined;
+                    mode: "question-slider1To10";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    lastAskedAt?: import("../../types").Timestamp | undefined;
+                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                    numberOfAnswers?: number | undefined;
+                    isPinned?: boolean | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -3170,8 +3148,41 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
-                    mode: "affirmation";
-                    repeatCount: number;
+                    isTemplate: boolean;
+                    mode: "question-text";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    lastAskedAt?: import("../../types").Timestamp | undefined;
+                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                    numberOfAnswers?: number | undefined;
+                    isPinned?: boolean | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
+                    suggestedResponses?: string[] | undefined;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "timer";
+                    durationSeconds: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -3225,6 +3236,8 @@ export declare const logSchemas: {
                 title: string;
                 steps: ({
                     text: string;
+                    mode: "affirmation";
+                    repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -3245,7 +3258,12 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
-                    mode?: "default" | undefined;
+                } | {
+                    goal: string;
+                    mode: "aiConversation";
+                    text?: string | undefined;
+                    aiInstructions?: string | undefined;
+                    prompt?: string | undefined;
                 } | {
                     mode: "breathing";
                     breathingPattern: {
@@ -3277,8 +3295,49 @@ export declare const logSchemas: {
                     cycles?: number | undefined;
                 } | {
                     text: string;
-                    mode: "timer";
-                    durationSeconds: number;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    mode?: "default" | undefined;
+                } | {
+                    mode: "media";
+                    media: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }[];
+                    text?: string | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -3325,97 +3384,20 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
-                    question: {
-                        text: string;
-                        responseType: "recap";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        isTemplate?: boolean | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    } | {
-                        text: string;
-                        responseType: "slider1To10";
-                        sliderConfig: {
-                            minLabel?: string | undefined;
-                            maxLabel?: string | undefined;
-                        };
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        isTemplate?: boolean | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    } | {
-                        text: string;
-                        responseType: "text";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        isTemplate?: boolean | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                        suggestedResponses?: string[] | undefined;
+                    sliderConfig: {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
                     };
-                    mode: "question";
-                    aiInstructions?: string | undefined;
-                    backgroundImage?: {
-                        uri: string;
-                        storagePath: string;
-                        contentType: string;
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        title?: string | undefined;
-                        sizeBytes?: number | undefined;
-                        metadata?: {
-                            width?: number | undefined;
-                            height?: number | undefined;
-                            durationMs?: number | undefined;
-                            transcript?: string | undefined;
-                            meterings?: {
-                                db: number;
-                                timestampMs?: number | undefined;
-                            }[] | undefined;
-                        } | undefined;
-                    } | undefined;
-                } | {
-                    goal: string;
-                    mode: "aiConversation";
-                    text?: string | undefined;
-                    aiInstructions?: string | undefined;
-                    prompt?: string | undefined;
-                } | {
-                    mode: "media";
-                    media: {
-                        uri: string;
-                        storagePath: string;
-                        contentType: string;
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        title?: string | undefined;
-                        sizeBytes?: number | undefined;
-                        metadata?: {
-                            width?: number | undefined;
-                            height?: number | undefined;
-                            durationMs?: number | undefined;
-                            transcript?: string | undefined;
-                            meterings?: {
-                                db: number;
-                                timestampMs?: number | undefined;
-                            }[] | undefined;
-                        } | undefined;
-                    }[];
-                    text?: string | undefined;
+                    mode: "question-slider1To10";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    lastAskedAt?: import("../../types").Timestamp | undefined;
+                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                    numberOfAnswers?: number | undefined;
+                    isPinned?: boolean | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -3438,8 +3420,41 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
-                    mode: "affirmation";
-                    repeatCount: number;
+                    mode: "question-text";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    lastAskedAt?: import("../../types").Timestamp | undefined;
+                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                    numberOfAnswers?: number | undefined;
+                    isPinned?: boolean | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
+                    suggestedResponses?: string[] | undefined;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "timer";
+                    durationSeconds: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -4299,185 +4314,32 @@ export declare const logSchemas: {
                         } | undefined;
                     }>>;
                 } & {
-                    mode: z.ZodLiteral<"question">;
-                    question: z.ZodDiscriminatedUnion<"responseType", [z.ZodObject<{
-                        id: z.ZodOptional<z.ZodString>;
-                        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                        text: z.ZodString;
-                        lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                        lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                        numberOfAnswers: z.ZodOptional<z.ZodNumber>;
-                        isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-                        isPinned: z.ZodOptional<z.ZodBoolean>;
-                        responseType: z.ZodLiteral<"text">;
-                        scope: z.ZodOptional<z.ZodEnum<["impulse" | "debrief" | "recap", ...("impulse" | "debrief" | "recap")[]]>>;
-                    } & {
-                        suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-                    }, "strip", z.ZodTypeAny, {
-                        text: string;
-                        isTemplate: boolean;
-                        responseType: "text";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                        suggestedResponses?: string[] | undefined;
-                    }, {
-                        text: string;
-                        responseType: "text";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        isTemplate?: boolean | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                        suggestedResponses?: string[] | undefined;
-                    }>, z.ZodObject<{
-                        id: z.ZodOptional<z.ZodString>;
-                        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                        text: z.ZodString;
-                        lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                        lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                        numberOfAnswers: z.ZodOptional<z.ZodNumber>;
-                        isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-                        isPinned: z.ZodOptional<z.ZodBoolean>;
-                        responseType: z.ZodLiteral<"slider1To10">;
-                        scope: z.ZodOptional<z.ZodEnum<["impulse" | "debrief" | "recap", ...("impulse" | "debrief" | "recap")[]]>>;
-                    } & {
-                        sliderConfig: z.ZodObject<{
-                            minLabel: z.ZodOptional<z.ZodString>;
-                            maxLabel: z.ZodOptional<z.ZodString>;
-                        }, "strip", z.ZodTypeAny, {
-                            minLabel?: string | undefined;
-                            maxLabel?: string | undefined;
-                        }, {
-                            minLabel?: string | undefined;
-                            maxLabel?: string | undefined;
-                        }>;
-                    }, "strip", z.ZodTypeAny, {
-                        text: string;
-                        isTemplate: boolean;
-                        responseType: "slider1To10";
-                        sliderConfig: {
-                            minLabel?: string | undefined;
-                            maxLabel?: string | undefined;
-                        };
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    }, {
-                        text: string;
-                        responseType: "slider1To10";
-                        sliderConfig: {
-                            minLabel?: string | undefined;
-                            maxLabel?: string | undefined;
-                        };
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        isTemplate?: boolean | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    }>, z.ZodObject<{
-                        id: z.ZodOptional<z.ZodString>;
-                        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                        text: z.ZodString;
-                        lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                        lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                        numberOfAnswers: z.ZodOptional<z.ZodNumber>;
-                        isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-                        isPinned: z.ZodOptional<z.ZodBoolean>;
-                        responseType: z.ZodLiteral<"recap">;
-                        scope: z.ZodOptional<z.ZodEnum<["impulse" | "debrief" | "recap", ...("impulse" | "debrief" | "recap")[]]>>;
-                    }, "strip", z.ZodTypeAny, {
-                        text: string;
-                        isTemplate: boolean;
-                        responseType: "recap";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    }, {
-                        text: string;
-                        responseType: "recap";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        isTemplate?: boolean | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    }>]>;
+                    mode: z.ZodLiteral<"question-text">;
+                    id: z.ZodOptional<z.ZodString>;
+                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     text: z.ZodString;
+                    lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    numberOfAnswers: z.ZodOptional<z.ZodNumber>;
+                    isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+                    isPinned: z.ZodOptional<z.ZodBoolean>;
+                    scope: z.ZodOptional<z.ZodEnum<["impulse" | "debrief" | "recap", ...("impulse" | "debrief" | "recap")[]]>>;
+                } & {
+                    suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 }, "strip", z.ZodTypeAny, {
                     text: string;
-                    question: {
-                        text: string;
-                        isTemplate: boolean;
-                        responseType: "recap";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    } | {
-                        text: string;
-                        isTemplate: boolean;
-                        responseType: "slider1To10";
-                        sliderConfig: {
-                            minLabel?: string | undefined;
-                            maxLabel?: string | undefined;
-                        };
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    } | {
-                        text: string;
-                        isTemplate: boolean;
-                        responseType: "text";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                        suggestedResponses?: string[] | undefined;
-                    };
-                    mode: "question";
+                    isTemplate: boolean;
+                    mode: "question-text";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    lastAskedAt?: import("../../types").Timestamp | undefined;
+                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                    numberOfAnswers?: number | undefined;
+                    isPinned?: boolean | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
+                    suggestedResponses?: string[] | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -4500,49 +4362,193 @@ export declare const logSchemas: {
                     } | undefined;
                 }, {
                     text: string;
-                    question: {
-                        text: string;
-                        responseType: "recap";
+                    mode: "question-text";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    lastAskedAt?: import("../../types").Timestamp | undefined;
+                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                    numberOfAnswers?: number | undefined;
+                    isPinned?: boolean | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
+                    suggestedResponses?: string[] | undefined;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        isTemplate?: boolean | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    } | {
-                        text: string;
-                        responseType: "slider1To10";
-                        sliderConfig: {
-                            minLabel?: string | undefined;
-                            maxLabel?: string | undefined;
-                        };
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                }>, z.ZodObject<{
+                    aiInstructions: z.ZodOptional<z.ZodString>;
+                    backgroundImage: z.ZodOptional<z.ZodObject<{
+                        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        uri: z.ZodString;
+                        storagePath: z.ZodString;
+                        contentType: z.ZodString;
+                        title: z.ZodOptional<z.ZodString>;
+                        sizeBytes: z.ZodOptional<z.ZodNumber>;
+                        metadata: z.ZodOptional<z.ZodObject<{
+                            width: z.ZodOptional<z.ZodNumber>;
+                            height: z.ZodOptional<z.ZodNumber>;
+                            durationMs: z.ZodOptional<z.ZodNumber>;
+                            transcript: z.ZodOptional<z.ZodString>;
+                            meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                                db: z.ZodNumber;
+                                timestampMs: z.ZodOptional<z.ZodNumber>;
+                            }, "strip", z.ZodTypeAny, {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }, {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }>, "many">>;
+                        }, "strip", z.ZodTypeAny, {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        }, {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        }>>;
+                    }, "strip", z.ZodTypeAny, {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        isTemplate?: boolean | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    } | {
-                        text: string;
-                        responseType: "text";
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }, {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
                         createdAt?: import("../../types").Timestamp | undefined;
                         updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        isTemplate?: boolean | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                        suggestedResponses?: string[] | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }>>;
+                } & {
+                    mode: z.ZodLiteral<"question-slider1To10">;
+                    id: z.ZodOptional<z.ZodString>;
+                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    text: z.ZodString;
+                    lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    numberOfAnswers: z.ZodOptional<z.ZodNumber>;
+                    isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+                    isPinned: z.ZodOptional<z.ZodBoolean>;
+                    scope: z.ZodOptional<z.ZodEnum<["impulse" | "debrief" | "recap", ...("impulse" | "debrief" | "recap")[]]>>;
+                } & {
+                    sliderConfig: z.ZodObject<{
+                        minLabel: z.ZodOptional<z.ZodString>;
+                        maxLabel: z.ZodOptional<z.ZodString>;
+                    }, "strip", z.ZodTypeAny, {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
+                    }, {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
+                    }>;
+                }, "strip", z.ZodTypeAny, {
+                    text: string;
+                    isTemplate: boolean;
+                    sliderConfig: {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
                     };
-                    mode: "question";
+                    mode: "question-slider1To10";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    lastAskedAt?: import("../../types").Timestamp | undefined;
+                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                    numberOfAnswers?: number | undefined;
+                    isPinned?: boolean | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                }, {
+                    text: string;
+                    sliderConfig: {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
+                    };
+                    mode: "question-slider1To10";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    lastAskedAt?: import("../../types").Timestamp | undefined;
+                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                    numberOfAnswers?: number | undefined;
+                    isPinned?: boolean | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -5051,6 +5057,8 @@ export declare const logSchemas: {
                 title: string;
                 steps: ({
                     text: string;
+                    mode: "affirmation";
+                    repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -5071,7 +5079,12 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
-                    mode?: "default" | undefined;
+                } | {
+                    goal: string;
+                    mode: "aiConversation";
+                    text?: string | undefined;
+                    aiInstructions?: string | undefined;
+                    prompt?: string | undefined;
                 } | {
                     mode: "breathing";
                     breathingPattern: {
@@ -5103,8 +5116,49 @@ export declare const logSchemas: {
                     cycles?: number | undefined;
                 } | {
                     text: string;
-                    mode: "timer";
-                    durationSeconds: number;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    mode?: "default" | undefined;
+                } | {
+                    mode: "media";
+                    media: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }[];
+                    text?: string | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -5151,97 +5205,20 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
-                    question: {
-                        text: string;
-                        isTemplate: boolean;
-                        responseType: "recap";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    } | {
-                        text: string;
-                        isTemplate: boolean;
-                        responseType: "slider1To10";
-                        sliderConfig: {
-                            minLabel?: string | undefined;
-                            maxLabel?: string | undefined;
-                        };
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    } | {
-                        text: string;
-                        isTemplate: boolean;
-                        responseType: "text";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                        suggestedResponses?: string[] | undefined;
+                    isTemplate: boolean;
+                    sliderConfig: {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
                     };
-                    mode: "question";
-                    aiInstructions?: string | undefined;
-                    backgroundImage?: {
-                        uri: string;
-                        storagePath: string;
-                        contentType: string;
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        title?: string | undefined;
-                        sizeBytes?: number | undefined;
-                        metadata?: {
-                            width?: number | undefined;
-                            height?: number | undefined;
-                            durationMs?: number | undefined;
-                            transcript?: string | undefined;
-                            meterings?: {
-                                db: number;
-                                timestampMs?: number | undefined;
-                            }[] | undefined;
-                        } | undefined;
-                    } | undefined;
-                } | {
-                    goal: string;
-                    mode: "aiConversation";
-                    text?: string | undefined;
-                    aiInstructions?: string | undefined;
-                    prompt?: string | undefined;
-                } | {
-                    mode: "media";
-                    media: {
-                        uri: string;
-                        storagePath: string;
-                        contentType: string;
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        title?: string | undefined;
-                        sizeBytes?: number | undefined;
-                        metadata?: {
-                            width?: number | undefined;
-                            height?: number | undefined;
-                            durationMs?: number | undefined;
-                            transcript?: string | undefined;
-                            meterings?: {
-                                db: number;
-                                timestampMs?: number | undefined;
-                            }[] | undefined;
-                        } | undefined;
-                    }[];
-                    text?: string | undefined;
+                    mode: "question-slider1To10";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    lastAskedAt?: import("../../types").Timestamp | undefined;
+                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                    numberOfAnswers?: number | undefined;
+                    isPinned?: boolean | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -5264,8 +5241,41 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
-                    mode: "affirmation";
-                    repeatCount: number;
+                    isTemplate: boolean;
+                    mode: "question-text";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    lastAskedAt?: import("../../types").Timestamp | undefined;
+                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                    numberOfAnswers?: number | undefined;
+                    isPinned?: boolean | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
+                    suggestedResponses?: string[] | undefined;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "timer";
+                    durationSeconds: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -5298,6 +5308,8 @@ export declare const logSchemas: {
                 title: string;
                 steps: ({
                     text: string;
+                    mode: "affirmation";
+                    repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -5318,7 +5330,12 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
-                    mode?: "default" | undefined;
+                } | {
+                    goal: string;
+                    mode: "aiConversation";
+                    text?: string | undefined;
+                    aiInstructions?: string | undefined;
+                    prompt?: string | undefined;
                 } | {
                     mode: "breathing";
                     breathingPattern: {
@@ -5350,8 +5367,49 @@ export declare const logSchemas: {
                     cycles?: number | undefined;
                 } | {
                     text: string;
-                    mode: "timer";
-                    durationSeconds: number;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    mode?: "default" | undefined;
+                } | {
+                    mode: "media";
+                    media: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }[];
+                    text?: string | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -5398,97 +5456,20 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
-                    question: {
-                        text: string;
-                        responseType: "recap";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        isTemplate?: boolean | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    } | {
-                        text: string;
-                        responseType: "slider1To10";
-                        sliderConfig: {
-                            minLabel?: string | undefined;
-                            maxLabel?: string | undefined;
-                        };
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        isTemplate?: boolean | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    } | {
-                        text: string;
-                        responseType: "text";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        isTemplate?: boolean | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                        suggestedResponses?: string[] | undefined;
+                    sliderConfig: {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
                     };
-                    mode: "question";
-                    aiInstructions?: string | undefined;
-                    backgroundImage?: {
-                        uri: string;
-                        storagePath: string;
-                        contentType: string;
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        title?: string | undefined;
-                        sizeBytes?: number | undefined;
-                        metadata?: {
-                            width?: number | undefined;
-                            height?: number | undefined;
-                            durationMs?: number | undefined;
-                            transcript?: string | undefined;
-                            meterings?: {
-                                db: number;
-                                timestampMs?: number | undefined;
-                            }[] | undefined;
-                        } | undefined;
-                    } | undefined;
-                } | {
-                    goal: string;
-                    mode: "aiConversation";
-                    text?: string | undefined;
-                    aiInstructions?: string | undefined;
-                    prompt?: string | undefined;
-                } | {
-                    mode: "media";
-                    media: {
-                        uri: string;
-                        storagePath: string;
-                        contentType: string;
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        title?: string | undefined;
-                        sizeBytes?: number | undefined;
-                        metadata?: {
-                            width?: number | undefined;
-                            height?: number | undefined;
-                            durationMs?: number | undefined;
-                            transcript?: string | undefined;
-                            meterings?: {
-                                db: number;
-                                timestampMs?: number | undefined;
-                            }[] | undefined;
-                        } | undefined;
-                    }[];
-                    text?: string | undefined;
+                    mode: "question-slider1To10";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    lastAskedAt?: import("../../types").Timestamp | undefined;
+                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                    numberOfAnswers?: number | undefined;
+                    isPinned?: boolean | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -5511,8 +5492,41 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
-                    mode: "affirmation";
-                    repeatCount: number;
+                    mode: "question-text";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    lastAskedAt?: import("../../types").Timestamp | undefined;
+                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                    numberOfAnswers?: number | undefined;
+                    isPinned?: boolean | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
+                    suggestedResponses?: string[] | undefined;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "timer";
+                    durationSeconds: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -5551,6 +5565,8 @@ export declare const logSchemas: {
                 title: string;
                 steps: ({
                     text: string;
+                    mode: "affirmation";
+                    repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -5571,7 +5587,12 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
-                    mode?: "default" | undefined;
+                } | {
+                    goal: string;
+                    mode: "aiConversation";
+                    text?: string | undefined;
+                    aiInstructions?: string | undefined;
+                    prompt?: string | undefined;
                 } | {
                     mode: "breathing";
                     breathingPattern: {
@@ -5603,8 +5624,49 @@ export declare const logSchemas: {
                     cycles?: number | undefined;
                 } | {
                     text: string;
-                    mode: "timer";
-                    durationSeconds: number;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    mode?: "default" | undefined;
+                } | {
+                    mode: "media";
+                    media: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }[];
+                    text?: string | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -5651,97 +5713,20 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
-                    question: {
-                        text: string;
-                        isTemplate: boolean;
-                        responseType: "recap";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    } | {
-                        text: string;
-                        isTemplate: boolean;
-                        responseType: "slider1To10";
-                        sliderConfig: {
-                            minLabel?: string | undefined;
-                            maxLabel?: string | undefined;
-                        };
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    } | {
-                        text: string;
-                        isTemplate: boolean;
-                        responseType: "text";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                        suggestedResponses?: string[] | undefined;
+                    isTemplate: boolean;
+                    sliderConfig: {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
                     };
-                    mode: "question";
-                    aiInstructions?: string | undefined;
-                    backgroundImage?: {
-                        uri: string;
-                        storagePath: string;
-                        contentType: string;
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        title?: string | undefined;
-                        sizeBytes?: number | undefined;
-                        metadata?: {
-                            width?: number | undefined;
-                            height?: number | undefined;
-                            durationMs?: number | undefined;
-                            transcript?: string | undefined;
-                            meterings?: {
-                                db: number;
-                                timestampMs?: number | undefined;
-                            }[] | undefined;
-                        } | undefined;
-                    } | undefined;
-                } | {
-                    goal: string;
-                    mode: "aiConversation";
-                    text?: string | undefined;
-                    aiInstructions?: string | undefined;
-                    prompt?: string | undefined;
-                } | {
-                    mode: "media";
-                    media: {
-                        uri: string;
-                        storagePath: string;
-                        contentType: string;
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        title?: string | undefined;
-                        sizeBytes?: number | undefined;
-                        metadata?: {
-                            width?: number | undefined;
-                            height?: number | undefined;
-                            durationMs?: number | undefined;
-                            transcript?: string | undefined;
-                            meterings?: {
-                                db: number;
-                                timestampMs?: number | undefined;
-                            }[] | undefined;
-                        } | undefined;
-                    }[];
-                    text?: string | undefined;
+                    mode: "question-slider1To10";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    lastAskedAt?: import("../../types").Timestamp | undefined;
+                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                    numberOfAnswers?: number | undefined;
+                    isPinned?: boolean | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -5764,8 +5749,41 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
-                    mode: "affirmation";
-                    repeatCount: number;
+                    isTemplate: boolean;
+                    mode: "question-text";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    lastAskedAt?: import("../../types").Timestamp | undefined;
+                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                    numberOfAnswers?: number | undefined;
+                    isPinned?: boolean | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
+                    suggestedResponses?: string[] | undefined;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "timer";
+                    durationSeconds: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -5804,6 +5822,8 @@ export declare const logSchemas: {
                 title: string;
                 steps: ({
                     text: string;
+                    mode: "affirmation";
+                    repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -5824,7 +5844,12 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
-                    mode?: "default" | undefined;
+                } | {
+                    goal: string;
+                    mode: "aiConversation";
+                    text?: string | undefined;
+                    aiInstructions?: string | undefined;
+                    prompt?: string | undefined;
                 } | {
                     mode: "breathing";
                     breathingPattern: {
@@ -5856,8 +5881,49 @@ export declare const logSchemas: {
                     cycles?: number | undefined;
                 } | {
                     text: string;
-                    mode: "timer";
-                    durationSeconds: number;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    mode?: "default" | undefined;
+                } | {
+                    mode: "media";
+                    media: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }[];
+                    text?: string | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -5904,97 +5970,20 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
-                    question: {
-                        text: string;
-                        responseType: "recap";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        isTemplate?: boolean | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    } | {
-                        text: string;
-                        responseType: "slider1To10";
-                        sliderConfig: {
-                            minLabel?: string | undefined;
-                            maxLabel?: string | undefined;
-                        };
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        isTemplate?: boolean | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    } | {
-                        text: string;
-                        responseType: "text";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        isTemplate?: boolean | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                        suggestedResponses?: string[] | undefined;
+                    sliderConfig: {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
                     };
-                    mode: "question";
-                    aiInstructions?: string | undefined;
-                    backgroundImage?: {
-                        uri: string;
-                        storagePath: string;
-                        contentType: string;
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        title?: string | undefined;
-                        sizeBytes?: number | undefined;
-                        metadata?: {
-                            width?: number | undefined;
-                            height?: number | undefined;
-                            durationMs?: number | undefined;
-                            transcript?: string | undefined;
-                            meterings?: {
-                                db: number;
-                                timestampMs?: number | undefined;
-                            }[] | undefined;
-                        } | undefined;
-                    } | undefined;
-                } | {
-                    goal: string;
-                    mode: "aiConversation";
-                    text?: string | undefined;
-                    aiInstructions?: string | undefined;
-                    prompt?: string | undefined;
-                } | {
-                    mode: "media";
-                    media: {
-                        uri: string;
-                        storagePath: string;
-                        contentType: string;
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        title?: string | undefined;
-                        sizeBytes?: number | undefined;
-                        metadata?: {
-                            width?: number | undefined;
-                            height?: number | undefined;
-                            durationMs?: number | undefined;
-                            transcript?: string | undefined;
-                            meterings?: {
-                                db: number;
-                                timestampMs?: number | undefined;
-                            }[] | undefined;
-                        } | undefined;
-                    }[];
-                    text?: string | undefined;
+                    mode: "question-slider1To10";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    lastAskedAt?: import("../../types").Timestamp | undefined;
+                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                    numberOfAnswers?: number | undefined;
+                    isPinned?: boolean | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -6017,8 +6006,41 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
-                    mode: "affirmation";
-                    repeatCount: number;
+                    mode: "question-text";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    lastAskedAt?: import("../../types").Timestamp | undefined;
+                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                    numberOfAnswers?: number | undefined;
+                    isPinned?: boolean | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
+                    suggestedResponses?: string[] | undefined;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "timer";
+                    durationSeconds: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -6064,6 +6086,8 @@ export declare const logSchemas: {
                 title: string;
                 steps: ({
                     text: string;
+                    mode: "affirmation";
+                    repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -6084,7 +6108,12 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
-                    mode?: "default" | undefined;
+                } | {
+                    goal: string;
+                    mode: "aiConversation";
+                    text?: string | undefined;
+                    aiInstructions?: string | undefined;
+                    prompt?: string | undefined;
                 } | {
                     mode: "breathing";
                     breathingPattern: {
@@ -6116,8 +6145,49 @@ export declare const logSchemas: {
                     cycles?: number | undefined;
                 } | {
                     text: string;
-                    mode: "timer";
-                    durationSeconds: number;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    mode?: "default" | undefined;
+                } | {
+                    mode: "media";
+                    media: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }[];
+                    text?: string | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -6164,97 +6234,20 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
-                    question: {
-                        text: string;
-                        isTemplate: boolean;
-                        responseType: "recap";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    } | {
-                        text: string;
-                        isTemplate: boolean;
-                        responseType: "slider1To10";
-                        sliderConfig: {
-                            minLabel?: string | undefined;
-                            maxLabel?: string | undefined;
-                        };
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    } | {
-                        text: string;
-                        isTemplate: boolean;
-                        responseType: "text";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                        suggestedResponses?: string[] | undefined;
+                    isTemplate: boolean;
+                    sliderConfig: {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
                     };
-                    mode: "question";
-                    aiInstructions?: string | undefined;
-                    backgroundImage?: {
-                        uri: string;
-                        storagePath: string;
-                        contentType: string;
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        title?: string | undefined;
-                        sizeBytes?: number | undefined;
-                        metadata?: {
-                            width?: number | undefined;
-                            height?: number | undefined;
-                            durationMs?: number | undefined;
-                            transcript?: string | undefined;
-                            meterings?: {
-                                db: number;
-                                timestampMs?: number | undefined;
-                            }[] | undefined;
-                        } | undefined;
-                    } | undefined;
-                } | {
-                    goal: string;
-                    mode: "aiConversation";
-                    text?: string | undefined;
-                    aiInstructions?: string | undefined;
-                    prompt?: string | undefined;
-                } | {
-                    mode: "media";
-                    media: {
-                        uri: string;
-                        storagePath: string;
-                        contentType: string;
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        title?: string | undefined;
-                        sizeBytes?: number | undefined;
-                        metadata?: {
-                            width?: number | undefined;
-                            height?: number | undefined;
-                            durationMs?: number | undefined;
-                            transcript?: string | undefined;
-                            meterings?: {
-                                db: number;
-                                timestampMs?: number | undefined;
-                            }[] | undefined;
-                        } | undefined;
-                    }[];
-                    text?: string | undefined;
+                    mode: "question-slider1To10";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    lastAskedAt?: import("../../types").Timestamp | undefined;
+                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                    numberOfAnswers?: number | undefined;
+                    isPinned?: boolean | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -6277,8 +6270,41 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
-                    mode: "affirmation";
-                    repeatCount: number;
+                    isTemplate: boolean;
+                    mode: "question-text";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    lastAskedAt?: import("../../types").Timestamp | undefined;
+                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                    numberOfAnswers?: number | undefined;
+                    isPinned?: boolean | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
+                    suggestedResponses?: string[] | undefined;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "timer";
+                    durationSeconds: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -6332,6 +6358,8 @@ export declare const logSchemas: {
                 title: string;
                 steps: ({
                     text: string;
+                    mode: "affirmation";
+                    repeatCount: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -6352,7 +6380,12 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
-                    mode?: "default" | undefined;
+                } | {
+                    goal: string;
+                    mode: "aiConversation";
+                    text?: string | undefined;
+                    aiInstructions?: string | undefined;
+                    prompt?: string | undefined;
                 } | {
                     mode: "breathing";
                     breathingPattern: {
@@ -6384,8 +6417,49 @@ export declare const logSchemas: {
                     cycles?: number | undefined;
                 } | {
                     text: string;
-                    mode: "timer";
-                    durationSeconds: number;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    mode?: "default" | undefined;
+                } | {
+                    mode: "media";
+                    media: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }[];
+                    text?: string | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -6432,97 +6506,20 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
-                    question: {
-                        text: string;
-                        responseType: "recap";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        isTemplate?: boolean | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    } | {
-                        text: string;
-                        responseType: "slider1To10";
-                        sliderConfig: {
-                            minLabel?: string | undefined;
-                            maxLabel?: string | undefined;
-                        };
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        isTemplate?: boolean | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                    } | {
-                        text: string;
-                        responseType: "text";
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        id?: string | undefined;
-                        isTemplate?: boolean | undefined;
-                        lastAskedAt?: import("../../types").Timestamp | undefined;
-                        lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                        numberOfAnswers?: number | undefined;
-                        isPinned?: boolean | undefined;
-                        scope?: "impulse" | "debrief" | "recap" | undefined;
-                        suggestedResponses?: string[] | undefined;
+                    sliderConfig: {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
                     };
-                    mode: "question";
-                    aiInstructions?: string | undefined;
-                    backgroundImage?: {
-                        uri: string;
-                        storagePath: string;
-                        contentType: string;
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        title?: string | undefined;
-                        sizeBytes?: number | undefined;
-                        metadata?: {
-                            width?: number | undefined;
-                            height?: number | undefined;
-                            durationMs?: number | undefined;
-                            transcript?: string | undefined;
-                            meterings?: {
-                                db: number;
-                                timestampMs?: number | undefined;
-                            }[] | undefined;
-                        } | undefined;
-                    } | undefined;
-                } | {
-                    goal: string;
-                    mode: "aiConversation";
-                    text?: string | undefined;
-                    aiInstructions?: string | undefined;
-                    prompt?: string | undefined;
-                } | {
-                    mode: "media";
-                    media: {
-                        uri: string;
-                        storagePath: string;
-                        contentType: string;
-                        createdAt?: import("../../types").Timestamp | undefined;
-                        updatedAt?: import("../../types").Timestamp | undefined;
-                        title?: string | undefined;
-                        sizeBytes?: number | undefined;
-                        metadata?: {
-                            width?: number | undefined;
-                            height?: number | undefined;
-                            durationMs?: number | undefined;
-                            transcript?: string | undefined;
-                            meterings?: {
-                                db: number;
-                                timestampMs?: number | undefined;
-                            }[] | undefined;
-                        } | undefined;
-                    }[];
-                    text?: string | undefined;
+                    mode: "question-slider1To10";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    lastAskedAt?: import("../../types").Timestamp | undefined;
+                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                    numberOfAnswers?: number | undefined;
+                    isPinned?: boolean | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -6545,8 +6542,41 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
-                    mode: "affirmation";
-                    repeatCount: number;
+                    mode: "question-text";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    lastAskedAt?: import("../../types").Timestamp | undefined;
+                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                    numberOfAnswers?: number | undefined;
+                    isPinned?: boolean | undefined;
+                    scope?: "impulse" | "debrief" | "recap" | undefined;
+                    suggestedResponses?: string[] | undefined;
+                    aiInstructions?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "timer";
+                    durationSeconds: number;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
                         uri: string;
@@ -9790,185 +9820,32 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 }>>;
             } & {
-                mode: z.ZodLiteral<"question">;
-                question: z.ZodDiscriminatedUnion<"responseType", [z.ZodObject<{
-                    id: z.ZodOptional<z.ZodString>;
-                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    text: z.ZodString;
-                    lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    numberOfAnswers: z.ZodOptional<z.ZodNumber>;
-                    isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-                    isPinned: z.ZodOptional<z.ZodBoolean>;
-                    responseType: z.ZodLiteral<"text">;
-                    scope: z.ZodOptional<z.ZodEnum<["impulse" | "debrief" | "recap", ...("impulse" | "debrief" | "recap")[]]>>;
-                } & {
-                    suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-                }, "strip", z.ZodTypeAny, {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "text";
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    id?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "recap" | undefined;
-                    suggestedResponses?: string[] | undefined;
-                }, {
-                    text: string;
-                    responseType: "text";
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    id?: string | undefined;
-                    isTemplate?: boolean | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "recap" | undefined;
-                    suggestedResponses?: string[] | undefined;
-                }>, z.ZodObject<{
-                    id: z.ZodOptional<z.ZodString>;
-                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    text: z.ZodString;
-                    lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    numberOfAnswers: z.ZodOptional<z.ZodNumber>;
-                    isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-                    isPinned: z.ZodOptional<z.ZodBoolean>;
-                    responseType: z.ZodLiteral<"slider1To10">;
-                    scope: z.ZodOptional<z.ZodEnum<["impulse" | "debrief" | "recap", ...("impulse" | "debrief" | "recap")[]]>>;
-                } & {
-                    sliderConfig: z.ZodObject<{
-                        minLabel: z.ZodOptional<z.ZodString>;
-                        maxLabel: z.ZodOptional<z.ZodString>;
-                    }, "strip", z.ZodTypeAny, {
-                        minLabel?: string | undefined;
-                        maxLabel?: string | undefined;
-                    }, {
-                        minLabel?: string | undefined;
-                        maxLabel?: string | undefined;
-                    }>;
-                }, "strip", z.ZodTypeAny, {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "slider1To10";
-                    sliderConfig: {
-                        minLabel?: string | undefined;
-                        maxLabel?: string | undefined;
-                    };
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    id?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "recap" | undefined;
-                }, {
-                    text: string;
-                    responseType: "slider1To10";
-                    sliderConfig: {
-                        minLabel?: string | undefined;
-                        maxLabel?: string | undefined;
-                    };
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    id?: string | undefined;
-                    isTemplate?: boolean | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "recap" | undefined;
-                }>, z.ZodObject<{
-                    id: z.ZodOptional<z.ZodString>;
-                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    text: z.ZodString;
-                    lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    numberOfAnswers: z.ZodOptional<z.ZodNumber>;
-                    isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-                    isPinned: z.ZodOptional<z.ZodBoolean>;
-                    responseType: z.ZodLiteral<"recap">;
-                    scope: z.ZodOptional<z.ZodEnum<["impulse" | "debrief" | "recap", ...("impulse" | "debrief" | "recap")[]]>>;
-                }, "strip", z.ZodTypeAny, {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "recap";
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    id?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "recap" | undefined;
-                }, {
-                    text: string;
-                    responseType: "recap";
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    id?: string | undefined;
-                    isTemplate?: boolean | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "recap" | undefined;
-                }>]>;
+                mode: z.ZodLiteral<"question-text">;
+                id: z.ZodOptional<z.ZodString>;
+                createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 text: z.ZodString;
+                lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                numberOfAnswers: z.ZodOptional<z.ZodNumber>;
+                isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+                isPinned: z.ZodOptional<z.ZodBoolean>;
+                scope: z.ZodOptional<z.ZodEnum<["impulse" | "debrief" | "recap", ...("impulse" | "debrief" | "recap")[]]>>;
+            } & {
+                suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             }, "strip", z.ZodTypeAny, {
                 text: string;
-                question: {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "recap";
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    id?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "recap" | undefined;
-                } | {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "slider1To10";
-                    sliderConfig: {
-                        minLabel?: string | undefined;
-                        maxLabel?: string | undefined;
-                    };
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    id?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "recap" | undefined;
-                } | {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "text";
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    id?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "recap" | undefined;
-                    suggestedResponses?: string[] | undefined;
-                };
-                mode: "question";
+                isTemplate: boolean;
+                mode: "question-text";
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                lastAskedAt?: import("../../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                scope?: "impulse" | "debrief" | "recap" | undefined;
+                suggestedResponses?: string[] | undefined;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
@@ -9991,49 +9868,193 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 } | undefined;
             }, {
                 text: string;
-                question: {
-                    text: string;
-                    responseType: "recap";
+                mode: "question-text";
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                isTemplate?: boolean | undefined;
+                lastAskedAt?: import("../../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                scope?: "impulse" | "debrief" | "recap" | undefined;
+                suggestedResponses?: string[] | undefined;
+                aiInstructions?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    id?: string | undefined;
-                    isTemplate?: boolean | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "recap" | undefined;
-                } | {
-                    text: string;
-                    responseType: "slider1To10";
-                    sliderConfig: {
-                        minLabel?: string | undefined;
-                        maxLabel?: string | undefined;
-                    };
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+            }>, z.ZodObject<{
+                aiInstructions: z.ZodOptional<z.ZodString>;
+                backgroundImage: z.ZodOptional<z.ZodObject<{
+                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    uri: z.ZodString;
+                    storagePath: z.ZodString;
+                    contentType: z.ZodString;
+                    title: z.ZodOptional<z.ZodString>;
+                    sizeBytes: z.ZodOptional<z.ZodNumber>;
+                    metadata: z.ZodOptional<z.ZodObject<{
+                        width: z.ZodOptional<z.ZodNumber>;
+                        height: z.ZodOptional<z.ZodNumber>;
+                        durationMs: z.ZodOptional<z.ZodNumber>;
+                        transcript: z.ZodOptional<z.ZodString>;
+                        meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                            db: z.ZodNumber;
+                            timestampMs: z.ZodOptional<z.ZodNumber>;
+                        }, "strip", z.ZodTypeAny, {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }, {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }>, "many">>;
+                    }, "strip", z.ZodTypeAny, {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    }, {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    }>>;
+                }, "strip", z.ZodTypeAny, {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    id?: string | undefined;
-                    isTemplate?: boolean | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "recap" | undefined;
-                } | {
-                    text: string;
-                    responseType: "text";
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }, {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    id?: string | undefined;
-                    isTemplate?: boolean | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "recap" | undefined;
-                    suggestedResponses?: string[] | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }>>;
+            } & {
+                mode: z.ZodLiteral<"question-slider1To10">;
+                id: z.ZodOptional<z.ZodString>;
+                createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                text: z.ZodString;
+                lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                numberOfAnswers: z.ZodOptional<z.ZodNumber>;
+                isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+                isPinned: z.ZodOptional<z.ZodBoolean>;
+                scope: z.ZodOptional<z.ZodEnum<["impulse" | "debrief" | "recap", ...("impulse" | "debrief" | "recap")[]]>>;
+            } & {
+                sliderConfig: z.ZodObject<{
+                    minLabel: z.ZodOptional<z.ZodString>;
+                    maxLabel: z.ZodOptional<z.ZodString>;
+                }, "strip", z.ZodTypeAny, {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                }, {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                }>;
+            }, "strip", z.ZodTypeAny, {
+                text: string;
+                isTemplate: boolean;
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
                 };
-                mode: "question";
+                mode: "question-slider1To10";
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                lastAskedAt?: import("../../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                scope?: "impulse" | "debrief" | "recap" | undefined;
+                aiInstructions?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+            }, {
+                text: string;
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                };
+                mode: "question-slider1To10";
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                isTemplate?: boolean | undefined;
+                lastAskedAt?: import("../../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                scope?: "impulse" | "debrief" | "recap" | undefined;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
@@ -10542,6 +10563,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             title: string;
             steps: ({
                 text: string;
+                mode: "affirmation";
+                repeatCount: number;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
@@ -10562,7 +10585,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
-                mode?: "default" | undefined;
+            } | {
+                goal: string;
+                mode: "aiConversation";
+                text?: string | undefined;
+                aiInstructions?: string | undefined;
+                prompt?: string | undefined;
             } | {
                 mode: "breathing";
                 breathingPattern: {
@@ -10594,8 +10622,49 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 cycles?: number | undefined;
             } | {
                 text: string;
-                mode: "timer";
-                durationSeconds: number;
+                aiInstructions?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                mode?: "default" | undefined;
+            } | {
+                mode: "media";
+                media: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }[];
+                text?: string | undefined;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
@@ -10642,97 +10711,20 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 } | undefined;
             } | {
                 text: string;
-                question: {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "recap";
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    id?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "recap" | undefined;
-                } | {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "slider1To10";
-                    sliderConfig: {
-                        minLabel?: string | undefined;
-                        maxLabel?: string | undefined;
-                    };
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    id?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "recap" | undefined;
-                } | {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "text";
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    id?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "recap" | undefined;
-                    suggestedResponses?: string[] | undefined;
+                isTemplate: boolean;
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
                 };
-                mode: "question";
-                aiInstructions?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-            } | {
-                goal: string;
-                mode: "aiConversation";
-                text?: string | undefined;
-                aiInstructions?: string | undefined;
-                prompt?: string | undefined;
-            } | {
-                mode: "media";
-                media: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                }[];
-                text?: string | undefined;
+                mode: "question-slider1To10";
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                lastAskedAt?: import("../../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                scope?: "impulse" | "debrief" | "recap" | undefined;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
@@ -10755,8 +10747,41 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 } | undefined;
             } | {
                 text: string;
-                mode: "affirmation";
-                repeatCount: number;
+                isTemplate: boolean;
+                mode: "question-text";
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                lastAskedAt?: import("../../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                scope?: "impulse" | "debrief" | "recap" | undefined;
+                suggestedResponses?: string[] | undefined;
+                aiInstructions?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                mode: "timer";
+                durationSeconds: number;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
@@ -10789,6 +10814,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             title: string;
             steps: ({
                 text: string;
+                mode: "affirmation";
+                repeatCount: number;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
@@ -10809,7 +10836,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
-                mode?: "default" | undefined;
+            } | {
+                goal: string;
+                mode: "aiConversation";
+                text?: string | undefined;
+                aiInstructions?: string | undefined;
+                prompt?: string | undefined;
             } | {
                 mode: "breathing";
                 breathingPattern: {
@@ -10841,8 +10873,49 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 cycles?: number | undefined;
             } | {
                 text: string;
-                mode: "timer";
-                durationSeconds: number;
+                aiInstructions?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                mode?: "default" | undefined;
+            } | {
+                mode: "media";
+                media: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }[];
+                text?: string | undefined;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
@@ -10889,97 +10962,20 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 } | undefined;
             } | {
                 text: string;
-                question: {
-                    text: string;
-                    responseType: "recap";
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    id?: string | undefined;
-                    isTemplate?: boolean | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "recap" | undefined;
-                } | {
-                    text: string;
-                    responseType: "slider1To10";
-                    sliderConfig: {
-                        minLabel?: string | undefined;
-                        maxLabel?: string | undefined;
-                    };
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    id?: string | undefined;
-                    isTemplate?: boolean | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "recap" | undefined;
-                } | {
-                    text: string;
-                    responseType: "text";
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    id?: string | undefined;
-                    isTemplate?: boolean | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "recap" | undefined;
-                    suggestedResponses?: string[] | undefined;
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
                 };
-                mode: "question";
-                aiInstructions?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-            } | {
-                goal: string;
-                mode: "aiConversation";
-                text?: string | undefined;
-                aiInstructions?: string | undefined;
-                prompt?: string | undefined;
-            } | {
-                mode: "media";
-                media: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                }[];
-                text?: string | undefined;
+                mode: "question-slider1To10";
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                isTemplate?: boolean | undefined;
+                lastAskedAt?: import("../../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                scope?: "impulse" | "debrief" | "recap" | undefined;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
@@ -11002,8 +10998,41 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 } | undefined;
             } | {
                 text: string;
-                mode: "affirmation";
-                repeatCount: number;
+                mode: "question-text";
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                isTemplate?: boolean | undefined;
+                lastAskedAt?: import("../../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                scope?: "impulse" | "debrief" | "recap" | undefined;
+                suggestedResponses?: string[] | undefined;
+                aiInstructions?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                mode: "timer";
+                durationSeconds: number;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
@@ -11042,6 +11071,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             title: string;
             steps: ({
                 text: string;
+                mode: "affirmation";
+                repeatCount: number;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
@@ -11062,7 +11093,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
-                mode?: "default" | undefined;
+            } | {
+                goal: string;
+                mode: "aiConversation";
+                text?: string | undefined;
+                aiInstructions?: string | undefined;
+                prompt?: string | undefined;
             } | {
                 mode: "breathing";
                 breathingPattern: {
@@ -11094,8 +11130,49 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 cycles?: number | undefined;
             } | {
                 text: string;
-                mode: "timer";
-                durationSeconds: number;
+                aiInstructions?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                mode?: "default" | undefined;
+            } | {
+                mode: "media";
+                media: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }[];
+                text?: string | undefined;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
@@ -11142,97 +11219,20 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 } | undefined;
             } | {
                 text: string;
-                question: {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "recap";
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    id?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "recap" | undefined;
-                } | {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "slider1To10";
-                    sliderConfig: {
-                        minLabel?: string | undefined;
-                        maxLabel?: string | undefined;
-                    };
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    id?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "recap" | undefined;
-                } | {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "text";
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    id?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "recap" | undefined;
-                    suggestedResponses?: string[] | undefined;
+                isTemplate: boolean;
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
                 };
-                mode: "question";
-                aiInstructions?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-            } | {
-                goal: string;
-                mode: "aiConversation";
-                text?: string | undefined;
-                aiInstructions?: string | undefined;
-                prompt?: string | undefined;
-            } | {
-                mode: "media";
-                media: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                }[];
-                text?: string | undefined;
+                mode: "question-slider1To10";
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                lastAskedAt?: import("../../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                scope?: "impulse" | "debrief" | "recap" | undefined;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
@@ -11255,8 +11255,41 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 } | undefined;
             } | {
                 text: string;
-                mode: "affirmation";
-                repeatCount: number;
+                isTemplate: boolean;
+                mode: "question-text";
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                lastAskedAt?: import("../../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                scope?: "impulse" | "debrief" | "recap" | undefined;
+                suggestedResponses?: string[] | undefined;
+                aiInstructions?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                mode: "timer";
+                durationSeconds: number;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
@@ -11295,6 +11328,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             title: string;
             steps: ({
                 text: string;
+                mode: "affirmation";
+                repeatCount: number;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
@@ -11315,7 +11350,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
-                mode?: "default" | undefined;
+            } | {
+                goal: string;
+                mode: "aiConversation";
+                text?: string | undefined;
+                aiInstructions?: string | undefined;
+                prompt?: string | undefined;
             } | {
                 mode: "breathing";
                 breathingPattern: {
@@ -11347,8 +11387,49 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 cycles?: number | undefined;
             } | {
                 text: string;
-                mode: "timer";
-                durationSeconds: number;
+                aiInstructions?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                mode?: "default" | undefined;
+            } | {
+                mode: "media";
+                media: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }[];
+                text?: string | undefined;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
@@ -11395,97 +11476,20 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 } | undefined;
             } | {
                 text: string;
-                question: {
-                    text: string;
-                    responseType: "recap";
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    id?: string | undefined;
-                    isTemplate?: boolean | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "recap" | undefined;
-                } | {
-                    text: string;
-                    responseType: "slider1To10";
-                    sliderConfig: {
-                        minLabel?: string | undefined;
-                        maxLabel?: string | undefined;
-                    };
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    id?: string | undefined;
-                    isTemplate?: boolean | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "recap" | undefined;
-                } | {
-                    text: string;
-                    responseType: "text";
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    id?: string | undefined;
-                    isTemplate?: boolean | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "recap" | undefined;
-                    suggestedResponses?: string[] | undefined;
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
                 };
-                mode: "question";
-                aiInstructions?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-            } | {
-                goal: string;
-                mode: "aiConversation";
-                text?: string | undefined;
-                aiInstructions?: string | undefined;
-                prompt?: string | undefined;
-            } | {
-                mode: "media";
-                media: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                }[];
-                text?: string | undefined;
+                mode: "question-slider1To10";
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                isTemplate?: boolean | undefined;
+                lastAskedAt?: import("../../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                scope?: "impulse" | "debrief" | "recap" | undefined;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
@@ -11508,8 +11512,41 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 } | undefined;
             } | {
                 text: string;
-                mode: "affirmation";
-                repeatCount: number;
+                mode: "question-text";
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                isTemplate?: boolean | undefined;
+                lastAskedAt?: import("../../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                scope?: "impulse" | "debrief" | "recap" | undefined;
+                suggestedResponses?: string[] | undefined;
+                aiInstructions?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                mode: "timer";
+                durationSeconds: number;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
@@ -11555,6 +11592,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             title: string;
             steps: ({
                 text: string;
+                mode: "affirmation";
+                repeatCount: number;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
@@ -11575,7 +11614,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
-                mode?: "default" | undefined;
+            } | {
+                goal: string;
+                mode: "aiConversation";
+                text?: string | undefined;
+                aiInstructions?: string | undefined;
+                prompt?: string | undefined;
             } | {
                 mode: "breathing";
                 breathingPattern: {
@@ -11607,8 +11651,49 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 cycles?: number | undefined;
             } | {
                 text: string;
-                mode: "timer";
-                durationSeconds: number;
+                aiInstructions?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                mode?: "default" | undefined;
+            } | {
+                mode: "media";
+                media: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }[];
+                text?: string | undefined;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
@@ -11655,97 +11740,20 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 } | undefined;
             } | {
                 text: string;
-                question: {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "recap";
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    id?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "recap" | undefined;
-                } | {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "slider1To10";
-                    sliderConfig: {
-                        minLabel?: string | undefined;
-                        maxLabel?: string | undefined;
-                    };
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    id?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "recap" | undefined;
-                } | {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "text";
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    id?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "recap" | undefined;
-                    suggestedResponses?: string[] | undefined;
+                isTemplate: boolean;
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
                 };
-                mode: "question";
-                aiInstructions?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-            } | {
-                goal: string;
-                mode: "aiConversation";
-                text?: string | undefined;
-                aiInstructions?: string | undefined;
-                prompt?: string | undefined;
-            } | {
-                mode: "media";
-                media: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                }[];
-                text?: string | undefined;
+                mode: "question-slider1To10";
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                lastAskedAt?: import("../../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                scope?: "impulse" | "debrief" | "recap" | undefined;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
@@ -11768,8 +11776,41 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 } | undefined;
             } | {
                 text: string;
-                mode: "affirmation";
-                repeatCount: number;
+                isTemplate: boolean;
+                mode: "question-text";
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                lastAskedAt?: import("../../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                scope?: "impulse" | "debrief" | "recap" | undefined;
+                suggestedResponses?: string[] | undefined;
+                aiInstructions?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                mode: "timer";
+                durationSeconds: number;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
@@ -11823,6 +11864,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             title: string;
             steps: ({
                 text: string;
+                mode: "affirmation";
+                repeatCount: number;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
@@ -11843,7 +11886,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
-                mode?: "default" | undefined;
+            } | {
+                goal: string;
+                mode: "aiConversation";
+                text?: string | undefined;
+                aiInstructions?: string | undefined;
+                prompt?: string | undefined;
             } | {
                 mode: "breathing";
                 breathingPattern: {
@@ -11875,8 +11923,49 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 cycles?: number | undefined;
             } | {
                 text: string;
-                mode: "timer";
-                durationSeconds: number;
+                aiInstructions?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                mode?: "default" | undefined;
+            } | {
+                mode: "media";
+                media: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }[];
+                text?: string | undefined;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
@@ -11923,97 +12012,20 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 } | undefined;
             } | {
                 text: string;
-                question: {
-                    text: string;
-                    responseType: "recap";
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    id?: string | undefined;
-                    isTemplate?: boolean | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "recap" | undefined;
-                } | {
-                    text: string;
-                    responseType: "slider1To10";
-                    sliderConfig: {
-                        minLabel?: string | undefined;
-                        maxLabel?: string | undefined;
-                    };
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    id?: string | undefined;
-                    isTemplate?: boolean | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "recap" | undefined;
-                } | {
-                    text: string;
-                    responseType: "text";
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    id?: string | undefined;
-                    isTemplate?: boolean | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    scope?: "impulse" | "debrief" | "recap" | undefined;
-                    suggestedResponses?: string[] | undefined;
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
                 };
-                mode: "question";
-                aiInstructions?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-            } | {
-                goal: string;
-                mode: "aiConversation";
-                text?: string | undefined;
-                aiInstructions?: string | undefined;
-                prompt?: string | undefined;
-            } | {
-                mode: "media";
-                media: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                }[];
-                text?: string | undefined;
+                mode: "question-slider1To10";
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                isTemplate?: boolean | undefined;
+                lastAskedAt?: import("../../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                scope?: "impulse" | "debrief" | "recap" | undefined;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
@@ -12036,8 +12048,41 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 } | undefined;
             } | {
                 text: string;
-                mode: "affirmation";
-                repeatCount: number;
+                mode: "question-text";
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                isTemplate?: boolean | undefined;
+                lastAskedAt?: import("../../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                scope?: "impulse" | "debrief" | "recap" | undefined;
+                suggestedResponses?: string[] | undefined;
+                aiInstructions?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                mode: "timer";
+                durationSeconds: number;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
