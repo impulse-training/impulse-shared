@@ -20,6 +20,7 @@ export * from "./supportGroup";
 export * from "./tactic";
 export { isQuestionStepMode } from "./tactic/step/question";
 export * from "./thread";
+export * from "./trigger";
 export * from "./userContext";
 export * from "./userData";
 export * from "./userProfile";

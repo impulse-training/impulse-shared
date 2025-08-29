@@ -38,6 +38,7 @@ __exportStar(require("./tactic"), exports);
 var question_1 = require("./tactic/step/question");
 Object.defineProperty(exports, "isQuestionStepMode", { enumerable: true, get: function () { return question_1.isQuestionStepMode; } });
 __exportStar(require("./thread"), exports);
+__exportStar(require("./trigger"), exports);
 __exportStar(require("./userContext"), exports);
 __exportStar(require("./userData"), exports);
 __exportStar(require("./userProfile"), exports);
