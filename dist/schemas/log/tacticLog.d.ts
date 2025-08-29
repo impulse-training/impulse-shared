@@ -1396,12 +1396,14 @@ export declare const tacticLogSchema: z.ZodObject<{
                 } | undefined;
             }>]>, "many">;
             tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+            type: z.ZodEnum<["distraction", "reflection", "power-up"]>;
             createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
             updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
         }, "strip", z.ZodTypeAny, {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
             title: string;
+            type: "distraction" | "reflection" | "power-up";
             steps: ({
                 text: string;
                 mode: "affirmation";
@@ -1653,6 +1655,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
             title: string;
+            type: "distraction" | "reflection" | "power-up";
             steps: ({
                 text: string;
                 mode: "affirmation";
@@ -1910,6 +1913,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
             title: string;
+            type: "distraction" | "reflection" | "power-up";
             steps: ({
                 text: string;
                 mode: "affirmation";
@@ -2167,6 +2171,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
             title: string;
+            type: "distraction" | "reflection" | "power-up";
             steps: ({
                 text: string;
                 mode: "affirmation";
@@ -2431,6 +2436,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
             title: string;
+            type: "distraction" | "reflection" | "power-up";
             steps: ({
                 text: string;
                 mode: "affirmation";
@@ -2703,6 +2709,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
             title: string;
+            type: "distraction" | "reflection" | "power-up";
             steps: ({
                 text: string;
                 mode: "affirmation";
