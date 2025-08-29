@@ -14,6 +14,7 @@ export * from "./log";
 export * from "./memory";
 export * from "./notification";
 export * from "./plan";
+export * from "./question";
 export * from "./session";
 export * from "./strategy";
 export * from "./supportGroup";
