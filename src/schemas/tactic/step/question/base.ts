@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { questionScopeSchema } from "../../../../constants/questionScopes";
 import { timestampSchema } from "../../../../utils";
 import { baseStepSchema } from "../base";
 
@@ -11,11 +10,5 @@ export function questionStepBaseSchema<T extends string>(mode: T) {
     createdAt: timestampSchema.optional(),
     updatedAt: timestampSchema.optional(),
     text: z.string().min(1), // The actual question content
-    lastAskedAt: timestampSchema.optional(),
-    lastAnsweredAt: timestampSchema.optional(),
-    numberOfAnswers: z.number().optional(),
-    isTemplate: z.boolean().optional().default(false),
-    isPinned: z.boolean().optional(),
-    scope: questionScopeSchema.optional(),
   });
 }
