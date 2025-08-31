@@ -14,9 +14,10 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidReadyToDebriefLog = exports.logIsReadyToDebriefLog = exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidPlanLog = exports.logIsPlanLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticSuggestionLog = exports.logIsTacticSuggestionLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorLog = exports.logIsBehaviorLog = exports.isValidDaySummaryLog = exports.logIsDaySummaryLog = exports.isValidResistedLog = exports.logIsResistedLog = exports.isValidSharedMomentLog = exports.logIsSharedMomentLog = exports.isValidNotifySupportGroupLog = exports.logIsNotifySupportGroupLog = exports.isValidShowTourLog = exports.logIsShowTourLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
+exports.isValidBreathingLog = exports.logIsBreathingLog = exports.isValidReadyToDebriefLog = exports.logIsReadyToDebriefLog = exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidPlanLog = exports.logIsPlanLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticSuggestionLog = exports.logIsTacticSuggestionLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorLog = exports.logIsBehaviorLog = exports.isValidDaySummaryLog = exports.logIsDaySummaryLog = exports.isValidResistedLog = exports.logIsResistedLog = exports.isValidSharedMomentLog = exports.logIsSharedMomentLog = exports.isValidNotifySupportGroupLog = exports.logIsNotifySupportGroupLog = exports.isValidShowTourLog = exports.logIsShowTourLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
 const zod_1 = require("zod");
 const behaviorLog_1 = require("./behaviorLog");
+const breathingLog_1 = require("./breathingLog");
 const callLog_1 = require("./callLog");
 const daySummaryLog_1 = require("./daySummaryLog");
 const impulseLog_1 = require("./impulseLog");
@@ -47,6 +48,7 @@ exports.logSchemas = {
     tactic_viewed: tacticLog_1.tacticLogSchema,
     impulse_button_pressed: impulseLog_1.impulseLogSchema,
     behavior: behaviorLog_1.behaviorLogSchema,
+    breathing: breathingLog_1.breathingLogSchema,
     question: questionLog_1.questionLogSchema,
     plan: planLog_1.planLogSchema,
     summary: summaryLog_1.summaryLogSchema,
@@ -61,6 +63,7 @@ exports.logSchemas = {
 };
 exports.logTypes = Object.keys(exports.logSchemas);
 __exportStar(require("./behaviorLog"), exports);
+__exportStar(require("./breathingLog"), exports);
 __exportStar(require("./callLog"), exports);
 __exportStar(require("./daySummaryLog"), exports);
 __exportStar(require("./impulseLog"), exports);
@@ -90,6 +93,7 @@ exports.logSchema = zod_1.z.discriminatedUnion("type", [
     daySummaryLog_1.daySummaryLogSchema,
     impulseLog_1.impulseLogSchema,
     behaviorLog_1.behaviorLogSchema,
+    breathingLog_1.breathingLogSchema,
     questionLog_1.questionLogSchema,
     planLog_1.planLogSchema,
     summaryLog_1.summaryLogSchema,
@@ -217,3 +221,9 @@ const isValidReadyToDebriefLog = (value) => {
     return readyToDebriefLog_1.readyToDebriefLogSchema.safeParse(value).success;
 };
 exports.isValidReadyToDebriefLog = isValidReadyToDebriefLog;
+const logIsBreathingLog = (value) => value.type === "breathing";
+exports.logIsBreathingLog = logIsBreathingLog;
+const isValidBreathingLog = (value) => {
+    return breathingLog_1.breathingLogSchema.safeParse(value).success;
+};
+exports.isValidBreathingLog = isValidBreathingLog;

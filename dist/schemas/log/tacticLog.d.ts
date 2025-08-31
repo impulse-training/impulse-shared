@@ -266,6 +266,7 @@ export declare const tacticLogSchema: z.ZodObject<{
                     exhale: number;
                     hold?: number | undefined;
                 };
+                cycles?: number | undefined;
                 text?: string | undefined;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
@@ -288,7 +289,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
-                cycles?: number | undefined;
             }, {
                 mode: "breathing";
                 breathingPattern: {
@@ -296,6 +296,7 @@ export declare const tacticLogSchema: z.ZodObject<{
                     exhale: number;
                     hold?: number | undefined;
                 };
+                cycles?: number | undefined;
                 text?: string | undefined;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
@@ -318,7 +319,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
-                cycles?: number | undefined;
             }>, z.ZodObject<{
                 aiInstructions: z.ZodOptional<z.ZodString>;
                 backgroundImage: z.ZodOptional<z.ZodObject<{
@@ -1489,6 +1489,7 @@ export declare const tacticLogSchema: z.ZodObject<{
                     exhale: number;
                     hold?: number | undefined;
                 };
+                cycles?: number | undefined;
                 text?: string | undefined;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
@@ -1511,7 +1512,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
-                cycles?: number | undefined;
             } | {
                 text: string;
                 aiInstructions?: string | undefined;
@@ -1756,6 +1756,7 @@ export declare const tacticLogSchema: z.ZodObject<{
                     exhale: number;
                     hold?: number | undefined;
                 };
+                cycles?: number | undefined;
                 text?: string | undefined;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
@@ -1778,7 +1779,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
-                cycles?: number | undefined;
             } | {
                 text: string;
                 aiInstructions?: string | undefined;
@@ -2029,6 +2029,7 @@ export declare const tacticLogSchema: z.ZodObject<{
                     exhale: number;
                     hold?: number | undefined;
                 };
+                cycles?: number | undefined;
                 text?: string | undefined;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
@@ -2051,7 +2052,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
-                cycles?: number | undefined;
             } | {
                 text: string;
                 aiInstructions?: string | undefined;
@@ -2302,6 +2302,7 @@ export declare const tacticLogSchema: z.ZodObject<{
                     exhale: number;
                     hold?: number | undefined;
                 };
+                cycles?: number | undefined;
                 text?: string | undefined;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
@@ -2324,7 +2325,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
-                cycles?: number | undefined;
             } | {
                 text: string;
                 aiInstructions?: string | undefined;
@@ -2582,6 +2582,7 @@ export declare const tacticLogSchema: z.ZodObject<{
                     exhale: number;
                     hold?: number | undefined;
                 };
+                cycles?: number | undefined;
                 text?: string | undefined;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
@@ -2604,7 +2605,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
-                cycles?: number | undefined;
             } | {
                 text: string;
                 aiInstructions?: string | undefined;
@@ -2870,6 +2870,7 @@ export declare const tacticLogSchema: z.ZodObject<{
                     exhale: number;
                     hold?: number | undefined;
                 };
+                cycles?: number | undefined;
                 text?: string | undefined;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
@@ -2892,7 +2893,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
-                cycles?: number | undefined;
             } | {
                 text: string;
                 aiInstructions?: string | undefined;

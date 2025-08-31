@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { BehaviorLog } from "./behaviorLog";
+import { BreathingLog } from "./breathingLog";
 import { CallLog } from "./callLog";
 import { DaySummaryLog } from "./daySummaryLog";
 import { ImpulseLog } from "./impulseLog";
@@ -797,6 +798,7 @@ export declare const logSchemas: {
                         exhale: number;
                         hold?: number | undefined;
                     };
+                    cycles?: number | undefined;
                     text?: string | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
@@ -819,7 +821,6 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
-                    cycles?: number | undefined;
                 }, {
                     mode: "breathing";
                     breathingPattern: {
@@ -827,6 +828,7 @@ export declare const logSchemas: {
                         exhale: number;
                         hold?: number | undefined;
                     };
+                    cycles?: number | undefined;
                     text?: string | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
@@ -849,7 +851,6 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
-                    cycles?: number | undefined;
                 }>, z.ZodObject<{
                     aiInstructions: z.ZodOptional<z.ZodString>;
                     backgroundImage: z.ZodOptional<z.ZodObject<{
@@ -2020,6 +2021,7 @@ export declare const logSchemas: {
                         exhale: number;
                         hold?: number | undefined;
                     };
+                    cycles?: number | undefined;
                     text?: string | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
@@ -2042,7 +2044,6 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
-                    cycles?: number | undefined;
                 } | {
                     text: string;
                     aiInstructions?: string | undefined;
@@ -2287,6 +2288,7 @@ export declare const logSchemas: {
                         exhale: number;
                         hold?: number | undefined;
                     };
+                    cycles?: number | undefined;
                     text?: string | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
@@ -2309,7 +2311,6 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
-                    cycles?: number | undefined;
                 } | {
                     text: string;
                     aiInstructions?: string | undefined;
@@ -2560,6 +2561,7 @@ export declare const logSchemas: {
                         exhale: number;
                         hold?: number | undefined;
                     };
+                    cycles?: number | undefined;
                     text?: string | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
@@ -2582,7 +2584,6 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
-                    cycles?: number | undefined;
                 } | {
                     text: string;
                     aiInstructions?: string | undefined;
@@ -2833,6 +2834,7 @@ export declare const logSchemas: {
                         exhale: number;
                         hold?: number | undefined;
                     };
+                    cycles?: number | undefined;
                     text?: string | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
@@ -2855,7 +2857,6 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
-                    cycles?: number | undefined;
                 } | {
                     text: string;
                     aiInstructions?: string | undefined;
@@ -3113,6 +3114,7 @@ export declare const logSchemas: {
                         exhale: number;
                         hold?: number | undefined;
                     };
+                    cycles?: number | undefined;
                     text?: string | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
@@ -3135,7 +3137,6 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
-                    cycles?: number | undefined;
                 } | {
                     text: string;
                     aiInstructions?: string | undefined;
@@ -3401,6 +3402,7 @@ export declare const logSchemas: {
                         exhale: number;
                         hold?: number | undefined;
                     };
+                    cycles?: number | undefined;
                     text?: string | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
@@ -3423,7 +3425,6 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
-                    cycles?: number | undefined;
                 } | {
                     text: string;
                     aiInstructions?: string | undefined;
@@ -4044,6 +4045,7 @@ export declare const logSchemas: {
                         exhale: number;
                         hold?: number | undefined;
                     };
+                    cycles?: number | undefined;
                     text?: string | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
@@ -4066,7 +4068,6 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
-                    cycles?: number | undefined;
                 }, {
                     mode: "breathing";
                     breathingPattern: {
@@ -4074,6 +4075,7 @@ export declare const logSchemas: {
                         exhale: number;
                         hold?: number | undefined;
                     };
+                    cycles?: number | undefined;
                     text?: string | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
@@ -4096,7 +4098,6 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
-                    cycles?: number | undefined;
                 }>, z.ZodObject<{
                     aiInstructions: z.ZodOptional<z.ZodString>;
                     backgroundImage: z.ZodOptional<z.ZodObject<{
@@ -5267,6 +5268,7 @@ export declare const logSchemas: {
                         exhale: number;
                         hold?: number | undefined;
                     };
+                    cycles?: number | undefined;
                     text?: string | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
@@ -5289,7 +5291,6 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
-                    cycles?: number | undefined;
                 } | {
                     text: string;
                     aiInstructions?: string | undefined;
@@ -5534,6 +5535,7 @@ export declare const logSchemas: {
                         exhale: number;
                         hold?: number | undefined;
                     };
+                    cycles?: number | undefined;
                     text?: string | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
@@ -5556,7 +5558,6 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
-                    cycles?: number | undefined;
                 } | {
                     text: string;
                     aiInstructions?: string | undefined;
@@ -5807,6 +5808,7 @@ export declare const logSchemas: {
                         exhale: number;
                         hold?: number | undefined;
                     };
+                    cycles?: number | undefined;
                     text?: string | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
@@ -5829,7 +5831,6 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
-                    cycles?: number | undefined;
                 } | {
                     text: string;
                     aiInstructions?: string | undefined;
@@ -6080,6 +6081,7 @@ export declare const logSchemas: {
                         exhale: number;
                         hold?: number | undefined;
                     };
+                    cycles?: number | undefined;
                     text?: string | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
@@ -6102,7 +6104,6 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
-                    cycles?: number | undefined;
                 } | {
                     text: string;
                     aiInstructions?: string | undefined;
@@ -6360,6 +6361,7 @@ export declare const logSchemas: {
                         exhale: number;
                         hold?: number | undefined;
                     };
+                    cycles?: number | undefined;
                     text?: string | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
@@ -6382,7 +6384,6 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
-                    cycles?: number | undefined;
                 } | {
                     text: string;
                     aiInstructions?: string | undefined;
@@ -6648,6 +6649,7 @@ export declare const logSchemas: {
                         exhale: number;
                         hold?: number | undefined;
                     };
+                    cycles?: number | undefined;
                     text?: string | undefined;
                     aiInstructions?: string | undefined;
                     backgroundImage?: {
@@ -6670,7 +6672,6 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
-                    cycles?: number | undefined;
                 } | {
                     text: string;
                     aiInstructions?: string | undefined;
@@ -7001,6 +7002,91 @@ export declare const logSchemas: {
             category: "helpful" | "mixed" | "unhelpful" | "unsure";
             formattedValue: string;
             behaviorTrackingUnit?: string | undefined;
+        };
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+        replyTactic?: {
+            currentStepIndex: number;
+            tactic?: any;
+        } | undefined;
+    }>;
+    breathing: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        callLogDocPath: z.ZodOptional<z.ZodString>;
+        replyTactic: z.ZodOptional<z.ZodObject<{
+            tactic: z.ZodAny;
+            currentStepIndex: z.ZodNumber;
+        }, "strip", z.ZodTypeAny, {
+            currentStepIndex: number;
+            tactic?: any;
+        }, {
+            currentStepIndex: number;
+            tactic?: any;
+        }>>;
+    } & {
+        type: z.ZodLiteral<"breathing">;
+        data: z.ZodObject<{
+            inhaleSeconds: z.ZodNumber;
+            holdSeconds: z.ZodNumber;
+            exhaleSeconds: z.ZodNumber;
+            cycles: z.ZodNumber;
+            completedCycles: z.ZodNumber;
+            totalDurationSeconds: z.ZodNumber;
+        }, "strip", z.ZodTypeAny, {
+            inhaleSeconds: number;
+            holdSeconds: number;
+            exhaleSeconds: number;
+            cycles: number;
+            completedCycles: number;
+            totalDurationSeconds: number;
+        }, {
+            inhaleSeconds: number;
+            holdSeconds: number;
+            exhaleSeconds: number;
+            cycles: number;
+            completedCycles: number;
+            totalDurationSeconds: number;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        type: "breathing";
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        data: {
+            inhaleSeconds: number;
+            holdSeconds: number;
+            exhaleSeconds: number;
+            cycles: number;
+            completedCycles: number;
+            totalDurationSeconds: number;
+        };
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
+        callLogDocPath?: string | undefined;
+        replyTactic?: {
+            currentStepIndex: number;
+            tactic?: any;
+        } | undefined;
+    }, {
+        type: "breathing";
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        data: {
+            inhaleSeconds: number;
+            holdSeconds: number;
+            exhaleSeconds: number;
+            cycles: number;
+            completedCycles: number;
+            totalDurationSeconds: number;
         };
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -8882,8 +8968,9 @@ export declare const logSchemas: {
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | TacticSuggestionLog | ImpulseLog | BehaviorLog | QuestionLog | PlanLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | ResistedLog | DaySummaryLog | ReadyToDebriefLog;
+export type Log = TacticLog | TacticSuggestionLog | ImpulseLog | BehaviorLog | BreathingLog | QuestionLog | PlanLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | ResistedLog | DaySummaryLog | ReadyToDebriefLog;
 export * from "./behaviorLog";
+export * from "./breathingLog";
 export * from "./callLog";
 export * from "./daySummaryLog";
 export * from "./impulseLog";
@@ -9675,6 +9762,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     exhale: number;
                     hold?: number | undefined;
                 };
+                cycles?: number | undefined;
                 text?: string | undefined;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
@@ -9697,7 +9785,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
-                cycles?: number | undefined;
             }, {
                 mode: "breathing";
                 breathingPattern: {
@@ -9705,6 +9792,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     exhale: number;
                     hold?: number | undefined;
                 };
+                cycles?: number | undefined;
                 text?: string | undefined;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
@@ -9727,7 +9815,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
-                cycles?: number | undefined;
             }>, z.ZodObject<{
                 aiInstructions: z.ZodOptional<z.ZodString>;
                 backgroundImage: z.ZodOptional<z.ZodObject<{
@@ -10898,6 +10985,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     exhale: number;
                     hold?: number | undefined;
                 };
+                cycles?: number | undefined;
                 text?: string | undefined;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
@@ -10920,7 +11008,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
-                cycles?: number | undefined;
             } | {
                 text: string;
                 aiInstructions?: string | undefined;
@@ -11165,6 +11252,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     exhale: number;
                     hold?: number | undefined;
                 };
+                cycles?: number | undefined;
                 text?: string | undefined;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
@@ -11187,7 +11275,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
-                cycles?: number | undefined;
             } | {
                 text: string;
                 aiInstructions?: string | undefined;
@@ -11438,6 +11525,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     exhale: number;
                     hold?: number | undefined;
                 };
+                cycles?: number | undefined;
                 text?: string | undefined;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
@@ -11460,7 +11548,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
-                cycles?: number | undefined;
             } | {
                 text: string;
                 aiInstructions?: string | undefined;
@@ -11711,6 +11798,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     exhale: number;
                     hold?: number | undefined;
                 };
+                cycles?: number | undefined;
                 text?: string | undefined;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
@@ -11733,7 +11821,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
-                cycles?: number | undefined;
             } | {
                 text: string;
                 aiInstructions?: string | undefined;
@@ -11991,6 +12078,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     exhale: number;
                     hold?: number | undefined;
                 };
+                cycles?: number | undefined;
                 text?: string | undefined;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
@@ -12013,7 +12101,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
-                cycles?: number | undefined;
             } | {
                 text: string;
                 aiInstructions?: string | undefined;
@@ -12279,6 +12366,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     exhale: number;
                     hold?: number | undefined;
                 };
+                cycles?: number | undefined;
                 text?: string | undefined;
                 aiInstructions?: string | undefined;
                 backgroundImage?: {
@@ -12301,7 +12389,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
-                cycles?: number | undefined;
             } | {
                 text: string;
                 aiInstructions?: string | undefined;
@@ -12784,6 +12871,90 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         category: "helpful" | "mixed" | "unhelpful" | "unsure";
         formattedValue: string;
         behaviorTrackingUnit?: string | undefined;
+    };
+    createdAt?: import("../../types").Timestamp | undefined;
+    updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+    replyTactic?: {
+        currentStepIndex: number;
+        tactic?: any;
+    } | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    callLogDocPath: z.ZodOptional<z.ZodString>;
+    replyTactic: z.ZodOptional<z.ZodObject<{
+        tactic: z.ZodAny;
+        currentStepIndex: z.ZodNumber;
+    }, "strip", z.ZodTypeAny, {
+        currentStepIndex: number;
+        tactic?: any;
+    }, {
+        currentStepIndex: number;
+        tactic?: any;
+    }>>;
+} & {
+    type: z.ZodLiteral<"breathing">;
+    data: z.ZodObject<{
+        inhaleSeconds: z.ZodNumber;
+        holdSeconds: z.ZodNumber;
+        exhaleSeconds: z.ZodNumber;
+        cycles: z.ZodNumber;
+        completedCycles: z.ZodNumber;
+        totalDurationSeconds: z.ZodNumber;
+    }, "strip", z.ZodTypeAny, {
+        inhaleSeconds: number;
+        holdSeconds: number;
+        exhaleSeconds: number;
+        cycles: number;
+        completedCycles: number;
+        totalDurationSeconds: number;
+    }, {
+        inhaleSeconds: number;
+        holdSeconds: number;
+        exhaleSeconds: number;
+        cycles: number;
+        completedCycles: number;
+        totalDurationSeconds: number;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    type: "breathing";
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    data: {
+        inhaleSeconds: number;
+        holdSeconds: number;
+        exhaleSeconds: number;
+        cycles: number;
+        completedCycles: number;
+        totalDurationSeconds: number;
+    };
+    createdAt?: import("../../types").Timestamp | undefined;
+    updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+    replyTactic?: {
+        currentStepIndex: number;
+        tactic?: any;
+    } | undefined;
+}, {
+    type: "breathing";
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    data: {
+        inhaleSeconds: number;
+        holdSeconds: number;
+        exhaleSeconds: number;
+        cycles: number;
+        completedCycles: number;
+        totalDurationSeconds: number;
     };
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
@@ -14689,3 +14860,5 @@ export declare const logIsLinkLog: (value: Omit<Log, "id">) => value is LinkLog;
 export declare const isValidLinkLog: (value: unknown) => value is LinkLog;
 export declare const logIsReadyToDebriefLog: (value: Omit<Log, "id">) => value is ReadyToDebriefLog;
 export declare const isValidReadyToDebriefLog: (value: unknown) => value is ReadyToDebriefLog;
+export declare const logIsBreathingLog: (value: Omit<Log, "id">) => value is BreathingLog;
+export declare const isValidBreathingLog: (value: unknown) => value is BreathingLog;
