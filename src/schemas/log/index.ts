@@ -18,6 +18,7 @@ import {
   NotifySupportGroupLog,
   notifySupportGroupLogSchema,
 } from "./notifySupportGroupLog";
+import { OutcomeLog, outcomeLogSchema } from "./outcomeLog";
 import { PlanLog, planLogSchema } from "./planLog";
 import { QuestionLog, questionLogSchema } from "./questionLog";
 import { ResistedLog, resistedLogSchema } from "./resistedLog";
@@ -49,6 +50,7 @@ export const logSchemas = {
   impulse_button_pressed: impulseLogSchema,
   behavior: behaviorLogSchema,
   breathing: breathingLogSchema,
+  outcome: outcomeLogSchema,
   question: questionLogSchema,
   plan: planLogSchema,
   summary: summaryLogSchema,
@@ -72,6 +74,7 @@ export type Log =
   | ImpulseLog
   | BehaviorLog
   | BreathingLog
+  | OutcomeLog
   | QuestionLog
   | PlanLog
   | ToolCallLog
@@ -90,6 +93,7 @@ export type Log =
 
 export * from "./behaviorLog";
 export * from "./breathingLog";
+export * from "./outcomeLog";
 export * from "./callLog";
 export * from "./daySummaryLog";
 export * from "./impulseLog";
@@ -121,6 +125,7 @@ export const logSchema = z.discriminatedUnion("type", [
   impulseLogSchema,
   behaviorLogSchema,
   breathingLogSchema,
+  outcomeLogSchema,
   questionLogSchema,
   planLogSchema,
   summaryLogSchema,
@@ -285,4 +290,11 @@ export const logIsBreathingLog = (
 ): value is BreathingLog => value.type === "breathing";
 export const isValidBreathingLog = (value: unknown): value is BreathingLog => {
   return breathingLogSchema.safeParse(value).success;
+};
+
+export const logIsOutcomeLog = (
+  value: Omit<Log, "id">
+): value is OutcomeLog => value.type === "outcome";
+export const isValidOutcomeLog = (value: unknown): value is OutcomeLog => {
+  return outcomeLogSchema.safeParse(value).success;
 };

@@ -3,6 +3,7 @@ import { logBaseSchema } from "./base";
 
 export const breathingLogSchema = logBaseSchema.extend({
   type: z.literal("breathing"),
+  isDisplayable: z.literal(true),
   data: z.object({
     inhaleSeconds: z.number().positive(),
     holdSeconds: z.number().nonnegative(),
