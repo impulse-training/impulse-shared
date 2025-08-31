@@ -639,6 +639,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     }>>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 } & {
                     mode: z.ZodOptional<z.ZodLiteral<"default">>;
                     text: z.ZodString;
@@ -664,6 +665,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     mode?: "default" | undefined;
                 }, {
                     text: string;
@@ -687,6 +689,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     mode?: "default" | undefined;
                 }>, z.ZodObject<{
                     text: z.ZodOptional<z.ZodString>;
@@ -770,6 +773,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     }>>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 } & {
                     mode: z.ZodLiteral<"breathing">;
                     breathingPattern: z.ZodObject<{
@@ -814,6 +818,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     cycles?: number | undefined;
                 }, {
                     mode: "breathing";
@@ -843,6 +848,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     cycles?: number | undefined;
                 }>, z.ZodObject<{
                     aiInstructions: z.ZodOptional<z.ZodString>;
@@ -925,6 +931,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     }>>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 } & {
                     mode: z.ZodLiteral<"timer">;
                     durationSeconds: z.ZodNumber;
@@ -953,6 +960,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 }, {
                     text: string;
                     mode: "timer";
@@ -977,6 +985,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 }>, z.ZodObject<{
                     aiInstructions: z.ZodOptional<z.ZodString>;
                     backgroundImage: z.ZodOptional<z.ZodObject<{
@@ -1058,6 +1067,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     }>>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 } & {
                     mode: z.ZodLiteral<"notifySupport">;
                     groupId: z.ZodString;
@@ -1086,6 +1096,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 }, {
                     text: string;
                     mode: "notifySupport";
@@ -1110,6 +1121,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 }>, z.ZodObject<{
                     aiInstructions: z.ZodOptional<z.ZodString>;
                     backgroundImage: z.ZodOptional<z.ZodObject<{
@@ -1191,6 +1203,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     }>>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 } & {
                     mode: z.ZodLiteral<"question-text">;
                     id: z.ZodOptional<z.ZodString>;
@@ -1226,6 +1239,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 }, {
                     text: string;
                     mode: "question-text";
@@ -1253,6 +1267,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 }>, z.ZodObject<{
                     aiInstructions: z.ZodOptional<z.ZodString>;
                     backgroundImage: z.ZodOptional<z.ZodObject<{
@@ -1334,6 +1349,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     }>>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 } & {
                     mode: z.ZodLiteral<"question-slider1To10">;
                     id: z.ZodOptional<z.ZodString>;
@@ -1381,6 +1397,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 }, {
                     text: string;
                     sliderConfig: {
@@ -1411,6 +1428,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 }>, z.ZodObject<{
                     text: z.ZodOptional<z.ZodString>;
                     aiInstructions: z.ZodOptional<z.ZodString>;
@@ -1493,6 +1511,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     }>>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 } & {
                     mode: z.ZodLiteral<"aiConversation">;
                     goal: z.ZodString;
@@ -1521,6 +1540,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     prompt?: string | undefined;
                 }, {
                     goal: string;
@@ -1546,6 +1566,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     prompt?: string | undefined;
                 }>, z.ZodObject<{
                     text: z.ZodOptional<z.ZodString>;
@@ -1629,6 +1650,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     }>>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 } & {
                     mode: z.ZodLiteral<"media">;
                     media: z.ZodArray<z.ZodObject<{
@@ -1752,6 +1774,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 }, {
                     mode: "media";
                     media: {
@@ -1794,6 +1817,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 }>, z.ZodObject<{
                     aiInstructions: z.ZodOptional<z.ZodString>;
                     backgroundImage: z.ZodOptional<z.ZodObject<{
@@ -1875,6 +1899,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     }>>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 } & {
                     mode: z.ZodLiteral<"affirmation">;
                     text: z.ZodString;
@@ -1903,6 +1928,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 }, {
                     text: string;
                     mode: "affirmation";
@@ -1927,16 +1953,15 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 }>]>, "many">;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-                type: z.ZodEnum<["distraction", "reflection", "power-up"]>;
                 createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
                 updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
             }, "strip", z.ZodTypeAny, {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
                 title: string;
-                type: "distraction" | "reflection" | "power-up";
                 steps: ({
                     text: string;
                     mode: "affirmation";
@@ -1961,6 +1986,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     goal: string;
                     mode: "aiConversation";
@@ -1985,6 +2011,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     prompt?: string | undefined;
                 } | {
                     mode: "breathing";
@@ -2014,6 +2041,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     cycles?: number | undefined;
                 } | {
                     text: string;
@@ -2037,6 +2065,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     mode?: "default" | undefined;
                 } | {
                     mode: "media";
@@ -2080,6 +2109,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "notifySupport";
@@ -2104,6 +2134,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     sliderConfig: {
@@ -2134,6 +2165,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "question-text";
@@ -2161,6 +2193,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "timer";
@@ -2185,17 +2218,17 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 })[];
                 id?: string | undefined;
                 description?: string | undefined;
                 aiInstructions?: string | undefined;
-                createdByUid?: string | undefined;
                 tags?: string[] | undefined;
+                createdByUid?: string | undefined;
             }, {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
                 title: string;
-                type: "distraction" | "reflection" | "power-up";
                 steps: ({
                     text: string;
                     mode: "affirmation";
@@ -2220,6 +2253,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     goal: string;
                     mode: "aiConversation";
@@ -2244,6 +2278,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     prompt?: string | undefined;
                 } | {
                     mode: "breathing";
@@ -2273,6 +2308,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     cycles?: number | undefined;
                 } | {
                     text: string;
@@ -2296,6 +2332,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     mode?: "default" | undefined;
                 } | {
                     mode: "media";
@@ -2339,6 +2376,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "notifySupport";
@@ -2363,6 +2401,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     sliderConfig: {
@@ -2393,6 +2432,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "question-text";
@@ -2420,6 +2460,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "timer";
@@ -2444,12 +2485,13 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 })[];
                 id?: string | undefined;
                 description?: string | undefined;
                 aiInstructions?: string | undefined;
-                createdByUid?: string | undefined;
                 tags?: string[] | undefined;
+                createdByUid?: string | undefined;
             }>;
             planId: z.ZodOptional<z.ZodString>;
             stepCount: z.ZodOptional<z.ZodNumber>;
@@ -2460,7 +2502,6 @@ export declare const logSchemas: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
                 title: string;
-                type: "distraction" | "reflection" | "power-up";
                 steps: ({
                     text: string;
                     mode: "affirmation";
@@ -2485,6 +2526,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     goal: string;
                     mode: "aiConversation";
@@ -2509,6 +2551,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     prompt?: string | undefined;
                 } | {
                     mode: "breathing";
@@ -2538,6 +2581,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     cycles?: number | undefined;
                 } | {
                     text: string;
@@ -2561,6 +2605,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     mode?: "default" | undefined;
                 } | {
                     mode: "media";
@@ -2604,6 +2649,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "notifySupport";
@@ -2628,6 +2674,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     sliderConfig: {
@@ -2658,6 +2705,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "question-text";
@@ -2685,6 +2733,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "timer";
@@ -2709,12 +2758,13 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 })[];
                 id?: string | undefined;
                 description?: string | undefined;
                 aiInstructions?: string | undefined;
-                createdByUid?: string | undefined;
                 tags?: string[] | undefined;
+                createdByUid?: string | undefined;
             };
             planId?: string | undefined;
             stepCount?: number | undefined;
@@ -2725,7 +2775,6 @@ export declare const logSchemas: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
                 title: string;
-                type: "distraction" | "reflection" | "power-up";
                 steps: ({
                     text: string;
                     mode: "affirmation";
@@ -2750,6 +2799,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     goal: string;
                     mode: "aiConversation";
@@ -2774,6 +2824,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     prompt?: string | undefined;
                 } | {
                     mode: "breathing";
@@ -2803,6 +2854,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     cycles?: number | undefined;
                 } | {
                     text: string;
@@ -2826,6 +2878,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     mode?: "default" | undefined;
                 } | {
                     mode: "media";
@@ -2869,6 +2922,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "notifySupport";
@@ -2893,6 +2947,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     sliderConfig: {
@@ -2923,6 +2978,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "question-text";
@@ -2950,6 +3006,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "timer";
@@ -2974,12 +3031,13 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 })[];
                 id?: string | undefined;
                 description?: string | undefined;
                 aiInstructions?: string | undefined;
-                createdByUid?: string | undefined;
                 tags?: string[] | undefined;
+                createdByUid?: string | undefined;
             };
             planId?: string | undefined;
             stepCount?: number | undefined;
@@ -2997,7 +3055,6 @@ export declare const logSchemas: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
                 title: string;
-                type: "distraction" | "reflection" | "power-up";
                 steps: ({
                     text: string;
                     mode: "affirmation";
@@ -3022,6 +3079,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     goal: string;
                     mode: "aiConversation";
@@ -3046,6 +3104,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     prompt?: string | undefined;
                 } | {
                     mode: "breathing";
@@ -3075,6 +3134,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     cycles?: number | undefined;
                 } | {
                     text: string;
@@ -3098,6 +3158,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     mode?: "default" | undefined;
                 } | {
                     mode: "media";
@@ -3141,6 +3202,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "notifySupport";
@@ -3165,6 +3227,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     sliderConfig: {
@@ -3195,6 +3258,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "question-text";
@@ -3222,6 +3286,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "timer";
@@ -3246,12 +3311,13 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 })[];
                 id?: string | undefined;
                 description?: string | undefined;
                 aiInstructions?: string | undefined;
-                createdByUid?: string | undefined;
                 tags?: string[] | undefined;
+                createdByUid?: string | undefined;
             };
             planId?: string | undefined;
             stepCount?: number | undefined;
@@ -3277,7 +3343,6 @@ export declare const logSchemas: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
                 title: string;
-                type: "distraction" | "reflection" | "power-up";
                 steps: ({
                     text: string;
                     mode: "affirmation";
@@ -3302,6 +3367,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     goal: string;
                     mode: "aiConversation";
@@ -3326,6 +3392,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     prompt?: string | undefined;
                 } | {
                     mode: "breathing";
@@ -3355,6 +3422,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     cycles?: number | undefined;
                 } | {
                     text: string;
@@ -3378,6 +3446,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     mode?: "default" | undefined;
                 } | {
                     mode: "media";
@@ -3421,6 +3490,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "notifySupport";
@@ -3445,6 +3515,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     sliderConfig: {
@@ -3475,6 +3546,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "question-text";
@@ -3502,6 +3574,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "timer";
@@ -3526,12 +3599,13 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 })[];
                 id?: string | undefined;
                 description?: string | undefined;
                 aiInstructions?: string | undefined;
-                createdByUid?: string | undefined;
                 tags?: string[] | undefined;
+                createdByUid?: string | undefined;
             };
             planId?: string | undefined;
             stepCount?: number | undefined;
@@ -3812,6 +3886,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     }>>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 } & {
                     mode: z.ZodOptional<z.ZodLiteral<"default">>;
                     text: z.ZodString;
@@ -3837,6 +3912,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     mode?: "default" | undefined;
                 }, {
                     text: string;
@@ -3860,6 +3936,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     mode?: "default" | undefined;
                 }>, z.ZodObject<{
                     text: z.ZodOptional<z.ZodString>;
@@ -3943,6 +4020,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     }>>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 } & {
                     mode: z.ZodLiteral<"breathing">;
                     breathingPattern: z.ZodObject<{
@@ -3987,6 +4065,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     cycles?: number | undefined;
                 }, {
                     mode: "breathing";
@@ -4016,6 +4095,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     cycles?: number | undefined;
                 }>, z.ZodObject<{
                     aiInstructions: z.ZodOptional<z.ZodString>;
@@ -4098,6 +4178,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     }>>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 } & {
                     mode: z.ZodLiteral<"timer">;
                     durationSeconds: z.ZodNumber;
@@ -4126,6 +4207,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 }, {
                     text: string;
                     mode: "timer";
@@ -4150,6 +4232,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 }>, z.ZodObject<{
                     aiInstructions: z.ZodOptional<z.ZodString>;
                     backgroundImage: z.ZodOptional<z.ZodObject<{
@@ -4231,6 +4314,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     }>>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 } & {
                     mode: z.ZodLiteral<"notifySupport">;
                     groupId: z.ZodString;
@@ -4259,6 +4343,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 }, {
                     text: string;
                     mode: "notifySupport";
@@ -4283,6 +4368,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 }>, z.ZodObject<{
                     aiInstructions: z.ZodOptional<z.ZodString>;
                     backgroundImage: z.ZodOptional<z.ZodObject<{
@@ -4364,6 +4450,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     }>>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 } & {
                     mode: z.ZodLiteral<"question-text">;
                     id: z.ZodOptional<z.ZodString>;
@@ -4399,6 +4486,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 }, {
                     text: string;
                     mode: "question-text";
@@ -4426,6 +4514,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 }>, z.ZodObject<{
                     aiInstructions: z.ZodOptional<z.ZodString>;
                     backgroundImage: z.ZodOptional<z.ZodObject<{
@@ -4507,6 +4596,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     }>>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 } & {
                     mode: z.ZodLiteral<"question-slider1To10">;
                     id: z.ZodOptional<z.ZodString>;
@@ -4554,6 +4644,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 }, {
                     text: string;
                     sliderConfig: {
@@ -4584,6 +4675,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 }>, z.ZodObject<{
                     text: z.ZodOptional<z.ZodString>;
                     aiInstructions: z.ZodOptional<z.ZodString>;
@@ -4666,6 +4758,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     }>>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 } & {
                     mode: z.ZodLiteral<"aiConversation">;
                     goal: z.ZodString;
@@ -4694,6 +4787,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     prompt?: string | undefined;
                 }, {
                     goal: string;
@@ -4719,6 +4813,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     prompt?: string | undefined;
                 }>, z.ZodObject<{
                     text: z.ZodOptional<z.ZodString>;
@@ -4802,6 +4897,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     }>>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 } & {
                     mode: z.ZodLiteral<"media">;
                     media: z.ZodArray<z.ZodObject<{
@@ -4925,6 +5021,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 }, {
                     mode: "media";
                     media: {
@@ -4967,6 +5064,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 }>, z.ZodObject<{
                     aiInstructions: z.ZodOptional<z.ZodString>;
                     backgroundImage: z.ZodOptional<z.ZodObject<{
@@ -5048,6 +5146,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     }>>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 } & {
                     mode: z.ZodLiteral<"affirmation">;
                     text: z.ZodString;
@@ -5076,6 +5175,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 }, {
                     text: string;
                     mode: "affirmation";
@@ -5100,16 +5200,15 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 }>]>, "many">;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-                type: z.ZodEnum<["distraction", "reflection", "power-up"]>;
                 createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
                 updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
             }, "strip", z.ZodTypeAny, {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
                 title: string;
-                type: "distraction" | "reflection" | "power-up";
                 steps: ({
                     text: string;
                     mode: "affirmation";
@@ -5134,6 +5233,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     goal: string;
                     mode: "aiConversation";
@@ -5158,6 +5258,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     prompt?: string | undefined;
                 } | {
                     mode: "breathing";
@@ -5187,6 +5288,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     cycles?: number | undefined;
                 } | {
                     text: string;
@@ -5210,6 +5312,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     mode?: "default" | undefined;
                 } | {
                     mode: "media";
@@ -5253,6 +5356,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "notifySupport";
@@ -5277,6 +5381,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     sliderConfig: {
@@ -5307,6 +5412,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "question-text";
@@ -5334,6 +5440,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "timer";
@@ -5358,17 +5465,17 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 })[];
                 id?: string | undefined;
                 description?: string | undefined;
                 aiInstructions?: string | undefined;
-                createdByUid?: string | undefined;
                 tags?: string[] | undefined;
+                createdByUid?: string | undefined;
             }, {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
                 title: string;
-                type: "distraction" | "reflection" | "power-up";
                 steps: ({
                     text: string;
                     mode: "affirmation";
@@ -5393,6 +5500,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     goal: string;
                     mode: "aiConversation";
@@ -5417,6 +5525,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     prompt?: string | undefined;
                 } | {
                     mode: "breathing";
@@ -5446,6 +5555,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     cycles?: number | undefined;
                 } | {
                     text: string;
@@ -5469,6 +5579,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     mode?: "default" | undefined;
                 } | {
                     mode: "media";
@@ -5512,6 +5623,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "notifySupport";
@@ -5536,6 +5648,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     sliderConfig: {
@@ -5566,6 +5679,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "question-text";
@@ -5593,6 +5707,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "timer";
@@ -5617,12 +5732,13 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 })[];
                 id?: string | undefined;
                 description?: string | undefined;
                 aiInstructions?: string | undefined;
-                createdByUid?: string | undefined;
                 tags?: string[] | undefined;
+                createdByUid?: string | undefined;
             }>;
             planId: z.ZodOptional<z.ZodString>;
             stepCount: z.ZodOptional<z.ZodNumber>;
@@ -5633,7 +5749,6 @@ export declare const logSchemas: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
                 title: string;
-                type: "distraction" | "reflection" | "power-up";
                 steps: ({
                     text: string;
                     mode: "affirmation";
@@ -5658,6 +5773,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     goal: string;
                     mode: "aiConversation";
@@ -5682,6 +5798,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     prompt?: string | undefined;
                 } | {
                     mode: "breathing";
@@ -5711,6 +5828,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     cycles?: number | undefined;
                 } | {
                     text: string;
@@ -5734,6 +5852,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     mode?: "default" | undefined;
                 } | {
                     mode: "media";
@@ -5777,6 +5896,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "notifySupport";
@@ -5801,6 +5921,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     sliderConfig: {
@@ -5831,6 +5952,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "question-text";
@@ -5858,6 +5980,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "timer";
@@ -5882,12 +6005,13 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 })[];
                 id?: string | undefined;
                 description?: string | undefined;
                 aiInstructions?: string | undefined;
-                createdByUid?: string | undefined;
                 tags?: string[] | undefined;
+                createdByUid?: string | undefined;
             };
             planId?: string | undefined;
             stepCount?: number | undefined;
@@ -5898,7 +6022,6 @@ export declare const logSchemas: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
                 title: string;
-                type: "distraction" | "reflection" | "power-up";
                 steps: ({
                     text: string;
                     mode: "affirmation";
@@ -5923,6 +6046,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     goal: string;
                     mode: "aiConversation";
@@ -5947,6 +6071,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     prompt?: string | undefined;
                 } | {
                     mode: "breathing";
@@ -5976,6 +6101,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     cycles?: number | undefined;
                 } | {
                     text: string;
@@ -5999,6 +6125,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     mode?: "default" | undefined;
                 } | {
                     mode: "media";
@@ -6042,6 +6169,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "notifySupport";
@@ -6066,6 +6194,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     sliderConfig: {
@@ -6096,6 +6225,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "question-text";
@@ -6123,6 +6253,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "timer";
@@ -6147,12 +6278,13 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 })[];
                 id?: string | undefined;
                 description?: string | undefined;
                 aiInstructions?: string | undefined;
-                createdByUid?: string | undefined;
                 tags?: string[] | undefined;
+                createdByUid?: string | undefined;
             };
             planId?: string | undefined;
             stepCount?: number | undefined;
@@ -6170,7 +6302,6 @@ export declare const logSchemas: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
                 title: string;
-                type: "distraction" | "reflection" | "power-up";
                 steps: ({
                     text: string;
                     mode: "affirmation";
@@ -6195,6 +6326,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     goal: string;
                     mode: "aiConversation";
@@ -6219,6 +6351,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     prompt?: string | undefined;
                 } | {
                     mode: "breathing";
@@ -6248,6 +6381,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     cycles?: number | undefined;
                 } | {
                     text: string;
@@ -6271,6 +6405,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     mode?: "default" | undefined;
                 } | {
                     mode: "media";
@@ -6314,6 +6449,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "notifySupport";
@@ -6338,6 +6474,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     sliderConfig: {
@@ -6368,6 +6505,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "question-text";
@@ -6395,6 +6533,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "timer";
@@ -6419,12 +6558,13 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 })[];
                 id?: string | undefined;
                 description?: string | undefined;
                 aiInstructions?: string | undefined;
-                createdByUid?: string | undefined;
                 tags?: string[] | undefined;
+                createdByUid?: string | undefined;
             };
             planId?: string | undefined;
             stepCount?: number | undefined;
@@ -6450,7 +6590,6 @@ export declare const logSchemas: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
                 title: string;
-                type: "distraction" | "reflection" | "power-up";
                 steps: ({
                     text: string;
                     mode: "affirmation";
@@ -6475,6 +6614,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     goal: string;
                     mode: "aiConversation";
@@ -6499,6 +6639,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     prompt?: string | undefined;
                 } | {
                     mode: "breathing";
@@ -6528,6 +6669,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     cycles?: number | undefined;
                 } | {
                     text: string;
@@ -6551,6 +6693,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                     mode?: "default" | undefined;
                 } | {
                     mode: "media";
@@ -6594,6 +6737,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "notifySupport";
@@ -6618,6 +6762,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     sliderConfig: {
@@ -6648,6 +6793,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "question-text";
@@ -6675,6 +6821,7 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 } | {
                     text: string;
                     mode: "timer";
@@ -6699,12 +6846,13 @@ export declare const logSchemas: {
                             }[] | undefined;
                         } | undefined;
                     } | undefined;
+                    tags?: string[] | undefined;
                 })[];
                 id?: string | undefined;
                 description?: string | undefined;
                 aiInstructions?: string | undefined;
-                createdByUid?: string | undefined;
                 tags?: string[] | undefined;
+                createdByUid?: string | undefined;
             };
             planId?: string | undefined;
             stepCount?: number | undefined;
@@ -9369,6 +9517,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 }>>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             } & {
                 mode: z.ZodOptional<z.ZodLiteral<"default">>;
                 text: z.ZodString;
@@ -9394,6 +9543,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
                 mode?: "default" | undefined;
             }, {
                 text: string;
@@ -9417,6 +9567,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
                 mode?: "default" | undefined;
             }>, z.ZodObject<{
                 text: z.ZodOptional<z.ZodString>;
@@ -9500,6 +9651,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 }>>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             } & {
                 mode: z.ZodLiteral<"breathing">;
                 breathingPattern: z.ZodObject<{
@@ -9544,6 +9696,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
                 cycles?: number | undefined;
             }, {
                 mode: "breathing";
@@ -9573,6 +9726,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
                 cycles?: number | undefined;
             }>, z.ZodObject<{
                 aiInstructions: z.ZodOptional<z.ZodString>;
@@ -9655,6 +9809,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 }>>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             } & {
                 mode: z.ZodLiteral<"timer">;
                 durationSeconds: z.ZodNumber;
@@ -9683,6 +9838,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             }, {
                 text: string;
                 mode: "timer";
@@ -9707,6 +9863,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             }>, z.ZodObject<{
                 aiInstructions: z.ZodOptional<z.ZodString>;
                 backgroundImage: z.ZodOptional<z.ZodObject<{
@@ -9788,6 +9945,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 }>>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             } & {
                 mode: z.ZodLiteral<"notifySupport">;
                 groupId: z.ZodString;
@@ -9816,6 +9974,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             }, {
                 text: string;
                 mode: "notifySupport";
@@ -9840,6 +9999,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             }>, z.ZodObject<{
                 aiInstructions: z.ZodOptional<z.ZodString>;
                 backgroundImage: z.ZodOptional<z.ZodObject<{
@@ -9921,6 +10081,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 }>>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             } & {
                 mode: z.ZodLiteral<"question-text">;
                 id: z.ZodOptional<z.ZodString>;
@@ -9956,6 +10117,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             }, {
                 text: string;
                 mode: "question-text";
@@ -9983,6 +10145,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             }>, z.ZodObject<{
                 aiInstructions: z.ZodOptional<z.ZodString>;
                 backgroundImage: z.ZodOptional<z.ZodObject<{
@@ -10064,6 +10227,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 }>>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             } & {
                 mode: z.ZodLiteral<"question-slider1To10">;
                 id: z.ZodOptional<z.ZodString>;
@@ -10111,6 +10275,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             }, {
                 text: string;
                 sliderConfig: {
@@ -10141,6 +10306,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             }>, z.ZodObject<{
                 text: z.ZodOptional<z.ZodString>;
                 aiInstructions: z.ZodOptional<z.ZodString>;
@@ -10223,6 +10389,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 }>>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             } & {
                 mode: z.ZodLiteral<"aiConversation">;
                 goal: z.ZodString;
@@ -10251,6 +10418,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
                 prompt?: string | undefined;
             }, {
                 goal: string;
@@ -10276,6 +10444,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
                 prompt?: string | undefined;
             }>, z.ZodObject<{
                 text: z.ZodOptional<z.ZodString>;
@@ -10359,6 +10528,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 }>>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             } & {
                 mode: z.ZodLiteral<"media">;
                 media: z.ZodArray<z.ZodObject<{
@@ -10482,6 +10652,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             }, {
                 mode: "media";
                 media: {
@@ -10524,6 +10695,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             }>, z.ZodObject<{
                 aiInstructions: z.ZodOptional<z.ZodString>;
                 backgroundImage: z.ZodOptional<z.ZodObject<{
@@ -10605,6 +10777,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 }>>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             } & {
                 mode: z.ZodLiteral<"affirmation">;
                 text: z.ZodString;
@@ -10633,6 +10806,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             }, {
                 text: string;
                 mode: "affirmation";
@@ -10657,16 +10831,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             }>]>, "many">;
             tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-            type: z.ZodEnum<["distraction", "reflection", "power-up"]>;
             createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
             updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
         }, "strip", z.ZodTypeAny, {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
             title: string;
-            type: "distraction" | "reflection" | "power-up";
             steps: ({
                 text: string;
                 mode: "affirmation";
@@ -10691,6 +10864,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             } | {
                 goal: string;
                 mode: "aiConversation";
@@ -10715,6 +10889,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
                 prompt?: string | undefined;
             } | {
                 mode: "breathing";
@@ -10744,6 +10919,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
                 cycles?: number | undefined;
             } | {
                 text: string;
@@ -10767,6 +10943,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
                 mode?: "default" | undefined;
             } | {
                 mode: "media";
@@ -10810,6 +10987,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             } | {
                 text: string;
                 mode: "notifySupport";
@@ -10834,6 +11012,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             } | {
                 text: string;
                 sliderConfig: {
@@ -10864,6 +11043,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             } | {
                 text: string;
                 mode: "question-text";
@@ -10891,6 +11071,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             } | {
                 text: string;
                 mode: "timer";
@@ -10915,17 +11096,17 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             })[];
             id?: string | undefined;
             description?: string | undefined;
             aiInstructions?: string | undefined;
-            createdByUid?: string | undefined;
             tags?: string[] | undefined;
+            createdByUid?: string | undefined;
         }, {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
             title: string;
-            type: "distraction" | "reflection" | "power-up";
             steps: ({
                 text: string;
                 mode: "affirmation";
@@ -10950,6 +11131,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             } | {
                 goal: string;
                 mode: "aiConversation";
@@ -10974,6 +11156,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
                 prompt?: string | undefined;
             } | {
                 mode: "breathing";
@@ -11003,6 +11186,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
                 cycles?: number | undefined;
             } | {
                 text: string;
@@ -11026,6 +11210,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
                 mode?: "default" | undefined;
             } | {
                 mode: "media";
@@ -11069,6 +11254,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             } | {
                 text: string;
                 mode: "notifySupport";
@@ -11093,6 +11279,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             } | {
                 text: string;
                 sliderConfig: {
@@ -11123,6 +11310,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             } | {
                 text: string;
                 mode: "question-text";
@@ -11150,6 +11338,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             } | {
                 text: string;
                 mode: "timer";
@@ -11174,12 +11363,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             })[];
             id?: string | undefined;
             description?: string | undefined;
             aiInstructions?: string | undefined;
-            createdByUid?: string | undefined;
             tags?: string[] | undefined;
+            createdByUid?: string | undefined;
         }>;
         planId: z.ZodOptional<z.ZodString>;
         stepCount: z.ZodOptional<z.ZodNumber>;
@@ -11190,7 +11380,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
             title: string;
-            type: "distraction" | "reflection" | "power-up";
             steps: ({
                 text: string;
                 mode: "affirmation";
@@ -11215,6 +11404,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             } | {
                 goal: string;
                 mode: "aiConversation";
@@ -11239,6 +11429,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
                 prompt?: string | undefined;
             } | {
                 mode: "breathing";
@@ -11268,6 +11459,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
                 cycles?: number | undefined;
             } | {
                 text: string;
@@ -11291,6 +11483,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
                 mode?: "default" | undefined;
             } | {
                 mode: "media";
@@ -11334,6 +11527,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             } | {
                 text: string;
                 mode: "notifySupport";
@@ -11358,6 +11552,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             } | {
                 text: string;
                 sliderConfig: {
@@ -11388,6 +11583,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             } | {
                 text: string;
                 mode: "question-text";
@@ -11415,6 +11611,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             } | {
                 text: string;
                 mode: "timer";
@@ -11439,12 +11636,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             })[];
             id?: string | undefined;
             description?: string | undefined;
             aiInstructions?: string | undefined;
-            createdByUid?: string | undefined;
             tags?: string[] | undefined;
+            createdByUid?: string | undefined;
         };
         planId?: string | undefined;
         stepCount?: number | undefined;
@@ -11455,7 +11653,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
             title: string;
-            type: "distraction" | "reflection" | "power-up";
             steps: ({
                 text: string;
                 mode: "affirmation";
@@ -11480,6 +11677,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             } | {
                 goal: string;
                 mode: "aiConversation";
@@ -11504,6 +11702,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
                 prompt?: string | undefined;
             } | {
                 mode: "breathing";
@@ -11533,6 +11732,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
                 cycles?: number | undefined;
             } | {
                 text: string;
@@ -11556,6 +11756,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
                 mode?: "default" | undefined;
             } | {
                 mode: "media";
@@ -11599,6 +11800,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             } | {
                 text: string;
                 mode: "notifySupport";
@@ -11623,6 +11825,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             } | {
                 text: string;
                 sliderConfig: {
@@ -11653,6 +11856,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             } | {
                 text: string;
                 mode: "question-text";
@@ -11680,6 +11884,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             } | {
                 text: string;
                 mode: "timer";
@@ -11704,12 +11909,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             })[];
             id?: string | undefined;
             description?: string | undefined;
             aiInstructions?: string | undefined;
-            createdByUid?: string | undefined;
             tags?: string[] | undefined;
+            createdByUid?: string | undefined;
         };
         planId?: string | undefined;
         stepCount?: number | undefined;
@@ -11727,7 +11933,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
             title: string;
-            type: "distraction" | "reflection" | "power-up";
             steps: ({
                 text: string;
                 mode: "affirmation";
@@ -11752,6 +11957,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             } | {
                 goal: string;
                 mode: "aiConversation";
@@ -11776,6 +11982,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
                 prompt?: string | undefined;
             } | {
                 mode: "breathing";
@@ -11805,6 +12012,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
                 cycles?: number | undefined;
             } | {
                 text: string;
@@ -11828,6 +12036,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
                 mode?: "default" | undefined;
             } | {
                 mode: "media";
@@ -11871,6 +12080,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             } | {
                 text: string;
                 mode: "notifySupport";
@@ -11895,6 +12105,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             } | {
                 text: string;
                 sliderConfig: {
@@ -11925,6 +12136,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             } | {
                 text: string;
                 mode: "question-text";
@@ -11952,6 +12164,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             } | {
                 text: string;
                 mode: "timer";
@@ -11976,12 +12189,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             })[];
             id?: string | undefined;
             description?: string | undefined;
             aiInstructions?: string | undefined;
-            createdByUid?: string | undefined;
             tags?: string[] | undefined;
+            createdByUid?: string | undefined;
         };
         planId?: string | undefined;
         stepCount?: number | undefined;
@@ -12007,7 +12221,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
             title: string;
-            type: "distraction" | "reflection" | "power-up";
             steps: ({
                 text: string;
                 mode: "affirmation";
@@ -12032,6 +12245,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             } | {
                 goal: string;
                 mode: "aiConversation";
@@ -12056,6 +12270,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
                 prompt?: string | undefined;
             } | {
                 mode: "breathing";
@@ -12085,6 +12300,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
                 cycles?: number | undefined;
             } | {
                 text: string;
@@ -12108,6 +12324,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
                 mode?: "default" | undefined;
             } | {
                 mode: "media";
@@ -12151,6 +12368,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             } | {
                 text: string;
                 mode: "notifySupport";
@@ -12175,6 +12393,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             } | {
                 text: string;
                 sliderConfig: {
@@ -12205,6 +12424,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             } | {
                 text: string;
                 mode: "question-text";
@@ -12232,6 +12452,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             } | {
                 text: string;
                 mode: "timer";
@@ -12256,12 +12477,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                 } | undefined;
+                tags?: string[] | undefined;
             })[];
             id?: string | undefined;
             description?: string | undefined;
             aiInstructions?: string | undefined;
-            createdByUid?: string | undefined;
             tags?: string[] | undefined;
+            createdByUid?: string | undefined;
         };
         planId?: string | undefined;
         stepCount?: number | undefined;

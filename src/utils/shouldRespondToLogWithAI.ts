@@ -25,8 +25,6 @@ export function shouldRespondToLogWithAI(
   beforeData: Log | undefined,
   afterData: Log | undefined
 ): boolean {
-  if (thread.currentConservationMode === "debrief") return false;
-
   const isCreating = !beforeData && afterData;
   const isUpdating = beforeData && afterData;
   const isNotDeleting = !!afterData;

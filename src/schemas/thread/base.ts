@@ -36,27 +36,26 @@ export const threadBaseSchema = z.object({
   // Log summary data - written in after log write functions. We store tactic and behavior tracking
   // logs here (loosely typed until log schemas are migrated)
   trackingLogsById: z.record(z.string(), z.any()),
-  
+
   // Pre-computed summary data for thread cards - updated when trackingLogsById changes
-  summaryData: z.object({
-    tacticsByTitle: z.record(z.string(), z.array(z.any())),
-    behaviorsByName: z.record(z.string(), z.array(z.any())),
-    resistedLogs: z.array(z.any()),
-    daySummaryLog: z.any().optional(),
-    questionLogs: z.array(z.any()),
-    firstMessageLog: z.any().optional(),
-    firstCallLog: z.any().optional(),
-    hasContent: z.boolean(),
-  }).optional(),
+  summaryData: z
+    .object({
+      tacticsByTitle: z.record(z.string(), z.array(z.any())),
+      behaviorsByName: z.record(z.string(), z.array(z.any())),
+      resistedLogs: z.array(z.any()),
+      daySummaryLog: z.any().optional(),
+      questionLogs: z.array(z.any()),
+      firstMessageLog: z.any().optional(),
+      firstCallLog: z.any().optional(),
+      hasContent: z.boolean(),
+    })
+    .optional(),
   defaultSystemPrompt: z.string().optional(),
   debriefSystemPrompt: z.string().optional(),
   summary: z.string().optional(),
   summaryRequestedAt: timestampSchema.optional(),
   summarizedAt: timestampSchema.optional(),
   strategyDoc: documentReferenceSchema.optional(),
-
-  currentConservationMode: z.enum(["default"]).optional(),
-  currentScreen: z.enum(["tactics", "chat"]).optional(),
 
   currentTactic: z
     .object({

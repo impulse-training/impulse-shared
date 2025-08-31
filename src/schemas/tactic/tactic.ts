@@ -10,7 +10,6 @@ export const tacticSchema = z.object({
   createdByUid: z.string().optional(),
   steps: z.array(tacticStepSchema).min(1),
   tags: z.array(z.string()).optional(),
-  type: z.enum(["distraction", "reflection", "power-up"]),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
 });

@@ -8,4 +8,5 @@ export const baseStepSchema = z.object({
   aiInstructions: z.string().optional(),
   // Optional background image for non-media steps
   backgroundImage: attachmentSchema.optional(),
+  tags: z.array(z.string()).optional(),
 });
