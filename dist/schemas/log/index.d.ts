@@ -1686,7 +1686,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
-                }>, z.ZodObject<Omit<{
+                }>, z.ZodObject<{
                     text: z.ZodOptional<z.ZodString>;
                     backgroundImage: z.ZodOptional<z.ZodObject<{
                         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -1768,7 +1768,7 @@ export declare const logSchemas: {
                         } | undefined;
                     }>>;
                     tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-                }, "backgroundImage"> & {
+                } & {
                     mode: z.ZodLiteral<"aiConversation">;
                     goal: z.ZodString;
                     prompt: z.ZodOptional<z.ZodString>;
@@ -1776,12 +1776,50 @@ export declare const logSchemas: {
                     goal: string;
                     mode: "aiConversation";
                     text?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
                     tags?: string[] | undefined;
                     prompt?: string | undefined;
                 }, {
                     goal: string;
                     mode: "aiConversation";
                     text?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
                     tags?: string[] | undefined;
                     prompt?: string | undefined;
                 }>]>, "many">;
@@ -1819,6 +1857,25 @@ export declare const logSchemas: {
                     goal: string;
                     mode: "aiConversation";
                     text?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
                     tags?: string[] | undefined;
                     prompt?: string | undefined;
                 } | {
@@ -2040,6 +2097,25 @@ export declare const logSchemas: {
                     goal: string;
                     mode: "aiConversation";
                     text?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
                     tags?: string[] | undefined;
                     prompt?: string | undefined;
                 } | {
@@ -2267,6 +2343,25 @@ export declare const logSchemas: {
                     goal: string;
                     mode: "aiConversation";
                     text?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
                     tags?: string[] | undefined;
                     prompt?: string | undefined;
                 } | {
@@ -2494,6 +2589,25 @@ export declare const logSchemas: {
                     goal: string;
                     mode: "aiConversation";
                     text?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
                     tags?: string[] | undefined;
                     prompt?: string | undefined;
                 } | {
@@ -2728,6 +2842,25 @@ export declare const logSchemas: {
                     goal: string;
                     mode: "aiConversation";
                     text?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
                     tags?: string[] | undefined;
                     prompt?: string | undefined;
                 } | {
@@ -2970,6 +3103,25 @@ export declare const logSchemas: {
                     goal: string;
                     mode: "aiConversation";
                     text?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
                     tags?: string[] | undefined;
                     prompt?: string | undefined;
                 } | {
@@ -4485,7 +4637,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
-                }>, z.ZodObject<Omit<{
+                }>, z.ZodObject<{
                     text: z.ZodOptional<z.ZodString>;
                     backgroundImage: z.ZodOptional<z.ZodObject<{
                         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -4567,7 +4719,7 @@ export declare const logSchemas: {
                         } | undefined;
                     }>>;
                     tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-                }, "backgroundImage"> & {
+                } & {
                     mode: z.ZodLiteral<"aiConversation">;
                     goal: z.ZodString;
                     prompt: z.ZodOptional<z.ZodString>;
@@ -4575,12 +4727,50 @@ export declare const logSchemas: {
                     goal: string;
                     mode: "aiConversation";
                     text?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
                     tags?: string[] | undefined;
                     prompt?: string | undefined;
                 }, {
                     goal: string;
                     mode: "aiConversation";
                     text?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
                     tags?: string[] | undefined;
                     prompt?: string | undefined;
                 }>]>, "many">;
@@ -4618,6 +4808,25 @@ export declare const logSchemas: {
                     goal: string;
                     mode: "aiConversation";
                     text?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
                     tags?: string[] | undefined;
                     prompt?: string | undefined;
                 } | {
@@ -4839,6 +5048,25 @@ export declare const logSchemas: {
                     goal: string;
                     mode: "aiConversation";
                     text?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
                     tags?: string[] | undefined;
                     prompt?: string | undefined;
                 } | {
@@ -5066,6 +5294,25 @@ export declare const logSchemas: {
                     goal: string;
                     mode: "aiConversation";
                     text?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
                     tags?: string[] | undefined;
                     prompt?: string | undefined;
                 } | {
@@ -5293,6 +5540,25 @@ export declare const logSchemas: {
                     goal: string;
                     mode: "aiConversation";
                     text?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
                     tags?: string[] | undefined;
                     prompt?: string | undefined;
                 } | {
@@ -5527,6 +5793,25 @@ export declare const logSchemas: {
                     goal: string;
                     mode: "aiConversation";
                     text?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
                     tags?: string[] | undefined;
                     prompt?: string | undefined;
                 } | {
@@ -5769,6 +6054,25 @@ export declare const logSchemas: {
                     goal: string;
                     mode: "aiConversation";
                     text?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
                     tags?: string[] | undefined;
                     prompt?: string | undefined;
                 } | {
@@ -9842,7 +10146,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
-            }>, z.ZodObject<Omit<{
+            }>, z.ZodObject<{
                 text: z.ZodOptional<z.ZodString>;
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -9924,7 +10228,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 }>>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-            }, "backgroundImage"> & {
+            } & {
                 mode: z.ZodLiteral<"aiConversation">;
                 goal: z.ZodString;
                 prompt: z.ZodOptional<z.ZodString>;
@@ -9932,12 +10236,50 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 goal: string;
                 mode: "aiConversation";
                 text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
                 tags?: string[] | undefined;
                 prompt?: string | undefined;
             }, {
                 goal: string;
                 mode: "aiConversation";
                 text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
                 tags?: string[] | undefined;
                 prompt?: string | undefined;
             }>]>, "many">;
@@ -9975,6 +10317,25 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 goal: string;
                 mode: "aiConversation";
                 text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
                 tags?: string[] | undefined;
                 prompt?: string | undefined;
             } | {
@@ -10196,6 +10557,25 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 goal: string;
                 mode: "aiConversation";
                 text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
                 tags?: string[] | undefined;
                 prompt?: string | undefined;
             } | {
@@ -10423,6 +10803,25 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 goal: string;
                 mode: "aiConversation";
                 text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
                 tags?: string[] | undefined;
                 prompt?: string | undefined;
             } | {
@@ -10650,6 +11049,25 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 goal: string;
                 mode: "aiConversation";
                 text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
                 tags?: string[] | undefined;
                 prompt?: string | undefined;
             } | {
@@ -10884,6 +11302,25 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 goal: string;
                 mode: "aiConversation";
                 text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
                 tags?: string[] | undefined;
                 prompt?: string | undefined;
             } | {
@@ -11126,6 +11563,25 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 goal: string;
                 mode: "aiConversation";
                 text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
                 tags?: string[] | undefined;
                 prompt?: string | undefined;
             } | {

@@ -13,12 +13,12 @@ export const QUESTION_SCOPES = {
   setback: {
     id: "setback",
     label: "After a setback",
-    description: "When debriefing a setback moment (acting on the urge)",
+    description: "After acting on an impulse moment (craving or urge)",
   },
   success: {
     id: "success",
     label: "After a success",
-    description: "When debriefing a success moment (resisting the urge)",
+    description: "After resisting an impulse moment (craving or urge)",
   },
   recap: {
     id: "recap",
