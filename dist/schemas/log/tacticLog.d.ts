@@ -23,12 +23,11 @@ export declare const tacticLogSchema: z.ZodObject<{
     data: z.ZodObject<{
         tactic: z.ZodObject<{
             id: z.ZodOptional<z.ZodString>;
-            title: z.ZodString;
+            title: z.ZodOptional<z.ZodString>;
             description: z.ZodOptional<z.ZodString>;
             aiInstructions: z.ZodOptional<z.ZodString>;
             createdByUid: z.ZodOptional<z.ZodString>;
             steps: z.ZodArray<z.ZodDiscriminatedUnion<"mode", [z.ZodObject<{
-                aiInstructions: z.ZodOptional<z.ZodString>;
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -112,9 +111,22 @@ export declare const tacticLogSchema: z.ZodObject<{
             } & {
                 mode: z.ZodOptional<z.ZodLiteral<"default">>;
                 text: z.ZodString;
+                durationSeconds: z.ZodOptional<z.ZodNumber>;
+                aiConfiguration: z.ZodOptional<z.ZodObject<{
+                    defaultConversationMode: z.ZodOptional<z.ZodEnum<["voice", "text"]>>;
+                    goal: z.ZodString;
+                    prompt: z.ZodOptional<z.ZodString>;
+                }, "strip", z.ZodTypeAny, {
+                    goal: string;
+                    prompt?: string | undefined;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                }, {
+                    goal: string;
+                    prompt?: string | undefined;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                }>>;
             }, "strip", z.ZodTypeAny, {
                 text: string;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -136,9 +148,14 @@ export declare const tacticLogSchema: z.ZodObject<{
                 } | undefined;
                 tags?: string[] | undefined;
                 mode?: "default" | undefined;
+                durationSeconds?: number | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    prompt?: string | undefined;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                } | undefined;
             }, {
                 text: string;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -160,9 +177,14 @@ export declare const tacticLogSchema: z.ZodObject<{
                 } | undefined;
                 tags?: string[] | undefined;
                 mode?: "default" | undefined;
+                durationSeconds?: number | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    prompt?: string | undefined;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                } | undefined;
             }>, z.ZodObject<{
                 text: z.ZodOptional<z.ZodString>;
-                aiInstructions: z.ZodOptional<z.ZodString>;
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -268,7 +290,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 };
                 cycles?: number | undefined;
                 text?: string | undefined;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -298,7 +319,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 };
                 cycles?: number | undefined;
                 text?: string | undefined;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -320,143 +340,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 } | undefined;
                 tags?: string[] | undefined;
             }>, z.ZodObject<{
-                aiInstructions: z.ZodOptional<z.ZodString>;
-                backgroundImage: z.ZodOptional<z.ZodObject<{
-                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    uri: z.ZodString;
-                    storagePath: z.ZodString;
-                    contentType: z.ZodString;
-                    title: z.ZodOptional<z.ZodString>;
-                    sizeBytes: z.ZodOptional<z.ZodNumber>;
-                    metadata: z.ZodOptional<z.ZodObject<{
-                        width: z.ZodOptional<z.ZodNumber>;
-                        height: z.ZodOptional<z.ZodNumber>;
-                        durationMs: z.ZodOptional<z.ZodNumber>;
-                        transcript: z.ZodOptional<z.ZodString>;
-                        meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
-                            db: z.ZodNumber;
-                            timestampMs: z.ZodOptional<z.ZodNumber>;
-                        }, "strip", z.ZodTypeAny, {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }, {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }>, "many">>;
-                    }, "strip", z.ZodTypeAny, {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    }, {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    }>>;
-                }, "strip", z.ZodTypeAny, {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                }, {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                }>>;
-                tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-            } & {
-                mode: z.ZodLiteral<"timer">;
-                durationSeconds: z.ZodNumber;
-                text: z.ZodString;
-            }, "strip", z.ZodTypeAny, {
-                text: string;
-                mode: "timer";
-                durationSeconds: number;
-                aiInstructions?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            }, {
-                text: string;
-                mode: "timer";
-                durationSeconds: number;
-                aiInstructions?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            }>, z.ZodObject<{
-                aiInstructions: z.ZodOptional<z.ZodString>;
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -545,7 +428,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 text: string;
                 mode: "notifySupport";
                 groupId: string;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -570,7 +452,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 text: string;
                 mode: "notifySupport";
                 groupId: string;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -592,7 +473,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 } | undefined;
                 tags?: string[] | undefined;
             }>, z.ZodObject<{
-                aiInstructions: z.ZodOptional<z.ZodString>;
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -688,7 +568,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
                 suggestedResponses?: string[] | undefined;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -716,7 +595,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
                 suggestedResponses?: string[] | undefined;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -738,7 +616,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 } | undefined;
                 tags?: string[] | undefined;
             }>, z.ZodObject<{
-                aiInstructions: z.ZodOptional<z.ZodString>;
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -846,7 +723,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -877,7 +753,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -900,146 +775,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
             }>, z.ZodObject<{
                 text: z.ZodOptional<z.ZodString>;
-                aiInstructions: z.ZodOptional<z.ZodString>;
-                backgroundImage: z.ZodOptional<z.ZodObject<{
-                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    uri: z.ZodString;
-                    storagePath: z.ZodString;
-                    contentType: z.ZodString;
-                    title: z.ZodOptional<z.ZodString>;
-                    sizeBytes: z.ZodOptional<z.ZodNumber>;
-                    metadata: z.ZodOptional<z.ZodObject<{
-                        width: z.ZodOptional<z.ZodNumber>;
-                        height: z.ZodOptional<z.ZodNumber>;
-                        durationMs: z.ZodOptional<z.ZodNumber>;
-                        transcript: z.ZodOptional<z.ZodString>;
-                        meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
-                            db: z.ZodNumber;
-                            timestampMs: z.ZodOptional<z.ZodNumber>;
-                        }, "strip", z.ZodTypeAny, {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }, {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }>, "many">>;
-                    }, "strip", z.ZodTypeAny, {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    }, {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    }>>;
-                }, "strip", z.ZodTypeAny, {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                }, {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                }>>;
-                tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-            } & {
-                mode: z.ZodLiteral<"aiConversation">;
-                goal: z.ZodString;
-                prompt: z.ZodOptional<z.ZodString>;
-            }, "strip", z.ZodTypeAny, {
-                goal: string;
-                mode: "aiConversation";
-                text?: string | undefined;
-                aiInstructions?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-                prompt?: string | undefined;
-            }, {
-                goal: string;
-                mode: "aiConversation";
-                text?: string | undefined;
-                aiInstructions?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-                prompt?: string | undefined;
-            }>, z.ZodObject<{
-                text: z.ZodOptional<z.ZodString>;
-                aiInstructions: z.ZodOptional<z.ZodString>;
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -1223,7 +958,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 }[];
                 text?: string | undefined;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -1266,7 +1000,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 }[];
                 text?: string | undefined;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -1288,7 +1021,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 } | undefined;
                 tags?: string[] | undefined;
             }>, z.ZodObject<{
-                aiInstructions: z.ZodOptional<z.ZodString>;
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -1377,7 +1109,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 text: string;
                 mode: "affirmation";
                 repeatCount: number;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -1402,7 +1133,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 text: string;
                 mode: "affirmation";
                 repeatCount: number;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -1423,6 +1153,104 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+            }>, z.ZodObject<Omit<{
+                text: z.ZodOptional<z.ZodString>;
+                backgroundImage: z.ZodOptional<z.ZodObject<{
+                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    uri: z.ZodString;
+                    storagePath: z.ZodString;
+                    contentType: z.ZodString;
+                    title: z.ZodOptional<z.ZodString>;
+                    sizeBytes: z.ZodOptional<z.ZodNumber>;
+                    metadata: z.ZodOptional<z.ZodObject<{
+                        width: z.ZodOptional<z.ZodNumber>;
+                        height: z.ZodOptional<z.ZodNumber>;
+                        durationMs: z.ZodOptional<z.ZodNumber>;
+                        transcript: z.ZodOptional<z.ZodString>;
+                        meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                            db: z.ZodNumber;
+                            timestampMs: z.ZodOptional<z.ZodNumber>;
+                        }, "strip", z.ZodTypeAny, {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }, {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }>, "many">>;
+                    }, "strip", z.ZodTypeAny, {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    }, {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    }>>;
+                }, "strip", z.ZodTypeAny, {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }, {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }>>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+            }, "backgroundImage"> & {
+                mode: z.ZodLiteral<"aiConversation">;
+                goal: z.ZodString;
+                prompt: z.ZodOptional<z.ZodString>;
+            }, "strip", z.ZodTypeAny, {
+                goal: string;
+                mode: "aiConversation";
+                text?: string | undefined;
+                tags?: string[] | undefined;
+                prompt?: string | undefined;
+            }, {
+                goal: string;
+                mode: "aiConversation";
+                text?: string | undefined;
+                tags?: string[] | undefined;
+                prompt?: string | undefined;
             }>]>, "many">;
             tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -1430,12 +1258,10 @@ export declare const tacticLogSchema: z.ZodObject<{
         }, "strip", z.ZodTypeAny, {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
-            title: string;
             steps: ({
                 text: string;
                 mode: "affirmation";
                 repeatCount: number;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -1460,26 +1286,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 goal: string;
                 mode: "aiConversation";
                 text?: string | undefined;
-                aiInstructions?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
                 tags?: string[] | undefined;
                 prompt?: string | undefined;
             } | {
@@ -1491,7 +1297,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 };
                 cycles?: number | undefined;
                 text?: string | undefined;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -1514,7 +1319,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -1536,6 +1340,12 @@ export declare const tacticLogSchema: z.ZodObject<{
                 } | undefined;
                 tags?: string[] | undefined;
                 mode?: "default" | undefined;
+                durationSeconds?: number | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    prompt?: string | undefined;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                } | undefined;
             } | {
                 mode: "media";
                 media: {
@@ -1558,7 +1368,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 }[];
                 text?: string | undefined;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -1583,7 +1392,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 text: string;
                 mode: "notifySupport";
                 groupId: string;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -1614,7 +1422,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -1642,32 +1449,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
                 suggestedResponses?: string[] | undefined;
-                aiInstructions?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                mode: "timer";
-                durationSeconds: number;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -1689,20 +1470,19 @@ export declare const tacticLogSchema: z.ZodObject<{
                 } | undefined;
                 tags?: string[] | undefined;
             })[];
+            title?: string | undefined;
             id?: string | undefined;
             description?: string | undefined;
-            aiInstructions?: string | undefined;
             tags?: string[] | undefined;
+            aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
         }, {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
-            title: string;
             steps: ({
                 text: string;
                 mode: "affirmation";
                 repeatCount: number;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -1727,26 +1507,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 goal: string;
                 mode: "aiConversation";
                 text?: string | undefined;
-                aiInstructions?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
                 tags?: string[] | undefined;
                 prompt?: string | undefined;
             } | {
@@ -1758,7 +1518,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 };
                 cycles?: number | undefined;
                 text?: string | undefined;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -1781,7 +1540,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -1803,6 +1561,12 @@ export declare const tacticLogSchema: z.ZodObject<{
                 } | undefined;
                 tags?: string[] | undefined;
                 mode?: "default" | undefined;
+                durationSeconds?: number | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    prompt?: string | undefined;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                } | undefined;
             } | {
                 mode: "media";
                 media: {
@@ -1825,7 +1589,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 }[];
                 text?: string | undefined;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -1850,7 +1613,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 text: string;
                 mode: "notifySupport";
                 groupId: string;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -1881,7 +1643,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -1909,32 +1670,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
                 suggestedResponses?: string[] | undefined;
-                aiInstructions?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                mode: "timer";
-                durationSeconds: number;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -1956,10 +1691,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                 } | undefined;
                 tags?: string[] | undefined;
             })[];
+            title?: string | undefined;
             id?: string | undefined;
             description?: string | undefined;
-            aiInstructions?: string | undefined;
             tags?: string[] | undefined;
+            aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
         }>;
         planId: z.ZodOptional<z.ZodString>;
@@ -1970,12 +1706,10 @@ export declare const tacticLogSchema: z.ZodObject<{
         tactic: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
-            title: string;
             steps: ({
                 text: string;
                 mode: "affirmation";
                 repeatCount: number;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2000,26 +1734,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 goal: string;
                 mode: "aiConversation";
                 text?: string | undefined;
-                aiInstructions?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
                 tags?: string[] | undefined;
                 prompt?: string | undefined;
             } | {
@@ -2031,7 +1745,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 };
                 cycles?: number | undefined;
                 text?: string | undefined;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2054,7 +1767,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2076,6 +1788,12 @@ export declare const tacticLogSchema: z.ZodObject<{
                 } | undefined;
                 tags?: string[] | undefined;
                 mode?: "default" | undefined;
+                durationSeconds?: number | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    prompt?: string | undefined;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                } | undefined;
             } | {
                 mode: "media";
                 media: {
@@ -2098,7 +1816,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 }[];
                 text?: string | undefined;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2123,7 +1840,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 text: string;
                 mode: "notifySupport";
                 groupId: string;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2154,7 +1870,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2182,32 +1897,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
                 suggestedResponses?: string[] | undefined;
-                aiInstructions?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                mode: "timer";
-                durationSeconds: number;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2229,10 +1918,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                 } | undefined;
                 tags?: string[] | undefined;
             })[];
+            title?: string | undefined;
             id?: string | undefined;
             description?: string | undefined;
-            aiInstructions?: string | undefined;
             tags?: string[] | undefined;
+            aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
         };
         planId?: string | undefined;
@@ -2243,12 +1933,10 @@ export declare const tacticLogSchema: z.ZodObject<{
         tactic: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
-            title: string;
             steps: ({
                 text: string;
                 mode: "affirmation";
                 repeatCount: number;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2273,26 +1961,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 goal: string;
                 mode: "aiConversation";
                 text?: string | undefined;
-                aiInstructions?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
                 tags?: string[] | undefined;
                 prompt?: string | undefined;
             } | {
@@ -2304,7 +1972,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 };
                 cycles?: number | undefined;
                 text?: string | undefined;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2327,7 +1994,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2349,6 +2015,12 @@ export declare const tacticLogSchema: z.ZodObject<{
                 } | undefined;
                 tags?: string[] | undefined;
                 mode?: "default" | undefined;
+                durationSeconds?: number | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    prompt?: string | undefined;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                } | undefined;
             } | {
                 mode: "media";
                 media: {
@@ -2371,7 +2043,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 }[];
                 text?: string | undefined;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2396,7 +2067,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 text: string;
                 mode: "notifySupport";
                 groupId: string;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2427,7 +2097,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2455,32 +2124,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
                 suggestedResponses?: string[] | undefined;
-                aiInstructions?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                mode: "timer";
-                durationSeconds: number;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2502,10 +2145,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                 } | undefined;
                 tags?: string[] | undefined;
             })[];
+            title?: string | undefined;
             id?: string | undefined;
             description?: string | undefined;
-            aiInstructions?: string | undefined;
             tags?: string[] | undefined;
+            aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
         };
         planId?: string | undefined;
@@ -2523,12 +2167,10 @@ export declare const tacticLogSchema: z.ZodObject<{
         tactic: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
-            title: string;
             steps: ({
                 text: string;
                 mode: "affirmation";
                 repeatCount: number;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2553,26 +2195,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 goal: string;
                 mode: "aiConversation";
                 text?: string | undefined;
-                aiInstructions?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
                 tags?: string[] | undefined;
                 prompt?: string | undefined;
             } | {
@@ -2584,7 +2206,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 };
                 cycles?: number | undefined;
                 text?: string | undefined;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2607,7 +2228,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2629,6 +2249,12 @@ export declare const tacticLogSchema: z.ZodObject<{
                 } | undefined;
                 tags?: string[] | undefined;
                 mode?: "default" | undefined;
+                durationSeconds?: number | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    prompt?: string | undefined;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                } | undefined;
             } | {
                 mode: "media";
                 media: {
@@ -2651,7 +2277,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 }[];
                 text?: string | undefined;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2676,7 +2301,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 text: string;
                 mode: "notifySupport";
                 groupId: string;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2707,7 +2331,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2735,32 +2358,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
                 suggestedResponses?: string[] | undefined;
-                aiInstructions?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                mode: "timer";
-                durationSeconds: number;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2782,10 +2379,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                 } | undefined;
                 tags?: string[] | undefined;
             })[];
+            title?: string | undefined;
             id?: string | undefined;
             description?: string | undefined;
-            aiInstructions?: string | undefined;
             tags?: string[] | undefined;
+            aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
         };
         planId?: string | undefined;
@@ -2811,12 +2409,10 @@ export declare const tacticLogSchema: z.ZodObject<{
         tactic: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
-            title: string;
             steps: ({
                 text: string;
                 mode: "affirmation";
                 repeatCount: number;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2841,26 +2437,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 goal: string;
                 mode: "aiConversation";
                 text?: string | undefined;
-                aiInstructions?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
                 tags?: string[] | undefined;
                 prompt?: string | undefined;
             } | {
@@ -2872,7 +2448,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 };
                 cycles?: number | undefined;
                 text?: string | undefined;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2895,7 +2470,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2917,6 +2491,12 @@ export declare const tacticLogSchema: z.ZodObject<{
                 } | undefined;
                 tags?: string[] | undefined;
                 mode?: "default" | undefined;
+                durationSeconds?: number | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    prompt?: string | undefined;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                } | undefined;
             } | {
                 mode: "media";
                 media: {
@@ -2939,7 +2519,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 }[];
                 text?: string | undefined;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2964,7 +2543,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 text: string;
                 mode: "notifySupport";
                 groupId: string;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2995,7 +2573,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -3023,32 +2600,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
                 suggestedResponses?: string[] | undefined;
-                aiInstructions?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                mode: "timer";
-                durationSeconds: number;
-                aiInstructions?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -3070,10 +2621,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                 } | undefined;
                 tags?: string[] | undefined;
             })[];
+            title?: string | undefined;
             id?: string | undefined;
             description?: string | undefined;
-            aiInstructions?: string | undefined;
             tags?: string[] | undefined;
+            aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
         };
         planId?: string | undefined;

@@ -4,7 +4,7 @@ import { tacticStepSchema } from "./steps";
 
 export const tacticSchema = z.object({
   id: z.string().optional(),
-  title: z.string().min(1),
+  title: z.string().min(1).optional(),
   description: z.string().optional(),
   aiInstructions: z.string().optional(),
   createdByUid: z.string().optional(),

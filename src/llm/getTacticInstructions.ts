@@ -14,17 +14,6 @@ export function getTacticStepInstructions(step: TacticStep): string {
       const holdPart = hold && hold > 0 ? `, hold for ${hold} seconds` : "";
       return `Do a breathing exercise for ${cycles} cycles: inhale for ${inhale} seconds${holdPart}, then exhale for ${exhale} seconds. Stay relaxed and focus on your breath.`;
     }
-    case "timer": {
-      const secs = step.durationSeconds;
-      const mins = Math.floor(secs / 60);
-      const rem = secs % 60;
-      const pretty =
-        mins > 0 ? `${mins}m${rem > 0 ? ` ${rem}s` : ""}` : `${rem}s`;
-      const label = step.text?.trim();
-      return `Start a timer for ${pretty}${
-        label ? `: ${label}` : ""
-      }. Stay committed until it completes.`;
-    }
     case "notifySupport": {
       const label = step.text?.trim() || "Send a supportive message";
       return `${label}. Reach out to your support group now so they know you could use encouragement.`;
