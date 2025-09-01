@@ -7,18 +7,23 @@ import { z } from "zod";
 export const QUESTION_SCOPES = {
   impulse: {
     id: "impulse",
-    label: "Impulse Moment",
+    label: "During an impulse moment",
     description: "Asked whenever you press the impulse button",
   },
-  debrief: {
-    id: "debrief",
-    label: "Debrief",
-    description: "Asked during an immediate or reflective debrief",
+  setback: {
+    id: "setback",
+    label: "After a setback",
+    description: "When debriefing a setback moment (acting on the urge)",
+  },
+  success: {
+    id: "success",
+    label: "After a success",
+    description: "When debriefing a success moment (resisting the urge)",
   },
   recap: {
     id: "recap",
-    label: "Daily Recap",
-    description: "Asked during your regular daily recap",
+    label: "Daily recap",
+    description: "When reflecting on the day",
   },
 } as const;
 

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { questionScopeSchema } from "../../constants/questionScopes";
+import { questionScopeSchema } from "../../constants";
 import { timestampSchema } from "../../utils";
 
 export function questionBaseSchema<T extends string>(type: T) {
@@ -8,6 +8,7 @@ export function questionBaseSchema<T extends string>(type: T) {
     createdAt: timestampSchema.optional(),
     updatedAt: timestampSchema.optional(),
     text: z.string(), // Optional text to display before the question
+    behaviorIds: z.array(z.string()).optional(),
     lastAskedAt: timestampSchema.optional(),
     lastAnsweredAt: timestampSchema.optional(),
     numberOfAnswers: z.number().optional(),
