@@ -21,7 +21,11 @@ import {
 import { OutcomeLog, outcomeLogSchema } from "./outcomeLog";
 import { PlanLog, planLogSchema } from "./planLog";
 import { QuestionLog, questionLogSchema } from "./questionLog";
-import { ResistedLog, resistedLogSchema } from "./resistedLog";
+import {
+  ReadyToDebriefLog,
+  readyToDebriefLogSchema,
+} from "./readyToDebriefLog";
+import { SharedMomentLog, sharedMomentLogSchema } from "./sharedMomentLog";
 import { ShowTourLog, showTourLogSchema } from "./showTourLog";
 import { SummaryLog, summaryLogSchema } from "./summaryLog";
 import { TacticLog, tacticLogSchema } from "./tacticLog";
@@ -32,11 +36,6 @@ import {
 import { ToolCallLog, toolCallLogSchema } from "./toolCallLog";
 import { VideoLog, videoLogSchema } from "./videoLog";
 import { WidgetSetupLog, widgetSetupLogSchema } from "./widgetSetupLog";
-import { SharedMomentLog, sharedMomentLogSchema } from "./sharedMomentLog";
-import {
-  ReadyToDebriefLog,
-  readyToDebriefLogSchema,
-} from "./readyToDebriefLog";
 
 export const logSchemas = {
   user: userMessageLogSchema,
@@ -54,7 +53,6 @@ export const logSchemas = {
   question: questionLogSchema,
   plan: planLogSchema,
   summary: summaryLogSchema,
-  resisted: resistedLogSchema,
   widget_setup: widgetSetupLogSchema,
   show_tour: showTourLogSchema,
   link: linkLogSchema,
@@ -87,23 +85,22 @@ export type Log =
   | NotifySupportGroupLog
   | SharedMomentLog
   | VideoLog
-  | ResistedLog
   | DaySummaryLog
   | ReadyToDebriefLog;
 
 export * from "./behaviorLog";
 export * from "./breathingLog";
-export * from "./outcomeLog";
 export * from "./callLog";
 export * from "./daySummaryLog";
 export * from "./impulseLog";
 export * from "./linkLog";
 export * from "./messageLog";
 export * from "./notifySupportGroupLog";
-export * from "./sharedMomentLog";
+export * from "./outcomeLog";
 export * from "./planLog";
 export * from "./questionLog";
-export * from "./resistedLog";
+export * from "./readyToDebriefLog";
+export * from "./sharedMomentLog";
 export * from "./showTourLog";
 export * from "./summaryLog";
 export * from "./tacticLog";
@@ -111,7 +108,6 @@ export * from "./tacticSuggestionLog";
 export * from "./toolCallLog";
 export * from "./videoLog";
 export * from "./widgetSetupLog";
-export * from "./readyToDebriefLog";
 
 // Discriminated union schema across all log variants
 export const logSchema = z.discriminatedUnion("type", [
@@ -129,7 +125,6 @@ export const logSchema = z.discriminatedUnion("type", [
   questionLogSchema,
   planLogSchema,
   summaryLogSchema,
-  resistedLogSchema,
   widgetSetupLogSchema,
   showTourLogSchema,
   linkLogSchema,
@@ -173,13 +168,6 @@ export const isValidSharedMomentLog = (
   value: unknown
 ): value is SharedMomentLog => {
   return sharedMomentLogSchema.safeParse(value).success;
-};
-
-export const logIsResistedLog = (
-  value: Omit<Log, "id">
-): value is ResistedLog => value.type === "resisted";
-export const isValidResistedLog = (value: unknown): value is ResistedLog => {
-  return resistedLogSchema.safeParse(value).success;
 };
 
 export const logIsDaySummaryLog = (
@@ -292,9 +280,8 @@ export const isValidBreathingLog = (value: unknown): value is BreathingLog => {
   return breathingLogSchema.safeParse(value).success;
 };
 
-export const logIsOutcomeLog = (
-  value: Omit<Log, "id">
-): value is OutcomeLog => value.type === "outcome";
+export const logIsOutcomeLog = (value: Omit<Log, "id">): value is OutcomeLog =>
+  value.type === "outcome";
 export const isValidOutcomeLog = (value: unknown): value is OutcomeLog => {
   return outcomeLogSchema.safeParse(value).success;
 };

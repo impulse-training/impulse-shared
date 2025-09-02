@@ -3,9 +3,7 @@ import {
   Log,
   logIsBehaviorLog,
   logIsDaySummaryLog,
-  logIsImpulseLog,
-  logIsQuestionLog,
-  logIsResistedLog,
+  logIsOutcomeLog,
   logIsShowTourLog,
   logIsUserMessageLog,
   logIsWidgetSetupLog,
@@ -34,12 +32,12 @@ export function shouldRespondToLogWithAI(
     return true;
   }
 
-  if (isCreating && logIsImpulseLog(afterData)) {
-    return true;
-  }
+  // if (isCreating && logIsImpulseLog(afterData)) {
+  //   return true;
+  // }
 
-  // Case 2: Impulse can respond when the user marks that they resisted the impulse
-  if (isCreating && logIsResistedLog(afterData)) {
+  // Case 2: Impulse can respond when the user logs an outcome (resisted or setback)
+  if (isCreating && logIsOutcomeLog(afterData)) {
     return true;
   }
 
@@ -58,17 +56,17 @@ export function shouldRespondToLogWithAI(
   }
 
   // Case 5: The user has answered a question
-  if (
-    isUpdating &&
-    logIsQuestionLog(afterData) &&
-    fieldChanged(
-      beforeData,
-      afterData,
-      "data.response" as keyof typeof beforeData
-    )
-  ) {
-    return true;
-  }
+  // if (
+  //   isUpdating &&
+  //   logIsQuestionLog(afterData) &&
+  //   fieldChanged(
+  //     beforeData,
+  //     afterData,
+  //     "data.response" as keyof typeof beforeData
+  //   )
+  // ) {
+  //   return true;
+  // }
 
   // Case 6: The user has completed a day summary
   if (

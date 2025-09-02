@@ -11,7 +11,8 @@ import { NotifySupportGroupLog } from "./notifySupportGroupLog";
 import { OutcomeLog } from "./outcomeLog";
 import { PlanLog } from "./planLog";
 import { QuestionLog } from "./questionLog";
-import { ResistedLog } from "./resistedLog";
+import { ReadyToDebriefLog } from "./readyToDebriefLog";
+import { SharedMomentLog } from "./sharedMomentLog";
 import { ShowTourLog } from "./showTourLog";
 import { SummaryLog } from "./summaryLog";
 import { TacticLog } from "./tacticLog";
@@ -19,8 +20,6 @@ import { TacticSuggestionLog } from "./tacticSuggestionLog";
 import { ToolCallLog } from "./toolCallLog";
 import { VideoLog } from "./videoLog";
 import { WidgetSetupLog } from "./widgetSetupLog";
-import { SharedMomentLog } from "./sharedMomentLog";
-import { ReadyToDebriefLog } from "./readyToDebriefLog";
 export declare const logSchemas: {
     user: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
@@ -6696,45 +6695,6 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 scope?: "impulse" | "setback" | "success" | "recap" | undefined;
-            }>, z.ZodObject<{
-                id: z.ZodOptional<z.ZodString>;
-                createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                text: z.ZodString;
-                behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-                lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                numberOfAnswers: z.ZodOptional<z.ZodNumber>;
-                isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-                isPinned: z.ZodOptional<z.ZodBoolean>;
-                responseType: z.ZodLiteral<"recap">;
-                scope: z.ZodOptional<z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>>;
-            }, "strip", z.ZodTypeAny, {
-                text: string;
-                isTemplate: boolean;
-                responseType: "recap";
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                id?: string | undefined;
-                behaviorIds?: string[] | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isPinned?: boolean | undefined;
-                scope?: "impulse" | "setback" | "success" | "recap" | undefined;
-            }, {
-                text: string;
-                responseType: "recap";
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                id?: string | undefined;
-                isTemplate?: boolean | undefined;
-                behaviorIds?: string[] | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isPinned?: boolean | undefined;
-                scope?: "impulse" | "setback" | "success" | "recap" | undefined;
             }>]>;
             response: z.ZodOptional<z.ZodObject<{
                 responseType: z.ZodEnum<["text", "slider1To10", "recap"]>;
@@ -6754,19 +6714,6 @@ export declare const logSchemas: {
             }>>;
         }, "strip", z.ZodTypeAny, {
             question: {
-                text: string;
-                isTemplate: boolean;
-                responseType: "recap";
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                id?: string | undefined;
-                behaviorIds?: string[] | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isPinned?: boolean | undefined;
-                scope?: "impulse" | "setback" | "success" | "recap" | undefined;
-            } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "slider1To10";
@@ -6807,19 +6754,6 @@ export declare const logSchemas: {
             } | undefined;
         }, {
             question: {
-                text: string;
-                responseType: "recap";
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                id?: string | undefined;
-                isTemplate?: boolean | undefined;
-                behaviorIds?: string[] | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isPinned?: boolean | undefined;
-                scope?: "impulse" | "setback" | "success" | "recap" | undefined;
-            } | {
                 text: string;
                 responseType: "slider1To10";
                 sliderConfig: {
@@ -6867,19 +6801,6 @@ export declare const logSchemas: {
         isDisplayable: true;
         data: {
             question: {
-                text: string;
-                isTemplate: boolean;
-                responseType: "recap";
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                id?: string | undefined;
-                behaviorIds?: string[] | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isPinned?: boolean | undefined;
-                scope?: "impulse" | "setback" | "success" | "recap" | undefined;
-            } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "slider1To10";
@@ -6935,19 +6856,6 @@ export declare const logSchemas: {
         isDisplayable: true;
         data: {
             question: {
-                text: string;
-                responseType: "recap";
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                id?: string | undefined;
-                isTemplate?: boolean | undefined;
-                behaviorIds?: string[] | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isPinned?: boolean | undefined;
-                scope?: "impulse" | "setback" | "success" | "recap" | undefined;
-            } | {
                 text: string;
                 responseType: "slider1To10";
                 sliderConfig: {
@@ -7711,56 +7619,6 @@ export declare const logSchemas: {
             tactic?: any;
         } | undefined;
     }>;
-    resisted: z.ZodObject<{
-        id: z.ZodOptional<z.ZodString>;
-        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-        userId: z.ZodString;
-        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-        dateString: z.ZodString;
-        callLogDocPath: z.ZodOptional<z.ZodString>;
-        replyTactic: z.ZodOptional<z.ZodObject<{
-            tactic: z.ZodAny;
-            currentStepIndex: z.ZodNumber;
-        }, "strip", z.ZodTypeAny, {
-            currentStepIndex: number;
-            tactic?: any;
-        }, {
-            currentStepIndex: number;
-            tactic?: any;
-        }>>;
-    } & {
-        type: z.ZodLiteral<"resisted">;
-        isDisplayable: z.ZodLiteral<true>;
-    }, "strip", z.ZodTypeAny, {
-        type: "resisted";
-        userId: string;
-        timestamp: import("../../types").Timestamp;
-        dateString: string;
-        isDisplayable: true;
-        createdAt?: import("../../types").Timestamp | undefined;
-        updatedAt?: import("../../types").Timestamp | undefined;
-        id?: string | undefined;
-        callLogDocPath?: string | undefined;
-        replyTactic?: {
-            currentStepIndex: number;
-            tactic?: any;
-        } | undefined;
-    }, {
-        type: "resisted";
-        userId: string;
-        timestamp: import("../../types").Timestamp;
-        dateString: string;
-        isDisplayable: true;
-        createdAt?: import("../../types").Timestamp | undefined;
-        updatedAt?: import("../../types").Timestamp | undefined;
-        id?: string | undefined;
-        callLogDocPath?: string | undefined;
-        replyTactic?: {
-            currentStepIndex: number;
-            tactic?: any;
-        } | undefined;
-    }>;
     widget_setup: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -8464,20 +8322,20 @@ export declare const logSchemas: {
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | TacticSuggestionLog | ImpulseLog | BehaviorLog | BreathingLog | OutcomeLog | QuestionLog | PlanLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | ResistedLog | DaySummaryLog | ReadyToDebriefLog;
+export type Log = TacticLog | TacticSuggestionLog | ImpulseLog | BehaviorLog | BreathingLog | OutcomeLog | QuestionLog | PlanLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | DaySummaryLog | ReadyToDebriefLog;
 export * from "./behaviorLog";
 export * from "./breathingLog";
-export * from "./outcomeLog";
 export * from "./callLog";
 export * from "./daySummaryLog";
 export * from "./impulseLog";
 export * from "./linkLog";
 export * from "./messageLog";
 export * from "./notifySupportGroupLog";
-export * from "./sharedMomentLog";
+export * from "./outcomeLog";
 export * from "./planLog";
 export * from "./questionLog";
-export * from "./resistedLog";
+export * from "./readyToDebriefLog";
+export * from "./sharedMomentLog";
 export * from "./showTourLog";
 export * from "./summaryLog";
 export * from "./tacticLog";
@@ -8485,7 +8343,6 @@ export * from "./tacticSuggestionLog";
 export * from "./toolCallLog";
 export * from "./videoLog";
 export * from "./widgetSetupLog";
-export * from "./readyToDebriefLog";
 export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -12354,45 +12211,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             scope?: "impulse" | "setback" | "success" | "recap" | undefined;
-        }>, z.ZodObject<{
-            id: z.ZodOptional<z.ZodString>;
-            createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-            updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-            text: z.ZodString;
-            behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-            lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-            lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-            numberOfAnswers: z.ZodOptional<z.ZodNumber>;
-            isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-            isPinned: z.ZodOptional<z.ZodBoolean>;
-            responseType: z.ZodLiteral<"recap">;
-            scope: z.ZodOptional<z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>>;
-        }, "strip", z.ZodTypeAny, {
-            text: string;
-            isTemplate: boolean;
-            responseType: "recap";
-            createdAt?: import("../../types").Timestamp | undefined;
-            updatedAt?: import("../../types").Timestamp | undefined;
-            id?: string | undefined;
-            behaviorIds?: string[] | undefined;
-            lastAskedAt?: import("../../types").Timestamp | undefined;
-            lastAnsweredAt?: import("../../types").Timestamp | undefined;
-            numberOfAnswers?: number | undefined;
-            isPinned?: boolean | undefined;
-            scope?: "impulse" | "setback" | "success" | "recap" | undefined;
-        }, {
-            text: string;
-            responseType: "recap";
-            createdAt?: import("../../types").Timestamp | undefined;
-            updatedAt?: import("../../types").Timestamp | undefined;
-            id?: string | undefined;
-            isTemplate?: boolean | undefined;
-            behaviorIds?: string[] | undefined;
-            lastAskedAt?: import("../../types").Timestamp | undefined;
-            lastAnsweredAt?: import("../../types").Timestamp | undefined;
-            numberOfAnswers?: number | undefined;
-            isPinned?: boolean | undefined;
-            scope?: "impulse" | "setback" | "success" | "recap" | undefined;
         }>]>;
         response: z.ZodOptional<z.ZodObject<{
             responseType: z.ZodEnum<["text", "slider1To10", "recap"]>;
@@ -12412,19 +12230,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }>>;
     }, "strip", z.ZodTypeAny, {
         question: {
-            text: string;
-            isTemplate: boolean;
-            responseType: "recap";
-            createdAt?: import("../../types").Timestamp | undefined;
-            updatedAt?: import("../../types").Timestamp | undefined;
-            id?: string | undefined;
-            behaviorIds?: string[] | undefined;
-            lastAskedAt?: import("../../types").Timestamp | undefined;
-            lastAnsweredAt?: import("../../types").Timestamp | undefined;
-            numberOfAnswers?: number | undefined;
-            isPinned?: boolean | undefined;
-            scope?: "impulse" | "setback" | "success" | "recap" | undefined;
-        } | {
             text: string;
             isTemplate: boolean;
             responseType: "slider1To10";
@@ -12465,19 +12270,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         } | undefined;
     }, {
         question: {
-            text: string;
-            responseType: "recap";
-            createdAt?: import("../../types").Timestamp | undefined;
-            updatedAt?: import("../../types").Timestamp | undefined;
-            id?: string | undefined;
-            isTemplate?: boolean | undefined;
-            behaviorIds?: string[] | undefined;
-            lastAskedAt?: import("../../types").Timestamp | undefined;
-            lastAnsweredAt?: import("../../types").Timestamp | undefined;
-            numberOfAnswers?: number | undefined;
-            isPinned?: boolean | undefined;
-            scope?: "impulse" | "setback" | "success" | "recap" | undefined;
-        } | {
             text: string;
             responseType: "slider1To10";
             sliderConfig: {
@@ -12525,19 +12317,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: true;
     data: {
         question: {
-            text: string;
-            isTemplate: boolean;
-            responseType: "recap";
-            createdAt?: import("../../types").Timestamp | undefined;
-            updatedAt?: import("../../types").Timestamp | undefined;
-            id?: string | undefined;
-            behaviorIds?: string[] | undefined;
-            lastAskedAt?: import("../../types").Timestamp | undefined;
-            lastAnsweredAt?: import("../../types").Timestamp | undefined;
-            numberOfAnswers?: number | undefined;
-            isPinned?: boolean | undefined;
-            scope?: "impulse" | "setback" | "success" | "recap" | undefined;
-        } | {
             text: string;
             isTemplate: boolean;
             responseType: "slider1To10";
@@ -12593,19 +12372,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: true;
     data: {
         question: {
-            text: string;
-            responseType: "recap";
-            createdAt?: import("../../types").Timestamp | undefined;
-            updatedAt?: import("../../types").Timestamp | undefined;
-            id?: string | undefined;
-            isTemplate?: boolean | undefined;
-            behaviorIds?: string[] | undefined;
-            lastAskedAt?: import("../../types").Timestamp | undefined;
-            lastAnsweredAt?: import("../../types").Timestamp | undefined;
-            numberOfAnswers?: number | undefined;
-            isPinned?: boolean | undefined;
-            scope?: "impulse" | "setback" | "success" | "recap" | undefined;
-        } | {
             text: string;
             responseType: "slider1To10";
             sliderConfig: {
@@ -13385,55 +13151,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         tactic?: any;
     }>>;
 } & {
-    type: z.ZodLiteral<"resisted">;
-    isDisplayable: z.ZodLiteral<true>;
-}, "strip", z.ZodTypeAny, {
-    type: "resisted";
-    userId: string;
-    timestamp: import("../../types").Timestamp;
-    dateString: string;
-    isDisplayable: true;
-    createdAt?: import("../../types").Timestamp | undefined;
-    updatedAt?: import("../../types").Timestamp | undefined;
-    id?: string | undefined;
-    callLogDocPath?: string | undefined;
-    replyTactic?: {
-        currentStepIndex: number;
-        tactic?: any;
-    } | undefined;
-}, {
-    type: "resisted";
-    userId: string;
-    timestamp: import("../../types").Timestamp;
-    dateString: string;
-    isDisplayable: true;
-    createdAt?: import("../../types").Timestamp | undefined;
-    updatedAt?: import("../../types").Timestamp | undefined;
-    id?: string | undefined;
-    callLogDocPath?: string | undefined;
-    replyTactic?: {
-        currentStepIndex: number;
-        tactic?: any;
-    } | undefined;
-}>, z.ZodObject<{
-    id: z.ZodOptional<z.ZodString>;
-    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-    userId: z.ZodString;
-    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-    dateString: z.ZodString;
-    callLogDocPath: z.ZodOptional<z.ZodString>;
-    replyTactic: z.ZodOptional<z.ZodObject<{
-        tactic: z.ZodAny;
-        currentStepIndex: z.ZodNumber;
-    }, "strip", z.ZodTypeAny, {
-        currentStepIndex: number;
-        tactic?: any;
-    }, {
-        currentStepIndex: number;
-        tactic?: any;
-    }>>;
-} & {
     type: z.ZodLiteral<"widget_setup">;
     isDisplayable: z.ZodLiteral<true>;
 }, "strip", z.ZodTypeAny, {
@@ -14117,8 +13834,6 @@ export declare const logIsNotifySupportGroupLog: (value: Omit<Log, "id">) => val
 export declare const isValidNotifySupportGroupLog: (value: unknown) => value is NotifySupportGroupLog;
 export declare const logIsSharedMomentLog: (value: Omit<Log, "id">) => value is SharedMomentLog;
 export declare const isValidSharedMomentLog: (value: unknown) => value is SharedMomentLog;
-export declare const logIsResistedLog: (value: Omit<Log, "id">) => value is ResistedLog;
-export declare const isValidResistedLog: (value: unknown) => value is ResistedLog;
 export declare const logIsDaySummaryLog: (value: Omit<Log, "id">) => value is DaySummaryLog;
 export declare const isValidDaySummaryLog: (value: unknown) => value is DaySummaryLog;
 export declare const logIsBehaviorLog: (value: Omit<Log, "id">) => value is BehaviorLog;

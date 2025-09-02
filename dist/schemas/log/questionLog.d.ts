@@ -140,45 +140,6 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             scope?: "impulse" | "setback" | "success" | "recap" | undefined;
-        }>, z.ZodObject<{
-            id: z.ZodOptional<z.ZodString>;
-            createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-            updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-            text: z.ZodString;
-            behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-            lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-            lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-            numberOfAnswers: z.ZodOptional<z.ZodNumber>;
-            isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-            isPinned: z.ZodOptional<z.ZodBoolean>;
-            responseType: z.ZodLiteral<"recap">;
-            scope: z.ZodOptional<z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>>;
-        }, "strip", z.ZodTypeAny, {
-            text: string;
-            isTemplate: boolean;
-            responseType: "recap";
-            createdAt?: import("../../types").Timestamp | undefined;
-            updatedAt?: import("../../types").Timestamp | undefined;
-            id?: string | undefined;
-            behaviorIds?: string[] | undefined;
-            lastAskedAt?: import("../../types").Timestamp | undefined;
-            lastAnsweredAt?: import("../../types").Timestamp | undefined;
-            numberOfAnswers?: number | undefined;
-            isPinned?: boolean | undefined;
-            scope?: "impulse" | "setback" | "success" | "recap" | undefined;
-        }, {
-            text: string;
-            responseType: "recap";
-            createdAt?: import("../../types").Timestamp | undefined;
-            updatedAt?: import("../../types").Timestamp | undefined;
-            id?: string | undefined;
-            isTemplate?: boolean | undefined;
-            behaviorIds?: string[] | undefined;
-            lastAskedAt?: import("../../types").Timestamp | undefined;
-            lastAnsweredAt?: import("../../types").Timestamp | undefined;
-            numberOfAnswers?: number | undefined;
-            isPinned?: boolean | undefined;
-            scope?: "impulse" | "setback" | "success" | "recap" | undefined;
         }>]>;
         response: z.ZodOptional<z.ZodObject<{
             responseType: z.ZodEnum<["text", "slider1To10", "recap"]>;
@@ -198,19 +159,6 @@ export declare const questionLogSchema: z.ZodObject<{
         }>>;
     }, "strip", z.ZodTypeAny, {
         question: {
-            text: string;
-            isTemplate: boolean;
-            responseType: "recap";
-            createdAt?: import("../../types").Timestamp | undefined;
-            updatedAt?: import("../../types").Timestamp | undefined;
-            id?: string | undefined;
-            behaviorIds?: string[] | undefined;
-            lastAskedAt?: import("../../types").Timestamp | undefined;
-            lastAnsweredAt?: import("../../types").Timestamp | undefined;
-            numberOfAnswers?: number | undefined;
-            isPinned?: boolean | undefined;
-            scope?: "impulse" | "setback" | "success" | "recap" | undefined;
-        } | {
             text: string;
             isTemplate: boolean;
             responseType: "slider1To10";
@@ -251,19 +199,6 @@ export declare const questionLogSchema: z.ZodObject<{
         } | undefined;
     }, {
         question: {
-            text: string;
-            responseType: "recap";
-            createdAt?: import("../../types").Timestamp | undefined;
-            updatedAt?: import("../../types").Timestamp | undefined;
-            id?: string | undefined;
-            isTemplate?: boolean | undefined;
-            behaviorIds?: string[] | undefined;
-            lastAskedAt?: import("../../types").Timestamp | undefined;
-            lastAnsweredAt?: import("../../types").Timestamp | undefined;
-            numberOfAnswers?: number | undefined;
-            isPinned?: boolean | undefined;
-            scope?: "impulse" | "setback" | "success" | "recap" | undefined;
-        } | {
             text: string;
             responseType: "slider1To10";
             sliderConfig: {
@@ -311,19 +246,6 @@ export declare const questionLogSchema: z.ZodObject<{
     isDisplayable: true;
     data: {
         question: {
-            text: string;
-            isTemplate: boolean;
-            responseType: "recap";
-            createdAt?: import("../../types").Timestamp | undefined;
-            updatedAt?: import("../../types").Timestamp | undefined;
-            id?: string | undefined;
-            behaviorIds?: string[] | undefined;
-            lastAskedAt?: import("../../types").Timestamp | undefined;
-            lastAnsweredAt?: import("../../types").Timestamp | undefined;
-            numberOfAnswers?: number | undefined;
-            isPinned?: boolean | undefined;
-            scope?: "impulse" | "setback" | "success" | "recap" | undefined;
-        } | {
             text: string;
             isTemplate: boolean;
             responseType: "slider1To10";
@@ -379,19 +301,6 @@ export declare const questionLogSchema: z.ZodObject<{
     isDisplayable: true;
     data: {
         question: {
-            text: string;
-            responseType: "recap";
-            createdAt?: import("../../types").Timestamp | undefined;
-            updatedAt?: import("../../types").Timestamp | undefined;
-            id?: string | undefined;
-            isTemplate?: boolean | undefined;
-            behaviorIds?: string[] | undefined;
-            lastAskedAt?: import("../../types").Timestamp | undefined;
-            lastAnsweredAt?: import("../../types").Timestamp | undefined;
-            numberOfAnswers?: number | undefined;
-            isPinned?: boolean | undefined;
-            scope?: "impulse" | "setback" | "success" | "recap" | undefined;
-        } | {
             text: string;
             responseType: "slider1To10";
             sliderConfig: {
