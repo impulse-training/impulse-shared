@@ -5,6 +5,17 @@ import { emojiIdSchema } from "../emojiId";
 import { planWithIdSchema } from "../plan";
 import { tacticSchema } from "../tactic";
 
+export const threadSummarySchema = z.object({
+  tacticsByTitle: z.record(z.string(), z.array(z.any())),
+  behaviorsByName: z.record(z.string(), z.array(z.any())),
+  resistedLogs: z.array(z.any()),
+  daySummaryLog: z.any().optional(),
+  questionLogs: z.array(z.any()),
+  firstMessageLog: z.any().optional(),
+  firstCallLog: z.any().optional(),
+  hasContent: z.boolean(),
+});
+
 // Thread schema
 export const threadBaseSchema = z.object({
   id: z.string().optional(),
@@ -38,18 +49,7 @@ export const threadBaseSchema = z.object({
   trackingLogsById: z.record(z.string(), z.any()),
 
   // Pre-computed summary data for thread cards - updated when trackingLogsById changes
-  summaryData: z
-    .object({
-      tacticsByTitle: z.record(z.string(), z.array(z.any())),
-      behaviorsByName: z.record(z.string(), z.array(z.any())),
-      resistedLogs: z.array(z.any()),
-      daySummaryLog: z.any().optional(),
-      questionLogs: z.array(z.any()),
-      firstMessageLog: z.any().optional(),
-      firstCallLog: z.any().optional(),
-      hasContent: z.boolean(),
-    })
-    .optional(),
+  summaryData: threadSummarySchema.optional(),
   defaultSystemPrompt: z.string().optional(),
   debriefSystemPrompt: z.string().optional(),
   summary: z.string().optional(),

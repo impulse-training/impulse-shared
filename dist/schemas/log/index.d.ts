@@ -8933,7 +8933,34 @@ export declare const logSchemas: {
         isDisplayable: z.ZodLiteral<true>;
         data: z.ZodObject<{
             threadRef: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
-            thread: z.ZodAny;
+            threadSummaryData: z.ZodObject<{
+                tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
+                behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
+                resistedLogs: z.ZodArray<z.ZodAny, "many">;
+                daySummaryLog: z.ZodOptional<z.ZodAny>;
+                questionLogs: z.ZodArray<z.ZodAny, "many">;
+                firstMessageLog: z.ZodOptional<z.ZodAny>;
+                firstCallLog: z.ZodOptional<z.ZodAny>;
+                hasContent: z.ZodBoolean;
+            }, "strip", z.ZodTypeAny, {
+                tacticsByTitle: Record<string, any[]>;
+                behaviorsByName: Record<string, any[]>;
+                resistedLogs: any[];
+                questionLogs: any[];
+                hasContent: boolean;
+                daySummaryLog?: any;
+                firstMessageLog?: any;
+                firstCallLog?: any;
+            }, {
+                tacticsByTitle: Record<string, any[]>;
+                behaviorsByName: Record<string, any[]>;
+                resistedLogs: any[];
+                questionLogs: any[];
+                hasContent: boolean;
+                daySummaryLog?: any;
+                firstMessageLog?: any;
+                firstCallLog?: any;
+            }>;
             emojiId: z.ZodOptional<z.ZodObject<{
                 color: z.ZodString;
                 emoji: z.ZodString;
@@ -8949,20 +8976,38 @@ export declare const logSchemas: {
             }>>;
         }, "strip", z.ZodTypeAny, {
             threadRef: import("../..").DocumentReferenceLike<unknown>;
+            threadSummaryData: {
+                tacticsByTitle: Record<string, any[]>;
+                behaviorsByName: Record<string, any[]>;
+                resistedLogs: any[];
+                questionLogs: any[];
+                hasContent: boolean;
+                daySummaryLog?: any;
+                firstMessageLog?: any;
+                firstCallLog?: any;
+            };
             emojiId?: {
                 color: string;
                 emoji: string;
                 name?: string | undefined;
             } | undefined;
-            thread?: any;
         }, {
             threadRef: import("../..").DocumentReferenceLike<unknown>;
+            threadSummaryData: {
+                tacticsByTitle: Record<string, any[]>;
+                behaviorsByName: Record<string, any[]>;
+                resistedLogs: any[];
+                questionLogs: any[];
+                hasContent: boolean;
+                daySummaryLog?: any;
+                firstMessageLog?: any;
+                firstCallLog?: any;
+            };
             emojiId?: {
                 color: string;
                 emoji: string;
                 name?: string | undefined;
             } | undefined;
-            thread?: any;
         }>;
     }, "strip", z.ZodTypeAny, {
         type: "shared_moment";
@@ -8972,12 +9017,21 @@ export declare const logSchemas: {
         isDisplayable: true;
         data: {
             threadRef: import("../..").DocumentReferenceLike<unknown>;
+            threadSummaryData: {
+                tacticsByTitle: Record<string, any[]>;
+                behaviorsByName: Record<string, any[]>;
+                resistedLogs: any[];
+                questionLogs: any[];
+                hasContent: boolean;
+                daySummaryLog?: any;
+                firstMessageLog?: any;
+                firstCallLog?: any;
+            };
             emojiId?: {
                 color: string;
                 emoji: string;
                 name?: string | undefined;
             } | undefined;
-            thread?: any;
         };
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -8995,12 +9049,21 @@ export declare const logSchemas: {
         isDisplayable: true;
         data: {
             threadRef: import("../..").DocumentReferenceLike<unknown>;
+            threadSummaryData: {
+                tacticsByTitle: Record<string, any[]>;
+                behaviorsByName: Record<string, any[]>;
+                resistedLogs: any[];
+                questionLogs: any[];
+                hasContent: boolean;
+                daySummaryLog?: any;
+                firstMessageLog?: any;
+                firstCallLog?: any;
+            };
             emojiId?: {
                 color: string;
                 emoji: string;
                 name?: string | undefined;
             } | undefined;
-            thread?: any;
         };
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -14744,7 +14807,34 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
         threadRef: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
-        thread: z.ZodAny;
+        threadSummaryData: z.ZodObject<{
+            tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
+            behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
+            resistedLogs: z.ZodArray<z.ZodAny, "many">;
+            daySummaryLog: z.ZodOptional<z.ZodAny>;
+            questionLogs: z.ZodArray<z.ZodAny, "many">;
+            firstMessageLog: z.ZodOptional<z.ZodAny>;
+            firstCallLog: z.ZodOptional<z.ZodAny>;
+            hasContent: z.ZodBoolean;
+        }, "strip", z.ZodTypeAny, {
+            tacticsByTitle: Record<string, any[]>;
+            behaviorsByName: Record<string, any[]>;
+            resistedLogs: any[];
+            questionLogs: any[];
+            hasContent: boolean;
+            daySummaryLog?: any;
+            firstMessageLog?: any;
+            firstCallLog?: any;
+        }, {
+            tacticsByTitle: Record<string, any[]>;
+            behaviorsByName: Record<string, any[]>;
+            resistedLogs: any[];
+            questionLogs: any[];
+            hasContent: boolean;
+            daySummaryLog?: any;
+            firstMessageLog?: any;
+            firstCallLog?: any;
+        }>;
         emojiId: z.ZodOptional<z.ZodObject<{
             color: z.ZodString;
             emoji: z.ZodString;
@@ -14760,20 +14850,38 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }>>;
     }, "strip", z.ZodTypeAny, {
         threadRef: import("../..").DocumentReferenceLike<unknown>;
+        threadSummaryData: {
+            tacticsByTitle: Record<string, any[]>;
+            behaviorsByName: Record<string, any[]>;
+            resistedLogs: any[];
+            questionLogs: any[];
+            hasContent: boolean;
+            daySummaryLog?: any;
+            firstMessageLog?: any;
+            firstCallLog?: any;
+        };
         emojiId?: {
             color: string;
             emoji: string;
             name?: string | undefined;
         } | undefined;
-        thread?: any;
     }, {
         threadRef: import("../..").DocumentReferenceLike<unknown>;
+        threadSummaryData: {
+            tacticsByTitle: Record<string, any[]>;
+            behaviorsByName: Record<string, any[]>;
+            resistedLogs: any[];
+            questionLogs: any[];
+            hasContent: boolean;
+            daySummaryLog?: any;
+            firstMessageLog?: any;
+            firstCallLog?: any;
+        };
         emojiId?: {
             color: string;
             emoji: string;
             name?: string | undefined;
         } | undefined;
-        thread?: any;
     }>;
 }, "strip", z.ZodTypeAny, {
     type: "shared_moment";
@@ -14783,12 +14891,21 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: true;
     data: {
         threadRef: import("../..").DocumentReferenceLike<unknown>;
+        threadSummaryData: {
+            tacticsByTitle: Record<string, any[]>;
+            behaviorsByName: Record<string, any[]>;
+            resistedLogs: any[];
+            questionLogs: any[];
+            hasContent: boolean;
+            daySummaryLog?: any;
+            firstMessageLog?: any;
+            firstCallLog?: any;
+        };
         emojiId?: {
             color: string;
             emoji: string;
             name?: string | undefined;
         } | undefined;
-        thread?: any;
     };
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
@@ -14806,12 +14923,21 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: true;
     data: {
         threadRef: import("../..").DocumentReferenceLike<unknown>;
+        threadSummaryData: {
+            tacticsByTitle: Record<string, any[]>;
+            behaviorsByName: Record<string, any[]>;
+            resistedLogs: any[];
+            questionLogs: any[];
+            hasContent: boolean;
+            daySummaryLog?: any;
+            firstMessageLog?: any;
+            firstCallLog?: any;
+        };
         emojiId?: {
             color: string;
             emoji: string;
             name?: string | undefined;
         } | undefined;
-        thread?: any;
     };
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
