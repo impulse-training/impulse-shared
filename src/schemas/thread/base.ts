@@ -5,10 +5,21 @@ import { emojiIdSchema } from "../emojiId";
 import { planWithIdSchema } from "../plan";
 import { tacticSchema } from "../tactic";
 
+const threadTypeSchema = z.enum([
+  "impulse",
+  "general",
+  "onboarding",
+  "recap",
+  "dayRecap",
+  "timePlan",
+  "locationPlan",
+]);
+
 export const threadSummarySchema = z.object({
+  type: threadTypeSchema,
   tacticsByTitle: z.record(z.string(), z.array(z.any())),
   behaviorsByName: z.record(z.string(), z.array(z.any())),
-  resistedLogs: z.array(z.any()),
+  outcomeLogs: z.array(z.any()),
   daySummaryLog: z.any().optional(),
   questionLogs: z.array(z.any()),
   firstMessageLog: z.any().optional(),
@@ -21,17 +32,7 @@ export const threadBaseSchema = z.object({
   id: z.string().optional(),
   // Any thread may have an optional plan
   plan: planWithIdSchema.optional(),
-  type: z
-    .enum([
-      "impulse",
-      "general",
-      "onboarding",
-      "recap",
-      "dayRecap",
-      "timePlan",
-      "locationPlan",
-    ])
-    .default("general"),
+  type: threadTypeSchema.default("general"),
   date: timestampSchema,
   dateString: z.string(),
 

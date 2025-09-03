@@ -8934,27 +8934,30 @@ export declare const logSchemas: {
         data: z.ZodObject<{
             threadRef: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
             threadSummaryData: z.ZodObject<{
+                type: z.ZodEnum<["impulse", "general", "onboarding", "recap", "dayRecap", "timePlan", "locationPlan"]>;
                 tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
                 behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
-                resistedLogs: z.ZodArray<z.ZodAny, "many">;
+                outcomeLogs: z.ZodArray<z.ZodAny, "many">;
                 daySummaryLog: z.ZodOptional<z.ZodAny>;
                 questionLogs: z.ZodArray<z.ZodAny, "many">;
                 firstMessageLog: z.ZodOptional<z.ZodAny>;
                 firstCallLog: z.ZodOptional<z.ZodAny>;
                 hasContent: z.ZodBoolean;
             }, "strip", z.ZodTypeAny, {
+                type: "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
                 tacticsByTitle: Record<string, any[]>;
                 behaviorsByName: Record<string, any[]>;
-                resistedLogs: any[];
+                outcomeLogs: any[];
                 questionLogs: any[];
                 hasContent: boolean;
                 daySummaryLog?: any;
                 firstMessageLog?: any;
                 firstCallLog?: any;
             }, {
+                type: "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
                 tacticsByTitle: Record<string, any[]>;
                 behaviorsByName: Record<string, any[]>;
-                resistedLogs: any[];
+                outcomeLogs: any[];
                 questionLogs: any[];
                 hasContent: boolean;
                 daySummaryLog?: any;
@@ -8977,9 +8980,10 @@ export declare const logSchemas: {
         }, "strip", z.ZodTypeAny, {
             threadRef: import("../..").DocumentReferenceLike<unknown>;
             threadSummaryData: {
+                type: "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
                 tacticsByTitle: Record<string, any[]>;
                 behaviorsByName: Record<string, any[]>;
-                resistedLogs: any[];
+                outcomeLogs: any[];
                 questionLogs: any[];
                 hasContent: boolean;
                 daySummaryLog?: any;
@@ -8994,9 +8998,10 @@ export declare const logSchemas: {
         }, {
             threadRef: import("../..").DocumentReferenceLike<unknown>;
             threadSummaryData: {
+                type: "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
                 tacticsByTitle: Record<string, any[]>;
                 behaviorsByName: Record<string, any[]>;
-                resistedLogs: any[];
+                outcomeLogs: any[];
                 questionLogs: any[];
                 hasContent: boolean;
                 daySummaryLog?: any;
@@ -9018,9 +9023,10 @@ export declare const logSchemas: {
         data: {
             threadRef: import("../..").DocumentReferenceLike<unknown>;
             threadSummaryData: {
+                type: "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
                 tacticsByTitle: Record<string, any[]>;
                 behaviorsByName: Record<string, any[]>;
-                resistedLogs: any[];
+                outcomeLogs: any[];
                 questionLogs: any[];
                 hasContent: boolean;
                 daySummaryLog?: any;
@@ -9050,9 +9056,10 @@ export declare const logSchemas: {
         data: {
             threadRef: import("../..").DocumentReferenceLike<unknown>;
             threadSummaryData: {
+                type: "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
                 tacticsByTitle: Record<string, any[]>;
                 behaviorsByName: Record<string, any[]>;
-                resistedLogs: any[];
+                outcomeLogs: any[];
                 questionLogs: any[];
                 hasContent: boolean;
                 daySummaryLog?: any;
@@ -14808,27 +14815,30 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: z.ZodObject<{
         threadRef: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
         threadSummaryData: z.ZodObject<{
+            type: z.ZodEnum<["impulse", "general", "onboarding", "recap", "dayRecap", "timePlan", "locationPlan"]>;
             tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
-            resistedLogs: z.ZodArray<z.ZodAny, "many">;
+            outcomeLogs: z.ZodArray<z.ZodAny, "many">;
             daySummaryLog: z.ZodOptional<z.ZodAny>;
             questionLogs: z.ZodArray<z.ZodAny, "many">;
             firstMessageLog: z.ZodOptional<z.ZodAny>;
             firstCallLog: z.ZodOptional<z.ZodAny>;
             hasContent: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
+            type: "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
-            resistedLogs: any[];
+            outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
             daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
+            type: "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
-            resistedLogs: any[];
+            outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
             daySummaryLog?: any;
@@ -14851,9 +14861,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     }, "strip", z.ZodTypeAny, {
         threadRef: import("../..").DocumentReferenceLike<unknown>;
         threadSummaryData: {
+            type: "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
-            resistedLogs: any[];
+            outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
             daySummaryLog?: any;
@@ -14868,9 +14879,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     }, {
         threadRef: import("../..").DocumentReferenceLike<unknown>;
         threadSummaryData: {
+            type: "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
-            resistedLogs: any[];
+            outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
             daySummaryLog?: any;
@@ -14892,9 +14904,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: {
         threadRef: import("../..").DocumentReferenceLike<unknown>;
         threadSummaryData: {
+            type: "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
-            resistedLogs: any[];
+            outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
             daySummaryLog?: any;
@@ -14924,9 +14937,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: {
         threadRef: import("../..").DocumentReferenceLike<unknown>;
         threadSummaryData: {
+            type: "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
-            resistedLogs: any[];
+            outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
             daySummaryLog?: any;
