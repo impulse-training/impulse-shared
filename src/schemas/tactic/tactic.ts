@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { timestampSchema } from "../../utils";
-import { tacticStepSchema } from "./steps";
+import { tacticStepSchema } from "./step";
 
 export const tacticSchema = z.object({
   id: z.string().optional(),

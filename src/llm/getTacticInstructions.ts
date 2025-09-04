@@ -1,4 +1,4 @@
-import { TacticStep } from "../schemas/tactic/steps";
+import { TacticStep } from "../schemas/tactic/step";
 import { Tactic } from "../schemas/tactic/tactic";
 
 // Generate concise, actionable instructions for a single tactic step
@@ -22,13 +22,6 @@ export function getTacticStepInstructions(step: TacticStep): string {
     case "question-slider1To10": {
       const q = step.text.trim();
       return `Reflect and answer: ${q}`;
-    }
-    case "aiConversation": {
-      const goal = step.goal.trim();
-      const prompt = step.prompt?.trim();
-      return `Have a focused conversation with the AI to achieve this goal: "${goal}"${
-        prompt ? `. Start with: "${prompt}"` : ""
-      }`;
     }
     case "media": {
       const count = step.media.length;
