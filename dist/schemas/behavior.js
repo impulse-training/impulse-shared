@@ -8,11 +8,31 @@ exports.trackingTypes = ["counter", "timer"];
 // Use the category keys from our constants
 const categoryKeys = Object.keys(constants_1.BEHAVIOR_CATEGORIES);
 exports.categorySchema = zod_1.z.custom((val) => categoryKeys.includes(val));
-// We're using simple string arrays for benefits and drawbacks
-const goalSchema = zod_1.z.object({
-    type: zod_1.z.enum(["greaterThan", "lessThanOrEqualTo"]),
-    target: zod_1.z.number(),
-});
+// Daily goals schema - supports eliminate or reduce with targets
+const dailyGoalSchema = zod_1.z.discriminatedUnion("type", [
+    // Eliminate - goal is to have 0 of this behavior
+    zod_1.z.object({
+        type: zod_1.z.literal("eliminate"),
+    }),
+    // Reduce with every day target
+    zod_1.z.object({
+        type: zod_1.z.literal("reduceEveryDay"),
+        target: zod_1.z.number(),
+    }),
+    // Reduce with individual day targets
+    zod_1.z.object({
+        type: zod_1.z.literal("reduceIndividualDays"),
+        dailyTargets: zod_1.z.object({
+            0: zod_1.z.number(), // Sunday
+            1: zod_1.z.number(), // Monday
+            2: zod_1.z.number(), // Tuesday
+            3: zod_1.z.number(), // Wednesday
+            4: zod_1.z.number(), // Thursday
+            5: zod_1.z.number(), // Friday
+            6: zod_1.z.number(), // Saturday
+        }),
+    }),
+]);
 // These are foundational attributes, and correspond to documents in a top-level behaviorTemplates
 // collection. We then extend that schema to be the full behavior schema.
 const behaviorTemplateBase = zod_1.z.object({
@@ -40,7 +60,7 @@ exports.behaviorSchema = behaviorTemplateBase.extend({
     ordinal: zod_1.z.number().default(0),
     benefits: zod_1.z.array(zod_1.z.string()),
     drawbacks: zod_1.z.array(zod_1.z.string()),
-    goal: goalSchema.optional(),
+    goal: dailyGoalSchema.optional(),
     lastTrackedAt: utils_1.timestampSchema.optional(),
 }).superRefine((val, ctx) => {
     if (val.trackingType === "counter" && !val.trackingUnit) {

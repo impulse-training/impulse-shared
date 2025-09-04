@@ -14,6 +14,7 @@ import { QuestionLog } from "./questionLog";
 import { ReadyToDebriefLog } from "./readyToDebriefLog";
 import { SharedMomentLog } from "./sharedMomentLog";
 import { ShowTourLog } from "./showTourLog";
+import { SuggestedTacticsLog } from "./suggestedTacticsLog";
 import { SummaryLog } from "./summaryLog";
 import { TacticLog } from "./tacticLog";
 import { TacticSuggestionLog } from "./tacticSuggestionLog";
@@ -7911,11 +7912,11 @@ export declare const logSchemas: {
         buttonText: z.ZodString;
     }, "strip", z.ZodTypeAny, {
         type: "link";
+        link: string;
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
-        link: string;
         text: string;
         buttonText: string;
         createdAt?: import("../../types").Timestamp | undefined;
@@ -7928,11 +7929,11 @@ export declare const logSchemas: {
         } | undefined;
     }, {
         type: "link";
+        link: string;
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
         isDisplayable: true;
-        link: string;
         text: string;
         buttonText: string;
         createdAt?: import("../../types").Timestamp | undefined;
@@ -8456,7 +8457,7 @@ export declare const logSchemas: {
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | TacticSuggestionLog | ImpulseLog | BehaviorLog | BreathingLog | OutcomeLog | QuestionLog | PlanLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | DaySummaryLog | ReadyToDebriefLog;
+export type Log = TacticLog | TacticSuggestionLog | ImpulseLog | BehaviorLog | BreathingLog | OutcomeLog | QuestionLog | PlanLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | DaySummaryLog | ReadyToDebriefLog | SuggestedTacticsLog;
 export * from "./behaviorLog";
 export * from "./breathingLog";
 export * from "./callLog";
@@ -8471,6 +8472,7 @@ export * from "./questionLog";
 export * from "./readyToDebriefLog";
 export * from "./sharedMomentLog";
 export * from "./showTourLog";
+export * from "./suggestedTacticsLog";
 export * from "./summaryLog";
 export * from "./tacticLog";
 export * from "./tacticSuggestionLog";
@@ -13524,11 +13526,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     buttonText: z.ZodString;
 }, "strip", z.ZodTypeAny, {
     type: "link";
+    link: string;
     userId: string;
     timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
-    link: string;
     text: string;
     buttonText: string;
     createdAt?: import("../../types").Timestamp | undefined;
@@ -13541,11 +13543,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     } | undefined;
 }, {
     type: "link";
+    link: string;
     userId: string;
     timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
-    link: string;
     text: string;
     buttonText: string;
     createdAt?: import("../../types").Timestamp | undefined;
@@ -14061,6 +14063,89 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         currentStepIndex: number;
         tactic?: any;
     } | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    callLogDocPath: z.ZodOptional<z.ZodString>;
+    replyTactic: z.ZodOptional<z.ZodObject<{
+        tactic: z.ZodAny;
+        currentStepIndex: z.ZodNumber;
+    }, "strip", z.ZodTypeAny, {
+        currentStepIndex: number;
+        tactic?: any;
+    }, {
+        currentStepIndex: number;
+        tactic?: any;
+    }>>;
+} & {
+    type: z.ZodLiteral<"suggested_tactics">;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        tactics: z.ZodArray<z.ZodObject<{
+            tacticPath: z.ZodString;
+            reason: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            tacticPath: string;
+            reason?: string | undefined;
+        }, {
+            tacticPath: string;
+            reason?: string | undefined;
+        }>, "many">;
+    }, "strip", z.ZodTypeAny, {
+        tactics: {
+            tacticPath: string;
+            reason?: string | undefined;
+        }[];
+    }, {
+        tactics: {
+            tacticPath: string;
+            reason?: string | undefined;
+        }[];
+    }>;
+}, "strip", z.ZodTypeAny, {
+    type: "suggested_tactics";
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        tactics: {
+            tacticPath: string;
+            reason?: string | undefined;
+        }[];
+    };
+    createdAt?: import("../../types").Timestamp | undefined;
+    updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+    replyTactic?: {
+        currentStepIndex: number;
+        tactic?: any;
+    } | undefined;
+}, {
+    type: "suggested_tactics";
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        tactics: {
+            tacticPath: string;
+            reason?: string | undefined;
+        }[];
+    };
+    createdAt?: import("../../types").Timestamp | undefined;
+    updatedAt?: import("../../types").Timestamp | undefined;
+    id?: string | undefined;
+    callLogDocPath?: string | undefined;
+    replyTactic?: {
+        currentStepIndex: number;
+        tactic?: any;
+    } | undefined;
 }>]>;
 export declare const logIsAssistantMessageLog: (value: Omit<Log, "id">) => value is AssistantMessageLog;
 export declare const isValidAssistantMessageLog: (value: unknown) => value is AssistantMessageLog;
@@ -14102,3 +14187,5 @@ export declare const logIsBreathingLog: (value: Omit<Log, "id">) => value is Bre
 export declare const isValidBreathingLog: (value: unknown) => value is BreathingLog;
 export declare const logIsOutcomeLog: (value: Omit<Log, "id">) => value is OutcomeLog;
 export declare const isValidOutcomeLog: (value: unknown) => value is OutcomeLog;
+export declare const logIsSuggestedTacticsLog: (value: Omit<Log, "id">) => value is SuggestedTacticsLog;
+export declare const isValidSuggestedTacticsLog: (value: unknown) => value is SuggestedTacticsLog;

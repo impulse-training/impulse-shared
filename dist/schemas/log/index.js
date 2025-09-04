@@ -14,7 +14,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidOutcomeLog = exports.logIsOutcomeLog = exports.isValidBreathingLog = exports.logIsBreathingLog = exports.isValidReadyToDebriefLog = exports.logIsReadyToDebriefLog = exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidPlanLog = exports.logIsPlanLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticSuggestionLog = exports.logIsTacticSuggestionLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorLog = exports.logIsBehaviorLog = exports.isValidDaySummaryLog = exports.logIsDaySummaryLog = exports.isValidSharedMomentLog = exports.logIsSharedMomentLog = exports.isValidNotifySupportGroupLog = exports.logIsNotifySupportGroupLog = exports.isValidShowTourLog = exports.logIsShowTourLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
+exports.isValidSuggestedTacticsLog = exports.logIsSuggestedTacticsLog = exports.isValidOutcomeLog = exports.logIsOutcomeLog = exports.isValidBreathingLog = exports.logIsBreathingLog = exports.isValidReadyToDebriefLog = exports.logIsReadyToDebriefLog = exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidPlanLog = exports.logIsPlanLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticSuggestionLog = exports.logIsTacticSuggestionLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorLog = exports.logIsBehaviorLog = exports.isValidDaySummaryLog = exports.logIsDaySummaryLog = exports.isValidSharedMomentLog = exports.logIsSharedMomentLog = exports.isValidNotifySupportGroupLog = exports.logIsNotifySupportGroupLog = exports.isValidShowTourLog = exports.logIsShowTourLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
 const zod_1 = require("zod");
 const behaviorLog_1 = require("./behaviorLog");
 const breathingLog_1 = require("./breathingLog");
@@ -31,6 +31,7 @@ const questionLog_1 = require("./questionLog");
 const readyToDebriefLog_1 = require("./readyToDebriefLog");
 const sharedMomentLog_1 = require("./sharedMomentLog");
 const showTourLog_1 = require("./showTourLog");
+const suggestedTacticsLog_1 = require("./suggestedTacticsLog");
 const summaryLog_1 = require("./summaryLog");
 const tacticLog_1 = require("./tacticLog");
 const tacticSuggestionLog_1 = require("./tacticSuggestionLog");
@@ -76,6 +77,7 @@ __exportStar(require("./questionLog"), exports);
 __exportStar(require("./readyToDebriefLog"), exports);
 __exportStar(require("./sharedMomentLog"), exports);
 __exportStar(require("./showTourLog"), exports);
+__exportStar(require("./suggestedTacticsLog"), exports);
 __exportStar(require("./summaryLog"), exports);
 __exportStar(require("./tacticLog"), exports);
 __exportStar(require("./tacticSuggestionLog"), exports);
@@ -105,6 +107,7 @@ exports.logSchema = zod_1.z.discriminatedUnion("type", [
     sharedMomentLog_1.sharedMomentLogSchema,
     videoLog_1.videoLogSchema,
     readyToDebriefLog_1.readyToDebriefLogSchema,
+    suggestedTacticsLog_1.suggestedTacticsLogSchema,
 ]);
 // Export log type guards
 const logIsAssistantMessageLog = (value) => value.type === "assistant_message";
@@ -227,3 +230,9 @@ const isValidOutcomeLog = (value) => {
     return outcomeLog_1.outcomeLogSchema.safeParse(value).success;
 };
 exports.isValidOutcomeLog = isValidOutcomeLog;
+const logIsSuggestedTacticsLog = (value) => value.type === "suggested_tactics";
+exports.logIsSuggestedTacticsLog = logIsSuggestedTacticsLog;
+const isValidSuggestedTacticsLog = (value) => {
+    return suggestedTacticsLog_1.suggestedTacticsLogSchema.safeParse(value).success;
+};
+exports.isValidSuggestedTacticsLog = isValidSuggestedTacticsLog;

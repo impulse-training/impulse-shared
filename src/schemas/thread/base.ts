@@ -41,7 +41,7 @@ export const threadBaseSchema = z.object({
 
   // For now, don't type this
   tacticsByPath: z.record(z.string(), z.any()).optional(),
-  suggestedTacticDocs: z.array(documentReferenceSchema).optional(),
+  suggestedTacticsStartedRefreshingAt: timestampSchema.optional(),
 
   emojiId: emojiIdSchema.nullable(),
 

@@ -57,16 +57,71 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     ordinal: z.ZodDefault<z.ZodNumber>;
     benefits: z.ZodArray<z.ZodString, "many">;
     drawbacks: z.ZodArray<z.ZodString, "many">;
-    goal: z.ZodOptional<z.ZodObject<{
-        type: z.ZodEnum<["greaterThan", "lessThanOrEqualTo"]>;
+    goal: z.ZodOptional<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+        type: z.ZodLiteral<"eliminate">;
+    }, "strip", z.ZodTypeAny, {
+        type: "eliminate";
+    }, {
+        type: "eliminate";
+    }>, z.ZodObject<{
+        type: z.ZodLiteral<"reduceEveryDay">;
         target: z.ZodNumber;
     }, "strip", z.ZodTypeAny, {
-        type: "greaterThan" | "lessThanOrEqualTo";
+        type: "reduceEveryDay";
         target: number;
     }, {
-        type: "greaterThan" | "lessThanOrEqualTo";
+        type: "reduceEveryDay";
         target: number;
-    }>>;
+    }>, z.ZodObject<{
+        type: z.ZodLiteral<"reduceIndividualDays">;
+        dailyTargets: z.ZodObject<{
+            0: z.ZodNumber;
+            1: z.ZodNumber;
+            2: z.ZodNumber;
+            3: z.ZodNumber;
+            4: z.ZodNumber;
+            5: z.ZodNumber;
+            6: z.ZodNumber;
+        }, "strip", z.ZodTypeAny, {
+            0: number;
+            1: number;
+            2: number;
+            3: number;
+            4: number;
+            5: number;
+            6: number;
+        }, {
+            0: number;
+            1: number;
+            2: number;
+            3: number;
+            4: number;
+            5: number;
+            6: number;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        type: "reduceIndividualDays";
+        dailyTargets: {
+            0: number;
+            1: number;
+            2: number;
+            3: number;
+            4: number;
+            5: number;
+            6: number;
+        };
+    }, {
+        type: "reduceIndividualDays";
+        dailyTargets: {
+            0: number;
+            1: number;
+            2: number;
+            3: number;
+            4: number;
+            5: number;
+            6: number;
+        };
+    }>]>>;
     lastTrackedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
     trackingType: "counter" | "timer";
@@ -82,8 +137,21 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     hasQuestions?: boolean | undefined;
     trackingUnit?: string | undefined;
     goal?: {
-        type: "greaterThan" | "lessThanOrEqualTo";
+        type: "eliminate";
+    } | {
+        type: "reduceEveryDay";
         target: number;
+    } | {
+        type: "reduceIndividualDays";
+        dailyTargets: {
+            0: number;
+            1: number;
+            2: number;
+            3: number;
+            4: number;
+            5: number;
+            6: number;
+        };
     } | undefined;
     lastTrackedAt?: import("../types").Timestamp | undefined;
 }, {
@@ -100,8 +168,21 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     trackingUnit?: string | undefined;
     ordinal?: number | undefined;
     goal?: {
-        type: "greaterThan" | "lessThanOrEqualTo";
+        type: "eliminate";
+    } | {
+        type: "reduceEveryDay";
         target: number;
+    } | {
+        type: "reduceIndividualDays";
+        dailyTargets: {
+            0: number;
+            1: number;
+            2: number;
+            3: number;
+            4: number;
+            5: number;
+            6: number;
+        };
     } | undefined;
     lastTrackedAt?: import("../types").Timestamp | undefined;
 }>, {
@@ -118,8 +199,21 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     hasQuestions?: boolean | undefined;
     trackingUnit?: string | undefined;
     goal?: {
-        type: "greaterThan" | "lessThanOrEqualTo";
+        type: "eliminate";
+    } | {
+        type: "reduceEveryDay";
         target: number;
+    } | {
+        type: "reduceIndividualDays";
+        dailyTargets: {
+            0: number;
+            1: number;
+            2: number;
+            3: number;
+            4: number;
+            5: number;
+            6: number;
+        };
     } | undefined;
     lastTrackedAt?: import("../types").Timestamp | undefined;
 }, {
@@ -136,8 +230,21 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     trackingUnit?: string | undefined;
     ordinal?: number | undefined;
     goal?: {
-        type: "greaterThan" | "lessThanOrEqualTo";
+        type: "eliminate";
+    } | {
+        type: "reduceEveryDay";
         target: number;
+    } | {
+        type: "reduceIndividualDays";
+        dailyTargets: {
+            0: number;
+            1: number;
+            2: number;
+            3: number;
+            4: number;
+            5: number;
+            6: number;
+        };
     } | undefined;
     lastTrackedAt?: import("../types").Timestamp | undefined;
 }>;
