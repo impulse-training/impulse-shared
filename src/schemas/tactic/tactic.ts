@@ -10,6 +10,11 @@ export const tacticSchema = z.object({
   createdByUid: z.string().optional(),
   steps: z.array(tacticStepSchema).min(1),
   tags: z.array(z.string()).optional(),
+  // AI metadata for tactic suggestion
+  indicated: z.string().optional(), // When this tactic is most useful, e.g. "for when I'm feeling sad"
+  contraindicated: z.string().optional(), // When this tactic should be avoided
+  effectiveness: z.enum(["low", "medium", "high"]).optional(), // General effectiveness rating
+  timeToComplete: z.enum(["quick", "medium", "long"]).optional(), // How long the tactic takes
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
 });

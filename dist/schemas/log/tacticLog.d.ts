@@ -1293,6 +1293,10 @@ export declare const tacticLogSchema: z.ZodObject<{
                 } | undefined;
             }>]>, "many">;
             tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+            indicated: z.ZodOptional<z.ZodString>;
+            contraindicated: z.ZodOptional<z.ZodString>;
+            effectiveness: z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>;
+            timeToComplete: z.ZodOptional<z.ZodEnum<["quick", "medium", "long"]>>;
             createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
             updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
         }, "strip", z.ZodTypeAny, {
@@ -1540,6 +1544,10 @@ export declare const tacticLogSchema: z.ZodObject<{
             tags?: string[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
+            indicated?: string | undefined;
+            contraindicated?: string | undefined;
+            effectiveness?: "low" | "medium" | "high" | undefined;
+            timeToComplete?: "medium" | "quick" | "long" | undefined;
         }, {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -1785,6 +1793,10 @@ export declare const tacticLogSchema: z.ZodObject<{
             tags?: string[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
+            indicated?: string | undefined;
+            contraindicated?: string | undefined;
+            effectiveness?: "low" | "medium" | "high" | undefined;
+            timeToComplete?: "medium" | "quick" | "long" | undefined;
         }>;
         planId: z.ZodOptional<z.ZodString>;
         stepCount: z.ZodOptional<z.ZodNumber>;
@@ -2036,6 +2048,10 @@ export declare const tacticLogSchema: z.ZodObject<{
             tags?: string[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
+            indicated?: string | undefined;
+            contraindicated?: string | undefined;
+            effectiveness?: "low" | "medium" | "high" | undefined;
+            timeToComplete?: "medium" | "quick" | "long" | undefined;
         };
         planId?: string | undefined;
         stepCount?: number | undefined;
@@ -2287,6 +2303,10 @@ export declare const tacticLogSchema: z.ZodObject<{
             tags?: string[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
+            indicated?: string | undefined;
+            contraindicated?: string | undefined;
+            effectiveness?: "low" | "medium" | "high" | undefined;
+            timeToComplete?: "medium" | "quick" | "long" | undefined;
         };
         planId?: string | undefined;
         stepCount?: number | undefined;
@@ -2545,6 +2565,10 @@ export declare const tacticLogSchema: z.ZodObject<{
             tags?: string[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
+            indicated?: string | undefined;
+            contraindicated?: string | undefined;
+            effectiveness?: "low" | "medium" | "high" | undefined;
+            timeToComplete?: "medium" | "quick" | "long" | undefined;
         };
         planId?: string | undefined;
         stepCount?: number | undefined;
@@ -2811,6 +2835,10 @@ export declare const tacticLogSchema: z.ZodObject<{
             tags?: string[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
+            indicated?: string | undefined;
+            contraindicated?: string | undefined;
+            effectiveness?: "low" | "medium" | "high" | undefined;
+            timeToComplete?: "medium" | "quick" | "long" | undefined;
         };
         planId?: string | undefined;
         stepCount?: number | undefined;

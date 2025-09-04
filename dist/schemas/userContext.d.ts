@@ -49,17 +49,17 @@ export declare const tacticContextSchema: z.ZodObject<{
     completedCount: z.ZodDefault<z.ZodNumber>;
     effectiveness: z.ZodDefault<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
+    effectiveness: number;
     tacticId: string;
     tacticTitle: string;
     tacticType: string;
     completedCount: number;
-    effectiveness: number;
 }, {
     tacticId: string;
     tacticTitle: string;
     tacticType: string;
-    completedCount?: number | undefined;
     effectiveness?: number | undefined;
+    completedCount?: number | undefined;
 }>;
 export declare const aiMemorySchema: z.ZodObject<{
     id: z.ZodString;
@@ -128,17 +128,17 @@ export declare const userContextSchema: z.ZodObject<{
         completedCount: z.ZodDefault<z.ZodNumber>;
         effectiveness: z.ZodDefault<z.ZodNumber>;
     }, "strip", z.ZodTypeAny, {
+        effectiveness: number;
         tacticId: string;
         tacticTitle: string;
         tacticType: string;
         completedCount: number;
-        effectiveness: number;
     }, {
         tacticId: string;
         tacticTitle: string;
         tacticType: string;
-        completedCount?: number | undefined;
         effectiveness?: number | undefined;
+        completedCount?: number | undefined;
     }>>;
     aiMemories: z.ZodDefault<z.ZodArray<z.ZodObject<{
         id: z.ZodString;
@@ -162,11 +162,11 @@ export declare const userContextSchema: z.ZodObject<{
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
     tactics: Record<string, {
+        effectiveness: number;
         tacticId: string;
         tacticTitle: string;
         tacticType: string;
         completedCount: number;
-        effectiveness: number;
     }>;
     behaviors: Record<string, {
         behaviorId: string;
@@ -198,8 +198,8 @@ export declare const userContextSchema: z.ZodObject<{
         tacticId: string;
         tacticTitle: string;
         tacticType: string;
-        completedCount?: number | undefined;
         effectiveness?: number | undefined;
+        completedCount?: number | undefined;
     }>;
     behaviors: Record<string, {
         behaviorId: string;
