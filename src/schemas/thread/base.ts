@@ -3,7 +3,6 @@ import { documentReferenceSchema } from "../../utils";
 import { timestampSchema } from "../../utils/timestampSchema";
 import { emojiIdSchema } from "../emojiId";
 import { planWithIdSchema } from "../plan";
-import { tacticSchema } from "../tactic";
 
 const threadTypeSchema = z.enum([
   "impulse",
@@ -42,6 +41,7 @@ export const threadBaseSchema = z.object({
 
   // For now, don't type this
   tacticsByPath: z.record(z.string(), z.any()).optional(),
+  suggestedTacticDocs: z.array(documentReferenceSchema).optional(),
 
   emojiId: emojiIdSchema.nullable(),
 
@@ -57,14 +57,6 @@ export const threadBaseSchema = z.object({
   summaryRequestedAt: timestampSchema.optional(),
   summarizedAt: timestampSchema.optional(),
   strategyDoc: documentReferenceSchema.optional(),
-
-  currentTactic: z
-    .object({
-      tactic: tacticSchema,
-      stepIndex: z.number().optional(),
-    })
-    .optional()
-    .nullable(),
 
   agentConnectedAt: timestampSchema.optional(),
   allQuestionsAnsweredAt: timestampSchema.optional(),
