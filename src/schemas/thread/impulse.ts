@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { documentReferenceSchema, timestampSchema } from "../../utils";
+import { suggestedTacticsLogSchema } from "../log";
 import { threadBaseSchema } from "./base";
 
 export const impulseThreadSchema = threadBaseSchema.extend({
@@ -8,6 +9,7 @@ export const impulseThreadSchema = threadBaseSchema.extend({
   isSuccess: z.boolean().optional(),
   allImpulseQuestionsAnsweredAt: timestampSchema.optional(),
   debriefFinishedAt: timestampSchema.optional(),
+  suggestedTactics: suggestedTacticsLogSchema.optional(),
 });
 
 export type ImpulseThread = z.infer<typeof impulseThreadSchema>;

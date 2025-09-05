@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { objectOf, optionalObjectOf, timestampSchema } from "../utils";
 import { behaviorTrackingDataSchema } from "./log";
+import { behaviorSchema } from "./behavior";
 
 const outcomeEnum = z.enum(["success", "partial", "setback"]);
 
@@ -11,6 +12,7 @@ export const daySummarySchema = z.object({
   impulseThreadOutcomesById: objectOf(outcomeEnum),
   outcome: outcomeEnum.optional(),
   behaviorDataTotalByBehaviorId: objectOf(behaviorTrackingDataSchema),
+  behaviorsById: objectOf(behaviorSchema).optional(),
   trackingLogsById: z.record(z.string(), z.any()).optional(),
   // TODO: tighten once tactic schemas are finalized
   tacticsUsed: z.array(z.any()).default([]),
