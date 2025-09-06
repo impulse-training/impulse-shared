@@ -15,6 +15,13 @@ export const tacticSchema = z.object({
   contraindicated: z.string().optional(), // When this tactic should be avoided
   effectiveness: z.enum(["low", "medium", "high"]).optional(), // General effectiveness rating
   timeToComplete: z.enum(["quick", "medium", "long"]).optional(), // How long the tactic takes
+  aiConfiguration: z
+    .object({
+      defaultConversationMode: z.enum(["voice", "text"]).optional(),
+      goal: z.string().min(1),
+      prompt: z.string().optional(),
+    })
+    .optional(),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
 });

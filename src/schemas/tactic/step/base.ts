@@ -8,11 +8,4 @@ export const baseStepSchema = z.object({
   // Optional background image for non-media steps
   backgroundImage: attachmentSchema.optional(),
   tags: z.array(z.string()).optional(),
-  aiConfiguration: z
-    .object({
-      defaultConversationMode: z.enum(["voice", "text"]).optional(),
-      goal: z.string().min(1),
-      prompt: z.string().optional(),
-    })
-    .optional(),
 });
