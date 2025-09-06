@@ -287,6 +287,1783 @@ export declare const logSchemas: {
         type: z.ZodLiteral<"call">;
         isDisplayable: z.ZodLiteral<true>;
         data: z.ZodObject<{
+            tactic: z.ZodObject<{
+                id: z.ZodOptional<z.ZodString>;
+                title: z.ZodOptional<z.ZodString>;
+                description: z.ZodOptional<z.ZodString>;
+                aiInstructions: z.ZodOptional<z.ZodString>;
+                createdByUid: z.ZodOptional<z.ZodString>;
+                steps: z.ZodArray<z.ZodDiscriminatedUnion<"mode", [z.ZodObject<{
+                    backgroundImage: z.ZodOptional<z.ZodObject<{
+                        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        uri: z.ZodString;
+                        storagePath: z.ZodString;
+                        contentType: z.ZodString;
+                        title: z.ZodOptional<z.ZodString>;
+                        sizeBytes: z.ZodOptional<z.ZodNumber>;
+                        metadata: z.ZodOptional<z.ZodObject<{
+                            width: z.ZodOptional<z.ZodNumber>;
+                            height: z.ZodOptional<z.ZodNumber>;
+                            durationMs: z.ZodOptional<z.ZodNumber>;
+                            transcript: z.ZodOptional<z.ZodString>;
+                            meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                                db: z.ZodNumber;
+                                timestampMs: z.ZodOptional<z.ZodNumber>;
+                            }, "strip", z.ZodTypeAny, {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }, {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }>, "many">>;
+                        }, "strip", z.ZodTypeAny, {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        }, {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        }>>;
+                    }, "strip", z.ZodTypeAny, {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }, {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }>>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                    aiConfiguration: z.ZodOptional<z.ZodObject<{
+                        defaultConversationMode: z.ZodOptional<z.ZodEnum<["voice", "text"]>>;
+                        goal: z.ZodString;
+                        prompt: z.ZodOptional<z.ZodString>;
+                    }, "strip", z.ZodTypeAny, {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    }, {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    }>>;
+                } & {
+                    mode: z.ZodOptional<z.ZodLiteral<"default">>;
+                    text: z.ZodString;
+                    durationSeconds: z.ZodOptional<z.ZodNumber>;
+                }, "strip", z.ZodTypeAny, {
+                    text: string;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                    mode?: "default" | undefined;
+                    durationSeconds?: number | undefined;
+                }, {
+                    text: string;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                    mode?: "default" | undefined;
+                    durationSeconds?: number | undefined;
+                }>, z.ZodObject<{
+                    text: z.ZodOptional<z.ZodString>;
+                    backgroundImage: z.ZodOptional<z.ZodObject<{
+                        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        uri: z.ZodString;
+                        storagePath: z.ZodString;
+                        contentType: z.ZodString;
+                        title: z.ZodOptional<z.ZodString>;
+                        sizeBytes: z.ZodOptional<z.ZodNumber>;
+                        metadata: z.ZodOptional<z.ZodObject<{
+                            width: z.ZodOptional<z.ZodNumber>;
+                            height: z.ZodOptional<z.ZodNumber>;
+                            durationMs: z.ZodOptional<z.ZodNumber>;
+                            transcript: z.ZodOptional<z.ZodString>;
+                            meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                                db: z.ZodNumber;
+                                timestampMs: z.ZodOptional<z.ZodNumber>;
+                            }, "strip", z.ZodTypeAny, {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }, {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }>, "many">>;
+                        }, "strip", z.ZodTypeAny, {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        }, {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        }>>;
+                    }, "strip", z.ZodTypeAny, {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }, {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }>>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                    aiConfiguration: z.ZodOptional<z.ZodObject<{
+                        defaultConversationMode: z.ZodOptional<z.ZodEnum<["voice", "text"]>>;
+                        goal: z.ZodString;
+                        prompt: z.ZodOptional<z.ZodString>;
+                    }, "strip", z.ZodTypeAny, {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    }, {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    }>>;
+                } & {
+                    mode: z.ZodLiteral<"breathing">;
+                    breathingPattern: z.ZodObject<{
+                        inhale: z.ZodNumber;
+                        hold: z.ZodOptional<z.ZodNumber>;
+                        exhale: z.ZodNumber;
+                    }, "strip", z.ZodTypeAny, {
+                        inhale: number;
+                        exhale: number;
+                        hold?: number | undefined;
+                    }, {
+                        inhale: number;
+                        exhale: number;
+                        hold?: number | undefined;
+                    }>;
+                    cycles: z.ZodOptional<z.ZodNumber>;
+                }, "strip", z.ZodTypeAny, {
+                    mode: "breathing";
+                    breathingPattern: {
+                        inhale: number;
+                        exhale: number;
+                        hold?: number | undefined;
+                    };
+                    cycles?: number | undefined;
+                    text?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                }, {
+                    mode: "breathing";
+                    breathingPattern: {
+                        inhale: number;
+                        exhale: number;
+                        hold?: number | undefined;
+                    };
+                    cycles?: number | undefined;
+                    text?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                }>, z.ZodObject<{
+                    backgroundImage: z.ZodOptional<z.ZodObject<{
+                        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        uri: z.ZodString;
+                        storagePath: z.ZodString;
+                        contentType: z.ZodString;
+                        title: z.ZodOptional<z.ZodString>;
+                        sizeBytes: z.ZodOptional<z.ZodNumber>;
+                        metadata: z.ZodOptional<z.ZodObject<{
+                            width: z.ZodOptional<z.ZodNumber>;
+                            height: z.ZodOptional<z.ZodNumber>;
+                            durationMs: z.ZodOptional<z.ZodNumber>;
+                            transcript: z.ZodOptional<z.ZodString>;
+                            meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                                db: z.ZodNumber;
+                                timestampMs: z.ZodOptional<z.ZodNumber>;
+                            }, "strip", z.ZodTypeAny, {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }, {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }>, "many">>;
+                        }, "strip", z.ZodTypeAny, {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        }, {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        }>>;
+                    }, "strip", z.ZodTypeAny, {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }, {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }>>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                    aiConfiguration: z.ZodOptional<z.ZodObject<{
+                        defaultConversationMode: z.ZodOptional<z.ZodEnum<["voice", "text"]>>;
+                        goal: z.ZodString;
+                        prompt: z.ZodOptional<z.ZodString>;
+                    }, "strip", z.ZodTypeAny, {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    }, {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    }>>;
+                } & {
+                    mode: z.ZodLiteral<"notifySupport">;
+                    groupId: z.ZodString;
+                    text: z.ZodString;
+                }, "strip", z.ZodTypeAny, {
+                    text: string;
+                    mode: "notifySupport";
+                    groupId: string;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                }, {
+                    text: string;
+                    mode: "notifySupport";
+                    groupId: string;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                }>, z.ZodObject<{
+                    backgroundImage: z.ZodOptional<z.ZodObject<{
+                        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        uri: z.ZodString;
+                        storagePath: z.ZodString;
+                        contentType: z.ZodString;
+                        title: z.ZodOptional<z.ZodString>;
+                        sizeBytes: z.ZodOptional<z.ZodNumber>;
+                        metadata: z.ZodOptional<z.ZodObject<{
+                            width: z.ZodOptional<z.ZodNumber>;
+                            height: z.ZodOptional<z.ZodNumber>;
+                            durationMs: z.ZodOptional<z.ZodNumber>;
+                            transcript: z.ZodOptional<z.ZodString>;
+                            meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                                db: z.ZodNumber;
+                                timestampMs: z.ZodOptional<z.ZodNumber>;
+                            }, "strip", z.ZodTypeAny, {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }, {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }>, "many">>;
+                        }, "strip", z.ZodTypeAny, {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        }, {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        }>>;
+                    }, "strip", z.ZodTypeAny, {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }, {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }>>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                    aiConfiguration: z.ZodOptional<z.ZodObject<{
+                        defaultConversationMode: z.ZodOptional<z.ZodEnum<["voice", "text"]>>;
+                        goal: z.ZodString;
+                        prompt: z.ZodOptional<z.ZodString>;
+                    }, "strip", z.ZodTypeAny, {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    }, {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    }>>;
+                } & {
+                    mode: z.ZodLiteral<"question-text">;
+                    id: z.ZodOptional<z.ZodString>;
+                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    text: z.ZodString;
+                } & {
+                    suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                }, "strip", z.ZodTypeAny, {
+                    text: string;
+                    mode: "question-text";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                    suggestedResponses?: string[] | undefined;
+                }, {
+                    text: string;
+                    mode: "question-text";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                    suggestedResponses?: string[] | undefined;
+                }>, z.ZodObject<{
+                    backgroundImage: z.ZodOptional<z.ZodObject<{
+                        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        uri: z.ZodString;
+                        storagePath: z.ZodString;
+                        contentType: z.ZodString;
+                        title: z.ZodOptional<z.ZodString>;
+                        sizeBytes: z.ZodOptional<z.ZodNumber>;
+                        metadata: z.ZodOptional<z.ZodObject<{
+                            width: z.ZodOptional<z.ZodNumber>;
+                            height: z.ZodOptional<z.ZodNumber>;
+                            durationMs: z.ZodOptional<z.ZodNumber>;
+                            transcript: z.ZodOptional<z.ZodString>;
+                            meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                                db: z.ZodNumber;
+                                timestampMs: z.ZodOptional<z.ZodNumber>;
+                            }, "strip", z.ZodTypeAny, {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }, {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }>, "many">>;
+                        }, "strip", z.ZodTypeAny, {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        }, {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        }>>;
+                    }, "strip", z.ZodTypeAny, {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }, {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }>>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                    aiConfiguration: z.ZodOptional<z.ZodObject<{
+                        defaultConversationMode: z.ZodOptional<z.ZodEnum<["voice", "text"]>>;
+                        goal: z.ZodString;
+                        prompt: z.ZodOptional<z.ZodString>;
+                    }, "strip", z.ZodTypeAny, {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    }, {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    }>>;
+                } & {
+                    mode: z.ZodLiteral<"question-slider1To10">;
+                    id: z.ZodOptional<z.ZodString>;
+                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    text: z.ZodString;
+                } & {
+                    sliderConfig: z.ZodObject<{
+                        minLabel: z.ZodOptional<z.ZodString>;
+                        maxLabel: z.ZodOptional<z.ZodString>;
+                    }, "strip", z.ZodTypeAny, {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
+                    }, {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
+                    }>;
+                }, "strip", z.ZodTypeAny, {
+                    text: string;
+                    mode: "question-slider1To10";
+                    sliderConfig: {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
+                    };
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                }, {
+                    text: string;
+                    mode: "question-slider1To10";
+                    sliderConfig: {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
+                    };
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                }>, z.ZodObject<{
+                    text: z.ZodOptional<z.ZodString>;
+                    backgroundImage: z.ZodOptional<z.ZodObject<{
+                        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        uri: z.ZodString;
+                        storagePath: z.ZodString;
+                        contentType: z.ZodString;
+                        title: z.ZodOptional<z.ZodString>;
+                        sizeBytes: z.ZodOptional<z.ZodNumber>;
+                        metadata: z.ZodOptional<z.ZodObject<{
+                            width: z.ZodOptional<z.ZodNumber>;
+                            height: z.ZodOptional<z.ZodNumber>;
+                            durationMs: z.ZodOptional<z.ZodNumber>;
+                            transcript: z.ZodOptional<z.ZodString>;
+                            meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                                db: z.ZodNumber;
+                                timestampMs: z.ZodOptional<z.ZodNumber>;
+                            }, "strip", z.ZodTypeAny, {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }, {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }>, "many">>;
+                        }, "strip", z.ZodTypeAny, {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        }, {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        }>>;
+                    }, "strip", z.ZodTypeAny, {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }, {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }>>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                    aiConfiguration: z.ZodOptional<z.ZodObject<{
+                        defaultConversationMode: z.ZodOptional<z.ZodEnum<["voice", "text"]>>;
+                        goal: z.ZodString;
+                        prompt: z.ZodOptional<z.ZodString>;
+                    }, "strip", z.ZodTypeAny, {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    }, {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    }>>;
+                } & {
+                    mode: z.ZodLiteral<"media">;
+                    media: z.ZodArray<z.ZodObject<{
+                        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        uri: z.ZodString;
+                        storagePath: z.ZodString;
+                        contentType: z.ZodString;
+                        title: z.ZodOptional<z.ZodString>;
+                        sizeBytes: z.ZodOptional<z.ZodNumber>;
+                        metadata: z.ZodOptional<z.ZodObject<{
+                            width: z.ZodOptional<z.ZodNumber>;
+                            height: z.ZodOptional<z.ZodNumber>;
+                            durationMs: z.ZodOptional<z.ZodNumber>;
+                            transcript: z.ZodOptional<z.ZodString>;
+                            meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                                db: z.ZodNumber;
+                                timestampMs: z.ZodOptional<z.ZodNumber>;
+                            }, "strip", z.ZodTypeAny, {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }, {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }>, "many">>;
+                        }, "strip", z.ZodTypeAny, {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        }, {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        }>>;
+                    }, "strip", z.ZodTypeAny, {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }, {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }>, "many">;
+                }, "strip", z.ZodTypeAny, {
+                    mode: "media";
+                    media: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }[];
+                    text?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                }, {
+                    mode: "media";
+                    media: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }[];
+                    text?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                }>, z.ZodObject<{
+                    backgroundImage: z.ZodOptional<z.ZodObject<{
+                        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        uri: z.ZodString;
+                        storagePath: z.ZodString;
+                        contentType: z.ZodString;
+                        title: z.ZodOptional<z.ZodString>;
+                        sizeBytes: z.ZodOptional<z.ZodNumber>;
+                        metadata: z.ZodOptional<z.ZodObject<{
+                            width: z.ZodOptional<z.ZodNumber>;
+                            height: z.ZodOptional<z.ZodNumber>;
+                            durationMs: z.ZodOptional<z.ZodNumber>;
+                            transcript: z.ZodOptional<z.ZodString>;
+                            meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                                db: z.ZodNumber;
+                                timestampMs: z.ZodOptional<z.ZodNumber>;
+                            }, "strip", z.ZodTypeAny, {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }, {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }>, "many">>;
+                        }, "strip", z.ZodTypeAny, {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        }, {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        }>>;
+                    }, "strip", z.ZodTypeAny, {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }, {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }>>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                    aiConfiguration: z.ZodOptional<z.ZodObject<{
+                        defaultConversationMode: z.ZodOptional<z.ZodEnum<["voice", "text"]>>;
+                        goal: z.ZodString;
+                        prompt: z.ZodOptional<z.ZodString>;
+                    }, "strip", z.ZodTypeAny, {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    }, {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    }>>;
+                } & {
+                    mode: z.ZodLiteral<"affirmation">;
+                    text: z.ZodString;
+                    repeatCount: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    text: string;
+                    mode: "affirmation";
+                    repeatCount: number;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                }, {
+                    text: string;
+                    mode: "affirmation";
+                    repeatCount: number;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                }>]>, "many">;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                indicated: z.ZodOptional<z.ZodString>;
+                contraindicated: z.ZodOptional<z.ZodString>;
+                effectiveness: z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>;
+                timeToComplete: z.ZodOptional<z.ZodEnum<["quick", "medium", "long"]>>;
+                createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+                updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+            }, "strip", z.ZodTypeAny, {
+                createdAt: import("../../types").Timestamp;
+                updatedAt: import("../../types").Timestamp;
+                steps: ({
+                    text: string;
+                    mode: "affirmation";
+                    repeatCount: number;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                } | {
+                    mode: "breathing";
+                    breathingPattern: {
+                        inhale: number;
+                        exhale: number;
+                        hold?: number | undefined;
+                    };
+                    cycles?: number | undefined;
+                    text?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                    mode?: "default" | undefined;
+                    durationSeconds?: number | undefined;
+                } | {
+                    mode: "media";
+                    media: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }[];
+                    text?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "notifySupport";
+                    groupId: string;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "question-slider1To10";
+                    sliderConfig: {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
+                    };
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "question-text";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                    suggestedResponses?: string[] | undefined;
+                })[];
+                title?: string | undefined;
+                id?: string | undefined;
+                description?: string | undefined;
+                tags?: string[] | undefined;
+                aiInstructions?: string | undefined;
+                createdByUid?: string | undefined;
+                indicated?: string | undefined;
+                contraindicated?: string | undefined;
+                effectiveness?: "low" | "medium" | "high" | undefined;
+                timeToComplete?: "medium" | "quick" | "long" | undefined;
+            }, {
+                createdAt: import("../../types").Timestamp;
+                updatedAt: import("../../types").Timestamp;
+                steps: ({
+                    text: string;
+                    mode: "affirmation";
+                    repeatCount: number;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                } | {
+                    mode: "breathing";
+                    breathingPattern: {
+                        inhale: number;
+                        exhale: number;
+                        hold?: number | undefined;
+                    };
+                    cycles?: number | undefined;
+                    text?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                    mode?: "default" | undefined;
+                    durationSeconds?: number | undefined;
+                } | {
+                    mode: "media";
+                    media: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }[];
+                    text?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "notifySupport";
+                    groupId: string;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "question-slider1To10";
+                    sliderConfig: {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
+                    };
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "question-text";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                    suggestedResponses?: string[] | undefined;
+                })[];
+                title?: string | undefined;
+                id?: string | undefined;
+                description?: string | undefined;
+                tags?: string[] | undefined;
+                aiInstructions?: string | undefined;
+                createdByUid?: string | undefined;
+                indicated?: string | undefined;
+                contraindicated?: string | undefined;
+                effectiveness?: "low" | "medium" | "high" | undefined;
+                timeToComplete?: "medium" | "quick" | "long" | undefined;
+            }>;
             agentConnectedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             endedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             livekitSessionId: z.ZodString;
@@ -294,6 +2071,256 @@ export declare const logSchemas: {
             token: z.ZodOptional<z.ZodString>;
             summary: z.ZodOptional<z.ZodString>;
         }, "strip", z.ZodTypeAny, {
+            tactic: {
+                createdAt: import("../../types").Timestamp;
+                updatedAt: import("../../types").Timestamp;
+                steps: ({
+                    text: string;
+                    mode: "affirmation";
+                    repeatCount: number;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                } | {
+                    mode: "breathing";
+                    breathingPattern: {
+                        inhale: number;
+                        exhale: number;
+                        hold?: number | undefined;
+                    };
+                    cycles?: number | undefined;
+                    text?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                    mode?: "default" | undefined;
+                    durationSeconds?: number | undefined;
+                } | {
+                    mode: "media";
+                    media: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }[];
+                    text?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "notifySupport";
+                    groupId: string;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "question-slider1To10";
+                    sliderConfig: {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
+                    };
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "question-text";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                    suggestedResponses?: string[] | undefined;
+                })[];
+                title?: string | undefined;
+                id?: string | undefined;
+                description?: string | undefined;
+                tags?: string[] | undefined;
+                aiInstructions?: string | undefined;
+                createdByUid?: string | undefined;
+                indicated?: string | undefined;
+                contraindicated?: string | undefined;
+                effectiveness?: "low" | "medium" | "high" | undefined;
+                timeToComplete?: "medium" | "quick" | "long" | undefined;
+            };
             livekitSessionId: string;
             livekitRoomName: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
@@ -301,6 +2328,256 @@ export declare const logSchemas: {
             token?: string | undefined;
             summary?: string | undefined;
         }, {
+            tactic: {
+                createdAt: import("../../types").Timestamp;
+                updatedAt: import("../../types").Timestamp;
+                steps: ({
+                    text: string;
+                    mode: "affirmation";
+                    repeatCount: number;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                } | {
+                    mode: "breathing";
+                    breathingPattern: {
+                        inhale: number;
+                        exhale: number;
+                        hold?: number | undefined;
+                    };
+                    cycles?: number | undefined;
+                    text?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                    mode?: "default" | undefined;
+                    durationSeconds?: number | undefined;
+                } | {
+                    mode: "media";
+                    media: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }[];
+                    text?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "notifySupport";
+                    groupId: string;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "question-slider1To10";
+                    sliderConfig: {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
+                    };
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "question-text";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                    suggestedResponses?: string[] | undefined;
+                })[];
+                title?: string | undefined;
+                id?: string | undefined;
+                description?: string | undefined;
+                tags?: string[] | undefined;
+                aiInstructions?: string | undefined;
+                createdByUid?: string | undefined;
+                indicated?: string | undefined;
+                contraindicated?: string | undefined;
+                effectiveness?: "low" | "medium" | "high" | undefined;
+                timeToComplete?: "medium" | "quick" | "long" | undefined;
+            };
             livekitSessionId: string;
             livekitRoomName: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
@@ -315,6 +2592,256 @@ export declare const logSchemas: {
         dateString: string;
         isDisplayable: true;
         data: {
+            tactic: {
+                createdAt: import("../../types").Timestamp;
+                updatedAt: import("../../types").Timestamp;
+                steps: ({
+                    text: string;
+                    mode: "affirmation";
+                    repeatCount: number;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                } | {
+                    mode: "breathing";
+                    breathingPattern: {
+                        inhale: number;
+                        exhale: number;
+                        hold?: number | undefined;
+                    };
+                    cycles?: number | undefined;
+                    text?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                    mode?: "default" | undefined;
+                    durationSeconds?: number | undefined;
+                } | {
+                    mode: "media";
+                    media: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }[];
+                    text?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "notifySupport";
+                    groupId: string;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "question-slider1To10";
+                    sliderConfig: {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
+                    };
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "question-text";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                    suggestedResponses?: string[] | undefined;
+                })[];
+                title?: string | undefined;
+                id?: string | undefined;
+                description?: string | undefined;
+                tags?: string[] | undefined;
+                aiInstructions?: string | undefined;
+                createdByUid?: string | undefined;
+                indicated?: string | undefined;
+                contraindicated?: string | undefined;
+                effectiveness?: "low" | "medium" | "high" | undefined;
+                timeToComplete?: "medium" | "quick" | "long" | undefined;
+            };
             livekitSessionId: string;
             livekitRoomName: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
@@ -337,6 +2864,256 @@ export declare const logSchemas: {
         dateString: string;
         isDisplayable: true;
         data: {
+            tactic: {
+                createdAt: import("../../types").Timestamp;
+                updatedAt: import("../../types").Timestamp;
+                steps: ({
+                    text: string;
+                    mode: "affirmation";
+                    repeatCount: number;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                } | {
+                    mode: "breathing";
+                    breathingPattern: {
+                        inhale: number;
+                        exhale: number;
+                        hold?: number | undefined;
+                    };
+                    cycles?: number | undefined;
+                    text?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                    mode?: "default" | undefined;
+                    durationSeconds?: number | undefined;
+                } | {
+                    mode: "media";
+                    media: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }[];
+                    text?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "notifySupport";
+                    groupId: string;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "question-slider1To10";
+                    sliderConfig: {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
+                    };
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                } | {
+                    text: string;
+                    mode: "question-text";
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    id?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    aiConfiguration?: {
+                        goal: string;
+                        defaultConversationMode?: "text" | "voice" | undefined;
+                        prompt?: string | undefined;
+                    } | undefined;
+                    suggestedResponses?: string[] | undefined;
+                })[];
+                title?: string | undefined;
+                id?: string | undefined;
+                description?: string | undefined;
+                tags?: string[] | undefined;
+                aiInstructions?: string | undefined;
+                createdByUid?: string | undefined;
+                indicated?: string | undefined;
+                contraindicated?: string | undefined;
+                effectiveness?: "low" | "medium" | "high" | undefined;
+                timeToComplete?: "medium" | "quick" | "long" | undefined;
+            };
             livekitSessionId: string;
             livekitRoomName: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
@@ -1159,7 +3936,6 @@ export declare const logSchemas: {
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -1185,13 +3961,13 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
+                    suggestedResponses?: string[] | undefined;
                 }, {
                     text: string;
                     mode: "question-text";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -1217,6 +3993,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
+                    suggestedResponses?: string[] | undefined;
                 }>, z.ZodObject<{
                     backgroundImage: z.ZodOptional<z.ZodObject<{
                         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -1330,11 +4107,11 @@ export declare const logSchemas: {
                     }>;
                 }, "strip", z.ZodTypeAny, {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -1365,11 +4142,11 @@ export declare const logSchemas: {
                     } | undefined;
                 }, {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -2005,11 +4782,11 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -2044,7 +4821,6 @@ export declare const logSchemas: {
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -2070,6 +4846,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
+                    suggestedResponses?: string[] | undefined;
                 })[];
                 title?: string | undefined;
                 id?: string | undefined;
@@ -2254,11 +5031,11 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -2293,7 +5070,6 @@ export declare const logSchemas: {
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -2319,6 +5095,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
+                    suggestedResponses?: string[] | undefined;
                 })[];
                 title?: string | undefined;
                 id?: string | undefined;
@@ -2509,11 +5286,11 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -2548,7 +5325,6 @@ export declare const logSchemas: {
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -2574,6 +5350,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
+                    suggestedResponses?: string[] | undefined;
                 })[];
                 title?: string | undefined;
                 id?: string | undefined;
@@ -2764,11 +5541,11 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -2803,7 +5580,6 @@ export declare const logSchemas: {
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -2829,6 +5605,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
+                    suggestedResponses?: string[] | undefined;
                 })[];
                 title?: string | undefined;
                 id?: string | undefined;
@@ -3026,11 +5803,11 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -3065,7 +5842,6 @@ export declare const logSchemas: {
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -3091,6 +5867,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
+                    suggestedResponses?: string[] | undefined;
                 })[];
                 title?: string | undefined;
                 id?: string | undefined;
@@ -3296,11 +6073,11 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -3335,7 +6112,6 @@ export declare const logSchemas: {
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -3361,6 +6137,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
+                    suggestedResponses?: string[] | undefined;
                 })[];
                 title?: string | undefined;
                 id?: string | undefined;
@@ -3494,14 +6271,283 @@ export declare const logSchemas: {
         data: z.ZodObject<{
             targetDayDateString: z.ZodString;
             behaviorDataTotalByBehaviorId: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+            behaviorsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodEffects<z.ZodObject<{
+                name: z.ZodString;
+                category: z.ZodType<"helpful" | "mixed" | "unhelpful" | "unsure", z.ZodTypeDef, "helpful" | "mixed" | "unhelpful" | "unsure">;
+                hasQuestions: z.ZodOptional<z.ZodBoolean>;
+                trackingType: z.ZodEnum<["counter", "timer"]>;
+                trackingUnit: z.ZodOptional<z.ZodString>;
+                createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            } & {
+                id: z.ZodOptional<z.ZodString>;
+                description: z.ZodString;
+                ordinal: z.ZodDefault<z.ZodNumber>;
+                benefits: z.ZodArray<z.ZodString, "many">;
+                drawbacks: z.ZodArray<z.ZodString, "many">;
+                goal: z.ZodOptional<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+                    type: z.ZodLiteral<"eliminate">;
+                }, "strip", z.ZodTypeAny, {
+                    type: "eliminate";
+                }, {
+                    type: "eliminate";
+                }>, z.ZodObject<{
+                    type: z.ZodLiteral<"reduceEveryDay">;
+                    target: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    type: "reduceEveryDay";
+                    target: number;
+                }, {
+                    type: "reduceEveryDay";
+                    target: number;
+                }>, z.ZodObject<{
+                    type: z.ZodLiteral<"reduceIndividualDays">;
+                    dailyTargets: z.ZodObject<{
+                        0: z.ZodNumber;
+                        1: z.ZodNumber;
+                        2: z.ZodNumber;
+                        3: z.ZodNumber;
+                        4: z.ZodNumber;
+                        5: z.ZodNumber;
+                        6: z.ZodNumber;
+                    }, "strip", z.ZodTypeAny, {
+                        0: number;
+                        1: number;
+                        2: number;
+                        3: number;
+                        4: number;
+                        5: number;
+                        6: number;
+                    }, {
+                        0: number;
+                        1: number;
+                        2: number;
+                        3: number;
+                        4: number;
+                        5: number;
+                        6: number;
+                    }>;
+                }, "strip", z.ZodTypeAny, {
+                    type: "reduceIndividualDays";
+                    dailyTargets: {
+                        0: number;
+                        1: number;
+                        2: number;
+                        3: number;
+                        4: number;
+                        5: number;
+                        6: number;
+                    };
+                }, {
+                    type: "reduceIndividualDays";
+                    dailyTargets: {
+                        0: number;
+                        1: number;
+                        2: number;
+                        3: number;
+                        4: number;
+                        5: number;
+                        6: number;
+                    };
+                }>]>>;
+                lastTrackedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            }, "strip", z.ZodTypeAny, {
+                trackingType: "counter" | "timer";
+                category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                name: string;
+                description: string;
+                ordinal: number;
+                benefits: string[];
+                drawbacks: string[];
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                hasQuestions?: boolean | undefined;
+                trackingUnit?: string | undefined;
+                goal?: {
+                    type: "eliminate";
+                } | {
+                    type: "reduceEveryDay";
+                    target: number;
+                } | {
+                    type: "reduceIndividualDays";
+                    dailyTargets: {
+                        0: number;
+                        1: number;
+                        2: number;
+                        3: number;
+                        4: number;
+                        5: number;
+                        6: number;
+                    };
+                } | undefined;
+                lastTrackedAt?: import("../../types").Timestamp | undefined;
+            }, {
+                trackingType: "counter" | "timer";
+                category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                name: string;
+                description: string;
+                benefits: string[];
+                drawbacks: string[];
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                hasQuestions?: boolean | undefined;
+                trackingUnit?: string | undefined;
+                ordinal?: number | undefined;
+                goal?: {
+                    type: "eliminate";
+                } | {
+                    type: "reduceEveryDay";
+                    target: number;
+                } | {
+                    type: "reduceIndividualDays";
+                    dailyTargets: {
+                        0: number;
+                        1: number;
+                        2: number;
+                        3: number;
+                        4: number;
+                        5: number;
+                        6: number;
+                    };
+                } | undefined;
+                lastTrackedAt?: import("../../types").Timestamp | undefined;
+            }>, {
+                trackingType: "counter" | "timer";
+                category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                name: string;
+                description: string;
+                ordinal: number;
+                benefits: string[];
+                drawbacks: string[];
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                hasQuestions?: boolean | undefined;
+                trackingUnit?: string | undefined;
+                goal?: {
+                    type: "eliminate";
+                } | {
+                    type: "reduceEveryDay";
+                    target: number;
+                } | {
+                    type: "reduceIndividualDays";
+                    dailyTargets: {
+                        0: number;
+                        1: number;
+                        2: number;
+                        3: number;
+                        4: number;
+                        5: number;
+                        6: number;
+                    };
+                } | undefined;
+                lastTrackedAt?: import("../../types").Timestamp | undefined;
+            }, {
+                trackingType: "counter" | "timer";
+                category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                name: string;
+                description: string;
+                benefits: string[];
+                drawbacks: string[];
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                hasQuestions?: boolean | undefined;
+                trackingUnit?: string | undefined;
+                ordinal?: number | undefined;
+                goal?: {
+                    type: "eliminate";
+                } | {
+                    type: "reduceEveryDay";
+                    target: number;
+                } | {
+                    type: "reduceIndividualDays";
+                    dailyTargets: {
+                        0: number;
+                        1: number;
+                        2: number;
+                        3: number;
+                        4: number;
+                        5: number;
+                        6: number;
+                    };
+                } | undefined;
+                lastTrackedAt?: import("../../types").Timestamp | undefined;
+            }>>>;
             trackingLogsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
         }, "strip", z.ZodTypeAny, {
             targetDayDateString: string;
             behaviorDataTotalByBehaviorId?: Record<string, any> | undefined;
+            behaviorsById?: Record<string, {
+                trackingType: "counter" | "timer";
+                category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                name: string;
+                description: string;
+                ordinal: number;
+                benefits: string[];
+                drawbacks: string[];
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                hasQuestions?: boolean | undefined;
+                trackingUnit?: string | undefined;
+                goal?: {
+                    type: "eliminate";
+                } | {
+                    type: "reduceEveryDay";
+                    target: number;
+                } | {
+                    type: "reduceIndividualDays";
+                    dailyTargets: {
+                        0: number;
+                        1: number;
+                        2: number;
+                        3: number;
+                        4: number;
+                        5: number;
+                        6: number;
+                    };
+                } | undefined;
+                lastTrackedAt?: import("../../types").Timestamp | undefined;
+            }> | undefined;
             trackingLogsById?: Record<string, any> | undefined;
         }, {
             targetDayDateString: string;
             behaviorDataTotalByBehaviorId?: Record<string, any> | undefined;
+            behaviorsById?: Record<string, {
+                trackingType: "counter" | "timer";
+                category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                name: string;
+                description: string;
+                benefits: string[];
+                drawbacks: string[];
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                hasQuestions?: boolean | undefined;
+                trackingUnit?: string | undefined;
+                ordinal?: number | undefined;
+                goal?: {
+                    type: "eliminate";
+                } | {
+                    type: "reduceEveryDay";
+                    target: number;
+                } | {
+                    type: "reduceIndividualDays";
+                    dailyTargets: {
+                        0: number;
+                        1: number;
+                        2: number;
+                        3: number;
+                        4: number;
+                        5: number;
+                        6: number;
+                    };
+                } | undefined;
+                lastTrackedAt?: import("../../types").Timestamp | undefined;
+            }> | undefined;
             trackingLogsById?: Record<string, any> | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
@@ -3513,6 +6559,38 @@ export declare const logSchemas: {
         data: {
             targetDayDateString: string;
             behaviorDataTotalByBehaviorId?: Record<string, any> | undefined;
+            behaviorsById?: Record<string, {
+                trackingType: "counter" | "timer";
+                category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                name: string;
+                description: string;
+                ordinal: number;
+                benefits: string[];
+                drawbacks: string[];
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                hasQuestions?: boolean | undefined;
+                trackingUnit?: string | undefined;
+                goal?: {
+                    type: "eliminate";
+                } | {
+                    type: "reduceEveryDay";
+                    target: number;
+                } | {
+                    type: "reduceIndividualDays";
+                    dailyTargets: {
+                        0: number;
+                        1: number;
+                        2: number;
+                        3: number;
+                        4: number;
+                        5: number;
+                        6: number;
+                    };
+                } | undefined;
+                lastTrackedAt?: import("../../types").Timestamp | undefined;
+            }> | undefined;
             trackingLogsById?: Record<string, any> | undefined;
         };
         createdAt?: import("../../types").Timestamp | undefined;
@@ -3532,6 +6610,38 @@ export declare const logSchemas: {
         data: {
             targetDayDateString: string;
             behaviorDataTotalByBehaviorId?: Record<string, any> | undefined;
+            behaviorsById?: Record<string, {
+                trackingType: "counter" | "timer";
+                category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                name: string;
+                description: string;
+                benefits: string[];
+                drawbacks: string[];
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                hasQuestions?: boolean | undefined;
+                trackingUnit?: string | undefined;
+                ordinal?: number | undefined;
+                goal?: {
+                    type: "eliminate";
+                } | {
+                    type: "reduceEveryDay";
+                    target: number;
+                } | {
+                    type: "reduceIndividualDays";
+                    dailyTargets: {
+                        0: number;
+                        1: number;
+                        2: number;
+                        3: number;
+                        4: number;
+                        5: number;
+                        6: number;
+                    };
+                } | undefined;
+                lastTrackedAt?: import("../../types").Timestamp | undefined;
+            }> | undefined;
             trackingLogsById?: Record<string, any> | undefined;
         };
         createdAt?: import("../../types").Timestamp | undefined;
@@ -4170,7 +7280,6 @@ export declare const logSchemas: {
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -4196,13 +7305,13 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
+                    suggestedResponses?: string[] | undefined;
                 }, {
                     text: string;
                     mode: "question-text";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -4228,6 +7337,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
+                    suggestedResponses?: string[] | undefined;
                 }>, z.ZodObject<{
                     backgroundImage: z.ZodOptional<z.ZodObject<{
                         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -4341,11 +7451,11 @@ export declare const logSchemas: {
                     }>;
                 }, "strip", z.ZodTypeAny, {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -4376,11 +7486,11 @@ export declare const logSchemas: {
                     } | undefined;
                 }, {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -5016,11 +8126,11 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -5055,7 +8165,6 @@ export declare const logSchemas: {
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -5081,6 +8190,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
+                    suggestedResponses?: string[] | undefined;
                 })[];
                 title?: string | undefined;
                 id?: string | undefined;
@@ -5265,11 +8375,11 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -5304,7 +8414,6 @@ export declare const logSchemas: {
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -5330,6 +8439,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
+                    suggestedResponses?: string[] | undefined;
                 })[];
                 title?: string | undefined;
                 id?: string | undefined;
@@ -5520,11 +8630,11 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -5559,7 +8669,6 @@ export declare const logSchemas: {
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -5585,6 +8694,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
+                    suggestedResponses?: string[] | undefined;
                 })[];
                 title?: string | undefined;
                 id?: string | undefined;
@@ -5775,11 +8885,11 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -5814,7 +8924,6 @@ export declare const logSchemas: {
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -5840,6 +8949,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
+                    suggestedResponses?: string[] | undefined;
                 })[];
                 title?: string | undefined;
                 id?: string | undefined;
@@ -6037,11 +9147,11 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -6076,7 +9186,6 @@ export declare const logSchemas: {
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -6102,6 +9211,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
+                    suggestedResponses?: string[] | undefined;
                 })[];
                 title?: string | undefined;
                 id?: string | undefined;
@@ -6307,11 +9417,11 @@ export declare const logSchemas: {
                     } | undefined;
                 } | {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
@@ -6346,7 +9456,6 @@ export declare const logSchemas: {
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
                     id?: string | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -6372,6 +9481,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
+                    suggestedResponses?: string[] | undefined;
                 })[];
                 title?: string | undefined;
                 id?: string | undefined;
@@ -6737,19 +9847,20 @@ export declare const logSchemas: {
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
+                suggestedResponses?: string[] | undefined;
                 behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 scope?: "impulse" | "setback" | "success" | "recap" | undefined;
-                suggestedResponses?: string[] | undefined;
             }, {
                 text: string;
                 responseType: "text";
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
+                suggestedResponses?: string[] | undefined;
                 isTemplate?: boolean | undefined;
                 behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -6757,7 +9868,6 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 scope?: "impulse" | "setback" | "success" | "recap" | undefined;
-                suggestedResponses?: string[] | undefined;
             }>, z.ZodObject<{
                 id: z.ZodOptional<z.ZodString>;
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -6784,12 +9894,12 @@ export declare const logSchemas: {
                 }>;
             }, "strip", z.ZodTypeAny, {
                 text: string;
-                isTemplate: boolean;
-                responseType: "slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
+                isTemplate: boolean;
+                responseType: "slider1To10";
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
@@ -6801,11 +9911,11 @@ export declare const logSchemas: {
                 scope?: "impulse" | "setback" | "success" | "recap" | undefined;
             }, {
                 text: string;
-                responseType: "slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
+                responseType: "slider1To10";
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
@@ -6836,12 +9946,12 @@ export declare const logSchemas: {
         }, "strip", z.ZodTypeAny, {
             question: {
                 text: string;
-                isTemplate: boolean;
-                responseType: "slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
+                isTemplate: boolean;
+                responseType: "slider1To10";
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
@@ -6858,13 +9968,13 @@ export declare const logSchemas: {
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
+                suggestedResponses?: string[] | undefined;
                 behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 scope?: "impulse" | "setback" | "success" | "recap" | undefined;
-                suggestedResponses?: string[] | undefined;
             };
             questionId?: string | undefined;
             response?: {
@@ -6876,11 +9986,11 @@ export declare const logSchemas: {
         }, {
             question: {
                 text: string;
-                responseType: "slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
+                responseType: "slider1To10";
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
@@ -6897,6 +10007,7 @@ export declare const logSchemas: {
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
+                suggestedResponses?: string[] | undefined;
                 isTemplate?: boolean | undefined;
                 behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -6904,7 +10015,6 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 scope?: "impulse" | "setback" | "success" | "recap" | undefined;
-                suggestedResponses?: string[] | undefined;
             };
             questionId?: string | undefined;
             response?: {
@@ -6923,12 +10033,12 @@ export declare const logSchemas: {
         data: {
             question: {
                 text: string;
-                isTemplate: boolean;
-                responseType: "slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
+                isTemplate: boolean;
+                responseType: "slider1To10";
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
@@ -6945,13 +10055,13 @@ export declare const logSchemas: {
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
+                suggestedResponses?: string[] | undefined;
                 behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 scope?: "impulse" | "setback" | "success" | "recap" | undefined;
-                suggestedResponses?: string[] | undefined;
             };
             questionId?: string | undefined;
             response?: {
@@ -6978,11 +10088,11 @@ export declare const logSchemas: {
         data: {
             question: {
                 text: string;
-                responseType: "slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
+                responseType: "slider1To10";
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
@@ -6999,6 +10109,7 @@ export declare const logSchemas: {
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
+                suggestedResponses?: string[] | undefined;
                 isTemplate?: boolean | undefined;
                 behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -7006,7 +10117,6 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 scope?: "impulse" | "setback" | "success" | "recap" | undefined;
-                suggestedResponses?: string[] | undefined;
             };
             questionId?: string | undefined;
             response?: {
@@ -8798,6 +11908,1783 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     type: z.ZodLiteral<"call">;
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
+        tactic: z.ZodObject<{
+            id: z.ZodOptional<z.ZodString>;
+            title: z.ZodOptional<z.ZodString>;
+            description: z.ZodOptional<z.ZodString>;
+            aiInstructions: z.ZodOptional<z.ZodString>;
+            createdByUid: z.ZodOptional<z.ZodString>;
+            steps: z.ZodArray<z.ZodDiscriminatedUnion<"mode", [z.ZodObject<{
+                backgroundImage: z.ZodOptional<z.ZodObject<{
+                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    uri: z.ZodString;
+                    storagePath: z.ZodString;
+                    contentType: z.ZodString;
+                    title: z.ZodOptional<z.ZodString>;
+                    sizeBytes: z.ZodOptional<z.ZodNumber>;
+                    metadata: z.ZodOptional<z.ZodObject<{
+                        width: z.ZodOptional<z.ZodNumber>;
+                        height: z.ZodOptional<z.ZodNumber>;
+                        durationMs: z.ZodOptional<z.ZodNumber>;
+                        transcript: z.ZodOptional<z.ZodString>;
+                        meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                            db: z.ZodNumber;
+                            timestampMs: z.ZodOptional<z.ZodNumber>;
+                        }, "strip", z.ZodTypeAny, {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }, {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }>, "many">>;
+                    }, "strip", z.ZodTypeAny, {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    }, {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    }>>;
+                }, "strip", z.ZodTypeAny, {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }, {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }>>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                aiConfiguration: z.ZodOptional<z.ZodObject<{
+                    defaultConversationMode: z.ZodOptional<z.ZodEnum<["voice", "text"]>>;
+                    goal: z.ZodString;
+                    prompt: z.ZodOptional<z.ZodString>;
+                }, "strip", z.ZodTypeAny, {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                }, {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                }>>;
+            } & {
+                mode: z.ZodOptional<z.ZodLiteral<"default">>;
+                text: z.ZodString;
+                durationSeconds: z.ZodOptional<z.ZodNumber>;
+            }, "strip", z.ZodTypeAny, {
+                text: string;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+                mode?: "default" | undefined;
+                durationSeconds?: number | undefined;
+            }, {
+                text: string;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+                mode?: "default" | undefined;
+                durationSeconds?: number | undefined;
+            }>, z.ZodObject<{
+                text: z.ZodOptional<z.ZodString>;
+                backgroundImage: z.ZodOptional<z.ZodObject<{
+                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    uri: z.ZodString;
+                    storagePath: z.ZodString;
+                    contentType: z.ZodString;
+                    title: z.ZodOptional<z.ZodString>;
+                    sizeBytes: z.ZodOptional<z.ZodNumber>;
+                    metadata: z.ZodOptional<z.ZodObject<{
+                        width: z.ZodOptional<z.ZodNumber>;
+                        height: z.ZodOptional<z.ZodNumber>;
+                        durationMs: z.ZodOptional<z.ZodNumber>;
+                        transcript: z.ZodOptional<z.ZodString>;
+                        meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                            db: z.ZodNumber;
+                            timestampMs: z.ZodOptional<z.ZodNumber>;
+                        }, "strip", z.ZodTypeAny, {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }, {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }>, "many">>;
+                    }, "strip", z.ZodTypeAny, {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    }, {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    }>>;
+                }, "strip", z.ZodTypeAny, {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }, {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }>>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                aiConfiguration: z.ZodOptional<z.ZodObject<{
+                    defaultConversationMode: z.ZodOptional<z.ZodEnum<["voice", "text"]>>;
+                    goal: z.ZodString;
+                    prompt: z.ZodOptional<z.ZodString>;
+                }, "strip", z.ZodTypeAny, {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                }, {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                }>>;
+            } & {
+                mode: z.ZodLiteral<"breathing">;
+                breathingPattern: z.ZodObject<{
+                    inhale: z.ZodNumber;
+                    hold: z.ZodOptional<z.ZodNumber>;
+                    exhale: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    inhale: number;
+                    exhale: number;
+                    hold?: number | undefined;
+                }, {
+                    inhale: number;
+                    exhale: number;
+                    hold?: number | undefined;
+                }>;
+                cycles: z.ZodOptional<z.ZodNumber>;
+            }, "strip", z.ZodTypeAny, {
+                mode: "breathing";
+                breathingPattern: {
+                    inhale: number;
+                    exhale: number;
+                    hold?: number | undefined;
+                };
+                cycles?: number | undefined;
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            }, {
+                mode: "breathing";
+                breathingPattern: {
+                    inhale: number;
+                    exhale: number;
+                    hold?: number | undefined;
+                };
+                cycles?: number | undefined;
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            }>, z.ZodObject<{
+                backgroundImage: z.ZodOptional<z.ZodObject<{
+                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    uri: z.ZodString;
+                    storagePath: z.ZodString;
+                    contentType: z.ZodString;
+                    title: z.ZodOptional<z.ZodString>;
+                    sizeBytes: z.ZodOptional<z.ZodNumber>;
+                    metadata: z.ZodOptional<z.ZodObject<{
+                        width: z.ZodOptional<z.ZodNumber>;
+                        height: z.ZodOptional<z.ZodNumber>;
+                        durationMs: z.ZodOptional<z.ZodNumber>;
+                        transcript: z.ZodOptional<z.ZodString>;
+                        meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                            db: z.ZodNumber;
+                            timestampMs: z.ZodOptional<z.ZodNumber>;
+                        }, "strip", z.ZodTypeAny, {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }, {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }>, "many">>;
+                    }, "strip", z.ZodTypeAny, {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    }, {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    }>>;
+                }, "strip", z.ZodTypeAny, {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }, {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }>>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                aiConfiguration: z.ZodOptional<z.ZodObject<{
+                    defaultConversationMode: z.ZodOptional<z.ZodEnum<["voice", "text"]>>;
+                    goal: z.ZodString;
+                    prompt: z.ZodOptional<z.ZodString>;
+                }, "strip", z.ZodTypeAny, {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                }, {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                }>>;
+            } & {
+                mode: z.ZodLiteral<"notifySupport">;
+                groupId: z.ZodString;
+                text: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                text: string;
+                mode: "notifySupport";
+                groupId: string;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            }, {
+                text: string;
+                mode: "notifySupport";
+                groupId: string;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            }>, z.ZodObject<{
+                backgroundImage: z.ZodOptional<z.ZodObject<{
+                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    uri: z.ZodString;
+                    storagePath: z.ZodString;
+                    contentType: z.ZodString;
+                    title: z.ZodOptional<z.ZodString>;
+                    sizeBytes: z.ZodOptional<z.ZodNumber>;
+                    metadata: z.ZodOptional<z.ZodObject<{
+                        width: z.ZodOptional<z.ZodNumber>;
+                        height: z.ZodOptional<z.ZodNumber>;
+                        durationMs: z.ZodOptional<z.ZodNumber>;
+                        transcript: z.ZodOptional<z.ZodString>;
+                        meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                            db: z.ZodNumber;
+                            timestampMs: z.ZodOptional<z.ZodNumber>;
+                        }, "strip", z.ZodTypeAny, {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }, {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }>, "many">>;
+                    }, "strip", z.ZodTypeAny, {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    }, {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    }>>;
+                }, "strip", z.ZodTypeAny, {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }, {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }>>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                aiConfiguration: z.ZodOptional<z.ZodObject<{
+                    defaultConversationMode: z.ZodOptional<z.ZodEnum<["voice", "text"]>>;
+                    goal: z.ZodString;
+                    prompt: z.ZodOptional<z.ZodString>;
+                }, "strip", z.ZodTypeAny, {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                }, {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                }>>;
+            } & {
+                mode: z.ZodLiteral<"question-text">;
+                id: z.ZodOptional<z.ZodString>;
+                createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                text: z.ZodString;
+            } & {
+                suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+            }, "strip", z.ZodTypeAny, {
+                text: string;
+                mode: "question-text";
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+                suggestedResponses?: string[] | undefined;
+            }, {
+                text: string;
+                mode: "question-text";
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+                suggestedResponses?: string[] | undefined;
+            }>, z.ZodObject<{
+                backgroundImage: z.ZodOptional<z.ZodObject<{
+                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    uri: z.ZodString;
+                    storagePath: z.ZodString;
+                    contentType: z.ZodString;
+                    title: z.ZodOptional<z.ZodString>;
+                    sizeBytes: z.ZodOptional<z.ZodNumber>;
+                    metadata: z.ZodOptional<z.ZodObject<{
+                        width: z.ZodOptional<z.ZodNumber>;
+                        height: z.ZodOptional<z.ZodNumber>;
+                        durationMs: z.ZodOptional<z.ZodNumber>;
+                        transcript: z.ZodOptional<z.ZodString>;
+                        meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                            db: z.ZodNumber;
+                            timestampMs: z.ZodOptional<z.ZodNumber>;
+                        }, "strip", z.ZodTypeAny, {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }, {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }>, "many">>;
+                    }, "strip", z.ZodTypeAny, {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    }, {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    }>>;
+                }, "strip", z.ZodTypeAny, {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }, {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }>>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                aiConfiguration: z.ZodOptional<z.ZodObject<{
+                    defaultConversationMode: z.ZodOptional<z.ZodEnum<["voice", "text"]>>;
+                    goal: z.ZodString;
+                    prompt: z.ZodOptional<z.ZodString>;
+                }, "strip", z.ZodTypeAny, {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                }, {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                }>>;
+            } & {
+                mode: z.ZodLiteral<"question-slider1To10">;
+                id: z.ZodOptional<z.ZodString>;
+                createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                text: z.ZodString;
+            } & {
+                sliderConfig: z.ZodObject<{
+                    minLabel: z.ZodOptional<z.ZodString>;
+                    maxLabel: z.ZodOptional<z.ZodString>;
+                }, "strip", z.ZodTypeAny, {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                }, {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                }>;
+            }, "strip", z.ZodTypeAny, {
+                text: string;
+                mode: "question-slider1To10";
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                };
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            }, {
+                text: string;
+                mode: "question-slider1To10";
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                };
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            }>, z.ZodObject<{
+                text: z.ZodOptional<z.ZodString>;
+                backgroundImage: z.ZodOptional<z.ZodObject<{
+                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    uri: z.ZodString;
+                    storagePath: z.ZodString;
+                    contentType: z.ZodString;
+                    title: z.ZodOptional<z.ZodString>;
+                    sizeBytes: z.ZodOptional<z.ZodNumber>;
+                    metadata: z.ZodOptional<z.ZodObject<{
+                        width: z.ZodOptional<z.ZodNumber>;
+                        height: z.ZodOptional<z.ZodNumber>;
+                        durationMs: z.ZodOptional<z.ZodNumber>;
+                        transcript: z.ZodOptional<z.ZodString>;
+                        meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                            db: z.ZodNumber;
+                            timestampMs: z.ZodOptional<z.ZodNumber>;
+                        }, "strip", z.ZodTypeAny, {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }, {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }>, "many">>;
+                    }, "strip", z.ZodTypeAny, {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    }, {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    }>>;
+                }, "strip", z.ZodTypeAny, {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }, {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }>>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                aiConfiguration: z.ZodOptional<z.ZodObject<{
+                    defaultConversationMode: z.ZodOptional<z.ZodEnum<["voice", "text"]>>;
+                    goal: z.ZodString;
+                    prompt: z.ZodOptional<z.ZodString>;
+                }, "strip", z.ZodTypeAny, {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                }, {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                }>>;
+            } & {
+                mode: z.ZodLiteral<"media">;
+                media: z.ZodArray<z.ZodObject<{
+                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    uri: z.ZodString;
+                    storagePath: z.ZodString;
+                    contentType: z.ZodString;
+                    title: z.ZodOptional<z.ZodString>;
+                    sizeBytes: z.ZodOptional<z.ZodNumber>;
+                    metadata: z.ZodOptional<z.ZodObject<{
+                        width: z.ZodOptional<z.ZodNumber>;
+                        height: z.ZodOptional<z.ZodNumber>;
+                        durationMs: z.ZodOptional<z.ZodNumber>;
+                        transcript: z.ZodOptional<z.ZodString>;
+                        meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                            db: z.ZodNumber;
+                            timestampMs: z.ZodOptional<z.ZodNumber>;
+                        }, "strip", z.ZodTypeAny, {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }, {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }>, "many">>;
+                    }, "strip", z.ZodTypeAny, {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    }, {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    }>>;
+                }, "strip", z.ZodTypeAny, {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }, {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }>, "many">;
+            }, "strip", z.ZodTypeAny, {
+                mode: "media";
+                media: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }[];
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            }, {
+                mode: "media";
+                media: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }[];
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            }>, z.ZodObject<{
+                backgroundImage: z.ZodOptional<z.ZodObject<{
+                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    uri: z.ZodString;
+                    storagePath: z.ZodString;
+                    contentType: z.ZodString;
+                    title: z.ZodOptional<z.ZodString>;
+                    sizeBytes: z.ZodOptional<z.ZodNumber>;
+                    metadata: z.ZodOptional<z.ZodObject<{
+                        width: z.ZodOptional<z.ZodNumber>;
+                        height: z.ZodOptional<z.ZodNumber>;
+                        durationMs: z.ZodOptional<z.ZodNumber>;
+                        transcript: z.ZodOptional<z.ZodString>;
+                        meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                            db: z.ZodNumber;
+                            timestampMs: z.ZodOptional<z.ZodNumber>;
+                        }, "strip", z.ZodTypeAny, {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }, {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }>, "many">>;
+                    }, "strip", z.ZodTypeAny, {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    }, {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    }>>;
+                }, "strip", z.ZodTypeAny, {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }, {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }>>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                aiConfiguration: z.ZodOptional<z.ZodObject<{
+                    defaultConversationMode: z.ZodOptional<z.ZodEnum<["voice", "text"]>>;
+                    goal: z.ZodString;
+                    prompt: z.ZodOptional<z.ZodString>;
+                }, "strip", z.ZodTypeAny, {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                }, {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                }>>;
+            } & {
+                mode: z.ZodLiteral<"affirmation">;
+                text: z.ZodString;
+                repeatCount: z.ZodNumber;
+            }, "strip", z.ZodTypeAny, {
+                text: string;
+                mode: "affirmation";
+                repeatCount: number;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            }, {
+                text: string;
+                mode: "affirmation";
+                repeatCount: number;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            }>]>, "many">;
+            tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+            indicated: z.ZodOptional<z.ZodString>;
+            contraindicated: z.ZodOptional<z.ZodString>;
+            effectiveness: z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>;
+            timeToComplete: z.ZodOptional<z.ZodEnum<["quick", "medium", "long"]>>;
+            createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+            updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        }, "strip", z.ZodTypeAny, {
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
+            steps: ({
+                text: string;
+                mode: "affirmation";
+                repeatCount: number;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            } | {
+                mode: "breathing";
+                breathingPattern: {
+                    inhale: number;
+                    exhale: number;
+                    hold?: number | undefined;
+                };
+                cycles?: number | undefined;
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+                mode?: "default" | undefined;
+                durationSeconds?: number | undefined;
+            } | {
+                mode: "media";
+                media: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }[];
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                mode: "notifySupport";
+                groupId: string;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                mode: "question-slider1To10";
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                };
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                mode: "question-text";
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+                suggestedResponses?: string[] | undefined;
+            })[];
+            title?: string | undefined;
+            id?: string | undefined;
+            description?: string | undefined;
+            tags?: string[] | undefined;
+            aiInstructions?: string | undefined;
+            createdByUid?: string | undefined;
+            indicated?: string | undefined;
+            contraindicated?: string | undefined;
+            effectiveness?: "low" | "medium" | "high" | undefined;
+            timeToComplete?: "medium" | "quick" | "long" | undefined;
+        }, {
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
+            steps: ({
+                text: string;
+                mode: "affirmation";
+                repeatCount: number;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            } | {
+                mode: "breathing";
+                breathingPattern: {
+                    inhale: number;
+                    exhale: number;
+                    hold?: number | undefined;
+                };
+                cycles?: number | undefined;
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+                mode?: "default" | undefined;
+                durationSeconds?: number | undefined;
+            } | {
+                mode: "media";
+                media: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }[];
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                mode: "notifySupport";
+                groupId: string;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                mode: "question-slider1To10";
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                };
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                mode: "question-text";
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+                suggestedResponses?: string[] | undefined;
+            })[];
+            title?: string | undefined;
+            id?: string | undefined;
+            description?: string | undefined;
+            tags?: string[] | undefined;
+            aiInstructions?: string | undefined;
+            createdByUid?: string | undefined;
+            indicated?: string | undefined;
+            contraindicated?: string | undefined;
+            effectiveness?: "low" | "medium" | "high" | undefined;
+            timeToComplete?: "medium" | "quick" | "long" | undefined;
+        }>;
         agentConnectedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         endedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         livekitSessionId: z.ZodString;
@@ -8805,6 +13692,256 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         token: z.ZodOptional<z.ZodString>;
         summary: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
+        tactic: {
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
+            steps: ({
+                text: string;
+                mode: "affirmation";
+                repeatCount: number;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            } | {
+                mode: "breathing";
+                breathingPattern: {
+                    inhale: number;
+                    exhale: number;
+                    hold?: number | undefined;
+                };
+                cycles?: number | undefined;
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+                mode?: "default" | undefined;
+                durationSeconds?: number | undefined;
+            } | {
+                mode: "media";
+                media: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }[];
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                mode: "notifySupport";
+                groupId: string;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                mode: "question-slider1To10";
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                };
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                mode: "question-text";
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+                suggestedResponses?: string[] | undefined;
+            })[];
+            title?: string | undefined;
+            id?: string | undefined;
+            description?: string | undefined;
+            tags?: string[] | undefined;
+            aiInstructions?: string | undefined;
+            createdByUid?: string | undefined;
+            indicated?: string | undefined;
+            contraindicated?: string | undefined;
+            effectiveness?: "low" | "medium" | "high" | undefined;
+            timeToComplete?: "medium" | "quick" | "long" | undefined;
+        };
         livekitSessionId: string;
         livekitRoomName: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
@@ -8812,6 +13949,256 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         token?: string | undefined;
         summary?: string | undefined;
     }, {
+        tactic: {
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
+            steps: ({
+                text: string;
+                mode: "affirmation";
+                repeatCount: number;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            } | {
+                mode: "breathing";
+                breathingPattern: {
+                    inhale: number;
+                    exhale: number;
+                    hold?: number | undefined;
+                };
+                cycles?: number | undefined;
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+                mode?: "default" | undefined;
+                durationSeconds?: number | undefined;
+            } | {
+                mode: "media";
+                media: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }[];
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                mode: "notifySupport";
+                groupId: string;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                mode: "question-slider1To10";
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                };
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                mode: "question-text";
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+                suggestedResponses?: string[] | undefined;
+            })[];
+            title?: string | undefined;
+            id?: string | undefined;
+            description?: string | undefined;
+            tags?: string[] | undefined;
+            aiInstructions?: string | undefined;
+            createdByUid?: string | undefined;
+            indicated?: string | undefined;
+            contraindicated?: string | undefined;
+            effectiveness?: "low" | "medium" | "high" | undefined;
+            timeToComplete?: "medium" | "quick" | "long" | undefined;
+        };
         livekitSessionId: string;
         livekitRoomName: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
@@ -8826,6 +14213,256 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dateString: string;
     isDisplayable: true;
     data: {
+        tactic: {
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
+            steps: ({
+                text: string;
+                mode: "affirmation";
+                repeatCount: number;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            } | {
+                mode: "breathing";
+                breathingPattern: {
+                    inhale: number;
+                    exhale: number;
+                    hold?: number | undefined;
+                };
+                cycles?: number | undefined;
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+                mode?: "default" | undefined;
+                durationSeconds?: number | undefined;
+            } | {
+                mode: "media";
+                media: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }[];
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                mode: "notifySupport";
+                groupId: string;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                mode: "question-slider1To10";
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                };
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                mode: "question-text";
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+                suggestedResponses?: string[] | undefined;
+            })[];
+            title?: string | undefined;
+            id?: string | undefined;
+            description?: string | undefined;
+            tags?: string[] | undefined;
+            aiInstructions?: string | undefined;
+            createdByUid?: string | undefined;
+            indicated?: string | undefined;
+            contraindicated?: string | undefined;
+            effectiveness?: "low" | "medium" | "high" | undefined;
+            timeToComplete?: "medium" | "quick" | "long" | undefined;
+        };
         livekitSessionId: string;
         livekitRoomName: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
@@ -8848,6 +14485,256 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dateString: string;
     isDisplayable: true;
     data: {
+        tactic: {
+            createdAt: import("../../types").Timestamp;
+            updatedAt: import("../../types").Timestamp;
+            steps: ({
+                text: string;
+                mode: "affirmation";
+                repeatCount: number;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            } | {
+                mode: "breathing";
+                breathingPattern: {
+                    inhale: number;
+                    exhale: number;
+                    hold?: number | undefined;
+                };
+                cycles?: number | undefined;
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+                mode?: "default" | undefined;
+                durationSeconds?: number | undefined;
+            } | {
+                mode: "media";
+                media: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }[];
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                mode: "notifySupport";
+                groupId: string;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                mode: "question-slider1To10";
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                };
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+            } | {
+                text: string;
+                mode: "question-text";
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                aiConfiguration?: {
+                    goal: string;
+                    defaultConversationMode?: "text" | "voice" | undefined;
+                    prompt?: string | undefined;
+                } | undefined;
+                suggestedResponses?: string[] | undefined;
+            })[];
+            title?: string | undefined;
+            id?: string | undefined;
+            description?: string | undefined;
+            tags?: string[] | undefined;
+            aiInstructions?: string | undefined;
+            createdByUid?: string | undefined;
+            indicated?: string | undefined;
+            contraindicated?: string | undefined;
+            effectiveness?: "low" | "medium" | "high" | undefined;
+            timeToComplete?: "medium" | "quick" | "long" | undefined;
+        };
         livekitSessionId: string;
         livekitRoomName: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
@@ -9668,7 +15555,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -9694,13 +15580,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
+                suggestedResponses?: string[] | undefined;
             }, {
                 text: string;
                 mode: "question-text";
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -9726,6 +15612,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
+                suggestedResponses?: string[] | undefined;
             }>, z.ZodObject<{
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -9839,11 +15726,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }>;
             }, "strip", z.ZodTypeAny, {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
@@ -9874,11 +15761,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 } | undefined;
             }, {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
@@ -10514,11 +16401,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 } | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
@@ -10553,7 +16440,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -10579,6 +16465,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             title?: string | undefined;
             id?: string | undefined;
@@ -10763,11 +16650,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 } | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
@@ -10802,7 +16689,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -10828,6 +16714,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             title?: string | undefined;
             id?: string | undefined;
@@ -11018,11 +16905,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 } | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
@@ -11057,7 +16944,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -11083,6 +16969,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             title?: string | undefined;
             id?: string | undefined;
@@ -11273,11 +17160,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 } | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
@@ -11312,7 +17199,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -11338,6 +17224,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             title?: string | undefined;
             id?: string | undefined;
@@ -11535,11 +17422,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 } | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
@@ -11574,7 +17461,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -11600,6 +17486,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             title?: string | undefined;
             id?: string | undefined;
@@ -11805,11 +17692,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 } | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
@@ -11844,7 +17731,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -11870,6 +17756,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             title?: string | undefined;
             id?: string | undefined;
@@ -12001,14 +17888,283 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: z.ZodObject<{
         targetDayDateString: z.ZodString;
         behaviorDataTotalByBehaviorId: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+        behaviorsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodEffects<z.ZodObject<{
+            name: z.ZodString;
+            category: z.ZodType<"helpful" | "mixed" | "unhelpful" | "unsure", z.ZodTypeDef, "helpful" | "mixed" | "unhelpful" | "unsure">;
+            hasQuestions: z.ZodOptional<z.ZodBoolean>;
+            trackingType: z.ZodEnum<["counter", "timer"]>;
+            trackingUnit: z.ZodOptional<z.ZodString>;
+            createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        } & {
+            id: z.ZodOptional<z.ZodString>;
+            description: z.ZodString;
+            ordinal: z.ZodDefault<z.ZodNumber>;
+            benefits: z.ZodArray<z.ZodString, "many">;
+            drawbacks: z.ZodArray<z.ZodString, "many">;
+            goal: z.ZodOptional<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+                type: z.ZodLiteral<"eliminate">;
+            }, "strip", z.ZodTypeAny, {
+                type: "eliminate";
+            }, {
+                type: "eliminate";
+            }>, z.ZodObject<{
+                type: z.ZodLiteral<"reduceEveryDay">;
+                target: z.ZodNumber;
+            }, "strip", z.ZodTypeAny, {
+                type: "reduceEveryDay";
+                target: number;
+            }, {
+                type: "reduceEveryDay";
+                target: number;
+            }>, z.ZodObject<{
+                type: z.ZodLiteral<"reduceIndividualDays">;
+                dailyTargets: z.ZodObject<{
+                    0: z.ZodNumber;
+                    1: z.ZodNumber;
+                    2: z.ZodNumber;
+                    3: z.ZodNumber;
+                    4: z.ZodNumber;
+                    5: z.ZodNumber;
+                    6: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    4: number;
+                    5: number;
+                    6: number;
+                }, {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    4: number;
+                    5: number;
+                    6: number;
+                }>;
+            }, "strip", z.ZodTypeAny, {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    4: number;
+                    5: number;
+                    6: number;
+                };
+            }, {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    4: number;
+                    5: number;
+                    6: number;
+                };
+            }>]>>;
+            lastTrackedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        }, "strip", z.ZodTypeAny, {
+            trackingType: "counter" | "timer";
+            category: "helpful" | "mixed" | "unhelpful" | "unsure";
+            name: string;
+            description: string;
+            ordinal: number;
+            benefits: string[];
+            drawbacks: string[];
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
+            hasQuestions?: boolean | undefined;
+            trackingUnit?: string | undefined;
+            goal?: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    4: number;
+                    5: number;
+                    6: number;
+                };
+            } | undefined;
+            lastTrackedAt?: import("../../types").Timestamp | undefined;
+        }, {
+            trackingType: "counter" | "timer";
+            category: "helpful" | "mixed" | "unhelpful" | "unsure";
+            name: string;
+            description: string;
+            benefits: string[];
+            drawbacks: string[];
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
+            hasQuestions?: boolean | undefined;
+            trackingUnit?: string | undefined;
+            ordinal?: number | undefined;
+            goal?: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    4: number;
+                    5: number;
+                    6: number;
+                };
+            } | undefined;
+            lastTrackedAt?: import("../../types").Timestamp | undefined;
+        }>, {
+            trackingType: "counter" | "timer";
+            category: "helpful" | "mixed" | "unhelpful" | "unsure";
+            name: string;
+            description: string;
+            ordinal: number;
+            benefits: string[];
+            drawbacks: string[];
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
+            hasQuestions?: boolean | undefined;
+            trackingUnit?: string | undefined;
+            goal?: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    4: number;
+                    5: number;
+                    6: number;
+                };
+            } | undefined;
+            lastTrackedAt?: import("../../types").Timestamp | undefined;
+        }, {
+            trackingType: "counter" | "timer";
+            category: "helpful" | "mixed" | "unhelpful" | "unsure";
+            name: string;
+            description: string;
+            benefits: string[];
+            drawbacks: string[];
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
+            hasQuestions?: boolean | undefined;
+            trackingUnit?: string | undefined;
+            ordinal?: number | undefined;
+            goal?: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    4: number;
+                    5: number;
+                    6: number;
+                };
+            } | undefined;
+            lastTrackedAt?: import("../../types").Timestamp | undefined;
+        }>>>;
         trackingLogsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
     }, "strip", z.ZodTypeAny, {
         targetDayDateString: string;
         behaviorDataTotalByBehaviorId?: Record<string, any> | undefined;
+        behaviorsById?: Record<string, {
+            trackingType: "counter" | "timer";
+            category: "helpful" | "mixed" | "unhelpful" | "unsure";
+            name: string;
+            description: string;
+            ordinal: number;
+            benefits: string[];
+            drawbacks: string[];
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
+            hasQuestions?: boolean | undefined;
+            trackingUnit?: string | undefined;
+            goal?: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    4: number;
+                    5: number;
+                    6: number;
+                };
+            } | undefined;
+            lastTrackedAt?: import("../../types").Timestamp | undefined;
+        }> | undefined;
         trackingLogsById?: Record<string, any> | undefined;
     }, {
         targetDayDateString: string;
         behaviorDataTotalByBehaviorId?: Record<string, any> | undefined;
+        behaviorsById?: Record<string, {
+            trackingType: "counter" | "timer";
+            category: "helpful" | "mixed" | "unhelpful" | "unsure";
+            name: string;
+            description: string;
+            benefits: string[];
+            drawbacks: string[];
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
+            hasQuestions?: boolean | undefined;
+            trackingUnit?: string | undefined;
+            ordinal?: number | undefined;
+            goal?: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    4: number;
+                    5: number;
+                    6: number;
+                };
+            } | undefined;
+            lastTrackedAt?: import("../../types").Timestamp | undefined;
+        }> | undefined;
         trackingLogsById?: Record<string, any> | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
@@ -12020,6 +18176,38 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: {
         targetDayDateString: string;
         behaviorDataTotalByBehaviorId?: Record<string, any> | undefined;
+        behaviorsById?: Record<string, {
+            trackingType: "counter" | "timer";
+            category: "helpful" | "mixed" | "unhelpful" | "unsure";
+            name: string;
+            description: string;
+            ordinal: number;
+            benefits: string[];
+            drawbacks: string[];
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
+            hasQuestions?: boolean | undefined;
+            trackingUnit?: string | undefined;
+            goal?: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    4: number;
+                    5: number;
+                    6: number;
+                };
+            } | undefined;
+            lastTrackedAt?: import("../../types").Timestamp | undefined;
+        }> | undefined;
         trackingLogsById?: Record<string, any> | undefined;
     };
     createdAt?: import("../../types").Timestamp | undefined;
@@ -12039,6 +18227,38 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: {
         targetDayDateString: string;
         behaviorDataTotalByBehaviorId?: Record<string, any> | undefined;
+        behaviorsById?: Record<string, {
+            trackingType: "counter" | "timer";
+            category: "helpful" | "mixed" | "unhelpful" | "unsure";
+            name: string;
+            description: string;
+            benefits: string[];
+            drawbacks: string[];
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
+            hasQuestions?: boolean | undefined;
+            trackingUnit?: string | undefined;
+            ordinal?: number | undefined;
+            goal?: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    4: number;
+                    5: number;
+                    6: number;
+                };
+            } | undefined;
+            lastTrackedAt?: import("../../types").Timestamp | undefined;
+        }> | undefined;
         trackingLogsById?: Record<string, any> | undefined;
     };
     createdAt?: import("../../types").Timestamp | undefined;
@@ -12384,19 +18604,20 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
+            suggestedResponses?: string[] | undefined;
             behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             scope?: "impulse" | "setback" | "success" | "recap" | undefined;
-            suggestedResponses?: string[] | undefined;
         }, {
             text: string;
             responseType: "text";
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
+            suggestedResponses?: string[] | undefined;
             isTemplate?: boolean | undefined;
             behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -12404,7 +18625,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             scope?: "impulse" | "setback" | "success" | "recap" | undefined;
-            suggestedResponses?: string[] | undefined;
         }>, z.ZodObject<{
             id: z.ZodOptional<z.ZodString>;
             createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -12431,12 +18651,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             }>;
         }, "strip", z.ZodTypeAny, {
             text: string;
-            isTemplate: boolean;
-            responseType: "slider1To10";
             sliderConfig: {
                 minLabel?: string | undefined;
                 maxLabel?: string | undefined;
             };
+            isTemplate: boolean;
+            responseType: "slider1To10";
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
@@ -12448,11 +18668,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             scope?: "impulse" | "setback" | "success" | "recap" | undefined;
         }, {
             text: string;
-            responseType: "slider1To10";
             sliderConfig: {
                 minLabel?: string | undefined;
                 maxLabel?: string | undefined;
             };
+            responseType: "slider1To10";
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
@@ -12483,12 +18703,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     }, "strip", z.ZodTypeAny, {
         question: {
             text: string;
-            isTemplate: boolean;
-            responseType: "slider1To10";
             sliderConfig: {
                 minLabel?: string | undefined;
                 maxLabel?: string | undefined;
             };
+            isTemplate: boolean;
+            responseType: "slider1To10";
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
@@ -12505,13 +18725,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
+            suggestedResponses?: string[] | undefined;
             behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             scope?: "impulse" | "setback" | "success" | "recap" | undefined;
-            suggestedResponses?: string[] | undefined;
         };
         questionId?: string | undefined;
         response?: {
@@ -12523,11 +18743,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     }, {
         question: {
             text: string;
-            responseType: "slider1To10";
             sliderConfig: {
                 minLabel?: string | undefined;
                 maxLabel?: string | undefined;
             };
+            responseType: "slider1To10";
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
@@ -12544,6 +18764,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
+            suggestedResponses?: string[] | undefined;
             isTemplate?: boolean | undefined;
             behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -12551,7 +18772,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             scope?: "impulse" | "setback" | "success" | "recap" | undefined;
-            suggestedResponses?: string[] | undefined;
         };
         questionId?: string | undefined;
         response?: {
@@ -12570,12 +18790,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: {
         question: {
             text: string;
-            isTemplate: boolean;
-            responseType: "slider1To10";
             sliderConfig: {
                 minLabel?: string | undefined;
                 maxLabel?: string | undefined;
             };
+            isTemplate: boolean;
+            responseType: "slider1To10";
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
@@ -12592,13 +18812,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
+            suggestedResponses?: string[] | undefined;
             behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             scope?: "impulse" | "setback" | "success" | "recap" | undefined;
-            suggestedResponses?: string[] | undefined;
         };
         questionId?: string | undefined;
         response?: {
@@ -12625,11 +18845,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: {
         question: {
             text: string;
-            responseType: "slider1To10";
             sliderConfig: {
                 minLabel?: string | undefined;
                 maxLabel?: string | undefined;
             };
+            responseType: "slider1To10";
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
@@ -12646,6 +18866,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
+            suggestedResponses?: string[] | undefined;
             isTemplate?: boolean | undefined;
             behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -12653,7 +18874,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             scope?: "impulse" | "setback" | "success" | "recap" | undefined;
-            suggestedResponses?: string[] | undefined;
         };
         questionId?: string | undefined;
         response?: {
