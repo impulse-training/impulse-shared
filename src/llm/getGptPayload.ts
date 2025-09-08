@@ -10,9 +10,9 @@ import {
   logIsCallLog,
   logIsDaySummaryLog,
   logIsImpulseLog,
-  logIsOutcomeLog,
   logIsQuestionLog,
   logIsReadyToDebriefLog,
+  logIsResistedLog,
   logIsShowTourLog,
   logIsTacticLog,
   logIsToolCallLog,
@@ -152,13 +152,13 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
     return messages;
   }
 
-  // Handle OutcomeLog
-  if (logIsOutcomeLog(log)) {
+  // Handle ResistedLog
+  if (logIsResistedLog(log)) {
     const isSuccess = log.data.isSuccess;
     return [
       {
         role: "user",
-        content: isSuccess 
+        content: isSuccess
           ? "<SYSTEM>The user successfully resisted an impulse</SYSTEM>"
           : "<SYSTEM>The user experienced a setback and did not resist an impulse</SYSTEM>",
       },

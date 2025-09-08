@@ -1,12 +1,12 @@
 import { z } from "zod";
 import { logBaseSchema } from "./base";
 
-export const outcomeLogSchema = logBaseSchema.extend({
-  type: z.literal("outcome"),
+export const resistedLogSchema = logBaseSchema.extend({
+  type: z.literal("resisted"),
   isDisplayable: z.literal(true),
   data: z.object({
     isSuccess: z.boolean(),
   }),
 });
 
-export type OutcomeLog = z.infer<typeof outcomeLogSchema>;
+export type ResistedLog = z.infer<typeof resistedLogSchema>;

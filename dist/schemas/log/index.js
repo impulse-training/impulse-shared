@@ -14,7 +14,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidSuggestedTacticsLog = exports.logIsSuggestedTacticsLog = exports.isValidOutcomeLog = exports.logIsOutcomeLog = exports.isValidBreathingLog = exports.logIsBreathingLog = exports.isValidReadyToDebriefLog = exports.logIsReadyToDebriefLog = exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidPlanLog = exports.logIsPlanLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticSuggestionLog = exports.logIsTacticSuggestionLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorLog = exports.logIsBehaviorLog = exports.isValidDaySummaryLog = exports.logIsDaySummaryLog = exports.isValidSharedMomentLog = exports.logIsSharedMomentLog = exports.isValidNotifySupportGroupLog = exports.logIsNotifySupportGroupLog = exports.isValidShowTourLog = exports.logIsShowTourLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
+exports.isValidSuggestedTacticsLog = exports.logIsSuggestedTacticsLog = exports.isValidResistedLog = exports.logIsResistedLog = exports.isValidBreathingLog = exports.logIsBreathingLog = exports.isValidReadyToDebriefLog = exports.logIsReadyToDebriefLog = exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidPlanLog = exports.logIsPlanLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticSuggestionLog = exports.logIsTacticSuggestionLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorLog = exports.logIsBehaviorLog = exports.isValidDaySummaryLog = exports.logIsDaySummaryLog = exports.isValidSharedMomentLog = exports.logIsSharedMomentLog = exports.isValidNotifySupportGroupLog = exports.logIsNotifySupportGroupLog = exports.isValidShowTourLog = exports.logIsShowTourLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
 const zod_1 = require("zod");
 const behaviorLog_1 = require("./behaviorLog");
 const breathingLog_1 = require("./breathingLog");
@@ -25,10 +25,10 @@ const linkLog_1 = require("./linkLog");
 const messageLog_1 = require("./messageLog");
 const userMessageLog_1 = require("./messageLog/userMessageLog");
 const notifySupportGroupLog_1 = require("./notifySupportGroupLog");
-const outcomeLog_1 = require("./outcomeLog");
 const planLog_1 = require("./planLog");
 const questionLog_1 = require("./questionLog");
 const readyToDebriefLog_1 = require("./readyToDebriefLog");
+const resistedLog_1 = require("./resistedLog");
 const sharedMomentLog_1 = require("./sharedMomentLog");
 const showTourLog_1 = require("./showTourLog");
 const suggestedTacticsLog_1 = require("./suggestedTacticsLog");
@@ -50,7 +50,7 @@ exports.logSchemas = {
     impulse_button_pressed: impulseLog_1.impulseLogSchema,
     behavior: behaviorLog_1.behaviorLogSchema,
     breathing: breathingLog_1.breathingLogSchema,
-    outcome: outcomeLog_1.outcomeLogSchema,
+    outcome: resistedLog_1.resistedLogSchema,
     question: questionLog_1.questionLogSchema,
     plan: planLog_1.planLogSchema,
     summary: summaryLog_1.summaryLogSchema,
@@ -71,10 +71,10 @@ __exportStar(require("./impulseLog"), exports);
 __exportStar(require("./linkLog"), exports);
 __exportStar(require("./messageLog"), exports);
 __exportStar(require("./notifySupportGroupLog"), exports);
-__exportStar(require("./outcomeLog"), exports);
 __exportStar(require("./planLog"), exports);
 __exportStar(require("./questionLog"), exports);
 __exportStar(require("./readyToDebriefLog"), exports);
+__exportStar(require("./resistedLog"), exports);
 __exportStar(require("./sharedMomentLog"), exports);
 __exportStar(require("./showTourLog"), exports);
 __exportStar(require("./suggestedTacticsLog"), exports);
@@ -96,7 +96,7 @@ exports.logSchema = zod_1.z.discriminatedUnion("type", [
     impulseLog_1.impulseLogSchema,
     behaviorLog_1.behaviorLogSchema,
     breathingLog_1.breathingLogSchema,
-    outcomeLog_1.outcomeLogSchema,
+    resistedLog_1.resistedLogSchema,
     questionLog_1.questionLogSchema,
     planLog_1.planLogSchema,
     summaryLog_1.summaryLogSchema,
@@ -224,12 +224,12 @@ const isValidBreathingLog = (value) => {
     return breathingLog_1.breathingLogSchema.safeParse(value).success;
 };
 exports.isValidBreathingLog = isValidBreathingLog;
-const logIsOutcomeLog = (value) => value.type === "outcome";
-exports.logIsOutcomeLog = logIsOutcomeLog;
-const isValidOutcomeLog = (value) => {
-    return outcomeLog_1.outcomeLogSchema.safeParse(value).success;
+const logIsResistedLog = (value) => value.type === "resisted";
+exports.logIsResistedLog = logIsResistedLog;
+const isValidResistedLog = (value) => {
+    return resistedLog_1.resistedLogSchema.safeParse(value).success;
 };
-exports.isValidOutcomeLog = isValidOutcomeLog;
+exports.isValidResistedLog = isValidResistedLog;
 const logIsSuggestedTacticsLog = (value) => value.type === "suggested_tactics";
 exports.logIsSuggestedTacticsLog = logIsSuggestedTacticsLog;
 const isValidSuggestedTacticsLog = (value) => {

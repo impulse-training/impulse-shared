@@ -8,10 +8,10 @@ import { LinkLog } from "./linkLog";
 import { AssistantMessageLog, MessageLog } from "./messageLog";
 import { UserMessageLog } from "./messageLog/userMessageLog";
 import { NotifySupportGroupLog } from "./notifySupportGroupLog";
-import { OutcomeLog } from "./outcomeLog";
 import { PlanLog } from "./planLog";
 import { QuestionLog } from "./questionLog";
 import { ReadyToDebriefLog } from "./readyToDebriefLog";
+import { ResistedLog } from "./resistedLog";
 import { SharedMomentLog } from "./sharedMomentLog";
 import { ShowTourLog } from "./showTourLog";
 import { SuggestedTacticsLog } from "./suggestedTacticsLog";
@@ -9539,7 +9539,7 @@ export declare const logSchemas: {
             tactic?: any;
         }>>;
     } & {
-        type: z.ZodLiteral<"outcome">;
+        type: z.ZodLiteral<"resisted">;
         isDisplayable: z.ZodLiteral<true>;
         data: z.ZodObject<{
             isSuccess: z.ZodBoolean;
@@ -9549,7 +9549,7 @@ export declare const logSchemas: {
             isSuccess: boolean;
         }>;
     }, "strip", z.ZodTypeAny, {
-        type: "outcome";
+        type: "resisted";
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
@@ -9566,7 +9566,7 @@ export declare const logSchemas: {
             tactic?: any;
         } | undefined;
     }, {
-        type: "outcome";
+        type: "resisted";
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
@@ -11404,7 +11404,7 @@ export declare const logSchemas: {
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | TacticSuggestionLog | ImpulseLog | BehaviorLog | BreathingLog | OutcomeLog | QuestionLog | PlanLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | DaySummaryLog | ReadyToDebriefLog | SuggestedTacticsLog;
+export type Log = TacticLog | TacticSuggestionLog | ImpulseLog | BehaviorLog | BreathingLog | ResistedLog | QuestionLog | PlanLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | DaySummaryLog | ReadyToDebriefLog | SuggestedTacticsLog;
 export * from "./behaviorLog";
 export * from "./breathingLog";
 export * from "./callLog";
@@ -11413,10 +11413,10 @@ export * from "./impulseLog";
 export * from "./linkLog";
 export * from "./messageLog";
 export * from "./notifySupportGroupLog";
-export * from "./outcomeLog";
 export * from "./planLog";
 export * from "./questionLog";
 export * from "./readyToDebriefLog";
+export * from "./resistedLog";
 export * from "./sharedMomentLog";
 export * from "./showTourLog";
 export * from "./suggestedTacticsLog";
@@ -18154,7 +18154,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         tactic?: any;
     }>>;
 } & {
-    type: z.ZodLiteral<"outcome">;
+    type: z.ZodLiteral<"resisted">;
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
         isSuccess: z.ZodBoolean;
@@ -18164,7 +18164,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         isSuccess: boolean;
     }>;
 }, "strip", z.ZodTypeAny, {
-    type: "outcome";
+    type: "resisted";
     userId: string;
     timestamp: import("../../types").Timestamp;
     dateString: string;
@@ -18181,7 +18181,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         tactic?: any;
     } | undefined;
 }, {
-    type: "outcome";
+    type: "resisted";
     userId: string;
     timestamp: import("../../types").Timestamp;
     dateString: string;
@@ -20127,7 +20127,7 @@ export declare const logIsReadyToDebriefLog: (value: Omit<Log, "id">) => value i
 export declare const isValidReadyToDebriefLog: (value: unknown) => value is ReadyToDebriefLog;
 export declare const logIsBreathingLog: (value: Omit<Log, "id">) => value is BreathingLog;
 export declare const isValidBreathingLog: (value: unknown) => value is BreathingLog;
-export declare const logIsOutcomeLog: (value: Omit<Log, "id">) => value is OutcomeLog;
-export declare const isValidOutcomeLog: (value: unknown) => value is OutcomeLog;
+export declare const logIsResistedLog: (value: Omit<Log, "id">) => value is ResistedLog;
+export declare const isValidResistedLog: (value: unknown) => value is ResistedLog;
 export declare const logIsSuggestedTacticsLog: (value: Omit<Log, "id">) => value is SuggestedTacticsLog;
 export declare const isValidSuggestedTacticsLog: (value: unknown) => value is SuggestedTacticsLog;

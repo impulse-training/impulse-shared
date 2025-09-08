@@ -18,13 +18,13 @@ import {
   NotifySupportGroupLog,
   notifySupportGroupLogSchema,
 } from "./notifySupportGroupLog";
-import { OutcomeLog, outcomeLogSchema } from "./outcomeLog";
 import { PlanLog, planLogSchema } from "./planLog";
 import { QuestionLog, questionLogSchema } from "./questionLog";
 import {
   ReadyToDebriefLog,
   readyToDebriefLogSchema,
 } from "./readyToDebriefLog";
+import { ResistedLog, resistedLogSchema } from "./resistedLog";
 import { SharedMomentLog, sharedMomentLogSchema } from "./sharedMomentLog";
 import { ShowTourLog, showTourLogSchema } from "./showTourLog";
 import {
@@ -53,7 +53,7 @@ export const logSchemas = {
   impulse_button_pressed: impulseLogSchema,
   behavior: behaviorLogSchema,
   breathing: breathingLogSchema,
-  outcome: outcomeLogSchema,
+  outcome: resistedLogSchema,
   question: questionLogSchema,
   plan: planLogSchema,
   summary: summaryLogSchema,
@@ -76,7 +76,7 @@ export type Log =
   | ImpulseLog
   | BehaviorLog
   | BreathingLog
-  | OutcomeLog
+  | ResistedLog
   | QuestionLog
   | PlanLog
   | ToolCallLog
@@ -101,10 +101,10 @@ export * from "./impulseLog";
 export * from "./linkLog";
 export * from "./messageLog";
 export * from "./notifySupportGroupLog";
-export * from "./outcomeLog";
 export * from "./planLog";
 export * from "./questionLog";
 export * from "./readyToDebriefLog";
+export * from "./resistedLog";
 export * from "./sharedMomentLog";
 export * from "./showTourLog";
 export * from "./suggestedTacticsLog";
@@ -127,7 +127,7 @@ export const logSchema = z.discriminatedUnion("type", [
   impulseLogSchema,
   behaviorLogSchema,
   breathingLogSchema,
-  outcomeLogSchema,
+  resistedLogSchema,
   questionLogSchema,
   planLogSchema,
   summaryLogSchema,
@@ -287,10 +287,11 @@ export const isValidBreathingLog = (value: unknown): value is BreathingLog => {
   return breathingLogSchema.safeParse(value).success;
 };
 
-export const logIsOutcomeLog = (value: Omit<Log, "id">): value is OutcomeLog =>
-  value.type === "outcome";
-export const isValidOutcomeLog = (value: unknown): value is OutcomeLog => {
-  return outcomeLogSchema.safeParse(value).success;
+export const logIsResistedLog = (
+  value: Omit<Log, "id">
+): value is ResistedLog => value.type === "resisted";
+export const isValidResistedLog = (value: unknown): value is ResistedLog => {
+  return resistedLogSchema.safeParse(value).success;
 };
 
 export const logIsSuggestedTacticsLog = (
