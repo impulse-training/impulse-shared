@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { BEHAVIOR_CATEGORIES, BehaviorCategoryKey } from "../constants";
-import { timestampSchema } from "../utils";
+import { documentReferenceSchema, timestampSchema } from "../utils";
 
 export const trackingTypes = ["counter", "timer"] as const;
 
@@ -72,6 +72,7 @@ export const behaviorSchema = behaviorTemplateBase.extend({
   drawbacks: z.array(z.string()),
   goal: dailyGoalSchema.optional(),
   lastTrackedAt: timestampSchema.optional(),
+  tactics: z.array(documentReferenceSchema).optional(),
 }).superRefine((val, ctx) => {
   if (val.trackingType === "counter" && !val.trackingUnit) {
     ctx.addIssue({

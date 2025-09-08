@@ -123,6 +123,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         };
     }>]>>;
     lastTrackedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    tactics: z.ZodOptional<z.ZodArray<z.ZodType<import("../utils").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../utils").DocumentReferenceLike<unknown>>, "many">>;
 }, "strip", z.ZodTypeAny, {
     trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -154,6 +155,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         };
     } | undefined;
     lastTrackedAt?: import("../types").Timestamp | undefined;
+    tactics?: import("../utils").DocumentReferenceLike<unknown>[] | undefined;
 }, {
     trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -185,6 +187,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         };
     } | undefined;
     lastTrackedAt?: import("../types").Timestamp | undefined;
+    tactics?: import("../utils").DocumentReferenceLike<unknown>[] | undefined;
 }>, {
     trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -216,6 +219,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         };
     } | undefined;
     lastTrackedAt?: import("../types").Timestamp | undefined;
+    tactics?: import("../utils").DocumentReferenceLike<unknown>[] | undefined;
 }, {
     trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -247,6 +251,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         };
     } | undefined;
     lastTrackedAt?: import("../types").Timestamp | undefined;
+    tactics?: import("../utils").DocumentReferenceLike<unknown>[] | undefined;
 }>;
 export type TrackingType = (typeof trackingTypes)[number];
 export type Behavior = z.infer<typeof behaviorSchema>;

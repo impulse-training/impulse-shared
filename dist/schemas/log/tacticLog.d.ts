@@ -1132,8 +1132,116 @@ export declare const tacticLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
             }>]>, "many">;
             tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-            indicated: z.ZodOptional<z.ZodString>;
-            contraindicated: z.ZodOptional<z.ZodString>;
+            indications: z.ZodOptional<z.ZodObject<{
+                questionResponses: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                    questionId: z.ZodString;
+                    questionPrompt: z.ZodString;
+                    responseSubstrings: z.ZodArray<z.ZodString, "many">;
+                    weight: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    questionId: string;
+                    questionPrompt: string;
+                    responseSubstrings: string[];
+                    weight: number;
+                }, {
+                    questionId: string;
+                    questionPrompt: string;
+                    responseSubstrings: string[];
+                    weight: number;
+                }>, "many">>;
+                behaviors: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                    behaviorId: z.ZodString;
+                    behaviorName: z.ZodString;
+                    weight: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    behaviorId: string;
+                    behaviorName: string;
+                    weight: number;
+                }, {
+                    behaviorId: string;
+                    behaviorName: string;
+                    weight: number;
+                }>, "many">>;
+            }, "strip", z.ZodTypeAny, {
+                questionResponses?: {
+                    questionId: string;
+                    questionPrompt: string;
+                    responseSubstrings: string[];
+                    weight: number;
+                }[] | undefined;
+                behaviors?: {
+                    behaviorId: string;
+                    behaviorName: string;
+                    weight: number;
+                }[] | undefined;
+            }, {
+                questionResponses?: {
+                    questionId: string;
+                    questionPrompt: string;
+                    responseSubstrings: string[];
+                    weight: number;
+                }[] | undefined;
+                behaviors?: {
+                    behaviorId: string;
+                    behaviorName: string;
+                    weight: number;
+                }[] | undefined;
+            }>>;
+            contraindications: z.ZodOptional<z.ZodObject<{
+                questionResponses: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                    questionId: z.ZodString;
+                    questionPrompt: z.ZodString;
+                    responseSubstrings: z.ZodArray<z.ZodString, "many">;
+                    weight: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    questionId: string;
+                    questionPrompt: string;
+                    responseSubstrings: string[];
+                    weight: number;
+                }, {
+                    questionId: string;
+                    questionPrompt: string;
+                    responseSubstrings: string[];
+                    weight: number;
+                }>, "many">>;
+                behaviors: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                    behaviorId: z.ZodString;
+                    behaviorName: z.ZodString;
+                    weight: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    behaviorId: string;
+                    behaviorName: string;
+                    weight: number;
+                }, {
+                    behaviorId: string;
+                    behaviorName: string;
+                    weight: number;
+                }>, "many">>;
+            }, "strip", z.ZodTypeAny, {
+                questionResponses?: {
+                    questionId: string;
+                    questionPrompt: string;
+                    responseSubstrings: string[];
+                    weight: number;
+                }[] | undefined;
+                behaviors?: {
+                    behaviorId: string;
+                    behaviorName: string;
+                    weight: number;
+                }[] | undefined;
+            }, {
+                questionResponses?: {
+                    questionId: string;
+                    questionPrompt: string;
+                    responseSubstrings: string[];
+                    weight: number;
+                }[] | undefined;
+                behaviors?: {
+                    behaviorId: string;
+                    behaviorName: string;
+                    weight: number;
+                }[] | undefined;
+            }>>;
             effectiveness: z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>;
             timeToComplete: z.ZodOptional<z.ZodEnum<["quick", "medium", "long"]>>;
             aiConfiguration: z.ZodOptional<z.ZodObject<{
@@ -1361,8 +1469,32 @@ export declare const tacticLogSchema: z.ZodObject<{
             tags?: string[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
-            indicated?: string | undefined;
-            contraindicated?: string | undefined;
+            indications?: {
+                questionResponses?: {
+                    questionId: string;
+                    questionPrompt: string;
+                    responseSubstrings: string[];
+                    weight: number;
+                }[] | undefined;
+                behaviors?: {
+                    behaviorId: string;
+                    behaviorName: string;
+                    weight: number;
+                }[] | undefined;
+            } | undefined;
+            contraindications?: {
+                questionResponses?: {
+                    questionId: string;
+                    questionPrompt: string;
+                    responseSubstrings: string[];
+                    weight: number;
+                }[] | undefined;
+                behaviors?: {
+                    behaviorId: string;
+                    behaviorName: string;
+                    weight: number;
+                }[] | undefined;
+            } | undefined;
             effectiveness?: "low" | "medium" | "high" | undefined;
             timeToComplete?: "medium" | "quick" | "long" | undefined;
             aiConfiguration?: {
@@ -1580,8 +1712,32 @@ export declare const tacticLogSchema: z.ZodObject<{
             tags?: string[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
-            indicated?: string | undefined;
-            contraindicated?: string | undefined;
+            indications?: {
+                questionResponses?: {
+                    questionId: string;
+                    questionPrompt: string;
+                    responseSubstrings: string[];
+                    weight: number;
+                }[] | undefined;
+                behaviors?: {
+                    behaviorId: string;
+                    behaviorName: string;
+                    weight: number;
+                }[] | undefined;
+            } | undefined;
+            contraindications?: {
+                questionResponses?: {
+                    questionId: string;
+                    questionPrompt: string;
+                    responseSubstrings: string[];
+                    weight: number;
+                }[] | undefined;
+                behaviors?: {
+                    behaviorId: string;
+                    behaviorName: string;
+                    weight: number;
+                }[] | undefined;
+            } | undefined;
             effectiveness?: "low" | "medium" | "high" | undefined;
             timeToComplete?: "medium" | "quick" | "long" | undefined;
             aiConfiguration?: {
@@ -1805,8 +1961,32 @@ export declare const tacticLogSchema: z.ZodObject<{
             tags?: string[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
-            indicated?: string | undefined;
-            contraindicated?: string | undefined;
+            indications?: {
+                questionResponses?: {
+                    questionId: string;
+                    questionPrompt: string;
+                    responseSubstrings: string[];
+                    weight: number;
+                }[] | undefined;
+                behaviors?: {
+                    behaviorId: string;
+                    behaviorName: string;
+                    weight: number;
+                }[] | undefined;
+            } | undefined;
+            contraindications?: {
+                questionResponses?: {
+                    questionId: string;
+                    questionPrompt: string;
+                    responseSubstrings: string[];
+                    weight: number;
+                }[] | undefined;
+                behaviors?: {
+                    behaviorId: string;
+                    behaviorName: string;
+                    weight: number;
+                }[] | undefined;
+            } | undefined;
             effectiveness?: "low" | "medium" | "high" | undefined;
             timeToComplete?: "medium" | "quick" | "long" | undefined;
             aiConfiguration?: {
@@ -2030,8 +2210,32 @@ export declare const tacticLogSchema: z.ZodObject<{
             tags?: string[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
-            indicated?: string | undefined;
-            contraindicated?: string | undefined;
+            indications?: {
+                questionResponses?: {
+                    questionId: string;
+                    questionPrompt: string;
+                    responseSubstrings: string[];
+                    weight: number;
+                }[] | undefined;
+                behaviors?: {
+                    behaviorId: string;
+                    behaviorName: string;
+                    weight: number;
+                }[] | undefined;
+            } | undefined;
+            contraindications?: {
+                questionResponses?: {
+                    questionId: string;
+                    questionPrompt: string;
+                    responseSubstrings: string[];
+                    weight: number;
+                }[] | undefined;
+                behaviors?: {
+                    behaviorId: string;
+                    behaviorName: string;
+                    weight: number;
+                }[] | undefined;
+            } | undefined;
             effectiveness?: "low" | "medium" | "high" | undefined;
             timeToComplete?: "medium" | "quick" | "long" | undefined;
             aiConfiguration?: {
@@ -2262,8 +2466,32 @@ export declare const tacticLogSchema: z.ZodObject<{
             tags?: string[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
-            indicated?: string | undefined;
-            contraindicated?: string | undefined;
+            indications?: {
+                questionResponses?: {
+                    questionId: string;
+                    questionPrompt: string;
+                    responseSubstrings: string[];
+                    weight: number;
+                }[] | undefined;
+                behaviors?: {
+                    behaviorId: string;
+                    behaviorName: string;
+                    weight: number;
+                }[] | undefined;
+            } | undefined;
+            contraindications?: {
+                questionResponses?: {
+                    questionId: string;
+                    questionPrompt: string;
+                    responseSubstrings: string[];
+                    weight: number;
+                }[] | undefined;
+                behaviors?: {
+                    behaviorId: string;
+                    behaviorName: string;
+                    weight: number;
+                }[] | undefined;
+            } | undefined;
             effectiveness?: "low" | "medium" | "high" | undefined;
             timeToComplete?: "medium" | "quick" | "long" | undefined;
             aiConfiguration?: {
@@ -2502,8 +2730,32 @@ export declare const tacticLogSchema: z.ZodObject<{
             tags?: string[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
-            indicated?: string | undefined;
-            contraindicated?: string | undefined;
+            indications?: {
+                questionResponses?: {
+                    questionId: string;
+                    questionPrompt: string;
+                    responseSubstrings: string[];
+                    weight: number;
+                }[] | undefined;
+                behaviors?: {
+                    behaviorId: string;
+                    behaviorName: string;
+                    weight: number;
+                }[] | undefined;
+            } | undefined;
+            contraindications?: {
+                questionResponses?: {
+                    questionId: string;
+                    questionPrompt: string;
+                    responseSubstrings: string[];
+                    weight: number;
+                }[] | undefined;
+                behaviors?: {
+                    behaviorId: string;
+                    behaviorName: string;
+                    weight: number;
+                }[] | undefined;
+            } | undefined;
             effectiveness?: "low" | "medium" | "high" | undefined;
             timeToComplete?: "medium" | "quick" | "long" | undefined;
             aiConfiguration?: {

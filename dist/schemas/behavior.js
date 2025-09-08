@@ -62,6 +62,7 @@ exports.behaviorSchema = behaviorTemplateBase.extend({
     drawbacks: zod_1.z.array(zod_1.z.string()),
     goal: dailyGoalSchema.optional(),
     lastTrackedAt: utils_1.timestampSchema.optional(),
+    tactics: zod_1.z.array(utils_1.documentReferenceSchema).optional(),
 }).superRefine((val, ctx) => {
     if (val.trackingType === "counter" && !val.trackingUnit) {
         ctx.addIssue({
