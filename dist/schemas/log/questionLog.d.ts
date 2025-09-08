@@ -52,12 +52,51 @@ export declare const questionLogSchema: z.ZodObject<{
             isPinned: z.ZodOptional<z.ZodBoolean>;
             responseType: z.ZodLiteral<"text">;
             scope: z.ZodOptional<z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>>;
+        }, "strip", z.ZodTypeAny, {
+            text: string;
+            isTemplate: boolean;
+            responseType: "text";
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
+            behaviorIds?: string[] | undefined;
+            lastAskedAt?: import("../../types").Timestamp | undefined;
+            lastAnsweredAt?: import("../../types").Timestamp | undefined;
+            numberOfAnswers?: number | undefined;
+            isPinned?: boolean | undefined;
+            scope?: "impulse" | "setback" | "success" | "recap" | undefined;
+        }, {
+            text: string;
+            responseType: "text";
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
+            isTemplate?: boolean | undefined;
+            behaviorIds?: string[] | undefined;
+            lastAskedAt?: import("../../types").Timestamp | undefined;
+            lastAnsweredAt?: import("../../types").Timestamp | undefined;
+            numberOfAnswers?: number | undefined;
+            isPinned?: boolean | undefined;
+            scope?: "impulse" | "setback" | "success" | "recap" | undefined;
+        }>, z.ZodObject<{
+            id: z.ZodOptional<z.ZodString>;
+            createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            text: z.ZodString;
+            behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+            lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            numberOfAnswers: z.ZodOptional<z.ZodNumber>;
+            isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+            isPinned: z.ZodOptional<z.ZodBoolean>;
+            responseType: z.ZodLiteral<"shortText">;
+            scope: z.ZodOptional<z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>>;
         } & {
             suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         }, "strip", z.ZodTypeAny, {
             text: string;
             isTemplate: boolean;
-            responseType: "text";
+            responseType: "shortText";
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
@@ -70,7 +109,7 @@ export declare const questionLogSchema: z.ZodObject<{
             scope?: "impulse" | "setback" | "success" | "recap" | undefined;
         }, {
             text: string;
-            responseType: "text";
+            responseType: "shortText";
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
@@ -160,6 +199,20 @@ export declare const questionLogSchema: z.ZodObject<{
     }, "strip", z.ZodTypeAny, {
         question: {
             text: string;
+            isTemplate: boolean;
+            responseType: "shortText";
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
+            suggestedResponses?: string[] | undefined;
+            behaviorIds?: string[] | undefined;
+            lastAskedAt?: import("../../types").Timestamp | undefined;
+            lastAnsweredAt?: import("../../types").Timestamp | undefined;
+            numberOfAnswers?: number | undefined;
+            isPinned?: boolean | undefined;
+            scope?: "impulse" | "setback" | "success" | "recap" | undefined;
+        } | {
+            text: string;
             sliderConfig: {
                 minLabel?: string | undefined;
                 maxLabel?: string | undefined;
@@ -182,7 +235,6 @@ export declare const questionLogSchema: z.ZodObject<{
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
-            suggestedResponses?: string[] | undefined;
             behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
@@ -199,6 +251,20 @@ export declare const questionLogSchema: z.ZodObject<{
         } | undefined;
     }, {
         question: {
+            text: string;
+            responseType: "shortText";
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
+            suggestedResponses?: string[] | undefined;
+            isTemplate?: boolean | undefined;
+            behaviorIds?: string[] | undefined;
+            lastAskedAt?: import("../../types").Timestamp | undefined;
+            lastAnsweredAt?: import("../../types").Timestamp | undefined;
+            numberOfAnswers?: number | undefined;
+            isPinned?: boolean | undefined;
+            scope?: "impulse" | "setback" | "success" | "recap" | undefined;
+        } | {
             text: string;
             sliderConfig: {
                 minLabel?: string | undefined;
@@ -221,7 +287,6 @@ export declare const questionLogSchema: z.ZodObject<{
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
-            suggestedResponses?: string[] | undefined;
             isTemplate?: boolean | undefined;
             behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -247,6 +312,20 @@ export declare const questionLogSchema: z.ZodObject<{
     data: {
         question: {
             text: string;
+            isTemplate: boolean;
+            responseType: "shortText";
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
+            suggestedResponses?: string[] | undefined;
+            behaviorIds?: string[] | undefined;
+            lastAskedAt?: import("../../types").Timestamp | undefined;
+            lastAnsweredAt?: import("../../types").Timestamp | undefined;
+            numberOfAnswers?: number | undefined;
+            isPinned?: boolean | undefined;
+            scope?: "impulse" | "setback" | "success" | "recap" | undefined;
+        } | {
+            text: string;
             sliderConfig: {
                 minLabel?: string | undefined;
                 maxLabel?: string | undefined;
@@ -269,7 +348,6 @@ export declare const questionLogSchema: z.ZodObject<{
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
-            suggestedResponses?: string[] | undefined;
             behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
@@ -302,6 +380,20 @@ export declare const questionLogSchema: z.ZodObject<{
     data: {
         question: {
             text: string;
+            responseType: "shortText";
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
+            suggestedResponses?: string[] | undefined;
+            isTemplate?: boolean | undefined;
+            behaviorIds?: string[] | undefined;
+            lastAskedAt?: import("../../types").Timestamp | undefined;
+            lastAnsweredAt?: import("../../types").Timestamp | undefined;
+            numberOfAnswers?: number | undefined;
+            isPinned?: boolean | undefined;
+            scope?: "impulse" | "setback" | "success" | "recap" | undefined;
+        } | {
+            text: string;
             sliderConfig: {
                 minLabel?: string | undefined;
                 maxLabel?: string | undefined;
@@ -323,7 +415,6 @@ export declare const questionLogSchema: z.ZodObject<{
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
-            suggestedResponses?: string[] | undefined;
             isTemplate?: boolean | undefined;
             behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
