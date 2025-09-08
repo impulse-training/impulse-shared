@@ -8,6 +8,7 @@ export * from "./shortText";
 export * from "./emotion";
 export * from "./slider1To10";
 export * from "./text";
+export * from "./responseSummary";
 
 // Response types for questions
 export const responseTypes = [
