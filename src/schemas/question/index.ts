@@ -1,9 +1,11 @@
 import { z } from "zod";
 import { ShortTextQuestion, shortTextQuestionSchema } from "./shortText";
+import { EmotionQuestion, emotionQuestionSchema } from "./emotion";
 import { Slider1To10Question, slider1To10QuestionSchema } from "./slider1To10";
 import { TextQuestion, textQuestionSchema } from "./text";
 
 export * from "./shortText";
+export * from "./emotion";
 export * from "./slider1To10";
 export * from "./text";
 
@@ -11,6 +13,7 @@ export * from "./text";
 export const responseTypes = [
   "text",
   "shortText",
+  "emotion",
   "slider1To10",
   "recap",
 ] as const;
@@ -19,17 +22,23 @@ export type ResponseType = (typeof responseTypes)[number];
 export const responseTypeSchema = z.enum(responseTypes);
 
 // Union type for all question types
-export type Question = TextQuestion | Slider1To10Question | ShortTextQuestion;
+export type Question =
+  | TextQuestion
+  | Slider1To10Question
+  | ShortTextQuestion
+  | EmotionQuestion;
 
 // Utility to dynamically select the correct schema based on the Question type
 export const QuestionSchemas = {
   text: textQuestionSchema,
+  emotion: emotionQuestionSchema,
   shortText: shortTextQuestionSchema,
   slider1To10: slider1To10QuestionSchema,
 } as const;
 
 export const questionSchema = z.discriminatedUnion("responseType", [
   QuestionSchemas.text,
+  QuestionSchemas.emotion,
   QuestionSchemas.shortText,
   QuestionSchemas.slider1To10,
 ]);
@@ -47,6 +56,13 @@ export const questionIsTextQuestion = (
 export const isValidTextQuestion = (value: unknown): value is TextQuestion =>
   textQuestionSchema.safeParse(value).success;
 
+export const questionIsEmotionQuestion = (
+  value: Omit<Question, "id">
+): value is EmotionQuestion => value.responseType === "emotion";
+
+export const isValidEmotionQuestion = (
+  value: unknown
+): value is EmotionQuestion => emotionQuestionSchema.safeParse(value).success;
 export const questionIsShortTextQuestion = (
   value: Omit<Question, "id">
 ): value is ShortTextQuestion => value.responseType === "shortText";

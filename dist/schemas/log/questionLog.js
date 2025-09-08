@@ -5,7 +5,7 @@ const zod_1 = require("zod");
 const question_1 = require("../question");
 const base_1 = require("./base");
 const responseSchema = zod_1.z.object({
-    responseType: zod_1.z.enum(["text", "slider1To10", "recap"]),
+    responseType: zod_1.z.enum(["text", "shortText", "emotion", "slider1To10", "recap"]),
     value: zod_1.z.any(),
     formattedValue: zod_1.z.string(),
     color: zod_1.z.string().optional(),

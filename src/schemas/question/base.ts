@@ -15,6 +15,6 @@ export function questionBaseSchema<T extends string>(type: T) {
     isTemplate: z.boolean().optional().default(false),
     isPinned: z.boolean().optional(),
     responseType: z.literal(type),
-    scope: questionScopeSchema.optional(),
+    scope: questionScopeSchema,
   });
 }
