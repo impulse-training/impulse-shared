@@ -26,3 +26,4 @@ __exportStar(require("./sumBehaviorDataTotals"), exports);
 __exportStar(require("./timestampSchema"), exports);
 __exportStar(require("./validation"), exports);
 __exportStar(require("./withId"), exports);
+__exportStar(require("./formatBehaviorGoal"), exports);

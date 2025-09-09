@@ -10,3 +10,4 @@ export * from "./sumBehaviorDataTotals";
 export * from "./timestampSchema";
 export * from "./validation";
 export * from "./withId";
+export * from "./formatBehaviorGoal";
