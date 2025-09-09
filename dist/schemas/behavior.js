@@ -4,35 +4,11 @@ exports.isBehavior = exports.behaviorSchema = exports.behaviorTemplateSchema = e
 const zod_1 = require("zod");
 const constants_1 = require("../constants");
 const utils_1 = require("../utils");
+const goal_1 = require("./goal");
 exports.trackingTypes = ["counter", "timer"];
 // Use the category keys from our constants
 const categoryKeys = Object.keys(constants_1.BEHAVIOR_CATEGORIES);
 exports.categorySchema = zod_1.z.custom((val) => categoryKeys.includes(val));
-// Daily goals schema - supports eliminate or reduce with targets
-const dailyGoalSchema = zod_1.z.discriminatedUnion("type", [
-    // Eliminate - goal is to have 0 of this behavior
-    zod_1.z.object({
-        type: zod_1.z.literal("eliminate"),
-    }),
-    // Reduce with every day target
-    zod_1.z.object({
-        type: zod_1.z.literal("reduceEveryDay"),
-        target: zod_1.z.number(),
-    }),
-    // Reduce with individual day targets
-    zod_1.z.object({
-        type: zod_1.z.literal("reduceIndividualDays"),
-        dailyTargets: zod_1.z.object({
-            0: zod_1.z.number(), // Sunday
-            1: zod_1.z.number(), // Monday
-            2: zod_1.z.number(), // Tuesday
-            3: zod_1.z.number(), // Wednesday
-            4: zod_1.z.number(), // Thursday
-            5: zod_1.z.number(), // Friday
-            6: zod_1.z.number(), // Saturday
-        }),
-    }),
-]);
 // These are foundational attributes, and correspond to documents in a top-level behaviorTemplates
 // collection. We then extend that schema to be the full behavior schema.
 const behaviorTemplateBase = zod_1.z.object({
@@ -54,16 +30,18 @@ exports.behaviorTemplateSchema = behaviorTemplateBase.superRefine((val, ctx) => 
     }
 });
 // These are stored at the user-level, as in, users/$userId/behaviors/$behaviorId
-exports.behaviorSchema = behaviorTemplateBase.extend({
+exports.behaviorSchema = behaviorTemplateBase
+    .extend({
     id: zod_1.z.string().optional(),
     description: zod_1.z.string(),
     ordinal: zod_1.z.number().default(0),
     benefits: zod_1.z.array(zod_1.z.string()),
     drawbacks: zod_1.z.array(zod_1.z.string()),
-    goal: dailyGoalSchema.optional(),
+    goal: goal_1.goalSchema.optional(),
     lastTrackedAt: utils_1.timestampSchema.optional(),
     tactics: zod_1.z.array(utils_1.documentReferenceSchema).optional(),
-}).superRefine((val, ctx) => {
+})
+    .superRefine((val, ctx) => {
     if (val.trackingType === "counter" && !val.trackingUnit) {
         ctx.addIssue({
             code: zod_1.z.ZodIssueCode.custom,
