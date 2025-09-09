@@ -1,16 +1,12 @@
 import { z } from "zod";
-import {
-  BehaviorInsightExperiment,
-  behaviorInsightExperiment,
-} from "./behaviorInsightExperiment";
-import { GameplanExperiment, gameplanExperiment } from "./gameplanExperiment";
+import { documentReferenceSchema, timestampSchema } from "../../utils";
 
-export * from "./behaviorInsightExperiment";
-export * from "./gameplanExperiment";
+export const experimentSchema = z.object({
+  startedAt: timestampSchema.optional(),
+  hypothesis: z.string(),
+  nextRequirement: z.string(),
+  behavior: documentReferenceSchema,
+  question: documentReferenceSchema,
+});
 
-export const experimentSchema = z.discriminatedUnion("type", [
-  behaviorInsightExperiment,
-  gameplanExperiment,
-]);
-
-export type ExperimentValue = BehaviorInsightExperiment | GameplanExperiment;
+export type Experiment = z.infer<typeof experimentSchema>;

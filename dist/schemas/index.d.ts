@@ -13,6 +13,7 @@ export * from "./log";
 export * from "./memory";
 export * from "./notification";
 export * from "./plan";
+export * from "./experiment";
 export * from "./question";
 export * from "./session";
 export * from "./strategy";
