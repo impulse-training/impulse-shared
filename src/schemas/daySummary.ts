@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { objectOf, optionalObjectOf, timestampSchema } from "../utils";
-import { behaviorTrackingDataSchema } from "./log";
 import { behaviorSchema } from "./behavior";
+import { behaviorTrackingDataSchema } from "./log";
 
 const outcomeEnum = z.enum(["success", "partial", "setback"]);
 
@@ -14,18 +14,37 @@ export const daySummarySchema = z.object({
   behaviorDataTotalByBehaviorId: objectOf(behaviorTrackingDataSchema),
   behaviorsById: objectOf(behaviorSchema).optional(),
   trackingLogsById: z.record(z.string(), z.any()).optional(),
-  // TODO: tighten once tactic schemas are finalized
   tacticsUsed: z.array(z.any()).default([]),
   summaryText: z.string().default(""),
-  // Relaxed until supportGroup schema is migrated to Zod
   supportGroupPermissionsById: optionalObjectOf(z.any()),
   sharedWithUserIds: z.array(z.string()),
+  // Per-behavior goal comparison for the day
+  goalComparisonByBehaviorId: z
+    .record(
+      z.string(),
+      z.object({
+        goalLabel: z.string(),
+        unit: z.string(),
+        measured: z.number(),
+        targetValue: z.number().optional(),
+        status: z.enum([
+          "MET",
+          "NOT_MET_FAIL",
+          "UNSPECIFIED_FOR_DAY",
+          "NO_GOAL",
+        ]),
+      })
+    )
+    .optional(),
   checkInCompletedAt: timestampSchema.optional(),
   createdAt: timestampSchema.optional(),
   updatedAt: timestampSchema.optional(),
 });
 
 export type DaySummary = z.infer<typeof daySummarySchema>;
+export type GoalComparisonEntry = NonNullable<
+  DaySummary["goalComparisonByBehaviorId"]
+>[string];
 
 export function isValidDaySummary(value: unknown): value is DaySummary {
   return daySummarySchema.safeParse(value).success;

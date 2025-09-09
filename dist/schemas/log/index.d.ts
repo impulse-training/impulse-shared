@@ -6117,8 +6117,36 @@ export declare const logSchemas: {
         type: z.ZodLiteral<"day_summary">;
         isDisplayable: z.ZodLiteral<true>;
         data: z.ZodObject<{
-            targetDayDateString: z.ZodString;
-            behaviorDataTotalByBehaviorId: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+            id: z.ZodOptional<z.ZodString>;
+            dateString: z.ZodString;
+            userId: z.ZodString;
+            impulseThreadOutcomesById: z.ZodRecord<z.ZodString, z.ZodEnum<["success", "partial", "setback"]>>;
+            outcome: z.ZodOptional<z.ZodEnum<["success", "partial", "setback"]>>;
+            behaviorDataTotalByBehaviorId: z.ZodRecord<z.ZodString, z.ZodObject<{
+                behaviorId: z.ZodString;
+                behaviorName: z.ZodString;
+                behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
+                trackingType: z.ZodEnum<["counter", "timer"]>;
+                category: z.ZodType<"helpful" | "mixed" | "unhelpful" | "unsure", z.ZodTypeDef, "helpful" | "mixed" | "unhelpful" | "unsure">;
+                value: z.ZodNumber;
+                formattedValue: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                value: number;
+                behaviorId: string;
+                behaviorName: string;
+                trackingType: "counter" | "timer";
+                category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                formattedValue: string;
+                behaviorTrackingUnit?: string | undefined;
+            }, {
+                value: number;
+                behaviorId: string;
+                behaviorName: string;
+                trackingType: "counter" | "timer";
+                category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                formattedValue: string;
+                behaviorTrackingUnit?: string | undefined;
+            }>>;
             behaviorsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodEffects<z.ZodObject<{
                 name: z.ZodString;
                 category: z.ZodType<"helpful" | "mixed" | "unhelpful" | "unsure", z.ZodTypeDef, "helpful" | "mixed" | "unhelpful" | "unsure">;
@@ -6330,9 +6358,52 @@ export declare const logSchemas: {
                 tactics?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
             }>>>;
             trackingLogsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+            tacticsUsed: z.ZodDefault<z.ZodArray<z.ZodAny, "many">>;
+            summaryText: z.ZodDefault<z.ZodString>;
+            supportGroupPermissionsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+            sharedWithUserIds: z.ZodArray<z.ZodString, "many">;
+            goalComparisonByBehaviorId: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodObject<{
+                goalLabel: z.ZodString;
+                unit: z.ZodString;
+                measured: z.ZodNumber;
+                targetValue: z.ZodOptional<z.ZodNumber>;
+                status: z.ZodEnum<["MET", "NOT_MET_FAIL", "UNSPECIFIED_FOR_DAY", "NO_GOAL"]>;
+            }, "strip", z.ZodTypeAny, {
+                status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY" | "NO_GOAL";
+                goalLabel: string;
+                unit: string;
+                measured: number;
+                targetValue?: number | undefined;
+            }, {
+                status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY" | "NO_GOAL";
+                goalLabel: string;
+                unit: string;
+                measured: number;
+                targetValue?: number | undefined;
+            }>>>;
+            checkInCompletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         }, "strip", z.ZodTypeAny, {
-            targetDayDateString: string;
-            behaviorDataTotalByBehaviorId?: Record<string, any> | undefined;
+            userId: string;
+            dateString: string;
+            impulseThreadOutcomesById: Record<string, "setback" | "success" | "partial">;
+            behaviorDataTotalByBehaviorId: Record<string, {
+                value: number;
+                behaviorId: string;
+                behaviorName: string;
+                trackingType: "counter" | "timer";
+                category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                formattedValue: string;
+                behaviorTrackingUnit?: string | undefined;
+            }>;
+            tacticsUsed: any[];
+            summaryText: string;
+            sharedWithUserIds: string[];
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
+            outcome?: "setback" | "success" | "partial" | undefined;
             behaviorsById?: Record<string, {
                 trackingType: "counter" | "timer";
                 category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -6367,9 +6438,33 @@ export declare const logSchemas: {
                 tactics?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
             }> | undefined;
             trackingLogsById?: Record<string, any> | undefined;
+            supportGroupPermissionsById?: Record<string, any> | undefined;
+            goalComparisonByBehaviorId?: Record<string, {
+                status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY" | "NO_GOAL";
+                goalLabel: string;
+                unit: string;
+                measured: number;
+                targetValue?: number | undefined;
+            }> | undefined;
+            checkInCompletedAt?: import("../../types").Timestamp | undefined;
         }, {
-            targetDayDateString: string;
-            behaviorDataTotalByBehaviorId?: Record<string, any> | undefined;
+            userId: string;
+            dateString: string;
+            impulseThreadOutcomesById: Record<string, "setback" | "success" | "partial">;
+            behaviorDataTotalByBehaviorId: Record<string, {
+                value: number;
+                behaviorId: string;
+                behaviorName: string;
+                trackingType: "counter" | "timer";
+                category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                formattedValue: string;
+                behaviorTrackingUnit?: string | undefined;
+            }>;
+            sharedWithUserIds: string[];
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
+            outcome?: "setback" | "success" | "partial" | undefined;
             behaviorsById?: Record<string, {
                 trackingType: "counter" | "timer";
                 category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -6404,6 +6499,17 @@ export declare const logSchemas: {
                 tactics?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
             }> | undefined;
             trackingLogsById?: Record<string, any> | undefined;
+            tacticsUsed?: any[] | undefined;
+            summaryText?: string | undefined;
+            supportGroupPermissionsById?: Record<string, any> | undefined;
+            goalComparisonByBehaviorId?: Record<string, {
+                status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY" | "NO_GOAL";
+                goalLabel: string;
+                unit: string;
+                measured: number;
+                targetValue?: number | undefined;
+            }> | undefined;
+            checkInCompletedAt?: import("../../types").Timestamp | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
         type: "day_summary";
@@ -6412,8 +6518,25 @@ export declare const logSchemas: {
         dateString: string;
         isDisplayable: true;
         data: {
-            targetDayDateString: string;
-            behaviorDataTotalByBehaviorId?: Record<string, any> | undefined;
+            userId: string;
+            dateString: string;
+            impulseThreadOutcomesById: Record<string, "setback" | "success" | "partial">;
+            behaviorDataTotalByBehaviorId: Record<string, {
+                value: number;
+                behaviorId: string;
+                behaviorName: string;
+                trackingType: "counter" | "timer";
+                category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                formattedValue: string;
+                behaviorTrackingUnit?: string | undefined;
+            }>;
+            tacticsUsed: any[];
+            summaryText: string;
+            sharedWithUserIds: string[];
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
+            outcome?: "setback" | "success" | "partial" | undefined;
             behaviorsById?: Record<string, {
                 trackingType: "counter" | "timer";
                 category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -6448,6 +6571,15 @@ export declare const logSchemas: {
                 tactics?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
             }> | undefined;
             trackingLogsById?: Record<string, any> | undefined;
+            supportGroupPermissionsById?: Record<string, any> | undefined;
+            goalComparisonByBehaviorId?: Record<string, {
+                status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY" | "NO_GOAL";
+                goalLabel: string;
+                unit: string;
+                measured: number;
+                targetValue?: number | undefined;
+            }> | undefined;
+            checkInCompletedAt?: import("../../types").Timestamp | undefined;
         };
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -6464,8 +6596,23 @@ export declare const logSchemas: {
         dateString: string;
         isDisplayable: true;
         data: {
-            targetDayDateString: string;
-            behaviorDataTotalByBehaviorId?: Record<string, any> | undefined;
+            userId: string;
+            dateString: string;
+            impulseThreadOutcomesById: Record<string, "setback" | "success" | "partial">;
+            behaviorDataTotalByBehaviorId: Record<string, {
+                value: number;
+                behaviorId: string;
+                behaviorName: string;
+                trackingType: "counter" | "timer";
+                category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                formattedValue: string;
+                behaviorTrackingUnit?: string | undefined;
+            }>;
+            sharedWithUserIds: string[];
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
+            outcome?: "setback" | "success" | "partial" | undefined;
             behaviorsById?: Record<string, {
                 trackingType: "counter" | "timer";
                 category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -6500,6 +6647,17 @@ export declare const logSchemas: {
                 tactics?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
             }> | undefined;
             trackingLogsById?: Record<string, any> | undefined;
+            tacticsUsed?: any[] | undefined;
+            summaryText?: string | undefined;
+            supportGroupPermissionsById?: Record<string, any> | undefined;
+            goalComparisonByBehaviorId?: Record<string, {
+                status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY" | "NO_GOAL";
+                goalLabel: string;
+                unit: string;
+                measured: number;
+                targetValue?: number | undefined;
+            }> | undefined;
+            checkInCompletedAt?: import("../../types").Timestamp | undefined;
         };
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -17705,8 +17863,36 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     type: z.ZodLiteral<"day_summary">;
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
-        targetDayDateString: z.ZodString;
-        behaviorDataTotalByBehaviorId: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+        id: z.ZodOptional<z.ZodString>;
+        dateString: z.ZodString;
+        userId: z.ZodString;
+        impulseThreadOutcomesById: z.ZodRecord<z.ZodString, z.ZodEnum<["success", "partial", "setback"]>>;
+        outcome: z.ZodOptional<z.ZodEnum<["success", "partial", "setback"]>>;
+        behaviorDataTotalByBehaviorId: z.ZodRecord<z.ZodString, z.ZodObject<{
+            behaviorId: z.ZodString;
+            behaviorName: z.ZodString;
+            behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
+            trackingType: z.ZodEnum<["counter", "timer"]>;
+            category: z.ZodType<"helpful" | "mixed" | "unhelpful" | "unsure", z.ZodTypeDef, "helpful" | "mixed" | "unhelpful" | "unsure">;
+            value: z.ZodNumber;
+            formattedValue: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
+            value: number;
+            behaviorId: string;
+            behaviorName: string;
+            trackingType: "counter" | "timer";
+            category: "helpful" | "mixed" | "unhelpful" | "unsure";
+            formattedValue: string;
+            behaviorTrackingUnit?: string | undefined;
+        }, {
+            value: number;
+            behaviorId: string;
+            behaviorName: string;
+            trackingType: "counter" | "timer";
+            category: "helpful" | "mixed" | "unhelpful" | "unsure";
+            formattedValue: string;
+            behaviorTrackingUnit?: string | undefined;
+        }>>;
         behaviorsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodEffects<z.ZodObject<{
             name: z.ZodString;
             category: z.ZodType<"helpful" | "mixed" | "unhelpful" | "unsure", z.ZodTypeDef, "helpful" | "mixed" | "unhelpful" | "unsure">;
@@ -17918,9 +18104,52 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             tactics?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
         }>>>;
         trackingLogsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+        tacticsUsed: z.ZodDefault<z.ZodArray<z.ZodAny, "many">>;
+        summaryText: z.ZodDefault<z.ZodString>;
+        supportGroupPermissionsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+        sharedWithUserIds: z.ZodArray<z.ZodString, "many">;
+        goalComparisonByBehaviorId: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodObject<{
+            goalLabel: z.ZodString;
+            unit: z.ZodString;
+            measured: z.ZodNumber;
+            targetValue: z.ZodOptional<z.ZodNumber>;
+            status: z.ZodEnum<["MET", "NOT_MET_FAIL", "UNSPECIFIED_FOR_DAY", "NO_GOAL"]>;
+        }, "strip", z.ZodTypeAny, {
+            status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY" | "NO_GOAL";
+            goalLabel: string;
+            unit: string;
+            measured: number;
+            targetValue?: number | undefined;
+        }, {
+            status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY" | "NO_GOAL";
+            goalLabel: string;
+            unit: string;
+            measured: number;
+            targetValue?: number | undefined;
+        }>>>;
+        checkInCompletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
-        targetDayDateString: string;
-        behaviorDataTotalByBehaviorId?: Record<string, any> | undefined;
+        userId: string;
+        dateString: string;
+        impulseThreadOutcomesById: Record<string, "setback" | "success" | "partial">;
+        behaviorDataTotalByBehaviorId: Record<string, {
+            value: number;
+            behaviorId: string;
+            behaviorName: string;
+            trackingType: "counter" | "timer";
+            category: "helpful" | "mixed" | "unhelpful" | "unsure";
+            formattedValue: string;
+            behaviorTrackingUnit?: string | undefined;
+        }>;
+        tacticsUsed: any[];
+        summaryText: string;
+        sharedWithUserIds: string[];
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
+        outcome?: "setback" | "success" | "partial" | undefined;
         behaviorsById?: Record<string, {
             trackingType: "counter" | "timer";
             category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -17955,9 +18184,33 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             tactics?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
         }> | undefined;
         trackingLogsById?: Record<string, any> | undefined;
+        supportGroupPermissionsById?: Record<string, any> | undefined;
+        goalComparisonByBehaviorId?: Record<string, {
+            status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY" | "NO_GOAL";
+            goalLabel: string;
+            unit: string;
+            measured: number;
+            targetValue?: number | undefined;
+        }> | undefined;
+        checkInCompletedAt?: import("../../types").Timestamp | undefined;
     }, {
-        targetDayDateString: string;
-        behaviorDataTotalByBehaviorId?: Record<string, any> | undefined;
+        userId: string;
+        dateString: string;
+        impulseThreadOutcomesById: Record<string, "setback" | "success" | "partial">;
+        behaviorDataTotalByBehaviorId: Record<string, {
+            value: number;
+            behaviorId: string;
+            behaviorName: string;
+            trackingType: "counter" | "timer";
+            category: "helpful" | "mixed" | "unhelpful" | "unsure";
+            formattedValue: string;
+            behaviorTrackingUnit?: string | undefined;
+        }>;
+        sharedWithUserIds: string[];
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
+        outcome?: "setback" | "success" | "partial" | undefined;
         behaviorsById?: Record<string, {
             trackingType: "counter" | "timer";
             category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -17992,6 +18245,17 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             tactics?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
         }> | undefined;
         trackingLogsById?: Record<string, any> | undefined;
+        tacticsUsed?: any[] | undefined;
+        summaryText?: string | undefined;
+        supportGroupPermissionsById?: Record<string, any> | undefined;
+        goalComparisonByBehaviorId?: Record<string, {
+            status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY" | "NO_GOAL";
+            goalLabel: string;
+            unit: string;
+            measured: number;
+            targetValue?: number | undefined;
+        }> | undefined;
+        checkInCompletedAt?: import("../../types").Timestamp | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     type: "day_summary";
@@ -18000,8 +18264,25 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dateString: string;
     isDisplayable: true;
     data: {
-        targetDayDateString: string;
-        behaviorDataTotalByBehaviorId?: Record<string, any> | undefined;
+        userId: string;
+        dateString: string;
+        impulseThreadOutcomesById: Record<string, "setback" | "success" | "partial">;
+        behaviorDataTotalByBehaviorId: Record<string, {
+            value: number;
+            behaviorId: string;
+            behaviorName: string;
+            trackingType: "counter" | "timer";
+            category: "helpful" | "mixed" | "unhelpful" | "unsure";
+            formattedValue: string;
+            behaviorTrackingUnit?: string | undefined;
+        }>;
+        tacticsUsed: any[];
+        summaryText: string;
+        sharedWithUserIds: string[];
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
+        outcome?: "setback" | "success" | "partial" | undefined;
         behaviorsById?: Record<string, {
             trackingType: "counter" | "timer";
             category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -18036,6 +18317,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             tactics?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
         }> | undefined;
         trackingLogsById?: Record<string, any> | undefined;
+        supportGroupPermissionsById?: Record<string, any> | undefined;
+        goalComparisonByBehaviorId?: Record<string, {
+            status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY" | "NO_GOAL";
+            goalLabel: string;
+            unit: string;
+            measured: number;
+            targetValue?: number | undefined;
+        }> | undefined;
+        checkInCompletedAt?: import("../../types").Timestamp | undefined;
     };
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
@@ -18052,8 +18342,23 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dateString: string;
     isDisplayable: true;
     data: {
-        targetDayDateString: string;
-        behaviorDataTotalByBehaviorId?: Record<string, any> | undefined;
+        userId: string;
+        dateString: string;
+        impulseThreadOutcomesById: Record<string, "setback" | "success" | "partial">;
+        behaviorDataTotalByBehaviorId: Record<string, {
+            value: number;
+            behaviorId: string;
+            behaviorName: string;
+            trackingType: "counter" | "timer";
+            category: "helpful" | "mixed" | "unhelpful" | "unsure";
+            formattedValue: string;
+            behaviorTrackingUnit?: string | undefined;
+        }>;
+        sharedWithUserIds: string[];
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        id?: string | undefined;
+        outcome?: "setback" | "success" | "partial" | undefined;
         behaviorsById?: Record<string, {
             trackingType: "counter" | "timer";
             category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -18088,6 +18393,17 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             tactics?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
         }> | undefined;
         trackingLogsById?: Record<string, any> | undefined;
+        tacticsUsed?: any[] | undefined;
+        summaryText?: string | undefined;
+        supportGroupPermissionsById?: Record<string, any> | undefined;
+        goalComparisonByBehaviorId?: Record<string, {
+            status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY" | "NO_GOAL";
+            goalLabel: string;
+            unit: string;
+            measured: number;
+            targetValue?: number | undefined;
+        }> | undefined;
+        checkInCompletedAt?: import("../../types").Timestamp | undefined;
     };
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;

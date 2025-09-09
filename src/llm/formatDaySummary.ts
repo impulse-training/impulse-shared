@@ -5,6 +5,18 @@ export function formatDaySummary(log: DaySummaryLog): string {
   const behaviorTotals = log.data?.behaviorDataTotalByBehaviorId;
   const trackingLogs = log.data?.trackingLogsById;
   const behaviorsById = log.data?.behaviorsById;
+  const goalComparison = log.data?.goalComparisonByBehaviorId as
+    | Record<
+        string,
+        {
+          goalLabel: string;
+          unit: string;
+          measured: number;
+          targetValue?: number;
+          status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY" | "NO_GOAL";
+        }
+      >
+    | undefined;
 
   // Format behavior totals into a readable summary
   let summary = `Day summary for ${log.dateString}:\n\n`;
@@ -14,7 +26,10 @@ export function formatDaySummary(log: DaySummaryLog): string {
     const behaviorSummaries = Object.entries(behaviorTotals)
       .map(([behaviorId, behaviorData]: [string, any]) => {
         // Try to get behavior name from behaviorsById first, fallback to behaviorData
-        const behaviorName = behaviorsById?.[behaviorId]?.name || behaviorData.behaviorName || 'Unknown behavior';
+        const behaviorName =
+          behaviorsById?.[behaviorId]?.name ||
+          behaviorData.behaviorName ||
+          "Unknown behavior";
         return `${behaviorName}: ${behaviorData.formattedValue}`;
       })
       .join("\n");
@@ -23,7 +38,7 @@ export function formatDaySummary(log: DaySummaryLog): string {
   } else {
     // No behaviors tracked - enumerate specific behaviors with "No X" format
     const behaviorNames = new Set<string>();
-    
+
     // First, try to get behavior names from behaviorsById
     if (behaviorsById) {
       Object.values(behaviorsById).forEach((behavior: any) => {
@@ -32,7 +47,7 @@ export function formatDaySummary(log: DaySummaryLog): string {
         }
       });
     }
-    
+
     // Fallback: get behavior names from behaviorTotals (even if they're 0)
     if (behaviorTotals) {
       Object.values(behaviorTotals).forEach((behavior: any) => {
@@ -41,7 +56,7 @@ export function formatDaySummary(log: DaySummaryLog): string {
         }
       });
     }
-    
+
     // Also check tracking logs for behavior names
     if (trackingLogs && Object.keys(trackingLogs).length > 0) {
       Object.values(trackingLogs).forEach((log: any) => {
@@ -50,15 +65,45 @@ export function formatDaySummary(log: DaySummaryLog): string {
         }
       });
     }
-    
+
     if (behaviorNames.size > 0) {
       const noBehaviorsList = Array.from(behaviorNames)
-        .map(name => `No ${name.toLowerCase()}`)
-        .join('. ');
+        .map((name) => `No ${name.toLowerCase()}`)
+        .join(". ");
       summary += `${noBehaviorsList}. User successfully maintained control!\n\n`;
     } else {
-      summary += "No impulse behaviors tracked today - user successfully maintained control!\n\n";
+      summary +=
+        "No impulse behaviors tracked today - user successfully maintained control!\n\n";
     }
+  }
+
+  // If goal comparison data is present, include a clear facts block
+  if (goalComparison && Object.keys(goalComparison).length > 0) {
+    const lines: string[] = [];
+    for (const [behaviorId, entry] of Object.entries(goalComparison)) {
+      const behaviorName =
+        behaviorsById?.[behaviorId]?.name || "Unknown behavior";
+      const statusLabel =
+        entry.status === "NOT_MET_FAIL"
+          ? "NOT MET (FAIL)"
+          : entry.status === "MET"
+          ? "MET"
+          : entry.status === "UNSPECIFIED_FOR_DAY"
+          ? "UNSPECIFIED FOR THIS DAY"
+          : "NO GOAL";
+      const targetStr =
+        entry.targetValue != null ? `${entry.targetValue} ${entry.unit}` : "-";
+      lines.push(
+        `- ${behaviorName} — Goal: ${entry.goalLabel}; Logged: ${entry.measured} ${entry.unit}; Target: ${targetStr}; Status: ${statusLabel}`
+      );
+    }
+    summary += [
+      "Goals vs Logged:",
+      ...lines,
+      "",
+      "If any item shows NOT MET (FAIL), acknowledge this clearly but respond with supportive, nonjudgmental language. Focus on learning and next steps.",
+      "",
+    ].join("\n");
   }
 
   // Add detailed tracking logs if available
