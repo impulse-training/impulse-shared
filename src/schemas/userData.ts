@@ -8,7 +8,7 @@ export const userDataSchema = z.object({
   updatedAt: timestampSchema.optional(),
 
   // Authentication
-  recoveryKeyHash: z.string(),
+  recoveryKeyHash: z.string().optional(),
 
   defaultThreadMode: z.enum(["text", "voice"]).default("text"),
 

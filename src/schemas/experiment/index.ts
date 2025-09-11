@@ -7,22 +7,20 @@ export const experimentPhaseEnum = z.enum(["baseline", "test", "results"]);
 
 export const experimentSchema = z.object({
   startedAt: timestampSchema.optional(),
-  hypothesis: z.string(),
-  nextRequirement: z.string(),
-  name: z.string().optional(),
+  name: z.string(),
   behavior: documentReferenceSchema,
   question: documentReferenceSchema,
   config: z.object({
     baseline: z.object({
       requiredDays: z.number().default(5),
-      requirementDescription: z.string(),
+      description: z.string(),
     }),
     test: z.object({
       requiredGoal: goalSchema,
       requiredDays: z.number().default(7),
       requireContiguousDays: z.boolean().default(false),
       // E.g. "Go 5 days without watching YouTube"
-      requirementDescription: z.string(),
+      description: z.string(),
     }),
   }),
   completion: z.object({

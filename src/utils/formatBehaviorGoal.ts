@@ -1,4 +1,5 @@
 import { Behavior } from "../schemas";
+import { Goal } from "../schemas/goal";
 
 const DAY_LABELS: Record<number, string> = {
   0: "Sun",
@@ -27,14 +28,40 @@ type DailyTargets = {
   6: number;
 };
 
-export function formatBehaviorGoal(behavior: Behavior): string | null {
-  if (!behavior.goal) return null;
-
-  const goal = behavior.goal;
+export function formatBehaviorGoal(
+  behavior: Behavior,
+  goal?: Goal | null
+): string | null {
+  const effectiveGoal = goal ?? (behavior.goal as Goal | null | undefined);
+  if (!effectiveGoal) return null;
   const unitPlural =
     behavior.trackingType === "counter"
       ? behavior.trackingUnit || "times"
       : "minutes";
+  return formatRichGoal(effectiveGoal, unitPlural);
+}
+
+// Original rich formatter, now factored so we can reuse with or without units
+function formatRichGoal(
+  goal: NonNullable<Behavior["goal"]>,
+  unitPlural: string
+): string | null {
+  const DAY_LABELS: Record<number, string> = {
+    0: "Sun",
+    1: "Mon",
+    2: "Tue",
+    3: "Wed",
+    4: "Thu",
+    5: "Fri",
+    6: "Sat",
+  };
+
+  function unitFor(quantity: number, unitPlural: string): string {
+    if (quantity === 1) {
+      if (unitPlural.endsWith("s")) return unitPlural.slice(0, -1);
+    }
+    return unitPlural;
+  }
 
   if (goal.type === "eliminate") {
     return "Eliminate this behavior";
@@ -71,10 +98,18 @@ export function formatBehaviorGoal(behavior: Behavior): string | null {
       dailyTargets[5],
     ];
     const weekendTargets = [dailyTargets[0], dailyTargets[6]];
-    const weekdaysAllSame = weekdayTargets.every((t) => t === weekdayTargets[0]);
-    const weekendsAllSame = weekendTargets.every((t) => t === weekendTargets[0]);
+    const weekdaysAllSame = weekdayTargets.every(
+      (t) => t === weekdayTargets[0]
+    );
+    const weekendsAllSame = weekendTargets.every(
+      (t) => t === weekendTargets[0]
+    );
 
-    if (weekdaysAllSame && weekendsAllSame && weekdayTargets[0] !== weekendTargets[0]) {
+    if (
+      weekdaysAllSame &&
+      weekendsAllSame &&
+      weekdayTargets[0] !== weekendTargets[0]
+    ) {
       const wd = weekdayTargets[0];
       const we = weekendTargets[0];
 
@@ -92,14 +127,20 @@ export function formatBehaviorGoal(behavior: Behavior): string | null {
 
     const counts = new Map<number, number>();
     targets.forEach((t) => counts.set(t, (counts.get(t) || 0) + 1));
-    const majority = Array.from(counts.entries()).sort((a, b) => b[1] - a[1])[0];
+    const majority = Array.from(counts.entries()).sort(
+      (a, b) => b[1] - a[1]
+    )[0];
     if (majority) {
       const [majorityTarget, majorityCount] = majority;
       const exceptionDays: number[] = [];
       targets.forEach((t, idx) => {
         if (t !== majorityTarget) exceptionDays.push(idx);
       });
-      if (majorityCount >= 5 && exceptionDays.length > 0 && exceptionDays.length <= 2) {
+      if (
+        majorityCount >= 5 &&
+        exceptionDays.length > 0 &&
+        exceptionDays.length <= 2
+      ) {
         const exceptionGroups = new Map<number, number[]>();
         exceptionDays.forEach((idx) => {
           const t = targets[idx];
@@ -121,7 +162,10 @@ export function formatBehaviorGoal(behavior: Behavior): string | null {
         const majorityPart =
           majorityTarget === 0
             ? "Eliminate all other days"
-            : `At most ${majorityTarget} ${unitFor(majorityTarget, unitPlural)} all other days`;
+            : `At most ${majorityTarget} ${unitFor(
+                majorityTarget,
+                unitPlural
+              )} all other days`;
 
         parts.push(majorityPart);
         return parts.join("; ");
@@ -135,7 +179,9 @@ export function formatBehaviorGoal(behavior: Behavior): string | null {
       groups.set(t, arr);
     });
 
-    const groupEntries = Array.from(groups.entries()).sort((a, b) => a[0] - b[0]);
+    const groupEntries = Array.from(groups.entries()).sort(
+      (a, b) => a[0] - b[0]
+    );
 
     const MAX_GROUPS = 3;
     const parts: string[] = [];

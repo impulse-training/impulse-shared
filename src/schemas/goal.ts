@@ -25,3 +25,5 @@ export const goalSchema = z.discriminatedUnion("type", [
     }),
   }),
 ]);
+
+export type Goal = z.infer<typeof goalSchema>;
