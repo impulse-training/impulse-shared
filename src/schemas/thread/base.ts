@@ -9,6 +9,7 @@ const threadTypeSchema = z.enum([
   "general",
   "onboarding",
   "recap",
+  "behavior",
   "dayRecap",
   "timePlan",
   "locationPlan",

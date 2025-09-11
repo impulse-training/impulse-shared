@@ -11552,7 +11552,7 @@ export declare const logSchemas: {
         data: z.ZodObject<{
             threadRef: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
             threadSummaryData: z.ZodObject<{
-                type: z.ZodEnum<["impulse", "general", "onboarding", "recap", "dayRecap", "timePlan", "locationPlan"]>;
+                type: z.ZodEnum<["impulse", "general", "onboarding", "recap", "behavior", "dayRecap", "timePlan", "locationPlan"]>;
                 tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
                 behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
                 outcomeLogs: z.ZodArray<z.ZodAny, "many">;
@@ -11562,7 +11562,7 @@ export declare const logSchemas: {
                 firstCallLog: z.ZodOptional<z.ZodAny>;
                 hasContent: z.ZodBoolean;
             }, "strip", z.ZodTypeAny, {
-                type: "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
+                type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
                 tacticsByTitle: Record<string, any[]>;
                 behaviorsByName: Record<string, any[]>;
                 outcomeLogs: any[];
@@ -11572,7 +11572,7 @@ export declare const logSchemas: {
                 firstMessageLog?: any;
                 firstCallLog?: any;
             }, {
-                type: "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
+                type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
                 tacticsByTitle: Record<string, any[]>;
                 behaviorsByName: Record<string, any[]>;
                 outcomeLogs: any[];
@@ -11598,7 +11598,7 @@ export declare const logSchemas: {
         }, "strip", z.ZodTypeAny, {
             threadRef: import("../..").DocumentReferenceLike<unknown>;
             threadSummaryData: {
-                type: "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
+                type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
                 tacticsByTitle: Record<string, any[]>;
                 behaviorsByName: Record<string, any[]>;
                 outcomeLogs: any[];
@@ -11616,7 +11616,7 @@ export declare const logSchemas: {
         }, {
             threadRef: import("../..").DocumentReferenceLike<unknown>;
             threadSummaryData: {
-                type: "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
+                type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
                 tacticsByTitle: Record<string, any[]>;
                 behaviorsByName: Record<string, any[]>;
                 outcomeLogs: any[];
@@ -11641,7 +11641,7 @@ export declare const logSchemas: {
         data: {
             threadRef: import("../..").DocumentReferenceLike<unknown>;
             threadSummaryData: {
-                type: "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
+                type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
                 tacticsByTitle: Record<string, any[]>;
                 behaviorsByName: Record<string, any[]>;
                 outcomeLogs: any[];
@@ -11674,7 +11674,7 @@ export declare const logSchemas: {
         data: {
             threadRef: import("../..").DocumentReferenceLike<unknown>;
             threadSummaryData: {
-                type: "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
+                type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
                 tacticsByTitle: Record<string, any[]>;
                 behaviorsByName: Record<string, any[]>;
                 outcomeLogs: any[];
@@ -20438,7 +20438,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: z.ZodObject<{
         threadRef: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
         threadSummaryData: z.ZodObject<{
-            type: z.ZodEnum<["impulse", "general", "onboarding", "recap", "dayRecap", "timePlan", "locationPlan"]>;
+            type: z.ZodEnum<["impulse", "general", "onboarding", "recap", "behavior", "dayRecap", "timePlan", "locationPlan"]>;
             tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             outcomeLogs: z.ZodArray<z.ZodAny, "many">;
@@ -20448,7 +20448,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             firstCallLog: z.ZodOptional<z.ZodAny>;
             hasContent: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
-            type: "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
+            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -20458,7 +20458,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
-            type: "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
+            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -20484,7 +20484,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     }, "strip", z.ZodTypeAny, {
         threadRef: import("../..").DocumentReferenceLike<unknown>;
         threadSummaryData: {
-            type: "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
+            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -20502,7 +20502,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     }, {
         threadRef: import("../..").DocumentReferenceLike<unknown>;
         threadSummaryData: {
-            type: "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
+            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -20527,7 +20527,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: {
         threadRef: import("../..").DocumentReferenceLike<unknown>;
         threadSummaryData: {
-            type: "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
+            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -20560,7 +20560,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: {
         threadRef: import("../..").DocumentReferenceLike<unknown>;
         threadSummaryData: {
-            type: "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
+            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
