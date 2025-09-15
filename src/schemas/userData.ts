@@ -21,6 +21,8 @@ export const userDataSchema = z.object({
 
   appVersion: z.string().optional(),
 
+  tacticsEnabled: z.boolean().default(false),
+
   // This points to the user's active strategy. It can be updated to rollback.
   activeStrategyDoc: documentReferenceSchema.optional(),
 

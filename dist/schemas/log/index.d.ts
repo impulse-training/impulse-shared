@@ -9950,7 +9950,7 @@ export declare const logSchemas: {
             }>]>;
             response: z.ZodOptional<z.ZodObject<{
                 responseType: z.ZodEnum<["text", "shortText", "emotion", "slider1To10", "recap"]>;
-                value: z.ZodAny;
+                value: z.ZodUnion<[z.ZodAny, z.ZodArray<z.ZodAny, "many">]>;
                 formattedValue: z.ZodString;
                 color: z.ZodOptional<z.ZodString>;
             }, "strip", z.ZodTypeAny, {
@@ -18912,7 +18912,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }>]>;
         response: z.ZodOptional<z.ZodObject<{
             responseType: z.ZodEnum<["text", "shortText", "emotion", "slider1To10", "recap"]>;
-            value: z.ZodAny;
+            value: z.ZodUnion<[z.ZodAny, z.ZodArray<z.ZodAny, "many">]>;
             formattedValue: z.ZodString;
             color: z.ZodOptional<z.ZodString>;
         }, "strip", z.ZodTypeAny, {
