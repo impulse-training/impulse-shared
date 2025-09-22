@@ -6,12 +6,12 @@ declare const responseSchema: z.ZodObject<{
     color: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     formattedValue: string;
-    responseType: "recap" | "text" | "shortText" | "emotion" | "slider1To10";
+    responseType: "recap" | "text" | "emotion" | "shortText" | "slider1To10";
     value?: any;
     color?: string | undefined;
 }, {
     formattedValue: string;
-    responseType: "recap" | "text" | "shortText" | "emotion" | "slider1To10";
+    responseType: "recap" | "text" | "emotion" | "shortText" | "slider1To10";
     value?: any;
     color?: string | undefined;
 }>;
@@ -230,12 +230,12 @@ export declare const questionLogSchema: z.ZodObject<{
             color: z.ZodOptional<z.ZodString>;
         }, "strip", z.ZodTypeAny, {
             formattedValue: string;
-            responseType: "recap" | "text" | "shortText" | "emotion" | "slider1To10";
+            responseType: "recap" | "text" | "emotion" | "shortText" | "slider1To10";
             value?: any;
             color?: string | undefined;
         }, {
             formattedValue: string;
-            responseType: "recap" | "text" | "shortText" | "emotion" | "slider1To10";
+            responseType: "recap" | "text" | "emotion" | "shortText" | "slider1To10";
             value?: any;
             color?: string | undefined;
         }>>;
@@ -243,7 +243,7 @@ export declare const questionLogSchema: z.ZodObject<{
         question: {
             text: string;
             isTemplate: boolean;
-            responseType: "shortText";
+            responseType: "emotion";
             scope: "impulse" | "setback" | "success" | "recap";
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -257,7 +257,7 @@ export declare const questionLogSchema: z.ZodObject<{
         } | {
             text: string;
             isTemplate: boolean;
-            responseType: "emotion";
+            responseType: "shortText";
             scope: "impulse" | "setback" | "success" | "recap";
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -302,14 +302,14 @@ export declare const questionLogSchema: z.ZodObject<{
         questionId?: string | undefined;
         response?: {
             formattedValue: string;
-            responseType: "recap" | "text" | "shortText" | "emotion" | "slider1To10";
+            responseType: "recap" | "text" | "emotion" | "shortText" | "slider1To10";
             value?: any;
             color?: string | undefined;
         } | undefined;
     }, {
         question: {
             text: string;
-            responseType: "shortText";
+            responseType: "emotion";
             scope: "impulse" | "setback" | "success" | "recap";
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -323,7 +323,7 @@ export declare const questionLogSchema: z.ZodObject<{
             isPinned?: boolean | undefined;
         } | {
             text: string;
-            responseType: "emotion";
+            responseType: "shortText";
             scope: "impulse" | "setback" | "success" | "recap";
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -369,7 +369,7 @@ export declare const questionLogSchema: z.ZodObject<{
         questionId?: string | undefined;
         response?: {
             formattedValue: string;
-            responseType: "recap" | "text" | "shortText" | "emotion" | "slider1To10";
+            responseType: "recap" | "text" | "emotion" | "shortText" | "slider1To10";
             value?: any;
             color?: string | undefined;
         } | undefined;
@@ -384,7 +384,7 @@ export declare const questionLogSchema: z.ZodObject<{
         question: {
             text: string;
             isTemplate: boolean;
-            responseType: "shortText";
+            responseType: "emotion";
             scope: "impulse" | "setback" | "success" | "recap";
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -398,7 +398,7 @@ export declare const questionLogSchema: z.ZodObject<{
         } | {
             text: string;
             isTemplate: boolean;
-            responseType: "emotion";
+            responseType: "shortText";
             scope: "impulse" | "setback" | "success" | "recap";
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -443,7 +443,7 @@ export declare const questionLogSchema: z.ZodObject<{
         questionId?: string | undefined;
         response?: {
             formattedValue: string;
-            responseType: "recap" | "text" | "shortText" | "emotion" | "slider1To10";
+            responseType: "recap" | "text" | "emotion" | "shortText" | "slider1To10";
             value?: any;
             color?: string | undefined;
         } | undefined;
@@ -465,7 +465,7 @@ export declare const questionLogSchema: z.ZodObject<{
     data: {
         question: {
             text: string;
-            responseType: "shortText";
+            responseType: "emotion";
             scope: "impulse" | "setback" | "success" | "recap";
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -479,7 +479,7 @@ export declare const questionLogSchema: z.ZodObject<{
             isPinned?: boolean | undefined;
         } | {
             text: string;
-            responseType: "emotion";
+            responseType: "shortText";
             scope: "impulse" | "setback" | "success" | "recap";
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -525,7 +525,7 @@ export declare const questionLogSchema: z.ZodObject<{
         questionId?: string | undefined;
         response?: {
             formattedValue: string;
-            responseType: "recap" | "text" | "shortText" | "emotion" | "slider1To10";
+            responseType: "recap" | "text" | "emotion" | "shortText" | "slider1To10";
             value?: any;
             color?: string | undefined;
         } | undefined;
