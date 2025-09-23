@@ -8,6 +8,7 @@ export const experimentPhaseEnum = z.enum(["baseline", "test", "results"]);
 export const experimentSchema = z.object({
   startedAt: timestampSchema.optional(),
   name: z.string(),
+  subtitle: z.string(),
   behaviorId: z.string(),
   questionIds: z.array(z.string()),
   config: z.object({
