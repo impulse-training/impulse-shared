@@ -9,7 +9,7 @@ export const experimentSchema = z.object({
   startedAt: timestampSchema.optional(),
   name: z.string(),
   behaviorId: z.string(),
-  questionId: z.string(),
+  questionIds: z.array(z.string()),
   config: z.object({
     baseline: z.object({
       requiredDays: z.number().default(5),
