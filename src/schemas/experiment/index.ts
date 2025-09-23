@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { documentReferenceSchema, timestampSchema } from "../../utils";
+import { timestampSchema } from "../../utils";
 import { daySummarySchema } from "../daySummary";
 import { goalSchema } from "../goal";
 
@@ -8,29 +8,48 @@ export const experimentPhaseEnum = z.enum(["baseline", "test", "results"]);
 export const experimentSchema = z.object({
   startedAt: timestampSchema.optional(),
   name: z.string(),
-  behavior: documentReferenceSchema,
-  question: documentReferenceSchema,
+  behaviorId: z.string(),
+  questionId: z.string(),
   config: z.object({
     baseline: z.object({
       requiredDays: z.number().default(5),
       description: z.string(),
     }),
+    test: z
+      .object({
+        requiredGoal: goalSchema,
+        requiredDays: z.number().default(7),
+        requireContiguousDays: z.boolean().default(false),
+        // E.g. "Go 7 days in a row without watching YouTube"
+        description: z.string(),
+      })
+      .optional(),
+  }),
+  // Map of yyyy-MM-dd -> DaySummary. This is "input" data.
+  daySummaries: z.record(z.string(), daySummarySchema).default({}),
+
+  // Next, calculate whether requirements were met for a given day for a phase
+  requirementsMet: z.object({
+    baseline: z.record(z.string(), z.boolean()),
+    test: z.record(z.string(), z.boolean()),
+  }),
+
+  // Finally, compute data for display.
+  completion: z.object({
+    baseline: z.object({
+      startDateString: z.string(),
+      days: z.array(
+        z.object({ date: z.string(), requirementsMet: z.boolean() })
+      ),
+    }),
     test: z.object({
-      requiredGoal: goalSchema,
-      requiredDays: z.number().default(7),
-      requireContiguousDays: z.boolean().default(false),
-      // E.g. "Go 5 days without watching YouTube"
-      description: z.string(),
+      startDateString: z.string(),
+      days: z.array(
+        z.object({ date: z.string(), requirementsMet: z.boolean() })
+      ),
     }),
   }),
-  completion: z.object({
-    // A map of yyyy-MM-dd -> { requirementsMet: boolean }
-    baseline: z.record(z.string(), z.object({ requirementsMet: z.boolean() })),
-    test: z.record(z.string(), z.object({ requirementsMet: z.boolean() })),
-  }),
   currentPhase: experimentPhaseEnum.default("baseline"),
-  // Map of yyyy-MM-dd -> DaySummary
-  daySummaries: z.record(z.string(), daySummarySchema).default({}),
 });
 
 export type ExperimentPhase = z.infer<typeof experimentPhaseEnum>;
