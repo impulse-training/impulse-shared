@@ -1,17 +1,8 @@
 import { z } from "zod";
-import { categorySchema } from "../behavior";
+import { behaviorTrackingDataSchema, BehaviorTrackingData } from "../behaviorTrackingData";
 import { logBaseSchema } from "./base";
 
-export const behaviorTrackingDataSchema = z.object({
-  behaviorId: z.string(),
-  behaviorName: z.string(),
-  behaviorTrackingUnit: z.string().optional(),
-  trackingType: z.enum(["counter", "timer"]),
-  category: categorySchema,
-  value: z.number(), // Count or time in seconds
-  formattedValue: z.string(),
-});
-export type BehaviorTrackingData = z.infer<typeof behaviorTrackingDataSchema>;
+export { behaviorTrackingDataSchema, BehaviorTrackingData };
 
 export const behaviorLogSchema = logBaseSchema.extend({
   type: z.literal("behavior"),

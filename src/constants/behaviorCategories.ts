@@ -1,6 +1,7 @@
 /**
  * Constants for behavior categories including colors and display properties
  */
+import { z } from "zod";
 
 export const BEHAVIOR_CATEGORIES = {
   helpful: {
@@ -80,3 +81,12 @@ export const getBehaviorCategoryExplanation = (category: BehaviorCategoryKey | n
   
   return BEHAVIOR_CATEGORIES[category].explanation;
 };
+
+/**
+ * Zod schema for behavior category validation
+ */
+const categoryKeys = Object.keys(BEHAVIOR_CATEGORIES) as BehaviorCategoryKey[];
+
+export const categorySchema = z.custom<BehaviorCategoryKey>((val) =>
+  categoryKeys.includes(val as BehaviorCategoryKey)
+);

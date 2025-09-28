@@ -1465,8 +1465,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             })[];
             title?: string | undefined;
             id?: string | undefined;
-            description?: string | undefined;
             tags?: string[] | undefined;
+            description?: string | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             indications?: {
@@ -1708,8 +1708,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             })[];
             title?: string | undefined;
             id?: string | undefined;
-            description?: string | undefined;
             tags?: string[] | undefined;
+            description?: string | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             indications?: {
@@ -1957,8 +1957,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             })[];
             title?: string | undefined;
             id?: string | undefined;
-            description?: string | undefined;
             tags?: string[] | undefined;
+            description?: string | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             indications?: {
@@ -2206,8 +2206,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             })[];
             title?: string | undefined;
             id?: string | undefined;
-            description?: string | undefined;
             tags?: string[] | undefined;
+            description?: string | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             indications?: {
@@ -2462,8 +2462,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             })[];
             title?: string | undefined;
             id?: string | undefined;
-            description?: string | undefined;
             tags?: string[] | undefined;
+            description?: string | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             indications?: {
@@ -2726,8 +2726,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             })[];
             title?: string | undefined;
             id?: string | undefined;
-            description?: string | undefined;
             tags?: string[] | undefined;
+            description?: string | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             indications?: {

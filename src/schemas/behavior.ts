@@ -1,17 +1,10 @@
 import { z } from "zod";
-import { BEHAVIOR_CATEGORIES, BehaviorCategoryKey } from "../constants";
+import { categorySchema } from "../constants";
 import { documentReferenceSchema, timestampSchema } from "../utils";
 import { goalSchema } from "./goal";
-import { behaviorTrackingDataSchema } from "./log/behaviorLog";
+import { behaviorTrackingDataSchema } from "./behaviorTrackingData";
 
 export const trackingTypes = ["counter", "timer"] as const;
-
-// Use the category keys from our constants
-const categoryKeys = Object.keys(BEHAVIOR_CATEGORIES) as BehaviorCategoryKey[];
-
-export const categorySchema = z.custom<BehaviorCategoryKey>((val) =>
-  categoryKeys.includes(val as BehaviorCategoryKey)
-);
 
 // These are foundational attributes, and correspond to documents in a top-level behaviorTemplates
 // collection. We then extend that schema to be the full behavior schema.
