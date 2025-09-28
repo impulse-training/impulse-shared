@@ -124,6 +124,31 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     }>]>>;
     lastTrackedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     tactics: z.ZodOptional<z.ZodArray<z.ZodType<import("../utils").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../utils").DocumentReferenceLike<unknown>>, "many">>;
+    initialUsage: z.ZodOptional<z.ZodObject<{
+        behaviorId: z.ZodString;
+        behaviorName: z.ZodString;
+        behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
+        trackingType: z.ZodEnum<["counter", "timer"]>;
+        category: z.ZodType<"helpful" | "mixed" | "unhelpful" | "unsure", z.ZodTypeDef, "helpful" | "mixed" | "unhelpful" | "unsure">;
+        value: z.ZodNumber;
+        formattedValue: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        value: number;
+        behaviorId: string;
+        behaviorName: string;
+        trackingType: "counter" | "timer";
+        category: "helpful" | "mixed" | "unhelpful" | "unsure";
+        formattedValue: string;
+        behaviorTrackingUnit?: string | undefined;
+    }, {
+        value: number;
+        behaviorId: string;
+        behaviorName: string;
+        trackingType: "counter" | "timer";
+        category: "helpful" | "mixed" | "unhelpful" | "unsure";
+        formattedValue: string;
+        behaviorTrackingUnit?: string | undefined;
+    }>>;
 }, "strip", z.ZodTypeAny, {
     trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -156,6 +181,15 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     } | undefined;
     lastTrackedAt?: import("../types").Timestamp | undefined;
     tactics?: import("../utils").DocumentReferenceLike<unknown>[] | undefined;
+    initialUsage?: {
+        value: number;
+        behaviorId: string;
+        behaviorName: string;
+        trackingType: "counter" | "timer";
+        category: "helpful" | "mixed" | "unhelpful" | "unsure";
+        formattedValue: string;
+        behaviorTrackingUnit?: string | undefined;
+    } | undefined;
 }, {
     trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -188,6 +222,15 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     } | undefined;
     lastTrackedAt?: import("../types").Timestamp | undefined;
     tactics?: import("../utils").DocumentReferenceLike<unknown>[] | undefined;
+    initialUsage?: {
+        value: number;
+        behaviorId: string;
+        behaviorName: string;
+        trackingType: "counter" | "timer";
+        category: "helpful" | "mixed" | "unhelpful" | "unsure";
+        formattedValue: string;
+        behaviorTrackingUnit?: string | undefined;
+    } | undefined;
 }>, {
     trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -220,6 +263,15 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     } | undefined;
     lastTrackedAt?: import("../types").Timestamp | undefined;
     tactics?: import("../utils").DocumentReferenceLike<unknown>[] | undefined;
+    initialUsage?: {
+        value: number;
+        behaviorId: string;
+        behaviorName: string;
+        trackingType: "counter" | "timer";
+        category: "helpful" | "mixed" | "unhelpful" | "unsure";
+        formattedValue: string;
+        behaviorTrackingUnit?: string | undefined;
+    } | undefined;
 }, {
     trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -252,6 +304,15 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     } | undefined;
     lastTrackedAt?: import("../types").Timestamp | undefined;
     tactics?: import("../utils").DocumentReferenceLike<unknown>[] | undefined;
+    initialUsage?: {
+        value: number;
+        behaviorId: string;
+        behaviorName: string;
+        trackingType: "counter" | "timer";
+        category: "helpful" | "mixed" | "unhelpful" | "unsure";
+        formattedValue: string;
+        behaviorTrackingUnit?: string | undefined;
+    } | undefined;
 }>;
 export type TrackingType = (typeof trackingTypes)[number];
 export type Behavior = z.infer<typeof behaviorSchema>;

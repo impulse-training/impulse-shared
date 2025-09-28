@@ -2,6 +2,7 @@ import { z } from "zod";
 import { BEHAVIOR_CATEGORIES, BehaviorCategoryKey } from "../constants";
 import { documentReferenceSchema, timestampSchema } from "../utils";
 import { goalSchema } from "./goal";
+import { behaviorTrackingDataSchema } from "./log/behaviorLog";
 
 export const trackingTypes = ["counter", "timer"] as const;
 
@@ -48,6 +49,7 @@ export const behaviorSchema = behaviorTemplateBase
     goal: goalSchema.optional(),
     lastTrackedAt: timestampSchema.optional(),
     tactics: z.array(documentReferenceSchema).optional(),
+    initialUsage: behaviorTrackingDataSchema.optional(),
   })
   .superRefine((val, ctx) => {
     if (val.trackingType === "counter" && !val.trackingUnit) {

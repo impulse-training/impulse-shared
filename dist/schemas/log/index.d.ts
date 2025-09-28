@@ -6228,6 +6228,31 @@ export declare const logSchemas: {
                 }>]>>;
                 lastTrackedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 tactics: z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>;
+                initialUsage: z.ZodOptional<z.ZodObject<{
+                    behaviorId: z.ZodString;
+                    behaviorName: z.ZodString;
+                    behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
+                    trackingType: z.ZodEnum<["counter", "timer"]>;
+                    category: z.ZodType<"helpful" | "mixed" | "unhelpful" | "unsure", z.ZodTypeDef, "helpful" | "mixed" | "unhelpful" | "unsure">;
+                    value: z.ZodNumber;
+                    formattedValue: z.ZodString;
+                }, "strip", z.ZodTypeAny, {
+                    value: number;
+                    behaviorId: string;
+                    behaviorName: string;
+                    trackingType: "counter" | "timer";
+                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                    formattedValue: string;
+                    behaviorTrackingUnit?: string | undefined;
+                }, {
+                    value: number;
+                    behaviorId: string;
+                    behaviorName: string;
+                    trackingType: "counter" | "timer";
+                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                    formattedValue: string;
+                    behaviorTrackingUnit?: string | undefined;
+                }>>;
             }, "strip", z.ZodTypeAny, {
                 trackingType: "counter" | "timer";
                 category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -6260,6 +6285,15 @@ export declare const logSchemas: {
                 } | undefined;
                 lastTrackedAt?: import("../../types").Timestamp | undefined;
                 tactics?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                initialUsage?: {
+                    value: number;
+                    behaviorId: string;
+                    behaviorName: string;
+                    trackingType: "counter" | "timer";
+                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                    formattedValue: string;
+                    behaviorTrackingUnit?: string | undefined;
+                } | undefined;
             }, {
                 trackingType: "counter" | "timer";
                 category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -6292,6 +6326,15 @@ export declare const logSchemas: {
                 } | undefined;
                 lastTrackedAt?: import("../../types").Timestamp | undefined;
                 tactics?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                initialUsage?: {
+                    value: number;
+                    behaviorId: string;
+                    behaviorName: string;
+                    trackingType: "counter" | "timer";
+                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                    formattedValue: string;
+                    behaviorTrackingUnit?: string | undefined;
+                } | undefined;
             }>, {
                 trackingType: "counter" | "timer";
                 category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -6324,6 +6367,15 @@ export declare const logSchemas: {
                 } | undefined;
                 lastTrackedAt?: import("../../types").Timestamp | undefined;
                 tactics?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                initialUsage?: {
+                    value: number;
+                    behaviorId: string;
+                    behaviorName: string;
+                    trackingType: "counter" | "timer";
+                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                    formattedValue: string;
+                    behaviorTrackingUnit?: string | undefined;
+                } | undefined;
             }, {
                 trackingType: "counter" | "timer";
                 category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -6356,6 +6408,15 @@ export declare const logSchemas: {
                 } | undefined;
                 lastTrackedAt?: import("../../types").Timestamp | undefined;
                 tactics?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                initialUsage?: {
+                    value: number;
+                    behaviorId: string;
+                    behaviorName: string;
+                    trackingType: "counter" | "timer";
+                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                    formattedValue: string;
+                    behaviorTrackingUnit?: string | undefined;
+                } | undefined;
             }>>>;
             trackingLogsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
             tacticsUsed: z.ZodDefault<z.ZodArray<z.ZodAny, "many">>;
@@ -6436,6 +6497,15 @@ export declare const logSchemas: {
                 } | undefined;
                 lastTrackedAt?: import("../../types").Timestamp | undefined;
                 tactics?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                initialUsage?: {
+                    value: number;
+                    behaviorId: string;
+                    behaviorName: string;
+                    trackingType: "counter" | "timer";
+                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                    formattedValue: string;
+                    behaviorTrackingUnit?: string | undefined;
+                } | undefined;
             }> | undefined;
             trackingLogsById?: Record<string, any> | undefined;
             supportGroupPermissionsById?: Record<string, any> | undefined;
@@ -6497,6 +6567,15 @@ export declare const logSchemas: {
                 } | undefined;
                 lastTrackedAt?: import("../../types").Timestamp | undefined;
                 tactics?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                initialUsage?: {
+                    value: number;
+                    behaviorId: string;
+                    behaviorName: string;
+                    trackingType: "counter" | "timer";
+                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                    formattedValue: string;
+                    behaviorTrackingUnit?: string | undefined;
+                } | undefined;
             }> | undefined;
             trackingLogsById?: Record<string, any> | undefined;
             tacticsUsed?: any[] | undefined;
@@ -6569,6 +6648,15 @@ export declare const logSchemas: {
                 } | undefined;
                 lastTrackedAt?: import("../../types").Timestamp | undefined;
                 tactics?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                initialUsage?: {
+                    value: number;
+                    behaviorId: string;
+                    behaviorName: string;
+                    trackingType: "counter" | "timer";
+                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                    formattedValue: string;
+                    behaviorTrackingUnit?: string | undefined;
+                } | undefined;
             }> | undefined;
             trackingLogsById?: Record<string, any> | undefined;
             supportGroupPermissionsById?: Record<string, any> | undefined;
@@ -6645,6 +6733,15 @@ export declare const logSchemas: {
                 } | undefined;
                 lastTrackedAt?: import("../../types").Timestamp | undefined;
                 tactics?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                initialUsage?: {
+                    value: number;
+                    behaviorId: string;
+                    behaviorName: string;
+                    trackingType: "counter" | "timer";
+                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                    formattedValue: string;
+                    behaviorTrackingUnit?: string | undefined;
+                } | undefined;
             }> | undefined;
             trackingLogsById?: Record<string, any> | undefined;
             tacticsUsed?: any[] | undefined;
@@ -17974,6 +18071,31 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             }>]>>;
             lastTrackedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             tactics: z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>;
+            initialUsage: z.ZodOptional<z.ZodObject<{
+                behaviorId: z.ZodString;
+                behaviorName: z.ZodString;
+                behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
+                trackingType: z.ZodEnum<["counter", "timer"]>;
+                category: z.ZodType<"helpful" | "mixed" | "unhelpful" | "unsure", z.ZodTypeDef, "helpful" | "mixed" | "unhelpful" | "unsure">;
+                value: z.ZodNumber;
+                formattedValue: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                value: number;
+                behaviorId: string;
+                behaviorName: string;
+                trackingType: "counter" | "timer";
+                category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                formattedValue: string;
+                behaviorTrackingUnit?: string | undefined;
+            }, {
+                value: number;
+                behaviorId: string;
+                behaviorName: string;
+                trackingType: "counter" | "timer";
+                category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                formattedValue: string;
+                behaviorTrackingUnit?: string | undefined;
+            }>>;
         }, "strip", z.ZodTypeAny, {
             trackingType: "counter" | "timer";
             category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -18006,6 +18128,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             } | undefined;
             lastTrackedAt?: import("../../types").Timestamp | undefined;
             tactics?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+            initialUsage?: {
+                value: number;
+                behaviorId: string;
+                behaviorName: string;
+                trackingType: "counter" | "timer";
+                category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                formattedValue: string;
+                behaviorTrackingUnit?: string | undefined;
+            } | undefined;
         }, {
             trackingType: "counter" | "timer";
             category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -18038,6 +18169,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             } | undefined;
             lastTrackedAt?: import("../../types").Timestamp | undefined;
             tactics?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+            initialUsage?: {
+                value: number;
+                behaviorId: string;
+                behaviorName: string;
+                trackingType: "counter" | "timer";
+                category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                formattedValue: string;
+                behaviorTrackingUnit?: string | undefined;
+            } | undefined;
         }>, {
             trackingType: "counter" | "timer";
             category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -18070,6 +18210,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             } | undefined;
             lastTrackedAt?: import("../../types").Timestamp | undefined;
             tactics?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+            initialUsage?: {
+                value: number;
+                behaviorId: string;
+                behaviorName: string;
+                trackingType: "counter" | "timer";
+                category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                formattedValue: string;
+                behaviorTrackingUnit?: string | undefined;
+            } | undefined;
         }, {
             trackingType: "counter" | "timer";
             category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -18102,6 +18251,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             } | undefined;
             lastTrackedAt?: import("../../types").Timestamp | undefined;
             tactics?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+            initialUsage?: {
+                value: number;
+                behaviorId: string;
+                behaviorName: string;
+                trackingType: "counter" | "timer";
+                category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                formattedValue: string;
+                behaviorTrackingUnit?: string | undefined;
+            } | undefined;
         }>>>;
         trackingLogsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
         tacticsUsed: z.ZodDefault<z.ZodArray<z.ZodAny, "many">>;
@@ -18182,6 +18340,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             } | undefined;
             lastTrackedAt?: import("../../types").Timestamp | undefined;
             tactics?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+            initialUsage?: {
+                value: number;
+                behaviorId: string;
+                behaviorName: string;
+                trackingType: "counter" | "timer";
+                category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                formattedValue: string;
+                behaviorTrackingUnit?: string | undefined;
+            } | undefined;
         }> | undefined;
         trackingLogsById?: Record<string, any> | undefined;
         supportGroupPermissionsById?: Record<string, any> | undefined;
@@ -18243,6 +18410,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             } | undefined;
             lastTrackedAt?: import("../../types").Timestamp | undefined;
             tactics?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+            initialUsage?: {
+                value: number;
+                behaviorId: string;
+                behaviorName: string;
+                trackingType: "counter" | "timer";
+                category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                formattedValue: string;
+                behaviorTrackingUnit?: string | undefined;
+            } | undefined;
         }> | undefined;
         trackingLogsById?: Record<string, any> | undefined;
         tacticsUsed?: any[] | undefined;
@@ -18315,6 +18491,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             } | undefined;
             lastTrackedAt?: import("../../types").Timestamp | undefined;
             tactics?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+            initialUsage?: {
+                value: number;
+                behaviorId: string;
+                behaviorName: string;
+                trackingType: "counter" | "timer";
+                category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                formattedValue: string;
+                behaviorTrackingUnit?: string | undefined;
+            } | undefined;
         }> | undefined;
         trackingLogsById?: Record<string, any> | undefined;
         supportGroupPermissionsById?: Record<string, any> | undefined;
@@ -18391,6 +18576,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             } | undefined;
             lastTrackedAt?: import("../../types").Timestamp | undefined;
             tactics?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+            initialUsage?: {
+                value: number;
+                behaviorId: string;
+                behaviorName: string;
+                trackingType: "counter" | "timer";
+                category: "helpful" | "mixed" | "unhelpful" | "unsure";
+                formattedValue: string;
+                behaviorTrackingUnit?: string | undefined;
+            } | undefined;
         }> | undefined;
         trackingLogsById?: Record<string, any> | undefined;
         tacticsUsed?: any[] | undefined;

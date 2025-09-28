@@ -5,6 +5,7 @@ const zod_1 = require("zod");
 const constants_1 = require("../constants");
 const utils_1 = require("../utils");
 const goal_1 = require("./goal");
+const behaviorLog_1 = require("./log/behaviorLog");
 exports.trackingTypes = ["counter", "timer"];
 // Use the category keys from our constants
 const categoryKeys = Object.keys(constants_1.BEHAVIOR_CATEGORIES);
@@ -40,6 +41,7 @@ exports.behaviorSchema = behaviorTemplateBase
     goal: goal_1.goalSchema.optional(),
     lastTrackedAt: utils_1.timestampSchema.optional(),
     tactics: zod_1.z.array(utils_1.documentReferenceSchema).optional(),
+    initialUsage: behaviorLog_1.behaviorTrackingDataSchema.optional(),
 })
     .superRefine((val, ctx) => {
     if (val.trackingType === "counter" && !val.trackingUnit) {
