@@ -36,6 +36,8 @@ export const threadBaseSchema = z.object({
   date: timestampSchema,
   dateString: z.string(),
 
+  mode: z.enum(["text", "voice"]),
+
   // Whether this thread is a draft (created before any logs exist)
   // Draft threads should be hidden in UI until a log is added
   isDraft: z.boolean().optional().default(false),
