@@ -4,7 +4,6 @@ import { LocationPlan, locationPlanSchema } from "./locationPlan";
 import { RecapPlan, recapPlanSchema } from "./recapPlan";
 import { TimePlan, timePlanSchema } from "./timePlan";
 
-export * from "./impulsePlan";
 export * from "./locationPlan";
 export * from "./recapPlan";
 export * from "./timePlan";
