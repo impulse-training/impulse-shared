@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { AdjustmentThread, adjustmentThreadSchema } from "./adjustment";
 import { BehaviorThread, behaviorThreadSchema } from "./behavior";
 import { GeneralThread, generalThreadSchema } from "./general";
 import { ImpulseThread, impulseThreadSchema } from "./impulse";
@@ -12,6 +13,7 @@ import {
   timePlanThreadSchema,
 } from "./plan";
 
+export * from "./adjustment";
 export * from "./behavior";
 export * from "./general";
 export * from "./impulse";
@@ -27,6 +29,7 @@ export const threadSchemas = {
   behavior: behaviorThreadSchema,
   dayRecap: recapPlanThreadSchema,
   locationPlan: locationPlanThreadSchema,
+  adjustment: adjustmentThreadSchema,
 };
 
 // Discriminated union over type
@@ -38,6 +41,7 @@ export const threadSchema = z.discriminatedUnion("type", [
   timePlanThreadSchema,
   recapPlanThreadSchema,
   locationPlanThreadSchema,
+  adjustmentThreadSchema,
 ]);
 
 export const threadIsGeneralThread = (value: Thread): value is GeneralThread =>
@@ -85,5 +89,12 @@ export const threadIsBehaviorThread = (
 export const isValidBehaviorThread = (
   value: unknown
 ): value is BehaviorThread => behaviorThreadSchema.safeParse(value).success;
+
+export const threadIsAdjustmentThread = (
+  value: Thread
+): value is AdjustmentThread => value.type === "adjustment";
+export const isValidAdjustmentThread = (
+  value: unknown
+): value is AdjustmentThread => adjustmentThreadSchema.safeParse(value).success;
 
 export type Thread = z.infer<typeof threadSchema>;

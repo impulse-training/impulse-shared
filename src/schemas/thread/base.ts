@@ -13,6 +13,7 @@ const threadTypeSchema = z.enum([
   "dayRecap",
   "timePlan",
   "locationPlan",
+  "adjustment",
 ]);
 
 export const threadSummarySchema = z.object({
