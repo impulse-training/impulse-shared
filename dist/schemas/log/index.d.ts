@@ -10596,55 +10596,6 @@ export declare const logSchemas: {
                 isTemplate?: boolean | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
-            }>>, z.ZodIntersection<z.ZodObject<{
-                id: z.ZodString;
-                _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
-            }, "strip", z.ZodTypeAny, {
-                id: string;
-                _ref: import("../..").DocumentReferenceLike<unknown>;
-            }, {
-                id: string;
-                _ref: import("../..").DocumentReferenceLike<unknown>;
-            }>, z.ZodObject<{
-                id: z.ZodOptional<z.ZodString>;
-                name: z.ZodString;
-                type: z.ZodType<"impulse", z.ZodTypeDef, "impulse">;
-                ordinal: z.ZodOptional<z.ZodNumber>;
-                isTemplate: z.ZodOptional<z.ZodBoolean>;
-                summary: z.ZodOptional<z.ZodString>;
-                tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
-                lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-            } & {
-                triggerKeywords: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-            }, z.UnknownKeysParam, z.ZodTypeAny, {
-                type: "impulse";
-                name: string;
-                tactics: import("../..").DocumentReferenceLike<unknown>[];
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                id?: string | undefined;
-                summary?: string | undefined;
-                ordinal?: number | undefined;
-                isTemplate?: boolean | undefined;
-                lastUsedAt?: import("../../types").Timestamp | undefined;
-                deletedAt?: import("../../types").Timestamp | undefined;
-                triggerKeywords?: string[] | undefined;
-            }, {
-                type: "impulse";
-                name: string;
-                tactics: import("../..").DocumentReferenceLike<unknown>[];
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                id?: string | undefined;
-                summary?: string | undefined;
-                ordinal?: number | undefined;
-                isTemplate?: boolean | undefined;
-                lastUsedAt?: import("../../types").Timestamp | undefined;
-                deletedAt?: import("../../types").Timestamp | undefined;
-                triggerKeywords?: string[] | undefined;
             }>>]>;
             introduction: z.ZodOptional<z.ZodString>;
             acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -10711,22 +10662,6 @@ export declare const logSchemas: {
                 isTemplate?: boolean | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
-            }) | ({
-                id: string;
-                _ref: import("../..").DocumentReferenceLike<unknown>;
-            } & {
-                type: "impulse";
-                name: string;
-                tactics: import("../..").DocumentReferenceLike<unknown>[];
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                id?: string | undefined;
-                summary?: string | undefined;
-                ordinal?: number | undefined;
-                isTemplate?: boolean | undefined;
-                lastUsedAt?: import("../../types").Timestamp | undefined;
-                deletedAt?: import("../../types").Timestamp | undefined;
-                triggerKeywords?: string[] | undefined;
             });
             planId: string;
             introduction?: string | undefined;
@@ -10794,22 +10729,6 @@ export declare const logSchemas: {
                 isTemplate?: boolean | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
-            }) | ({
-                id: string;
-                _ref: import("../..").DocumentReferenceLike<unknown>;
-            } & {
-                type: "impulse";
-                name: string;
-                tactics: import("../..").DocumentReferenceLike<unknown>[];
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                id?: string | undefined;
-                summary?: string | undefined;
-                ordinal?: number | undefined;
-                isTemplate?: boolean | undefined;
-                lastUsedAt?: import("../../types").Timestamp | undefined;
-                deletedAt?: import("../../types").Timestamp | undefined;
-                triggerKeywords?: string[] | undefined;
             });
             planId: string;
             introduction?: string | undefined;
@@ -10884,22 +10803,6 @@ export declare const logSchemas: {
                 isTemplate?: boolean | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
-            }) | ({
-                id: string;
-                _ref: import("../..").DocumentReferenceLike<unknown>;
-            } & {
-                type: "impulse";
-                name: string;
-                tactics: import("../..").DocumentReferenceLike<unknown>[];
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                id?: string | undefined;
-                summary?: string | undefined;
-                ordinal?: number | undefined;
-                isTemplate?: boolean | undefined;
-                lastUsedAt?: import("../../types").Timestamp | undefined;
-                deletedAt?: import("../../types").Timestamp | undefined;
-                triggerKeywords?: string[] | undefined;
             });
             planId: string;
             introduction?: string | undefined;
@@ -10982,22 +10885,6 @@ export declare const logSchemas: {
                 isTemplate?: boolean | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
-            }) | ({
-                id: string;
-                _ref: import("../..").DocumentReferenceLike<unknown>;
-            } & {
-                type: "impulse";
-                name: string;
-                tactics: import("../..").DocumentReferenceLike<unknown>[];
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                id?: string | undefined;
-                summary?: string | undefined;
-                ordinal?: number | undefined;
-                isTemplate?: boolean | undefined;
-                lastUsedAt?: import("../../types").Timestamp | undefined;
-                deletedAt?: import("../../types").Timestamp | undefined;
-                triggerKeywords?: string[] | undefined;
             });
             planId: string;
             introduction?: string | undefined;
@@ -19654,55 +19541,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             isTemplate?: boolean | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             deletedAt?: import("../../types").Timestamp | undefined;
-        }>>, z.ZodIntersection<z.ZodObject<{
-            id: z.ZodString;
-            _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
-        }, "strip", z.ZodTypeAny, {
-            id: string;
-            _ref: import("../..").DocumentReferenceLike<unknown>;
-        }, {
-            id: string;
-            _ref: import("../..").DocumentReferenceLike<unknown>;
-        }>, z.ZodObject<{
-            id: z.ZodOptional<z.ZodString>;
-            name: z.ZodString;
-            type: z.ZodType<"impulse", z.ZodTypeDef, "impulse">;
-            ordinal: z.ZodOptional<z.ZodNumber>;
-            isTemplate: z.ZodOptional<z.ZodBoolean>;
-            summary: z.ZodOptional<z.ZodString>;
-            tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
-            lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-            createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-            updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-            deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-        } & {
-            triggerKeywords: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-        }, z.UnknownKeysParam, z.ZodTypeAny, {
-            type: "impulse";
-            name: string;
-            tactics: import("../..").DocumentReferenceLike<unknown>[];
-            createdAt?: import("../../types").Timestamp | undefined;
-            updatedAt?: import("../../types").Timestamp | undefined;
-            id?: string | undefined;
-            summary?: string | undefined;
-            ordinal?: number | undefined;
-            isTemplate?: boolean | undefined;
-            lastUsedAt?: import("../../types").Timestamp | undefined;
-            deletedAt?: import("../../types").Timestamp | undefined;
-            triggerKeywords?: string[] | undefined;
-        }, {
-            type: "impulse";
-            name: string;
-            tactics: import("../..").DocumentReferenceLike<unknown>[];
-            createdAt?: import("../../types").Timestamp | undefined;
-            updatedAt?: import("../../types").Timestamp | undefined;
-            id?: string | undefined;
-            summary?: string | undefined;
-            ordinal?: number | undefined;
-            isTemplate?: boolean | undefined;
-            lastUsedAt?: import("../../types").Timestamp | undefined;
-            deletedAt?: import("../../types").Timestamp | undefined;
-            triggerKeywords?: string[] | undefined;
         }>>]>;
         introduction: z.ZodOptional<z.ZodString>;
         acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -19769,22 +19607,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             isTemplate?: boolean | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             deletedAt?: import("../../types").Timestamp | undefined;
-        }) | ({
-            id: string;
-            _ref: import("../..").DocumentReferenceLike<unknown>;
-        } & {
-            type: "impulse";
-            name: string;
-            tactics: import("../..").DocumentReferenceLike<unknown>[];
-            createdAt?: import("../../types").Timestamp | undefined;
-            updatedAt?: import("../../types").Timestamp | undefined;
-            id?: string | undefined;
-            summary?: string | undefined;
-            ordinal?: number | undefined;
-            isTemplate?: boolean | undefined;
-            lastUsedAt?: import("../../types").Timestamp | undefined;
-            deletedAt?: import("../../types").Timestamp | undefined;
-            triggerKeywords?: string[] | undefined;
         });
         planId: string;
         introduction?: string | undefined;
@@ -19852,22 +19674,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             isTemplate?: boolean | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             deletedAt?: import("../../types").Timestamp | undefined;
-        }) | ({
-            id: string;
-            _ref: import("../..").DocumentReferenceLike<unknown>;
-        } & {
-            type: "impulse";
-            name: string;
-            tactics: import("../..").DocumentReferenceLike<unknown>[];
-            createdAt?: import("../../types").Timestamp | undefined;
-            updatedAt?: import("../../types").Timestamp | undefined;
-            id?: string | undefined;
-            summary?: string | undefined;
-            ordinal?: number | undefined;
-            isTemplate?: boolean | undefined;
-            lastUsedAt?: import("../../types").Timestamp | undefined;
-            deletedAt?: import("../../types").Timestamp | undefined;
-            triggerKeywords?: string[] | undefined;
         });
         planId: string;
         introduction?: string | undefined;
@@ -19942,22 +19748,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             isTemplate?: boolean | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             deletedAt?: import("../../types").Timestamp | undefined;
-        }) | ({
-            id: string;
-            _ref: import("../..").DocumentReferenceLike<unknown>;
-        } & {
-            type: "impulse";
-            name: string;
-            tactics: import("../..").DocumentReferenceLike<unknown>[];
-            createdAt?: import("../../types").Timestamp | undefined;
-            updatedAt?: import("../../types").Timestamp | undefined;
-            id?: string | undefined;
-            summary?: string | undefined;
-            ordinal?: number | undefined;
-            isTemplate?: boolean | undefined;
-            lastUsedAt?: import("../../types").Timestamp | undefined;
-            deletedAt?: import("../../types").Timestamp | undefined;
-            triggerKeywords?: string[] | undefined;
         });
         planId: string;
         introduction?: string | undefined;
@@ -20040,22 +19830,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             isTemplate?: boolean | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             deletedAt?: import("../../types").Timestamp | undefined;
-        }) | ({
-            id: string;
-            _ref: import("../..").DocumentReferenceLike<unknown>;
-        } & {
-            type: "impulse";
-            name: string;
-            tactics: import("../..").DocumentReferenceLike<unknown>[];
-            createdAt?: import("../../types").Timestamp | undefined;
-            updatedAt?: import("../../types").Timestamp | undefined;
-            id?: string | undefined;
-            summary?: string | undefined;
-            ordinal?: number | undefined;
-            isTemplate?: boolean | undefined;
-            lastUsedAt?: import("../../types").Timestamp | undefined;
-            deletedAt?: import("../../types").Timestamp | undefined;
-            triggerKeywords?: string[] | undefined;
         });
         planId: string;
         introduction?: string | undefined;

@@ -1,9 +1,8 @@
 import { z } from "zod";
-import { ImpulsePlan, impulsePlanSchema } from "./impulsePlan";
+import { withIdSchema } from "../../utils/withId";
 import { LocationPlan, locationPlanSchema } from "./locationPlan";
 import { RecapPlan, recapPlanSchema } from "./recapPlan";
 import { TimePlan, timePlanSchema } from "./timePlan";
-import { withIdSchema } from "../../utils/withId";
 
 export * from "./impulsePlan";
 export * from "./locationPlan";
@@ -14,7 +13,6 @@ export const planSchema = z.discriminatedUnion("type", [
   timePlanSchema,
   locationPlanSchema,
   recapPlanSchema,
-  impulsePlanSchema,
 ]);
 
 export type Plan = z.infer<typeof planSchema>;
@@ -24,7 +22,6 @@ export const planWithIdSchema = z.union([
   withIdSchema(timePlanSchema),
   withIdSchema(locationPlanSchema),
   withIdSchema(recapPlanSchema),
-  withIdSchema(impulsePlanSchema),
 ]);
 
 export const planIsTimePlan = (value: Plan): value is TimePlan =>
@@ -41,8 +38,3 @@ export const planIsLocationPlan = (value: Plan): value is LocationPlan =>
   value.type === "location";
 export const isValidLocationPlan = (value: unknown): value is LocationPlan =>
   locationPlanSchema.safeParse(value).success;
-
-export const planIsImpulsePlan = (value: Plan): value is ImpulsePlan =>
-  value.type === "impulse";
-export const isValidImpulsePlan = (value: unknown): value is ImpulsePlan =>
-  impulsePlanSchema.safeParse(value).success;
