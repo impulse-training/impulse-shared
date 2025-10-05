@@ -36,7 +36,7 @@ export const daySummarySchema = z.object({
       })
     )
     .optional(),
-  checkInCompletedAt: timestampSchema.optional(),
+  recapCompletedAt: timestampSchema.optional(),
   createdAt: timestampSchema.optional(),
   updatedAt: timestampSchema.optional(),
 });

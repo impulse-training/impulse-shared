@@ -9,7 +9,7 @@ export const impulseThreadSchema = threadBaseSchema.extend({
   isSuccess: z.boolean().optional(),
   allImpulseQuestionsAnsweredAt: timestampSchema.optional(),
   debriefAfter: timestampSchema.optional(),
-  debriefFinishedAt: timestampSchema.optional(),
+  debriefFinishedAt: timestampSchema.nullable(),
   suggestedTactics: suggestedTacticsLogSchema.optional(),
 });
 
