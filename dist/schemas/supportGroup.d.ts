@@ -435,8 +435,8 @@ export declare const supportGroupSchema: z.ZodObject<{
     inviteCode: z.ZodOptional<z.ZodString>;
     lastMessage: z.ZodOptional<z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
-        createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-        updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+        createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+        updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
         userId: z.ZodString;
         timestamp: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         dateString: z.ZodString;
@@ -541,6 +541,8 @@ export declare const supportGroupSchema: z.ZodObject<{
             } | undefined;
         }>>;
     }, "strip", z.ZodTypeAny, {
+        createdAt: import("../types").Timestamp;
+        updatedAt: import("../types").Timestamp;
         type: "user_message";
         userId: string;
         dateString: string;
@@ -548,8 +550,6 @@ export declare const supportGroupSchema: z.ZodObject<{
         data: {
             message?: any;
         };
-        createdAt?: import("../types").Timestamp | undefined;
-        updatedAt?: import("../types").Timestamp | undefined;
         id?: string | undefined;
         timestamp?: import("../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
@@ -577,6 +577,8 @@ export declare const supportGroupSchema: z.ZodObject<{
             } | undefined;
         } | undefined;
     }, {
+        createdAt: import("../types").Timestamp;
+        updatedAt: import("../types").Timestamp;
         type: "user_message";
         userId: string;
         dateString: string;
@@ -584,8 +586,6 @@ export declare const supportGroupSchema: z.ZodObject<{
         data: {
             message?: any;
         };
-        createdAt?: import("../types").Timestamp | undefined;
-        updatedAt?: import("../types").Timestamp | undefined;
         id?: string | undefined;
         timestamp?: import("../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
@@ -695,6 +695,8 @@ export declare const supportGroupSchema: z.ZodObject<{
     isPublic?: boolean | undefined;
     inviteCode?: string | undefined;
     lastMessage?: {
+        createdAt: import("../types").Timestamp;
+        updatedAt: import("../types").Timestamp;
         type: "user_message";
         userId: string;
         dateString: string;
@@ -702,8 +704,6 @@ export declare const supportGroupSchema: z.ZodObject<{
         data: {
             message?: any;
         };
-        createdAt?: import("../types").Timestamp | undefined;
-        updatedAt?: import("../types").Timestamp | undefined;
         id?: string | undefined;
         timestamp?: import("../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;
@@ -809,6 +809,8 @@ export declare const supportGroupSchema: z.ZodObject<{
     isPublic?: boolean | undefined;
     inviteCode?: string | undefined;
     lastMessage?: {
+        createdAt: import("../types").Timestamp;
+        updatedAt: import("../types").Timestamp;
         type: "user_message";
         userId: string;
         dateString: string;
@@ -816,8 +818,6 @@ export declare const supportGroupSchema: z.ZodObject<{
         data: {
             message?: any;
         };
-        createdAt?: import("../types").Timestamp | undefined;
-        updatedAt?: import("../types").Timestamp | undefined;
         id?: string | undefined;
         timestamp?: import("../types").Timestamp | undefined;
         callLogDocPath?: string | undefined;

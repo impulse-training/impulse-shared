@@ -1,8 +1,8 @@
 import { z } from "zod";
 export declare const tacticLogSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
-    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     userId: z.ZodString;
     timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     dateString: z.ZodString;
@@ -2250,6 +2250,8 @@ export declare const tacticLogSchema: z.ZodObject<{
         completed?: boolean | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
     type: "tactic";
     userId: string;
     dateString: string;
@@ -2504,8 +2506,6 @@ export declare const tacticLogSchema: z.ZodObject<{
         completedStepIndexes?: number[] | undefined;
         completed?: boolean | undefined;
     };
-    createdAt?: import("../../types").Timestamp | undefined;
-    updatedAt?: import("../../types").Timestamp | undefined;
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
@@ -2514,6 +2514,8 @@ export declare const tacticLogSchema: z.ZodObject<{
         tactic?: any;
     } | undefined;
 }, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
     type: "tactic";
     userId: string;
     dateString: string;
@@ -2768,8 +2770,6 @@ export declare const tacticLogSchema: z.ZodObject<{
         completedStepIndexes?: number[] | undefined;
         completed?: boolean | undefined;
     };
-    createdAt?: import("../../types").Timestamp | undefined;
-    updatedAt?: import("../../types").Timestamp | undefined;
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;

@@ -4,8 +4,8 @@ import { timestampSchema } from "../../utils/timestampSchema";
 // Base Log Schema
 export const logBaseSchema = z.object({
   id: z.string().optional(),
-  createdAt: timestampSchema.optional(),
-  updatedAt: timestampSchema.optional(),
+  createdAt: timestampSchema,
+  updatedAt: timestampSchema,
   userId: z.string(), // This is required for collection group queries security rules
   timestamp: timestampSchema.optional(),
   dateString: z.string(),
