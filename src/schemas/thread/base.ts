@@ -36,6 +36,7 @@ export const threadBaseSchema = z.object({
   type: threadTypeSchema.default("general"),
   date: timestampSchema,
   dateString: z.string(),
+  userId: z.string(),
 
   mode: z.enum(["text", "voice"]).default("text"),
 
