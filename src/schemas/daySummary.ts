@@ -37,6 +37,8 @@ export const daySummarySchema = z.object({
     )
     .optional(),
   recapCompletedAt: timestampSchema.optional(),
+  // When the user confirms totals and starts the recap flow
+  recapStartedAt: timestampSchema.optional(),
   createdAt: timestampSchema.optional(),
   updatedAt: timestampSchema.optional(),
 });

@@ -6448,6 +6448,7 @@ export declare const logSchemas: {
                 targetValue?: number | undefined;
             }>>>;
             recapCompletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            recapStartedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         }, "strip", z.ZodTypeAny, {
@@ -6523,6 +6524,7 @@ export declare const logSchemas: {
                 targetValue?: number | undefined;
             }> | undefined;
             recapCompletedAt?: import("../../types").Timestamp | undefined;
+            recapStartedAt?: import("../../types").Timestamp | undefined;
         }, {
             userId: string;
             dateString: string;
@@ -6596,6 +6598,7 @@ export declare const logSchemas: {
                 targetValue?: number | undefined;
             }> | undefined;
             recapCompletedAt?: import("../../types").Timestamp | undefined;
+            recapStartedAt?: import("../../types").Timestamp | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
         createdAt: import("../../types").Timestamp;
@@ -6677,6 +6680,7 @@ export declare const logSchemas: {
                 targetValue?: number | undefined;
             }> | undefined;
             recapCompletedAt?: import("../../types").Timestamp | undefined;
+            recapStartedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
@@ -6765,6 +6769,7 @@ export declare const logSchemas: {
                 targetValue?: number | undefined;
             }> | undefined;
             recapCompletedAt?: import("../../types").Timestamp | undefined;
+            recapStartedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
@@ -18215,6 +18220,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             targetValue?: number | undefined;
         }>>>;
         recapCompletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        recapStartedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
@@ -18290,6 +18296,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             targetValue?: number | undefined;
         }> | undefined;
         recapCompletedAt?: import("../../types").Timestamp | undefined;
+        recapStartedAt?: import("../../types").Timestamp | undefined;
     }, {
         userId: string;
         dateString: string;
@@ -18363,6 +18370,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             targetValue?: number | undefined;
         }> | undefined;
         recapCompletedAt?: import("../../types").Timestamp | undefined;
+        recapStartedAt?: import("../../types").Timestamp | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
@@ -18444,6 +18452,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             targetValue?: number | undefined;
         }> | undefined;
         recapCompletedAt?: import("../../types").Timestamp | undefined;
+        recapStartedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
@@ -18532,6 +18541,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             targetValue?: number | undefined;
         }> | undefined;
         recapCompletedAt?: import("../../types").Timestamp | undefined;
+        recapStartedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
