@@ -43,6 +43,7 @@ export const behaviorSchema = behaviorTemplateBase
     lastTrackedAt: timestampSchema.optional(),
     tactics: z.array(documentReferenceSchema).optional(),
     initialUsage: behaviorTrackingDataSchema.optional(),
+    hidden: z.boolean().optional().default(false),
   })
   .superRefine((val, ctx) => {
     if (val.trackingType === "counter" && !val.trackingUnit) {

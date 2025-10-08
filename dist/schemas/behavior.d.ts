@@ -148,6 +148,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         formattedValue: string;
         behaviorTrackingUnit?: string | undefined;
     }>>;
+    hidden: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
 }, "strip", z.ZodTypeAny, {
     trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -156,6 +157,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     ordinal: number;
     benefits: string[];
     drawbacks: string[];
+    hidden: boolean;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     id?: string | undefined;
@@ -230,6 +232,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         formattedValue: string;
         behaviorTrackingUnit?: string | undefined;
     } | undefined;
+    hidden?: boolean | undefined;
 }>, {
     trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -238,6 +241,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     ordinal: number;
     benefits: string[];
     drawbacks: string[];
+    hidden: boolean;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     id?: string | undefined;
@@ -312,6 +316,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         formattedValue: string;
         behaviorTrackingUnit?: string | undefined;
     } | undefined;
+    hidden?: boolean | undefined;
 }>;
 export type TrackingType = (typeof trackingTypes)[number];
 export type Behavior = z.infer<typeof behaviorSchema>;

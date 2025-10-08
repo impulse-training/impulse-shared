@@ -86,6 +86,10 @@ export const threadBaseSchema = z.object({
   updatedAt: timestampSchema.optional(),
   createdAt: timestampSchema.optional(),
 
+  // OpenAI Assistants API integration
+  assistantId: z.string().optional(),
+  assistantThreadId: z.string().optional(),
+
   // Current call status for global voice UI
   currentCall: z
     .object({

@@ -6253,6 +6253,7 @@ export declare const logSchemas: {
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
                 }>>;
+                hidden: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
             }, "strip", z.ZodTypeAny, {
                 trackingType: "counter" | "timer";
                 category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -6261,6 +6262,7 @@ export declare const logSchemas: {
                 ordinal: number;
                 benefits: string[];
                 drawbacks: string[];
+                hidden: boolean;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
@@ -6335,6 +6337,7 @@ export declare const logSchemas: {
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
                 } | undefined;
+                hidden?: boolean | undefined;
             }>, {
                 trackingType: "counter" | "timer";
                 category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -6343,6 +6346,7 @@ export declare const logSchemas: {
                 ordinal: number;
                 benefits: string[];
                 drawbacks: string[];
+                hidden: boolean;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
@@ -6417,6 +6421,7 @@ export declare const logSchemas: {
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
                 } | undefined;
+                hidden?: boolean | undefined;
             }>>>;
             trackingLogsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
             tacticsUsed: z.ZodDefault<z.ZodArray<z.ZodAny, "many">>;
@@ -6473,6 +6478,7 @@ export declare const logSchemas: {
                 ordinal: number;
                 benefits: string[];
                 drawbacks: string[];
+                hidden: boolean;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
@@ -6576,6 +6582,7 @@ export declare const logSchemas: {
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
                 } | undefined;
+                hidden?: boolean | undefined;
             }> | undefined;
             trackingLogsById?: Record<string, any> | undefined;
             tacticsUsed?: any[] | undefined;
@@ -6625,6 +6632,7 @@ export declare const logSchemas: {
                 ordinal: number;
                 benefits: string[];
                 drawbacks: string[];
+                hidden: boolean;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
@@ -6743,6 +6751,7 @@ export declare const logSchemas: {
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
                 } | undefined;
+                hidden?: boolean | undefined;
             }> | undefined;
             trackingLogsById?: Record<string, any> | undefined;
             tacticsUsed?: any[] | undefined;
@@ -10569,6 +10578,7 @@ export declare const logSchemas: {
                     minute: number;
                     weekdays: number[];
                 }>;
+                questionIds: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodString, "many">>>;
             }, z.UnknownKeysParam, z.ZodTypeAny, {
                 type: "recap";
                 name: string;
@@ -10578,6 +10588,7 @@ export declare const logSchemas: {
                     minute: number;
                     weekdays: number[];
                 };
+                questionIds: string[];
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
@@ -10605,6 +10616,7 @@ export declare const logSchemas: {
                 isTemplate?: boolean | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
+                questionIds?: string[] | undefined;
             }>>]>;
             introduction: z.ZodOptional<z.ZodString>;
             acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -10665,6 +10677,7 @@ export declare const logSchemas: {
                     minute: number;
                     weekdays: number[];
                 };
+                questionIds: string[];
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
@@ -10744,6 +10757,7 @@ export declare const logSchemas: {
                 isTemplate?: boolean | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
+                questionIds?: string[] | undefined;
             });
             planId: string;
             introduction?: string | undefined;
@@ -10813,6 +10827,7 @@ export declare const logSchemas: {
                     minute: number;
                     weekdays: number[];
                 };
+                questionIds: string[];
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
@@ -10907,6 +10922,7 @@ export declare const logSchemas: {
                 isTemplate?: boolean | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
+                questionIds?: string[] | undefined;
             });
             planId: string;
             introduction?: string | undefined;
@@ -18004,6 +18020,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 formattedValue: string;
                 behaviorTrackingUnit?: string | undefined;
             }>>;
+            hidden: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
         }, "strip", z.ZodTypeAny, {
             trackingType: "counter" | "timer";
             category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -18012,6 +18029,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal: number;
             benefits: string[];
             drawbacks: string[];
+            hidden: boolean;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
@@ -18086,6 +18104,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 formattedValue: string;
                 behaviorTrackingUnit?: string | undefined;
             } | undefined;
+            hidden?: boolean | undefined;
         }>, {
             trackingType: "counter" | "timer";
             category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -18094,6 +18113,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal: number;
             benefits: string[];
             drawbacks: string[];
+            hidden: boolean;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
@@ -18168,6 +18188,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 formattedValue: string;
                 behaviorTrackingUnit?: string | undefined;
             } | undefined;
+            hidden?: boolean | undefined;
         }>>>;
         trackingLogsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
         tacticsUsed: z.ZodDefault<z.ZodArray<z.ZodAny, "many">>;
@@ -18224,6 +18245,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal: number;
             benefits: string[];
             drawbacks: string[];
+            hidden: boolean;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
@@ -18327,6 +18349,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 formattedValue: string;
                 behaviorTrackingUnit?: string | undefined;
             } | undefined;
+            hidden?: boolean | undefined;
         }> | undefined;
         trackingLogsById?: Record<string, any> | undefined;
         tacticsUsed?: any[] | undefined;
@@ -18376,6 +18399,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal: number;
             benefits: string[];
             drawbacks: string[];
+            hidden: boolean;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
@@ -18494,6 +18518,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 formattedValue: string;
                 behaviorTrackingUnit?: string | undefined;
             } | undefined;
+            hidden?: boolean | undefined;
         }> | undefined;
         trackingLogsById?: Record<string, any> | undefined;
         tacticsUsed?: any[] | undefined;
@@ -19535,6 +19560,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 minute: number;
                 weekdays: number[];
             }>;
+            questionIds: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodString, "many">>>;
         }, z.UnknownKeysParam, z.ZodTypeAny, {
             type: "recap";
             name: string;
@@ -19544,6 +19570,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 minute: number;
                 weekdays: number[];
             };
+            questionIds: string[];
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
@@ -19571,6 +19598,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             isTemplate?: boolean | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             deletedAt?: import("../../types").Timestamp | undefined;
+            questionIds?: string[] | undefined;
         }>>]>;
         introduction: z.ZodOptional<z.ZodString>;
         acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -19631,6 +19659,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 minute: number;
                 weekdays: number[];
             };
+            questionIds: string[];
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
@@ -19710,6 +19739,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             isTemplate?: boolean | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             deletedAt?: import("../../types").Timestamp | undefined;
+            questionIds?: string[] | undefined;
         });
         planId: string;
         introduction?: string | undefined;
@@ -19779,6 +19809,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 minute: number;
                 weekdays: number[];
             };
+            questionIds: string[];
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
@@ -19873,6 +19904,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             isTemplate?: boolean | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             deletedAt?: import("../../types").Timestamp | undefined;
+            questionIds?: string[] | undefined;
         });
         planId: string;
         introduction?: string | undefined;
