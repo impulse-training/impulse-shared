@@ -18,6 +18,11 @@ export const userDataSchema = z.object({
   // Notification settings
   notificationsEnabled: z.boolean().default(true),
   expoPushToken: z.string().nullable().default(null),
+  notificationSettings: z.object({
+    debriefReminders: z.boolean().default(true),
+  }).default({
+    debriefReminders: true,
+  }),
 
   appVersion: z.string().optional(),
 
