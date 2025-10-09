@@ -23,8 +23,8 @@ export declare const behaviorContextSchema: z.ZodObject<{
     effectiveTactics: string[];
     planTacticIds: string[];
     category?: string | undefined;
-    description?: string | undefined;
     trackingUnit?: string | undefined;
+    description?: string | undefined;
     benefits?: string[] | undefined;
     drawbacks?: string[] | undefined;
 }, {
@@ -32,8 +32,8 @@ export declare const behaviorContextSchema: z.ZodObject<{
     behaviorName: string;
     trackingType: "boolean" | "counter" | "timer";
     category?: string | undefined;
-    description?: string | undefined;
     trackingUnit?: string | undefined;
+    description?: string | undefined;
     benefits?: string[] | undefined;
     drawbacks?: string[] | undefined;
     streakDays?: number | undefined;
@@ -102,8 +102,8 @@ export declare const userContextSchema: z.ZodObject<{
         effectiveTactics: string[];
         planTacticIds: string[];
         category?: string | undefined;
-        description?: string | undefined;
         trackingUnit?: string | undefined;
+        description?: string | undefined;
         benefits?: string[] | undefined;
         drawbacks?: string[] | undefined;
     }, {
@@ -111,8 +111,8 @@ export declare const userContextSchema: z.ZodObject<{
         behaviorName: string;
         trackingType: "boolean" | "counter" | "timer";
         category?: string | undefined;
-        description?: string | undefined;
         trackingUnit?: string | undefined;
+        description?: string | undefined;
         benefits?: string[] | undefined;
         drawbacks?: string[] | undefined;
         streakDays?: number | undefined;
@@ -161,6 +161,13 @@ export declare const userContextSchema: z.ZodObject<{
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
+    tactics: Record<string, {
+        effectiveness: number;
+        tacticId: string;
+        tacticTitle: string;
+        tacticType: string;
+        completedCount: number;
+    }>;
     behaviors: Record<string, {
         behaviorId: string;
         behaviorName: string;
@@ -171,17 +178,10 @@ export declare const userContextSchema: z.ZodObject<{
         effectiveTactics: string[];
         planTacticIds: string[];
         category?: string | undefined;
-        description?: string | undefined;
         trackingUnit?: string | undefined;
+        description?: string | undefined;
         benefits?: string[] | undefined;
         drawbacks?: string[] | undefined;
-    }>;
-    tactics: Record<string, {
-        effectiveness: number;
-        tacticId: string;
-        tacticTitle: string;
-        tacticType: string;
-        completedCount: number;
     }>;
     aiMemories: {
         id: string;
@@ -194,13 +194,20 @@ export declare const userContextSchema: z.ZodObject<{
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
 }, {
+    tactics: Record<string, {
+        tacticId: string;
+        tacticTitle: string;
+        tacticType: string;
+        effectiveness?: number | undefined;
+        completedCount?: number | undefined;
+    }>;
     behaviors: Record<string, {
         behaviorId: string;
         behaviorName: string;
         trackingType: "boolean" | "counter" | "timer";
         category?: string | undefined;
-        description?: string | undefined;
         trackingUnit?: string | undefined;
+        description?: string | undefined;
         benefits?: string[] | undefined;
         drawbacks?: string[] | undefined;
         streakDays?: number | undefined;
@@ -208,13 +215,6 @@ export declare const userContextSchema: z.ZodObject<{
         insights?: string[] | undefined;
         effectiveTactics?: string[] | undefined;
         planTacticIds?: string[] | undefined;
-    }>;
-    tactics: Record<string, {
-        tacticId: string;
-        tacticTitle: string;
-        tacticType: string;
-        effectiveness?: number | undefined;
-        completedCount?: number | undefined;
     }>;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;

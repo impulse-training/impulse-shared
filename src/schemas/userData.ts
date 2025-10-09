@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { documentReferenceSchema } from "../utils";
+import { documentReferenceSchema } from "../utils/documentReferenceSchema";
 import { timestampSchema } from "../utils/timestampSchema";
 
 export const userDataSchema = z.object({
@@ -18,11 +18,13 @@ export const userDataSchema = z.object({
   // Notification settings
   notificationsEnabled: z.boolean().default(true),
   expoPushToken: z.string().nullable().default(null),
-  notificationSettings: z.object({
-    debriefReminders: z.boolean().default(true),
-  }).default({
-    debriefReminders: true,
-  }),
+  notificationSettings: z
+    .object({
+      debriefReminders: z.boolean().default(true),
+    })
+    .default({
+      debriefReminders: true,
+    }),
 
   appVersion: z.string().optional(),
 

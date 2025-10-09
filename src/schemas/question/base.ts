@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { questionScopeSchema } from "../../constants";
-import { timestampSchema } from "../../utils";
+import { timestampSchema } from "../../utils/timestampSchema";
 
 export function questionBaseSchema<T extends string>(type: T) {
   return z.object({

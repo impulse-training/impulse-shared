@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { timestampSchema } from "../../../../utils";
+import { timestampSchema } from "../../../../utils/timestampSchema";
 import { baseStepSchema } from "../base";
 
 export function questionStepBaseSchema<T extends string>(mode: T) {

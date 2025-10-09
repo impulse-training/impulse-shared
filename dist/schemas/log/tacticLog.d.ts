@@ -265,8 +265,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     exhale: number;
                     hold?: number | undefined;
                 };
-                cycles?: number | undefined;
                 text?: string | undefined;
+                cycles?: number | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -294,8 +294,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     exhale: number;
                     hold?: number | undefined;
                 };
-                cycles?: number | undefined;
                 text?: string | undefined;
+                cycles?: number | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -1250,12 +1250,12 @@ export declare const tacticLogSchema: z.ZodObject<{
                 prompt: z.ZodOptional<z.ZodString>;
             }, "strip", z.ZodTypeAny, {
                 goal: string;
-                defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
+                defaultConversationMode?: "text" | "voice" | undefined;
             }, {
                 goal: string;
-                defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
+                defaultConversationMode?: "text" | "voice" | undefined;
             }>>;
             createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
             updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -1293,8 +1293,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     exhale: number;
                     hold?: number | undefined;
                 };
-                cycles?: number | undefined;
                 text?: string | undefined;
+                cycles?: number | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -1465,8 +1465,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             })[];
             title?: string | undefined;
             id?: string | undefined;
-            tags?: string[] | undefined;
             description?: string | undefined;
+            tags?: string[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             indications?: {
@@ -1499,8 +1499,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             timeToComplete?: "medium" | "quick" | "long" | undefined;
             aiConfiguration?: {
                 goal: string;
-                defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
+                defaultConversationMode?: "text" | "voice" | undefined;
             } | undefined;
         }, {
             createdAt: import("../../types").Timestamp;
@@ -1536,8 +1536,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     exhale: number;
                     hold?: number | undefined;
                 };
-                cycles?: number | undefined;
                 text?: string | undefined;
+                cycles?: number | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -1708,8 +1708,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             })[];
             title?: string | undefined;
             id?: string | undefined;
-            tags?: string[] | undefined;
             description?: string | undefined;
+            tags?: string[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             indications?: {
@@ -1742,8 +1742,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             timeToComplete?: "medium" | "quick" | "long" | undefined;
             aiConfiguration?: {
                 goal: string;
-                defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
+                defaultConversationMode?: "text" | "voice" | undefined;
             } | undefined;
         }>;
         planId: z.ZodOptional<z.ZodString>;
@@ -1785,8 +1785,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     exhale: number;
                     hold?: number | undefined;
                 };
-                cycles?: number | undefined;
                 text?: string | undefined;
+                cycles?: number | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -1957,8 +1957,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             })[];
             title?: string | undefined;
             id?: string | undefined;
-            tags?: string[] | undefined;
             description?: string | undefined;
+            tags?: string[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             indications?: {
@@ -1991,14 +1991,14 @@ export declare const tacticLogSchema: z.ZodObject<{
             timeToComplete?: "medium" | "quick" | "long" | undefined;
             aiConfiguration?: {
                 goal: string;
-                defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
+                defaultConversationMode?: "text" | "voice" | undefined;
             } | undefined;
         };
+        completed?: boolean | undefined;
         planId?: string | undefined;
         stepCount?: number | undefined;
         completedStepIndexes?: number[] | undefined;
-        completed?: boolean | undefined;
     }, {
         tactic: {
             createdAt: import("../../types").Timestamp;
@@ -2034,8 +2034,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     exhale: number;
                     hold?: number | undefined;
                 };
-                cycles?: number | undefined;
                 text?: string | undefined;
+                cycles?: number | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2206,8 +2206,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             })[];
             title?: string | undefined;
             id?: string | undefined;
-            tags?: string[] | undefined;
             description?: string | undefined;
+            tags?: string[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             indications?: {
@@ -2240,14 +2240,14 @@ export declare const tacticLogSchema: z.ZodObject<{
             timeToComplete?: "medium" | "quick" | "long" | undefined;
             aiConfiguration?: {
                 goal: string;
-                defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
+                defaultConversationMode?: "text" | "voice" | undefined;
             } | undefined;
         };
+        completed?: boolean | undefined;
         planId?: string | undefined;
         stepCount?: number | undefined;
         completedStepIndexes?: number[] | undefined;
-        completed?: boolean | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
@@ -2291,8 +2291,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     exhale: number;
                     hold?: number | undefined;
                 };
-                cycles?: number | undefined;
                 text?: string | undefined;
+                cycles?: number | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2463,8 +2463,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             })[];
             title?: string | undefined;
             id?: string | undefined;
-            tags?: string[] | undefined;
             description?: string | undefined;
+            tags?: string[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             indications?: {
@@ -2497,14 +2497,14 @@ export declare const tacticLogSchema: z.ZodObject<{
             timeToComplete?: "medium" | "quick" | "long" | undefined;
             aiConfiguration?: {
                 goal: string;
-                defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
+                defaultConversationMode?: "text" | "voice" | undefined;
             } | undefined;
         };
+        completed?: boolean | undefined;
         planId?: string | undefined;
         stepCount?: number | undefined;
         completedStepIndexes?: number[] | undefined;
-        completed?: boolean | undefined;
     };
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
@@ -2555,8 +2555,8 @@ export declare const tacticLogSchema: z.ZodObject<{
                     exhale: number;
                     hold?: number | undefined;
                 };
-                cycles?: number | undefined;
                 text?: string | undefined;
+                cycles?: number | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2727,8 +2727,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             })[];
             title?: string | undefined;
             id?: string | undefined;
-            tags?: string[] | undefined;
             description?: string | undefined;
+            tags?: string[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             indications?: {
@@ -2761,14 +2761,14 @@ export declare const tacticLogSchema: z.ZodObject<{
             timeToComplete?: "medium" | "quick" | "long" | undefined;
             aiConfiguration?: {
                 goal: string;
-                defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
+                defaultConversationMode?: "text" | "voice" | undefined;
             } | undefined;
         };
+        completed?: boolean | undefined;
         planId?: string | undefined;
         stepCount?: number | undefined;
         completedStepIndexes?: number[] | undefined;
-        completed?: boolean | undefined;
     };
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;

@@ -1,5 +1,6 @@
 import { z } from "zod";
-import { documentReferenceSchema, timestampSchema } from "../../utils";
+import { documentReferenceSchema } from "../../utils/documentReferenceSchema";
+import { timestampSchema } from "../../utils/timestampSchema";
 
 export function planBaseSchema<T extends string>(type: T) {
   return z.object({

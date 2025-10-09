@@ -3,8 +3,8 @@ import { Timestamp } from "../types";
 import {
   DocumentReferenceLike,
   documentReferenceSchema,
-  timestampSchema,
-} from "../utils";
+} from "../utils/documentReferenceSchema";
+import { timestampSchema } from "../utils/timestampSchema";
 
 export interface ExternalSenderSession {
   createdAt: Timestamp;

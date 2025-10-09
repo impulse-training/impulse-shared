@@ -2,7 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isValidSupportGroup = exports.isValidSupportGroupMember = exports.supportGroupSchema = exports.supportGroupMemberSchema = exports.supportGroupNotificationPreferencesSchema = exports.supportGroupPermissionsSchema = void 0;
 const zod_1 = require("zod");
-const utils_1 = require("../utils");
+const documentReferenceSchema_1 = require("../utils/documentReferenceSchema");
+const objectOf_1 = require("../utils/objectOf");
+const timestampSchema_1 = require("../utils/timestampSchema");
 const attachment_1 = require("./attachment");
 const log_1 = require("./log");
 const userProfile_1 = require("./userProfile");
@@ -23,11 +25,11 @@ exports.supportGroupMemberSchema = zod_1.z.object({
     notificationPreferences: exports.supportGroupNotificationPreferencesSchema.optional(),
     currentStreak: zod_1.z
         .object({
-        streakStart: utils_1.timestampSchema.optional(),
+        streakStart: timestampSchema_1.timestampSchema.optional(),
         color: zod_1.z.string(),
     })
         .optional(),
-    joinedAt: utils_1.timestampSchema.optional(),
+    joinedAt: timestampSchema_1.timestampSchema.optional(),
 });
 // Support Group Schema
 exports.supportGroupSchema = zod_1.z.object({
@@ -36,18 +38,18 @@ exports.supportGroupSchema = zod_1.z.object({
     description: zod_1.z.string().optional(),
     ownerId: zod_1.z.string(),
     coverPhoto: attachment_1.attachmentSchema.optional(), // Optional cover photo for the group
-    membersById: (0, utils_1.objectOf)(exports.supportGroupMemberSchema),
-    unreadMessageCountsById: (0, utils_1.objectOf)(zod_1.z.number()),
+    membersById: (0, objectOf_1.objectOf)(exports.supportGroupMemberSchema),
+    unreadMessageCountsById: (0, objectOf_1.objectOf)(zod_1.z.number()),
     memberCount: zod_1.z.number().default(0), // Count of members for easier querying
     image: attachment_1.attachmentSchema,
-    tacticCollections: zod_1.z.array(utils_1.documentReferenceSchema),
+    tacticCollections: zod_1.z.array(documentReferenceSchema_1.documentReferenceSchema),
     isPublic: zod_1.z.boolean().optional(),
     isTemplate: zod_1.z.boolean().optional().default(false),
     inviteCode: zod_1.z.string().optional(),
     lastMessage: log_1.userMessageLogSchema.optional(),
     tacticCount: zod_1.z.number().default(0),
-    createdAt: utils_1.timestampSchema.optional(),
-    updatedAt: utils_1.timestampSchema.optional(),
+    createdAt: timestampSchema_1.timestampSchema.optional(),
+    updatedAt: timestampSchema_1.timestampSchema.optional(),
 });
 // Type guard functions
 const isValidSupportGroupMember = (value) => {

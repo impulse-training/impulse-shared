@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { documentReferenceSchema } from "../../utils/documentReferenceSchema";
 import { emojiIdSchema } from "../emojiId";
-import { threadSummarySchema } from "../thread/base";
+import { threadSummarySchema } from "../thread/threadSummary";
 import { logBaseSchema } from "./base";
 
 export const sharedMomentLogSchema = logBaseSchema.extend({

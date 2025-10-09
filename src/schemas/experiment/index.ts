@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { timestampSchema } from "../../utils";
+import { timestampSchema } from "../../utils/timestampSchema";
 import { daySummarySchema } from "../daySummary";
 import { goalSchema } from "../goal";
 

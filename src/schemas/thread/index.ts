@@ -19,6 +19,7 @@ export * from "./general";
 export * from "./impulse";
 export * from "./onboarding";
 export * from "./plan";
+export * from "./threadSummary";
 
 // Map of thread types to their schemas
 export const threadSchemas = {

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { timestampSchema } from "../utils";
+import { timestampSchema } from "../utils/timestampSchema";
 
 /**
  * Schema for user summary documents stored in userSummaries collection

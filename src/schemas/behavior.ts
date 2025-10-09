@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { categorySchema } from "../constants";
-import { documentReferenceSchema, timestampSchema } from "../utils";
+import { documentReferenceSchema } from "../utils/documentReferenceSchema";
+import { timestampSchema } from "../utils/timestampSchema";
 import { goalSchema } from "./goal";
 import { behaviorTrackingDataSchema } from "./behaviorTrackingData";
 

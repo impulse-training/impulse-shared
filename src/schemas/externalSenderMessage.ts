@@ -1,5 +1,6 @@
 import { z } from "zod";
-import { documentReferenceSchema, timestampSchema } from "../utils";
+import { documentReferenceSchema } from "../utils/documentReferenceSchema";
+import { timestampSchema } from "../utils/timestampSchema";
 
 // This is a message from an external service, like Whatsapp, delivered to an inbox
 export const externalSenderMessageSchema = z.object({

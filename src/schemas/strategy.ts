@@ -1,5 +1,6 @@
 import { z } from "zod";
-import { documentReferenceSchema, timestampSchema } from "../utils";
+import { documentReferenceSchema } from "../utils/documentReferenceSchema";
+import { timestampSchema } from "../utils/timestampSchema";
 import { userProfileSchema } from "./userProfile";
 
 export const strategySchema = z.object({

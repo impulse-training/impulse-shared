@@ -3,7 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.isBehavior = exports.behaviorSchema = exports.behaviorTemplateSchema = exports.trackingTypes = void 0;
 const zod_1 = require("zod");
 const constants_1 = require("../constants");
-const utils_1 = require("../utils");
+const documentReferenceSchema_1 = require("../utils/documentReferenceSchema");
+const timestampSchema_1 = require("../utils/timestampSchema");
 const goal_1 = require("./goal");
 const behaviorTrackingData_1 = require("./behaviorTrackingData");
 exports.trackingTypes = ["counter", "timer"];
@@ -15,8 +16,8 @@ const behaviorTemplateBase = zod_1.z.object({
     hasQuestions: zod_1.z.boolean().optional(),
     trackingType: zod_1.z.enum(exports.trackingTypes),
     trackingUnit: zod_1.z.string().optional(),
-    createdAt: utils_1.timestampSchema.optional(),
-    updatedAt: utils_1.timestampSchema.optional(),
+    createdAt: timestampSchema_1.timestampSchema.optional(),
+    updatedAt: timestampSchema_1.timestampSchema.optional(),
 });
 exports.behaviorTemplateSchema = behaviorTemplateBase.superRefine((val, ctx) => {
     if (val.trackingType === "counter" && !val.trackingUnit) {
@@ -36,8 +37,8 @@ exports.behaviorSchema = behaviorTemplateBase
     benefits: zod_1.z.array(zod_1.z.string()),
     drawbacks: zod_1.z.array(zod_1.z.string()),
     goal: goal_1.goalSchema.optional(),
-    lastTrackedAt: utils_1.timestampSchema.optional(),
-    tactics: zod_1.z.array(utils_1.documentReferenceSchema).optional(),
+    lastTrackedAt: timestampSchema_1.timestampSchema.optional(),
+    tactics: zod_1.z.array(documentReferenceSchema_1.documentReferenceSchema).optional(),
     initialUsage: behaviorTrackingData_1.behaviorTrackingDataSchema.optional(),
     hidden: zod_1.z.boolean().optional().default(false),
 })

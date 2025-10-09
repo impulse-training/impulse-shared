@@ -1,10 +1,10 @@
 import { z } from "zod";
-import { objectOf, optionalObjectOf, timestampSchema } from "../utils";
+import { objectOf, optionalObjectOf } from "../utils/objectOf";
+import { timestampSchema } from "../utils/timestampSchema";
 import { behaviorSchema } from "./behavior";
 import { behaviorTrackingDataSchema } from "./log";
 
 const outcomeEnum = z.enum(["success", "partial", "setback"]);
-
 export const daySummarySchema = z.object({
   id: z.string().optional(),
   // dateString: z.string(),

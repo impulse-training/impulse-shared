@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { timestampSchema } from "../utils";
+import { timestampSchema } from "../utils/timestampSchema";
 
 export const userTimezoneSchema = z.object({
   timezone: z.string(),

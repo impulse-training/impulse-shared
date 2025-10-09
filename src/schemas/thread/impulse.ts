@@ -1,5 +1,6 @@
 import { z } from "zod";
-import { documentReferenceSchema, timestampSchema } from "../../utils";
+import { documentReferenceSchema } from "../../utils/documentReferenceSchema";
+import { timestampSchema } from "../../utils/timestampSchema";
 import { threadBaseSchema } from "./base";
 
 export const impulseThreadSchema = threadBaseSchema.extend({

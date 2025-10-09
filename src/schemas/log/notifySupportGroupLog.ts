@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { objectOf } from "../../utils";
+import { objectOf } from "../../utils/objectOf";
 import { userProfileSchema } from "../userProfile";
 import { logBaseSchema } from "./base";
 

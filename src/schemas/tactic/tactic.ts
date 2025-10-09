@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { timestampSchema } from "../../utils";
+import { timestampSchema } from "../../utils/timestampSchema";
 import { tacticStepSchema } from "./step";
 
 // Indication schemas for tactic suggestion logic
@@ -55,6 +55,8 @@ export const tacticSchema = z.object({
 
 export type Tactic = z.infer<typeof tacticSchema>;
 
-export type QuestionResponseIndication = z.infer<typeof questionResponseIndicationSchema>;
+export type QuestionResponseIndication = z.infer<
+  typeof questionResponseIndicationSchema
+>;
 export type BehaviorIndication = z.infer<typeof behaviorIndicationSchema>;
 export type Indication = z.infer<typeof indicationSchema>;

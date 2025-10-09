@@ -1,5 +1,7 @@
 import { z } from "zod";
-import { documentReferenceSchema, objectOf, timestampSchema } from "../utils";
+import { documentReferenceSchema } from "../utils/documentReferenceSchema";
+import { objectOf } from "../utils/objectOf";
+import { timestampSchema } from "../utils/timestampSchema";
 import { attachmentSchema } from "./attachment";
 import { userMessageLogSchema } from "./log";
 import { userProfileSchema } from "./userProfile";

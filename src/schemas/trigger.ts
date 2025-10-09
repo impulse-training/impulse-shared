@@ -1,35 +1,33 @@
 import { z } from "zod";
-import { timestampSchema } from "../utils";
+import { timestampSchema } from "../utils/timestampSchema";
 
 // Supporting enums
 export const socialContexts = [
   "alone",
-  "with_partner", 
+  "with_partner",
   "with_friends",
   "public",
-  "work"
+  "work",
 ] as const;
 
 export const locationTypes = [
   "home",
-  "bedroom", 
+  "bedroom",
   "workplace",
   "commute",
   "outdoors",
   "gym",
-  "other"
+  "other",
 ] as const;
 
 export const timeBands = [
   "late_night",
-  "morning", 
+  "morning",
   "afternoon",
-  "evening"
+  "evening",
 ] as const;
 
-export const triggerKinds = [
-  "situation"
-] as const;
+export const triggerKinds = ["situation"] as const;
 
 // Zod schemas for enums
 export const socialContextSchema = z.enum(socialContexts);
@@ -70,7 +68,7 @@ export const triggerSchema = z.object({
   context: contextSchema.optional(),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
-  
+
   // Quick denorm for routing
   defaultPlanId: z.string().optional(),
   activeExperimentId: z.string().optional().nullable(),

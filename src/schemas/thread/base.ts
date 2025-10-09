@@ -1,9 +1,10 @@
 import { z } from "zod";
-import { documentReferenceSchema } from "../../utils";
+import { documentReferenceSchema } from "../../utils/documentReferenceSchema";
 import { timestampSchema } from "../../utils/timestampSchema";
 import { emojiIdSchema } from "../emojiId";
 import { suggestedTacticsLogSchema } from "../log";
 import { planWithIdSchema } from "../plan";
+import { threadSummarySchema } from "./threadSummary";
 
 const threadTypeSchema = z.enum([
   "impulse",
@@ -16,18 +17,6 @@ const threadTypeSchema = z.enum([
   "locationPlan",
   "adjustment",
 ]);
-
-export const threadSummarySchema = z.object({
-  type: threadTypeSchema,
-  tacticsByTitle: z.record(z.string(), z.array(z.any())),
-  behaviorsByName: z.record(z.string(), z.array(z.any())),
-  outcomeLogs: z.array(z.any()),
-  daySummaryLog: z.any().optional(),
-  questionLogs: z.array(z.any()),
-  firstMessageLog: z.any().optional(),
-  firstCallLog: z.any().optional(),
-  hasContent: z.boolean(),
-});
 
 // Thread schema
 export const threadBaseSchema = z.object({
@@ -48,7 +37,7 @@ export const threadBaseSchema = z.object({
   // For now, don't type this
   tacticsByPath: z.record(z.string(), z.any()).optional(),
   suggestedTactics: suggestedTacticsLogSchema.optional(),
-  suggestedTacticsStartedRefreshingAt: timestampSchema,
+  suggestedTacticsStartedRefreshingAt: timestampSchema.optional(),
 
   emojiId: emojiIdSchema.nullable(),
 

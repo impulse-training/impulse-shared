@@ -83,46 +83,46 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
             6: z.ZodNumber;
         }, "strip", z.ZodTypeAny, {
             0: number;
+            5: number;
             1: number;
             2: number;
-            3: number;
             4: number;
-            5: number;
+            3: number;
             6: number;
         }, {
             0: number;
+            5: number;
             1: number;
             2: number;
-            3: number;
             4: number;
-            5: number;
+            3: number;
             6: number;
         }>;
     }, "strip", z.ZodTypeAny, {
         type: "reduceIndividualDays";
         dailyTargets: {
             0: number;
+            5: number;
             1: number;
             2: number;
-            3: number;
             4: number;
-            5: number;
+            3: number;
             6: number;
         };
     }, {
         type: "reduceIndividualDays";
         dailyTargets: {
             0: number;
+            5: number;
             1: number;
             2: number;
-            3: number;
             4: number;
-            5: number;
+            3: number;
             6: number;
         };
     }>]>>;
     lastTrackedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-    tactics: z.ZodOptional<z.ZodArray<z.ZodType<import("../utils").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../utils").DocumentReferenceLike<unknown>>, "many">>;
+    tactics: z.ZodOptional<z.ZodArray<z.ZodType<import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>;
     initialUsage: z.ZodOptional<z.ZodObject<{
         behaviorId: z.ZodString;
         behaviorName: z.ZodString;
@@ -152,8 +152,8 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
-    description: string;
     name: string;
+    description: string;
     ordinal: number;
     benefits: string[];
     drawbacks: string[];
@@ -161,6 +161,8 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     id?: string | undefined;
+    hasQuestions?: boolean | undefined;
+    trackingUnit?: string | undefined;
     goal?: {
         type: "eliminate";
     } | {
@@ -170,18 +172,16 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         type: "reduceIndividualDays";
         dailyTargets: {
             0: number;
+            5: number;
             1: number;
             2: number;
-            3: number;
             4: number;
-            5: number;
+            3: number;
             6: number;
         };
     } | undefined;
-    hasQuestions?: boolean | undefined;
-    trackingUnit?: string | undefined;
     lastTrackedAt?: import("../types").Timestamp | undefined;
-    tactics?: import("../utils").DocumentReferenceLike<unknown>[] | undefined;
+    tactics?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
     initialUsage?: {
         value: number;
         behaviorId: string;
@@ -194,13 +194,16 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
 }, {
     trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
-    description: string;
     name: string;
+    description: string;
     benefits: string[];
     drawbacks: string[];
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     id?: string | undefined;
+    hasQuestions?: boolean | undefined;
+    trackingUnit?: string | undefined;
+    ordinal?: number | undefined;
     goal?: {
         type: "eliminate";
     } | {
@@ -210,19 +213,16 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         type: "reduceIndividualDays";
         dailyTargets: {
             0: number;
+            5: number;
             1: number;
             2: number;
-            3: number;
             4: number;
-            5: number;
+            3: number;
             6: number;
         };
     } | undefined;
-    hasQuestions?: boolean | undefined;
-    trackingUnit?: string | undefined;
-    ordinal?: number | undefined;
     lastTrackedAt?: import("../types").Timestamp | undefined;
-    tactics?: import("../utils").DocumentReferenceLike<unknown>[] | undefined;
+    tactics?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
     initialUsage?: {
         value: number;
         behaviorId: string;
@@ -236,8 +236,8 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
 }>, {
     trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
-    description: string;
     name: string;
+    description: string;
     ordinal: number;
     benefits: string[];
     drawbacks: string[];
@@ -245,6 +245,8 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     id?: string | undefined;
+    hasQuestions?: boolean | undefined;
+    trackingUnit?: string | undefined;
     goal?: {
         type: "eliminate";
     } | {
@@ -254,18 +256,16 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         type: "reduceIndividualDays";
         dailyTargets: {
             0: number;
+            5: number;
             1: number;
             2: number;
-            3: number;
             4: number;
-            5: number;
+            3: number;
             6: number;
         };
     } | undefined;
-    hasQuestions?: boolean | undefined;
-    trackingUnit?: string | undefined;
     lastTrackedAt?: import("../types").Timestamp | undefined;
-    tactics?: import("../utils").DocumentReferenceLike<unknown>[] | undefined;
+    tactics?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
     initialUsage?: {
         value: number;
         behaviorId: string;
@@ -278,13 +278,16 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
 }, {
     trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
-    description: string;
     name: string;
+    description: string;
     benefits: string[];
     drawbacks: string[];
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     id?: string | undefined;
+    hasQuestions?: boolean | undefined;
+    trackingUnit?: string | undefined;
+    ordinal?: number | undefined;
     goal?: {
         type: "eliminate";
     } | {
@@ -294,19 +297,16 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         type: "reduceIndividualDays";
         dailyTargets: {
             0: number;
+            5: number;
             1: number;
             2: number;
-            3: number;
             4: number;
-            5: number;
+            3: number;
             6: number;
         };
     } | undefined;
-    hasQuestions?: boolean | undefined;
-    trackingUnit?: string | undefined;
-    ordinal?: number | undefined;
     lastTrackedAt?: import("../types").Timestamp | undefined;
-    tactics?: import("../utils").DocumentReferenceLike<unknown>[] | undefined;
+    tactics?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
     initialUsage?: {
         value: number;
         behaviorId: string;

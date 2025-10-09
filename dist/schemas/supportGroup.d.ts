@@ -429,7 +429,7 @@ export declare const supportGroupSchema: z.ZodObject<{
             }[] | undefined;
         } | undefined;
     }>;
-    tacticCollections: z.ZodArray<z.ZodType<import("../utils").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../utils").DocumentReferenceLike<unknown>>, "many">;
+    tacticCollections: z.ZodArray<z.ZodType<import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
     isPublic: z.ZodOptional<z.ZodBoolean>;
     isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     inviteCode: z.ZodOptional<z.ZodString>;
@@ -667,7 +667,7 @@ export declare const supportGroupSchema: z.ZodObject<{
     ownerId: string;
     unreadMessageCountsById: Record<string, number>;
     memberCount: number;
-    tacticCollections: import("../utils").DocumentReferenceLike<unknown>[];
+    tacticCollections: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
     tacticCount: number;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
@@ -780,7 +780,7 @@ export declare const supportGroupSchema: z.ZodObject<{
     }>;
     ownerId: string;
     unreadMessageCountsById: Record<string, number>;
-    tacticCollections: import("../utils").DocumentReferenceLike<unknown>[];
+    tacticCollections: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     id?: string | undefined;

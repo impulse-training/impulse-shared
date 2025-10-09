@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { timestampSchema } from "../utils";
+import { timestampSchema } from "../utils/timestampSchema";
 import { threadSchema } from "./thread";
 
 export const llmAuditEntrySchema = z.object({
