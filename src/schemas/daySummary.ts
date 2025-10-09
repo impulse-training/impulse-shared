@@ -7,7 +7,7 @@ const outcomeEnum = z.enum(["success", "partial", "setback"]);
 
 export const daySummarySchema = z.object({
   id: z.string().optional(),
-  dateString: z.string(),
+  // dateString: z.string(),
   userId: z.string(),
   impulseThreadOutcomesById: objectOf(outcomeEnum),
   outcome: outcomeEnum.optional(),

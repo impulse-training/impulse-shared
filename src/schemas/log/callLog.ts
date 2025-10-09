@@ -8,7 +8,7 @@ export const callLogSchema = logBaseSchema.extend({
   type: z.literal("call"),
   isDisplayable: z.literal(true),
   data: z.object({
-    tactic: tacticSchema,
+    tactic: tacticSchema.optional(),
     agentConnectedAt: timestampSchema.optional(),
     endedAt: timestampSchema.optional(),
     livekitSessionId: z.string(),

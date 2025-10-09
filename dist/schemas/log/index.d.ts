@@ -287,7 +287,7 @@ export declare const logSchemas: {
         type: z.ZodLiteral<"call">;
         isDisplayable: z.ZodLiteral<true>;
         data: z.ZodObject<{
-            tactic: z.ZodObject<{
+            tactic: z.ZodOptional<z.ZodObject<{
                 id: z.ZodOptional<z.ZodString>;
                 title: z.ZodOptional<z.ZodString>;
                 description: z.ZodOptional<z.ZodString>;
@@ -2011,7 +2011,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-            }>;
+            }>>;
             agentConnectedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             endedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             livekitSessionId: z.ZodString;
@@ -2019,7 +2019,9 @@ export declare const logSchemas: {
             token: z.ZodOptional<z.ZodString>;
             summary: z.ZodOptional<z.ZodString>;
         }, "strip", z.ZodTypeAny, {
-            tactic: {
+            livekitSessionId: string;
+            livekitRoomName: string;
+            tactic?: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
                 steps: ({
@@ -2262,15 +2264,15 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-            };
-            livekitSessionId: string;
-            livekitRoomName: string;
+            } | undefined;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
             token?: string | undefined;
             summary?: string | undefined;
         }, {
-            tactic: {
+            livekitSessionId: string;
+            livekitRoomName: string;
+            tactic?: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
                 steps: ({
@@ -2513,9 +2515,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-            };
-            livekitSessionId: string;
-            livekitRoomName: string;
+            } | undefined;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
             token?: string | undefined;
@@ -2529,7 +2529,9 @@ export declare const logSchemas: {
         dateString: string;
         isDisplayable: true;
         data: {
-            tactic: {
+            livekitSessionId: string;
+            livekitRoomName: string;
+            tactic?: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
                 steps: ({
@@ -2772,9 +2774,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-            };
-            livekitSessionId: string;
-            livekitRoomName: string;
+            } | undefined;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
             token?: string | undefined;
@@ -2795,7 +2795,9 @@ export declare const logSchemas: {
         dateString: string;
         isDisplayable: true;
         data: {
-            tactic: {
+            livekitSessionId: string;
+            livekitRoomName: string;
+            tactic?: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
                 steps: ({
@@ -3038,9 +3040,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-            };
-            livekitSessionId: string;
-            livekitRoomName: string;
+            } | undefined;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
             token?: string | undefined;
@@ -6118,7 +6118,6 @@ export declare const logSchemas: {
         isDisplayable: z.ZodLiteral<true>;
         data: z.ZodObject<{
             id: z.ZodOptional<z.ZodString>;
-            dateString: z.ZodString;
             userId: z.ZodString;
             impulseThreadOutcomesById: z.ZodRecord<z.ZodString, z.ZodEnum<["success", "partial", "setback"]>>;
             outcome: z.ZodOptional<z.ZodEnum<["success", "partial", "setback"]>>;
@@ -6453,7 +6452,6 @@ export declare const logSchemas: {
             updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         }, "strip", z.ZodTypeAny, {
             userId: string;
-            dateString: string;
             impulseThreadOutcomesById: Record<string, "setback" | "success" | "partial">;
             behaviorDataTotalByBehaviorId: Record<string, {
                 value: number;
@@ -6527,7 +6525,6 @@ export declare const logSchemas: {
             recapStartedAt?: import("../../types").Timestamp | undefined;
         }, {
             userId: string;
-            dateString: string;
             impulseThreadOutcomesById: Record<string, "setback" | "success" | "partial">;
             behaviorDataTotalByBehaviorId: Record<string, {
                 value: number;
@@ -6609,7 +6606,6 @@ export declare const logSchemas: {
         isDisplayable: true;
         data: {
             userId: string;
-            dateString: string;
             impulseThreadOutcomesById: Record<string, "setback" | "success" | "partial">;
             behaviorDataTotalByBehaviorId: Record<string, {
                 value: number;
@@ -6698,7 +6694,6 @@ export declare const logSchemas: {
         isDisplayable: true;
         data: {
             userId: string;
-            dateString: string;
             impulseThreadOutcomesById: Record<string, "setback" | "success" | "partial">;
             behaviorDataTotalByBehaviorId: Record<string, {
                 value: number;
@@ -12063,7 +12058,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     type: z.ZodLiteral<"call">;
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
-        tactic: z.ZodObject<{
+        tactic: z.ZodOptional<z.ZodObject<{
             id: z.ZodOptional<z.ZodString>;
             title: z.ZodOptional<z.ZodString>;
             description: z.ZodOptional<z.ZodString>;
@@ -13787,7 +13782,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-        }>;
+        }>>;
         agentConnectedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         endedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         livekitSessionId: z.ZodString;
@@ -13795,7 +13790,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         token: z.ZodOptional<z.ZodString>;
         summary: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
-        tactic: {
+        livekitSessionId: string;
+        livekitRoomName: string;
+        tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
             steps: ({
@@ -14038,15 +14035,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-        };
-        livekitSessionId: string;
-        livekitRoomName: string;
+        } | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
         token?: string | undefined;
         summary?: string | undefined;
     }, {
-        tactic: {
+        livekitSessionId: string;
+        livekitRoomName: string;
+        tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
             steps: ({
@@ -14289,9 +14286,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-        };
-        livekitSessionId: string;
-        livekitRoomName: string;
+        } | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
         token?: string | undefined;
@@ -14305,7 +14300,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dateString: string;
     isDisplayable: true;
     data: {
-        tactic: {
+        livekitSessionId: string;
+        livekitRoomName: string;
+        tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
             steps: ({
@@ -14548,9 +14545,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-        };
-        livekitSessionId: string;
-        livekitRoomName: string;
+        } | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
         token?: string | undefined;
@@ -14571,7 +14566,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dateString: string;
     isDisplayable: true;
     data: {
-        tactic: {
+        livekitSessionId: string;
+        livekitRoomName: string;
+        tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
             steps: ({
@@ -14814,9 +14811,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-        };
-        livekitSessionId: string;
-        livekitRoomName: string;
+        } | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
         token?: string | undefined;
@@ -17890,7 +17885,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
-        dateString: z.ZodString;
         userId: z.ZodString;
         impulseThreadOutcomesById: z.ZodRecord<z.ZodString, z.ZodEnum<["success", "partial", "setback"]>>;
         outcome: z.ZodOptional<z.ZodEnum<["success", "partial", "setback"]>>;
@@ -18225,7 +18219,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
         userId: string;
-        dateString: string;
         impulseThreadOutcomesById: Record<string, "setback" | "success" | "partial">;
         behaviorDataTotalByBehaviorId: Record<string, {
             value: number;
@@ -18299,7 +18292,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         recapStartedAt?: import("../../types").Timestamp | undefined;
     }, {
         userId: string;
-        dateString: string;
         impulseThreadOutcomesById: Record<string, "setback" | "success" | "partial">;
         behaviorDataTotalByBehaviorId: Record<string, {
             value: number;
@@ -18381,7 +18373,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: true;
     data: {
         userId: string;
-        dateString: string;
         impulseThreadOutcomesById: Record<string, "setback" | "success" | "partial">;
         behaviorDataTotalByBehaviorId: Record<string, {
             value: number;
@@ -18470,7 +18461,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: true;
     data: {
         userId: string;
-        dateString: string;
         impulseThreadOutcomesById: Record<string, "setback" | "success" | "partial">;
         behaviorDataTotalByBehaviorId: Record<string, {
             value: number;

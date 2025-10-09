@@ -2,6 +2,7 @@ import { z } from "zod";
 import { documentReferenceSchema } from "../../utils";
 import { timestampSchema } from "../../utils/timestampSchema";
 import { emojiIdSchema } from "../emojiId";
+import { suggestedTacticsLogSchema } from "../log";
 import { planWithIdSchema } from "../plan";
 
 const threadTypeSchema = z.enum([
@@ -46,7 +47,8 @@ export const threadBaseSchema = z.object({
 
   // For now, don't type this
   tacticsByPath: z.record(z.string(), z.any()).optional(),
-  suggestedTacticsStartedRefreshingAt: timestampSchema.optional(),
+  suggestedTactics: suggestedTacticsLogSchema.optional(),
+  suggestedTacticsStartedRefreshingAt: timestampSchema,
 
   emojiId: emojiIdSchema.nullable(),
 
