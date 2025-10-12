@@ -3,7 +3,7 @@ import { questionSchema } from "../question";
 import { logBaseSchema } from "./base";
 
 const responseSchema = z.object({
-  responseType: z.enum(["text", "shortText", "emotion", "slider1To10", "recap"]),
+  responseType: z.enum(["text", "shortText", "emotion", "slider1To10", "behaviorSelection", "recap"]),
   value: z.union([z.any(), z.array(z.any())]), // Support both single values and arrays
   formattedValue: z.string(),
   color: z.string().optional(),
