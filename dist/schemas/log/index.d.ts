@@ -10053,20 +10053,63 @@ export declare const logSchemas: {
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
+            }>, z.ZodObject<{
+                id: z.ZodOptional<z.ZodString>;
+                createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                text: z.ZodString;
+                behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                numberOfAnswers: z.ZodOptional<z.ZodNumber>;
+                isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+                isPinned: z.ZodOptional<z.ZodBoolean>;
+                responseType: z.ZodLiteral<"behaviorSelection">;
+                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+            } & {
+                allowMultiple: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+            }, "strip", z.ZodTypeAny, {
+                text: string;
+                isTemplate: boolean;
+                responseType: "behaviorSelection";
+                scope: "impulse" | "setback" | "success" | "recap";
+                allowMultiple: boolean;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                behaviorIds?: string[] | undefined;
+                lastAskedAt?: import("../../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            }, {
+                text: string;
+                responseType: "behaviorSelection";
+                scope: "impulse" | "setback" | "success" | "recap";
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                isTemplate?: boolean | undefined;
+                behaviorIds?: string[] | undefined;
+                lastAskedAt?: import("../../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                allowMultiple?: boolean | undefined;
             }>]>;
             response: z.ZodOptional<z.ZodObject<{
-                responseType: z.ZodEnum<["text", "shortText", "emotion", "slider1To10", "recap"]>;
+                responseType: z.ZodEnum<["text", "shortText", "emotion", "slider1To10", "behaviorSelection", "recap"]>;
                 value: z.ZodUnion<[z.ZodAny, z.ZodArray<z.ZodAny, "many">]>;
                 formattedValue: z.ZodString;
                 color: z.ZodOptional<z.ZodString>;
             }, "strip", z.ZodTypeAny, {
                 formattedValue: string;
-                responseType: "text" | "recap" | "emotion" | "shortText" | "slider1To10";
+                responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             }, {
                 formattedValue: string;
-                responseType: "text" | "recap" | "emotion" | "shortText" | "slider1To10";
+                responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             }>>;
@@ -10074,6 +10117,20 @@ export declare const logSchemas: {
             question: {
                 text: string;
                 isTemplate: boolean;
+                responseType: "behaviorSelection";
+                scope: "impulse" | "setback" | "success" | "recap";
+                allowMultiple: boolean;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                behaviorIds?: string[] | undefined;
+                lastAskedAt?: import("../../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
                 responseType: "emotion";
                 scope: "impulse" | "setback" | "success" | "recap";
                 createdAt?: import("../../types").Timestamp | undefined;
@@ -10133,13 +10190,27 @@ export declare const logSchemas: {
             questionId?: string | undefined;
             response?: {
                 formattedValue: string;
-                responseType: "text" | "recap" | "emotion" | "shortText" | "slider1To10";
+                responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             } | undefined;
         }, {
             question: {
                 text: string;
+                responseType: "behaviorSelection";
+                scope: "impulse" | "setback" | "success" | "recap";
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                isTemplate?: boolean | undefined;
+                behaviorIds?: string[] | undefined;
+                lastAskedAt?: import("../../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                allowMultiple?: boolean | undefined;
+            } | {
+                text: string;
                 responseType: "emotion";
                 scope: "impulse" | "setback" | "success" | "recap";
                 createdAt?: import("../../types").Timestamp | undefined;
@@ -10200,7 +10271,7 @@ export declare const logSchemas: {
             questionId?: string | undefined;
             response?: {
                 formattedValue: string;
-                responseType: "text" | "recap" | "emotion" | "shortText" | "slider1To10";
+                responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             } | undefined;
@@ -10216,6 +10287,20 @@ export declare const logSchemas: {
             question: {
                 text: string;
                 isTemplate: boolean;
+                responseType: "behaviorSelection";
+                scope: "impulse" | "setback" | "success" | "recap";
+                allowMultiple: boolean;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                behaviorIds?: string[] | undefined;
+                lastAskedAt?: import("../../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
                 responseType: "emotion";
                 scope: "impulse" | "setback" | "success" | "recap";
                 createdAt?: import("../../types").Timestamp | undefined;
@@ -10275,7 +10360,7 @@ export declare const logSchemas: {
             questionId?: string | undefined;
             response?: {
                 formattedValue: string;
-                responseType: "text" | "recap" | "emotion" | "shortText" | "slider1To10";
+                responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             } | undefined;
@@ -10297,6 +10382,20 @@ export declare const logSchemas: {
         data: {
             question: {
                 text: string;
+                responseType: "behaviorSelection";
+                scope: "impulse" | "setback" | "success" | "recap";
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                id?: string | undefined;
+                isTemplate?: boolean | undefined;
+                behaviorIds?: string[] | undefined;
+                lastAskedAt?: import("../../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                allowMultiple?: boolean | undefined;
+            } | {
+                text: string;
                 responseType: "emotion";
                 scope: "impulse" | "setback" | "success" | "recap";
                 createdAt?: import("../../types").Timestamp | undefined;
@@ -10357,7 +10456,7 @@ export declare const logSchemas: {
             questionId?: string | undefined;
             response?: {
                 formattedValue: string;
-                responseType: "text" | "recap" | "emotion" | "shortText" | "slider1To10";
+                responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             } | undefined;
@@ -10411,6 +10510,7 @@ export declare const logSchemas: {
                 isTemplate: z.ZodOptional<z.ZodBoolean>;
                 summary: z.ZodOptional<z.ZodString>;
                 tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+                questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
                 lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -10433,6 +10533,7 @@ export declare const logSchemas: {
                 type: "time";
                 name: string;
                 tactics: import("../..").DocumentReferenceLike<unknown>[];
+                questions: import("../..").DocumentReferenceLike<unknown>[];
                 trigger: {
                     hour: number;
                     minute: number;
@@ -10463,6 +10564,7 @@ export declare const logSchemas: {
                 ordinal?: number | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
+                questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
             }>>, z.ZodIntersection<z.ZodObject<{
@@ -10483,6 +10585,7 @@ export declare const logSchemas: {
                 isTemplate: z.ZodOptional<z.ZodBoolean>;
                 summary: z.ZodOptional<z.ZodString>;
                 tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+                questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
                 lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -10508,6 +10611,7 @@ export declare const logSchemas: {
                 type: "location";
                 name: string;
                 tactics: import("../..").DocumentReferenceLike<unknown>[];
+                questions: import("../..").DocumentReferenceLike<unknown>[];
                 trigger: {
                     locationName: string;
                     triggerType: "arrival" | "departure";
@@ -10540,6 +10644,7 @@ export declare const logSchemas: {
                 ordinal?: number | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
+                questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
             }>>, z.ZodIntersection<z.ZodObject<{
@@ -10560,6 +10665,7 @@ export declare const logSchemas: {
                 isTemplate: z.ZodOptional<z.ZodBoolean>;
                 summary: z.ZodOptional<z.ZodString>;
                 tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+                questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
                 lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -10583,6 +10689,7 @@ export declare const logSchemas: {
                 type: "recap";
                 name: string;
                 tactics: import("../..").DocumentReferenceLike<unknown>[];
+                questions: import("../..").DocumentReferenceLike<unknown>[];
                 trigger: {
                     hour: number;
                     minute: number;
@@ -10614,6 +10721,7 @@ export declare const logSchemas: {
                 ordinal?: number | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
+                questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 questionIds?: string[] | undefined;
@@ -10629,6 +10737,7 @@ export declare const logSchemas: {
                 type: "time";
                 name: string;
                 tactics: import("../..").DocumentReferenceLike<unknown>[];
+                questions: import("../..").DocumentReferenceLike<unknown>[];
                 trigger: {
                     hour: number;
                     minute: number;
@@ -10650,6 +10759,7 @@ export declare const logSchemas: {
                 type: "location";
                 name: string;
                 tactics: import("../..").DocumentReferenceLike<unknown>[];
+                questions: import("../..").DocumentReferenceLike<unknown>[];
                 trigger: {
                     locationName: string;
                     triggerType: "arrival" | "departure";
@@ -10672,6 +10782,7 @@ export declare const logSchemas: {
                 type: "recap";
                 name: string;
                 tactics: import("../..").DocumentReferenceLike<unknown>[];
+                questions: import("../..").DocumentReferenceLike<unknown>[];
                 trigger: {
                     hour: number;
                     minute: number;
@@ -10712,6 +10823,7 @@ export declare const logSchemas: {
                 ordinal?: number | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
+                questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
             }) | ({
@@ -10734,6 +10846,7 @@ export declare const logSchemas: {
                 ordinal?: number | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
+                questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
             }) | ({
@@ -10755,6 +10868,7 @@ export declare const logSchemas: {
                 ordinal?: number | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
+                questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 questionIds?: string[] | undefined;
@@ -10779,6 +10893,7 @@ export declare const logSchemas: {
                 type: "time";
                 name: string;
                 tactics: import("../..").DocumentReferenceLike<unknown>[];
+                questions: import("../..").DocumentReferenceLike<unknown>[];
                 trigger: {
                     hour: number;
                     minute: number;
@@ -10800,6 +10915,7 @@ export declare const logSchemas: {
                 type: "location";
                 name: string;
                 tactics: import("../..").DocumentReferenceLike<unknown>[];
+                questions: import("../..").DocumentReferenceLike<unknown>[];
                 trigger: {
                     locationName: string;
                     triggerType: "arrival" | "departure";
@@ -10822,6 +10938,7 @@ export declare const logSchemas: {
                 type: "recap";
                 name: string;
                 tactics: import("../..").DocumentReferenceLike<unknown>[];
+                questions: import("../..").DocumentReferenceLike<unknown>[];
                 trigger: {
                     hour: number;
                     minute: number;
@@ -10877,6 +10994,7 @@ export declare const logSchemas: {
                 ordinal?: number | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
+                questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
             }) | ({
@@ -10899,6 +11017,7 @@ export declare const logSchemas: {
                 ordinal?: number | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
+                questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
             }) | ({
@@ -10920,6 +11039,7 @@ export declare const logSchemas: {
                 ordinal?: number | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
+                questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 questionIds?: string[] | undefined;
@@ -19036,20 +19156,63 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
+        }>, z.ZodObject<{
+            id: z.ZodOptional<z.ZodString>;
+            createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            text: z.ZodString;
+            behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+            lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            numberOfAnswers: z.ZodOptional<z.ZodNumber>;
+            isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+            isPinned: z.ZodOptional<z.ZodBoolean>;
+            responseType: z.ZodLiteral<"behaviorSelection">;
+            scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+        } & {
+            allowMultiple: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+        }, "strip", z.ZodTypeAny, {
+            text: string;
+            isTemplate: boolean;
+            responseType: "behaviorSelection";
+            scope: "impulse" | "setback" | "success" | "recap";
+            allowMultiple: boolean;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
+            behaviorIds?: string[] | undefined;
+            lastAskedAt?: import("../../types").Timestamp | undefined;
+            lastAnsweredAt?: import("../../types").Timestamp | undefined;
+            numberOfAnswers?: number | undefined;
+            isPinned?: boolean | undefined;
+        }, {
+            text: string;
+            responseType: "behaviorSelection";
+            scope: "impulse" | "setback" | "success" | "recap";
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
+            isTemplate?: boolean | undefined;
+            behaviorIds?: string[] | undefined;
+            lastAskedAt?: import("../../types").Timestamp | undefined;
+            lastAnsweredAt?: import("../../types").Timestamp | undefined;
+            numberOfAnswers?: number | undefined;
+            isPinned?: boolean | undefined;
+            allowMultiple?: boolean | undefined;
         }>]>;
         response: z.ZodOptional<z.ZodObject<{
-            responseType: z.ZodEnum<["text", "shortText", "emotion", "slider1To10", "recap"]>;
+            responseType: z.ZodEnum<["text", "shortText", "emotion", "slider1To10", "behaviorSelection", "recap"]>;
             value: z.ZodUnion<[z.ZodAny, z.ZodArray<z.ZodAny, "many">]>;
             formattedValue: z.ZodString;
             color: z.ZodOptional<z.ZodString>;
         }, "strip", z.ZodTypeAny, {
             formattedValue: string;
-            responseType: "text" | "recap" | "emotion" | "shortText" | "slider1To10";
+            responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
             value?: any;
             color?: string | undefined;
         }, {
             formattedValue: string;
-            responseType: "text" | "recap" | "emotion" | "shortText" | "slider1To10";
+            responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
             value?: any;
             color?: string | undefined;
         }>>;
@@ -19057,6 +19220,20 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         question: {
             text: string;
             isTemplate: boolean;
+            responseType: "behaviorSelection";
+            scope: "impulse" | "setback" | "success" | "recap";
+            allowMultiple: boolean;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
+            behaviorIds?: string[] | undefined;
+            lastAskedAt?: import("../../types").Timestamp | undefined;
+            lastAnsweredAt?: import("../../types").Timestamp | undefined;
+            numberOfAnswers?: number | undefined;
+            isPinned?: boolean | undefined;
+        } | {
+            text: string;
+            isTemplate: boolean;
             responseType: "emotion";
             scope: "impulse" | "setback" | "success" | "recap";
             createdAt?: import("../../types").Timestamp | undefined;
@@ -19116,13 +19293,27 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         questionId?: string | undefined;
         response?: {
             formattedValue: string;
-            responseType: "text" | "recap" | "emotion" | "shortText" | "slider1To10";
+            responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
             value?: any;
             color?: string | undefined;
         } | undefined;
     }, {
         question: {
             text: string;
+            responseType: "behaviorSelection";
+            scope: "impulse" | "setback" | "success" | "recap";
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
+            isTemplate?: boolean | undefined;
+            behaviorIds?: string[] | undefined;
+            lastAskedAt?: import("../../types").Timestamp | undefined;
+            lastAnsweredAt?: import("../../types").Timestamp | undefined;
+            numberOfAnswers?: number | undefined;
+            isPinned?: boolean | undefined;
+            allowMultiple?: boolean | undefined;
+        } | {
+            text: string;
             responseType: "emotion";
             scope: "impulse" | "setback" | "success" | "recap";
             createdAt?: import("../../types").Timestamp | undefined;
@@ -19183,7 +19374,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         questionId?: string | undefined;
         response?: {
             formattedValue: string;
-            responseType: "text" | "recap" | "emotion" | "shortText" | "slider1To10";
+            responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
             value?: any;
             color?: string | undefined;
         } | undefined;
@@ -19199,6 +19390,20 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         question: {
             text: string;
             isTemplate: boolean;
+            responseType: "behaviorSelection";
+            scope: "impulse" | "setback" | "success" | "recap";
+            allowMultiple: boolean;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
+            behaviorIds?: string[] | undefined;
+            lastAskedAt?: import("../../types").Timestamp | undefined;
+            lastAnsweredAt?: import("../../types").Timestamp | undefined;
+            numberOfAnswers?: number | undefined;
+            isPinned?: boolean | undefined;
+        } | {
+            text: string;
+            isTemplate: boolean;
             responseType: "emotion";
             scope: "impulse" | "setback" | "success" | "recap";
             createdAt?: import("../../types").Timestamp | undefined;
@@ -19258,7 +19463,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         questionId?: string | undefined;
         response?: {
             formattedValue: string;
-            responseType: "text" | "recap" | "emotion" | "shortText" | "slider1To10";
+            responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
             value?: any;
             color?: string | undefined;
         } | undefined;
@@ -19280,6 +19485,20 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: {
         question: {
             text: string;
+            responseType: "behaviorSelection";
+            scope: "impulse" | "setback" | "success" | "recap";
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            id?: string | undefined;
+            isTemplate?: boolean | undefined;
+            behaviorIds?: string[] | undefined;
+            lastAskedAt?: import("../../types").Timestamp | undefined;
+            lastAnsweredAt?: import("../../types").Timestamp | undefined;
+            numberOfAnswers?: number | undefined;
+            isPinned?: boolean | undefined;
+            allowMultiple?: boolean | undefined;
+        } | {
+            text: string;
             responseType: "emotion";
             scope: "impulse" | "setback" | "success" | "recap";
             createdAt?: import("../../types").Timestamp | undefined;
@@ -19340,7 +19559,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         questionId?: string | undefined;
         response?: {
             formattedValue: string;
-            responseType: "text" | "recap" | "emotion" | "shortText" | "slider1To10";
+            responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
             value?: any;
             color?: string | undefined;
         } | undefined;
@@ -19393,6 +19612,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             isTemplate: z.ZodOptional<z.ZodBoolean>;
             summary: z.ZodOptional<z.ZodString>;
             tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+            questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
             lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -19415,6 +19635,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             type: "time";
             name: string;
             tactics: import("../..").DocumentReferenceLike<unknown>[];
+            questions: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 hour: number;
                 minute: number;
@@ -19445,6 +19666,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal?: number | undefined;
             summary?: string | undefined;
             isTemplate?: boolean | undefined;
+            questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             deletedAt?: import("../../types").Timestamp | undefined;
         }>>, z.ZodIntersection<z.ZodObject<{
@@ -19465,6 +19687,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             isTemplate: z.ZodOptional<z.ZodBoolean>;
             summary: z.ZodOptional<z.ZodString>;
             tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+            questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
             lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -19490,6 +19713,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             type: "location";
             name: string;
             tactics: import("../..").DocumentReferenceLike<unknown>[];
+            questions: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
                 triggerType: "arrival" | "departure";
@@ -19522,6 +19746,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal?: number | undefined;
             summary?: string | undefined;
             isTemplate?: boolean | undefined;
+            questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             deletedAt?: import("../../types").Timestamp | undefined;
         }>>, z.ZodIntersection<z.ZodObject<{
@@ -19542,6 +19767,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             isTemplate: z.ZodOptional<z.ZodBoolean>;
             summary: z.ZodOptional<z.ZodString>;
             tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+            questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
             lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -19565,6 +19791,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             type: "recap";
             name: string;
             tactics: import("../..").DocumentReferenceLike<unknown>[];
+            questions: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 hour: number;
                 minute: number;
@@ -19596,6 +19823,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal?: number | undefined;
             summary?: string | undefined;
             isTemplate?: boolean | undefined;
+            questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             deletedAt?: import("../../types").Timestamp | undefined;
             questionIds?: string[] | undefined;
@@ -19611,6 +19839,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             type: "time";
             name: string;
             tactics: import("../..").DocumentReferenceLike<unknown>[];
+            questions: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 hour: number;
                 minute: number;
@@ -19632,6 +19861,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             type: "location";
             name: string;
             tactics: import("../..").DocumentReferenceLike<unknown>[];
+            questions: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
                 triggerType: "arrival" | "departure";
@@ -19654,6 +19884,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             type: "recap";
             name: string;
             tactics: import("../..").DocumentReferenceLike<unknown>[];
+            questions: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 hour: number;
                 minute: number;
@@ -19694,6 +19925,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal?: number | undefined;
             summary?: string | undefined;
             isTemplate?: boolean | undefined;
+            questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             deletedAt?: import("../../types").Timestamp | undefined;
         }) | ({
@@ -19716,6 +19948,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal?: number | undefined;
             summary?: string | undefined;
             isTemplate?: boolean | undefined;
+            questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             deletedAt?: import("../../types").Timestamp | undefined;
         }) | ({
@@ -19737,6 +19970,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal?: number | undefined;
             summary?: string | undefined;
             isTemplate?: boolean | undefined;
+            questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             deletedAt?: import("../../types").Timestamp | undefined;
             questionIds?: string[] | undefined;
@@ -19761,6 +19995,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             type: "time";
             name: string;
             tactics: import("../..").DocumentReferenceLike<unknown>[];
+            questions: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 hour: number;
                 minute: number;
@@ -19782,6 +20017,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             type: "location";
             name: string;
             tactics: import("../..").DocumentReferenceLike<unknown>[];
+            questions: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
                 triggerType: "arrival" | "departure";
@@ -19804,6 +20040,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             type: "recap";
             name: string;
             tactics: import("../..").DocumentReferenceLike<unknown>[];
+            questions: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 hour: number;
                 minute: number;
@@ -19859,6 +20096,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal?: number | undefined;
             summary?: string | undefined;
             isTemplate?: boolean | undefined;
+            questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             deletedAt?: import("../../types").Timestamp | undefined;
         }) | ({
@@ -19881,6 +20119,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal?: number | undefined;
             summary?: string | undefined;
             isTemplate?: boolean | undefined;
+            questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             deletedAt?: import("../../types").Timestamp | undefined;
         }) | ({
@@ -19902,6 +20141,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             ordinal?: number | undefined;
             summary?: string | undefined;
             isTemplate?: boolean | undefined;
+            questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
             lastUsedAt?: import("../../types").Timestamp | undefined;
             deletedAt?: import("../../types").Timestamp | undefined;
             questionIds?: string[] | undefined;

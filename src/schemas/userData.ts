@@ -35,6 +35,9 @@ export const userDataSchema = z.object({
 
   // User preferences
   theme: z.enum(["light", "dark", "system"]).default("system"),
+  
+  // Calendar preferences
+  weekStartsOn: z.union([z.literal(0), z.literal(1)]).default(1), // 0 = Sunday, 1 = Monday
 });
 
 // Export User type inferred from schema

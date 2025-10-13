@@ -31,6 +31,10 @@ import {
   SuggestedTacticsLog,
   suggestedTacticsLogSchema,
 } from "./suggestedTacticsLog";
+import {
+  SupportGroupDaySummaryLog,
+  supportGroupDaySummaryLogSchema,
+} from "./supportGroupDaySummaryLog";
 import { SummaryLog, summaryLogSchema } from "./summaryLog";
 import { TacticLog, tacticLogSchema } from "./tacticLog";
 import {
@@ -64,6 +68,7 @@ export const logSchemas = {
   video: videoLogSchema,
   shared_moment: sharedMomentLogSchema,
   ready_to_debrief: readyToDebriefLogSchema,
+  support_group_day_summary: supportGroupDaySummaryLogSchema,
 };
 export const logTypes = Object.keys(logSchemas);
 
@@ -91,7 +96,8 @@ export type Log =
   | VideoLog
   | DaySummaryLog
   | ReadyToDebriefLog
-  | SuggestedTacticsLog;
+  | SuggestedTacticsLog
+  | SupportGroupDaySummaryLog;
 
 export * from "./behaviorLog";
 export * from "./breathingLog";
@@ -109,6 +115,7 @@ export * from "./sharedMomentLog";
 export * from "./showTourLog";
 export * from "./suggestedTacticsLog";
 export * from "./summaryLog";
+export * from "./supportGroupDaySummaryLog";
 export * from "./tacticLog";
 export * from "./tacticSuggestionLog";
 export * from "./toolCallLog";
@@ -139,6 +146,7 @@ export const logSchema = z.discriminatedUnion("type", [
   videoLogSchema,
   readyToDebriefLogSchema,
   suggestedTacticsLogSchema,
+  supportGroupDaySummaryLogSchema,
 ]);
 
 // Export log type guards

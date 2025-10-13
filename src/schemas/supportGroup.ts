@@ -10,6 +10,7 @@ export const supportGroupPermissionsSchema = z.object({
   dayOutcomes: z.boolean().default(false),
   impulseMoments: z.boolean().default(false),
   summary: z.boolean().default(false),
+  threads: z.boolean().default(false),
 });
 export type SupportGroupPermissions = z.infer<
   typeof supportGroupPermissionsSchema

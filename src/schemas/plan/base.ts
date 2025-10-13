@@ -12,6 +12,7 @@ export function planBaseSchema<T extends string>(type: T) {
     isTemplate: z.boolean().optional(),
     summary: z.string().optional(),
     tactics: z.array(documentReferenceSchema),
+    questions: z.array(documentReferenceSchema).optional().default([]),
     lastUsedAt: timestampSchema.optional(),
     createdAt: timestampSchema.optional(),
     updatedAt: timestampSchema.optional(),
