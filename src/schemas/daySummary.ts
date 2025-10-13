@@ -3,7 +3,7 @@ import { objectOf, optionalObjectOf } from "../utils/objectOf";
 import { timestampSchema } from "../utils/timestampSchema";
 import { behaviorSchema } from "./behavior";
 import { behaviorTrackingDataSchema } from "./log";
-import { supportGroupPermissionsSchema } from "./supportGroup";
+import { supportGroupPermissionsSchema } from "./supportGroupPermissions";
 
 const outcomeEnum = z.enum(["success", "partial", "setback"]);
 export const daySummarySchema = z.object({

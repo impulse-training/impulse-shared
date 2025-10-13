@@ -310,3 +310,13 @@ export const isValidSuggestedTacticsLog = (
 ): value is SuggestedTacticsLog => {
   return suggestedTacticsLogSchema.safeParse(value).success;
 };
+
+export const logIsSupportGroupDaySummaryLog = (
+  value: Omit<Log, "id">
+): value is SupportGroupDaySummaryLog =>
+  value.type === "support_group_day_summary";
+export const isValidSupportGroupDaySummaryLog = (
+  value: unknown
+): value is SupportGroupDaySummaryLog => {
+  return supportGroupDaySummaryLogSchema.safeParse(value).success;
+};

@@ -5,24 +5,14 @@ import { timestampSchema } from "../utils/timestampSchema";
 import { attachmentSchema } from "./attachment";
 import { userMessageLogSchema } from "./log";
 import { userProfileSchema } from "./userProfile";
+import {
+  supportGroupPermissionsSchema,
+  supportGroupNotificationPreferencesSchema,
+} from "./supportGroupPermissions";
 
-export const supportGroupPermissionsSchema = z.object({
-  dayOutcomes: z.boolean().default(false),
-  impulseMoments: z.boolean().default(false),
-  summary: z.boolean().default(false),
-  threads: z.boolean().default(false),
-});
-export type SupportGroupPermissions = z.infer<
-  typeof supportGroupPermissionsSchema
->;
-
-export const supportGroupNotificationPreferencesSchema = z.object({
-  messages: z.boolean().default(false),
-  plan: z.boolean().default(false),
-});
-export type SupportGroupNotificationPreferences = z.infer<
-  typeof supportGroupNotificationPreferencesSchema
->;
+// Re-export for backward compatibility
+export type { SupportGroupPermissions, SupportGroupNotificationPreferences } from "./supportGroupPermissions";
+export { supportGroupPermissionsSchema, supportGroupNotificationPreferencesSchema };
 
 // Support Group Member Schema
 export const supportGroupMemberSchema = z.object({

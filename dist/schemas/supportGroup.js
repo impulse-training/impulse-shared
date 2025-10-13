@@ -8,21 +8,15 @@ const timestampSchema_1 = require("../utils/timestampSchema");
 const attachment_1 = require("./attachment");
 const log_1 = require("./log");
 const userProfile_1 = require("./userProfile");
-exports.supportGroupPermissionsSchema = zod_1.z.object({
-    dayOutcomes: zod_1.z.boolean().default(false),
-    impulseMoments: zod_1.z.boolean().default(false),
-    summary: zod_1.z.boolean().default(false),
-});
-exports.supportGroupNotificationPreferencesSchema = zod_1.z.object({
-    messages: zod_1.z.boolean().default(false),
-    plan: zod_1.z.boolean().default(false),
-});
+const supportGroupPermissions_1 = require("./supportGroupPermissions");
+Object.defineProperty(exports, "supportGroupPermissionsSchema", { enumerable: true, get: function () { return supportGroupPermissions_1.supportGroupPermissionsSchema; } });
+Object.defineProperty(exports, "supportGroupNotificationPreferencesSchema", { enumerable: true, get: function () { return supportGroupPermissions_1.supportGroupNotificationPreferencesSchema; } });
 // Support Group Member Schema
 exports.supportGroupMemberSchema = zod_1.z.object({
     userId: zod_1.z.string(),
     userProfile: userProfile_1.userProfileSchema,
-    permissions: exports.supportGroupPermissionsSchema.optional(),
-    notificationPreferences: exports.supportGroupNotificationPreferencesSchema.optional(),
+    permissions: supportGroupPermissions_1.supportGroupPermissionsSchema.optional(),
+    notificationPreferences: supportGroupPermissions_1.supportGroupNotificationPreferencesSchema.optional(),
     currentStreak: zod_1.z
         .object({
         streakStart: timestampSchema_1.timestampSchema.optional(),
