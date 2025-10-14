@@ -41,6 +41,7 @@ exports.behaviorSchema = behaviorTemplateBase
     tactics: zod_1.z.array(documentReferenceSchema_1.documentReferenceSchema).optional(),
     initialUsage: behaviorTrackingData_1.behaviorTrackingDataSchema.optional(),
     hidden: zod_1.z.boolean().optional().default(false),
+    impulseQuestions: zod_1.z.array(documentReferenceSchema_1.documentReferenceSchema).optional(),
     debriefQuestions: zod_1.z
         .object({
         success: zod_1.z.array(documentReferenceSchema_1.documentReferenceSchema),

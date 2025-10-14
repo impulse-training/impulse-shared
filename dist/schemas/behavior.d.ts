@@ -149,6 +149,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         behaviorTrackingUnit?: string | undefined;
     }>>;
     hidden: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+    impulseQuestions: z.ZodOptional<z.ZodArray<z.ZodType<import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>;
     debriefQuestions: z.ZodOptional<z.ZodObject<{
         success: z.ZodArray<z.ZodType<import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
         setback: z.ZodArray<z.ZodType<import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
@@ -201,6 +202,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         formattedValue: string;
         behaviorTrackingUnit?: string | undefined;
     } | undefined;
+    impulseQuestions?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
     debriefQuestions?: {
         setback: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
         success: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
@@ -247,6 +249,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         behaviorTrackingUnit?: string | undefined;
     } | undefined;
     hidden?: boolean | undefined;
+    impulseQuestions?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
     debriefQuestions?: {
         setback: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
         success: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
@@ -293,6 +296,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         formattedValue: string;
         behaviorTrackingUnit?: string | undefined;
     } | undefined;
+    impulseQuestions?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
     debriefQuestions?: {
         setback: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
         success: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
@@ -339,6 +343,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         behaviorTrackingUnit?: string | undefined;
     } | undefined;
     hidden?: boolean | undefined;
+    impulseQuestions?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
     debriefQuestions?: {
         setback: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
         success: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];

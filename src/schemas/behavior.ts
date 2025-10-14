@@ -45,6 +45,7 @@ export const behaviorSchema = behaviorTemplateBase
     tactics: z.array(documentReferenceSchema).optional(),
     initialUsage: behaviorTrackingDataSchema.optional(),
     hidden: z.boolean().optional().default(false),
+    impulseQuestions: z.array(documentReferenceSchema).optional(),
     debriefQuestions: z
       .object({
         success: z.array(documentReferenceSchema),
