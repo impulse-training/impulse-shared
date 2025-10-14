@@ -14,12 +14,13 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidSupportGroupDaySummaryLog = exports.logIsSupportGroupDaySummaryLog = exports.isValidSuggestedTacticsLog = exports.logIsSuggestedTacticsLog = exports.isValidResistedLog = exports.logIsResistedLog = exports.isValidBreathingLog = exports.logIsBreathingLog = exports.isValidReadyToDebriefLog = exports.logIsReadyToDebriefLog = exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidPlanLog = exports.logIsPlanLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticSuggestionLog = exports.logIsTacticSuggestionLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorLog = exports.logIsBehaviorLog = exports.isValidDaySummaryLog = exports.logIsDaySummaryLog = exports.isValidSharedMomentLog = exports.logIsSharedMomentLog = exports.isValidNotifySupportGroupLog = exports.logIsNotifySupportGroupLog = exports.isValidShowTourLog = exports.logIsShowTourLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
+exports.isValidDebriefUrgeLog = exports.logIsDebriefUrgeLog = exports.isValidSupportGroupDaySummaryLog = exports.logIsSupportGroupDaySummaryLog = exports.isValidSuggestedTacticsLog = exports.logIsSuggestedTacticsLog = exports.isValidResistedLog = exports.logIsResistedLog = exports.isValidBreathingLog = exports.logIsBreathingLog = exports.isValidReadyToDebriefLog = exports.logIsReadyToDebriefLog = exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidPlanLog = exports.logIsPlanLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticSuggestionLog = exports.logIsTacticSuggestionLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionLog = exports.logIsQuestionLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidImpulseLog = exports.logIsImpulseLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorLog = exports.logIsBehaviorLog = exports.isValidDaySummaryLog = exports.logIsDaySummaryLog = exports.isValidSharedMomentLog = exports.logIsSharedMomentLog = exports.isValidNotifySupportGroupLog = exports.logIsNotifySupportGroupLog = exports.isValidShowTourLog = exports.logIsShowTourLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
 const zod_1 = require("zod");
 const behaviorLog_1 = require("./behaviorLog");
 const breathingLog_1 = require("./breathingLog");
 const callLog_1 = require("./callLog");
 const daySummaryLog_1 = require("./daySummaryLog");
+const debriefUrgeLog_1 = require("./debriefUrgeLog");
 const impulseLog_1 = require("./impulseLog");
 const linkLog_1 = require("./linkLog");
 const messageLog_1 = require("./messageLog");
@@ -63,12 +64,14 @@ exports.logSchemas = {
     shared_moment: sharedMomentLog_1.sharedMomentLogSchema,
     ready_to_debrief: readyToDebriefLog_1.readyToDebriefLogSchema,
     support_group_day_summary: supportGroupDaySummaryLog_1.supportGroupDaySummaryLogSchema,
+    debriefUrge: debriefUrgeLog_1.debriefUrgeLogSchema,
 };
 exports.logTypes = Object.keys(exports.logSchemas);
 __exportStar(require("./behaviorLog"), exports);
 __exportStar(require("./breathingLog"), exports);
 __exportStar(require("./callLog"), exports);
 __exportStar(require("./daySummaryLog"), exports);
+__exportStar(require("./debriefUrgeLog"), exports);
 __exportStar(require("./impulseLog"), exports);
 __exportStar(require("./linkLog"), exports);
 __exportStar(require("./messageLog"), exports);
@@ -112,6 +115,7 @@ exports.logSchema = zod_1.z.discriminatedUnion("type", [
     readyToDebriefLog_1.readyToDebriefLogSchema,
     suggestedTacticsLog_1.suggestedTacticsLogSchema,
     supportGroupDaySummaryLog_1.supportGroupDaySummaryLogSchema,
+    debriefUrgeLog_1.debriefUrgeLogSchema,
 ]);
 // Export log type guards
 const logIsAssistantMessageLog = (value) => value.type === "assistant_message";
@@ -246,3 +250,9 @@ const isValidSupportGroupDaySummaryLog = (value) => {
     return supportGroupDaySummaryLog_1.supportGroupDaySummaryLogSchema.safeParse(value).success;
 };
 exports.isValidSupportGroupDaySummaryLog = isValidSupportGroupDaySummaryLog;
+const logIsDebriefUrgeLog = (value) => value.type === "debriefUrge";
+exports.logIsDebriefUrgeLog = logIsDebriefUrgeLog;
+const isValidDebriefUrgeLog = (value) => {
+    return debriefUrgeLog_1.debriefUrgeLogSchema.safeParse(value).success;
+};
+exports.isValidDebriefUrgeLog = isValidDebriefUrgeLog;
