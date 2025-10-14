@@ -9962,7 +9962,6 @@ export declare const logSchemas: {
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 text: z.ZodString;
-                behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 numberOfAnswers: z.ZodOptional<z.ZodNumber>;
@@ -9988,7 +9987,6 @@ export declare const logSchemas: {
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
-                behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
@@ -10005,7 +10003,6 @@ export declare const logSchemas: {
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
                 isTemplate?: boolean | undefined;
-                behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
@@ -10019,7 +10016,6 @@ export declare const logSchemas: {
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 text: z.ZodString;
-                behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 numberOfAnswers: z.ZodOptional<z.ZodNumber>;
@@ -10048,7 +10044,6 @@ export declare const logSchemas: {
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
                 suggestedResponses?: string[] | undefined;
-                behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
@@ -10066,7 +10061,6 @@ export declare const logSchemas: {
                 id?: string | undefined;
                 suggestedResponses?: string[] | undefined;
                 isTemplate?: boolean | undefined;
-                behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
@@ -10080,7 +10074,6 @@ export declare const logSchemas: {
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 text: z.ZodString;
-                behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 numberOfAnswers: z.ZodOptional<z.ZodNumber>;
@@ -10109,7 +10102,6 @@ export declare const logSchemas: {
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
                 suggestedResponses?: string[] | undefined;
-                behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
@@ -10127,7 +10119,6 @@ export declare const logSchemas: {
                 id?: string | undefined;
                 suggestedResponses?: string[] | undefined;
                 isTemplate?: boolean | undefined;
-                behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
@@ -10141,7 +10132,6 @@ export declare const logSchemas: {
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 text: z.ZodString;
-                behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 numberOfAnswers: z.ZodOptional<z.ZodNumber>;
@@ -10182,7 +10172,6 @@ export declare const logSchemas: {
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
-                behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
@@ -10203,7 +10192,6 @@ export declare const logSchemas: {
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
                 isTemplate?: boolean | undefined;
-                behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
@@ -10217,7 +10205,6 @@ export declare const logSchemas: {
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 text: z.ZodString;
-                behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 numberOfAnswers: z.ZodOptional<z.ZodNumber>;
@@ -10246,7 +10233,6 @@ export declare const logSchemas: {
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
-                behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
@@ -10263,7 +10249,6 @@ export declare const logSchemas: {
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
                 isTemplate?: boolean | undefined;
-                behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
@@ -10300,7 +10285,6 @@ export declare const logSchemas: {
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
-                behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
@@ -10318,7 +10302,6 @@ export declare const logSchemas: {
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
                 suggestedResponses?: string[] | undefined;
-                behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
@@ -10336,7 +10319,6 @@ export declare const logSchemas: {
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
                 suggestedResponses?: string[] | undefined;
-                behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
@@ -10357,7 +10339,6 @@ export declare const logSchemas: {
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
-                behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
@@ -10374,7 +10355,6 @@ export declare const logSchemas: {
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
-                behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
@@ -10400,7 +10380,6 @@ export declare const logSchemas: {
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
                 isTemplate?: boolean | undefined;
-                behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
@@ -10419,7 +10398,6 @@ export declare const logSchemas: {
                 id?: string | undefined;
                 suggestedResponses?: string[] | undefined;
                 isTemplate?: boolean | undefined;
-                behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
@@ -10437,7 +10415,6 @@ export declare const logSchemas: {
                 id?: string | undefined;
                 suggestedResponses?: string[] | undefined;
                 isTemplate?: boolean | undefined;
-                behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
@@ -10458,7 +10435,6 @@ export declare const logSchemas: {
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
                 isTemplate?: boolean | undefined;
-                behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
@@ -10475,7 +10451,6 @@ export declare const logSchemas: {
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
                 isTemplate?: boolean | undefined;
-                behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
@@ -10510,7 +10485,6 @@ export declare const logSchemas: {
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
-                behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
@@ -10528,7 +10502,6 @@ export declare const logSchemas: {
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
                 suggestedResponses?: string[] | undefined;
-                behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
@@ -10546,7 +10519,6 @@ export declare const logSchemas: {
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
                 suggestedResponses?: string[] | undefined;
-                behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
@@ -10567,7 +10539,6 @@ export declare const logSchemas: {
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
-                behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
@@ -10584,7 +10555,6 @@ export declare const logSchemas: {
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
-                behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
@@ -10625,7 +10595,6 @@ export declare const logSchemas: {
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
                 isTemplate?: boolean | undefined;
-                behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
@@ -10644,7 +10613,6 @@ export declare const logSchemas: {
                 id?: string | undefined;
                 suggestedResponses?: string[] | undefined;
                 isTemplate?: boolean | undefined;
-                behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
@@ -10662,7 +10630,6 @@ export declare const logSchemas: {
                 id?: string | undefined;
                 suggestedResponses?: string[] | undefined;
                 isTemplate?: boolean | undefined;
-                behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
@@ -10683,7 +10650,6 @@ export declare const logSchemas: {
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
                 isTemplate?: boolean | undefined;
-                behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
@@ -10700,7 +10666,6 @@ export declare const logSchemas: {
                 updatedAt?: import("../../types").Timestamp | undefined;
                 id?: string | undefined;
                 isTemplate?: boolean | undefined;
-                behaviorIds?: string[] | undefined;
                 lastAskedAt?: import("../../types").Timestamp | undefined;
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
@@ -20268,7 +20233,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             text: z.ZodString;
-            behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             numberOfAnswers: z.ZodOptional<z.ZodNumber>;
@@ -20294,7 +20258,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
-            behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
@@ -20311,7 +20274,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
             isTemplate?: boolean | undefined;
-            behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
@@ -20325,7 +20287,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             text: z.ZodString;
-            behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             numberOfAnswers: z.ZodOptional<z.ZodNumber>;
@@ -20354,7 +20315,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
             suggestedResponses?: string[] | undefined;
-            behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
@@ -20372,7 +20332,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             id?: string | undefined;
             suggestedResponses?: string[] | undefined;
             isTemplate?: boolean | undefined;
-            behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
@@ -20386,7 +20345,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             text: z.ZodString;
-            behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             numberOfAnswers: z.ZodOptional<z.ZodNumber>;
@@ -20415,7 +20373,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
             suggestedResponses?: string[] | undefined;
-            behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
@@ -20433,7 +20390,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             id?: string | undefined;
             suggestedResponses?: string[] | undefined;
             isTemplate?: boolean | undefined;
-            behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
@@ -20447,7 +20403,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             text: z.ZodString;
-            behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             numberOfAnswers: z.ZodOptional<z.ZodNumber>;
@@ -20488,7 +20443,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
-            behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
@@ -20509,7 +20463,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
             isTemplate?: boolean | undefined;
-            behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
@@ -20523,7 +20476,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             text: z.ZodString;
-            behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             numberOfAnswers: z.ZodOptional<z.ZodNumber>;
@@ -20552,7 +20504,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
-            behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
@@ -20569,7 +20520,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
             isTemplate?: boolean | undefined;
-            behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
@@ -20606,7 +20556,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
-            behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
@@ -20624,7 +20573,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
             suggestedResponses?: string[] | undefined;
-            behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
@@ -20642,7 +20590,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
             suggestedResponses?: string[] | undefined;
-            behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
@@ -20663,7 +20610,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
-            behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
@@ -20680,7 +20626,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
-            behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
@@ -20706,7 +20651,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
             isTemplate?: boolean | undefined;
-            behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
@@ -20725,7 +20669,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             id?: string | undefined;
             suggestedResponses?: string[] | undefined;
             isTemplate?: boolean | undefined;
-            behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
@@ -20743,7 +20686,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             id?: string | undefined;
             suggestedResponses?: string[] | undefined;
             isTemplate?: boolean | undefined;
-            behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
@@ -20764,7 +20706,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
             isTemplate?: boolean | undefined;
-            behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
@@ -20781,7 +20722,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
             isTemplate?: boolean | undefined;
-            behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
@@ -20816,7 +20756,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
-            behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
@@ -20834,7 +20773,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
             suggestedResponses?: string[] | undefined;
-            behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
@@ -20852,7 +20790,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
             suggestedResponses?: string[] | undefined;
-            behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
@@ -20873,7 +20810,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
-            behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
@@ -20890,7 +20826,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
-            behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
@@ -20931,7 +20866,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
             isTemplate?: boolean | undefined;
-            behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
@@ -20950,7 +20884,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             id?: string | undefined;
             suggestedResponses?: string[] | undefined;
             isTemplate?: boolean | undefined;
-            behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
@@ -20968,7 +20901,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             id?: string | undefined;
             suggestedResponses?: string[] | undefined;
             isTemplate?: boolean | undefined;
-            behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
@@ -20989,7 +20921,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
             isTemplate?: boolean | undefined;
-            behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
@@ -21006,7 +20937,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             updatedAt?: import("../../types").Timestamp | undefined;
             id?: string | undefined;
             isTemplate?: boolean | undefined;
-            behaviorIds?: string[] | undefined;
             lastAskedAt?: import("../../types").Timestamp | undefined;
             lastAnsweredAt?: import("../../types").Timestamp | undefined;
             numberOfAnswers?: number | undefined;
