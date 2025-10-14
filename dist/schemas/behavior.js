@@ -41,6 +41,12 @@ exports.behaviorSchema = behaviorTemplateBase
     tactics: zod_1.z.array(documentReferenceSchema_1.documentReferenceSchema).optional(),
     initialUsage: behaviorTrackingData_1.behaviorTrackingDataSchema.optional(),
     hidden: zod_1.z.boolean().optional().default(false),
+    debriefQuestions: zod_1.z
+        .object({
+        success: zod_1.z.array(documentReferenceSchema_1.documentReferenceSchema),
+        setback: zod_1.z.array(documentReferenceSchema_1.documentReferenceSchema),
+    })
+        .optional(),
 })
     .superRefine((val, ctx) => {
     if (val.trackingType === "counter" && !val.trackingUnit) {

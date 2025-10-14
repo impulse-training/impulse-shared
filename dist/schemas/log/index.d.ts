@@ -6254,6 +6254,16 @@ export declare const logSchemas: {
                     behaviorTrackingUnit?: string | undefined;
                 }>>;
                 hidden: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+                debriefQuestions: z.ZodOptional<z.ZodObject<{
+                    success: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+                    setback: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+                }, "strip", z.ZodTypeAny, {
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
+                    success: import("../..").DocumentReferenceLike<unknown>[];
+                }, {
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
+                    success: import("../..").DocumentReferenceLike<unknown>[];
+                }>>;
             }, "strip", z.ZodTypeAny, {
                 trackingType: "counter" | "timer";
                 category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -6296,6 +6306,10 @@ export declare const logSchemas: {
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
                 } | undefined;
+                debriefQuestions?: {
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
+                    success: import("../..").DocumentReferenceLike<unknown>[];
+                } | undefined;
             }, {
                 trackingType: "counter" | "timer";
                 category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -6338,6 +6352,10 @@ export declare const logSchemas: {
                     behaviorTrackingUnit?: string | undefined;
                 } | undefined;
                 hidden?: boolean | undefined;
+                debriefQuestions?: {
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
+                    success: import("../..").DocumentReferenceLike<unknown>[];
+                } | undefined;
             }>, {
                 trackingType: "counter" | "timer";
                 category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -6380,6 +6398,10 @@ export declare const logSchemas: {
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
                 } | undefined;
+                debriefQuestions?: {
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
+                    success: import("../..").DocumentReferenceLike<unknown>[];
+                } | undefined;
             }, {
                 trackingType: "counter" | "timer";
                 category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -6422,6 +6444,10 @@ export declare const logSchemas: {
                     behaviorTrackingUnit?: string | undefined;
                 } | undefined;
                 hidden?: boolean | undefined;
+                debriefQuestions?: {
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
+                    success: import("../..").DocumentReferenceLike<unknown>[];
+                } | undefined;
             }>>>;
             trackingLogsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
             tacticsUsed: z.ZodDefault<z.ZodArray<z.ZodAny, "many">>;
@@ -6527,6 +6553,10 @@ export declare const logSchemas: {
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
                 } | undefined;
+                debriefQuestions?: {
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
+                    success: import("../..").DocumentReferenceLike<unknown>[];
+                } | undefined;
             }> | undefined;
             trackingLogsById?: Record<string, any> | undefined;
             supportGroupPermissionsById?: Record<string, {
@@ -6603,6 +6633,10 @@ export declare const logSchemas: {
                     behaviorTrackingUnit?: string | undefined;
                 } | undefined;
                 hidden?: boolean | undefined;
+                debriefQuestions?: {
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
+                    success: import("../..").DocumentReferenceLike<unknown>[];
+                } | undefined;
             }> | undefined;
             trackingLogsById?: Record<string, any> | undefined;
             tacticsUsed?: any[] | undefined;
@@ -6690,6 +6724,10 @@ export declare const logSchemas: {
                     category: "helpful" | "mixed" | "unhelpful" | "unsure";
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
+                } | undefined;
+                debriefQuestions?: {
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
+                    success: import("../..").DocumentReferenceLike<unknown>[];
                 } | undefined;
             }> | undefined;
             trackingLogsById?: Record<string, any> | undefined;
@@ -6782,6 +6820,10 @@ export declare const logSchemas: {
                     behaviorTrackingUnit?: string | undefined;
                 } | undefined;
                 hidden?: boolean | undefined;
+                debriefQuestions?: {
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
+                    success: import("../..").DocumentReferenceLike<unknown>[];
+                } | undefined;
             }> | undefined;
             trackingLogsById?: Record<string, any> | undefined;
             tacticsUsed?: any[] | undefined;
@@ -12085,6 +12127,16 @@ export declare const logSchemas: {
                         behaviorTrackingUnit?: string | undefined;
                     }>>;
                     hidden: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+                    debriefQuestions: z.ZodOptional<z.ZodObject<{
+                        success: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+                        setback: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+                    }, "strip", z.ZodTypeAny, {
+                        setback: import("../..").DocumentReferenceLike<unknown>[];
+                        success: import("../..").DocumentReferenceLike<unknown>[];
+                    }, {
+                        setback: import("../..").DocumentReferenceLike<unknown>[];
+                        success: import("../..").DocumentReferenceLike<unknown>[];
+                    }>>;
                 }, "strip", z.ZodTypeAny, {
                     trackingType: "counter" | "timer";
                     category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -12127,6 +12179,10 @@ export declare const logSchemas: {
                         formattedValue: string;
                         behaviorTrackingUnit?: string | undefined;
                     } | undefined;
+                    debriefQuestions?: {
+                        setback: import("../..").DocumentReferenceLike<unknown>[];
+                        success: import("../..").DocumentReferenceLike<unknown>[];
+                    } | undefined;
                 }, {
                     trackingType: "counter" | "timer";
                     category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -12169,6 +12225,10 @@ export declare const logSchemas: {
                         behaviorTrackingUnit?: string | undefined;
                     } | undefined;
                     hidden?: boolean | undefined;
+                    debriefQuestions?: {
+                        setback: import("../..").DocumentReferenceLike<unknown>[];
+                        success: import("../..").DocumentReferenceLike<unknown>[];
+                    } | undefined;
                 }>, {
                     trackingType: "counter" | "timer";
                     category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -12211,6 +12271,10 @@ export declare const logSchemas: {
                         formattedValue: string;
                         behaviorTrackingUnit?: string | undefined;
                     } | undefined;
+                    debriefQuestions?: {
+                        setback: import("../..").DocumentReferenceLike<unknown>[];
+                        success: import("../..").DocumentReferenceLike<unknown>[];
+                    } | undefined;
                 }, {
                     trackingType: "counter" | "timer";
                     category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -12253,6 +12317,10 @@ export declare const logSchemas: {
                         behaviorTrackingUnit?: string | undefined;
                     } | undefined;
                     hidden?: boolean | undefined;
+                    debriefQuestions?: {
+                        setback: import("../..").DocumentReferenceLike<unknown>[];
+                        success: import("../..").DocumentReferenceLike<unknown>[];
+                    } | undefined;
                 }>>>;
                 trackingLogsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
                 tacticsUsed: z.ZodDefault<z.ZodArray<z.ZodAny, "many">>;
@@ -12358,6 +12426,10 @@ export declare const logSchemas: {
                         formattedValue: string;
                         behaviorTrackingUnit?: string | undefined;
                     } | undefined;
+                    debriefQuestions?: {
+                        setback: import("../..").DocumentReferenceLike<unknown>[];
+                        success: import("../..").DocumentReferenceLike<unknown>[];
+                    } | undefined;
                 }> | undefined;
                 trackingLogsById?: Record<string, any> | undefined;
                 supportGroupPermissionsById?: Record<string, {
@@ -12434,6 +12506,10 @@ export declare const logSchemas: {
                         behaviorTrackingUnit?: string | undefined;
                     } | undefined;
                     hidden?: boolean | undefined;
+                    debriefQuestions?: {
+                        setback: import("../..").DocumentReferenceLike<unknown>[];
+                        success: import("../..").DocumentReferenceLike<unknown>[];
+                    } | undefined;
                 }> | undefined;
                 trackingLogsById?: Record<string, any> | undefined;
                 tacticsUsed?: any[] | undefined;
@@ -12518,6 +12594,10 @@ export declare const logSchemas: {
                         formattedValue: string;
                         behaviorTrackingUnit?: string | undefined;
                     } | undefined;
+                    debriefQuestions?: {
+                        setback: import("../..").DocumentReferenceLike<unknown>[];
+                        success: import("../..").DocumentReferenceLike<unknown>[];
+                    } | undefined;
                 }> | undefined;
                 trackingLogsById?: Record<string, any> | undefined;
                 supportGroupPermissionsById?: Record<string, {
@@ -12597,6 +12677,10 @@ export declare const logSchemas: {
                         behaviorTrackingUnit?: string | undefined;
                     } | undefined;
                     hidden?: boolean | undefined;
+                    debriefQuestions?: {
+                        setback: import("../..").DocumentReferenceLike<unknown>[];
+                        success: import("../..").DocumentReferenceLike<unknown>[];
+                    } | undefined;
                 }> | undefined;
                 trackingLogsById?: Record<string, any> | undefined;
                 tacticsUsed?: any[] | undefined;
@@ -12687,6 +12771,10 @@ export declare const logSchemas: {
                         category: "helpful" | "mixed" | "unhelpful" | "unsure";
                         formattedValue: string;
                         behaviorTrackingUnit?: string | undefined;
+                    } | undefined;
+                    debriefQuestions?: {
+                        setback: import("../..").DocumentReferenceLike<unknown>[];
+                        success: import("../..").DocumentReferenceLike<unknown>[];
                     } | undefined;
                 }> | undefined;
                 trackingLogsById?: Record<string, any> | undefined;
@@ -12782,6 +12870,10 @@ export declare const logSchemas: {
                         behaviorTrackingUnit?: string | undefined;
                     } | undefined;
                     hidden?: boolean | undefined;
+                    debriefQuestions?: {
+                        setback: import("../..").DocumentReferenceLike<unknown>[];
+                        success: import("../..").DocumentReferenceLike<unknown>[];
+                    } | undefined;
                 }> | undefined;
                 trackingLogsById?: Record<string, any> | undefined;
                 tacticsUsed?: any[] | undefined;
@@ -19062,6 +19154,16 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 behaviorTrackingUnit?: string | undefined;
             }>>;
             hidden: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+            debriefQuestions: z.ZodOptional<z.ZodObject<{
+                success: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+                setback: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+            }, "strip", z.ZodTypeAny, {
+                setback: import("../..").DocumentReferenceLike<unknown>[];
+                success: import("../..").DocumentReferenceLike<unknown>[];
+            }, {
+                setback: import("../..").DocumentReferenceLike<unknown>[];
+                success: import("../..").DocumentReferenceLike<unknown>[];
+            }>>;
         }, "strip", z.ZodTypeAny, {
             trackingType: "counter" | "timer";
             category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -19104,6 +19206,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 formattedValue: string;
                 behaviorTrackingUnit?: string | undefined;
             } | undefined;
+            debriefQuestions?: {
+                setback: import("../..").DocumentReferenceLike<unknown>[];
+                success: import("../..").DocumentReferenceLike<unknown>[];
+            } | undefined;
         }, {
             trackingType: "counter" | "timer";
             category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -19146,6 +19252,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 behaviorTrackingUnit?: string | undefined;
             } | undefined;
             hidden?: boolean | undefined;
+            debriefQuestions?: {
+                setback: import("../..").DocumentReferenceLike<unknown>[];
+                success: import("../..").DocumentReferenceLike<unknown>[];
+            } | undefined;
         }>, {
             trackingType: "counter" | "timer";
             category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -19188,6 +19298,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 formattedValue: string;
                 behaviorTrackingUnit?: string | undefined;
             } | undefined;
+            debriefQuestions?: {
+                setback: import("../..").DocumentReferenceLike<unknown>[];
+                success: import("../..").DocumentReferenceLike<unknown>[];
+            } | undefined;
         }, {
             trackingType: "counter" | "timer";
             category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -19230,6 +19344,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 behaviorTrackingUnit?: string | undefined;
             } | undefined;
             hidden?: boolean | undefined;
+            debriefQuestions?: {
+                setback: import("../..").DocumentReferenceLike<unknown>[];
+                success: import("../..").DocumentReferenceLike<unknown>[];
+            } | undefined;
         }>>>;
         trackingLogsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
         tacticsUsed: z.ZodDefault<z.ZodArray<z.ZodAny, "many">>;
@@ -19335,6 +19453,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 formattedValue: string;
                 behaviorTrackingUnit?: string | undefined;
             } | undefined;
+            debriefQuestions?: {
+                setback: import("../..").DocumentReferenceLike<unknown>[];
+                success: import("../..").DocumentReferenceLike<unknown>[];
+            } | undefined;
         }> | undefined;
         trackingLogsById?: Record<string, any> | undefined;
         supportGroupPermissionsById?: Record<string, {
@@ -19411,6 +19533,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 behaviorTrackingUnit?: string | undefined;
             } | undefined;
             hidden?: boolean | undefined;
+            debriefQuestions?: {
+                setback: import("../..").DocumentReferenceLike<unknown>[];
+                success: import("../..").DocumentReferenceLike<unknown>[];
+            } | undefined;
         }> | undefined;
         trackingLogsById?: Record<string, any> | undefined;
         tacticsUsed?: any[] | undefined;
@@ -19498,6 +19624,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 category: "helpful" | "mixed" | "unhelpful" | "unsure";
                 formattedValue: string;
                 behaviorTrackingUnit?: string | undefined;
+            } | undefined;
+            debriefQuestions?: {
+                setback: import("../..").DocumentReferenceLike<unknown>[];
+                success: import("../..").DocumentReferenceLike<unknown>[];
             } | undefined;
         }> | undefined;
         trackingLogsById?: Record<string, any> | undefined;
@@ -19590,6 +19720,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 behaviorTrackingUnit?: string | undefined;
             } | undefined;
             hidden?: boolean | undefined;
+            debriefQuestions?: {
+                setback: import("../..").DocumentReferenceLike<unknown>[];
+                success: import("../..").DocumentReferenceLike<unknown>[];
+            } | undefined;
         }> | undefined;
         trackingLogsById?: Record<string, any> | undefined;
         tacticsUsed?: any[] | undefined;
@@ -22182,6 +22316,16 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     behaviorTrackingUnit?: string | undefined;
                 }>>;
                 hidden: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+                debriefQuestions: z.ZodOptional<z.ZodObject<{
+                    success: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+                    setback: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+                }, "strip", z.ZodTypeAny, {
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
+                    success: import("../..").DocumentReferenceLike<unknown>[];
+                }, {
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
+                    success: import("../..").DocumentReferenceLike<unknown>[];
+                }>>;
             }, "strip", z.ZodTypeAny, {
                 trackingType: "counter" | "timer";
                 category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -22224,6 +22368,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
                 } | undefined;
+                debriefQuestions?: {
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
+                    success: import("../..").DocumentReferenceLike<unknown>[];
+                } | undefined;
             }, {
                 trackingType: "counter" | "timer";
                 category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -22266,6 +22414,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     behaviorTrackingUnit?: string | undefined;
                 } | undefined;
                 hidden?: boolean | undefined;
+                debriefQuestions?: {
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
+                    success: import("../..").DocumentReferenceLike<unknown>[];
+                } | undefined;
             }>, {
                 trackingType: "counter" | "timer";
                 category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -22308,6 +22460,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
                 } | undefined;
+                debriefQuestions?: {
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
+                    success: import("../..").DocumentReferenceLike<unknown>[];
+                } | undefined;
             }, {
                 trackingType: "counter" | "timer";
                 category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -22350,6 +22506,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     behaviorTrackingUnit?: string | undefined;
                 } | undefined;
                 hidden?: boolean | undefined;
+                debriefQuestions?: {
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
+                    success: import("../..").DocumentReferenceLike<unknown>[];
+                } | undefined;
             }>>>;
             trackingLogsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
             tacticsUsed: z.ZodDefault<z.ZodArray<z.ZodAny, "many">>;
@@ -22455,6 +22615,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
                 } | undefined;
+                debriefQuestions?: {
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
+                    success: import("../..").DocumentReferenceLike<unknown>[];
+                } | undefined;
             }> | undefined;
             trackingLogsById?: Record<string, any> | undefined;
             supportGroupPermissionsById?: Record<string, {
@@ -22531,6 +22695,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     behaviorTrackingUnit?: string | undefined;
                 } | undefined;
                 hidden?: boolean | undefined;
+                debriefQuestions?: {
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
+                    success: import("../..").DocumentReferenceLike<unknown>[];
+                } | undefined;
             }> | undefined;
             trackingLogsById?: Record<string, any> | undefined;
             tacticsUsed?: any[] | undefined;
@@ -22615,6 +22783,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
                 } | undefined;
+                debriefQuestions?: {
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
+                    success: import("../..").DocumentReferenceLike<unknown>[];
+                } | undefined;
             }> | undefined;
             trackingLogsById?: Record<string, any> | undefined;
             supportGroupPermissionsById?: Record<string, {
@@ -22694,6 +22866,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     behaviorTrackingUnit?: string | undefined;
                 } | undefined;
                 hidden?: boolean | undefined;
+                debriefQuestions?: {
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
+                    success: import("../..").DocumentReferenceLike<unknown>[];
+                } | undefined;
             }> | undefined;
             trackingLogsById?: Record<string, any> | undefined;
             tacticsUsed?: any[] | undefined;
@@ -22784,6 +22960,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     category: "helpful" | "mixed" | "unhelpful" | "unsure";
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
+                } | undefined;
+                debriefQuestions?: {
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
+                    success: import("../..").DocumentReferenceLike<unknown>[];
                 } | undefined;
             }> | undefined;
             trackingLogsById?: Record<string, any> | undefined;
@@ -22879,6 +23059,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     behaviorTrackingUnit?: string | undefined;
                 } | undefined;
                 hidden?: boolean | undefined;
+                debriefQuestions?: {
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
+                    success: import("../..").DocumentReferenceLike<unknown>[];
+                } | undefined;
             }> | undefined;
             trackingLogsById?: Record<string, any> | undefined;
             tacticsUsed?: any[] | undefined;
