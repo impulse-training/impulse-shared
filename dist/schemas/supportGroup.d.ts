@@ -8,15 +8,12 @@ export declare const supportGroupMemberSchema: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         invitationCode: z.ZodString;
         emojiId: z.ZodOptional<z.ZodObject<{
-            color: z.ZodString;
             emoji: z.ZodString;
             name: z.ZodOptional<z.ZodString>;
         }, "strip", z.ZodTypeAny, {
-            color: string;
             emoji: string;
             name?: string | undefined;
         }, {
-            color: string;
             emoji: string;
             name?: string | undefined;
         }>>;
@@ -24,7 +21,6 @@ export declare const supportGroupMemberSchema: z.ZodObject<{
         invitationCode: string;
         id?: string | undefined;
         emojiId?: {
-            color: string;
             emoji: string;
             name?: string | undefined;
         } | undefined;
@@ -32,7 +28,6 @@ export declare const supportGroupMemberSchema: z.ZodObject<{
         invitationCode: string;
         id?: string | undefined;
         emojiId?: {
-            color: string;
             emoji: string;
             name?: string | undefined;
         } | undefined;
@@ -80,7 +75,6 @@ export declare const supportGroupMemberSchema: z.ZodObject<{
         invitationCode: string;
         id?: string | undefined;
         emojiId?: {
-            color: string;
             emoji: string;
             name?: string | undefined;
         } | undefined;
@@ -106,7 +100,6 @@ export declare const supportGroupMemberSchema: z.ZodObject<{
         invitationCode: string;
         id?: string | undefined;
         emojiId?: {
-            color: string;
             emoji: string;
             name?: string | undefined;
         } | undefined;
@@ -217,15 +210,12 @@ export declare const supportGroupSchema: z.ZodObject<{
             id: z.ZodOptional<z.ZodString>;
             invitationCode: z.ZodString;
             emojiId: z.ZodOptional<z.ZodObject<{
-                color: z.ZodString;
                 emoji: z.ZodString;
                 name: z.ZodOptional<z.ZodString>;
             }, "strip", z.ZodTypeAny, {
-                color: string;
                 emoji: string;
                 name?: string | undefined;
             }, {
-                color: string;
                 emoji: string;
                 name?: string | undefined;
             }>>;
@@ -233,7 +223,6 @@ export declare const supportGroupSchema: z.ZodObject<{
             invitationCode: string;
             id?: string | undefined;
             emojiId?: {
-                color: string;
                 emoji: string;
                 name?: string | undefined;
             } | undefined;
@@ -241,7 +230,6 @@ export declare const supportGroupSchema: z.ZodObject<{
             invitationCode: string;
             id?: string | undefined;
             emojiId?: {
-                color: string;
                 emoji: string;
                 name?: string | undefined;
             } | undefined;
@@ -289,7 +277,6 @@ export declare const supportGroupSchema: z.ZodObject<{
             invitationCode: string;
             id?: string | undefined;
             emojiId?: {
-                color: string;
                 emoji: string;
                 name?: string | undefined;
             } | undefined;
@@ -315,7 +302,6 @@ export declare const supportGroupSchema: z.ZodObject<{
             invitationCode: string;
             id?: string | undefined;
             emojiId?: {
-                color: string;
                 emoji: string;
                 name?: string | undefined;
             } | undefined;
@@ -631,7 +617,6 @@ export declare const supportGroupSchema: z.ZodObject<{
             invitationCode: string;
             id?: string | undefined;
             emojiId?: {
-                color: string;
                 emoji: string;
                 name?: string | undefined;
             } | undefined;
@@ -747,7 +732,6 @@ export declare const supportGroupSchema: z.ZodObject<{
             invitationCode: string;
             id?: string | undefined;
             emojiId?: {
-                color: string;
                 emoji: string;
                 name?: string | undefined;
             } | undefined;
