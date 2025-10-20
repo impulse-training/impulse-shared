@@ -34,6 +34,7 @@ exports.tacticSchema = zod_1.z.object({
     description: zod_1.z.string().optional(),
     aiInstructions: zod_1.z.string().optional(),
     createdByUid: zod_1.z.string().optional(),
+    recommended: zod_1.z.boolean().optional(),
     steps: zod_1.z.array(step_1.tacticStepSchema).min(1),
     tags: zod_1.z.array(zod_1.z.string()).optional(),
     // AI metadata for tactic suggestion

@@ -35,6 +35,7 @@ export const tacticSchema = z.object({
   description: z.string().optional(),
   aiInstructions: z.string().optional(),
   createdByUid: z.string().optional(),
+  recommended: z.boolean().optional(),
   steps: z.array(tacticStepSchema).min(1),
   tags: z.array(z.string()).optional(),
   // AI metadata for tactic suggestion

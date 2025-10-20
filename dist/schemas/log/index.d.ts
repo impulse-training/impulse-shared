@@ -295,6 +295,7 @@ export declare const logSchemas: {
                 description: z.ZodOptional<z.ZodString>;
                 aiInstructions: z.ZodOptional<z.ZodString>;
                 createdByUid: z.ZodOptional<z.ZodString>;
+                recommended: z.ZodOptional<z.ZodBoolean>;
                 steps: z.ZodArray<z.ZodDiscriminatedUnion<"mode", [z.ZodObject<{
                     backgroundImage: z.ZodOptional<z.ZodObject<{
                         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -1737,6 +1738,7 @@ export declare const logSchemas: {
                 tags?: string[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
+                recommended?: boolean | undefined;
                 indications?: {
                     questionResponses?: {
                         questionId: string;
@@ -1980,6 +1982,7 @@ export declare const logSchemas: {
                 tags?: string[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
+                recommended?: boolean | undefined;
                 indications?: {
                     questionResponses?: {
                         questionId: string;
@@ -2233,6 +2236,7 @@ export declare const logSchemas: {
                 tags?: string[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
+                recommended?: boolean | undefined;
                 indications?: {
                     questionResponses?: {
                         questionId: string;
@@ -2484,6 +2488,7 @@ export declare const logSchemas: {
                 tags?: string[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
+                recommended?: boolean | undefined;
                 indications?: {
                     questionResponses?: {
                         questionId: string;
@@ -2743,6 +2748,7 @@ export declare const logSchemas: {
                 tags?: string[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
+                recommended?: boolean | undefined;
                 indications?: {
                     questionResponses?: {
                         questionId: string;
@@ -3009,6 +3015,7 @@ export declare const logSchemas: {
                 tags?: string[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
+                recommended?: boolean | undefined;
                 indications?: {
                     questionResponses?: {
                         questionId: string;
@@ -3263,6 +3270,7 @@ export declare const logSchemas: {
                 description: z.ZodOptional<z.ZodString>;
                 aiInstructions: z.ZodOptional<z.ZodString>;
                 createdByUid: z.ZodOptional<z.ZodString>;
+                recommended: z.ZodOptional<z.ZodBoolean>;
                 steps: z.ZodArray<z.ZodDiscriminatedUnion<"mode", [z.ZodObject<{
                     backgroundImage: z.ZodOptional<z.ZodObject<{
                         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -4705,6 +4713,7 @@ export declare const logSchemas: {
                 tags?: string[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
+                recommended?: boolean | undefined;
                 indications?: {
                     questionResponses?: {
                         questionId: string;
@@ -4948,6 +4957,7 @@ export declare const logSchemas: {
                 tags?: string[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
+                recommended?: boolean | undefined;
                 indications?: {
                     questionResponses?: {
                         questionId: string;
@@ -5197,6 +5207,7 @@ export declare const logSchemas: {
                 tags?: string[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
+                recommended?: boolean | undefined;
                 indications?: {
                     questionResponses?: {
                         questionId: string;
@@ -5446,6 +5457,7 @@ export declare const logSchemas: {
                 tags?: string[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
+                recommended?: boolean | undefined;
                 indications?: {
                     questionResponses?: {
                         questionId: string;
@@ -5703,6 +5715,7 @@ export declare const logSchemas: {
                 tags?: string[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
+                recommended?: boolean | undefined;
                 indications?: {
                     questionResponses?: {
                         questionId: string;
@@ -5967,6 +5980,7 @@ export declare const logSchemas: {
                 tags?: string[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
+                recommended?: boolean | undefined;
                 indications?: {
                     questionResponses?: {
                         questionId: string;
@@ -6890,6 +6904,7 @@ export declare const logSchemas: {
                 description: z.ZodOptional<z.ZodString>;
                 aiInstructions: z.ZodOptional<z.ZodString>;
                 createdByUid: z.ZodOptional<z.ZodString>;
+                recommended: z.ZodOptional<z.ZodBoolean>;
                 steps: z.ZodArray<z.ZodDiscriminatedUnion<"mode", [z.ZodObject<{
                     backgroundImage: z.ZodOptional<z.ZodObject<{
                         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -8332,6 +8347,7 @@ export declare const logSchemas: {
                 tags?: string[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
+                recommended?: boolean | undefined;
                 indications?: {
                     questionResponses?: {
                         questionId: string;
@@ -8575,6 +8591,7 @@ export declare const logSchemas: {
                 tags?: string[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
+                recommended?: boolean | undefined;
                 indications?: {
                     questionResponses?: {
                         questionId: string;
@@ -8824,6 +8841,7 @@ export declare const logSchemas: {
                 tags?: string[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
+                recommended?: boolean | undefined;
                 indications?: {
                     questionResponses?: {
                         questionId: string;
@@ -9073,6 +9091,7 @@ export declare const logSchemas: {
                 tags?: string[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
+                recommended?: boolean | undefined;
                 indications?: {
                     questionResponses?: {
                         questionId: string;
@@ -9330,6 +9349,7 @@ export declare const logSchemas: {
                 tags?: string[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
+                recommended?: boolean | undefined;
                 indications?: {
                     questionResponses?: {
                         questionId: string;
@@ -9594,6 +9614,7 @@ export declare const logSchemas: {
                 tags?: string[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
+                recommended?: boolean | undefined;
                 indications?: {
                     questionResponses?: {
                         questionId: string;
@@ -13398,6 +13419,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             description: z.ZodOptional<z.ZodString>;
             aiInstructions: z.ZodOptional<z.ZodString>;
             createdByUid: z.ZodOptional<z.ZodString>;
+            recommended: z.ZodOptional<z.ZodBoolean>;
             steps: z.ZodArray<z.ZodDiscriminatedUnion<"mode", [z.ZodObject<{
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -14840,6 +14862,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             tags?: string[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
+            recommended?: boolean | undefined;
             indications?: {
                 questionResponses?: {
                     questionId: string;
@@ -15083,6 +15106,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             tags?: string[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
+            recommended?: boolean | undefined;
             indications?: {
                 questionResponses?: {
                     questionId: string;
@@ -15336,6 +15360,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             tags?: string[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
+            recommended?: boolean | undefined;
             indications?: {
                 questionResponses?: {
                     questionId: string;
@@ -15587,6 +15612,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             tags?: string[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
+            recommended?: boolean | undefined;
             indications?: {
                 questionResponses?: {
                     questionId: string;
@@ -15846,6 +15872,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             tags?: string[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
+            recommended?: boolean | undefined;
             indications?: {
                 questionResponses?: {
                     questionId: string;
@@ -16112,6 +16139,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             tags?: string[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
+            recommended?: boolean | undefined;
             indications?: {
                 questionResponses?: {
                     questionId: string;
@@ -16364,6 +16392,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             description: z.ZodOptional<z.ZodString>;
             aiInstructions: z.ZodOptional<z.ZodString>;
             createdByUid: z.ZodOptional<z.ZodString>;
+            recommended: z.ZodOptional<z.ZodBoolean>;
             steps: z.ZodArray<z.ZodDiscriminatedUnion<"mode", [z.ZodObject<{
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -17806,6 +17835,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             tags?: string[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
+            recommended?: boolean | undefined;
             indications?: {
                 questionResponses?: {
                     questionId: string;
@@ -18049,6 +18079,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             tags?: string[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
+            recommended?: boolean | undefined;
             indications?: {
                 questionResponses?: {
                     questionId: string;
@@ -18298,6 +18329,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             tags?: string[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
+            recommended?: boolean | undefined;
             indications?: {
                 questionResponses?: {
                     questionId: string;
@@ -18547,6 +18579,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             tags?: string[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
+            recommended?: boolean | undefined;
             indications?: {
                 questionResponses?: {
                     questionId: string;
@@ -18804,6 +18837,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             tags?: string[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
+            recommended?: boolean | undefined;
             indications?: {
                 questionResponses?: {
                     questionId: string;
@@ -19068,6 +19102,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             tags?: string[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
+            recommended?: boolean | undefined;
             indications?: {
                 questionResponses?: {
                     questionId: string;
