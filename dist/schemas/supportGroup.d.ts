@@ -9,27 +9,27 @@ export declare const supportGroupMemberSchema: z.ZodObject<{
         invitationCode: z.ZodString;
         emojiId: z.ZodOptional<z.ZodObject<{
             emoji: z.ZodString;
-            name: z.ZodOptional<z.ZodString>;
+            name: z.ZodString;
         }, "strip", z.ZodTypeAny, {
+            name: string;
             emoji: string;
-            name?: string | undefined;
         }, {
+            name: string;
             emoji: string;
-            name?: string | undefined;
         }>>;
     }, "strip", z.ZodTypeAny, {
         invitationCode: string;
         id?: string | undefined;
         emojiId?: {
+            name: string;
             emoji: string;
-            name?: string | undefined;
         } | undefined;
     }, {
         invitationCode: string;
         id?: string | undefined;
         emojiId?: {
+            name: string;
             emoji: string;
-            name?: string | undefined;
         } | undefined;
     }>;
     permissions: z.ZodOptional<z.ZodObject<{
@@ -75,8 +75,8 @@ export declare const supportGroupMemberSchema: z.ZodObject<{
         invitationCode: string;
         id?: string | undefined;
         emojiId?: {
+            name: string;
             emoji: string;
-            name?: string | undefined;
         } | undefined;
     };
     permissions?: {
@@ -100,8 +100,8 @@ export declare const supportGroupMemberSchema: z.ZodObject<{
         invitationCode: string;
         id?: string | undefined;
         emojiId?: {
+            name: string;
             emoji: string;
-            name?: string | undefined;
         } | undefined;
     };
     permissions?: {
@@ -211,27 +211,27 @@ export declare const supportGroupSchema: z.ZodObject<{
             invitationCode: z.ZodString;
             emojiId: z.ZodOptional<z.ZodObject<{
                 emoji: z.ZodString;
-                name: z.ZodOptional<z.ZodString>;
+                name: z.ZodString;
             }, "strip", z.ZodTypeAny, {
+                name: string;
                 emoji: string;
-                name?: string | undefined;
             }, {
+                name: string;
                 emoji: string;
-                name?: string | undefined;
             }>>;
         }, "strip", z.ZodTypeAny, {
             invitationCode: string;
             id?: string | undefined;
             emojiId?: {
+                name: string;
                 emoji: string;
-                name?: string | undefined;
             } | undefined;
         }, {
             invitationCode: string;
             id?: string | undefined;
             emojiId?: {
+                name: string;
                 emoji: string;
-                name?: string | undefined;
             } | undefined;
         }>;
         permissions: z.ZodOptional<z.ZodObject<{
@@ -277,8 +277,8 @@ export declare const supportGroupSchema: z.ZodObject<{
             invitationCode: string;
             id?: string | undefined;
             emojiId?: {
+                name: string;
                 emoji: string;
-                name?: string | undefined;
             } | undefined;
         };
         permissions?: {
@@ -302,8 +302,8 @@ export declare const supportGroupSchema: z.ZodObject<{
             invitationCode: string;
             id?: string | undefined;
             emojiId?: {
+                name: string;
                 emoji: string;
-                name?: string | undefined;
             } | undefined;
         };
         permissions?: {
@@ -617,8 +617,8 @@ export declare const supportGroupSchema: z.ZodObject<{
             invitationCode: string;
             id?: string | undefined;
             emojiId?: {
+                name: string;
                 emoji: string;
-                name?: string | undefined;
             } | undefined;
         };
         permissions?: {
@@ -732,8 +732,8 @@ export declare const supportGroupSchema: z.ZodObject<{
             invitationCode: string;
             id?: string | undefined;
             emojiId?: {
+                name: string;
                 emoji: string;
-                name?: string | undefined;
             } | undefined;
         };
         permissions?: {
