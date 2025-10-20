@@ -1,0 +1,58 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getTacticStepInstructions = getTacticStepInstructions;
+exports.getTacticInstructions = getTacticInstructions;
+// Generate concise, actionable instructions for a single tactic step
+function getTacticStepInstructions(step) {
+    var _a, _b, _c;
+    switch (step.mode) {
+        case "default": {
+            // Plain text instruction
+            return ((_a = step.text) === null || _a === void 0 ? void 0 : _a.trim()) || "Follow the instruction in this step.";
+        }
+        case "breathing": {
+            const { inhale, hold, exhale } = step.breathingPattern;
+            const cycles = (_b = step.cycles) !== null && _b !== void 0 ? _b : 3;
+            const holdPart = hold && hold > 0 ? `, hold for ${hold} seconds` : "";
+            return `Do a breathing exercise for ${cycles} cycles: inhale for ${inhale} seconds${holdPart}, then exhale for ${exhale} seconds. Stay relaxed and focus on your breath.`;
+        }
+        case "notifySupport": {
+            const label = ((_c = step.text) === null || _c === void 0 ? void 0 : _c.trim()) || "Send a supportive message";
+            return `${label}. Reach out to your support group now so they know you could use encouragement.`;
+        }
+        case "question-text":
+        case "question-slider1To10": {
+            const q = step.text.trim();
+            return `Reflect and answer: ${q}`;
+        }
+        case "media": {
+            const count = step.media.length;
+            return `View the ${count === 1 ? "attached item" : `${count} attached items`} and engage with them mindfully (e.g., watch, listen, or read) before continuing.`;
+        }
+        case "affirmation": {
+            const text = step.text.trim();
+            const n = step.repeatCount;
+            return `Repeat this affirmation ${n} time${n === 1 ? "" : "s"}: "${text}". Say it slowly and with intention.`;
+        }
+        default: {
+            // Exhaustive check ensures we handle new modes explicitly in the future
+            // @ts-expect-error Ensure exhaustiveness if new modes are added
+            const neverMode = step;
+            void neverMode;
+            return "Follow the step as described.";
+        }
+    }
+}
+// Generate instructions for a whole tactic. If the tactic has explicit aiInstructions,
+// prefer those; otherwise combine per-step instructions into a concise list.
+function getTacticInstructions(tactic) {
+    if (tactic.aiInstructions && tactic.aiInstructions.trim().length > 0) {
+        return tactic.aiInstructions.trim();
+    }
+    if (tactic.steps.length === 1) {
+        const only = tactic.steps[0];
+        return `Complete the tactic: "${tactic.title}". ${getTacticStepInstructions(only)}`;
+    }
+    const parts = tactic.steps.map((s, idx) => `${idx + 1}. ${getTacticStepInstructions(s)}`);
+    return `Complete the tactic: "${tactic.title}". Steps:\n` + parts.join("\n");
+}
