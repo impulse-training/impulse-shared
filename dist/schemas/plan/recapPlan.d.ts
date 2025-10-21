@@ -39,9 +39,9 @@ export declare const recapPlanSchema: z.ZodObject<{
         weekdays: number[];
     };
     questionIds: string[];
+    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    id?: string | undefined;
     description?: string | undefined;
     ordinal?: number | undefined;
     summary?: string | undefined;
@@ -57,9 +57,9 @@ export declare const recapPlanSchema: z.ZodObject<{
         minute: number;
         weekdays: number[];
     };
+    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    id?: string | undefined;
     description?: string | undefined;
     ordinal?: number | undefined;
     summary?: string | undefined;

@@ -29,9 +29,9 @@ export declare const behaviorSelectionQuestionSchema: z.ZodObject<{
     responseType: "behaviorSelection";
     scope: "impulse" | "setback" | "success" | "recap";
     allowMultiple: boolean;
+    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    id?: string | undefined;
     lastAskedAt?: import("../../types").Timestamp | undefined;
     lastAnsweredAt?: import("../../types").Timestamp | undefined;
     numberOfAnswers?: number | undefined;
@@ -44,9 +44,9 @@ export declare const behaviorSelectionQuestionSchema: z.ZodObject<{
     text: string;
     responseType: "behaviorSelection";
     scope: "impulse" | "setback" | "success" | "recap";
+    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    id?: string | undefined;
     isTemplate?: boolean | undefined;
     lastAskedAt?: import("../../types").Timestamp | undefined;
     lastAnsweredAt?: import("../../types").Timestamp | undefined;

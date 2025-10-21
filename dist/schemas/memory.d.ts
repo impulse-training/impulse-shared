@@ -9,8 +9,8 @@ export declare const memorySchema: z.ZodObject<{
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
-    title: string;
     id: string;
+    title: string;
     tags: string[];
     source: string;
     content: string;
@@ -18,8 +18,8 @@ export declare const memorySchema: z.ZodObject<{
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
 }, {
-    title: string;
     id: string;
+    title: string;
     source: string;
     content: string;
     createdAt?: import("../types").Timestamp | undefined;

@@ -48,9 +48,9 @@ export declare const threadBaseSchema: z.ZodObject<{
             minute: number;
             weekdays: number[];
         };
+        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        id?: string | undefined;
         description?: string | undefined;
         ordinal?: number | undefined;
         summary?: string | undefined;
@@ -66,9 +66,9 @@ export declare const threadBaseSchema: z.ZodObject<{
             minute: number;
             weekdays: number[];
         };
+        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        id?: string | undefined;
         description?: string | undefined;
         ordinal?: number | undefined;
         summary?: string | undefined;
@@ -127,9 +127,9 @@ export declare const threadBaseSchema: z.ZodObject<{
             latitude: number;
             longitude: number;
         };
+        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        id?: string | undefined;
         description?: string | undefined;
         ordinal?: number | undefined;
         summary?: string | undefined;
@@ -146,9 +146,9 @@ export declare const threadBaseSchema: z.ZodObject<{
             latitude: number;
             longitude: number;
         };
+        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        id?: string | undefined;
         description?: string | undefined;
         ordinal?: number | undefined;
         summary?: string | undefined;
@@ -205,9 +205,9 @@ export declare const threadBaseSchema: z.ZodObject<{
             weekdays: number[];
         };
         questionIds: string[];
+        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        id?: string | undefined;
         description?: string | undefined;
         ordinal?: number | undefined;
         summary?: string | undefined;
@@ -223,9 +223,9 @@ export declare const threadBaseSchema: z.ZodObject<{
             minute: number;
             weekdays: number[];
         };
+        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        id?: string | undefined;
         description?: string | undefined;
         ordinal?: number | undefined;
         summary?: string | undefined;
@@ -443,9 +443,9 @@ export declare const threadBaseSchema: z.ZodObject<{
     isDraft: boolean;
     archiveAfter: import("../../types").Timestamp;
     sharedWithSupportGroups: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    id?: string | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
     plan?: ({
@@ -461,9 +461,9 @@ export declare const threadBaseSchema: z.ZodObject<{
             minute: number;
             weekdays: number[];
         };
+        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        id?: string | undefined;
         description?: string | undefined;
         ordinal?: number | undefined;
         summary?: string | undefined;
@@ -484,9 +484,9 @@ export declare const threadBaseSchema: z.ZodObject<{
             latitude: number;
             longitude: number;
         };
+        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        id?: string | undefined;
         description?: string | undefined;
         ordinal?: number | undefined;
         summary?: string | undefined;
@@ -507,9 +507,9 @@ export declare const threadBaseSchema: z.ZodObject<{
             weekdays: number[];
         };
         questionIds: string[];
+        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        id?: string | undefined;
         description?: string | undefined;
         ordinal?: number | undefined;
         summary?: string | undefined;
@@ -589,10 +589,10 @@ export declare const threadBaseSchema: z.ZodObject<{
     } | null;
     archiveAfter: import("../../types").Timestamp;
     sharedWithSupportGroups: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
     type?: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
-    id?: string | undefined;
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
@@ -608,9 +608,9 @@ export declare const threadBaseSchema: z.ZodObject<{
             minute: number;
             weekdays: number[];
         };
+        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        id?: string | undefined;
         description?: string | undefined;
         ordinal?: number | undefined;
         summary?: string | undefined;
@@ -631,9 +631,9 @@ export declare const threadBaseSchema: z.ZodObject<{
             latitude: number;
             longitude: number;
         };
+        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        id?: string | undefined;
         description?: string | undefined;
         ordinal?: number | undefined;
         summary?: string | undefined;
@@ -653,9 +653,9 @@ export declare const threadBaseSchema: z.ZodObject<{
             minute: number;
             weekdays: number[];
         };
+        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        id?: string | undefined;
         description?: string | undefined;
         ordinal?: number | undefined;
         summary?: string | undefined;

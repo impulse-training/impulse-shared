@@ -16,6 +16,7 @@ export interface Timestamp {
     isEqual(other: Timestamp): boolean;
     valueOf(): string;
 }
+export type CreatePayload<T> = Omit<T, "id" | "createdAt" | "updatedAt">;
 /**
  * Interface for Firestore document
  */

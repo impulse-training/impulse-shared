@@ -643,9 +643,9 @@ export declare const supportGroupSchema: z.ZodObject<{
     memberCount: number;
     tacticCollections: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
     tacticCount: number;
+    id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
-    id?: string | undefined;
     description?: string | undefined;
     coverPhoto?: {
         uri: string;
@@ -755,9 +755,9 @@ export declare const supportGroupSchema: z.ZodObject<{
     ownerId: string;
     unreadMessageCountsById: Record<string, number>;
     tacticCollections: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+    id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
-    id?: string | undefined;
     description?: string | undefined;
     isTemplate?: boolean | undefined;
     coverPhoto?: {

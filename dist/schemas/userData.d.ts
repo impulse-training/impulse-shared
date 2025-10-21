@@ -31,16 +31,16 @@ export declare const userDataSchema: z.ZodObject<{
     tacticsEnabled: boolean;
     theme: "system" | "light" | "dark";
     weekStartsOn: 0 | 1;
+    id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
-    id?: string | undefined;
     recoveryKeyHash?: string | undefined;
     appVersion?: string | undefined;
     activeStrategyDoc?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown> | undefined;
 }, {
+    id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
-    id?: string | undefined;
     role?: "user" | "coach" | "support" | undefined;
     recoveryKeyHash?: string | undefined;
     defaultThreadMode?: "text" | "voice" | undefined;

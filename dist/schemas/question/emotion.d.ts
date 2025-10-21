@@ -28,9 +28,9 @@ export declare const emotionQuestionSchema: z.ZodObject<{
     isTemplate: boolean;
     responseType: "emotion";
     scope: "impulse" | "setback" | "success" | "recap";
+    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    id?: string | undefined;
     suggestedResponses?: string[] | undefined;
     lastAskedAt?: import("../../types").Timestamp | undefined;
     lastAnsweredAt?: import("../../types").Timestamp | undefined;
@@ -44,9 +44,9 @@ export declare const emotionQuestionSchema: z.ZodObject<{
     text: string;
     responseType: "emotion";
     scope: "impulse" | "setback" | "success" | "recap";
+    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    id?: string | undefined;
     suggestedResponses?: string[] | undefined;
     isTemplate?: boolean | undefined;
     lastAskedAt?: import("../../types").Timestamp | undefined;

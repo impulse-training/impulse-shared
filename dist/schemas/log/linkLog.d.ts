@@ -24,9 +24,9 @@ export declare const linkLogSchema: z.ZodObject<{
     link: z.ZodString;
     buttonText: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    text: string;
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
+    text: string;
     type: "link";
     userId: string;
     link: string;
@@ -41,9 +41,9 @@ export declare const linkLogSchema: z.ZodObject<{
         tactic?: any;
     } | undefined;
 }, {
-    text: string;
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
+    text: string;
     type: "link";
     userId: string;
     link: string;

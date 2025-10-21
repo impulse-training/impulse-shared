@@ -39,9 +39,9 @@ export declare const videoLogSchema: z.ZodObject<{
     data: {
         sourceUri: string;
     };
+    id?: string | undefined;
     text?: string | undefined;
     title?: string | undefined;
-    id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
     replyTactic?: {
@@ -58,9 +58,9 @@ export declare const videoLogSchema: z.ZodObject<{
     data: {
         sourceUri: string;
     };
+    id?: string | undefined;
     text?: string | undefined;
     title?: string | undefined;
-    id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     callLogDocPath?: string | undefined;
     replyTactic?: {

@@ -21,15 +21,15 @@ export declare const chatCompletionMessageSchema: z.ZodObject<{
             name: string;
             arguments: string;
         };
-        type: "function";
         id: string;
+        type: "function";
     }, {
         function: {
             name: string;
             arguments: string;
         };
-        type: "function";
         id: string;
+        type: "function";
     }>, "many">>;
     name: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
@@ -42,8 +42,8 @@ export declare const chatCompletionMessageSchema: z.ZodObject<{
             name: string;
             arguments: string;
         };
-        type: "function";
         id: string;
+        type: "function";
     }[] | undefined;
 }, {
     role: "assistant" | "user" | "system" | "tool";
@@ -55,8 +55,8 @@ export declare const chatCompletionMessageSchema: z.ZodObject<{
             name: string;
             arguments: string;
         };
-        type: "function";
         id: string;
+        type: "function";
     }[] | undefined;
 }>;
 export declare const toolCallLogSchema: z.ZodObject<{
@@ -103,15 +103,15 @@ export declare const toolCallLogSchema: z.ZodObject<{
                     name: string;
                     arguments: string;
                 };
-                type: "function";
                 id: string;
+                type: "function";
             }, {
                 function: {
                     name: string;
                     arguments: string;
                 };
-                type: "function";
                 id: string;
+                type: "function";
             }>, "many">>;
             name: z.ZodOptional<z.ZodString>;
         }, "strip", z.ZodTypeAny, {
@@ -124,8 +124,8 @@ export declare const toolCallLogSchema: z.ZodObject<{
                     name: string;
                     arguments: string;
                 };
-                type: "function";
                 id: string;
+                type: "function";
             }[] | undefined;
         }, {
             role: "assistant" | "user" | "system" | "tool";
@@ -137,8 +137,8 @@ export declare const toolCallLogSchema: z.ZodObject<{
                     name: string;
                     arguments: string;
                 };
-                type: "function";
                 id: string;
+                type: "function";
             }[] | undefined;
         }>;
         toolCallResults: z.ZodArray<z.ZodAny, "many">;
@@ -153,8 +153,8 @@ export declare const toolCallLogSchema: z.ZodObject<{
                     name: string;
                     arguments: string;
                 };
-                type: "function";
                 id: string;
+                type: "function";
             }[] | undefined;
         };
         toolCallResults: any[];
@@ -169,8 +169,8 @@ export declare const toolCallLogSchema: z.ZodObject<{
                     name: string;
                     arguments: string;
                 };
-                type: "function";
                 id: string;
+                type: "function";
             }[] | undefined;
         };
         toolCallResults: any[];
@@ -193,8 +193,8 @@ export declare const toolCallLogSchema: z.ZodObject<{
                     name: string;
                     arguments: string;
                 };
-                type: "function";
                 id: string;
+                type: "function";
             }[] | undefined;
         };
         toolCallResults: any[];
@@ -224,8 +224,8 @@ export declare const toolCallLogSchema: z.ZodObject<{
                     name: string;
                     arguments: string;
                 };
-                type: "function";
                 id: string;
+                type: "function";
             }[] | undefined;
         };
         toolCallResults: any[];

@@ -62,10 +62,10 @@ export declare const triggerSchema: z.ZodObject<{
         "30dCount"?: number | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
+    id: string;
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     title: string;
-    id: string;
     uid: string;
     kind: "situation";
     facets: {
@@ -88,10 +88,10 @@ export declare const triggerSchema: z.ZodObject<{
     defaultPlanId?: string | undefined;
     activeExperimentId?: string | null | undefined;
 }, {
+    id: string;
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     title: string;
-    id: string;
     uid: string;
     kind: "situation";
     facets: {

@@ -177,9 +177,9 @@ export declare const daySummaryLogSchema: z.ZodObject<{
             benefits: string[];
             drawbacks: string[];
             hidden: boolean;
+            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
-            id?: string | undefined;
             hasQuestions?: boolean | undefined;
             trackingUnit?: string | undefined;
             goal?: {
@@ -222,9 +222,9 @@ export declare const daySummaryLogSchema: z.ZodObject<{
             description: string;
             benefits: string[];
             drawbacks: string[];
+            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
-            id?: string | undefined;
             hasQuestions?: boolean | undefined;
             trackingUnit?: string | undefined;
             ordinal?: number | undefined;
@@ -271,9 +271,9 @@ export declare const daySummaryLogSchema: z.ZodObject<{
             benefits: string[];
             drawbacks: string[];
             hidden: boolean;
+            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
-            id?: string | undefined;
             hasQuestions?: boolean | undefined;
             trackingUnit?: string | undefined;
             goal?: {
@@ -316,9 +316,9 @@ export declare const daySummaryLogSchema: z.ZodObject<{
             description: string;
             benefits: string[];
             drawbacks: string[];
+            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
-            id?: string | undefined;
             hasQuestions?: boolean | undefined;
             trackingUnit?: string | undefined;
             ordinal?: number | undefined;
@@ -415,9 +415,9 @@ export declare const daySummaryLogSchema: z.ZodObject<{
         tacticsUsed: any[];
         summaryText: string;
         sharedWithUserIds: string[];
+        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        id?: string | undefined;
         outcome?: "setback" | "success" | "partial" | undefined;
         behaviorsById?: Record<string, {
             trackingType: "counter" | "timer";
@@ -428,9 +428,9 @@ export declare const daySummaryLogSchema: z.ZodObject<{
             benefits: string[];
             drawbacks: string[];
             hidden: boolean;
+            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
-            id?: string | undefined;
             hasQuestions?: boolean | undefined;
             trackingUnit?: string | undefined;
             goal?: {
@@ -496,9 +496,9 @@ export declare const daySummaryLogSchema: z.ZodObject<{
             behaviorTrackingUnit?: string | undefined;
         }>;
         sharedWithUserIds: string[];
+        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        id?: string | undefined;
         outcome?: "setback" | "success" | "partial" | undefined;
         behaviorsById?: Record<string, {
             trackingType: "counter" | "timer";
@@ -507,9 +507,9 @@ export declare const daySummaryLogSchema: z.ZodObject<{
             description: string;
             benefits: string[];
             drawbacks: string[];
+            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
-            id?: string | undefined;
             hasQuestions?: boolean | undefined;
             trackingUnit?: string | undefined;
             ordinal?: number | undefined;
@@ -589,9 +589,9 @@ export declare const daySummaryLogSchema: z.ZodObject<{
         tacticsUsed: any[];
         summaryText: string;
         sharedWithUserIds: string[];
+        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        id?: string | undefined;
         outcome?: "setback" | "success" | "partial" | undefined;
         behaviorsById?: Record<string, {
             trackingType: "counter" | "timer";
@@ -602,9 +602,9 @@ export declare const daySummaryLogSchema: z.ZodObject<{
             benefits: string[];
             drawbacks: string[];
             hidden: boolean;
+            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
-            id?: string | undefined;
             hasQuestions?: boolean | undefined;
             trackingUnit?: string | undefined;
             goal?: {
@@ -685,9 +685,9 @@ export declare const daySummaryLogSchema: z.ZodObject<{
             behaviorTrackingUnit?: string | undefined;
         }>;
         sharedWithUserIds: string[];
+        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        id?: string | undefined;
         outcome?: "setback" | "success" | "partial" | undefined;
         behaviorsById?: Record<string, {
             trackingType: "counter" | "timer";
@@ -696,9 +696,9 @@ export declare const daySummaryLogSchema: z.ZodObject<{
             description: string;
             benefits: string[];
             drawbacks: string[];
+            id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
-            id?: string | undefined;
             hasQuestions?: boolean | undefined;
             trackingUnit?: string | undefined;
             ordinal?: number | undefined;

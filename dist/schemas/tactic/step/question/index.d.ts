@@ -98,9 +98,9 @@ export declare const questionStepSchema: z.ZodDiscriminatedUnion<"mode", [z.ZodO
 }, "strip", z.ZodTypeAny, {
     text: string;
     mode: "question-text";
+    id?: string | undefined;
     createdAt?: import("../../../../types").Timestamp | undefined;
     updatedAt?: import("../../../../types").Timestamp | undefined;
-    id?: string | undefined;
     backgroundImage?: {
         uri: string;
         storagePath: string;
@@ -125,9 +125,9 @@ export declare const questionStepSchema: z.ZodDiscriminatedUnion<"mode", [z.ZodO
 }, {
     text: string;
     mode: "question-text";
+    id?: string | undefined;
     createdAt?: import("../../../../types").Timestamp | undefined;
     updatedAt?: import("../../../../types").Timestamp | undefined;
-    id?: string | undefined;
     backgroundImage?: {
         uri: string;
         storagePath: string;
@@ -254,9 +254,9 @@ export declare const questionStepSchema: z.ZodDiscriminatedUnion<"mode", [z.ZodO
         minLabel?: string | undefined;
         maxLabel?: string | undefined;
     };
+    id?: string | undefined;
     createdAt?: import("../../../../types").Timestamp | undefined;
     updatedAt?: import("../../../../types").Timestamp | undefined;
-    id?: string | undefined;
     backgroundImage?: {
         uri: string;
         storagePath: string;
@@ -284,9 +284,9 @@ export declare const questionStepSchema: z.ZodDiscriminatedUnion<"mode", [z.ZodO
         minLabel?: string | undefined;
         maxLabel?: string | undefined;
     };
+    id?: string | undefined;
     createdAt?: import("../../../../types").Timestamp | undefined;
     updatedAt?: import("../../../../types").Timestamp | undefined;
-    id?: string | undefined;
     backgroundImage?: {
         uri: string;
         storagePath: string;
@@ -408,9 +408,9 @@ export declare const QuestionStepSchemas: {
     }, "strip", z.ZodTypeAny, {
         text: string;
         mode: "question-text";
+        id?: string | undefined;
         createdAt?: import("../../../../types").Timestamp | undefined;
         updatedAt?: import("../../../../types").Timestamp | undefined;
-        id?: string | undefined;
         backgroundImage?: {
             uri: string;
             storagePath: string;
@@ -435,9 +435,9 @@ export declare const QuestionStepSchemas: {
     }, {
         text: string;
         mode: "question-text";
+        id?: string | undefined;
         createdAt?: import("../../../../types").Timestamp | undefined;
         updatedAt?: import("../../../../types").Timestamp | undefined;
-        id?: string | undefined;
         backgroundImage?: {
             uri: string;
             storagePath: string;
@@ -565,9 +565,9 @@ export declare const QuestionStepSchemas: {
             minLabel?: string | undefined;
             maxLabel?: string | undefined;
         };
+        id?: string | undefined;
         createdAt?: import("../../../../types").Timestamp | undefined;
         updatedAt?: import("../../../../types").Timestamp | undefined;
-        id?: string | undefined;
         backgroundImage?: {
             uri: string;
             storagePath: string;
@@ -595,9 +595,9 @@ export declare const QuestionStepSchemas: {
             minLabel?: string | undefined;
             maxLabel?: string | undefined;
         };
+        id?: string | undefined;
         createdAt?: import("../../../../types").Timestamp | undefined;
         updatedAt?: import("../../../../types").Timestamp | undefined;
-        id?: string | undefined;
         backgroundImage?: {
             uri: string;
             storagePath: string;

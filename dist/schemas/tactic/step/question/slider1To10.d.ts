@@ -104,9 +104,9 @@ export declare const slider1To10QuestionStepSchema: z.ZodObject<{
         minLabel?: string | undefined;
         maxLabel?: string | undefined;
     };
+    id?: string | undefined;
     createdAt?: import("../../../../types").Timestamp | undefined;
     updatedAt?: import("../../../../types").Timestamp | undefined;
-    id?: string | undefined;
     backgroundImage?: {
         uri: string;
         storagePath: string;
@@ -134,9 +134,9 @@ export declare const slider1To10QuestionStepSchema: z.ZodObject<{
         minLabel?: string | undefined;
         maxLabel?: string | undefined;
     };
+    id?: string | undefined;
     createdAt?: import("../../../../types").Timestamp | undefined;
     updatedAt?: import("../../../../types").Timestamp | undefined;
-    id?: string | undefined;
     backgroundImage?: {
         uri: string;
         storagePath: string;

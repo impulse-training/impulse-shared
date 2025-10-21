@@ -38,9 +38,9 @@ export declare const strategySchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     name: string;
     plans: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+    id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
-    id?: string | undefined;
     description?: string | undefined;
     isImported?: boolean | undefined;
     createdByProfile?: {
@@ -54,9 +54,9 @@ export declare const strategySchema: z.ZodObject<{
 }, {
     name: string;
     plans: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+    id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
-    id?: string | undefined;
     description?: string | undefined;
     isImported?: boolean | undefined;
     createdByProfile?: {

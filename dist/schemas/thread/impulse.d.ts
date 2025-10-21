@@ -48,9 +48,9 @@ export declare const impulseThreadSchema: z.ZodObject<{
             minute: number;
             weekdays: number[];
         };
+        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        id?: string | undefined;
         description?: string | undefined;
         ordinal?: number | undefined;
         summary?: string | undefined;
@@ -66,9 +66,9 @@ export declare const impulseThreadSchema: z.ZodObject<{
             minute: number;
             weekdays: number[];
         };
+        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        id?: string | undefined;
         description?: string | undefined;
         ordinal?: number | undefined;
         summary?: string | undefined;
@@ -127,9 +127,9 @@ export declare const impulseThreadSchema: z.ZodObject<{
             latitude: number;
             longitude: number;
         };
+        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        id?: string | undefined;
         description?: string | undefined;
         ordinal?: number | undefined;
         summary?: string | undefined;
@@ -146,9 +146,9 @@ export declare const impulseThreadSchema: z.ZodObject<{
             latitude: number;
             longitude: number;
         };
+        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        id?: string | undefined;
         description?: string | undefined;
         ordinal?: number | undefined;
         summary?: string | undefined;
@@ -205,9 +205,9 @@ export declare const impulseThreadSchema: z.ZodObject<{
             weekdays: number[];
         };
         questionIds: string[];
+        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        id?: string | undefined;
         description?: string | undefined;
         ordinal?: number | undefined;
         summary?: string | undefined;
@@ -223,9 +223,9 @@ export declare const impulseThreadSchema: z.ZodObject<{
             minute: number;
             weekdays: number[];
         };
+        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        id?: string | undefined;
         description?: string | undefined;
         ordinal?: number | undefined;
         summary?: string | undefined;
@@ -452,9 +452,9 @@ export declare const impulseThreadSchema: z.ZodObject<{
     sharedWithSupportGroups: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
     behaviorDocs: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
     debriefFinishedAt: import("../../types").Timestamp | null;
+    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    id?: string | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
     plan?: ({
@@ -470,9 +470,9 @@ export declare const impulseThreadSchema: z.ZodObject<{
             minute: number;
             weekdays: number[];
         };
+        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        id?: string | undefined;
         description?: string | undefined;
         ordinal?: number | undefined;
         summary?: string | undefined;
@@ -493,9 +493,9 @@ export declare const impulseThreadSchema: z.ZodObject<{
             latitude: number;
             longitude: number;
         };
+        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        id?: string | undefined;
         description?: string | undefined;
         ordinal?: number | undefined;
         summary?: string | undefined;
@@ -516,9 +516,9 @@ export declare const impulseThreadSchema: z.ZodObject<{
             weekdays: number[];
         };
         questionIds: string[];
+        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        id?: string | undefined;
         description?: string | undefined;
         ordinal?: number | undefined;
         summary?: string | undefined;
@@ -605,9 +605,9 @@ export declare const impulseThreadSchema: z.ZodObject<{
     sharedWithSupportGroups: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
     behaviorDocs: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
     debriefFinishedAt: import("../../types").Timestamp | null;
+    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    id?: string | undefined;
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
@@ -623,9 +623,9 @@ export declare const impulseThreadSchema: z.ZodObject<{
             minute: number;
             weekdays: number[];
         };
+        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        id?: string | undefined;
         description?: string | undefined;
         ordinal?: number | undefined;
         summary?: string | undefined;
@@ -646,9 +646,9 @@ export declare const impulseThreadSchema: z.ZodObject<{
             latitude: number;
             longitude: number;
         };
+        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        id?: string | undefined;
         description?: string | undefined;
         ordinal?: number | undefined;
         summary?: string | undefined;
@@ -668,9 +668,9 @@ export declare const impulseThreadSchema: z.ZodObject<{
             minute: number;
             weekdays: number[];
         };
+        id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
-        id?: string | undefined;
         description?: string | undefined;
         ordinal?: number | undefined;
         summary?: string | undefined;

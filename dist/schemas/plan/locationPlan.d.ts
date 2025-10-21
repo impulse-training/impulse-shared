@@ -41,9 +41,9 @@ export declare const locationPlanSchema: z.ZodObject<{
         latitude: number;
         longitude: number;
     };
+    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    id?: string | undefined;
     description?: string | undefined;
     ordinal?: number | undefined;
     summary?: string | undefined;
@@ -60,9 +60,9 @@ export declare const locationPlanSchema: z.ZodObject<{
         latitude: number;
         longitude: number;
     };
+    id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    id?: string | undefined;
     description?: string | undefined;
     ordinal?: number | undefined;
     summary?: string | undefined;

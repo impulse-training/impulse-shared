@@ -91,9 +91,9 @@ export declare const textQuestionStepSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     text: string;
     mode: "question-text";
+    id?: string | undefined;
     createdAt?: import("../../../../types").Timestamp | undefined;
     updatedAt?: import("../../../../types").Timestamp | undefined;
-    id?: string | undefined;
     backgroundImage?: {
         uri: string;
         storagePath: string;
@@ -118,9 +118,9 @@ export declare const textQuestionStepSchema: z.ZodObject<{
 }, {
     text: string;
     mode: "question-text";
+    id?: string | undefined;
     createdAt?: import("../../../../types").Timestamp | undefined;
     updatedAt?: import("../../../../types").Timestamp | undefined;
-    id?: string | undefined;
     backgroundImage?: {
         uri: string;
         storagePath: string;

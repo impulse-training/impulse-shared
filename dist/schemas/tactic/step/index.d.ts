@@ -526,9 +526,9 @@ export declare const tacticStepSchema: z.ZodDiscriminatedUnion<"mode", [z.ZodObj
 }, "strip", z.ZodTypeAny, {
     text: string;
     mode: "question-text";
+    id?: string | undefined;
     createdAt?: import("../../../types").Timestamp | undefined;
     updatedAt?: import("../../../types").Timestamp | undefined;
-    id?: string | undefined;
     backgroundImage?: {
         uri: string;
         storagePath: string;
@@ -553,9 +553,9 @@ export declare const tacticStepSchema: z.ZodDiscriminatedUnion<"mode", [z.ZodObj
 }, {
     text: string;
     mode: "question-text";
+    id?: string | undefined;
     createdAt?: import("../../../types").Timestamp | undefined;
     updatedAt?: import("../../../types").Timestamp | undefined;
-    id?: string | undefined;
     backgroundImage?: {
         uri: string;
         storagePath: string;
@@ -682,9 +682,9 @@ export declare const tacticStepSchema: z.ZodDiscriminatedUnion<"mode", [z.ZodObj
         minLabel?: string | undefined;
         maxLabel?: string | undefined;
     };
+    id?: string | undefined;
     createdAt?: import("../../../types").Timestamp | undefined;
     updatedAt?: import("../../../types").Timestamp | undefined;
-    id?: string | undefined;
     backgroundImage?: {
         uri: string;
         storagePath: string;
@@ -712,9 +712,9 @@ export declare const tacticStepSchema: z.ZodDiscriminatedUnion<"mode", [z.ZodObj
         minLabel?: string | undefined;
         maxLabel?: string | undefined;
     };
+    id?: string | undefined;
     createdAt?: import("../../../types").Timestamp | undefined;
     updatedAt?: import("../../../types").Timestamp | undefined;
-    id?: string | undefined;
     backgroundImage?: {
         uri: string;
         storagePath: string;

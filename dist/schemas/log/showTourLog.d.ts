@@ -117,9 +117,9 @@ export declare const showTourLogSchema: z.ZodObject<{
         closeButtonHref?: string | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
-    text: string;
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
+    text: string;
     type: "show_tour";
     userId: string;
     dateString: string;
@@ -149,9 +149,9 @@ export declare const showTourLogSchema: z.ZodObject<{
         tactic?: any;
     } | undefined;
 }, {
-    text: string;
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
+    text: string;
     type: "show_tour";
     userId: string;
     dateString: string;
