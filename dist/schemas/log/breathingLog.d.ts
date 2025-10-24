@@ -6,6 +6,7 @@ export declare const breathingLogSchema: z.ZodObject<{
     userId: z.ZodString;
     timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     dateString: z.ZodString;
+    tacticId: z.ZodOptional<z.ZodString>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
     replyTactic: z.ZodOptional<z.ZodObject<{
         tactic: z.ZodAny;
@@ -59,6 +60,7 @@ export declare const breathingLogSchema: z.ZodObject<{
     };
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
+    tacticId?: string | undefined;
     callLogDocPath?: string | undefined;
     replyTactic?: {
         currentStepIndex: number;
@@ -81,6 +83,7 @@ export declare const breathingLogSchema: z.ZodObject<{
     };
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
+    tacticId?: string | undefined;
     callLogDocPath?: string | undefined;
     replyTactic?: {
         currentStepIndex: number;

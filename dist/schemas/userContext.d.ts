@@ -49,8 +49,8 @@ export declare const tacticContextSchema: z.ZodObject<{
     completedCount: z.ZodDefault<z.ZodNumber>;
     effectiveness: z.ZodDefault<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
-    effectiveness: number;
     tacticId: string;
+    effectiveness: number;
     tacticTitle: string;
     tacticType: string;
     completedCount: number;
@@ -128,8 +128,8 @@ export declare const userContextSchema: z.ZodObject<{
         completedCount: z.ZodDefault<z.ZodNumber>;
         effectiveness: z.ZodDefault<z.ZodNumber>;
     }, "strip", z.ZodTypeAny, {
-        effectiveness: number;
         tacticId: string;
+        effectiveness: number;
         tacticTitle: string;
         tacticType: string;
         completedCount: number;
@@ -162,8 +162,8 @@ export declare const userContextSchema: z.ZodObject<{
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
     tactics: Record<string, {
-        effectiveness: number;
         tacticId: string;
+        effectiveness: number;
         tacticTitle: string;
         tacticType: string;
         completedCount: number;
