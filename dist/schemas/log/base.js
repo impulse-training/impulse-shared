@@ -17,10 +17,4 @@ exports.logBaseSchema = zod_1.z.object({
     // base log schema.
     // TODO: REVIEW
     callLogDocPath: zod_1.z.string().optional(),
-    replyTactic: zod_1.z
-        .object({
-        tactic: zod_1.z.any(),
-        currentStepIndex: zod_1.z.number(),
-    })
-        .optional(),
 });

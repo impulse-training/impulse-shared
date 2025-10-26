@@ -239,6 +239,8 @@ export declare const impulseThreadSchema: z.ZodObject<{
     dateString: z.ZodString;
     userId: z.ZodString;
     mode: z.ZodDefault<z.ZodEnum<["text", "voice"]>>;
+    currentTacticPath: z.ZodOptional<z.ZodString>;
+    currentTacticStepIndex: z.ZodOptional<z.ZodNumber>;
     isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
     suggestedTactics: z.ZodOptional<z.ZodObject<{
@@ -250,16 +252,6 @@ export declare const impulseThreadSchema: z.ZodObject<{
         dateString: z.ZodString;
         tacticId: z.ZodOptional<z.ZodString>;
         callLogDocPath: z.ZodOptional<z.ZodString>;
-        replyTactic: z.ZodOptional<z.ZodObject<{
-            tactic: z.ZodAny;
-            currentStepIndex: z.ZodNumber;
-        }, "strip", z.ZodTypeAny, {
-            currentStepIndex: number;
-            tactic?: any;
-        }, {
-            currentStepIndex: number;
-            tactic?: any;
-        }>>;
     } & {
         type: z.ZodLiteral<"suggested_tactics">;
         isDisplayable: z.ZodLiteral<true>;
@@ -302,10 +294,6 @@ export declare const impulseThreadSchema: z.ZodObject<{
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
         callLogDocPath?: string | undefined;
-        replyTactic?: {
-            currentStepIndex: number;
-            tactic?: any;
-        } | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -323,10 +311,6 @@ export declare const impulseThreadSchema: z.ZodObject<{
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
         callLogDocPath?: string | undefined;
-        replyTactic?: {
-            currentStepIndex: number;
-            tactic?: any;
-        } | undefined;
     }>>;
     suggestedTacticsStartedRefreshingAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     emojiId: z.ZodNullable<z.ZodObject<{
@@ -531,6 +515,8 @@ export declare const impulseThreadSchema: z.ZodObject<{
     }) | undefined;
     tacticsByPath?: Record<string, any> | undefined;
     isSuccess?: boolean | undefined;
+    currentTacticPath?: string | undefined;
+    currentTacticStepIndex?: number | undefined;
     suggestedTactics?: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -548,10 +534,6 @@ export declare const impulseThreadSchema: z.ZodObject<{
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
         callLogDocPath?: string | undefined;
-        replyTactic?: {
-            currentStepIndex: number;
-            tactic?: any;
-        } | undefined;
     } | undefined;
     suggestedTacticsStartedRefreshingAt?: import("../../types").Timestamp | undefined;
     summaryData?: {
@@ -686,6 +668,8 @@ export declare const impulseThreadSchema: z.ZodObject<{
     }) | undefined;
     tacticsByPath?: Record<string, any> | undefined;
     isSuccess?: boolean | undefined;
+    currentTacticPath?: string | undefined;
+    currentTacticStepIndex?: number | undefined;
     isDraft?: boolean | undefined;
     suggestedTactics?: {
         createdAt: import("../../types").Timestamp;
@@ -704,10 +688,6 @@ export declare const impulseThreadSchema: z.ZodObject<{
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
         callLogDocPath?: string | undefined;
-        replyTactic?: {
-            currentStepIndex: number;
-            tactic?: any;
-        } | undefined;
     } | undefined;
     suggestedTacticsStartedRefreshingAt?: import("../../types").Timestamp | undefined;
     summaryData?: {

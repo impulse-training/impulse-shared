@@ -10,6 +10,7 @@ export const tacticStepLogSchema = logBaseSchema.extend({
     tacticPath: z.string(),
     stepIndex: z.number().int().nonnegative(),
     completedAt: z.any().optional(), // Timestamp for when this step was completed
+    message: z.string(),
   }),
 });
 

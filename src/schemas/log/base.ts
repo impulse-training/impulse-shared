@@ -15,11 +15,4 @@ export const logBaseSchema = z.object({
   // base log schema.
   // TODO: REVIEW
   callLogDocPath: z.string().optional(),
-
-  replyTactic: z
-    .object({
-      tactic: z.any(),
-      currentStepIndex: z.number(),
-    })
-    .optional(),
 });

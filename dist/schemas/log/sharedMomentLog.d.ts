@@ -8,16 +8,6 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
     dateString: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
-    replyTactic: z.ZodOptional<z.ZodObject<{
-        tactic: z.ZodAny;
-        currentStepIndex: z.ZodNumber;
-    }, "strip", z.ZodTypeAny, {
-        currentStepIndex: number;
-        tactic?: any;
-    }, {
-        currentStepIndex: number;
-        tactic?: any;
-    }>>;
 } & {
     type: z.ZodLiteral<"shared_moment">;
     isDisplayable: z.ZodLiteral<true>;
@@ -128,10 +118,6 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
     callLogDocPath?: string | undefined;
-    replyTactic?: {
-        currentStepIndex: number;
-        tactic?: any;
-    } | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
@@ -161,9 +147,5 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
     callLogDocPath?: string | undefined;
-    replyTactic?: {
-        currentStepIndex: number;
-        tactic?: any;
-    } | undefined;
 }>;
 export type SharedMomentLog = z.infer<typeof sharedMomentLogSchema>;

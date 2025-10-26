@@ -30,6 +30,9 @@ export const threadBaseSchema = z.object({
 
   mode: z.enum(["text", "voice"]).default("text"),
 
+  currentTacticPath: z.string().optional(),
+  currentTacticStepIndex: z.number().optional(),
+
   // Whether this thread is a draft (created before any logs exist)
   // Draft threads should be hidden in UI until a log is added
   isDraft: z.boolean().optional().default(false),

@@ -7,4 +7,10 @@ const base_1 = require("./base");
 exports.userMessageLogSchema = base_1.messageBaseLogSchema.extend({
     type: zod_1.z.literal("user_message"),
     audioAttachment: attachment_1.attachmentSchema.optional(),
+    replyTactic: zod_1.z
+        .object({
+        tactic: zod_1.z.any(),
+        currentStepIndex: zod_1.z.number(),
+    })
+        .optional(),
 });

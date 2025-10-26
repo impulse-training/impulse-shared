@@ -29,6 +29,8 @@ exports.threadBaseSchema = zod_1.z.object({
     dateString: zod_1.z.string(),
     userId: zod_1.z.string(),
     mode: zod_1.z.enum(["text", "voice"]).default("text"),
+    currentTacticPath: zod_1.z.string().optional(),
+    currentTacticStepIndex: zod_1.z.number().optional(),
     // Whether this thread is a draft (created before any logs exist)
     // Draft threads should be hidden in UI until a log is added
     isDraft: zod_1.z.boolean().optional().default(false),
