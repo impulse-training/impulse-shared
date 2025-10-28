@@ -5082,6 +5082,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         isSuccess: z.ZodOptional<z.ZodBoolean>;
         allImpulseQuestionsAnsweredAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         debriefAfter: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+        debriefStartedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         debriefFinishedAt: z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         outcomeSelectedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
@@ -5481,6 +5482,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         allImpulseQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
         debriefAfter?: import("../types").Timestamp | undefined;
+        debriefStartedAt?: import("../types").Timestamp | undefined;
         outcomeSelectedAt?: import("../types").Timestamp | undefined;
     }, {
         type: "impulse";
@@ -5879,6 +5881,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         allImpulseQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
         debriefAfter?: import("../types").Timestamp | undefined;
+        debriefStartedAt?: import("../types").Timestamp | undefined;
         outcomeSelectedAt?: import("../types").Timestamp | undefined;
     }>, z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
@@ -25036,6 +25039,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         allImpulseQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
         debriefAfter?: import("../types").Timestamp | undefined;
+        debriefStartedAt?: import("../types").Timestamp | undefined;
         outcomeSelectedAt?: import("../types").Timestamp | undefined;
     } | {
         type: "onboarding";
@@ -28190,6 +28194,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         allImpulseQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
         debriefAfter?: import("../types").Timestamp | undefined;
+        debriefStartedAt?: import("../types").Timestamp | undefined;
         outcomeSelectedAt?: import("../types").Timestamp | undefined;
     } | {
         type: "onboarding";

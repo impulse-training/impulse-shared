@@ -11,6 +11,7 @@ exports.impulseThreadSchema = base_1.threadBaseSchema.extend({
     isSuccess: zod_1.z.boolean().optional(),
     allImpulseQuestionsAnsweredAt: timestampSchema_1.timestampSchema.optional(),
     debriefAfter: timestampSchema_1.timestampSchema.optional(),
+    debriefStartedAt: timestampSchema_1.timestampSchema.optional(),
     debriefFinishedAt: timestampSchema_1.timestampSchema.nullable(),
     outcomeSelectedAt: timestampSchema_1.timestampSchema.optional(),
 });
