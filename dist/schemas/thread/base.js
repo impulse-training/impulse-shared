@@ -7,6 +7,7 @@ const timestampSchema_1 = require("../../utils/timestampSchema");
 const emojiId_1 = require("../emojiId");
 const log_1 = require("../log");
 const plan_1 = require("../plan");
+const tactic_1 = require("../tactic/tactic");
 const threadSummary_1 = require("./threadSummary");
 const threadTypeSchema = zod_1.z.enum([
     "impulse",
@@ -29,7 +30,7 @@ exports.threadBaseSchema = zod_1.z.object({
     dateString: zod_1.z.string(),
     userId: zod_1.z.string(),
     mode: zod_1.z.enum(["text", "voice"]).default("text"),
-    currentTacticPath: zod_1.z.string().optional(),
+    currentTactic: tactic_1.tacticSchema.optional(),
     currentTacticStepIndex: zod_1.z.number().optional(),
     // Whether this thread is a draft (created before any logs exist)
     // Draft threads should be hidden in UI until a log is added

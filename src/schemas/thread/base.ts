@@ -4,6 +4,7 @@ import { timestampSchema } from "../../utils/timestampSchema";
 import { emojiIdSchema } from "../emojiId";
 import { suggestedTacticsLogSchema } from "../log";
 import { planWithIdSchema } from "../plan";
+import { tacticSchema } from "../tactic/tactic";
 import { threadSummarySchema } from "./threadSummary";
 
 const threadTypeSchema = z.enum([
@@ -30,7 +31,7 @@ export const threadBaseSchema = z.object({
 
   mode: z.enum(["text", "voice"]).default("text"),
 
-  currentTacticPath: z.string().optional(),
+  currentTactic: tacticSchema.optional(),
   currentTacticStepIndex: z.number().optional(),
 
   // Whether this thread is a draft (created before any logs exist)
