@@ -38,6 +38,7 @@ export const tacticSchema = z.object({
   recommended: z.boolean().optional(),
   steps: z.array(tacticStepSchema).min(1),
   tags: z.array(z.string()).optional(),
+  autoplay: z.boolean().optional(), // Auto-start timers and auto-advance steps
   // AI metadata for tactic suggestion
   indications: indicationSchema.optional(),
   contraindications: indicationSchema.optional(),

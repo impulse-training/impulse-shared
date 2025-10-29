@@ -1354,6 +1354,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
             repeatCount?: number | undefined;
         }>]>, "many">;
         tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        autoplay: z.ZodOptional<z.ZodBoolean>;
         indications: z.ZodOptional<z.ZodObject<{
             questionResponses: z.ZodOptional<z.ZodArray<z.ZodObject<{
                 questionId: z.ZodString;
@@ -1693,6 +1694,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         aiInstructions?: string | undefined;
         createdByUid?: string | undefined;
         recommended?: boolean | undefined;
+        autoplay?: boolean | undefined;
         indications?: {
             questionResponses?: {
                 questionId: string;
@@ -1938,6 +1940,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         aiInstructions?: string | undefined;
         createdByUid?: string | undefined;
         recommended?: boolean | undefined;
+        autoplay?: boolean | undefined;
         indications?: {
             questionResponses?: {
                 questionId: string;
@@ -2461,6 +2464,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         aiInstructions?: string | undefined;
         createdByUid?: string | undefined;
         recommended?: boolean | undefined;
+        autoplay?: boolean | undefined;
         indications?: {
             questionResponses?: {
                 questionId: string;
@@ -2861,6 +2865,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         aiInstructions?: string | undefined;
         createdByUid?: string | undefined;
         recommended?: boolean | undefined;
+        autoplay?: boolean | undefined;
         indications?: {
             questionResponses?: {
                 questionId: string;

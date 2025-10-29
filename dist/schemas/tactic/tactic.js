@@ -37,6 +37,7 @@ exports.tacticSchema = zod_1.z.object({
     recommended: zod_1.z.boolean().optional(),
     steps: zod_1.z.array(step_1.tacticStepSchema).min(1),
     tags: zod_1.z.array(zod_1.z.string()).optional(),
+    autoplay: zod_1.z.boolean().optional(), // Auto-start timers and auto-advance steps
     // AI metadata for tactic suggestion
     indications: exports.indicationSchema.optional(),
     contraindications: exports.indicationSchema.optional(),
