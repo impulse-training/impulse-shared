@@ -11,21 +11,28 @@ const fields_1 = require("./fields");
  * @returns True if we should respond with AI, false otherwise
  */
 function shouldRespondToLogWithAI(thread, beforeData, afterData) {
+    var _a;
     const isCreating = !beforeData && afterData;
     const isUpdating = beforeData && afterData;
     const isNotDeleting = !!afterData;
-    // Case 1: New message logs (creation event, no before data)
+    // Case: New message logs (creation event, no before data)
     if (isCreating && (0, log_1.logIsUserMessageLog)(afterData)) {
         return true;
     }
-    // Case 2: Impulse can respond when the user logs an outcome (resisted or setback)
+    // Case: Question logs that have been answered in an onboarding thread
+    if (thread.type === "onboarding" &&
+        ((_a = afterData === null || afterData === void 0 ? void 0 : afterData.data) === null || _a === void 0 ? void 0 : _a.response) &&
+        (0, fields_1.fieldChanged)(beforeData, afterData, "data.response")) {
+        return true;
+    }
+    // Case: Impulse can respond when the user logs an outcome (resisted or setback)
     if (isCreating && (0, log_1.logIsResistedLog)(afterData)) {
         return true;
     }
-    // Case 3: Widget setup log with changed response field
+    // Case: Widget setup log with changed response field
     if (isNotDeleting && (0, log_1.logIsWidgetSetupLog)(afterData))
         return true;
-    // Case 4: The user has completed a tour
+    // Case: The user has completed a tour
     if (isUpdating &&
         (0, log_1.logIsShowTourLog)(beforeData) &&
         (0, log_1.logIsShowTourLog)(afterData) &&
@@ -33,13 +40,13 @@ function shouldRespondToLogWithAI(thread, beforeData, afterData) {
         afterData.data.completedAt) {
         return true;
     }
-    // Case 6: The user has completed a day summary
+    // Case: The user has completed a day summary
     if (isNotDeleting &&
         (0, log_1.logIsDaySummaryLog)(afterData) &&
         (0, fields_1.fieldChanged)(beforeData, afterData, "data.behaviorDataTotalByBehaviorId")) {
         return true;
     }
-    // Case 7: The user has tracked a behavior
+    // Case: The user has tracked a behavior
     if (isNotDeleting &&
         (0, log_1.logIsBehaviorLog)(afterData) &&
         (0, fields_1.fieldChanged)(beforeData, afterData, "data.formattedValue")) {

@@ -7,6 +7,7 @@ import {
   logIsShowTourLog,
   logIsUserMessageLog,
   logIsWidgetSetupLog,
+  QuestionLog,
 } from "../schemas/log";
 import { fieldChanged } from "./fields";
 import { WithId } from "./withId";
@@ -27,20 +28,29 @@ export function shouldRespondToLogWithAI(
   const isUpdating = beforeData && afterData;
   const isNotDeleting = !!afterData;
 
-  // Case 1: New message logs (creation event, no before data)
+  // Case: New message logs (creation event, no before data)
   if (isCreating && logIsUserMessageLog(afterData)) {
     return true;
   }
 
-  // Case 2: Impulse can respond when the user logs an outcome (resisted or setback)
+  // Case: Question logs that have been answered in an onboarding thread
+  if (
+    thread.type === "onboarding" &&
+    (afterData as QuestionLog)?.data?.response &&
+    fieldChanged(beforeData, afterData, "data.response")
+  ) {
+    return true;
+  }
+
+  // Case: Impulse can respond when the user logs an outcome (resisted or setback)
   if (isCreating && logIsResistedLog(afterData)) {
     return true;
   }
 
-  // Case 3: Widget setup log with changed response field
+  // Case: Widget setup log with changed response field
   if (isNotDeleting && logIsWidgetSetupLog(afterData)) return true;
 
-  // Case 4: The user has completed a tour
+  // Case: The user has completed a tour
   if (
     isUpdating &&
     logIsShowTourLog(beforeData) &&
@@ -51,7 +61,7 @@ export function shouldRespondToLogWithAI(
     return true;
   }
 
-  // Case 6: The user has completed a day summary
+  // Case: The user has completed a day summary
   if (
     isNotDeleting &&
     logIsDaySummaryLog(afterData) &&
@@ -60,7 +70,7 @@ export function shouldRespondToLogWithAI(
     return true;
   }
 
-  // Case 7: The user has tracked a behavior
+  // Case: The user has tracked a behavior
   if (
     isNotDeleting &&
     logIsBehaviorLog(afterData) &&
