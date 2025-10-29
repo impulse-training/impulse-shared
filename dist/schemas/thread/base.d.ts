@@ -2105,6 +2105,7 @@ export declare const threadBaseSchema: z.ZodObject<{
         impulseMoment: boolean;
         plansUsed: boolean;
     }>>;
+    sharingMessage: z.ZodOptional<z.ZodString>;
     sharedWithUserIds: z.ZodArray<z.ZodString, "many">;
     sharedWithSupportGroups: z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
     openAfter: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -2519,6 +2520,7 @@ export declare const threadBaseSchema: z.ZodObject<{
         impulseMoment: boolean;
         plansUsed: boolean;
     } | undefined;
+    sharingMessage?: string | undefined;
     openAfter?: import("../../types").Timestamp | undefined;
     firstOpenedAt?: import("../../types").Timestamp | undefined;
     responseStartedProcessingAt?: import("../../types").Timestamp | undefined;
@@ -2911,6 +2913,7 @@ export declare const threadBaseSchema: z.ZodObject<{
         impulseMoment: boolean;
         plansUsed: boolean;
     } | undefined;
+    sharingMessage?: string | undefined;
     openAfter?: import("../../types").Timestamp | undefined;
     firstOpenedAt?: import("../../types").Timestamp | undefined;
     responseStartedProcessingAt?: import("../../types").Timestamp | undefined;

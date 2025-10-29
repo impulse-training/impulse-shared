@@ -32,10 +32,6 @@ export function shouldRespondToLogWithAI(
     return true;
   }
 
-  // if (isCreating && logIsImpulseLog(afterData)) {
-  //   return true;
-  // }
-
   // Case 2: Impulse can respond when the user logs an outcome (resisted or setback)
   if (isCreating && logIsResistedLog(afterData)) {
     return true;
@@ -54,19 +50,6 @@ export function shouldRespondToLogWithAI(
   ) {
     return true;
   }
-
-  // Case 5: The user has answered a question
-  // if (
-  //   isUpdating &&
-  //   logIsQuestionLog(afterData) &&
-  //   fieldChanged(
-  //     beforeData,
-  //     afterData,
-  //     "data.response" as keyof typeof beforeData
-  //   )
-  // ) {
-  //   return true;
-  // }
 
   // Case 6: The user has completed a day summary
   if (

@@ -15,6 +15,8 @@ export const sharedMomentLogSchema = logBaseSchema.extend({
     threadSummaryData: threadSummarySchema,
     // Snapshot of the sharer's emoji identity (to avoid extra reads)
     emojiId: emojiIdSchema.optional(),
+    // Optional custom message when sharing (e.g., from NotifySupport step)
+    message: z.string().optional(),
   }),
 });
 

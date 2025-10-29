@@ -72,6 +72,7 @@ export const threadBaseSchema = z.object({
     .optional(),
 
   // Allow for sharing with users
+  sharingMessage: z.string().optional(),
   sharedWithUserIds: z.array(z.string()),
   sharedWithSupportGroups: z.array(documentReferenceSchema),
 

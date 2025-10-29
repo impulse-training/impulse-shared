@@ -54,6 +54,7 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
             name: string;
             emoji: string;
         }>>;
+        message: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
         threadRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
         threadSummaryData: {
@@ -67,6 +68,7 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         };
+        message?: string | undefined;
         emojiId?: {
             name: string;
             emoji: string;
@@ -84,6 +86,7 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         };
+        message?: string | undefined;
         emojiId?: {
             name: string;
             emoji: string;
@@ -109,6 +112,7 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         };
+        message?: string | undefined;
         emojiId?: {
             name: string;
             emoji: string;
@@ -138,6 +142,7 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         };
+        message?: string | undefined;
         emojiId?: {
             name: string;
             emoji: string;

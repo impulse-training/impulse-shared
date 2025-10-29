@@ -13,6 +13,16 @@ export declare const notifySupportGroupLogSchema: z.ZodObject<{
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
         message: z.ZodAny;
+        emojiId: z.ZodOptional<z.ZodObject<{
+            emoji: z.ZodString;
+            name: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
+            name: string;
+            emoji: string;
+        }, {
+            name: string;
+            emoji: string;
+        }>>;
         supportGroupsById: z.ZodRecord<z.ZodString, z.ZodObject<{
             id: z.ZodString;
             name: z.ZodString;
@@ -113,6 +123,10 @@ export declare const notifySupportGroupLogSchema: z.ZodObject<{
             }>;
         }>;
         message?: any;
+        emojiId?: {
+            name: string;
+            emoji: string;
+        } | undefined;
     }, {
         supportGroupsById: Record<string, {
             id: string;
@@ -130,6 +144,10 @@ export declare const notifySupportGroupLogSchema: z.ZodObject<{
             }>;
         }>;
         message?: any;
+        emojiId?: {
+            name: string;
+            emoji: string;
+        } | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
@@ -155,6 +173,10 @@ export declare const notifySupportGroupLogSchema: z.ZodObject<{
             }>;
         }>;
         message?: any;
+        emojiId?: {
+            name: string;
+            emoji: string;
+        } | undefined;
     };
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
@@ -184,6 +206,10 @@ export declare const notifySupportGroupLogSchema: z.ZodObject<{
             }>;
         }>;
         message?: any;
+        emojiId?: {
+            name: string;
+            emoji: string;
+        } | undefined;
     };
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;

@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.notifySupportGroupLogSchema = void 0;
 const zod_1 = require("zod");
 const objectOf_1 = require("../../utils/objectOf");
+const emojiId_1 = require("../emojiId");
 const userProfile_1 = require("../userProfile");
 const base_1 = require("./base");
 exports.notifySupportGroupLogSchema = base_1.logBaseSchema.extend({
@@ -10,6 +11,8 @@ exports.notifySupportGroupLogSchema = base_1.logBaseSchema.extend({
     isDisplayable: zod_1.z.literal(true),
     data: zod_1.z.object({
         message: zod_1.z.any(),
+        // Snapshot of the sender's emoji identity (to avoid extra reads)
+        emojiId: emojiId_1.emojiIdSchema.optional(),
         // A snapshot of the support groups this thread was shared with at the time of notification,
         // including member details so clients can display who was notified.
         supportGroupsById: (0, objectOf_1.objectOf)(zod_1.z.object({

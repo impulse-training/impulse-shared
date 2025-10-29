@@ -62,6 +62,7 @@ exports.threadBaseSchema = zod_1.z.object({
     })
         .optional(),
     // Allow for sharing with users
+    sharingMessage: zod_1.z.string().optional(),
     sharedWithUserIds: zod_1.z.array(zod_1.z.string()),
     sharedWithSupportGroups: zod_1.z.array(documentReferenceSchema_1.documentReferenceSchema),
     openAfter: timestampSchema_1.timestampSchema.optional(),

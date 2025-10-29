@@ -1870,6 +1870,7 @@ export declare const timePlanThreadSchema: z.ZodObject<{
         impulseMoment: boolean;
         plansUsed: boolean;
     }>>;
+    sharingMessage: z.ZodOptional<z.ZodString>;
     sharedWithUserIds: z.ZodArray<z.ZodString, "many">;
     sharedWithSupportGroups: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
     openAfter: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -2520,6 +2521,7 @@ export declare const timePlanThreadSchema: z.ZodObject<{
         impulseMoment: boolean;
         plansUsed: boolean;
     } | undefined;
+    sharingMessage?: string | undefined;
     openAfter?: import("../../types").Timestamp | undefined;
     firstOpenedAt?: import("../../types").Timestamp | undefined;
     responseStartedProcessingAt?: import("../../types").Timestamp | undefined;
@@ -2912,6 +2914,7 @@ export declare const timePlanThreadSchema: z.ZodObject<{
         impulseMoment: boolean;
         plansUsed: boolean;
     } | undefined;
+    sharingMessage?: string | undefined;
     openAfter?: import("../../types").Timestamp | undefined;
     firstOpenedAt?: import("../../types").Timestamp | undefined;
     responseStartedProcessingAt?: import("../../types").Timestamp | undefined;
@@ -4799,6 +4802,7 @@ export declare const recapPlanThreadSchema: z.ZodObject<{
         impulseMoment: boolean;
         plansUsed: boolean;
     }>>;
+    sharingMessage: z.ZodOptional<z.ZodString>;
     sharedWithUserIds: z.ZodArray<z.ZodString, "many">;
     sharedWithSupportGroups: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
     openAfter: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -5449,6 +5453,7 @@ export declare const recapPlanThreadSchema: z.ZodObject<{
         impulseMoment: boolean;
         plansUsed: boolean;
     } | undefined;
+    sharingMessage?: string | undefined;
     openAfter?: import("../../types").Timestamp | undefined;
     firstOpenedAt?: import("../../types").Timestamp | undefined;
     responseStartedProcessingAt?: import("../../types").Timestamp | undefined;
@@ -5841,6 +5846,7 @@ export declare const recapPlanThreadSchema: z.ZodObject<{
         impulseMoment: boolean;
         plansUsed: boolean;
     } | undefined;
+    sharingMessage?: string | undefined;
     openAfter?: import("../../types").Timestamp | undefined;
     firstOpenedAt?: import("../../types").Timestamp | undefined;
     responseStartedProcessingAt?: import("../../types").Timestamp | undefined;
@@ -7728,6 +7734,7 @@ export declare const locationPlanThreadSchema: z.ZodObject<{
         impulseMoment: boolean;
         plansUsed: boolean;
     }>>;
+    sharingMessage: z.ZodOptional<z.ZodString>;
     sharedWithUserIds: z.ZodArray<z.ZodString, "many">;
     sharedWithSupportGroups: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
     openAfter: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -8378,6 +8385,7 @@ export declare const locationPlanThreadSchema: z.ZodObject<{
         impulseMoment: boolean;
         plansUsed: boolean;
     } | undefined;
+    sharingMessage?: string | undefined;
     openAfter?: import("../../types").Timestamp | undefined;
     firstOpenedAt?: import("../../types").Timestamp | undefined;
     responseStartedProcessingAt?: import("../../types").Timestamp | undefined;
@@ -8770,6 +8778,7 @@ export declare const locationPlanThreadSchema: z.ZodObject<{
         impulseMoment: boolean;
         plansUsed: boolean;
     } | undefined;
+    sharingMessage?: string | undefined;
     openAfter?: import("../../types").Timestamp | undefined;
     firstOpenedAt?: import("../../types").Timestamp | undefined;
     responseStartedProcessingAt?: import("../../types").Timestamp | undefined;
