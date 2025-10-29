@@ -1143,11 +1143,13 @@ export declare const tacticSchema: z.ZodObject<{
         tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     } & {
         mode: z.ZodLiteral<"affirmation">;
-        text: z.ZodString;
-        repeatCount: z.ZodNumber;
+        text: z.ZodDefault<z.ZodString>;
+        affirmationText: z.ZodString;
+        repeatCount: z.ZodDefault<z.ZodNumber>;
     }, "strip", z.ZodTypeAny, {
         text: string;
         mode: "affirmation";
+        affirmationText: string;
         repeatCount: number;
         backgroundImage?: {
             uri: string;
@@ -1170,9 +1172,9 @@ export declare const tacticSchema: z.ZodObject<{
         } | undefined;
         tags?: string[] | undefined;
     }, {
-        text: string;
         mode: "affirmation";
-        repeatCount: number;
+        affirmationText: string;
+        text?: string | undefined;
         backgroundImage?: {
             uri: string;
             storagePath: string;
@@ -1193,6 +1195,7 @@ export declare const tacticSchema: z.ZodObject<{
             } | undefined;
         } | undefined;
         tags?: string[] | undefined;
+        repeatCount?: number | undefined;
     }>]>, "many">;
     tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     indications: z.ZodOptional<z.ZodObject<{
@@ -1328,6 +1331,7 @@ export declare const tacticSchema: z.ZodObject<{
     steps: ({
         text: string;
         mode: "affirmation";
+        affirmationText: string;
         repeatCount: number;
         backgroundImage?: {
             uri: string;
@@ -1570,9 +1574,9 @@ export declare const tacticSchema: z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     steps: ({
-        text: string;
         mode: "affirmation";
-        repeatCount: number;
+        affirmationText: string;
+        text?: string | undefined;
         backgroundImage?: {
             uri: string;
             storagePath: string;
@@ -1593,6 +1597,7 @@ export declare const tacticSchema: z.ZodObject<{
             } | undefined;
         } | undefined;
         tags?: string[] | undefined;
+        repeatCount?: number | undefined;
     } | {
         mode: "breathing";
         breathingPattern: {

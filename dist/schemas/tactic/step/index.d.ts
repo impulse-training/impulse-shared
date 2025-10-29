@@ -1065,11 +1065,13 @@ export declare const tacticStepSchema: z.ZodDiscriminatedUnion<"mode", [z.ZodObj
     tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
 } & {
     mode: z.ZodLiteral<"affirmation">;
-    text: z.ZodString;
-    repeatCount: z.ZodNumber;
+    text: z.ZodDefault<z.ZodString>;
+    affirmationText: z.ZodString;
+    repeatCount: z.ZodDefault<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
     text: string;
     mode: "affirmation";
+    affirmationText: string;
     repeatCount: number;
     backgroundImage?: {
         uri: string;
@@ -1092,9 +1094,9 @@ export declare const tacticStepSchema: z.ZodDiscriminatedUnion<"mode", [z.ZodObj
     } | undefined;
     tags?: string[] | undefined;
 }, {
-    text: string;
     mode: "affirmation";
-    repeatCount: number;
+    affirmationText: string;
+    text?: string | undefined;
     backgroundImage?: {
         uri: string;
         storagePath: string;
@@ -1115,6 +1117,7 @@ export declare const tacticStepSchema: z.ZodDiscriminatedUnion<"mode", [z.ZodObj
         } | undefined;
     } | undefined;
     tags?: string[] | undefined;
+    repeatCount?: number | undefined;
 }>]>;
 export type TacticStep = z.infer<typeof tacticStepSchema>;
 export declare const stepIsMediaStep: (step: TacticStep) => step is MediaStep;

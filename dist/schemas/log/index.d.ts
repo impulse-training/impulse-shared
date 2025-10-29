@@ -1329,11 +1329,13 @@ export declare const logSchemas: {
                     tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 } & {
                     mode: z.ZodLiteral<"affirmation">;
-                    text: z.ZodString;
-                    repeatCount: z.ZodNumber;
+                    text: z.ZodDefault<z.ZodString>;
+                    affirmationText: z.ZodString;
+                    repeatCount: z.ZodDefault<z.ZodNumber>;
                 }, "strip", z.ZodTypeAny, {
                     text: string;
                     mode: "affirmation";
+                    affirmationText: string;
                     repeatCount: number;
                     backgroundImage?: {
                         uri: string;
@@ -1356,9 +1358,9 @@ export declare const logSchemas: {
                     } | undefined;
                     tags?: string[] | undefined;
                 }, {
-                    text: string;
                     mode: "affirmation";
-                    repeatCount: number;
+                    affirmationText: string;
+                    text?: string | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -1379,6 +1381,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    repeatCount?: number | undefined;
                 }>]>, "many">;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 indications: z.ZodOptional<z.ZodObject<{
@@ -1514,6 +1517,7 @@ export declare const logSchemas: {
                 steps: ({
                     text: string;
                     mode: "affirmation";
+                    affirmationText: string;
                     repeatCount: number;
                     backgroundImage?: {
                         uri: string;
@@ -1756,9 +1760,9 @@ export declare const logSchemas: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
                 steps: ({
-                    text: string;
                     mode: "affirmation";
-                    repeatCount: number;
+                    affirmationText: string;
+                    text?: string | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -1779,6 +1783,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    repeatCount?: number | undefined;
                 } | {
                     mode: "breathing";
                     breathingPattern: {
@@ -2012,6 +2017,7 @@ export declare const logSchemas: {
                 steps: ({
                     text: string;
                     mode: "affirmation";
+                    affirmationText: string;
                     repeatCount: number;
                     backgroundImage?: {
                         uri: string;
@@ -2262,9 +2268,9 @@ export declare const logSchemas: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
                 steps: ({
-                    text: string;
                     mode: "affirmation";
-                    repeatCount: number;
+                    affirmationText: string;
+                    text?: string | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -2285,6 +2291,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    repeatCount?: number | undefined;
                 } | {
                     mode: "breathing";
                     breathingPattern: {
@@ -2524,6 +2531,7 @@ export declare const logSchemas: {
                 steps: ({
                     text: string;
                     mode: "affirmation";
+                    affirmationText: string;
                     repeatCount: number;
                     backgroundImage?: {
                         uri: string;
@@ -2786,9 +2794,9 @@ export declare const logSchemas: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
                 steps: ({
-                    text: string;
                     mode: "affirmation";
-                    repeatCount: number;
+                    affirmationText: string;
+                    text?: string | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -2809,6 +2817,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    repeatCount?: number | undefined;
                 } | {
                     mode: "breathing";
                     breathingPattern: {
@@ -4274,11 +4283,13 @@ export declare const logSchemas: {
                     tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 } & {
                     mode: z.ZodLiteral<"affirmation">;
-                    text: z.ZodString;
-                    repeatCount: z.ZodNumber;
+                    text: z.ZodDefault<z.ZodString>;
+                    affirmationText: z.ZodString;
+                    repeatCount: z.ZodDefault<z.ZodNumber>;
                 }, "strip", z.ZodTypeAny, {
                     text: string;
                     mode: "affirmation";
+                    affirmationText: string;
                     repeatCount: number;
                     backgroundImage?: {
                         uri: string;
@@ -4301,9 +4312,9 @@ export declare const logSchemas: {
                     } | undefined;
                     tags?: string[] | undefined;
                 }, {
-                    text: string;
                     mode: "affirmation";
-                    repeatCount: number;
+                    affirmationText: string;
+                    text?: string | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -4324,6 +4335,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    repeatCount?: number | undefined;
                 }>]>, "many">;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 indications: z.ZodOptional<z.ZodObject<{
@@ -4459,6 +4471,7 @@ export declare const logSchemas: {
                 steps: ({
                     text: string;
                     mode: "affirmation";
+                    affirmationText: string;
                     repeatCount: number;
                     backgroundImage?: {
                         uri: string;
@@ -4701,9 +4714,9 @@ export declare const logSchemas: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
                 steps: ({
-                    text: string;
                     mode: "affirmation";
-                    repeatCount: number;
+                    affirmationText: string;
+                    text?: string | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -4724,6 +4737,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    repeatCount?: number | undefined;
                 } | {
                     mode: "breathing";
                     breathingPattern: {
@@ -4953,6 +4967,7 @@ export declare const logSchemas: {
                 steps: ({
                     text: string;
                     mode: "affirmation";
+                    affirmationText: string;
                     repeatCount: number;
                     backgroundImage?: {
                         uri: string;
@@ -5201,9 +5216,9 @@ export declare const logSchemas: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
                 steps: ({
-                    text: string;
                     mode: "affirmation";
-                    repeatCount: number;
+                    affirmationText: string;
+                    text?: string | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -5224,6 +5239,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    repeatCount?: number | undefined;
                 } | {
                     mode: "breathing";
                     breathingPattern: {
@@ -5461,6 +5477,7 @@ export declare const logSchemas: {
                 steps: ({
                     text: string;
                     mode: "affirmation";
+                    affirmationText: string;
                     repeatCount: number;
                     backgroundImage?: {
                         uri: string;
@@ -5721,9 +5738,9 @@ export declare const logSchemas: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
                 steps: ({
-                    text: string;
                     mode: "affirmation";
-                    repeatCount: number;
+                    affirmationText: string;
+                    text?: string | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -5744,6 +5761,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    repeatCount?: number | undefined;
                 } | {
                     mode: "breathing";
                     breathingPattern: {
@@ -7926,11 +7944,13 @@ export declare const logSchemas: {
                     tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 } & {
                     mode: z.ZodLiteral<"affirmation">;
-                    text: z.ZodString;
-                    repeatCount: z.ZodNumber;
+                    text: z.ZodDefault<z.ZodString>;
+                    affirmationText: z.ZodString;
+                    repeatCount: z.ZodDefault<z.ZodNumber>;
                 }, "strip", z.ZodTypeAny, {
                     text: string;
                     mode: "affirmation";
+                    affirmationText: string;
                     repeatCount: number;
                     backgroundImage?: {
                         uri: string;
@@ -7953,9 +7973,9 @@ export declare const logSchemas: {
                     } | undefined;
                     tags?: string[] | undefined;
                 }, {
-                    text: string;
                     mode: "affirmation";
-                    repeatCount: number;
+                    affirmationText: string;
+                    text?: string | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -7976,6 +7996,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    repeatCount?: number | undefined;
                 }>]>, "many">;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 indications: z.ZodOptional<z.ZodObject<{
@@ -8111,6 +8132,7 @@ export declare const logSchemas: {
                 steps: ({
                     text: string;
                     mode: "affirmation";
+                    affirmationText: string;
                     repeatCount: number;
                     backgroundImage?: {
                         uri: string;
@@ -8353,9 +8375,9 @@ export declare const logSchemas: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
                 steps: ({
-                    text: string;
                     mode: "affirmation";
-                    repeatCount: number;
+                    affirmationText: string;
+                    text?: string | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -8376,6 +8398,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    repeatCount?: number | undefined;
                 } | {
                     mode: "breathing";
                     breathingPattern: {
@@ -8605,6 +8628,7 @@ export declare const logSchemas: {
                 steps: ({
                     text: string;
                     mode: "affirmation";
+                    affirmationText: string;
                     repeatCount: number;
                     backgroundImage?: {
                         uri: string;
@@ -8853,9 +8877,9 @@ export declare const logSchemas: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
                 steps: ({
-                    text: string;
                     mode: "affirmation";
-                    repeatCount: number;
+                    affirmationText: string;
+                    text?: string | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -8876,6 +8900,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    repeatCount?: number | undefined;
                 } | {
                     mode: "breathing";
                     breathingPattern: {
@@ -9113,6 +9138,7 @@ export declare const logSchemas: {
                 steps: ({
                     text: string;
                     mode: "affirmation";
+                    affirmationText: string;
                     repeatCount: number;
                     backgroundImage?: {
                         uri: string;
@@ -9373,9 +9399,9 @@ export declare const logSchemas: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
                 steps: ({
-                    text: string;
                     mode: "affirmation";
-                    repeatCount: number;
+                    affirmationText: string;
+                    text?: string | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -9396,6 +9422,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    repeatCount?: number | undefined;
                 } | {
                     mode: "breathing";
                     breathingPattern: {
@@ -14211,11 +14238,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             } & {
                 mode: z.ZodLiteral<"affirmation">;
-                text: z.ZodString;
-                repeatCount: z.ZodNumber;
+                text: z.ZodDefault<z.ZodString>;
+                affirmationText: z.ZodString;
+                repeatCount: z.ZodDefault<z.ZodNumber>;
             }, "strip", z.ZodTypeAny, {
                 text: string;
                 mode: "affirmation";
+                affirmationText: string;
                 repeatCount: number;
                 backgroundImage?: {
                     uri: string;
@@ -14238,9 +14267,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 } | undefined;
                 tags?: string[] | undefined;
             }, {
-                text: string;
                 mode: "affirmation";
-                repeatCount: number;
+                affirmationText: string;
+                text?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -14261,6 +14290,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                repeatCount?: number | undefined;
             }>]>, "many">;
             tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             indications: z.ZodOptional<z.ZodObject<{
@@ -14396,6 +14426,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             steps: ({
                 text: string;
                 mode: "affirmation";
+                affirmationText: string;
                 repeatCount: number;
                 backgroundImage?: {
                     uri: string;
@@ -14638,9 +14669,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
             steps: ({
-                text: string;
                 mode: "affirmation";
-                repeatCount: number;
+                affirmationText: string;
+                text?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -14661,6 +14692,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                repeatCount?: number | undefined;
             } | {
                 mode: "breathing";
                 breathingPattern: {
@@ -14894,6 +14926,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             steps: ({
                 text: string;
                 mode: "affirmation";
+                affirmationText: string;
                 repeatCount: number;
                 backgroundImage?: {
                     uri: string;
@@ -15144,9 +15177,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
             steps: ({
-                text: string;
                 mode: "affirmation";
-                repeatCount: number;
+                affirmationText: string;
+                text?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -15167,6 +15200,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                repeatCount?: number | undefined;
             } | {
                 mode: "breathing";
                 breathingPattern: {
@@ -15406,6 +15440,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             steps: ({
                 text: string;
                 mode: "affirmation";
+                affirmationText: string;
                 repeatCount: number;
                 backgroundImage?: {
                     uri: string;
@@ -15668,9 +15703,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
             steps: ({
-                text: string;
                 mode: "affirmation";
-                repeatCount: number;
+                affirmationText: string;
+                text?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -15691,6 +15726,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                repeatCount?: number | undefined;
             } | {
                 mode: "breathing";
                 breathingPattern: {
@@ -17154,11 +17190,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             } & {
                 mode: z.ZodLiteral<"affirmation">;
-                text: z.ZodString;
-                repeatCount: z.ZodNumber;
+                text: z.ZodDefault<z.ZodString>;
+                affirmationText: z.ZodString;
+                repeatCount: z.ZodDefault<z.ZodNumber>;
             }, "strip", z.ZodTypeAny, {
                 text: string;
                 mode: "affirmation";
+                affirmationText: string;
                 repeatCount: number;
                 backgroundImage?: {
                     uri: string;
@@ -17181,9 +17219,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 } | undefined;
                 tags?: string[] | undefined;
             }, {
-                text: string;
                 mode: "affirmation";
-                repeatCount: number;
+                affirmationText: string;
+                text?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -17204,6 +17242,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                repeatCount?: number | undefined;
             }>]>, "many">;
             tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             indications: z.ZodOptional<z.ZodObject<{
@@ -17339,6 +17378,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             steps: ({
                 text: string;
                 mode: "affirmation";
+                affirmationText: string;
                 repeatCount: number;
                 backgroundImage?: {
                     uri: string;
@@ -17581,9 +17621,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
             steps: ({
-                text: string;
                 mode: "affirmation";
-                repeatCount: number;
+                affirmationText: string;
+                text?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -17604,6 +17644,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                repeatCount?: number | undefined;
             } | {
                 mode: "breathing";
                 breathingPattern: {
@@ -17833,6 +17874,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             steps: ({
                 text: string;
                 mode: "affirmation";
+                affirmationText: string;
                 repeatCount: number;
                 backgroundImage?: {
                     uri: string;
@@ -18081,9 +18123,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
             steps: ({
-                text: string;
                 mode: "affirmation";
-                repeatCount: number;
+                affirmationText: string;
+                text?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -18104,6 +18146,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                repeatCount?: number | undefined;
             } | {
                 mode: "breathing";
                 breathingPattern: {
@@ -18341,6 +18384,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             steps: ({
                 text: string;
                 mode: "affirmation";
+                affirmationText: string;
                 repeatCount: number;
                 backgroundImage?: {
                     uri: string;
@@ -18601,9 +18645,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
             steps: ({
-                text: string;
                 mode: "affirmation";
-                repeatCount: number;
+                affirmationText: string;
+                text?: string | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -18624,6 +18668,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                repeatCount?: number | undefined;
             } | {
                 mode: "breathing";
                 breathingPattern: {
