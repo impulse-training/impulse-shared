@@ -12427,6 +12427,7 @@ export declare const logSchemas: {
                 recapStartedAt?: import("../../types").Timestamp | undefined;
             }>>;
             dateString: z.ZodString;
+            colorByUserId: z.ZodRecord<z.ZodString, z.ZodString>;
         }, "strip", z.ZodTypeAny, {
             dateString: string;
             daySummariesByUserId: Record<string, {
@@ -12513,6 +12514,7 @@ export declare const logSchemas: {
                 recapCompletedAt?: import("../../types").Timestamp | undefined;
                 recapStartedAt?: import("../../types").Timestamp | undefined;
             }>;
+            colorByUserId: Record<string, string>;
         }, {
             dateString: string;
             daySummariesByUserId: Record<string, {
@@ -12599,6 +12601,7 @@ export declare const logSchemas: {
                 recapCompletedAt?: import("../../types").Timestamp | undefined;
                 recapStartedAt?: import("../../types").Timestamp | undefined;
             }>;
+            colorByUserId: Record<string, string>;
         }>;
     }, "strip", z.ZodTypeAny, {
         createdAt: import("../../types").Timestamp;
@@ -12693,6 +12696,7 @@ export declare const logSchemas: {
                 recapCompletedAt?: import("../../types").Timestamp | undefined;
                 recapStartedAt?: import("../../types").Timestamp | undefined;
             }>;
+            colorByUserId: Record<string, string>;
         };
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
@@ -12791,6 +12795,7 @@ export declare const logSchemas: {
                 recapCompletedAt?: import("../../types").Timestamp | undefined;
                 recapStartedAt?: import("../../types").Timestamp | undefined;
             }>;
+            colorByUserId: Record<string, string>;
         };
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
@@ -22550,6 +22555,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             recapStartedAt?: import("../../types").Timestamp | undefined;
         }>>;
         dateString: z.ZodString;
+        colorByUserId: z.ZodRecord<z.ZodString, z.ZodString>;
     }, "strip", z.ZodTypeAny, {
         dateString: string;
         daySummariesByUserId: Record<string, {
@@ -22636,6 +22642,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             recapCompletedAt?: import("../../types").Timestamp | undefined;
             recapStartedAt?: import("../../types").Timestamp | undefined;
         }>;
+        colorByUserId: Record<string, string>;
     }, {
         dateString: string;
         daySummariesByUserId: Record<string, {
@@ -22722,6 +22729,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             recapCompletedAt?: import("../../types").Timestamp | undefined;
             recapStartedAt?: import("../../types").Timestamp | undefined;
         }>;
+        colorByUserId: Record<string, string>;
     }>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
@@ -22816,6 +22824,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             recapCompletedAt?: import("../../types").Timestamp | undefined;
             recapStartedAt?: import("../../types").Timestamp | undefined;
         }>;
+        colorByUserId: Record<string, string>;
     };
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
@@ -22914,6 +22923,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             recapCompletedAt?: import("../../types").Timestamp | undefined;
             recapStartedAt?: import("../../types").Timestamp | undefined;
         }>;
+        colorByUserId: Record<string, string>;
     };
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;

@@ -12,5 +12,7 @@ exports.supportGroupDaySummaryLogSchema = base_1.logBaseSchema.extend({
         daySummariesByUserId: zod_1.z.record(zod_1.z.string(), daySummary_1.daySummarySchema),
         // Date string for the day this summary represents
         dateString: zod_1.z.string(),
+        // Precomputed colors for each user based on recap status and goal achievement
+        colorByUserId: zod_1.z.record(zod_1.z.string(), zod_1.z.string()),
     }),
 });

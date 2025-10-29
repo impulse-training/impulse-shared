@@ -10,6 +10,8 @@ export const supportGroupDaySummaryLogSchema = logBaseSchema.extend({
     daySummariesByUserId: z.record(z.string(), daySummarySchema),
     // Date string for the day this summary represents
     dateString: z.string(),
+    // Precomputed colors for each user based on recap status and goal achievement
+    colorByUserId: z.record(z.string(), z.string()),
   }),
 });
 
