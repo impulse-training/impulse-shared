@@ -159,6 +159,7 @@ export declare const daySummaryLogSchema: z.ZodObject<{
                 setback: import("../..").DocumentReferenceLike<unknown>[];
                 success: import("../..").DocumentReferenceLike<unknown>[];
             }>>;
+            activePlanId: z.ZodString;
         }, "strip", z.ZodTypeAny, {
             trackingType: "counter" | "timer";
             category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -168,6 +169,7 @@ export declare const daySummaryLogSchema: z.ZodObject<{
             benefits: string[];
             drawbacks: string[];
             hidden: boolean;
+            activePlanId: string;
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -213,6 +215,7 @@ export declare const daySummaryLogSchema: z.ZodObject<{
             description: string;
             benefits: string[];
             drawbacks: string[];
+            activePlanId: string;
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -262,6 +265,7 @@ export declare const daySummaryLogSchema: z.ZodObject<{
             benefits: string[];
             drawbacks: string[];
             hidden: boolean;
+            activePlanId: string;
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -307,6 +311,7 @@ export declare const daySummaryLogSchema: z.ZodObject<{
             description: string;
             benefits: string[];
             drawbacks: string[];
+            activePlanId: string;
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -419,6 +424,7 @@ export declare const daySummaryLogSchema: z.ZodObject<{
             benefits: string[];
             drawbacks: string[];
             hidden: boolean;
+            activePlanId: string;
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -498,6 +504,7 @@ export declare const daySummaryLogSchema: z.ZodObject<{
             description: string;
             benefits: string[];
             drawbacks: string[];
+            activePlanId: string;
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -593,6 +600,7 @@ export declare const daySummaryLogSchema: z.ZodObject<{
             benefits: string[];
             drawbacks: string[];
             hidden: boolean;
+            activePlanId: string;
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -684,6 +692,7 @@ export declare const daySummaryLogSchema: z.ZodObject<{
             description: string;
             benefits: string[];
             drawbacks: string[];
+            activePlanId: string;
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;

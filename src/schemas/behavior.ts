@@ -52,6 +52,7 @@ export const behaviorSchema = behaviorTemplateBase
         setback: z.array(documentReferenceSchema),
       })
       .optional(),
+    activePlanId: z.string(),
   })
   .superRefine((val, ctx) => {
     if (val.trackingType === "counter" && !val.trackingUnit) {

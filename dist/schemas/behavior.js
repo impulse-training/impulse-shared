@@ -48,6 +48,7 @@ exports.behaviorSchema = behaviorTemplateBase
         setback: zod_1.z.array(documentReferenceSchema_1.documentReferenceSchema),
     })
         .optional(),
+    activePlanId: zod_1.z.string(),
 })
     .superRefine((val, ctx) => {
     if (val.trackingType === "counter" && !val.trackingUnit) {
