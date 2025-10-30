@@ -36,10 +36,6 @@ export declare const defaultImages: readonly [{
     readonly storagePath: "tactics/rose-petals.png";
     readonly contentType: "image/png";
 }, {
-    readonly uri: "https://firebasestorage.googleapis.com/v0/b/impulse-tmp.appspot.com/o/tactics%2Fscattered-forcefields.png?alt=media&token=f1f13631-86a2-4fb0-8c43-476183bd694c";
-    readonly storagePath: "tactics/scattered-forcefields.png";
-    readonly contentType: "image/png";
-}, {
     readonly uri: "https://firebasestorage.googleapis.com/v0/b/impulse-tmp.appspot.com/o/tactics%2Fslanted-gradient.png?alt=media&token=8725ecab-52f2-4dae-b3d5-0dd67e4ef599";
     readonly storagePath: "tactics/slanted-gradient.png";
     readonly contentType: "image/png";

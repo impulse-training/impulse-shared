@@ -3,6 +3,7 @@ import { documentReferenceSchema } from "../utils/documentReferenceSchema";
 import { timestampSchema } from "../utils/timestampSchema";
 import { userProfileSchema } from "./userProfile";
 
+// Deprecated - don't use
 export const strategySchema = z.object({
   id: z.string().optional(),
   name: z.string(),

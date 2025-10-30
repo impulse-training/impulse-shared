@@ -47,11 +47,6 @@ const baseImages = [
     contentType: "image/png",
   },
   {
-    uri: "https://firebasestorage.googleapis.com/v0/b/impulse-tmp.appspot.com/o/tactics%2Fscattered-forcefields.png?alt=media&token=f1f13631-86a2-4fb0-8c43-476183bd694c",
-    storagePath: "tactics/scattered-forcefields.png",
-    contentType: "image/png",
-  },
-  {
     uri: "https://firebasestorage.googleapis.com/v0/b/impulse-tmp.appspot.com/o/tactics%2Fslanted-gradient.png?alt=media&token=8725ecab-52f2-4dae-b3d5-0dd67e4ef599",
     storagePath: "tactics/slanted-gradient.png",
     contentType: "image/png",

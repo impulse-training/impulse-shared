@@ -5,6 +5,7 @@ const zod_1 = require("zod");
 const documentReferenceSchema_1 = require("../utils/documentReferenceSchema");
 const timestampSchema_1 = require("../utils/timestampSchema");
 const userProfile_1 = require("./userProfile");
+// Deprecated - don't use
 exports.strategySchema = zod_1.z.object({
     id: zod_1.z.string().optional(),
     name: zod_1.z.string(),
