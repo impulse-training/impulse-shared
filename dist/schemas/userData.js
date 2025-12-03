@@ -4,6 +4,7 @@ exports.isUserData = exports.userDataSchema = void 0;
 const zod_1 = require("zod");
 const documentReferenceSchema_1 = require("../utils/documentReferenceSchema");
 const timestampSchema_1 = require("../utils/timestampSchema");
+const timeTrigger_1 = require("./plan/trigger/timeTrigger");
 exports.userDataSchema = zod_1.z.object({
     id: zod_1.z.string().optional(),
     createdAt: timestampSchema_1.timestampSchema.optional(),
@@ -31,6 +32,12 @@ exports.userDataSchema = zod_1.z.object({
     theme: zod_1.z.enum(["light", "dark", "system"]).default("system"),
     // Calendar preferences
     weekStartsOn: zod_1.z.union([zod_1.z.literal(0), zod_1.z.literal(1)]).default(1), // 0 = Sunday, 1 = Monday
+    // Recap configuration
+    recap: zod_1.z
+        .object({
+        trigger: timeTrigger_1.timeTriggerSchema,
+    })
+        .optional(),
 });
 // Type guard for User
 const isUserData = (value) => exports.userDataSchema.safeParse(value).success;

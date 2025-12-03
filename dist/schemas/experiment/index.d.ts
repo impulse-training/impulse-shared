@@ -834,8 +834,8 @@ export declare const experimentSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     behaviorId: string;
     name: string;
-    questionIds: string[];
     subtitle: string;
+    questionIds: string[];
     config: {
         baseline: {
             description: string;
@@ -974,8 +974,8 @@ export declare const experimentSchema: z.ZodObject<{
 }, {
     behaviorId: string;
     name: string;
-    questionIds: string[];
     subtitle: string;
+    questionIds: string[];
     config: {
         baseline: {
             description: string;

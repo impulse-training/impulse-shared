@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { documentReferenceSchema } from "../utils/documentReferenceSchema";
 import { timestampSchema } from "../utils/timestampSchema";
+import { timeTriggerSchema } from "./plan/trigger/timeTrigger";
 
 export const userDataSchema = z.object({
   id: z.string().optional(),
@@ -35,9 +36,16 @@ export const userDataSchema = z.object({
 
   // User preferences
   theme: z.enum(["light", "dark", "system"]).default("system"),
-  
+
   // Calendar preferences
   weekStartsOn: z.union([z.literal(0), z.literal(1)]).default(1), // 0 = Sunday, 1 = Monday
+
+  // Recap configuration
+  recap: z
+    .object({
+      trigger: timeTriggerSchema,
+    })
+    .optional(),
 });
 
 // Export User type inferred from schema
