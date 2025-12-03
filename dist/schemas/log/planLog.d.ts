@@ -32,7 +32,6 @@ export declare const planLogSchema: z.ZodObject<{
             summary: z.ZodOptional<z.ZodString>;
             tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
             questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
-            lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -40,6 +39,10 @@ export declare const planLogSchema: z.ZodObject<{
             behaviorId: z.ZodString;
             behaviorRef: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
             isActive: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+            lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            numberOfUses: z.ZodDefault<z.ZodNumber>;
+            numberOfSuccesses: z.ZodDefault<z.ZodNumber>;
+            numberOfSetbacks: z.ZodDefault<z.ZodNumber>;
         }, z.UnknownKeysParam, z.ZodTypeAny, {
             type: "impulse";
             behaviorId: string;
@@ -48,6 +51,9 @@ export declare const planLogSchema: z.ZodObject<{
             questions: import("../..").DocumentReferenceLike<unknown>[];
             behaviorRef: import("../..").DocumentReferenceLike<unknown>;
             isActive: boolean;
+            numberOfUses: number;
+            numberOfSuccesses: number;
+            numberOfSetbacks: number;
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -74,6 +80,9 @@ export declare const planLogSchema: z.ZodObject<{
             lastUsedAt?: import("../../types").Timestamp | undefined;
             deletedAt?: import("../../types").Timestamp | undefined;
             isActive?: boolean | undefined;
+            numberOfUses?: number | undefined;
+            numberOfSuccesses?: number | undefined;
+            numberOfSetbacks?: number | undefined;
         }>>, z.ZodIntersection<z.ZodObject<{
             id: z.ZodString;
             _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
@@ -245,6 +254,9 @@ export declare const planLogSchema: z.ZodObject<{
             questions: import("../..").DocumentReferenceLike<unknown>[];
             behaviorRef: import("../..").DocumentReferenceLike<unknown>;
             isActive: boolean;
+            numberOfUses: number;
+            numberOfSuccesses: number;
+            numberOfSetbacks: number;
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -325,6 +337,9 @@ export declare const planLogSchema: z.ZodObject<{
             lastUsedAt?: import("../../types").Timestamp | undefined;
             deletedAt?: import("../../types").Timestamp | undefined;
             isActive?: boolean | undefined;
+            numberOfUses?: number | undefined;
+            numberOfSuccesses?: number | undefined;
+            numberOfSetbacks?: number | undefined;
         }) | ({
             id: string;
             _ref: import("../..").DocumentReferenceLike<unknown>;
@@ -395,6 +410,9 @@ export declare const planLogSchema: z.ZodObject<{
             questions: import("../..").DocumentReferenceLike<unknown>[];
             behaviorRef: import("../..").DocumentReferenceLike<unknown>;
             isActive: boolean;
+            numberOfUses: number;
+            numberOfSuccesses: number;
+            numberOfSetbacks: number;
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -487,6 +505,9 @@ export declare const planLogSchema: z.ZodObject<{
             lastUsedAt?: import("../../types").Timestamp | undefined;
             deletedAt?: import("../../types").Timestamp | undefined;
             isActive?: boolean | undefined;
+            numberOfUses?: number | undefined;
+            numberOfSuccesses?: number | undefined;
+            numberOfSetbacks?: number | undefined;
         }) | ({
             id: string;
             _ref: import("../..").DocumentReferenceLike<unknown>;
