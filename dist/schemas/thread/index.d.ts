@@ -2142,8 +2142,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         }, {
@@ -2151,8 +2151,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         }>>;
@@ -2548,8 +2548,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
@@ -2943,8 +2943,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
@@ -5078,8 +5078,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         }, {
@@ -5087,8 +5087,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         }>>;
@@ -5494,8 +5494,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
@@ -5896,8 +5896,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
@@ -8035,8 +8035,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         }, {
@@ -8044,8 +8044,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         }>>;
@@ -8441,8 +8441,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
@@ -8836,8 +8836,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
@@ -10745,8 +10745,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         }, {
@@ -10754,8 +10754,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         }>>;
@@ -11377,8 +11377,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
@@ -11772,8 +11772,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
@@ -13907,8 +13907,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         }, {
@@ -13916,8 +13916,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         }>>;
@@ -14313,8 +14313,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
@@ -14708,8 +14708,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
@@ -16617,8 +16617,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         }, {
@@ -16626,8 +16626,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         }>>;
@@ -17249,8 +17249,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
@@ -17644,8 +17644,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
@@ -19553,8 +19553,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         }, {
@@ -19562,8 +19562,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         }>>;
@@ -20185,8 +20185,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
@@ -20580,8 +20580,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
@@ -22715,8 +22715,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         }, {
@@ -22724,8 +22724,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         }>>;
@@ -23121,8 +23121,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
@@ -23516,8 +23516,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
@@ -25652,8 +25652,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }, {
@@ -25661,8 +25661,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }>>;
@@ -26058,8 +26058,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
@@ -26453,8 +26453,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
@@ -28587,8 +28587,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }, {
@@ -28596,8 +28596,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }>>;
@@ -29003,8 +29003,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
@@ -29405,8 +29405,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
@@ -31543,8 +31543,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }, {
@@ -31552,8 +31552,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }>>;
@@ -31949,8 +31949,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
@@ -32344,8 +32344,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
@@ -34478,8 +34478,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }, {
@@ -34487,8 +34487,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }>>;
@@ -34884,8 +34884,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
@@ -35279,8 +35279,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
@@ -37187,8 +37187,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }, {
@@ -37196,8 +37196,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }>>;
@@ -37819,8 +37819,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
@@ -38214,8 +38214,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
@@ -40122,8 +40122,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }, {
@@ -40131,8 +40131,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }>>;
@@ -40754,8 +40754,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
@@ -41149,8 +41149,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
@@ -43057,8 +43057,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }, {
@@ -43066,8 +43066,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }>>;
@@ -43689,8 +43689,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
@@ -44084,8 +44084,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
@@ -46218,8 +46218,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }, {
@@ -46227,8 +46227,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }>>;
@@ -46624,8 +46624,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
@@ -47019,8 +47019,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;

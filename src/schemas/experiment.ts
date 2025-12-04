@@ -1,14 +1,13 @@
 import { z } from "zod";
-import { timestampSchema } from "../../utils/timestampSchema";
-import { daySummarySchema } from "../daySummary";
-import { goalSchema } from "../goal";
+import { timestampSchema } from "../utils/timestampSchema";
+import { daySummarySchema } from "./daySummary";
+import { goalSchema } from "./goal";
 
 export const experimentPhaseEnum = z.enum(["baseline", "test", "results"]);
 
 export const experimentSchema = z.object({
   startedAt: timestampSchema.optional(),
   name: z.string(),
-  subtitle: z.string(),
   behaviorId: z.string(),
   questionIds: z.array(z.string()),
   config: z.object({
