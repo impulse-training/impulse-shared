@@ -1,12 +1,17 @@
 import { z } from "zod";
-import { BehaviorSelectionQuestion, behaviorSelectionQuestionSchema } from "./behaviorSelection";
+import {
+  BehaviorSelectionQuestion,
+  behaviorSelectionQuestionSchema,
+} from "./behaviorSelection";
 import { EmotionQuestion, emotionQuestionSchema } from "./emotion";
+import { RecapQuestion, recapQuestionSchema } from "./recap";
 import { ShortTextQuestion, shortTextQuestionSchema } from "./shortText";
 import { Slider1To10Question, slider1To10QuestionSchema } from "./slider1To10";
 import { TextQuestion, textQuestionSchema } from "./text";
 
 export * from "./behaviorSelection";
 export * from "./emotion";
+export * from "./recap";
 export * from "./shortText";
 export * from "./slider1To10";
 export * from "./text";
@@ -30,7 +35,8 @@ export type Question =
   | Slider1To10Question
   | ShortTextQuestion
   | EmotionQuestion
-  | BehaviorSelectionQuestion;
+  | BehaviorSelectionQuestion
+  | RecapQuestion;
 
 // Utility to dynamically select the correct schema based on the Question type
 export const QuestionSchemas = {
@@ -39,6 +45,7 @@ export const QuestionSchemas = {
   shortText: shortTextQuestionSchema,
   slider1To10: slider1To10QuestionSchema,
   behaviorSelection: behaviorSelectionQuestionSchema,
+  recap: recapQuestionSchema,
 } as const;
 
 export const questionSchema = z.discriminatedUnion("responseType", [
@@ -47,6 +54,7 @@ export const questionSchema = z.discriminatedUnion("responseType", [
   QuestionSchemas.shortText,
   QuestionSchemas.slider1To10,
   QuestionSchemas.behaviorSelection,
+  QuestionSchemas.recap,
 ]);
 
 // This type represents the union of all possible validated Question objects
@@ -89,12 +97,20 @@ export const isValidSlider1To10Question = (
 
 export const questionIsBehaviorSelectionQuestion = (
   value: Omit<Question, "id">
-): value is BehaviorSelectionQuestion => value.responseType === "behaviorSelection";
+): value is BehaviorSelectionQuestion =>
+  value.responseType === "behaviorSelection";
 
 export const isValidBehaviorSelectionQuestion = (
   value: unknown
 ): value is BehaviorSelectionQuestion =>
   behaviorSelectionQuestionSchema.safeParse(value).success;
+
+export const questionIsRecapQuestion = (
+  value: Omit<Question, "id">
+): value is RecapQuestion => value.responseType === "recap";
+
+export const isValidRecapQuestion = (value: unknown): value is RecapQuestion =>
+  recapQuestionSchema.safeParse(value).success;
 
 export const isQuestion = (value: unknown): value is Question =>
   questionSchema.safeParse(value).success;
