@@ -6,6 +6,17 @@ import { behaviorTrackingDataSchema } from "./log";
 import { supportGroupPermissionsSchema } from "./supportGroupPermissions";
 
 const outcomeEnum = z.enum(["success", "partial", "setback"]);
+
+/** Schema for a single goal comparison entry */
+export const goalComparisonEntrySchema = z.object({
+  goalLabel: z.string(),
+  unit: z.string(),
+  measured: z.number(),
+  targetValue: z.number().optional(),
+  status: z.enum(["MET", "NOT_MET_FAIL", "UNSPECIFIED_FOR_DAY", "NO_GOAL"]),
+});
+export type GoalComparisonEntry = z.infer<typeof goalComparisonEntrySchema>;
+
 export const daySummarySchema = z.object({
   id: z.string().optional(),
   // dateString: z.string(),
@@ -21,21 +32,7 @@ export const daySummarySchema = z.object({
   sharedWithUserIds: z.array(z.string()),
   // Per-behavior goal comparison for the day
   goalComparisonByBehaviorId: z
-    .record(
-      z.string(),
-      z.object({
-        goalLabel: z.string(),
-        unit: z.string(),
-        measured: z.number(),
-        targetValue: z.number().optional(),
-        status: z.enum([
-          "MET",
-          "NOT_MET_FAIL",
-          "UNSPECIFIED_FOR_DAY",
-          "NO_GOAL",
-        ]),
-      })
-    )
+    .record(z.string(), goalComparisonEntrySchema)
     .optional(),
   recapCompletedAt: timestampSchema.optional(),
   // When the user confirms totals and starts the recap flow
@@ -45,9 +42,6 @@ export const daySummarySchema = z.object({
 });
 
 export type DaySummary = z.infer<typeof daySummarySchema>;
-export type GoalComparisonEntry = NonNullable<
-  DaySummary["goalComparisonByBehaviorId"]
->[string];
 
 export function isValidDaySummary(value: unknown): value is DaySummary {
   return daySummarySchema.safeParse(value).success;

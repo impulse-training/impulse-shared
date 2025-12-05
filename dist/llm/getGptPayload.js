@@ -89,10 +89,20 @@ function getGptPayload(log) {
             content: log.data.question.text,
         });
         if (log.data.response) {
-            messages.push({
-                role: "user",
-                content: log.data.response.formattedValue,
-            });
+            // For recap questions, use the formatted recap response
+            if (log.data.response.responseType === "recap") {
+                const recapSummary = (0, formatDaySummary_1.formatRecapResponse)(log);
+                messages.push({
+                    role: "user",
+                    content: `<s>${recapSummary}</s>`,
+                });
+            }
+            else {
+                messages.push({
+                    role: "user",
+                    content: log.data.response.formattedValue,
+                });
+            }
         }
         return messages;
     }
@@ -133,16 +143,6 @@ function getGptPayload(log) {
             {
                 role: "user",
                 content: `<s>The user has tracked a behavior: ${behaviorName} - ${formattedValue} (Category: ${category} - ${categoryExplanation})</s>`,
-            },
-        ];
-    }
-    // Handle DaySummaryLog
-    if ((0, log_1.logIsDaySummaryLog)(log)) {
-        const summary = (0, formatDaySummary_1.formatDaySummary)(log);
-        return [
-            {
-                role: "user",
-                content: `<s>${summary}</s>`,
             },
         ];
     }

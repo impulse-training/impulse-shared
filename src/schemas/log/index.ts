@@ -2,7 +2,6 @@ import { z } from "zod";
 import { BehaviorLog, behaviorLogSchema } from "./behaviorLog";
 import { BreathingLog, breathingLogSchema } from "./breathingLog";
 import { CallLog, callLogSchema } from "./callLog";
-import { DaySummaryLog, daySummaryLogSchema } from "./daySummaryLog";
 import { DebriefUrgeLog, debriefUrgeLogSchema } from "./debriefUrgeLog";
 import { ImpulseLog, impulseLogSchema } from "./impulseLog";
 import { LinkLog, linkLogSchema } from "./linkLog";
@@ -32,11 +31,11 @@ import {
   SuggestedTacticsLog,
   suggestedTacticsLogSchema,
 } from "./suggestedTacticsLog";
+import { SummaryLog, summaryLogSchema } from "./summaryLog";
 import {
   SupportGroupDaySummaryLog,
   supportGroupDaySummaryLogSchema,
 } from "./supportGroupDaySummaryLog";
-import { SummaryLog, summaryLogSchema } from "./summaryLog";
 import { TacticLog, tacticLogSchema } from "./tacticLog";
 import { TacticStepLog, tacticStepLogSchema } from "./tacticStepLog";
 import {
@@ -55,7 +54,6 @@ export const logSchemas = {
   tactic: tacticLogSchema,
   tacticStep: tacticStepLogSchema,
   tactic_suggestion: tacticSuggestionLogSchema,
-  day_summary: daySummaryLogSchema,
   tactic_viewed: tacticLogSchema,
   impulse_button_pressed: impulseLogSchema,
   behavior: behaviorLogSchema,
@@ -99,7 +97,6 @@ export type Log =
   | NotifySupportGroupLog
   | SharedMomentLog
   | VideoLog
-  | DaySummaryLog
   | ReadyToDebriefLog
   | SuggestedTacticsLog
   | SupportGroupDaySummaryLog
@@ -108,7 +105,6 @@ export type Log =
 export * from "./behaviorLog";
 export * from "./breathingLog";
 export * from "./callLog";
-export * from "./daySummaryLog";
 export * from "./debriefUrgeLog";
 export * from "./impulseLog";
 export * from "./linkLog";
@@ -139,7 +135,6 @@ export const logSchema = z.discriminatedUnion("type", [
   tacticLogSchema,
   tacticStepLogSchema,
   tacticSuggestionLogSchema,
-  daySummaryLogSchema,
   impulseLogSchema,
   behaviorLogSchema,
   breathingLogSchema,
@@ -193,15 +188,6 @@ export const isValidSharedMomentLog = (
   value: unknown
 ): value is SharedMomentLog => {
   return sharedMomentLogSchema.safeParse(value).success;
-};
-
-export const logIsDaySummaryLog = (
-  value: Omit<Log, "id">
-): value is DaySummaryLog => value.type === "day_summary";
-export const isValidDaySummaryLog = (
-  value: unknown
-): value is DaySummaryLog => {
-  return daySummaryLogSchema.safeParse(value).success;
 };
 
 export const logIsBehaviorLog = (

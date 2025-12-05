@@ -8,7 +8,6 @@ import {
   logIsAssistantMessageLog,
   logIsBehaviorLog,
   logIsCallLog,
-  logIsDaySummaryLog,
   logIsImpulseLog,
   logIsQuestionLog,
   logIsReadyToDebriefLog,
@@ -19,7 +18,7 @@ import {
   logIsUserMessageLog,
   logIsWidgetSetupLog,
 } from "../schemas/log";
-import { formatDaySummary } from "./formatDaySummary";
+import { formatRecapResponse } from "./formatDaySummary";
 
 export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
   if (logIsImpulseLog(log)) {
@@ -122,10 +121,19 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
     });
 
     if (log.data.response) {
-      messages.push({
-        role: "user",
-        content: log.data.response.formattedValue,
-      });
+      // For recap questions, use the formatted recap response
+      if (log.data.response.responseType === "recap") {
+        const recapSummary = formatRecapResponse(log);
+        messages.push({
+          role: "user",
+          content: `<s>${recapSummary}</s>`,
+        });
+      } else {
+        messages.push({
+          role: "user",
+          content: log.data.response.formattedValue,
+        });
+      }
     }
 
     return messages;
@@ -174,18 +182,6 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
       {
         role: "user",
         content: `<s>The user has tracked a behavior: ${behaviorName} - ${formattedValue} (Category: ${category} - ${categoryExplanation})</s>`,
-      },
-    ];
-  }
-
-  // Handle DaySummaryLog
-  if (logIsDaySummaryLog(log)) {
-    const summary = formatDaySummary(log);
-
-    return [
-      {
-        role: "user",
-        content: `<s>${summary}</s>`,
       },
     ];
   }

@@ -2,7 +2,7 @@ import { Thread } from "../schemas";
 import {
   Log,
   logIsBehaviorLog,
-  logIsDaySummaryLog,
+  logIsQuestionLog,
   logIsResistedLog,
   logIsShowTourLog,
   logIsUserMessageLog,
@@ -61,11 +61,12 @@ export function shouldRespondToLogWithAI(
     return true;
   }
 
-  // Case: The user has completed a day summary
+  // Case: The user has completed a recap question (confirmed their day totals)
   if (
     isNotDeleting &&
-    logIsDaySummaryLog(afterData) &&
-    fieldChanged(beforeData, afterData, "data.behaviorDataTotalByBehaviorId")
+    logIsQuestionLog(afterData) &&
+    afterData.data?.question?.responseType === "recap" &&
+    fieldChanged(beforeData, afterData, "data.response")
   ) {
     return true;
   }

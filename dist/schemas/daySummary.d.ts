@@ -1,4 +1,25 @@
 import { z } from "zod";
+/** Schema for a single goal comparison entry */
+export declare const goalComparisonEntrySchema: z.ZodObject<{
+    goalLabel: z.ZodString;
+    unit: z.ZodString;
+    measured: z.ZodNumber;
+    targetValue: z.ZodOptional<z.ZodNumber>;
+    status: z.ZodEnum<["MET", "NOT_MET_FAIL", "UNSPECIFIED_FOR_DAY", "NO_GOAL"]>;
+}, "strip", z.ZodTypeAny, {
+    status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY" | "NO_GOAL";
+    goalLabel: string;
+    unit: string;
+    measured: number;
+    targetValue?: number | undefined;
+}, {
+    status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY" | "NO_GOAL";
+    goalLabel: string;
+    unit: string;
+    measured: number;
+    targetValue?: number | undefined;
+}>;
+export type GoalComparisonEntry = z.infer<typeof goalComparisonEntrySchema>;
 export declare const daySummarySchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -386,6 +407,7 @@ export declare const daySummarySchema: z.ZodObject<{
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
     userId: string;
+    summaryText: string;
     impulseThreadOutcomesById: Record<string, "setback" | "success" | "partial">;
     behaviorDataTotalByBehaviorId: Record<string, {
         value: number;
@@ -397,12 +419,17 @@ export declare const daySummarySchema: z.ZodObject<{
         behaviorTrackingUnit?: string | undefined;
     }>;
     tacticsUsed: any[];
-    summaryText: string;
     sharedWithUserIds: string[];
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
-    outcome?: "setback" | "success" | "partial" | undefined;
+    goalComparisonByBehaviorId?: Record<string, {
+        status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY" | "NO_GOAL";
+        goalLabel: string;
+        unit: string;
+        measured: number;
+        targetValue?: number | undefined;
+    }> | undefined;
     behaviorsById?: Record<string, {
         trackingType: "counter" | "timer";
         category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -452,19 +479,13 @@ export declare const daySummarySchema: z.ZodObject<{
             success: import("..").DocumentReferenceLike<unknown>[];
         } | undefined;
     }> | undefined;
+    outcome?: "setback" | "success" | "partial" | undefined;
     trackingLogsById?: Record<string, any> | undefined;
     supportGroupPermissionsById?: Record<string, {
         summary: boolean;
         dayOutcomes: boolean;
         impulseMoments: boolean;
         threads: boolean;
-    }> | undefined;
-    goalComparisonByBehaviorId?: Record<string, {
-        status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY" | "NO_GOAL";
-        goalLabel: string;
-        unit: string;
-        measured: number;
-        targetValue?: number | undefined;
     }> | undefined;
     recapCompletedAt?: import("../types").Timestamp | undefined;
     recapStartedAt?: import("../types").Timestamp | undefined;
@@ -484,7 +505,14 @@ export declare const daySummarySchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
-    outcome?: "setback" | "success" | "partial" | undefined;
+    summaryText?: string | undefined;
+    goalComparisonByBehaviorId?: Record<string, {
+        status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY" | "NO_GOAL";
+        goalLabel: string;
+        unit: string;
+        measured: number;
+        targetValue?: number | undefined;
+    }> | undefined;
     behaviorsById?: Record<string, {
         trackingType: "counter" | "timer";
         category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -534,25 +562,17 @@ export declare const daySummarySchema: z.ZodObject<{
             success: import("..").DocumentReferenceLike<unknown>[];
         } | undefined;
     }> | undefined;
+    outcome?: "setback" | "success" | "partial" | undefined;
     trackingLogsById?: Record<string, any> | undefined;
     tacticsUsed?: any[] | undefined;
-    summaryText?: string | undefined;
     supportGroupPermissionsById?: Record<string, {
         summary?: boolean | undefined;
         dayOutcomes?: boolean | undefined;
         impulseMoments?: boolean | undefined;
         threads?: boolean | undefined;
     }> | undefined;
-    goalComparisonByBehaviorId?: Record<string, {
-        status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY" | "NO_GOAL";
-        goalLabel: string;
-        unit: string;
-        measured: number;
-        targetValue?: number | undefined;
-    }> | undefined;
     recapCompletedAt?: import("../types").Timestamp | undefined;
     recapStartedAt?: import("../types").Timestamp | undefined;
 }>;
 export type DaySummary = z.infer<typeof daySummarySchema>;
-export type GoalComparisonEntry = NonNullable<DaySummary["goalComparisonByBehaviorId"]>[string];
 export declare function isValidDaySummary(value: unknown): value is DaySummary;

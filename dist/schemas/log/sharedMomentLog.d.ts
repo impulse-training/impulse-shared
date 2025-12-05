@@ -18,7 +18,6 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
             tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             outcomeLogs: z.ZodArray<z.ZodAny, "many">;
-            daySummaryLog: z.ZodOptional<z.ZodAny>;
             questionLogs: z.ZodArray<z.ZodAny, "many">;
             firstMessageLog: z.ZodOptional<z.ZodAny>;
             firstCallLog: z.ZodOptional<z.ZodAny>;
@@ -30,7 +29,6 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
@@ -40,7 +38,6 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         }>;
@@ -64,7 +61,6 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         };
@@ -82,7 +78,6 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         };
@@ -108,7 +103,6 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         };
@@ -138,7 +132,6 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         };

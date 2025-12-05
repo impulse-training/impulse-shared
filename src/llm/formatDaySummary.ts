@@ -1,145 +1,83 @@
-import { DaySummaryLog } from "../schemas/log";
+import { QuestionLog, RecapResponseValue } from "../schemas/log";
 
-export function formatDaySummary(log: DaySummaryLog): string {
-  // Check if behaviorDataTotalByBehaviorId exists in the log data
-  const behaviorTotals = log.data?.behaviorDataTotalByBehaviorId;
-  const trackingLogs = log.data?.trackingLogsById;
-  const behaviorsById = log.data?.behaviorsById;
-  const goalComparison = log.data?.goalComparisonByBehaviorId as
-    | Record<
-        string,
-        {
-          goalLabel: string;
-          unit: string;
-          measured: number;
-          targetValue?: number;
-          status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY" | "NO_GOAL";
-        }
-      >
-    | undefined;
+/**
+ * Format a recap question log response for LLM consumption.
+ * Includes behavior totals and goal comparison data.
+ */
+export function formatRecapResponse(log: QuestionLog): string {
+  const response = log.data?.response;
 
-  // Format behavior totals into a readable summary
-  let summary = `Day summary for ${log.dateString}:\n\n`;
-
-  // Handle behavior totals
-  if (behaviorTotals && Object.keys(behaviorTotals).length > 0) {
-    const behaviorSummaries = Object.entries(behaviorTotals)
-      .map(([behaviorId, behaviorData]: [string, any]) => {
-        // Try to get behavior name from behaviorsById first, fallback to behaviorData
-        const behaviorName =
-          behaviorsById?.[behaviorId]?.name ||
-          behaviorData.behaviorName ||
-          "Unknown behavior";
-        return `${behaviorName}: ${behaviorData.formattedValue}`;
-      })
-      .join("\n");
-
-    summary += `Daily Totals:\n${behaviorSummaries}\n\n`;
-  } else {
-    // No behaviors tracked - enumerate specific behaviors with "No X" format
-    const behaviorNames = new Set<string>();
-
-    // First, try to get behavior names from behaviorsById
-    if (behaviorsById) {
-      Object.values(behaviorsById).forEach((behavior: any) => {
-        if (behavior.name) {
-          behaviorNames.add(behavior.name);
-        }
-      });
-    }
-
-    // Fallback: get behavior names from behaviorTotals (even if they're 0)
-    if (behaviorTotals) {
-      Object.values(behaviorTotals).forEach((behavior: any) => {
-        if (behavior.behaviorName) {
-          behaviorNames.add(behavior.behaviorName);
-        }
-      });
-    }
-
-    // Also check tracking logs for behavior names
-    if (trackingLogs && Object.keys(trackingLogs).length > 0) {
-      Object.values(trackingLogs).forEach((log: any) => {
-        if (log.data?.behaviorName) {
-          behaviorNames.add(log.data.behaviorName);
-        }
-      });
-    }
-
-    if (behaviorNames.size > 0) {
-      const noBehaviorsList = Array.from(behaviorNames)
-        .map((name) => `No ${name.toLowerCase()}`)
-        .join(". ");
-      summary += `${noBehaviorsList}. User successfully maintained control!\n\n`;
-    } else {
-      summary +=
-        "No impulse behaviors tracked today - user successfully maintained control!\n\n";
-    }
+  if (!response) {
+    return `Day recap for ${log.dateString}: No response provided yet.`;
   }
 
-  // If goal comparison data is present, include a clear facts block
-  if (goalComparison && Object.keys(goalComparison).length > 0) {
-    const lines: string[] = [];
-    for (const [behaviorId, entry] of Object.entries(goalComparison)) {
-      const behaviorName =
-        behaviorsById?.[behaviorId]?.name || "Unknown behavior";
-      const statusLabel =
-        entry.status === "NOT_MET_FAIL"
-          ? "NOT MET (FAIL)"
-          : entry.status === "MET"
-          ? "MET"
-          : entry.status === "UNSPECIFIED_FOR_DAY"
-          ? "UNSPECIFIED FOR THIS DAY"
-          : "NO GOAL";
-      const targetStr =
-        entry.targetValue != null ? `${entry.targetValue} ${entry.unit}` : "-";
-      lines.push(
-        `- ${behaviorName} — Goal: ${entry.goalLabel}; Logged: ${entry.measured} ${entry.unit}; Target: ${targetStr}; Status: ${statusLabel}`
+  // Check if this is a recap response with structured data
+  if (response.responseType === "recap" && response.value) {
+    const recapValue = response.value as RecapResponseValue;
+
+    let summary = `Day recap for ${log.dateString}:\n\n`;
+
+    // Add behavior totals
+    if (recapValue.behaviorTotals) {
+      const behaviorLines = Object.entries(recapValue.behaviorTotals).map(
+        ([_behaviorId, data]) => {
+          const name = data.behaviorName || "Behavior";
+          return `${name}: ${data.formattedValue}`;
+        }
       );
-    }
-    summary += [
-      "Goals vs Logged:",
-      ...lines,
-      "",
-      "If any item shows NOT MET (FAIL), acknowledge this clearly but respond with supportive, nonjudgmental language. Focus on learning and next steps.",
-      "",
-    ].join("\n");
-  }
 
-  // Add detailed tracking logs if available
-  if (trackingLogs && Object.keys(trackingLogs).length > 0) {
-    // Group logs by behavior name for better readability
-    const logsByBehavior: Record<string, any[]> = {};
-
-    Object.values(trackingLogs).forEach((log: any) => {
-      const behaviorName = log.data.behaviorName;
-      if (!logsByBehavior[behaviorName]) {
-        logsByBehavior[behaviorName] = [];
+      if (behaviorLines.length > 0) {
+        summary += `Daily Totals:\n${behaviorLines.join("\n")}\n\n`;
       }
-      logsByBehavior[behaviorName].push(log);
-    });
+    }
 
-    // Format each behavior's logs
-    summary += "Detailed Tracking:\n";
+    // Add goal comparison if present
+    const goalComparison = recapValue.goalComparisonByBehaviorId;
+    if (goalComparison && Object.keys(goalComparison).length > 0) {
+      const lines: string[] = [];
+      for (const [behaviorId, entry] of Object.entries(goalComparison)) {
+        // Try to get behavior name from behaviorsById, then behaviorTotals
+        const behaviorName =
+          recapValue.behaviorsById?.[behaviorId]?.name ||
+          recapValue.behaviorTotals?.[behaviorId]?.behaviorName ||
+          "Unknown behavior";
+        const statusLabel =
+          entry.status === "NOT_MET_FAIL"
+            ? "NOT MET (FAIL)"
+            : entry.status === "MET"
+            ? "MET"
+            : entry.status === "UNSPECIFIED_FOR_DAY"
+            ? "UNSPECIFIED FOR THIS DAY"
+            : "NO GOAL";
+        const targetStr =
+          entry.targetValue != null
+            ? `${entry.targetValue} ${entry.unit}`
+            : "-";
+        lines.push(
+          `- ${behaviorName} — Goal: ${entry.goalLabel}; Logged: ${entry.measured} ${entry.unit}; Target: ${targetStr}; Status: ${statusLabel}`
+        );
+      }
+      summary += [
+        "Goals vs Logged:",
+        ...lines,
+        "",
+        "If any item shows NOT MET (FAIL), acknowledge this clearly but respond with supportive, nonjudgmental language. Focus on learning and next steps.",
+        "",
+      ].join("\n");
+    }
 
-    Object.entries(logsByBehavior).forEach(([behaviorName, logs]) => {
-      // Sort logs by timestamp
-      logs.sort((a, b) => a.timestamp.seconds - b.timestamp.seconds);
+    // If we have a summaryText, append it
+    if (recapValue.summaryText) {
+      summary += `\nUser's summary: ${recapValue.summaryText}`;
+    }
 
-      summary += `${behaviorName}:\n`;
-      logs.forEach((log: any) => {
-        // Format the timestamp to a readable time
-        const timestamp = new Date(log.timestamp.seconds * 1000);
-        const timeString = timestamp.toLocaleTimeString([], {
-          hour: "2-digit",
-          minute: "2-digit",
-        });
-
-        // Format the log entry
-        summary += `  • At ${timeString}: ${log.data.formattedValue}\n`;
-      });
-    });
+    return summary.trim();
   }
 
-  return summary.trim();
+  // Fallback to formattedValue if available
+  if (response.formattedValue) {
+    return response.formattedValue;
+  }
+
+  return `Day recap for ${log.dateString}: Response submitted.`;
 }

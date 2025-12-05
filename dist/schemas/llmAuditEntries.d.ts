@@ -2063,7 +2063,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             outcomeLogs: z.ZodArray<z.ZodAny, "many">;
-            daySummaryLog: z.ZodOptional<z.ZodAny>;
             questionLogs: z.ZodArray<z.ZodAny, "many">;
             firstMessageLog: z.ZodOptional<z.ZodAny>;
             firstCallLog: z.ZodOptional<z.ZodAny>;
@@ -2075,7 +2074,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
@@ -2085,7 +2083,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         }>>;
@@ -2157,12 +2154,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         userId: string;
         dateString: string;
         mode: "text" | "voice";
-        trackingLogsById: Record<string, any>;
-        sharedWithUserIds: string[];
         emojiId: {
             name: string;
             emoji: string;
         } | null;
+        trackingLogsById: Record<string, any>;
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
@@ -2515,7 +2512,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
@@ -2551,12 +2547,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         date: import("../types").Timestamp;
         userId: string;
         dateString: string;
-        trackingLogsById: Record<string, any>;
-        sharedWithUserIds: string[];
         emojiId: {
             name: string;
             emoji: string;
         } | null;
+        trackingLogsById: Record<string, any>;
+        sharedWithUserIds: string[];
         archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
@@ -2910,7 +2906,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
@@ -4998,7 +4993,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             outcomeLogs: z.ZodArray<z.ZodAny, "many">;
-            daySummaryLog: z.ZodOptional<z.ZodAny>;
             questionLogs: z.ZodArray<z.ZodAny, "many">;
             firstMessageLog: z.ZodOptional<z.ZodAny>;
             firstCallLog: z.ZodOptional<z.ZodAny>;
@@ -5010,7 +5004,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
@@ -5020,7 +5013,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         }>>;
@@ -5099,12 +5091,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         userId: string;
         dateString: string;
         mode: "text" | "voice";
-        trackingLogsById: Record<string, any>;
-        sharedWithUserIds: string[];
         emojiId: {
             name: string;
             emoji: string;
         } | null;
+        trackingLogsById: Record<string, any>;
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
@@ -5460,7 +5452,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
@@ -5500,12 +5491,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         date: import("../types").Timestamp;
         userId: string;
         dateString: string;
-        trackingLogsById: Record<string, any>;
-        sharedWithUserIds: string[];
         emojiId: {
             name: string;
             emoji: string;
         } | null;
+        trackingLogsById: Record<string, any>;
+        sharedWithUserIds: string[];
         archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         behaviorDocs: import("..").DocumentReferenceLike<unknown>[];
@@ -5862,7 +5853,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
@@ -7954,7 +7944,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             outcomeLogs: z.ZodArray<z.ZodAny, "many">;
-            daySummaryLog: z.ZodOptional<z.ZodAny>;
             questionLogs: z.ZodArray<z.ZodAny, "many">;
             firstMessageLog: z.ZodOptional<z.ZodAny>;
             firstCallLog: z.ZodOptional<z.ZodAny>;
@@ -7966,7 +7955,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
@@ -7976,7 +7964,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         }>>;
@@ -8048,12 +8035,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         userId: string;
         dateString: string;
         mode: "text" | "voice";
-        trackingLogsById: Record<string, any>;
-        sharedWithUserIds: string[];
         emojiId: {
             name: string;
             emoji: string;
         } | null;
+        trackingLogsById: Record<string, any>;
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
@@ -8406,7 +8393,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
@@ -8442,12 +8428,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         date: import("../types").Timestamp;
         userId: string;
         dateString: string;
-        trackingLogsById: Record<string, any>;
-        sharedWithUserIds: string[];
         emojiId: {
             name: string;
             emoji: string;
         } | null;
+        trackingLogsById: Record<string, any>;
+        sharedWithUserIds: string[];
         archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
@@ -8801,7 +8787,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
@@ -10889,7 +10874,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             outcomeLogs: z.ZodArray<z.ZodAny, "many">;
-            daySummaryLog: z.ZodOptional<z.ZodAny>;
             questionLogs: z.ZodArray<z.ZodAny, "many">;
             firstMessageLog: z.ZodOptional<z.ZodAny>;
             firstCallLog: z.ZodOptional<z.ZodAny>;
@@ -10901,7 +10885,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
@@ -10911,7 +10894,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         }>>;
@@ -10983,12 +10965,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         userId: string;
         dateString: string;
         mode: "text" | "voice";
-        trackingLogsById: Record<string, any>;
-        sharedWithUserIds: string[];
         emojiId: {
             name: string;
             emoji: string;
         } | null;
+        trackingLogsById: Record<string, any>;
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
@@ -11341,7 +11323,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
@@ -11377,12 +11358,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         date: import("../types").Timestamp;
         userId: string;
         dateString: string;
-        trackingLogsById: Record<string, any>;
-        sharedWithUserIds: string[];
         emojiId: {
             name: string;
             emoji: string;
         } | null;
+        trackingLogsById: Record<string, any>;
+        sharedWithUserIds: string[];
         archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
@@ -11736,7 +11717,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
@@ -13598,7 +13578,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             outcomeLogs: z.ZodArray<z.ZodAny, "many">;
-            daySummaryLog: z.ZodOptional<z.ZodAny>;
             questionLogs: z.ZodArray<z.ZodAny, "many">;
             firstMessageLog: z.ZodOptional<z.ZodAny>;
             firstCallLog: z.ZodOptional<z.ZodAny>;
@@ -13610,7 +13589,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
@@ -13620,7 +13598,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         }>>;
@@ -13918,8 +13895,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         userId: string;
         dateString: string;
         mode: "text" | "voice";
-        trackingLogsById: Record<string, any>;
-        sharedWithUserIds: string[];
         emojiId: {
             name: string;
             emoji: string;
@@ -13993,6 +13968,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             lastUsedAt?: import("../types").Timestamp | undefined;
             deletedAt?: import("../types").Timestamp | undefined;
         });
+        trackingLogsById: Record<string, any>;
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
@@ -14276,7 +14253,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
@@ -14312,8 +14288,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         date: import("../types").Timestamp;
         userId: string;
         dateString: string;
-        trackingLogsById: Record<string, any>;
-        sharedWithUserIds: string[];
         emojiId: {
             name: string;
             emoji: string;
@@ -14387,6 +14361,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             lastUsedAt?: import("../types").Timestamp | undefined;
             deletedAt?: import("../types").Timestamp | undefined;
         });
+        trackingLogsById: Record<string, any>;
+        sharedWithUserIds: string[];
         archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
@@ -14671,7 +14647,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
@@ -16759,7 +16734,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             outcomeLogs: z.ZodArray<z.ZodAny, "many">;
-            daySummaryLog: z.ZodOptional<z.ZodAny>;
             questionLogs: z.ZodArray<z.ZodAny, "many">;
             firstMessageLog: z.ZodOptional<z.ZodAny>;
             firstCallLog: z.ZodOptional<z.ZodAny>;
@@ -16771,7 +16745,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
@@ -16781,7 +16754,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         }>>;
@@ -16853,12 +16825,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         userId: string;
         dateString: string;
         mode: "text" | "voice";
-        trackingLogsById: Record<string, any>;
-        sharedWithUserIds: string[];
         emojiId: {
             name: string;
             emoji: string;
         } | null;
+        trackingLogsById: Record<string, any>;
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
@@ -17211,7 +17183,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
@@ -17247,12 +17218,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         date: import("../types").Timestamp;
         userId: string;
         dateString: string;
-        trackingLogsById: Record<string, any>;
-        sharedWithUserIds: string[];
         emojiId: {
             name: string;
             emoji: string;
         } | null;
+        trackingLogsById: Record<string, any>;
+        sharedWithUserIds: string[];
         archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
@@ -17606,7 +17577,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
@@ -19468,7 +19438,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             outcomeLogs: z.ZodArray<z.ZodAny, "many">;
-            daySummaryLog: z.ZodOptional<z.ZodAny>;
             questionLogs: z.ZodArray<z.ZodAny, "many">;
             firstMessageLog: z.ZodOptional<z.ZodAny>;
             firstCallLog: z.ZodOptional<z.ZodAny>;
@@ -19480,7 +19449,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
@@ -19490,7 +19458,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         }>>;
@@ -19788,8 +19755,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         userId: string;
         dateString: string;
         mode: "text" | "voice";
-        trackingLogsById: Record<string, any>;
-        sharedWithUserIds: string[];
         emojiId: {
             name: string;
             emoji: string;
@@ -19863,6 +19828,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             lastUsedAt?: import("../types").Timestamp | undefined;
             deletedAt?: import("../types").Timestamp | undefined;
         });
+        trackingLogsById: Record<string, any>;
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
@@ -20146,7 +20113,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
@@ -20182,8 +20148,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         date: import("../types").Timestamp;
         userId: string;
         dateString: string;
-        trackingLogsById: Record<string, any>;
-        sharedWithUserIds: string[];
         emojiId: {
             name: string;
             emoji: string;
@@ -20257,6 +20221,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             lastUsedAt?: import("../types").Timestamp | undefined;
             deletedAt?: import("../types").Timestamp | undefined;
         });
+        trackingLogsById: Record<string, any>;
+        sharedWithUserIds: string[];
         archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
@@ -20541,7 +20507,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
@@ -22629,7 +22594,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             outcomeLogs: z.ZodArray<z.ZodAny, "many">;
-            daySummaryLog: z.ZodOptional<z.ZodAny>;
             questionLogs: z.ZodArray<z.ZodAny, "many">;
             firstMessageLog: z.ZodOptional<z.ZodAny>;
             firstCallLog: z.ZodOptional<z.ZodAny>;
@@ -22641,7 +22605,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
@@ -22651,7 +22614,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         }>>;
@@ -22723,12 +22685,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         userId: string;
         dateString: string;
         mode: "text" | "voice";
-        trackingLogsById: Record<string, any>;
-        sharedWithUserIds: string[];
         emojiId: {
             name: string;
             emoji: string;
         } | null;
+        trackingLogsById: Record<string, any>;
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
@@ -23081,7 +23043,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
@@ -23117,12 +23078,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         date: import("../types").Timestamp;
         userId: string;
         dateString: string;
-        trackingLogsById: Record<string, any>;
-        sharedWithUserIds: string[];
         emojiId: {
             name: string;
             emoji: string;
         } | null;
+        trackingLogsById: Record<string, any>;
+        sharedWithUserIds: string[];
         archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
@@ -23476,7 +23437,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
@@ -23528,12 +23488,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         userId: string;
         dateString: string;
         mode: "text" | "voice";
-        trackingLogsById: Record<string, any>;
-        sharedWithUserIds: string[];
         emojiId: {
             name: string;
             emoji: string;
         } | null;
+        trackingLogsById: Record<string, any>;
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
@@ -23886,7 +23846,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
@@ -23923,12 +23882,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         userId: string;
         dateString: string;
         mode: "text" | "voice";
-        trackingLogsById: Record<string, any>;
-        sharedWithUserIds: string[];
         emojiId: {
             name: string;
             emoji: string;
         } | null;
+        trackingLogsById: Record<string, any>;
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
@@ -24284,7 +24243,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
@@ -24325,12 +24283,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         userId: string;
         dateString: string;
         mode: "text" | "voice";
-        trackingLogsById: Record<string, any>;
-        sharedWithUserIds: string[];
         emojiId: {
             name: string;
             emoji: string;
         } | null;
+        trackingLogsById: Record<string, any>;
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
@@ -24683,7 +24641,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
@@ -24720,12 +24677,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         userId: string;
         dateString: string;
         mode: "text" | "voice";
-        trackingLogsById: Record<string, any>;
-        sharedWithUserIds: string[];
         emojiId: {
             name: string;
             emoji: string;
         } | null;
+        trackingLogsById: Record<string, any>;
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
@@ -25078,7 +25035,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
@@ -25115,8 +25071,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         userId: string;
         dateString: string;
         mode: "text" | "voice";
-        trackingLogsById: Record<string, any>;
-        sharedWithUserIds: string[];
         emojiId: {
             name: string;
             emoji: string;
@@ -25190,6 +25144,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             lastUsedAt?: import("../types").Timestamp | undefined;
             deletedAt?: import("../types").Timestamp | undefined;
         });
+        trackingLogsById: Record<string, any>;
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
@@ -25473,7 +25429,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
@@ -25510,12 +25465,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         userId: string;
         dateString: string;
         mode: "text" | "voice";
-        trackingLogsById: Record<string, any>;
-        sharedWithUserIds: string[];
         emojiId: {
             name: string;
             emoji: string;
         } | null;
+        trackingLogsById: Record<string, any>;
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
@@ -25868,7 +25823,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
@@ -25905,8 +25859,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         userId: string;
         dateString: string;
         mode: "text" | "voice";
-        trackingLogsById: Record<string, any>;
-        sharedWithUserIds: string[];
         emojiId: {
             name: string;
             emoji: string;
@@ -25980,6 +25932,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             lastUsedAt?: import("../types").Timestamp | undefined;
             deletedAt?: import("../types").Timestamp | undefined;
         });
+        trackingLogsById: Record<string, any>;
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
@@ -26263,7 +26217,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
@@ -26300,12 +26253,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         userId: string;
         dateString: string;
         mode: "text" | "voice";
-        trackingLogsById: Record<string, any>;
-        sharedWithUserIds: string[];
         emojiId: {
             name: string;
             emoji: string;
         } | null;
+        trackingLogsById: Record<string, any>;
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
@@ -26658,7 +26611,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
@@ -26706,12 +26658,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         date: import("../types").Timestamp;
         userId: string;
         dateString: string;
-        trackingLogsById: Record<string, any>;
-        sharedWithUserIds: string[];
         emojiId: {
             name: string;
             emoji: string;
         } | null;
+        trackingLogsById: Record<string, any>;
+        sharedWithUserIds: string[];
         archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
@@ -27065,7 +27017,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
@@ -27101,12 +27052,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         date: import("../types").Timestamp;
         userId: string;
         dateString: string;
-        trackingLogsById: Record<string, any>;
-        sharedWithUserIds: string[];
         emojiId: {
             name: string;
             emoji: string;
         } | null;
+        trackingLogsById: Record<string, any>;
+        sharedWithUserIds: string[];
         archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         behaviorDocs: import("..").DocumentReferenceLike<unknown>[];
@@ -27463,7 +27414,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
@@ -27503,12 +27453,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         date: import("../types").Timestamp;
         userId: string;
         dateString: string;
-        trackingLogsById: Record<string, any>;
-        sharedWithUserIds: string[];
         emojiId: {
             name: string;
             emoji: string;
         } | null;
+        trackingLogsById: Record<string, any>;
+        sharedWithUserIds: string[];
         archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
@@ -27862,7 +27812,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
@@ -27898,12 +27847,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         date: import("../types").Timestamp;
         userId: string;
         dateString: string;
-        trackingLogsById: Record<string, any>;
-        sharedWithUserIds: string[];
         emojiId: {
             name: string;
             emoji: string;
         } | null;
+        trackingLogsById: Record<string, any>;
+        sharedWithUserIds: string[];
         archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
@@ -28257,7 +28206,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
@@ -28293,8 +28241,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         date: import("../types").Timestamp;
         userId: string;
         dateString: string;
-        trackingLogsById: Record<string, any>;
-        sharedWithUserIds: string[];
         emojiId: {
             name: string;
             emoji: string;
@@ -28368,6 +28314,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             lastUsedAt?: import("../types").Timestamp | undefined;
             deletedAt?: import("../types").Timestamp | undefined;
         });
+        trackingLogsById: Record<string, any>;
+        sharedWithUserIds: string[];
         archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
@@ -28652,7 +28600,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
@@ -28688,12 +28635,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         date: import("../types").Timestamp;
         userId: string;
         dateString: string;
-        trackingLogsById: Record<string, any>;
-        sharedWithUserIds: string[];
         emojiId: {
             name: string;
             emoji: string;
         } | null;
+        trackingLogsById: Record<string, any>;
+        sharedWithUserIds: string[];
         archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
@@ -29047,7 +28994,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
@@ -29083,8 +29029,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         date: import("../types").Timestamp;
         userId: string;
         dateString: string;
-        trackingLogsById: Record<string, any>;
-        sharedWithUserIds: string[];
         emojiId: {
             name: string;
             emoji: string;
@@ -29158,6 +29102,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             lastUsedAt?: import("../types").Timestamp | undefined;
             deletedAt?: import("../types").Timestamp | undefined;
         });
+        trackingLogsById: Record<string, any>;
+        sharedWithUserIds: string[];
         archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
@@ -29442,7 +29388,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
@@ -29478,12 +29423,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         date: import("../types").Timestamp;
         userId: string;
         dateString: string;
-        trackingLogsById: Record<string, any>;
-        sharedWithUserIds: string[];
         emojiId: {
             name: string;
             emoji: string;
         } | null;
+        trackingLogsById: Record<string, any>;
+        sharedWithUserIds: string[];
         archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
@@ -29837,7 +29782,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             outcomeLogs: any[];
             questionLogs: any[];
             hasContent: boolean;
-            daySummaryLog?: any;
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
