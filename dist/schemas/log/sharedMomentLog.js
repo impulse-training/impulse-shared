@@ -4,7 +4,7 @@ exports.sharedMomentLogSchema = void 0;
 const zod_1 = require("zod");
 const documentReferenceSchema_1 = require("../../utils/documentReferenceSchema");
 const emojiId_1 = require("../emojiId");
-const threadSummary_1 = require("../thread/threadSummary");
+const threadSummary_1 = require("../threadSummary");
 const base_1 = require("./base");
 exports.sharedMomentLogSchema = base_1.logBaseSchema.extend({
     type: zod_1.z.literal("shared_moment"),

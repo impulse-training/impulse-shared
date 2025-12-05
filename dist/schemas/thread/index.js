@@ -14,7 +14,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidAdjustmentThread = exports.threadIsAdjustmentThread = exports.isValidBehaviorThread = exports.threadIsBehaviorThread = exports.isValidLocationPlanThread = exports.threadIsLocationPlanThread = exports.isValidRecapPlanThread = exports.threadIsRecapPlanThread = exports.isValidTimePlanThread = exports.threadIsTimePlanThread = exports.isValidImpulseThread = exports.threadIsImpulseThread = exports.isValidOnboardingThread = exports.threadIsOnboardingThread = exports.isValidGeneralThread = exports.threadIsGeneralThread = exports.threadSchema = exports.threadSchemas = void 0;
+exports.isValidAdjustmentThread = exports.threadIsAdjustmentThread = exports.isValidBehaviorThread = exports.threadIsBehaviorThread = exports.isValidLocationPlanThread = exports.threadIsLocationPlanThread = exports.isValidRecapThread = exports.threadIsRecapThread = exports.isValidTimePlanThread = exports.threadIsTimePlanThread = exports.isValidImpulseThread = exports.threadIsImpulseThread = exports.isValidOnboardingThread = exports.threadIsOnboardingThread = exports.isValidGeneralThread = exports.threadIsGeneralThread = exports.threadSchema = exports.threadSchemas = void 0;
 const zod_1 = require("zod");
 const adjustment_1 = require("./adjustment");
 const behavior_1 = require("./behavior");
@@ -22,13 +22,15 @@ const general_1 = require("./general");
 const impulse_1 = require("./impulse");
 const onboarding_1 = require("./onboarding");
 const plan_1 = require("./plan");
+const recap_1 = require("./recap");
+__exportStar(require("../threadSummary"), exports);
 __exportStar(require("./adjustment"), exports);
 __exportStar(require("./behavior"), exports);
 __exportStar(require("./general"), exports);
 __exportStar(require("./impulse"), exports);
 __exportStar(require("./onboarding"), exports);
 __exportStar(require("./plan"), exports);
-__exportStar(require("./threadSummary"), exports);
+__exportStar(require("./recap"), exports);
 // Map of thread types to their schemas
 exports.threadSchemas = {
     general: general_1.generalThreadSchema,
@@ -36,7 +38,7 @@ exports.threadSchemas = {
     onboarding: onboarding_1.onboardingThreadSchema,
     timePlan: plan_1.timePlanThreadSchema,
     behavior: behavior_1.behaviorThreadSchema,
-    dayRecap: plan_1.recapPlanThreadSchema,
+    recap: recap_1.recapThreadSchema,
     locationPlan: plan_1.locationPlanThreadSchema,
     adjustment: adjustment_1.adjustmentThreadSchema,
 };
@@ -47,7 +49,7 @@ exports.threadSchema = zod_1.z.discriminatedUnion("type", [
     onboarding_1.onboardingThreadSchema,
     behavior_1.behaviorThreadSchema,
     plan_1.timePlanThreadSchema,
-    plan_1.recapPlanThreadSchema,
+    recap_1.recapThreadSchema,
     plan_1.locationPlanThreadSchema,
     adjustment_1.adjustmentThreadSchema,
 ]);
@@ -67,10 +69,10 @@ const threadIsTimePlanThread = (value) => value.type === "timePlan";
 exports.threadIsTimePlanThread = threadIsTimePlanThread;
 const isValidTimePlanThread = (value) => plan_1.timePlanThreadSchema.safeParse(value).success;
 exports.isValidTimePlanThread = isValidTimePlanThread;
-const threadIsRecapPlanThread = (value) => value.type === "recap";
-exports.threadIsRecapPlanThread = threadIsRecapPlanThread;
-const isValidRecapPlanThread = (value) => plan_1.recapPlanThreadSchema.safeParse(value).success;
-exports.isValidRecapPlanThread = isValidRecapPlanThread;
+const threadIsRecapThread = (value) => value.type === "recap";
+exports.threadIsRecapThread = threadIsRecapThread;
+const isValidRecapThread = (value) => recap_1.recapThreadSchema.safeParse(value).success;
+exports.isValidRecapThread = isValidRecapThread;
 const threadIsLocationPlanThread = (value) => value.type === "locationPlan";
 exports.threadIsLocationPlanThread = threadIsLocationPlanThread;
 const isValidLocationPlanThread = (value) => plan_1.locationPlanThreadSchema.safeParse(value).success;

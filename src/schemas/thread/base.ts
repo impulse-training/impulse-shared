@@ -5,7 +5,7 @@ import { emojiIdSchema } from "../emojiId";
 import { suggestedTacticsLogSchema } from "../log";
 import { planWithIdSchema } from "../plan";
 import { tacticSchema } from "../tactic/tactic";
-import { threadSummarySchema } from "./threadSummary";
+import { threadSummarySchema } from "../threadSummary";
 
 const threadTypeSchema = z.enum([
   "impulse",

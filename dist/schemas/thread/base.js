@@ -8,7 +8,7 @@ const emojiId_1 = require("../emojiId");
 const log_1 = require("../log");
 const plan_1 = require("../plan");
 const tactic_1 = require("../tactic/tactic");
-const threadSummary_1 = require("./threadSummary");
+const threadSummary_1 = require("../threadSummary");
 const threadTypeSchema = zod_1.z.enum([
     "impulse",
     "general",
