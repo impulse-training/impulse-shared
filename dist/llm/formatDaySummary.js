@@ -6,7 +6,7 @@ exports.formatRecapResponse = formatRecapResponse;
  * Includes behavior totals and goal comparison data.
  */
 function formatRecapResponse(log) {
-    var _a, _b, _c;
+    var _a, _b, _c, _d, _e;
     const response = (_a = log.data) === null || _a === void 0 ? void 0 : _a.response;
     if (!response) {
         return `Day recap for ${log.dateString}: No response provided yet.`;
@@ -30,8 +30,9 @@ function formatRecapResponse(log) {
         if (goalComparison && Object.keys(goalComparison).length > 0) {
             const lines = [];
             for (const [behaviorId, entry] of Object.entries(goalComparison)) {
-                // Try to get behavior name from behaviorTotals
-                const behaviorName = ((_c = (_b = recapValue.behaviorTotals) === null || _b === void 0 ? void 0 : _b[behaviorId]) === null || _c === void 0 ? void 0 : _c.behaviorName) ||
+                // Try to get behavior name from behaviorsById, then behaviorTotals
+                const behaviorName = ((_c = (_b = recapValue.behaviorsById) === null || _b === void 0 ? void 0 : _b[behaviorId]) === null || _c === void 0 ? void 0 : _c.name) ||
+                    ((_e = (_d = recapValue.behaviorTotals) === null || _d === void 0 ? void 0 : _d[behaviorId]) === null || _e === void 0 ? void 0 : _e.behaviorName) ||
                     "Unknown behavior";
                 const statusLabel = entry.status === "NOT_MET_FAIL"
                     ? "NOT MET (FAIL)"
