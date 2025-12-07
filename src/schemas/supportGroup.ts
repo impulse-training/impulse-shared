@@ -11,8 +11,14 @@ import {
 } from "./supportGroupPermissions";
 
 // Re-export for backward compatibility
-export type { SupportGroupPermissions, SupportGroupNotificationPreferences } from "./supportGroupPermissions";
-export { supportGroupPermissionsSchema, supportGroupNotificationPreferencesSchema };
+export type {
+  SupportGroupPermissions,
+  SupportGroupNotificationPreferences,
+} from "./supportGroupPermissions";
+export {
+  supportGroupPermissionsSchema,
+  supportGroupNotificationPreferencesSchema,
+};
 
 // Support Group Member Schema
 export const supportGroupMemberSchema = z.object({
@@ -40,7 +46,6 @@ export const supportGroupSchema = z.object({
   unreadMessageCountsById: objectOf(z.number()),
   memberCount: z.number().default(0), // Count of members for easier querying
   image: attachmentSchema,
-  tacticCollections: z.array(documentReferenceSchema),
   isPublic: z.boolean().optional(),
   isTemplate: z.boolean().optional().default(false),
   inviteCode: z.string().optional(),
