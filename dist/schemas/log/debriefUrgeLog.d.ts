@@ -12,10 +12,16 @@ export declare const debriefUrgeLogSchema: z.ZodObject<{
     type: z.ZodLiteral<"debriefUrge">;
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
+        debriefAfter: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        debriefedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         actedOnUrge: z.ZodOptional<z.ZodBoolean>;
     }, "strip", z.ZodTypeAny, {
+        debriefAfter: import("../../types").Timestamp;
+        debriefedAt?: import("../../types").Timestamp | undefined;
         actedOnUrge?: boolean | undefined;
     }, {
+        debriefAfter: import("../../types").Timestamp;
+        debriefedAt?: import("../../types").Timestamp | undefined;
         actedOnUrge?: boolean | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
@@ -26,6 +32,8 @@ export declare const debriefUrgeLogSchema: z.ZodObject<{
     dateString: string;
     isDisplayable: true;
     data: {
+        debriefAfter: import("../../types").Timestamp;
+        debriefedAt?: import("../../types").Timestamp | undefined;
         actedOnUrge?: boolean | undefined;
     };
     id?: string | undefined;
@@ -40,6 +48,8 @@ export declare const debriefUrgeLogSchema: z.ZodObject<{
     dateString: string;
     isDisplayable: true;
     data: {
+        debriefAfter: import("../../types").Timestamp;
+        debriefedAt?: import("../../types").Timestamp | undefined;
         actedOnUrge?: boolean | undefined;
     };
     id?: string | undefined;

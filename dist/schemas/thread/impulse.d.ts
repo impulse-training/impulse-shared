@@ -2170,6 +2170,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
     updatedAt?: import("../../types").Timestamp | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
+    debriefAfter?: import("../../types").Timestamp | undefined;
     plan?: ({
         id: string;
         _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
@@ -2546,7 +2547,6 @@ export declare const impulseThreadSchema: z.ZodObject<{
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
     allImpulseQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
-    debriefAfter?: import("../../types").Timestamp | undefined;
     debriefStartedAt?: import("../../types").Timestamp | undefined;
     outcomeSelectedAt?: import("../../types").Timestamp | undefined;
 }, {
@@ -2570,6 +2570,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
+    debriefAfter?: import("../../types").Timestamp | undefined;
     plan?: ({
         id: string;
         _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
@@ -2947,7 +2948,6 @@ export declare const impulseThreadSchema: z.ZodObject<{
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
     allImpulseQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
-    debriefAfter?: import("../../types").Timestamp | undefined;
     debriefStartedAt?: import("../../types").Timestamp | undefined;
     outcomeSelectedAt?: import("../../types").Timestamp | undefined;
 }>;

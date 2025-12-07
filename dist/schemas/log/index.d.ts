@@ -9,6 +9,7 @@ import { AssistantMessageLog, MessageLog } from "./messageLog";
 import { UserMessageLog } from "./messageLog/userMessageLog";
 import { NotifySupportGroupLog } from "./notifySupportGroupLog";
 import { PlanLog } from "./planLog";
+import { PlansLog } from "./plansLog";
 import { QuestionLog } from "./questionLog";
 import { ReadyToDebriefLog } from "./readyToDebriefLog";
 import { ResistedLog } from "./resistedLog";
@@ -10580,6 +10581,730 @@ export declare const logSchemas: {
         tacticId?: string | undefined;
         callLogDocPath?: string | undefined;
     }>;
+    plans: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        dateString: z.ZodString;
+        tacticId: z.ZodOptional<z.ZodString>;
+        callLogDocPath: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"plans">;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            behaviorId: z.ZodString;
+            plans: z.ZodArray<z.ZodObject<{
+                planId: z.ZodString;
+                plan: z.ZodUnion<[z.ZodIntersection<z.ZodObject<{
+                    id: z.ZodString;
+                    _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
+                }, "strip", z.ZodTypeAny, {
+                    id: string;
+                    _ref: import("../..").DocumentReferenceLike<unknown>;
+                }, {
+                    id: string;
+                    _ref: import("../..").DocumentReferenceLike<unknown>;
+                }>, z.ZodObject<{
+                    id: z.ZodOptional<z.ZodString>;
+                    name: z.ZodString;
+                    description: z.ZodOptional<z.ZodString>;
+                    type: z.ZodType<"impulse", z.ZodTypeDef, "impulse">;
+                    ordinal: z.ZodOptional<z.ZodNumber>;
+                    isTemplate: z.ZodOptional<z.ZodBoolean>;
+                    summary: z.ZodOptional<z.ZodString>;
+                    tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+                    questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
+                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                } & {
+                    behaviorId: z.ZodString;
+                    behaviorRef: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
+                    isActive: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+                    lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    numberOfUses: z.ZodDefault<z.ZodNumber>;
+                    numberOfSuccesses: z.ZodDefault<z.ZodNumber>;
+                    numberOfSetbacks: z.ZodDefault<z.ZodNumber>;
+                }, z.UnknownKeysParam, z.ZodTypeAny, {
+                    type: "impulse";
+                    behaviorId: string;
+                    name: string;
+                    tactics: import("../..").DocumentReferenceLike<unknown>[];
+                    questions: import("../..").DocumentReferenceLike<unknown>[];
+                    behaviorRef: import("../..").DocumentReferenceLike<unknown>;
+                    isActive: boolean;
+                    numberOfUses: number;
+                    numberOfSuccesses: number;
+                    numberOfSetbacks: number;
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    description?: string | undefined;
+                    ordinal?: number | undefined;
+                    summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    lastUsedAt?: import("../../types").Timestamp | undefined;
+                    deletedAt?: import("../../types").Timestamp | undefined;
+                }, {
+                    type: "impulse";
+                    behaviorId: string;
+                    name: string;
+                    tactics: import("../..").DocumentReferenceLike<unknown>[];
+                    behaviorRef: import("../..").DocumentReferenceLike<unknown>;
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    description?: string | undefined;
+                    ordinal?: number | undefined;
+                    summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                    lastUsedAt?: import("../../types").Timestamp | undefined;
+                    deletedAt?: import("../../types").Timestamp | undefined;
+                    isActive?: boolean | undefined;
+                    numberOfUses?: number | undefined;
+                    numberOfSuccesses?: number | undefined;
+                    numberOfSetbacks?: number | undefined;
+                }>>, z.ZodIntersection<z.ZodObject<{
+                    id: z.ZodString;
+                    _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
+                }, "strip", z.ZodTypeAny, {
+                    id: string;
+                    _ref: import("../..").DocumentReferenceLike<unknown>;
+                }, {
+                    id: string;
+                    _ref: import("../..").DocumentReferenceLike<unknown>;
+                }>, z.ZodObject<{
+                    id: z.ZodOptional<z.ZodString>;
+                    name: z.ZodString;
+                    description: z.ZodOptional<z.ZodString>;
+                    type: z.ZodType<"time", z.ZodTypeDef, "time">;
+                    ordinal: z.ZodOptional<z.ZodNumber>;
+                    isTemplate: z.ZodOptional<z.ZodBoolean>;
+                    summary: z.ZodOptional<z.ZodString>;
+                    tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+                    questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
+                    lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                } & {
+                    trigger: z.ZodObject<{
+                        hour: z.ZodNumber;
+                        minute: z.ZodNumber;
+                        weekdays: z.ZodArray<z.ZodNumber, "many">;
+                    }, "strip", z.ZodTypeAny, {
+                        hour: number;
+                        minute: number;
+                        weekdays: number[];
+                    }, {
+                        hour: number;
+                        minute: number;
+                        weekdays: number[];
+                    }>;
+                }, z.UnknownKeysParam, z.ZodTypeAny, {
+                    type: "time";
+                    name: string;
+                    tactics: import("../..").DocumentReferenceLike<unknown>[];
+                    questions: import("../..").DocumentReferenceLike<unknown>[];
+                    trigger: {
+                        hour: number;
+                        minute: number;
+                        weekdays: number[];
+                    };
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    description?: string | undefined;
+                    ordinal?: number | undefined;
+                    summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    lastUsedAt?: import("../../types").Timestamp | undefined;
+                    deletedAt?: import("../../types").Timestamp | undefined;
+                }, {
+                    type: "time";
+                    name: string;
+                    tactics: import("../..").DocumentReferenceLike<unknown>[];
+                    trigger: {
+                        hour: number;
+                        minute: number;
+                        weekdays: number[];
+                    };
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    description?: string | undefined;
+                    ordinal?: number | undefined;
+                    summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                    lastUsedAt?: import("../../types").Timestamp | undefined;
+                    deletedAt?: import("../../types").Timestamp | undefined;
+                }>>, z.ZodIntersection<z.ZodObject<{
+                    id: z.ZodString;
+                    _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
+                }, "strip", z.ZodTypeAny, {
+                    id: string;
+                    _ref: import("../..").DocumentReferenceLike<unknown>;
+                }, {
+                    id: string;
+                    _ref: import("../..").DocumentReferenceLike<unknown>;
+                }>, z.ZodObject<{
+                    id: z.ZodOptional<z.ZodString>;
+                    name: z.ZodString;
+                    description: z.ZodOptional<z.ZodString>;
+                    type: z.ZodType<"location", z.ZodTypeDef, "location">;
+                    ordinal: z.ZodOptional<z.ZodNumber>;
+                    isTemplate: z.ZodOptional<z.ZodBoolean>;
+                    summary: z.ZodOptional<z.ZodString>;
+                    tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+                    questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
+                    lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                } & {
+                    trigger: z.ZodObject<{
+                        locationName: z.ZodString;
+                        triggerType: z.ZodEnum<["arrival", "departure"]>;
+                        latitude: z.ZodNumber;
+                        longitude: z.ZodNumber;
+                    }, "strip", z.ZodTypeAny, {
+                        locationName: string;
+                        triggerType: "arrival" | "departure";
+                        latitude: number;
+                        longitude: number;
+                    }, {
+                        locationName: string;
+                        triggerType: "arrival" | "departure";
+                        latitude: number;
+                        longitude: number;
+                    }>;
+                }, z.UnknownKeysParam, z.ZodTypeAny, {
+                    type: "location";
+                    name: string;
+                    tactics: import("../..").DocumentReferenceLike<unknown>[];
+                    questions: import("../..").DocumentReferenceLike<unknown>[];
+                    trigger: {
+                        locationName: string;
+                        triggerType: "arrival" | "departure";
+                        latitude: number;
+                        longitude: number;
+                    };
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    description?: string | undefined;
+                    ordinal?: number | undefined;
+                    summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    lastUsedAt?: import("../../types").Timestamp | undefined;
+                    deletedAt?: import("../../types").Timestamp | undefined;
+                }, {
+                    type: "location";
+                    name: string;
+                    tactics: import("../..").DocumentReferenceLike<unknown>[];
+                    trigger: {
+                        locationName: string;
+                        triggerType: "arrival" | "departure";
+                        latitude: number;
+                        longitude: number;
+                    };
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    description?: string | undefined;
+                    ordinal?: number | undefined;
+                    summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                    lastUsedAt?: import("../../types").Timestamp | undefined;
+                    deletedAt?: import("../../types").Timestamp | undefined;
+                }>>]>;
+                tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+            }, "strip", z.ZodTypeAny, {
+                plan: ({
+                    id: string;
+                    _ref: import("../..").DocumentReferenceLike<unknown>;
+                } & {
+                    type: "impulse";
+                    behaviorId: string;
+                    name: string;
+                    tactics: import("../..").DocumentReferenceLike<unknown>[];
+                    questions: import("../..").DocumentReferenceLike<unknown>[];
+                    behaviorRef: import("../..").DocumentReferenceLike<unknown>;
+                    isActive: boolean;
+                    numberOfUses: number;
+                    numberOfSuccesses: number;
+                    numberOfSetbacks: number;
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    description?: string | undefined;
+                    ordinal?: number | undefined;
+                    summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    lastUsedAt?: import("../../types").Timestamp | undefined;
+                    deletedAt?: import("../../types").Timestamp | undefined;
+                }) | ({
+                    id: string;
+                    _ref: import("../..").DocumentReferenceLike<unknown>;
+                } & {
+                    type: "time";
+                    name: string;
+                    tactics: import("../..").DocumentReferenceLike<unknown>[];
+                    questions: import("../..").DocumentReferenceLike<unknown>[];
+                    trigger: {
+                        hour: number;
+                        minute: number;
+                        weekdays: number[];
+                    };
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    description?: string | undefined;
+                    ordinal?: number | undefined;
+                    summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    lastUsedAt?: import("../../types").Timestamp | undefined;
+                    deletedAt?: import("../../types").Timestamp | undefined;
+                }) | ({
+                    id: string;
+                    _ref: import("../..").DocumentReferenceLike<unknown>;
+                } & {
+                    type: "location";
+                    name: string;
+                    tactics: import("../..").DocumentReferenceLike<unknown>[];
+                    questions: import("../..").DocumentReferenceLike<unknown>[];
+                    trigger: {
+                        locationName: string;
+                        triggerType: "arrival" | "departure";
+                        latitude: number;
+                        longitude: number;
+                    };
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    description?: string | undefined;
+                    ordinal?: number | undefined;
+                    summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    lastUsedAt?: import("../../types").Timestamp | undefined;
+                    deletedAt?: import("../../types").Timestamp | undefined;
+                });
+                planId: string;
+                tacticsByPath?: Record<string, any> | undefined;
+            }, {
+                plan: ({
+                    id: string;
+                    _ref: import("../..").DocumentReferenceLike<unknown>;
+                } & {
+                    type: "impulse";
+                    behaviorId: string;
+                    name: string;
+                    tactics: import("../..").DocumentReferenceLike<unknown>[];
+                    behaviorRef: import("../..").DocumentReferenceLike<unknown>;
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    description?: string | undefined;
+                    ordinal?: number | undefined;
+                    summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                    lastUsedAt?: import("../../types").Timestamp | undefined;
+                    deletedAt?: import("../../types").Timestamp | undefined;
+                    isActive?: boolean | undefined;
+                    numberOfUses?: number | undefined;
+                    numberOfSuccesses?: number | undefined;
+                    numberOfSetbacks?: number | undefined;
+                }) | ({
+                    id: string;
+                    _ref: import("../..").DocumentReferenceLike<unknown>;
+                } & {
+                    type: "time";
+                    name: string;
+                    tactics: import("../..").DocumentReferenceLike<unknown>[];
+                    trigger: {
+                        hour: number;
+                        minute: number;
+                        weekdays: number[];
+                    };
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    description?: string | undefined;
+                    ordinal?: number | undefined;
+                    summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                    lastUsedAt?: import("../../types").Timestamp | undefined;
+                    deletedAt?: import("../../types").Timestamp | undefined;
+                }) | ({
+                    id: string;
+                    _ref: import("../..").DocumentReferenceLike<unknown>;
+                } & {
+                    type: "location";
+                    name: string;
+                    tactics: import("../..").DocumentReferenceLike<unknown>[];
+                    trigger: {
+                        locationName: string;
+                        triggerType: "arrival" | "departure";
+                        latitude: number;
+                        longitude: number;
+                    };
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    description?: string | undefined;
+                    ordinal?: number | undefined;
+                    summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                    lastUsedAt?: import("../../types").Timestamp | undefined;
+                    deletedAt?: import("../../types").Timestamp | undefined;
+                });
+                planId: string;
+                tacticsByPath?: Record<string, any> | undefined;
+            }>, "many">;
+            activeIndex: z.ZodDefault<z.ZodNumber>;
+            acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        }, "strip", z.ZodTypeAny, {
+            behaviorId: string;
+            plans: {
+                plan: ({
+                    id: string;
+                    _ref: import("../..").DocumentReferenceLike<unknown>;
+                } & {
+                    type: "impulse";
+                    behaviorId: string;
+                    name: string;
+                    tactics: import("../..").DocumentReferenceLike<unknown>[];
+                    questions: import("../..").DocumentReferenceLike<unknown>[];
+                    behaviorRef: import("../..").DocumentReferenceLike<unknown>;
+                    isActive: boolean;
+                    numberOfUses: number;
+                    numberOfSuccesses: number;
+                    numberOfSetbacks: number;
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    description?: string | undefined;
+                    ordinal?: number | undefined;
+                    summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    lastUsedAt?: import("../../types").Timestamp | undefined;
+                    deletedAt?: import("../../types").Timestamp | undefined;
+                }) | ({
+                    id: string;
+                    _ref: import("../..").DocumentReferenceLike<unknown>;
+                } & {
+                    type: "time";
+                    name: string;
+                    tactics: import("../..").DocumentReferenceLike<unknown>[];
+                    questions: import("../..").DocumentReferenceLike<unknown>[];
+                    trigger: {
+                        hour: number;
+                        minute: number;
+                        weekdays: number[];
+                    };
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    description?: string | undefined;
+                    ordinal?: number | undefined;
+                    summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    lastUsedAt?: import("../../types").Timestamp | undefined;
+                    deletedAt?: import("../../types").Timestamp | undefined;
+                }) | ({
+                    id: string;
+                    _ref: import("../..").DocumentReferenceLike<unknown>;
+                } & {
+                    type: "location";
+                    name: string;
+                    tactics: import("../..").DocumentReferenceLike<unknown>[];
+                    questions: import("../..").DocumentReferenceLike<unknown>[];
+                    trigger: {
+                        locationName: string;
+                        triggerType: "arrival" | "departure";
+                        latitude: number;
+                        longitude: number;
+                    };
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    description?: string | undefined;
+                    ordinal?: number | undefined;
+                    summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    lastUsedAt?: import("../../types").Timestamp | undefined;
+                    deletedAt?: import("../../types").Timestamp | undefined;
+                });
+                planId: string;
+                tacticsByPath?: Record<string, any> | undefined;
+            }[];
+            activeIndex: number;
+            acceptedAt?: import("../../types").Timestamp | undefined;
+        }, {
+            behaviorId: string;
+            plans: {
+                plan: ({
+                    id: string;
+                    _ref: import("../..").DocumentReferenceLike<unknown>;
+                } & {
+                    type: "impulse";
+                    behaviorId: string;
+                    name: string;
+                    tactics: import("../..").DocumentReferenceLike<unknown>[];
+                    behaviorRef: import("../..").DocumentReferenceLike<unknown>;
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    description?: string | undefined;
+                    ordinal?: number | undefined;
+                    summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                    lastUsedAt?: import("../../types").Timestamp | undefined;
+                    deletedAt?: import("../../types").Timestamp | undefined;
+                    isActive?: boolean | undefined;
+                    numberOfUses?: number | undefined;
+                    numberOfSuccesses?: number | undefined;
+                    numberOfSetbacks?: number | undefined;
+                }) | ({
+                    id: string;
+                    _ref: import("../..").DocumentReferenceLike<unknown>;
+                } & {
+                    type: "time";
+                    name: string;
+                    tactics: import("../..").DocumentReferenceLike<unknown>[];
+                    trigger: {
+                        hour: number;
+                        minute: number;
+                        weekdays: number[];
+                    };
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    description?: string | undefined;
+                    ordinal?: number | undefined;
+                    summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                    lastUsedAt?: import("../../types").Timestamp | undefined;
+                    deletedAt?: import("../../types").Timestamp | undefined;
+                }) | ({
+                    id: string;
+                    _ref: import("../..").DocumentReferenceLike<unknown>;
+                } & {
+                    type: "location";
+                    name: string;
+                    tactics: import("../..").DocumentReferenceLike<unknown>[];
+                    trigger: {
+                        locationName: string;
+                        triggerType: "arrival" | "departure";
+                        latitude: number;
+                        longitude: number;
+                    };
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    description?: string | undefined;
+                    ordinal?: number | undefined;
+                    summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                    lastUsedAt?: import("../../types").Timestamp | undefined;
+                    deletedAt?: import("../../types").Timestamp | undefined;
+                });
+                planId: string;
+                tacticsByPath?: Record<string, any> | undefined;
+            }[];
+            acceptedAt?: import("../../types").Timestamp | undefined;
+            activeIndex?: number | undefined;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "plans";
+        userId: string;
+        dateString: string;
+        isDisplayable: true;
+        data: {
+            behaviorId: string;
+            plans: {
+                plan: ({
+                    id: string;
+                    _ref: import("../..").DocumentReferenceLike<unknown>;
+                } & {
+                    type: "impulse";
+                    behaviorId: string;
+                    name: string;
+                    tactics: import("../..").DocumentReferenceLike<unknown>[];
+                    questions: import("../..").DocumentReferenceLike<unknown>[];
+                    behaviorRef: import("../..").DocumentReferenceLike<unknown>;
+                    isActive: boolean;
+                    numberOfUses: number;
+                    numberOfSuccesses: number;
+                    numberOfSetbacks: number;
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    description?: string | undefined;
+                    ordinal?: number | undefined;
+                    summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    lastUsedAt?: import("../../types").Timestamp | undefined;
+                    deletedAt?: import("../../types").Timestamp | undefined;
+                }) | ({
+                    id: string;
+                    _ref: import("../..").DocumentReferenceLike<unknown>;
+                } & {
+                    type: "time";
+                    name: string;
+                    tactics: import("../..").DocumentReferenceLike<unknown>[];
+                    questions: import("../..").DocumentReferenceLike<unknown>[];
+                    trigger: {
+                        hour: number;
+                        minute: number;
+                        weekdays: number[];
+                    };
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    description?: string | undefined;
+                    ordinal?: number | undefined;
+                    summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    lastUsedAt?: import("../../types").Timestamp | undefined;
+                    deletedAt?: import("../../types").Timestamp | undefined;
+                }) | ({
+                    id: string;
+                    _ref: import("../..").DocumentReferenceLike<unknown>;
+                } & {
+                    type: "location";
+                    name: string;
+                    tactics: import("../..").DocumentReferenceLike<unknown>[];
+                    questions: import("../..").DocumentReferenceLike<unknown>[];
+                    trigger: {
+                        locationName: string;
+                        triggerType: "arrival" | "departure";
+                        latitude: number;
+                        longitude: number;
+                    };
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    description?: string | undefined;
+                    ordinal?: number | undefined;
+                    summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    lastUsedAt?: import("../../types").Timestamp | undefined;
+                    deletedAt?: import("../../types").Timestamp | undefined;
+                });
+                planId: string;
+                tacticsByPath?: Record<string, any> | undefined;
+            }[];
+            activeIndex: number;
+            acceptedAt?: import("../../types").Timestamp | undefined;
+        };
+        id?: string | undefined;
+        timestamp?: import("../../types").Timestamp | undefined;
+        tacticId?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "plans";
+        userId: string;
+        dateString: string;
+        isDisplayable: true;
+        data: {
+            behaviorId: string;
+            plans: {
+                plan: ({
+                    id: string;
+                    _ref: import("../..").DocumentReferenceLike<unknown>;
+                } & {
+                    type: "impulse";
+                    behaviorId: string;
+                    name: string;
+                    tactics: import("../..").DocumentReferenceLike<unknown>[];
+                    behaviorRef: import("../..").DocumentReferenceLike<unknown>;
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    description?: string | undefined;
+                    ordinal?: number | undefined;
+                    summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                    lastUsedAt?: import("../../types").Timestamp | undefined;
+                    deletedAt?: import("../../types").Timestamp | undefined;
+                    isActive?: boolean | undefined;
+                    numberOfUses?: number | undefined;
+                    numberOfSuccesses?: number | undefined;
+                    numberOfSetbacks?: number | undefined;
+                }) | ({
+                    id: string;
+                    _ref: import("../..").DocumentReferenceLike<unknown>;
+                } & {
+                    type: "time";
+                    name: string;
+                    tactics: import("../..").DocumentReferenceLike<unknown>[];
+                    trigger: {
+                        hour: number;
+                        minute: number;
+                        weekdays: number[];
+                    };
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    description?: string | undefined;
+                    ordinal?: number | undefined;
+                    summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                    lastUsedAt?: import("../../types").Timestamp | undefined;
+                    deletedAt?: import("../../types").Timestamp | undefined;
+                }) | ({
+                    id: string;
+                    _ref: import("../..").DocumentReferenceLike<unknown>;
+                } & {
+                    type: "location";
+                    name: string;
+                    tactics: import("../..").DocumentReferenceLike<unknown>[];
+                    trigger: {
+                        locationName: string;
+                        triggerType: "arrival" | "departure";
+                        latitude: number;
+                        longitude: number;
+                    };
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    description?: string | undefined;
+                    ordinal?: number | undefined;
+                    summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
+                    questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                    lastUsedAt?: import("../../types").Timestamp | undefined;
+                    deletedAt?: import("../../types").Timestamp | undefined;
+                });
+                planId: string;
+                tacticsByPath?: Record<string, any> | undefined;
+            }[];
+            acceptedAt?: import("../../types").Timestamp | undefined;
+            activeIndex?: number | undefined;
+        };
+        id?: string | undefined;
+        timestamp?: import("../../types").Timestamp | undefined;
+        tacticId?: string | undefined;
+        callLogDocPath?: string | undefined;
+    }>;
     summary: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -12257,10 +12982,16 @@ export declare const logSchemas: {
         type: z.ZodLiteral<"debriefUrge">;
         isDisplayable: z.ZodLiteral<true>;
         data: z.ZodObject<{
+            debriefAfter: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+            debriefedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             actedOnUrge: z.ZodOptional<z.ZodBoolean>;
         }, "strip", z.ZodTypeAny, {
+            debriefAfter: import("../../types").Timestamp;
+            debriefedAt?: import("../../types").Timestamp | undefined;
             actedOnUrge?: boolean | undefined;
         }, {
+            debriefAfter: import("../../types").Timestamp;
+            debriefedAt?: import("../../types").Timestamp | undefined;
             actedOnUrge?: boolean | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
@@ -12271,6 +13002,8 @@ export declare const logSchemas: {
         dateString: string;
         isDisplayable: true;
         data: {
+            debriefAfter: import("../../types").Timestamp;
+            debriefedAt?: import("../../types").Timestamp | undefined;
             actedOnUrge?: boolean | undefined;
         };
         id?: string | undefined;
@@ -12285,6 +13018,8 @@ export declare const logSchemas: {
         dateString: string;
         isDisplayable: true;
         data: {
+            debriefAfter: import("../../types").Timestamp;
+            debriefedAt?: import("../../types").Timestamp | undefined;
             actedOnUrge?: boolean | undefined;
         };
         id?: string | undefined;
@@ -12295,7 +13030,7 @@ export declare const logSchemas: {
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | TacticStepLog | TacticSuggestionLog | ImpulseLog | BehaviorLog | BreathingLog | ResistedLog | QuestionLog | PlanLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | ReadyToDebriefLog | SuggestedTacticsLog | SupportGroupDaySummaryLog | DebriefUrgeLog;
+export type Log = TacticLog | TacticStepLog | TacticSuggestionLog | ImpulseLog | BehaviorLog | BreathingLog | ResistedLog | QuestionLog | PlanLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | ReadyToDebriefLog | SuggestedTacticsLog | SupportGroupDaySummaryLog | DebriefUrgeLog;
 export * from "./behaviorLog";
 export * from "./breathingLog";
 export * from "./callLog";
@@ -12305,6 +13040,7 @@ export * from "./linkLog";
 export * from "./messageLog";
 export * from "./notifySupportGroupLog";
 export * from "./planLog";
+export * from "./plansLog";
 export * from "./questionLog";
 export * from "./readyToDebriefLog";
 export * from "./resistedLog";
@@ -20085,6 +20821,729 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     tacticId: z.ZodOptional<z.ZodString>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
+    type: z.ZodLiteral<"plans">;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        behaviorId: z.ZodString;
+        plans: z.ZodArray<z.ZodObject<{
+            planId: z.ZodString;
+            plan: z.ZodUnion<[z.ZodIntersection<z.ZodObject<{
+                id: z.ZodString;
+                _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
+            }, "strip", z.ZodTypeAny, {
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            }, {
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            }>, z.ZodObject<{
+                id: z.ZodOptional<z.ZodString>;
+                name: z.ZodString;
+                description: z.ZodOptional<z.ZodString>;
+                type: z.ZodType<"impulse", z.ZodTypeDef, "impulse">;
+                ordinal: z.ZodOptional<z.ZodNumber>;
+                isTemplate: z.ZodOptional<z.ZodBoolean>;
+                summary: z.ZodOptional<z.ZodString>;
+                tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+                questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
+                createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            } & {
+                behaviorId: z.ZodString;
+                behaviorRef: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
+                isActive: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+                lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                numberOfUses: z.ZodDefault<z.ZodNumber>;
+                numberOfSuccesses: z.ZodDefault<z.ZodNumber>;
+                numberOfSetbacks: z.ZodDefault<z.ZodNumber>;
+            }, z.UnknownKeysParam, z.ZodTypeAny, {
+                type: "impulse";
+                behaviorId: string;
+                name: string;
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
+                questions: import("../..").DocumentReferenceLike<unknown>[];
+                behaviorRef: import("../..").DocumentReferenceLike<unknown>;
+                isActive: boolean;
+                numberOfUses: number;
+                numberOfSuccesses: number;
+                numberOfSetbacks: number;
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                description?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                lastUsedAt?: import("../../types").Timestamp | undefined;
+                deletedAt?: import("../../types").Timestamp | undefined;
+            }, {
+                type: "impulse";
+                behaviorId: string;
+                name: string;
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
+                behaviorRef: import("../..").DocumentReferenceLike<unknown>;
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                description?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                lastUsedAt?: import("../../types").Timestamp | undefined;
+                deletedAt?: import("../../types").Timestamp | undefined;
+                isActive?: boolean | undefined;
+                numberOfUses?: number | undefined;
+                numberOfSuccesses?: number | undefined;
+                numberOfSetbacks?: number | undefined;
+            }>>, z.ZodIntersection<z.ZodObject<{
+                id: z.ZodString;
+                _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
+            }, "strip", z.ZodTypeAny, {
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            }, {
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            }>, z.ZodObject<{
+                id: z.ZodOptional<z.ZodString>;
+                name: z.ZodString;
+                description: z.ZodOptional<z.ZodString>;
+                type: z.ZodType<"time", z.ZodTypeDef, "time">;
+                ordinal: z.ZodOptional<z.ZodNumber>;
+                isTemplate: z.ZodOptional<z.ZodBoolean>;
+                summary: z.ZodOptional<z.ZodString>;
+                tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+                questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
+                lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            } & {
+                trigger: z.ZodObject<{
+                    hour: z.ZodNumber;
+                    minute: z.ZodNumber;
+                    weekdays: z.ZodArray<z.ZodNumber, "many">;
+                }, "strip", z.ZodTypeAny, {
+                    hour: number;
+                    minute: number;
+                    weekdays: number[];
+                }, {
+                    hour: number;
+                    minute: number;
+                    weekdays: number[];
+                }>;
+            }, z.UnknownKeysParam, z.ZodTypeAny, {
+                type: "time";
+                name: string;
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
+                questions: import("../..").DocumentReferenceLike<unknown>[];
+                trigger: {
+                    hour: number;
+                    minute: number;
+                    weekdays: number[];
+                };
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                description?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                lastUsedAt?: import("../../types").Timestamp | undefined;
+                deletedAt?: import("../../types").Timestamp | undefined;
+            }, {
+                type: "time";
+                name: string;
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
+                trigger: {
+                    hour: number;
+                    minute: number;
+                    weekdays: number[];
+                };
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                description?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                lastUsedAt?: import("../../types").Timestamp | undefined;
+                deletedAt?: import("../../types").Timestamp | undefined;
+            }>>, z.ZodIntersection<z.ZodObject<{
+                id: z.ZodString;
+                _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
+            }, "strip", z.ZodTypeAny, {
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            }, {
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            }>, z.ZodObject<{
+                id: z.ZodOptional<z.ZodString>;
+                name: z.ZodString;
+                description: z.ZodOptional<z.ZodString>;
+                type: z.ZodType<"location", z.ZodTypeDef, "location">;
+                ordinal: z.ZodOptional<z.ZodNumber>;
+                isTemplate: z.ZodOptional<z.ZodBoolean>;
+                summary: z.ZodOptional<z.ZodString>;
+                tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+                questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
+                lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            } & {
+                trigger: z.ZodObject<{
+                    locationName: z.ZodString;
+                    triggerType: z.ZodEnum<["arrival", "departure"]>;
+                    latitude: z.ZodNumber;
+                    longitude: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    locationName: string;
+                    triggerType: "arrival" | "departure";
+                    latitude: number;
+                    longitude: number;
+                }, {
+                    locationName: string;
+                    triggerType: "arrival" | "departure";
+                    latitude: number;
+                    longitude: number;
+                }>;
+            }, z.UnknownKeysParam, z.ZodTypeAny, {
+                type: "location";
+                name: string;
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
+                questions: import("../..").DocumentReferenceLike<unknown>[];
+                trigger: {
+                    locationName: string;
+                    triggerType: "arrival" | "departure";
+                    latitude: number;
+                    longitude: number;
+                };
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                description?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                lastUsedAt?: import("../../types").Timestamp | undefined;
+                deletedAt?: import("../../types").Timestamp | undefined;
+            }, {
+                type: "location";
+                name: string;
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
+                trigger: {
+                    locationName: string;
+                    triggerType: "arrival" | "departure";
+                    latitude: number;
+                    longitude: number;
+                };
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                description?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                lastUsedAt?: import("../../types").Timestamp | undefined;
+                deletedAt?: import("../../types").Timestamp | undefined;
+            }>>]>;
+            tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+        }, "strip", z.ZodTypeAny, {
+            plan: ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "impulse";
+                behaviorId: string;
+                name: string;
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
+                questions: import("../..").DocumentReferenceLike<unknown>[];
+                behaviorRef: import("../..").DocumentReferenceLike<unknown>;
+                isActive: boolean;
+                numberOfUses: number;
+                numberOfSuccesses: number;
+                numberOfSetbacks: number;
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                description?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                lastUsedAt?: import("../../types").Timestamp | undefined;
+                deletedAt?: import("../../types").Timestamp | undefined;
+            }) | ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "time";
+                name: string;
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
+                questions: import("../..").DocumentReferenceLike<unknown>[];
+                trigger: {
+                    hour: number;
+                    minute: number;
+                    weekdays: number[];
+                };
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                description?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                lastUsedAt?: import("../../types").Timestamp | undefined;
+                deletedAt?: import("../../types").Timestamp | undefined;
+            }) | ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "location";
+                name: string;
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
+                questions: import("../..").DocumentReferenceLike<unknown>[];
+                trigger: {
+                    locationName: string;
+                    triggerType: "arrival" | "departure";
+                    latitude: number;
+                    longitude: number;
+                };
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                description?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                lastUsedAt?: import("../../types").Timestamp | undefined;
+                deletedAt?: import("../../types").Timestamp | undefined;
+            });
+            planId: string;
+            tacticsByPath?: Record<string, any> | undefined;
+        }, {
+            plan: ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "impulse";
+                behaviorId: string;
+                name: string;
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
+                behaviorRef: import("../..").DocumentReferenceLike<unknown>;
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                description?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                lastUsedAt?: import("../../types").Timestamp | undefined;
+                deletedAt?: import("../../types").Timestamp | undefined;
+                isActive?: boolean | undefined;
+                numberOfUses?: number | undefined;
+                numberOfSuccesses?: number | undefined;
+                numberOfSetbacks?: number | undefined;
+            }) | ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "time";
+                name: string;
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
+                trigger: {
+                    hour: number;
+                    minute: number;
+                    weekdays: number[];
+                };
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                description?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                lastUsedAt?: import("../../types").Timestamp | undefined;
+                deletedAt?: import("../../types").Timestamp | undefined;
+            }) | ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "location";
+                name: string;
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
+                trigger: {
+                    locationName: string;
+                    triggerType: "arrival" | "departure";
+                    latitude: number;
+                    longitude: number;
+                };
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                description?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                lastUsedAt?: import("../../types").Timestamp | undefined;
+                deletedAt?: import("../../types").Timestamp | undefined;
+            });
+            planId: string;
+            tacticsByPath?: Record<string, any> | undefined;
+        }>, "many">;
+        activeIndex: z.ZodDefault<z.ZodNumber>;
+        acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    }, "strip", z.ZodTypeAny, {
+        behaviorId: string;
+        plans: {
+            plan: ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "impulse";
+                behaviorId: string;
+                name: string;
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
+                questions: import("../..").DocumentReferenceLike<unknown>[];
+                behaviorRef: import("../..").DocumentReferenceLike<unknown>;
+                isActive: boolean;
+                numberOfUses: number;
+                numberOfSuccesses: number;
+                numberOfSetbacks: number;
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                description?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                lastUsedAt?: import("../../types").Timestamp | undefined;
+                deletedAt?: import("../../types").Timestamp | undefined;
+            }) | ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "time";
+                name: string;
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
+                questions: import("../..").DocumentReferenceLike<unknown>[];
+                trigger: {
+                    hour: number;
+                    minute: number;
+                    weekdays: number[];
+                };
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                description?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                lastUsedAt?: import("../../types").Timestamp | undefined;
+                deletedAt?: import("../../types").Timestamp | undefined;
+            }) | ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "location";
+                name: string;
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
+                questions: import("../..").DocumentReferenceLike<unknown>[];
+                trigger: {
+                    locationName: string;
+                    triggerType: "arrival" | "departure";
+                    latitude: number;
+                    longitude: number;
+                };
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                description?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                lastUsedAt?: import("../../types").Timestamp | undefined;
+                deletedAt?: import("../../types").Timestamp | undefined;
+            });
+            planId: string;
+            tacticsByPath?: Record<string, any> | undefined;
+        }[];
+        activeIndex: number;
+        acceptedAt?: import("../../types").Timestamp | undefined;
+    }, {
+        behaviorId: string;
+        plans: {
+            plan: ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "impulse";
+                behaviorId: string;
+                name: string;
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
+                behaviorRef: import("../..").DocumentReferenceLike<unknown>;
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                description?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                lastUsedAt?: import("../../types").Timestamp | undefined;
+                deletedAt?: import("../../types").Timestamp | undefined;
+                isActive?: boolean | undefined;
+                numberOfUses?: number | undefined;
+                numberOfSuccesses?: number | undefined;
+                numberOfSetbacks?: number | undefined;
+            }) | ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "time";
+                name: string;
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
+                trigger: {
+                    hour: number;
+                    minute: number;
+                    weekdays: number[];
+                };
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                description?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                lastUsedAt?: import("../../types").Timestamp | undefined;
+                deletedAt?: import("../../types").Timestamp | undefined;
+            }) | ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "location";
+                name: string;
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
+                trigger: {
+                    locationName: string;
+                    triggerType: "arrival" | "departure";
+                    latitude: number;
+                    longitude: number;
+                };
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                description?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                lastUsedAt?: import("../../types").Timestamp | undefined;
+                deletedAt?: import("../../types").Timestamp | undefined;
+            });
+            planId: string;
+            tacticsByPath?: Record<string, any> | undefined;
+        }[];
+        acceptedAt?: import("../../types").Timestamp | undefined;
+        activeIndex?: number | undefined;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "plans";
+    userId: string;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        behaviorId: string;
+        plans: {
+            plan: ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "impulse";
+                behaviorId: string;
+                name: string;
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
+                questions: import("../..").DocumentReferenceLike<unknown>[];
+                behaviorRef: import("../..").DocumentReferenceLike<unknown>;
+                isActive: boolean;
+                numberOfUses: number;
+                numberOfSuccesses: number;
+                numberOfSetbacks: number;
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                description?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                lastUsedAt?: import("../../types").Timestamp | undefined;
+                deletedAt?: import("../../types").Timestamp | undefined;
+            }) | ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "time";
+                name: string;
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
+                questions: import("../..").DocumentReferenceLike<unknown>[];
+                trigger: {
+                    hour: number;
+                    minute: number;
+                    weekdays: number[];
+                };
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                description?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                lastUsedAt?: import("../../types").Timestamp | undefined;
+                deletedAt?: import("../../types").Timestamp | undefined;
+            }) | ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "location";
+                name: string;
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
+                questions: import("../..").DocumentReferenceLike<unknown>[];
+                trigger: {
+                    locationName: string;
+                    triggerType: "arrival" | "departure";
+                    latitude: number;
+                    longitude: number;
+                };
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                description?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                lastUsedAt?: import("../../types").Timestamp | undefined;
+                deletedAt?: import("../../types").Timestamp | undefined;
+            });
+            planId: string;
+            tacticsByPath?: Record<string, any> | undefined;
+        }[];
+        activeIndex: number;
+        acceptedAt?: import("../../types").Timestamp | undefined;
+    };
+    id?: string | undefined;
+    timestamp?: import("../../types").Timestamp | undefined;
+    tacticId?: string | undefined;
+    callLogDocPath?: string | undefined;
+}, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "plans";
+    userId: string;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        behaviorId: string;
+        plans: {
+            plan: ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "impulse";
+                behaviorId: string;
+                name: string;
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
+                behaviorRef: import("../..").DocumentReferenceLike<unknown>;
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                description?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                lastUsedAt?: import("../../types").Timestamp | undefined;
+                deletedAt?: import("../../types").Timestamp | undefined;
+                isActive?: boolean | undefined;
+                numberOfUses?: number | undefined;
+                numberOfSuccesses?: number | undefined;
+                numberOfSetbacks?: number | undefined;
+            }) | ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "time";
+                name: string;
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
+                trigger: {
+                    hour: number;
+                    minute: number;
+                    weekdays: number[];
+                };
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                description?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                lastUsedAt?: import("../../types").Timestamp | undefined;
+                deletedAt?: import("../../types").Timestamp | undefined;
+            }) | ({
+                id: string;
+                _ref: import("../..").DocumentReferenceLike<unknown>;
+            } & {
+                type: "location";
+                name: string;
+                tactics: import("../..").DocumentReferenceLike<unknown>[];
+                trigger: {
+                    locationName: string;
+                    triggerType: "arrival" | "departure";
+                    latitude: number;
+                    longitude: number;
+                };
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                description?: string | undefined;
+                ordinal?: number | undefined;
+                summary?: string | undefined;
+                isTemplate?: boolean | undefined;
+                questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                lastUsedAt?: import("../../types").Timestamp | undefined;
+                deletedAt?: import("../../types").Timestamp | undefined;
+            });
+            planId: string;
+            tacticsByPath?: Record<string, any> | undefined;
+        }[];
+        acceptedAt?: import("../../types").Timestamp | undefined;
+        activeIndex?: number | undefined;
+    };
+    id?: string | undefined;
+    timestamp?: import("../../types").Timestamp | undefined;
+    tacticId?: string | undefined;
+    callLogDocPath?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    dateString: z.ZodString;
+    tacticId: z.ZodOptional<z.ZodString>;
+    callLogDocPath: z.ZodOptional<z.ZodString>;
+} & {
     type: z.ZodLiteral<"summary">;
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
@@ -21811,10 +23270,16 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     type: z.ZodLiteral<"debriefUrge">;
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
+        debriefAfter: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        debriefedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         actedOnUrge: z.ZodOptional<z.ZodBoolean>;
     }, "strip", z.ZodTypeAny, {
+        debriefAfter: import("../../types").Timestamp;
+        debriefedAt?: import("../../types").Timestamp | undefined;
         actedOnUrge?: boolean | undefined;
     }, {
+        debriefAfter: import("../../types").Timestamp;
+        debriefedAt?: import("../../types").Timestamp | undefined;
         actedOnUrge?: boolean | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
@@ -21825,6 +23290,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dateString: string;
     isDisplayable: true;
     data: {
+        debriefAfter: import("../../types").Timestamp;
+        debriefedAt?: import("../../types").Timestamp | undefined;
         actedOnUrge?: boolean | undefined;
     };
     id?: string | undefined;
@@ -21839,6 +23306,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dateString: string;
     isDisplayable: true;
     data: {
+        debriefAfter: import("../../types").Timestamp;
+        debriefedAt?: import("../../types").Timestamp | undefined;
         actedOnUrge?: boolean | undefined;
     };
     id?: string | undefined;
@@ -21874,6 +23343,8 @@ export declare const logIsUserMessageLog: (value: Omit<Log, "id">) => value is U
 export declare const isValidUserMessageLog: (value: unknown) => value is UserMessageLog;
 export declare const logIsPlanLog: (value: Omit<Log, "id">) => value is PlanLog;
 export declare const isValidPlanLog: (value: unknown) => value is PlanLog;
+export declare const logIsPlansLog: (value: Omit<Log, "id">) => value is PlansLog;
+export declare const isValidPlansLog: (value: unknown) => value is PlansLog;
 export declare const logIsSummaryLog: (value: Omit<Log, "id">) => value is SummaryLog;
 export declare const isValidSummaryLog: (value: unknown) => value is SummaryLog;
 export declare const logIsLinkLog: (value: Omit<Log, "id">) => value is LinkLog;

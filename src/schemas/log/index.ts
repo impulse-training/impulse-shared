@@ -19,6 +19,7 @@ import {
   notifySupportGroupLogSchema,
 } from "./notifySupportGroupLog";
 import { PlanLog, planLogSchema } from "./planLog";
+import { PlansLog, plansLogSchema } from "./plansLog";
 import { QuestionLog, questionLogSchema } from "./questionLog";
 import {
   ReadyToDebriefLog,
@@ -61,6 +62,7 @@ export const logSchemas = {
   outcome: resistedLogSchema,
   question: questionLogSchema,
   plan: planLogSchema,
+  plans: plansLogSchema,
   summary: summaryLogSchema,
   widget_setup: widgetSetupLogSchema,
   show_tour: showTourLogSchema,
@@ -87,6 +89,7 @@ export type Log =
   | ResistedLog
   | QuestionLog
   | PlanLog
+  | PlansLog
   | ToolCallLog
   | MessageLog
   | SummaryLog
@@ -111,6 +114,7 @@ export * from "./linkLog";
 export * from "./messageLog";
 export * from "./notifySupportGroupLog";
 export * from "./planLog";
+export * from "./plansLog";
 export * from "./questionLog";
 export * from "./readyToDebriefLog";
 export * from "./resistedLog";
@@ -141,6 +145,7 @@ export const logSchema = z.discriminatedUnion("type", [
   resistedLogSchema,
   questionLogSchema,
   planLogSchema,
+  plansLogSchema,
   summaryLogSchema,
   widgetSetupLogSchema,
   showTourLogSchema,
@@ -261,6 +266,13 @@ export const logIsPlanLog = (value: Omit<Log, "id">): value is PlanLog =>
 
 export const isValidPlanLog = (value: unknown): value is PlanLog => {
   return planLogSchema.safeParse(value).success;
+};
+
+export const logIsPlansLog = (value: Omit<Log, "id">): value is PlansLog =>
+  value.type === "plans";
+
+export const isValidPlansLog = (value: unknown): value is PlansLog => {
+  return plansLogSchema.safeParse(value).success;
 };
 
 export const logIsSummaryLog = (value: Omit<Log, "id">): value is SummaryLog =>
