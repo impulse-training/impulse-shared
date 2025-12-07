@@ -25,6 +25,7 @@ const text_1 = require("./text");
 __exportStar(require("./behaviorSelection"), exports);
 __exportStar(require("./emotion"), exports);
 __exportStar(require("./recap"), exports);
+__exportStar(require("./responseSummary"), exports);
 __exportStar(require("./shortText"), exports);
 __exportStar(require("./slider1To10"), exports);
 __exportStar(require("./text"), exports);

@@ -349,12 +349,12 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         } | undefined;
     }>>>;
 }, "strip", z.ZodTypeAny, {
+    summaryText: string;
     behaviorTotals: Record<string, {
         value: number;
         behaviorName: string;
         formattedValue: string;
     }>;
-    summaryText: string;
     goalComparisonByBehaviorId?: Record<string, {
         status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY" | "NO_GOAL";
         goalLabel: string;
@@ -412,12 +412,12 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         } | undefined;
     }> | undefined;
 }, {
+    summaryText: string;
     behaviorTotals: Record<string, {
         value: number;
         behaviorName: string;
         formattedValue: string;
     }>;
-    summaryText: string;
     goalComparisonByBehaviorId?: Record<string, {
         status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY" | "NO_GOAL";
         goalLabel: string;

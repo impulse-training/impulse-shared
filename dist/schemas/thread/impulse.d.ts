@@ -2241,6 +2241,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         deletedAt?: import("../../types").Timestamp | undefined;
     }) | undefined;
     tacticsByPath?: Record<string, any> | undefined;
+    summarizedAt?: import("../../types").Timestamp | undefined;
     isSuccess?: boolean | undefined;
     currentTactic?: {
         createdAt: import("../../types").Timestamp;
@@ -2522,7 +2523,6 @@ export declare const impulseThreadSchema: z.ZodObject<{
     defaultSystemPrompt?: string | undefined;
     debriefSystemPrompt?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
-    summarizedAt?: import("../../types").Timestamp | undefined;
     strategyDoc?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown> | undefined;
     allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
     sharingLevels?: {
@@ -2641,6 +2641,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         deletedAt?: import("../../types").Timestamp | undefined;
     }) | undefined;
     tacticsByPath?: Record<string, any> | undefined;
+    summarizedAt?: import("../../types").Timestamp | undefined;
     isSuccess?: boolean | undefined;
     currentTactic?: {
         createdAt: import("../../types").Timestamp;
@@ -2923,7 +2924,6 @@ export declare const impulseThreadSchema: z.ZodObject<{
     defaultSystemPrompt?: string | undefined;
     debriefSystemPrompt?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
-    summarizedAt?: import("../../types").Timestamp | undefined;
     strategyDoc?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown> | undefined;
     allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
     sharingLevels?: {

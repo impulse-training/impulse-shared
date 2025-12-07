@@ -12,6 +12,7 @@ import { TextQuestion, textQuestionSchema } from "./text";
 export * from "./behaviorSelection";
 export * from "./emotion";
 export * from "./recap";
+export * from "./responseSummary";
 export * from "./shortText";
 export * from "./slider1To10";
 export * from "./text";

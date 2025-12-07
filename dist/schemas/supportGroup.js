@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isValidSupportGroup = exports.isValidSupportGroupMember = exports.supportGroupSchema = exports.supportGroupMemberSchema = exports.supportGroupNotificationPreferencesSchema = exports.supportGroupPermissionsSchema = void 0;
 const zod_1 = require("zod");
-const documentReferenceSchema_1 = require("../utils/documentReferenceSchema");
 const objectOf_1 = require("../utils/objectOf");
 const timestampSchema_1 = require("../utils/timestampSchema");
 const attachment_1 = require("./attachment");
@@ -36,7 +35,6 @@ exports.supportGroupSchema = zod_1.z.object({
     unreadMessageCountsById: (0, objectOf_1.objectOf)(zod_1.z.number()),
     memberCount: zod_1.z.number().default(0), // Count of members for easier querying
     image: attachment_1.attachmentSchema,
-    tacticCollections: zod_1.z.array(documentReferenceSchema_1.documentReferenceSchema),
     isPublic: zod_1.z.boolean().optional(),
     isTemplate: zod_1.z.boolean().optional().default(false),
     inviteCode: zod_1.z.string().optional(),

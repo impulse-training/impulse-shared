@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { supportGroupPermissionsSchema, supportGroupNotificationPreferencesSchema } from "./supportGroupPermissions";
-export type { SupportGroupPermissions, SupportGroupNotificationPreferences } from "./supportGroupPermissions";
-export { supportGroupPermissionsSchema, supportGroupNotificationPreferencesSchema };
+export type { SupportGroupPermissions, SupportGroupNotificationPreferences, } from "./supportGroupPermissions";
+export { supportGroupPermissionsSchema, supportGroupNotificationPreferencesSchema, };
 export declare const supportGroupMemberSchema: z.ZodObject<{
     userId: z.ZodString;
     userProfile: z.ZodObject<{
@@ -403,7 +403,6 @@ export declare const supportGroupSchema: z.ZodObject<{
             }[] | undefined;
         } | undefined;
     }>;
-    tacticCollections: z.ZodArray<z.ZodType<import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
     isPublic: z.ZodOptional<z.ZodBoolean>;
     isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     inviteCode: z.ZodOptional<z.ZodString>;
@@ -644,7 +643,6 @@ export declare const supportGroupSchema: z.ZodObject<{
     ownerId: string;
     unreadMessageCountsById: Record<string, number>;
     memberCount: number;
-    tacticCollections: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
     tacticCount: number;
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
@@ -758,7 +756,6 @@ export declare const supportGroupSchema: z.ZodObject<{
     }>;
     ownerId: string;
     unreadMessageCountsById: Record<string, number>;
-    tacticCollections: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;

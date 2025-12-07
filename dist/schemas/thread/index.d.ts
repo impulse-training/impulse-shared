@@ -2247,6 +2247,7 @@ export declare const threadSchemas: {
             deletedAt?: import("../../types").Timestamp | undefined;
         }) | undefined;
         tacticsByPath?: Record<string, any> | undefined;
+        summarizedAt?: import("../../types").Timestamp | undefined;
         currentTactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -2527,7 +2528,6 @@ export declare const threadSchemas: {
         defaultSystemPrompt?: string | undefined;
         debriefSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../../types").Timestamp | undefined;
-        summarizedAt?: import("../../types").Timestamp | undefined;
         strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
         sharingLevels?: {
@@ -2640,6 +2640,7 @@ export declare const threadSchemas: {
             deletedAt?: import("../../types").Timestamp | undefined;
         }) | undefined;
         tacticsByPath?: Record<string, any> | undefined;
+        summarizedAt?: import("../../types").Timestamp | undefined;
         currentTactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -2921,7 +2922,6 @@ export declare const threadSchemas: {
         defaultSystemPrompt?: string | undefined;
         debriefSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../../types").Timestamp | undefined;
-        summarizedAt?: import("../../types").Timestamp | undefined;
         strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
         sharingLevels?: {
@@ -5188,6 +5188,7 @@ export declare const threadSchemas: {
             deletedAt?: import("../../types").Timestamp | undefined;
         }) | undefined;
         tacticsByPath?: Record<string, any> | undefined;
+        summarizedAt?: import("../../types").Timestamp | undefined;
         isSuccess?: boolean | undefined;
         currentTactic?: {
             createdAt: import("../../types").Timestamp;
@@ -5469,7 +5470,6 @@ export declare const threadSchemas: {
         defaultSystemPrompt?: string | undefined;
         debriefSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../../types").Timestamp | undefined;
-        summarizedAt?: import("../../types").Timestamp | undefined;
         strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
         sharingLevels?: {
@@ -5588,6 +5588,7 @@ export declare const threadSchemas: {
             deletedAt?: import("../../types").Timestamp | undefined;
         }) | undefined;
         tacticsByPath?: Record<string, any> | undefined;
+        summarizedAt?: import("../../types").Timestamp | undefined;
         isSuccess?: boolean | undefined;
         currentTactic?: {
             createdAt: import("../../types").Timestamp;
@@ -5870,7 +5871,6 @@ export declare const threadSchemas: {
         defaultSystemPrompt?: string | undefined;
         debriefSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../../types").Timestamp | undefined;
-        summarizedAt?: import("../../types").Timestamp | undefined;
         strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
         sharingLevels?: {
@@ -8130,6 +8130,7 @@ export declare const threadSchemas: {
             deletedAt?: import("../../types").Timestamp | undefined;
         }) | undefined;
         tacticsByPath?: Record<string, any> | undefined;
+        summarizedAt?: import("../../types").Timestamp | undefined;
         currentTactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -8410,7 +8411,6 @@ export declare const threadSchemas: {
         defaultSystemPrompt?: string | undefined;
         debriefSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../../types").Timestamp | undefined;
-        summarizedAt?: import("../../types").Timestamp | undefined;
         strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
         sharingLevels?: {
@@ -8523,6 +8523,7 @@ export declare const threadSchemas: {
             deletedAt?: import("../../types").Timestamp | undefined;
         }) | undefined;
         tacticsByPath?: Record<string, any> | undefined;
+        summarizedAt?: import("../../types").Timestamp | undefined;
         currentTactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -8804,7 +8805,6 @@ export declare const threadSchemas: {
         defaultSystemPrompt?: string | undefined;
         debriefSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../../types").Timestamp | undefined;
-        summarizedAt?: import("../../types").Timestamp | undefined;
         strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
         sharingLevels?: {
@@ -11061,6 +11061,7 @@ export declare const threadSchemas: {
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
         tacticsByPath?: Record<string, any> | undefined;
+        summarizedAt?: import("../../types").Timestamp | undefined;
         currentTactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -11341,7 +11342,6 @@ export declare const threadSchemas: {
         defaultSystemPrompt?: string | undefined;
         debriefSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../../types").Timestamp | undefined;
-        summarizedAt?: import("../../types").Timestamp | undefined;
         strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
         sharingLevels?: {
@@ -11454,6 +11454,7 @@ export declare const threadSchemas: {
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
         tacticsByPath?: Record<string, any> | undefined;
+        summarizedAt?: import("../../types").Timestamp | undefined;
         currentTactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -11735,7 +11736,6 @@ export declare const threadSchemas: {
         defaultSystemPrompt?: string | undefined;
         debriefSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../../types").Timestamp | undefined;
-        summarizedAt?: import("../../types").Timestamp | undefined;
         strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
         sharingLevels?: {
@@ -13992,6 +13992,7 @@ export declare const threadSchemas: {
             deletedAt?: import("../../types").Timestamp | undefined;
         }) | undefined;
         tacticsByPath?: Record<string, any> | undefined;
+        summarizedAt?: import("../../types").Timestamp | undefined;
         currentTactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -14272,7 +14273,6 @@ export declare const threadSchemas: {
         defaultSystemPrompt?: string | undefined;
         debriefSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../../types").Timestamp | undefined;
-        summarizedAt?: import("../../types").Timestamp | undefined;
         strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
         sharingLevels?: {
@@ -14385,6 +14385,7 @@ export declare const threadSchemas: {
             deletedAt?: import("../../types").Timestamp | undefined;
         }) | undefined;
         tacticsByPath?: Record<string, any> | undefined;
+        summarizedAt?: import("../../types").Timestamp | undefined;
         currentTactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -14666,7 +14667,6 @@ export declare const threadSchemas: {
         defaultSystemPrompt?: string | undefined;
         debriefSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../../types").Timestamp | undefined;
-        summarizedAt?: import("../../types").Timestamp | undefined;
         strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
         sharingLevels?: {
@@ -16923,6 +16923,7 @@ export declare const threadSchemas: {
             deletedAt?: import("../../types").Timestamp | undefined;
         }) | undefined;
         tacticsByPath?: Record<string, any> | undefined;
+        summarizedAt?: import("../../types").Timestamp | undefined;
         currentTactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -17203,7 +17204,6 @@ export declare const threadSchemas: {
         defaultSystemPrompt?: string | undefined;
         debriefSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../../types").Timestamp | undefined;
-        summarizedAt?: import("../../types").Timestamp | undefined;
         strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
         sharingLevels?: {
@@ -17316,6 +17316,7 @@ export declare const threadSchemas: {
             deletedAt?: import("../../types").Timestamp | undefined;
         }) | undefined;
         tacticsByPath?: Record<string, any> | undefined;
+        summarizedAt?: import("../../types").Timestamp | undefined;
         currentTactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -17597,7 +17598,6 @@ export declare const threadSchemas: {
         defaultSystemPrompt?: string | undefined;
         debriefSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../../types").Timestamp | undefined;
-        summarizedAt?: import("../../types").Timestamp | undefined;
         strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
         sharingLevels?: {
@@ -19854,6 +19854,7 @@ export declare const threadSchemas: {
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
         tacticsByPath?: Record<string, any> | undefined;
+        summarizedAt?: import("../../types").Timestamp | undefined;
         currentTactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -20134,7 +20135,6 @@ export declare const threadSchemas: {
         defaultSystemPrompt?: string | undefined;
         debriefSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../../types").Timestamp | undefined;
-        summarizedAt?: import("../../types").Timestamp | undefined;
         strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
         sharingLevels?: {
@@ -20247,6 +20247,7 @@ export declare const threadSchemas: {
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
         tacticsByPath?: Record<string, any> | undefined;
+        summarizedAt?: import("../../types").Timestamp | undefined;
         currentTactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -20528,7 +20529,6 @@ export declare const threadSchemas: {
         defaultSystemPrompt?: string | undefined;
         debriefSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../../types").Timestamp | undefined;
-        summarizedAt?: import("../../types").Timestamp | undefined;
         strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
         sharingLevels?: {
@@ -22785,6 +22785,7 @@ export declare const threadSchemas: {
             deletedAt?: import("../../types").Timestamp | undefined;
         }) | undefined;
         tacticsByPath?: Record<string, any> | undefined;
+        summarizedAt?: import("../../types").Timestamp | undefined;
         currentTactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -23065,7 +23066,6 @@ export declare const threadSchemas: {
         defaultSystemPrompt?: string | undefined;
         debriefSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../../types").Timestamp | undefined;
-        summarizedAt?: import("../../types").Timestamp | undefined;
         strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
         sharingLevels?: {
@@ -23178,6 +23178,7 @@ export declare const threadSchemas: {
             deletedAt?: import("../../types").Timestamp | undefined;
         }) | undefined;
         tacticsByPath?: Record<string, any> | undefined;
+        summarizedAt?: import("../../types").Timestamp | undefined;
         currentTactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -23459,7 +23460,6 @@ export declare const threadSchemas: {
         defaultSystemPrompt?: string | undefined;
         debriefSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../../types").Timestamp | undefined;
-        summarizedAt?: import("../../types").Timestamp | undefined;
         strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
         sharingLevels?: {
@@ -25717,6 +25717,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         deletedAt?: import("../../types").Timestamp | undefined;
     }) | undefined;
     tacticsByPath?: Record<string, any> | undefined;
+    summarizedAt?: import("../../types").Timestamp | undefined;
     currentTactic?: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -25997,7 +25998,6 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     defaultSystemPrompt?: string | undefined;
     debriefSystemPrompt?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
-    summarizedAt?: import("../../types").Timestamp | undefined;
     strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
     allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
     sharingLevels?: {
@@ -26110,6 +26110,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         deletedAt?: import("../../types").Timestamp | undefined;
     }) | undefined;
     tacticsByPath?: Record<string, any> | undefined;
+    summarizedAt?: import("../../types").Timestamp | undefined;
     currentTactic?: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -26391,7 +26392,6 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     defaultSystemPrompt?: string | undefined;
     debriefSystemPrompt?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
-    summarizedAt?: import("../../types").Timestamp | undefined;
     strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
     allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
     sharingLevels?: {
@@ -28657,6 +28657,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         deletedAt?: import("../../types").Timestamp | undefined;
     }) | undefined;
     tacticsByPath?: Record<string, any> | undefined;
+    summarizedAt?: import("../../types").Timestamp | undefined;
     isSuccess?: boolean | undefined;
     currentTactic?: {
         createdAt: import("../../types").Timestamp;
@@ -28938,7 +28939,6 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     defaultSystemPrompt?: string | undefined;
     debriefSystemPrompt?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
-    summarizedAt?: import("../../types").Timestamp | undefined;
     strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
     allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
     sharingLevels?: {
@@ -29057,6 +29057,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         deletedAt?: import("../../types").Timestamp | undefined;
     }) | undefined;
     tacticsByPath?: Record<string, any> | undefined;
+    summarizedAt?: import("../../types").Timestamp | undefined;
     isSuccess?: boolean | undefined;
     currentTactic?: {
         createdAt: import("../../types").Timestamp;
@@ -29339,7 +29340,6 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     defaultSystemPrompt?: string | undefined;
     debriefSystemPrompt?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
-    summarizedAt?: import("../../types").Timestamp | undefined;
     strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
     allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
     sharingLevels?: {
@@ -31598,6 +31598,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         deletedAt?: import("../../types").Timestamp | undefined;
     }) | undefined;
     tacticsByPath?: Record<string, any> | undefined;
+    summarizedAt?: import("../../types").Timestamp | undefined;
     currentTactic?: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -31878,7 +31879,6 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     defaultSystemPrompt?: string | undefined;
     debriefSystemPrompt?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
-    summarizedAt?: import("../../types").Timestamp | undefined;
     strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
     allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
     sharingLevels?: {
@@ -31991,6 +31991,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         deletedAt?: import("../../types").Timestamp | undefined;
     }) | undefined;
     tacticsByPath?: Record<string, any> | undefined;
+    summarizedAt?: import("../../types").Timestamp | undefined;
     currentTactic?: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -32272,7 +32273,6 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     defaultSystemPrompt?: string | undefined;
     debriefSystemPrompt?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
-    summarizedAt?: import("../../types").Timestamp | undefined;
     strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
     allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
     sharingLevels?: {
@@ -34528,6 +34528,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         deletedAt?: import("../../types").Timestamp | undefined;
     }) | undefined;
     tacticsByPath?: Record<string, any> | undefined;
+    summarizedAt?: import("../../types").Timestamp | undefined;
     currentTactic?: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -34808,7 +34809,6 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     defaultSystemPrompt?: string | undefined;
     debriefSystemPrompt?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
-    summarizedAt?: import("../../types").Timestamp | undefined;
     strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
     allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
     sharingLevels?: {
@@ -34921,6 +34921,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         deletedAt?: import("../../types").Timestamp | undefined;
     }) | undefined;
     tacticsByPath?: Record<string, any> | undefined;
+    summarizedAt?: import("../../types").Timestamp | undefined;
     currentTactic?: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -35202,7 +35203,6 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     defaultSystemPrompt?: string | undefined;
     debriefSystemPrompt?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
-    summarizedAt?: import("../../types").Timestamp | undefined;
     strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
     allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
     sharingLevels?: {
@@ -37458,6 +37458,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
     tacticsByPath?: Record<string, any> | undefined;
+    summarizedAt?: import("../../types").Timestamp | undefined;
     currentTactic?: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -37738,7 +37739,6 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     defaultSystemPrompt?: string | undefined;
     debriefSystemPrompt?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
-    summarizedAt?: import("../../types").Timestamp | undefined;
     strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
     allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
     sharingLevels?: {
@@ -37851,6 +37851,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
     tacticsByPath?: Record<string, any> | undefined;
+    summarizedAt?: import("../../types").Timestamp | undefined;
     currentTactic?: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -38132,7 +38133,6 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     defaultSystemPrompt?: string | undefined;
     debriefSystemPrompt?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
-    summarizedAt?: import("../../types").Timestamp | undefined;
     strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
     allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
     sharingLevels?: {
@@ -40388,6 +40388,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         deletedAt?: import("../../types").Timestamp | undefined;
     }) | undefined;
     tacticsByPath?: Record<string, any> | undefined;
+    summarizedAt?: import("../../types").Timestamp | undefined;
     currentTactic?: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -40668,7 +40669,6 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     defaultSystemPrompt?: string | undefined;
     debriefSystemPrompt?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
-    summarizedAt?: import("../../types").Timestamp | undefined;
     strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
     allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
     sharingLevels?: {
@@ -40781,6 +40781,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         deletedAt?: import("../../types").Timestamp | undefined;
     }) | undefined;
     tacticsByPath?: Record<string, any> | undefined;
+    summarizedAt?: import("../../types").Timestamp | undefined;
     currentTactic?: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -41062,7 +41063,6 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     defaultSystemPrompt?: string | undefined;
     debriefSystemPrompt?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
-    summarizedAt?: import("../../types").Timestamp | undefined;
     strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
     allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
     sharingLevels?: {
@@ -43318,6 +43318,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
     tacticsByPath?: Record<string, any> | undefined;
+    summarizedAt?: import("../../types").Timestamp | undefined;
     currentTactic?: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -43598,7 +43599,6 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     defaultSystemPrompt?: string | undefined;
     debriefSystemPrompt?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
-    summarizedAt?: import("../../types").Timestamp | undefined;
     strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
     allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
     sharingLevels?: {
@@ -43711,6 +43711,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
     tacticsByPath?: Record<string, any> | undefined;
+    summarizedAt?: import("../../types").Timestamp | undefined;
     currentTactic?: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -43992,7 +43993,6 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     defaultSystemPrompt?: string | undefined;
     debriefSystemPrompt?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
-    summarizedAt?: import("../../types").Timestamp | undefined;
     strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
     allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
     sharingLevels?: {
@@ -46248,6 +46248,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         deletedAt?: import("../../types").Timestamp | undefined;
     }) | undefined;
     tacticsByPath?: Record<string, any> | undefined;
+    summarizedAt?: import("../../types").Timestamp | undefined;
     currentTactic?: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -46528,7 +46529,6 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     defaultSystemPrompt?: string | undefined;
     debriefSystemPrompt?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
-    summarizedAt?: import("../../types").Timestamp | undefined;
     strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
     allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
     sharingLevels?: {
@@ -46641,6 +46641,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         deletedAt?: import("../../types").Timestamp | undefined;
     }) | undefined;
     tacticsByPath?: Record<string, any> | undefined;
+    summarizedAt?: import("../../types").Timestamp | undefined;
     currentTactic?: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -46922,7 +46923,6 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     defaultSystemPrompt?: string | undefined;
     debriefSystemPrompt?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
-    summarizedAt?: import("../../types").Timestamp | undefined;
     strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
     allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
     sharingLevels?: {
