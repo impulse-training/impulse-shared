@@ -47,6 +47,7 @@ export declare const userDataSchema: z.ZodObject<{
             weekdays: number[];
         };
     }>>;
+    addToTechSupportGroup: z.ZodOptional<z.ZodBoolean>;
 }, "strip", z.ZodTypeAny, {
     role: "user" | "coach" | "support";
     defaultThreadMode: "text" | "voice";
@@ -71,6 +72,7 @@ export declare const userDataSchema: z.ZodObject<{
     recoveryKeyHash?: string | undefined;
     appVersion?: string | undefined;
     activeStrategyDoc?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown> | undefined;
+    addToTechSupportGroup?: boolean | undefined;
 }, {
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
@@ -95,6 +97,7 @@ export declare const userDataSchema: z.ZodObject<{
     activeStrategyDoc?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown> | undefined;
     theme?: "system" | "light" | "dark" | undefined;
     weekStartsOn?: 0 | 1 | undefined;
+    addToTechSupportGroup?: boolean | undefined;
 }>;
 export type UserData = z.infer<typeof userDataSchema>;
 export declare const isUserData: (value: unknown) => value is UserData;
