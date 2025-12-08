@@ -10,6 +10,7 @@ function questionBaseSchema(type) {
         createdAt: timestampSchema_1.timestampSchema.optional(),
         updatedAt: timestampSchema_1.timestampSchema.optional(),
         text: zod_1.z.string(),
+        textAfterResponse: zod_1.z.string().optional(),
         lastAskedAt: timestampSchema_1.timestampSchema.optional(),
         lastAnsweredAt: timestampSchema_1.timestampSchema.optional(),
         numberOfAnswers: zod_1.z.number().optional(),

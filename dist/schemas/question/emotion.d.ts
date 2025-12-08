@@ -4,6 +4,7 @@ export declare const emotionQuestionSchema: z.ZodObject<{
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     text: z.ZodString;
+    textAfterResponse: z.ZodOptional<z.ZodString>;
     lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     numberOfAnswers: z.ZodOptional<z.ZodNumber>;
@@ -32,6 +33,7 @@ export declare const emotionQuestionSchema: z.ZodObject<{
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
     suggestedResponses?: string[] | undefined;
+    textAfterResponse?: string | undefined;
     lastAskedAt?: import("../../types").Timestamp | undefined;
     lastAnsweredAt?: import("../../types").Timestamp | undefined;
     numberOfAnswers?: number | undefined;
@@ -49,6 +51,7 @@ export declare const emotionQuestionSchema: z.ZodObject<{
     updatedAt?: import("../../types").Timestamp | undefined;
     suggestedResponses?: string[] | undefined;
     isTemplate?: boolean | undefined;
+    textAfterResponse?: string | undefined;
     lastAskedAt?: import("../../types").Timestamp | undefined;
     lastAnsweredAt?: import("../../types").Timestamp | undefined;
     numberOfAnswers?: number | undefined;

@@ -8,6 +8,7 @@ export function questionBaseSchema<T extends string>(type: T) {
     createdAt: timestampSchema.optional(),
     updatedAt: timestampSchema.optional(),
     text: z.string(),
+    textAfterResponse: z.string().optional(),
     lastAskedAt: timestampSchema.optional(),
     lastAnsweredAt: timestampSchema.optional(),
     numberOfAnswers: z.number().optional(),
