@@ -46,6 +46,9 @@ export const userDataSchema = z.object({
       trigger: timeTriggerSchema,
     })
     .optional(),
+
+  // If true, this user will be added to the tech support group for all new signups
+  addToTechSupportGroup: z.boolean().optional(),
 });
 
 // Export User type inferred from schema
