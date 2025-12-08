@@ -322,8 +322,8 @@ export declare const supportGroupSchema: z.ZodObject<{
         } | undefined;
         joinedAt?: import("../types").Timestamp | undefined;
     }>>;
+    memberIds: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
     unreadMessageCountsById: z.ZodRecord<z.ZodString, z.ZodNumber>;
-    memberCount: z.ZodDefault<z.ZodNumber>;
     image: z.ZodObject<{
         createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -641,8 +641,8 @@ export declare const supportGroupSchema: z.ZodObject<{
     }>;
     isTemplate: boolean;
     ownerId: string;
+    memberIds: string[];
     unreadMessageCountsById: Record<string, number>;
-    memberCount: number;
     tacticCount: number;
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
@@ -780,7 +780,7 @@ export declare const supportGroupSchema: z.ZodObject<{
             }[] | undefined;
         } | undefined;
     } | undefined;
-    memberCount?: number | undefined;
+    memberIds?: string[] | undefined;
     isPublic?: boolean | undefined;
     inviteCode?: string | undefined;
     lastMessage?: {

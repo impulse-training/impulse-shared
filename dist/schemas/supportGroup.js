@@ -32,8 +32,8 @@ exports.supportGroupSchema = zod_1.z.object({
     ownerId: zod_1.z.string(),
     coverPhoto: attachment_1.attachmentSchema.optional(), // Optional cover photo for the group
     membersById: (0, objectOf_1.objectOf)(exports.supportGroupMemberSchema),
+    memberIds: zod_1.z.array(zod_1.z.string()).default([]), // For efficient array-contains queries
     unreadMessageCountsById: (0, objectOf_1.objectOf)(zod_1.z.number()),
-    memberCount: zod_1.z.number().default(0), // Count of members for easier querying
     image: attachment_1.attachmentSchema,
     isPublic: zod_1.z.boolean().optional(),
     isTemplate: zod_1.z.boolean().optional().default(false),

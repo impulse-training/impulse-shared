@@ -43,8 +43,8 @@ export const supportGroupSchema = z.object({
   ownerId: z.string(),
   coverPhoto: attachmentSchema.optional(), // Optional cover photo for the group
   membersById: objectOf(supportGroupMemberSchema),
+  memberIds: z.array(z.string()).default([]), // For efficient array-contains queries
   unreadMessageCountsById: objectOf(z.number()),
-  memberCount: z.number().default(0), // Count of members for easier querying
   image: attachmentSchema,
   isPublic: z.boolean().optional(),
   isTemplate: z.boolean().optional().default(false),
