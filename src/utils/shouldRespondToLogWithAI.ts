@@ -7,7 +7,6 @@ import {
   logIsShowTourLog,
   logIsUserMessageLog,
   logIsWidgetSetupLog,
-  QuestionLog,
 } from "../schemas/log";
 import { fieldChanged } from "./fields";
 import { WithId } from "./withId";
@@ -30,15 +29,6 @@ export function shouldRespondToLogWithAI(
 
   // Case: New message logs (creation event, no before data)
   if (isCreating && logIsUserMessageLog(afterData)) {
-    return true;
-  }
-
-  // Case: Question logs that have been answered in an onboarding thread
-  if (
-    thread.type === "onboarding" &&
-    (afterData as QuestionLog)?.data?.response &&
-    fieldChanged(beforeData, afterData, "data.response")
-  ) {
     return true;
   }
 

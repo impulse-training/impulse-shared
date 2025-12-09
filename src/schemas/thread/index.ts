@@ -3,7 +3,6 @@ import { AdjustmentThread, adjustmentThreadSchema } from "./adjustment";
 import { BehaviorThread, behaviorThreadSchema } from "./behavior";
 import { GeneralThread, generalThreadSchema } from "./general";
 import { ImpulseThread, impulseThreadSchema } from "./impulse";
-import { OnboardingThread, onboardingThreadSchema } from "./onboarding";
 import {
   LocationPlanThread,
   locationPlanThreadSchema,
@@ -17,7 +16,6 @@ export * from "./adjustment";
 export * from "./behavior";
 export * from "./general";
 export * from "./impulse";
-export * from "./onboarding";
 export * from "./plan";
 export * from "./recap";
 
@@ -25,7 +23,6 @@ export * from "./recap";
 export const threadSchemas = {
   general: generalThreadSchema,
   impulse: impulseThreadSchema,
-  onboarding: onboardingThreadSchema,
   timePlan: timePlanThreadSchema,
   behavior: behaviorThreadSchema,
   recap: recapThreadSchema,
@@ -37,7 +34,6 @@ export const threadSchemas = {
 export const threadSchema = z.discriminatedUnion("type", [
   generalThreadSchema,
   impulseThreadSchema,
-  onboardingThreadSchema,
   behaviorThreadSchema,
   timePlanThreadSchema,
   recapThreadSchema,
@@ -49,13 +45,6 @@ export const threadIsGeneralThread = (value: Thread): value is GeneralThread =>
   value.type === "general";
 export const isValidGeneralThread = (value: unknown): value is GeneralThread =>
   generalThreadSchema.safeParse(value).success;
-
-export const threadIsOnboardingThread = (
-  value: Thread
-): value is OnboardingThread => value.type === "onboarding";
-export const isValidOnboardingThread = (
-  value: unknown
-): value is OnboardingThread => onboardingThreadSchema.safeParse(value).success;
 
 export const threadIsImpulseThread = (value: Thread): value is ImpulseThread =>
   value.type === "impulse";
