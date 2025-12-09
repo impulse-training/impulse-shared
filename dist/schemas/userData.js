@@ -40,6 +40,8 @@ exports.userDataSchema = zod_1.z.object({
         .optional(),
     // If true, this user will be added to the tech support group for all new signups
     addToTechSupportGroup: zod_1.z.boolean().optional(),
+    // Tracks whether user has previously set up an experiment (to skip intro screen)
+    hasSetupExperiment: zod_1.z.boolean().optional(),
 });
 // Type guard for User
 const isUserData = (value) => exports.userDataSchema.safeParse(value).success;
