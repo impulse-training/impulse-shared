@@ -39,15 +39,39 @@ const responseSchema = z.object({
 });
 export type Response = z.infer<typeof responseSchema>;
 
+/** Single question with its response */
+const questionEntrySchema = z.object({
+  questionId: z.string().optional(),
+  question: questionSchema,
+  response: responseSchema.optional(),
+});
+export type QuestionEntry = z.infer<typeof questionEntrySchema>;
+
+/**
+ * @deprecated Use questionsLogSchema instead for new code.
+ * Single question log - kept for backward compatibility.
+ */
 export const questionLogSchema = logBaseSchema.extend({
   type: z.literal("question"),
   // Question logs are always displayed in the UI
   isDisplayable: z.literal(true),
+  data: questionEntrySchema,
+});
+
+/** @deprecated Use QuestionsLog instead */
+export type QuestionLog = z.infer<typeof questionLogSchema>;
+
+/**
+ * Multi-question log - supports multiple questions and their responses.
+ * Used for experiment metrics and other multi-question scenarios.
+ */
+export const questionsLogSchema = logBaseSchema.extend({
+  type: z.literal("questions"),
+  isDisplayable: z.literal(true),
   data: z.object({
-    questionId: z.string().optional(),
-    question: questionSchema,
-    response: responseSchema.optional(),
+    /** Array of questions with their responses */
+    questions: z.array(questionEntrySchema),
   }),
 });
 
-export type QuestionLog = z.infer<typeof questionLogSchema>;
+export type QuestionsLog = z.infer<typeof questionsLogSchema>;

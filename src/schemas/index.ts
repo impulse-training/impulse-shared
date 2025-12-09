@@ -6,6 +6,7 @@ export * from "./behavior";
 export * from "./daySummary";
 export * from "./emojiId";
 export * from "./experiment";
+export * from "./goal";
 export * from "./externalSender";
 export * from "./externalSenderMessage";
 export * from "./externalSenderSession";

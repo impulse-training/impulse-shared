@@ -23,6 +23,7 @@ __exportStar(require("./behavior"), exports);
 __exportStar(require("./daySummary"), exports);
 __exportStar(require("./emojiId"), exports);
 __exportStar(require("./experiment"), exports);
+__exportStar(require("./goal"), exports);
 __exportStar(require("./externalSender"), exports);
 __exportStar(require("./externalSenderMessage"), exports);
 __exportStar(require("./externalSenderSession"), exports);

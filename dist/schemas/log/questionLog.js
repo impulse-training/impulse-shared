@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.questionLogSchema = exports.recapResponseValueSchema = void 0;
+exports.questionsLogSchema = exports.questionLogSchema = exports.recapResponseValueSchema = void 0;
 const zod_1 = require("zod");
 const behavior_1 = require("../behavior");
 const daySummary_1 = require("../daySummary");
@@ -34,13 +34,31 @@ const responseSchema = zod_1.z.object({
     formattedValue: zod_1.z.string(),
     color: zod_1.z.string().optional(),
 });
+/** Single question with its response */
+const questionEntrySchema = zod_1.z.object({
+    questionId: zod_1.z.string().optional(),
+    question: question_1.questionSchema,
+    response: responseSchema.optional(),
+});
+/**
+ * @deprecated Use questionsLogSchema instead for new code.
+ * Single question log - kept for backward compatibility.
+ */
 exports.questionLogSchema = base_1.logBaseSchema.extend({
     type: zod_1.z.literal("question"),
     // Question logs are always displayed in the UI
     isDisplayable: zod_1.z.literal(true),
+    data: questionEntrySchema,
+});
+/**
+ * Multi-question log - supports multiple questions and their responses.
+ * Used for experiment metrics and other multi-question scenarios.
+ */
+exports.questionsLogSchema = base_1.logBaseSchema.extend({
+    type: zod_1.z.literal("questions"),
+    isDisplayable: zod_1.z.literal(true),
     data: zod_1.z.object({
-        questionId: zod_1.z.string().optional(),
-        question: question_1.questionSchema,
-        response: responseSchema.optional(),
+        /** Array of questions with their responses */
+        questions: zod_1.z.array(questionEntrySchema),
     }),
 });

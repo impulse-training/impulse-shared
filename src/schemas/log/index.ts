@@ -20,7 +20,12 @@ import {
 } from "./notifySupportGroupLog";
 import { PlanLog, planLogSchema } from "./planLog";
 import { PlansLog, plansLogSchema } from "./plansLog";
-import { QuestionLog, questionLogSchema } from "./questionLog";
+import {
+  QuestionLog,
+  questionLogSchema,
+  QuestionsLog,
+  questionsLogSchema,
+} from "./questionLog";
 import {
   ReadyToDebriefLog,
   readyToDebriefLogSchema,
@@ -61,6 +66,7 @@ export const logSchemas = {
   breathing: breathingLogSchema,
   outcome: resistedLogSchema,
   question: questionLogSchema,
+  questions: questionsLogSchema,
   plan: planLogSchema,
   plans: plansLogSchema,
   summary: summaryLogSchema,
@@ -88,6 +94,7 @@ export type Log =
   | BreathingLog
   | ResistedLog
   | QuestionLog
+  | QuestionsLog
   | PlanLog
   | PlansLog
   | ToolCallLog
@@ -144,6 +151,7 @@ export const logSchema = z.discriminatedUnion("type", [
   breathingLogSchema,
   resistedLogSchema,
   questionLogSchema,
+  questionsLogSchema,
   planLogSchema,
   plansLogSchema,
   summaryLogSchema,
@@ -235,6 +243,13 @@ export const logIsQuestionLog = (
 ): value is QuestionLog => value.type === "question";
 export const isValidQuestionLog = (value: unknown): value is QuestionLog => {
   return questionLogSchema.safeParse(value).success;
+};
+
+export const logIsQuestionsLog = (
+  value: Omit<Log, "id">
+): value is QuestionsLog => value.type === "questions";
+export const isValidQuestionsLog = (value: unknown): value is QuestionsLog => {
+  return questionsLogSchema.safeParse(value).success;
 };
 
 export const logIsTacticLog = (value: Omit<Log, "id">): value is TacticLog =>
