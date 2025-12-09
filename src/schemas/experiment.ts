@@ -13,15 +13,12 @@ export const experimentSchema = z.object({
   config: z.object({
     baseline: z.object({
       requiredDays: z.number().default(5),
-      description: z.string(),
     }),
     test: z
       .object({
         requiredGoal: goalSchema,
         requiredDays: z.number().default(7),
         requireContiguousDays: z.boolean().default(false),
-        // E.g. "Go 7 days in a row without watching YouTube"
-        description: z.string(),
       })
       .optional(),
   }),
