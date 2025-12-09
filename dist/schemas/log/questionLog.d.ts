@@ -2048,6 +2048,8 @@ export declare const questionsLogSchema: z.ZodObject<{
 } & {
     type: z.ZodLiteral<"questions">;
     isDisplayable: z.ZodLiteral<true>;
+    /** Display text shown above the questions */
+    text: z.ZodOptional<z.ZodString>;
     data: z.ZodObject<{
         /** Array of questions with their responses */
         questions: z.ZodArray<z.ZodObject<{
@@ -3049,6 +3051,7 @@ export declare const questionsLogSchema: z.ZodObject<{
         }[];
     };
     id?: string | undefined;
+    text?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
     callLogDocPath?: string | undefined;
@@ -3181,6 +3184,7 @@ export declare const questionsLogSchema: z.ZodObject<{
         }[];
     };
     id?: string | undefined;
+    text?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
     callLogDocPath?: string | undefined;

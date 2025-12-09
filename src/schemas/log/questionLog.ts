@@ -68,6 +68,8 @@ export type QuestionLog = z.infer<typeof questionLogSchema>;
 export const questionsLogSchema = logBaseSchema.extend({
   type: z.literal("questions"),
   isDisplayable: z.literal(true),
+  /** Display text shown above the questions */
+  text: z.string().optional(),
   data: z.object({
     /** Array of questions with their responses */
     questions: z.array(questionEntrySchema),

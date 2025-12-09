@@ -106,6 +106,27 @@ function getGptPayload(log) {
         }
         return messages;
     }
+    // Handle QuestionsLog (multi-question log for experiments)
+    if ((0, log_1.logIsQuestionsLog)(log)) {
+        const messages = [];
+        // Format all questions and responses together
+        const questionsWithResponses = log.data.questions
+            .map((entry) => {
+            var _a, _b;
+            const questionText = entry.question.text;
+            const responseValue = (_b = (_a = entry.response) === null || _a === void 0 ? void 0 : _a.formattedValue) !== null && _b !== void 0 ? _b : "Not answered";
+            return `- ${questionText}: ${responseValue}`;
+        })
+            .join("\n");
+        const hasAnyResponse = log.data.questions.some((entry) => entry.response);
+        if (hasAnyResponse) {
+            messages.push({
+                role: "user",
+                content: `<s>User answered experiment metric questions:\n${questionsWithResponses}</s>`,
+            });
+        }
+        return messages;
+    }
     // Handle ShowTourLog
     if ((0, log_1.logIsShowTourLog)(log)) {
         const messages = [];

@@ -57,6 +57,8 @@ exports.questionLogSchema = base_1.logBaseSchema.extend({
 exports.questionsLogSchema = base_1.logBaseSchema.extend({
     type: zod_1.z.literal("questions"),
     isDisplayable: zod_1.z.literal(true),
+    /** Display text shown above the questions */
+    text: zod_1.z.string().optional(),
     data: zod_1.z.object({
         /** Array of questions with their responses */
         questions: zod_1.z.array(questionEntrySchema),

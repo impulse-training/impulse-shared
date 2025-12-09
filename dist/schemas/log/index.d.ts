@@ -10070,6 +10070,7 @@ export declare const logSchemas: {
     } & {
         type: z.ZodLiteral<"questions">;
         isDisplayable: z.ZodLiteral<true>;
+        text: z.ZodOptional<z.ZodString>;
         data: z.ZodObject<{
             questions: z.ZodArray<z.ZodObject<{
                 questionId: z.ZodOptional<z.ZodString>;
@@ -11070,6 +11071,7 @@ export declare const logSchemas: {
             }[];
         };
         id?: string | undefined;
+        text?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
         callLogDocPath?: string | undefined;
@@ -11202,6 +11204,7 @@ export declare const logSchemas: {
             }[];
         };
         id?: string | undefined;
+        text?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
         callLogDocPath?: string | undefined;
@@ -21491,6 +21494,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
 } & {
     type: z.ZodLiteral<"questions">;
     isDisplayable: z.ZodLiteral<true>;
+    text: z.ZodOptional<z.ZodString>;
     data: z.ZodObject<{
         questions: z.ZodArray<z.ZodObject<{
             questionId: z.ZodOptional<z.ZodString>;
@@ -22491,6 +22495,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }[];
     };
     id?: string | undefined;
+    text?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
     callLogDocPath?: string | undefined;
@@ -22623,6 +22628,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }[];
     };
     id?: string | undefined;
+    text?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
     callLogDocPath?: string | undefined;
