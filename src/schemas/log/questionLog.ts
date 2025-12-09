@@ -48,20 +48,6 @@ const questionEntrySchema = z.object({
 export type QuestionEntry = z.infer<typeof questionEntrySchema>;
 
 /**
- * @deprecated Use questionsLogSchema instead for new code.
- * Single question log - kept for backward compatibility.
- */
-export const questionLogSchema = logBaseSchema.extend({
-  type: z.literal("question"),
-  // Question logs are always displayed in the UI
-  isDisplayable: z.literal(true),
-  data: questionEntrySchema,
-});
-
-/** @deprecated Use QuestionsLog instead */
-export type QuestionLog = z.infer<typeof questionLogSchema>;
-
-/**
  * Multi-question log - supports multiple questions and their responses.
  * Used for experiment metrics and other multi-question scenarios.
  */

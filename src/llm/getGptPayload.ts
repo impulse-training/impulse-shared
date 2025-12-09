@@ -9,7 +9,6 @@ import {
   logIsBehaviorLog,
   logIsCallLog,
   logIsImpulseLog,
-  logIsQuestionLog,
   logIsQuestionsLog,
   logIsReadyToDebriefLog,
   logIsResistedLog,
@@ -112,35 +111,7 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
     ];
   }
 
-  // Handle QuestionLog
-  if (logIsQuestionLog(log)) {
-    const messages: ChatCompletionMessageParam[] = [];
-
-    messages.push({
-      role: "assistant",
-      content: log.data.question.text,
-    });
-
-    if (log.data.response) {
-      // For recap questions, use the formatted recap response
-      if (log.data.response.responseType === "recap") {
-        const recapSummary = formatRecapResponse(log);
-        messages.push({
-          role: "user",
-          content: `<s>${recapSummary}</s>`,
-        });
-      } else {
-        messages.push({
-          role: "user",
-          content: log.data.response.formattedValue,
-        });
-      }
-    }
-
-    return messages;
-  }
-
-  // Handle QuestionsLog (multi-question log for experiments)
+  // Handle QuestionsLog (multi-question log for recap and experiments)
   if (logIsQuestionsLog(log)) {
     const messages: ChatCompletionMessageParam[] = [];
 

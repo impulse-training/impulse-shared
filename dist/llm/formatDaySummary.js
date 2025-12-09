@@ -2,19 +2,19 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.formatRecapResponse = formatRecapResponse;
 /**
- * Format a recap question log response for LLM consumption.
+ * Format a recap question entry response for LLM consumption.
  * Includes behavior totals and goal comparison data.
  */
-function formatRecapResponse(log) {
-    var _a, _b, _c, _d, _e;
-    const response = (_a = log.data) === null || _a === void 0 ? void 0 : _a.response;
+function formatRecapResponse(entry, dateString) {
+    var _a, _b, _c, _d;
+    const response = entry.response;
     if (!response) {
-        return `Day recap for ${log.dateString}: No response provided yet.`;
+        return `Day recap for ${dateString}: No response provided yet.`;
     }
     // Check if this is a recap response with structured data
     if (response.responseType === "recap" && response.value) {
         const recapValue = response.value;
-        let summary = `Day recap for ${log.dateString}:\n\n`;
+        let summary = `Day recap for ${dateString}:\n\n`;
         // Add behavior totals
         if (recapValue.behaviorTotals) {
             const behaviorLines = Object.entries(recapValue.behaviorTotals).map(([_behaviorId, data]) => {
@@ -31,8 +31,8 @@ function formatRecapResponse(log) {
             const lines = [];
             for (const [behaviorId, entry] of Object.entries(goalComparison)) {
                 // Try to get behavior name from behaviorsById, then behaviorTotals
-                const behaviorName = ((_c = (_b = recapValue.behaviorsById) === null || _b === void 0 ? void 0 : _b[behaviorId]) === null || _c === void 0 ? void 0 : _c.name) ||
-                    ((_e = (_d = recapValue.behaviorTotals) === null || _d === void 0 ? void 0 : _d[behaviorId]) === null || _e === void 0 ? void 0 : _e.behaviorName) ||
+                const behaviorName = ((_b = (_a = recapValue.behaviorsById) === null || _a === void 0 ? void 0 : _a[behaviorId]) === null || _b === void 0 ? void 0 : _b.name) ||
+                    ((_d = (_c = recapValue.behaviorTotals) === null || _c === void 0 ? void 0 : _c[behaviorId]) === null || _d === void 0 ? void 0 : _d.behaviorName) ||
                     "Unknown behavior";
                 const statusLabel = entry.status === "NOT_MET_FAIL"
                     ? "NOT MET (FAIL)"
@@ -64,5 +64,5 @@ function formatRecapResponse(log) {
     if (response.formattedValue) {
         return response.formattedValue;
     }
-    return `Day recap for ${log.dateString}: Response submitted.`;
+    return `Day recap for ${dateString}: Response submitted.`;
 }

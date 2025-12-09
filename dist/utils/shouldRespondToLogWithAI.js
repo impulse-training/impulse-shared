@@ -11,7 +11,6 @@ const fields_1 = require("./fields");
  * @returns True if we should respond with AI, false otherwise
  */
 function shouldRespondToLogWithAI(thread, beforeData, afterData) {
-    var _a, _b;
     const isCreating = !beforeData && afterData;
     const isUpdating = beforeData && afterData;
     const isNotDeleting = !!afterData;
@@ -34,14 +33,7 @@ function shouldRespondToLogWithAI(thread, beforeData, afterData) {
         afterData.data.completedAt) {
         return true;
     }
-    // Case: The user has completed a recap question (confirmed their day totals)
-    if (isNotDeleting &&
-        (0, log_1.logIsQuestionLog)(afterData) &&
-        ((_b = (_a = afterData.data) === null || _a === void 0 ? void 0 : _a.question) === null || _b === void 0 ? void 0 : _b.responseType) === "recap" &&
-        (0, fields_1.fieldChanged)(beforeData, afterData, "data.response")) {
-        return true;
-    }
-    // Case: The user has answered all experiment metric questions
+    // Case: The user has answered all questions in a QuestionsLog (recap or experiment metrics)
     if (isNotDeleting &&
         (0, log_1.logIsQuestionsLog)(afterData) &&
         (0, fields_1.fieldChanged)(beforeData, afterData, "data.questions")) {

@@ -1,21 +1,24 @@
-import { QuestionLog, RecapResponseValue } from "../schemas/log";
+import { QuestionEntry, RecapResponseValue } from "../schemas/log";
 
 /**
- * Format a recap question log response for LLM consumption.
+ * Format a recap question entry response for LLM consumption.
  * Includes behavior totals and goal comparison data.
  */
-export function formatRecapResponse(log: QuestionLog): string {
-  const response = log.data?.response;
+export function formatRecapResponse(
+  entry: QuestionEntry,
+  dateString: string
+): string {
+  const response = entry.response;
 
   if (!response) {
-    return `Day recap for ${log.dateString}: No response provided yet.`;
+    return `Day recap for ${dateString}: No response provided yet.`;
   }
 
   // Check if this is a recap response with structured data
   if (response.responseType === "recap" && response.value) {
     const recapValue = response.value as RecapResponseValue;
 
-    let summary = `Day recap for ${log.dateString}:\n\n`;
+    let summary = `Day recap for ${dateString}:\n\n`;
 
     // Add behavior totals
     if (recapValue.behaviorTotals) {
@@ -79,5 +82,5 @@ export function formatRecapResponse(log: QuestionLog): string {
     return response.formattedValue;
   }
 
-  return `Day recap for ${log.dateString}: Response submitted.`;
+  return `Day recap for ${dateString}: Response submitted.`;
 }

@@ -2,7 +2,6 @@ import { Thread } from "../schemas";
 import {
   Log,
   logIsBehaviorLog,
-  logIsQuestionLog,
   logIsQuestionsLog,
   logIsResistedLog,
   logIsShowTourLog,
@@ -52,17 +51,7 @@ export function shouldRespondToLogWithAI(
     return true;
   }
 
-  // Case: The user has completed a recap question (confirmed their day totals)
-  if (
-    isNotDeleting &&
-    logIsQuestionLog(afterData) &&
-    afterData.data?.question?.responseType === "recap" &&
-    fieldChanged(beforeData, afterData, "data.response")
-  ) {
-    return true;
-  }
-
-  // Case: The user has answered all experiment metric questions
+  // Case: The user has answered all questions in a QuestionsLog (recap or experiment metrics)
   if (
     isNotDeleting &&
     logIsQuestionsLog(afterData) &&

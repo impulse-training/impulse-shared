@@ -1,6 +1,6 @@
-import { QuestionLog } from "../schemas/log";
+import { QuestionEntry } from "../schemas/log";
 /**
- * Format a recap question log response for LLM consumption.
+ * Format a recap question entry response for LLM consumption.
  * Includes behavior totals and goal comparison data.
  */
-export declare function formatRecapResponse(log: QuestionLog): string;
+export declare function formatRecapResponse(entry: QuestionEntry, dateString: string): string;

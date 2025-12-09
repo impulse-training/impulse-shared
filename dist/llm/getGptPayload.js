@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getGptPayload = getGptPayload;
 const behaviorCategories_1 = require("../constants/behaviorCategories");
 const log_1 = require("../schemas/log");
-const formatDaySummary_1 = require("./formatDaySummary");
 function getGptPayload(log) {
     if ((0, log_1.logIsImpulseLog)(log)) {
         return [
@@ -81,32 +80,7 @@ function getGptPayload(log) {
             },
         ];
     }
-    // Handle QuestionLog
-    if ((0, log_1.logIsQuestionLog)(log)) {
-        const messages = [];
-        messages.push({
-            role: "assistant",
-            content: log.data.question.text,
-        });
-        if (log.data.response) {
-            // For recap questions, use the formatted recap response
-            if (log.data.response.responseType === "recap") {
-                const recapSummary = (0, formatDaySummary_1.formatRecapResponse)(log);
-                messages.push({
-                    role: "user",
-                    content: `<s>${recapSummary}</s>`,
-                });
-            }
-            else {
-                messages.push({
-                    role: "user",
-                    content: log.data.response.formattedValue,
-                });
-            }
-        }
-        return messages;
-    }
-    // Handle QuestionsLog (multi-question log for experiments)
+    // Handle QuestionsLog (multi-question log for recap and experiments)
     if ((0, log_1.logIsQuestionsLog)(log)) {
         const messages = [];
         // Format all questions and responses together
