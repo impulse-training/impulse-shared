@@ -394,6 +394,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 targetValue?: number | undefined;
             }>>>;
             recapCompletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            recapMarkedAsCompletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             recapStartedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -480,6 +481,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 threads: boolean;
             }> | undefined;
             recapCompletedAt?: import("../../types").Timestamp | undefined;
+            recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
             recapStartedAt?: import("../../types").Timestamp | undefined;
         }, {
             userId: string;
@@ -564,6 +566,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 threads?: boolean | undefined;
             }> | undefined;
             recapCompletedAt?: import("../../types").Timestamp | undefined;
+            recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
             recapStartedAt?: import("../../types").Timestamp | undefined;
         }>>;
         dateString: z.ZodString;
@@ -653,6 +656,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 threads: boolean;
             }> | undefined;
             recapCompletedAt?: import("../../types").Timestamp | undefined;
+            recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
             recapStartedAt?: import("../../types").Timestamp | undefined;
         }>;
         colorByUserId: Record<string, string>;
@@ -741,6 +745,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 threads?: boolean | undefined;
             }> | undefined;
             recapCompletedAt?: import("../../types").Timestamp | undefined;
+            recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
             recapStartedAt?: import("../../types").Timestamp | undefined;
         }>;
         colorByUserId: Record<string, string>;
@@ -837,6 +842,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 threads: boolean;
             }> | undefined;
             recapCompletedAt?: import("../../types").Timestamp | undefined;
+            recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
             recapStartedAt?: import("../../types").Timestamp | undefined;
         }>;
         colorByUserId: Record<string, string>;
@@ -937,6 +943,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 threads?: boolean | undefined;
             }> | undefined;
             recapCompletedAt?: import("../../types").Timestamp | undefined;
+            recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
             recapStartedAt?: import("../../types").Timestamp | undefined;
         }>;
         colorByUserId: Record<string, string>;
