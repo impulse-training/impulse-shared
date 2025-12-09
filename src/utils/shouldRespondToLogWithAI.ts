@@ -3,6 +3,7 @@ import {
   Log,
   logIsBehaviorLog,
   logIsQuestionLog,
+  logIsQuestionsLog,
   logIsResistedLog,
   logIsShowTourLog,
   logIsUserMessageLog,
@@ -59,6 +60,19 @@ export function shouldRespondToLogWithAI(
     fieldChanged(beforeData, afterData, "data.response")
   ) {
     return true;
+  }
+
+  // Case: The user has answered all experiment metric questions
+  if (
+    isNotDeleting &&
+    logIsQuestionsLog(afterData) &&
+    fieldChanged(beforeData, afterData, "data.questions")
+  ) {
+    // Check if all questions now have responses
+    const allAnswered = afterData.data.questions.every((q) => q.response);
+    if (allAnswered) {
+      return true;
+    }
   }
 
   // Case: The user has tracked a behavior

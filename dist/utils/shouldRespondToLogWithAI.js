@@ -41,6 +41,16 @@ function shouldRespondToLogWithAI(thread, beforeData, afterData) {
         (0, fields_1.fieldChanged)(beforeData, afterData, "data.response")) {
         return true;
     }
+    // Case: The user has answered all experiment metric questions
+    if (isNotDeleting &&
+        (0, log_1.logIsQuestionsLog)(afterData) &&
+        (0, fields_1.fieldChanged)(beforeData, afterData, "data.questions")) {
+        // Check if all questions now have responses
+        const allAnswered = afterData.data.questions.every((q) => q.response);
+        if (allAnswered) {
+            return true;
+        }
+    }
     // Case: The user has tracked a behavior
     if (isNotDeleting &&
         (0, log_1.logIsBehaviorLog)(afterData) &&
