@@ -10,6 +10,7 @@ import {
   logIsCallLog,
   logIsImpulseLog,
   logIsQuestionLog,
+  logIsQuestionsLog,
   logIsReadyToDebriefLog,
   logIsResistedLog,
   logIsShowTourLog,
@@ -134,6 +135,31 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
           content: log.data.response.formattedValue,
         });
       }
+    }
+
+    return messages;
+  }
+
+  // Handle QuestionsLog (multi-question log for experiments)
+  if (logIsQuestionsLog(log)) {
+    const messages: ChatCompletionMessageParam[] = [];
+
+    // Format all questions and responses together
+    const questionsWithResponses = log.data.questions
+      .map((entry) => {
+        const questionText = entry.question.text;
+        const responseValue = entry.response?.formattedValue ?? "Not answered";
+        return `- ${questionText}: ${responseValue}`;
+      })
+      .join("\n");
+
+    const hasAnyResponse = log.data.questions.some((entry) => entry.response);
+
+    if (hasAnyResponse) {
+      messages.push({
+        role: "user",
+        content: `<s>User answered experiment metric questions:\n${questionsWithResponses}</s>`,
+      });
     }
 
     return messages;
