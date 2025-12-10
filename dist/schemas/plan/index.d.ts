@@ -1,11 +1,59 @@
 import { z } from "zod";
+import { EmotionPlan } from "./emotionPlan";
 import { ImpulsePlan } from "./impulsePlan";
 import { LocationPlan } from "./locationPlan";
 import { TimePlan } from "./timePlan";
+export * from "./emotionPlan";
 export * from "./impulsePlan";
 export * from "./locationPlan";
 export * from "./timePlan";
 export declare const planSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    name: z.ZodString;
+    description: z.ZodOptional<z.ZodString>;
+    type: z.ZodType<"emotion", z.ZodTypeDef, "emotion">;
+    ordinal: z.ZodOptional<z.ZodNumber>;
+    isTemplate: z.ZodOptional<z.ZodBoolean>;
+    summary: z.ZodOptional<z.ZodString>;
+    tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+    questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
+    lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+} & {
+    emotionName: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    type: "emotion";
+    name: string;
+    tactics: import("../..").DocumentReferenceLike<unknown>[];
+    questions: import("../..").DocumentReferenceLike<unknown>[];
+    emotionName: string;
+    id?: string | undefined;
+    createdAt?: import("../../types").Timestamp | undefined;
+    updatedAt?: import("../../types").Timestamp | undefined;
+    description?: string | undefined;
+    ordinal?: number | undefined;
+    summary?: string | undefined;
+    isTemplate?: boolean | undefined;
+    lastUsedAt?: import("../../types").Timestamp | undefined;
+    deletedAt?: import("../../types").Timestamp | undefined;
+}, {
+    type: "emotion";
+    name: string;
+    tactics: import("../..").DocumentReferenceLike<unknown>[];
+    emotionName: string;
+    id?: string | undefined;
+    createdAt?: import("../../types").Timestamp | undefined;
+    updatedAt?: import("../../types").Timestamp | undefined;
+    description?: string | undefined;
+    ordinal?: number | undefined;
+    summary?: string | undefined;
+    isTemplate?: boolean | undefined;
+    questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+    lastUsedAt?: import("../../types").Timestamp | undefined;
+    deletedAt?: import("../../types").Timestamp | undefined;
+}>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     name: z.ZodString;
     description: z.ZodOptional<z.ZodString>;
@@ -206,6 +254,61 @@ export declare const planSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
 }>]>;
 export type Plan = z.infer<typeof planSchema>;
 export declare const planWithIdSchema: z.ZodUnion<[z.ZodIntersection<z.ZodObject<{
+    id: z.ZodString;
+    _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
+}, "strip", z.ZodTypeAny, {
+    id: string;
+    _ref: import("../..").DocumentReferenceLike<unknown>;
+}, {
+    id: string;
+    _ref: import("../..").DocumentReferenceLike<unknown>;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    name: z.ZodString;
+    description: z.ZodOptional<z.ZodString>;
+    type: z.ZodType<"emotion", z.ZodTypeDef, "emotion">;
+    ordinal: z.ZodOptional<z.ZodNumber>;
+    isTemplate: z.ZodOptional<z.ZodBoolean>;
+    summary: z.ZodOptional<z.ZodString>;
+    tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+    questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
+    lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+} & {
+    emotionName: z.ZodString;
+}, z.UnknownKeysParam, z.ZodTypeAny, {
+    type: "emotion";
+    name: string;
+    tactics: import("../..").DocumentReferenceLike<unknown>[];
+    questions: import("../..").DocumentReferenceLike<unknown>[];
+    emotionName: string;
+    id?: string | undefined;
+    createdAt?: import("../../types").Timestamp | undefined;
+    updatedAt?: import("../../types").Timestamp | undefined;
+    description?: string | undefined;
+    ordinal?: number | undefined;
+    summary?: string | undefined;
+    isTemplate?: boolean | undefined;
+    lastUsedAt?: import("../../types").Timestamp | undefined;
+    deletedAt?: import("../../types").Timestamp | undefined;
+}, {
+    type: "emotion";
+    name: string;
+    tactics: import("../..").DocumentReferenceLike<unknown>[];
+    emotionName: string;
+    id?: string | undefined;
+    createdAt?: import("../../types").Timestamp | undefined;
+    updatedAt?: import("../../types").Timestamp | undefined;
+    description?: string | undefined;
+    ordinal?: number | undefined;
+    summary?: string | undefined;
+    isTemplate?: boolean | undefined;
+    questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+    lastUsedAt?: import("../../types").Timestamp | undefined;
+    deletedAt?: import("../../types").Timestamp | undefined;
+}>>, z.ZodIntersection<z.ZodObject<{
     id: z.ZodString;
     _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
 }, "strip", z.ZodTypeAny, {
@@ -437,3 +540,5 @@ export declare const planIsLocationPlan: (value: Plan) => value is LocationPlan;
 export declare const isValidLocationPlan: (value: unknown) => value is LocationPlan;
 export declare const planIsImpulsePlan: (value: Plan) => value is ImpulsePlan;
 export declare const isValidImpulsePlan: (value: unknown) => value is ImpulsePlan;
+export declare const planIsEmotionPlan: (value: Plan) => value is EmotionPlan;
+export declare const isValidEmotionPlan: (value: unknown) => value is EmotionPlan;

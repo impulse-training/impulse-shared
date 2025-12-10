@@ -483,12 +483,12 @@ declare const responseSchema: z.ZodObject<{
     color: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     formattedValue: string;
-    responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
+    responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
     value?: any;
     color?: string | undefined;
 }, {
     formattedValue: string;
-    responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
+    responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
     value?: any;
     color?: string | undefined;
 }>;
@@ -877,12 +877,12 @@ declare const questionEntrySchema: z.ZodObject<{
         color: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
         formattedValue: string;
-        responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
+        responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
         value?: any;
         color?: string | undefined;
     }, {
         formattedValue: string;
-        responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
+        responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
         value?: any;
         color?: string | undefined;
     }>>;
@@ -1000,7 +1000,7 @@ declare const questionEntrySchema: z.ZodObject<{
     questionId?: string | undefined;
     response?: {
         formattedValue: string;
-        responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
+        responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
         value?: any;
         color?: string | undefined;
     } | undefined;
@@ -1118,7 +1118,7 @@ declare const questionEntrySchema: z.ZodObject<{
     questionId?: string | undefined;
     response?: {
         formattedValue: string;
-        responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
+        responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
         value?: any;
         color?: string | undefined;
     } | undefined;
@@ -1527,12 +1527,12 @@ export declare const questionsLogSchema: z.ZodObject<{
                 color: z.ZodOptional<z.ZodString>;
             }, "strip", z.ZodTypeAny, {
                 formattedValue: string;
-                responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
+                responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             }, {
                 formattedValue: string;
-                responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
+                responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             }>>;
@@ -1650,7 +1650,7 @@ export declare const questionsLogSchema: z.ZodObject<{
             questionId?: string | undefined;
             response?: {
                 formattedValue: string;
-                responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
+                responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             } | undefined;
@@ -1768,7 +1768,7 @@ export declare const questionsLogSchema: z.ZodObject<{
             questionId?: string | undefined;
             response?: {
                 formattedValue: string;
-                responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
+                responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             } | undefined;
@@ -1888,7 +1888,7 @@ export declare const questionsLogSchema: z.ZodObject<{
             questionId?: string | undefined;
             response?: {
                 formattedValue: string;
-                responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
+                responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             } | undefined;
@@ -2008,7 +2008,7 @@ export declare const questionsLogSchema: z.ZodObject<{
             questionId?: string | undefined;
             response?: {
                 formattedValue: string;
-                responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
+                responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             } | undefined;
@@ -2136,7 +2136,7 @@ export declare const questionsLogSchema: z.ZodObject<{
             questionId?: string | undefined;
             response?: {
                 formattedValue: string;
-                responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
+                responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             } | undefined;
@@ -2269,7 +2269,7 @@ export declare const questionsLogSchema: z.ZodObject<{
             questionId?: string | undefined;
             response?: {
                 formattedValue: string;
-                responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
+                responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             } | undefined;
@@ -2681,12 +2681,12 @@ export declare const questionLogSchema: z.ZodObject<{
             color: z.ZodOptional<z.ZodString>;
         }, "strip", z.ZodTypeAny, {
             formattedValue: string;
-            responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
+            responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
             value?: any;
             color?: string | undefined;
         }, {
             formattedValue: string;
-            responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
+            responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
             value?: any;
             color?: string | undefined;
         }>>;
@@ -2804,7 +2804,7 @@ export declare const questionLogSchema: z.ZodObject<{
         questionId?: string | undefined;
         response?: {
             formattedValue: string;
-            responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
+            responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
             value?: any;
             color?: string | undefined;
         } | undefined;
@@ -2922,7 +2922,7 @@ export declare const questionLogSchema: z.ZodObject<{
         questionId?: string | undefined;
         response?: {
             formattedValue: string;
-            responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
+            responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
             value?: any;
             color?: string | undefined;
         } | undefined;
@@ -3048,7 +3048,7 @@ export declare const questionLogSchema: z.ZodObject<{
         questionId?: string | undefined;
         response?: {
             formattedValue: string;
-            responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
+            responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
             value?: any;
             color?: string | undefined;
         } | undefined;
@@ -3178,7 +3178,7 @@ export declare const questionLogSchema: z.ZodObject<{
         questionId?: string | undefined;
         response?: {
             formattedValue: string;
-            responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
+            responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
             value?: any;
             color?: string | undefined;
         } | undefined;

@@ -14,6 +14,61 @@ export declare const generalThreadSchema: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         name: z.ZodString;
         description: z.ZodOptional<z.ZodString>;
+        type: z.ZodType<"emotion", z.ZodTypeDef, "emotion">;
+        ordinal: z.ZodOptional<z.ZodNumber>;
+        isTemplate: z.ZodOptional<z.ZodBoolean>;
+        summary: z.ZodOptional<z.ZodString>;
+        tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+        questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
+        lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    } & {
+        emotionName: z.ZodString;
+    }, z.UnknownKeysParam, z.ZodTypeAny, {
+        type: "emotion";
+        name: string;
+        tactics: import("../..").DocumentReferenceLike<unknown>[];
+        questions: import("../..").DocumentReferenceLike<unknown>[];
+        emotionName: string;
+        id?: string | undefined;
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        description?: string | undefined;
+        ordinal?: number | undefined;
+        summary?: string | undefined;
+        isTemplate?: boolean | undefined;
+        lastUsedAt?: import("../../types").Timestamp | undefined;
+        deletedAt?: import("../../types").Timestamp | undefined;
+    }, {
+        type: "emotion";
+        name: string;
+        tactics: import("../..").DocumentReferenceLike<unknown>[];
+        emotionName: string;
+        id?: string | undefined;
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        description?: string | undefined;
+        ordinal?: number | undefined;
+        summary?: string | undefined;
+        isTemplate?: boolean | undefined;
+        questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+        lastUsedAt?: import("../../types").Timestamp | undefined;
+        deletedAt?: import("../../types").Timestamp | undefined;
+    }>>, z.ZodIntersection<z.ZodObject<{
+        id: z.ZodString;
+        _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
+    }, "strip", z.ZodTypeAny, {
+        id: string;
+        _ref: import("../..").DocumentReferenceLike<unknown>;
+    }, {
+        id: string;
+        _ref: import("../..").DocumentReferenceLike<unknown>;
+    }>, z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        name: z.ZodString;
+        description: z.ZodOptional<z.ZodString>;
         type: z.ZodType<"impulse", z.ZodTypeDef, "impulse">;
         ordinal: z.ZodOptional<z.ZodNumber>;
         isTemplate: z.ZodOptional<z.ZodBoolean>;
@@ -2165,6 +2220,24 @@ export declare const generalThreadSchema: z.ZodObject<{
         id: string;
         _ref: import("../..").DocumentReferenceLike<unknown>;
     } & {
+        type: "emotion";
+        name: string;
+        tactics: import("../..").DocumentReferenceLike<unknown>[];
+        questions: import("../..").DocumentReferenceLike<unknown>[];
+        emotionName: string;
+        id?: string | undefined;
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        description?: string | undefined;
+        ordinal?: number | undefined;
+        summary?: string | undefined;
+        isTemplate?: boolean | undefined;
+        lastUsedAt?: import("../../types").Timestamp | undefined;
+        deletedAt?: import("../../types").Timestamp | undefined;
+    }) | ({
+        id: string;
+        _ref: import("../..").DocumentReferenceLike<unknown>;
+    } & {
         type: "impulse";
         behaviorId: string;
         name: string;
@@ -2555,6 +2628,24 @@ export declare const generalThreadSchema: z.ZodObject<{
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
     plan?: ({
+        id: string;
+        _ref: import("../..").DocumentReferenceLike<unknown>;
+    } & {
+        type: "emotion";
+        name: string;
+        tactics: import("../..").DocumentReferenceLike<unknown>[];
+        emotionName: string;
+        id?: string | undefined;
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        description?: string | undefined;
+        ordinal?: number | undefined;
+        summary?: string | undefined;
+        isTemplate?: boolean | undefined;
+        questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+        lastUsedAt?: import("../../types").Timestamp | undefined;
+        deletedAt?: import("../../types").Timestamp | undefined;
+    }) | ({
         id: string;
         _ref: import("../..").DocumentReferenceLike<unknown>;
     } & {
