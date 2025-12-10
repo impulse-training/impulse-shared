@@ -21,7 +21,12 @@ import {
 } from "./notifySupportGroupLog";
 import { PlanLog, planLogSchema } from "./planLog";
 import { PlansLog, plansLogSchema } from "./plansLog";
-import { QuestionsLog, questionsLogSchema } from "./questionLog";
+import {
+  QuestionLog,
+  questionLogSchema,
+  QuestionsLog,
+  questionsLogSchema,
+} from "./questionLog";
 import {
   ReadyToDebriefLog,
   readyToDebriefLogSchema,
@@ -61,6 +66,7 @@ export const logSchemas = {
   behavior: behaviorLogSchema,
   breathing: breathingLogSchema,
   outcome: resistedLogSchema,
+  question: questionLogSchema,
   questions: questionsLogSchema,
   plan: planLogSchema,
   plans: plansLogSchema,
@@ -89,6 +95,7 @@ export type Log =
   | BehaviorLog
   | BreathingLog
   | ResistedLog
+  | QuestionLog
   | QuestionsLog
   | PlanLog
   | PlansLog
