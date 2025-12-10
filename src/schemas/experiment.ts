@@ -27,8 +27,8 @@ export const experimentSchema = z.object({
 
   // Next, calculate whether requirements were met for a given day for a phase
   requirementsMet: z.object({
-    baseline: z.record(z.string(), z.boolean()),
-    test: z.record(z.string(), z.boolean()),
+    baseline: z.record(z.string(), z.boolean().nullable()),
+    test: z.record(z.string(), z.boolean().nullable()),
   }),
 
   // Finally, compute data for display.
@@ -36,13 +36,19 @@ export const experimentSchema = z.object({
     baseline: z.object({
       startDateString: z.string(),
       days: z.array(
-        z.object({ date: z.string(), requirementsMet: z.boolean() })
+        z.object({
+          date: z.string(),
+          requirementsMet: z.boolean().nullable().default(null),
+        })
       ),
     }),
     test: z.object({
       startDateString: z.string(),
       days: z.array(
-        z.object({ date: z.string(), requirementsMet: z.boolean() })
+        z.object({
+          date: z.string(),
+          requirementsMet: z.boolean().nullable().default(null),
+        })
       ),
     }),
   }),
