@@ -56,6 +56,7 @@ exports.logSchemas = {
     behavior: behaviorLog_1.behaviorLogSchema,
     breathing: breathingLog_1.breathingLogSchema,
     outcome: resistedLog_1.resistedLogSchema,
+    question: questionLog_1.questionLogSchema,
     questions: questionLog_1.questionsLogSchema,
     plan: planLog_1.planLogSchema,
     plans: plansLog_1.plansLogSchema,

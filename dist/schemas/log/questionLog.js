@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.questionsLogSchema = exports.recapResponseValueSchema = void 0;
+exports.logIsQuestionLog = exports.questionLogSchema = exports.questionsLogSchema = exports.recapResponseValueSchema = void 0;
 const zod_1 = require("zod");
 const behavior_1 = require("../behavior");
 const daySummary_1 = require("../daySummary");
@@ -54,3 +54,18 @@ exports.questionsLogSchema = base_1.logBaseSchema.extend({
         questions: zod_1.z.array(questionEntrySchema),
     }),
 });
+/**
+ * Single question log - legacy format for backward compatibility.
+ * New code should use QuestionsLog instead.
+ */
+exports.questionLogSchema = base_1.logBaseSchema.extend({
+    type: zod_1.z.literal("question"),
+    isDisplayable: zod_1.z.literal(true),
+    data: zod_1.z.object({
+        questionId: zod_1.z.string().optional(),
+        question: question_1.questionSchema,
+        response: responseSchema.optional(),
+    }),
+});
+const logIsQuestionLog = (value) => value.type === "question";
+exports.logIsQuestionLog = logIsQuestionLog;
