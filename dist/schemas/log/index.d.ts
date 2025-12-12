@@ -10072,6 +10072,7 @@ export declare const logSchemas: {
         type: z.ZodLiteral<"questions">;
         isDisplayable: z.ZodLiteral<true>;
         text: z.ZodOptional<z.ZodString>;
+        answeredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         data: z.ZodObject<{
             questions: z.ZodArray<z.ZodObject<{
                 questionId: z.ZodOptional<z.ZodString>;
@@ -11076,6 +11077,7 @@ export declare const logSchemas: {
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
         callLogDocPath?: string | undefined;
+        answeredAt?: import("../../types").Timestamp | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -11209,6 +11211,7 @@ export declare const logSchemas: {
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
         callLogDocPath?: string | undefined;
+        answeredAt?: import("../../types").Timestamp | undefined;
     }>;
     plan: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
@@ -20941,6 +20944,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     type: z.ZodLiteral<"questions">;
     isDisplayable: z.ZodLiteral<true>;
     text: z.ZodOptional<z.ZodString>;
+    answeredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     data: z.ZodObject<{
         questions: z.ZodArray<z.ZodObject<{
             questionId: z.ZodOptional<z.ZodString>;
@@ -21945,6 +21949,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
     callLogDocPath?: string | undefined;
+    answeredAt?: import("../../types").Timestamp | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
@@ -22078,6 +22083,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
     callLogDocPath?: string | undefined;
+    answeredAt?: import("../../types").Timestamp | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;

@@ -1142,6 +1142,8 @@ export declare const questionsLogSchema: z.ZodObject<{
     isDisplayable: z.ZodLiteral<true>;
     /** Display text shown above the questions */
     text: z.ZodOptional<z.ZodString>;
+    /** Timestamp when all questions in this log were answered */
+    answeredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     data: z.ZodObject<{
         /** Array of questions with their responses */
         questions: z.ZodArray<z.ZodObject<{
@@ -2147,6 +2149,7 @@ export declare const questionsLogSchema: z.ZodObject<{
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
     callLogDocPath?: string | undefined;
+    answeredAt?: import("../../types").Timestamp | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
@@ -2280,6 +2283,7 @@ export declare const questionsLogSchema: z.ZodObject<{
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
     callLogDocPath?: string | undefined;
+    answeredAt?: import("../../types").Timestamp | undefined;
 }>;
 export type QuestionsLog = z.infer<typeof questionsLogSchema>;
 /**

@@ -5,6 +5,7 @@ const zod_1 = require("zod");
 const behavior_1 = require("../behavior");
 const daySummary_1 = require("../daySummary");
 const question_1 = require("../question");
+const timestampSchema_1 = require("../../utils/timestampSchema");
 const base_1 = require("./base");
 /** Schema for recap response value - includes behavior totals, goals, and behaviors snapshot */
 exports.recapResponseValueSchema = zod_1.z.object({
@@ -49,6 +50,8 @@ exports.questionsLogSchema = base_1.logBaseSchema.extend({
     isDisplayable: zod_1.z.literal(true),
     /** Display text shown above the questions */
     text: zod_1.z.string().optional(),
+    /** Timestamp when all questions in this log were answered */
+    answeredAt: timestampSchema_1.timestampSchema.optional(),
     data: zod_1.z.object({
         /** Array of questions with their responses */
         questions: zod_1.z.array(questionEntrySchema),

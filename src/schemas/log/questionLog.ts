@@ -2,6 +2,7 @@ import { z } from "zod";
 import { behaviorSchema } from "../behavior";
 import { goalComparisonEntrySchema } from "../daySummary";
 import { questionSchema } from "../question";
+import { timestampSchema } from "../../utils/timestampSchema";
 import { logBaseSchema } from "./base";
 
 /** Schema for recap response value - includes behavior totals, goals, and behaviors snapshot */
@@ -56,6 +57,8 @@ export const questionsLogSchema = logBaseSchema.extend({
   isDisplayable: z.literal(true),
   /** Display text shown above the questions */
   text: z.string().optional(),
+  /** Timestamp when all questions in this log were answered */
+  answeredAt: timestampSchema.optional(),
   data: z.object({
     /** Array of questions with their responses */
     questions: z.array(questionEntrySchema),
