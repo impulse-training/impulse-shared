@@ -16,6 +16,7 @@ export declare const planSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isTemplate: z.ZodOptional<z.ZodBoolean>;
     summary: z.ZodOptional<z.ZodString>;
     tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+    tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
     questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
     lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -36,6 +37,7 @@ export declare const planSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal?: number | undefined;
     summary?: string | undefined;
     isTemplate?: boolean | undefined;
+    tacticsByPath?: Record<string, any> | undefined;
     lastUsedAt?: import("../../types").Timestamp | undefined;
     deletedAt?: import("../../types").Timestamp | undefined;
 }, {
@@ -50,6 +52,7 @@ export declare const planSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal?: number | undefined;
     summary?: string | undefined;
     isTemplate?: boolean | undefined;
+    tacticsByPath?: Record<string, any> | undefined;
     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
     lastUsedAt?: import("../../types").Timestamp | undefined;
     deletedAt?: import("../../types").Timestamp | undefined;
@@ -62,6 +65,7 @@ export declare const planSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isTemplate: z.ZodOptional<z.ZodBoolean>;
     summary: z.ZodOptional<z.ZodString>;
     tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+    tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
     questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -92,6 +96,7 @@ export declare const planSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal?: number | undefined;
     summary?: string | undefined;
     isTemplate?: boolean | undefined;
+    tacticsByPath?: Record<string, any> | undefined;
     lastUsedAt?: import("../../types").Timestamp | undefined;
     deletedAt?: import("../../types").Timestamp | undefined;
 }, {
@@ -107,6 +112,7 @@ export declare const planSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal?: number | undefined;
     summary?: string | undefined;
     isTemplate?: boolean | undefined;
+    tacticsByPath?: Record<string, any> | undefined;
     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
     lastUsedAt?: import("../../types").Timestamp | undefined;
     deletedAt?: import("../../types").Timestamp | undefined;
@@ -123,6 +129,7 @@ export declare const planSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isTemplate: z.ZodOptional<z.ZodBoolean>;
     summary: z.ZodOptional<z.ZodString>;
     tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+    tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
     questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
     lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -159,6 +166,7 @@ export declare const planSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal?: number | undefined;
     summary?: string | undefined;
     isTemplate?: boolean | undefined;
+    tacticsByPath?: Record<string, any> | undefined;
     lastUsedAt?: import("../../types").Timestamp | undefined;
     deletedAt?: import("../../types").Timestamp | undefined;
 }, {
@@ -177,6 +185,7 @@ export declare const planSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal?: number | undefined;
     summary?: string | undefined;
     isTemplate?: boolean | undefined;
+    tacticsByPath?: Record<string, any> | undefined;
     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
     lastUsedAt?: import("../../types").Timestamp | undefined;
     deletedAt?: import("../../types").Timestamp | undefined;
@@ -189,6 +198,7 @@ export declare const planSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isTemplate: z.ZodOptional<z.ZodBoolean>;
     summary: z.ZodOptional<z.ZodString>;
     tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+    tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
     questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
     lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -229,6 +239,7 @@ export declare const planSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal?: number | undefined;
     summary?: string | undefined;
     isTemplate?: boolean | undefined;
+    tacticsByPath?: Record<string, any> | undefined;
     lastUsedAt?: import("../../types").Timestamp | undefined;
     deletedAt?: import("../../types").Timestamp | undefined;
 }, {
@@ -248,6 +259,7 @@ export declare const planSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     ordinal?: number | undefined;
     summary?: string | undefined;
     isTemplate?: boolean | undefined;
+    tacticsByPath?: Record<string, any> | undefined;
     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
     lastUsedAt?: import("../../types").Timestamp | undefined;
     deletedAt?: import("../../types").Timestamp | undefined;
@@ -271,6 +283,7 @@ export declare const planWithIdSchema: z.ZodUnion<[z.ZodIntersection<z.ZodObject
     isTemplate: z.ZodOptional<z.ZodBoolean>;
     summary: z.ZodOptional<z.ZodString>;
     tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+    tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
     questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
     lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -291,6 +304,7 @@ export declare const planWithIdSchema: z.ZodUnion<[z.ZodIntersection<z.ZodObject
     ordinal?: number | undefined;
     summary?: string | undefined;
     isTemplate?: boolean | undefined;
+    tacticsByPath?: Record<string, any> | undefined;
     lastUsedAt?: import("../../types").Timestamp | undefined;
     deletedAt?: import("../../types").Timestamp | undefined;
 }, {
@@ -305,6 +319,7 @@ export declare const planWithIdSchema: z.ZodUnion<[z.ZodIntersection<z.ZodObject
     ordinal?: number | undefined;
     summary?: string | undefined;
     isTemplate?: boolean | undefined;
+    tacticsByPath?: Record<string, any> | undefined;
     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
     lastUsedAt?: import("../../types").Timestamp | undefined;
     deletedAt?: import("../../types").Timestamp | undefined;
@@ -326,6 +341,7 @@ export declare const planWithIdSchema: z.ZodUnion<[z.ZodIntersection<z.ZodObject
     isTemplate: z.ZodOptional<z.ZodBoolean>;
     summary: z.ZodOptional<z.ZodString>;
     tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+    tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
     questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -356,6 +372,7 @@ export declare const planWithIdSchema: z.ZodUnion<[z.ZodIntersection<z.ZodObject
     ordinal?: number | undefined;
     summary?: string | undefined;
     isTemplate?: boolean | undefined;
+    tacticsByPath?: Record<string, any> | undefined;
     lastUsedAt?: import("../../types").Timestamp | undefined;
     deletedAt?: import("../../types").Timestamp | undefined;
 }, {
@@ -371,6 +388,7 @@ export declare const planWithIdSchema: z.ZodUnion<[z.ZodIntersection<z.ZodObject
     ordinal?: number | undefined;
     summary?: string | undefined;
     isTemplate?: boolean | undefined;
+    tacticsByPath?: Record<string, any> | undefined;
     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
     lastUsedAt?: import("../../types").Timestamp | undefined;
     deletedAt?: import("../../types").Timestamp | undefined;
@@ -396,6 +414,7 @@ export declare const planWithIdSchema: z.ZodUnion<[z.ZodIntersection<z.ZodObject
     isTemplate: z.ZodOptional<z.ZodBoolean>;
     summary: z.ZodOptional<z.ZodString>;
     tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+    tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
     questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
     lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -432,6 +451,7 @@ export declare const planWithIdSchema: z.ZodUnion<[z.ZodIntersection<z.ZodObject
     ordinal?: number | undefined;
     summary?: string | undefined;
     isTemplate?: boolean | undefined;
+    tacticsByPath?: Record<string, any> | undefined;
     lastUsedAt?: import("../../types").Timestamp | undefined;
     deletedAt?: import("../../types").Timestamp | undefined;
 }, {
@@ -450,6 +470,7 @@ export declare const planWithIdSchema: z.ZodUnion<[z.ZodIntersection<z.ZodObject
     ordinal?: number | undefined;
     summary?: string | undefined;
     isTemplate?: boolean | undefined;
+    tacticsByPath?: Record<string, any> | undefined;
     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
     lastUsedAt?: import("../../types").Timestamp | undefined;
     deletedAt?: import("../../types").Timestamp | undefined;
@@ -471,6 +492,7 @@ export declare const planWithIdSchema: z.ZodUnion<[z.ZodIntersection<z.ZodObject
     isTemplate: z.ZodOptional<z.ZodBoolean>;
     summary: z.ZodOptional<z.ZodString>;
     tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+    tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
     questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
     lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -511,6 +533,7 @@ export declare const planWithIdSchema: z.ZodUnion<[z.ZodIntersection<z.ZodObject
     ordinal?: number | undefined;
     summary?: string | undefined;
     isTemplate?: boolean | undefined;
+    tacticsByPath?: Record<string, any> | undefined;
     lastUsedAt?: import("../../types").Timestamp | undefined;
     deletedAt?: import("../../types").Timestamp | undefined;
 }, {
@@ -530,6 +553,7 @@ export declare const planWithIdSchema: z.ZodUnion<[z.ZodIntersection<z.ZodObject
     ordinal?: number | undefined;
     summary?: string | undefined;
     isTemplate?: boolean | undefined;
+    tacticsByPath?: Record<string, any> | undefined;
     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
     lastUsedAt?: import("../../types").Timestamp | undefined;
     deletedAt?: import("../../types").Timestamp | undefined;

@@ -34,8 +34,6 @@ exports.threadBaseSchema = zod_1.z.object({
     // Whether this thread is a draft (created before any logs exist)
     // Draft threads should be hidden in UI until a log is added
     isDraft: zod_1.z.boolean().optional().default(false),
-    // For now, don't type this
-    tacticsByPath: zod_1.z.record(zod_1.z.string(), zod_1.z.any()).optional(),
     emojiId: emojiId_1.emojiIdSchema.nullable(),
     // Log summary data - written in after log write functions. We store tactic and behavior tracking
     // logs here (loosely typed until log schemas are migrated)

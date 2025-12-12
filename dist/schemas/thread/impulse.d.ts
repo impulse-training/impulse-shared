@@ -19,6 +19,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         isTemplate: z.ZodOptional<z.ZodBoolean>;
         summary: z.ZodOptional<z.ZodString>;
         tactics: z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
+        tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
         questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>>;
         lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -39,6 +40,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         ordinal?: number | undefined;
         summary?: string | undefined;
         isTemplate?: boolean | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
         lastUsedAt?: import("../../types").Timestamp | undefined;
         deletedAt?: import("../../types").Timestamp | undefined;
     }, {
@@ -53,6 +55,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         ordinal?: number | undefined;
         summary?: string | undefined;
         isTemplate?: boolean | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
         questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
         lastUsedAt?: import("../../types").Timestamp | undefined;
         deletedAt?: import("../../types").Timestamp | undefined;
@@ -74,6 +77,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         isTemplate: z.ZodOptional<z.ZodBoolean>;
         summary: z.ZodOptional<z.ZodString>;
         tactics: z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
+        tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
         questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>>;
         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -104,6 +108,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         ordinal?: number | undefined;
         summary?: string | undefined;
         isTemplate?: boolean | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
         lastUsedAt?: import("../../types").Timestamp | undefined;
         deletedAt?: import("../../types").Timestamp | undefined;
     }, {
@@ -119,6 +124,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         ordinal?: number | undefined;
         summary?: string | undefined;
         isTemplate?: boolean | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
         questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
         lastUsedAt?: import("../../types").Timestamp | undefined;
         deletedAt?: import("../../types").Timestamp | undefined;
@@ -144,6 +150,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         isTemplate: z.ZodOptional<z.ZodBoolean>;
         summary: z.ZodOptional<z.ZodString>;
         tactics: z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
+        tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
         questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>>;
         lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -180,6 +187,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         ordinal?: number | undefined;
         summary?: string | undefined;
         isTemplate?: boolean | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
         lastUsedAt?: import("../../types").Timestamp | undefined;
         deletedAt?: import("../../types").Timestamp | undefined;
     }, {
@@ -198,6 +206,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         ordinal?: number | undefined;
         summary?: string | undefined;
         isTemplate?: boolean | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
         questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
         lastUsedAt?: import("../../types").Timestamp | undefined;
         deletedAt?: import("../../types").Timestamp | undefined;
@@ -219,6 +228,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         isTemplate: z.ZodOptional<z.ZodBoolean>;
         summary: z.ZodOptional<z.ZodString>;
         tactics: z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
+        tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
         questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>>;
         lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -259,6 +269,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         ordinal?: number | undefined;
         summary?: string | undefined;
         isTemplate?: boolean | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
         lastUsedAt?: import("../../types").Timestamp | undefined;
         deletedAt?: import("../../types").Timestamp | undefined;
     }, {
@@ -278,6 +289,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         ordinal?: number | undefined;
         summary?: string | undefined;
         isTemplate?: boolean | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
         questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
         lastUsedAt?: import("../../types").Timestamp | undefined;
         deletedAt?: import("../../types").Timestamp | undefined;
@@ -2024,7 +2036,6 @@ export declare const impulseThreadSchema: z.ZodObject<{
     }>>;
     currentTacticStepIndex: z.ZodOptional<z.ZodNumber>;
     isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-    tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
     emojiId: z.ZodNullable<z.ZodObject<{
         emoji: z.ZodString;
         name: z.ZodString;
@@ -2172,6 +2183,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         ordinal?: number | undefined;
         summary?: string | undefined;
         isTemplate?: boolean | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
         lastUsedAt?: import("../../types").Timestamp | undefined;
         deletedAt?: import("../../types").Timestamp | undefined;
     }) | ({
@@ -2195,6 +2207,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         ordinal?: number | undefined;
         summary?: string | undefined;
         isTemplate?: boolean | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
         lastUsedAt?: import("../../types").Timestamp | undefined;
         deletedAt?: import("../../types").Timestamp | undefined;
     }) | ({
@@ -2217,6 +2230,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         ordinal?: number | undefined;
         summary?: string | undefined;
         isTemplate?: boolean | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
         lastUsedAt?: import("../../types").Timestamp | undefined;
         deletedAt?: import("../../types").Timestamp | undefined;
     }) | ({
@@ -2240,10 +2254,10 @@ export declare const impulseThreadSchema: z.ZodObject<{
         ordinal?: number | undefined;
         summary?: string | undefined;
         isTemplate?: boolean | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
         lastUsedAt?: import("../../types").Timestamp | undefined;
         deletedAt?: import("../../types").Timestamp | undefined;
     }) | undefined;
-    tacticsByPath?: Record<string, any> | undefined;
     summarizedAt?: import("../../types").Timestamp | undefined;
     isSuccess?: boolean | undefined;
     currentTactic?: {
@@ -2570,6 +2584,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         ordinal?: number | undefined;
         summary?: string | undefined;
         isTemplate?: boolean | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
         questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
         lastUsedAt?: import("../../types").Timestamp | undefined;
         deletedAt?: import("../../types").Timestamp | undefined;
@@ -2589,6 +2604,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         ordinal?: number | undefined;
         summary?: string | undefined;
         isTemplate?: boolean | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
         questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
         lastUsedAt?: import("../../types").Timestamp | undefined;
         deletedAt?: import("../../types").Timestamp | undefined;
@@ -2615,6 +2631,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         ordinal?: number | undefined;
         summary?: string | undefined;
         isTemplate?: boolean | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
         questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
         lastUsedAt?: import("../../types").Timestamp | undefined;
         deletedAt?: import("../../types").Timestamp | undefined;
@@ -2638,11 +2655,11 @@ export declare const impulseThreadSchema: z.ZodObject<{
         ordinal?: number | undefined;
         summary?: string | undefined;
         isTemplate?: boolean | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
         questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
         lastUsedAt?: import("../../types").Timestamp | undefined;
         deletedAt?: import("../../types").Timestamp | undefined;
     }) | undefined;
-    tacticsByPath?: Record<string, any> | undefined;
     summarizedAt?: import("../../types").Timestamp | undefined;
     isSuccess?: boolean | undefined;
     currentTactic?: {

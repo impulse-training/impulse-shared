@@ -37,9 +37,6 @@ export const threadBaseSchema = z.object({
   // Draft threads should be hidden in UI until a log is added
   isDraft: z.boolean().optional().default(false),
 
-  // For now, don't type this
-  tacticsByPath: z.record(z.string(), z.any()).optional(),
-
   emojiId: emojiIdSchema.nullable(),
 
   // Log summary data - written in after log write functions. We store tactic and behavior tracking

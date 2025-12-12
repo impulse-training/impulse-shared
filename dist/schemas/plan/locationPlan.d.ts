@@ -8,6 +8,7 @@ export declare const locationPlanSchema: z.ZodObject<{
     isTemplate: z.ZodOptional<z.ZodBoolean>;
     summary: z.ZodOptional<z.ZodString>;
     tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
+    tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
     questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
     lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -48,6 +49,7 @@ export declare const locationPlanSchema: z.ZodObject<{
     ordinal?: number | undefined;
     summary?: string | undefined;
     isTemplate?: boolean | undefined;
+    tacticsByPath?: Record<string, any> | undefined;
     lastUsedAt?: import("../../types").Timestamp | undefined;
     deletedAt?: import("../../types").Timestamp | undefined;
 }, {
@@ -67,6 +69,7 @@ export declare const locationPlanSchema: z.ZodObject<{
     ordinal?: number | undefined;
     summary?: string | undefined;
     isTemplate?: boolean | undefined;
+    tacticsByPath?: Record<string, any> | undefined;
     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
     lastUsedAt?: import("../../types").Timestamp | undefined;
     deletedAt?: import("../../types").Timestamp | undefined;
