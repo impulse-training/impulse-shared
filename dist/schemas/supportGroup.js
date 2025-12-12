@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidSupportGroup = exports.isValidSupportGroupMember = exports.supportGroupSchema = exports.supportGroupMemberSchema = exports.supportGroupNotificationPreferencesSchema = exports.supportGroupPermissionsSchema = void 0;
+exports.isValidSupportGroup = exports.isValidSupportGroupMember = exports.supportGroupSchema = exports.supportGroupTypeSchema = exports.supportGroupMemberSchema = exports.supportGroupNotificationPreferencesSchema = exports.supportGroupPermissionsSchema = void 0;
 const zod_1 = require("zod");
 const objectOf_1 = require("../utils/objectOf");
 const timestampSchema_1 = require("../utils/timestampSchema");
@@ -24,9 +24,12 @@ exports.supportGroupMemberSchema = zod_1.z.object({
         .optional(),
     joinedAt: timestampSchema_1.timestampSchema.optional(),
 });
+// Support Group Type
+exports.supportGroupTypeSchema = zod_1.z.enum(["system", "social"]);
 // Support Group Schema
 exports.supportGroupSchema = zod_1.z.object({
     id: zod_1.z.string().optional(), // IDS are never passed when creating
+    type: exports.supportGroupTypeSchema.default("social"),
     name: zod_1.z.string(),
     description: zod_1.z.string().optional(),
     ownerId: zod_1.z.string(),

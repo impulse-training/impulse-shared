@@ -35,9 +35,14 @@ export const supportGroupMemberSchema = z.object({
   joinedAt: timestampSchema.optional(),
 });
 
+// Support Group Type
+export const supportGroupTypeSchema = z.enum(["system", "social"]);
+export type SupportGroupType = z.infer<typeof supportGroupTypeSchema>;
+
 // Support Group Schema
 export const supportGroupSchema = z.object({
   id: z.string().optional(), // IDS are never passed when creating
+  type: supportGroupTypeSchema.default("social"),
   name: z.string(),
   description: z.string().optional(),
   ownerId: z.string(),
