@@ -16,7 +16,6 @@ import { ReadyToDebriefLog } from "./readyToDebriefLog";
 import { ResistedLog } from "./resistedLog";
 import { SharedMomentLog } from "./sharedMomentLog";
 import { ShowTourLog } from "./showTourLog";
-import { SuggestedTacticsLog } from "./suggestedTacticsLog";
 import { SummaryLog } from "./summaryLog";
 import { SupportGroupDaySummaryLog } from "./supportGroupDaySummaryLog";
 import { TacticLog } from "./tacticLog";
@@ -14572,7 +14571,7 @@ export declare const logSchemas: {
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | TacticStepLog | TacticSuggestionLog | ImpulseLog | BehaviorLog | BreathingLog | ResistedLog | QuestionLog | QuestionsLog | PlanLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | ReadyToDebriefLog | SuggestedTacticsLog | SupportGroupDaySummaryLog | DebriefUrgeLog | FinishRecapLog;
+export type Log = TacticLog | TacticStepLog | TacticSuggestionLog | ImpulseLog | BehaviorLog | BreathingLog | ResistedLog | QuestionLog | QuestionsLog | PlanLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | ReadyToDebriefLog | SupportGroupDaySummaryLog | DebriefUrgeLog | FinishRecapLog;
 export * from "./behaviorLog";
 export * from "./breathingLog";
 export * from "./callLog";
@@ -14589,7 +14588,6 @@ export * from "./readyToDebriefLog";
 export * from "./resistedLog";
 export * from "./sharedMomentLog";
 export * from "./showTourLog";
-export * from "./suggestedTacticsLog";
 export * from "./summaryLog";
 export * from "./supportGroupDaySummaryLog";
 export * from "./tacticLog";
@@ -24380,74 +24378,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     tacticId: z.ZodOptional<z.ZodString>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
-    type: z.ZodLiteral<"suggested_tactics">;
-    isDisplayable: z.ZodLiteral<true>;
-    data: z.ZodObject<{
-        tactics: z.ZodArray<z.ZodObject<{
-            tacticPath: z.ZodString;
-            reason: z.ZodOptional<z.ZodString>;
-        }, "strip", z.ZodTypeAny, {
-            tacticPath: string;
-            reason?: string | undefined;
-        }, {
-            tacticPath: string;
-            reason?: string | undefined;
-        }>, "many">;
-    }, "strip", z.ZodTypeAny, {
-        tactics: {
-            tacticPath: string;
-            reason?: string | undefined;
-        }[];
-    }, {
-        tactics: {
-            tacticPath: string;
-            reason?: string | undefined;
-        }[];
-    }>;
-}, "strip", z.ZodTypeAny, {
-    createdAt: import("../../types").Timestamp;
-    updatedAt: import("../../types").Timestamp;
-    type: "suggested_tactics";
-    userId: string;
-    dateString: string;
-    isDisplayable: true;
-    data: {
-        tactics: {
-            tacticPath: string;
-            reason?: string | undefined;
-        }[];
-    };
-    id?: string | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
-    tacticId?: string | undefined;
-    callLogDocPath?: string | undefined;
-}, {
-    createdAt: import("../../types").Timestamp;
-    updatedAt: import("../../types").Timestamp;
-    type: "suggested_tactics";
-    userId: string;
-    dateString: string;
-    isDisplayable: true;
-    data: {
-        tactics: {
-            tacticPath: string;
-            reason?: string | undefined;
-        }[];
-    };
-    id?: string | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
-    tacticId?: string | undefined;
-    callLogDocPath?: string | undefined;
-}>, z.ZodObject<{
-    id: z.ZodOptional<z.ZodString>;
-    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-    userId: z.ZodString;
-    timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-    dateString: z.ZodString;
-    tacticId: z.ZodOptional<z.ZodString>;
-    callLogDocPath: z.ZodOptional<z.ZodString>;
-} & {
     type: z.ZodLiteral<"support_group_day_summary">;
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
@@ -25536,8 +25466,6 @@ export declare const logIsBreathingLog: (value: Omit<Log, "id">) => value is Bre
 export declare const isValidBreathingLog: (value: unknown) => value is BreathingLog;
 export declare const logIsResistedLog: (value: Omit<Log, "id">) => value is ResistedLog;
 export declare const isValidResistedLog: (value: unknown) => value is ResistedLog;
-export declare const logIsSuggestedTacticsLog: (value: Omit<Log, "id">) => value is SuggestedTacticsLog;
-export declare const isValidSuggestedTacticsLog: (value: unknown) => value is SuggestedTacticsLog;
 export declare const logIsSupportGroupDaySummaryLog: (value: Omit<Log, "id">) => value is SupportGroupDaySummaryLog;
 export declare const isValidSupportGroupDaySummaryLog: (value: unknown) => value is SupportGroupDaySummaryLog;
 export declare const logIsDebriefUrgeLog: (value: Omit<Log, "id">) => value is DebriefUrgeLog;

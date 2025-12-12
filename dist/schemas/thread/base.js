@@ -5,7 +5,6 @@ const zod_1 = require("zod");
 const documentReferenceSchema_1 = require("../../utils/documentReferenceSchema");
 const timestampSchema_1 = require("../../utils/timestampSchema");
 const emojiId_1 = require("../emojiId");
-const log_1 = require("../log");
 const plan_1 = require("../plan");
 const tactic_1 = require("../tactic/tactic");
 const threadSummary_1 = require("../threadSummary");
@@ -37,8 +36,6 @@ exports.threadBaseSchema = zod_1.z.object({
     isDraft: zod_1.z.boolean().optional().default(false),
     // For now, don't type this
     tacticsByPath: zod_1.z.record(zod_1.z.string(), zod_1.z.any()).optional(),
-    suggestedTactics: log_1.suggestedTacticsLogSchema.optional(),
-    suggestedTacticsStartedRefreshingAt: timestampSchema_1.timestampSchema.optional(),
     emojiId: emojiId_1.emojiIdSchema.nullable(),
     // Log summary data - written in after log write functions. We store tactic and behavior tracking
     // logs here (loosely typed until log schemas are migrated)

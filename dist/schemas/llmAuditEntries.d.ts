@@ -2032,76 +2032,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex: z.ZodOptional<z.ZodNumber>;
         isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
         tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
-        suggestedTactics: z.ZodOptional<z.ZodObject<{
-            id: z.ZodOptional<z.ZodString>;
-            createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
-            updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
-            userId: z.ZodString;
-            timestamp: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-            dateString: z.ZodString;
-            tacticId: z.ZodOptional<z.ZodString>;
-            callLogDocPath: z.ZodOptional<z.ZodString>;
-        } & {
-            type: z.ZodLiteral<"suggested_tactics">;
-            isDisplayable: z.ZodLiteral<true>;
-            data: z.ZodObject<{
-                tactics: z.ZodArray<z.ZodObject<{
-                    tacticPath: z.ZodString;
-                    reason: z.ZodOptional<z.ZodString>;
-                }, "strip", z.ZodTypeAny, {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }, {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }>, "many">;
-            }, "strip", z.ZodTypeAny, {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            }, {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            }>;
-        }, "strip", z.ZodTypeAny, {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        }, {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        }>>;
-        suggestedTacticsStartedRefreshingAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         emojiId: z.ZodNullable<z.ZodObject<{
             emoji: z.ZodString;
             name: z.ZodString;
@@ -2560,25 +2490,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             } | undefined;
         } | undefined;
         currentTacticStepIndex?: number | undefined;
-        suggestedTactics?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        } | undefined;
-        suggestedTacticsStartedRefreshingAt?: import("../types").Timestamp | undefined;
         summaryData?: {
             type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -2972,25 +2883,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
-        suggestedTactics?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        } | undefined;
-        suggestedTacticsStartedRefreshingAt?: import("../types").Timestamp | undefined;
         summaryData?: {
             type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -5053,76 +4945,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex: z.ZodOptional<z.ZodNumber>;
         isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
         tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
-        suggestedTactics: z.ZodOptional<z.ZodObject<{
-            id: z.ZodOptional<z.ZodString>;
-            createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
-            updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
-            userId: z.ZodString;
-            timestamp: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-            dateString: z.ZodString;
-            tacticId: z.ZodOptional<z.ZodString>;
-            callLogDocPath: z.ZodOptional<z.ZodString>;
-        } & {
-            type: z.ZodLiteral<"suggested_tactics">;
-            isDisplayable: z.ZodLiteral<true>;
-            data: z.ZodObject<{
-                tactics: z.ZodArray<z.ZodObject<{
-                    tacticPath: z.ZodString;
-                    reason: z.ZodOptional<z.ZodString>;
-                }, "strip", z.ZodTypeAny, {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }, {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }>, "many">;
-            }, "strip", z.ZodTypeAny, {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            }, {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            }>;
-        }, "strip", z.ZodTypeAny, {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        }, {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        }>>;
-        suggestedTacticsStartedRefreshingAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         emojiId: z.ZodNullable<z.ZodObject<{
             emoji: z.ZodString;
             name: z.ZodString;
@@ -5592,25 +5414,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             } | undefined;
         } | undefined;
         currentTacticStepIndex?: number | undefined;
-        suggestedTactics?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        } | undefined;
-        suggestedTacticsStartedRefreshingAt?: import("../types").Timestamp | undefined;
         summaryData?: {
             type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -6011,25 +5814,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
-        suggestedTactics?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        } | undefined;
-        suggestedTacticsStartedRefreshingAt?: import("../types").Timestamp | undefined;
         summaryData?: {
             type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -8095,76 +7879,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex: z.ZodOptional<z.ZodNumber>;
         isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
         tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
-        suggestedTactics: z.ZodOptional<z.ZodObject<{
-            id: z.ZodOptional<z.ZodString>;
-            createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
-            updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
-            userId: z.ZodString;
-            timestamp: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-            dateString: z.ZodString;
-            tacticId: z.ZodOptional<z.ZodString>;
-            callLogDocPath: z.ZodOptional<z.ZodString>;
-        } & {
-            type: z.ZodLiteral<"suggested_tactics">;
-            isDisplayable: z.ZodLiteral<true>;
-            data: z.ZodObject<{
-                tactics: z.ZodArray<z.ZodObject<{
-                    tacticPath: z.ZodString;
-                    reason: z.ZodOptional<z.ZodString>;
-                }, "strip", z.ZodTypeAny, {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }, {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }>, "many">;
-            }, "strip", z.ZodTypeAny, {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            }, {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            }>;
-        }, "strip", z.ZodTypeAny, {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        }, {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        }>>;
-        suggestedTacticsStartedRefreshingAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         emojiId: z.ZodNullable<z.ZodObject<{
             emoji: z.ZodString;
             name: z.ZodString;
@@ -8623,25 +8337,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             } | undefined;
         } | undefined;
         currentTacticStepIndex?: number | undefined;
-        suggestedTactics?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        } | undefined;
-        suggestedTacticsStartedRefreshingAt?: import("../types").Timestamp | undefined;
         summaryData?: {
             type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -9035,25 +8730,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
-        suggestedTactics?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        } | undefined;
-        suggestedTacticsStartedRefreshingAt?: import("../types").Timestamp | undefined;
         summaryData?: {
             type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -10835,76 +10511,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex: z.ZodOptional<z.ZodNumber>;
         isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
         tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
-        suggestedTactics: z.ZodOptional<z.ZodObject<{
-            id: z.ZodOptional<z.ZodString>;
-            createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
-            updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
-            userId: z.ZodString;
-            timestamp: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-            dateString: z.ZodString;
-            tacticId: z.ZodOptional<z.ZodString>;
-            callLogDocPath: z.ZodOptional<z.ZodString>;
-        } & {
-            type: z.ZodLiteral<"suggested_tactics">;
-            isDisplayable: z.ZodLiteral<true>;
-            data: z.ZodObject<{
-                tactics: z.ZodArray<z.ZodObject<{
-                    tacticPath: z.ZodString;
-                    reason: z.ZodOptional<z.ZodString>;
-                }, "strip", z.ZodTypeAny, {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }, {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }>, "many">;
-            }, "strip", z.ZodTypeAny, {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            }, {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            }>;
-        }, "strip", z.ZodTypeAny, {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        }, {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        }>>;
-        suggestedTacticsStartedRefreshingAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         emojiId: z.ZodNullable<z.ZodObject<{
             emoji: z.ZodString;
             name: z.ZodString;
@@ -11644,25 +11250,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             } | undefined;
         } | undefined;
         currentTacticStepIndex?: number | undefined;
-        suggestedTactics?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        } | undefined;
-        suggestedTacticsStartedRefreshingAt?: import("../types").Timestamp | undefined;
         summaryData?: {
             type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -12056,25 +11643,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
-        suggestedTactics?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        } | undefined;
-        suggestedTacticsStartedRefreshingAt?: import("../types").Timestamp | undefined;
         summaryData?: {
             type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -14137,76 +13705,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex: z.ZodOptional<z.ZodNumber>;
         isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
         tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
-        suggestedTactics: z.ZodOptional<z.ZodObject<{
-            id: z.ZodOptional<z.ZodString>;
-            createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
-            updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
-            userId: z.ZodString;
-            timestamp: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-            dateString: z.ZodString;
-            tacticId: z.ZodOptional<z.ZodString>;
-            callLogDocPath: z.ZodOptional<z.ZodString>;
-        } & {
-            type: z.ZodLiteral<"suggested_tactics">;
-            isDisplayable: z.ZodLiteral<true>;
-            data: z.ZodObject<{
-                tactics: z.ZodArray<z.ZodObject<{
-                    tacticPath: z.ZodString;
-                    reason: z.ZodOptional<z.ZodString>;
-                }, "strip", z.ZodTypeAny, {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }, {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }>, "many">;
-            }, "strip", z.ZodTypeAny, {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            }, {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            }>;
-        }, "strip", z.ZodTypeAny, {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        }, {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        }>>;
-        suggestedTacticsStartedRefreshingAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         emojiId: z.ZodNullable<z.ZodObject<{
             emoji: z.ZodString;
             name: z.ZodString;
@@ -14665,25 +14163,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             } | undefined;
         } | undefined;
         currentTacticStepIndex?: number | undefined;
-        suggestedTactics?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        } | undefined;
-        suggestedTacticsStartedRefreshingAt?: import("../types").Timestamp | undefined;
         summaryData?: {
             type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -15077,25 +14556,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
-        suggestedTactics?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        } | undefined;
-        suggestedTacticsStartedRefreshingAt?: import("../types").Timestamp | undefined;
         summaryData?: {
             type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -16877,76 +16337,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex: z.ZodOptional<z.ZodNumber>;
         isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
         tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
-        suggestedTactics: z.ZodOptional<z.ZodObject<{
-            id: z.ZodOptional<z.ZodString>;
-            createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
-            updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
-            userId: z.ZodString;
-            timestamp: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-            dateString: z.ZodString;
-            tacticId: z.ZodOptional<z.ZodString>;
-            callLogDocPath: z.ZodOptional<z.ZodString>;
-        } & {
-            type: z.ZodLiteral<"suggested_tactics">;
-            isDisplayable: z.ZodLiteral<true>;
-            data: z.ZodObject<{
-                tactics: z.ZodArray<z.ZodObject<{
-                    tacticPath: z.ZodString;
-                    reason: z.ZodOptional<z.ZodString>;
-                }, "strip", z.ZodTypeAny, {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }, {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }>, "many">;
-            }, "strip", z.ZodTypeAny, {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            }, {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            }>;
-        }, "strip", z.ZodTypeAny, {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        }, {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        }>>;
-        suggestedTacticsStartedRefreshingAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         emojiId: z.ZodNullable<z.ZodObject<{
             emoji: z.ZodString;
             name: z.ZodString;
@@ -17686,25 +17076,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             } | undefined;
         } | undefined;
         currentTacticStepIndex?: number | undefined;
-        suggestedTactics?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        } | undefined;
-        suggestedTacticsStartedRefreshingAt?: import("../types").Timestamp | undefined;
         summaryData?: {
             type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -18098,25 +17469,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
-        suggestedTactics?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        } | undefined;
-        suggestedTacticsStartedRefreshingAt?: import("../types").Timestamp | undefined;
         summaryData?: {
             type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -20179,76 +19531,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex: z.ZodOptional<z.ZodNumber>;
         isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
         tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
-        suggestedTactics: z.ZodOptional<z.ZodObject<{
-            id: z.ZodOptional<z.ZodString>;
-            createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
-            updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
-            userId: z.ZodString;
-            timestamp: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-            dateString: z.ZodString;
-            tacticId: z.ZodOptional<z.ZodString>;
-            callLogDocPath: z.ZodOptional<z.ZodString>;
-        } & {
-            type: z.ZodLiteral<"suggested_tactics">;
-            isDisplayable: z.ZodLiteral<true>;
-            data: z.ZodObject<{
-                tactics: z.ZodArray<z.ZodObject<{
-                    tacticPath: z.ZodString;
-                    reason: z.ZodOptional<z.ZodString>;
-                }, "strip", z.ZodTypeAny, {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }, {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }>, "many">;
-            }, "strip", z.ZodTypeAny, {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            }, {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            }>;
-        }, "strip", z.ZodTypeAny, {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        }, {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        }>>;
-        suggestedTacticsStartedRefreshingAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         emojiId: z.ZodNullable<z.ZodObject<{
             emoji: z.ZodString;
             name: z.ZodString;
@@ -20707,25 +19989,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             } | undefined;
         } | undefined;
         currentTacticStepIndex?: number | undefined;
-        suggestedTactics?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        } | undefined;
-        suggestedTacticsStartedRefreshingAt?: import("../types").Timestamp | undefined;
         summaryData?: {
             type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -21119,25 +20382,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
-        suggestedTactics?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        } | undefined;
-        suggestedTacticsStartedRefreshingAt?: import("../types").Timestamp | undefined;
         summaryData?: {
             type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -21546,25 +20790,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             } | undefined;
         } | undefined;
         currentTacticStepIndex?: number | undefined;
-        suggestedTactics?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        } | undefined;
-        suggestedTacticsStartedRefreshingAt?: import("../types").Timestamp | undefined;
         summaryData?: {
             type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -21962,25 +21187,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             } | undefined;
         } | undefined;
         currentTacticStepIndex?: number | undefined;
-        suggestedTactics?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        } | undefined;
-        suggestedTacticsStartedRefreshingAt?: import("../types").Timestamp | undefined;
         summaryData?: {
             type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -22377,25 +21583,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             } | undefined;
         } | undefined;
         currentTacticStepIndex?: number | undefined;
-        suggestedTactics?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        } | undefined;
-        suggestedTacticsStartedRefreshingAt?: import("../types").Timestamp | undefined;
         summaryData?: {
             type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -22789,25 +21976,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             } | undefined;
         } | undefined;
         currentTacticStepIndex?: number | undefined;
-        suggestedTactics?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        } | undefined;
-        suggestedTacticsStartedRefreshingAt?: import("../types").Timestamp | undefined;
         summaryData?: {
             type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -23201,25 +22369,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             } | undefined;
         } | undefined;
         currentTacticStepIndex?: number | undefined;
-        suggestedTactics?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        } | undefined;
-        suggestedTacticsStartedRefreshingAt?: import("../types").Timestamp | undefined;
         summaryData?: {
             type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -23613,25 +22762,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             } | undefined;
         } | undefined;
         currentTacticStepIndex?: number | undefined;
-        suggestedTactics?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        } | undefined;
-        suggestedTacticsStartedRefreshingAt?: import("../types").Timestamp | undefined;
         summaryData?: {
             type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -24025,25 +23155,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             } | undefined;
         } | undefined;
         currentTacticStepIndex?: number | undefined;
-        suggestedTactics?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        } | undefined;
-        suggestedTacticsStartedRefreshingAt?: import("../types").Timestamp | undefined;
         summaryData?: {
             type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -24449,25 +23560,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
-        suggestedTactics?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        } | undefined;
-        suggestedTacticsStartedRefreshingAt?: import("../types").Timestamp | undefined;
         summaryData?: {
             type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -24865,25 +23957,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
-        suggestedTactics?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        } | undefined;
-        suggestedTacticsStartedRefreshingAt?: import("../types").Timestamp | undefined;
         summaryData?: {
             type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -25280,25 +24353,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
-        suggestedTactics?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        } | undefined;
-        suggestedTacticsStartedRefreshingAt?: import("../types").Timestamp | undefined;
         summaryData?: {
             type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -25692,25 +24746,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
-        suggestedTactics?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        } | undefined;
-        suggestedTacticsStartedRefreshingAt?: import("../types").Timestamp | undefined;
         summaryData?: {
             type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -26104,25 +25139,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
-        suggestedTactics?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        } | undefined;
-        suggestedTacticsStartedRefreshingAt?: import("../types").Timestamp | undefined;
         summaryData?: {
             type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -26516,25 +25532,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
-        suggestedTactics?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        } | undefined;
-        suggestedTacticsStartedRefreshingAt?: import("../types").Timestamp | undefined;
         summaryData?: {
             type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -26928,25 +25925,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
-        suggestedTactics?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            type: "suggested_tactics";
-            userId: string;
-            dateString: string;
-            isDisplayable: true;
-            data: {
-                tactics: {
-                    tacticPath: string;
-                    reason?: string | undefined;
-                }[];
-            };
-            id?: string | undefined;
-            timestamp?: import("../types").Timestamp | undefined;
-            tacticId?: string | undefined;
-            callLogDocPath?: string | undefined;
-        } | undefined;
-        suggestedTacticsStartedRefreshingAt?: import("../types").Timestamp | undefined;
         summaryData?: {
             type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;

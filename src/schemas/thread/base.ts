@@ -2,7 +2,6 @@ import { z } from "zod";
 import { documentReferenceSchema } from "../../utils/documentReferenceSchema";
 import { timestampSchema } from "../../utils/timestampSchema";
 import { emojiIdSchema } from "../emojiId";
-import { suggestedTacticsLogSchema } from "../log";
 import { planWithIdSchema } from "../plan";
 import { tacticSchema } from "../tactic/tactic";
 import { threadSummarySchema } from "../threadSummary";
@@ -40,8 +39,6 @@ export const threadBaseSchema = z.object({
 
   // For now, don't type this
   tacticsByPath: z.record(z.string(), z.any()).optional(),
-  suggestedTactics: suggestedTacticsLogSchema.optional(),
-  suggestedTacticsStartedRefreshingAt: timestampSchema.optional(),
 
   emojiId: emojiIdSchema.nullable(),
 

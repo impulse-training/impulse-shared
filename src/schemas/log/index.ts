@@ -34,10 +34,6 @@ import {
 import { ResistedLog, resistedLogSchema } from "./resistedLog";
 import { SharedMomentLog, sharedMomentLogSchema } from "./sharedMomentLog";
 import { ShowTourLog, showTourLogSchema } from "./showTourLog";
-import {
-  SuggestedTacticsLog,
-  suggestedTacticsLogSchema,
-} from "./suggestedTacticsLog";
 import { SummaryLog, summaryLogSchema } from "./summaryLog";
 import {
   SupportGroupDaySummaryLog,
@@ -110,7 +106,6 @@ export type Log =
   | SharedMomentLog
   | VideoLog
   | ReadyToDebriefLog
-  | SuggestedTacticsLog
   | SupportGroupDaySummaryLog
   | DebriefUrgeLog
   | FinishRecapLog;
@@ -131,7 +126,6 @@ export * from "./readyToDebriefLog";
 export * from "./resistedLog";
 export * from "./sharedMomentLog";
 export * from "./showTourLog";
-export * from "./suggestedTacticsLog";
 export * from "./summaryLog";
 export * from "./supportGroupDaySummaryLog";
 export * from "./tacticLog";
@@ -165,7 +159,6 @@ export const logSchema = z.discriminatedUnion("type", [
   sharedMomentLogSchema,
   videoLogSchema,
   readyToDebriefLogSchema,
-  suggestedTacticsLogSchema,
   supportGroupDaySummaryLogSchema,
   debriefUrgeLogSchema,
   finishRecapLogSchema,
@@ -320,15 +313,6 @@ export const logIsResistedLog = (
 ): value is ResistedLog => value.type === "resisted";
 export const isValidResistedLog = (value: unknown): value is ResistedLog => {
   return resistedLogSchema.safeParse(value).success;
-};
-
-export const logIsSuggestedTacticsLog = (
-  value: Omit<Log, "id">
-): value is SuggestedTacticsLog => value.type === "suggested_tactics";
-export const isValidSuggestedTacticsLog = (
-  value: unknown
-): value is SuggestedTacticsLog => {
-  return suggestedTacticsLogSchema.safeParse(value).success;
 };
 
 export const logIsSupportGroupDaySummaryLog = (
