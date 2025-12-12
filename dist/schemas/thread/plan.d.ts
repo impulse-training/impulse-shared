@@ -1,6 +1,7 @@
 import { z } from "zod";
 export declare const timePlanThreadSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
+    title: z.ZodOptional<z.ZodString>;
     date: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     dateString: z.ZodString;
     userId: z.ZodString;
@@ -2246,6 +2247,7 @@ export declare const timePlanThreadSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    title?: string | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
     summarizedAt?: import("../../types").Timestamp | undefined;
@@ -2640,6 +2642,7 @@ export declare const timePlanThreadSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    title?: string | undefined;
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
@@ -2932,6 +2935,7 @@ export declare const timePlanThreadSchema: z.ZodObject<{
 }>;
 export declare const locationPlanThreadSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
+    title: z.ZodOptional<z.ZodString>;
     date: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     dateString: z.ZodString;
     userId: z.ZodString;
@@ -5177,6 +5181,7 @@ export declare const locationPlanThreadSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    title?: string | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
     summarizedAt?: import("../../types").Timestamp | undefined;
@@ -5571,6 +5576,7 @@ export declare const locationPlanThreadSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    title?: string | undefined;
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;

@@ -21,6 +21,8 @@ const threadTypeSchema = z.enum([
 // Thread schema
 export const threadBaseSchema = z.object({
   id: z.string().optional(),
+  // Optional title for the thread (e.g., plan name)
+  title: z.string().optional(),
   // Any thread may have an optional plan
   plan: planWithIdSchema.optional(),
   type: threadTypeSchema.default("general"),
@@ -40,7 +42,7 @@ export const threadBaseSchema = z.object({
   emojiId: emojiIdSchema.nullable(),
 
   // Log summary data - written in after log write functions. We store tactic and behavior tracking
-  // logs here (loosely typed until log schemas are migrated)
+  // logs here (loosely typed for now)
   trackingLogsById: z.record(z.string(), z.any()),
 
   // Pre-computed summary data for thread cards - updated when trackingLogsById changes

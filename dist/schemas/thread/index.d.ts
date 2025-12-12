@@ -15,6 +15,7 @@ export * from "./recap";
 export declare const threadSchemas: {
     general: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
+        title: z.ZodOptional<z.ZodString>;
         plan: z.ZodOptional<z.ZodUnion<[z.ZodIntersection<z.ZodObject<{
             id: z.ZodString;
             _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
@@ -2169,6 +2170,7 @@ export declare const threadSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        title?: string | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
         plan?: ({
@@ -2563,6 +2565,7 @@ export declare const threadSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        title?: string | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -2946,6 +2949,7 @@ export declare const threadSchemas: {
     }>;
     impulse: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
+        title: z.ZodOptional<z.ZodString>;
         plan: z.ZodOptional<z.ZodUnion<[z.ZodIntersection<z.ZodObject<{
             id: z.ZodString;
             _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
@@ -5109,6 +5113,7 @@ export declare const threadSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        title?: string | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
         debriefAfter?: import("../../types").Timestamp | undefined;
@@ -5510,6 +5515,7 @@ export declare const threadSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        title?: string | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -5898,6 +5904,7 @@ export declare const threadSchemas: {
     }>;
     timePlan: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
+        title: z.ZodOptional<z.ZodString>;
         date: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
         dateString: z.ZodString;
         userId: z.ZodString;
@@ -8143,6 +8150,7 @@ export declare const threadSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        title?: string | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
         summarizedAt?: import("../../types").Timestamp | undefined;
@@ -8537,6 +8545,7 @@ export declare const threadSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        title?: string | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -8829,6 +8838,7 @@ export declare const threadSchemas: {
     }>;
     behavior: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
+        title: z.ZodOptional<z.ZodString>;
         plan: z.ZodOptional<z.ZodUnion<[z.ZodIntersection<z.ZodObject<{
             id: z.ZodString;
             _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
@@ -10983,6 +10993,7 @@ export declare const threadSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        title?: string | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
         plan?: ({
@@ -11377,6 +11388,7 @@ export declare const threadSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        title?: string | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -11760,6 +11772,7 @@ export declare const threadSchemas: {
     }>;
     recap: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
+        title: z.ZodOptional<z.ZodString>;
         plan: z.ZodOptional<z.ZodUnion<[z.ZodIntersection<z.ZodObject<{
             id: z.ZodString;
             _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
@@ -13914,6 +13927,7 @@ export declare const threadSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        title?: string | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
         plan?: ({
@@ -14308,6 +14322,7 @@ export declare const threadSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        title?: string | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -14691,6 +14706,7 @@ export declare const threadSchemas: {
     }>;
     locationPlan: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
+        title: z.ZodOptional<z.ZodString>;
         date: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
         dateString: z.ZodString;
         userId: z.ZodString;
@@ -16936,6 +16952,7 @@ export declare const threadSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        title?: string | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
         summarizedAt?: import("../../types").Timestamp | undefined;
@@ -17330,6 +17347,7 @@ export declare const threadSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        title?: string | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -17622,6 +17640,7 @@ export declare const threadSchemas: {
     }>;
     adjustment: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
+        title: z.ZodOptional<z.ZodString>;
         plan: z.ZodOptional<z.ZodUnion<[z.ZodIntersection<z.ZodObject<{
             id: z.ZodString;
             _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
@@ -19776,6 +19795,7 @@ export declare const threadSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        title?: string | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
         plan?: ({
@@ -20170,6 +20190,7 @@ export declare const threadSchemas: {
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        title?: string | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -20554,6 +20575,7 @@ export declare const threadSchemas: {
 };
 export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
+    title: z.ZodOptional<z.ZodString>;
     plan: z.ZodOptional<z.ZodUnion<[z.ZodIntersection<z.ZodObject<{
         id: z.ZodString;
         _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
@@ -22708,6 +22730,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    title?: string | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
     plan?: ({
@@ -23102,6 +23125,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    title?: string | undefined;
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
@@ -23484,6 +23508,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     } | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
+    title: z.ZodOptional<z.ZodString>;
     plan: z.ZodOptional<z.ZodUnion<[z.ZodIntersection<z.ZodObject<{
         id: z.ZodString;
         _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
@@ -25647,6 +25672,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    title?: string | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
     debriefAfter?: import("../../types").Timestamp | undefined;
@@ -26048,6 +26074,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    title?: string | undefined;
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
@@ -26435,6 +26462,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     outcomeSelectedAt?: import("../../types").Timestamp | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
+    title: z.ZodOptional<z.ZodString>;
     plan: z.ZodOptional<z.ZodUnion<[z.ZodIntersection<z.ZodObject<{
         id: z.ZodString;
         _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
@@ -28589,6 +28617,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    title?: string | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
     plan?: ({
@@ -28983,6 +29012,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    title?: string | undefined;
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
@@ -29365,6 +29395,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     } | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
+    title: z.ZodOptional<z.ZodString>;
     date: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     dateString: z.ZodString;
     userId: z.ZodString;
@@ -31610,6 +31641,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    title?: string | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
     summarizedAt?: import("../../types").Timestamp | undefined;
@@ -32004,6 +32036,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    title?: string | undefined;
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
@@ -32295,6 +32328,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     } | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
+    title: z.ZodOptional<z.ZodString>;
     plan: z.ZodOptional<z.ZodUnion<[z.ZodIntersection<z.ZodObject<{
         id: z.ZodString;
         _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
@@ -34449,6 +34483,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    title?: string | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
     plan?: ({
@@ -34843,6 +34878,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    title?: string | undefined;
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
@@ -35225,6 +35261,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     } | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
+    title: z.ZodOptional<z.ZodString>;
     date: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     dateString: z.ZodString;
     userId: z.ZodString;
@@ -37470,6 +37507,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    title?: string | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
     summarizedAt?: import("../../types").Timestamp | undefined;
@@ -37864,6 +37902,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    title?: string | undefined;
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
@@ -38155,6 +38194,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     } | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
+    title: z.ZodOptional<z.ZodString>;
     plan: z.ZodOptional<z.ZodUnion<[z.ZodIntersection<z.ZodObject<{
         id: z.ZodString;
         _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
@@ -40309,6 +40349,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    title?: string | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
     plan?: ({
@@ -40703,6 +40744,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    title?: string | undefined;
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
