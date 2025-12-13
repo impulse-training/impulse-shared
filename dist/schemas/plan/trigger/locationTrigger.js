@@ -4,9 +4,9 @@ exports.locationTriggerSchema = void 0;
 const zod_1 = require("zod");
 exports.locationTriggerSchema = zod_1.z.object({
     // Friendly name for the location (e.g., "Home", "Work", "Gym")
-    locationName: zod_1.z.string(),
+    locationName: zod_1.z.string().min(1, "Location name is required"),
     // Full address string for display
-    address: zod_1.z.string(),
+    address: zod_1.z.string().min(1, "Address is required"),
     triggerType: zod_1.z.enum(["arrival", "departure"]),
     latitude: zod_1.z.number().min(-90).max(90),
     longitude: zod_1.z.number().min(-180).max(180),
