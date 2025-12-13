@@ -207,16 +207,19 @@ export declare const planSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
 } & {
     trigger: z.ZodObject<{
         locationName: z.ZodString;
+        address: z.ZodString;
         triggerType: z.ZodEnum<["arrival", "departure"]>;
         latitude: z.ZodNumber;
         longitude: z.ZodNumber;
     }, "strip", z.ZodTypeAny, {
         locationName: string;
+        address: string;
         triggerType: "arrival" | "departure";
         latitude: number;
         longitude: number;
     }, {
         locationName: string;
+        address: string;
         triggerType: "arrival" | "departure";
         latitude: number;
         longitude: number;
@@ -228,6 +231,7 @@ export declare const planSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     questions: import("../..").DocumentReferenceLike<unknown>[];
     trigger: {
         locationName: string;
+        address: string;
         triggerType: "arrival" | "departure";
         latitude: number;
         longitude: number;
@@ -248,6 +252,7 @@ export declare const planSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     tactics: import("../..").DocumentReferenceLike<unknown>[];
     trigger: {
         locationName: string;
+        address: string;
         triggerType: "arrival" | "departure";
         latitude: number;
         longitude: number;
@@ -501,16 +506,19 @@ export declare const planWithIdSchema: z.ZodUnion<[z.ZodIntersection<z.ZodObject
 } & {
     trigger: z.ZodObject<{
         locationName: z.ZodString;
+        address: z.ZodString;
         triggerType: z.ZodEnum<["arrival", "departure"]>;
         latitude: z.ZodNumber;
         longitude: z.ZodNumber;
     }, "strip", z.ZodTypeAny, {
         locationName: string;
+        address: string;
         triggerType: "arrival" | "departure";
         latitude: number;
         longitude: number;
     }, {
         locationName: string;
+        address: string;
         triggerType: "arrival" | "departure";
         latitude: number;
         longitude: number;
@@ -522,6 +530,7 @@ export declare const planWithIdSchema: z.ZodUnion<[z.ZodIntersection<z.ZodObject
     questions: import("../..").DocumentReferenceLike<unknown>[];
     trigger: {
         locationName: string;
+        address: string;
         triggerType: "arrival" | "departure";
         latitude: number;
         longitude: number;
@@ -542,6 +551,7 @@ export declare const planWithIdSchema: z.ZodUnion<[z.ZodIntersection<z.ZodObject
     tactics: import("../..").DocumentReferenceLike<unknown>[];
     trigger: {
         locationName: string;
+        address: string;
         triggerType: "arrival" | "departure";
         latitude: number;
         longitude: number;

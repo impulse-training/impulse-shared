@@ -2079,16 +2079,19 @@ export declare const timePlanThreadSchema: z.ZodObject<{
     } & {
         trigger: z.ZodObject<{
             locationName: z.ZodString;
+            address: z.ZodString;
             triggerType: z.ZodEnum<["arrival", "departure"]>;
             latitude: z.ZodNumber;
             longitude: z.ZodNumber;
         }, "strip", z.ZodTypeAny, {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
         }, {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -2100,6 +2103,7 @@ export declare const timePlanThreadSchema: z.ZodObject<{
         questions: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -2120,6 +2124,7 @@ export declare const timePlanThreadSchema: z.ZodObject<{
         tactics: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -2224,6 +2229,7 @@ export declare const timePlanThreadSchema: z.ZodObject<{
         questions: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -2619,6 +2625,7 @@ export declare const timePlanThreadSchema: z.ZodObject<{
         tactics: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -5013,16 +5020,19 @@ export declare const locationPlanThreadSchema: z.ZodObject<{
     } & {
         trigger: z.ZodObject<{
             locationName: z.ZodString;
+            address: z.ZodString;
             triggerType: z.ZodEnum<["arrival", "departure"]>;
             latitude: z.ZodNumber;
             longitude: z.ZodNumber;
         }, "strip", z.ZodTypeAny, {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
         }, {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -5034,6 +5044,7 @@ export declare const locationPlanThreadSchema: z.ZodObject<{
         questions: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -5054,6 +5065,7 @@ export declare const locationPlanThreadSchema: z.ZodObject<{
         tactics: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -5158,6 +5170,7 @@ export declare const locationPlanThreadSchema: z.ZodObject<{
         questions: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -5553,6 +5566,7 @@ export declare const locationPlanThreadSchema: z.ZodObject<{
         tactics: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;

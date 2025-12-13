@@ -252,16 +252,19 @@ export declare const threadSchemas: {
         } & {
             trigger: z.ZodObject<{
                 locationName: z.ZodString;
+                address: z.ZodString;
                 triggerType: z.ZodEnum<["arrival", "departure"]>;
                 latitude: z.ZodNumber;
                 longitude: z.ZodNumber;
             }, "strip", z.ZodTypeAny, {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
             }, {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -273,6 +276,7 @@ export declare const threadSchemas: {
             questions: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -293,6 +297,7 @@ export declare const threadSchemas: {
             tactics: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -2249,6 +2254,7 @@ export declare const threadSchemas: {
             questions: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -2644,6 +2650,7 @@ export declare const threadSchemas: {
             tactics: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -3186,16 +3193,19 @@ export declare const threadSchemas: {
         } & {
             trigger: z.ZodObject<{
                 locationName: z.ZodString;
+                address: z.ZodString;
                 triggerType: z.ZodEnum<["arrival", "departure"]>;
                 latitude: z.ZodNumber;
                 longitude: z.ZodNumber;
             }, "strip", z.ZodTypeAny, {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
             }, {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -3207,6 +3217,7 @@ export declare const threadSchemas: {
             questions: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -3227,6 +3238,7 @@ export declare const threadSchemas: {
             tactics: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -5193,6 +5205,7 @@ export declare const threadSchemas: {
             questions: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -5595,6 +5608,7 @@ export declare const threadSchemas: {
             tactics: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -7982,16 +7996,19 @@ export declare const threadSchemas: {
         } & {
             trigger: z.ZodObject<{
                 locationName: z.ZodString;
+                address: z.ZodString;
                 triggerType: z.ZodEnum<["arrival", "departure"]>;
                 latitude: z.ZodNumber;
                 longitude: z.ZodNumber;
             }, "strip", z.ZodTypeAny, {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
             }, {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -8003,6 +8020,7 @@ export declare const threadSchemas: {
             questions: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -8023,6 +8041,7 @@ export declare const threadSchemas: {
             tactics: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -8127,6 +8146,7 @@ export declare const threadSchemas: {
             questions: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -8522,6 +8542,7 @@ export declare const threadSchemas: {
             tactics: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -9075,16 +9096,19 @@ export declare const threadSchemas: {
         } & {
             trigger: z.ZodObject<{
                 locationName: z.ZodString;
+                address: z.ZodString;
                 triggerType: z.ZodEnum<["arrival", "departure"]>;
                 latitude: z.ZodNumber;
                 longitude: z.ZodNumber;
             }, "strip", z.ZodTypeAny, {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
             }, {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -9096,6 +9120,7 @@ export declare const threadSchemas: {
             questions: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -9116,6 +9141,7 @@ export declare const threadSchemas: {
             tactics: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -11072,6 +11098,7 @@ export declare const threadSchemas: {
             questions: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -11467,6 +11494,7 @@ export declare const threadSchemas: {
             tactics: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -12009,16 +12037,19 @@ export declare const threadSchemas: {
         } & {
             trigger: z.ZodObject<{
                 locationName: z.ZodString;
+                address: z.ZodString;
                 triggerType: z.ZodEnum<["arrival", "departure"]>;
                 latitude: z.ZodNumber;
                 longitude: z.ZodNumber;
             }, "strip", z.ZodTypeAny, {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
             }, {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -12030,6 +12061,7 @@ export declare const threadSchemas: {
             questions: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -12050,6 +12082,7 @@ export declare const threadSchemas: {
             tactics: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -14006,6 +14039,7 @@ export declare const threadSchemas: {
             questions: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -14401,6 +14435,7 @@ export declare const threadSchemas: {
             tactics: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -16784,16 +16819,19 @@ export declare const threadSchemas: {
         } & {
             trigger: z.ZodObject<{
                 locationName: z.ZodString;
+                address: z.ZodString;
                 triggerType: z.ZodEnum<["arrival", "departure"]>;
                 latitude: z.ZodNumber;
                 longitude: z.ZodNumber;
             }, "strip", z.ZodTypeAny, {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
             }, {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -16805,6 +16843,7 @@ export declare const threadSchemas: {
             questions: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -16825,6 +16864,7 @@ export declare const threadSchemas: {
             tactics: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -16929,6 +16969,7 @@ export declare const threadSchemas: {
             questions: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -17324,6 +17365,7 @@ export declare const threadSchemas: {
             tactics: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -17877,16 +17919,19 @@ export declare const threadSchemas: {
         } & {
             trigger: z.ZodObject<{
                 locationName: z.ZodString;
+                address: z.ZodString;
                 triggerType: z.ZodEnum<["arrival", "departure"]>;
                 latitude: z.ZodNumber;
                 longitude: z.ZodNumber;
             }, "strip", z.ZodTypeAny, {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
             }, {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -17898,6 +17943,7 @@ export declare const threadSchemas: {
             questions: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -17918,6 +17964,7 @@ export declare const threadSchemas: {
             tactics: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -19874,6 +19921,7 @@ export declare const threadSchemas: {
             questions: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -20269,6 +20317,7 @@ export declare const threadSchemas: {
             tactics: import("../..").DocumentReferenceLike<unknown>[];
             trigger: {
                 locationName: string;
+                address: string;
                 triggerType: "arrival" | "departure";
                 latitude: number;
                 longitude: number;
@@ -20812,16 +20861,19 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     } & {
         trigger: z.ZodObject<{
             locationName: z.ZodString;
+            address: z.ZodString;
             triggerType: z.ZodEnum<["arrival", "departure"]>;
             latitude: z.ZodNumber;
             longitude: z.ZodNumber;
         }, "strip", z.ZodTypeAny, {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
         }, {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -20833,6 +20885,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         questions: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -20853,6 +20906,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         tactics: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -22809,6 +22863,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         questions: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -23204,6 +23259,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         tactics: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -23745,16 +23801,19 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     } & {
         trigger: z.ZodObject<{
             locationName: z.ZodString;
+            address: z.ZodString;
             triggerType: z.ZodEnum<["arrival", "departure"]>;
             latitude: z.ZodNumber;
             longitude: z.ZodNumber;
         }, "strip", z.ZodTypeAny, {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
         }, {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -23766,6 +23825,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         questions: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -23786,6 +23846,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         tactics: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -25752,6 +25813,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         questions: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -26154,6 +26216,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         tactics: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -26699,16 +26762,19 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     } & {
         trigger: z.ZodObject<{
             locationName: z.ZodString;
+            address: z.ZodString;
             triggerType: z.ZodEnum<["arrival", "departure"]>;
             latitude: z.ZodNumber;
             longitude: z.ZodNumber;
         }, "strip", z.ZodTypeAny, {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
         }, {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -26720,6 +26786,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         questions: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -26740,6 +26807,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         tactics: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -28696,6 +28764,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         questions: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -29091,6 +29160,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         tactics: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -31473,16 +31543,19 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     } & {
         trigger: z.ZodObject<{
             locationName: z.ZodString;
+            address: z.ZodString;
             triggerType: z.ZodEnum<["arrival", "departure"]>;
             latitude: z.ZodNumber;
             longitude: z.ZodNumber;
         }, "strip", z.ZodTypeAny, {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
         }, {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -31494,6 +31567,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         questions: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -31514,6 +31588,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         tactics: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -31618,6 +31693,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         questions: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -32013,6 +32089,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         tactics: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -32565,16 +32642,19 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     } & {
         trigger: z.ZodObject<{
             locationName: z.ZodString;
+            address: z.ZodString;
             triggerType: z.ZodEnum<["arrival", "departure"]>;
             latitude: z.ZodNumber;
             longitude: z.ZodNumber;
         }, "strip", z.ZodTypeAny, {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
         }, {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -32586,6 +32666,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         questions: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -32606,6 +32687,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         tactics: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -34562,6 +34644,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         questions: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -34957,6 +35040,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         tactics: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -37339,16 +37423,19 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     } & {
         trigger: z.ZodObject<{
             locationName: z.ZodString;
+            address: z.ZodString;
             triggerType: z.ZodEnum<["arrival", "departure"]>;
             latitude: z.ZodNumber;
             longitude: z.ZodNumber;
         }, "strip", z.ZodTypeAny, {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
         }, {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -37360,6 +37447,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         questions: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -37380,6 +37468,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         tactics: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -37484,6 +37573,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         questions: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -37879,6 +37969,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         tactics: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -38431,16 +38522,19 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     } & {
         trigger: z.ZodObject<{
             locationName: z.ZodString;
+            address: z.ZodString;
             triggerType: z.ZodEnum<["arrival", "departure"]>;
             latitude: z.ZodNumber;
             longitude: z.ZodNumber;
         }, "strip", z.ZodTypeAny, {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
         }, {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -38452,6 +38546,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         questions: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -38472,6 +38567,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         tactics: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -40428,6 +40524,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         questions: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -40823,6 +40920,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         tactics: import("../..").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;

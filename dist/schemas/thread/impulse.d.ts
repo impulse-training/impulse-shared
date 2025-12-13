@@ -238,16 +238,19 @@ export declare const impulseThreadSchema: z.ZodObject<{
     } & {
         trigger: z.ZodObject<{
             locationName: z.ZodString;
+            address: z.ZodString;
             triggerType: z.ZodEnum<["arrival", "departure"]>;
             latitude: z.ZodNumber;
             longitude: z.ZodNumber;
         }, "strip", z.ZodTypeAny, {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
         }, {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -259,6 +262,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         questions: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -279,6 +283,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -2245,6 +2250,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         questions: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
@@ -2647,6 +2653,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
         trigger: {
             locationName: string;
+            address: string;
             triggerType: "arrival" | "departure";
             latitude: number;
             longitude: number;
