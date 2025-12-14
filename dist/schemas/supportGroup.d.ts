@@ -1,5 +1,24 @@
 import { z } from "zod";
 import { supportGroupPermissionsSchema, supportGroupNotificationPreferencesSchema } from "./supportGroupPermissions";
+export declare const workingOnOptionSchema: z.ZodEnum<["urges", "habits", "mood", "sleep", "focus", "substances", "anxiety", "motivation"]>;
+export type WorkingOnOption = z.infer<typeof workingOnOptionSchema>;
+export declare const supportStyleOptionSchema: z.ZodEnum<["presence", "encouragement", "accountability", "suggestions"]>;
+export type SupportStyleOption = z.infer<typeof supportStyleOptionSchema>;
+export declare const socialLevelOptionSchema: z.ZodEnum<["quiet", "balanced", "active"]>;
+export type SocialLevelOption = z.infer<typeof socialLevelOptionSchema>;
+export declare const supportGroupMatchingCriteriaSchema: z.ZodObject<{
+    topics: z.ZodDefault<z.ZodArray<z.ZodEnum<["urges", "habits", "mood", "sleep", "focus", "substances", "anxiety", "motivation"]>, "many">>;
+    supportStyles: z.ZodDefault<z.ZodArray<z.ZodEnum<["presence", "encouragement", "accountability", "suggestions"]>, "many">>;
+    socialLevel: z.ZodOptional<z.ZodEnum<["quiet", "balanced", "active"]>>;
+}, "strip", z.ZodTypeAny, {
+    topics: ("urges" | "habits" | "mood" | "sleep" | "focus" | "substances" | "anxiety" | "motivation")[];
+    supportStyles: ("presence" | "encouragement" | "accountability" | "suggestions")[];
+    socialLevel?: "quiet" | "balanced" | "active" | undefined;
+}, {
+    topics?: ("urges" | "habits" | "mood" | "sleep" | "focus" | "substances" | "anxiety" | "motivation")[] | undefined;
+    supportStyles?: ("presence" | "encouragement" | "accountability" | "suggestions")[] | undefined;
+    socialLevel?: "quiet" | "balanced" | "active" | undefined;
+}>;
 export type { SupportGroupPermissions, SupportGroupNotificationPreferences, } from "./supportGroupPermissions";
 export { supportGroupPermissionsSchema, supportGroupNotificationPreferencesSchema, };
 export declare const supportGroupMemberSchema: z.ZodObject<{
@@ -595,6 +614,21 @@ export declare const supportGroupSchema: z.ZodObject<{
     tacticCount: z.ZodDefault<z.ZodNumber>;
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    matchingCriteria: z.ZodOptional<z.ZodObject<{
+        topics: z.ZodDefault<z.ZodArray<z.ZodEnum<["urges", "habits", "mood", "sleep", "focus", "substances", "anxiety", "motivation"]>, "many">>;
+        supportStyles: z.ZodDefault<z.ZodArray<z.ZodEnum<["presence", "encouragement", "accountability", "suggestions"]>, "many">>;
+        socialLevel: z.ZodOptional<z.ZodEnum<["quiet", "balanced", "active"]>>;
+    }, "strip", z.ZodTypeAny, {
+        topics: ("urges" | "habits" | "mood" | "sleep" | "focus" | "substances" | "anxiety" | "motivation")[];
+        supportStyles: ("presence" | "encouragement" | "accountability" | "suggestions")[];
+        socialLevel?: "quiet" | "balanced" | "active" | undefined;
+    }, {
+        topics?: ("urges" | "habits" | "mood" | "sleep" | "focus" | "substances" | "anxiety" | "motivation")[] | undefined;
+        supportStyles?: ("presence" | "encouragement" | "accountability" | "suggestions")[] | undefined;
+        socialLevel?: "quiet" | "balanced" | "active" | undefined;
+    }>>;
+    acceptsMatching: z.ZodOptional<z.ZodBoolean>;
+    maxMembers: z.ZodOptional<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
     image: {
         uri: string;
@@ -711,6 +745,13 @@ export declare const supportGroupSchema: z.ZodObject<{
             tactic?: any;
         } | undefined;
     } | undefined;
+    matchingCriteria?: {
+        topics: ("urges" | "habits" | "mood" | "sleep" | "focus" | "substances" | "anxiety" | "motivation")[];
+        supportStyles: ("presence" | "encouragement" | "accountability" | "suggestions")[];
+        socialLevel?: "quiet" | "balanced" | "active" | undefined;
+    } | undefined;
+    acceptsMatching?: boolean | undefined;
+    maxMembers?: number | undefined;
 }, {
     image: {
         uri: string;
@@ -827,8 +868,16 @@ export declare const supportGroupSchema: z.ZodObject<{
         } | undefined;
     } | undefined;
     tacticCount?: number | undefined;
+    matchingCriteria?: {
+        topics?: ("urges" | "habits" | "mood" | "sleep" | "focus" | "substances" | "anxiety" | "motivation")[] | undefined;
+        supportStyles?: ("presence" | "encouragement" | "accountability" | "suggestions")[] | undefined;
+        socialLevel?: "quiet" | "balanced" | "active" | undefined;
+    } | undefined;
+    acceptsMatching?: boolean | undefined;
+    maxMembers?: number | undefined;
 }>;
 export type SupportGroupMember = z.infer<typeof supportGroupMemberSchema>;
 export type SupportGroup = z.infer<typeof supportGroupSchema>;
+export type SupportGroupMatchingCriteria = z.infer<typeof supportGroupMatchingCriteriaSchema>;
 export declare const isValidSupportGroupMember: (value: unknown) => value is SupportGroupMember;
 export declare const isValidSupportGroup: (value: unknown) => value is SupportGroup;

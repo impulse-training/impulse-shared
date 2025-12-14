@@ -10,6 +10,36 @@ import {
   supportGroupNotificationPreferencesSchema,
 } from "./supportGroupPermissions";
 
+// Matching criteria schemas
+export const workingOnOptionSchema = z.enum([
+  "urges",
+  "habits",
+  "mood",
+  "sleep",
+  "focus",
+  "substances",
+  "anxiety",
+  "motivation",
+]);
+export type WorkingOnOption = z.infer<typeof workingOnOptionSchema>;
+
+export const supportStyleOptionSchema = z.enum([
+  "presence",
+  "encouragement",
+  "accountability",
+  "suggestions",
+]);
+export type SupportStyleOption = z.infer<typeof supportStyleOptionSchema>;
+
+export const socialLevelOptionSchema = z.enum(["quiet", "balanced", "active"]);
+export type SocialLevelOption = z.infer<typeof socialLevelOptionSchema>;
+
+export const supportGroupMatchingCriteriaSchema = z.object({
+  topics: z.array(workingOnOptionSchema).default([]),
+  supportStyles: z.array(supportStyleOptionSchema).default([]),
+  socialLevel: socialLevelOptionSchema.optional(),
+});
+
 // Re-export for backward compatibility
 export type {
   SupportGroupPermissions,
@@ -58,11 +88,21 @@ export const supportGroupSchema = z.object({
   tacticCount: z.number().default(0),
   createdAt: timestampSchema.optional(),
   updatedAt: timestampSchema.optional(),
+
+  // Matching criteria for automatic group assignment
+  matchingCriteria: supportGroupMatchingCriteriaSchema.optional(),
+  // Whether this group accepts new members via matching
+  acceptsMatching: z.boolean().optional(),
+  // Maximum number of members for this group (for small group matching)
+  maxMembers: z.number().optional(),
 });
 
 // Export types inferred from schemas
 export type SupportGroupMember = z.infer<typeof supportGroupMemberSchema>;
 export type SupportGroup = z.infer<typeof supportGroupSchema>;
+export type SupportGroupMatchingCriteria = z.infer<
+  typeof supportGroupMatchingCriteriaSchema
+>;
 
 // Type guard functions
 export const isValidSupportGroupMember = (
