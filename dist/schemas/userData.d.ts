@@ -49,6 +49,7 @@ export declare const userDataSchema: z.ZodObject<{
     }>>;
     addToTechSupportGroup: z.ZodOptional<z.ZodBoolean>;
     hasSetupExperiment: z.ZodOptional<z.ZodBoolean>;
+    supportGroupSignupCompletedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
     role: "user" | "coach" | "support";
     defaultThreadMode: "text" | "voice";
@@ -75,6 +76,7 @@ export declare const userDataSchema: z.ZodObject<{
     activeStrategyDoc?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown> | undefined;
     addToTechSupportGroup?: boolean | undefined;
     hasSetupExperiment?: boolean | undefined;
+    supportGroupSignupCompletedAt?: import("../types").Timestamp | undefined;
 }, {
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
@@ -101,6 +103,7 @@ export declare const userDataSchema: z.ZodObject<{
     weekStartsOn?: 0 | 1 | undefined;
     addToTechSupportGroup?: boolean | undefined;
     hasSetupExperiment?: boolean | undefined;
+    supportGroupSignupCompletedAt?: import("../types").Timestamp | undefined;
 }>;
 export type UserData = z.infer<typeof userDataSchema>;
 export declare const isUserData: (value: unknown) => value is UserData;

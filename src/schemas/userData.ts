@@ -52,6 +52,9 @@ export const userDataSchema = z.object({
 
   // Tracks whether user has previously set up an experiment (to skip intro screen)
   hasSetupExperiment: z.boolean().optional(),
+
+  // Support group signup wizard completion
+  supportGroupSignupCompletedAt: timestampSchema.optional(),
 });
 
 // Export User type inferred from schema
