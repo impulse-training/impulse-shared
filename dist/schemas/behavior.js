@@ -7,6 +7,7 @@ const timestampSchema_1 = require("../utils/timestampSchema");
 const goal_1 = require("./goal");
 const behaviorTrackingData_1 = require("./behaviorTrackingData");
 const behaviorTemplate_1 = require("./behaviorTemplate");
+const behaviorTopic_1 = require("./behaviorTopic");
 // Re-export for backward compatibility
 var behaviorTemplate_2 = require("./behaviorTemplate");
 Object.defineProperty(exports, "trackingTypes", { enumerable: true, get: function () { return behaviorTemplate_2.trackingTypes; } });
@@ -33,9 +34,9 @@ exports.behaviorSchema = behaviorTemplate_1.behaviorTemplateBase
     })
         .optional(),
     activePlanId: zod_1.z.string(),
-    // Reference to the behavior topic (e.g., "sleep", "exercise", "substances")
+    // Reference to the behavior topic (e.g., "substances", "digital-screen-use")
     // Used for matching users to support groups with similar focus areas
-    behaviorTopicId: zod_1.z.string().optional(),
+    behaviorTopicId: behaviorTopic_1.behaviorTopicIdSchema.optional(),
 })
     .superRefine((val, ctx) => {
     if (val.trackingType === "counter" && !val.trackingUnit) {

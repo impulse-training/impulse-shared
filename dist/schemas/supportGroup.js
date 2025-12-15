@@ -5,6 +5,7 @@ const zod_1 = require("zod");
 const objectOf_1 = require("../utils/objectOf");
 const timestampSchema_1 = require("../utils/timestampSchema");
 const attachment_1 = require("./attachment");
+const behaviorTopic_1 = require("./behaviorTopic");
 const log_1 = require("./log");
 const userProfile_1 = require("./userProfile");
 const supportGroupPermissions_1 = require("./supportGroupPermissions");
@@ -48,8 +49,8 @@ exports.supportGroupSchema = zod_1.z.object({
     createdAt: timestampSchema_1.timestampSchema.optional(),
     updatedAt: timestampSchema_1.timestampSchema.optional(),
     // Matching criteria for automatic group assignment
-    // References to behavior topics this group focuses on (e.g., "sleep", "substances")
-    behaviorTopicIds: zod_1.z.array(zod_1.z.string()).optional(),
+    // References to behavior topics this group focuses on
+    behaviorTopicIds: zod_1.z.array(behaviorTopic_1.behaviorTopicIdSchema).optional(),
     timezoneOffsets: zod_1.z.array(zod_1.z.number()).optional(),
     matchingMode: exports.matchingModeSchema.optional(),
     // Whether this group accepts new members via matching

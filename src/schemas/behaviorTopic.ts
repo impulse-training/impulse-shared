@@ -1,31 +1,95 @@
 import { z } from "zod";
-import { timestampSchema } from "../utils/timestampSchema";
 
 /**
  * BehaviorTopic represents a grouping of behaviors by topic/issue area.
- * Examples: "Sleep", "Exercise", "Substances", "Anxiety", "Focus", etc.
- *
- * These are stored in a top-level `behaviorTopics` collection and are used
- * for matching users to support groups with similar focus areas.
+ * These are fixed categories used for matching users to support groups
+ * with similar focus areas.
  *
  * Note: This is different from the behavior "category" (helpful/unhelpful/mixed/unsure)
  * which describes the user's relationship to the behavior.
  */
-export const behaviorTopicSchema = z.object({
-  id: z.string().optional(),
-  name: z.string(),
-  description: z.string().optional(),
-  // Slug for URL-friendly identification
-  slug: z.string(),
-  // Icon or emoji for display
-  icon: z.string().optional(),
-  // Whether this topic was created by the system or by AI
-  isSystemDefined: z.boolean().default(true),
-  createdAt: timestampSchema.optional(),
-  updatedAt: timestampSchema.optional(),
-});
 
-export type BehaviorTopic = z.infer<typeof behaviorTopicSchema>;
+export const BEHAVIOR_TOPICS = {
+  "digital-screen-use": {
+    id: "digital-screen-use",
+    name: "Digital / Screen Use",
+    description:
+      "Impulse-control around stimulation, novelty, and escape through digital devices and screens.",
+    icon: "📱",
+  },
+  substances: {
+    id: "substances",
+    name: "Substances",
+    description:
+      "Chemical substances including alcohol, nicotine, caffeine, and other drugs.",
+    icon: "🚬",
+  },
+  bfrbs: {
+    id: "bfrbs",
+    name: "Body-Focused Repetitive Behaviors",
+    description:
+      "Repetitive self-grooming behaviors like hair pulling, skin picking, and nail biting.",
+    icon: "✋",
+  },
+  "avoidance-productivity": {
+    id: "avoidance-productivity",
+    name: "Avoidance & Productivity",
+    description:
+      "Time, effort, and resistance patterns including procrastination and focus avoidance.",
+    icon: "⏰",
+  },
+  "emotional-cognitive": {
+    id: "emotional-cognitive",
+    name: "Emotional & Cognitive Patterns",
+    description:
+      "Internal behaviors like negative self-talk, rumination, excessive worrying, and anger.",
+    icon: "🧠",
+  },
+  "financial-risk": {
+    id: "financial-risk",
+    name: "Financial / Risk Behaviors",
+    description:
+      "Behaviors involving financial risk like gambling, overspending, and compulsive shopping.",
+    icon: "💳",
+  },
+  eating: {
+    id: "eating",
+    name: "Eating-Related Behaviors",
+    description:
+      "Behaviors related to food consumption patterns like overeating, junk food, and late night snacking.",
+    icon: "🍔",
+  },
+} as const;
 
-export const isBehaviorTopic = (value: unknown): value is BehaviorTopic =>
-  behaviorTopicSchema.safeParse(value).success;
+export type BehaviorTopicId = keyof typeof BEHAVIOR_TOPICS;
+
+export const behaviorTopicIds = Object.keys(
+  BEHAVIOR_TOPICS
+) as BehaviorTopicId[];
+
+export const behaviorTopicIdSchema = z.enum(
+  behaviorTopicIds as unknown as readonly [string, ...string[]]
+);
+
+/**
+ * Get topic details by ID
+ */
+export const getBehaviorTopic = (id: BehaviorTopicId) => BEHAVIOR_TOPICS[id];
+
+/**
+ * Get topic name by ID
+ */
+export const getBehaviorTopicName = (id: BehaviorTopicId) =>
+  BEHAVIOR_TOPICS[id].name;
+
+/**
+ * Get topic icon by ID
+ */
+export const getBehaviorTopicIcon = (id: BehaviorTopicId) =>
+  BEHAVIOR_TOPICS[id].icon;
+
+/**
+ * Check if a string is a valid behavior topic ID
+ */
+export const isValidBehaviorTopicId = (id: string): id is BehaviorTopicId =>
+  id in BEHAVIOR_TOPICS;

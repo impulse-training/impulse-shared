@@ -121,7 +121,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         success: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
     }>>;
     activePlanId: z.ZodString;
-    behaviorTopicId: z.ZodOptional<z.ZodString>;
+    behaviorTopicId: z.ZodOptional<z.ZodEnum<["digital-screen-use", "substances", "bfrbs", "avoidance-productivity", "emotional-cognitive", "financial-risk", "eating"]>>;
 }, "strip", z.ZodTypeAny, {
     trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -170,7 +170,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         setback: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
         success: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
     } | undefined;
-    behaviorTopicId?: string | undefined;
+    behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
 }, {
     trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -219,7 +219,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         setback: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
         success: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
     } | undefined;
-    behaviorTopicId?: string | undefined;
+    behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
 }>, {
     trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -268,7 +268,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         setback: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
         success: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
     } | undefined;
-    behaviorTopicId?: string | undefined;
+    behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
 }, {
     trackingType: "counter" | "timer";
     category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -317,7 +317,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         setback: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
         success: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
     } | undefined;
-    behaviorTopicId?: string | undefined;
+    behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
 }>;
 export type Behavior = z.infer<typeof behaviorSchema>;
 export declare const isBehavior: (value: unknown) => value is Behavior;

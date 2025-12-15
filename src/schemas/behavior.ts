@@ -4,6 +4,7 @@ import { timestampSchema } from "../utils/timestampSchema";
 import { goalSchema } from "./goal";
 import { behaviorTrackingDataSchema } from "./behaviorTrackingData";
 import { behaviorTemplateBase } from "./behaviorTemplate";
+import { behaviorTopicIdSchema } from "./behaviorTopic";
 
 // Re-export for backward compatibility
 export { trackingTypes } from "./behaviorTemplate";
@@ -31,9 +32,9 @@ export const behaviorSchema = behaviorTemplateBase
       })
       .optional(),
     activePlanId: z.string(),
-    // Reference to the behavior topic (e.g., "sleep", "exercise", "substances")
+    // Reference to the behavior topic (e.g., "substances", "digital-screen-use")
     // Used for matching users to support groups with similar focus areas
-    behaviorTopicId: z.string().optional(),
+    behaviorTopicId: behaviorTopicIdSchema.optional(),
   })
   .superRefine((val, ctx) => {
     if (val.trackingType === "counter" && !val.trackingUnit) {

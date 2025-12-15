@@ -169,7 +169,7 @@ export declare const daySummarySchema: z.ZodObject<{
             success: import("..").DocumentReferenceLike<unknown>[];
         }>>;
         activePlanId: z.ZodString;
-        behaviorTopicId: z.ZodOptional<z.ZodString>;
+        behaviorTopicId: z.ZodOptional<z.ZodEnum<["digital-screen-use", "substances", "bfrbs", "avoidance-productivity", "emotional-cognitive", "financial-risk", "eating"]>>;
     }, "strip", z.ZodTypeAny, {
         trackingType: "counter" | "timer";
         category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -218,7 +218,7 @@ export declare const daySummarySchema: z.ZodObject<{
             setback: import("..").DocumentReferenceLike<unknown>[];
             success: import("..").DocumentReferenceLike<unknown>[];
         } | undefined;
-        behaviorTopicId?: string | undefined;
+        behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
     }, {
         trackingType: "counter" | "timer";
         category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -267,7 +267,7 @@ export declare const daySummarySchema: z.ZodObject<{
             setback: import("..").DocumentReferenceLike<unknown>[];
             success: import("..").DocumentReferenceLike<unknown>[];
         } | undefined;
-        behaviorTopicId?: string | undefined;
+        behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
     }>, {
         trackingType: "counter" | "timer";
         category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -316,7 +316,7 @@ export declare const daySummarySchema: z.ZodObject<{
             setback: import("..").DocumentReferenceLike<unknown>[];
             success: import("..").DocumentReferenceLike<unknown>[];
         } | undefined;
-        behaviorTopicId?: string | undefined;
+        behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
     }, {
         trackingType: "counter" | "timer";
         category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -365,7 +365,7 @@ export declare const daySummarySchema: z.ZodObject<{
             setback: import("..").DocumentReferenceLike<unknown>[];
             success: import("..").DocumentReferenceLike<unknown>[];
         } | undefined;
-        behaviorTopicId?: string | undefined;
+        behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
     }>>>;
     trackingLogsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
     tacticsUsed: z.ZodDefault<z.ZodArray<z.ZodAny, "many">>;
@@ -484,7 +484,7 @@ export declare const daySummarySchema: z.ZodObject<{
             setback: import("..").DocumentReferenceLike<unknown>[];
             success: import("..").DocumentReferenceLike<unknown>[];
         } | undefined;
-        behaviorTopicId?: string | undefined;
+        behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
     }> | undefined;
     outcome?: "setback" | "success" | "partial" | undefined;
     trackingLogsById?: Record<string, any> | undefined;
@@ -569,7 +569,7 @@ export declare const daySummarySchema: z.ZodObject<{
             setback: import("..").DocumentReferenceLike<unknown>[];
             success: import("..").DocumentReferenceLike<unknown>[];
         } | undefined;
-        behaviorTopicId?: string | undefined;
+        behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
     }> | undefined;
     outcome?: "setback" | "success" | "partial" | undefined;
     trackingLogsById?: Record<string, any> | undefined;

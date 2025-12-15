@@ -1,8 +1,8 @@
 import { z } from "zod";
-import { documentReferenceSchema } from "../utils/documentReferenceSchema";
 import { objectOf } from "../utils/objectOf";
 import { timestampSchema } from "../utils/timestampSchema";
 import { attachmentSchema } from "./attachment";
+import { behaviorTopicIdSchema } from "./behaviorTopic";
 import { userMessageLogSchema } from "./log";
 import { userProfileSchema } from "./userProfile";
 import {
@@ -64,8 +64,8 @@ export const supportGroupSchema = z.object({
   updatedAt: timestampSchema.optional(),
 
   // Matching criteria for automatic group assignment
-  // References to behavior topics this group focuses on (e.g., "sleep", "substances")
-  behaviorTopicIds: z.array(z.string()).optional(),
+  // References to behavior topics this group focuses on
+  behaviorTopicIds: z.array(behaviorTopicIdSchema).optional(),
   timezoneOffsets: z.array(z.number()).optional(),
   matchingMode: matchingModeSchema.optional(),
   // Whether this group accepts new members via matching
