@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isValidSupportGroup = exports.isValidSupportGroupMember = exports.supportGroupSchema = exports.supportGroupTypeSchema = exports.supportGroupMemberSchema = exports.supportGroupNotificationPreferencesSchema = exports.supportGroupPermissionsSchema = exports.matchingModeSchema = void 0;
 const zod_1 = require("zod");
-const documentReferenceSchema_1 = require("../utils/documentReferenceSchema");
 const objectOf_1 = require("../utils/objectOf");
 const timestampSchema_1 = require("../utils/timestampSchema");
 const attachment_1 = require("./attachment");
@@ -49,7 +48,8 @@ exports.supportGroupSchema = zod_1.z.object({
     createdAt: timestampSchema_1.timestampSchema.optional(),
     updatedAt: timestampSchema_1.timestampSchema.optional(),
     // Matching criteria for automatic group assignment
-    behaviorTemplates: zod_1.z.array(documentReferenceSchema_1.documentReferenceSchema).optional(),
+    // References to behavior topics this group focuses on (e.g., "sleep", "substances")
+    behaviorTopicIds: zod_1.z.array(zod_1.z.string()).optional(),
     timezoneOffsets: zod_1.z.array(zod_1.z.number()).optional(),
     matchingMode: exports.matchingModeSchema.optional(),
     // Whether this group accepts new members via matching

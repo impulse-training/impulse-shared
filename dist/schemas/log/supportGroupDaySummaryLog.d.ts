@@ -161,6 +161,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                     success: import("../..").DocumentReferenceLike<unknown>[];
                 }>>;
                 activePlanId: z.ZodString;
+                behaviorTopicId: z.ZodOptional<z.ZodString>;
             }, "strip", z.ZodTypeAny, {
                 trackingType: "counter" | "timer";
                 category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -209,6 +210,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                     setback: import("../..").DocumentReferenceLike<unknown>[];
                     success: import("../..").DocumentReferenceLike<unknown>[];
                 } | undefined;
+                behaviorTopicId?: string | undefined;
             }, {
                 trackingType: "counter" | "timer";
                 category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -257,6 +259,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                     setback: import("../..").DocumentReferenceLike<unknown>[];
                     success: import("../..").DocumentReferenceLike<unknown>[];
                 } | undefined;
+                behaviorTopicId?: string | undefined;
             }>, {
                 trackingType: "counter" | "timer";
                 category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -305,6 +308,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                     setback: import("../..").DocumentReferenceLike<unknown>[];
                     success: import("../..").DocumentReferenceLike<unknown>[];
                 } | undefined;
+                behaviorTopicId?: string | undefined;
             }, {
                 trackingType: "counter" | "timer";
                 category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -353,6 +357,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                     setback: import("../..").DocumentReferenceLike<unknown>[];
                     success: import("../..").DocumentReferenceLike<unknown>[];
                 } | undefined;
+                behaviorTopicId?: string | undefined;
             }>>>;
             trackingLogsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
             tacticsUsed: z.ZodDefault<z.ZodArray<z.ZodAny, "many">>;
@@ -471,6 +476,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                     setback: import("../..").DocumentReferenceLike<unknown>[];
                     success: import("../..").DocumentReferenceLike<unknown>[];
                 } | undefined;
+                behaviorTopicId?: string | undefined;
             }> | undefined;
             outcome?: "setback" | "success" | "partial" | undefined;
             trackingLogsById?: Record<string, any> | undefined;
@@ -555,6 +561,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                     setback: import("../..").DocumentReferenceLike<unknown>[];
                     success: import("../..").DocumentReferenceLike<unknown>[];
                 } | undefined;
+                behaviorTopicId?: string | undefined;
             }> | undefined;
             outcome?: "setback" | "success" | "partial" | undefined;
             trackingLogsById?: Record<string, any> | undefined;
@@ -646,6 +653,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                     setback: import("../..").DocumentReferenceLike<unknown>[];
                     success: import("../..").DocumentReferenceLike<unknown>[];
                 } | undefined;
+                behaviorTopicId?: string | undefined;
             }> | undefined;
             outcome?: "setback" | "success" | "partial" | undefined;
             trackingLogsById?: Record<string, any> | undefined;
@@ -734,6 +742,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                     setback: import("../..").DocumentReferenceLike<unknown>[];
                     success: import("../..").DocumentReferenceLike<unknown>[];
                 } | undefined;
+                behaviorTopicId?: string | undefined;
             }> | undefined;
             outcome?: "setback" | "success" | "partial" | undefined;
             trackingLogsById?: Record<string, any> | undefined;
@@ -832,6 +841,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                     setback: import("../..").DocumentReferenceLike<unknown>[];
                     success: import("../..").DocumentReferenceLike<unknown>[];
                 } | undefined;
+                behaviorTopicId?: string | undefined;
             }> | undefined;
             outcome?: "setback" | "success" | "partial" | undefined;
             trackingLogsById?: Record<string, any> | undefined;
@@ -932,6 +942,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                     setback: import("../..").DocumentReferenceLike<unknown>[];
                     success: import("../..").DocumentReferenceLike<unknown>[];
                 } | undefined;
+                behaviorTopicId?: string | undefined;
             }> | undefined;
             outcome?: "setback" | "success" | "partial" | undefined;
             trackingLogsById?: Record<string, any> | undefined;

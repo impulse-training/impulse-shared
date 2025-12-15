@@ -155,6 +155,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             success: import("../..").DocumentReferenceLike<unknown>[];
         }>>;
         activePlanId: z.ZodString;
+        behaviorTopicId: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
         trackingType: "counter" | "timer";
         category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -203,6 +204,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             setback: import("../..").DocumentReferenceLike<unknown>[];
             success: import("../..").DocumentReferenceLike<unknown>[];
         } | undefined;
+        behaviorTopicId?: string | undefined;
     }, {
         trackingType: "counter" | "timer";
         category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -251,6 +253,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             setback: import("../..").DocumentReferenceLike<unknown>[];
             success: import("../..").DocumentReferenceLike<unknown>[];
         } | undefined;
+        behaviorTopicId?: string | undefined;
     }>, {
         trackingType: "counter" | "timer";
         category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -299,6 +302,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             setback: import("../..").DocumentReferenceLike<unknown>[];
             success: import("../..").DocumentReferenceLike<unknown>[];
         } | undefined;
+        behaviorTopicId?: string | undefined;
     }, {
         trackingType: "counter" | "timer";
         category: "helpful" | "mixed" | "unhelpful" | "unsure";
@@ -347,6 +351,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             setback: import("../..").DocumentReferenceLike<unknown>[];
             success: import("../..").DocumentReferenceLike<unknown>[];
         } | undefined;
+        behaviorTopicId?: string | undefined;
     }>>>;
 }, "strip", z.ZodTypeAny, {
     summaryText: string;
@@ -410,6 +415,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             setback: import("../..").DocumentReferenceLike<unknown>[];
             success: import("../..").DocumentReferenceLike<unknown>[];
         } | undefined;
+        behaviorTopicId?: string | undefined;
     }> | undefined;
 }, {
     summaryText: string;
@@ -473,6 +479,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             setback: import("../..").DocumentReferenceLike<unknown>[];
             success: import("../..").DocumentReferenceLike<unknown>[];
         } | undefined;
+        behaviorTopicId?: string | undefined;
     }> | undefined;
 }>;
 export type RecapResponseValue = z.infer<typeof recapResponseValueSchema>;

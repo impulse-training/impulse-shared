@@ -1,36 +1,14 @@
 import { z } from "zod";
-import { categorySchema } from "../constants";
 import { documentReferenceSchema } from "../utils/documentReferenceSchema";
 import { timestampSchema } from "../utils/timestampSchema";
 import { goalSchema } from "./goal";
 import { behaviorTrackingDataSchema } from "./behaviorTrackingData";
+import { behaviorTemplateBase } from "./behaviorTemplate";
 
-export const trackingTypes = ["counter", "timer"] as const;
-
-// These are foundational attributes, and correspond to documents in a top-level behaviorTemplates
-// collection. We then extend that schema to be the full behavior schema.
-const behaviorTemplateBase = z.object({
-  name: z.string(),
-  category: categorySchema,
-  hasQuestions: z.boolean().optional(),
-  trackingType: z.enum(trackingTypes),
-  trackingUnit: z.string().optional(),
-  createdAt: timestampSchema.optional(),
-  updatedAt: timestampSchema.optional(),
-});
-
-export const behaviorTemplateSchema = behaviorTemplateBase.superRefine(
-  (val, ctx) => {
-    if (val.trackingType === "counter" && !val.trackingUnit) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: "Tracking unit is required when tracking type is 'counter'",
-        path: ["trackingUnit"],
-      });
-    }
-  }
-);
-export type BehaviorTemplate = z.infer<typeof behaviorTemplateSchema>;
+// Re-export for backward compatibility
+export { trackingTypes } from "./behaviorTemplate";
+export type { BehaviorTemplate, TrackingType } from "./behaviorTemplate";
+export { behaviorTemplateSchema } from "./behaviorTemplate";
 
 // These are stored at the user-level, as in, users/$userId/behaviors/$behaviorId
 export const behaviorSchema = behaviorTemplateBase
@@ -53,6 +31,9 @@ export const behaviorSchema = behaviorTemplateBase
       })
       .optional(),
     activePlanId: z.string(),
+    // Reference to the behavior topic (e.g., "sleep", "exercise", "substances")
+    // Used for matching users to support groups with similar focus areas
+    behaviorTopicId: z.string().optional(),
   })
   .superRefine((val, ctx) => {
     if (val.trackingType === "counter" && !val.trackingUnit) {
@@ -63,8 +44,6 @@ export const behaviorSchema = behaviorTemplateBase
       });
     }
   });
-
-export type TrackingType = (typeof trackingTypes)[number];
 
 // Export types inferred from schemas
 export type Behavior = z.infer<typeof behaviorSchema>;

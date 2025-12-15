@@ -64,7 +64,8 @@ export const supportGroupSchema = z.object({
   updatedAt: timestampSchema.optional(),
 
   // Matching criteria for automatic group assignment
-  behaviorTemplates: z.array(documentReferenceSchema).optional(),
+  // References to behavior topics this group focuses on (e.g., "sleep", "substances")
+  behaviorTopicIds: z.array(z.string()).optional(),
   timezoneOffsets: z.array(z.number()).optional(),
   matchingMode: matchingModeSchema.optional(),
   // Whether this group accepts new members via matching

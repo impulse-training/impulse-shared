@@ -2,34 +2,18 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isBehavior = exports.behaviorSchema = exports.behaviorTemplateSchema = exports.trackingTypes = void 0;
 const zod_1 = require("zod");
-const constants_1 = require("../constants");
 const documentReferenceSchema_1 = require("../utils/documentReferenceSchema");
 const timestampSchema_1 = require("../utils/timestampSchema");
 const goal_1 = require("./goal");
 const behaviorTrackingData_1 = require("./behaviorTrackingData");
-exports.trackingTypes = ["counter", "timer"];
-// These are foundational attributes, and correspond to documents in a top-level behaviorTemplates
-// collection. We then extend that schema to be the full behavior schema.
-const behaviorTemplateBase = zod_1.z.object({
-    name: zod_1.z.string(),
-    category: constants_1.categorySchema,
-    hasQuestions: zod_1.z.boolean().optional(),
-    trackingType: zod_1.z.enum(exports.trackingTypes),
-    trackingUnit: zod_1.z.string().optional(),
-    createdAt: timestampSchema_1.timestampSchema.optional(),
-    updatedAt: timestampSchema_1.timestampSchema.optional(),
-});
-exports.behaviorTemplateSchema = behaviorTemplateBase.superRefine((val, ctx) => {
-    if (val.trackingType === "counter" && !val.trackingUnit) {
-        ctx.addIssue({
-            code: zod_1.z.ZodIssueCode.custom,
-            message: "Tracking unit is required when tracking type is 'counter'",
-            path: ["trackingUnit"],
-        });
-    }
-});
+const behaviorTemplate_1 = require("./behaviorTemplate");
+// Re-export for backward compatibility
+var behaviorTemplate_2 = require("./behaviorTemplate");
+Object.defineProperty(exports, "trackingTypes", { enumerable: true, get: function () { return behaviorTemplate_2.trackingTypes; } });
+var behaviorTemplate_3 = require("./behaviorTemplate");
+Object.defineProperty(exports, "behaviorTemplateSchema", { enumerable: true, get: function () { return behaviorTemplate_3.behaviorTemplateSchema; } });
 // These are stored at the user-level, as in, users/$userId/behaviors/$behaviorId
-exports.behaviorSchema = behaviorTemplateBase
+exports.behaviorSchema = behaviorTemplate_1.behaviorTemplateBase
     .extend({
     id: zod_1.z.string().optional(),
     description: zod_1.z.string(),
@@ -49,6 +33,9 @@ exports.behaviorSchema = behaviorTemplateBase
     })
         .optional(),
     activePlanId: zod_1.z.string(),
+    // Reference to the behavior topic (e.g., "sleep", "exercise", "substances")
+    // Used for matching users to support groups with similar focus areas
+    behaviorTopicId: zod_1.z.string().optional(),
 })
     .superRefine((val, ctx) => {
     if (val.trackingType === "counter" && !val.trackingUnit) {

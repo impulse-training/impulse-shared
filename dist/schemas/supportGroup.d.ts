@@ -597,7 +597,7 @@ export declare const supportGroupSchema: z.ZodObject<{
     tacticCount: z.ZodDefault<z.ZodNumber>;
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-    behaviorTemplates: z.ZodOptional<z.ZodArray<z.ZodType<import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>;
+    behaviorTopicIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     timezoneOffsets: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
     matchingMode: z.ZodOptional<z.ZodEnum<["focused", "mixed"]>>;
     acceptsMatching: z.ZodOptional<z.ZodBoolean>;
@@ -718,7 +718,7 @@ export declare const supportGroupSchema: z.ZodObject<{
             tactic?: any;
         } | undefined;
     } | undefined;
-    behaviorTemplates?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+    behaviorTopicIds?: string[] | undefined;
     timezoneOffsets?: number[] | undefined;
     matchingMode?: "mixed" | "focused" | undefined;
     acceptsMatching?: boolean | undefined;
@@ -839,7 +839,7 @@ export declare const supportGroupSchema: z.ZodObject<{
         } | undefined;
     } | undefined;
     tacticCount?: number | undefined;
-    behaviorTemplates?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+    behaviorTopicIds?: string[] | undefined;
     timezoneOffsets?: number[] | undefined;
     matchingMode?: "mixed" | "focused" | undefined;
     acceptsMatching?: boolean | undefined;

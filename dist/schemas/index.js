@@ -20,6 +20,8 @@ __exportStar(require("./attachment"), exports);
 __exportStar(require("./audioGenerationJob"), exports);
 __exportStar(require("./audit"), exports);
 __exportStar(require("./behavior"), exports);
+__exportStar(require("./behaviorTemplate"), exports);
+__exportStar(require("./behaviorTopic"), exports);
 __exportStar(require("./daySummary"), exports);
 __exportStar(require("./emojiId"), exports);
 __exportStar(require("./experiment"), exports);
