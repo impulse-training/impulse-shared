@@ -10,15 +10,18 @@ export const experimentSchema = z.object({
   name: z.string(),
   behaviorId: z.string(),
   questionIds: z.array(z.string()),
+  pendingTestDescription: z.string().optional(),
   config: z.object({
     baseline: z.object({
       requiredDays: z.number().default(5),
+      description: z.string().optional(),
     }),
     test: z
       .object({
         requiredGoal: goalSchema,
         requiredDays: z.number().default(7),
         requireContiguousDays: z.boolean().default(false),
+        description: z.string().optional(),
       })
       .optional(),
   }),
