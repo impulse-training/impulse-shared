@@ -11,22 +11,22 @@ export declare const textQuestionSchema: z.ZodObject<{
     isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     isPinned: z.ZodOptional<z.ZodBoolean>;
     responseType: z.ZodLiteral<"text">;
-    scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+    scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
     debriefBehaviors: z.ZodOptional<z.ZodObject<{
         success: z.ZodArray<z.ZodString, "many">;
         setback: z.ZodArray<z.ZodString, "many">;
     }, "strip", z.ZodTypeAny, {
-        setback: string[];
         success: string[];
+        setback: string[];
     }, {
-        setback: string[];
         success: string[];
+        setback: string[];
     }>>;
 }, "strip", z.ZodTypeAny, {
     text: string;
     isTemplate: boolean;
     responseType: "text";
-    scope: "impulse" | "setback" | "success" | "recap";
+    scope: "success" | "setback" | "impulse" | "recap";
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
@@ -36,13 +36,13 @@ export declare const textQuestionSchema: z.ZodObject<{
     numberOfAnswers?: number | undefined;
     isPinned?: boolean | undefined;
     debriefBehaviors?: {
-        setback: string[];
         success: string[];
+        setback: string[];
     } | undefined;
 }, {
     text: string;
     responseType: "text";
-    scope: "impulse" | "setback" | "success" | "recap";
+    scope: "success" | "setback" | "impulse" | "recap";
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
@@ -53,8 +53,8 @@ export declare const textQuestionSchema: z.ZodObject<{
     numberOfAnswers?: number | undefined;
     isPinned?: boolean | undefined;
     debriefBehaviors?: {
-        setback: string[];
         success: string[];
+        setback: string[];
     } | undefined;
 }>;
 export type TextQuestion = z.infer<typeof textQuestionSchema>;

@@ -23,7 +23,7 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
             firstCallLog: z.ZodOptional<z.ZodAny>;
             hasContent: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -32,7 +32,7 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -55,7 +55,7 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
     }, "strip", z.ZodTypeAny, {
         threadRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
         threadSummaryData: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -72,7 +72,7 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
     }, {
         threadRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
         threadSummaryData: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -97,7 +97,7 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
     data: {
         threadRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
         threadSummaryData: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -126,7 +126,7 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
     data: {
         threadRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
         threadSummaryData: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];

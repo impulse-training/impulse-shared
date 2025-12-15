@@ -2064,7 +2064,7 @@ export declare const threadBaseSchema: z.ZodObject<{
         firstCallLog: z.ZodOptional<z.ZodAny>;
         hasContent: z.ZodBoolean;
     }, "strip", z.ZodTypeAny, {
-        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -2073,7 +2073,7 @@ export declare const threadBaseSchema: z.ZodObject<{
         firstMessageLog?: any;
         firstCallLog?: any;
     }, {
-        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -2143,7 +2143,7 @@ export declare const threadBaseSchema: z.ZodObject<{
         endedAt?: import("../../types").Timestamp | undefined;
     }>>;
 }, "strip", z.ZodTypeAny, {
-    type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+    type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
     date: import("../../types").Timestamp;
     userId: string;
     dateString: string;
@@ -2505,7 +2505,7 @@ export declare const threadBaseSchema: z.ZodObject<{
     } | undefined;
     currentTacticStepIndex?: number | undefined;
     summaryData?: {
-        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -2556,7 +2556,7 @@ export declare const threadBaseSchema: z.ZodObject<{
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
     title?: string | undefined;
-    type?: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
+    type?: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
@@ -2903,7 +2903,7 @@ export declare const threadBaseSchema: z.ZodObject<{
     currentTacticStepIndex?: number | undefined;
     isDraft?: boolean | undefined;
     summaryData?: {
-        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];

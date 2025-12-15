@@ -10,7 +10,6 @@ exports.behaviorContextSchema = zod_1.z.object({
     description: zod_1.z.string().optional(),
     benefits: zod_1.z.array(zod_1.z.string()).optional(),
     drawbacks: zod_1.z.array(zod_1.z.string()).optional(),
-    category: zod_1.z.string().optional(),
     trackingUnit: zod_1.z.string().optional(),
     streakDays: zod_1.z.number().default(0),
     totalTracked: zod_1.z.number().default(0),

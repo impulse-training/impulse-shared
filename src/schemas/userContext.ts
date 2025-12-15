@@ -8,7 +8,6 @@ export const behaviorContextSchema = z.object({
   description: z.string().optional(),
   benefits: z.array(z.string()).optional(),
   drawbacks: z.array(z.string()).optional(),
-  category: z.string().optional(),
   trackingUnit: z.string().optional(),
   streakDays: z.number().default(0),
   totalTracked: z.number().default(0),

@@ -4,9 +4,6 @@ import { z } from "zod";
  * BehaviorTopic represents a grouping of behaviors by topic/issue area.
  * These are fixed categories used for matching users to support groups
  * with similar focus areas.
- *
- * Note: This is different from the behavior "category" (helpful/unhelpful/mixed/unsure)
- * which describes the user's relationship to the behavior.
  */
 
 export const BEHAVIOR_TOPICS = {

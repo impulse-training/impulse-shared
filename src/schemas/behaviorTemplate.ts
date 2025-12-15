@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { categorySchema } from "../constants";
 import { timestampSchema } from "../utils/timestampSchema";
 
 export const trackingTypes = ["counter", "timer"] as const;
@@ -9,7 +8,6 @@ export type TrackingType = (typeof trackingTypes)[number];
 // collection. We then extend that schema to be the full behavior schema.
 const behaviorTemplateBase = z.object({
   name: z.string(),
-  category: categorySchema,
   hasQuestions: z.boolean().optional(),
   trackingType: z.enum(trackingTypes),
   trackingUnit: z.string().optional(),

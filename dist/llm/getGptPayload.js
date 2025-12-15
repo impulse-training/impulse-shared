@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getGptPayload = getGptPayload;
-const behaviorCategories_1 = require("../constants/behaviorCategories");
 const log_1 = require("../schemas/log");
 function getGptPayload(log) {
     if ((0, log_1.logIsImpulseLog)(log)) {
@@ -132,12 +131,11 @@ function getGptPayload(log) {
     }
     // Handle BehaviorLog
     if ((0, log_1.logIsBehaviorLog)(log)) {
-        const { behaviorName, formattedValue, category } = log.data;
-        const categoryExplanation = (0, behaviorCategories_1.getBehaviorCategoryExplanation)(category);
+        const { behaviorName, formattedValue } = log.data;
         return [
             {
                 role: "user",
-                content: `<s>The user has tracked a behavior: ${behaviorName} - ${formattedValue} (Category: ${category} - ${categoryExplanation})</s>`,
+                content: `<s>The user has tracked a behavior: ${behaviorName} - ${formattedValue}</s>`,
             },
         ];
     }

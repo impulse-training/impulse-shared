@@ -11,16 +11,16 @@ export declare const slider1To10QuestionSchema: z.ZodObject<{
     isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     isPinned: z.ZodOptional<z.ZodBoolean>;
     responseType: z.ZodLiteral<"slider1To10">;
-    scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+    scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
     debriefBehaviors: z.ZodOptional<z.ZodObject<{
         success: z.ZodArray<z.ZodString, "many">;
         setback: z.ZodArray<z.ZodString, "many">;
     }, "strip", z.ZodTypeAny, {
-        setback: string[];
         success: string[];
+        setback: string[];
     }, {
-        setback: string[];
         success: string[];
+        setback: string[];
     }>>;
 } & {
     sliderConfig: z.ZodObject<{
@@ -41,7 +41,7 @@ export declare const slider1To10QuestionSchema: z.ZodObject<{
     };
     isTemplate: boolean;
     responseType: "slider1To10";
-    scope: "impulse" | "setback" | "success" | "recap";
+    scope: "success" | "setback" | "impulse" | "recap";
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
@@ -51,8 +51,8 @@ export declare const slider1To10QuestionSchema: z.ZodObject<{
     numberOfAnswers?: number | undefined;
     isPinned?: boolean | undefined;
     debriefBehaviors?: {
-        setback: string[];
         success: string[];
+        setback: string[];
     } | undefined;
 }, {
     text: string;
@@ -61,7 +61,7 @@ export declare const slider1To10QuestionSchema: z.ZodObject<{
         maxLabel?: string | undefined;
     };
     responseType: "slider1To10";
-    scope: "impulse" | "setback" | "success" | "recap";
+    scope: "success" | "setback" | "impulse" | "recap";
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
@@ -72,8 +72,8 @@ export declare const slider1To10QuestionSchema: z.ZodObject<{
     numberOfAnswers?: number | undefined;
     isPinned?: boolean | undefined;
     debriefBehaviors?: {
-        setback: string[];
         success: string[];
+        setback: string[];
     } | undefined;
 }>;
 export type Slider1To10Question = z.infer<typeof slider1To10QuestionSchema>;

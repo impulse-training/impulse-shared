@@ -1,2 +1,1 @@
-export * from './behaviorCategories';
-export * from './questionScopes';
+export * from "./questionScopes";

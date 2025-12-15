@@ -4,7 +4,6 @@ export declare const behaviorTrackingDataSchema: z.ZodObject<{
     behaviorName: z.ZodString;
     behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
     trackingType: z.ZodEnum<["counter", "timer"]>;
-    category: z.ZodType<"helpful" | "mixed" | "unhelpful" | "unsure", z.ZodTypeDef, "helpful" | "mixed" | "unhelpful" | "unsure">;
     value: z.ZodNumber;
     formattedValue: z.ZodString;
 }, "strip", z.ZodTypeAny, {
@@ -12,7 +11,6 @@ export declare const behaviorTrackingDataSchema: z.ZodObject<{
     behaviorId: string;
     behaviorName: string;
     trackingType: "counter" | "timer";
-    category: "helpful" | "mixed" | "unhelpful" | "unsure";
     formattedValue: string;
     behaviorTrackingUnit?: string | undefined;
 }, {
@@ -20,7 +18,6 @@ export declare const behaviorTrackingDataSchema: z.ZodObject<{
     behaviorId: string;
     behaviorName: string;
     trackingType: "counter" | "timer";
-    category: "helpful" | "mixed" | "unhelpful" | "unsure";
     formattedValue: string;
     behaviorTrackingUnit?: string | undefined;
 }>;

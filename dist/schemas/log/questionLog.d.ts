@@ -38,7 +38,6 @@ export declare const recapResponseValueSchema: z.ZodObject<{
     /** Snapshot of behaviors at the time of recap, keyed by behaviorId */
     behaviorsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodEffects<z.ZodObject<{
         name: z.ZodString;
-        category: z.ZodType<"helpful" | "mixed" | "unhelpful" | "unsure", z.ZodTypeDef, "helpful" | "mixed" | "unhelpful" | "unsure">;
         hasQuestions: z.ZodOptional<z.ZodBoolean>;
         trackingType: z.ZodEnum<["counter", "timer"]>;
         trackingUnit: z.ZodOptional<z.ZodString>;
@@ -122,7 +121,6 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             behaviorName: z.ZodString;
             behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
             trackingType: z.ZodEnum<["counter", "timer"]>;
-            category: z.ZodType<"helpful" | "mixed" | "unhelpful" | "unsure", z.ZodTypeDef, "helpful" | "mixed" | "unhelpful" | "unsure">;
             value: z.ZodNumber;
             formattedValue: z.ZodString;
         }, "strip", z.ZodTypeAny, {
@@ -130,7 +128,6 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             behaviorId: string;
             behaviorName: string;
             trackingType: "counter" | "timer";
-            category: "helpful" | "mixed" | "unhelpful" | "unsure";
             formattedValue: string;
             behaviorTrackingUnit?: string | undefined;
         }, {
@@ -138,7 +135,6 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             behaviorId: string;
             behaviorName: string;
             trackingType: "counter" | "timer";
-            category: "helpful" | "mixed" | "unhelpful" | "unsure";
             formattedValue: string;
             behaviorTrackingUnit?: string | undefined;
         }>>;
@@ -148,17 +144,16 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             success: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
             setback: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
         }, "strip", z.ZodTypeAny, {
-            setback: import("../..").DocumentReferenceLike<unknown>[];
             success: import("../..").DocumentReferenceLike<unknown>[];
+            setback: import("../..").DocumentReferenceLike<unknown>[];
         }, {
-            setback: import("../..").DocumentReferenceLike<unknown>[];
             success: import("../..").DocumentReferenceLike<unknown>[];
+            setback: import("../..").DocumentReferenceLike<unknown>[];
         }>>;
         activePlanId: z.ZodString;
-        behaviorTopicId: z.ZodOptional<z.ZodEnum<["digital-screen-use", "substances", "bfrbs", "avoidance-productivity", "emotional-cognitive", "financial-risk", "eating"]>>;
+        behaviorTopicId: z.ZodOptional<z.ZodEnum<[string, ...string[]]>>;
     }, "strip", z.ZodTypeAny, {
         trackingType: "counter" | "timer";
-        category: "helpful" | "mixed" | "unhelpful" | "unsure";
         name: string;
         description: string;
         ordinal: number;
@@ -195,19 +190,17 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             behaviorId: string;
             behaviorName: string;
             trackingType: "counter" | "timer";
-            category: "helpful" | "mixed" | "unhelpful" | "unsure";
             formattedValue: string;
             behaviorTrackingUnit?: string | undefined;
         } | undefined;
         impulseQuestions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
         debriefQuestions?: {
-            setback: import("../..").DocumentReferenceLike<unknown>[];
             success: import("../..").DocumentReferenceLike<unknown>[];
+            setback: import("../..").DocumentReferenceLike<unknown>[];
         } | undefined;
-        behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
+        behaviorTopicId?: string | undefined;
     }, {
         trackingType: "counter" | "timer";
-        category: "helpful" | "mixed" | "unhelpful" | "unsure";
         name: string;
         description: string;
         benefits: string[];
@@ -243,20 +236,18 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             behaviorId: string;
             behaviorName: string;
             trackingType: "counter" | "timer";
-            category: "helpful" | "mixed" | "unhelpful" | "unsure";
             formattedValue: string;
             behaviorTrackingUnit?: string | undefined;
         } | undefined;
         hidden?: boolean | undefined;
         impulseQuestions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
         debriefQuestions?: {
-            setback: import("../..").DocumentReferenceLike<unknown>[];
             success: import("../..").DocumentReferenceLike<unknown>[];
+            setback: import("../..").DocumentReferenceLike<unknown>[];
         } | undefined;
-        behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
+        behaviorTopicId?: string | undefined;
     }>, {
         trackingType: "counter" | "timer";
-        category: "helpful" | "mixed" | "unhelpful" | "unsure";
         name: string;
         description: string;
         ordinal: number;
@@ -293,19 +284,17 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             behaviorId: string;
             behaviorName: string;
             trackingType: "counter" | "timer";
-            category: "helpful" | "mixed" | "unhelpful" | "unsure";
             formattedValue: string;
             behaviorTrackingUnit?: string | undefined;
         } | undefined;
         impulseQuestions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
         debriefQuestions?: {
-            setback: import("../..").DocumentReferenceLike<unknown>[];
             success: import("../..").DocumentReferenceLike<unknown>[];
+            setback: import("../..").DocumentReferenceLike<unknown>[];
         } | undefined;
-        behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
+        behaviorTopicId?: string | undefined;
     }, {
         trackingType: "counter" | "timer";
-        category: "helpful" | "mixed" | "unhelpful" | "unsure";
         name: string;
         description: string;
         benefits: string[];
@@ -341,17 +330,16 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             behaviorId: string;
             behaviorName: string;
             trackingType: "counter" | "timer";
-            category: "helpful" | "mixed" | "unhelpful" | "unsure";
             formattedValue: string;
             behaviorTrackingUnit?: string | undefined;
         } | undefined;
         hidden?: boolean | undefined;
         impulseQuestions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
         debriefQuestions?: {
-            setback: import("../..").DocumentReferenceLike<unknown>[];
             success: import("../..").DocumentReferenceLike<unknown>[];
+            setback: import("../..").DocumentReferenceLike<unknown>[];
         } | undefined;
-        behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
+        behaviorTopicId?: string | undefined;
     }>>>;
 }, "strip", z.ZodTypeAny, {
     summaryText: string;
@@ -369,7 +357,6 @@ export declare const recapResponseValueSchema: z.ZodObject<{
     }> | undefined;
     behaviorsById?: Record<string, {
         trackingType: "counter" | "timer";
-        category: "helpful" | "mixed" | "unhelpful" | "unsure";
         name: string;
         description: string;
         ordinal: number;
@@ -406,16 +393,15 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             behaviorId: string;
             behaviorName: string;
             trackingType: "counter" | "timer";
-            category: "helpful" | "mixed" | "unhelpful" | "unsure";
             formattedValue: string;
             behaviorTrackingUnit?: string | undefined;
         } | undefined;
         impulseQuestions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
         debriefQuestions?: {
-            setback: import("../..").DocumentReferenceLike<unknown>[];
             success: import("../..").DocumentReferenceLike<unknown>[];
+            setback: import("../..").DocumentReferenceLike<unknown>[];
         } | undefined;
-        behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
+        behaviorTopicId?: string | undefined;
     }> | undefined;
 }, {
     summaryText: string;
@@ -433,7 +419,6 @@ export declare const recapResponseValueSchema: z.ZodObject<{
     }> | undefined;
     behaviorsById?: Record<string, {
         trackingType: "counter" | "timer";
-        category: "helpful" | "mixed" | "unhelpful" | "unsure";
         name: string;
         description: string;
         benefits: string[];
@@ -469,17 +454,16 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             behaviorId: string;
             behaviorName: string;
             trackingType: "counter" | "timer";
-            category: "helpful" | "mixed" | "unhelpful" | "unsure";
             formattedValue: string;
             behaviorTrackingUnit?: string | undefined;
         } | undefined;
         hidden?: boolean | undefined;
         impulseQuestions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
         debriefQuestions?: {
-            setback: import("../..").DocumentReferenceLike<unknown>[];
             success: import("../..").DocumentReferenceLike<unknown>[];
+            setback: import("../..").DocumentReferenceLike<unknown>[];
         } | undefined;
-        behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
+        behaviorTopicId?: string | undefined;
     }> | undefined;
 }>;
 export type RecapResponseValue = z.infer<typeof recapResponseValueSchema>;
@@ -490,12 +474,12 @@ declare const responseSchema: z.ZodObject<{
     color: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     formattedValue: string;
-    responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+    responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
     value?: any;
     color?: string | undefined;
 }, {
     formattedValue: string;
-    responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+    responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
     value?: any;
     color?: string | undefined;
 }>;
@@ -515,22 +499,22 @@ declare const questionEntrySchema: z.ZodObject<{
         isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
         isPinned: z.ZodOptional<z.ZodBoolean>;
         responseType: z.ZodLiteral<"text">;
-        scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+        scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
         debriefBehaviors: z.ZodOptional<z.ZodObject<{
             success: z.ZodArray<z.ZodString, "many">;
             setback: z.ZodArray<z.ZodString, "many">;
         }, "strip", z.ZodTypeAny, {
-            setback: string[];
             success: string[];
+            setback: string[];
         }, {
-            setback: string[];
             success: string[];
+            setback: string[];
         }>>;
     }, "strip", z.ZodTypeAny, {
         text: string;
         isTemplate: boolean;
         responseType: "text";
-        scope: "impulse" | "setback" | "success" | "recap";
+        scope: "success" | "setback" | "impulse" | "recap";
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -540,13 +524,13 @@ declare const questionEntrySchema: z.ZodObject<{
         numberOfAnswers?: number | undefined;
         isPinned?: boolean | undefined;
         debriefBehaviors?: {
-            setback: string[];
             success: string[];
+            setback: string[];
         } | undefined;
     }, {
         text: string;
         responseType: "text";
-        scope: "impulse" | "setback" | "success" | "recap";
+        scope: "success" | "setback" | "impulse" | "recap";
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -557,8 +541,8 @@ declare const questionEntrySchema: z.ZodObject<{
         numberOfAnswers?: number | undefined;
         isPinned?: boolean | undefined;
         debriefBehaviors?: {
-            setback: string[];
             success: string[];
+            setback: string[];
         } | undefined;
     }>, z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
@@ -572,16 +556,16 @@ declare const questionEntrySchema: z.ZodObject<{
         isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
         isPinned: z.ZodOptional<z.ZodBoolean>;
         responseType: z.ZodLiteral<"emotion">;
-        scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+        scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
         debriefBehaviors: z.ZodOptional<z.ZodObject<{
             success: z.ZodArray<z.ZodString, "many">;
             setback: z.ZodArray<z.ZodString, "many">;
         }, "strip", z.ZodTypeAny, {
-            setback: string[];
             success: string[];
+            setback: string[];
         }, {
-            setback: string[];
             success: string[];
+            setback: string[];
         }>>;
     } & {
         suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
@@ -589,7 +573,7 @@ declare const questionEntrySchema: z.ZodObject<{
         text: string;
         isTemplate: boolean;
         responseType: "emotion";
-        scope: "impulse" | "setback" | "success" | "recap";
+        scope: "success" | "setback" | "impulse" | "recap";
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -600,13 +584,13 @@ declare const questionEntrySchema: z.ZodObject<{
         numberOfAnswers?: number | undefined;
         isPinned?: boolean | undefined;
         debriefBehaviors?: {
-            setback: string[];
             success: string[];
+            setback: string[];
         } | undefined;
     }, {
         text: string;
         responseType: "emotion";
-        scope: "impulse" | "setback" | "success" | "recap";
+        scope: "success" | "setback" | "impulse" | "recap";
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -618,8 +602,8 @@ declare const questionEntrySchema: z.ZodObject<{
         numberOfAnswers?: number | undefined;
         isPinned?: boolean | undefined;
         debriefBehaviors?: {
-            setback: string[];
             success: string[];
+            setback: string[];
         } | undefined;
     }>, z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
@@ -633,16 +617,16 @@ declare const questionEntrySchema: z.ZodObject<{
         isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
         isPinned: z.ZodOptional<z.ZodBoolean>;
         responseType: z.ZodLiteral<"shortText">;
-        scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+        scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
         debriefBehaviors: z.ZodOptional<z.ZodObject<{
             success: z.ZodArray<z.ZodString, "many">;
             setback: z.ZodArray<z.ZodString, "many">;
         }, "strip", z.ZodTypeAny, {
-            setback: string[];
             success: string[];
+            setback: string[];
         }, {
-            setback: string[];
             success: string[];
+            setback: string[];
         }>>;
     } & {
         suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
@@ -650,7 +634,7 @@ declare const questionEntrySchema: z.ZodObject<{
         text: string;
         isTemplate: boolean;
         responseType: "shortText";
-        scope: "impulse" | "setback" | "success" | "recap";
+        scope: "success" | "setback" | "impulse" | "recap";
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -661,13 +645,13 @@ declare const questionEntrySchema: z.ZodObject<{
         numberOfAnswers?: number | undefined;
         isPinned?: boolean | undefined;
         debriefBehaviors?: {
-            setback: string[];
             success: string[];
+            setback: string[];
         } | undefined;
     }, {
         text: string;
         responseType: "shortText";
-        scope: "impulse" | "setback" | "success" | "recap";
+        scope: "success" | "setback" | "impulse" | "recap";
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -679,8 +663,8 @@ declare const questionEntrySchema: z.ZodObject<{
         numberOfAnswers?: number | undefined;
         isPinned?: boolean | undefined;
         debriefBehaviors?: {
-            setback: string[];
             success: string[];
+            setback: string[];
         } | undefined;
     }>, z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
@@ -694,16 +678,16 @@ declare const questionEntrySchema: z.ZodObject<{
         isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
         isPinned: z.ZodOptional<z.ZodBoolean>;
         responseType: z.ZodLiteral<"slider1To10">;
-        scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+        scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
         debriefBehaviors: z.ZodOptional<z.ZodObject<{
             success: z.ZodArray<z.ZodString, "many">;
             setback: z.ZodArray<z.ZodString, "many">;
         }, "strip", z.ZodTypeAny, {
-            setback: string[];
             success: string[];
+            setback: string[];
         }, {
-            setback: string[];
             success: string[];
+            setback: string[];
         }>>;
     } & {
         sliderConfig: z.ZodObject<{
@@ -724,7 +708,7 @@ declare const questionEntrySchema: z.ZodObject<{
         };
         isTemplate: boolean;
         responseType: "slider1To10";
-        scope: "impulse" | "setback" | "success" | "recap";
+        scope: "success" | "setback" | "impulse" | "recap";
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -734,8 +718,8 @@ declare const questionEntrySchema: z.ZodObject<{
         numberOfAnswers?: number | undefined;
         isPinned?: boolean | undefined;
         debriefBehaviors?: {
-            setback: string[];
             success: string[];
+            setback: string[];
         } | undefined;
     }, {
         text: string;
@@ -744,7 +728,7 @@ declare const questionEntrySchema: z.ZodObject<{
             maxLabel?: string | undefined;
         };
         responseType: "slider1To10";
-        scope: "impulse" | "setback" | "success" | "recap";
+        scope: "success" | "setback" | "impulse" | "recap";
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -755,8 +739,8 @@ declare const questionEntrySchema: z.ZodObject<{
         numberOfAnswers?: number | undefined;
         isPinned?: boolean | undefined;
         debriefBehaviors?: {
-            setback: string[];
             success: string[];
+            setback: string[];
         } | undefined;
     }>, z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
@@ -770,16 +754,16 @@ declare const questionEntrySchema: z.ZodObject<{
         isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
         isPinned: z.ZodOptional<z.ZodBoolean>;
         responseType: z.ZodLiteral<"behaviorSelection">;
-        scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+        scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
         debriefBehaviors: z.ZodOptional<z.ZodObject<{
             success: z.ZodArray<z.ZodString, "many">;
             setback: z.ZodArray<z.ZodString, "many">;
         }, "strip", z.ZodTypeAny, {
-            setback: string[];
             success: string[];
+            setback: string[];
         }, {
-            setback: string[];
             success: string[];
+            setback: string[];
         }>>;
     } & {
         allowMultiple: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
@@ -787,7 +771,7 @@ declare const questionEntrySchema: z.ZodObject<{
         text: string;
         isTemplate: boolean;
         responseType: "behaviorSelection";
-        scope: "impulse" | "setback" | "success" | "recap";
+        scope: "success" | "setback" | "impulse" | "recap";
         allowMultiple: boolean;
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
@@ -798,13 +782,13 @@ declare const questionEntrySchema: z.ZodObject<{
         numberOfAnswers?: number | undefined;
         isPinned?: boolean | undefined;
         debriefBehaviors?: {
-            setback: string[];
             success: string[];
+            setback: string[];
         } | undefined;
     }, {
         text: string;
         responseType: "behaviorSelection";
-        scope: "impulse" | "setback" | "success" | "recap";
+        scope: "success" | "setback" | "impulse" | "recap";
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -815,8 +799,8 @@ declare const questionEntrySchema: z.ZodObject<{
         numberOfAnswers?: number | undefined;
         isPinned?: boolean | undefined;
         debriefBehaviors?: {
-            setback: string[];
             success: string[];
+            setback: string[];
         } | undefined;
         allowMultiple?: boolean | undefined;
     }>, z.ZodObject<{
@@ -831,22 +815,22 @@ declare const questionEntrySchema: z.ZodObject<{
         isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
         isPinned: z.ZodOptional<z.ZodBoolean>;
         responseType: z.ZodLiteral<"recap">;
-        scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+        scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
         debriefBehaviors: z.ZodOptional<z.ZodObject<{
             success: z.ZodArray<z.ZodString, "many">;
             setback: z.ZodArray<z.ZodString, "many">;
         }, "strip", z.ZodTypeAny, {
-            setback: string[];
             success: string[];
+            setback: string[];
         }, {
-            setback: string[];
             success: string[];
+            setback: string[];
         }>>;
     }, "strip", z.ZodTypeAny, {
         text: string;
         isTemplate: boolean;
         responseType: "recap";
-        scope: "impulse" | "setback" | "success" | "recap";
+        scope: "success" | "setback" | "impulse" | "recap";
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -856,13 +840,13 @@ declare const questionEntrySchema: z.ZodObject<{
         numberOfAnswers?: number | undefined;
         isPinned?: boolean | undefined;
         debriefBehaviors?: {
-            setback: string[];
             success: string[];
+            setback: string[];
         } | undefined;
     }, {
         text: string;
         responseType: "recap";
-        scope: "impulse" | "setback" | "success" | "recap";
+        scope: "success" | "setback" | "impulse" | "recap";
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -873,8 +857,8 @@ declare const questionEntrySchema: z.ZodObject<{
         numberOfAnswers?: number | undefined;
         isPinned?: boolean | undefined;
         debriefBehaviors?: {
-            setback: string[];
             success: string[];
+            setback: string[];
         } | undefined;
     }>]>;
     response: z.ZodOptional<z.ZodObject<{
@@ -884,12 +868,12 @@ declare const questionEntrySchema: z.ZodObject<{
         color: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
         formattedValue: string;
-        responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+        responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
         value?: any;
         color?: string | undefined;
     }, {
         formattedValue: string;
-        responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+        responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
         value?: any;
         color?: string | undefined;
     }>>;
@@ -898,7 +882,7 @@ declare const questionEntrySchema: z.ZodObject<{
         text: string;
         isTemplate: boolean;
         responseType: "behaviorSelection";
-        scope: "impulse" | "setback" | "success" | "recap";
+        scope: "success" | "setback" | "impulse" | "recap";
         allowMultiple: boolean;
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
@@ -909,14 +893,14 @@ declare const questionEntrySchema: z.ZodObject<{
         numberOfAnswers?: number | undefined;
         isPinned?: boolean | undefined;
         debriefBehaviors?: {
-            setback: string[];
             success: string[];
+            setback: string[];
         } | undefined;
     } | {
         text: string;
         isTemplate: boolean;
         responseType: "emotion";
-        scope: "impulse" | "setback" | "success" | "recap";
+        scope: "success" | "setback" | "impulse" | "recap";
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -927,14 +911,14 @@ declare const questionEntrySchema: z.ZodObject<{
         numberOfAnswers?: number | undefined;
         isPinned?: boolean | undefined;
         debriefBehaviors?: {
-            setback: string[];
             success: string[];
+            setback: string[];
         } | undefined;
     } | {
         text: string;
         isTemplate: boolean;
         responseType: "recap";
-        scope: "impulse" | "setback" | "success" | "recap";
+        scope: "success" | "setback" | "impulse" | "recap";
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -944,14 +928,14 @@ declare const questionEntrySchema: z.ZodObject<{
         numberOfAnswers?: number | undefined;
         isPinned?: boolean | undefined;
         debriefBehaviors?: {
-            setback: string[];
             success: string[];
+            setback: string[];
         } | undefined;
     } | {
         text: string;
         isTemplate: boolean;
         responseType: "shortText";
-        scope: "impulse" | "setback" | "success" | "recap";
+        scope: "success" | "setback" | "impulse" | "recap";
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -962,8 +946,8 @@ declare const questionEntrySchema: z.ZodObject<{
         numberOfAnswers?: number | undefined;
         isPinned?: boolean | undefined;
         debriefBehaviors?: {
-            setback: string[];
             success: string[];
+            setback: string[];
         } | undefined;
     } | {
         text: string;
@@ -973,7 +957,7 @@ declare const questionEntrySchema: z.ZodObject<{
         };
         isTemplate: boolean;
         responseType: "slider1To10";
-        scope: "impulse" | "setback" | "success" | "recap";
+        scope: "success" | "setback" | "impulse" | "recap";
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -983,14 +967,14 @@ declare const questionEntrySchema: z.ZodObject<{
         numberOfAnswers?: number | undefined;
         isPinned?: boolean | undefined;
         debriefBehaviors?: {
-            setback: string[];
             success: string[];
+            setback: string[];
         } | undefined;
     } | {
         text: string;
         isTemplate: boolean;
         responseType: "text";
-        scope: "impulse" | "setback" | "success" | "recap";
+        scope: "success" | "setback" | "impulse" | "recap";
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -1000,14 +984,14 @@ declare const questionEntrySchema: z.ZodObject<{
         numberOfAnswers?: number | undefined;
         isPinned?: boolean | undefined;
         debriefBehaviors?: {
-            setback: string[];
             success: string[];
+            setback: string[];
         } | undefined;
     };
     questionId?: string | undefined;
     response?: {
         formattedValue: string;
-        responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+        responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
         value?: any;
         color?: string | undefined;
     } | undefined;
@@ -1015,7 +999,7 @@ declare const questionEntrySchema: z.ZodObject<{
     question: {
         text: string;
         responseType: "behaviorSelection";
-        scope: "impulse" | "setback" | "success" | "recap";
+        scope: "success" | "setback" | "impulse" | "recap";
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -1026,14 +1010,14 @@ declare const questionEntrySchema: z.ZodObject<{
         numberOfAnswers?: number | undefined;
         isPinned?: boolean | undefined;
         debriefBehaviors?: {
-            setback: string[];
             success: string[];
+            setback: string[];
         } | undefined;
         allowMultiple?: boolean | undefined;
     } | {
         text: string;
         responseType: "emotion";
-        scope: "impulse" | "setback" | "success" | "recap";
+        scope: "success" | "setback" | "impulse" | "recap";
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -1045,13 +1029,13 @@ declare const questionEntrySchema: z.ZodObject<{
         numberOfAnswers?: number | undefined;
         isPinned?: boolean | undefined;
         debriefBehaviors?: {
-            setback: string[];
             success: string[];
+            setback: string[];
         } | undefined;
     } | {
         text: string;
         responseType: "recap";
-        scope: "impulse" | "setback" | "success" | "recap";
+        scope: "success" | "setback" | "impulse" | "recap";
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -1062,13 +1046,13 @@ declare const questionEntrySchema: z.ZodObject<{
         numberOfAnswers?: number | undefined;
         isPinned?: boolean | undefined;
         debriefBehaviors?: {
-            setback: string[];
             success: string[];
+            setback: string[];
         } | undefined;
     } | {
         text: string;
         responseType: "shortText";
-        scope: "impulse" | "setback" | "success" | "recap";
+        scope: "success" | "setback" | "impulse" | "recap";
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -1080,8 +1064,8 @@ declare const questionEntrySchema: z.ZodObject<{
         numberOfAnswers?: number | undefined;
         isPinned?: boolean | undefined;
         debriefBehaviors?: {
-            setback: string[];
             success: string[];
+            setback: string[];
         } | undefined;
     } | {
         text: string;
@@ -1090,7 +1074,7 @@ declare const questionEntrySchema: z.ZodObject<{
             maxLabel?: string | undefined;
         };
         responseType: "slider1To10";
-        scope: "impulse" | "setback" | "success" | "recap";
+        scope: "success" | "setback" | "impulse" | "recap";
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -1101,13 +1085,13 @@ declare const questionEntrySchema: z.ZodObject<{
         numberOfAnswers?: number | undefined;
         isPinned?: boolean | undefined;
         debriefBehaviors?: {
-            setback: string[];
             success: string[];
+            setback: string[];
         } | undefined;
     } | {
         text: string;
         responseType: "text";
-        scope: "impulse" | "setback" | "success" | "recap";
+        scope: "success" | "setback" | "impulse" | "recap";
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -1118,14 +1102,14 @@ declare const questionEntrySchema: z.ZodObject<{
         numberOfAnswers?: number | undefined;
         isPinned?: boolean | undefined;
         debriefBehaviors?: {
-            setback: string[];
             success: string[];
+            setback: string[];
         } | undefined;
     };
     questionId?: string | undefined;
     response?: {
         formattedValue: string;
-        responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+        responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
         value?: any;
         color?: string | undefined;
     } | undefined;
@@ -1167,22 +1151,22 @@ export declare const questionsLogSchema: z.ZodObject<{
                 isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
                 isPinned: z.ZodOptional<z.ZodBoolean>;
                 responseType: z.ZodLiteral<"text">;
-                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+                scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
                 debriefBehaviors: z.ZodOptional<z.ZodObject<{
                     success: z.ZodArray<z.ZodString, "many">;
                     setback: z.ZodArray<z.ZodString, "many">;
                 }, "strip", z.ZodTypeAny, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }>>;
             }, "strip", z.ZodTypeAny, {
                 text: string;
                 isTemplate: boolean;
                 responseType: "text";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1192,13 +1176,13 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             }, {
                 text: string;
                 responseType: "text";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1209,8 +1193,8 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             }>, z.ZodObject<{
                 id: z.ZodOptional<z.ZodString>;
@@ -1224,16 +1208,16 @@ export declare const questionsLogSchema: z.ZodObject<{
                 isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
                 isPinned: z.ZodOptional<z.ZodBoolean>;
                 responseType: z.ZodLiteral<"emotion">;
-                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+                scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
                 debriefBehaviors: z.ZodOptional<z.ZodObject<{
                     success: z.ZodArray<z.ZodString, "many">;
                     setback: z.ZodArray<z.ZodString, "many">;
                 }, "strip", z.ZodTypeAny, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }>>;
             } & {
                 suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
@@ -1241,7 +1225,7 @@ export declare const questionsLogSchema: z.ZodObject<{
                 text: string;
                 isTemplate: boolean;
                 responseType: "emotion";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1252,13 +1236,13 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             }, {
                 text: string;
                 responseType: "emotion";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1270,8 +1254,8 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             }>, z.ZodObject<{
                 id: z.ZodOptional<z.ZodString>;
@@ -1285,16 +1269,16 @@ export declare const questionsLogSchema: z.ZodObject<{
                 isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
                 isPinned: z.ZodOptional<z.ZodBoolean>;
                 responseType: z.ZodLiteral<"shortText">;
-                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+                scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
                 debriefBehaviors: z.ZodOptional<z.ZodObject<{
                     success: z.ZodArray<z.ZodString, "many">;
                     setback: z.ZodArray<z.ZodString, "many">;
                 }, "strip", z.ZodTypeAny, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }>>;
             } & {
                 suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
@@ -1302,7 +1286,7 @@ export declare const questionsLogSchema: z.ZodObject<{
                 text: string;
                 isTemplate: boolean;
                 responseType: "shortText";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1313,13 +1297,13 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             }, {
                 text: string;
                 responseType: "shortText";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1331,8 +1315,8 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             }>, z.ZodObject<{
                 id: z.ZodOptional<z.ZodString>;
@@ -1346,16 +1330,16 @@ export declare const questionsLogSchema: z.ZodObject<{
                 isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
                 isPinned: z.ZodOptional<z.ZodBoolean>;
                 responseType: z.ZodLiteral<"slider1To10">;
-                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+                scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
                 debriefBehaviors: z.ZodOptional<z.ZodObject<{
                     success: z.ZodArray<z.ZodString, "many">;
                     setback: z.ZodArray<z.ZodString, "many">;
                 }, "strip", z.ZodTypeAny, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }>>;
             } & {
                 sliderConfig: z.ZodObject<{
@@ -1376,7 +1360,7 @@ export declare const questionsLogSchema: z.ZodObject<{
                 };
                 isTemplate: boolean;
                 responseType: "slider1To10";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1386,8 +1370,8 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             }, {
                 text: string;
@@ -1396,7 +1380,7 @@ export declare const questionsLogSchema: z.ZodObject<{
                     maxLabel?: string | undefined;
                 };
                 responseType: "slider1To10";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1407,8 +1391,8 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             }>, z.ZodObject<{
                 id: z.ZodOptional<z.ZodString>;
@@ -1422,16 +1406,16 @@ export declare const questionsLogSchema: z.ZodObject<{
                 isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
                 isPinned: z.ZodOptional<z.ZodBoolean>;
                 responseType: z.ZodLiteral<"behaviorSelection">;
-                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+                scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
                 debriefBehaviors: z.ZodOptional<z.ZodObject<{
                     success: z.ZodArray<z.ZodString, "many">;
                     setback: z.ZodArray<z.ZodString, "many">;
                 }, "strip", z.ZodTypeAny, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }>>;
             } & {
                 allowMultiple: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
@@ -1439,7 +1423,7 @@ export declare const questionsLogSchema: z.ZodObject<{
                 text: string;
                 isTemplate: boolean;
                 responseType: "behaviorSelection";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 allowMultiple: boolean;
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
@@ -1450,13 +1434,13 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             }, {
                 text: string;
                 responseType: "behaviorSelection";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1467,8 +1451,8 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
                 allowMultiple?: boolean | undefined;
             }>, z.ZodObject<{
@@ -1483,22 +1467,22 @@ export declare const questionsLogSchema: z.ZodObject<{
                 isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
                 isPinned: z.ZodOptional<z.ZodBoolean>;
                 responseType: z.ZodLiteral<"recap">;
-                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+                scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
                 debriefBehaviors: z.ZodOptional<z.ZodObject<{
                     success: z.ZodArray<z.ZodString, "many">;
                     setback: z.ZodArray<z.ZodString, "many">;
                 }, "strip", z.ZodTypeAny, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }>>;
             }, "strip", z.ZodTypeAny, {
                 text: string;
                 isTemplate: boolean;
                 responseType: "recap";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1508,13 +1492,13 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             }, {
                 text: string;
                 responseType: "recap";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1525,8 +1509,8 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             }>]>;
             response: z.ZodOptional<z.ZodObject<{
@@ -1536,12 +1520,12 @@ export declare const questionsLogSchema: z.ZodObject<{
                 color: z.ZodOptional<z.ZodString>;
             }, "strip", z.ZodTypeAny, {
                 formattedValue: string;
-                responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+                responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             }, {
                 formattedValue: string;
-                responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+                responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             }>>;
@@ -1550,7 +1534,7 @@ export declare const questionsLogSchema: z.ZodObject<{
                 text: string;
                 isTemplate: boolean;
                 responseType: "behaviorSelection";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 allowMultiple: boolean;
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
@@ -1561,14 +1545,14 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "emotion";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1579,14 +1563,14 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "recap";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1596,14 +1580,14 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "shortText";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1614,8 +1598,8 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
@@ -1625,7 +1609,7 @@ export declare const questionsLogSchema: z.ZodObject<{
                 };
                 isTemplate: boolean;
                 responseType: "slider1To10";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1635,14 +1619,14 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "text";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1652,14 +1636,14 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             };
             questionId?: string | undefined;
             response?: {
                 formattedValue: string;
-                responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+                responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             } | undefined;
@@ -1667,7 +1651,7 @@ export declare const questionsLogSchema: z.ZodObject<{
             question: {
                 text: string;
                 responseType: "behaviorSelection";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1678,14 +1662,14 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
                 allowMultiple?: boolean | undefined;
             } | {
                 text: string;
                 responseType: "emotion";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1697,13 +1681,13 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 responseType: "recap";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1714,13 +1698,13 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 responseType: "shortText";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1732,8 +1716,8 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
@@ -1742,7 +1726,7 @@ export declare const questionsLogSchema: z.ZodObject<{
                     maxLabel?: string | undefined;
                 };
                 responseType: "slider1To10";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1753,13 +1737,13 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 responseType: "text";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1770,14 +1754,14 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             };
             questionId?: string | undefined;
             response?: {
                 formattedValue: string;
-                responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+                responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             } | undefined;
@@ -1788,7 +1772,7 @@ export declare const questionsLogSchema: z.ZodObject<{
                 text: string;
                 isTemplate: boolean;
                 responseType: "behaviorSelection";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 allowMultiple: boolean;
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
@@ -1799,14 +1783,14 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "emotion";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1817,14 +1801,14 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "recap";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1834,14 +1818,14 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "shortText";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1852,8 +1836,8 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
@@ -1863,7 +1847,7 @@ export declare const questionsLogSchema: z.ZodObject<{
                 };
                 isTemplate: boolean;
                 responseType: "slider1To10";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1873,14 +1857,14 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "text";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1890,14 +1874,14 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             };
             questionId?: string | undefined;
             response?: {
                 formattedValue: string;
-                responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+                responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             } | undefined;
@@ -1907,7 +1891,7 @@ export declare const questionsLogSchema: z.ZodObject<{
             question: {
                 text: string;
                 responseType: "behaviorSelection";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1918,14 +1902,14 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
                 allowMultiple?: boolean | undefined;
             } | {
                 text: string;
                 responseType: "emotion";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1937,13 +1921,13 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 responseType: "recap";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1954,13 +1938,13 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 responseType: "shortText";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1972,8 +1956,8 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
@@ -1982,7 +1966,7 @@ export declare const questionsLogSchema: z.ZodObject<{
                     maxLabel?: string | undefined;
                 };
                 responseType: "slider1To10";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1993,13 +1977,13 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 responseType: "text";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -2010,14 +1994,14 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             };
             questionId?: string | undefined;
             response?: {
                 formattedValue: string;
-                responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+                responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             } | undefined;
@@ -2036,7 +2020,7 @@ export declare const questionsLogSchema: z.ZodObject<{
                 text: string;
                 isTemplate: boolean;
                 responseType: "behaviorSelection";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 allowMultiple: boolean;
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
@@ -2047,14 +2031,14 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "emotion";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -2065,14 +2049,14 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "recap";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -2082,14 +2066,14 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "shortText";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -2100,8 +2084,8 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
@@ -2111,7 +2095,7 @@ export declare const questionsLogSchema: z.ZodObject<{
                 };
                 isTemplate: boolean;
                 responseType: "slider1To10";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -2121,14 +2105,14 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "text";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -2138,14 +2122,14 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             };
             questionId?: string | undefined;
             response?: {
                 formattedValue: string;
-                responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+                responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             } | undefined;
@@ -2169,7 +2153,7 @@ export declare const questionsLogSchema: z.ZodObject<{
             question: {
                 text: string;
                 responseType: "behaviorSelection";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -2180,14 +2164,14 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
                 allowMultiple?: boolean | undefined;
             } | {
                 text: string;
                 responseType: "emotion";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -2199,13 +2183,13 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 responseType: "recap";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -2216,13 +2200,13 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 responseType: "shortText";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -2234,8 +2218,8 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
@@ -2244,7 +2228,7 @@ export declare const questionsLogSchema: z.ZodObject<{
                     maxLabel?: string | undefined;
                 };
                 responseType: "slider1To10";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -2255,13 +2239,13 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 responseType: "text";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -2272,14 +2256,14 @@ export declare const questionsLogSchema: z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             };
             questionId?: string | undefined;
             response?: {
                 formattedValue: string;
-                responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+                responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             } | undefined;
@@ -2323,22 +2307,22 @@ export declare const questionLogSchema: z.ZodObject<{
             isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
             isPinned: z.ZodOptional<z.ZodBoolean>;
             responseType: z.ZodLiteral<"text">;
-            scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+            scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
             debriefBehaviors: z.ZodOptional<z.ZodObject<{
                 success: z.ZodArray<z.ZodString, "many">;
                 setback: z.ZodArray<z.ZodString, "many">;
             }, "strip", z.ZodTypeAny, {
-                setback: string[];
                 success: string[];
+                setback: string[];
             }, {
-                setback: string[];
                 success: string[];
+                setback: string[];
             }>>;
         }, "strip", z.ZodTypeAny, {
             text: string;
             isTemplate: boolean;
             responseType: "text";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2348,13 +2332,13 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
         }, {
             text: string;
             responseType: "text";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2365,8 +2349,8 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
         }>, z.ZodObject<{
             id: z.ZodOptional<z.ZodString>;
@@ -2380,16 +2364,16 @@ export declare const questionLogSchema: z.ZodObject<{
             isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
             isPinned: z.ZodOptional<z.ZodBoolean>;
             responseType: z.ZodLiteral<"emotion">;
-            scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+            scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
             debriefBehaviors: z.ZodOptional<z.ZodObject<{
                 success: z.ZodArray<z.ZodString, "many">;
                 setback: z.ZodArray<z.ZodString, "many">;
             }, "strip", z.ZodTypeAny, {
-                setback: string[];
                 success: string[];
+                setback: string[];
             }, {
-                setback: string[];
                 success: string[];
+                setback: string[];
             }>>;
         } & {
             suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
@@ -2397,7 +2381,7 @@ export declare const questionLogSchema: z.ZodObject<{
             text: string;
             isTemplate: boolean;
             responseType: "emotion";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2408,13 +2392,13 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
         }, {
             text: string;
             responseType: "emotion";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2426,8 +2410,8 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
         }>, z.ZodObject<{
             id: z.ZodOptional<z.ZodString>;
@@ -2441,16 +2425,16 @@ export declare const questionLogSchema: z.ZodObject<{
             isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
             isPinned: z.ZodOptional<z.ZodBoolean>;
             responseType: z.ZodLiteral<"shortText">;
-            scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+            scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
             debriefBehaviors: z.ZodOptional<z.ZodObject<{
                 success: z.ZodArray<z.ZodString, "many">;
                 setback: z.ZodArray<z.ZodString, "many">;
             }, "strip", z.ZodTypeAny, {
-                setback: string[];
                 success: string[];
+                setback: string[];
             }, {
-                setback: string[];
                 success: string[];
+                setback: string[];
             }>>;
         } & {
             suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
@@ -2458,7 +2442,7 @@ export declare const questionLogSchema: z.ZodObject<{
             text: string;
             isTemplate: boolean;
             responseType: "shortText";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2469,13 +2453,13 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
         }, {
             text: string;
             responseType: "shortText";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2487,8 +2471,8 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
         }>, z.ZodObject<{
             id: z.ZodOptional<z.ZodString>;
@@ -2502,16 +2486,16 @@ export declare const questionLogSchema: z.ZodObject<{
             isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
             isPinned: z.ZodOptional<z.ZodBoolean>;
             responseType: z.ZodLiteral<"slider1To10">;
-            scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+            scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
             debriefBehaviors: z.ZodOptional<z.ZodObject<{
                 success: z.ZodArray<z.ZodString, "many">;
                 setback: z.ZodArray<z.ZodString, "many">;
             }, "strip", z.ZodTypeAny, {
-                setback: string[];
                 success: string[];
+                setback: string[];
             }, {
-                setback: string[];
                 success: string[];
+                setback: string[];
             }>>;
         } & {
             sliderConfig: z.ZodObject<{
@@ -2532,7 +2516,7 @@ export declare const questionLogSchema: z.ZodObject<{
             };
             isTemplate: boolean;
             responseType: "slider1To10";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2542,8 +2526,8 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
         }, {
             text: string;
@@ -2552,7 +2536,7 @@ export declare const questionLogSchema: z.ZodObject<{
                 maxLabel?: string | undefined;
             };
             responseType: "slider1To10";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2563,8 +2547,8 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
         }>, z.ZodObject<{
             id: z.ZodOptional<z.ZodString>;
@@ -2578,16 +2562,16 @@ export declare const questionLogSchema: z.ZodObject<{
             isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
             isPinned: z.ZodOptional<z.ZodBoolean>;
             responseType: z.ZodLiteral<"behaviorSelection">;
-            scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+            scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
             debriefBehaviors: z.ZodOptional<z.ZodObject<{
                 success: z.ZodArray<z.ZodString, "many">;
                 setback: z.ZodArray<z.ZodString, "many">;
             }, "strip", z.ZodTypeAny, {
-                setback: string[];
                 success: string[];
+                setback: string[];
             }, {
-                setback: string[];
                 success: string[];
+                setback: string[];
             }>>;
         } & {
             allowMultiple: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
@@ -2595,7 +2579,7 @@ export declare const questionLogSchema: z.ZodObject<{
             text: string;
             isTemplate: boolean;
             responseType: "behaviorSelection";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             allowMultiple: boolean;
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
@@ -2606,13 +2590,13 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
         }, {
             text: string;
             responseType: "behaviorSelection";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2623,8 +2607,8 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
             allowMultiple?: boolean | undefined;
         }>, z.ZodObject<{
@@ -2639,22 +2623,22 @@ export declare const questionLogSchema: z.ZodObject<{
             isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
             isPinned: z.ZodOptional<z.ZodBoolean>;
             responseType: z.ZodLiteral<"recap">;
-            scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+            scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
             debriefBehaviors: z.ZodOptional<z.ZodObject<{
                 success: z.ZodArray<z.ZodString, "many">;
                 setback: z.ZodArray<z.ZodString, "many">;
             }, "strip", z.ZodTypeAny, {
-                setback: string[];
                 success: string[];
+                setback: string[];
             }, {
-                setback: string[];
                 success: string[];
+                setback: string[];
             }>>;
         }, "strip", z.ZodTypeAny, {
             text: string;
             isTemplate: boolean;
             responseType: "recap";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2664,13 +2648,13 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
         }, {
             text: string;
             responseType: "recap";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2681,8 +2665,8 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
         }>]>;
         response: z.ZodOptional<z.ZodObject<{
@@ -2692,12 +2676,12 @@ export declare const questionLogSchema: z.ZodObject<{
             color: z.ZodOptional<z.ZodString>;
         }, "strip", z.ZodTypeAny, {
             formattedValue: string;
-            responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+            responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
             value?: any;
             color?: string | undefined;
         }, {
             formattedValue: string;
-            responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+            responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
             value?: any;
             color?: string | undefined;
         }>>;
@@ -2706,7 +2690,7 @@ export declare const questionLogSchema: z.ZodObject<{
             text: string;
             isTemplate: boolean;
             responseType: "behaviorSelection";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             allowMultiple: boolean;
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
@@ -2717,14 +2701,14 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
         } | {
             text: string;
             isTemplate: boolean;
             responseType: "emotion";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2735,14 +2719,14 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
         } | {
             text: string;
             isTemplate: boolean;
             responseType: "recap";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2752,14 +2736,14 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
         } | {
             text: string;
             isTemplate: boolean;
             responseType: "shortText";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2770,8 +2754,8 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
         } | {
             text: string;
@@ -2781,7 +2765,7 @@ export declare const questionLogSchema: z.ZodObject<{
             };
             isTemplate: boolean;
             responseType: "slider1To10";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2791,14 +2775,14 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
         } | {
             text: string;
             isTemplate: boolean;
             responseType: "text";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2808,14 +2792,14 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
         };
         questionId?: string | undefined;
         response?: {
             formattedValue: string;
-            responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+            responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
             value?: any;
             color?: string | undefined;
         } | undefined;
@@ -2823,7 +2807,7 @@ export declare const questionLogSchema: z.ZodObject<{
         question: {
             text: string;
             responseType: "behaviorSelection";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2834,14 +2818,14 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
             allowMultiple?: boolean | undefined;
         } | {
             text: string;
             responseType: "emotion";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2853,13 +2837,13 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
         } | {
             text: string;
             responseType: "recap";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2870,13 +2854,13 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
         } | {
             text: string;
             responseType: "shortText";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2888,8 +2872,8 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
         } | {
             text: string;
@@ -2898,7 +2882,7 @@ export declare const questionLogSchema: z.ZodObject<{
                 maxLabel?: string | undefined;
             };
             responseType: "slider1To10";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2909,13 +2893,13 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
         } | {
             text: string;
             responseType: "text";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2926,14 +2910,14 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
         };
         questionId?: string | undefined;
         response?: {
             formattedValue: string;
-            responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+            responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
             value?: any;
             color?: string | undefined;
         } | undefined;
@@ -2950,7 +2934,7 @@ export declare const questionLogSchema: z.ZodObject<{
             text: string;
             isTemplate: boolean;
             responseType: "behaviorSelection";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             allowMultiple: boolean;
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
@@ -2961,14 +2945,14 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
         } | {
             text: string;
             isTemplate: boolean;
             responseType: "emotion";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2979,14 +2963,14 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
         } | {
             text: string;
             isTemplate: boolean;
             responseType: "recap";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2996,14 +2980,14 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
         } | {
             text: string;
             isTemplate: boolean;
             responseType: "shortText";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -3014,8 +2998,8 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
         } | {
             text: string;
@@ -3025,7 +3009,7 @@ export declare const questionLogSchema: z.ZodObject<{
             };
             isTemplate: boolean;
             responseType: "slider1To10";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -3035,14 +3019,14 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
         } | {
             text: string;
             isTemplate: boolean;
             responseType: "text";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -3052,14 +3036,14 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
         };
         questionId?: string | undefined;
         response?: {
             formattedValue: string;
-            responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+            responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
             value?: any;
             color?: string | undefined;
         } | undefined;
@@ -3079,7 +3063,7 @@ export declare const questionLogSchema: z.ZodObject<{
         question: {
             text: string;
             responseType: "behaviorSelection";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -3090,14 +3074,14 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
             allowMultiple?: boolean | undefined;
         } | {
             text: string;
             responseType: "emotion";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -3109,13 +3093,13 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
         } | {
             text: string;
             responseType: "recap";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -3126,13 +3110,13 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
         } | {
             text: string;
             responseType: "shortText";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -3144,8 +3128,8 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
         } | {
             text: string;
@@ -3154,7 +3138,7 @@ export declare const questionLogSchema: z.ZodObject<{
                 maxLabel?: string | undefined;
             };
             responseType: "slider1To10";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -3165,13 +3149,13 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
         } | {
             text: string;
             responseType: "text";
-            scope: "impulse" | "setback" | "success" | "recap";
+            scope: "success" | "setback" | "impulse" | "recap";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -3182,14 +3166,14 @@ export declare const questionLogSchema: z.ZodObject<{
             numberOfAnswers?: number | undefined;
             isPinned?: boolean | undefined;
             debriefBehaviors?: {
-                setback: string[];
                 success: string[];
+                setback: string[];
             } | undefined;
         };
         questionId?: string | undefined;
         response?: {
             formattedValue: string;
-            responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+            responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
             value?: any;
             color?: string | undefined;
         } | undefined;

@@ -597,7 +597,7 @@ export declare const supportGroupSchema: z.ZodObject<{
     tacticCount: z.ZodDefault<z.ZodNumber>;
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-    behaviorTopicIds: z.ZodOptional<z.ZodArray<z.ZodEnum<["digital-screen-use", "substances", "bfrbs", "avoidance-productivity", "emotional-cognitive", "financial-risk", "eating"]>, "many">>;
+    behaviorTopicIds: z.ZodOptional<z.ZodArray<z.ZodEnum<[string, ...string[]]>, "many">>;
     timezoneOffsets: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
     matchingMode: z.ZodOptional<z.ZodEnum<["focused", "mixed"]>>;
     acceptsMatching: z.ZodOptional<z.ZodBoolean>;
@@ -718,9 +718,9 @@ export declare const supportGroupSchema: z.ZodObject<{
             tactic?: any;
         } | undefined;
     } | undefined;
-    behaviorTopicIds?: ("digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating")[] | undefined;
+    behaviorTopicIds?: string[] | undefined;
     timezoneOffsets?: number[] | undefined;
-    matchingMode?: "mixed" | "focused" | undefined;
+    matchingMode?: "focused" | "mixed" | undefined;
     acceptsMatching?: boolean | undefined;
     maxMembers?: number | undefined;
 }, {
@@ -839,9 +839,9 @@ export declare const supportGroupSchema: z.ZodObject<{
         } | undefined;
     } | undefined;
     tacticCount?: number | undefined;
-    behaviorTopicIds?: ("digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating")[] | undefined;
+    behaviorTopicIds?: string[] | undefined;
     timezoneOffsets?: number[] | undefined;
-    matchingMode?: "mixed" | "focused" | undefined;
+    matchingMode?: "focused" | "mixed" | undefined;
     acceptsMatching?: boolean | undefined;
     maxMembers?: number | undefined;
 }>;

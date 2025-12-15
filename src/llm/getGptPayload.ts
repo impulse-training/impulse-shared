@@ -2,7 +2,6 @@ import {
   ChatCompletionAssistantMessageParam,
   ChatCompletionMessageParam,
 } from "openai/resources/chat";
-import { getBehaviorCategoryExplanation } from "../constants/behaviorCategories";
 import {
   Log,
   logIsAssistantMessageLog,
@@ -172,13 +171,12 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
 
   // Handle BehaviorLog
   if (logIsBehaviorLog(log)) {
-    const { behaviorName, formattedValue, category } = log.data;
-    const categoryExplanation = getBehaviorCategoryExplanation(category);
+    const { behaviorName, formattedValue } = log.data;
 
     return [
       {
         role: "user",
-        content: `<s>The user has tracked a behavior: ${behaviorName} - ${formattedValue} (Category: ${category} - ${categoryExplanation})</s>`,
+        content: `<s>The user has tracked a behavior: ${behaviorName} - ${formattedValue}</s>`,
       },
     ];
   }

@@ -2070,7 +2070,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstCallLog: z.ZodOptional<z.ZodAny>;
             hasContent: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -2079,7 +2079,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -2513,7 +2513,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -2911,7 +2911,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -5010,7 +5010,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstCallLog: z.ZodOptional<z.ZodAny>;
             hasContent: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -5019,7 +5019,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -5464,7 +5464,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -5869,7 +5869,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -7971,7 +7971,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstCallLog: z.ZodOptional<z.ZodAny>;
             hasContent: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -7980,7 +7980,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -8414,7 +8414,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -8812,7 +8812,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -10613,7 +10613,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstCallLog: z.ZodOptional<z.ZodAny>;
             hasContent: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -10622,7 +10622,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -11354,7 +11354,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -11752,7 +11752,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -13851,7 +13851,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstCallLog: z.ZodOptional<z.ZodAny>;
             hasContent: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -13860,7 +13860,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -14294,7 +14294,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -14692,7 +14692,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -16493,7 +16493,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstCallLog: z.ZodOptional<z.ZodAny>;
             hasContent: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -16502,7 +16502,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -17234,7 +17234,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -17632,7 +17632,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -19731,7 +19731,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstCallLog: z.ZodOptional<z.ZodAny>;
             hasContent: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -19740,7 +19740,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -20174,7 +20174,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -20572,7 +20572,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -20985,7 +20985,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -21387,7 +21387,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -21788,7 +21788,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -22186,7 +22186,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -22584,7 +22584,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -22982,7 +22982,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -23380,7 +23380,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -23790,7 +23790,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -24192,7 +24192,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -24593,7 +24593,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -24991,7 +24991,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -25389,7 +25389,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -25787,7 +25787,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -26185,7 +26185,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];

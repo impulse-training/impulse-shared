@@ -8973,7 +8973,6 @@ export declare const logSchemas: {
             behaviorName: z.ZodString;
             behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
             trackingType: z.ZodEnum<["counter", "timer"]>;
-            category: z.ZodType<"helpful" | "mixed" | "unhelpful" | "unsure", z.ZodTypeDef, "helpful" | "mixed" | "unhelpful" | "unsure">;
             value: z.ZodNumber;
             formattedValue: z.ZodString;
         }, "strip", z.ZodTypeAny, {
@@ -8981,7 +8980,6 @@ export declare const logSchemas: {
             behaviorId: string;
             behaviorName: string;
             trackingType: "counter" | "timer";
-            category: "helpful" | "mixed" | "unhelpful" | "unsure";
             formattedValue: string;
             behaviorTrackingUnit?: string | undefined;
         }, {
@@ -8989,7 +8987,6 @@ export declare const logSchemas: {
             behaviorId: string;
             behaviorName: string;
             trackingType: "counter" | "timer";
-            category: "helpful" | "mixed" | "unhelpful" | "unsure";
             formattedValue: string;
             behaviorTrackingUnit?: string | undefined;
         }>;
@@ -9005,7 +9002,6 @@ export declare const logSchemas: {
             behaviorId: string;
             behaviorName: string;
             trackingType: "counter" | "timer";
-            category: "helpful" | "mixed" | "unhelpful" | "unsure";
             formattedValue: string;
             behaviorTrackingUnit?: string | undefined;
         };
@@ -9025,7 +9021,6 @@ export declare const logSchemas: {
             behaviorId: string;
             behaviorName: string;
             trackingType: "counter" | "timer";
-            category: "helpful" | "mixed" | "unhelpful" | "unsure";
             formattedValue: string;
             behaviorTrackingUnit?: string | undefined;
         };
@@ -9181,22 +9176,22 @@ export declare const logSchemas: {
                 isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
                 isPinned: z.ZodOptional<z.ZodBoolean>;
                 responseType: z.ZodLiteral<"text">;
-                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+                scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
                 debriefBehaviors: z.ZodOptional<z.ZodObject<{
                     success: z.ZodArray<z.ZodString, "many">;
                     setback: z.ZodArray<z.ZodString, "many">;
                 }, "strip", z.ZodTypeAny, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }>>;
             }, "strip", z.ZodTypeAny, {
                 text: string;
                 isTemplate: boolean;
                 responseType: "text";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -9206,13 +9201,13 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             }, {
                 text: string;
                 responseType: "text";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -9223,8 +9218,8 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             }>, z.ZodObject<{
                 id: z.ZodOptional<z.ZodString>;
@@ -9238,16 +9233,16 @@ export declare const logSchemas: {
                 isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
                 isPinned: z.ZodOptional<z.ZodBoolean>;
                 responseType: z.ZodLiteral<"emotion">;
-                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+                scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
                 debriefBehaviors: z.ZodOptional<z.ZodObject<{
                     success: z.ZodArray<z.ZodString, "many">;
                     setback: z.ZodArray<z.ZodString, "many">;
                 }, "strip", z.ZodTypeAny, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }>>;
             } & {
                 suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
@@ -9255,7 +9250,7 @@ export declare const logSchemas: {
                 text: string;
                 isTemplate: boolean;
                 responseType: "emotion";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -9266,13 +9261,13 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             }, {
                 text: string;
                 responseType: "emotion";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -9284,8 +9279,8 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             }>, z.ZodObject<{
                 id: z.ZodOptional<z.ZodString>;
@@ -9299,16 +9294,16 @@ export declare const logSchemas: {
                 isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
                 isPinned: z.ZodOptional<z.ZodBoolean>;
                 responseType: z.ZodLiteral<"shortText">;
-                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+                scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
                 debriefBehaviors: z.ZodOptional<z.ZodObject<{
                     success: z.ZodArray<z.ZodString, "many">;
                     setback: z.ZodArray<z.ZodString, "many">;
                 }, "strip", z.ZodTypeAny, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }>>;
             } & {
                 suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
@@ -9316,7 +9311,7 @@ export declare const logSchemas: {
                 text: string;
                 isTemplate: boolean;
                 responseType: "shortText";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -9327,13 +9322,13 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             }, {
                 text: string;
                 responseType: "shortText";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -9345,8 +9340,8 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             }>, z.ZodObject<{
                 id: z.ZodOptional<z.ZodString>;
@@ -9360,16 +9355,16 @@ export declare const logSchemas: {
                 isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
                 isPinned: z.ZodOptional<z.ZodBoolean>;
                 responseType: z.ZodLiteral<"slider1To10">;
-                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+                scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
                 debriefBehaviors: z.ZodOptional<z.ZodObject<{
                     success: z.ZodArray<z.ZodString, "many">;
                     setback: z.ZodArray<z.ZodString, "many">;
                 }, "strip", z.ZodTypeAny, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }>>;
             } & {
                 sliderConfig: z.ZodObject<{
@@ -9390,7 +9385,7 @@ export declare const logSchemas: {
                 };
                 isTemplate: boolean;
                 responseType: "slider1To10";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -9400,8 +9395,8 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             }, {
                 text: string;
@@ -9410,7 +9405,7 @@ export declare const logSchemas: {
                     maxLabel?: string | undefined;
                 };
                 responseType: "slider1To10";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -9421,8 +9416,8 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             }>, z.ZodObject<{
                 id: z.ZodOptional<z.ZodString>;
@@ -9436,16 +9431,16 @@ export declare const logSchemas: {
                 isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
                 isPinned: z.ZodOptional<z.ZodBoolean>;
                 responseType: z.ZodLiteral<"behaviorSelection">;
-                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+                scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
                 debriefBehaviors: z.ZodOptional<z.ZodObject<{
                     success: z.ZodArray<z.ZodString, "many">;
                     setback: z.ZodArray<z.ZodString, "many">;
                 }, "strip", z.ZodTypeAny, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }>>;
             } & {
                 allowMultiple: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
@@ -9453,7 +9448,7 @@ export declare const logSchemas: {
                 text: string;
                 isTemplate: boolean;
                 responseType: "behaviorSelection";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 allowMultiple: boolean;
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
@@ -9464,13 +9459,13 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             }, {
                 text: string;
                 responseType: "behaviorSelection";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -9481,8 +9476,8 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
                 allowMultiple?: boolean | undefined;
             }>, z.ZodObject<{
@@ -9497,22 +9492,22 @@ export declare const logSchemas: {
                 isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
                 isPinned: z.ZodOptional<z.ZodBoolean>;
                 responseType: z.ZodLiteral<"recap">;
-                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+                scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
                 debriefBehaviors: z.ZodOptional<z.ZodObject<{
                     success: z.ZodArray<z.ZodString, "many">;
                     setback: z.ZodArray<z.ZodString, "many">;
                 }, "strip", z.ZodTypeAny, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }>>;
             }, "strip", z.ZodTypeAny, {
                 text: string;
                 isTemplate: boolean;
                 responseType: "recap";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -9522,13 +9517,13 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             }, {
                 text: string;
                 responseType: "recap";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -9539,8 +9534,8 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             }>]>;
             response: z.ZodOptional<z.ZodObject<{
@@ -9550,12 +9545,12 @@ export declare const logSchemas: {
                 color: z.ZodOptional<z.ZodString>;
             }, "strip", z.ZodTypeAny, {
                 formattedValue: string;
-                responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+                responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             }, {
                 formattedValue: string;
-                responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+                responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             }>>;
@@ -9564,7 +9559,7 @@ export declare const logSchemas: {
                 text: string;
                 isTemplate: boolean;
                 responseType: "behaviorSelection";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 allowMultiple: boolean;
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
@@ -9575,14 +9570,14 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "emotion";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -9593,14 +9588,14 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "recap";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -9610,14 +9605,14 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "shortText";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -9628,8 +9623,8 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
@@ -9639,7 +9634,7 @@ export declare const logSchemas: {
                 };
                 isTemplate: boolean;
                 responseType: "slider1To10";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -9649,14 +9644,14 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "text";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -9666,14 +9661,14 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             };
             questionId?: string | undefined;
             response?: {
                 formattedValue: string;
-                responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+                responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             } | undefined;
@@ -9681,7 +9676,7 @@ export declare const logSchemas: {
             question: {
                 text: string;
                 responseType: "behaviorSelection";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -9692,14 +9687,14 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
                 allowMultiple?: boolean | undefined;
             } | {
                 text: string;
                 responseType: "emotion";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -9711,13 +9706,13 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 responseType: "recap";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -9728,13 +9723,13 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 responseType: "shortText";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -9746,8 +9741,8 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
@@ -9756,7 +9751,7 @@ export declare const logSchemas: {
                     maxLabel?: string | undefined;
                 };
                 responseType: "slider1To10";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -9767,13 +9762,13 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 responseType: "text";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -9784,14 +9779,14 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             };
             questionId?: string | undefined;
             response?: {
                 formattedValue: string;
-                responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+                responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             } | undefined;
@@ -9808,7 +9803,7 @@ export declare const logSchemas: {
                 text: string;
                 isTemplate: boolean;
                 responseType: "behaviorSelection";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 allowMultiple: boolean;
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
@@ -9819,14 +9814,14 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "emotion";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -9837,14 +9832,14 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "recap";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -9854,14 +9849,14 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "shortText";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -9872,8 +9867,8 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
@@ -9883,7 +9878,7 @@ export declare const logSchemas: {
                 };
                 isTemplate: boolean;
                 responseType: "slider1To10";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -9893,14 +9888,14 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "text";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -9910,14 +9905,14 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             };
             questionId?: string | undefined;
             response?: {
                 formattedValue: string;
-                responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+                responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             } | undefined;
@@ -9937,7 +9932,7 @@ export declare const logSchemas: {
             question: {
                 text: string;
                 responseType: "behaviorSelection";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -9948,14 +9943,14 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
                 allowMultiple?: boolean | undefined;
             } | {
                 text: string;
                 responseType: "emotion";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -9967,13 +9962,13 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 responseType: "recap";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -9984,13 +9979,13 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 responseType: "shortText";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -10002,8 +9997,8 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
@@ -10012,7 +10007,7 @@ export declare const logSchemas: {
                     maxLabel?: string | undefined;
                 };
                 responseType: "slider1To10";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -10023,13 +10018,13 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 responseType: "text";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -10040,14 +10035,14 @@ export declare const logSchemas: {
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             };
             questionId?: string | undefined;
             response?: {
                 formattedValue: string;
-                responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+                responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             } | undefined;
@@ -10086,22 +10081,22 @@ export declare const logSchemas: {
                     isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
                     isPinned: z.ZodOptional<z.ZodBoolean>;
                     responseType: z.ZodLiteral<"text">;
-                    scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+                    scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
                     debriefBehaviors: z.ZodOptional<z.ZodObject<{
                         success: z.ZodArray<z.ZodString, "many">;
                         setback: z.ZodArray<z.ZodString, "many">;
                     }, "strip", z.ZodTypeAny, {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     }, {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     }>>;
                 }, "strip", z.ZodTypeAny, {
                     text: string;
                     isTemplate: boolean;
                     responseType: "text";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10111,13 +10106,13 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 }, {
                     text: string;
                     responseType: "text";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10128,8 +10123,8 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 }>, z.ZodObject<{
                     id: z.ZodOptional<z.ZodString>;
@@ -10143,16 +10138,16 @@ export declare const logSchemas: {
                     isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
                     isPinned: z.ZodOptional<z.ZodBoolean>;
                     responseType: z.ZodLiteral<"emotion">;
-                    scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+                    scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
                     debriefBehaviors: z.ZodOptional<z.ZodObject<{
                         success: z.ZodArray<z.ZodString, "many">;
                         setback: z.ZodArray<z.ZodString, "many">;
                     }, "strip", z.ZodTypeAny, {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     }, {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     }>>;
                 } & {
                     suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
@@ -10160,7 +10155,7 @@ export declare const logSchemas: {
                     text: string;
                     isTemplate: boolean;
                     responseType: "emotion";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10171,13 +10166,13 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 }, {
                     text: string;
                     responseType: "emotion";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10189,8 +10184,8 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 }>, z.ZodObject<{
                     id: z.ZodOptional<z.ZodString>;
@@ -10204,16 +10199,16 @@ export declare const logSchemas: {
                     isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
                     isPinned: z.ZodOptional<z.ZodBoolean>;
                     responseType: z.ZodLiteral<"shortText">;
-                    scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+                    scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
                     debriefBehaviors: z.ZodOptional<z.ZodObject<{
                         success: z.ZodArray<z.ZodString, "many">;
                         setback: z.ZodArray<z.ZodString, "many">;
                     }, "strip", z.ZodTypeAny, {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     }, {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     }>>;
                 } & {
                     suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
@@ -10221,7 +10216,7 @@ export declare const logSchemas: {
                     text: string;
                     isTemplate: boolean;
                     responseType: "shortText";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10232,13 +10227,13 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 }, {
                     text: string;
                     responseType: "shortText";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10250,8 +10245,8 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 }>, z.ZodObject<{
                     id: z.ZodOptional<z.ZodString>;
@@ -10265,16 +10260,16 @@ export declare const logSchemas: {
                     isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
                     isPinned: z.ZodOptional<z.ZodBoolean>;
                     responseType: z.ZodLiteral<"slider1To10">;
-                    scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+                    scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
                     debriefBehaviors: z.ZodOptional<z.ZodObject<{
                         success: z.ZodArray<z.ZodString, "many">;
                         setback: z.ZodArray<z.ZodString, "many">;
                     }, "strip", z.ZodTypeAny, {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     }, {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     }>>;
                 } & {
                     sliderConfig: z.ZodObject<{
@@ -10295,7 +10290,7 @@ export declare const logSchemas: {
                     };
                     isTemplate: boolean;
                     responseType: "slider1To10";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10305,8 +10300,8 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 }, {
                     text: string;
@@ -10315,7 +10310,7 @@ export declare const logSchemas: {
                         maxLabel?: string | undefined;
                     };
                     responseType: "slider1To10";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10326,8 +10321,8 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 }>, z.ZodObject<{
                     id: z.ZodOptional<z.ZodString>;
@@ -10341,16 +10336,16 @@ export declare const logSchemas: {
                     isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
                     isPinned: z.ZodOptional<z.ZodBoolean>;
                     responseType: z.ZodLiteral<"behaviorSelection">;
-                    scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+                    scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
                     debriefBehaviors: z.ZodOptional<z.ZodObject<{
                         success: z.ZodArray<z.ZodString, "many">;
                         setback: z.ZodArray<z.ZodString, "many">;
                     }, "strip", z.ZodTypeAny, {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     }, {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     }>>;
                 } & {
                     allowMultiple: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
@@ -10358,7 +10353,7 @@ export declare const logSchemas: {
                     text: string;
                     isTemplate: boolean;
                     responseType: "behaviorSelection";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     allowMultiple: boolean;
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
@@ -10369,13 +10364,13 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 }, {
                     text: string;
                     responseType: "behaviorSelection";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10386,8 +10381,8 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                     allowMultiple?: boolean | undefined;
                 }>, z.ZodObject<{
@@ -10402,22 +10397,22 @@ export declare const logSchemas: {
                     isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
                     isPinned: z.ZodOptional<z.ZodBoolean>;
                     responseType: z.ZodLiteral<"recap">;
-                    scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+                    scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
                     debriefBehaviors: z.ZodOptional<z.ZodObject<{
                         success: z.ZodArray<z.ZodString, "many">;
                         setback: z.ZodArray<z.ZodString, "many">;
                     }, "strip", z.ZodTypeAny, {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     }, {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     }>>;
                 }, "strip", z.ZodTypeAny, {
                     text: string;
                     isTemplate: boolean;
                     responseType: "recap";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10427,13 +10422,13 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 }, {
                     text: string;
                     responseType: "recap";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10444,8 +10439,8 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 }>]>;
                 response: z.ZodOptional<z.ZodObject<{
@@ -10455,12 +10450,12 @@ export declare const logSchemas: {
                     color: z.ZodOptional<z.ZodString>;
                 }, "strip", z.ZodTypeAny, {
                     formattedValue: string;
-                    responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+                    responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
                     value?: any;
                     color?: string | undefined;
                 }, {
                     formattedValue: string;
-                    responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+                    responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
                     value?: any;
                     color?: string | undefined;
                 }>>;
@@ -10469,7 +10464,7 @@ export declare const logSchemas: {
                     text: string;
                     isTemplate: boolean;
                     responseType: "behaviorSelection";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     allowMultiple: boolean;
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
@@ -10480,14 +10475,14 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 } | {
                     text: string;
                     isTemplate: boolean;
                     responseType: "emotion";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10498,14 +10493,14 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 } | {
                     text: string;
                     isTemplate: boolean;
                     responseType: "recap";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10515,14 +10510,14 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 } | {
                     text: string;
                     isTemplate: boolean;
                     responseType: "shortText";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10533,8 +10528,8 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 } | {
                     text: string;
@@ -10544,7 +10539,7 @@ export declare const logSchemas: {
                     };
                     isTemplate: boolean;
                     responseType: "slider1To10";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10554,14 +10549,14 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 } | {
                     text: string;
                     isTemplate: boolean;
                     responseType: "text";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10571,14 +10566,14 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 };
                 questionId?: string | undefined;
                 response?: {
                     formattedValue: string;
-                    responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+                    responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
                     value?: any;
                     color?: string | undefined;
                 } | undefined;
@@ -10586,7 +10581,7 @@ export declare const logSchemas: {
                 question: {
                     text: string;
                     responseType: "behaviorSelection";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10597,14 +10592,14 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                     allowMultiple?: boolean | undefined;
                 } | {
                     text: string;
                     responseType: "emotion";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10616,13 +10611,13 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 } | {
                     text: string;
                     responseType: "recap";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10633,13 +10628,13 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 } | {
                     text: string;
                     responseType: "shortText";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10651,8 +10646,8 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 } | {
                     text: string;
@@ -10661,7 +10656,7 @@ export declare const logSchemas: {
                         maxLabel?: string | undefined;
                     };
                     responseType: "slider1To10";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10672,13 +10667,13 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 } | {
                     text: string;
                     responseType: "text";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10689,14 +10684,14 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 };
                 questionId?: string | undefined;
                 response?: {
                     formattedValue: string;
-                    responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+                    responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
                     value?: any;
                     color?: string | undefined;
                 } | undefined;
@@ -10707,7 +10702,7 @@ export declare const logSchemas: {
                     text: string;
                     isTemplate: boolean;
                     responseType: "behaviorSelection";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     allowMultiple: boolean;
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
@@ -10718,14 +10713,14 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 } | {
                     text: string;
                     isTemplate: boolean;
                     responseType: "emotion";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10736,14 +10731,14 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 } | {
                     text: string;
                     isTemplate: boolean;
                     responseType: "recap";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10753,14 +10748,14 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 } | {
                     text: string;
                     isTemplate: boolean;
                     responseType: "shortText";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10771,8 +10766,8 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 } | {
                     text: string;
@@ -10782,7 +10777,7 @@ export declare const logSchemas: {
                     };
                     isTemplate: boolean;
                     responseType: "slider1To10";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10792,14 +10787,14 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 } | {
                     text: string;
                     isTemplate: boolean;
                     responseType: "text";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10809,14 +10804,14 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 };
                 questionId?: string | undefined;
                 response?: {
                     formattedValue: string;
-                    responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+                    responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
                     value?: any;
                     color?: string | undefined;
                 } | undefined;
@@ -10826,7 +10821,7 @@ export declare const logSchemas: {
                 question: {
                     text: string;
                     responseType: "behaviorSelection";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10837,14 +10832,14 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                     allowMultiple?: boolean | undefined;
                 } | {
                     text: string;
                     responseType: "emotion";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10856,13 +10851,13 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 } | {
                     text: string;
                     responseType: "recap";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10873,13 +10868,13 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 } | {
                     text: string;
                     responseType: "shortText";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10891,8 +10886,8 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 } | {
                     text: string;
@@ -10901,7 +10896,7 @@ export declare const logSchemas: {
                         maxLabel?: string | undefined;
                     };
                     responseType: "slider1To10";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10912,13 +10907,13 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 } | {
                     text: string;
                     responseType: "text";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10929,14 +10924,14 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 };
                 questionId?: string | undefined;
                 response?: {
                     formattedValue: string;
-                    responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+                    responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
                     value?: any;
                     color?: string | undefined;
                 } | undefined;
@@ -10955,7 +10950,7 @@ export declare const logSchemas: {
                     text: string;
                     isTemplate: boolean;
                     responseType: "behaviorSelection";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     allowMultiple: boolean;
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
@@ -10966,14 +10961,14 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 } | {
                     text: string;
                     isTemplate: boolean;
                     responseType: "emotion";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -10984,14 +10979,14 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 } | {
                     text: string;
                     isTemplate: boolean;
                     responseType: "recap";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -11001,14 +10996,14 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 } | {
                     text: string;
                     isTemplate: boolean;
                     responseType: "shortText";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -11019,8 +11014,8 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 } | {
                     text: string;
@@ -11030,7 +11025,7 @@ export declare const logSchemas: {
                     };
                     isTemplate: boolean;
                     responseType: "slider1To10";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -11040,14 +11035,14 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 } | {
                     text: string;
                     isTemplate: boolean;
                     responseType: "text";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -11057,14 +11052,14 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 };
                 questionId?: string | undefined;
                 response?: {
                     formattedValue: string;
-                    responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+                    responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
                     value?: any;
                     color?: string | undefined;
                 } | undefined;
@@ -11088,7 +11083,7 @@ export declare const logSchemas: {
                 question: {
                     text: string;
                     responseType: "behaviorSelection";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -11099,14 +11094,14 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                     allowMultiple?: boolean | undefined;
                 } | {
                     text: string;
                     responseType: "emotion";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -11118,13 +11113,13 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 } | {
                     text: string;
                     responseType: "recap";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -11135,13 +11130,13 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 } | {
                     text: string;
                     responseType: "shortText";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -11153,8 +11148,8 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 } | {
                     text: string;
@@ -11163,7 +11158,7 @@ export declare const logSchemas: {
                         maxLabel?: string | undefined;
                     };
                     responseType: "slider1To10";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -11174,13 +11169,13 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 } | {
                     text: string;
                     responseType: "text";
-                    scope: "impulse" | "setback" | "success" | "recap";
+                    scope: "success" | "setback" | "impulse" | "recap";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -11191,14 +11186,14 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
                     debriefBehaviors?: {
-                        setback: string[];
                         success: string[];
+                        setback: string[];
                     } | undefined;
                 };
                 questionId?: string | undefined;
                 response?: {
                     formattedValue: string;
-                    responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+                    responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
                     value?: any;
                     color?: string | undefined;
                 } | undefined;
@@ -12697,7 +12692,7 @@ export declare const logSchemas: {
                 firstCallLog: z.ZodOptional<z.ZodAny>;
                 hasContent: z.ZodBoolean;
             }, "strip", z.ZodTypeAny, {
-                type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+                type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
                 tacticsByTitle: Record<string, any[]>;
                 behaviorsByName: Record<string, any[]>;
                 outcomeLogs: any[];
@@ -12706,7 +12701,7 @@ export declare const logSchemas: {
                 firstMessageLog?: any;
                 firstCallLog?: any;
             }, {
-                type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+                type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
                 tacticsByTitle: Record<string, any[]>;
                 behaviorsByName: Record<string, any[]>;
                 outcomeLogs: any[];
@@ -12729,7 +12724,7 @@ export declare const logSchemas: {
         }, "strip", z.ZodTypeAny, {
             threadRef: import("../..").DocumentReferenceLike<unknown>;
             threadSummaryData: {
-                type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+                type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
                 tacticsByTitle: Record<string, any[]>;
                 behaviorsByName: Record<string, any[]>;
                 outcomeLogs: any[];
@@ -12746,7 +12741,7 @@ export declare const logSchemas: {
         }, {
             threadRef: import("../..").DocumentReferenceLike<unknown>;
             threadSummaryData: {
-                type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+                type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
                 tacticsByTitle: Record<string, any[]>;
                 behaviorsByName: Record<string, any[]>;
                 outcomeLogs: any[];
@@ -12771,7 +12766,7 @@ export declare const logSchemas: {
         data: {
             threadRef: import("../..").DocumentReferenceLike<unknown>;
             threadSummaryData: {
-                type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+                type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
                 tacticsByTitle: Record<string, any[]>;
                 behaviorsByName: Record<string, any[]>;
                 outcomeLogs: any[];
@@ -12800,7 +12795,7 @@ export declare const logSchemas: {
         data: {
             threadRef: import("../..").DocumentReferenceLike<unknown>;
             threadSummaryData: {
-                type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+                type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
                 tacticsByTitle: Record<string, any[]>;
                 behaviorsByName: Record<string, any[]>;
                 outcomeLogs: any[];
@@ -12878,7 +12873,6 @@ export declare const logSchemas: {
                     behaviorName: z.ZodString;
                     behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
                     trackingType: z.ZodEnum<["counter", "timer"]>;
-                    category: z.ZodType<"helpful" | "mixed" | "unhelpful" | "unsure", z.ZodTypeDef, "helpful" | "mixed" | "unhelpful" | "unsure">;
                     value: z.ZodNumber;
                     formattedValue: z.ZodString;
                 }, "strip", z.ZodTypeAny, {
@@ -12886,7 +12880,6 @@ export declare const logSchemas: {
                     behaviorId: string;
                     behaviorName: string;
                     trackingType: "counter" | "timer";
-                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
                 }, {
@@ -12894,13 +12887,11 @@ export declare const logSchemas: {
                     behaviorId: string;
                     behaviorName: string;
                     trackingType: "counter" | "timer";
-                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
                 }>>;
                 behaviorsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodEffects<z.ZodObject<{
                     name: z.ZodString;
-                    category: z.ZodType<"helpful" | "mixed" | "unhelpful" | "unsure", z.ZodTypeDef, "helpful" | "mixed" | "unhelpful" | "unsure">;
                     hasQuestions: z.ZodOptional<z.ZodBoolean>;
                     trackingType: z.ZodEnum<["counter", "timer"]>;
                     trackingUnit: z.ZodOptional<z.ZodString>;
@@ -12984,7 +12975,6 @@ export declare const logSchemas: {
                         behaviorName: z.ZodString;
                         behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
                         trackingType: z.ZodEnum<["counter", "timer"]>;
-                        category: z.ZodType<"helpful" | "mixed" | "unhelpful" | "unsure", z.ZodTypeDef, "helpful" | "mixed" | "unhelpful" | "unsure">;
                         value: z.ZodNumber;
                         formattedValue: z.ZodString;
                     }, "strip", z.ZodTypeAny, {
@@ -12992,7 +12982,6 @@ export declare const logSchemas: {
                         behaviorId: string;
                         behaviorName: string;
                         trackingType: "counter" | "timer";
-                        category: "helpful" | "mixed" | "unhelpful" | "unsure";
                         formattedValue: string;
                         behaviorTrackingUnit?: string | undefined;
                     }, {
@@ -13000,7 +12989,6 @@ export declare const logSchemas: {
                         behaviorId: string;
                         behaviorName: string;
                         trackingType: "counter" | "timer";
-                        category: "helpful" | "mixed" | "unhelpful" | "unsure";
                         formattedValue: string;
                         behaviorTrackingUnit?: string | undefined;
                     }>>;
@@ -13010,17 +12998,16 @@ export declare const logSchemas: {
                         success: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
                         setback: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
                     }, "strip", z.ZodTypeAny, {
-                        setback: import("../..").DocumentReferenceLike<unknown>[];
                         success: import("../..").DocumentReferenceLike<unknown>[];
+                        setback: import("../..").DocumentReferenceLike<unknown>[];
                     }, {
-                        setback: import("../..").DocumentReferenceLike<unknown>[];
                         success: import("../..").DocumentReferenceLike<unknown>[];
+                        setback: import("../..").DocumentReferenceLike<unknown>[];
                     }>>;
                     activePlanId: z.ZodString;
-                    behaviorTopicId: z.ZodOptional<z.ZodEnum<["digital-screen-use", "substances", "bfrbs", "avoidance-productivity", "emotional-cognitive", "financial-risk", "eating"]>>;
+                    behaviorTopicId: z.ZodOptional<z.ZodEnum<[string, ...string[]]>>;
                 }, "strip", z.ZodTypeAny, {
                     trackingType: "counter" | "timer";
-                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
                     name: string;
                     description: string;
                     ordinal: number;
@@ -13057,19 +13044,17 @@ export declare const logSchemas: {
                         behaviorId: string;
                         behaviorName: string;
                         trackingType: "counter" | "timer";
-                        category: "helpful" | "mixed" | "unhelpful" | "unsure";
                         formattedValue: string;
                         behaviorTrackingUnit?: string | undefined;
                     } | undefined;
                     impulseQuestions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     debriefQuestions?: {
-                        setback: import("../..").DocumentReferenceLike<unknown>[];
                         success: import("../..").DocumentReferenceLike<unknown>[];
+                        setback: import("../..").DocumentReferenceLike<unknown>[];
                     } | undefined;
-                    behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
+                    behaviorTopicId?: string | undefined;
                 }, {
                     trackingType: "counter" | "timer";
-                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
                     name: string;
                     description: string;
                     benefits: string[];
@@ -13105,20 +13090,18 @@ export declare const logSchemas: {
                         behaviorId: string;
                         behaviorName: string;
                         trackingType: "counter" | "timer";
-                        category: "helpful" | "mixed" | "unhelpful" | "unsure";
                         formattedValue: string;
                         behaviorTrackingUnit?: string | undefined;
                     } | undefined;
                     hidden?: boolean | undefined;
                     impulseQuestions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     debriefQuestions?: {
-                        setback: import("../..").DocumentReferenceLike<unknown>[];
                         success: import("../..").DocumentReferenceLike<unknown>[];
+                        setback: import("../..").DocumentReferenceLike<unknown>[];
                     } | undefined;
-                    behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
+                    behaviorTopicId?: string | undefined;
                 }>, {
                     trackingType: "counter" | "timer";
-                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
                     name: string;
                     description: string;
                     ordinal: number;
@@ -13155,19 +13138,17 @@ export declare const logSchemas: {
                         behaviorId: string;
                         behaviorName: string;
                         trackingType: "counter" | "timer";
-                        category: "helpful" | "mixed" | "unhelpful" | "unsure";
                         formattedValue: string;
                         behaviorTrackingUnit?: string | undefined;
                     } | undefined;
                     impulseQuestions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     debriefQuestions?: {
-                        setback: import("../..").DocumentReferenceLike<unknown>[];
                         success: import("../..").DocumentReferenceLike<unknown>[];
+                        setback: import("../..").DocumentReferenceLike<unknown>[];
                     } | undefined;
-                    behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
+                    behaviorTopicId?: string | undefined;
                 }, {
                     trackingType: "counter" | "timer";
-                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
                     name: string;
                     description: string;
                     benefits: string[];
@@ -13203,17 +13184,16 @@ export declare const logSchemas: {
                         behaviorId: string;
                         behaviorName: string;
                         trackingType: "counter" | "timer";
-                        category: "helpful" | "mixed" | "unhelpful" | "unsure";
                         formattedValue: string;
                         behaviorTrackingUnit?: string | undefined;
                     } | undefined;
                     hidden?: boolean | undefined;
                     impulseQuestions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     debriefQuestions?: {
-                        setback: import("../..").DocumentReferenceLike<unknown>[];
                         success: import("../..").DocumentReferenceLike<unknown>[];
+                        setback: import("../..").DocumentReferenceLike<unknown>[];
                     } | undefined;
-                    behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
+                    behaviorTopicId?: string | undefined;
                 }>>>;
                 trackingLogsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
                 tacticsUsed: z.ZodDefault<z.ZodArray<z.ZodAny, "many">>;
@@ -13262,13 +13242,12 @@ export declare const logSchemas: {
             }, "strip", z.ZodTypeAny, {
                 userId: string;
                 summaryText: string;
-                impulseThreadOutcomesById: Record<string, "setback" | "success" | "partial">;
+                impulseThreadOutcomesById: Record<string, "success" | "setback" | "partial">;
                 behaviorDataTotalByBehaviorId: Record<string, {
                     value: number;
                     behaviorId: string;
                     behaviorName: string;
                     trackingType: "counter" | "timer";
-                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
                 }>;
@@ -13286,7 +13265,6 @@ export declare const logSchemas: {
                 }> | undefined;
                 behaviorsById?: Record<string, {
                     trackingType: "counter" | "timer";
-                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
                     name: string;
                     description: string;
                     ordinal: number;
@@ -13323,18 +13301,17 @@ export declare const logSchemas: {
                         behaviorId: string;
                         behaviorName: string;
                         trackingType: "counter" | "timer";
-                        category: "helpful" | "mixed" | "unhelpful" | "unsure";
                         formattedValue: string;
                         behaviorTrackingUnit?: string | undefined;
                     } | undefined;
                     impulseQuestions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     debriefQuestions?: {
-                        setback: import("../..").DocumentReferenceLike<unknown>[];
                         success: import("../..").DocumentReferenceLike<unknown>[];
+                        setback: import("../..").DocumentReferenceLike<unknown>[];
                     } | undefined;
-                    behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
+                    behaviorTopicId?: string | undefined;
                 }> | undefined;
-                outcome?: "setback" | "success" | "partial" | undefined;
+                outcome?: "success" | "setback" | "partial" | undefined;
                 trackingLogsById?: Record<string, any> | undefined;
                 supportGroupPermissionsById?: Record<string, {
                     summary: boolean;
@@ -13347,13 +13324,12 @@ export declare const logSchemas: {
                 recapStartedAt?: import("../../types").Timestamp | undefined;
             }, {
                 userId: string;
-                impulseThreadOutcomesById: Record<string, "setback" | "success" | "partial">;
+                impulseThreadOutcomesById: Record<string, "success" | "setback" | "partial">;
                 behaviorDataTotalByBehaviorId: Record<string, {
                     value: number;
                     behaviorId: string;
                     behaviorName: string;
                     trackingType: "counter" | "timer";
-                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
                 }>;
@@ -13371,7 +13347,6 @@ export declare const logSchemas: {
                 }> | undefined;
                 behaviorsById?: Record<string, {
                     trackingType: "counter" | "timer";
-                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
                     name: string;
                     description: string;
                     benefits: string[];
@@ -13407,19 +13382,18 @@ export declare const logSchemas: {
                         behaviorId: string;
                         behaviorName: string;
                         trackingType: "counter" | "timer";
-                        category: "helpful" | "mixed" | "unhelpful" | "unsure";
                         formattedValue: string;
                         behaviorTrackingUnit?: string | undefined;
                     } | undefined;
                     hidden?: boolean | undefined;
                     impulseQuestions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     debriefQuestions?: {
-                        setback: import("../..").DocumentReferenceLike<unknown>[];
                         success: import("../..").DocumentReferenceLike<unknown>[];
+                        setback: import("../..").DocumentReferenceLike<unknown>[];
                     } | undefined;
-                    behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
+                    behaviorTopicId?: string | undefined;
                 }> | undefined;
-                outcome?: "setback" | "success" | "partial" | undefined;
+                outcome?: "success" | "setback" | "partial" | undefined;
                 trackingLogsById?: Record<string, any> | undefined;
                 tacticsUsed?: any[] | undefined;
                 supportGroupPermissionsById?: Record<string, {
@@ -13439,13 +13413,12 @@ export declare const logSchemas: {
             daySummariesByUserId: Record<string, {
                 userId: string;
                 summaryText: string;
-                impulseThreadOutcomesById: Record<string, "setback" | "success" | "partial">;
+                impulseThreadOutcomesById: Record<string, "success" | "setback" | "partial">;
                 behaviorDataTotalByBehaviorId: Record<string, {
                     value: number;
                     behaviorId: string;
                     behaviorName: string;
                     trackingType: "counter" | "timer";
-                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
                 }>;
@@ -13463,7 +13436,6 @@ export declare const logSchemas: {
                 }> | undefined;
                 behaviorsById?: Record<string, {
                     trackingType: "counter" | "timer";
-                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
                     name: string;
                     description: string;
                     ordinal: number;
@@ -13500,18 +13472,17 @@ export declare const logSchemas: {
                         behaviorId: string;
                         behaviorName: string;
                         trackingType: "counter" | "timer";
-                        category: "helpful" | "mixed" | "unhelpful" | "unsure";
                         formattedValue: string;
                         behaviorTrackingUnit?: string | undefined;
                     } | undefined;
                     impulseQuestions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     debriefQuestions?: {
-                        setback: import("../..").DocumentReferenceLike<unknown>[];
                         success: import("../..").DocumentReferenceLike<unknown>[];
+                        setback: import("../..").DocumentReferenceLike<unknown>[];
                     } | undefined;
-                    behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
+                    behaviorTopicId?: string | undefined;
                 }> | undefined;
-                outcome?: "setback" | "success" | "partial" | undefined;
+                outcome?: "success" | "setback" | "partial" | undefined;
                 trackingLogsById?: Record<string, any> | undefined;
                 supportGroupPermissionsById?: Record<string, {
                     summary: boolean;
@@ -13528,13 +13499,12 @@ export declare const logSchemas: {
             dateString: string;
             daySummariesByUserId: Record<string, {
                 userId: string;
-                impulseThreadOutcomesById: Record<string, "setback" | "success" | "partial">;
+                impulseThreadOutcomesById: Record<string, "success" | "setback" | "partial">;
                 behaviorDataTotalByBehaviorId: Record<string, {
                     value: number;
                     behaviorId: string;
                     behaviorName: string;
                     trackingType: "counter" | "timer";
-                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
                 }>;
@@ -13552,7 +13522,6 @@ export declare const logSchemas: {
                 }> | undefined;
                 behaviorsById?: Record<string, {
                     trackingType: "counter" | "timer";
-                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
                     name: string;
                     description: string;
                     benefits: string[];
@@ -13588,19 +13557,18 @@ export declare const logSchemas: {
                         behaviorId: string;
                         behaviorName: string;
                         trackingType: "counter" | "timer";
-                        category: "helpful" | "mixed" | "unhelpful" | "unsure";
                         formattedValue: string;
                         behaviorTrackingUnit?: string | undefined;
                     } | undefined;
                     hidden?: boolean | undefined;
                     impulseQuestions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     debriefQuestions?: {
-                        setback: import("../..").DocumentReferenceLike<unknown>[];
                         success: import("../..").DocumentReferenceLike<unknown>[];
+                        setback: import("../..").DocumentReferenceLike<unknown>[];
                     } | undefined;
-                    behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
+                    behaviorTopicId?: string | undefined;
                 }> | undefined;
-                outcome?: "setback" | "success" | "partial" | undefined;
+                outcome?: "success" | "setback" | "partial" | undefined;
                 trackingLogsById?: Record<string, any> | undefined;
                 tacticsUsed?: any[] | undefined;
                 supportGroupPermissionsById?: Record<string, {
@@ -13627,13 +13595,12 @@ export declare const logSchemas: {
             daySummariesByUserId: Record<string, {
                 userId: string;
                 summaryText: string;
-                impulseThreadOutcomesById: Record<string, "setback" | "success" | "partial">;
+                impulseThreadOutcomesById: Record<string, "success" | "setback" | "partial">;
                 behaviorDataTotalByBehaviorId: Record<string, {
                     value: number;
                     behaviorId: string;
                     behaviorName: string;
                     trackingType: "counter" | "timer";
-                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
                 }>;
@@ -13651,7 +13618,6 @@ export declare const logSchemas: {
                 }> | undefined;
                 behaviorsById?: Record<string, {
                     trackingType: "counter" | "timer";
-                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
                     name: string;
                     description: string;
                     ordinal: number;
@@ -13688,18 +13654,17 @@ export declare const logSchemas: {
                         behaviorId: string;
                         behaviorName: string;
                         trackingType: "counter" | "timer";
-                        category: "helpful" | "mixed" | "unhelpful" | "unsure";
                         formattedValue: string;
                         behaviorTrackingUnit?: string | undefined;
                     } | undefined;
                     impulseQuestions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     debriefQuestions?: {
-                        setback: import("../..").DocumentReferenceLike<unknown>[];
                         success: import("../..").DocumentReferenceLike<unknown>[];
+                        setback: import("../..").DocumentReferenceLike<unknown>[];
                     } | undefined;
-                    behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
+                    behaviorTopicId?: string | undefined;
                 }> | undefined;
-                outcome?: "setback" | "success" | "partial" | undefined;
+                outcome?: "success" | "setback" | "partial" | undefined;
                 trackingLogsById?: Record<string, any> | undefined;
                 supportGroupPermissionsById?: Record<string, {
                     summary: boolean;
@@ -13728,13 +13693,12 @@ export declare const logSchemas: {
             dateString: string;
             daySummariesByUserId: Record<string, {
                 userId: string;
-                impulseThreadOutcomesById: Record<string, "setback" | "success" | "partial">;
+                impulseThreadOutcomesById: Record<string, "success" | "setback" | "partial">;
                 behaviorDataTotalByBehaviorId: Record<string, {
                     value: number;
                     behaviorId: string;
                     behaviorName: string;
                     trackingType: "counter" | "timer";
-                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
                 }>;
@@ -13752,7 +13716,6 @@ export declare const logSchemas: {
                 }> | undefined;
                 behaviorsById?: Record<string, {
                     trackingType: "counter" | "timer";
-                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
                     name: string;
                     description: string;
                     benefits: string[];
@@ -13788,19 +13751,18 @@ export declare const logSchemas: {
                         behaviorId: string;
                         behaviorName: string;
                         trackingType: "counter" | "timer";
-                        category: "helpful" | "mixed" | "unhelpful" | "unsure";
                         formattedValue: string;
                         behaviorTrackingUnit?: string | undefined;
                     } | undefined;
                     hidden?: boolean | undefined;
                     impulseQuestions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     debriefQuestions?: {
-                        setback: import("../..").DocumentReferenceLike<unknown>[];
                         success: import("../..").DocumentReferenceLike<unknown>[];
+                        setback: import("../..").DocumentReferenceLike<unknown>[];
                     } | undefined;
-                    behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
+                    behaviorTopicId?: string | undefined;
                 }> | undefined;
-                outcome?: "setback" | "success" | "partial" | undefined;
+                outcome?: "success" | "setback" | "partial" | undefined;
                 trackingLogsById?: Record<string, any> | undefined;
                 tacticsUsed?: any[] | undefined;
                 supportGroupPermissionsById?: Record<string, {
@@ -20107,7 +20069,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         behaviorName: z.ZodString;
         behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
         trackingType: z.ZodEnum<["counter", "timer"]>;
-        category: z.ZodType<"helpful" | "mixed" | "unhelpful" | "unsure", z.ZodTypeDef, "helpful" | "mixed" | "unhelpful" | "unsure">;
         value: z.ZodNumber;
         formattedValue: z.ZodString;
     }, "strip", z.ZodTypeAny, {
@@ -20115,7 +20076,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         behaviorId: string;
         behaviorName: string;
         trackingType: "counter" | "timer";
-        category: "helpful" | "mixed" | "unhelpful" | "unsure";
         formattedValue: string;
         behaviorTrackingUnit?: string | undefined;
     }, {
@@ -20123,7 +20083,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         behaviorId: string;
         behaviorName: string;
         trackingType: "counter" | "timer";
-        category: "helpful" | "mixed" | "unhelpful" | "unsure";
         formattedValue: string;
         behaviorTrackingUnit?: string | undefined;
     }>;
@@ -20139,7 +20098,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         behaviorId: string;
         behaviorName: string;
         trackingType: "counter" | "timer";
-        category: "helpful" | "mixed" | "unhelpful" | "unsure";
         formattedValue: string;
         behaviorTrackingUnit?: string | undefined;
     };
@@ -20159,7 +20117,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         behaviorId: string;
         behaviorName: string;
         trackingType: "counter" | "timer";
-        category: "helpful" | "mixed" | "unhelpful" | "unsure";
         formattedValue: string;
         behaviorTrackingUnit?: string | undefined;
     };
@@ -20315,22 +20272,22 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
                 isPinned: z.ZodOptional<z.ZodBoolean>;
                 responseType: z.ZodLiteral<"text">;
-                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+                scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
                 debriefBehaviors: z.ZodOptional<z.ZodObject<{
                     success: z.ZodArray<z.ZodString, "many">;
                     setback: z.ZodArray<z.ZodString, "many">;
                 }, "strip", z.ZodTypeAny, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }>>;
             }, "strip", z.ZodTypeAny, {
                 text: string;
                 isTemplate: boolean;
                 responseType: "text";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -20340,13 +20297,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             }, {
                 text: string;
                 responseType: "text";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -20357,8 +20314,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             }>, z.ZodObject<{
                 id: z.ZodOptional<z.ZodString>;
@@ -20372,16 +20329,16 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
                 isPinned: z.ZodOptional<z.ZodBoolean>;
                 responseType: z.ZodLiteral<"emotion">;
-                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+                scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
                 debriefBehaviors: z.ZodOptional<z.ZodObject<{
                     success: z.ZodArray<z.ZodString, "many">;
                     setback: z.ZodArray<z.ZodString, "many">;
                 }, "strip", z.ZodTypeAny, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }>>;
             } & {
                 suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
@@ -20389,7 +20346,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 text: string;
                 isTemplate: boolean;
                 responseType: "emotion";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -20400,13 +20357,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             }, {
                 text: string;
                 responseType: "emotion";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -20418,8 +20375,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             }>, z.ZodObject<{
                 id: z.ZodOptional<z.ZodString>;
@@ -20433,16 +20390,16 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
                 isPinned: z.ZodOptional<z.ZodBoolean>;
                 responseType: z.ZodLiteral<"shortText">;
-                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+                scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
                 debriefBehaviors: z.ZodOptional<z.ZodObject<{
                     success: z.ZodArray<z.ZodString, "many">;
                     setback: z.ZodArray<z.ZodString, "many">;
                 }, "strip", z.ZodTypeAny, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }>>;
             } & {
                 suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
@@ -20450,7 +20407,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 text: string;
                 isTemplate: boolean;
                 responseType: "shortText";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -20461,13 +20418,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             }, {
                 text: string;
                 responseType: "shortText";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -20479,8 +20436,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             }>, z.ZodObject<{
                 id: z.ZodOptional<z.ZodString>;
@@ -20494,16 +20451,16 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
                 isPinned: z.ZodOptional<z.ZodBoolean>;
                 responseType: z.ZodLiteral<"slider1To10">;
-                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+                scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
                 debriefBehaviors: z.ZodOptional<z.ZodObject<{
                     success: z.ZodArray<z.ZodString, "many">;
                     setback: z.ZodArray<z.ZodString, "many">;
                 }, "strip", z.ZodTypeAny, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }>>;
             } & {
                 sliderConfig: z.ZodObject<{
@@ -20524,7 +20481,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 };
                 isTemplate: boolean;
                 responseType: "slider1To10";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -20534,8 +20491,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             }, {
                 text: string;
@@ -20544,7 +20501,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     maxLabel?: string | undefined;
                 };
                 responseType: "slider1To10";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -20555,8 +20512,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             }>, z.ZodObject<{
                 id: z.ZodOptional<z.ZodString>;
@@ -20570,16 +20527,16 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
                 isPinned: z.ZodOptional<z.ZodBoolean>;
                 responseType: z.ZodLiteral<"behaviorSelection">;
-                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+                scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
                 debriefBehaviors: z.ZodOptional<z.ZodObject<{
                     success: z.ZodArray<z.ZodString, "many">;
                     setback: z.ZodArray<z.ZodString, "many">;
                 }, "strip", z.ZodTypeAny, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }>>;
             } & {
                 allowMultiple: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
@@ -20587,7 +20544,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 text: string;
                 isTemplate: boolean;
                 responseType: "behaviorSelection";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 allowMultiple: boolean;
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
@@ -20598,13 +20555,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             }, {
                 text: string;
                 responseType: "behaviorSelection";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -20615,8 +20572,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
                 allowMultiple?: boolean | undefined;
             }>, z.ZodObject<{
@@ -20631,22 +20588,22 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
                 isPinned: z.ZodOptional<z.ZodBoolean>;
                 responseType: z.ZodLiteral<"recap">;
-                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+                scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
                 debriefBehaviors: z.ZodOptional<z.ZodObject<{
                     success: z.ZodArray<z.ZodString, "many">;
                     setback: z.ZodArray<z.ZodString, "many">;
                 }, "strip", z.ZodTypeAny, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }, {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 }>>;
             }, "strip", z.ZodTypeAny, {
                 text: string;
                 isTemplate: boolean;
                 responseType: "recap";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -20656,13 +20613,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             }, {
                 text: string;
                 responseType: "recap";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -20673,8 +20630,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             }>]>;
             response: z.ZodOptional<z.ZodObject<{
@@ -20684,12 +20641,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 color: z.ZodOptional<z.ZodString>;
             }, "strip", z.ZodTypeAny, {
                 formattedValue: string;
-                responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+                responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             }, {
                 formattedValue: string;
-                responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+                responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             }>>;
@@ -20698,7 +20655,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 text: string;
                 isTemplate: boolean;
                 responseType: "behaviorSelection";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 allowMultiple: boolean;
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
@@ -20709,14 +20666,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "emotion";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -20727,14 +20684,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "recap";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -20744,14 +20701,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "shortText";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -20762,8 +20719,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
@@ -20773,7 +20730,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 };
                 isTemplate: boolean;
                 responseType: "slider1To10";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -20783,14 +20740,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "text";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -20800,14 +20757,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             };
             questionId?: string | undefined;
             response?: {
                 formattedValue: string;
-                responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+                responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             } | undefined;
@@ -20815,7 +20772,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             question: {
                 text: string;
                 responseType: "behaviorSelection";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -20826,14 +20783,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
                 allowMultiple?: boolean | undefined;
             } | {
                 text: string;
                 responseType: "emotion";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -20845,13 +20802,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 responseType: "recap";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -20862,13 +20819,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 responseType: "shortText";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -20880,8 +20837,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
@@ -20890,7 +20847,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     maxLabel?: string | undefined;
                 };
                 responseType: "slider1To10";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -20901,13 +20858,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 responseType: "text";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -20918,14 +20875,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             };
             questionId?: string | undefined;
             response?: {
                 formattedValue: string;
-                responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+                responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             } | undefined;
@@ -20936,7 +20893,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 text: string;
                 isTemplate: boolean;
                 responseType: "behaviorSelection";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 allowMultiple: boolean;
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
@@ -20947,14 +20904,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "emotion";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -20965,14 +20922,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "recap";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -20982,14 +20939,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "shortText";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -21000,8 +20957,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
@@ -21011,7 +20968,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 };
                 isTemplate: boolean;
                 responseType: "slider1To10";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -21021,14 +20978,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "text";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -21038,14 +20995,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             };
             questionId?: string | undefined;
             response?: {
                 formattedValue: string;
-                responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+                responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             } | undefined;
@@ -21055,7 +21012,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             question: {
                 text: string;
                 responseType: "behaviorSelection";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -21066,14 +21023,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
                 allowMultiple?: boolean | undefined;
             } | {
                 text: string;
                 responseType: "emotion";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -21085,13 +21042,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 responseType: "recap";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -21102,13 +21059,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 responseType: "shortText";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -21120,8 +21077,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
@@ -21130,7 +21087,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     maxLabel?: string | undefined;
                 };
                 responseType: "slider1To10";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -21141,13 +21098,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 responseType: "text";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -21158,14 +21115,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             };
             questionId?: string | undefined;
             response?: {
                 formattedValue: string;
-                responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+                responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             } | undefined;
@@ -21184,7 +21141,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 text: string;
                 isTemplate: boolean;
                 responseType: "behaviorSelection";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 allowMultiple: boolean;
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
@@ -21195,14 +21152,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "emotion";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -21213,14 +21170,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "recap";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -21230,14 +21187,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "shortText";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -21248,8 +21205,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
@@ -21259,7 +21216,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 };
                 isTemplate: boolean;
                 responseType: "slider1To10";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -21269,14 +21226,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
                 responseType: "text";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -21286,14 +21243,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             };
             questionId?: string | undefined;
             response?: {
                 formattedValue: string;
-                responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+                responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             } | undefined;
@@ -21317,7 +21274,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             question: {
                 text: string;
                 responseType: "behaviorSelection";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -21328,14 +21285,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
                 allowMultiple?: boolean | undefined;
             } | {
                 text: string;
                 responseType: "emotion";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -21347,13 +21304,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 responseType: "recap";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -21364,13 +21321,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 responseType: "shortText";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -21382,8 +21339,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
@@ -21392,7 +21349,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     maxLabel?: string | undefined;
                 };
                 responseType: "slider1To10";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -21403,13 +21360,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             } | {
                 text: string;
                 responseType: "text";
-                scope: "impulse" | "setback" | "success" | "recap";
+                scope: "success" | "setback" | "impulse" | "recap";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -21420,14 +21377,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
                 debriefBehaviors?: {
-                    setback: string[];
                     success: string[];
+                    setback: string[];
                 } | undefined;
             };
             questionId?: string | undefined;
             response?: {
                 formattedValue: string;
-                responseType: "text" | "recap" | "emotion" | "behaviorSelection" | "shortText" | "slider1To10";
+                responseType: "text" | "emotion" | "recap" | "behaviorSelection" | "shortText" | "slider1To10";
                 value?: any;
                 color?: string | undefined;
             } | undefined;
@@ -22865,7 +22822,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             firstCallLog: z.ZodOptional<z.ZodAny>;
             hasContent: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -22874,7 +22831,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -22897,7 +22854,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     }, "strip", z.ZodTypeAny, {
         threadRef: import("../..").DocumentReferenceLike<unknown>;
         threadSummaryData: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -22914,7 +22871,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     }, {
         threadRef: import("../..").DocumentReferenceLike<unknown>;
         threadSummaryData: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -22939,7 +22896,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: {
         threadRef: import("../..").DocumentReferenceLike<unknown>;
         threadSummaryData: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -22968,7 +22925,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: {
         threadRef: import("../..").DocumentReferenceLike<unknown>;
         threadSummaryData: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -23097,7 +23054,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 behaviorName: z.ZodString;
                 behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
                 trackingType: z.ZodEnum<["counter", "timer"]>;
-                category: z.ZodType<"helpful" | "mixed" | "unhelpful" | "unsure", z.ZodTypeDef, "helpful" | "mixed" | "unhelpful" | "unsure">;
                 value: z.ZodNumber;
                 formattedValue: z.ZodString;
             }, "strip", z.ZodTypeAny, {
@@ -23105,7 +23061,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 behaviorId: string;
                 behaviorName: string;
                 trackingType: "counter" | "timer";
-                category: "helpful" | "mixed" | "unhelpful" | "unsure";
                 formattedValue: string;
                 behaviorTrackingUnit?: string | undefined;
             }, {
@@ -23113,13 +23068,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 behaviorId: string;
                 behaviorName: string;
                 trackingType: "counter" | "timer";
-                category: "helpful" | "mixed" | "unhelpful" | "unsure";
                 formattedValue: string;
                 behaviorTrackingUnit?: string | undefined;
             }>>;
             behaviorsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodEffects<z.ZodObject<{
                 name: z.ZodString;
-                category: z.ZodType<"helpful" | "mixed" | "unhelpful" | "unsure", z.ZodTypeDef, "helpful" | "mixed" | "unhelpful" | "unsure">;
                 hasQuestions: z.ZodOptional<z.ZodBoolean>;
                 trackingType: z.ZodEnum<["counter", "timer"]>;
                 trackingUnit: z.ZodOptional<z.ZodString>;
@@ -23203,7 +23156,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     behaviorName: z.ZodString;
                     behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
                     trackingType: z.ZodEnum<["counter", "timer"]>;
-                    category: z.ZodType<"helpful" | "mixed" | "unhelpful" | "unsure", z.ZodTypeDef, "helpful" | "mixed" | "unhelpful" | "unsure">;
                     value: z.ZodNumber;
                     formattedValue: z.ZodString;
                 }, "strip", z.ZodTypeAny, {
@@ -23211,7 +23163,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     behaviorId: string;
                     behaviorName: string;
                     trackingType: "counter" | "timer";
-                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
                 }, {
@@ -23219,7 +23170,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     behaviorId: string;
                     behaviorName: string;
                     trackingType: "counter" | "timer";
-                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
                 }>>;
@@ -23229,17 +23179,16 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     success: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
                     setback: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
                 }, "strip", z.ZodTypeAny, {
-                    setback: import("../..").DocumentReferenceLike<unknown>[];
                     success: import("../..").DocumentReferenceLike<unknown>[];
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
                 }, {
-                    setback: import("../..").DocumentReferenceLike<unknown>[];
                     success: import("../..").DocumentReferenceLike<unknown>[];
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
                 }>>;
                 activePlanId: z.ZodString;
-                behaviorTopicId: z.ZodOptional<z.ZodEnum<["digital-screen-use", "substances", "bfrbs", "avoidance-productivity", "emotional-cognitive", "financial-risk", "eating"]>>;
+                behaviorTopicId: z.ZodOptional<z.ZodEnum<[string, ...string[]]>>;
             }, "strip", z.ZodTypeAny, {
                 trackingType: "counter" | "timer";
-                category: "helpful" | "mixed" | "unhelpful" | "unsure";
                 name: string;
                 description: string;
                 ordinal: number;
@@ -23276,19 +23225,17 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     behaviorId: string;
                     behaviorName: string;
                     trackingType: "counter" | "timer";
-                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
                 } | undefined;
                 impulseQuestions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 debriefQuestions?: {
-                    setback: import("../..").DocumentReferenceLike<unknown>[];
                     success: import("../..").DocumentReferenceLike<unknown>[];
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
                 } | undefined;
-                behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
+                behaviorTopicId?: string | undefined;
             }, {
                 trackingType: "counter" | "timer";
-                category: "helpful" | "mixed" | "unhelpful" | "unsure";
                 name: string;
                 description: string;
                 benefits: string[];
@@ -23324,20 +23271,18 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     behaviorId: string;
                     behaviorName: string;
                     trackingType: "counter" | "timer";
-                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
                 } | undefined;
                 hidden?: boolean | undefined;
                 impulseQuestions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 debriefQuestions?: {
-                    setback: import("../..").DocumentReferenceLike<unknown>[];
                     success: import("../..").DocumentReferenceLike<unknown>[];
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
                 } | undefined;
-                behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
+                behaviorTopicId?: string | undefined;
             }>, {
                 trackingType: "counter" | "timer";
-                category: "helpful" | "mixed" | "unhelpful" | "unsure";
                 name: string;
                 description: string;
                 ordinal: number;
@@ -23374,19 +23319,17 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     behaviorId: string;
                     behaviorName: string;
                     trackingType: "counter" | "timer";
-                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
                 } | undefined;
                 impulseQuestions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 debriefQuestions?: {
-                    setback: import("../..").DocumentReferenceLike<unknown>[];
                     success: import("../..").DocumentReferenceLike<unknown>[];
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
                 } | undefined;
-                behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
+                behaviorTopicId?: string | undefined;
             }, {
                 trackingType: "counter" | "timer";
-                category: "helpful" | "mixed" | "unhelpful" | "unsure";
                 name: string;
                 description: string;
                 benefits: string[];
@@ -23422,17 +23365,16 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     behaviorId: string;
                     behaviorName: string;
                     trackingType: "counter" | "timer";
-                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
                 } | undefined;
                 hidden?: boolean | undefined;
                 impulseQuestions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 debriefQuestions?: {
-                    setback: import("../..").DocumentReferenceLike<unknown>[];
                     success: import("../..").DocumentReferenceLike<unknown>[];
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
                 } | undefined;
-                behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
+                behaviorTopicId?: string | undefined;
             }>>>;
             trackingLogsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
             tacticsUsed: z.ZodDefault<z.ZodArray<z.ZodAny, "many">>;
@@ -23481,13 +23423,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }, "strip", z.ZodTypeAny, {
             userId: string;
             summaryText: string;
-            impulseThreadOutcomesById: Record<string, "setback" | "success" | "partial">;
+            impulseThreadOutcomesById: Record<string, "success" | "setback" | "partial">;
             behaviorDataTotalByBehaviorId: Record<string, {
                 value: number;
                 behaviorId: string;
                 behaviorName: string;
                 trackingType: "counter" | "timer";
-                category: "helpful" | "mixed" | "unhelpful" | "unsure";
                 formattedValue: string;
                 behaviorTrackingUnit?: string | undefined;
             }>;
@@ -23505,7 +23446,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             }> | undefined;
             behaviorsById?: Record<string, {
                 trackingType: "counter" | "timer";
-                category: "helpful" | "mixed" | "unhelpful" | "unsure";
                 name: string;
                 description: string;
                 ordinal: number;
@@ -23542,18 +23482,17 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     behaviorId: string;
                     behaviorName: string;
                     trackingType: "counter" | "timer";
-                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
                 } | undefined;
                 impulseQuestions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 debriefQuestions?: {
-                    setback: import("../..").DocumentReferenceLike<unknown>[];
                     success: import("../..").DocumentReferenceLike<unknown>[];
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
                 } | undefined;
-                behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
+                behaviorTopicId?: string | undefined;
             }> | undefined;
-            outcome?: "setback" | "success" | "partial" | undefined;
+            outcome?: "success" | "setback" | "partial" | undefined;
             trackingLogsById?: Record<string, any> | undefined;
             supportGroupPermissionsById?: Record<string, {
                 summary: boolean;
@@ -23566,13 +23505,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             recapStartedAt?: import("../../types").Timestamp | undefined;
         }, {
             userId: string;
-            impulseThreadOutcomesById: Record<string, "setback" | "success" | "partial">;
+            impulseThreadOutcomesById: Record<string, "success" | "setback" | "partial">;
             behaviorDataTotalByBehaviorId: Record<string, {
                 value: number;
                 behaviorId: string;
                 behaviorName: string;
                 trackingType: "counter" | "timer";
-                category: "helpful" | "mixed" | "unhelpful" | "unsure";
                 formattedValue: string;
                 behaviorTrackingUnit?: string | undefined;
             }>;
@@ -23590,7 +23528,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             }> | undefined;
             behaviorsById?: Record<string, {
                 trackingType: "counter" | "timer";
-                category: "helpful" | "mixed" | "unhelpful" | "unsure";
                 name: string;
                 description: string;
                 benefits: string[];
@@ -23626,19 +23563,18 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     behaviorId: string;
                     behaviorName: string;
                     trackingType: "counter" | "timer";
-                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
                 } | undefined;
                 hidden?: boolean | undefined;
                 impulseQuestions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 debriefQuestions?: {
-                    setback: import("../..").DocumentReferenceLike<unknown>[];
                     success: import("../..").DocumentReferenceLike<unknown>[];
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
                 } | undefined;
-                behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
+                behaviorTopicId?: string | undefined;
             }> | undefined;
-            outcome?: "setback" | "success" | "partial" | undefined;
+            outcome?: "success" | "setback" | "partial" | undefined;
             trackingLogsById?: Record<string, any> | undefined;
             tacticsUsed?: any[] | undefined;
             supportGroupPermissionsById?: Record<string, {
@@ -23658,13 +23594,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         daySummariesByUserId: Record<string, {
             userId: string;
             summaryText: string;
-            impulseThreadOutcomesById: Record<string, "setback" | "success" | "partial">;
+            impulseThreadOutcomesById: Record<string, "success" | "setback" | "partial">;
             behaviorDataTotalByBehaviorId: Record<string, {
                 value: number;
                 behaviorId: string;
                 behaviorName: string;
                 trackingType: "counter" | "timer";
-                category: "helpful" | "mixed" | "unhelpful" | "unsure";
                 formattedValue: string;
                 behaviorTrackingUnit?: string | undefined;
             }>;
@@ -23682,7 +23617,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             }> | undefined;
             behaviorsById?: Record<string, {
                 trackingType: "counter" | "timer";
-                category: "helpful" | "mixed" | "unhelpful" | "unsure";
                 name: string;
                 description: string;
                 ordinal: number;
@@ -23719,18 +23653,17 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     behaviorId: string;
                     behaviorName: string;
                     trackingType: "counter" | "timer";
-                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
                 } | undefined;
                 impulseQuestions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 debriefQuestions?: {
-                    setback: import("../..").DocumentReferenceLike<unknown>[];
                     success: import("../..").DocumentReferenceLike<unknown>[];
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
                 } | undefined;
-                behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
+                behaviorTopicId?: string | undefined;
             }> | undefined;
-            outcome?: "setback" | "success" | "partial" | undefined;
+            outcome?: "success" | "setback" | "partial" | undefined;
             trackingLogsById?: Record<string, any> | undefined;
             supportGroupPermissionsById?: Record<string, {
                 summary: boolean;
@@ -23747,13 +23680,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         dateString: string;
         daySummariesByUserId: Record<string, {
             userId: string;
-            impulseThreadOutcomesById: Record<string, "setback" | "success" | "partial">;
+            impulseThreadOutcomesById: Record<string, "success" | "setback" | "partial">;
             behaviorDataTotalByBehaviorId: Record<string, {
                 value: number;
                 behaviorId: string;
                 behaviorName: string;
                 trackingType: "counter" | "timer";
-                category: "helpful" | "mixed" | "unhelpful" | "unsure";
                 formattedValue: string;
                 behaviorTrackingUnit?: string | undefined;
             }>;
@@ -23771,7 +23703,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             }> | undefined;
             behaviorsById?: Record<string, {
                 trackingType: "counter" | "timer";
-                category: "helpful" | "mixed" | "unhelpful" | "unsure";
                 name: string;
                 description: string;
                 benefits: string[];
@@ -23807,19 +23738,18 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     behaviorId: string;
                     behaviorName: string;
                     trackingType: "counter" | "timer";
-                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
                 } | undefined;
                 hidden?: boolean | undefined;
                 impulseQuestions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 debriefQuestions?: {
-                    setback: import("../..").DocumentReferenceLike<unknown>[];
                     success: import("../..").DocumentReferenceLike<unknown>[];
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
                 } | undefined;
-                behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
+                behaviorTopicId?: string | undefined;
             }> | undefined;
-            outcome?: "setback" | "success" | "partial" | undefined;
+            outcome?: "success" | "setback" | "partial" | undefined;
             trackingLogsById?: Record<string, any> | undefined;
             tacticsUsed?: any[] | undefined;
             supportGroupPermissionsById?: Record<string, {
@@ -23846,13 +23776,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         daySummariesByUserId: Record<string, {
             userId: string;
             summaryText: string;
-            impulseThreadOutcomesById: Record<string, "setback" | "success" | "partial">;
+            impulseThreadOutcomesById: Record<string, "success" | "setback" | "partial">;
             behaviorDataTotalByBehaviorId: Record<string, {
                 value: number;
                 behaviorId: string;
                 behaviorName: string;
                 trackingType: "counter" | "timer";
-                category: "helpful" | "mixed" | "unhelpful" | "unsure";
                 formattedValue: string;
                 behaviorTrackingUnit?: string | undefined;
             }>;
@@ -23870,7 +23799,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             }> | undefined;
             behaviorsById?: Record<string, {
                 trackingType: "counter" | "timer";
-                category: "helpful" | "mixed" | "unhelpful" | "unsure";
                 name: string;
                 description: string;
                 ordinal: number;
@@ -23907,18 +23835,17 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     behaviorId: string;
                     behaviorName: string;
                     trackingType: "counter" | "timer";
-                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
                 } | undefined;
                 impulseQuestions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 debriefQuestions?: {
-                    setback: import("../..").DocumentReferenceLike<unknown>[];
                     success: import("../..").DocumentReferenceLike<unknown>[];
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
                 } | undefined;
-                behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
+                behaviorTopicId?: string | undefined;
             }> | undefined;
-            outcome?: "setback" | "success" | "partial" | undefined;
+            outcome?: "success" | "setback" | "partial" | undefined;
             trackingLogsById?: Record<string, any> | undefined;
             supportGroupPermissionsById?: Record<string, {
                 summary: boolean;
@@ -23947,13 +23874,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         dateString: string;
         daySummariesByUserId: Record<string, {
             userId: string;
-            impulseThreadOutcomesById: Record<string, "setback" | "success" | "partial">;
+            impulseThreadOutcomesById: Record<string, "success" | "setback" | "partial">;
             behaviorDataTotalByBehaviorId: Record<string, {
                 value: number;
                 behaviorId: string;
                 behaviorName: string;
                 trackingType: "counter" | "timer";
-                category: "helpful" | "mixed" | "unhelpful" | "unsure";
                 formattedValue: string;
                 behaviorTrackingUnit?: string | undefined;
             }>;
@@ -23971,7 +23897,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             }> | undefined;
             behaviorsById?: Record<string, {
                 trackingType: "counter" | "timer";
-                category: "helpful" | "mixed" | "unhelpful" | "unsure";
                 name: string;
                 description: string;
                 benefits: string[];
@@ -24007,19 +23932,18 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     behaviorId: string;
                     behaviorName: string;
                     trackingType: "counter" | "timer";
-                    category: "helpful" | "mixed" | "unhelpful" | "unsure";
                     formattedValue: string;
                     behaviorTrackingUnit?: string | undefined;
                 } | undefined;
                 hidden?: boolean | undefined;
                 impulseQuestions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 debriefQuestions?: {
-                    setback: import("../..").DocumentReferenceLike<unknown>[];
                     success: import("../..").DocumentReferenceLike<unknown>[];
+                    setback: import("../..").DocumentReferenceLike<unknown>[];
                 } | undefined;
-                behaviorTopicId?: "digital-screen-use" | "substances" | "bfrbs" | "avoidance-productivity" | "emotional-cognitive" | "financial-risk" | "eating" | undefined;
+                behaviorTopicId?: string | undefined;
             }> | undefined;
-            outcome?: "setback" | "success" | "partial" | undefined;
+            outcome?: "success" | "setback" | "partial" | undefined;
             trackingLogsById?: Record<string, any> | undefined;
             tacticsUsed?: any[] | undefined;
             supportGroupPermissionsById?: Record<string, {

@@ -2077,7 +2077,7 @@ export declare const threadSchemas: {
             firstCallLog: z.ZodOptional<z.ZodAny>;
             hasContent: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -2086,7 +2086,7 @@ export declare const threadSchemas: {
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -2520,7 +2520,7 @@ export declare const threadSchemas: {
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -2918,7 +2918,7 @@ export declare const threadSchemas: {
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -5018,7 +5018,7 @@ export declare const threadSchemas: {
             firstCallLog: z.ZodOptional<z.ZodAny>;
             hasContent: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -5027,7 +5027,7 @@ export declare const threadSchemas: {
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -5472,7 +5472,7 @@ export declare const threadSchemas: {
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -5877,7 +5877,7 @@ export declare const threadSchemas: {
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -7682,7 +7682,7 @@ export declare const threadSchemas: {
             firstCallLog: z.ZodOptional<z.ZodAny>;
             hasContent: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -7691,7 +7691,7 @@ export declare const threadSchemas: {
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -8423,7 +8423,7 @@ export declare const threadSchemas: {
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -8821,7 +8821,7 @@ export declare const threadSchemas: {
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -10921,7 +10921,7 @@ export declare const threadSchemas: {
             firstCallLog: z.ZodOptional<z.ZodAny>;
             hasContent: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -10930,7 +10930,7 @@ export declare const threadSchemas: {
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -11364,7 +11364,7 @@ export declare const threadSchemas: {
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -11762,7 +11762,7 @@ export declare const threadSchemas: {
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -13862,7 +13862,7 @@ export declare const threadSchemas: {
             firstCallLog: z.ZodOptional<z.ZodAny>;
             hasContent: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -13871,7 +13871,7 @@ export declare const threadSchemas: {
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -14305,7 +14305,7 @@ export declare const threadSchemas: {
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -14703,7 +14703,7 @@ export declare const threadSchemas: {
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -16505,7 +16505,7 @@ export declare const threadSchemas: {
             firstCallLog: z.ZodOptional<z.ZodAny>;
             hasContent: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -16514,7 +16514,7 @@ export declare const threadSchemas: {
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -17246,7 +17246,7 @@ export declare const threadSchemas: {
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -17644,7 +17644,7 @@ export declare const threadSchemas: {
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -19744,7 +19744,7 @@ export declare const threadSchemas: {
             firstCallLog: z.ZodOptional<z.ZodAny>;
             hasContent: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -19753,7 +19753,7 @@ export declare const threadSchemas: {
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -20187,7 +20187,7 @@ export declare const threadSchemas: {
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -20585,7 +20585,7 @@ export declare const threadSchemas: {
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
@@ -22686,7 +22686,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         firstCallLog: z.ZodOptional<z.ZodAny>;
         hasContent: z.ZodBoolean;
     }, "strip", z.ZodTypeAny, {
-        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -22695,7 +22695,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         firstMessageLog?: any;
         firstCallLog?: any;
     }, {
-        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -23129,7 +23129,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     } | undefined;
     currentTacticStepIndex?: number | undefined;
     summaryData?: {
-        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -23527,7 +23527,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     currentTacticStepIndex?: number | undefined;
     isDraft?: boolean | undefined;
     summaryData?: {
-        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -25626,7 +25626,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         firstCallLog: z.ZodOptional<z.ZodAny>;
         hasContent: z.ZodBoolean;
     }, "strip", z.ZodTypeAny, {
-        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -25635,7 +25635,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         firstMessageLog?: any;
         firstCallLog?: any;
     }, {
-        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -26080,7 +26080,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     } | undefined;
     currentTacticStepIndex?: number | undefined;
     summaryData?: {
-        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -26485,7 +26485,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     currentTacticStepIndex?: number | undefined;
     isDraft?: boolean | undefined;
     summaryData?: {
-        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -28587,7 +28587,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         firstCallLog: z.ZodOptional<z.ZodAny>;
         hasContent: z.ZodBoolean;
     }, "strip", z.ZodTypeAny, {
-        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -28596,7 +28596,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         firstMessageLog?: any;
         firstCallLog?: any;
     }, {
-        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -29030,7 +29030,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     } | undefined;
     currentTacticStepIndex?: number | undefined;
     summaryData?: {
-        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -29428,7 +29428,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     currentTacticStepIndex?: number | undefined;
     isDraft?: boolean | undefined;
     summaryData?: {
-        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -31229,7 +31229,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         firstCallLog: z.ZodOptional<z.ZodAny>;
         hasContent: z.ZodBoolean;
     }, "strip", z.ZodTypeAny, {
-        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -31238,7 +31238,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         firstMessageLog?: any;
         firstCallLog?: any;
     }, {
-        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -31970,7 +31970,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     } | undefined;
     currentTacticStepIndex?: number | undefined;
     summaryData?: {
-        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -32368,7 +32368,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     currentTacticStepIndex?: number | undefined;
     isDraft?: boolean | undefined;
     summaryData?: {
-        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -34467,7 +34467,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         firstCallLog: z.ZodOptional<z.ZodAny>;
         hasContent: z.ZodBoolean;
     }, "strip", z.ZodTypeAny, {
-        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -34476,7 +34476,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         firstMessageLog?: any;
         firstCallLog?: any;
     }, {
-        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -34910,7 +34910,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     } | undefined;
     currentTacticStepIndex?: number | undefined;
     summaryData?: {
-        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -35308,7 +35308,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     currentTacticStepIndex?: number | undefined;
     isDraft?: boolean | undefined;
     summaryData?: {
-        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -37109,7 +37109,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         firstCallLog: z.ZodOptional<z.ZodAny>;
         hasContent: z.ZodBoolean;
     }, "strip", z.ZodTypeAny, {
-        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -37118,7 +37118,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         firstMessageLog?: any;
         firstCallLog?: any;
     }, {
-        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -37850,7 +37850,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     } | undefined;
     currentTacticStepIndex?: number | undefined;
     summaryData?: {
-        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -38248,7 +38248,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     currentTacticStepIndex?: number | undefined;
     isDraft?: boolean | undefined;
     summaryData?: {
-        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -40347,7 +40347,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         firstCallLog: z.ZodOptional<z.ZodAny>;
         hasContent: z.ZodBoolean;
     }, "strip", z.ZodTypeAny, {
-        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -40356,7 +40356,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         firstMessageLog?: any;
         firstCallLog?: any;
     }, {
-        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -40790,7 +40790,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     } | undefined;
     currentTacticStepIndex?: number | undefined;
     summaryData?: {
-        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -41188,7 +41188,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     currentTacticStepIndex?: number | undefined;
     isDraft?: boolean | undefined;
     summaryData?: {
-        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
