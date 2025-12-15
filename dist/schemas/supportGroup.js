@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidSupportGroup = exports.isValidSupportGroupMember = exports.supportGroupSchema = exports.supportGroupTypeSchema = exports.supportGroupMemberSchema = exports.supportGroupNotificationPreferencesSchema = exports.supportGroupPermissionsSchema = exports.supportGroupMatchingCriteriaSchema = exports.socialLevelOptionSchema = exports.supportStyleOptionSchema = exports.workingOnOptionSchema = void 0;
+exports.isValidSupportGroup = exports.isValidSupportGroupMember = exports.supportGroupSchema = exports.supportGroupTypeSchema = exports.supportGroupMemberSchema = exports.supportGroupNotificationPreferencesSchema = exports.supportGroupPermissionsSchema = exports.matchingModeSchema = void 0;
 const zod_1 = require("zod");
+const documentReferenceSchema_1 = require("../utils/documentReferenceSchema");
 const objectOf_1 = require("../utils/objectOf");
 const timestampSchema_1 = require("../utils/timestampSchema");
 const attachment_1 = require("./attachment");
@@ -11,28 +12,7 @@ const supportGroupPermissions_1 = require("./supportGroupPermissions");
 Object.defineProperty(exports, "supportGroupPermissionsSchema", { enumerable: true, get: function () { return supportGroupPermissions_1.supportGroupPermissionsSchema; } });
 Object.defineProperty(exports, "supportGroupNotificationPreferencesSchema", { enumerable: true, get: function () { return supportGroupPermissions_1.supportGroupNotificationPreferencesSchema; } });
 // Matching criteria schemas
-exports.workingOnOptionSchema = zod_1.z.enum([
-    "urges",
-    "habits",
-    "mood",
-    "sleep",
-    "focus",
-    "substances",
-    "anxiety",
-    "motivation",
-]);
-exports.supportStyleOptionSchema = zod_1.z.enum([
-    "presence",
-    "encouragement",
-    "accountability",
-    "suggestions",
-]);
-exports.socialLevelOptionSchema = zod_1.z.enum(["quiet", "balanced", "active"]);
-exports.supportGroupMatchingCriteriaSchema = zod_1.z.object({
-    topics: zod_1.z.array(exports.workingOnOptionSchema).default([]),
-    supportStyles: zod_1.z.array(exports.supportStyleOptionSchema).default([]),
-    socialLevel: exports.socialLevelOptionSchema.optional(),
-});
+exports.matchingModeSchema = zod_1.z.enum(["focused", "mixed"]);
 // Support Group Member Schema
 exports.supportGroupMemberSchema = zod_1.z.object({
     userId: zod_1.z.string(),
@@ -69,7 +49,9 @@ exports.supportGroupSchema = zod_1.z.object({
     createdAt: timestampSchema_1.timestampSchema.optional(),
     updatedAt: timestampSchema_1.timestampSchema.optional(),
     // Matching criteria for automatic group assignment
-    matchingCriteria: exports.supportGroupMatchingCriteriaSchema.optional(),
+    behaviorTemplates: zod_1.z.array(documentReferenceSchema_1.documentReferenceSchema).optional(),
+    timezoneOffsets: zod_1.z.array(zod_1.z.number()).optional(),
+    matchingMode: exports.matchingModeSchema.optional(),
     // Whether this group accepts new members via matching
     acceptsMatching: zod_1.z.boolean().optional(),
     // Maximum number of members for this group (for small group matching)

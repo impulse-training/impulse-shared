@@ -11,34 +11,8 @@ import {
 } from "./supportGroupPermissions";
 
 // Matching criteria schemas
-export const workingOnOptionSchema = z.enum([
-  "urges",
-  "habits",
-  "mood",
-  "sleep",
-  "focus",
-  "substances",
-  "anxiety",
-  "motivation",
-]);
-export type WorkingOnOption = z.infer<typeof workingOnOptionSchema>;
-
-export const supportStyleOptionSchema = z.enum([
-  "presence",
-  "encouragement",
-  "accountability",
-  "suggestions",
-]);
-export type SupportStyleOption = z.infer<typeof supportStyleOptionSchema>;
-
-export const socialLevelOptionSchema = z.enum(["quiet", "balanced", "active"]);
-export type SocialLevelOption = z.infer<typeof socialLevelOptionSchema>;
-
-export const supportGroupMatchingCriteriaSchema = z.object({
-  topics: z.array(workingOnOptionSchema).default([]),
-  supportStyles: z.array(supportStyleOptionSchema).default([]),
-  socialLevel: socialLevelOptionSchema.optional(),
-});
+export const matchingModeSchema = z.enum(["focused", "mixed"]);
+export type MatchingMode = z.infer<typeof matchingModeSchema>;
 
 // Re-export for backward compatibility
 export type {
@@ -90,7 +64,9 @@ export const supportGroupSchema = z.object({
   updatedAt: timestampSchema.optional(),
 
   // Matching criteria for automatic group assignment
-  matchingCriteria: supportGroupMatchingCriteriaSchema.optional(),
+  behaviorTemplates: z.array(documentReferenceSchema).optional(),
+  timezoneOffsets: z.array(z.number()).optional(),
+  matchingMode: matchingModeSchema.optional(),
   // Whether this group accepts new members via matching
   acceptsMatching: z.boolean().optional(),
   // Maximum number of members for this group (for small group matching)
@@ -100,9 +76,6 @@ export const supportGroupSchema = z.object({
 // Export types inferred from schemas
 export type SupportGroupMember = z.infer<typeof supportGroupMemberSchema>;
 export type SupportGroup = z.infer<typeof supportGroupSchema>;
-export type SupportGroupMatchingCriteria = z.infer<
-  typeof supportGroupMatchingCriteriaSchema
->;
 
 // Type guard functions
 export const isValidSupportGroupMember = (
