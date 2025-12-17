@@ -344,7 +344,6 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 } | undefined;
                 behaviorTopicId?: string | undefined;
             }>>>;
-            trackingLogsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
             tacticsUsed: z.ZodDefault<z.ZodArray<z.ZodAny, "many">>;
             summaryText: z.ZodDefault<z.ZodString>;
             supportGroupPermissionsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodObject<{
@@ -462,7 +461,6 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 behaviorTopicId?: string | undefined;
             }> | undefined;
             outcome?: "success" | "setback" | "partial" | undefined;
-            trackingLogsById?: Record<string, any> | undefined;
             supportGroupPermissionsById?: Record<string, {
                 summary: boolean;
                 dayOutcomes: boolean;
@@ -544,7 +542,6 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 behaviorTopicId?: string | undefined;
             }> | undefined;
             outcome?: "success" | "setback" | "partial" | undefined;
-            trackingLogsById?: Record<string, any> | undefined;
             tacticsUsed?: any[] | undefined;
             supportGroupPermissionsById?: Record<string, {
                 summary?: boolean | undefined;
@@ -633,7 +630,6 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 behaviorTopicId?: string | undefined;
             }> | undefined;
             outcome?: "success" | "setback" | "partial" | undefined;
-            trackingLogsById?: Record<string, any> | undefined;
             supportGroupPermissionsById?: Record<string, {
                 summary: boolean;
                 dayOutcomes: boolean;
@@ -719,7 +715,6 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 behaviorTopicId?: string | undefined;
             }> | undefined;
             outcome?: "success" | "setback" | "partial" | undefined;
-            trackingLogsById?: Record<string, any> | undefined;
             tacticsUsed?: any[] | undefined;
             supportGroupPermissionsById?: Record<string, {
                 summary?: boolean | undefined;
@@ -815,7 +810,6 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 behaviorTopicId?: string | undefined;
             }> | undefined;
             outcome?: "success" | "setback" | "partial" | undefined;
-            trackingLogsById?: Record<string, any> | undefined;
             supportGroupPermissionsById?: Record<string, {
                 summary: boolean;
                 dayOutcomes: boolean;
@@ -913,7 +907,6 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 behaviorTopicId?: string | undefined;
             }> | undefined;
             outcome?: "success" | "setback" | "partial" | undefined;
-            trackingLogsById?: Record<string, any> | undefined;
             tacticsUsed?: any[] | undefined;
             supportGroupPermissionsById?: Record<string, {
                 summary?: boolean | undefined;

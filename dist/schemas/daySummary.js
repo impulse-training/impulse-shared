@@ -25,7 +25,6 @@ exports.daySummarySchema = zod_1.z.object({
     outcome: outcomeEnum.optional(),
     behaviorDataTotalByBehaviorId: (0, objectOf_1.objectOf)(log_1.behaviorTrackingDataSchema),
     behaviorsById: (0, objectOf_1.objectOf)(behavior_1.behaviorSchema).optional(),
-    trackingLogsById: zod_1.z.record(zod_1.z.string(), zod_1.z.any()).optional(),
     tacticsUsed: zod_1.z.array(zod_1.z.any()).default([]),
     summaryText: zod_1.z.string().default(""),
     supportGroupPermissionsById: (0, objectOf_1.optionalObjectOf)(supportGroupPermissions_1.supportGroupPermissionsSchema),

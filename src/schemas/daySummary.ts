@@ -25,7 +25,6 @@ export const daySummarySchema = z.object({
   outcome: outcomeEnum.optional(),
   behaviorDataTotalByBehaviorId: objectOf(behaviorTrackingDataSchema),
   behaviorsById: objectOf(behaviorSchema).optional(),
-  trackingLogsById: z.record(z.string(), z.any()).optional(),
   tacticsUsed: z.array(z.any()).default([]),
   summaryText: z.string().default(""),
   supportGroupPermissionsById: optionalObjectOf(supportGroupPermissionsSchema),
