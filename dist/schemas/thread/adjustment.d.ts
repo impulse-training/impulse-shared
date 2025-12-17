@@ -2052,13 +2052,12 @@ export declare const adjustmentThreadSchema: z.ZodObject<{
         name: string;
         emoji: string;
     }>>;
-    trackingLogsById: z.ZodRecord<z.ZodString, z.ZodAny>;
     summaryData: z.ZodOptional<z.ZodObject<{
         type: z.ZodEnum<["impulse", "general", "onboarding", "recap", "behavior", "dayRecap", "timePlan", "locationPlan", "adjustment"]>;
         tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
         behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
         outcomeLogs: z.ZodArray<z.ZodAny, "many">;
-        questionLogs: z.ZodArray<z.ZodAny, "many">;
+        questionsLogs: z.ZodArray<z.ZodAny, "many">;
         firstMessageLog: z.ZodOptional<z.ZodAny>;
         firstCallLog: z.ZodOptional<z.ZodAny>;
         hasContent: z.ZodBoolean;
@@ -2067,7 +2066,7 @@ export declare const adjustmentThreadSchema: z.ZodObject<{
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
-        questionLogs: any[];
+        questionsLogs: any[];
         hasContent: boolean;
         firstMessageLog?: any;
         firstCallLog?: any;
@@ -2076,7 +2075,7 @@ export declare const adjustmentThreadSchema: z.ZodObject<{
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
-        questionLogs: any[];
+        questionsLogs: any[];
         hasContent: boolean;
         firstMessageLog?: any;
         firstCallLog?: any;
@@ -2153,7 +2152,6 @@ export declare const adjustmentThreadSchema: z.ZodObject<{
         name: string;
         emoji: string;
     } | null;
-    trackingLogsById: Record<string, any>;
     sharedWithUserIds: string[];
     isDraft: boolean;
     archiveAfter: import("../../types").Timestamp;
@@ -2510,7 +2508,7 @@ export declare const adjustmentThreadSchema: z.ZodObject<{
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
-        questionLogs: any[];
+        questionsLogs: any[];
         hasContent: boolean;
         firstMessageLog?: any;
         firstCallLog?: any;
@@ -2550,7 +2548,6 @@ export declare const adjustmentThreadSchema: z.ZodObject<{
         name: string;
         emoji: string;
     } | null;
-    trackingLogsById: Record<string, any>;
     sharedWithUserIds: string[];
     archiveAfter: import("../../types").Timestamp;
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
@@ -2908,7 +2905,7 @@ export declare const adjustmentThreadSchema: z.ZodObject<{
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
-        questionLogs: any[];
+        questionsLogs: any[];
         hasContent: boolean;
         firstMessageLog?: any;
         firstCallLog?: any;

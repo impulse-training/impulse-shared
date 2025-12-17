@@ -87,9 +87,9 @@ export declare const showTourLogSchema: z.ZodObject<{
         includeCloseButton: boolean;
         closeButtonText: string;
         closeButtonHref: string;
+        completedAt?: import("../../types").Timestamp | undefined;
         firstNavigateToRoute?: string | undefined;
         startButtonLabel?: string | undefined;
-        completedAt?: import("../../types").Timestamp | undefined;
     }, {
         steps: {
             title: string;
@@ -100,9 +100,9 @@ export declare const showTourLogSchema: z.ZodObject<{
             borderRadius?: number | undefined;
             innerPadding?: number | undefined;
         }[];
+        completedAt?: import("../../types").Timestamp | undefined;
         firstNavigateToRoute?: string | undefined;
         startButtonLabel?: string | undefined;
-        completedAt?: import("../../types").Timestamp | undefined;
         includeCloseButton?: boolean | undefined;
         closeButtonText?: string | undefined;
         closeButtonHref?: string | undefined;
@@ -128,9 +128,9 @@ export declare const showTourLogSchema: z.ZodObject<{
         includeCloseButton: boolean;
         closeButtonText: string;
         closeButtonHref: string;
+        completedAt?: import("../../types").Timestamp | undefined;
         firstNavigateToRoute?: string | undefined;
         startButtonLabel?: string | undefined;
-        completedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
@@ -154,9 +154,9 @@ export declare const showTourLogSchema: z.ZodObject<{
             borderRadius?: number | undefined;
             innerPadding?: number | undefined;
         }[];
+        completedAt?: import("../../types").Timestamp | undefined;
         firstNavigateToRoute?: string | undefined;
         startButtonLabel?: string | undefined;
-        completedAt?: import("../../types").Timestamp | undefined;
         includeCloseButton?: boolean | undefined;
         closeButtonText?: string | undefined;
         closeButtonHref?: string | undefined;

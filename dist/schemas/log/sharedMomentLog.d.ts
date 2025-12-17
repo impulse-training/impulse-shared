@@ -18,7 +18,7 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
             tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             outcomeLogs: z.ZodArray<z.ZodAny, "many">;
-            questionLogs: z.ZodArray<z.ZodAny, "many">;
+            questionsLogs: z.ZodArray<z.ZodAny, "many">;
             firstMessageLog: z.ZodOptional<z.ZodAny>;
             firstCallLog: z.ZodOptional<z.ZodAny>;
             hasContent: z.ZodBoolean;
@@ -27,7 +27,7 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionLogs: any[];
+            questionsLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
             firstCallLog?: any;
@@ -36,7 +36,7 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionLogs: any[];
+            questionsLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
             firstCallLog?: any;
@@ -59,7 +59,7 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionLogs: any[];
+            questionsLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
             firstCallLog?: any;
@@ -76,7 +76,7 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionLogs: any[];
+            questionsLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
             firstCallLog?: any;
@@ -101,7 +101,7 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionLogs: any[];
+            questionsLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
             firstCallLog?: any;
@@ -130,7 +130,7 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionLogs: any[];
+            questionsLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
             firstCallLog?: any;

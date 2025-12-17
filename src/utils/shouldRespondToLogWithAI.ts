@@ -2,45 +2,33 @@ import { Thread, threadIsTimePlanThread } from "../schemas";
 import {
   Log,
   logIsBehaviorLog,
+  logIsPlansLog,
   logIsQuestionsLog,
   logIsResistedLog,
   logIsShowTourLog,
   logIsTacticLog,
   logIsUserMessageLog,
   logIsWidgetSetupLog,
+  PlansLog,
 } from "../schemas/log";
 import { fieldChanged } from "./fields";
 import { WithId } from "./withId";
 
 /**
- * Check if all tactics in a timePlan thread's plan are completed
+ * Check if a timePlan thread's plan is marked as completed in a plansLog
  */
-function isTimePlanFullyCompleted(thread: WithId<Thread>): boolean {
+function isTimePlanFullyCompleted(
+  thread: WithId<Thread>,
+  plansLog: PlansLog
+): boolean {
   if (!threadIsTimePlanThread(thread)) return false;
 
-  const plan = thread.plan;
-  const tacticsByPath = plan.tacticsByPath || {};
-  const trackingLogsById = thread.trackingLogsById || {};
+  const planId = thread.plan?.id;
+  if (!planId) return false;
 
-  // Check each tactic reference in the plan
-  for (const tacticRef of plan.tactics || []) {
-    const tacticPath = tacticRef.path;
-    const tactic = tacticsByPath[tacticPath];
-    const tacticId = tactic?.id;
-
-    if (!tacticId) continue;
-
-    // Check if this tactic has a completion log
-    const isCompleted = Object.values(trackingLogsById).some(
-      (log) => logIsTacticLog(log) && log.data?.tactic?.id === tacticId
-    );
-
-    if (!isCompleted) {
-      return false;
-    }
-  }
-
-  return true;
+  // Check if this plan has completedAt set in the plansLog
+  const planEntry = plansLog.data.plans.find((p) => p.planId === planId);
+  return !!planEntry?.completedAt;
 }
 
 /**
@@ -105,12 +93,12 @@ export function shouldRespondToLogWithAI(
     return true;
   }
 
-  // Case: The user has completed a tactic in a timePlan thread and all tactics are now done
+  // Case: A plansLog was updated with completedAt for a timePlan thread
   if (
-    isCreating &&
-    logIsTacticLog(afterData) &&
+    isNotDeleting &&
+    logIsPlansLog(afterData) &&
     threadIsTimePlanThread(thread) &&
-    isTimePlanFullyCompleted(thread)
+    isTimePlanFullyCompleted(thread, afterData)
   ) {
     return true;
   }

@@ -6,7 +6,6 @@ export * from "./documentReferenceSchema";
 export * from "./fields";
 export * from "./objectOf";
 export * from "./shouldRespondToLogWithAI";
-export * from "./sumBehaviorDataTotals";
 export * from "./timestampSchema";
 export * from "./validation";
 export * from "./withId";

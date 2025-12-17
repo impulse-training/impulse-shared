@@ -37,10 +37,7 @@ exports.threadBaseSchema = zod_1.z.object({
     // Draft threads should be hidden in UI until a log is added
     isDraft: zod_1.z.boolean().optional().default(false),
     emojiId: emojiId_1.emojiIdSchema.nullable(),
-    // Log summary data - written in after log write functions. We store tactic and behavior tracking
-    // logs here (loosely typed for now)
-    trackingLogsById: zod_1.z.record(zod_1.z.string(), zod_1.z.any()),
-    // Pre-computed summary data for thread cards - updated when trackingLogsById changes
+    // Pre-computed summary data for thread cards - updated when thread is closed
     summaryData: threadSummary_1.threadSummarySchema.optional(),
     defaultSystemPrompt: zod_1.z.string().optional(),
     debriefSystemPrompt: zod_1.z.string().optional(),

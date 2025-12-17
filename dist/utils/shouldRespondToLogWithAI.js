@@ -5,28 +5,18 @@ const schemas_1 = require("../schemas");
 const log_1 = require("../schemas/log");
 const fields_1 = require("./fields");
 /**
- * Check if all tactics in a timePlan thread's plan are completed
+ * Check if a timePlan thread's plan is marked as completed in a plansLog
  */
-function isTimePlanFullyCompleted(thread) {
+function isTimePlanFullyCompleted(thread, plansLog) {
+    var _a;
     if (!(0, schemas_1.threadIsTimePlanThread)(thread))
         return false;
-    const plan = thread.plan;
-    const tacticsByPath = plan.tacticsByPath || {};
-    const trackingLogsById = thread.trackingLogsById || {};
-    // Check each tactic reference in the plan
-    for (const tacticRef of plan.tactics || []) {
-        const tacticPath = tacticRef.path;
-        const tactic = tacticsByPath[tacticPath];
-        const tacticId = tactic === null || tactic === void 0 ? void 0 : tactic.id;
-        if (!tacticId)
-            continue;
-        // Check if this tactic has a completion log
-        const isCompleted = Object.values(trackingLogsById).some((log) => { var _a, _b; return (0, log_1.logIsTacticLog)(log) && ((_b = (_a = log.data) === null || _a === void 0 ? void 0 : _a.tactic) === null || _b === void 0 ? void 0 : _b.id) === tacticId; });
-        if (!isCompleted) {
-            return false;
-        }
-    }
-    return true;
+    const planId = (_a = thread.plan) === null || _a === void 0 ? void 0 : _a.id;
+    if (!planId)
+        return false;
+    // Check if this plan has completedAt set in the plansLog
+    const planEntry = plansLog.data.plans.find((p) => p.planId === planId);
+    return !!(planEntry === null || planEntry === void 0 ? void 0 : planEntry.completedAt);
 }
 /**
  * Check if we should respond to a log write event with AI
@@ -74,11 +64,11 @@ function shouldRespondToLogWithAI(thread, beforeData, afterData) {
         (0, fields_1.fieldChanged)(beforeData, afterData, "data.formattedValue")) {
         return true;
     }
-    // Case: The user has completed a tactic in a timePlan thread and all tactics are now done
-    if (isCreating &&
-        (0, log_1.logIsTacticLog)(afterData) &&
+    // Case: A plansLog was updated with completedAt for a timePlan thread
+    if (isNotDeleting &&
+        (0, log_1.logIsPlansLog)(afterData) &&
         (0, schemas_1.threadIsTimePlanThread)(thread) &&
-        isTimePlanFullyCompleted(thread)) {
+        isTimePlanFullyCompleted(thread, afterData)) {
         return true;
     }
     return false;

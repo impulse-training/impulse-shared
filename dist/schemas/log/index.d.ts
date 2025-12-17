@@ -10617,6 +10617,7 @@ export declare const logSchemas: {
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                 }>>]>;
+                completedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             }, "strip", z.ZodTypeAny, {
                 planId: string;
                 plan: ({
@@ -10711,6 +10712,7 @@ export declare const logSchemas: {
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                 });
+                completedAt?: import("../../types").Timestamp | undefined;
             }, {
                 planId: string;
                 plan: ({
@@ -10805,6 +10807,7 @@ export declare const logSchemas: {
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                 });
+                completedAt?: import("../../types").Timestamp | undefined;
             }>, "many">;
             activeIndex: z.ZodDefault<z.ZodNumber>;
             acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -10903,6 +10906,7 @@ export declare const logSchemas: {
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                 });
+                completedAt?: import("../../types").Timestamp | undefined;
             }[];
             activeIndex: number;
             behaviorId?: string | undefined;
@@ -11002,6 +11006,7 @@ export declare const logSchemas: {
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                 });
+                completedAt?: import("../../types").Timestamp | undefined;
             }[];
             behaviorId?: string | undefined;
             activeIndex?: number | undefined;
@@ -11109,6 +11114,7 @@ export declare const logSchemas: {
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                 });
+                completedAt?: import("../../types").Timestamp | undefined;
             }[];
             activeIndex: number;
             behaviorId?: string | undefined;
@@ -11220,6 +11226,7 @@ export declare const logSchemas: {
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                 });
+                completedAt?: import("../../types").Timestamp | undefined;
             }[];
             behaviorId?: string | undefined;
             activeIndex?: number | undefined;
@@ -11371,9 +11378,9 @@ export declare const logSchemas: {
             includeCloseButton: boolean;
             closeButtonText: string;
             closeButtonHref: string;
+            completedAt?: import("../../types").Timestamp | undefined;
             firstNavigateToRoute?: string | undefined;
             startButtonLabel?: string | undefined;
-            completedAt?: import("../../types").Timestamp | undefined;
         }, {
             steps: {
                 title: string;
@@ -11384,9 +11391,9 @@ export declare const logSchemas: {
                 borderRadius?: number | undefined;
                 innerPadding?: number | undefined;
             }[];
+            completedAt?: import("../../types").Timestamp | undefined;
             firstNavigateToRoute?: string | undefined;
             startButtonLabel?: string | undefined;
-            completedAt?: import("../../types").Timestamp | undefined;
             includeCloseButton?: boolean | undefined;
             closeButtonText?: string | undefined;
             closeButtonHref?: string | undefined;
@@ -11412,9 +11419,9 @@ export declare const logSchemas: {
             includeCloseButton: boolean;
             closeButtonText: string;
             closeButtonHref: string;
+            completedAt?: import("../../types").Timestamp | undefined;
             firstNavigateToRoute?: string | undefined;
             startButtonLabel?: string | undefined;
-            completedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
@@ -11438,9 +11445,9 @@ export declare const logSchemas: {
                 borderRadius?: number | undefined;
                 innerPadding?: number | undefined;
             }[];
+            completedAt?: import("../../types").Timestamp | undefined;
             firstNavigateToRoute?: string | undefined;
             startButtonLabel?: string | undefined;
-            completedAt?: import("../../types").Timestamp | undefined;
             includeCloseButton?: boolean | undefined;
             closeButtonText?: string | undefined;
             closeButtonHref?: string | undefined;
@@ -11784,7 +11791,7 @@ export declare const logSchemas: {
                 tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
                 behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
                 outcomeLogs: z.ZodArray<z.ZodAny, "many">;
-                questionLogs: z.ZodArray<z.ZodAny, "many">;
+                questionsLogs: z.ZodArray<z.ZodAny, "many">;
                 firstMessageLog: z.ZodOptional<z.ZodAny>;
                 firstCallLog: z.ZodOptional<z.ZodAny>;
                 hasContent: z.ZodBoolean;
@@ -11793,7 +11800,7 @@ export declare const logSchemas: {
                 tacticsByTitle: Record<string, any[]>;
                 behaviorsByName: Record<string, any[]>;
                 outcomeLogs: any[];
-                questionLogs: any[];
+                questionsLogs: any[];
                 hasContent: boolean;
                 firstMessageLog?: any;
                 firstCallLog?: any;
@@ -11802,7 +11809,7 @@ export declare const logSchemas: {
                 tacticsByTitle: Record<string, any[]>;
                 behaviorsByName: Record<string, any[]>;
                 outcomeLogs: any[];
-                questionLogs: any[];
+                questionsLogs: any[];
                 hasContent: boolean;
                 firstMessageLog?: any;
                 firstCallLog?: any;
@@ -11825,7 +11832,7 @@ export declare const logSchemas: {
                 tacticsByTitle: Record<string, any[]>;
                 behaviorsByName: Record<string, any[]>;
                 outcomeLogs: any[];
-                questionLogs: any[];
+                questionsLogs: any[];
                 hasContent: boolean;
                 firstMessageLog?: any;
                 firstCallLog?: any;
@@ -11842,7 +11849,7 @@ export declare const logSchemas: {
                 tacticsByTitle: Record<string, any[]>;
                 behaviorsByName: Record<string, any[]>;
                 outcomeLogs: any[];
-                questionLogs: any[];
+                questionsLogs: any[];
                 hasContent: boolean;
                 firstMessageLog?: any;
                 firstCallLog?: any;
@@ -11867,7 +11874,7 @@ export declare const logSchemas: {
                 tacticsByTitle: Record<string, any[]>;
                 behaviorsByName: Record<string, any[]>;
                 outcomeLogs: any[];
-                questionLogs: any[];
+                questionsLogs: any[];
                 hasContent: boolean;
                 firstMessageLog?: any;
                 firstCallLog?: any;
@@ -11896,7 +11903,7 @@ export declare const logSchemas: {
                 tacticsByTitle: Record<string, any[]>;
                 behaviorsByName: Record<string, any[]>;
                 outcomeLogs: any[];
-                questionLogs: any[];
+                questionsLogs: any[];
                 hasContent: boolean;
                 firstMessageLog?: any;
                 firstCallLog?: any;
@@ -20758,6 +20765,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
             }>>]>;
+            completedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         }, "strip", z.ZodTypeAny, {
             planId: string;
             plan: ({
@@ -20852,6 +20860,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
             });
+            completedAt?: import("../../types").Timestamp | undefined;
         }, {
             planId: string;
             plan: ({
@@ -20946,6 +20955,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
             });
+            completedAt?: import("../../types").Timestamp | undefined;
         }>, "many">;
         activeIndex: z.ZodDefault<z.ZodNumber>;
         acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -21044,6 +21054,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
             });
+            completedAt?: import("../../types").Timestamp | undefined;
         }[];
         activeIndex: number;
         behaviorId?: string | undefined;
@@ -21143,6 +21154,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
             });
+            completedAt?: import("../../types").Timestamp | undefined;
         }[];
         behaviorId?: string | undefined;
         activeIndex?: number | undefined;
@@ -21250,6 +21262,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
             });
+            completedAt?: import("../../types").Timestamp | undefined;
         }[];
         activeIndex: number;
         behaviorId?: string | undefined;
@@ -21361,6 +21374,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
             });
+            completedAt?: import("../../types").Timestamp | undefined;
         }[];
         behaviorId?: string | undefined;
         activeIndex?: number | undefined;
@@ -21509,9 +21523,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         includeCloseButton: boolean;
         closeButtonText: string;
         closeButtonHref: string;
+        completedAt?: import("../../types").Timestamp | undefined;
         firstNavigateToRoute?: string | undefined;
         startButtonLabel?: string | undefined;
-        completedAt?: import("../../types").Timestamp | undefined;
     }, {
         steps: {
             title: string;
@@ -21522,9 +21536,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             borderRadius?: number | undefined;
             innerPadding?: number | undefined;
         }[];
+        completedAt?: import("../../types").Timestamp | undefined;
         firstNavigateToRoute?: string | undefined;
         startButtonLabel?: string | undefined;
-        completedAt?: import("../../types").Timestamp | undefined;
         includeCloseButton?: boolean | undefined;
         closeButtonText?: string | undefined;
         closeButtonHref?: string | undefined;
@@ -21550,9 +21564,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         includeCloseButton: boolean;
         closeButtonText: string;
         closeButtonHref: string;
+        completedAt?: import("../../types").Timestamp | undefined;
         firstNavigateToRoute?: string | undefined;
         startButtonLabel?: string | undefined;
-        completedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
@@ -21576,9 +21590,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             borderRadius?: number | undefined;
             innerPadding?: number | undefined;
         }[];
+        completedAt?: import("../../types").Timestamp | undefined;
         firstNavigateToRoute?: string | undefined;
         startButtonLabel?: string | undefined;
-        completedAt?: import("../../types").Timestamp | undefined;
         includeCloseButton?: boolean | undefined;
         closeButtonText?: string | undefined;
         closeButtonHref?: string | undefined;
@@ -21865,7 +21879,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             outcomeLogs: z.ZodArray<z.ZodAny, "many">;
-            questionLogs: z.ZodArray<z.ZodAny, "many">;
+            questionsLogs: z.ZodArray<z.ZodAny, "many">;
             firstMessageLog: z.ZodOptional<z.ZodAny>;
             firstCallLog: z.ZodOptional<z.ZodAny>;
             hasContent: z.ZodBoolean;
@@ -21874,7 +21888,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionLogs: any[];
+            questionsLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
             firstCallLog?: any;
@@ -21883,7 +21897,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionLogs: any[];
+            questionsLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
             firstCallLog?: any;
@@ -21906,7 +21920,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionLogs: any[];
+            questionsLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
             firstCallLog?: any;
@@ -21923,7 +21937,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionLogs: any[];
+            questionsLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
             firstCallLog?: any;
@@ -21948,7 +21962,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionLogs: any[];
+            questionsLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
             firstCallLog?: any;
@@ -21977,7 +21991,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionLogs: any[];
+            questionsLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
             firstCallLog?: any;

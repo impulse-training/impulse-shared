@@ -41,11 +41,7 @@ export const threadBaseSchema = z.object({
 
   emojiId: emojiIdSchema.nullable(),
 
-  // Log summary data - written in after log write functions. We store tactic and behavior tracking
-  // logs here (loosely typed for now)
-  trackingLogsById: z.record(z.string(), z.any()),
-
-  // Pre-computed summary data for thread cards - updated when trackingLogsById changes
+  // Pre-computed summary data for thread cards - updated when thread is closed
   summaryData: threadSummarySchema.optional(),
   defaultSystemPrompt: z.string().optional(),
   debriefSystemPrompt: z.string().optional(),

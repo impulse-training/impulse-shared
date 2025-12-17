@@ -22,7 +22,6 @@ __exportStar(require("./documentReferenceSchema"), exports);
 __exportStar(require("./fields"), exports);
 __exportStar(require("./objectOf"), exports);
 __exportStar(require("./shouldRespondToLogWithAI"), exports);
-__exportStar(require("./sumBehaviorDataTotals"), exports);
 __exportStar(require("./timestampSchema"), exports);
 __exportStar(require("./validation"), exports);
 __exportStar(require("./withId"), exports);
