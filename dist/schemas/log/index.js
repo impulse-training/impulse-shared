@@ -26,7 +26,7 @@ const messageLog_1 = require("./messageLog");
 const userMessageLog_1 = require("./messageLog/userMessageLog");
 const notifySupportGroupLog_1 = require("./notifySupportGroupLog");
 const plansLog_1 = require("./plansLog");
-const questionLog_1 = require("./questionLog");
+const questionsLog_1 = require("./questionsLog");
 const readyToDebriefLog_1 = require("./readyToDebriefLog");
 const resistedLog_1 = require("./resistedLog");
 const sharedMomentLog_1 = require("./sharedMomentLog");
@@ -52,8 +52,7 @@ exports.logSchemas = {
     behavior: behaviorLog_1.behaviorLogSchema,
     breathing: breathingLog_1.breathingLogSchema,
     outcome: resistedLog_1.resistedLogSchema,
-    question: questionLog_1.questionLogSchema,
-    questions: questionLog_1.questionsLogSchema,
+    questions: questionsLog_1.questionsLogSchema,
     plans: plansLog_1.plansLogSchema,
     summary: summaryLog_1.summaryLogSchema,
     widget_setup: widgetSetupLog_1.widgetSetupLogSchema,
@@ -76,7 +75,7 @@ __exportStar(require("./linkLog"), exports);
 __exportStar(require("./messageLog"), exports);
 __exportStar(require("./notifySupportGroupLog"), exports);
 __exportStar(require("./plansLog"), exports);
-__exportStar(require("./questionLog"), exports);
+__exportStar(require("./questionsLog"), exports);
 __exportStar(require("./readyToDebriefLog"), exports);
 __exportStar(require("./resistedLog"), exports);
 __exportStar(require("./sharedMomentLog"), exports);
@@ -102,7 +101,7 @@ exports.logSchema = zod_1.z.discriminatedUnion("type", [
     behaviorLog_1.behaviorLogSchema,
     breathingLog_1.breathingLogSchema,
     resistedLog_1.resistedLogSchema,
-    questionLog_1.questionsLogSchema,
+    questionsLog_1.questionsLogSchema,
     plansLog_1.plansLogSchema,
     summaryLog_1.summaryLogSchema,
     widgetSetupLog_1.widgetSetupLogSchema,
@@ -173,7 +172,7 @@ exports.isValidWidgetSetupLog = isValidWidgetSetupLog;
 const logIsQuestionsLog = (value) => value.type === "questions";
 exports.logIsQuestionsLog = logIsQuestionsLog;
 const isValidQuestionsLog = (value) => {
-    return questionLog_1.questionsLogSchema.safeParse(value).success;
+    return questionsLog_1.questionsLogSchema.safeParse(value).success;
 };
 exports.isValidQuestionsLog = isValidQuestionsLog;
 const logIsTacticLog = (value) => value.type === "tactic";

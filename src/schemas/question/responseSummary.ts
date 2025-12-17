@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { timestampSchema } from "../../utils/timestampSchema";
-import { questionsLogSchema } from "../log/questionLog";
+import { questionsLogSchema } from "../log/questionsLog";
 
 /**
  * Schema for question response summary documents

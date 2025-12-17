@@ -19,12 +19,7 @@ import {
   notifySupportGroupLogSchema,
 } from "./notifySupportGroupLog";
 import { PlansLog, plansLogSchema } from "./plansLog";
-import {
-  QuestionLog,
-  questionLogSchema,
-  QuestionsLog,
-  questionsLogSchema,
-} from "./questionLog";
+import { QuestionsLog, questionsLogSchema } from "./questionsLog";
 import {
   ReadyToDebriefLog,
   readyToDebriefLogSchema,
@@ -60,7 +55,6 @@ export const logSchemas = {
   behavior: behaviorLogSchema,
   breathing: breathingLogSchema,
   outcome: resistedLogSchema,
-  question: questionLogSchema,
   questions: questionsLogSchema,
   plans: plansLogSchema,
   summary: summaryLogSchema,
@@ -87,7 +81,6 @@ export type Log =
   | BehaviorLog
   | BreathingLog
   | ResistedLog
-  | QuestionLog
   | QuestionsLog
   | PlansLog
   | ToolCallLog
@@ -113,7 +106,7 @@ export * from "./linkLog";
 export * from "./messageLog";
 export * from "./notifySupportGroupLog";
 export * from "./plansLog";
-export * from "./questionLog";
+export * from "./questionsLog";
 export * from "./readyToDebriefLog";
 export * from "./resistedLog";
 export * from "./sharedMomentLog";

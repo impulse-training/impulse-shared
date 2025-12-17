@@ -66,23 +66,3 @@ export const questionsLogSchema = logBaseSchema.extend({
 });
 
 export type QuestionsLog = z.infer<typeof questionsLogSchema>;
-
-/**
- * Single question log - legacy format for backward compatibility.
- * New code should use QuestionsLog instead.
- */
-export const questionLogSchema = logBaseSchema.extend({
-  type: z.literal("question"),
-  isDisplayable: z.literal(true),
-  data: z.object({
-    questionId: z.string().optional(),
-    question: questionSchema,
-    response: responseSchema.optional(),
-  }),
-});
-
-export type QuestionLog = z.infer<typeof questionLogSchema>;
-
-export const logIsQuestionLog = (value: {
-  type: string;
-}): value is QuestionLog => value.type === "question";
