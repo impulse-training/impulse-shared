@@ -9,5 +9,6 @@ exports.behaviorLogSchema = base_1.logBaseSchema.extend({
     type: zod_1.z.literal("behavior"),
     // Behavior tracked logs are always displayed in the UI
     isDisplayable: zod_1.z.literal(true),
+    isAdjustment: zod_1.z.boolean().default(false),
     data: behaviorTrackingData_1.behaviorTrackingDataSchema,
 });

@@ -13,6 +13,7 @@ export declare const behaviorLogSchema: z.ZodObject<{
 } & {
     type: z.ZodLiteral<"behavior">;
     isDisplayable: z.ZodLiteral<true>;
+    isAdjustment: z.ZodDefault<z.ZodBoolean>;
     data: z.ZodObject<{
         behaviorId: z.ZodString;
         behaviorName: z.ZodString;
@@ -42,6 +43,7 @@ export declare const behaviorLogSchema: z.ZodObject<{
     userId: string;
     dateString: string;
     isDisplayable: true;
+    isAdjustment: boolean;
     data: {
         value: number;
         behaviorId: string;
@@ -73,5 +75,6 @@ export declare const behaviorLogSchema: z.ZodObject<{
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
     callLogDocPath?: string | undefined;
+    isAdjustment?: boolean | undefined;
 }>;
 export type BehaviorLog = z.infer<typeof behaviorLogSchema>;

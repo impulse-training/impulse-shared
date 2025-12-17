@@ -8967,6 +8967,7 @@ export declare const logSchemas: {
     } & {
         type: z.ZodLiteral<"behavior">;
         isDisplayable: z.ZodLiteral<true>;
+        isAdjustment: z.ZodDefault<z.ZodBoolean>;
         data: z.ZodObject<{
             behaviorId: z.ZodString;
             behaviorName: z.ZodString;
@@ -8996,6 +8997,7 @@ export declare const logSchemas: {
         userId: string;
         dateString: string;
         isDisplayable: true;
+        isAdjustment: boolean;
         data: {
             value: number;
             behaviorId: string;
@@ -9027,6 +9029,7 @@ export declare const logSchemas: {
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
         callLogDocPath?: string | undefined;
+        isAdjustment?: boolean | undefined;
     }>;
     breathing: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
@@ -19119,6 +19122,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
 } & {
     type: z.ZodLiteral<"behavior">;
     isDisplayable: z.ZodLiteral<true>;
+    isAdjustment: z.ZodDefault<z.ZodBoolean>;
     data: z.ZodObject<{
         behaviorId: z.ZodString;
         behaviorName: z.ZodString;
@@ -19148,6 +19152,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     userId: string;
     dateString: string;
     isDisplayable: true;
+    isAdjustment: boolean;
     data: {
         value: number;
         behaviorId: string;
@@ -19179,6 +19184,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
     callLogDocPath?: string | undefined;
+    isAdjustment?: boolean | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
