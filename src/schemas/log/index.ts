@@ -3,7 +3,6 @@ import { BehaviorLog, behaviorLogSchema } from "./behaviorLog";
 import { BreathingLog, breathingLogSchema } from "./breathingLog";
 import { CallLog, callLogSchema } from "./callLog";
 import { DebriefUrgeLog, debriefUrgeLogSchema } from "./debriefUrgeLog";
-import { FinishRecapLog, finishRecapLogSchema } from "./finishRecapLog";
 import { ImpulseLog, impulseLogSchema } from "./impulseLog";
 import { LinkLog, linkLogSchema } from "./linkLog";
 import {
@@ -74,7 +73,6 @@ export const logSchemas = {
   ready_to_debrief: readyToDebriefLogSchema,
   support_group_day_summary: supportGroupDaySummaryLogSchema,
   debriefUrge: debriefUrgeLogSchema,
-  finish_recap: finishRecapLogSchema,
 };
 export const logTypes = Object.keys(logSchemas);
 
@@ -104,14 +102,12 @@ export type Log =
   | VideoLog
   | ReadyToDebriefLog
   | SupportGroupDaySummaryLog
-  | DebriefUrgeLog
-  | FinishRecapLog;
+  | DebriefUrgeLog;
 
 export * from "./behaviorLog";
 export * from "./breathingLog";
 export * from "./callLog";
 export * from "./debriefUrgeLog";
-export * from "./finishRecapLog";
 export * from "./impulseLog";
 export * from "./linkLog";
 export * from "./messageLog";
@@ -156,7 +152,6 @@ export const logSchema = z.discriminatedUnion("type", [
   readyToDebriefLogSchema,
   supportGroupDaySummaryLogSchema,
   debriefUrgeLogSchema,
-  finishRecapLogSchema,
 ]);
 
 // Export log type guards
@@ -329,13 +324,4 @@ export const isValidTacticStepLog = (
   value: unknown
 ): value is TacticStepLog => {
   return tacticStepLogSchema.safeParse(value).success;
-};
-
-export const logIsFinishRecapLog = (
-  value: Omit<Log, "id">
-): value is FinishRecapLog => value.type === "finish_recap";
-export const isValidFinishRecapLog = (
-  value: unknown
-): value is FinishRecapLog => {
-  return finishRecapLogSchema.safeParse(value).success;
 };

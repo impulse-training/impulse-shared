@@ -3,7 +3,6 @@ import { BehaviorLog } from "./behaviorLog";
 import { BreathingLog } from "./breathingLog";
 import { CallLog } from "./callLog";
 import { DebriefUrgeLog } from "./debriefUrgeLog";
-import { FinishRecapLog } from "./finishRecapLog";
 import { ImpulseLog } from "./impulseLog";
 import { LinkLog } from "./linkLog";
 import { AssistantMessageLog, MessageLog } from "./messageLog";
@@ -13234,7 +13233,7 @@ export declare const logSchemas: {
                     measured: number;
                     targetValue?: number | undefined;
                 }>>>;
-                recapCompletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                recapCompletedAt: z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 recapMarkedAsCompletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 recapStartedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -13253,6 +13252,7 @@ export declare const logSchemas: {
                 }>;
                 tacticsUsed: any[];
                 sharedWithUserIds: string[];
+                recapCompletedAt: import("../../types").Timestamp | null;
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -13319,7 +13319,6 @@ export declare const logSchemas: {
                     impulseMoments: boolean;
                     threads: boolean;
                 }> | undefined;
-                recapCompletedAt?: import("../../types").Timestamp | undefined;
                 recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
                 recapStartedAt?: import("../../types").Timestamp | undefined;
             }, {
@@ -13334,6 +13333,7 @@ export declare const logSchemas: {
                     behaviorTrackingUnit?: string | undefined;
                 }>;
                 sharedWithUserIds: string[];
+                recapCompletedAt: import("../../types").Timestamp | null;
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -13402,7 +13402,6 @@ export declare const logSchemas: {
                     impulseMoments?: boolean | undefined;
                     threads?: boolean | undefined;
                 }> | undefined;
-                recapCompletedAt?: import("../../types").Timestamp | undefined;
                 recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
                 recapStartedAt?: import("../../types").Timestamp | undefined;
             }>>;
@@ -13424,6 +13423,7 @@ export declare const logSchemas: {
                 }>;
                 tacticsUsed: any[];
                 sharedWithUserIds: string[];
+                recapCompletedAt: import("../../types").Timestamp | null;
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -13490,7 +13490,6 @@ export declare const logSchemas: {
                     impulseMoments: boolean;
                     threads: boolean;
                 }> | undefined;
-                recapCompletedAt?: import("../../types").Timestamp | undefined;
                 recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
                 recapStartedAt?: import("../../types").Timestamp | undefined;
             }>;
@@ -13509,6 +13508,7 @@ export declare const logSchemas: {
                     behaviorTrackingUnit?: string | undefined;
                 }>;
                 sharedWithUserIds: string[];
+                recapCompletedAt: import("../../types").Timestamp | null;
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -13577,7 +13577,6 @@ export declare const logSchemas: {
                     impulseMoments?: boolean | undefined;
                     threads?: boolean | undefined;
                 }> | undefined;
-                recapCompletedAt?: import("../../types").Timestamp | undefined;
                 recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
                 recapStartedAt?: import("../../types").Timestamp | undefined;
             }>;
@@ -13606,6 +13605,7 @@ export declare const logSchemas: {
                 }>;
                 tacticsUsed: any[];
                 sharedWithUserIds: string[];
+                recapCompletedAt: import("../../types").Timestamp | null;
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -13672,7 +13672,6 @@ export declare const logSchemas: {
                     impulseMoments: boolean;
                     threads: boolean;
                 }> | undefined;
-                recapCompletedAt?: import("../../types").Timestamp | undefined;
                 recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
                 recapStartedAt?: import("../../types").Timestamp | undefined;
             }>;
@@ -13703,6 +13702,7 @@ export declare const logSchemas: {
                     behaviorTrackingUnit?: string | undefined;
                 }>;
                 sharedWithUserIds: string[];
+                recapCompletedAt: import("../../types").Timestamp | null;
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -13771,7 +13771,6 @@ export declare const logSchemas: {
                     impulseMoments?: boolean | undefined;
                     threads?: boolean | undefined;
                 }> | undefined;
-                recapCompletedAt?: import("../../types").Timestamp | undefined;
                 recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
                 recapStartedAt?: import("../../types").Timestamp | undefined;
             }>;
@@ -13840,63 +13839,14 @@ export declare const logSchemas: {
         tacticId?: string | undefined;
         callLogDocPath?: string | undefined;
     }>;
-    finish_recap: z.ZodObject<{
-        id: z.ZodOptional<z.ZodString>;
-        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-        userId: z.ZodString;
-        timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-        dateString: z.ZodString;
-        tacticId: z.ZodOptional<z.ZodString>;
-        callLogDocPath: z.ZodOptional<z.ZodString>;
-    } & {
-        type: z.ZodLiteral<"finish_recap">;
-        isDisplayable: z.ZodLiteral<true>;
-        data: z.ZodObject<{
-            finishedAt: z.ZodOptional<z.ZodAny>;
-        }, "strip", z.ZodTypeAny, {
-            finishedAt?: any;
-        }, {
-            finishedAt?: any;
-        }>;
-    }, "strip", z.ZodTypeAny, {
-        createdAt: import("../../types").Timestamp;
-        updatedAt: import("../../types").Timestamp;
-        type: "finish_recap";
-        userId: string;
-        dateString: string;
-        isDisplayable: true;
-        data: {
-            finishedAt?: any;
-        };
-        id?: string | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
-        tacticId?: string | undefined;
-        callLogDocPath?: string | undefined;
-    }, {
-        createdAt: import("../../types").Timestamp;
-        updatedAt: import("../../types").Timestamp;
-        type: "finish_recap";
-        userId: string;
-        dateString: string;
-        isDisplayable: true;
-        data: {
-            finishedAt?: any;
-        };
-        id?: string | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
-        tacticId?: string | undefined;
-        callLogDocPath?: string | undefined;
-    }>;
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | TacticStepLog | TacticSuggestionLog | ImpulseLog | BehaviorLog | BreathingLog | ResistedLog | QuestionLog | QuestionsLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | ReadyToDebriefLog | SupportGroupDaySummaryLog | DebriefUrgeLog | FinishRecapLog;
+export type Log = TacticLog | TacticStepLog | TacticSuggestionLog | ImpulseLog | BehaviorLog | BreathingLog | ResistedLog | QuestionLog | QuestionsLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | ReadyToDebriefLog | SupportGroupDaySummaryLog | DebriefUrgeLog;
 export * from "./behaviorLog";
 export * from "./breathingLog";
 export * from "./callLog";
 export * from "./debriefUrgeLog";
-export * from "./finishRecapLog";
 export * from "./impulseLog";
 export * from "./linkLog";
 export * from "./messageLog";
@@ -23415,7 +23365,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 measured: number;
                 targetValue?: number | undefined;
             }>>>;
-            recapCompletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            recapCompletedAt: z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             recapMarkedAsCompletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             recapStartedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -23434,6 +23384,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             }>;
             tacticsUsed: any[];
             sharedWithUserIds: string[];
+            recapCompletedAt: import("../../types").Timestamp | null;
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -23500,7 +23451,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 impulseMoments: boolean;
                 threads: boolean;
             }> | undefined;
-            recapCompletedAt?: import("../../types").Timestamp | undefined;
             recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
             recapStartedAt?: import("../../types").Timestamp | undefined;
         }, {
@@ -23515,6 +23465,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 behaviorTrackingUnit?: string | undefined;
             }>;
             sharedWithUserIds: string[];
+            recapCompletedAt: import("../../types").Timestamp | null;
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -23583,7 +23534,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 impulseMoments?: boolean | undefined;
                 threads?: boolean | undefined;
             }> | undefined;
-            recapCompletedAt?: import("../../types").Timestamp | undefined;
             recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
             recapStartedAt?: import("../../types").Timestamp | undefined;
         }>>;
@@ -23605,6 +23555,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             }>;
             tacticsUsed: any[];
             sharedWithUserIds: string[];
+            recapCompletedAt: import("../../types").Timestamp | null;
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -23671,7 +23622,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 impulseMoments: boolean;
                 threads: boolean;
             }> | undefined;
-            recapCompletedAt?: import("../../types").Timestamp | undefined;
             recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
             recapStartedAt?: import("../../types").Timestamp | undefined;
         }>;
@@ -23690,6 +23640,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 behaviorTrackingUnit?: string | undefined;
             }>;
             sharedWithUserIds: string[];
+            recapCompletedAt: import("../../types").Timestamp | null;
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -23758,7 +23709,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 impulseMoments?: boolean | undefined;
                 threads?: boolean | undefined;
             }> | undefined;
-            recapCompletedAt?: import("../../types").Timestamp | undefined;
             recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
             recapStartedAt?: import("../../types").Timestamp | undefined;
         }>;
@@ -23787,6 +23737,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             }>;
             tacticsUsed: any[];
             sharedWithUserIds: string[];
+            recapCompletedAt: import("../../types").Timestamp | null;
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -23853,7 +23804,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 impulseMoments: boolean;
                 threads: boolean;
             }> | undefined;
-            recapCompletedAt?: import("../../types").Timestamp | undefined;
             recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
             recapStartedAt?: import("../../types").Timestamp | undefined;
         }>;
@@ -23884,6 +23834,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 behaviorTrackingUnit?: string | undefined;
             }>;
             sharedWithUserIds: string[];
+            recapCompletedAt: import("../../types").Timestamp | null;
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -23952,7 +23903,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 impulseMoments?: boolean | undefined;
                 threads?: boolean | undefined;
             }> | undefined;
-            recapCompletedAt?: import("../../types").Timestamp | undefined;
             recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
             recapStartedAt?: import("../../types").Timestamp | undefined;
         }>;
@@ -24019,53 +23969,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
     callLogDocPath?: string | undefined;
-}>, z.ZodObject<{
-    id: z.ZodOptional<z.ZodString>;
-    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-    userId: z.ZodString;
-    timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-    dateString: z.ZodString;
-    tacticId: z.ZodOptional<z.ZodString>;
-    callLogDocPath: z.ZodOptional<z.ZodString>;
-} & {
-    type: z.ZodLiteral<"finish_recap">;
-    isDisplayable: z.ZodLiteral<true>;
-    data: z.ZodObject<{
-        finishedAt: z.ZodOptional<z.ZodAny>;
-    }, "strip", z.ZodTypeAny, {
-        finishedAt?: any;
-    }, {
-        finishedAt?: any;
-    }>;
-}, "strip", z.ZodTypeAny, {
-    createdAt: import("../../types").Timestamp;
-    updatedAt: import("../../types").Timestamp;
-    type: "finish_recap";
-    userId: string;
-    dateString: string;
-    isDisplayable: true;
-    data: {
-        finishedAt?: any;
-    };
-    id?: string | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
-    tacticId?: string | undefined;
-    callLogDocPath?: string | undefined;
-}, {
-    createdAt: import("../../types").Timestamp;
-    updatedAt: import("../../types").Timestamp;
-    type: "finish_recap";
-    userId: string;
-    dateString: string;
-    isDisplayable: true;
-    data: {
-        finishedAt?: any;
-    };
-    id?: string | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
-    tacticId?: string | undefined;
-    callLogDocPath?: string | undefined;
 }>]>;
 export declare const logIsAssistantMessageLog: (value: Omit<Log, "id">) => value is AssistantMessageLog;
 export declare const isValidAssistantMessageLog: (value: unknown) => value is AssistantMessageLog;
@@ -24111,5 +24014,3 @@ export declare const logIsDebriefUrgeLog: (value: Omit<Log, "id">) => value is D
 export declare const isValidDebriefUrgeLog: (value: unknown) => value is DebriefUrgeLog;
 export declare const logIsTacticStepLog: (value: Omit<Log, "id">) => value is TacticStepLog;
 export declare const isValidTacticStepLog: (value: unknown) => value is TacticStepLog;
-export declare const logIsFinishRecapLog: (value: Omit<Log, "id">) => value is FinishRecapLog;
-export declare const isValidFinishRecapLog: (value: unknown) => value is FinishRecapLog;

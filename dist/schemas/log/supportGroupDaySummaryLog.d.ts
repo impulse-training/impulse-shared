@@ -383,7 +383,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 measured: number;
                 targetValue?: number | undefined;
             }>>>;
-            recapCompletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            recapCompletedAt: z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             recapMarkedAsCompletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             recapStartedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -402,6 +402,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
             }>;
             tacticsUsed: any[];
             sharedWithUserIds: string[];
+            recapCompletedAt: import("../../types").Timestamp | null;
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -468,7 +469,6 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 impulseMoments: boolean;
                 threads: boolean;
             }> | undefined;
-            recapCompletedAt?: import("../../types").Timestamp | undefined;
             recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
             recapStartedAt?: import("../../types").Timestamp | undefined;
         }, {
@@ -483,6 +483,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 behaviorTrackingUnit?: string | undefined;
             }>;
             sharedWithUserIds: string[];
+            recapCompletedAt: import("../../types").Timestamp | null;
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -551,7 +552,6 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 impulseMoments?: boolean | undefined;
                 threads?: boolean | undefined;
             }> | undefined;
-            recapCompletedAt?: import("../../types").Timestamp | undefined;
             recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
             recapStartedAt?: import("../../types").Timestamp | undefined;
         }>>;
@@ -573,6 +573,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
             }>;
             tacticsUsed: any[];
             sharedWithUserIds: string[];
+            recapCompletedAt: import("../../types").Timestamp | null;
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -639,7 +640,6 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 impulseMoments: boolean;
                 threads: boolean;
             }> | undefined;
-            recapCompletedAt?: import("../../types").Timestamp | undefined;
             recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
             recapStartedAt?: import("../../types").Timestamp | undefined;
         }>;
@@ -658,6 +658,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 behaviorTrackingUnit?: string | undefined;
             }>;
             sharedWithUserIds: string[];
+            recapCompletedAt: import("../../types").Timestamp | null;
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -726,7 +727,6 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 impulseMoments?: boolean | undefined;
                 threads?: boolean | undefined;
             }> | undefined;
-            recapCompletedAt?: import("../../types").Timestamp | undefined;
             recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
             recapStartedAt?: import("../../types").Timestamp | undefined;
         }>;
@@ -755,6 +755,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
             }>;
             tacticsUsed: any[];
             sharedWithUserIds: string[];
+            recapCompletedAt: import("../../types").Timestamp | null;
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -821,7 +822,6 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 impulseMoments: boolean;
                 threads: boolean;
             }> | undefined;
-            recapCompletedAt?: import("../../types").Timestamp | undefined;
             recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
             recapStartedAt?: import("../../types").Timestamp | undefined;
         }>;
@@ -852,6 +852,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 behaviorTrackingUnit?: string | undefined;
             }>;
             sharedWithUserIds: string[];
+            recapCompletedAt: import("../../types").Timestamp | null;
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -920,7 +921,6 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 impulseMoments?: boolean | undefined;
                 threads?: boolean | undefined;
             }> | undefined;
-            recapCompletedAt?: import("../../types").Timestamp | undefined;
             recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
             recapStartedAt?: import("../../types").Timestamp | undefined;
         }>;

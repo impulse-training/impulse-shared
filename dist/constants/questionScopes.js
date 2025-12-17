@@ -23,7 +23,7 @@ exports.QUESTION_SCOPES = {
     },
     recap: {
         id: "recap",
-        label: "Daily recap",
+        label: "Day recap",
         description: "When reflecting on the day",
     },
 };
