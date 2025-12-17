@@ -17,7 +17,7 @@ export const threadSummarySchema = z.object({
   tacticsByTitle: z.record(z.string(), z.array(z.any())),
   behaviorsByName: z.record(z.string(), z.array(z.any())),
   outcomeLogs: z.array(z.any()),
-  questionLogs: z.array(z.any()),
+  questionsLogs: z.array(z.any()),
   firstMessageLog: z.any().optional(),
   firstCallLog: z.any().optional(),
   hasContent: z.boolean(),
