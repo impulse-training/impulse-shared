@@ -19,6 +19,8 @@ exports.supportGroupMemberSchema = zod_1.z.object({
     userProfile: userProfile_1.userProfileSchema,
     permissions: supportGroupPermissions_1.supportGroupPermissionsSchema.optional(),
     notificationPreferences: supportGroupPermissions_1.supportGroupNotificationPreferencesSchema.optional(),
+    // TODO: add timezone
+    // timezone: z.string().optional(),
     currentStreak: zod_1.z
         .object({
         streakStart: timestampSchema_1.timestampSchema.optional(),

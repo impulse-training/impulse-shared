@@ -75,7 +75,6 @@ describe("Schema Validation", () => {
                 userId: "user123",
                 dateString: "2025-01-01",
                 mode: "text",
-                trackingLogsById: {},
                 sharedWithUserIds: [],
                 emojiId: null,
             };
@@ -89,7 +88,6 @@ describe("Schema Validation", () => {
                 userId: "user123",
                 dateString: "2025-01-01",
                 mode: "text",
-                trackingLogsById: {},
                 sharedWithUserIds: [],
                 behaviorDocs: [],
                 emojiId: null,

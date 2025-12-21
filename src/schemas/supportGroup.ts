@@ -30,6 +30,8 @@ export const supportGroupMemberSchema = z.object({
   userProfile: userProfileSchema,
   permissions: supportGroupPermissionsSchema.optional(),
   notificationPreferences: supportGroupNotificationPreferencesSchema.optional(),
+  // TODO: add timezone
+  // timezone: z.string().optional(),
   currentStreak: z
     .object({
       streakStart: timestampSchema.optional(),
