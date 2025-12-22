@@ -391,7 +391,6 @@ export declare const daySummarySchema: z.ZodObject<{
         targetValue?: number | undefined;
     }>>>;
     recapRequirementsMetAt: z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-    recapMarkedAsCompletedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     recapStartedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -475,7 +474,6 @@ export declare const daySummarySchema: z.ZodObject<{
         impulseMoments: boolean;
         threads: boolean;
     }> | undefined;
-    recapMarkedAsCompletedAt?: import("../types").Timestamp | undefined;
     recapStartedAt?: import("../types").Timestamp | undefined;
 }, {
     userId: string;
@@ -557,7 +555,6 @@ export declare const daySummarySchema: z.ZodObject<{
         impulseMoments?: boolean | undefined;
         threads?: boolean | undefined;
     }> | undefined;
-    recapMarkedAsCompletedAt?: import("../types").Timestamp | undefined;
     recapStartedAt?: import("../types").Timestamp | undefined;
 }>;
 export type DaySummary = z.infer<typeof daySummarySchema>;

@@ -35,8 +35,6 @@ export const daySummarySchema = z.object({
     .optional(),
   // When all recap requirements are met (recap question answered + experiment questions if applicable)
   recapRequirementsMetAt: timestampSchema.nullable(),
-  // When the user explicitly marks the recap as complete (clicks "Finish Recap" or closes sheet)
-  recapMarkedAsCompletedAt: timestampSchema.optional(),
   // When the user confirms totals and starts the recap flow
   recapStartedAt: timestampSchema.optional(),
   createdAt: timestampSchema.optional(),

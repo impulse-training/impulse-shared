@@ -12341,7 +12341,6 @@ export declare const logSchemas: {
                     targetValue?: number | undefined;
                 }>>>;
                 recapRequirementsMetAt: z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                recapMarkedAsCompletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 recapStartedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -12425,7 +12424,6 @@ export declare const logSchemas: {
                     impulseMoments: boolean;
                     threads: boolean;
                 }> | undefined;
-                recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
                 recapStartedAt?: import("../../types").Timestamp | undefined;
             }, {
                 userId: string;
@@ -12507,7 +12505,6 @@ export declare const logSchemas: {
                     impulseMoments?: boolean | undefined;
                     threads?: boolean | undefined;
                 }> | undefined;
-                recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
                 recapStartedAt?: import("../../types").Timestamp | undefined;
             }>>;
             dateString: z.ZodString;
@@ -12594,7 +12591,6 @@ export declare const logSchemas: {
                     impulseMoments: boolean;
                     threads: boolean;
                 }> | undefined;
-                recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
                 recapStartedAt?: import("../../types").Timestamp | undefined;
             }>;
             colorByUserId: Record<string, string>;
@@ -12680,7 +12676,6 @@ export declare const logSchemas: {
                     impulseMoments?: boolean | undefined;
                     threads?: boolean | undefined;
                 }> | undefined;
-                recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
                 recapStartedAt?: import("../../types").Timestamp | undefined;
             }>;
             colorByUserId: Record<string, string>;
@@ -12774,7 +12769,6 @@ export declare const logSchemas: {
                     impulseMoments: boolean;
                     threads: boolean;
                 }> | undefined;
-                recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
                 recapStartedAt?: import("../../types").Timestamp | undefined;
             }>;
             colorByUserId: Record<string, string>;
@@ -12872,7 +12866,6 @@ export declare const logSchemas: {
                     impulseMoments?: boolean | undefined;
                     threads?: boolean | undefined;
                 }> | undefined;
-                recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
                 recapStartedAt?: import("../../types").Timestamp | undefined;
             }>;
             colorByUserId: Record<string, string>;
@@ -22476,7 +22469,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 targetValue?: number | undefined;
             }>>>;
             recapRequirementsMetAt: z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-            recapMarkedAsCompletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             recapStartedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -22560,7 +22552,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 impulseMoments: boolean;
                 threads: boolean;
             }> | undefined;
-            recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
             recapStartedAt?: import("../../types").Timestamp | undefined;
         }, {
             userId: string;
@@ -22642,7 +22633,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 impulseMoments?: boolean | undefined;
                 threads?: boolean | undefined;
             }> | undefined;
-            recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
             recapStartedAt?: import("../../types").Timestamp | undefined;
         }>>;
         dateString: z.ZodString;
@@ -22729,7 +22719,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 impulseMoments: boolean;
                 threads: boolean;
             }> | undefined;
-            recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
             recapStartedAt?: import("../../types").Timestamp | undefined;
         }>;
         colorByUserId: Record<string, string>;
@@ -22815,7 +22804,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 impulseMoments?: boolean | undefined;
                 threads?: boolean | undefined;
             }> | undefined;
-            recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
             recapStartedAt?: import("../../types").Timestamp | undefined;
         }>;
         colorByUserId: Record<string, string>;
@@ -22909,7 +22897,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 impulseMoments: boolean;
                 threads: boolean;
             }> | undefined;
-            recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
             recapStartedAt?: import("../../types").Timestamp | undefined;
         }>;
         colorByUserId: Record<string, string>;
@@ -23007,7 +22994,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 impulseMoments?: boolean | undefined;
                 threads?: boolean | undefined;
             }> | undefined;
-            recapMarkedAsCompletedAt?: import("../../types").Timestamp | undefined;
             recapStartedAt?: import("../../types").Timestamp | undefined;
         }>;
         colorByUserId: Record<string, string>;

@@ -7,8 +7,6 @@ export const experimentPhaseEnum = z.enum([
   "baseline",
   "transition",
   "stabilization",
-  "test",
-  "results",
 ]);
 
 const experimentBehaviorChangePhaseSchema = z.object({
@@ -18,7 +16,10 @@ const experimentBehaviorChangePhaseSchema = z.object({
   description: z.string().optional(),
 });
 
-const experimentRequirementsSchema = z.record(z.string(), z.boolean().nullable());
+const experimentRequirementsSchema = z.record(
+  z.string(),
+  z.boolean().nullable()
+);
 
 const experimentPhaseCompletionSchema = z.object({
   startDateString: z.string(),
@@ -37,14 +38,12 @@ export const experimentSchema = z.object({
   behaviorId: z.string(),
   questionIds: z.array(z.string()),
   pendingTestDescription: z.string().optional(),
+  pendingTransitionDescription: z.string().optional(),
+  pendingStabilizationDescription: z.string().optional(),
   config: z.object({
-    baseline: z.object({
-      requiredDays: z.number().default(5),
-      description: z.string().optional(),
-    }),
+    baseline: experimentBehaviorChangePhaseSchema.required(),
     transition: experimentBehaviorChangePhaseSchema.optional(),
     stabilization: experimentBehaviorChangePhaseSchema.optional(),
-    test: experimentBehaviorChangePhaseSchema.optional(),
   }),
   // Map of yyyy-MM-dd -> DaySummary. This is "input" data.
   daySummaries: z.record(z.string(), daySummarySchema).default({}),
@@ -54,7 +53,6 @@ export const experimentSchema = z.object({
     baseline: experimentRequirementsSchema,
     transition: experimentRequirementsSchema.optional(),
     stabilization: experimentRequirementsSchema.optional(),
-    test: experimentRequirementsSchema,
   }),
 
   // Finally, compute data for display.
@@ -62,7 +60,6 @@ export const experimentSchema = z.object({
     baseline: experimentPhaseCompletionSchema,
     transition: experimentPhaseCompletionSchema.optional(),
     stabilization: experimentPhaseCompletionSchema.optional(),
-    test: experimentPhaseCompletionSchema,
   }),
   currentPhase: experimentPhaseEnum.default("baseline"),
 });
