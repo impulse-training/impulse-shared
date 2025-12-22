@@ -8,7 +8,7 @@
 
 export type DaySummaryLike = {
   id: string; // 'yyyy-MM-dd'
-  recapCompletedAt?: unknown | null;
+  recapRequirementsMetAt?: unknown | null;
   recapStartedAt?: unknown | null;
 };
 
@@ -129,7 +129,7 @@ export function getUnrecappedDays(options: {
   while (toLocalKey(cursor, timeZone) <= yesterdayKey) {
     const localKey = toLocalKey(cursor, timeZone);
     const summary = allDaySummaries.find((s) => s.id === localKey);
-    if (!summary?.recapCompletedAt && !summary?.recapStartedAt) {
+    if (!summary?.recapRequirementsMetAt && !summary?.recapStartedAt) {
       results.push({
         dateString: localKey,
         label: formatLabel(cursor, todayUTC, timeZone),

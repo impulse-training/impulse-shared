@@ -1,6 +1,6 @@
 export type DaySummaryLike = {
     id: string;
-    recapCompletedAt?: unknown | null;
+    recapRequirementsMetAt?: unknown | null;
     recapStartedAt?: unknown | null;
 };
 export type UnrecappedDay = {

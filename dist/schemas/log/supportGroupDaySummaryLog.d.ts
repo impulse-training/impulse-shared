@@ -382,7 +382,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 measured: number;
                 targetValue?: number | undefined;
             }>>>;
-            recapCompletedAt: z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            recapRequirementsMetAt: z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             recapMarkedAsCompletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             recapStartedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -401,7 +401,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
             }>;
             tacticsUsed: any[];
             sharedWithUserIds: string[];
-            recapCompletedAt: import("../../types").Timestamp | null;
+            recapRequirementsMetAt: import("../../types").Timestamp | null;
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -481,7 +481,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 behaviorTrackingUnit?: string | undefined;
             }>;
             sharedWithUserIds: string[];
-            recapCompletedAt: import("../../types").Timestamp | null;
+            recapRequirementsMetAt: import("../../types").Timestamp | null;
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -570,7 +570,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
             }>;
             tacticsUsed: any[];
             sharedWithUserIds: string[];
-            recapCompletedAt: import("../../types").Timestamp | null;
+            recapRequirementsMetAt: import("../../types").Timestamp | null;
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -654,7 +654,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 behaviorTrackingUnit?: string | undefined;
             }>;
             sharedWithUserIds: string[];
-            recapCompletedAt: import("../../types").Timestamp | null;
+            recapRequirementsMetAt: import("../../types").Timestamp | null;
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -750,7 +750,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
             }>;
             tacticsUsed: any[];
             sharedWithUserIds: string[];
-            recapCompletedAt: import("../../types").Timestamp | null;
+            recapRequirementsMetAt: import("../../types").Timestamp | null;
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -846,7 +846,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 behaviorTrackingUnit?: string | undefined;
             }>;
             sharedWithUserIds: string[];
-            recapCompletedAt: import("../../types").Timestamp | null;
+            recapRequirementsMetAt: import("../../types").Timestamp | null;
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;

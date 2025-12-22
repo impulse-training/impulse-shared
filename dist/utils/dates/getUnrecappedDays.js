@@ -106,7 +106,7 @@ function getUnrecappedDays(options) {
     while (toLocalKey(cursor, timeZone) <= yesterdayKey) {
         const localKey = toLocalKey(cursor, timeZone);
         const summary = allDaySummaries.find((s) => s.id === localKey);
-        if (!(summary === null || summary === void 0 ? void 0 : summary.recapCompletedAt) && !(summary === null || summary === void 0 ? void 0 : summary.recapStartedAt)) {
+        if (!(summary === null || summary === void 0 ? void 0 : summary.recapRequirementsMetAt) && !(summary === null || summary === void 0 ? void 0 : summary.recapStartedAt)) {
             results.push({
                 dateString: localKey,
                 label: formatLabel(cursor, todayUTC, timeZone),
