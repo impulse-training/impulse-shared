@@ -7,7 +7,14 @@ export const experimentPhaseEnum = z.enum([
   "baseline",
   "transition",
   "stabilization",
+  "test",
+  "results",
 ]);
+
+const experimentBaselinePhaseSchema = z.object({
+  requiredDays: z.number().default(5),
+  description: z.string().optional(),
+});
 
 const experimentBehaviorChangePhaseSchema = z.object({
   requiredGoal: goalSchema,
@@ -41,9 +48,10 @@ export const experimentSchema = z.object({
   pendingTransitionDescription: z.string().optional(),
   pendingStabilizationDescription: z.string().optional(),
   config: z.object({
-    baseline: experimentBehaviorChangePhaseSchema.required(),
+    baseline: experimentBaselinePhaseSchema,
     transition: experimentBehaviorChangePhaseSchema.optional(),
     stabilization: experimentBehaviorChangePhaseSchema.optional(),
+    test: experimentBehaviorChangePhaseSchema.optional(),
   }),
   // Map of yyyy-MM-dd -> DaySummary. This is "input" data.
   daySummaries: z.record(z.string(), daySummarySchema).default({}),
@@ -53,6 +61,7 @@ export const experimentSchema = z.object({
     baseline: experimentRequirementsSchema,
     transition: experimentRequirementsSchema.optional(),
     stabilization: experimentRequirementsSchema.optional(),
+    test: experimentRequirementsSchema.optional(),
   }),
 
   // Finally, compute data for display.
@@ -60,6 +69,7 @@ export const experimentSchema = z.object({
     baseline: experimentPhaseCompletionSchema,
     transition: experimentPhaseCompletionSchema.optional(),
     stabilization: experimentPhaseCompletionSchema.optional(),
+    test: experimentPhaseCompletionSchema.optional(),
   }),
   currentPhase: experimentPhaseEnum.default("baseline"),
 });
