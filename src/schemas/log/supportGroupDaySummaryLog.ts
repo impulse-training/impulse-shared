@@ -2,7 +2,7 @@ import { z } from "zod";
 import { logBaseSchema } from "./base";
 import { objectOf } from "../../utils/objectOf";
 import { supportGroupSummarySchema } from "../utils/supportGroupSummary";
-import { timestampSchema } from "../../utils";
+import { timestampSchema } from "../../utils/timestampSchema";
 
 export const supportGroupDaySummaryLogSchema = logBaseSchema.extend({
   type: z.literal("support_group_day_summary"),

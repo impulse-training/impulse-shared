@@ -5,7 +5,7 @@ const zod_1 = require("zod");
 const base_1 = require("./base");
 const objectOf_1 = require("../../utils/objectOf");
 const supportGroupSummary_1 = require("../utils/supportGroupSummary");
-const utils_1 = require("../../utils");
+const timestampSchema_1 = require("../../utils/timestampSchema");
 exports.supportGroupDaySummaryLogSchema = base_1.logBaseSchema.extend({
     type: zod_1.z.literal("support_group_day_summary"),
     isDisplayable: zod_1.z.literal(true),
@@ -17,8 +17,8 @@ exports.supportGroupDaySummaryLogSchema = base_1.logBaseSchema.extend({
         colorByUserId: (0, objectOf_1.objectOf)(zod_1.z.string()).optional(),
         // Date string for the day this summary represents
         dateString: zod_1.z.string(),
-        summarizationCompletedAt: utils_1.timestampSchema.optional(),
-        summarizationError: utils_1.timestampSchema.optional(),
-        summarizationFailedAt: utils_1.timestampSchema.optional(),
+        summarizationCompletedAt: timestampSchema_1.timestampSchema.optional(),
+        summarizationError: timestampSchema_1.timestampSchema.optional(),
+        summarizationFailedAt: timestampSchema_1.timestampSchema.optional(),
     }),
 });

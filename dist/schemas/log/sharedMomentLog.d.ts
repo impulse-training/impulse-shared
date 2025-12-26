@@ -43,12 +43,9 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
         }>;
         emojiId: z.ZodOptional<z.ZodObject<{
             emoji: z.ZodString;
-            name: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            name: string;
             emoji: string;
         }, {
-            name: string;
             emoji: string;
         }>>;
         message: z.ZodOptional<z.ZodString>;
@@ -66,7 +63,6 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
         };
         message?: string | undefined;
         emojiId?: {
-            name: string;
             emoji: string;
         } | undefined;
     }, {
@@ -83,7 +79,6 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
         };
         message?: string | undefined;
         emojiId?: {
-            name: string;
             emoji: string;
         } | undefined;
     }>;
@@ -108,7 +103,6 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
         };
         message?: string | undefined;
         emojiId?: {
-            name: string;
             emoji: string;
         } | undefined;
     };
@@ -137,7 +131,6 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
         };
         message?: string | undefined;
         emojiId?: {
-            name: string;
             emoji: string;
         } | undefined;
     };

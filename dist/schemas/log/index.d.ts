@@ -11574,12 +11574,9 @@ export declare const logSchemas: {
             message: z.ZodAny;
             emojiId: z.ZodOptional<z.ZodObject<{
                 emoji: z.ZodString;
-                name: z.ZodString;
             }, "strip", z.ZodTypeAny, {
-                name: string;
                 emoji: string;
             }, {
-                name: string;
                 emoji: string;
             }>>;
             supportGroupsById: z.ZodRecord<z.ZodString, z.ZodObject<{
@@ -11592,26 +11589,21 @@ export declare const logSchemas: {
                         invitationCode: z.ZodString;
                         emojiId: z.ZodOptional<z.ZodObject<{
                             emoji: z.ZodString;
-                            name: z.ZodString;
                         }, "strip", z.ZodTypeAny, {
-                            name: string;
                             emoji: string;
                         }, {
-                            name: string;
                             emoji: string;
                         }>>;
                     }, "strip", z.ZodTypeAny, {
                         invitationCode: string;
                         id?: string | undefined;
                         emojiId?: {
-                            name: string;
                             emoji: string;
                         } | undefined;
                     }, {
                         invitationCode: string;
                         id?: string | undefined;
                         emojiId?: {
-                            name: string;
                             emoji: string;
                         } | undefined;
                     }>;
@@ -11621,7 +11613,6 @@ export declare const logSchemas: {
                         invitationCode: string;
                         id?: string | undefined;
                         emojiId?: {
-                            name: string;
                             emoji: string;
                         } | undefined;
                     };
@@ -11631,7 +11622,6 @@ export declare const logSchemas: {
                         invitationCode: string;
                         id?: string | undefined;
                         emojiId?: {
-                            name: string;
                             emoji: string;
                         } | undefined;
                     };
@@ -11645,7 +11635,6 @@ export declare const logSchemas: {
                         invitationCode: string;
                         id?: string | undefined;
                         emojiId?: {
-                            name: string;
                             emoji: string;
                         } | undefined;
                     };
@@ -11659,7 +11648,6 @@ export declare const logSchemas: {
                         invitationCode: string;
                         id?: string | undefined;
                         emojiId?: {
-                            name: string;
                             emoji: string;
                         } | undefined;
                     };
@@ -11675,7 +11663,6 @@ export declare const logSchemas: {
                         invitationCode: string;
                         id?: string | undefined;
                         emojiId?: {
-                            name: string;
                             emoji: string;
                         } | undefined;
                     };
@@ -11683,7 +11670,6 @@ export declare const logSchemas: {
             }>;
             message?: any;
             emojiId?: {
-                name: string;
                 emoji: string;
             } | undefined;
         }, {
@@ -11696,7 +11682,6 @@ export declare const logSchemas: {
                         invitationCode: string;
                         id?: string | undefined;
                         emojiId?: {
-                            name: string;
                             emoji: string;
                         } | undefined;
                     };
@@ -11704,7 +11689,6 @@ export declare const logSchemas: {
             }>;
             message?: any;
             emojiId?: {
-                name: string;
                 emoji: string;
             } | undefined;
         }>;
@@ -11725,7 +11709,6 @@ export declare const logSchemas: {
                         invitationCode: string;
                         id?: string | undefined;
                         emojiId?: {
-                            name: string;
                             emoji: string;
                         } | undefined;
                     };
@@ -11733,7 +11716,6 @@ export declare const logSchemas: {
             }>;
             message?: any;
             emojiId?: {
-                name: string;
                 emoji: string;
             } | undefined;
         };
@@ -11758,7 +11740,6 @@ export declare const logSchemas: {
                         invitationCode: string;
                         id?: string | undefined;
                         emojiId?: {
-                            name: string;
                             emoji: string;
                         } | undefined;
                     };
@@ -11766,7 +11747,6 @@ export declare const logSchemas: {
             }>;
             message?: any;
             emojiId?: {
-                name: string;
                 emoji: string;
             } | undefined;
         };
@@ -11873,12 +11853,9 @@ export declare const logSchemas: {
             }>;
             emojiId: z.ZodOptional<z.ZodObject<{
                 emoji: z.ZodString;
-                name: z.ZodString;
             }, "strip", z.ZodTypeAny, {
-                name: string;
                 emoji: string;
             }, {
-                name: string;
                 emoji: string;
             }>>;
             message: z.ZodOptional<z.ZodString>;
@@ -11896,7 +11873,6 @@ export declare const logSchemas: {
             };
             message?: string | undefined;
             emojiId?: {
-                name: string;
                 emoji: string;
             } | undefined;
         }, {
@@ -11913,7 +11889,6 @@ export declare const logSchemas: {
             };
             message?: string | undefined;
             emojiId?: {
-                name: string;
                 emoji: string;
             } | undefined;
         }>;
@@ -11938,7 +11913,6 @@ export declare const logSchemas: {
             };
             message?: string | undefined;
             emojiId?: {
-                name: string;
                 emoji: string;
             } | undefined;
         };
@@ -11967,7 +11941,6 @@ export declare const logSchemas: {
             };
             message?: string | undefined;
             emojiId?: {
-                name: string;
                 emoji: string;
             } | undefined;
         };
@@ -20939,12 +20912,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         message: z.ZodAny;
         emojiId: z.ZodOptional<z.ZodObject<{
             emoji: z.ZodString;
-            name: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            name: string;
             emoji: string;
         }, {
-            name: string;
             emoji: string;
         }>>;
         supportGroupsById: z.ZodRecord<z.ZodString, z.ZodObject<{
@@ -20957,26 +20927,21 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     invitationCode: z.ZodString;
                     emojiId: z.ZodOptional<z.ZodObject<{
                         emoji: z.ZodString;
-                        name: z.ZodString;
                     }, "strip", z.ZodTypeAny, {
-                        name: string;
                         emoji: string;
                     }, {
-                        name: string;
                         emoji: string;
                     }>>;
                 }, "strip", z.ZodTypeAny, {
                     invitationCode: string;
                     id?: string | undefined;
                     emojiId?: {
-                        name: string;
                         emoji: string;
                     } | undefined;
                 }, {
                     invitationCode: string;
                     id?: string | undefined;
                     emojiId?: {
-                        name: string;
                         emoji: string;
                     } | undefined;
                 }>;
@@ -20986,7 +20951,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     invitationCode: string;
                     id?: string | undefined;
                     emojiId?: {
-                        name: string;
                         emoji: string;
                     } | undefined;
                 };
@@ -20996,7 +20960,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     invitationCode: string;
                     id?: string | undefined;
                     emojiId?: {
-                        name: string;
                         emoji: string;
                     } | undefined;
                 };
@@ -21010,7 +20973,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     invitationCode: string;
                     id?: string | undefined;
                     emojiId?: {
-                        name: string;
                         emoji: string;
                     } | undefined;
                 };
@@ -21024,7 +20986,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     invitationCode: string;
                     id?: string | undefined;
                     emojiId?: {
-                        name: string;
                         emoji: string;
                     } | undefined;
                 };
@@ -21040,7 +21001,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     invitationCode: string;
                     id?: string | undefined;
                     emojiId?: {
-                        name: string;
                         emoji: string;
                     } | undefined;
                 };
@@ -21048,7 +21008,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }>;
         message?: any;
         emojiId?: {
-            name: string;
             emoji: string;
         } | undefined;
     }, {
@@ -21061,7 +21020,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     invitationCode: string;
                     id?: string | undefined;
                     emojiId?: {
-                        name: string;
                         emoji: string;
                     } | undefined;
                 };
@@ -21069,7 +21027,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }>;
         message?: any;
         emojiId?: {
-            name: string;
             emoji: string;
         } | undefined;
     }>;
@@ -21090,7 +21047,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     invitationCode: string;
                     id?: string | undefined;
                     emojiId?: {
-                        name: string;
                         emoji: string;
                     } | undefined;
                 };
@@ -21098,7 +21054,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }>;
         message?: any;
         emojiId?: {
-            name: string;
             emoji: string;
         } | undefined;
     };
@@ -21123,7 +21078,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     invitationCode: string;
                     id?: string | undefined;
                     emojiId?: {
-                        name: string;
                         emoji: string;
                     } | undefined;
                 };
@@ -21131,7 +21085,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }>;
         message?: any;
         emojiId?: {
-            name: string;
             emoji: string;
         } | undefined;
     };
@@ -21183,12 +21136,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }>;
         emojiId: z.ZodOptional<z.ZodObject<{
             emoji: z.ZodString;
-            name: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            name: string;
             emoji: string;
         }, {
-            name: string;
             emoji: string;
         }>>;
         message: z.ZodOptional<z.ZodString>;
@@ -21206,7 +21156,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         };
         message?: string | undefined;
         emojiId?: {
-            name: string;
             emoji: string;
         } | undefined;
     }, {
@@ -21223,7 +21172,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         };
         message?: string | undefined;
         emojiId?: {
-            name: string;
             emoji: string;
         } | undefined;
     }>;
@@ -21248,7 +21196,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         };
         message?: string | undefined;
         emojiId?: {
-            name: string;
             emoji: string;
         } | undefined;
     };
@@ -21277,7 +21224,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         };
         message?: string | undefined;
         emojiId?: {
-            name: string;
             emoji: string;
         } | undefined;
     };

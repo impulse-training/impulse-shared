@@ -3,7 +3,7 @@ import { objectOf } from "../utils/objectOf";
 import { timestampSchema } from "../utils/timestampSchema";
 import { attachmentSchema } from "./attachment";
 import { behaviorTopicIdSchema } from "./behaviorTopic";
-import { userMessageLogSchema } from "./log";
+import { userMessageLogSchema } from "./log/messageLog/userMessageLog";
 import { userProfileSchema } from "./userProfile";
 import {
   supportGroupPermissionsSchema,

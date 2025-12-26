@@ -15,12 +15,9 @@ export declare const notifySupportGroupLogSchema: z.ZodObject<{
         message: z.ZodAny;
         emojiId: z.ZodOptional<z.ZodObject<{
             emoji: z.ZodString;
-            name: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            name: string;
             emoji: string;
         }, {
-            name: string;
             emoji: string;
         }>>;
         supportGroupsById: z.ZodRecord<z.ZodString, z.ZodObject<{
@@ -33,26 +30,21 @@ export declare const notifySupportGroupLogSchema: z.ZodObject<{
                     invitationCode: z.ZodString;
                     emojiId: z.ZodOptional<z.ZodObject<{
                         emoji: z.ZodString;
-                        name: z.ZodString;
                     }, "strip", z.ZodTypeAny, {
-                        name: string;
                         emoji: string;
                     }, {
-                        name: string;
                         emoji: string;
                     }>>;
                 }, "strip", z.ZodTypeAny, {
                     invitationCode: string;
                     id?: string | undefined;
                     emojiId?: {
-                        name: string;
                         emoji: string;
                     } | undefined;
                 }, {
                     invitationCode: string;
                     id?: string | undefined;
                     emojiId?: {
-                        name: string;
                         emoji: string;
                     } | undefined;
                 }>;
@@ -62,7 +54,6 @@ export declare const notifySupportGroupLogSchema: z.ZodObject<{
                     invitationCode: string;
                     id?: string | undefined;
                     emojiId?: {
-                        name: string;
                         emoji: string;
                     } | undefined;
                 };
@@ -72,7 +63,6 @@ export declare const notifySupportGroupLogSchema: z.ZodObject<{
                     invitationCode: string;
                     id?: string | undefined;
                     emojiId?: {
-                        name: string;
                         emoji: string;
                     } | undefined;
                 };
@@ -86,7 +76,6 @@ export declare const notifySupportGroupLogSchema: z.ZodObject<{
                     invitationCode: string;
                     id?: string | undefined;
                     emojiId?: {
-                        name: string;
                         emoji: string;
                     } | undefined;
                 };
@@ -100,7 +89,6 @@ export declare const notifySupportGroupLogSchema: z.ZodObject<{
                     invitationCode: string;
                     id?: string | undefined;
                     emojiId?: {
-                        name: string;
                         emoji: string;
                     } | undefined;
                 };
@@ -116,7 +104,6 @@ export declare const notifySupportGroupLogSchema: z.ZodObject<{
                     invitationCode: string;
                     id?: string | undefined;
                     emojiId?: {
-                        name: string;
                         emoji: string;
                     } | undefined;
                 };
@@ -124,7 +111,6 @@ export declare const notifySupportGroupLogSchema: z.ZodObject<{
         }>;
         message?: any;
         emojiId?: {
-            name: string;
             emoji: string;
         } | undefined;
     }, {
@@ -137,7 +123,6 @@ export declare const notifySupportGroupLogSchema: z.ZodObject<{
                     invitationCode: string;
                     id?: string | undefined;
                     emojiId?: {
-                        name: string;
                         emoji: string;
                     } | undefined;
                 };
@@ -145,7 +130,6 @@ export declare const notifySupportGroupLogSchema: z.ZodObject<{
         }>;
         message?: any;
         emojiId?: {
-            name: string;
             emoji: string;
         } | undefined;
     }>;
@@ -166,7 +150,6 @@ export declare const notifySupportGroupLogSchema: z.ZodObject<{
                     invitationCode: string;
                     id?: string | undefined;
                     emojiId?: {
-                        name: string;
                         emoji: string;
                     } | undefined;
                 };
@@ -174,7 +157,6 @@ export declare const notifySupportGroupLogSchema: z.ZodObject<{
         }>;
         message?: any;
         emojiId?: {
-            name: string;
             emoji: string;
         } | undefined;
     };
@@ -199,7 +181,6 @@ export declare const notifySupportGroupLogSchema: z.ZodObject<{
                     invitationCode: string;
                     id?: string | undefined;
                     emojiId?: {
-                        name: string;
                         emoji: string;
                     } | undefined;
                 };
@@ -207,7 +188,6 @@ export declare const notifySupportGroupLogSchema: z.ZodObject<{
         }>;
         message?: any;
         emojiId?: {
-            name: string;
             emoji: string;
         } | undefined;
     };

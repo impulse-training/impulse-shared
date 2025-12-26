@@ -2,7 +2,6 @@ import { z } from "zod";
 
 export const emojiIdSchema = z.object({
   emoji: z.string(),
-  name: z.string(),
 });
 export type EmojiId = z.infer<typeof emojiIdSchema>;
 

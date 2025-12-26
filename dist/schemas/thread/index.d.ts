@@ -2058,12 +2058,9 @@ export declare const threadSchemas: {
         isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
         emojiId: z.ZodNullable<z.ZodObject<{
             emoji: z.ZodString;
-            name: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            name: string;
             emoji: string;
         }, {
-            name: string;
             emoji: string;
         }>>;
         summaryData: z.ZodOptional<z.ZodObject<{
@@ -2140,8 +2137,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         }, {
@@ -2149,8 +2146,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         }>>;
@@ -2163,12 +2160,11 @@ export declare const threadSchemas: {
         dateString: string;
         mode: "text" | "voice";
         emojiId: {
-            name: string;
             emoji: string;
         } | null;
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../../types").Timestamp;
-        sharedWithUserIds: string[];
         sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
@@ -2548,8 +2544,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
@@ -2559,11 +2555,10 @@ export declare const threadSchemas: {
         userId: string;
         dateString: string;
         emojiId: {
-            name: string;
             emoji: string;
         } | null;
-        archiveAfter: import("../../types").Timestamp;
         sharedWithUserIds: string[];
+        archiveAfter: import("../../types").Timestamp;
         sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
@@ -2945,8 +2940,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
@@ -4996,12 +4991,9 @@ export declare const threadSchemas: {
         isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
         emojiId: z.ZodNullable<z.ZodObject<{
             emoji: z.ZodString;
-            name: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            name: string;
             emoji: string;
         }, {
-            name: string;
             emoji: string;
         }>>;
         summaryData: z.ZodOptional<z.ZodObject<{
@@ -5078,8 +5070,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         }, {
@@ -5087,8 +5079,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         }>>;
@@ -5108,12 +5100,11 @@ export declare const threadSchemas: {
         dateString: string;
         mode: "text" | "voice";
         emojiId: {
-            name: string;
             emoji: string;
         } | null;
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../../types").Timestamp;
-        sharedWithUserIds: string[];
         sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
         behaviorDocs: import("../..").DocumentReferenceLike<unknown>[];
         debriefFinishedAt: import("../../types").Timestamp | null;
@@ -5497,8 +5488,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
@@ -5511,11 +5502,10 @@ export declare const threadSchemas: {
         userId: string;
         dateString: string;
         emojiId: {
-            name: string;
             emoji: string;
         } | null;
-        archiveAfter: import("../../types").Timestamp;
         sharedWithUserIds: string[];
+        archiveAfter: import("../../types").Timestamp;
         sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
         behaviorDocs: import("../..").DocumentReferenceLike<unknown>[];
         debriefFinishedAt: import("../../types").Timestamp | null;
@@ -5901,8 +5891,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
@@ -7657,12 +7647,9 @@ export declare const threadSchemas: {
         isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
         emojiId: z.ZodNullable<z.ZodObject<{
             emoji: z.ZodString;
-            name: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            name: string;
             emoji: string;
         }, {
-            name: string;
             emoji: string;
         }>>;
         summaryData: z.ZodOptional<z.ZodObject<{
@@ -7739,8 +7726,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         }, {
@@ -7748,8 +7735,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         }>>;
@@ -8060,7 +8047,6 @@ export declare const threadSchemas: {
         dateString: string;
         mode: "text" | "voice";
         emojiId: {
-            name: string;
             emoji: string;
         } | null;
         plan: ({
@@ -8155,9 +8141,9 @@ export declare const threadSchemas: {
             lastUsedAt?: import("../../types").Timestamp | undefined;
             deletedAt?: import("../../types").Timestamp | undefined;
         });
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../../types").Timestamp;
-        sharedWithUserIds: string[];
         sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
@@ -8445,8 +8431,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
@@ -8456,7 +8442,6 @@ export declare const threadSchemas: {
         userId: string;
         dateString: string;
         emojiId: {
-            name: string;
             emoji: string;
         } | null;
         plan: ({
@@ -8551,8 +8536,8 @@ export declare const threadSchemas: {
             lastUsedAt?: import("../../types").Timestamp | undefined;
             deletedAt?: import("../../types").Timestamp | undefined;
         });
-        archiveAfter: import("../../types").Timestamp;
         sharedWithUserIds: string[];
+        archiveAfter: import("../../types").Timestamp;
         sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
@@ -8842,8 +8827,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
@@ -10893,12 +10878,9 @@ export declare const threadSchemas: {
         isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
         emojiId: z.ZodNullable<z.ZodObject<{
             emoji: z.ZodString;
-            name: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            name: string;
             emoji: string;
         }, {
-            name: string;
             emoji: string;
         }>>;
         summaryData: z.ZodOptional<z.ZodObject<{
@@ -10975,8 +10957,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         }, {
@@ -10984,8 +10966,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         }>>;
@@ -10998,12 +10980,11 @@ export declare const threadSchemas: {
         dateString: string;
         mode: "text" | "voice";
         emojiId: {
-            name: string;
             emoji: string;
         } | null;
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../../types").Timestamp;
-        sharedWithUserIds: string[];
         sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
@@ -11383,8 +11364,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
@@ -11394,11 +11375,10 @@ export declare const threadSchemas: {
         userId: string;
         dateString: string;
         emojiId: {
-            name: string;
             emoji: string;
         } | null;
-        archiveAfter: import("../../types").Timestamp;
         sharedWithUserIds: string[];
+        archiveAfter: import("../../types").Timestamp;
         sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
@@ -11780,8 +11760,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
@@ -13831,12 +13811,9 @@ export declare const threadSchemas: {
         isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
         emojiId: z.ZodNullable<z.ZodObject<{
             emoji: z.ZodString;
-            name: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            name: string;
             emoji: string;
         }, {
-            name: string;
             emoji: string;
         }>>;
         summaryData: z.ZodOptional<z.ZodObject<{
@@ -13913,8 +13890,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         }, {
@@ -13922,8 +13899,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         }>>;
@@ -13936,12 +13913,11 @@ export declare const threadSchemas: {
         dateString: string;
         mode: "text" | "voice";
         emojiId: {
-            name: string;
             emoji: string;
         } | null;
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../../types").Timestamp;
-        sharedWithUserIds: string[];
         sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
@@ -14321,8 +14297,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
@@ -14332,11 +14308,10 @@ export declare const threadSchemas: {
         userId: string;
         dateString: string;
         emojiId: {
-            name: string;
             emoji: string;
         } | null;
-        archiveAfter: import("../../types").Timestamp;
         sharedWithUserIds: string[];
+        archiveAfter: import("../../types").Timestamp;
         sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
@@ -14718,8 +14693,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
@@ -16471,12 +16446,9 @@ export declare const threadSchemas: {
         isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
         emojiId: z.ZodNullable<z.ZodObject<{
             emoji: z.ZodString;
-            name: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            name: string;
             emoji: string;
         }, {
-            name: string;
             emoji: string;
         }>>;
         summaryData: z.ZodOptional<z.ZodObject<{
@@ -16553,8 +16525,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         }, {
@@ -16562,8 +16534,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         }>>;
@@ -16874,7 +16846,6 @@ export declare const threadSchemas: {
         dateString: string;
         mode: "text" | "voice";
         emojiId: {
-            name: string;
             emoji: string;
         } | null;
         plan: ({
@@ -16969,9 +16940,9 @@ export declare const threadSchemas: {
             lastUsedAt?: import("../../types").Timestamp | undefined;
             deletedAt?: import("../../types").Timestamp | undefined;
         });
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../../types").Timestamp;
-        sharedWithUserIds: string[];
         sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
@@ -17259,8 +17230,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
@@ -17270,7 +17241,6 @@ export declare const threadSchemas: {
         userId: string;
         dateString: string;
         emojiId: {
-            name: string;
             emoji: string;
         } | null;
         plan: ({
@@ -17365,8 +17335,8 @@ export declare const threadSchemas: {
             lastUsedAt?: import("../../types").Timestamp | undefined;
             deletedAt?: import("../../types").Timestamp | undefined;
         });
-        archiveAfter: import("../../types").Timestamp;
         sharedWithUserIds: string[];
+        archiveAfter: import("../../types").Timestamp;
         sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
@@ -17656,8 +17626,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
@@ -19707,12 +19677,9 @@ export declare const threadSchemas: {
         isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
         emojiId: z.ZodNullable<z.ZodObject<{
             emoji: z.ZodString;
-            name: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            name: string;
             emoji: string;
         }, {
-            name: string;
             emoji: string;
         }>>;
         summaryData: z.ZodOptional<z.ZodObject<{
@@ -19789,8 +19756,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         }, {
@@ -19798,8 +19765,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         }>>;
@@ -19812,12 +19779,11 @@ export declare const threadSchemas: {
         dateString: string;
         mode: "text" | "voice";
         emojiId: {
-            name: string;
             emoji: string;
         } | null;
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../../types").Timestamp;
-        sharedWithUserIds: string[];
         sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
@@ -20197,8 +20163,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
@@ -20208,11 +20174,10 @@ export declare const threadSchemas: {
         userId: string;
         dateString: string;
         emojiId: {
-            name: string;
             emoji: string;
         } | null;
-        archiveAfter: import("../../types").Timestamp;
         sharedWithUserIds: string[];
+        archiveAfter: import("../../types").Timestamp;
         sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
@@ -20594,8 +20559,8 @@ export declare const threadSchemas: {
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
@@ -22646,12 +22611,9 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     emojiId: z.ZodNullable<z.ZodObject<{
         emoji: z.ZodString;
-        name: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        name: string;
         emoji: string;
     }, {
-        name: string;
         emoji: string;
     }>>;
     summaryData: z.ZodOptional<z.ZodObject<{
@@ -22728,8 +22690,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }, {
@@ -22737,8 +22699,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }>>;
@@ -22751,12 +22713,11 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     dateString: string;
     mode: "text" | "voice";
     emojiId: {
-        name: string;
         emoji: string;
     } | null;
+    sharedWithUserIds: string[];
     isDraft: boolean;
     archiveAfter: import("../../types").Timestamp;
-    sharedWithUserIds: string[];
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
@@ -23136,8 +23097,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
@@ -23147,11 +23108,10 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     userId: string;
     dateString: string;
     emojiId: {
-        name: string;
         emoji: string;
     } | null;
-    archiveAfter: import("../../types").Timestamp;
     sharedWithUserIds: string[];
+    archiveAfter: import("../../types").Timestamp;
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
@@ -23533,8 +23493,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
@@ -25583,12 +25543,9 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     emojiId: z.ZodNullable<z.ZodObject<{
         emoji: z.ZodString;
-        name: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        name: string;
         emoji: string;
     }, {
-        name: string;
         emoji: string;
     }>>;
     summaryData: z.ZodOptional<z.ZodObject<{
@@ -25665,8 +25622,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }, {
@@ -25674,8 +25631,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }>>;
@@ -25695,12 +25652,11 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     dateString: string;
     mode: "text" | "voice";
     emojiId: {
-        name: string;
         emoji: string;
     } | null;
+    sharedWithUserIds: string[];
     isDraft: boolean;
     archiveAfter: import("../../types").Timestamp;
-    sharedWithUserIds: string[];
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
     behaviorDocs: import("../..").DocumentReferenceLike<unknown>[];
     debriefFinishedAt: import("../../types").Timestamp | null;
@@ -26084,8 +26040,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
@@ -26098,11 +26054,10 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     userId: string;
     dateString: string;
     emojiId: {
-        name: string;
         emoji: string;
     } | null;
-    archiveAfter: import("../../types").Timestamp;
     sharedWithUserIds: string[];
+    archiveAfter: import("../../types").Timestamp;
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
     behaviorDocs: import("../..").DocumentReferenceLike<unknown>[];
     debriefFinishedAt: import("../../types").Timestamp | null;
@@ -26488,8 +26443,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
@@ -28541,12 +28496,9 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     emojiId: z.ZodNullable<z.ZodObject<{
         emoji: z.ZodString;
-        name: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        name: string;
         emoji: string;
     }, {
-        name: string;
         emoji: string;
     }>>;
     summaryData: z.ZodOptional<z.ZodObject<{
@@ -28623,8 +28575,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }, {
@@ -28632,8 +28584,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }>>;
@@ -28646,12 +28598,11 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     dateString: string;
     mode: "text" | "voice";
     emojiId: {
-        name: string;
         emoji: string;
     } | null;
+    sharedWithUserIds: string[];
     isDraft: boolean;
     archiveAfter: import("../../types").Timestamp;
-    sharedWithUserIds: string[];
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
@@ -29031,8 +28982,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
@@ -29042,11 +28993,10 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     userId: string;
     dateString: string;
     emojiId: {
-        name: string;
         emoji: string;
     } | null;
-    archiveAfter: import("../../types").Timestamp;
     sharedWithUserIds: string[];
+    archiveAfter: import("../../types").Timestamp;
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
@@ -29428,8 +29378,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
@@ -31180,12 +31130,9 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     emojiId: z.ZodNullable<z.ZodObject<{
         emoji: z.ZodString;
-        name: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        name: string;
         emoji: string;
     }, {
-        name: string;
         emoji: string;
     }>>;
     summaryData: z.ZodOptional<z.ZodObject<{
@@ -31262,8 +31209,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }, {
@@ -31271,8 +31218,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }>>;
@@ -31583,7 +31530,6 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     dateString: string;
     mode: "text" | "voice";
     emojiId: {
-        name: string;
         emoji: string;
     } | null;
     plan: ({
@@ -31678,9 +31624,9 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         lastUsedAt?: import("../../types").Timestamp | undefined;
         deletedAt?: import("../../types").Timestamp | undefined;
     });
+    sharedWithUserIds: string[];
     isDraft: boolean;
     archiveAfter: import("../../types").Timestamp;
-    sharedWithUserIds: string[];
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
@@ -31968,8 +31914,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
@@ -31979,7 +31925,6 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     userId: string;
     dateString: string;
     emojiId: {
-        name: string;
         emoji: string;
     } | null;
     plan: ({
@@ -32074,8 +32019,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         lastUsedAt?: import("../../types").Timestamp | undefined;
         deletedAt?: import("../../types").Timestamp | undefined;
     });
-    archiveAfter: import("../../types").Timestamp;
     sharedWithUserIds: string[];
+    archiveAfter: import("../../types").Timestamp;
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
@@ -32365,8 +32310,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
@@ -34415,12 +34360,9 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     emojiId: z.ZodNullable<z.ZodObject<{
         emoji: z.ZodString;
-        name: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        name: string;
         emoji: string;
     }, {
-        name: string;
         emoji: string;
     }>>;
     summaryData: z.ZodOptional<z.ZodObject<{
@@ -34497,8 +34439,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }, {
@@ -34506,8 +34448,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }>>;
@@ -34520,12 +34462,11 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     dateString: string;
     mode: "text" | "voice";
     emojiId: {
-        name: string;
         emoji: string;
     } | null;
+    sharedWithUserIds: string[];
     isDraft: boolean;
     archiveAfter: import("../../types").Timestamp;
-    sharedWithUserIds: string[];
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
@@ -34905,8 +34846,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
@@ -34916,11 +34857,10 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     userId: string;
     dateString: string;
     emojiId: {
-        name: string;
         emoji: string;
     } | null;
-    archiveAfter: import("../../types").Timestamp;
     sharedWithUserIds: string[];
+    archiveAfter: import("../../types").Timestamp;
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
@@ -35302,8 +35242,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
@@ -37054,12 +36994,9 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     emojiId: z.ZodNullable<z.ZodObject<{
         emoji: z.ZodString;
-        name: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        name: string;
         emoji: string;
     }, {
-        name: string;
         emoji: string;
     }>>;
     summaryData: z.ZodOptional<z.ZodObject<{
@@ -37136,8 +37073,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }, {
@@ -37145,8 +37082,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }>>;
@@ -37457,7 +37394,6 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     dateString: string;
     mode: "text" | "voice";
     emojiId: {
-        name: string;
         emoji: string;
     } | null;
     plan: ({
@@ -37552,9 +37488,9 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         lastUsedAt?: import("../../types").Timestamp | undefined;
         deletedAt?: import("../../types").Timestamp | undefined;
     });
+    sharedWithUserIds: string[];
     isDraft: boolean;
     archiveAfter: import("../../types").Timestamp;
-    sharedWithUserIds: string[];
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
@@ -37842,8 +37778,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
@@ -37853,7 +37789,6 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     userId: string;
     dateString: string;
     emojiId: {
-        name: string;
         emoji: string;
     } | null;
     plan: ({
@@ -37948,8 +37883,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         lastUsedAt?: import("../../types").Timestamp | undefined;
         deletedAt?: import("../../types").Timestamp | undefined;
     });
-    archiveAfter: import("../../types").Timestamp;
     sharedWithUserIds: string[];
+    archiveAfter: import("../../types").Timestamp;
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
@@ -38239,8 +38174,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
@@ -40289,12 +40224,9 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     emojiId: z.ZodNullable<z.ZodObject<{
         emoji: z.ZodString;
-        name: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        name: string;
         emoji: string;
     }, {
-        name: string;
         emoji: string;
     }>>;
     summaryData: z.ZodOptional<z.ZodObject<{
@@ -40371,8 +40303,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }, {
@@ -40380,8 +40312,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }>>;
@@ -40394,12 +40326,11 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     dateString: string;
     mode: "text" | "voice";
     emojiId: {
-        name: string;
         emoji: string;
     } | null;
+    sharedWithUserIds: string[];
     isDraft: boolean;
     archiveAfter: import("../../types").Timestamp;
-    sharedWithUserIds: string[];
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
@@ -40779,8 +40710,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
@@ -40790,11 +40721,10 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     userId: string;
     dateString: string;
     emojiId: {
-        name: string;
         emoji: string;
     } | null;
-    archiveAfter: import("../../types").Timestamp;
     sharedWithUserIds: string[];
+    archiveAfter: import("../../types").Timestamp;
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
@@ -41176,8 +41106,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        logId: string;
         startedAt: import("../../types").Timestamp;
+        logId: string;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;

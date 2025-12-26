@@ -6,7 +6,7 @@ const objectOf_1 = require("../utils/objectOf");
 const timestampSchema_1 = require("../utils/timestampSchema");
 const attachment_1 = require("./attachment");
 const behaviorTopic_1 = require("./behaviorTopic");
-const log_1 = require("./log");
+const userMessageLog_1 = require("./log/messageLog/userMessageLog");
 const userProfile_1 = require("./userProfile");
 const supportGroupPermissions_1 = require("./supportGroupPermissions");
 Object.defineProperty(exports, "supportGroupPermissionsSchema", { enumerable: true, get: function () { return supportGroupPermissions_1.supportGroupPermissionsSchema; } });
@@ -46,7 +46,7 @@ exports.supportGroupSchema = zod_1.z.object({
     isPublic: zod_1.z.boolean().optional(),
     isTemplate: zod_1.z.boolean().optional().default(false),
     inviteCode: zod_1.z.string().optional(),
-    lastMessage: log_1.userMessageLogSchema.optional(),
+    lastMessage: userMessageLog_1.userMessageLogSchema.optional(),
     tacticCount: zod_1.z.number().default(0),
     createdAt: timestampSchema_1.timestampSchema.optional(),
     updatedAt: timestampSchema_1.timestampSchema.optional(),
