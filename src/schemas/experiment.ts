@@ -6,17 +6,17 @@ import { goalSchema } from "./goal";
 export const experimentPhaseEnum = z.enum([
   "baseline",
   "transition",
-  "stabilization",
+  "observation",
   "test",
   "results",
 ]);
 
-const experimentBaselinePhaseSchema = z.object({
+const basicPhaseConfigSchema = z.object({
   requiredDays: z.number().default(5),
   description: z.string().optional(),
 });
 
-const experimentBehaviorChangePhaseSchema = z.object({
+const transitionPhaseConfigSchema = basicPhaseConfigSchema.extend({
   requiredGoal: goalSchema,
   requiredDays: z.number().default(7),
   requireContiguousDays: z.boolean().default(false),
@@ -46,12 +46,11 @@ export const experimentSchema = z.object({
   questionIds: z.array(z.string()),
   pendingTestDescription: z.string().optional(),
   pendingTransitionDescription: z.string().optional(),
-  pendingStabilizationDescription: z.string().optional(),
+  pendingObservationDescription: z.string().optional(),
   config: z.object({
-    baseline: experimentBaselinePhaseSchema,
-    transition: experimentBehaviorChangePhaseSchema.optional(),
-    stabilization: experimentBehaviorChangePhaseSchema.optional(),
-    test: experimentBehaviorChangePhaseSchema.optional(),
+    baseline: basicPhaseConfigSchema,
+    transition: transitionPhaseConfigSchema.optional(),
+    observation: basicPhaseConfigSchema,
   }),
   // Map of yyyy-MM-dd -> DaySummary. This is "input" data.
   daySummaries: z.record(z.string(), daySummarySchema).default({}),
@@ -60,7 +59,7 @@ export const experimentSchema = z.object({
   requirementsMet: z.object({
     baseline: experimentRequirementsSchema,
     transition: experimentRequirementsSchema.optional(),
-    stabilization: experimentRequirementsSchema.optional(),
+    observation: experimentRequirementsSchema.optional(),
     test: experimentRequirementsSchema.optional(),
   }),
 
@@ -68,7 +67,7 @@ export const experimentSchema = z.object({
   completion: z.object({
     baseline: experimentPhaseCompletionSchema,
     transition: experimentPhaseCompletionSchema.optional(),
-    stabilization: experimentPhaseCompletionSchema.optional(),
+    observation: experimentPhaseCompletionSchema.optional(),
     test: experimentPhaseCompletionSchema.optional(),
   }),
   currentPhase: experimentPhaseEnum.default("baseline"),
