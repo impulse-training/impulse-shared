@@ -27,6 +27,7 @@ exports.daySummarySchema = zod_1.z.object({
     behaviorsById: (0, objectOf_1.objectOf)(behavior_1.behaviorSchema).optional(),
     tacticsUsed: zod_1.z.array(zod_1.z.any()).default([]),
     summaryText: zod_1.z.string().default(""),
+    supportGroupSummariesById: (0, objectOf_1.objectOf)(zod_1.z.string()),
     supportGroupPermissionsById: (0, objectOf_1.optionalObjectOf)(supportGroupPermissions_1.supportGroupPermissionsSchema),
     sharedWithUserIds: zod_1.z.array(zod_1.z.string()),
     // Per-behavior goal comparison for the day

@@ -1,11 +1,12 @@
 import { z } from "zod";
 import { objectOf, optionalObjectOf } from "../utils/objectOf";
+import { outcomeSchema } from "../utils/outcomes";
 import { timestampSchema } from "../utils/timestampSchema";
 import { behaviorSchema } from "./behavior";
 import { behaviorTrackingDataSchema } from "./log";
 import { supportGroupPermissionsSchema } from "./supportGroupPermissions";
 
-const outcomeEnum = z.enum(["success", "partial", "setback"]);
+const outcomeEnum = outcomeSchema;
 
 /** Schema for a single goal comparison entry */
 export const goalComparisonEntrySchema = z.object({
@@ -27,6 +28,12 @@ export const daySummarySchema = z.object({
   behaviorsById: objectOf(behaviorSchema).optional(),
   tacticsUsed: z.array(z.any()).default([]),
   summaryText: z.string().default(""),
+  supportGroupSummariesById: objectOf(
+    z.object({
+      summary: z.string(),
+      outcome: outcomeSchema.optional(),
+    })
+  ),
   supportGroupPermissionsById: optionalObjectOf(supportGroupPermissionsSchema),
   sharedWithUserIds: z.array(z.string()),
   // Per-behavior goal comparison for the day

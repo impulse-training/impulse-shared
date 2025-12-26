@@ -346,6 +346,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
             }>>>;
             tacticsUsed: z.ZodDefault<z.ZodArray<z.ZodAny, "many">>;
             summaryText: z.ZodDefault<z.ZodString>;
+            supportGroupSummariesById: z.ZodRecord<z.ZodString, z.ZodString>;
             supportGroupPermissionsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodObject<{
                 dayOutcomes: z.ZodDefault<z.ZodBoolean>;
                 impulseMoments: z.ZodDefault<z.ZodBoolean>;
@@ -399,6 +400,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 behaviorTrackingUnit?: string | undefined;
             }>;
             tacticsUsed: any[];
+            supportGroupSummariesById: Record<string, string>;
             sharedWithUserIds: string[];
             recapRequirementsMetAt: import("../../types").Timestamp | null;
             id?: string | undefined;
@@ -478,6 +480,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 formattedValue: string;
                 behaviorTrackingUnit?: string | undefined;
             }>;
+            supportGroupSummariesById: Record<string, string>;
             sharedWithUserIds: string[];
             recapRequirementsMetAt: import("../../types").Timestamp | null;
             id?: string | undefined;
@@ -566,6 +569,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 behaviorTrackingUnit?: string | undefined;
             }>;
             tacticsUsed: any[];
+            supportGroupSummariesById: Record<string, string>;
             sharedWithUserIds: string[];
             recapRequirementsMetAt: import("../../types").Timestamp | null;
             id?: string | undefined;
@@ -649,6 +653,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 formattedValue: string;
                 behaviorTrackingUnit?: string | undefined;
             }>;
+            supportGroupSummariesById: Record<string, string>;
             sharedWithUserIds: string[];
             recapRequirementsMetAt: import("../../types").Timestamp | null;
             id?: string | undefined;
@@ -744,6 +749,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 behaviorTrackingUnit?: string | undefined;
             }>;
             tacticsUsed: any[];
+            supportGroupSummariesById: Record<string, string>;
             sharedWithUserIds: string[];
             recapRequirementsMetAt: import("../../types").Timestamp | null;
             id?: string | undefined;
@@ -839,6 +845,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
                 formattedValue: string;
                 behaviorTrackingUnit?: string | undefined;
             }>;
+            supportGroupSummariesById: Record<string, string>;
             sharedWithUserIds: string[];
             recapRequirementsMetAt: import("../../types").Timestamp | null;
             id?: string | undefined;
