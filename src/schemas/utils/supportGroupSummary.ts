@@ -6,3 +6,5 @@ export const supportGroupSummarySchema = z.object({
   summary: z.string(),
   outcome: outcomeSchema.optional(),
 });
+
+export type SupportGroupSummary = z.infer<typeof supportGroupSummarySchema>;

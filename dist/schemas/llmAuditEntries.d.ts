@@ -2101,13 +2101,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             plansUsed: z.ZodBoolean;
             outcome: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         }, {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         }>>;
         sharingMessage: z.ZodOptional<z.ZodString>;
         sharedWithUserIds: z.ZodArray<z.ZodString, "many">;
@@ -2133,8 +2133,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         }, {
@@ -2142,8 +2142,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         }>>;
@@ -2159,9 +2159,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             name: string;
             emoji: string;
         } | null;
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../types").Timestamp;
-        sharedWithUserIds: string[];
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -2526,9 +2526,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         strategyDoc?: import("..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
         sharingLevels?: {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         } | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -2541,8 +2541,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
@@ -2555,8 +2555,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             name: string;
             emoji: string;
         } | null;
-        archiveAfter: import("../types").Timestamp;
         sharedWithUserIds: string[];
+        archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -2923,9 +2923,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         strategyDoc?: import("..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
         sharingLevels?: {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         } | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -2938,8 +2938,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
@@ -5038,13 +5038,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             plansUsed: z.ZodBoolean;
             outcome: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         }, {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         }>>;
         sharingMessage: z.ZodOptional<z.ZodString>;
         sharedWithUserIds: z.ZodArray<z.ZodString, "many">;
@@ -5070,8 +5070,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         }, {
@@ -5079,8 +5079,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         }>>;
@@ -5103,9 +5103,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             name: string;
             emoji: string;
         } | null;
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../types").Timestamp;
-        sharedWithUserIds: string[];
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         behaviorDocs: import("..").DocumentReferenceLike<unknown>[];
         debriefFinishedAt: import("../types").Timestamp | null;
@@ -5474,9 +5474,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         strategyDoc?: import("..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
         sharingLevels?: {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         } | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -5489,8 +5489,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
@@ -5506,8 +5506,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             name: string;
             emoji: string;
         } | null;
-        archiveAfter: import("../types").Timestamp;
         sharedWithUserIds: string[];
+        archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         behaviorDocs: import("..").DocumentReferenceLike<unknown>[];
         debriefFinishedAt: import("../types").Timestamp | null;
@@ -5878,9 +5878,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         strategyDoc?: import("..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
         sharingLevels?: {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         } | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -5893,8 +5893,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
@@ -7996,13 +7996,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             plansUsed: z.ZodBoolean;
             outcome: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         }, {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         }>>;
         sharingMessage: z.ZodOptional<z.ZodString>;
         sharedWithUserIds: z.ZodArray<z.ZodString, "many">;
@@ -8028,8 +8028,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         }, {
@@ -8037,8 +8037,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         }>>;
@@ -8054,9 +8054,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             name: string;
             emoji: string;
         } | null;
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../types").Timestamp;
-        sharedWithUserIds: string[];
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -8421,9 +8421,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         strategyDoc?: import("..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
         sharingLevels?: {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         } | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -8436,8 +8436,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
@@ -8450,8 +8450,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             name: string;
             emoji: string;
         } | null;
-        archiveAfter: import("../types").Timestamp;
         sharedWithUserIds: string[];
+        archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -8818,9 +8818,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         strategyDoc?: import("..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
         sharingLevels?: {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         } | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -8833,8 +8833,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
@@ -10635,13 +10635,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             plansUsed: z.ZodBoolean;
             outcome: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         }, {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         }>>;
         sharingMessage: z.ZodOptional<z.ZodString>;
         sharedWithUserIds: z.ZodArray<z.ZodString, "many">;
@@ -10667,8 +10667,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         }, {
@@ -10676,8 +10676,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         }>>;
@@ -11083,9 +11083,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             lastUsedAt?: import("../types").Timestamp | undefined;
             deletedAt?: import("../types").Timestamp | undefined;
         });
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../types").Timestamp;
-        sharedWithUserIds: string[];
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -11358,9 +11358,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         strategyDoc?: import("..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
         sharingLevels?: {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         } | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -11373,8 +11373,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
@@ -11479,8 +11479,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             lastUsedAt?: import("../types").Timestamp | undefined;
             deletedAt?: import("../types").Timestamp | undefined;
         });
-        archiveAfter: import("../types").Timestamp;
         sharedWithUserIds: string[];
+        archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -11755,9 +11755,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         strategyDoc?: import("..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
         sharingLevels?: {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         } | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -11770,8 +11770,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
@@ -13870,13 +13870,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             plansUsed: z.ZodBoolean;
             outcome: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         }, {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         }>>;
         sharingMessage: z.ZodOptional<z.ZodString>;
         sharedWithUserIds: z.ZodArray<z.ZodString, "many">;
@@ -13902,8 +13902,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         }, {
@@ -13911,8 +13911,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         }>>;
@@ -13928,9 +13928,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             name: string;
             emoji: string;
         } | null;
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../types").Timestamp;
-        sharedWithUserIds: string[];
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -14295,9 +14295,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         strategyDoc?: import("..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
         sharingLevels?: {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         } | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -14310,8 +14310,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
@@ -14324,8 +14324,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             name: string;
             emoji: string;
         } | null;
-        archiveAfter: import("../types").Timestamp;
         sharedWithUserIds: string[];
+        archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -14692,9 +14692,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         strategyDoc?: import("..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
         sharingLevels?: {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         } | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -14707,8 +14707,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
@@ -16509,13 +16509,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             plansUsed: z.ZodBoolean;
             outcome: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         }, {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         }>>;
         sharingMessage: z.ZodOptional<z.ZodString>;
         sharedWithUserIds: z.ZodArray<z.ZodString, "many">;
@@ -16541,8 +16541,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         }, {
@@ -16550,8 +16550,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         }>>;
@@ -16957,9 +16957,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             lastUsedAt?: import("../types").Timestamp | undefined;
             deletedAt?: import("../types").Timestamp | undefined;
         });
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../types").Timestamp;
-        sharedWithUserIds: string[];
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -17232,9 +17232,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         strategyDoc?: import("..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
         sharingLevels?: {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         } | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -17247,8 +17247,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
@@ -17353,8 +17353,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             lastUsedAt?: import("../types").Timestamp | undefined;
             deletedAt?: import("../types").Timestamp | undefined;
         });
-        archiveAfter: import("../types").Timestamp;
         sharedWithUserIds: string[];
+        archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -17629,9 +17629,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         strategyDoc?: import("..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
         sharingLevels?: {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         } | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -17644,8 +17644,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
@@ -19744,13 +19744,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             plansUsed: z.ZodBoolean;
             outcome: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         }, {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         }>>;
         sharingMessage: z.ZodOptional<z.ZodString>;
         sharedWithUserIds: z.ZodArray<z.ZodString, "many">;
@@ -19776,8 +19776,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         }, {
@@ -19785,8 +19785,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         }>>;
@@ -19802,9 +19802,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             name: string;
             emoji: string;
         } | null;
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../types").Timestamp;
-        sharedWithUserIds: string[];
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -20169,9 +20169,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         strategyDoc?: import("..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
         sharingLevels?: {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         } | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -20184,8 +20184,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
@@ -20198,8 +20198,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             name: string;
             emoji: string;
         } | null;
-        archiveAfter: import("../types").Timestamp;
         sharedWithUserIds: string[];
+        archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -20566,9 +20566,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         strategyDoc?: import("..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
         sharingLevels?: {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         } | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -20581,8 +20581,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
@@ -20593,8 +20593,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
     model: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     userId: string;
-    logId: string;
     messages: any[];
+    logId: string;
     toolDefinitions: any[];
     durationMs?: number | undefined;
     timestamp?: import("../types").Timestamp | undefined;
@@ -20602,7 +20602,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
     response?: any;
     startedAt?: import("../types").Timestamp | undefined;
     thread?: {
-        type: "general";
+        type: "adjustment";
         date: import("../types").Timestamp;
         userId: string;
         dateString: string;
@@ -20611,9 +20611,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             name: string;
             emoji: string;
         } | null;
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../types").Timestamp;
-        sharedWithUserIds: string[];
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -20978,9 +20978,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         strategyDoc?: import("..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
         sharingLevels?: {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         } | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -20993,8 +20993,802 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
+            agentConnectedAt?: import("../types").Timestamp | undefined;
+            endedAt?: import("../types").Timestamp | undefined;
+        } | undefined;
+    } | {
+        type: "behavior";
+        date: import("../types").Timestamp;
+        userId: string;
+        dateString: string;
+        mode: "text" | "voice";
+        emojiId: {
+            name: string;
+            emoji: string;
+        } | null;
+        sharedWithUserIds: string[];
+        isDraft: boolean;
+        archiveAfter: import("../types").Timestamp;
+        sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
+        id?: string | undefined;
+        createdAt?: import("../types").Timestamp | undefined;
+        updatedAt?: import("../types").Timestamp | undefined;
+        title?: string | undefined;
+        agentConnectedAt?: import("../types").Timestamp | undefined;
+        summary?: string | undefined;
+        plan?: ({
+            id: string;
+            _ref: import("..").DocumentReferenceLike<unknown>;
+        } & {
+            type: "emotion";
+            name: string;
+            tactics: import("..").DocumentReferenceLike<unknown>[];
+            questions: import("..").DocumentReferenceLike<unknown>[];
+            emotionName: string;
+            id?: string | undefined;
+            createdAt?: import("../types").Timestamp | undefined;
+            updatedAt?: import("../types").Timestamp | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            lastUsedAt?: import("../types").Timestamp | undefined;
+            deletedAt?: import("../types").Timestamp | undefined;
+        }) | ({
+            id: string;
+            _ref: import("..").DocumentReferenceLike<unknown>;
+        } & {
+            type: "impulse";
+            behaviorId: string;
+            name: string;
+            tactics: import("..").DocumentReferenceLike<unknown>[];
+            questions: import("..").DocumentReferenceLike<unknown>[];
+            behaviorRef: import("..").DocumentReferenceLike<unknown>;
+            isActive: boolean;
+            numberOfUses: number;
+            numberOfSuccesses: number;
+            numberOfSetbacks: number;
+            id?: string | undefined;
+            createdAt?: import("../types").Timestamp | undefined;
+            updatedAt?: import("../types").Timestamp | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            lastUsedAt?: import("../types").Timestamp | undefined;
+            deletedAt?: import("../types").Timestamp | undefined;
+        }) | ({
+            id: string;
+            _ref: import("..").DocumentReferenceLike<unknown>;
+        } & {
+            type: "time";
+            name: string;
+            tactics: import("..").DocumentReferenceLike<unknown>[];
+            questions: import("..").DocumentReferenceLike<unknown>[];
+            trigger: {
+                hour: number;
+                minute: number;
+                weekdays: number[];
+            };
+            id?: string | undefined;
+            createdAt?: import("../types").Timestamp | undefined;
+            updatedAt?: import("../types").Timestamp | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            lastUsedAt?: import("../types").Timestamp | undefined;
+            deletedAt?: import("../types").Timestamp | undefined;
+        }) | ({
+            id: string;
+            _ref: import("..").DocumentReferenceLike<unknown>;
+        } & {
+            type: "location";
+            name: string;
+            tactics: import("..").DocumentReferenceLike<unknown>[];
+            questions: import("..").DocumentReferenceLike<unknown>[];
+            trigger: {
+                locationName: string;
+                address: string;
+                triggerType: "arrival" | "departure";
+                latitude: number;
+                longitude: number;
+            };
+            id?: string | undefined;
+            createdAt?: import("../types").Timestamp | undefined;
+            updatedAt?: import("../types").Timestamp | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            lastUsedAt?: import("../types").Timestamp | undefined;
+            deletedAt?: import("../types").Timestamp | undefined;
+        }) | undefined;
+        summarizedAt?: import("../types").Timestamp | undefined;
+        currentTactic?: {
+            createdAt: import("../types").Timestamp;
+            updatedAt: import("../types").Timestamp;
+            steps: ({
+                text: string;
+                mode: "affirmation";
+                affirmationText: string;
+                repeatCount: number;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../types").Timestamp | undefined;
+                    updatedAt?: import("../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+            } | {
+                mode: "breathing";
+                breathingPattern: {
+                    inhale: number;
+                    exhale: number;
+                    hold?: number | undefined;
+                };
+                text?: string | undefined;
+                cycles?: number | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../types").Timestamp | undefined;
+                    updatedAt?: import("../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+            } | {
+                text: string;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../types").Timestamp | undefined;
+                    updatedAt?: import("../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                mode?: "default" | undefined;
+                durationSeconds?: number | undefined;
+            } | {
+                mode: "media";
+                media: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../types").Timestamp | undefined;
+                    updatedAt?: import("../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }[];
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../types").Timestamp | undefined;
+                    updatedAt?: import("../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+            } | {
+                text: string;
+                mode: "notifySupport";
+                groupId: string;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../types").Timestamp | undefined;
+                    updatedAt?: import("../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+            } | {
+                text: string;
+                mode: "question-slider1To10";
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                };
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../types").Timestamp | undefined;
+                    updatedAt?: import("../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+            } | {
+                text: string;
+                mode: "question-text";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../types").Timestamp | undefined;
+                    updatedAt?: import("../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
+            })[];
+            id?: string | undefined;
+            title?: string | undefined;
+            description?: string | undefined;
+            tags?: string[] | undefined;
+            aiInstructions?: string | undefined;
+            createdByUid?: string | undefined;
+            recommended?: boolean | undefined;
+            autoplay?: boolean | undefined;
+            indications?: {
+                questionResponses?: {
+                    questionId: string;
+                    questionPrompt: string;
+                    responseSubstrings: string[];
+                    weight: number;
+                }[] | undefined;
+                behaviors?: {
+                    behaviorId: string;
+                    behaviorName: string;
+                    weight: number;
+                }[] | undefined;
+            } | undefined;
+            contraindications?: {
+                questionResponses?: {
+                    questionId: string;
+                    questionPrompt: string;
+                    responseSubstrings: string[];
+                    weight: number;
+                }[] | undefined;
+                behaviors?: {
+                    behaviorId: string;
+                    behaviorName: string;
+                    weight: number;
+                }[] | undefined;
+            } | undefined;
+            effectiveness?: "low" | "medium" | "high" | undefined;
+            timeToComplete?: "medium" | "quick" | "long" | undefined;
+            aiConfiguration?: {
+                goal: string;
+                prompt?: string | undefined;
+                defaultConversationMode?: "text" | "voice" | undefined;
+            } | undefined;
+        } | undefined;
+        currentTacticStepIndex?: number | undefined;
+        summaryData?: {
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            tacticsByTitle: Record<string, any[]>;
+            behaviorsByName: Record<string, any[]>;
+            outcomeLogs: any[];
+            questionsLogs: any[];
+            hasContent: boolean;
+            firstMessageLog?: any;
+            firstCallLog?: any;
+        } | undefined;
+        defaultSystemPrompt?: string | undefined;
+        debriefSystemPrompt?: string | undefined;
+        summaryRequestedAt?: import("../types").Timestamp | undefined;
+        strategyDoc?: import("..").DocumentReferenceLike<unknown> | undefined;
+        allQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
+        sharingLevels?: {
+            outcome: boolean;
+            impulseMoment: boolean;
+            plansUsed: boolean;
+        } | undefined;
+        sharingMessage?: string | undefined;
+        openAfter?: import("../types").Timestamp | undefined;
+        firstOpenedAt?: import("../types").Timestamp | undefined;
+        responseStartedProcessingAt?: import("../types").Timestamp | undefined;
+        assistantId?: string | undefined;
+        assistantThreadId?: string | undefined;
+        currentCall?: {
+            status: "connecting" | "connected" | "ended";
+            livekitSessionId: string;
+            livekitRoomName: string;
+            token: string;
+            startedAt: import("../types").Timestamp;
+            logId: string;
+            agentConnectedAt?: import("../types").Timestamp | undefined;
+            endedAt?: import("../types").Timestamp | undefined;
+        } | undefined;
+    } | {
+        type: "general";
+        date: import("../types").Timestamp;
+        userId: string;
+        dateString: string;
+        mode: "text" | "voice";
+        emojiId: {
+            name: string;
+            emoji: string;
+        } | null;
+        sharedWithUserIds: string[];
+        isDraft: boolean;
+        archiveAfter: import("../types").Timestamp;
+        sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
+        id?: string | undefined;
+        createdAt?: import("../types").Timestamp | undefined;
+        updatedAt?: import("../types").Timestamp | undefined;
+        title?: string | undefined;
+        agentConnectedAt?: import("../types").Timestamp | undefined;
+        summary?: string | undefined;
+        plan?: ({
+            id: string;
+            _ref: import("..").DocumentReferenceLike<unknown>;
+        } & {
+            type: "emotion";
+            name: string;
+            tactics: import("..").DocumentReferenceLike<unknown>[];
+            questions: import("..").DocumentReferenceLike<unknown>[];
+            emotionName: string;
+            id?: string | undefined;
+            createdAt?: import("../types").Timestamp | undefined;
+            updatedAt?: import("../types").Timestamp | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            lastUsedAt?: import("../types").Timestamp | undefined;
+            deletedAt?: import("../types").Timestamp | undefined;
+        }) | ({
+            id: string;
+            _ref: import("..").DocumentReferenceLike<unknown>;
+        } & {
+            type: "impulse";
+            behaviorId: string;
+            name: string;
+            tactics: import("..").DocumentReferenceLike<unknown>[];
+            questions: import("..").DocumentReferenceLike<unknown>[];
+            behaviorRef: import("..").DocumentReferenceLike<unknown>;
+            isActive: boolean;
+            numberOfUses: number;
+            numberOfSuccesses: number;
+            numberOfSetbacks: number;
+            id?: string | undefined;
+            createdAt?: import("../types").Timestamp | undefined;
+            updatedAt?: import("../types").Timestamp | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            lastUsedAt?: import("../types").Timestamp | undefined;
+            deletedAt?: import("../types").Timestamp | undefined;
+        }) | ({
+            id: string;
+            _ref: import("..").DocumentReferenceLike<unknown>;
+        } & {
+            type: "time";
+            name: string;
+            tactics: import("..").DocumentReferenceLike<unknown>[];
+            questions: import("..").DocumentReferenceLike<unknown>[];
+            trigger: {
+                hour: number;
+                minute: number;
+                weekdays: number[];
+            };
+            id?: string | undefined;
+            createdAt?: import("../types").Timestamp | undefined;
+            updatedAt?: import("../types").Timestamp | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            lastUsedAt?: import("../types").Timestamp | undefined;
+            deletedAt?: import("../types").Timestamp | undefined;
+        }) | ({
+            id: string;
+            _ref: import("..").DocumentReferenceLike<unknown>;
+        } & {
+            type: "location";
+            name: string;
+            tactics: import("..").DocumentReferenceLike<unknown>[];
+            questions: import("..").DocumentReferenceLike<unknown>[];
+            trigger: {
+                locationName: string;
+                address: string;
+                triggerType: "arrival" | "departure";
+                latitude: number;
+                longitude: number;
+            };
+            id?: string | undefined;
+            createdAt?: import("../types").Timestamp | undefined;
+            updatedAt?: import("../types").Timestamp | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            lastUsedAt?: import("../types").Timestamp | undefined;
+            deletedAt?: import("../types").Timestamp | undefined;
+        }) | undefined;
+        summarizedAt?: import("../types").Timestamp | undefined;
+        currentTactic?: {
+            createdAt: import("../types").Timestamp;
+            updatedAt: import("../types").Timestamp;
+            steps: ({
+                text: string;
+                mode: "affirmation";
+                affirmationText: string;
+                repeatCount: number;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../types").Timestamp | undefined;
+                    updatedAt?: import("../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+            } | {
+                mode: "breathing";
+                breathingPattern: {
+                    inhale: number;
+                    exhale: number;
+                    hold?: number | undefined;
+                };
+                text?: string | undefined;
+                cycles?: number | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../types").Timestamp | undefined;
+                    updatedAt?: import("../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+            } | {
+                text: string;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../types").Timestamp | undefined;
+                    updatedAt?: import("../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                mode?: "default" | undefined;
+                durationSeconds?: number | undefined;
+            } | {
+                mode: "media";
+                media: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../types").Timestamp | undefined;
+                    updatedAt?: import("../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }[];
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../types").Timestamp | undefined;
+                    updatedAt?: import("../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+            } | {
+                text: string;
+                mode: "notifySupport";
+                groupId: string;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../types").Timestamp | undefined;
+                    updatedAt?: import("../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+            } | {
+                text: string;
+                mode: "question-slider1To10";
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                };
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../types").Timestamp | undefined;
+                    updatedAt?: import("../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+            } | {
+                text: string;
+                mode: "question-text";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../types").Timestamp | undefined;
+                    updatedAt?: import("../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
+            })[];
+            id?: string | undefined;
+            title?: string | undefined;
+            description?: string | undefined;
+            tags?: string[] | undefined;
+            aiInstructions?: string | undefined;
+            createdByUid?: string | undefined;
+            recommended?: boolean | undefined;
+            autoplay?: boolean | undefined;
+            indications?: {
+                questionResponses?: {
+                    questionId: string;
+                    questionPrompt: string;
+                    responseSubstrings: string[];
+                    weight: number;
+                }[] | undefined;
+                behaviors?: {
+                    behaviorId: string;
+                    behaviorName: string;
+                    weight: number;
+                }[] | undefined;
+            } | undefined;
+            contraindications?: {
+                questionResponses?: {
+                    questionId: string;
+                    questionPrompt: string;
+                    responseSubstrings: string[];
+                    weight: number;
+                }[] | undefined;
+                behaviors?: {
+                    behaviorId: string;
+                    behaviorName: string;
+                    weight: number;
+                }[] | undefined;
+            } | undefined;
+            effectiveness?: "low" | "medium" | "high" | undefined;
+            timeToComplete?: "medium" | "quick" | "long" | undefined;
+            aiConfiguration?: {
+                goal: string;
+                prompt?: string | undefined;
+                defaultConversationMode?: "text" | "voice" | undefined;
+            } | undefined;
+        } | undefined;
+        currentTacticStepIndex?: number | undefined;
+        summaryData?: {
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            tacticsByTitle: Record<string, any[]>;
+            behaviorsByName: Record<string, any[]>;
+            outcomeLogs: any[];
+            questionsLogs: any[];
+            hasContent: boolean;
+            firstMessageLog?: any;
+            firstCallLog?: any;
+        } | undefined;
+        defaultSystemPrompt?: string | undefined;
+        debriefSystemPrompt?: string | undefined;
+        summaryRequestedAt?: import("../types").Timestamp | undefined;
+        strategyDoc?: import("..").DocumentReferenceLike<unknown> | undefined;
+        allQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
+        sharingLevels?: {
+            outcome: boolean;
+            impulseMoment: boolean;
+            plansUsed: boolean;
+        } | undefined;
+        sharingMessage?: string | undefined;
+        openAfter?: import("../types").Timestamp | undefined;
+        firstOpenedAt?: import("../types").Timestamp | undefined;
+        responseStartedProcessingAt?: import("../types").Timestamp | undefined;
+        assistantId?: string | undefined;
+        assistantThreadId?: string | undefined;
+        currentCall?: {
+            status: "connecting" | "connected" | "ended";
+            livekitSessionId: string;
+            livekitRoomName: string;
+            token: string;
+            startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
@@ -21008,9 +21802,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             name: string;
             emoji: string;
         } | null;
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../types").Timestamp;
-        sharedWithUserIds: string[];
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         behaviorDocs: import("..").DocumentReferenceLike<unknown>[];
         debriefFinishedAt: import("../types").Timestamp | null;
@@ -21379,9 +22173,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         strategyDoc?: import("..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
         sharingLevels?: {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         } | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -21394,411 +22188,14 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
         allImpulseQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
         debriefStartedAt?: import("../types").Timestamp | undefined;
         outcomeSelectedAt?: import("../types").Timestamp | undefined;
-    } | {
-        type: "behavior";
-        date: import("../types").Timestamp;
-        userId: string;
-        dateString: string;
-        mode: "text" | "voice";
-        emojiId: {
-            name: string;
-            emoji: string;
-        } | null;
-        isDraft: boolean;
-        archiveAfter: import("../types").Timestamp;
-        sharedWithUserIds: string[];
-        sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
-        id?: string | undefined;
-        createdAt?: import("../types").Timestamp | undefined;
-        updatedAt?: import("../types").Timestamp | undefined;
-        title?: string | undefined;
-        agentConnectedAt?: import("../types").Timestamp | undefined;
-        summary?: string | undefined;
-        plan?: ({
-            id: string;
-            _ref: import("..").DocumentReferenceLike<unknown>;
-        } & {
-            type: "emotion";
-            name: string;
-            tactics: import("..").DocumentReferenceLike<unknown>[];
-            questions: import("..").DocumentReferenceLike<unknown>[];
-            emotionName: string;
-            id?: string | undefined;
-            createdAt?: import("../types").Timestamp | undefined;
-            updatedAt?: import("../types").Timestamp | undefined;
-            description?: string | undefined;
-            ordinal?: number | undefined;
-            summary?: string | undefined;
-            isTemplate?: boolean | undefined;
-            tacticsByPath?: Record<string, any> | undefined;
-            lastUsedAt?: import("../types").Timestamp | undefined;
-            deletedAt?: import("../types").Timestamp | undefined;
-        }) | ({
-            id: string;
-            _ref: import("..").DocumentReferenceLike<unknown>;
-        } & {
-            type: "impulse";
-            behaviorId: string;
-            name: string;
-            tactics: import("..").DocumentReferenceLike<unknown>[];
-            questions: import("..").DocumentReferenceLike<unknown>[];
-            behaviorRef: import("..").DocumentReferenceLike<unknown>;
-            isActive: boolean;
-            numberOfUses: number;
-            numberOfSuccesses: number;
-            numberOfSetbacks: number;
-            id?: string | undefined;
-            createdAt?: import("../types").Timestamp | undefined;
-            updatedAt?: import("../types").Timestamp | undefined;
-            description?: string | undefined;
-            ordinal?: number | undefined;
-            summary?: string | undefined;
-            isTemplate?: boolean | undefined;
-            tacticsByPath?: Record<string, any> | undefined;
-            lastUsedAt?: import("../types").Timestamp | undefined;
-            deletedAt?: import("../types").Timestamp | undefined;
-        }) | ({
-            id: string;
-            _ref: import("..").DocumentReferenceLike<unknown>;
-        } & {
-            type: "time";
-            name: string;
-            tactics: import("..").DocumentReferenceLike<unknown>[];
-            questions: import("..").DocumentReferenceLike<unknown>[];
-            trigger: {
-                hour: number;
-                minute: number;
-                weekdays: number[];
-            };
-            id?: string | undefined;
-            createdAt?: import("../types").Timestamp | undefined;
-            updatedAt?: import("../types").Timestamp | undefined;
-            description?: string | undefined;
-            ordinal?: number | undefined;
-            summary?: string | undefined;
-            isTemplate?: boolean | undefined;
-            tacticsByPath?: Record<string, any> | undefined;
-            lastUsedAt?: import("../types").Timestamp | undefined;
-            deletedAt?: import("../types").Timestamp | undefined;
-        }) | ({
-            id: string;
-            _ref: import("..").DocumentReferenceLike<unknown>;
-        } & {
-            type: "location";
-            name: string;
-            tactics: import("..").DocumentReferenceLike<unknown>[];
-            questions: import("..").DocumentReferenceLike<unknown>[];
-            trigger: {
-                locationName: string;
-                address: string;
-                triggerType: "arrival" | "departure";
-                latitude: number;
-                longitude: number;
-            };
-            id?: string | undefined;
-            createdAt?: import("../types").Timestamp | undefined;
-            updatedAt?: import("../types").Timestamp | undefined;
-            description?: string | undefined;
-            ordinal?: number | undefined;
-            summary?: string | undefined;
-            isTemplate?: boolean | undefined;
-            tacticsByPath?: Record<string, any> | undefined;
-            lastUsedAt?: import("../types").Timestamp | undefined;
-            deletedAt?: import("../types").Timestamp | undefined;
-        }) | undefined;
-        summarizedAt?: import("../types").Timestamp | undefined;
-        currentTactic?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            steps: ({
-                text: string;
-                mode: "affirmation";
-                affirmationText: string;
-                repeatCount: number;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../types").Timestamp | undefined;
-                    updatedAt?: import("../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                mode: "breathing";
-                breathingPattern: {
-                    inhale: number;
-                    exhale: number;
-                    hold?: number | undefined;
-                };
-                text?: string | undefined;
-                cycles?: number | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../types").Timestamp | undefined;
-                    updatedAt?: import("../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../types").Timestamp | undefined;
-                    updatedAt?: import("../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-                mode?: "default" | undefined;
-                durationSeconds?: number | undefined;
-            } | {
-                mode: "media";
-                media: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../types").Timestamp | undefined;
-                    updatedAt?: import("../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                }[];
-                text?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../types").Timestamp | undefined;
-                    updatedAt?: import("../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                mode: "notifySupport";
-                groupId: string;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../types").Timestamp | undefined;
-                    updatedAt?: import("../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                mode: "question-slider1To10";
-                sliderConfig: {
-                    minLabel?: string | undefined;
-                    maxLabel?: string | undefined;
-                };
-                id?: string | undefined;
-                createdAt?: import("../types").Timestamp | undefined;
-                updatedAt?: import("../types").Timestamp | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../types").Timestamp | undefined;
-                    updatedAt?: import("../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                mode: "question-text";
-                id?: string | undefined;
-                createdAt?: import("../types").Timestamp | undefined;
-                updatedAt?: import("../types").Timestamp | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../types").Timestamp | undefined;
-                    updatedAt?: import("../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-                suggestedResponses?: string[] | undefined;
-            })[];
-            id?: string | undefined;
-            title?: string | undefined;
-            description?: string | undefined;
-            tags?: string[] | undefined;
-            aiInstructions?: string | undefined;
-            createdByUid?: string | undefined;
-            recommended?: boolean | undefined;
-            autoplay?: boolean | undefined;
-            indications?: {
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
-                }[] | undefined;
-                behaviors?: {
-                    behaviorId: string;
-                    behaviorName: string;
-                    weight: number;
-                }[] | undefined;
-            } | undefined;
-            contraindications?: {
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
-                }[] | undefined;
-                behaviors?: {
-                    behaviorId: string;
-                    behaviorName: string;
-                    weight: number;
-                }[] | undefined;
-            } | undefined;
-            effectiveness?: "low" | "medium" | "high" | undefined;
-            timeToComplete?: "medium" | "quick" | "long" | undefined;
-            aiConfiguration?: {
-                goal: string;
-                prompt?: string | undefined;
-                defaultConversationMode?: "text" | "voice" | undefined;
-            } | undefined;
-        } | undefined;
-        currentTacticStepIndex?: number | undefined;
-        summaryData?: {
-            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
-            tacticsByTitle: Record<string, any[]>;
-            behaviorsByName: Record<string, any[]>;
-            outcomeLogs: any[];
-            questionsLogs: any[];
-            hasContent: boolean;
-            firstMessageLog?: any;
-            firstCallLog?: any;
-        } | undefined;
-        defaultSystemPrompt?: string | undefined;
-        debriefSystemPrompt?: string | undefined;
-        summaryRequestedAt?: import("../types").Timestamp | undefined;
-        strategyDoc?: import("..").DocumentReferenceLike<unknown> | undefined;
-        allQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
-        sharingLevels?: {
-            impulseMoment: boolean;
-            plansUsed: boolean;
-            outcome: boolean;
-        } | undefined;
-        sharingMessage?: string | undefined;
-        openAfter?: import("../types").Timestamp | undefined;
-        firstOpenedAt?: import("../types").Timestamp | undefined;
-        responseStartedProcessingAt?: import("../types").Timestamp | undefined;
-        assistantId?: string | undefined;
-        assistantThreadId?: string | undefined;
-        currentCall?: {
-            status: "connecting" | "connected" | "ended";
-            livekitSessionId: string;
-            livekitRoomName: string;
-            token: string;
-            logId: string;
-            startedAt: import("../types").Timestamp;
-            agentConnectedAt?: import("../types").Timestamp | undefined;
-            endedAt?: import("../types").Timestamp | undefined;
-        } | undefined;
     } | {
         type: "timePlan";
         date: import("../types").Timestamp;
@@ -21901,9 +22298,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             lastUsedAt?: import("../types").Timestamp | undefined;
             deletedAt?: import("../types").Timestamp | undefined;
         });
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../types").Timestamp;
-        sharedWithUserIds: string[];
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -22176,9 +22573,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         strategyDoc?: import("..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
         sharingLevels?: {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         } | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -22191,405 +22588,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
-            agentConnectedAt?: import("../types").Timestamp | undefined;
-            endedAt?: import("../types").Timestamp | undefined;
-        } | undefined;
-    } | {
-        type: "recap";
-        date: import("../types").Timestamp;
-        userId: string;
-        dateString: string;
-        mode: "text" | "voice";
-        emojiId: {
-            name: string;
-            emoji: string;
-        } | null;
-        isDraft: boolean;
-        archiveAfter: import("../types").Timestamp;
-        sharedWithUserIds: string[];
-        sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
-        id?: string | undefined;
-        createdAt?: import("../types").Timestamp | undefined;
-        updatedAt?: import("../types").Timestamp | undefined;
-        title?: string | undefined;
-        agentConnectedAt?: import("../types").Timestamp | undefined;
-        summary?: string | undefined;
-        plan?: ({
-            id: string;
-            _ref: import("..").DocumentReferenceLike<unknown>;
-        } & {
-            type: "emotion";
-            name: string;
-            tactics: import("..").DocumentReferenceLike<unknown>[];
-            questions: import("..").DocumentReferenceLike<unknown>[];
-            emotionName: string;
-            id?: string | undefined;
-            createdAt?: import("../types").Timestamp | undefined;
-            updatedAt?: import("../types").Timestamp | undefined;
-            description?: string | undefined;
-            ordinal?: number | undefined;
-            summary?: string | undefined;
-            isTemplate?: boolean | undefined;
-            tacticsByPath?: Record<string, any> | undefined;
-            lastUsedAt?: import("../types").Timestamp | undefined;
-            deletedAt?: import("../types").Timestamp | undefined;
-        }) | ({
-            id: string;
-            _ref: import("..").DocumentReferenceLike<unknown>;
-        } & {
-            type: "impulse";
-            behaviorId: string;
-            name: string;
-            tactics: import("..").DocumentReferenceLike<unknown>[];
-            questions: import("..").DocumentReferenceLike<unknown>[];
-            behaviorRef: import("..").DocumentReferenceLike<unknown>;
-            isActive: boolean;
-            numberOfUses: number;
-            numberOfSuccesses: number;
-            numberOfSetbacks: number;
-            id?: string | undefined;
-            createdAt?: import("../types").Timestamp | undefined;
-            updatedAt?: import("../types").Timestamp | undefined;
-            description?: string | undefined;
-            ordinal?: number | undefined;
-            summary?: string | undefined;
-            isTemplate?: boolean | undefined;
-            tacticsByPath?: Record<string, any> | undefined;
-            lastUsedAt?: import("../types").Timestamp | undefined;
-            deletedAt?: import("../types").Timestamp | undefined;
-        }) | ({
-            id: string;
-            _ref: import("..").DocumentReferenceLike<unknown>;
-        } & {
-            type: "time";
-            name: string;
-            tactics: import("..").DocumentReferenceLike<unknown>[];
-            questions: import("..").DocumentReferenceLike<unknown>[];
-            trigger: {
-                hour: number;
-                minute: number;
-                weekdays: number[];
-            };
-            id?: string | undefined;
-            createdAt?: import("../types").Timestamp | undefined;
-            updatedAt?: import("../types").Timestamp | undefined;
-            description?: string | undefined;
-            ordinal?: number | undefined;
-            summary?: string | undefined;
-            isTemplate?: boolean | undefined;
-            tacticsByPath?: Record<string, any> | undefined;
-            lastUsedAt?: import("../types").Timestamp | undefined;
-            deletedAt?: import("../types").Timestamp | undefined;
-        }) | ({
-            id: string;
-            _ref: import("..").DocumentReferenceLike<unknown>;
-        } & {
-            type: "location";
-            name: string;
-            tactics: import("..").DocumentReferenceLike<unknown>[];
-            questions: import("..").DocumentReferenceLike<unknown>[];
-            trigger: {
-                locationName: string;
-                address: string;
-                triggerType: "arrival" | "departure";
-                latitude: number;
-                longitude: number;
-            };
-            id?: string | undefined;
-            createdAt?: import("../types").Timestamp | undefined;
-            updatedAt?: import("../types").Timestamp | undefined;
-            description?: string | undefined;
-            ordinal?: number | undefined;
-            summary?: string | undefined;
-            isTemplate?: boolean | undefined;
-            tacticsByPath?: Record<string, any> | undefined;
-            lastUsedAt?: import("../types").Timestamp | undefined;
-            deletedAt?: import("../types").Timestamp | undefined;
-        }) | undefined;
-        summarizedAt?: import("../types").Timestamp | undefined;
-        currentTactic?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            steps: ({
-                text: string;
-                mode: "affirmation";
-                affirmationText: string;
-                repeatCount: number;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../types").Timestamp | undefined;
-                    updatedAt?: import("../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                mode: "breathing";
-                breathingPattern: {
-                    inhale: number;
-                    exhale: number;
-                    hold?: number | undefined;
-                };
-                text?: string | undefined;
-                cycles?: number | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../types").Timestamp | undefined;
-                    updatedAt?: import("../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../types").Timestamp | undefined;
-                    updatedAt?: import("../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-                mode?: "default" | undefined;
-                durationSeconds?: number | undefined;
-            } | {
-                mode: "media";
-                media: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../types").Timestamp | undefined;
-                    updatedAt?: import("../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                }[];
-                text?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../types").Timestamp | undefined;
-                    updatedAt?: import("../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                mode: "notifySupport";
-                groupId: string;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../types").Timestamp | undefined;
-                    updatedAt?: import("../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                mode: "question-slider1To10";
-                sliderConfig: {
-                    minLabel?: string | undefined;
-                    maxLabel?: string | undefined;
-                };
-                id?: string | undefined;
-                createdAt?: import("../types").Timestamp | undefined;
-                updatedAt?: import("../types").Timestamp | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../types").Timestamp | undefined;
-                    updatedAt?: import("../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                mode: "question-text";
-                id?: string | undefined;
-                createdAt?: import("../types").Timestamp | undefined;
-                updatedAt?: import("../types").Timestamp | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../types").Timestamp | undefined;
-                    updatedAt?: import("../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-                suggestedResponses?: string[] | undefined;
-            })[];
-            id?: string | undefined;
-            title?: string | undefined;
-            description?: string | undefined;
-            tags?: string[] | undefined;
-            aiInstructions?: string | undefined;
-            createdByUid?: string | undefined;
-            recommended?: boolean | undefined;
-            autoplay?: boolean | undefined;
-            indications?: {
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
-                }[] | undefined;
-                behaviors?: {
-                    behaviorId: string;
-                    behaviorName: string;
-                    weight: number;
-                }[] | undefined;
-            } | undefined;
-            contraindications?: {
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
-                }[] | undefined;
-                behaviors?: {
-                    behaviorId: string;
-                    behaviorName: string;
-                    weight: number;
-                }[] | undefined;
-            } | undefined;
-            effectiveness?: "low" | "medium" | "high" | undefined;
-            timeToComplete?: "medium" | "quick" | "long" | undefined;
-            aiConfiguration?: {
-                goal: string;
-                prompt?: string | undefined;
-                defaultConversationMode?: "text" | "voice" | undefined;
-            } | undefined;
-        } | undefined;
-        currentTacticStepIndex?: number | undefined;
-        summaryData?: {
-            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
-            tacticsByTitle: Record<string, any[]>;
-            behaviorsByName: Record<string, any[]>;
-            outcomeLogs: any[];
-            questionsLogs: any[];
-            hasContent: boolean;
-            firstMessageLog?: any;
-            firstCallLog?: any;
-        } | undefined;
-        defaultSystemPrompt?: string | undefined;
-        debriefSystemPrompt?: string | undefined;
-        summaryRequestedAt?: import("../types").Timestamp | undefined;
-        strategyDoc?: import("..").DocumentReferenceLike<unknown> | undefined;
-        allQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
-        sharingLevels?: {
-            impulseMoment: boolean;
-            plansUsed: boolean;
-            outcome: boolean;
-        } | undefined;
-        sharingMessage?: string | undefined;
-        openAfter?: import("../types").Timestamp | undefined;
-        firstOpenedAt?: import("../types").Timestamp | undefined;
-        responseStartedProcessingAt?: import("../types").Timestamp | undefined;
-        assistantId?: string | undefined;
-        assistantThreadId?: string | undefined;
-        currentCall?: {
-            status: "connecting" | "connected" | "ended";
-            livekitSessionId: string;
-            livekitRoomName: string;
-            token: string;
             logId: string;
-            startedAt: import("../types").Timestamp;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
@@ -22695,9 +22695,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             lastUsedAt?: import("../types").Timestamp | undefined;
             deletedAt?: import("../types").Timestamp | undefined;
         });
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../types").Timestamp;
-        sharedWithUserIds: string[];
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -22970,9 +22970,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         strategyDoc?: import("..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
         sharingLevels?: {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         } | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -22985,13 +22985,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
     } | {
-        type: "adjustment";
+        type: "recap";
         date: import("../types").Timestamp;
         userId: string;
         dateString: string;
@@ -23000,9 +23000,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             name: string;
             emoji: string;
         } | null;
+        sharedWithUserIds: string[];
         isDraft: boolean;
         archiveAfter: import("../types").Timestamp;
-        sharedWithUserIds: string[];
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -23367,9 +23367,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         strategyDoc?: import("..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
         sharingLevels?: {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         } | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -23382,8 +23382,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
@@ -23391,8 +23391,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
     model?: string | undefined;
 }, {
     userId: string;
-    logId: string;
     messages: any[];
+    logId: string;
     toolDefinitions: any[];
     durationMs?: number | undefined;
     timestamp?: import("../types").Timestamp | undefined;
@@ -23400,7 +23400,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
     response?: any;
     startedAt?: import("../types").Timestamp | undefined;
     thread?: {
-        type: "general";
+        type: "adjustment";
         date: import("../types").Timestamp;
         userId: string;
         dateString: string;
@@ -23408,8 +23408,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             name: string;
             emoji: string;
         } | null;
-        archiveAfter: import("../types").Timestamp;
         sharedWithUserIds: string[];
+        archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -23776,9 +23776,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         strategyDoc?: import("..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
         sharingLevels?: {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         } | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -23791,8 +23791,802 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
+            agentConnectedAt?: import("../types").Timestamp | undefined;
+            endedAt?: import("../types").Timestamp | undefined;
+        } | undefined;
+    } | {
+        type: "behavior";
+        date: import("../types").Timestamp;
+        userId: string;
+        dateString: string;
+        emojiId: {
+            name: string;
+            emoji: string;
+        } | null;
+        sharedWithUserIds: string[];
+        archiveAfter: import("../types").Timestamp;
+        sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
+        id?: string | undefined;
+        createdAt?: import("../types").Timestamp | undefined;
+        updatedAt?: import("../types").Timestamp | undefined;
+        title?: string | undefined;
+        mode?: "text" | "voice" | undefined;
+        agentConnectedAt?: import("../types").Timestamp | undefined;
+        summary?: string | undefined;
+        plan?: ({
+            id: string;
+            _ref: import("..").DocumentReferenceLike<unknown>;
+        } & {
+            type: "emotion";
+            name: string;
+            tactics: import("..").DocumentReferenceLike<unknown>[];
+            emotionName: string;
+            id?: string | undefined;
+            createdAt?: import("../types").Timestamp | undefined;
+            updatedAt?: import("../types").Timestamp | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            questions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
+            lastUsedAt?: import("../types").Timestamp | undefined;
+            deletedAt?: import("../types").Timestamp | undefined;
+        }) | ({
+            id: string;
+            _ref: import("..").DocumentReferenceLike<unknown>;
+        } & {
+            type: "impulse";
+            behaviorId: string;
+            name: string;
+            tactics: import("..").DocumentReferenceLike<unknown>[];
+            behaviorRef: import("..").DocumentReferenceLike<unknown>;
+            id?: string | undefined;
+            createdAt?: import("../types").Timestamp | undefined;
+            updatedAt?: import("../types").Timestamp | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            questions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
+            lastUsedAt?: import("../types").Timestamp | undefined;
+            deletedAt?: import("../types").Timestamp | undefined;
+            isActive?: boolean | undefined;
+            numberOfUses?: number | undefined;
+            numberOfSuccesses?: number | undefined;
+            numberOfSetbacks?: number | undefined;
+        }) | ({
+            id: string;
+            _ref: import("..").DocumentReferenceLike<unknown>;
+        } & {
+            type: "time";
+            name: string;
+            tactics: import("..").DocumentReferenceLike<unknown>[];
+            trigger: {
+                hour: number;
+                minute: number;
+                weekdays: number[];
+            };
+            id?: string | undefined;
+            createdAt?: import("../types").Timestamp | undefined;
+            updatedAt?: import("../types").Timestamp | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            questions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
+            lastUsedAt?: import("../types").Timestamp | undefined;
+            deletedAt?: import("../types").Timestamp | undefined;
+        }) | ({
+            id: string;
+            _ref: import("..").DocumentReferenceLike<unknown>;
+        } & {
+            type: "location";
+            name: string;
+            tactics: import("..").DocumentReferenceLike<unknown>[];
+            trigger: {
+                locationName: string;
+                address: string;
+                triggerType: "arrival" | "departure";
+                latitude: number;
+                longitude: number;
+            };
+            id?: string | undefined;
+            createdAt?: import("../types").Timestamp | undefined;
+            updatedAt?: import("../types").Timestamp | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            questions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
+            lastUsedAt?: import("../types").Timestamp | undefined;
+            deletedAt?: import("../types").Timestamp | undefined;
+        }) | undefined;
+        summarizedAt?: import("../types").Timestamp | undefined;
+        currentTactic?: {
+            createdAt: import("../types").Timestamp;
+            updatedAt: import("../types").Timestamp;
+            steps: ({
+                mode: "affirmation";
+                affirmationText: string;
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../types").Timestamp | undefined;
+                    updatedAt?: import("../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                repeatCount?: number | undefined;
+            } | {
+                mode: "breathing";
+                breathingPattern: {
+                    inhale: number;
+                    exhale: number;
+                    hold?: number | undefined;
+                };
+                text?: string | undefined;
+                cycles?: number | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../types").Timestamp | undefined;
+                    updatedAt?: import("../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+            } | {
+                text: string;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../types").Timestamp | undefined;
+                    updatedAt?: import("../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                mode?: "default" | undefined;
+                durationSeconds?: number | undefined;
+            } | {
+                mode: "media";
+                media: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../types").Timestamp | undefined;
+                    updatedAt?: import("../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }[];
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../types").Timestamp | undefined;
+                    updatedAt?: import("../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+            } | {
+                text: string;
+                mode: "notifySupport";
+                groupId: string;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../types").Timestamp | undefined;
+                    updatedAt?: import("../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+            } | {
+                text: string;
+                mode: "question-slider1To10";
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                };
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../types").Timestamp | undefined;
+                    updatedAt?: import("../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+            } | {
+                text: string;
+                mode: "question-text";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../types").Timestamp | undefined;
+                    updatedAt?: import("../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
+            })[];
+            id?: string | undefined;
+            title?: string | undefined;
+            description?: string | undefined;
+            tags?: string[] | undefined;
+            aiInstructions?: string | undefined;
+            createdByUid?: string | undefined;
+            recommended?: boolean | undefined;
+            autoplay?: boolean | undefined;
+            indications?: {
+                questionResponses?: {
+                    questionId: string;
+                    questionPrompt: string;
+                    responseSubstrings: string[];
+                    weight: number;
+                }[] | undefined;
+                behaviors?: {
+                    behaviorId: string;
+                    behaviorName: string;
+                    weight: number;
+                }[] | undefined;
+            } | undefined;
+            contraindications?: {
+                questionResponses?: {
+                    questionId: string;
+                    questionPrompt: string;
+                    responseSubstrings: string[];
+                    weight: number;
+                }[] | undefined;
+                behaviors?: {
+                    behaviorId: string;
+                    behaviorName: string;
+                    weight: number;
+                }[] | undefined;
+            } | undefined;
+            effectiveness?: "low" | "medium" | "high" | undefined;
+            timeToComplete?: "medium" | "quick" | "long" | undefined;
+            aiConfiguration?: {
+                goal: string;
+                prompt?: string | undefined;
+                defaultConversationMode?: "text" | "voice" | undefined;
+            } | undefined;
+        } | undefined;
+        currentTacticStepIndex?: number | undefined;
+        isDraft?: boolean | undefined;
+        summaryData?: {
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            tacticsByTitle: Record<string, any[]>;
+            behaviorsByName: Record<string, any[]>;
+            outcomeLogs: any[];
+            questionsLogs: any[];
+            hasContent: boolean;
+            firstMessageLog?: any;
+            firstCallLog?: any;
+        } | undefined;
+        defaultSystemPrompt?: string | undefined;
+        debriefSystemPrompt?: string | undefined;
+        summaryRequestedAt?: import("../types").Timestamp | undefined;
+        strategyDoc?: import("..").DocumentReferenceLike<unknown> | undefined;
+        allQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
+        sharingLevels?: {
+            outcome: boolean;
+            impulseMoment: boolean;
+            plansUsed: boolean;
+        } | undefined;
+        sharingMessage?: string | undefined;
+        openAfter?: import("../types").Timestamp | undefined;
+        firstOpenedAt?: import("../types").Timestamp | undefined;
+        responseStartedProcessingAt?: import("../types").Timestamp | undefined;
+        assistantId?: string | undefined;
+        assistantThreadId?: string | undefined;
+        currentCall?: {
+            status: "connecting" | "connected" | "ended";
+            livekitSessionId: string;
+            livekitRoomName: string;
+            token: string;
+            startedAt: import("../types").Timestamp;
+            logId: string;
+            agentConnectedAt?: import("../types").Timestamp | undefined;
+            endedAt?: import("../types").Timestamp | undefined;
+        } | undefined;
+    } | {
+        type: "general";
+        date: import("../types").Timestamp;
+        userId: string;
+        dateString: string;
+        emojiId: {
+            name: string;
+            emoji: string;
+        } | null;
+        sharedWithUserIds: string[];
+        archiveAfter: import("../types").Timestamp;
+        sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
+        id?: string | undefined;
+        createdAt?: import("../types").Timestamp | undefined;
+        updatedAt?: import("../types").Timestamp | undefined;
+        title?: string | undefined;
+        mode?: "text" | "voice" | undefined;
+        agentConnectedAt?: import("../types").Timestamp | undefined;
+        summary?: string | undefined;
+        plan?: ({
+            id: string;
+            _ref: import("..").DocumentReferenceLike<unknown>;
+        } & {
+            type: "emotion";
+            name: string;
+            tactics: import("..").DocumentReferenceLike<unknown>[];
+            emotionName: string;
+            id?: string | undefined;
+            createdAt?: import("../types").Timestamp | undefined;
+            updatedAt?: import("../types").Timestamp | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            questions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
+            lastUsedAt?: import("../types").Timestamp | undefined;
+            deletedAt?: import("../types").Timestamp | undefined;
+        }) | ({
+            id: string;
+            _ref: import("..").DocumentReferenceLike<unknown>;
+        } & {
+            type: "impulse";
+            behaviorId: string;
+            name: string;
+            tactics: import("..").DocumentReferenceLike<unknown>[];
+            behaviorRef: import("..").DocumentReferenceLike<unknown>;
+            id?: string | undefined;
+            createdAt?: import("../types").Timestamp | undefined;
+            updatedAt?: import("../types").Timestamp | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            questions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
+            lastUsedAt?: import("../types").Timestamp | undefined;
+            deletedAt?: import("../types").Timestamp | undefined;
+            isActive?: boolean | undefined;
+            numberOfUses?: number | undefined;
+            numberOfSuccesses?: number | undefined;
+            numberOfSetbacks?: number | undefined;
+        }) | ({
+            id: string;
+            _ref: import("..").DocumentReferenceLike<unknown>;
+        } & {
+            type: "time";
+            name: string;
+            tactics: import("..").DocumentReferenceLike<unknown>[];
+            trigger: {
+                hour: number;
+                minute: number;
+                weekdays: number[];
+            };
+            id?: string | undefined;
+            createdAt?: import("../types").Timestamp | undefined;
+            updatedAt?: import("../types").Timestamp | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            questions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
+            lastUsedAt?: import("../types").Timestamp | undefined;
+            deletedAt?: import("../types").Timestamp | undefined;
+        }) | ({
+            id: string;
+            _ref: import("..").DocumentReferenceLike<unknown>;
+        } & {
+            type: "location";
+            name: string;
+            tactics: import("..").DocumentReferenceLike<unknown>[];
+            trigger: {
+                locationName: string;
+                address: string;
+                triggerType: "arrival" | "departure";
+                latitude: number;
+                longitude: number;
+            };
+            id?: string | undefined;
+            createdAt?: import("../types").Timestamp | undefined;
+            updatedAt?: import("../types").Timestamp | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            questions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
+            lastUsedAt?: import("../types").Timestamp | undefined;
+            deletedAt?: import("../types").Timestamp | undefined;
+        }) | undefined;
+        summarizedAt?: import("../types").Timestamp | undefined;
+        currentTactic?: {
+            createdAt: import("../types").Timestamp;
+            updatedAt: import("../types").Timestamp;
+            steps: ({
+                mode: "affirmation";
+                affirmationText: string;
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../types").Timestamp | undefined;
+                    updatedAt?: import("../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                repeatCount?: number | undefined;
+            } | {
+                mode: "breathing";
+                breathingPattern: {
+                    inhale: number;
+                    exhale: number;
+                    hold?: number | undefined;
+                };
+                text?: string | undefined;
+                cycles?: number | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../types").Timestamp | undefined;
+                    updatedAt?: import("../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+            } | {
+                text: string;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../types").Timestamp | undefined;
+                    updatedAt?: import("../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                mode?: "default" | undefined;
+                durationSeconds?: number | undefined;
+            } | {
+                mode: "media";
+                media: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../types").Timestamp | undefined;
+                    updatedAt?: import("../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }[];
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../types").Timestamp | undefined;
+                    updatedAt?: import("../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+            } | {
+                text: string;
+                mode: "notifySupport";
+                groupId: string;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../types").Timestamp | undefined;
+                    updatedAt?: import("../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+            } | {
+                text: string;
+                mode: "question-slider1To10";
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                };
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../types").Timestamp | undefined;
+                    updatedAt?: import("../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+            } | {
+                text: string;
+                mode: "question-text";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../types").Timestamp | undefined;
+                    updatedAt?: import("../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
+            })[];
+            id?: string | undefined;
+            title?: string | undefined;
+            description?: string | undefined;
+            tags?: string[] | undefined;
+            aiInstructions?: string | undefined;
+            createdByUid?: string | undefined;
+            recommended?: boolean | undefined;
+            autoplay?: boolean | undefined;
+            indications?: {
+                questionResponses?: {
+                    questionId: string;
+                    questionPrompt: string;
+                    responseSubstrings: string[];
+                    weight: number;
+                }[] | undefined;
+                behaviors?: {
+                    behaviorId: string;
+                    behaviorName: string;
+                    weight: number;
+                }[] | undefined;
+            } | undefined;
+            contraindications?: {
+                questionResponses?: {
+                    questionId: string;
+                    questionPrompt: string;
+                    responseSubstrings: string[];
+                    weight: number;
+                }[] | undefined;
+                behaviors?: {
+                    behaviorId: string;
+                    behaviorName: string;
+                    weight: number;
+                }[] | undefined;
+            } | undefined;
+            effectiveness?: "low" | "medium" | "high" | undefined;
+            timeToComplete?: "medium" | "quick" | "long" | undefined;
+            aiConfiguration?: {
+                goal: string;
+                prompt?: string | undefined;
+                defaultConversationMode?: "text" | "voice" | undefined;
+            } | undefined;
+        } | undefined;
+        currentTacticStepIndex?: number | undefined;
+        isDraft?: boolean | undefined;
+        summaryData?: {
+            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            tacticsByTitle: Record<string, any[]>;
+            behaviorsByName: Record<string, any[]>;
+            outcomeLogs: any[];
+            questionsLogs: any[];
+            hasContent: boolean;
+            firstMessageLog?: any;
+            firstCallLog?: any;
+        } | undefined;
+        defaultSystemPrompt?: string | undefined;
+        debriefSystemPrompt?: string | undefined;
+        summaryRequestedAt?: import("../types").Timestamp | undefined;
+        strategyDoc?: import("..").DocumentReferenceLike<unknown> | undefined;
+        allQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
+        sharingLevels?: {
+            outcome: boolean;
+            impulseMoment: boolean;
+            plansUsed: boolean;
+        } | undefined;
+        sharingMessage?: string | undefined;
+        openAfter?: import("../types").Timestamp | undefined;
+        firstOpenedAt?: import("../types").Timestamp | undefined;
+        responseStartedProcessingAt?: import("../types").Timestamp | undefined;
+        assistantId?: string | undefined;
+        assistantThreadId?: string | undefined;
+        currentCall?: {
+            status: "connecting" | "connected" | "ended";
+            livekitSessionId: string;
+            livekitRoomName: string;
+            token: string;
+            startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
@@ -23805,8 +24599,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             name: string;
             emoji: string;
         } | null;
-        archiveAfter: import("../types").Timestamp;
         sharedWithUserIds: string[];
+        archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         behaviorDocs: import("..").DocumentReferenceLike<unknown>[];
         debriefFinishedAt: import("../types").Timestamp | null;
@@ -24177,9 +24971,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         strategyDoc?: import("..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
         sharingLevels?: {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         } | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -24192,411 +24986,14 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
         allImpulseQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
         debriefStartedAt?: import("../types").Timestamp | undefined;
         outcomeSelectedAt?: import("../types").Timestamp | undefined;
-    } | {
-        type: "behavior";
-        date: import("../types").Timestamp;
-        userId: string;
-        dateString: string;
-        emojiId: {
-            name: string;
-            emoji: string;
-        } | null;
-        archiveAfter: import("../types").Timestamp;
-        sharedWithUserIds: string[];
-        sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
-        id?: string | undefined;
-        createdAt?: import("../types").Timestamp | undefined;
-        updatedAt?: import("../types").Timestamp | undefined;
-        title?: string | undefined;
-        mode?: "text" | "voice" | undefined;
-        agentConnectedAt?: import("../types").Timestamp | undefined;
-        summary?: string | undefined;
-        plan?: ({
-            id: string;
-            _ref: import("..").DocumentReferenceLike<unknown>;
-        } & {
-            type: "emotion";
-            name: string;
-            tactics: import("..").DocumentReferenceLike<unknown>[];
-            emotionName: string;
-            id?: string | undefined;
-            createdAt?: import("../types").Timestamp | undefined;
-            updatedAt?: import("../types").Timestamp | undefined;
-            description?: string | undefined;
-            ordinal?: number | undefined;
-            summary?: string | undefined;
-            isTemplate?: boolean | undefined;
-            tacticsByPath?: Record<string, any> | undefined;
-            questions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
-            lastUsedAt?: import("../types").Timestamp | undefined;
-            deletedAt?: import("../types").Timestamp | undefined;
-        }) | ({
-            id: string;
-            _ref: import("..").DocumentReferenceLike<unknown>;
-        } & {
-            type: "impulse";
-            behaviorId: string;
-            name: string;
-            tactics: import("..").DocumentReferenceLike<unknown>[];
-            behaviorRef: import("..").DocumentReferenceLike<unknown>;
-            id?: string | undefined;
-            createdAt?: import("../types").Timestamp | undefined;
-            updatedAt?: import("../types").Timestamp | undefined;
-            description?: string | undefined;
-            ordinal?: number | undefined;
-            summary?: string | undefined;
-            isTemplate?: boolean | undefined;
-            tacticsByPath?: Record<string, any> | undefined;
-            questions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
-            lastUsedAt?: import("../types").Timestamp | undefined;
-            deletedAt?: import("../types").Timestamp | undefined;
-            isActive?: boolean | undefined;
-            numberOfUses?: number | undefined;
-            numberOfSuccesses?: number | undefined;
-            numberOfSetbacks?: number | undefined;
-        }) | ({
-            id: string;
-            _ref: import("..").DocumentReferenceLike<unknown>;
-        } & {
-            type: "time";
-            name: string;
-            tactics: import("..").DocumentReferenceLike<unknown>[];
-            trigger: {
-                hour: number;
-                minute: number;
-                weekdays: number[];
-            };
-            id?: string | undefined;
-            createdAt?: import("../types").Timestamp | undefined;
-            updatedAt?: import("../types").Timestamp | undefined;
-            description?: string | undefined;
-            ordinal?: number | undefined;
-            summary?: string | undefined;
-            isTemplate?: boolean | undefined;
-            tacticsByPath?: Record<string, any> | undefined;
-            questions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
-            lastUsedAt?: import("../types").Timestamp | undefined;
-            deletedAt?: import("../types").Timestamp | undefined;
-        }) | ({
-            id: string;
-            _ref: import("..").DocumentReferenceLike<unknown>;
-        } & {
-            type: "location";
-            name: string;
-            tactics: import("..").DocumentReferenceLike<unknown>[];
-            trigger: {
-                locationName: string;
-                address: string;
-                triggerType: "arrival" | "departure";
-                latitude: number;
-                longitude: number;
-            };
-            id?: string | undefined;
-            createdAt?: import("../types").Timestamp | undefined;
-            updatedAt?: import("../types").Timestamp | undefined;
-            description?: string | undefined;
-            ordinal?: number | undefined;
-            summary?: string | undefined;
-            isTemplate?: boolean | undefined;
-            tacticsByPath?: Record<string, any> | undefined;
-            questions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
-            lastUsedAt?: import("../types").Timestamp | undefined;
-            deletedAt?: import("../types").Timestamp | undefined;
-        }) | undefined;
-        summarizedAt?: import("../types").Timestamp | undefined;
-        currentTactic?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            steps: ({
-                mode: "affirmation";
-                affirmationText: string;
-                text?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../types").Timestamp | undefined;
-                    updatedAt?: import("../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-                repeatCount?: number | undefined;
-            } | {
-                mode: "breathing";
-                breathingPattern: {
-                    inhale: number;
-                    exhale: number;
-                    hold?: number | undefined;
-                };
-                text?: string | undefined;
-                cycles?: number | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../types").Timestamp | undefined;
-                    updatedAt?: import("../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../types").Timestamp | undefined;
-                    updatedAt?: import("../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-                mode?: "default" | undefined;
-                durationSeconds?: number | undefined;
-            } | {
-                mode: "media";
-                media: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../types").Timestamp | undefined;
-                    updatedAt?: import("../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                }[];
-                text?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../types").Timestamp | undefined;
-                    updatedAt?: import("../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                mode: "notifySupport";
-                groupId: string;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../types").Timestamp | undefined;
-                    updatedAt?: import("../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                mode: "question-slider1To10";
-                sliderConfig: {
-                    minLabel?: string | undefined;
-                    maxLabel?: string | undefined;
-                };
-                id?: string | undefined;
-                createdAt?: import("../types").Timestamp | undefined;
-                updatedAt?: import("../types").Timestamp | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../types").Timestamp | undefined;
-                    updatedAt?: import("../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                mode: "question-text";
-                id?: string | undefined;
-                createdAt?: import("../types").Timestamp | undefined;
-                updatedAt?: import("../types").Timestamp | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../types").Timestamp | undefined;
-                    updatedAt?: import("../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-                suggestedResponses?: string[] | undefined;
-            })[];
-            id?: string | undefined;
-            title?: string | undefined;
-            description?: string | undefined;
-            tags?: string[] | undefined;
-            aiInstructions?: string | undefined;
-            createdByUid?: string | undefined;
-            recommended?: boolean | undefined;
-            autoplay?: boolean | undefined;
-            indications?: {
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
-                }[] | undefined;
-                behaviors?: {
-                    behaviorId: string;
-                    behaviorName: string;
-                    weight: number;
-                }[] | undefined;
-            } | undefined;
-            contraindications?: {
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
-                }[] | undefined;
-                behaviors?: {
-                    behaviorId: string;
-                    behaviorName: string;
-                    weight: number;
-                }[] | undefined;
-            } | undefined;
-            effectiveness?: "low" | "medium" | "high" | undefined;
-            timeToComplete?: "medium" | "quick" | "long" | undefined;
-            aiConfiguration?: {
-                goal: string;
-                prompt?: string | undefined;
-                defaultConversationMode?: "text" | "voice" | undefined;
-            } | undefined;
-        } | undefined;
-        currentTacticStepIndex?: number | undefined;
-        isDraft?: boolean | undefined;
-        summaryData?: {
-            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
-            tacticsByTitle: Record<string, any[]>;
-            behaviorsByName: Record<string, any[]>;
-            outcomeLogs: any[];
-            questionsLogs: any[];
-            hasContent: boolean;
-            firstMessageLog?: any;
-            firstCallLog?: any;
-        } | undefined;
-        defaultSystemPrompt?: string | undefined;
-        debriefSystemPrompt?: string | undefined;
-        summaryRequestedAt?: import("../types").Timestamp | undefined;
-        strategyDoc?: import("..").DocumentReferenceLike<unknown> | undefined;
-        allQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
-        sharingLevels?: {
-            impulseMoment: boolean;
-            plansUsed: boolean;
-            outcome: boolean;
-        } | undefined;
-        sharingMessage?: string | undefined;
-        openAfter?: import("../types").Timestamp | undefined;
-        firstOpenedAt?: import("../types").Timestamp | undefined;
-        responseStartedProcessingAt?: import("../types").Timestamp | undefined;
-        assistantId?: string | undefined;
-        assistantThreadId?: string | undefined;
-        currentCall?: {
-            status: "connecting" | "connected" | "ended";
-            livekitSessionId: string;
-            livekitRoomName: string;
-            token: string;
-            logId: string;
-            startedAt: import("../types").Timestamp;
-            agentConnectedAt?: import("../types").Timestamp | undefined;
-            endedAt?: import("../types").Timestamp | undefined;
-        } | undefined;
     } | {
         type: "timePlan";
         date: import("../types").Timestamp;
@@ -24698,8 +25095,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             lastUsedAt?: import("../types").Timestamp | undefined;
             deletedAt?: import("../types").Timestamp | undefined;
         });
-        archiveAfter: import("../types").Timestamp;
         sharedWithUserIds: string[];
+        archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -24974,9 +25371,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         strategyDoc?: import("..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
         sharingLevels?: {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         } | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -24989,405 +25386,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
-            agentConnectedAt?: import("../types").Timestamp | undefined;
-            endedAt?: import("../types").Timestamp | undefined;
-        } | undefined;
-    } | {
-        type: "recap";
-        date: import("../types").Timestamp;
-        userId: string;
-        dateString: string;
-        emojiId: {
-            name: string;
-            emoji: string;
-        } | null;
-        archiveAfter: import("../types").Timestamp;
-        sharedWithUserIds: string[];
-        sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
-        id?: string | undefined;
-        createdAt?: import("../types").Timestamp | undefined;
-        updatedAt?: import("../types").Timestamp | undefined;
-        title?: string | undefined;
-        mode?: "text" | "voice" | undefined;
-        agentConnectedAt?: import("../types").Timestamp | undefined;
-        summary?: string | undefined;
-        plan?: ({
-            id: string;
-            _ref: import("..").DocumentReferenceLike<unknown>;
-        } & {
-            type: "emotion";
-            name: string;
-            tactics: import("..").DocumentReferenceLike<unknown>[];
-            emotionName: string;
-            id?: string | undefined;
-            createdAt?: import("../types").Timestamp | undefined;
-            updatedAt?: import("../types").Timestamp | undefined;
-            description?: string | undefined;
-            ordinal?: number | undefined;
-            summary?: string | undefined;
-            isTemplate?: boolean | undefined;
-            tacticsByPath?: Record<string, any> | undefined;
-            questions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
-            lastUsedAt?: import("../types").Timestamp | undefined;
-            deletedAt?: import("../types").Timestamp | undefined;
-        }) | ({
-            id: string;
-            _ref: import("..").DocumentReferenceLike<unknown>;
-        } & {
-            type: "impulse";
-            behaviorId: string;
-            name: string;
-            tactics: import("..").DocumentReferenceLike<unknown>[];
-            behaviorRef: import("..").DocumentReferenceLike<unknown>;
-            id?: string | undefined;
-            createdAt?: import("../types").Timestamp | undefined;
-            updatedAt?: import("../types").Timestamp | undefined;
-            description?: string | undefined;
-            ordinal?: number | undefined;
-            summary?: string | undefined;
-            isTemplate?: boolean | undefined;
-            tacticsByPath?: Record<string, any> | undefined;
-            questions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
-            lastUsedAt?: import("../types").Timestamp | undefined;
-            deletedAt?: import("../types").Timestamp | undefined;
-            isActive?: boolean | undefined;
-            numberOfUses?: number | undefined;
-            numberOfSuccesses?: number | undefined;
-            numberOfSetbacks?: number | undefined;
-        }) | ({
-            id: string;
-            _ref: import("..").DocumentReferenceLike<unknown>;
-        } & {
-            type: "time";
-            name: string;
-            tactics: import("..").DocumentReferenceLike<unknown>[];
-            trigger: {
-                hour: number;
-                minute: number;
-                weekdays: number[];
-            };
-            id?: string | undefined;
-            createdAt?: import("../types").Timestamp | undefined;
-            updatedAt?: import("../types").Timestamp | undefined;
-            description?: string | undefined;
-            ordinal?: number | undefined;
-            summary?: string | undefined;
-            isTemplate?: boolean | undefined;
-            tacticsByPath?: Record<string, any> | undefined;
-            questions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
-            lastUsedAt?: import("../types").Timestamp | undefined;
-            deletedAt?: import("../types").Timestamp | undefined;
-        }) | ({
-            id: string;
-            _ref: import("..").DocumentReferenceLike<unknown>;
-        } & {
-            type: "location";
-            name: string;
-            tactics: import("..").DocumentReferenceLike<unknown>[];
-            trigger: {
-                locationName: string;
-                address: string;
-                triggerType: "arrival" | "departure";
-                latitude: number;
-                longitude: number;
-            };
-            id?: string | undefined;
-            createdAt?: import("../types").Timestamp | undefined;
-            updatedAt?: import("../types").Timestamp | undefined;
-            description?: string | undefined;
-            ordinal?: number | undefined;
-            summary?: string | undefined;
-            isTemplate?: boolean | undefined;
-            tacticsByPath?: Record<string, any> | undefined;
-            questions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
-            lastUsedAt?: import("../types").Timestamp | undefined;
-            deletedAt?: import("../types").Timestamp | undefined;
-        }) | undefined;
-        summarizedAt?: import("../types").Timestamp | undefined;
-        currentTactic?: {
-            createdAt: import("../types").Timestamp;
-            updatedAt: import("../types").Timestamp;
-            steps: ({
-                mode: "affirmation";
-                affirmationText: string;
-                text?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../types").Timestamp | undefined;
-                    updatedAt?: import("../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-                repeatCount?: number | undefined;
-            } | {
-                mode: "breathing";
-                breathingPattern: {
-                    inhale: number;
-                    exhale: number;
-                    hold?: number | undefined;
-                };
-                text?: string | undefined;
-                cycles?: number | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../types").Timestamp | undefined;
-                    updatedAt?: import("../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../types").Timestamp | undefined;
-                    updatedAt?: import("../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-                mode?: "default" | undefined;
-                durationSeconds?: number | undefined;
-            } | {
-                mode: "media";
-                media: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../types").Timestamp | undefined;
-                    updatedAt?: import("../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                }[];
-                text?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../types").Timestamp | undefined;
-                    updatedAt?: import("../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                mode: "notifySupport";
-                groupId: string;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../types").Timestamp | undefined;
-                    updatedAt?: import("../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                mode: "question-slider1To10";
-                sliderConfig: {
-                    minLabel?: string | undefined;
-                    maxLabel?: string | undefined;
-                };
-                id?: string | undefined;
-                createdAt?: import("../types").Timestamp | undefined;
-                updatedAt?: import("../types").Timestamp | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../types").Timestamp | undefined;
-                    updatedAt?: import("../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                mode: "question-text";
-                id?: string | undefined;
-                createdAt?: import("../types").Timestamp | undefined;
-                updatedAt?: import("../types").Timestamp | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../types").Timestamp | undefined;
-                    updatedAt?: import("../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-                suggestedResponses?: string[] | undefined;
-            })[];
-            id?: string | undefined;
-            title?: string | undefined;
-            description?: string | undefined;
-            tags?: string[] | undefined;
-            aiInstructions?: string | undefined;
-            createdByUid?: string | undefined;
-            recommended?: boolean | undefined;
-            autoplay?: boolean | undefined;
-            indications?: {
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
-                }[] | undefined;
-                behaviors?: {
-                    behaviorId: string;
-                    behaviorName: string;
-                    weight: number;
-                }[] | undefined;
-            } | undefined;
-            contraindications?: {
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
-                }[] | undefined;
-                behaviors?: {
-                    behaviorId: string;
-                    behaviorName: string;
-                    weight: number;
-                }[] | undefined;
-            } | undefined;
-            effectiveness?: "low" | "medium" | "high" | undefined;
-            timeToComplete?: "medium" | "quick" | "long" | undefined;
-            aiConfiguration?: {
-                goal: string;
-                prompt?: string | undefined;
-                defaultConversationMode?: "text" | "voice" | undefined;
-            } | undefined;
-        } | undefined;
-        currentTacticStepIndex?: number | undefined;
-        isDraft?: boolean | undefined;
-        summaryData?: {
-            type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
-            tacticsByTitle: Record<string, any[]>;
-            behaviorsByName: Record<string, any[]>;
-            outcomeLogs: any[];
-            questionsLogs: any[];
-            hasContent: boolean;
-            firstMessageLog?: any;
-            firstCallLog?: any;
-        } | undefined;
-        defaultSystemPrompt?: string | undefined;
-        debriefSystemPrompt?: string | undefined;
-        summaryRequestedAt?: import("../types").Timestamp | undefined;
-        strategyDoc?: import("..").DocumentReferenceLike<unknown> | undefined;
-        allQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
-        sharingLevels?: {
-            impulseMoment: boolean;
-            plansUsed: boolean;
-            outcome: boolean;
-        } | undefined;
-        sharingMessage?: string | undefined;
-        openAfter?: import("../types").Timestamp | undefined;
-        firstOpenedAt?: import("../types").Timestamp | undefined;
-        responseStartedProcessingAt?: import("../types").Timestamp | undefined;
-        assistantId?: string | undefined;
-        assistantThreadId?: string | undefined;
-        currentCall?: {
-            status: "connecting" | "connected" | "ended";
-            livekitSessionId: string;
-            livekitRoomName: string;
-            token: string;
             logId: string;
-            startedAt: import("../types").Timestamp;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
@@ -25492,8 +25492,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             lastUsedAt?: import("../types").Timestamp | undefined;
             deletedAt?: import("../types").Timestamp | undefined;
         });
-        archiveAfter: import("../types").Timestamp;
         sharedWithUserIds: string[];
+        archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -25768,9 +25768,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         strategyDoc?: import("..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
         sharingLevels?: {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         } | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -25783,13 +25783,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
     } | {
-        type: "adjustment";
+        type: "recap";
         date: import("../types").Timestamp;
         userId: string;
         dateString: string;
@@ -25797,8 +25797,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             name: string;
             emoji: string;
         } | null;
-        archiveAfter: import("../types").Timestamp;
         sharedWithUserIds: string[];
+        archiveAfter: import("../types").Timestamp;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -26165,9 +26165,9 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         strategyDoc?: import("..").DocumentReferenceLike<unknown> | undefined;
         allQuestionsAnsweredAt?: import("../types").Timestamp | undefined;
         sharingLevels?: {
+            outcome: boolean;
             impulseMoment: boolean;
             plansUsed: boolean;
-            outcome: boolean;
         } | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -26180,8 +26180,8 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             livekitSessionId: string;
             livekitRoomName: string;
             token: string;
-            logId: string;
             startedAt: import("../types").Timestamp;
+            logId: string;
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;

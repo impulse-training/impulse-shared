@@ -22,8 +22,8 @@ export * from "./question";
 export * from "./session";
 export * from "./strategy";
 export * from "./supportGroup";
+export * from "./utils/supportGroupSummary";
 export * from "./tactic";
-export { isQuestionStepMode } from "./tactic/step/question";
 export * from "./thread";
 export * from "./trigger";
 export * from "./userContext";
@@ -31,3 +31,5 @@ export * from "./userData";
 export * from "./userProfile";
 export * from "./userSummary";
 export * from "./userTimezones";
+
+export { isQuestionStepMode } from "./tactic/step/question";

@@ -407,8 +407,6 @@ export declare const daySummarySchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     userId: string;
     summaryText: string;
-    recapRequirementsMetAt: import("../types").Timestamp | null;
-    sharedWithUserIds: string[];
     impulseThreadOutcomesById: Record<string, "success" | "setback" | "partial">;
     behaviorDataTotalByBehaviorId: Record<string, {
         value: number;
@@ -423,6 +421,8 @@ export declare const daySummarySchema: z.ZodObject<{
         summary: string;
         outcome?: "success" | "setback" | "partial" | undefined;
     }>;
+    sharedWithUserIds: string[];
+    recapRequirementsMetAt: import("../types").Timestamp | null;
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
@@ -491,8 +491,6 @@ export declare const daySummarySchema: z.ZodObject<{
     recapStartedAt?: import("../types").Timestamp | undefined;
 }, {
     userId: string;
-    recapRequirementsMetAt: import("../types").Timestamp | null;
-    sharedWithUserIds: string[];
     impulseThreadOutcomesById: Record<string, "success" | "setback" | "partial">;
     behaviorDataTotalByBehaviorId: Record<string, {
         value: number;
@@ -506,6 +504,8 @@ export declare const daySummarySchema: z.ZodObject<{
         summary: string;
         outcome?: "success" | "setback" | "partial" | undefined;
     }>;
+    sharedWithUserIds: string[];
+    recapRequirementsMetAt: import("../types").Timestamp | null;
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;

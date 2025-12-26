@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { logBaseSchema } from "./base";
-import { objectOf } from "../../utils";
+import { objectOf } from "../../utils/objectOf";
 import { supportGroupSummarySchema } from "../utils/supportGroupSummary";
 
 export const supportGroupDaySummaryLogSchema = logBaseSchema.extend({
