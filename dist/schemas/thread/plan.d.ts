@@ -1828,8 +1828,8 @@ export declare const timePlanThreadSchema: z.ZodObject<{
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        startedAt: import("../../types").Timestamp;
         logId: string;
+        startedAt: import("../../types").Timestamp;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }, {
@@ -1837,8 +1837,8 @@ export declare const timePlanThreadSchema: z.ZodObject<{
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        startedAt: import("../../types").Timestamp;
         logId: string;
+        startedAt: import("../../types").Timestamp;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }>>;
@@ -2244,9 +2244,9 @@ export declare const timePlanThreadSchema: z.ZodObject<{
         lastUsedAt?: import("../../types").Timestamp | undefined;
         deletedAt?: import("../../types").Timestamp | undefined;
     });
-    sharedWithUserIds: string[];
     isDraft: boolean;
     archiveAfter: import("../../types").Timestamp;
+    sharedWithUserIds: string[];
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
@@ -2534,8 +2534,8 @@ export declare const timePlanThreadSchema: z.ZodObject<{
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        startedAt: import("../../types").Timestamp;
         logId: string;
+        startedAt: import("../../types").Timestamp;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
@@ -2640,8 +2640,8 @@ export declare const timePlanThreadSchema: z.ZodObject<{
         lastUsedAt?: import("../../types").Timestamp | undefined;
         deletedAt?: import("../../types").Timestamp | undefined;
     });
-    sharedWithUserIds: string[];
     archiveAfter: import("../../types").Timestamp;
+    sharedWithUserIds: string[];
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
@@ -2931,8 +2931,8 @@ export declare const timePlanThreadSchema: z.ZodObject<{
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        startedAt: import("../../types").Timestamp;
         logId: string;
+        startedAt: import("../../types").Timestamp;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
@@ -4766,8 +4766,8 @@ export declare const locationPlanThreadSchema: z.ZodObject<{
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        startedAt: import("../../types").Timestamp;
         logId: string;
+        startedAt: import("../../types").Timestamp;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }, {
@@ -4775,8 +4775,8 @@ export declare const locationPlanThreadSchema: z.ZodObject<{
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        startedAt: import("../../types").Timestamp;
         logId: string;
+        startedAt: import("../../types").Timestamp;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }>>;
@@ -5182,9 +5182,9 @@ export declare const locationPlanThreadSchema: z.ZodObject<{
         lastUsedAt?: import("../../types").Timestamp | undefined;
         deletedAt?: import("../../types").Timestamp | undefined;
     });
-    sharedWithUserIds: string[];
     isDraft: boolean;
     archiveAfter: import("../../types").Timestamp;
+    sharedWithUserIds: string[];
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
@@ -5472,8 +5472,8 @@ export declare const locationPlanThreadSchema: z.ZodObject<{
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        startedAt: import("../../types").Timestamp;
         logId: string;
+        startedAt: import("../../types").Timestamp;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
@@ -5578,8 +5578,8 @@ export declare const locationPlanThreadSchema: z.ZodObject<{
         lastUsedAt?: import("../../types").Timestamp | undefined;
         deletedAt?: import("../../types").Timestamp | undefined;
     });
-    sharedWithUserIds: string[];
     archiveAfter: import("../../types").Timestamp;
+    sharedWithUserIds: string[];
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
@@ -5869,8 +5869,8 @@ export declare const locationPlanThreadSchema: z.ZodObject<{
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        startedAt: import("../../types").Timestamp;
         logId: string;
+        startedAt: import("../../types").Timestamp;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;

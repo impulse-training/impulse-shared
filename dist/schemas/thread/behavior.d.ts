@@ -2126,8 +2126,8 @@ export declare const behaviorThreadSchema: z.ZodObject<{
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        startedAt: import("../../types").Timestamp;
         logId: string;
+        startedAt: import("../../types").Timestamp;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }, {
@@ -2135,8 +2135,8 @@ export declare const behaviorThreadSchema: z.ZodObject<{
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        startedAt: import("../../types").Timestamp;
         logId: string;
+        startedAt: import("../../types").Timestamp;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }>>;
@@ -2152,9 +2152,9 @@ export declare const behaviorThreadSchema: z.ZodObject<{
         name: string;
         emoji: string;
     } | null;
-    sharedWithUserIds: string[];
     isDraft: boolean;
     archiveAfter: import("../../types").Timestamp;
+    sharedWithUserIds: string[];
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
@@ -2534,8 +2534,8 @@ export declare const behaviorThreadSchema: z.ZodObject<{
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        startedAt: import("../../types").Timestamp;
         logId: string;
+        startedAt: import("../../types").Timestamp;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
@@ -2548,8 +2548,8 @@ export declare const behaviorThreadSchema: z.ZodObject<{
         name: string;
         emoji: string;
     } | null;
-    sharedWithUserIds: string[];
     archiveAfter: import("../../types").Timestamp;
+    sharedWithUserIds: string[];
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
@@ -2931,8 +2931,8 @@ export declare const behaviorThreadSchema: z.ZodObject<{
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        startedAt: import("../../types").Timestamp;
         logId: string;
+        startedAt: import("../../types").Timestamp;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
