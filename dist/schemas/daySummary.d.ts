@@ -354,7 +354,16 @@ export declare const daySummarySchema: z.ZodObject<{
     }>>>;
     tacticsUsed: z.ZodDefault<z.ZodArray<z.ZodAny, "many">>;
     summaryText: z.ZodDefault<z.ZodString>;
-    supportGroupSummariesById: z.ZodRecord<z.ZodString, z.ZodString>;
+    supportGroupSummariesById: z.ZodRecord<z.ZodString, z.ZodObject<{
+        summary: z.ZodString;
+        outcome: z.ZodOptional<z.ZodEnum<["success", "partial", "setback"]>>;
+    }, "strip", z.ZodTypeAny, {
+        summary: string;
+        outcome?: "success" | "setback" | "partial" | undefined;
+    }, {
+        summary: string;
+        outcome?: "success" | "setback" | "partial" | undefined;
+    }>>;
     supportGroupPermissionsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodObject<{
         dayOutcomes: z.ZodDefault<z.ZodBoolean>;
         impulseMoments: z.ZodDefault<z.ZodBoolean>;
@@ -398,6 +407,8 @@ export declare const daySummarySchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     userId: string;
     summaryText: string;
+    recapRequirementsMetAt: import("../types").Timestamp | null;
+    sharedWithUserIds: string[];
     impulseThreadOutcomesById: Record<string, "success" | "setback" | "partial">;
     behaviorDataTotalByBehaviorId: Record<string, {
         value: number;
@@ -408,9 +419,10 @@ export declare const daySummarySchema: z.ZodObject<{
         behaviorTrackingUnit?: string | undefined;
     }>;
     tacticsUsed: any[];
-    supportGroupSummariesById: Record<string, string>;
-    sharedWithUserIds: string[];
-    recapRequirementsMetAt: import("../types").Timestamp | null;
+    supportGroupSummariesById: Record<string, {
+        summary: string;
+        outcome?: "success" | "setback" | "partial" | undefined;
+    }>;
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
@@ -479,6 +491,8 @@ export declare const daySummarySchema: z.ZodObject<{
     recapStartedAt?: import("../types").Timestamp | undefined;
 }, {
     userId: string;
+    recapRequirementsMetAt: import("../types").Timestamp | null;
+    sharedWithUserIds: string[];
     impulseThreadOutcomesById: Record<string, "success" | "setback" | "partial">;
     behaviorDataTotalByBehaviorId: Record<string, {
         value: number;
@@ -488,9 +502,10 @@ export declare const daySummarySchema: z.ZodObject<{
         formattedValue: string;
         behaviorTrackingUnit?: string | undefined;
     }>;
-    supportGroupSummariesById: Record<string, string>;
-    sharedWithUserIds: string[];
-    recapRequirementsMetAt: import("../types").Timestamp | null;
+    supportGroupSummariesById: Record<string, {
+        summary: string;
+        outcome?: "success" | "setback" | "partial" | undefined;
+    }>;
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;

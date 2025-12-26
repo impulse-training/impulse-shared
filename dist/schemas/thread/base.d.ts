@@ -2095,13 +2095,13 @@ export declare const threadBaseSchema: z.ZodObject<{
         plansUsed: z.ZodBoolean;
         outcome: z.ZodBoolean;
     }, "strip", z.ZodTypeAny, {
-        outcome: boolean;
         impulseMoment: boolean;
         plansUsed: boolean;
+        outcome: boolean;
     }, {
-        outcome: boolean;
         impulseMoment: boolean;
         plansUsed: boolean;
+        outcome: boolean;
     }>>;
     sharingMessage: z.ZodOptional<z.ZodString>;
     sharedWithUserIds: z.ZodArray<z.ZodString, "many">;
@@ -2127,8 +2127,8 @@ export declare const threadBaseSchema: z.ZodObject<{
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        startedAt: import("../../types").Timestamp;
         logId: string;
+        startedAt: import("../../types").Timestamp;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }, {
@@ -2136,8 +2136,8 @@ export declare const threadBaseSchema: z.ZodObject<{
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        startedAt: import("../../types").Timestamp;
         logId: string;
+        startedAt: import("../../types").Timestamp;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     }>>;
@@ -2151,9 +2151,9 @@ export declare const threadBaseSchema: z.ZodObject<{
         name: string;
         emoji: string;
     } | null;
-    sharedWithUserIds: string[];
     isDraft: boolean;
     archiveAfter: import("../../types").Timestamp;
+    sharedWithUserIds: string[];
     sharedWithSupportGroups: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
@@ -2518,9 +2518,9 @@ export declare const threadBaseSchema: z.ZodObject<{
     strategyDoc?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown> | undefined;
     allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
     sharingLevels?: {
-        outcome: boolean;
         impulseMoment: boolean;
         plansUsed: boolean;
+        outcome: boolean;
     } | undefined;
     sharingMessage?: string | undefined;
     openAfter?: import("../../types").Timestamp | undefined;
@@ -2533,8 +2533,8 @@ export declare const threadBaseSchema: z.ZodObject<{
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        startedAt: import("../../types").Timestamp;
         logId: string;
+        startedAt: import("../../types").Timestamp;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
@@ -2546,8 +2546,8 @@ export declare const threadBaseSchema: z.ZodObject<{
         name: string;
         emoji: string;
     } | null;
-    sharedWithUserIds: string[];
     archiveAfter: import("../../types").Timestamp;
+    sharedWithUserIds: string[];
     sharedWithSupportGroups: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
@@ -2915,9 +2915,9 @@ export declare const threadBaseSchema: z.ZodObject<{
     strategyDoc?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown> | undefined;
     allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
     sharingLevels?: {
-        outcome: boolean;
         impulseMoment: boolean;
         plansUsed: boolean;
+        outcome: boolean;
     } | undefined;
     sharingMessage?: string | undefined;
     openAfter?: import("../../types").Timestamp | undefined;
@@ -2930,8 +2930,8 @@ export declare const threadBaseSchema: z.ZodObject<{
         livekitSessionId: string;
         livekitRoomName: string;
         token: string;
-        startedAt: import("../../types").Timestamp;
         logId: string;
+        startedAt: import("../../types").Timestamp;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;

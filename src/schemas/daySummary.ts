@@ -5,6 +5,7 @@ import { timestampSchema } from "../utils/timestampSchema";
 import { behaviorSchema } from "./behavior";
 import { behaviorTrackingDataSchema } from "./log";
 import { supportGroupPermissionsSchema } from "./supportGroupPermissions";
+import { supportGroupSummarySchema } from "./utils/supportGroupSummary";
 
 const outcomeEnum = outcomeSchema;
 
@@ -28,12 +29,7 @@ export const daySummarySchema = z.object({
   behaviorsById: objectOf(behaviorSchema).optional(),
   tacticsUsed: z.array(z.any()).default([]),
   summaryText: z.string().default(""),
-  supportGroupSummariesById: objectOf(
-    z.object({
-      summary: z.string(),
-      outcome: outcomeSchema.optional(),
-    })
-  ),
+  supportGroupSummariesById: objectOf(supportGroupSummarySchema),
   supportGroupPermissionsById: optionalObjectOf(supportGroupPermissionsSchema),
   sharedWithUserIds: z.array(z.string()),
   // Per-behavior goal comparison for the day

@@ -4,11 +4,13 @@ exports.daySummarySchema = exports.goalComparisonEntrySchema = void 0;
 exports.isValidDaySummary = isValidDaySummary;
 const zod_1 = require("zod");
 const objectOf_1 = require("../utils/objectOf");
+const outcomes_1 = require("../utils/outcomes");
 const timestampSchema_1 = require("../utils/timestampSchema");
 const behavior_1 = require("./behavior");
 const log_1 = require("./log");
 const supportGroupPermissions_1 = require("./supportGroupPermissions");
-const outcomeEnum = zod_1.z.enum(["success", "partial", "setback"]);
+const supportGroupSummary_1 = require("./utils/supportGroupSummary");
+const outcomeEnum = outcomes_1.outcomeSchema;
 /** Schema for a single goal comparison entry */
 exports.goalComparisonEntrySchema = zod_1.z.object({
     goalLabel: zod_1.z.string(),
@@ -27,7 +29,7 @@ exports.daySummarySchema = zod_1.z.object({
     behaviorsById: (0, objectOf_1.objectOf)(behavior_1.behaviorSchema).optional(),
     tacticsUsed: zod_1.z.array(zod_1.z.any()).default([]),
     summaryText: zod_1.z.string().default(""),
-    supportGroupSummariesById: (0, objectOf_1.objectOf)(zod_1.z.string()),
+    supportGroupSummariesById: (0, objectOf_1.objectOf)(supportGroupSummary_1.supportGroupSummarySchema),
     supportGroupPermissionsById: (0, objectOf_1.optionalObjectOf)(supportGroupPermissions_1.supportGroupPermissionsSchema),
     sharedWithUserIds: zod_1.z.array(zod_1.z.string()),
     // Per-behavior goal comparison for the day

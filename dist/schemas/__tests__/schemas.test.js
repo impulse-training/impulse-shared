@@ -101,6 +101,7 @@ describe("Schema Validation", () => {
         it("should validate a day summary", () => {
             const validDaySummary = {
                 userId: "user123",
+                supportGroupSummariesById: {},
                 sharedWithUserIds: [],
                 goalComparisonByBehaviorId: {},
             };
