@@ -23,6 +23,7 @@ export declare const QuestionSchemas: {
         updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         text: z.ZodString;
         textAfterResponse: z.ZodOptional<z.ZodString>;
+        metricId: z.ZodOptional<z.ZodString>;
         lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         numberOfAnswers: z.ZodOptional<z.ZodNumber>;
@@ -49,6 +50,7 @@ export declare const QuestionSchemas: {
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
         textAfterResponse?: string | undefined;
+        metricId?: string | undefined;
         lastAskedAt?: import("../../types").Timestamp | undefined;
         lastAnsweredAt?: import("../../types").Timestamp | undefined;
         numberOfAnswers?: number | undefined;
@@ -66,6 +68,7 @@ export declare const QuestionSchemas: {
         updatedAt?: import("../../types").Timestamp | undefined;
         isTemplate?: boolean | undefined;
         textAfterResponse?: string | undefined;
+        metricId?: string | undefined;
         lastAskedAt?: import("../../types").Timestamp | undefined;
         lastAnsweredAt?: import("../../types").Timestamp | undefined;
         numberOfAnswers?: number | undefined;
@@ -81,6 +84,7 @@ export declare const QuestionSchemas: {
         updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         text: z.ZodString;
         textAfterResponse: z.ZodOptional<z.ZodString>;
+        metricId: z.ZodOptional<z.ZodString>;
         lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         numberOfAnswers: z.ZodOptional<z.ZodNumber>;
@@ -110,6 +114,7 @@ export declare const QuestionSchemas: {
         updatedAt?: import("../../types").Timestamp | undefined;
         suggestedResponses?: string[] | undefined;
         textAfterResponse?: string | undefined;
+        metricId?: string | undefined;
         lastAskedAt?: import("../../types").Timestamp | undefined;
         lastAnsweredAt?: import("../../types").Timestamp | undefined;
         numberOfAnswers?: number | undefined;
@@ -128,6 +133,7 @@ export declare const QuestionSchemas: {
         suggestedResponses?: string[] | undefined;
         isTemplate?: boolean | undefined;
         textAfterResponse?: string | undefined;
+        metricId?: string | undefined;
         lastAskedAt?: import("../../types").Timestamp | undefined;
         lastAnsweredAt?: import("../../types").Timestamp | undefined;
         numberOfAnswers?: number | undefined;
@@ -143,6 +149,7 @@ export declare const QuestionSchemas: {
         updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         text: z.ZodString;
         textAfterResponse: z.ZodOptional<z.ZodString>;
+        metricId: z.ZodOptional<z.ZodString>;
         lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         numberOfAnswers: z.ZodOptional<z.ZodNumber>;
@@ -172,6 +179,7 @@ export declare const QuestionSchemas: {
         updatedAt?: import("../../types").Timestamp | undefined;
         suggestedResponses?: string[] | undefined;
         textAfterResponse?: string | undefined;
+        metricId?: string | undefined;
         lastAskedAt?: import("../../types").Timestamp | undefined;
         lastAnsweredAt?: import("../../types").Timestamp | undefined;
         numberOfAnswers?: number | undefined;
@@ -190,6 +198,7 @@ export declare const QuestionSchemas: {
         suggestedResponses?: string[] | undefined;
         isTemplate?: boolean | undefined;
         textAfterResponse?: string | undefined;
+        metricId?: string | undefined;
         lastAskedAt?: import("../../types").Timestamp | undefined;
         lastAnsweredAt?: import("../../types").Timestamp | undefined;
         numberOfAnswers?: number | undefined;
@@ -205,6 +214,7 @@ export declare const QuestionSchemas: {
         updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         text: z.ZodString;
         textAfterResponse: z.ZodOptional<z.ZodString>;
+        metricId: z.ZodOptional<z.ZodString>;
         lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         numberOfAnswers: z.ZodOptional<z.ZodNumber>;
@@ -246,6 +256,7 @@ export declare const QuestionSchemas: {
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
         textAfterResponse?: string | undefined;
+        metricId?: string | undefined;
         lastAskedAt?: import("../../types").Timestamp | undefined;
         lastAnsweredAt?: import("../../types").Timestamp | undefined;
         numberOfAnswers?: number | undefined;
@@ -267,6 +278,7 @@ export declare const QuestionSchemas: {
         updatedAt?: import("../../types").Timestamp | undefined;
         isTemplate?: boolean | undefined;
         textAfterResponse?: string | undefined;
+        metricId?: string | undefined;
         lastAskedAt?: import("../../types").Timestamp | undefined;
         lastAnsweredAt?: import("../../types").Timestamp | undefined;
         numberOfAnswers?: number | undefined;
@@ -282,6 +294,7 @@ export declare const QuestionSchemas: {
         updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         text: z.ZodString;
         textAfterResponse: z.ZodOptional<z.ZodString>;
+        metricId: z.ZodOptional<z.ZodString>;
         lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         numberOfAnswers: z.ZodOptional<z.ZodNumber>;
@@ -311,6 +324,7 @@ export declare const QuestionSchemas: {
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
         textAfterResponse?: string | undefined;
+        metricId?: string | undefined;
         lastAskedAt?: import("../../types").Timestamp | undefined;
         lastAnsweredAt?: import("../../types").Timestamp | undefined;
         numberOfAnswers?: number | undefined;
@@ -328,6 +342,7 @@ export declare const QuestionSchemas: {
         updatedAt?: import("../../types").Timestamp | undefined;
         isTemplate?: boolean | undefined;
         textAfterResponse?: string | undefined;
+        metricId?: string | undefined;
         lastAskedAt?: import("../../types").Timestamp | undefined;
         lastAnsweredAt?: import("../../types").Timestamp | undefined;
         numberOfAnswers?: number | undefined;
@@ -344,6 +359,7 @@ export declare const QuestionSchemas: {
         updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         text: z.ZodString;
         textAfterResponse: z.ZodOptional<z.ZodString>;
+        metricId: z.ZodOptional<z.ZodString>;
         lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         numberOfAnswers: z.ZodOptional<z.ZodNumber>;
@@ -370,6 +386,7 @@ export declare const QuestionSchemas: {
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
         textAfterResponse?: string | undefined;
+        metricId?: string | undefined;
         lastAskedAt?: import("../../types").Timestamp | undefined;
         lastAnsweredAt?: import("../../types").Timestamp | undefined;
         numberOfAnswers?: number | undefined;
@@ -387,6 +404,7 @@ export declare const QuestionSchemas: {
         updatedAt?: import("../../types").Timestamp | undefined;
         isTemplate?: boolean | undefined;
         textAfterResponse?: string | undefined;
+        metricId?: string | undefined;
         lastAskedAt?: import("../../types").Timestamp | undefined;
         lastAnsweredAt?: import("../../types").Timestamp | undefined;
         numberOfAnswers?: number | undefined;
@@ -403,6 +421,7 @@ export declare const questionSchema: z.ZodDiscriminatedUnion<"responseType", [z.
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     text: z.ZodString;
     textAfterResponse: z.ZodOptional<z.ZodString>;
+    metricId: z.ZodOptional<z.ZodString>;
     lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     numberOfAnswers: z.ZodOptional<z.ZodNumber>;
@@ -429,6 +448,7 @@ export declare const questionSchema: z.ZodDiscriminatedUnion<"responseType", [z.
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
     textAfterResponse?: string | undefined;
+    metricId?: string | undefined;
     lastAskedAt?: import("../../types").Timestamp | undefined;
     lastAnsweredAt?: import("../../types").Timestamp | undefined;
     numberOfAnswers?: number | undefined;
@@ -446,6 +466,7 @@ export declare const questionSchema: z.ZodDiscriminatedUnion<"responseType", [z.
     updatedAt?: import("../../types").Timestamp | undefined;
     isTemplate?: boolean | undefined;
     textAfterResponse?: string | undefined;
+    metricId?: string | undefined;
     lastAskedAt?: import("../../types").Timestamp | undefined;
     lastAnsweredAt?: import("../../types").Timestamp | undefined;
     numberOfAnswers?: number | undefined;
@@ -460,6 +481,7 @@ export declare const questionSchema: z.ZodDiscriminatedUnion<"responseType", [z.
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     text: z.ZodString;
     textAfterResponse: z.ZodOptional<z.ZodString>;
+    metricId: z.ZodOptional<z.ZodString>;
     lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     numberOfAnswers: z.ZodOptional<z.ZodNumber>;
@@ -489,6 +511,7 @@ export declare const questionSchema: z.ZodDiscriminatedUnion<"responseType", [z.
     updatedAt?: import("../../types").Timestamp | undefined;
     suggestedResponses?: string[] | undefined;
     textAfterResponse?: string | undefined;
+    metricId?: string | undefined;
     lastAskedAt?: import("../../types").Timestamp | undefined;
     lastAnsweredAt?: import("../../types").Timestamp | undefined;
     numberOfAnswers?: number | undefined;
@@ -507,6 +530,7 @@ export declare const questionSchema: z.ZodDiscriminatedUnion<"responseType", [z.
     suggestedResponses?: string[] | undefined;
     isTemplate?: boolean | undefined;
     textAfterResponse?: string | undefined;
+    metricId?: string | undefined;
     lastAskedAt?: import("../../types").Timestamp | undefined;
     lastAnsweredAt?: import("../../types").Timestamp | undefined;
     numberOfAnswers?: number | undefined;
@@ -521,6 +545,7 @@ export declare const questionSchema: z.ZodDiscriminatedUnion<"responseType", [z.
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     text: z.ZodString;
     textAfterResponse: z.ZodOptional<z.ZodString>;
+    metricId: z.ZodOptional<z.ZodString>;
     lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     numberOfAnswers: z.ZodOptional<z.ZodNumber>;
@@ -550,6 +575,7 @@ export declare const questionSchema: z.ZodDiscriminatedUnion<"responseType", [z.
     updatedAt?: import("../../types").Timestamp | undefined;
     suggestedResponses?: string[] | undefined;
     textAfterResponse?: string | undefined;
+    metricId?: string | undefined;
     lastAskedAt?: import("../../types").Timestamp | undefined;
     lastAnsweredAt?: import("../../types").Timestamp | undefined;
     numberOfAnswers?: number | undefined;
@@ -568,6 +594,7 @@ export declare const questionSchema: z.ZodDiscriminatedUnion<"responseType", [z.
     suggestedResponses?: string[] | undefined;
     isTemplate?: boolean | undefined;
     textAfterResponse?: string | undefined;
+    metricId?: string | undefined;
     lastAskedAt?: import("../../types").Timestamp | undefined;
     lastAnsweredAt?: import("../../types").Timestamp | undefined;
     numberOfAnswers?: number | undefined;
@@ -582,6 +609,7 @@ export declare const questionSchema: z.ZodDiscriminatedUnion<"responseType", [z.
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     text: z.ZodString;
     textAfterResponse: z.ZodOptional<z.ZodString>;
+    metricId: z.ZodOptional<z.ZodString>;
     lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     numberOfAnswers: z.ZodOptional<z.ZodNumber>;
@@ -623,6 +651,7 @@ export declare const questionSchema: z.ZodDiscriminatedUnion<"responseType", [z.
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
     textAfterResponse?: string | undefined;
+    metricId?: string | undefined;
     lastAskedAt?: import("../../types").Timestamp | undefined;
     lastAnsweredAt?: import("../../types").Timestamp | undefined;
     numberOfAnswers?: number | undefined;
@@ -644,6 +673,7 @@ export declare const questionSchema: z.ZodDiscriminatedUnion<"responseType", [z.
     updatedAt?: import("../../types").Timestamp | undefined;
     isTemplate?: boolean | undefined;
     textAfterResponse?: string | undefined;
+    metricId?: string | undefined;
     lastAskedAt?: import("../../types").Timestamp | undefined;
     lastAnsweredAt?: import("../../types").Timestamp | undefined;
     numberOfAnswers?: number | undefined;
@@ -658,6 +688,7 @@ export declare const questionSchema: z.ZodDiscriminatedUnion<"responseType", [z.
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     text: z.ZodString;
     textAfterResponse: z.ZodOptional<z.ZodString>;
+    metricId: z.ZodOptional<z.ZodString>;
     lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     numberOfAnswers: z.ZodOptional<z.ZodNumber>;
@@ -687,6 +718,7 @@ export declare const questionSchema: z.ZodDiscriminatedUnion<"responseType", [z.
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
     textAfterResponse?: string | undefined;
+    metricId?: string | undefined;
     lastAskedAt?: import("../../types").Timestamp | undefined;
     lastAnsweredAt?: import("../../types").Timestamp | undefined;
     numberOfAnswers?: number | undefined;
@@ -704,6 +736,7 @@ export declare const questionSchema: z.ZodDiscriminatedUnion<"responseType", [z.
     updatedAt?: import("../../types").Timestamp | undefined;
     isTemplate?: boolean | undefined;
     textAfterResponse?: string | undefined;
+    metricId?: string | undefined;
     lastAskedAt?: import("../../types").Timestamp | undefined;
     lastAnsweredAt?: import("../../types").Timestamp | undefined;
     numberOfAnswers?: number | undefined;
@@ -719,6 +752,7 @@ export declare const questionSchema: z.ZodDiscriminatedUnion<"responseType", [z.
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     text: z.ZodString;
     textAfterResponse: z.ZodOptional<z.ZodString>;
+    metricId: z.ZodOptional<z.ZodString>;
     lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     numberOfAnswers: z.ZodOptional<z.ZodNumber>;
@@ -745,6 +779,7 @@ export declare const questionSchema: z.ZodDiscriminatedUnion<"responseType", [z.
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
     textAfterResponse?: string | undefined;
+    metricId?: string | undefined;
     lastAskedAt?: import("../../types").Timestamp | undefined;
     lastAnsweredAt?: import("../../types").Timestamp | undefined;
     numberOfAnswers?: number | undefined;
@@ -762,6 +797,7 @@ export declare const questionSchema: z.ZodDiscriminatedUnion<"responseType", [z.
     updatedAt?: import("../../types").Timestamp | undefined;
     isTemplate?: boolean | undefined;
     textAfterResponse?: string | undefined;
+    metricId?: string | undefined;
     lastAskedAt?: import("../../types").Timestamp | undefined;
     lastAnsweredAt?: import("../../types").Timestamp | undefined;
     numberOfAnswers?: number | undefined;

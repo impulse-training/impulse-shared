@@ -9,6 +9,7 @@ export function questionBaseSchema<T extends string>(type: T) {
     updatedAt: timestampSchema.optional(),
     text: z.string(),
     textAfterResponse: z.string().optional(),
+    metricId: z.string().optional(),
     lastAskedAt: timestampSchema.optional(),
     lastAnsweredAt: timestampSchema.optional(),
     numberOfAnswers: z.number().optional(),

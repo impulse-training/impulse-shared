@@ -5,6 +5,7 @@ export declare function questionBaseSchema<T extends string>(type: T): z.ZodObje
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     text: z.ZodString;
     textAfterResponse: z.ZodOptional<z.ZodString>;
+    metricId: z.ZodOptional<z.ZodString>;
     lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     numberOfAnswers: z.ZodOptional<z.ZodNumber>;
@@ -28,6 +29,7 @@ export declare function questionBaseSchema<T extends string>(type: T): z.ZodObje
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     text: z.ZodString;
     textAfterResponse: z.ZodOptional<z.ZodString>;
+    metricId: z.ZodOptional<z.ZodString>;
     lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     numberOfAnswers: z.ZodOptional<z.ZodNumber>;
@@ -51,6 +53,7 @@ export declare function questionBaseSchema<T extends string>(type: T): z.ZodObje
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     text: z.ZodString;
     textAfterResponse: z.ZodOptional<z.ZodString>;
+    metricId: z.ZodOptional<z.ZodString>;
     lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     numberOfAnswers: z.ZodOptional<z.ZodNumber>;
@@ -74,6 +77,7 @@ export declare function questionBaseSchema<T extends string>(type: T): z.ZodObje
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     text: z.ZodString;
     textAfterResponse: z.ZodOptional<z.ZodString>;
+    metricId: z.ZodOptional<z.ZodString>;
     lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     numberOfAnswers: z.ZodOptional<z.ZodNumber>;
@@ -97,6 +101,7 @@ export declare function questionBaseSchema<T extends string>(type: T): z.ZodObje
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     text: z.ZodString;
     textAfterResponse: z.ZodOptional<z.ZodString>;
+    metricId: z.ZodOptional<z.ZodString>;
     lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     numberOfAnswers: z.ZodOptional<z.ZodNumber>;

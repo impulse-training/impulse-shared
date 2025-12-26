@@ -7,8 +7,6 @@ export const experimentPhaseEnum = z.enum([
   "baseline",
   "transition",
   "observation",
-  "test",
-  "results",
 ]);
 
 const basicPhaseConfigSchema = z.object({
@@ -60,7 +58,6 @@ export const experimentSchema = z.object({
     baseline: experimentRequirementsSchema,
     transition: experimentRequirementsSchema.optional(),
     observation: experimentRequirementsSchema.optional(),
-    test: experimentRequirementsSchema.optional(),
   }),
 
   // Finally, compute data for display.
@@ -68,7 +65,6 @@ export const experimentSchema = z.object({
     baseline: experimentPhaseCompletionSchema,
     transition: experimentPhaseCompletionSchema.optional(),
     observation: experimentPhaseCompletionSchema.optional(),
-    test: experimentPhaseCompletionSchema.optional(),
   }),
   currentPhase: experimentPhaseEnum.default("baseline"),
 });
