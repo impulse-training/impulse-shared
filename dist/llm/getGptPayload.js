@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getGptPayload = getGptPayload;
 const log_1 = require("../schemas/log");
 function getGptPayload(log) {
+    var _a, _b, _c;
     if ((0, log_1.logIsImpulseLog)(log)) {
         return [
             {
@@ -132,10 +133,17 @@ function getGptPayload(log) {
     // Handle BehaviorLog
     if ((0, log_1.logIsBehaviorLog)(log)) {
         const { behaviorName, formattedValue } = log.data;
+        // Format the timestamp for context
+        const timestamp = (_c = (_b = (_a = log.timestamp) === null || _a === void 0 ? void 0 : _a.toDate) === null || _b === void 0 ? void 0 : _b.call(_a)) !== null && _c !== void 0 ? _c : new Date();
+        const timeStr = timestamp.toLocaleTimeString("en-US", {
+            hour: "numeric",
+            minute: "2-digit",
+            hour12: true,
+        });
         return [
             {
                 role: "user",
-                content: `<s>The user has tracked a behavior: ${behaviorName} - ${formattedValue}</s>`,
+                content: `<s>The user has tracked a behavior: ${behaviorName} - ${formattedValue} at ${timeStr}</s>`,
             },
         ];
     }

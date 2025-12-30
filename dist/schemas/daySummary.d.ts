@@ -150,7 +150,6 @@ export declare const daySummarySchema: z.ZodObject<{
             behaviorTrackingUnit?: string | undefined;
         }>>;
         hidden: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-        activePlanId: z.ZodString;
         behaviorTopicId: z.ZodOptional<z.ZodEnum<[string, ...string[]]>>;
     }, "strip", z.ZodTypeAny, {
         trackingType: "counter" | "timer";
@@ -160,7 +159,6 @@ export declare const daySummarySchema: z.ZodObject<{
         benefits: string[];
         drawbacks: string[];
         hidden: boolean;
-        activePlanId: string;
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
@@ -200,7 +198,6 @@ export declare const daySummarySchema: z.ZodObject<{
         description: string;
         benefits: string[];
         drawbacks: string[];
-        activePlanId: string;
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
@@ -244,7 +241,6 @@ export declare const daySummarySchema: z.ZodObject<{
         benefits: string[];
         drawbacks: string[];
         hidden: boolean;
-        activePlanId: string;
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
@@ -284,7 +280,6 @@ export declare const daySummarySchema: z.ZodObject<{
         description: string;
         benefits: string[];
         drawbacks: string[];
-        activePlanId: string;
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
@@ -411,7 +406,6 @@ export declare const daySummarySchema: z.ZodObject<{
         benefits: string[];
         drawbacks: string[];
         hidden: boolean;
-        activePlanId: string;
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
@@ -489,7 +483,6 @@ export declare const daySummarySchema: z.ZodObject<{
         description: string;
         benefits: string[];
         drawbacks: string[];
-        activePlanId: string;
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;

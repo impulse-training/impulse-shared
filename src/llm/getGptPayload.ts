@@ -172,11 +172,18 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
   // Handle BehaviorLog
   if (logIsBehaviorLog(log)) {
     const { behaviorName, formattedValue } = log.data;
+    // Format the timestamp for context
+    const timestamp = log.timestamp?.toDate?.() ?? new Date();
+    const timeStr = timestamp.toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    });
 
     return [
       {
         role: "user",
-        content: `<s>The user has tracked a behavior: ${behaviorName} - ${formattedValue}</s>`,
+        content: `<s>The user has tracked a behavior: ${behaviorName} - ${formattedValue} at ${timeStr}</s>`,
       },
     ];
   }
