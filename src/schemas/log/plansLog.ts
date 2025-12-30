@@ -20,7 +20,7 @@ export const plansLogSchema = logBaseSchema.extend({
       })
     ),
     // Index of the currently active/selected plan in the carousel
-    activeIndex: z.number().default(0),
+    activeIndex: z.number().optional(),
     // When a plan was accepted/started
     acceptedAt: timestampSchema.optional(),
   }),

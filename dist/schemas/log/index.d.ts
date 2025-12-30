@@ -10923,7 +10923,7 @@ export declare const logSchemas: {
                 });
                 completedAt?: import("../../types").Timestamp | undefined;
             }>, "many">;
-            activeIndex: z.ZodDefault<z.ZodNumber>;
+            activeIndex: z.ZodOptional<z.ZodNumber>;
             acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         }, "strip", z.ZodTypeAny, {
             plans: {
@@ -11046,8 +11046,8 @@ export declare const logSchemas: {
                 });
                 completedAt?: import("../../types").Timestamp | undefined;
             }[];
-            activeIndex: number;
             behaviorId?: string | undefined;
+            activeIndex?: number | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
         }, {
             plans: {
@@ -11302,8 +11302,8 @@ export declare const logSchemas: {
                 });
                 completedAt?: import("../../types").Timestamp | undefined;
             }[];
-            activeIndex: number;
             behaviorId?: string | undefined;
+            activeIndex?: number | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
@@ -20388,7 +20388,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             });
             completedAt?: import("../../types").Timestamp | undefined;
         }>, "many">;
-        activeIndex: z.ZodDefault<z.ZodNumber>;
+        activeIndex: z.ZodOptional<z.ZodNumber>;
         acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
         plans: {
@@ -20511,8 +20511,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             });
             completedAt?: import("../../types").Timestamp | undefined;
         }[];
-        activeIndex: number;
         behaviorId?: string | undefined;
+        activeIndex?: number | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
     }, {
         plans: {
@@ -20767,8 +20767,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             });
             completedAt?: import("../../types").Timestamp | undefined;
         }[];
-        activeIndex: number;
         behaviorId?: string | undefined;
+        activeIndex?: number | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
