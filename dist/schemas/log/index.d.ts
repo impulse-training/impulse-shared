@@ -8922,6 +8922,7 @@ export declare const logSchemas: {
         type: z.ZodLiteral<"behavior">;
         isDisplayable: z.ZodLiteral<true>;
         isAdjustment: z.ZodDefault<z.ZodBoolean>;
+        shouldZaraRespond: z.ZodOptional<z.ZodBoolean>;
         data: z.ZodObject<{
             behaviorId: z.ZodString;
             behaviorName: z.ZodString;
@@ -8964,6 +8965,7 @@ export declare const logSchemas: {
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
         callLogDocPath?: string | undefined;
+        shouldZaraRespond?: boolean | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -8984,6 +8986,7 @@ export declare const logSchemas: {
         tacticId?: string | undefined;
         callLogDocPath?: string | undefined;
         isAdjustment?: boolean | undefined;
+        shouldZaraRespond?: boolean | undefined;
     }>;
     breathing: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
@@ -18405,6 +18408,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     type: z.ZodLiteral<"behavior">;
     isDisplayable: z.ZodLiteral<true>;
     isAdjustment: z.ZodDefault<z.ZodBoolean>;
+    shouldZaraRespond: z.ZodOptional<z.ZodBoolean>;
     data: z.ZodObject<{
         behaviorId: z.ZodString;
         behaviorName: z.ZodString;
@@ -18447,6 +18451,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
     callLogDocPath?: string | undefined;
+    shouldZaraRespond?: boolean | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
@@ -18467,6 +18472,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     tacticId?: string | undefined;
     callLogDocPath?: string | undefined;
     isAdjustment?: boolean | undefined;
+    shouldZaraRespond?: boolean | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
