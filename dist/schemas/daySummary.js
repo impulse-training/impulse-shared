@@ -28,7 +28,7 @@ exports.daySummarySchema = zod_1.z.object({
     behaviorDataTotalByBehaviorId: (0, objectOf_1.objectOf)(log_1.behaviorTrackingDataSchema),
     behaviorsById: (0, objectOf_1.objectOf)(behavior_1.behaviorSchema).optional(),
     tacticsUsed: zod_1.z.array(zod_1.z.any()).default([]),
-    summaryText: zod_1.z.string().default(""),
+    summaryText: zod_1.z.string().nullable(),
     supportGroupSummariesById: (0, objectOf_1.objectOf)(supportGroupSummary_1.supportGroupSummarySchema),
     supportGroupPermissionsById: (0, objectOf_1.optionalObjectOf)(supportGroupPermissions_1.supportGroupPermissionsSchema),
     sharedWithUserIds: zod_1.z.array(zod_1.z.string()),
@@ -40,6 +40,7 @@ exports.daySummarySchema = zod_1.z.object({
     recapRequirementsMetAt: timestampSchema_1.timestampSchema.nullable(),
     // When the user confirms totals and starts the recap flow
     recapStartedAt: timestampSchema_1.timestampSchema.optional(),
+    recapCutoffTime: timestampSchema_1.timestampSchema.optional(),
     createdAt: timestampSchema_1.timestampSchema.optional(),
     updatedAt: timestampSchema_1.timestampSchema.optional(),
 });

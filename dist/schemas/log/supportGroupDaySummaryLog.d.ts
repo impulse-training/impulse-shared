@@ -18,10 +18,10 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
             outcome: z.ZodOptional<z.ZodEnum<["success", "partial", "setback"]>>;
         }, "strip", z.ZodTypeAny, {
             summary: string;
-            outcome?: "success" | "setback" | "partial" | undefined;
+            outcome?: "success" | "partial" | "setback" | undefined;
         }, {
             summary: string;
-            outcome?: "success" | "setback" | "partial" | undefined;
+            outcome?: "success" | "partial" | "setback" | undefined;
         }>>;
         colorByUserId: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
         dateString: z.ZodString;
@@ -32,7 +32,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
         dateString: string;
         summariesByUserId: Record<string, {
             summary: string;
-            outcome?: "success" | "setback" | "partial" | undefined;
+            outcome?: "success" | "partial" | "setback" | undefined;
         }>;
         colorByUserId?: Record<string, string> | undefined;
         summarizationCompletedAt?: import("../../types").Timestamp | undefined;
@@ -42,7 +42,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
         dateString: string;
         summariesByUserId: Record<string, {
             summary: string;
-            outcome?: "success" | "setback" | "partial" | undefined;
+            outcome?: "success" | "partial" | "setback" | undefined;
         }>;
         colorByUserId?: Record<string, string> | undefined;
         summarizationCompletedAt?: import("../../types").Timestamp | undefined;
@@ -60,7 +60,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
         dateString: string;
         summariesByUserId: Record<string, {
             summary: string;
-            outcome?: "success" | "setback" | "partial" | undefined;
+            outcome?: "success" | "partial" | "setback" | undefined;
         }>;
         colorByUserId?: Record<string, string> | undefined;
         summarizationCompletedAt?: import("../../types").Timestamp | undefined;
@@ -83,7 +83,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
         dateString: string;
         summariesByUserId: Record<string, {
             summary: string;
-            outcome?: "success" | "setback" | "partial" | undefined;
+            outcome?: "success" | "partial" | "setback" | undefined;
         }>;
         colorByUserId?: Record<string, string> | undefined;
         summarizationCompletedAt?: import("../../types").Timestamp | undefined;

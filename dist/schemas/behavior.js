@@ -26,13 +26,6 @@ exports.behaviorSchema = behaviorTemplate_1.behaviorTemplateBase
     tactics: zod_1.z.array(documentReferenceSchema_1.documentReferenceSchema).optional(),
     initialUsage: behaviorTrackingData_1.behaviorTrackingDataSchema.optional(),
     hidden: zod_1.z.boolean().optional().default(false),
-    impulseQuestions: zod_1.z.array(documentReferenceSchema_1.documentReferenceSchema).optional(),
-    debriefQuestions: zod_1.z
-        .object({
-        success: zod_1.z.array(documentReferenceSchema_1.documentReferenceSchema),
-        setback: zod_1.z.array(documentReferenceSchema_1.documentReferenceSchema),
-    })
-        .optional(),
     activePlanId: zod_1.z.string(),
     // Reference to the behavior topic (e.g., "substances", "digital-screen-use")
     // Used for matching users to support groups with similar focus areas

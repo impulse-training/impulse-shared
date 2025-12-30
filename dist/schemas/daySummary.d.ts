@@ -150,17 +150,6 @@ export declare const daySummarySchema: z.ZodObject<{
             behaviorTrackingUnit?: string | undefined;
         }>>;
         hidden: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-        impulseQuestions: z.ZodOptional<z.ZodArray<z.ZodType<import("..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("..").DocumentReferenceLike<unknown>>, "many">>;
-        debriefQuestions: z.ZodOptional<z.ZodObject<{
-            success: z.ZodArray<z.ZodType<import("..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("..").DocumentReferenceLike<unknown>>, "many">;
-            setback: z.ZodArray<z.ZodType<import("..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("..").DocumentReferenceLike<unknown>>, "many">;
-        }, "strip", z.ZodTypeAny, {
-            success: import("..").DocumentReferenceLike<unknown>[];
-            setback: import("..").DocumentReferenceLike<unknown>[];
-        }, {
-            success: import("..").DocumentReferenceLike<unknown>[];
-            setback: import("..").DocumentReferenceLike<unknown>[];
-        }>>;
         activePlanId: z.ZodString;
         behaviorTopicId: z.ZodOptional<z.ZodEnum<[string, ...string[]]>>;
     }, "strip", z.ZodTypeAny, {
@@ -204,11 +193,6 @@ export declare const daySummarySchema: z.ZodObject<{
             formattedValue: string;
             behaviorTrackingUnit?: string | undefined;
         } | undefined;
-        impulseQuestions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
-        debriefQuestions?: {
-            success: import("..").DocumentReferenceLike<unknown>[];
-            setback: import("..").DocumentReferenceLike<unknown>[];
-        } | undefined;
         behaviorTopicId?: string | undefined;
     }, {
         trackingType: "counter" | "timer";
@@ -251,11 +235,6 @@ export declare const daySummarySchema: z.ZodObject<{
             behaviorTrackingUnit?: string | undefined;
         } | undefined;
         hidden?: boolean | undefined;
-        impulseQuestions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
-        debriefQuestions?: {
-            success: import("..").DocumentReferenceLike<unknown>[];
-            setback: import("..").DocumentReferenceLike<unknown>[];
-        } | undefined;
         behaviorTopicId?: string | undefined;
     }>, {
         trackingType: "counter" | "timer";
@@ -298,11 +277,6 @@ export declare const daySummarySchema: z.ZodObject<{
             formattedValue: string;
             behaviorTrackingUnit?: string | undefined;
         } | undefined;
-        impulseQuestions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
-        debriefQuestions?: {
-            success: import("..").DocumentReferenceLike<unknown>[];
-            setback: import("..").DocumentReferenceLike<unknown>[];
-        } | undefined;
         behaviorTopicId?: string | undefined;
     }, {
         trackingType: "counter" | "timer";
@@ -345,24 +319,19 @@ export declare const daySummarySchema: z.ZodObject<{
             behaviorTrackingUnit?: string | undefined;
         } | undefined;
         hidden?: boolean | undefined;
-        impulseQuestions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
-        debriefQuestions?: {
-            success: import("..").DocumentReferenceLike<unknown>[];
-            setback: import("..").DocumentReferenceLike<unknown>[];
-        } | undefined;
         behaviorTopicId?: string | undefined;
     }>>>;
     tacticsUsed: z.ZodDefault<z.ZodArray<z.ZodAny, "many">>;
-    summaryText: z.ZodDefault<z.ZodString>;
+    summaryText: z.ZodNullable<z.ZodString>;
     supportGroupSummariesById: z.ZodRecord<z.ZodString, z.ZodObject<{
         summary: z.ZodString;
         outcome: z.ZodOptional<z.ZodEnum<["success", "partial", "setback"]>>;
     }, "strip", z.ZodTypeAny, {
         summary: string;
-        outcome?: "success" | "setback" | "partial" | undefined;
+        outcome?: "success" | "partial" | "setback" | undefined;
     }, {
         summary: string;
-        outcome?: "success" | "setback" | "partial" | undefined;
+        outcome?: "success" | "partial" | "setback" | undefined;
     }>>;
     supportGroupPermissionsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodObject<{
         dayOutcomes: z.ZodDefault<z.ZodBoolean>;
@@ -402,12 +371,13 @@ export declare const daySummarySchema: z.ZodObject<{
     }>>>;
     recapRequirementsMetAt: z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     recapStartedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    recapCutoffTime: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
     userId: string;
-    summaryText: string;
-    impulseThreadOutcomesById: Record<string, "success" | "setback" | "partial">;
+    summaryText: string | null;
+    impulseThreadOutcomesById: Record<string, "success" | "partial" | "setback">;
     behaviorDataTotalByBehaviorId: Record<string, {
         value: number;
         behaviorId: string;
@@ -419,7 +389,7 @@ export declare const daySummarySchema: z.ZodObject<{
     tacticsUsed: any[];
     supportGroupSummariesById: Record<string, {
         summary: string;
-        outcome?: "success" | "setback" | "partial" | undefined;
+        outcome?: "success" | "partial" | "setback" | undefined;
     }>;
     sharedWithUserIds: string[];
     recapRequirementsMetAt: import("../types").Timestamp | null;
@@ -474,14 +444,9 @@ export declare const daySummarySchema: z.ZodObject<{
             formattedValue: string;
             behaviorTrackingUnit?: string | undefined;
         } | undefined;
-        impulseQuestions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
-        debriefQuestions?: {
-            success: import("..").DocumentReferenceLike<unknown>[];
-            setback: import("..").DocumentReferenceLike<unknown>[];
-        } | undefined;
         behaviorTopicId?: string | undefined;
     }> | undefined;
-    outcome?: "success" | "setback" | "partial" | undefined;
+    outcome?: "success" | "partial" | "setback" | undefined;
     supportGroupPermissionsById?: Record<string, {
         summary: boolean;
         dayOutcomes: boolean;
@@ -489,9 +454,11 @@ export declare const daySummarySchema: z.ZodObject<{
         threads: boolean;
     }> | undefined;
     recapStartedAt?: import("../types").Timestamp | undefined;
+    recapCutoffTime?: import("../types").Timestamp | undefined;
 }, {
     userId: string;
-    impulseThreadOutcomesById: Record<string, "success" | "setback" | "partial">;
+    summaryText: string | null;
+    impulseThreadOutcomesById: Record<string, "success" | "partial" | "setback">;
     behaviorDataTotalByBehaviorId: Record<string, {
         value: number;
         behaviorId: string;
@@ -502,14 +469,13 @@ export declare const daySummarySchema: z.ZodObject<{
     }>;
     supportGroupSummariesById: Record<string, {
         summary: string;
-        outcome?: "success" | "setback" | "partial" | undefined;
+        outcome?: "success" | "partial" | "setback" | undefined;
     }>;
     sharedWithUserIds: string[];
     recapRequirementsMetAt: import("../types").Timestamp | null;
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
-    summaryText?: string | undefined;
     goalComparisonByBehaviorId?: Record<string, {
         status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY" | "NO_GOAL";
         goalLabel: string;
@@ -558,14 +524,9 @@ export declare const daySummarySchema: z.ZodObject<{
             behaviorTrackingUnit?: string | undefined;
         } | undefined;
         hidden?: boolean | undefined;
-        impulseQuestions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
-        debriefQuestions?: {
-            success: import("..").DocumentReferenceLike<unknown>[];
-            setback: import("..").DocumentReferenceLike<unknown>[];
-        } | undefined;
         behaviorTopicId?: string | undefined;
     }> | undefined;
-    outcome?: "success" | "setback" | "partial" | undefined;
+    outcome?: "success" | "partial" | "setback" | undefined;
     tacticsUsed?: any[] | undefined;
     supportGroupPermissionsById?: Record<string, {
         summary?: boolean | undefined;
@@ -574,6 +535,7 @@ export declare const daySummarySchema: z.ZodObject<{
         threads?: boolean | undefined;
     }> | undefined;
     recapStartedAt?: import("../types").Timestamp | undefined;
+    recapCutoffTime?: import("../types").Timestamp | undefined;
 }>;
 export type DaySummary = z.infer<typeof daySummarySchema>;
 export declare function isValidDaySummary(value: unknown): value is DaySummary;

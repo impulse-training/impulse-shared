@@ -105,17 +105,6 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         behaviorTrackingUnit?: string | undefined;
     }>>;
     hidden: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-    impulseQuestions: z.ZodOptional<z.ZodArray<z.ZodType<import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>;
-    debriefQuestions: z.ZodOptional<z.ZodObject<{
-        success: z.ZodArray<z.ZodType<import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
-        setback: z.ZodArray<z.ZodType<import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
-    }, "strip", z.ZodTypeAny, {
-        success: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
-        setback: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
-    }, {
-        success: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
-        setback: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
-    }>>;
     activePlanId: z.ZodString;
     behaviorTopicId: z.ZodOptional<z.ZodEnum<[string, ...string[]]>>;
 }, "strip", z.ZodTypeAny, {
@@ -159,11 +148,6 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         formattedValue: string;
         behaviorTrackingUnit?: string | undefined;
     } | undefined;
-    impulseQuestions?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
-    debriefQuestions?: {
-        success: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
-        setback: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
-    } | undefined;
     behaviorTopicId?: string | undefined;
 }, {
     trackingType: "counter" | "timer";
@@ -206,11 +190,6 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         behaviorTrackingUnit?: string | undefined;
     } | undefined;
     hidden?: boolean | undefined;
-    impulseQuestions?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
-    debriefQuestions?: {
-        success: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
-        setback: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
-    } | undefined;
     behaviorTopicId?: string | undefined;
 }>, {
     trackingType: "counter" | "timer";
@@ -253,11 +232,6 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         formattedValue: string;
         behaviorTrackingUnit?: string | undefined;
     } | undefined;
-    impulseQuestions?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
-    debriefQuestions?: {
-        success: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
-        setback: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
-    } | undefined;
     behaviorTopicId?: string | undefined;
 }, {
     trackingType: "counter" | "timer";
@@ -300,11 +274,6 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         behaviorTrackingUnit?: string | undefined;
     } | undefined;
     hidden?: boolean | undefined;
-    impulseQuestions?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
-    debriefQuestions?: {
-        success: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
-        setback: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
-    } | undefined;
     behaviorTopicId?: string | undefined;
 }>;
 export type Behavior = z.infer<typeof behaviorSchema>;
