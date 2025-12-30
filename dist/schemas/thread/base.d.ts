@@ -1493,6 +1493,7 @@ export declare const threadBaseSchema: z.ZodObject<{
             repeatCount?: number | undefined;
         }>]>, "many">;
         tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        isMultiStep: z.ZodOptional<z.ZodBoolean>;
         autoplay: z.ZodOptional<z.ZodBoolean>;
         indications: z.ZodOptional<z.ZodObject<{
             questionResponses: z.ZodOptional<z.ZodArray<z.ZodObject<{
@@ -1833,6 +1834,7 @@ export declare const threadBaseSchema: z.ZodObject<{
         aiInstructions?: string | undefined;
         createdByUid?: string | undefined;
         recommended?: boolean | undefined;
+        isMultiStep?: boolean | undefined;
         autoplay?: boolean | undefined;
         indications?: {
             questionResponses?: {
@@ -2079,6 +2081,7 @@ export declare const threadBaseSchema: z.ZodObject<{
         aiInstructions?: string | undefined;
         createdByUid?: string | undefined;
         recommended?: boolean | undefined;
+        isMultiStep?: boolean | undefined;
         autoplay?: boolean | undefined;
         indications?: {
             questionResponses?: {
@@ -2559,6 +2562,7 @@ export declare const threadBaseSchema: z.ZodObject<{
         aiInstructions?: string | undefined;
         createdByUid?: string | undefined;
         recommended?: boolean | undefined;
+        isMultiStep?: boolean | undefined;
         autoplay?: boolean | undefined;
         indications?: {
             questionResponses?: {
@@ -2978,6 +2982,7 @@ export declare const threadBaseSchema: z.ZodObject<{
         aiInstructions?: string | undefined;
         createdByUid?: string | undefined;
         recommended?: boolean | undefined;
+        isMultiStep?: boolean | undefined;
         autoplay?: boolean | undefined;
         indications?: {
             questionResponses?: {
