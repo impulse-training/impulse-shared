@@ -13,7 +13,7 @@ exports.tacticResponseSchema = zod_1.z.object({
 // Tactic Activity Log Schema
 exports.tacticLogSchema = base_1.logBaseSchema.extend({
     type: zod_1.z.literal("tactic"),
-    isDisplayable: zod_1.z.literal(true),
+    isDisplayable: zod_1.z.boolean(),
     data: zod_1.z.object({
         tactic: tactic_1.tacticSchema,
         // If this tactic activity originated from displaying a plan, include the planId

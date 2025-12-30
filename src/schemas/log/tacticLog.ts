@@ -13,7 +13,7 @@ export type TacticResponse = z.infer<typeof tacticResponseSchema>;
 // Tactic Activity Log Schema
 export const tacticLogSchema = logBaseSchema.extend({
   type: z.literal("tactic"),
-  isDisplayable: z.literal(true),
+  isDisplayable: z.boolean(),
   data: z.object({
     tactic: tacticSchema,
     // If this tactic activity originated from displaying a plan, include the planId

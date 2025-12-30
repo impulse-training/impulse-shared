@@ -3226,7 +3226,7 @@ export declare const logSchemas: {
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
         type: z.ZodLiteral<"tactic">;
-        isDisplayable: z.ZodLiteral<true>;
+        isDisplayable: z.ZodBoolean;
         data: z.ZodObject<{
             tactic: z.ZodObject<{
                 id: z.ZodOptional<z.ZodString>;
@@ -5502,7 +5502,7 @@ export declare const logSchemas: {
         type: "tactic";
         userId: string;
         dateString: string;
-        isDisplayable: true;
+        isDisplayable: boolean;
         data: {
             tactic: {
                 createdAt: import("../../types").Timestamp;
@@ -5771,7 +5771,7 @@ export declare const logSchemas: {
         type: "tactic";
         userId: string;
         dateString: string;
-        isDisplayable: true;
+        isDisplayable: boolean;
         data: {
             tactic: {
                 createdAt: import("../../types").Timestamp;
@@ -6177,7 +6177,7 @@ export declare const logSchemas: {
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
         type: z.ZodLiteral<"tactic">;
-        isDisplayable: z.ZodLiteral<true>;
+        isDisplayable: z.ZodBoolean;
         data: z.ZodObject<{
             tactic: z.ZodObject<{
                 id: z.ZodOptional<z.ZodString>;
@@ -8453,7 +8453,7 @@ export declare const logSchemas: {
         type: "tactic";
         userId: string;
         dateString: string;
-        isDisplayable: true;
+        isDisplayable: boolean;
         data: {
             tactic: {
                 createdAt: import("../../types").Timestamp;
@@ -8722,7 +8722,7 @@ export declare const logSchemas: {
         type: "tactic";
         userId: string;
         dateString: string;
-        isDisplayable: true;
+        isDisplayable: boolean;
         data: {
             tactic: {
                 createdAt: import("../../types").Timestamp;
@@ -15650,7 +15650,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"tactic">;
-    isDisplayable: z.ZodLiteral<true>;
+    isDisplayable: z.ZodBoolean;
     data: z.ZodObject<{
         tactic: z.ZodObject<{
             id: z.ZodOptional<z.ZodString>;
@@ -17926,7 +17926,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     type: "tactic";
     userId: string;
     dateString: string;
-    isDisplayable: true;
+    isDisplayable: boolean;
     data: {
         tactic: {
             createdAt: import("../../types").Timestamp;
@@ -18195,7 +18195,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     type: "tactic";
     userId: string;
     dateString: string;
-    isDisplayable: true;
+    isDisplayable: boolean;
     data: {
         tactic: {
             createdAt: import("../../types").Timestamp;

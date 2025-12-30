@@ -25,7 +25,7 @@ export declare const tacticLogSchema: z.ZodObject<{
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"tactic">;
-    isDisplayable: z.ZodLiteral<true>;
+    isDisplayable: z.ZodBoolean;
     data: z.ZodObject<{
         tactic: z.ZodObject<{
             id: z.ZodOptional<z.ZodString>;
@@ -2301,7 +2301,7 @@ export declare const tacticLogSchema: z.ZodObject<{
     type: "tactic";
     userId: string;
     dateString: string;
-    isDisplayable: true;
+    isDisplayable: boolean;
     data: {
         tactic: {
             createdAt: import("../../types").Timestamp;
@@ -2570,7 +2570,7 @@ export declare const tacticLogSchema: z.ZodObject<{
     type: "tactic";
     userId: string;
     dateString: string;
-    isDisplayable: true;
+    isDisplayable: boolean;
     data: {
         tactic: {
             createdAt: import("../../types").Timestamp;
