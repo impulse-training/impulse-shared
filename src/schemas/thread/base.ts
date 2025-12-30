@@ -2,6 +2,7 @@ import { z } from "zod";
 import { documentReferenceSchema } from "../../utils/documentReferenceSchema";
 import { timestampSchema } from "../../utils/timestampSchema";
 import { emojiIdSchema } from "../emojiId";
+import { planWithIdSchema } from "../plan";
 import { tacticSchema } from "../tactic/tactic";
 import { threadSummarySchema } from "../threadSummary";
 
@@ -22,6 +23,8 @@ export const threadBaseSchema = z.object({
   id: z.string().optional(),
   // Optional title for the thread (e.g., plan name)
   title: z.string().optional(),
+  // Any thread may have an optional plan
+  plan: planWithIdSchema.optional(),
   type: threadTypeSchema.default("general"),
   date: timestampSchema,
   dateString: z.string(),
