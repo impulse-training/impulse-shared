@@ -1,9 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.tacticLogSchema = void 0;
+exports.tacticLogSchema = exports.tacticResponseSchema = void 0;
 const zod_1 = require("zod");
 const tactic_1 = require("../tactic");
 const base_1 = require("./base");
+/** Response schema for tactic question steps - follows the same pattern as questionsLog */
+exports.tacticResponseSchema = zod_1.z.object({
+    responseType: zod_1.z.enum(["text", "slider1To10"]),
+    value: zod_1.z.union([zod_1.z.string(), zod_1.z.number()]),
+    formattedValue: zod_1.z.string(),
+});
 // Tactic Activity Log Schema
 exports.tacticLogSchema = base_1.logBaseSchema.extend({
     type: zod_1.z.literal("tactic"),
@@ -18,5 +24,7 @@ exports.tacticLogSchema = base_1.logBaseSchema.extend({
         completedStepIndexes: zod_1.z.array(zod_1.z.number().int().nonnegative()).optional(),
         // whether the tactic is fully completed (all steps done)
         completed: zod_1.z.boolean().optional(),
+        // Optional response for question-type tactic steps
+        response: exports.tacticResponseSchema.optional(),
     }),
 });

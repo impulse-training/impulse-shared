@@ -1,4 +1,19 @@
 import { z } from "zod";
+/** Response schema for tactic question steps - follows the same pattern as questionsLog */
+export declare const tacticResponseSchema: z.ZodObject<{
+    responseType: z.ZodEnum<["text", "slider1To10"]>;
+    value: z.ZodUnion<[z.ZodString, z.ZodNumber]>;
+    formattedValue: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    value: string | number;
+    formattedValue: string;
+    responseType: "text" | "slider1To10";
+}, {
+    value: string | number;
+    formattedValue: string;
+    responseType: "text" | "slider1To10";
+}>;
+export type TacticResponse = z.infer<typeof tacticResponseSchema>;
 export declare const tacticLogSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -1752,6 +1767,19 @@ export declare const tacticLogSchema: z.ZodObject<{
         stepCount: z.ZodOptional<z.ZodNumber>;
         completedStepIndexes: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
         completed: z.ZodOptional<z.ZodBoolean>;
+        response: z.ZodOptional<z.ZodObject<{
+            responseType: z.ZodEnum<["text", "slider1To10"]>;
+            value: z.ZodUnion<[z.ZodString, z.ZodNumber]>;
+            formattedValue: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
+            value: string | number;
+            formattedValue: string;
+            responseType: "text" | "slider1To10";
+        }, {
+            value: string | number;
+            formattedValue: string;
+            responseType: "text" | "slider1To10";
+        }>>;
     }, "strip", z.ZodTypeAny, {
         tactic: {
             createdAt: import("../../types").Timestamp;
@@ -2002,6 +2030,11 @@ export declare const tacticLogSchema: z.ZodObject<{
         };
         completed?: boolean | undefined;
         planId?: string | undefined;
+        response?: {
+            value: string | number;
+            formattedValue: string;
+            responseType: "text" | "slider1To10";
+        } | undefined;
         stepCount?: number | undefined;
         completedStepIndexes?: number[] | undefined;
     }, {
@@ -2254,6 +2287,11 @@ export declare const tacticLogSchema: z.ZodObject<{
         };
         completed?: boolean | undefined;
         planId?: string | undefined;
+        response?: {
+            value: string | number;
+            formattedValue: string;
+            responseType: "text" | "slider1To10";
+        } | undefined;
         stepCount?: number | undefined;
         completedStepIndexes?: number[] | undefined;
     }>;
@@ -2514,6 +2552,11 @@ export declare const tacticLogSchema: z.ZodObject<{
         };
         completed?: boolean | undefined;
         planId?: string | undefined;
+        response?: {
+            value: string | number;
+            formattedValue: string;
+            responseType: "text" | "slider1To10";
+        } | undefined;
         stepCount?: number | undefined;
         completedStepIndexes?: number[] | undefined;
     };
@@ -2778,6 +2821,11 @@ export declare const tacticLogSchema: z.ZodObject<{
         };
         completed?: boolean | undefined;
         planId?: string | undefined;
+        response?: {
+            value: string | number;
+            formattedValue: string;
+            responseType: "text" | "slider1To10";
+        } | undefined;
         stepCount?: number | undefined;
         completedStepIndexes?: number[] | undefined;
     };
