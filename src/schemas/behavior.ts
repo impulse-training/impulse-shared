@@ -24,13 +24,6 @@ export const behaviorSchema = behaviorTemplateBase
     tactics: z.array(documentReferenceSchema).optional(),
     initialUsage: behaviorTrackingDataSchema.optional(),
     hidden: z.boolean().optional().default(false),
-    impulseQuestions: z.array(documentReferenceSchema).optional(),
-    debriefQuestions: z
-      .object({
-        success: z.array(documentReferenceSchema),
-        setback: z.array(documentReferenceSchema),
-      })
-      .optional(),
     activePlanId: z.string(),
     // Reference to the behavior topic (e.g., "substances", "digital-screen-use")
     // Used for matching users to support groups with similar focus areas

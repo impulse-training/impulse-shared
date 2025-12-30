@@ -6,7 +6,6 @@ import {
   logIsQuestionsLog,
   logIsResistedLog,
   logIsShowTourLog,
-  logIsTacticLog,
   logIsUserMessageLog,
   logIsWidgetSetupLog,
   PlansLog,

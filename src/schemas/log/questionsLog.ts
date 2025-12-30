@@ -48,6 +48,10 @@ const questionEntrySchema = z.object({
 });
 export type QuestionEntry = z.infer<typeof questionEntrySchema>;
 
+/** Commit strategy for questions - live auto-submits on change, explicit requires submit button */
+export const commitStrategySchema = z.enum(["live", "explicit"]);
+export type CommitStrategy = z.infer<typeof commitStrategySchema>;
+
 /**
  * Multi-question log - supports multiple questions and their responses.
  * Used for experiment metrics and other multi-question scenarios.
@@ -59,6 +63,8 @@ export const questionsLogSchema = logBaseSchema.extend({
   text: z.string().optional(),
   /** Timestamp when all questions in this log were answered */
   answeredAt: timestampSchema.optional(),
+  /** How responses are committed - "live" auto-submits on change, "explicit" shows submit button */
+  commitStrategy: commitStrategySchema.optional(),
   data: z.object({
     /** Array of questions with their responses */
     questions: z.array(questionEntrySchema),

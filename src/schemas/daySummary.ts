@@ -28,7 +28,7 @@ export const daySummarySchema = z.object({
   behaviorDataTotalByBehaviorId: objectOf(behaviorTrackingDataSchema),
   behaviorsById: objectOf(behaviorSchema).optional(),
   tacticsUsed: z.array(z.any()).default([]),
-  summaryText: z.string().default(""),
+  summaryText: z.string().nullable(),
   supportGroupSummariesById: objectOf(supportGroupSummarySchema),
   supportGroupPermissionsById: optionalObjectOf(supportGroupPermissionsSchema),
   sharedWithUserIds: z.array(z.string()),
@@ -40,6 +40,7 @@ export const daySummarySchema = z.object({
   recapRequirementsMetAt: timestampSchema.nullable(),
   // When the user confirms totals and starts the recap flow
   recapStartedAt: timestampSchema.optional(),
+  recapCutoffTime: timestampSchema.optional(),
   createdAt: timestampSchema.optional(),
   updatedAt: timestampSchema.optional(),
 });
