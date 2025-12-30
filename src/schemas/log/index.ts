@@ -33,11 +33,6 @@ import {
   supportGroupDaySummaryLogSchema,
 } from "./supportGroupDaySummaryLog";
 import { TacticLog, tacticLogSchema } from "./tacticLog";
-import { TacticStepLog, tacticStepLogSchema } from "./tacticStepLog";
-import {
-  TacticSuggestionLog,
-  tacticSuggestionLogSchema,
-} from "./tacticSuggestionLog";
 import { ToolCallLog, toolCallLogSchema } from "./toolCallLog";
 import { VideoLog, videoLogSchema } from "./videoLog";
 import { WidgetSetupLog, widgetSetupLogSchema } from "./widgetSetupLog";
@@ -48,8 +43,6 @@ export const logSchemas = {
   call: callLogSchema,
   tool_call: toolCallLogSchema,
   tactic: tacticLogSchema,
-  tacticStep: tacticStepLogSchema,
-  tactic_suggestion: tacticSuggestionLogSchema,
   tactic_viewed: tacticLogSchema,
   impulse_button_pressed: impulseLogSchema,
   behavior: behaviorLogSchema,
@@ -75,8 +68,6 @@ export type LogType = (typeof logTypes)[number];
 // Union type of all logs
 export type Log =
   | TacticLog
-  | TacticStepLog
-  | TacticSuggestionLog
   | ImpulseLog
   | BehaviorLog
   | BreathingLog
@@ -114,8 +105,6 @@ export * from "./showTourLog";
 export * from "./summaryLog";
 export * from "./supportGroupDaySummaryLog";
 export * from "./tacticLog";
-export * from "./tacticStepLog";
-export * from "./tacticSuggestionLog";
 export * from "./toolCallLog";
 export * from "./videoLog";
 export * from "./widgetSetupLog";
@@ -127,8 +116,6 @@ export const logSchema = z.discriminatedUnion("type", [
   callLogSchema,
   toolCallLogSchema,
   tacticLogSchema,
-  tacticStepLogSchema,
-  tacticSuggestionLogSchema,
   impulseLogSchema,
   behaviorLogSchema,
   breathingLogSchema,
@@ -231,15 +218,6 @@ export const isValidTacticLog = (value: unknown): value is TacticLog => {
   return tacticLogSchema.safeParse(value).success;
 };
 
-export const logIsTacticSuggestionLog = (
-  value: Omit<Log, "id">
-): value is TacticSuggestionLog => value.type === "tactic_suggestion";
-export const isValidTacticSuggestionLog = (
-  value: unknown
-): value is TacticSuggestionLog => {
-  return tacticSuggestionLogSchema.safeParse(value).success;
-};
-
 export const logIsUserMessageLog = (
   value: Omit<Log, "id">
 ): value is UserMessageLog => value.type === "user_message";
@@ -308,13 +286,4 @@ export const isValidDebriefUrgeLog = (
   value: unknown
 ): value is DebriefUrgeLog => {
   return debriefUrgeLogSchema.safeParse(value).success;
-};
-
-export const logIsTacticStepLog = (
-  value: Omit<Log, "id">
-): value is TacticStepLog => value.type === "tacticStep";
-export const isValidTacticStepLog = (
-  value: unknown
-): value is TacticStepLog => {
-  return tacticStepLogSchema.safeParse(value).success;
 };

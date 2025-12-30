@@ -12,16 +12,16 @@ export declare const memorySchema: z.ZodObject<{
     id: string;
     title: string;
     tags: string[];
-    source: string;
     content: string;
+    source: string;
     importance: number;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
 }, {
     id: string;
     title: string;
-    source: string;
     content: string;
+    source: string;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     tags?: string[] | undefined;
