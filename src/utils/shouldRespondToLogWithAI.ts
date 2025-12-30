@@ -83,11 +83,12 @@ export function shouldRespondToLogWithAI(
     }
   }
 
-  // Case: The user has tracked a behavior
+  // Case: A behavior log was explicitly marked for Zara to respond
   if (
     isNotDeleting &&
     logIsBehaviorLog(afterData) &&
-    fieldChanged(beforeData, afterData, "data.formattedValue")
+    fieldChanged(beforeData, afterData, "shouldZaraRespond") &&
+    afterData.shouldZaraRespond
   ) {
     return true;
   }

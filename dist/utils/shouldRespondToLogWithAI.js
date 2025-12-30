@@ -58,10 +58,11 @@ function shouldRespondToLogWithAI(thread, beforeData, afterData) {
             return true;
         }
     }
-    // Case: The user has tracked a behavior
+    // Case: A behavior log was explicitly marked for Zara to respond
     if (isNotDeleting &&
         (0, log_1.logIsBehaviorLog)(afterData) &&
-        (0, fields_1.fieldChanged)(beforeData, afterData, "data.formattedValue")) {
+        (0, fields_1.fieldChanged)(beforeData, afterData, "shouldZaraRespond") &&
+        afterData.shouldZaraRespond) {
         return true;
     }
     // Case: A plansLog was updated with completedAt for a timePlan thread
