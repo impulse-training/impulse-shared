@@ -106,6 +106,17 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     }>>;
     hidden: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     behaviorTopicId: z.ZodOptional<z.ZodEnum<[string, ...string[]]>>;
+    impulseQuestions: z.ZodOptional<z.ZodArray<z.ZodType<import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>;
+    debriefQuestions: z.ZodOptional<z.ZodObject<{
+        success: z.ZodOptional<z.ZodArray<z.ZodType<import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>;
+        setback: z.ZodOptional<z.ZodArray<z.ZodType<import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>;
+    }, "strip", z.ZodTypeAny, {
+        success?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+        setback?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+    }, {
+        success?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+        setback?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+    }>>;
 }, "strip", z.ZodTypeAny, {
     trackingType: "counter" | "timer";
     name: string;
@@ -147,6 +158,11 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         behaviorTrackingUnit?: string | undefined;
     } | undefined;
     behaviorTopicId?: string | undefined;
+    impulseQuestions?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+    debriefQuestions?: {
+        success?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+        setback?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+    } | undefined;
 }, {
     trackingType: "counter" | "timer";
     name: string;
@@ -188,6 +204,11 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     } | undefined;
     hidden?: boolean | undefined;
     behaviorTopicId?: string | undefined;
+    impulseQuestions?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+    debriefQuestions?: {
+        success?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+        setback?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+    } | undefined;
 }>, {
     trackingType: "counter" | "timer";
     name: string;
@@ -229,6 +250,11 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         behaviorTrackingUnit?: string | undefined;
     } | undefined;
     behaviorTopicId?: string | undefined;
+    impulseQuestions?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+    debriefQuestions?: {
+        success?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+        setback?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+    } | undefined;
 }, {
     trackingType: "counter" | "timer";
     name: string;
@@ -270,6 +296,11 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     } | undefined;
     hidden?: boolean | undefined;
     behaviorTopicId?: string | undefined;
+    impulseQuestions?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+    debriefQuestions?: {
+        success?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+        setback?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+    } | undefined;
 }>;
 export type Behavior = z.infer<typeof behaviorSchema>;
 export declare const isBehavior: (value: unknown) => value is Behavior;

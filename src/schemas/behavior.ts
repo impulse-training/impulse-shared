@@ -27,6 +27,15 @@ export const behaviorSchema = behaviorTemplateBase
     // Reference to the behavior topic (e.g., "substances", "digital-screen-use")
     // Used for matching users to support groups with similar focus areas
     behaviorTopicId: behaviorTopicIdSchema.optional(),
+    // Questions to ask during impulse tracking
+    impulseQuestions: z.array(documentReferenceSchema).optional(),
+    // Questions to ask during debrief (success/setback)
+    debriefQuestions: z
+      .object({
+        success: z.array(documentReferenceSchema).optional(),
+        setback: z.array(documentReferenceSchema).optional(),
+      })
+      .optional(),
   })
   .superRefine((val, ctx) => {
     if (val.trackingType === "counter" && !val.trackingUnit) {

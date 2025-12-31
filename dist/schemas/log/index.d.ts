@@ -12180,10 +12180,10 @@ export declare const logSchemas: {
                 outcome: z.ZodOptional<z.ZodEnum<["success", "partial", "setback"]>>;
             }, "strip", z.ZodTypeAny, {
                 summary: string;
-                outcome?: "success" | "partial" | "setback" | undefined;
+                outcome?: "success" | "setback" | "partial" | undefined;
             }, {
                 summary: string;
-                outcome?: "success" | "partial" | "setback" | undefined;
+                outcome?: "success" | "setback" | "partial" | undefined;
             }>>;
             colorByUserId: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
             dateString: z.ZodString;
@@ -12194,7 +12194,7 @@ export declare const logSchemas: {
             dateString: string;
             summariesByUserId: Record<string, {
                 summary: string;
-                outcome?: "success" | "partial" | "setback" | undefined;
+                outcome?: "success" | "setback" | "partial" | undefined;
             }>;
             colorByUserId?: Record<string, string> | undefined;
             summarizationCompletedAt?: import("../../types").Timestamp | undefined;
@@ -12204,7 +12204,7 @@ export declare const logSchemas: {
             dateString: string;
             summariesByUserId: Record<string, {
                 summary: string;
-                outcome?: "success" | "partial" | "setback" | undefined;
+                outcome?: "success" | "setback" | "partial" | undefined;
             }>;
             colorByUserId?: Record<string, string> | undefined;
             summarizationCompletedAt?: import("../../types").Timestamp | undefined;
@@ -12222,7 +12222,7 @@ export declare const logSchemas: {
             dateString: string;
             summariesByUserId: Record<string, {
                 summary: string;
-                outcome?: "success" | "partial" | "setback" | undefined;
+                outcome?: "success" | "setback" | "partial" | undefined;
             }>;
             colorByUserId?: Record<string, string> | undefined;
             summarizationCompletedAt?: import("../../types").Timestamp | undefined;
@@ -12245,7 +12245,7 @@ export declare const logSchemas: {
             dateString: string;
             summariesByUserId: Record<string, {
                 summary: string;
-                outcome?: "success" | "partial" | "setback" | undefined;
+                outcome?: "success" | "setback" | "partial" | undefined;
             }>;
             colorByUserId?: Record<string, string> | undefined;
             summarizationCompletedAt?: import("../../types").Timestamp | undefined;
@@ -21653,10 +21653,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             outcome: z.ZodOptional<z.ZodEnum<["success", "partial", "setback"]>>;
         }, "strip", z.ZodTypeAny, {
             summary: string;
-            outcome?: "success" | "partial" | "setback" | undefined;
+            outcome?: "success" | "setback" | "partial" | undefined;
         }, {
             summary: string;
-            outcome?: "success" | "partial" | "setback" | undefined;
+            outcome?: "success" | "setback" | "partial" | undefined;
         }>>;
         colorByUserId: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
         dateString: z.ZodString;
@@ -21667,7 +21667,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         dateString: string;
         summariesByUserId: Record<string, {
             summary: string;
-            outcome?: "success" | "partial" | "setback" | undefined;
+            outcome?: "success" | "setback" | "partial" | undefined;
         }>;
         colorByUserId?: Record<string, string> | undefined;
         summarizationCompletedAt?: import("../../types").Timestamp | undefined;
@@ -21677,7 +21677,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         dateString: string;
         summariesByUserId: Record<string, {
             summary: string;
-            outcome?: "success" | "partial" | "setback" | undefined;
+            outcome?: "success" | "setback" | "partial" | undefined;
         }>;
         colorByUserId?: Record<string, string> | undefined;
         summarizationCompletedAt?: import("../../types").Timestamp | undefined;
@@ -21695,7 +21695,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         dateString: string;
         summariesByUserId: Record<string, {
             summary: string;
-            outcome?: "success" | "partial" | "setback" | undefined;
+            outcome?: "success" | "setback" | "partial" | undefined;
         }>;
         colorByUserId?: Record<string, string> | undefined;
         summarizationCompletedAt?: import("../../types").Timestamp | undefined;
@@ -21718,7 +21718,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         dateString: string;
         summariesByUserId: Record<string, {
             summary: string;
-            outcome?: "success" | "partial" | "setback" | undefined;
+            outcome?: "success" | "setback" | "partial" | undefined;
         }>;
         colorByUserId?: Record<string, string> | undefined;
         summarizationCompletedAt?: import("../../types").Timestamp | undefined;
