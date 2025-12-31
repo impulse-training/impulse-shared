@@ -115,11 +115,11 @@ export declare const supportGroupMemberSchema: z.ZodObject<{
     } | undefined;
     joinedAt?: import("../types").Timestamp | undefined;
 }>;
-export declare const supportGroupTypeSchema: z.ZodEnum<["system", "social"]>;
+export declare const supportGroupTypeSchema: z.ZodEnum<["system", "social", "coach"]>;
 export type SupportGroupType = z.infer<typeof supportGroupTypeSchema>;
 export declare const supportGroupSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
-    type: z.ZodDefault<z.ZodEnum<["system", "social"]>>;
+    type: z.ZodDefault<z.ZodEnum<["system", "social", "coach"]>>;
     name: z.ZodString;
     description: z.ZodOptional<z.ZodString>;
     ownerId: z.ZodString;
@@ -608,7 +608,7 @@ export declare const supportGroupSchema: z.ZodObject<{
             }[] | undefined;
         } | undefined;
     };
-    type: "system" | "social";
+    type: "system" | "coach" | "social";
     name: string;
     membersById: Record<string, {
         userId: string;
@@ -759,7 +759,7 @@ export declare const supportGroupSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
-    type?: "system" | "social" | undefined;
+    type?: "system" | "coach" | "social" | undefined;
     description?: string | undefined;
     isTemplate?: boolean | undefined;
     coverPhoto?: {

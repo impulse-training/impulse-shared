@@ -30,7 +30,7 @@ exports.supportGroupMemberSchema = zod_1.z.object({
     joinedAt: timestampSchema_1.timestampSchema.optional(),
 });
 // Support Group Type
-exports.supportGroupTypeSchema = zod_1.z.enum(["system", "social"]);
+exports.supportGroupTypeSchema = zod_1.z.enum(["system", "social", "coach"]);
 // Support Group Schema
 exports.supportGroupSchema = zod_1.z.object({
     id: zod_1.z.string().optional(), // IDS are never passed when creating

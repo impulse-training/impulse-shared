@@ -1,14 +1,18 @@
 import { z } from "zod";
-import { documentReferenceSchema } from "../utils/documentReferenceSchema";
 import { timestampSchema } from "../utils/timestampSchema";
 import { planSchema } from "./plan";
+import { coachSchema } from "./coach";
 
 export const strategyPlanItemSchema = z.object({
   planId: z.string(),
   plan: planSchema,
   description: z.string(),
 });
-export type StrategyPlanItem = z.infer<typeof strategyPlanItemSchema>;
+
+export const strategyCoachSchema = z.object({
+  coachId: z.string(),
+  coach: coachSchema,
+});
 
 export const strategySchema = z.object({
   id: z.string().optional(),
@@ -16,8 +20,11 @@ export const strategySchema = z.object({
   description: z.string().optional(),
   isImported: z.boolean().optional(),
   plans: z.array(strategyPlanItemSchema),
-  coach: documentReferenceSchema,
+  coach: strategyCoachSchema,
   createdAt: timestampSchema.optional(),
   updatedAt: timestampSchema.optional(),
 });
+
+export type StrategyPlanItem = z.infer<typeof strategyPlanItemSchema>;
+export type StrategyCoach = z.infer<typeof strategyCoachSchema>;
 export type Strategy = z.infer<typeof strategySchema>;
