@@ -12,8 +12,11 @@ export const coachSchema = z.object({
   id: z.string().optional(),
   name: z.string(),
   credentials: z.string(),
+  bio: z.string().optional(),
   avatar: attachmentSchema.optional(),
   focusBehaviors: z.array(z.string()).default([]),
+  approvedAt: timestampSchema.optional(),
+  deniedAt: timestampSchema.optional(),
   createdAt: timestampSchema.optional(),
   updatedAt: timestampSchema.optional(),
 });
