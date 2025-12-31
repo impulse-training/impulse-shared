@@ -1,16 +1,22 @@
 import { z } from "zod";
 import { documentReferenceSchema } from "../utils/documentReferenceSchema";
 import { timestampSchema } from "../utils/timestampSchema";
-import { userProfileSchema } from "./userProfile";
+import { planSchema } from "./plan";
 
-// Deprecated - don't use
+export const strategyPlanItemSchema = z.object({
+  planId: z.string(),
+  plan: planSchema,
+  description: z.string(),
+});
+export type StrategyPlanItem = z.infer<typeof strategyPlanItemSchema>;
+
 export const strategySchema = z.object({
   id: z.string().optional(),
   name: z.string(),
   description: z.string().optional(),
   isImported: z.boolean().optional(),
-  plans: z.array(documentReferenceSchema),
-  createdByProfile: userProfileSchema.optional(),
+  plans: z.array(strategyPlanItemSchema),
+  coach: documentReferenceSchema,
   createdAt: timestampSchema.optional(),
   updatedAt: timestampSchema.optional(),
 });

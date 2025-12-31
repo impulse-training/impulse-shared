@@ -2,6 +2,7 @@ export * from "./attachment";
 export * from "./audioGenerationJob";
 export * from "./audit";
 export * from "./behavior";
+export * from "./coach";
 export * from "./behaviorTemplate";
 export * from "./behaviorTopic";
 export * from "./daySummary";
