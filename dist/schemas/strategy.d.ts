@@ -543,6 +543,7 @@ export declare const strategyCoachSchema: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         name: z.ZodString;
         credentials: z.ZodString;
+        bio: z.ZodOptional<z.ZodString>;
         avatar: z.ZodOptional<z.ZodObject<{
             createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
             updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -623,6 +624,8 @@ export declare const strategyCoachSchema: z.ZodObject<{
             } | undefined;
         }>>;
         focusBehaviors: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+        approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+        deniedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
@@ -632,6 +635,7 @@ export declare const strategyCoachSchema: z.ZodObject<{
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
+        bio?: string | undefined;
         avatar?: {
             uri: string;
             storagePath: string;
@@ -651,12 +655,15 @@ export declare const strategyCoachSchema: z.ZodObject<{
                 }[] | undefined;
             } | undefined;
         } | undefined;
+        approvedAt?: import("../types").Timestamp | undefined;
+        deniedAt?: import("../types").Timestamp | undefined;
     }, {
         name: string;
         credentials: string;
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
+        bio?: string | undefined;
         avatar?: {
             uri: string;
             storagePath: string;
@@ -677,6 +684,8 @@ export declare const strategyCoachSchema: z.ZodObject<{
             } | undefined;
         } | undefined;
         focusBehaviors?: string[] | undefined;
+        approvedAt?: import("../types").Timestamp | undefined;
+        deniedAt?: import("../types").Timestamp | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     coachId: string;
@@ -687,6 +696,7 @@ export declare const strategyCoachSchema: z.ZodObject<{
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
+        bio?: string | undefined;
         avatar?: {
             uri: string;
             storagePath: string;
@@ -706,6 +716,8 @@ export declare const strategyCoachSchema: z.ZodObject<{
                 }[] | undefined;
             } | undefined;
         } | undefined;
+        approvedAt?: import("../types").Timestamp | undefined;
+        deniedAt?: import("../types").Timestamp | undefined;
     };
 }, {
     coachId: string;
@@ -715,6 +727,7 @@ export declare const strategyCoachSchema: z.ZodObject<{
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
+        bio?: string | undefined;
         avatar?: {
             uri: string;
             storagePath: string;
@@ -735,12 +748,17 @@ export declare const strategyCoachSchema: z.ZodObject<{
             } | undefined;
         } | undefined;
         focusBehaviors?: string[] | undefined;
+        approvedAt?: import("../types").Timestamp | undefined;
+        deniedAt?: import("../types").Timestamp | undefined;
     };
 }>;
 export declare const strategySchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     name: z.ZodString;
     description: z.ZodOptional<z.ZodString>;
+    shortDescription: z.ZodOptional<z.ZodString>;
+    problem: z.ZodOptional<z.ZodString>;
+    whenUseful: z.ZodOptional<z.ZodString>;
     isImported: z.ZodOptional<z.ZodBoolean>;
     plans: z.ZodArray<z.ZodObject<{
         planId: z.ZodString;
@@ -1286,6 +1304,7 @@ export declare const strategySchema: z.ZodObject<{
             id: z.ZodOptional<z.ZodString>;
             name: z.ZodString;
             credentials: z.ZodString;
+            bio: z.ZodOptional<z.ZodString>;
             avatar: z.ZodOptional<z.ZodObject<{
                 createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
                 updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -1366,6 +1385,8 @@ export declare const strategySchema: z.ZodObject<{
                 } | undefined;
             }>>;
             focusBehaviors: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+            approvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+            deniedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
             createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
             updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         }, "strip", z.ZodTypeAny, {
@@ -1375,6 +1396,7 @@ export declare const strategySchema: z.ZodObject<{
             id?: string | undefined;
             createdAt?: import("../types").Timestamp | undefined;
             updatedAt?: import("../types").Timestamp | undefined;
+            bio?: string | undefined;
             avatar?: {
                 uri: string;
                 storagePath: string;
@@ -1394,12 +1416,15 @@ export declare const strategySchema: z.ZodObject<{
                     }[] | undefined;
                 } | undefined;
             } | undefined;
+            approvedAt?: import("../types").Timestamp | undefined;
+            deniedAt?: import("../types").Timestamp | undefined;
         }, {
             name: string;
             credentials: string;
             id?: string | undefined;
             createdAt?: import("../types").Timestamp | undefined;
             updatedAt?: import("../types").Timestamp | undefined;
+            bio?: string | undefined;
             avatar?: {
                 uri: string;
                 storagePath: string;
@@ -1420,6 +1445,8 @@ export declare const strategySchema: z.ZodObject<{
                 } | undefined;
             } | undefined;
             focusBehaviors?: string[] | undefined;
+            approvedAt?: import("../types").Timestamp | undefined;
+            deniedAt?: import("../types").Timestamp | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
         coachId: string;
@@ -1430,6 +1457,7 @@ export declare const strategySchema: z.ZodObject<{
             id?: string | undefined;
             createdAt?: import("../types").Timestamp | undefined;
             updatedAt?: import("../types").Timestamp | undefined;
+            bio?: string | undefined;
             avatar?: {
                 uri: string;
                 storagePath: string;
@@ -1449,6 +1477,8 @@ export declare const strategySchema: z.ZodObject<{
                     }[] | undefined;
                 } | undefined;
             } | undefined;
+            approvedAt?: import("../types").Timestamp | undefined;
+            deniedAt?: import("../types").Timestamp | undefined;
         };
     }, {
         coachId: string;
@@ -1458,6 +1488,7 @@ export declare const strategySchema: z.ZodObject<{
             id?: string | undefined;
             createdAt?: import("../types").Timestamp | undefined;
             updatedAt?: import("../types").Timestamp | undefined;
+            bio?: string | undefined;
             avatar?: {
                 uri: string;
                 storagePath: string;
@@ -1478,6 +1509,8 @@ export declare const strategySchema: z.ZodObject<{
                 } | undefined;
             } | undefined;
             focusBehaviors?: string[] | undefined;
+            approvedAt?: import("../types").Timestamp | undefined;
+            deniedAt?: import("../types").Timestamp | undefined;
         };
     }>;
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -1598,6 +1631,7 @@ export declare const strategySchema: z.ZodObject<{
             id?: string | undefined;
             createdAt?: import("../types").Timestamp | undefined;
             updatedAt?: import("../types").Timestamp | undefined;
+            bio?: string | undefined;
             avatar?: {
                 uri: string;
                 storagePath: string;
@@ -1617,12 +1651,17 @@ export declare const strategySchema: z.ZodObject<{
                     }[] | undefined;
                 } | undefined;
             } | undefined;
+            approvedAt?: import("../types").Timestamp | undefined;
+            deniedAt?: import("../types").Timestamp | undefined;
         };
     };
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     description?: string | undefined;
+    shortDescription?: string | undefined;
+    problem?: string | undefined;
+    whenUseful?: string | undefined;
     isImported?: boolean | undefined;
 }, {
     name: string;
@@ -1739,6 +1778,7 @@ export declare const strategySchema: z.ZodObject<{
             id?: string | undefined;
             createdAt?: import("../types").Timestamp | undefined;
             updatedAt?: import("../types").Timestamp | undefined;
+            bio?: string | undefined;
             avatar?: {
                 uri: string;
                 storagePath: string;
@@ -1759,12 +1799,17 @@ export declare const strategySchema: z.ZodObject<{
                 } | undefined;
             } | undefined;
             focusBehaviors?: string[] | undefined;
+            approvedAt?: import("../types").Timestamp | undefined;
+            deniedAt?: import("../types").Timestamp | undefined;
         };
     };
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     description?: string | undefined;
+    shortDescription?: string | undefined;
+    problem?: string | undefined;
+    whenUseful?: string | undefined;
     isImported?: boolean | undefined;
 }>;
 export type StrategyPlanItem = z.infer<typeof strategyPlanItemSchema>;
