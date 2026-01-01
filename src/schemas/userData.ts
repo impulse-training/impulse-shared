@@ -55,6 +55,9 @@ export const userDataSchema = z.object({
 
   // Support group signup wizard completion
   supportGroupSignupCompletedAt: timestampSchema.optional(),
+
+  // Coach flag - set when user is approved as a coach
+  isCoach: z.boolean().optional(),
 });
 
 // Export User type inferred from schema
