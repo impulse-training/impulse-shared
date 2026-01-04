@@ -2,8 +2,6 @@ import { z } from "zod";
 import { BehaviorLog } from "./behaviorLog";
 import { BreathingLog } from "./breathingLog";
 import { CallLog } from "./callLog";
-import { DebriefUrgeLog } from "./debriefUrgeLog";
-import { ImpulseLog } from "./impulseLog";
 import { LinkLog } from "./linkLog";
 import { AssistantMessageLog, MessageLog } from "./messageLog";
 import { UserMessageLog } from "./messageLog/userMessageLog";
@@ -8874,41 +8872,6 @@ export declare const logSchemas: {
         tacticId?: string | undefined;
         callLogDocPath?: string | undefined;
     }>;
-    impulse_button_pressed: z.ZodObject<{
-        id: z.ZodOptional<z.ZodString>;
-        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-        userId: z.ZodString;
-        timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-        dateString: z.ZodString;
-        tacticId: z.ZodOptional<z.ZodString>;
-        callLogDocPath: z.ZodOptional<z.ZodString>;
-    } & {
-        type: z.ZodLiteral<"impulse_button_pressed">;
-        isDisplayable: z.ZodLiteral<true>;
-    }, "strip", z.ZodTypeAny, {
-        createdAt: import("../../types").Timestamp;
-        updatedAt: import("../../types").Timestamp;
-        type: "impulse_button_pressed";
-        userId: string;
-        dateString: string;
-        isDisplayable: true;
-        id?: string | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
-        tacticId?: string | undefined;
-        callLogDocPath?: string | undefined;
-    }, {
-        createdAt: import("../../types").Timestamp;
-        updatedAt: import("../../types").Timestamp;
-        type: "impulse_button_pressed";
-        userId: string;
-        dateString: string;
-        isDisplayable: true;
-        id?: string | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
-        tacticId?: string | undefined;
-        callLogDocPath?: string | undefined;
-    }>;
     behavior: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -12258,73 +12221,13 @@ export declare const logSchemas: {
         tacticId?: string | undefined;
         callLogDocPath?: string | undefined;
     }>;
-    debriefUrge: z.ZodObject<{
-        id: z.ZodOptional<z.ZodString>;
-        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-        userId: z.ZodString;
-        timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-        dateString: z.ZodString;
-        tacticId: z.ZodOptional<z.ZodString>;
-        callLogDocPath: z.ZodOptional<z.ZodString>;
-    } & {
-        type: z.ZodLiteral<"debriefUrge">;
-        isDisplayable: z.ZodLiteral<true>;
-        data: z.ZodObject<{
-            debriefAfter: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-            debriefedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-            actedOnUrge: z.ZodOptional<z.ZodBoolean>;
-        }, "strip", z.ZodTypeAny, {
-            debriefAfter: import("../../types").Timestamp;
-            debriefedAt?: import("../../types").Timestamp | undefined;
-            actedOnUrge?: boolean | undefined;
-        }, {
-            debriefAfter: import("../../types").Timestamp;
-            debriefedAt?: import("../../types").Timestamp | undefined;
-            actedOnUrge?: boolean | undefined;
-        }>;
-    }, "strip", z.ZodTypeAny, {
-        createdAt: import("../../types").Timestamp;
-        updatedAt: import("../../types").Timestamp;
-        type: "debriefUrge";
-        userId: string;
-        dateString: string;
-        isDisplayable: true;
-        data: {
-            debriefAfter: import("../../types").Timestamp;
-            debriefedAt?: import("../../types").Timestamp | undefined;
-            actedOnUrge?: boolean | undefined;
-        };
-        id?: string | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
-        tacticId?: string | undefined;
-        callLogDocPath?: string | undefined;
-    }, {
-        createdAt: import("../../types").Timestamp;
-        updatedAt: import("../../types").Timestamp;
-        type: "debriefUrge";
-        userId: string;
-        dateString: string;
-        isDisplayable: true;
-        data: {
-            debriefAfter: import("../../types").Timestamp;
-            debriefedAt?: import("../../types").Timestamp | undefined;
-            actedOnUrge?: boolean | undefined;
-        };
-        id?: string | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
-        tacticId?: string | undefined;
-        callLogDocPath?: string | undefined;
-    }>;
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | ImpulseLog | BehaviorLog | BreathingLog | ResistedLog | QuestionsLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | ReadyToDebriefLog | SupportGroupDaySummaryLog | DebriefUrgeLog;
+export type Log = TacticLog | BehaviorLog | BreathingLog | ResistedLog | QuestionsLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | ReadyToDebriefLog | SupportGroupDaySummaryLog;
 export * from "./behaviorLog";
 export * from "./breathingLog";
 export * from "./callLog";
-export * from "./debriefUrgeLog";
-export * from "./impulseLog";
 export * from "./linkLog";
 export * from "./messageLog";
 export * from "./notifySupportGroupLog";
@@ -18371,40 +18274,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     tacticId: z.ZodOptional<z.ZodString>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
-    type: z.ZodLiteral<"impulse_button_pressed">;
-    isDisplayable: z.ZodLiteral<true>;
-}, "strip", z.ZodTypeAny, {
-    createdAt: import("../../types").Timestamp;
-    updatedAt: import("../../types").Timestamp;
-    type: "impulse_button_pressed";
-    userId: string;
-    dateString: string;
-    isDisplayable: true;
-    id?: string | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
-    tacticId?: string | undefined;
-    callLogDocPath?: string | undefined;
-}, {
-    createdAt: import("../../types").Timestamp;
-    updatedAt: import("../../types").Timestamp;
-    type: "impulse_button_pressed";
-    userId: string;
-    dateString: string;
-    isDisplayable: true;
-    id?: string | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
-    tacticId?: string | undefined;
-    callLogDocPath?: string | undefined;
-}>, z.ZodObject<{
-    id: z.ZodOptional<z.ZodString>;
-    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-    userId: z.ZodString;
-    timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-    dateString: z.ZodString;
-    tacticId: z.ZodOptional<z.ZodString>;
-    callLogDocPath: z.ZodOptional<z.ZodString>;
-} & {
     type: z.ZodLiteral<"behavior">;
     isDisplayable: z.ZodLiteral<true>;
     isAdjustment: z.ZodDefault<z.ZodBoolean>;
@@ -21730,63 +21599,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
     callLogDocPath?: string | undefined;
-}>, z.ZodObject<{
-    id: z.ZodOptional<z.ZodString>;
-    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-    userId: z.ZodString;
-    timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-    dateString: z.ZodString;
-    tacticId: z.ZodOptional<z.ZodString>;
-    callLogDocPath: z.ZodOptional<z.ZodString>;
-} & {
-    type: z.ZodLiteral<"debriefUrge">;
-    isDisplayable: z.ZodLiteral<true>;
-    data: z.ZodObject<{
-        debriefAfter: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-        debriefedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-        actedOnUrge: z.ZodOptional<z.ZodBoolean>;
-    }, "strip", z.ZodTypeAny, {
-        debriefAfter: import("../../types").Timestamp;
-        debriefedAt?: import("../../types").Timestamp | undefined;
-        actedOnUrge?: boolean | undefined;
-    }, {
-        debriefAfter: import("../../types").Timestamp;
-        debriefedAt?: import("../../types").Timestamp | undefined;
-        actedOnUrge?: boolean | undefined;
-    }>;
-}, "strip", z.ZodTypeAny, {
-    createdAt: import("../../types").Timestamp;
-    updatedAt: import("../../types").Timestamp;
-    type: "debriefUrge";
-    userId: string;
-    dateString: string;
-    isDisplayable: true;
-    data: {
-        debriefAfter: import("../../types").Timestamp;
-        debriefedAt?: import("../../types").Timestamp | undefined;
-        actedOnUrge?: boolean | undefined;
-    };
-    id?: string | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
-    tacticId?: string | undefined;
-    callLogDocPath?: string | undefined;
-}, {
-    createdAt: import("../../types").Timestamp;
-    updatedAt: import("../../types").Timestamp;
-    type: "debriefUrge";
-    userId: string;
-    dateString: string;
-    isDisplayable: true;
-    data: {
-        debriefAfter: import("../../types").Timestamp;
-        debriefedAt?: import("../../types").Timestamp | undefined;
-        actedOnUrge?: boolean | undefined;
-    };
-    id?: string | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
-    tacticId?: string | undefined;
-    callLogDocPath?: string | undefined;
 }>]>;
 export declare const logIsAssistantMessageLog: (value: Omit<Log, "id">) => value is AssistantMessageLog;
 export declare const isValidAssistantMessageLog: (value: unknown) => value is AssistantMessageLog;
@@ -21800,8 +21612,6 @@ export declare const logIsBehaviorLog: (value: Omit<Log, "id">) => value is Beha
 export declare const isValidBehaviorLog: (value: unknown) => value is BehaviorLog;
 export declare const logIsCallLog: (value: Omit<Log, "id">) => value is CallLog;
 export declare const isValidCallLog: (value: unknown) => value is CallLog;
-export declare const logIsImpulseLog: (value: Omit<Log, "id">) => value is ImpulseLog;
-export declare const isValidImpulseLog: (value: unknown) => value is ImpulseLog;
 export declare const logIsToolCallLog: (value: Omit<Log, "id">) => value is ToolCallLog;
 export declare const isValidToolCallLog: (value: unknown) => value is ToolCallLog;
 export declare const logIsWidgetSetupLog: (value: Omit<Log, "id">) => value is WidgetSetupLog;
@@ -21826,5 +21636,3 @@ export declare const logIsResistedLog: (value: Omit<Log, "id">) => value is Resi
 export declare const isValidResistedLog: (value: unknown) => value is ResistedLog;
 export declare const logIsSupportGroupDaySummaryLog: (value: Omit<Log, "id">) => value is SupportGroupDaySummaryLog;
 export declare const isValidSupportGroupDaySummaryLog: (value: unknown) => value is SupportGroupDaySummaryLog;
-export declare const logIsDebriefUrgeLog: (value: Omit<Log, "id">) => value is DebriefUrgeLog;
-export declare const isValidDebriefUrgeLog: (value: unknown) => value is DebriefUrgeLog;

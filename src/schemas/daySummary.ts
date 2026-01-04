@@ -41,6 +41,10 @@ export const daySummarySchema = z.object({
   // When the user confirms totals and starts the recap flow
   recapStartedAt: timestampSchema.optional(),
   recapCutoffTime: timestampSchema.optional(),
+  // Tracks which support groups have been notified about this day's recap
+  supportGroupNotificationSentAtById: z
+    .record(z.string(), timestampSchema)
+    .optional(),
   createdAt: timestampSchema.optional(),
   updatedAt: timestampSchema.optional(),
 });

@@ -41,6 +41,10 @@ exports.daySummarySchema = zod_1.z.object({
     // When the user confirms totals and starts the recap flow
     recapStartedAt: timestampSchema_1.timestampSchema.optional(),
     recapCutoffTime: timestampSchema_1.timestampSchema.optional(),
+    // Tracks which support groups have been notified about this day's recap
+    supportGroupNotificationSentAtById: zod_1.z
+        .record(zod_1.z.string(), timestampSchema_1.timestampSchema)
+        .optional(),
     createdAt: timestampSchema_1.timestampSchema.optional(),
     updatedAt: timestampSchema_1.timestampSchema.optional(),
 });

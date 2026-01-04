@@ -8,7 +8,6 @@ exports.logTypes = [
     "tool_call", // Tool call type
     "tactic",
     "tactic_uncompleted",
-    "impulse_button_pressed",
     "behavior",
     "question",
     "debrief_answer",

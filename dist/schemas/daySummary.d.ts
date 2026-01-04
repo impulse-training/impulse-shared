@@ -398,6 +398,7 @@ export declare const daySummarySchema: z.ZodObject<{
     recapRequirementsMetAt: z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     recapStartedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     recapCutoffTime: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    supportGroupNotificationSentAtById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>>;
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
@@ -485,6 +486,7 @@ export declare const daySummarySchema: z.ZodObject<{
     }> | undefined;
     recapStartedAt?: import("../types").Timestamp | undefined;
     recapCutoffTime?: import("../types").Timestamp | undefined;
+    supportGroupNotificationSentAtById?: Record<string, import("../types").Timestamp> | undefined;
 }, {
     userId: string;
     summaryText: string | null;
@@ -570,6 +572,7 @@ export declare const daySummarySchema: z.ZodObject<{
     }> | undefined;
     recapStartedAt?: import("../types").Timestamp | undefined;
     recapCutoffTime?: import("../types").Timestamp | undefined;
+    supportGroupNotificationSentAtById?: Record<string, import("../types").Timestamp> | undefined;
 }>;
 export type DaySummary = z.infer<typeof daySummarySchema>;
 export declare function isValidDaySummary(value: unknown): value is DaySummary;

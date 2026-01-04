@@ -4,14 +4,6 @@ exports.getGptPayload = getGptPayload;
 const log_1 = require("../schemas/log");
 function getGptPayload(log) {
     var _a, _b, _c;
-    if ((0, log_1.logIsImpulseLog)(log)) {
-        return [
-            {
-                role: "user",
-                content: "The user has pressed the impulse button: they are facing a craving or urge",
-            },
-        ];
-    }
     // Handle ReadyToDebriefLog
     if ((0, log_1.logIsReadyToDebriefLog)(log)) {
         return [
