@@ -24,6 +24,7 @@ export const strategySchema = z.object({
   isImported: z.boolean().optional(),
   plans: z.array(strategyPlanItemSchema),
   coach: strategyCoachSchema,
+  publishedAt: timestampSchema.optional(),
   createdAt: timestampSchema.optional(),
   updatedAt: timestampSchema.optional(),
 });

@@ -24,6 +24,7 @@ exports.strategySchema = zod_1.z.object({
     isImported: zod_1.z.boolean().optional(),
     plans: zod_1.z.array(exports.strategyPlanItemSchema),
     coach: exports.strategyCoachSchema,
+    publishedAt: timestampSchema_1.timestampSchema.optional(),
     createdAt: timestampSchema_1.timestampSchema.optional(),
     updatedAt: timestampSchema_1.timestampSchema.optional(),
 });

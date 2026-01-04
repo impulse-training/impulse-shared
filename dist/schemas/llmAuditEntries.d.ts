@@ -5281,7 +5281,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
     } & {
         type: z.ZodLiteral<"impulse">;
         behaviorDocs: z.ZodArray<z.ZodType<import("..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("..").DocumentReferenceLike<unknown>>, "many">;
-        isSuccess: z.ZodOptional<z.ZodBoolean>;
         allImpulseQuestionsAnsweredAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         debriefAfter: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         debriefBefore: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -5426,7 +5425,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             deletedAt?: import("../types").Timestamp | undefined;
         }) | undefined;
         summarizedAt?: import("../types").Timestamp | undefined;
-        isSuccess?: boolean | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -5854,7 +5852,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             deletedAt?: import("../types").Timestamp | undefined;
         }) | undefined;
         summarizedAt?: import("../types").Timestamp | undefined;
-        isSuccess?: boolean | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -22852,7 +22849,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             deletedAt?: import("../types").Timestamp | undefined;
         }) | undefined;
         summarizedAt?: import("../types").Timestamp | undefined;
-        isSuccess?: boolean | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -25818,7 +25814,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             deletedAt?: import("../types").Timestamp | undefined;
         }) | undefined;
         summarizedAt?: import("../types").Timestamp | undefined;
-        isSuccess?: boolean | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;

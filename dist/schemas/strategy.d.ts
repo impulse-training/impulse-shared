@@ -1513,6 +1513,7 @@ export declare const strategySchema: z.ZodObject<{
             deniedAt?: import("../types").Timestamp | undefined;
         };
     }>;
+    publishedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
@@ -1663,6 +1664,7 @@ export declare const strategySchema: z.ZodObject<{
     problem?: string | undefined;
     whenUseful?: string | undefined;
     isImported?: boolean | undefined;
+    publishedAt?: import("../types").Timestamp | undefined;
 }, {
     name: string;
     plans: {
@@ -1811,6 +1813,7 @@ export declare const strategySchema: z.ZodObject<{
     problem?: string | undefined;
     whenUseful?: string | undefined;
     isImported?: boolean | undefined;
+    publishedAt?: import("../types").Timestamp | undefined;
 }>;
 export type StrategyPlanItem = z.infer<typeof strategyPlanItemSchema>;
 export type StrategyCoach = z.infer<typeof strategyCoachSchema>;
