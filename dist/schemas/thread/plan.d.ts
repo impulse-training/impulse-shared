@@ -1490,8 +1490,8 @@ export declare const timePlanThreadSchema: z.ZodObject<{
                 weight: number;
             }[] | undefined;
         } | undefined;
-        effectiveness?: "low" | "medium" | "high" | undefined;
-        timeToComplete?: "medium" | "quick" | "long" | undefined;
+        effectiveness?: "medium" | "low" | "high" | undefined;
+        timeToComplete?: "medium" | "long" | "quick" | undefined;
         aiConfiguration?: {
             goal: string;
             prompt?: string | undefined;
@@ -1737,8 +1737,8 @@ export declare const timePlanThreadSchema: z.ZodObject<{
                 weight: number;
             }[] | undefined;
         } | undefined;
-        effectiveness?: "low" | "medium" | "high" | undefined;
-        timeToComplete?: "medium" | "quick" | "long" | undefined;
+        effectiveness?: "medium" | "low" | "high" | undefined;
+        timeToComplete?: "medium" | "long" | "quick" | undefined;
         aiConfiguration?: {
             goal: string;
             prompt?: string | undefined;
@@ -2591,8 +2591,8 @@ export declare const timePlanThreadSchema: z.ZodObject<{
                 weight: number;
             }[] | undefined;
         } | undefined;
-        effectiveness?: "low" | "medium" | "high" | undefined;
-        timeToComplete?: "medium" | "quick" | "long" | undefined;
+        effectiveness?: "medium" | "low" | "high" | undefined;
+        timeToComplete?: "medium" | "long" | "quick" | undefined;
         aiConfiguration?: {
             goal: string;
             prompt?: string | undefined;
@@ -3011,8 +3011,8 @@ export declare const timePlanThreadSchema: z.ZodObject<{
                 weight: number;
             }[] | undefined;
         } | undefined;
-        effectiveness?: "low" | "medium" | "high" | undefined;
-        timeToComplete?: "medium" | "quick" | "long" | undefined;
+        effectiveness?: "medium" | "low" | "high" | undefined;
+        timeToComplete?: "medium" | "long" | "quick" | undefined;
         aiConfiguration?: {
             goal: string;
             prompt?: string | undefined;
@@ -4549,8 +4549,8 @@ export declare const locationPlanThreadSchema: z.ZodObject<{
                 weight: number;
             }[] | undefined;
         } | undefined;
-        effectiveness?: "low" | "medium" | "high" | undefined;
-        timeToComplete?: "medium" | "quick" | "long" | undefined;
+        effectiveness?: "medium" | "low" | "high" | undefined;
+        timeToComplete?: "medium" | "long" | "quick" | undefined;
         aiConfiguration?: {
             goal: string;
             prompt?: string | undefined;
@@ -4796,8 +4796,8 @@ export declare const locationPlanThreadSchema: z.ZodObject<{
                 weight: number;
             }[] | undefined;
         } | undefined;
-        effectiveness?: "low" | "medium" | "high" | undefined;
-        timeToComplete?: "medium" | "quick" | "long" | undefined;
+        effectiveness?: "medium" | "low" | "high" | undefined;
+        timeToComplete?: "medium" | "long" | "quick" | undefined;
         aiConfiguration?: {
             goal: string;
             prompt?: string | undefined;
@@ -5650,8 +5650,8 @@ export declare const locationPlanThreadSchema: z.ZodObject<{
                 weight: number;
             }[] | undefined;
         } | undefined;
-        effectiveness?: "low" | "medium" | "high" | undefined;
-        timeToComplete?: "medium" | "quick" | "long" | undefined;
+        effectiveness?: "medium" | "low" | "high" | undefined;
+        timeToComplete?: "medium" | "long" | "quick" | undefined;
         aiConfiguration?: {
             goal: string;
             prompt?: string | undefined;
@@ -6070,8 +6070,8 @@ export declare const locationPlanThreadSchema: z.ZodObject<{
                 weight: number;
             }[] | undefined;
         } | undefined;
-        effectiveness?: "low" | "medium" | "high" | undefined;
-        timeToComplete?: "medium" | "quick" | "long" | undefined;
+        effectiveness?: "medium" | "low" | "high" | undefined;
+        timeToComplete?: "medium" | "long" | "quick" | undefined;
         aiConfiguration?: {
             goal: string;
             prompt?: string | undefined;
