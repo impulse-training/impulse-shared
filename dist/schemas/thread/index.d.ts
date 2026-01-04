@@ -5292,6 +5292,7 @@ export declare const threadSchemas: {
         isSuccess: z.ZodOptional<z.ZodBoolean>;
         allImpulseQuestionsAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         debriefAfter: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        debriefBefore: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         debriefStartedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         debriefFinishedAt: z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         outcomeSelectedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -5721,6 +5722,7 @@ export declare const threadSchemas: {
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
         allImpulseQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
+        debriefBefore?: import("../../types").Timestamp | undefined;
         debriefStartedAt?: import("../../types").Timestamp | undefined;
         outcomeSelectedAt?: import("../../types").Timestamp | undefined;
     }, {
@@ -6149,6 +6151,7 @@ export declare const threadSchemas: {
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
         allImpulseQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
+        debriefBefore?: import("../../types").Timestamp | undefined;
         debriefStartedAt?: import("../../types").Timestamp | undefined;
         outcomeSelectedAt?: import("../../types").Timestamp | undefined;
     }>;
@@ -26726,6 +26729,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     isSuccess: z.ZodOptional<z.ZodBoolean>;
     allImpulseQuestionsAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     debriefAfter: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    debriefBefore: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     debriefStartedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     debriefFinishedAt: z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     outcomeSelectedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -27155,6 +27159,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
     allImpulseQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
+    debriefBefore?: import("../../types").Timestamp | undefined;
     debriefStartedAt?: import("../../types").Timestamp | undefined;
     outcomeSelectedAt?: import("../../types").Timestamp | undefined;
 }, {
@@ -27583,6 +27588,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
     allImpulseQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
+    debriefBefore?: import("../../types").Timestamp | undefined;
     debriefStartedAt?: import("../../types").Timestamp | undefined;
     outcomeSelectedAt?: import("../../types").Timestamp | undefined;
 }>, z.ZodObject<{
