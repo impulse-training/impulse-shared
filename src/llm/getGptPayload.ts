@@ -7,7 +7,6 @@ import {
   logIsAssistantMessageLog,
   logIsBehaviorLog,
   logIsCallLog,
-  logIsImpulseLog,
   logIsQuestionsLog,
   logIsReadyToDebriefLog,
   logIsResistedLog,
@@ -20,16 +19,6 @@ import {
 import { formatRecapResponse } from "./formatDaySummary";
 
 export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
-  if (logIsImpulseLog(log)) {
-    return [
-      {
-        role: "user",
-        content:
-          "The user has pressed the impulse button: they are facing a craving or urge",
-      },
-    ];
-  }
-
   // Handle ReadyToDebriefLog
   if (logIsReadyToDebriefLog(log)) {
     return [

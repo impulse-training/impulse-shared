@@ -2,8 +2,6 @@ import { z } from "zod";
 import { BehaviorLog, behaviorLogSchema } from "./behaviorLog";
 import { BreathingLog, breathingLogSchema } from "./breathingLog";
 import { CallLog, callLogSchema } from "./callLog";
-import { DebriefUrgeLog, debriefUrgeLogSchema } from "./debriefUrgeLog";
-import { ImpulseLog, impulseLogSchema } from "./impulseLog";
 import { LinkLog, linkLogSchema } from "./linkLog";
 import {
   AssistantMessageLog,
@@ -44,7 +42,6 @@ export const logSchemas = {
   tool_call: toolCallLogSchema,
   tactic: tacticLogSchema,
   tactic_viewed: tacticLogSchema,
-  impulse_button_pressed: impulseLogSchema,
   behavior: behaviorLogSchema,
   breathing: breathingLogSchema,
   outcome: resistedLogSchema,
@@ -59,7 +56,6 @@ export const logSchemas = {
   shared_moment: sharedMomentLogSchema,
   ready_to_debrief: readyToDebriefLogSchema,
   support_group_day_summary: supportGroupDaySummaryLogSchema,
-  debriefUrge: debriefUrgeLogSchema,
 };
 export const logTypes = Object.keys(logSchemas);
 
@@ -68,7 +64,6 @@ export type LogType = (typeof logTypes)[number];
 // Union type of all logs
 export type Log =
   | TacticLog
-  | ImpulseLog
   | BehaviorLog
   | BreathingLog
   | ResistedLog
@@ -85,14 +80,11 @@ export type Log =
   | SharedMomentLog
   | VideoLog
   | ReadyToDebriefLog
-  | SupportGroupDaySummaryLog
-  | DebriefUrgeLog;
+  | SupportGroupDaySummaryLog;
 
 export * from "./behaviorLog";
 export * from "./breathingLog";
 export * from "./callLog";
-export * from "./debriefUrgeLog";
-export * from "./impulseLog";
 export * from "./linkLog";
 export * from "./messageLog";
 export * from "./notifySupportGroupLog";
@@ -116,7 +108,6 @@ export const logSchema = z.discriminatedUnion("type", [
   callLogSchema,
   toolCallLogSchema,
   tacticLogSchema,
-  impulseLogSchema,
   behaviorLogSchema,
   breathingLogSchema,
   resistedLogSchema,
@@ -131,7 +122,6 @@ export const logSchema = z.discriminatedUnion("type", [
   videoLogSchema,
   readyToDebriefLogSchema,
   supportGroupDaySummaryLogSchema,
-  debriefUrgeLogSchema,
 ]);
 
 // Export log type guards
@@ -181,12 +171,6 @@ export const logIsCallLog = (value: Omit<Log, "id">): value is CallLog =>
   value.type === "call";
 export const isValidCallLog = (value: unknown): value is CallLog => {
   return callLogSchema.safeParse(value).success;
-};
-
-export const logIsImpulseLog = (value: Omit<Log, "id">): value is ImpulseLog =>
-  value.type === "impulse_button_pressed";
-export const isValidImpulseLog = (value: unknown): value is ImpulseLog => {
-  return impulseLogSchema.safeParse(value).success;
 };
 
 export const logIsToolCallLog = (
@@ -277,13 +261,4 @@ export const isValidSupportGroupDaySummaryLog = (
   value: unknown
 ): value is SupportGroupDaySummaryLog => {
   return supportGroupDaySummaryLogSchema.safeParse(value).success;
-};
-
-export const logIsDebriefUrgeLog = (
-  value: Omit<Log, "id">
-): value is DebriefUrgeLog => value.type === "debriefUrge";
-export const isValidDebriefUrgeLog = (
-  value: unknown
-): value is DebriefUrgeLog => {
-  return debriefUrgeLogSchema.safeParse(value).success;
 };
