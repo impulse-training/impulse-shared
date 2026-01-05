@@ -17,11 +17,5 @@ export function questionBaseSchema<T extends string>(type: T) {
     isPinned: z.boolean().optional(),
     responseType: z.literal(type),
     scope: questionScopeSchema,
-    debriefBehaviors: z
-      .object({
-        success: z.array(z.string()),
-        setback: z.array(z.string()),
-      })
-      .optional(),
   });
 }
