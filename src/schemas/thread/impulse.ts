@@ -6,6 +6,7 @@ import { threadBaseSchema } from "./base";
 export const impulseThreadSchema = threadBaseSchema.extend({
   type: z.literal("impulse"),
   behaviorDocs: z.array(documentReferenceSchema),
+  behaviorIds: z.array(z.string()).optional(),
   allImpulseQuestionsAnsweredAt: timestampSchema.optional(),
   debriefAfter: timestampSchema.optional(),
   debriefBefore: timestampSchema.optional(),
