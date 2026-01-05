@@ -11,10 +11,10 @@ export declare const memorySchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     id: string;
     title: string;
+    importance: number;
     tags: string[];
     content: string;
     source: string;
-    importance: number;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
 }, {
@@ -24,8 +24,8 @@ export declare const memorySchema: z.ZodObject<{
     source: string;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
-    tags?: string[] | undefined;
     importance?: number | undefined;
+    tags?: string[] | undefined;
 }>;
 export type Memory = z.infer<typeof memorySchema>;
 export declare const isMemory: (value: unknown) => value is Memory;

@@ -20,7 +20,6 @@ __exportStar(require("./attachment"), exports);
 __exportStar(require("./audioGenerationJob"), exports);
 __exportStar(require("./audit"), exports);
 __exportStar(require("./behavior"), exports);
-__exportStar(require("./behaviorState"), exports);
 __exportStar(require("./coach"), exports);
 __exportStar(require("./behaviorTemplate"), exports);
 __exportStar(require("./behaviorTopic"), exports);

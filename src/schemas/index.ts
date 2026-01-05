@@ -3,7 +3,6 @@ export * from "./attachment";
 export * from "./audioGenerationJob";
 export * from "./audit";
 export * from "./behavior";
-export * from "./behaviorState";
 export * from "./coach";
 export * from "./behaviorTemplate";
 export * from "./behaviorTopic";
