@@ -7,11 +7,11 @@ import {
   AssistantMessageLog,
   assistantMessageLogSchema,
   MessageLog,
-} from "./messageLog";
-import {
+  SystemMessageLog,
+  systemMessageLogSchema,
   UserMessageLog,
   userMessageLogSchema,
-} from "./messageLog/userMessageLog";
+} from "./messageLog";
 import {
   NotifySupportGroupLog,
   notifySupportGroupLogSchema,
@@ -38,6 +38,7 @@ import { WidgetSetupLog, widgetSetupLogSchema } from "./widgetSetupLog";
 export const logSchemas = {
   user: userMessageLogSchema,
   assistant_message: assistantMessageLogSchema,
+  system_message: systemMessageLogSchema,
   call: callLogSchema,
   tool_call: toolCallLogSchema,
   tactic: tacticLogSchema,
@@ -105,6 +106,7 @@ export * from "./widgetSetupLog";
 export const logSchema = z.discriminatedUnion("type", [
   userMessageLogSchema,
   assistantMessageLogSchema,
+  systemMessageLogSchema,
   callLogSchema,
   toolCallLogSchema,
   tacticLogSchema,
@@ -133,6 +135,15 @@ export const isValidAssistantMessageLog = (
   value: unknown
 ): value is AssistantMessageLog => {
   return assistantMessageLogSchema.safeParse(value).success;
+};
+
+export const logIsSystemMessageLog = (
+  value: Omit<Log, "id">
+): value is SystemMessageLog => value.type === "system_message";
+export const isValidSystemMessageLog = (
+  value: unknown
+): value is SystemMessageLog => {
+  return systemMessageLogSchema.safeParse(value).success;
 };
 
 export const logIsShowTourLog = (
