@@ -28,6 +28,7 @@ export const userDataSchema = z.object({
     }),
 
   appVersion: z.string().optional(),
+  isAppEnabled: z.boolean().optional(),
 
   tacticsEnabled: z.boolean().default(false),
 
