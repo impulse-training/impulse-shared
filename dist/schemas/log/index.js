@@ -14,14 +14,13 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidSupportGroupDaySummaryLog = exports.logIsSupportGroupDaySummaryLog = exports.isValidResistedLog = exports.logIsResistedLog = exports.isValidBreathingLog = exports.logIsBreathingLog = exports.isValidReadyToDebriefLog = exports.logIsReadyToDebriefLog = exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidPlansLog = exports.logIsPlansLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionsLog = exports.logIsQuestionsLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorLog = exports.logIsBehaviorLog = exports.isValidSharedMomentLog = exports.logIsSharedMomentLog = exports.isValidNotifySupportGroupLog = exports.logIsNotifySupportGroupLog = exports.isValidShowTourLog = exports.logIsShowTourLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
+exports.isValidSupportGroupDaySummaryLog = exports.logIsSupportGroupDaySummaryLog = exports.isValidResistedLog = exports.logIsResistedLog = exports.isValidBreathingLog = exports.logIsBreathingLog = exports.isValidReadyToDebriefLog = exports.logIsReadyToDebriefLog = exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidPlansLog = exports.logIsPlansLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionsLog = exports.logIsQuestionsLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorLog = exports.logIsBehaviorLog = exports.isValidSharedMomentLog = exports.logIsSharedMomentLog = exports.isValidNotifySupportGroupLog = exports.logIsNotifySupportGroupLog = exports.isValidShowTourLog = exports.logIsShowTourLog = exports.isValidSystemMessageLog = exports.logIsSystemMessageLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
 const zod_1 = require("zod");
 const behaviorLog_1 = require("./behaviorLog");
 const breathingLog_1 = require("./breathingLog");
 const callLog_1 = require("./callLog");
 const linkLog_1 = require("./linkLog");
 const messageLog_1 = require("./messageLog");
-const userMessageLog_1 = require("./messageLog/userMessageLog");
 const notifySupportGroupLog_1 = require("./notifySupportGroupLog");
 const plansLog_1 = require("./plansLog");
 const questionsLog_1 = require("./questionsLog");
@@ -36,8 +35,9 @@ const toolCallLog_1 = require("./toolCallLog");
 const videoLog_1 = require("./videoLog");
 const widgetSetupLog_1 = require("./widgetSetupLog");
 exports.logSchemas = {
-    user: userMessageLog_1.userMessageLogSchema,
+    user: messageLog_1.userMessageLogSchema,
     assistant_message: messageLog_1.assistantMessageLogSchema,
+    system_message: messageLog_1.systemMessageLogSchema,
     call: callLog_1.callLogSchema,
     tool_call: toolCallLog_1.toolCallLogSchema,
     tactic: tacticLog_1.tacticLogSchema,
@@ -78,8 +78,9 @@ __exportStar(require("./videoLog"), exports);
 __exportStar(require("./widgetSetupLog"), exports);
 // Discriminated union schema across all log variants
 exports.logSchema = zod_1.z.discriminatedUnion("type", [
-    userMessageLog_1.userMessageLogSchema,
+    messageLog_1.userMessageLogSchema,
     messageLog_1.assistantMessageLogSchema,
+    messageLog_1.systemMessageLogSchema,
     callLog_1.callLogSchema,
     toolCallLog_1.toolCallLogSchema,
     tacticLog_1.tacticLogSchema,
@@ -105,6 +106,12 @@ const isValidAssistantMessageLog = (value) => {
     return messageLog_1.assistantMessageLogSchema.safeParse(value).success;
 };
 exports.isValidAssistantMessageLog = isValidAssistantMessageLog;
+const logIsSystemMessageLog = (value) => value.type === "system_message";
+exports.logIsSystemMessageLog = logIsSystemMessageLog;
+const isValidSystemMessageLog = (value) => {
+    return messageLog_1.systemMessageLogSchema.safeParse(value).success;
+};
+exports.isValidSystemMessageLog = isValidSystemMessageLog;
 const logIsShowTourLog = (value) => value.type === "show_tour";
 exports.logIsShowTourLog = logIsShowTourLog;
 const isValidShowTourLog = (value) => {
@@ -162,7 +169,7 @@ exports.isValidTacticLog = isValidTacticLog;
 const logIsUserMessageLog = (value) => value.type === "user_message";
 exports.logIsUserMessageLog = logIsUserMessageLog;
 const isValidUserMessageLog = (value) => {
-    return userMessageLog_1.userMessageLogSchema.safeParse(value).success;
+    return messageLog_1.userMessageLogSchema.safeParse(value).success;
 };
 exports.isValidUserMessageLog = isValidUserMessageLog;
 const logIsPlansLog = (value) => value.type === "plans";

@@ -42,7 +42,12 @@ export const supportGroupMemberSchema = z.object({
 });
 
 // Support Group Type
-export const supportGroupTypeSchema = z.enum(["system", "social", "coach"]);
+export const supportGroupTypeSchema = z.enum([
+  "system",
+  "social",
+  "coach",
+  "alignment",
+]);
 export type SupportGroupType = z.infer<typeof supportGroupTypeSchema>;
 
 // Support Group Schema

@@ -7,9 +7,10 @@ export declare const messageBaseLogSchema: z.ZodObject<{
     timestamp: z.ZodOptional<z.ZodType<import("../../../types").Timestamp, z.ZodTypeDef, import("../../../types").Timestamp>>;
     dateString: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
-    type: z.ZodEnum<["user_message", "assistant_message"]>;
+    type: z.ZodEnum<["user_message", "assistant_message", "system_message"]>;
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
         message: z.ZodAny;
@@ -21,7 +22,7 @@ export declare const messageBaseLogSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../../types").Timestamp;
     updatedAt: import("../../../types").Timestamp;
-    type: "user_message" | "assistant_message";
+    type: "user_message" | "assistant_message" | "system_message";
     userId: string;
     dateString: string;
     isDisplayable: true;
@@ -31,11 +32,12 @@ export declare const messageBaseLogSchema: z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }, {
     createdAt: import("../../../types").Timestamp;
     updatedAt: import("../../../types").Timestamp;
-    type: "user_message" | "assistant_message";
+    type: "user_message" | "assistant_message" | "system_message";
     userId: string;
     dateString: string;
     isDisplayable: true;
@@ -45,5 +47,6 @@ export declare const messageBaseLogSchema: z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }>;

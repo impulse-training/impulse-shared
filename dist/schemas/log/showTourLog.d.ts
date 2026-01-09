@@ -37,6 +37,7 @@ export declare const showTourLogSchema: z.ZodObject<{
     timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     dateString: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"show_tour">;
@@ -135,6 +136,7 @@ export declare const showTourLogSchema: z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -164,6 +166,7 @@ export declare const showTourLogSchema: z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }>;
 export type ShowTourLog = z.infer<typeof showTourLogSchema>;

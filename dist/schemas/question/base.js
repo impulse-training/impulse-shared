@@ -19,11 +19,5 @@ function questionBaseSchema(type) {
         isPinned: zod_1.z.boolean().optional(),
         responseType: zod_1.z.literal(type),
         scope: constants_1.questionScopeSchema,
-        debriefBehaviors: zod_1.z
-            .object({
-            success: zod_1.z.array(zod_1.z.string()),
-            setback: zod_1.z.array(zod_1.z.string()),
-        })
-            .optional(),
     });
 }

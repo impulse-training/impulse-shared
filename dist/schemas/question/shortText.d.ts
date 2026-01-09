@@ -13,16 +13,6 @@ export declare const shortTextQuestionSchema: z.ZodObject<{
     isPinned: z.ZodOptional<z.ZodBoolean>;
     responseType: z.ZodLiteral<"shortText">;
     scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
-    debriefBehaviors: z.ZodOptional<z.ZodObject<{
-        success: z.ZodArray<z.ZodString, "many">;
-        setback: z.ZodArray<z.ZodString, "many">;
-    }, "strip", z.ZodTypeAny, {
-        success: string[];
-        setback: string[];
-    }, {
-        success: string[];
-        setback: string[];
-    }>>;
 } & {
     suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
 }, "strip", z.ZodTypeAny, {
@@ -40,10 +30,6 @@ export declare const shortTextQuestionSchema: z.ZodObject<{
     lastAnsweredAt?: import("../../types").Timestamp | undefined;
     numberOfAnswers?: number | undefined;
     isPinned?: boolean | undefined;
-    debriefBehaviors?: {
-        success: string[];
-        setback: string[];
-    } | undefined;
 }, {
     text: string;
     responseType: "shortText";
@@ -59,9 +45,5 @@ export declare const shortTextQuestionSchema: z.ZodObject<{
     lastAnsweredAt?: import("../../types").Timestamp | undefined;
     numberOfAnswers?: number | undefined;
     isPinned?: boolean | undefined;
-    debriefBehaviors?: {
-        success: string[];
-        setback: string[];
-    } | undefined;
 }>;
 export type ShortTextQuestion = z.infer<typeof shortTextQuestionSchema>;

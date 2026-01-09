@@ -7,6 +7,7 @@ export declare const resistedLogSchema: z.ZodObject<{
     timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     dateString: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"resisted">;
@@ -31,6 +32,7 @@ export declare const resistedLogSchema: z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -45,6 +47,7 @@ export declare const resistedLogSchema: z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }>;
 export type ResistedLog = z.infer<typeof resistedLogSchema>;

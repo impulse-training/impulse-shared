@@ -9,6 +9,7 @@ export declare const behaviorLogSchema: z.ZodObject<{
     timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     dateString: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"behavior">;
@@ -57,6 +58,7 @@ export declare const behaviorLogSchema: z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
     shouldZaraRespond?: boolean | undefined;
 }, {
@@ -77,6 +79,7 @@ export declare const behaviorLogSchema: z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
     isAdjustment?: boolean | undefined;
     shouldZaraRespond?: boolean | undefined;

@@ -13,16 +13,6 @@ export declare const behaviorSelectionQuestionSchema: z.ZodObject<{
     isPinned: z.ZodOptional<z.ZodBoolean>;
     responseType: z.ZodLiteral<"behaviorSelection">;
     scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
-    debriefBehaviors: z.ZodOptional<z.ZodObject<{
-        success: z.ZodArray<z.ZodString, "many">;
-        setback: z.ZodArray<z.ZodString, "many">;
-    }, "strip", z.ZodTypeAny, {
-        success: string[];
-        setback: string[];
-    }, {
-        success: string[];
-        setback: string[];
-    }>>;
 } & {
     allowMultiple: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
 }, "strip", z.ZodTypeAny, {
@@ -40,10 +30,6 @@ export declare const behaviorSelectionQuestionSchema: z.ZodObject<{
     lastAnsweredAt?: import("../../types").Timestamp | undefined;
     numberOfAnswers?: number | undefined;
     isPinned?: boolean | undefined;
-    debriefBehaviors?: {
-        success: string[];
-        setback: string[];
-    } | undefined;
 }, {
     text: string;
     responseType: "behaviorSelection";
@@ -58,10 +44,6 @@ export declare const behaviorSelectionQuestionSchema: z.ZodObject<{
     lastAnsweredAt?: import("../../types").Timestamp | undefined;
     numberOfAnswers?: number | undefined;
     isPinned?: boolean | undefined;
-    debriefBehaviors?: {
-        success: string[];
-        setback: string[];
-    } | undefined;
     allowMultiple?: boolean | undefined;
 }>;
 export type BehaviorSelectionQuestion = z.infer<typeof behaviorSelectionQuestionSchema>;

@@ -115,11 +115,11 @@ export declare const supportGroupMemberSchema: z.ZodObject<{
     } | undefined;
     joinedAt?: import("../types").Timestamp | undefined;
 }>;
-export declare const supportGroupTypeSchema: z.ZodEnum<["system", "social", "coach"]>;
+export declare const supportGroupTypeSchema: z.ZodEnum<["system", "social", "coach", "alignment"]>;
 export type SupportGroupType = z.infer<typeof supportGroupTypeSchema>;
 export declare const supportGroupSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
-    type: z.ZodDefault<z.ZodEnum<["system", "social", "coach"]>>;
+    type: z.ZodDefault<z.ZodEnum<["system", "social", "coach", "alignment"]>>;
     name: z.ZodString;
     description: z.ZodOptional<z.ZodString>;
     ownerId: z.ZodString;
@@ -405,6 +405,7 @@ export declare const supportGroupSchema: z.ZodObject<{
         timestamp: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         dateString: z.ZodString;
         tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         callLogDocPath: z.ZodOptional<z.ZodString>;
         isDisplayable: z.ZodLiteral<true>;
         data: z.ZodObject<{
@@ -518,6 +519,7 @@ export declare const supportGroupSchema: z.ZodObject<{
         id?: string | undefined;
         timestamp?: import("../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
         audioAttachment?: {
             uri: string;
@@ -555,6 +557,7 @@ export declare const supportGroupSchema: z.ZodObject<{
         id?: string | undefined;
         timestamp?: import("../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
         audioAttachment?: {
             uri: string;
@@ -608,7 +611,7 @@ export declare const supportGroupSchema: z.ZodObject<{
             }[] | undefined;
         } | undefined;
     };
-    type: "system" | "coach" | "social";
+    type: "system" | "coach" | "social" | "alignment";
     name: string;
     membersById: Record<string, {
         userId: string;
@@ -678,6 +681,7 @@ export declare const supportGroupSchema: z.ZodObject<{
         id?: string | undefined;
         timestamp?: import("../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
         audioAttachment?: {
             uri: string;
@@ -759,7 +763,7 @@ export declare const supportGroupSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
-    type?: "system" | "coach" | "social" | undefined;
+    type?: "system" | "coach" | "social" | "alignment" | undefined;
     description?: string | undefined;
     isTemplate?: boolean | undefined;
     coverPhoto?: {
@@ -797,6 +801,7 @@ export declare const supportGroupSchema: z.ZodObject<{
         id?: string | undefined;
         timestamp?: import("../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
         audioAttachment?: {
             uri: string;

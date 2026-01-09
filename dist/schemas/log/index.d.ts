@@ -3,8 +3,7 @@ import { BehaviorLog } from "./behaviorLog";
 import { BreathingLog } from "./breathingLog";
 import { CallLog } from "./callLog";
 import { LinkLog } from "./linkLog";
-import { AssistantMessageLog, MessageLog } from "./messageLog";
-import { UserMessageLog } from "./messageLog/userMessageLog";
+import { AssistantMessageLog, MessageLog, SystemMessageLog, UserMessageLog } from "./messageLog";
 import { NotifySupportGroupLog } from "./notifySupportGroupLog";
 import { PlansLog } from "./plansLog";
 import { QuestionsLog } from "./questionsLog";
@@ -27,6 +26,7 @@ export declare const logSchemas: {
         timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         dateString: z.ZodString;
         tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         callLogDocPath: z.ZodOptional<z.ZodString>;
         isDisplayable: z.ZodLiteral<true>;
         data: z.ZodObject<{
@@ -140,6 +140,7 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
         audioAttachment?: {
             uri: string;
@@ -177,6 +178,7 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
         audioAttachment?: {
             uri: string;
@@ -210,6 +212,7 @@ export declare const logSchemas: {
         timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         dateString: z.ZodString;
         tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         callLogDocPath: z.ZodOptional<z.ZodString>;
         isDisplayable: z.ZodLiteral<true>;
         data: z.ZodObject<{
@@ -234,6 +237,7 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -248,6 +252,58 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        callLogDocPath?: string | undefined;
+    }>;
+    system_message: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        dateString: z.ZodString;
+        tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        callLogDocPath: z.ZodOptional<z.ZodString>;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            message: z.ZodAny;
+        }, "strip", z.ZodTypeAny, {
+            message?: any;
+        }, {
+            message?: any;
+        }>;
+    } & {
+        type: z.ZodLiteral<"system_message">;
+    }, "strip", z.ZodTypeAny, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "system_message";
+        userId: string;
+        dateString: string;
+        isDisplayable: true;
+        data: {
+            message?: any;
+        };
+        id?: string | undefined;
+        timestamp?: import("../../types").Timestamp | undefined;
+        tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        callLogDocPath?: string | undefined;
+    }, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "system_message";
+        userId: string;
+        dateString: string;
+        isDisplayable: true;
+        data: {
+            message?: any;
+        };
+        id?: string | undefined;
+        timestamp?: import("../../types").Timestamp | undefined;
+        tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }>;
     call: z.ZodObject<{
@@ -258,6 +314,7 @@ export declare const logSchemas: {
         timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         dateString: z.ZodString;
         tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
         type: z.ZodLiteral<"call">;
@@ -2785,6 +2842,7 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -3052,6 +3110,7 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }>;
     tool_call: z.ZodObject<{
@@ -3062,6 +3121,7 @@ export declare const logSchemas: {
         timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         dateString: z.ZodString;
         tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
         isDisplayable: z.ZodLiteral<false>;
@@ -3188,6 +3248,7 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -3216,6 +3277,7 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }>;
     tactic: z.ZodObject<{
@@ -3226,6 +3288,7 @@ export declare const logSchemas: {
         timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         dateString: z.ZodString;
         tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
         type: z.ZodLiteral<"tactic">;
@@ -5773,6 +5836,7 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -6043,6 +6107,7 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }>;
     tactic_viewed: z.ZodObject<{
@@ -6053,6 +6118,7 @@ export declare const logSchemas: {
         timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         dateString: z.ZodString;
         tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
         type: z.ZodLiteral<"tactic">;
@@ -8600,6 +8666,7 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -8870,6 +8937,7 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }>;
     behavior: z.ZodObject<{
@@ -8880,6 +8948,7 @@ export declare const logSchemas: {
         timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         dateString: z.ZodString;
         tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
         type: z.ZodLiteral<"behavior">;
@@ -8927,6 +8996,7 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
         shouldZaraRespond?: boolean | undefined;
     }, {
@@ -8947,6 +9017,7 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
         isAdjustment?: boolean | undefined;
         shouldZaraRespond?: boolean | undefined;
@@ -8959,6 +9030,7 @@ export declare const logSchemas: {
         timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         dateString: z.ZodString;
         tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
         type: z.ZodLiteral<"breathing">;
@@ -9003,6 +9075,7 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -9022,6 +9095,7 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }>;
     outcome: z.ZodObject<{
@@ -9032,6 +9106,7 @@ export declare const logSchemas: {
         timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         dateString: z.ZodString;
         tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
         type: z.ZodLiteral<"resisted">;
@@ -9056,6 +9131,7 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -9070,6 +9146,7 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }>;
     questions: z.ZodObject<{
@@ -9080,6 +9157,7 @@ export declare const logSchemas: {
         timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         dateString: z.ZodString;
         tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
         type: z.ZodLiteral<"questions">;
@@ -9104,16 +9182,6 @@ export declare const logSchemas: {
                     isPinned: z.ZodOptional<z.ZodBoolean>;
                     responseType: z.ZodLiteral<"text">;
                     scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
-                    debriefBehaviors: z.ZodOptional<z.ZodObject<{
-                        success: z.ZodArray<z.ZodString, "many">;
-                        setback: z.ZodArray<z.ZodString, "many">;
-                    }, "strip", z.ZodTypeAny, {
-                        success: string[];
-                        setback: string[];
-                    }, {
-                        success: string[];
-                        setback: string[];
-                    }>>;
                 }, "strip", z.ZodTypeAny, {
                     text: string;
                     isTemplate: boolean;
@@ -9128,10 +9196,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 }, {
                     text: string;
                     responseType: "text";
@@ -9146,10 +9210,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 }>, z.ZodObject<{
                     id: z.ZodOptional<z.ZodString>;
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -9164,16 +9224,6 @@ export declare const logSchemas: {
                     isPinned: z.ZodOptional<z.ZodBoolean>;
                     responseType: z.ZodLiteral<"emotion">;
                     scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
-                    debriefBehaviors: z.ZodOptional<z.ZodObject<{
-                        success: z.ZodArray<z.ZodString, "many">;
-                        setback: z.ZodArray<z.ZodString, "many">;
-                    }, "strip", z.ZodTypeAny, {
-                        success: string[];
-                        setback: string[];
-                    }, {
-                        success: string[];
-                        setback: string[];
-                    }>>;
                 } & {
                     suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 }, "strip", z.ZodTypeAny, {
@@ -9191,10 +9241,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 }, {
                     text: string;
                     responseType: "emotion";
@@ -9210,10 +9256,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 }>, z.ZodObject<{
                     id: z.ZodOptional<z.ZodString>;
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -9228,16 +9270,6 @@ export declare const logSchemas: {
                     isPinned: z.ZodOptional<z.ZodBoolean>;
                     responseType: z.ZodLiteral<"shortText">;
                     scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
-                    debriefBehaviors: z.ZodOptional<z.ZodObject<{
-                        success: z.ZodArray<z.ZodString, "many">;
-                        setback: z.ZodArray<z.ZodString, "many">;
-                    }, "strip", z.ZodTypeAny, {
-                        success: string[];
-                        setback: string[];
-                    }, {
-                        success: string[];
-                        setback: string[];
-                    }>>;
                 } & {
                     suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 }, "strip", z.ZodTypeAny, {
@@ -9255,10 +9287,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 }, {
                     text: string;
                     responseType: "shortText";
@@ -9274,10 +9302,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 }>, z.ZodObject<{
                     id: z.ZodOptional<z.ZodString>;
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -9292,16 +9316,6 @@ export declare const logSchemas: {
                     isPinned: z.ZodOptional<z.ZodBoolean>;
                     responseType: z.ZodLiteral<"slider1To10">;
                     scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
-                    debriefBehaviors: z.ZodOptional<z.ZodObject<{
-                        success: z.ZodArray<z.ZodString, "many">;
-                        setback: z.ZodArray<z.ZodString, "many">;
-                    }, "strip", z.ZodTypeAny, {
-                        success: string[];
-                        setback: string[];
-                    }, {
-                        success: string[];
-                        setback: string[];
-                    }>>;
                 } & {
                     sliderConfig: z.ZodObject<{
                         minLabel: z.ZodOptional<z.ZodString>;
@@ -9331,10 +9345,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 }, {
                     text: string;
                     sliderConfig: {
@@ -9353,10 +9363,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 }>, z.ZodObject<{
                     id: z.ZodOptional<z.ZodString>;
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -9371,16 +9377,6 @@ export declare const logSchemas: {
                     isPinned: z.ZodOptional<z.ZodBoolean>;
                     responseType: z.ZodLiteral<"behaviorSelection">;
                     scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
-                    debriefBehaviors: z.ZodOptional<z.ZodObject<{
-                        success: z.ZodArray<z.ZodString, "many">;
-                        setback: z.ZodArray<z.ZodString, "many">;
-                    }, "strip", z.ZodTypeAny, {
-                        success: string[];
-                        setback: string[];
-                    }, {
-                        success: string[];
-                        setback: string[];
-                    }>>;
                 } & {
                     allowMultiple: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
                 }, "strip", z.ZodTypeAny, {
@@ -9398,10 +9394,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 }, {
                     text: string;
                     responseType: "behaviorSelection";
@@ -9416,10 +9408,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                     allowMultiple?: boolean | undefined;
                 }>, z.ZodObject<{
                     id: z.ZodOptional<z.ZodString>;
@@ -9435,16 +9423,6 @@ export declare const logSchemas: {
                     isPinned: z.ZodOptional<z.ZodBoolean>;
                     responseType: z.ZodLiteral<"recap">;
                     scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
-                    debriefBehaviors: z.ZodOptional<z.ZodObject<{
-                        success: z.ZodArray<z.ZodString, "many">;
-                        setback: z.ZodArray<z.ZodString, "many">;
-                    }, "strip", z.ZodTypeAny, {
-                        success: string[];
-                        setback: string[];
-                    }, {
-                        success: string[];
-                        setback: string[];
-                    }>>;
                 }, "strip", z.ZodTypeAny, {
                     text: string;
                     isTemplate: boolean;
@@ -9459,10 +9437,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 }, {
                     text: string;
                     responseType: "recap";
@@ -9477,10 +9451,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 }>]>;
                 response: z.ZodOptional<z.ZodObject<{
                     responseType: z.ZodEnum<["text", "shortText", "emotion", "slider1To10", "behaviorSelection", "recap"]>;
@@ -9514,10 +9484,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 } | {
                     text: string;
                     isTemplate: boolean;
@@ -9533,10 +9499,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 } | {
                     text: string;
                     isTemplate: boolean;
@@ -9551,10 +9513,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 } | {
                     text: string;
                     isTemplate: boolean;
@@ -9570,10 +9528,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 } | {
                     text: string;
                     sliderConfig: {
@@ -9592,10 +9546,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 } | {
                     text: string;
                     isTemplate: boolean;
@@ -9610,10 +9560,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 };
                 questionId?: string | undefined;
                 response?: {
@@ -9637,10 +9583,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                     allowMultiple?: boolean | undefined;
                 } | {
                     text: string;
@@ -9657,10 +9599,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 } | {
                     text: string;
                     responseType: "recap";
@@ -9675,10 +9613,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 } | {
                     text: string;
                     responseType: "shortText";
@@ -9694,10 +9628,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 } | {
                     text: string;
                     sliderConfig: {
@@ -9716,10 +9646,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 } | {
                     text: string;
                     responseType: "text";
@@ -9734,10 +9660,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 };
                 questionId?: string | undefined;
                 response?: {
@@ -9764,10 +9686,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 } | {
                     text: string;
                     isTemplate: boolean;
@@ -9783,10 +9701,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 } | {
                     text: string;
                     isTemplate: boolean;
@@ -9801,10 +9715,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 } | {
                     text: string;
                     isTemplate: boolean;
@@ -9820,10 +9730,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 } | {
                     text: string;
                     sliderConfig: {
@@ -9842,10 +9748,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 } | {
                     text: string;
                     isTemplate: boolean;
@@ -9860,10 +9762,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 };
                 questionId?: string | undefined;
                 response?: {
@@ -9889,10 +9787,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                     allowMultiple?: boolean | undefined;
                 } | {
                     text: string;
@@ -9909,10 +9803,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 } | {
                     text: string;
                     responseType: "recap";
@@ -9927,10 +9817,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 } | {
                     text: string;
                     responseType: "shortText";
@@ -9946,10 +9832,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 } | {
                     text: string;
                     sliderConfig: {
@@ -9968,10 +9850,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 } | {
                     text: string;
                     responseType: "text";
@@ -9986,10 +9864,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 };
                 questionId?: string | undefined;
                 response?: {
@@ -10024,10 +9898,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 } | {
                     text: string;
                     isTemplate: boolean;
@@ -10043,10 +9913,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 } | {
                     text: string;
                     isTemplate: boolean;
@@ -10061,10 +9927,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 } | {
                     text: string;
                     isTemplate: boolean;
@@ -10080,10 +9942,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 } | {
                     text: string;
                     sliderConfig: {
@@ -10102,10 +9960,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 } | {
                     text: string;
                     isTemplate: boolean;
@@ -10120,10 +9974,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 };
                 questionId?: string | undefined;
                 response?: {
@@ -10138,6 +9988,7 @@ export declare const logSchemas: {
         text?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
         answeredAt?: import("../../types").Timestamp | undefined;
         commitStrategy?: "live" | "explicit" | undefined;
@@ -10164,10 +10015,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                     allowMultiple?: boolean | undefined;
                 } | {
                     text: string;
@@ -10184,10 +10031,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 } | {
                     text: string;
                     responseType: "recap";
@@ -10202,10 +10045,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 } | {
                     text: string;
                     responseType: "shortText";
@@ -10221,10 +10060,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 } | {
                     text: string;
                     sliderConfig: {
@@ -10243,10 +10078,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 } | {
                     text: string;
                     responseType: "text";
@@ -10261,10 +10092,6 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
-                    debriefBehaviors?: {
-                        success: string[];
-                        setback: string[];
-                    } | undefined;
                 };
                 questionId?: string | undefined;
                 response?: {
@@ -10279,6 +10106,7 @@ export declare const logSchemas: {
         text?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
         answeredAt?: import("../../types").Timestamp | undefined;
         commitStrategy?: "live" | "explicit" | undefined;
@@ -10291,6 +10119,7 @@ export declare const logSchemas: {
         timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         dateString: z.ZodString;
         tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
         type: z.ZodLiteral<"plans">;
@@ -11296,6 +11125,7 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -11432,6 +11262,7 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }>;
     summary: z.ZodObject<{
@@ -11442,6 +11273,7 @@ export declare const logSchemas: {
         timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         dateString: z.ZodString;
         tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
         type: z.ZodLiteral<"summary">;
@@ -11466,6 +11298,7 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -11480,6 +11313,7 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }>;
     widget_setup: z.ZodObject<{
@@ -11490,6 +11324,7 @@ export declare const logSchemas: {
         timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         dateString: z.ZodString;
         tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
         type: z.ZodLiteral<"widget_setup">;
@@ -11504,6 +11339,7 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -11515,6 +11351,7 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }>;
     show_tour: z.ZodObject<{
@@ -11525,6 +11362,7 @@ export declare const logSchemas: {
         timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         dateString: z.ZodString;
         tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
         type: z.ZodLiteral<"show_tour">;
@@ -11623,6 +11461,7 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -11652,6 +11491,7 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }>;
     link: z.ZodObject<{
@@ -11662,6 +11502,7 @@ export declare const logSchemas: {
         timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         dateString: z.ZodString;
         tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
         type: z.ZodLiteral<"link">;
@@ -11682,6 +11523,7 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -11696,6 +11538,7 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }>;
     notify_support_group: z.ZodObject<{
@@ -11706,6 +11549,7 @@ export declare const logSchemas: {
         timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         dateString: z.ZodString;
         tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
         type: z.ZodLiteral<"notify_support_group">;
@@ -11862,6 +11706,7 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -11893,6 +11738,7 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }>;
     video: z.ZodObject<{
@@ -11903,6 +11749,7 @@ export declare const logSchemas: {
         timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         dateString: z.ZodString;
         tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
         type: z.ZodLiteral<"video">;
@@ -11931,6 +11778,7 @@ export declare const logSchemas: {
         title?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -11947,6 +11795,7 @@ export declare const logSchemas: {
         title?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }>;
     shared_moment: z.ZodObject<{
@@ -11957,6 +11806,7 @@ export declare const logSchemas: {
         timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         dateString: z.ZodString;
         tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
         type: z.ZodLiteral<"shared_moment">;
@@ -12059,6 +11909,7 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -12087,6 +11938,7 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }>;
     ready_to_debrief: z.ZodObject<{
@@ -12097,6 +11949,7 @@ export declare const logSchemas: {
         timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         dateString: z.ZodString;
         tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
         type: z.ZodLiteral<"ready_to_debrief">;
@@ -12111,6 +11964,7 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -12122,6 +11976,7 @@ export declare const logSchemas: {
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }>;
     support_group_day_summary: z.ZodObject<{
@@ -12132,6 +11987,7 @@ export declare const logSchemas: {
         timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         dateString: z.ZodString;
         tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         callLogDocPath: z.ZodOptional<z.ZodString>;
     } & {
         type: z.ZodLiteral<"support_group_day_summary">;
@@ -12196,6 +12052,7 @@ export declare const logSchemas: {
         text?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -12219,6 +12076,7 @@ export declare const logSchemas: {
         text?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }>;
 };
@@ -12251,6 +12109,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     dateString: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
@@ -12364,6 +12223,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
     audioAttachment?: {
         uri: string;
@@ -12401,6 +12261,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
     audioAttachment?: {
         uri: string;
@@ -12433,6 +12294,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     dateString: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
@@ -12457,6 +12319,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -12471,6 +12334,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -12480,6 +12344,57 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     dateString: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    callLogDocPath: z.ZodOptional<z.ZodString>;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        message: z.ZodAny;
+    }, "strip", z.ZodTypeAny, {
+        message?: any;
+    }, {
+        message?: any;
+    }>;
+} & {
+    type: z.ZodLiteral<"system_message">;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "system_message";
+    userId: string;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        message?: any;
+    };
+    id?: string | undefined;
+    timestamp?: import("../../types").Timestamp | undefined;
+    tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    callLogDocPath?: string | undefined;
+}, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "system_message";
+    userId: string;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        message?: any;
+    };
+    id?: string | undefined;
+    timestamp?: import("../../types").Timestamp | undefined;
+    tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    callLogDocPath?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    dateString: z.ZodString;
+    tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"call">;
@@ -15007,6 +14922,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -15274,6 +15190,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -15283,6 +15200,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     dateString: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
     isDisplayable: z.ZodLiteral<false>;
@@ -15409,6 +15327,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -15437,6 +15356,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -15446,6 +15366,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     dateString: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"tactic">;
@@ -17993,6 +17914,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -18263,6 +18185,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -18272,6 +18195,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     dateString: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"behavior">;
@@ -18319,6 +18243,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
     shouldZaraRespond?: boolean | undefined;
 }, {
@@ -18339,6 +18264,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
     isAdjustment?: boolean | undefined;
     shouldZaraRespond?: boolean | undefined;
@@ -18350,6 +18276,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     dateString: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"breathing">;
@@ -18394,6 +18321,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -18413,6 +18341,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -18422,6 +18351,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     dateString: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"resisted">;
@@ -18446,6 +18376,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -18460,6 +18391,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -18469,6 +18401,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     dateString: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"questions">;
@@ -18493,16 +18426,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 isPinned: z.ZodOptional<z.ZodBoolean>;
                 responseType: z.ZodLiteral<"text">;
                 scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
-                debriefBehaviors: z.ZodOptional<z.ZodObject<{
-                    success: z.ZodArray<z.ZodString, "many">;
-                    setback: z.ZodArray<z.ZodString, "many">;
-                }, "strip", z.ZodTypeAny, {
-                    success: string[];
-                    setback: string[];
-                }, {
-                    success: string[];
-                    setback: string[];
-                }>>;
             }, "strip", z.ZodTypeAny, {
                 text: string;
                 isTemplate: boolean;
@@ -18517,10 +18440,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             }, {
                 text: string;
                 responseType: "text";
@@ -18535,10 +18454,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             }>, z.ZodObject<{
                 id: z.ZodOptional<z.ZodString>;
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -18553,16 +18468,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 isPinned: z.ZodOptional<z.ZodBoolean>;
                 responseType: z.ZodLiteral<"emotion">;
                 scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
-                debriefBehaviors: z.ZodOptional<z.ZodObject<{
-                    success: z.ZodArray<z.ZodString, "many">;
-                    setback: z.ZodArray<z.ZodString, "many">;
-                }, "strip", z.ZodTypeAny, {
-                    success: string[];
-                    setback: string[];
-                }, {
-                    success: string[];
-                    setback: string[];
-                }>>;
             } & {
                 suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             }, "strip", z.ZodTypeAny, {
@@ -18580,10 +18485,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             }, {
                 text: string;
                 responseType: "emotion";
@@ -18599,10 +18500,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             }>, z.ZodObject<{
                 id: z.ZodOptional<z.ZodString>;
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -18617,16 +18514,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 isPinned: z.ZodOptional<z.ZodBoolean>;
                 responseType: z.ZodLiteral<"shortText">;
                 scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
-                debriefBehaviors: z.ZodOptional<z.ZodObject<{
-                    success: z.ZodArray<z.ZodString, "many">;
-                    setback: z.ZodArray<z.ZodString, "many">;
-                }, "strip", z.ZodTypeAny, {
-                    success: string[];
-                    setback: string[];
-                }, {
-                    success: string[];
-                    setback: string[];
-                }>>;
             } & {
                 suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             }, "strip", z.ZodTypeAny, {
@@ -18644,10 +18531,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             }, {
                 text: string;
                 responseType: "shortText";
@@ -18663,10 +18546,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             }>, z.ZodObject<{
                 id: z.ZodOptional<z.ZodString>;
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -18681,16 +18560,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 isPinned: z.ZodOptional<z.ZodBoolean>;
                 responseType: z.ZodLiteral<"slider1To10">;
                 scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
-                debriefBehaviors: z.ZodOptional<z.ZodObject<{
-                    success: z.ZodArray<z.ZodString, "many">;
-                    setback: z.ZodArray<z.ZodString, "many">;
-                }, "strip", z.ZodTypeAny, {
-                    success: string[];
-                    setback: string[];
-                }, {
-                    success: string[];
-                    setback: string[];
-                }>>;
             } & {
                 sliderConfig: z.ZodObject<{
                     minLabel: z.ZodOptional<z.ZodString>;
@@ -18720,10 +18589,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             }, {
                 text: string;
                 sliderConfig: {
@@ -18742,10 +18607,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             }>, z.ZodObject<{
                 id: z.ZodOptional<z.ZodString>;
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -18760,16 +18621,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 isPinned: z.ZodOptional<z.ZodBoolean>;
                 responseType: z.ZodLiteral<"behaviorSelection">;
                 scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
-                debriefBehaviors: z.ZodOptional<z.ZodObject<{
-                    success: z.ZodArray<z.ZodString, "many">;
-                    setback: z.ZodArray<z.ZodString, "many">;
-                }, "strip", z.ZodTypeAny, {
-                    success: string[];
-                    setback: string[];
-                }, {
-                    success: string[];
-                    setback: string[];
-                }>>;
             } & {
                 allowMultiple: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
             }, "strip", z.ZodTypeAny, {
@@ -18787,10 +18638,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             }, {
                 text: string;
                 responseType: "behaviorSelection";
@@ -18805,10 +18652,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
                 allowMultiple?: boolean | undefined;
             }>, z.ZodObject<{
                 id: z.ZodOptional<z.ZodString>;
@@ -18824,16 +18667,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 isPinned: z.ZodOptional<z.ZodBoolean>;
                 responseType: z.ZodLiteral<"recap">;
                 scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
-                debriefBehaviors: z.ZodOptional<z.ZodObject<{
-                    success: z.ZodArray<z.ZodString, "many">;
-                    setback: z.ZodArray<z.ZodString, "many">;
-                }, "strip", z.ZodTypeAny, {
-                    success: string[];
-                    setback: string[];
-                }, {
-                    success: string[];
-                    setback: string[];
-                }>>;
             }, "strip", z.ZodTypeAny, {
                 text: string;
                 isTemplate: boolean;
@@ -18848,10 +18681,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             }, {
                 text: string;
                 responseType: "recap";
@@ -18866,10 +18695,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             }>]>;
             response: z.ZodOptional<z.ZodObject<{
                 responseType: z.ZodEnum<["text", "shortText", "emotion", "slider1To10", "behaviorSelection", "recap"]>;
@@ -18903,10 +18728,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
@@ -18922,10 +18743,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
@@ -18940,10 +18757,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
@@ -18959,10 +18772,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             } | {
                 text: string;
                 sliderConfig: {
@@ -18981,10 +18790,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
@@ -18999,10 +18804,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             };
             questionId?: string | undefined;
             response?: {
@@ -19026,10 +18827,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
                 allowMultiple?: boolean | undefined;
             } | {
                 text: string;
@@ -19046,10 +18843,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             } | {
                 text: string;
                 responseType: "recap";
@@ -19064,10 +18857,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             } | {
                 text: string;
                 responseType: "shortText";
@@ -19083,10 +18872,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             } | {
                 text: string;
                 sliderConfig: {
@@ -19105,10 +18890,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             } | {
                 text: string;
                 responseType: "text";
@@ -19123,10 +18904,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             };
             questionId?: string | undefined;
             response?: {
@@ -19153,10 +18930,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
@@ -19172,10 +18945,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
@@ -19190,10 +18959,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
@@ -19209,10 +18974,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             } | {
                 text: string;
                 sliderConfig: {
@@ -19231,10 +18992,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
@@ -19249,10 +19006,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             };
             questionId?: string | undefined;
             response?: {
@@ -19278,10 +19031,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
                 allowMultiple?: boolean | undefined;
             } | {
                 text: string;
@@ -19298,10 +19047,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             } | {
                 text: string;
                 responseType: "recap";
@@ -19316,10 +19061,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             } | {
                 text: string;
                 responseType: "shortText";
@@ -19335,10 +19076,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             } | {
                 text: string;
                 sliderConfig: {
@@ -19357,10 +19094,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             } | {
                 text: string;
                 responseType: "text";
@@ -19375,10 +19108,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             };
             questionId?: string | undefined;
             response?: {
@@ -19413,10 +19142,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
@@ -19432,10 +19157,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
@@ -19450,10 +19171,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
@@ -19469,10 +19186,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             } | {
                 text: string;
                 sliderConfig: {
@@ -19491,10 +19204,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
@@ -19509,10 +19218,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             };
             questionId?: string | undefined;
             response?: {
@@ -19527,6 +19232,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     text?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
     answeredAt?: import("../../types").Timestamp | undefined;
     commitStrategy?: "live" | "explicit" | undefined;
@@ -19553,10 +19259,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
                 allowMultiple?: boolean | undefined;
             } | {
                 text: string;
@@ -19573,10 +19275,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             } | {
                 text: string;
                 responseType: "recap";
@@ -19591,10 +19289,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             } | {
                 text: string;
                 responseType: "shortText";
@@ -19610,10 +19304,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             } | {
                 text: string;
                 sliderConfig: {
@@ -19632,10 +19322,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             } | {
                 text: string;
                 responseType: "text";
@@ -19650,10 +19336,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
-                debriefBehaviors?: {
-                    success: string[];
-                    setback: string[];
-                } | undefined;
             };
             questionId?: string | undefined;
             response?: {
@@ -19668,6 +19350,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     text?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
     answeredAt?: import("../../types").Timestamp | undefined;
     commitStrategy?: "live" | "explicit" | undefined;
@@ -19679,6 +19362,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     dateString: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"plans">;
@@ -20684,6 +20368,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -20820,6 +20505,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -20829,6 +20515,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     dateString: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"summary">;
@@ -20853,6 +20540,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -20867,6 +20555,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -20876,6 +20565,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     dateString: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"widget_setup">;
@@ -20890,6 +20580,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -20901,6 +20592,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -20910,6 +20602,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     dateString: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"show_tour">;
@@ -21008,6 +20701,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -21037,6 +20731,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -21046,6 +20741,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     dateString: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"link">;
@@ -21066,6 +20762,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -21080,6 +20777,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -21089,6 +20787,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     dateString: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"notify_support_group">;
@@ -21245,6 +20944,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -21276,6 +20976,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -21285,6 +20986,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     dateString: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"shared_moment">;
@@ -21387,6 +21089,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -21415,6 +21118,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -21424,6 +21128,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     dateString: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"video">;
@@ -21452,6 +21157,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     title?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -21468,6 +21174,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     title?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -21477,6 +21184,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     dateString: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"ready_to_debrief">;
@@ -21491,6 +21199,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -21502,6 +21211,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -21511,6 +21221,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     dateString: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"support_group_day_summary">;
@@ -21575,6 +21286,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     text?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -21598,10 +21310,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     text?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }>]>;
 export declare const logIsAssistantMessageLog: (value: Omit<Log, "id">) => value is AssistantMessageLog;
 export declare const isValidAssistantMessageLog: (value: unknown) => value is AssistantMessageLog;
+export declare const logIsSystemMessageLog: (value: Omit<Log, "id">) => value is SystemMessageLog;
+export declare const isValidSystemMessageLog: (value: unknown) => value is SystemMessageLog;
 export declare const logIsShowTourLog: (value: Omit<Log, "id">) => value is ShowTourLog;
 export declare const isValidShowTourLog: (value: unknown) => value is ShowTourLog;
 export declare const logIsNotifySupportGroupLog: (value: Omit<Log, "id">) => value is NotifySupportGroupLog;

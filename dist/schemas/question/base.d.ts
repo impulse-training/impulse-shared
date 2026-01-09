@@ -13,16 +13,6 @@ export declare function questionBaseSchema<T extends string>(type: T): z.ZodObje
     isPinned: z.ZodOptional<z.ZodBoolean>;
     responseType: z.ZodLiteral<T>;
     scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
-    debriefBehaviors: z.ZodOptional<z.ZodObject<{
-        success: z.ZodArray<z.ZodString, "many">;
-        setback: z.ZodArray<z.ZodString, "many">;
-    }, "strip", z.ZodTypeAny, {
-        success: string[];
-        setback: string[];
-    }, {
-        success: string[];
-        setback: string[];
-    }>>;
 }, "strip", z.ZodTypeAny, z.objectUtil.addQuestionMarks<z.baseObjectOutputType<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -37,16 +27,6 @@ export declare function questionBaseSchema<T extends string>(type: T): z.ZodObje
     isPinned: z.ZodOptional<z.ZodBoolean>;
     responseType: z.ZodLiteral<T>;
     scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
-    debriefBehaviors: z.ZodOptional<z.ZodObject<{
-        success: z.ZodArray<z.ZodString, "many">;
-        setback: z.ZodArray<z.ZodString, "many">;
-    }, "strip", z.ZodTypeAny, {
-        success: string[];
-        setback: string[];
-    }, {
-        success: string[];
-        setback: string[];
-    }>>;
 }>, any> extends infer T_1 ? { [k in keyof T_1]: z.objectUtil.addQuestionMarks<z.baseObjectOutputType<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -61,16 +41,6 @@ export declare function questionBaseSchema<T extends string>(type: T): z.ZodObje
     isPinned: z.ZodOptional<z.ZodBoolean>;
     responseType: z.ZodLiteral<T>;
     scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
-    debriefBehaviors: z.ZodOptional<z.ZodObject<{
-        success: z.ZodArray<z.ZodString, "many">;
-        setback: z.ZodArray<z.ZodString, "many">;
-    }, "strip", z.ZodTypeAny, {
-        success: string[];
-        setback: string[];
-    }, {
-        success: string[];
-        setback: string[];
-    }>>;
 }>, any>[k]; } : never, z.baseObjectInputType<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -85,16 +55,6 @@ export declare function questionBaseSchema<T extends string>(type: T): z.ZodObje
     isPinned: z.ZodOptional<z.ZodBoolean>;
     responseType: z.ZodLiteral<T>;
     scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
-    debriefBehaviors: z.ZodOptional<z.ZodObject<{
-        success: z.ZodArray<z.ZodString, "many">;
-        setback: z.ZodArray<z.ZodString, "many">;
-    }, "strip", z.ZodTypeAny, {
-        success: string[];
-        setback: string[];
-    }, {
-        success: string[];
-        setback: string[];
-    }>>;
 }> extends infer T_2 ? { [k_1 in keyof T_2]: z.baseObjectInputType<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -109,14 +69,4 @@ export declare function questionBaseSchema<T extends string>(type: T): z.ZodObje
     isPinned: z.ZodOptional<z.ZodBoolean>;
     responseType: z.ZodLiteral<T>;
     scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
-    debriefBehaviors: z.ZodOptional<z.ZodObject<{
-        success: z.ZodArray<z.ZodString, "many">;
-        setback: z.ZodArray<z.ZodString, "many">;
-    }, "strip", z.ZodTypeAny, {
-        success: string[];
-        setback: string[];
-    }, {
-        success: string[];
-        setback: string[];
-    }>>;
 }>[k_1]; } : never>;

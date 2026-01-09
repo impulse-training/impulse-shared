@@ -25,6 +25,7 @@ exports.userDataSchema = zod_1.z.object({
         debriefReminders: true,
     }),
     appVersion: zod_1.z.string().optional(),
+    isAppEnabled: zod_1.z.boolean().optional(),
     tacticsEnabled: zod_1.z.boolean().default(false),
     // This points to the user's active strategy. It can be updated to rollback.
     activeStrategyDoc: documentReferenceSchema_1.documentReferenceSchema.optional(),

@@ -16,6 +16,7 @@ export declare const userDataSchema: z.ZodObject<{
         debriefReminders?: boolean | undefined;
     }>>;
     appVersion: z.ZodOptional<z.ZodString>;
+    isAppEnabled: z.ZodOptional<z.ZodBoolean>;
     tacticsEnabled: z.ZodDefault<z.ZodBoolean>;
     activeStrategyDoc: z.ZodOptional<z.ZodType<import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>>;
     theme: z.ZodDefault<z.ZodEnum<["light", "dark", "system"]>>;
@@ -74,6 +75,7 @@ export declare const userDataSchema: z.ZodObject<{
     } | undefined;
     recoveryKeyHash?: string | undefined;
     appVersion?: string | undefined;
+    isAppEnabled?: boolean | undefined;
     activeStrategyDoc?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown> | undefined;
     addToTechSupportGroup?: boolean | undefined;
     hasSetupExperiment?: boolean | undefined;
@@ -99,6 +101,7 @@ export declare const userDataSchema: z.ZodObject<{
         debriefReminders?: boolean | undefined;
     } | undefined;
     appVersion?: string | undefined;
+    isAppEnabled?: boolean | undefined;
     tacticsEnabled?: boolean | undefined;
     activeStrategyDoc?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown> | undefined;
     theme?: "system" | "light" | "dark" | undefined;

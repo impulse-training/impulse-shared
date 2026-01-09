@@ -13,16 +13,6 @@ export declare const textQuestionSchema: z.ZodObject<{
     isPinned: z.ZodOptional<z.ZodBoolean>;
     responseType: z.ZodLiteral<"text">;
     scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
-    debriefBehaviors: z.ZodOptional<z.ZodObject<{
-        success: z.ZodArray<z.ZodString, "many">;
-        setback: z.ZodArray<z.ZodString, "many">;
-    }, "strip", z.ZodTypeAny, {
-        success: string[];
-        setback: string[];
-    }, {
-        success: string[];
-        setback: string[];
-    }>>;
 }, "strip", z.ZodTypeAny, {
     text: string;
     isTemplate: boolean;
@@ -37,10 +27,6 @@ export declare const textQuestionSchema: z.ZodObject<{
     lastAnsweredAt?: import("../../types").Timestamp | undefined;
     numberOfAnswers?: number | undefined;
     isPinned?: boolean | undefined;
-    debriefBehaviors?: {
-        success: string[];
-        setback: string[];
-    } | undefined;
 }, {
     text: string;
     responseType: "text";
@@ -55,9 +41,5 @@ export declare const textQuestionSchema: z.ZodObject<{
     lastAnsweredAt?: import("../../types").Timestamp | undefined;
     numberOfAnswers?: number | undefined;
     isPinned?: boolean | undefined;
-    debriefBehaviors?: {
-        success: string[];
-        setback: string[];
-    } | undefined;
 }>;
 export type TextQuestion = z.infer<typeof textQuestionSchema>;
