@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 import { attachmentSchema } from "../../attachment";
 import { messageBaseLogSchema } from "./base";
 

@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 import { tacticSchema } from "../tactic";
 import { logBaseSchema } from "./base";
 

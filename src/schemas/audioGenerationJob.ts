@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 
 export const audioGenerationJobStatus = z.enum([
   "pending",
@@ -31,4 +31,3 @@ export const audioGenerationJobSchema = z.object({
 
 export type AudioGenerationJob = z.infer<typeof audioGenerationJobSchema>;
 export type AudioGenerationJobStatus = z.infer<typeof audioGenerationJobStatus>;
-

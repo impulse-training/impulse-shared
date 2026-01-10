@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 import { behaviorSchema } from "../behavior";
 import { goalComparisonEntrySchema } from "../daySummary";
 import { questionSchema } from "../question";

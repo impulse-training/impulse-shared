@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 export declare const resistedLogSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;

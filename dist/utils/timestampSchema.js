@@ -1,7 +1,4 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.timestampSchema = void 0;
 /**
@@ -10,7 +7,7 @@ exports.timestampSchema = void 0;
  * This schema validates that a value is a Firestore Timestamp-like object.
  * Each consuming project (frontend/backend) should use its own Firebase implementation.
  */
-const zod_1 = __importDefault(require("zod"));
+const zod_1 = require("zod");
 /**
  * Zod schema for Firestore Timestamp
  *
@@ -19,7 +16,7 @@ const zod_1 = __importDefault(require("zod"));
  * - Date objects
  * - Objects with seconds and nanoseconds properties
  */
-exports.timestampSchema = zod_1.default.custom((value) => {
+exports.timestampSchema = zod_1.z.custom((value) => {
     if (value === null || value === undefined)
         return true;
     // Accept Firestore Timestamp-like (has toDate function)

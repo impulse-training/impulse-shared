@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 
 export function objectOf<T extends z.ZodTypeAny>(schema: T) {
   return z.record(z.string(), schema);

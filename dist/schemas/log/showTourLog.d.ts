@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 export declare enum TourIcon {
     DockBehaviorsButton = "dockBehaviorsButton",
     DockMetricsButton = "dockMetricsButton"

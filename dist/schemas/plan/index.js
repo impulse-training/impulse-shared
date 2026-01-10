@@ -13,12 +13,9 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
 var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isValidDefaultPlan = exports.planIsDefaultPlan = exports.isValidEmotionPlan = exports.planIsEmotionPlan = exports.isValidImpulsePlan = exports.planIsImpulsePlan = exports.isValidLocationPlan = exports.planIsLocationPlan = exports.isValidTimePlan = exports.planIsTimePlan = exports.planWithIdSchema = exports.planSchema = void 0;
-const zod_1 = __importDefault(require("zod"));
+const zod_1 = require("zod");
 const withId_1 = require("../../utils/withId");
 const defaultPlan_1 = require("./defaultPlan");
 const emotionPlan_1 = require("./emotionPlan");
@@ -30,7 +27,7 @@ __exportStar(require("./emotionPlan"), exports);
 __exportStar(require("./impulsePlan"), exports);
 __exportStar(require("./locationPlan"), exports);
 __exportStar(require("./timePlan"), exports);
-exports.planSchema = zod_1.default.discriminatedUnion("type", [
+exports.planSchema = zod_1.z.discriminatedUnion("type", [
     defaultPlan_1.defaultPlanSchema,
     emotionPlan_1.emotionPlanSchema,
     impulsePlan_1.impulsePlanSchema,
@@ -38,7 +35,7 @@ exports.planSchema = zod_1.default.discriminatedUnion("type", [
     locationPlan_1.locationPlanSchema,
 ]);
 // WithId variant for plans
-exports.planWithIdSchema = zod_1.default.union([
+exports.planWithIdSchema = zod_1.z.union([
     (0, withId_1.withIdSchema)(defaultPlan_1.defaultPlanSchema),
     (0, withId_1.withIdSchema)(emotionPlan_1.emotionPlanSchema),
     (0, withId_1.withIdSchema)(impulsePlan_1.impulsePlanSchema),

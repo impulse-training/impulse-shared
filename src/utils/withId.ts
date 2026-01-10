@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 import { DocumentSnapshotLike } from "../types";
 import {
   DocumentReferenceLike,
@@ -21,9 +21,7 @@ export function withId<T extends Record<string, any>>(
   };
 }
 
-export const withIdSchema = <T extends z.ZodRawShape>(
-  schema: z.ZodObject<T>
-) =>
+export const withIdSchema = <T extends z.ZodRawShape>(schema: z.ZodObject<T>) =>
   z
     .object({
       id: z.string(),

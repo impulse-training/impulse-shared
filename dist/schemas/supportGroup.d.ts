@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 import { supportGroupPermissionsSchema, supportGroupNotificationPreferencesSchema } from "./supportGroupPermissions";
 export declare const matchingModeSchema: z.ZodEnum<["focused", "mixed"]>;
 export type MatchingMode = z.infer<typeof matchingModeSchema>;

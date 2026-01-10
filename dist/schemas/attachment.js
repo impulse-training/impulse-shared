@@ -1,7 +1,4 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.attachmentSchema = exports.attachmentTypes = void 0;
 exports.isAttachment = isAttachment;
@@ -10,7 +7,7 @@ exports.isAttachment = isAttachment;
  *
  * Defines Zod schemas for file/media attachments
  */
-const zod_1 = __importDefault(require("zod"));
+const zod_1 = require("zod");
 const timestampSchema_1 = require("../utils/timestampSchema");
 // Attachment Types
 exports.attachmentTypes = [
@@ -21,30 +18,30 @@ exports.attachmentTypes = [
     "document",
 ];
 // Base Attachment Schema
-exports.attachmentSchema = zod_1.default.object({
+exports.attachmentSchema = zod_1.z.object({
     createdAt: timestampSchema_1.timestampSchema.optional(),
     updatedAt: timestampSchema_1.timestampSchema.optional(),
     // Basic file info
-    uri: zod_1.default.string(),
-    storagePath: zod_1.default.string(),
-    contentType: zod_1.default.string(),
+    uri: zod_1.z.string(),
+    storagePath: zod_1.z.string(),
+    contentType: zod_1.z.string(),
     // Optional display title for the attachment
-    title: zod_1.default.string().optional(),
-    sizeBytes: zod_1.default.number().optional(),
+    title: zod_1.z.string().optional(),
+    sizeBytes: zod_1.z.number().optional(),
     // For any additional type-specific data
-    metadata: zod_1.default
+    metadata: zod_1.z
         .object({
         // Image-specific fields
-        width: zod_1.default.number().optional(),
-        height: zod_1.default.number().optional(),
+        width: zod_1.z.number().optional(),
+        height: zod_1.z.number().optional(),
         // Audio/video specific fields
-        durationMs: zod_1.default.number().optional(),
+        durationMs: zod_1.z.number().optional(),
         // Audio-specific fields
-        transcript: zod_1.default.string().optional(),
-        meterings: zod_1.default
-            .array(zod_1.default.object({
-            db: zod_1.default.number(),
-            timestampMs: zod_1.default.number().optional(),
+        transcript: zod_1.z.string().optional(),
+        meterings: zod_1.z
+            .array(zod_1.z.object({
+            db: zod_1.z.number(),
+            timestampMs: zod_1.z.number().optional(),
         }))
             .optional(),
     })

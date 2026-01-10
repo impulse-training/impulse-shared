@@ -1,5 +1,8 @@
-import z from "zod";
-import { Slider1To10QuestionStep, slider1To10QuestionStepSchema } from "./slider1To10";
+import { z } from "zod";
+import {
+  Slider1To10QuestionStep,
+  slider1To10QuestionStepSchema,
+} from "./slider1To10";
 import { TextQuestionStep, textQuestionStepSchema } from "./text";
 
 export * from "./slider1To10";
@@ -27,8 +30,9 @@ export const questionStepIsTextQuestion = (
   value: Omit<QuestionStep, "id">
 ): value is TextQuestionStep => value.mode === "question-text";
 
-export const isValidTextQuestionStep = (value: unknown): value is TextQuestionStep =>
-  textQuestionStepSchema.safeParse(value).success;
+export const isValidTextQuestionStep = (
+  value: unknown
+): value is TextQuestionStep => textQuestionStepSchema.safeParse(value).success;
 
 export const questionStepIsSlider1To10Question = (
   value: Omit<QuestionStep, "id">

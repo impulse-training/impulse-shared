@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 
 export const locationTriggerSchema = z.object({
   // Friendly name for the location (e.g., "Home", "Work", "Gym")

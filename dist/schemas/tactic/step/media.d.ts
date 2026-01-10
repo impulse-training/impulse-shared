@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 export declare const mediaStepSchema: z.ZodObject<{
     text: z.ZodOptional<z.ZodString>;
     backgroundImage: z.ZodOptional<z.ZodObject<{

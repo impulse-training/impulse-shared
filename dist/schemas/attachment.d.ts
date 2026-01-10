@@ -3,7 +3,7 @@
  *
  * Defines Zod schemas for file/media attachments
  */
-import z from "zod";
+import { z } from "zod";
 export declare const attachmentTypes: readonly ["image", "video", "audio", "text", "document"];
 export type AttachmentType = (typeof attachmentTypes)[number];
 export declare const attachmentSchema: z.ZodObject<{

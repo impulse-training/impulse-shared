@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 export { trackingTypes } from "./behaviorTemplate";
 export type { BehaviorTemplate, TrackingType } from "./behaviorTemplate";
 export { behaviorTemplateSchema } from "./behaviorTemplate";

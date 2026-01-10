@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 export declare const userProfileSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     invitationCode: z.ZodString;

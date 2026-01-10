@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 export declare const sessionSchema: z.ZodObject<{
     participantUids: z.ZodArray<z.ZodString, "many">;
     startTime: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;

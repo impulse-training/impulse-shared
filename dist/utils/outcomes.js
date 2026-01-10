@@ -1,9 +1,6 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.outcomeSchema = exports.outcomes = void 0;
-const zod_1 = __importDefault(require("zod"));
+const zod_1 = require("zod");
 exports.outcomes = ["success", "partial", "setback"];
-exports.outcomeSchema = zod_1.default.enum(["success", "partial", "setback"]);
+exports.outcomeSchema = zod_1.z.enum(["success", "partial", "setback"]);

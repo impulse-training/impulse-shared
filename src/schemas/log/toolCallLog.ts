@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 import { logBaseSchema } from "./base";
 
 /**
@@ -45,4 +45,6 @@ export const toolCallLogSchema = logBaseSchema.extend({
 
 export type ToolCallLog = z.infer<typeof toolCallLogSchema>;
 export type ToolCallResult = any;
-export type ChatCompletionMessageLike = z.infer<typeof chatCompletionMessageSchema>;
+export type ChatCompletionMessageLike = z.infer<
+  typeof chatCompletionMessageSchema
+>;

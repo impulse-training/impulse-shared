@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 import { logBaseSchema } from "../base";
 
 // Message logs can be user, assistant, or system logs. We create a common type, as they share

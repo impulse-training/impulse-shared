@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 /**
  * Canonical conversation/question scopes and helpers
  */

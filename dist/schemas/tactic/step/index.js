@@ -13,12 +13,9 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
 var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.stepIsAffirmationStep = exports.stepIsDefaultStep = exports.stepIsNotifySupportStep = exports.stepIsBreathingStep = exports.stepIsQuestionStep = exports.stepIsMediaStep = exports.tacticStepSchema = void 0;
-const zod_1 = __importDefault(require("zod"));
+const zod_1 = require("zod");
 // Import all step schemas
 __exportStar(require("./affirmation"), exports);
 __exportStar(require("./base"), exports);
@@ -33,7 +30,7 @@ const default_1 = require("./default");
 const media_1 = require("./media");
 const notifySupport_1 = require("./notifySupport");
 const question_1 = require("./question");
-exports.tacticStepSchema = zod_1.default.discriminatedUnion("mode", [
+exports.tacticStepSchema = zod_1.z.discriminatedUnion("mode", [
     default_1.defaultStepSchema,
     breathing_1.breathingStepSchema,
     notifySupport_1.notifySupportStepSchema,

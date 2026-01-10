@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 export declare const affirmationStepSchema: z.ZodObject<{
     backgroundImage: z.ZodOptional<z.ZodObject<{
         createdAt: z.ZodOptional<z.ZodType<import("../../../types").Timestamp, z.ZodTypeDef, import("../../../types").Timestamp>>;

@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 export declare const insightSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     emotion: z.ZodString;

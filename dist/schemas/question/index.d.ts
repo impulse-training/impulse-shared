@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 import { BehaviorSelectionQuestion } from "./behaviorSelection";
 import { EmotionQuestion } from "./emotion";
 import { RecapQuestion } from "./recap";

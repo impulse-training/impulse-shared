@@ -13,12 +13,9 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
 var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isQuestionStep = exports.QuestionStepSchemas = exports.isValidSlider1To10QuestionStep = exports.questionStepIsSlider1To10Question = exports.isValidTextQuestionStep = exports.questionStepIsTextQuestion = exports.questionStepSchema = exports.isQuestionStepMode = exports.textQuestionStepSchema = exports.slider1To10QuestionStepSchema = void 0;
-const zod_1 = __importDefault(require("zod"));
+const zod_1 = require("zod");
 const slider1To10_1 = require("./slider1To10");
 Object.defineProperty(exports, "slider1To10QuestionStepSchema", { enumerable: true, get: function () { return slider1To10_1.slider1To10QuestionStepSchema; } });
 const text_1 = require("./text");
@@ -31,7 +28,7 @@ const isQuestionStepMode = (mode) => {
 };
 exports.isQuestionStepMode = isQuestionStepMode;
 // Schema for discriminated union based on mode
-exports.questionStepSchema = zod_1.default.discriminatedUnion("mode", [
+exports.questionStepSchema = zod_1.z.discriminatedUnion("mode", [
     text_1.textQuestionStepSchema,
     slider1To10_1.slider1To10QuestionStepSchema,
 ]);

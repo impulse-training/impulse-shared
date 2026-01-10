@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 export * from "./affirmation";
 export * from "./base";
 export * from "./breathing";

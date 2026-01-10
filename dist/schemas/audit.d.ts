@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 export declare const auditChangeTypeSchema: z.ZodEnum<["create", "update", "delete"]>;
 export declare const auditEntrySchema: z.ZodObject<{
     collectionPathPattern: z.ZodString;

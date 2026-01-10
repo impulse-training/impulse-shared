@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 import { logBaseSchema } from "./base";
 
 // Ready To Debrief Log Schema

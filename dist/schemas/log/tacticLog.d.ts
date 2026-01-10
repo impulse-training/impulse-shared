@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 /** Response schema for tactic question steps - follows the same pattern as questionsLog */
 export declare const tacticResponseSchema: z.ZodObject<{
     responseType: z.ZodEnum<["text", "slider1To10"]>;

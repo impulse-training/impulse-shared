@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 export declare const threadBaseSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     title: z.ZodOptional<z.ZodString>;

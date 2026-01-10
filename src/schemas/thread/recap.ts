@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 import { threadBaseSchema } from "./base";
 
 export const recapThreadSchema = threadBaseSchema.extend({

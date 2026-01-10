@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 
 // Daily goals schema - supports eliminate or reduce with targets
 export const goalSchema = z.discriminatedUnion("type", [

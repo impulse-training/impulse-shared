@@ -1,32 +1,29 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.goalSchema = void 0;
-const zod_1 = __importDefault(require("zod"));
+const zod_1 = require("zod");
 // Daily goals schema - supports eliminate or reduce with targets
-exports.goalSchema = zod_1.default.discriminatedUnion("type", [
+exports.goalSchema = zod_1.z.discriminatedUnion("type", [
     // Eliminate - goal is to have 0 of this behavior
-    zod_1.default.object({
-        type: zod_1.default.literal("eliminate"),
+    zod_1.z.object({
+        type: zod_1.z.literal("eliminate"),
     }),
     // Reduce with every day target
-    zod_1.default.object({
-        type: zod_1.default.literal("reduceEveryDay"),
-        target: zod_1.default.number(),
+    zod_1.z.object({
+        type: zod_1.z.literal("reduceEveryDay"),
+        target: zod_1.z.number(),
     }),
     // Reduce with individual day targets
-    zod_1.default.object({
-        type: zod_1.default.literal("reduceIndividualDays"),
-        dailyTargets: zod_1.default.object({
-            0: zod_1.default.number(), // Sunday
-            1: zod_1.default.number(), // Monday
-            2: zod_1.default.number(), // Tuesday
-            3: zod_1.default.number(), // Wednesday
-            4: zod_1.default.number(), // Thursday
-            5: zod_1.default.number(), // Friday
-            6: zod_1.default.number(), // Saturday
+    zod_1.z.object({
+        type: zod_1.z.literal("reduceIndividualDays"),
+        dailyTargets: zod_1.z.object({
+            0: zod_1.z.number(), // Sunday
+            1: zod_1.z.number(), // Monday
+            2: zod_1.z.number(), // Tuesday
+            3: zod_1.z.number(), // Wednesday
+            4: zod_1.z.number(), // Thursday
+            5: zod_1.z.number(), // Friday
+            6: zod_1.z.number(), // Saturday
         }),
     }),
 ]);

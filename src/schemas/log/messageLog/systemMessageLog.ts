@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 import { messageBaseLogSchema } from "./base";
 
 export const systemMessageLogSchema = messageBaseLogSchema.extend({

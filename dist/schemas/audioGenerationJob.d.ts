@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 export declare const audioGenerationJobStatus: z.ZodEnum<["pending", "processing", "completed", "failed"]>;
 export declare const audioGenerationJobSchema: z.ZodObject<{
     userId: z.ZodString;

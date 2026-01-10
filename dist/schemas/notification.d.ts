@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 /**
  * Schema for notification data to be sent to devices
  */

@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 import { Slider1To10QuestionStep, slider1To10QuestionStepSchema } from "./slider1To10";
 import { TextQuestionStep, textQuestionStepSchema } from "./text";
 export * from "./slider1To10";

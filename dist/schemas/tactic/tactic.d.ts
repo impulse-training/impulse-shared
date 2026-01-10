@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 export declare const questionResponseIndicationSchema: z.ZodObject<{
     questionId: z.ZodString;
     questionPrompt: z.ZodString;

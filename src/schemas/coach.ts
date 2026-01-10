@@ -4,7 +4,7 @@
  * Defines the schema for coaches who can provide support to users.
  * A coach's document ID matches the userId of the user who created it.
  */
-import z from "zod";
+import { z } from "zod";
 import { timestampSchema } from "../utils/timestampSchema";
 import { attachmentSchema } from "./attachment";
 

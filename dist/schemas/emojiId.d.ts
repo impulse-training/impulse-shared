@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 export declare const emojiIdSchema: z.ZodObject<{
     emoji: z.ZodString;
 }, "strip", z.ZodTypeAny, {

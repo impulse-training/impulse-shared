@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 
 /**
  * BehaviorTopic represents a grouping of behaviors by topic/issue area.

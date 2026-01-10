@@ -1,19 +1,16 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.insightSchema = void 0;
-const zod_1 = __importDefault(require("zod"));
+const zod_1 = require("zod");
 const documentReferenceSchema_1 = require("../utils/documentReferenceSchema");
 const timestampSchema_1 = require("../utils/timestampSchema");
-exports.insightSchema = zod_1.default.object({
-    id: zod_1.default.string().optional(),
-    emotion: zod_1.default.string(),
+exports.insightSchema = zod_1.z.object({
+    id: zod_1.z.string().optional(),
+    emotion: zod_1.z.string(),
     associatedBehaviorDocs: documentReferenceSchema_1.documentReferenceSchema.array().optional(),
     sourceThreadDoc: documentReferenceSchema_1.documentReferenceSchema.optional(),
     sourceLogDoc: documentReferenceSchema_1.documentReferenceSchema.optional(),
-    text: zod_1.default.string(),
+    text: zod_1.z.string(),
     /**
      * Insight lifecycle:
      * - Created private
@@ -23,7 +20,7 @@ exports.insightSchema = zod_1.default.object({
      * - Public insights are copies, never live documents
      */
     // contentEligibilityStatus === null || undefined -> not yet evaluated
-    contentEligibilityStatus: zod_1.default
+    contentEligibilityStatus: zod_1.z
         .enum(["eligible", "ineligible"])
         .nullable()
         .optional(),

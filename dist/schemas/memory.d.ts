@@ -1,4 +1,4 @@
-import z from "zod";
+import { z } from "zod";
 export declare const memorySchema: z.ZodObject<{
     id: z.ZodString;
     title: z.ZodString;
