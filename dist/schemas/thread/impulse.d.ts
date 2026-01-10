@@ -2196,8 +2196,8 @@ export declare const impulseThreadSchema: z.ZodObject<{
         status: z.ZodEnum<["connecting", "connected", "ended"]>;
     }, "strip", z.ZodTypeAny, {
         status: "connecting" | "connected" | "ended";
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         token: string;
         startedAt: import("../../types").Timestamp;
         logId: string;
@@ -2205,8 +2205,8 @@ export declare const impulseThreadSchema: z.ZodObject<{
         endedAt?: import("../../types").Timestamp | undefined;
     }, {
         status: "connecting" | "connected" | "ended";
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         token: string;
         startedAt: import("../../types").Timestamp;
         logId: string;
@@ -2639,8 +2639,8 @@ export declare const impulseThreadSchema: z.ZodObject<{
     assistantThreadId?: string | undefined;
     currentCall?: {
         status: "connecting" | "connected" | "ended";
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         token: string;
         startedAt: import("../../types").Timestamp;
         logId: string;
@@ -3068,8 +3068,8 @@ export declare const impulseThreadSchema: z.ZodObject<{
     assistantThreadId?: string | undefined;
     currentCall?: {
         status: "connecting" | "connected" | "ended";
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         token: string;
         startedAt: import("../../types").Timestamp;
         logId: string;

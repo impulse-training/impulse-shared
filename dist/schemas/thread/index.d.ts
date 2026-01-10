@@ -2210,8 +2210,8 @@ export declare const threadSchemas: {
             status: z.ZodEnum<["connecting", "connected", "ended"]>;
         }, "strip", z.ZodTypeAny, {
             status: "connecting" | "connected" | "ended";
-            livekitSessionId: string;
             livekitRoomName: string;
+            livekitSessionId: string;
             token: string;
             startedAt: import("../../types").Timestamp;
             logId: string;
@@ -2219,8 +2219,8 @@ export declare const threadSchemas: {
             endedAt?: import("../../types").Timestamp | undefined;
         }, {
             status: "connecting" | "connected" | "ended";
-            livekitSessionId: string;
             livekitRoomName: string;
+            livekitSessionId: string;
             token: string;
             startedAt: import("../../types").Timestamp;
             logId: string;
@@ -2642,8 +2642,8 @@ export declare const threadSchemas: {
         assistantThreadId?: string | undefined;
         currentCall?: {
             status: "connecting" | "connected" | "ended";
-            livekitSessionId: string;
             livekitRoomName: string;
+            livekitSessionId: string;
             token: string;
             startedAt: import("../../types").Timestamp;
             logId: string;
@@ -3063,8 +3063,8 @@ export declare const threadSchemas: {
         assistantThreadId?: string | undefined;
         currentCall?: {
             status: "connecting" | "connected" | "ended";
-            livekitSessionId: string;
             livekitRoomName: string;
+            livekitSessionId: string;
             token: string;
             startedAt: import("../../types").Timestamp;
             logId: string;
@@ -5269,8 +5269,8 @@ export declare const threadSchemas: {
             status: z.ZodEnum<["connecting", "connected", "ended"]>;
         }, "strip", z.ZodTypeAny, {
             status: "connecting" | "connected" | "ended";
-            livekitSessionId: string;
             livekitRoomName: string;
+            livekitSessionId: string;
             token: string;
             startedAt: import("../../types").Timestamp;
             logId: string;
@@ -5278,8 +5278,8 @@ export declare const threadSchemas: {
             endedAt?: import("../../types").Timestamp | undefined;
         }, {
             status: "connecting" | "connected" | "ended";
-            livekitSessionId: string;
             livekitRoomName: string;
+            livekitSessionId: string;
             token: string;
             startedAt: import("../../types").Timestamp;
             logId: string;
@@ -5712,8 +5712,8 @@ export declare const threadSchemas: {
         assistantThreadId?: string | undefined;
         currentCall?: {
             status: "connecting" | "connected" | "ended";
-            livekitSessionId: string;
             livekitRoomName: string;
+            livekitSessionId: string;
             token: string;
             startedAt: import("../../types").Timestamp;
             logId: string;
@@ -6141,8 +6141,8 @@ export declare const threadSchemas: {
         assistantThreadId?: string | undefined;
         currentCall?: {
             status: "connecting" | "connected" | "ended";
-            livekitSessionId: string;
             livekitRoomName: string;
+            livekitSessionId: string;
             token: string;
             startedAt: import("../../types").Timestamp;
             logId: string;
@@ -7981,8 +7981,8 @@ export declare const threadSchemas: {
             status: z.ZodEnum<["connecting", "connected", "ended"]>;
         }, "strip", z.ZodTypeAny, {
             status: "connecting" | "connected" | "ended";
-            livekitSessionId: string;
             livekitRoomName: string;
+            livekitSessionId: string;
             token: string;
             startedAt: import("../../types").Timestamp;
             logId: string;
@@ -7990,8 +7990,8 @@ export declare const threadSchemas: {
             endedAt?: import("../../types").Timestamp | undefined;
         }, {
             status: "connecting" | "connected" | "ended";
-            livekitSessionId: string;
             livekitRoomName: string;
+            livekitSessionId: string;
             token: string;
             startedAt: import("../../types").Timestamp;
             logId: string;
@@ -8784,8 +8784,8 @@ export declare const threadSchemas: {
         assistantThreadId?: string | undefined;
         currentCall?: {
             status: "connecting" | "connected" | "ended";
-            livekitSessionId: string;
             livekitRoomName: string;
+            livekitSessionId: string;
             token: string;
             startedAt: import("../../types").Timestamp;
             logId: string;
@@ -9205,8 +9205,8 @@ export declare const threadSchemas: {
         assistantThreadId?: string | undefined;
         currentCall?: {
             status: "connecting" | "connected" | "ended";
-            livekitSessionId: string;
             livekitRoomName: string;
+            livekitSessionId: string;
             token: string;
             startedAt: import("../../types").Timestamp;
             logId: string;
@@ -11411,8 +11411,8 @@ export declare const threadSchemas: {
             status: z.ZodEnum<["connecting", "connected", "ended"]>;
         }, "strip", z.ZodTypeAny, {
             status: "connecting" | "connected" | "ended";
-            livekitSessionId: string;
             livekitRoomName: string;
+            livekitSessionId: string;
             token: string;
             startedAt: import("../../types").Timestamp;
             logId: string;
@@ -11420,8 +11420,8 @@ export declare const threadSchemas: {
             endedAt?: import("../../types").Timestamp | undefined;
         }, {
             status: "connecting" | "connected" | "ended";
-            livekitSessionId: string;
             livekitRoomName: string;
+            livekitSessionId: string;
             token: string;
             startedAt: import("../../types").Timestamp;
             logId: string;
@@ -11843,8 +11843,8 @@ export declare const threadSchemas: {
         assistantThreadId?: string | undefined;
         currentCall?: {
             status: "connecting" | "connected" | "ended";
-            livekitSessionId: string;
             livekitRoomName: string;
+            livekitSessionId: string;
             token: string;
             startedAt: import("../../types").Timestamp;
             logId: string;
@@ -12264,8 +12264,8 @@ export declare const threadSchemas: {
         assistantThreadId?: string | undefined;
         currentCall?: {
             status: "connecting" | "connected" | "ended";
-            livekitSessionId: string;
             livekitRoomName: string;
+            livekitSessionId: string;
             token: string;
             startedAt: import("../../types").Timestamp;
             logId: string;
@@ -14470,8 +14470,8 @@ export declare const threadSchemas: {
             status: z.ZodEnum<["connecting", "connected", "ended"]>;
         }, "strip", z.ZodTypeAny, {
             status: "connecting" | "connected" | "ended";
-            livekitSessionId: string;
             livekitRoomName: string;
+            livekitSessionId: string;
             token: string;
             startedAt: import("../../types").Timestamp;
             logId: string;
@@ -14479,8 +14479,8 @@ export declare const threadSchemas: {
             endedAt?: import("../../types").Timestamp | undefined;
         }, {
             status: "connecting" | "connected" | "ended";
-            livekitSessionId: string;
             livekitRoomName: string;
+            livekitSessionId: string;
             token: string;
             startedAt: import("../../types").Timestamp;
             logId: string;
@@ -14902,8 +14902,8 @@ export declare const threadSchemas: {
         assistantThreadId?: string | undefined;
         currentCall?: {
             status: "connecting" | "connected" | "ended";
-            livekitSessionId: string;
             livekitRoomName: string;
+            livekitSessionId: string;
             token: string;
             startedAt: import("../../types").Timestamp;
             logId: string;
@@ -15323,8 +15323,8 @@ export declare const threadSchemas: {
         assistantThreadId?: string | undefined;
         currentCall?: {
             status: "connecting" | "connected" | "ended";
-            livekitSessionId: string;
             livekitRoomName: string;
+            livekitSessionId: string;
             token: string;
             startedAt: import("../../types").Timestamp;
             logId: string;
@@ -17158,8 +17158,8 @@ export declare const threadSchemas: {
             status: z.ZodEnum<["connecting", "connected", "ended"]>;
         }, "strip", z.ZodTypeAny, {
             status: "connecting" | "connected" | "ended";
-            livekitSessionId: string;
             livekitRoomName: string;
+            livekitSessionId: string;
             token: string;
             startedAt: import("../../types").Timestamp;
             logId: string;
@@ -17167,8 +17167,8 @@ export declare const threadSchemas: {
             endedAt?: import("../../types").Timestamp | undefined;
         }, {
             status: "connecting" | "connected" | "ended";
-            livekitSessionId: string;
             livekitRoomName: string;
+            livekitSessionId: string;
             token: string;
             startedAt: import("../../types").Timestamp;
             logId: string;
@@ -17961,8 +17961,8 @@ export declare const threadSchemas: {
         assistantThreadId?: string | undefined;
         currentCall?: {
             status: "connecting" | "connected" | "ended";
-            livekitSessionId: string;
             livekitRoomName: string;
+            livekitSessionId: string;
             token: string;
             startedAt: import("../../types").Timestamp;
             logId: string;
@@ -18382,8 +18382,8 @@ export declare const threadSchemas: {
         assistantThreadId?: string | undefined;
         currentCall?: {
             status: "connecting" | "connected" | "ended";
-            livekitSessionId: string;
             livekitRoomName: string;
+            livekitSessionId: string;
             token: string;
             startedAt: import("../../types").Timestamp;
             logId: string;
@@ -20588,8 +20588,8 @@ export declare const threadSchemas: {
             status: z.ZodEnum<["connecting", "connected", "ended"]>;
         }, "strip", z.ZodTypeAny, {
             status: "connecting" | "connected" | "ended";
-            livekitSessionId: string;
             livekitRoomName: string;
+            livekitSessionId: string;
             token: string;
             startedAt: import("../../types").Timestamp;
             logId: string;
@@ -20597,8 +20597,8 @@ export declare const threadSchemas: {
             endedAt?: import("../../types").Timestamp | undefined;
         }, {
             status: "connecting" | "connected" | "ended";
-            livekitSessionId: string;
             livekitRoomName: string;
+            livekitSessionId: string;
             token: string;
             startedAt: import("../../types").Timestamp;
             logId: string;
@@ -21020,8 +21020,8 @@ export declare const threadSchemas: {
         assistantThreadId?: string | undefined;
         currentCall?: {
             status: "connecting" | "connected" | "ended";
-            livekitSessionId: string;
             livekitRoomName: string;
+            livekitSessionId: string;
             token: string;
             startedAt: import("../../types").Timestamp;
             logId: string;
@@ -21441,8 +21441,8 @@ export declare const threadSchemas: {
         assistantThreadId?: string | undefined;
         currentCall?: {
             status: "connecting" | "connected" | "ended";
-            livekitSessionId: string;
             livekitRoomName: string;
+            livekitSessionId: string;
             token: string;
             startedAt: import("../../types").Timestamp;
             logId: string;
@@ -23648,8 +23648,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         status: z.ZodEnum<["connecting", "connected", "ended"]>;
     }, "strip", z.ZodTypeAny, {
         status: "connecting" | "connected" | "ended";
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         token: string;
         startedAt: import("../../types").Timestamp;
         logId: string;
@@ -23657,8 +23657,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         endedAt?: import("../../types").Timestamp | undefined;
     }, {
         status: "connecting" | "connected" | "ended";
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         token: string;
         startedAt: import("../../types").Timestamp;
         logId: string;
@@ -24080,8 +24080,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     assistantThreadId?: string | undefined;
     currentCall?: {
         status: "connecting" | "connected" | "ended";
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         token: string;
         startedAt: import("../../types").Timestamp;
         logId: string;
@@ -24501,8 +24501,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     assistantThreadId?: string | undefined;
     currentCall?: {
         status: "connecting" | "connected" | "ended";
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         token: string;
         startedAt: import("../../types").Timestamp;
         logId: string;
@@ -26706,8 +26706,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         status: z.ZodEnum<["connecting", "connected", "ended"]>;
     }, "strip", z.ZodTypeAny, {
         status: "connecting" | "connected" | "ended";
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         token: string;
         startedAt: import("../../types").Timestamp;
         logId: string;
@@ -26715,8 +26715,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         endedAt?: import("../../types").Timestamp | undefined;
     }, {
         status: "connecting" | "connected" | "ended";
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         token: string;
         startedAt: import("../../types").Timestamp;
         logId: string;
@@ -27149,8 +27149,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     assistantThreadId?: string | undefined;
     currentCall?: {
         status: "connecting" | "connected" | "ended";
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         token: string;
         startedAt: import("../../types").Timestamp;
         logId: string;
@@ -27578,8 +27578,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     assistantThreadId?: string | undefined;
     currentCall?: {
         status: "connecting" | "connected" | "ended";
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         token: string;
         startedAt: import("../../types").Timestamp;
         logId: string;
@@ -29788,8 +29788,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         status: z.ZodEnum<["connecting", "connected", "ended"]>;
     }, "strip", z.ZodTypeAny, {
         status: "connecting" | "connected" | "ended";
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         token: string;
         startedAt: import("../../types").Timestamp;
         logId: string;
@@ -29797,8 +29797,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         endedAt?: import("../../types").Timestamp | undefined;
     }, {
         status: "connecting" | "connected" | "ended";
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         token: string;
         startedAt: import("../../types").Timestamp;
         logId: string;
@@ -30220,8 +30220,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     assistantThreadId?: string | undefined;
     currentCall?: {
         status: "connecting" | "connected" | "ended";
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         token: string;
         startedAt: import("../../types").Timestamp;
         logId: string;
@@ -30641,8 +30641,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     assistantThreadId?: string | undefined;
     currentCall?: {
         status: "connecting" | "connected" | "ended";
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         token: string;
         startedAt: import("../../types").Timestamp;
         logId: string;
@@ -32475,8 +32475,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         status: z.ZodEnum<["connecting", "connected", "ended"]>;
     }, "strip", z.ZodTypeAny, {
         status: "connecting" | "connected" | "ended";
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         token: string;
         startedAt: import("../../types").Timestamp;
         logId: string;
@@ -32484,8 +32484,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         endedAt?: import("../../types").Timestamp | undefined;
     }, {
         status: "connecting" | "connected" | "ended";
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         token: string;
         startedAt: import("../../types").Timestamp;
         logId: string;
@@ -33278,8 +33278,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     assistantThreadId?: string | undefined;
     currentCall?: {
         status: "connecting" | "connected" | "ended";
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         token: string;
         startedAt: import("../../types").Timestamp;
         logId: string;
@@ -33699,8 +33699,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     assistantThreadId?: string | undefined;
     currentCall?: {
         status: "connecting" | "connected" | "ended";
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         token: string;
         startedAt: import("../../types").Timestamp;
         logId: string;
@@ -35904,8 +35904,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         status: z.ZodEnum<["connecting", "connected", "ended"]>;
     }, "strip", z.ZodTypeAny, {
         status: "connecting" | "connected" | "ended";
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         token: string;
         startedAt: import("../../types").Timestamp;
         logId: string;
@@ -35913,8 +35913,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         endedAt?: import("../../types").Timestamp | undefined;
     }, {
         status: "connecting" | "connected" | "ended";
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         token: string;
         startedAt: import("../../types").Timestamp;
         logId: string;
@@ -36336,8 +36336,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     assistantThreadId?: string | undefined;
     currentCall?: {
         status: "connecting" | "connected" | "ended";
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         token: string;
         startedAt: import("../../types").Timestamp;
         logId: string;
@@ -36757,8 +36757,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     assistantThreadId?: string | undefined;
     currentCall?: {
         status: "connecting" | "connected" | "ended";
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         token: string;
         startedAt: import("../../types").Timestamp;
         logId: string;
@@ -38591,8 +38591,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         status: z.ZodEnum<["connecting", "connected", "ended"]>;
     }, "strip", z.ZodTypeAny, {
         status: "connecting" | "connected" | "ended";
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         token: string;
         startedAt: import("../../types").Timestamp;
         logId: string;
@@ -38600,8 +38600,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         endedAt?: import("../../types").Timestamp | undefined;
     }, {
         status: "connecting" | "connected" | "ended";
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         token: string;
         startedAt: import("../../types").Timestamp;
         logId: string;
@@ -39394,8 +39394,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     assistantThreadId?: string | undefined;
     currentCall?: {
         status: "connecting" | "connected" | "ended";
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         token: string;
         startedAt: import("../../types").Timestamp;
         logId: string;
@@ -39815,8 +39815,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     assistantThreadId?: string | undefined;
     currentCall?: {
         status: "connecting" | "connected" | "ended";
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         token: string;
         startedAt: import("../../types").Timestamp;
         logId: string;
@@ -42020,8 +42020,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         status: z.ZodEnum<["connecting", "connected", "ended"]>;
     }, "strip", z.ZodTypeAny, {
         status: "connecting" | "connected" | "ended";
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         token: string;
         startedAt: import("../../types").Timestamp;
         logId: string;
@@ -42029,8 +42029,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         endedAt?: import("../../types").Timestamp | undefined;
     }, {
         status: "connecting" | "connected" | "ended";
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         token: string;
         startedAt: import("../../types").Timestamp;
         logId: string;
@@ -42452,8 +42452,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     assistantThreadId?: string | undefined;
     currentCall?: {
         status: "connecting" | "connected" | "ended";
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         token: string;
         startedAt: import("../../types").Timestamp;
         logId: string;
@@ -42873,8 +42873,8 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     assistantThreadId?: string | undefined;
     currentCall?: {
         status: "connecting" | "connected" | "ended";
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         token: string;
         startedAt: import("../../types").Timestamp;
         logId: string;

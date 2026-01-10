@@ -23,6 +23,7 @@ __exportStar(require("./behavior"), exports);
 __exportStar(require("./coach"), exports);
 __exportStar(require("./behaviorTemplate"), exports);
 __exportStar(require("./behaviorTopic"), exports);
+__exportStar(require("./call"), exports);
 __exportStar(require("./daySummary"), exports);
 __exportStar(require("./emojiId"), exports);
 __exportStar(require("./experiment"), exports);

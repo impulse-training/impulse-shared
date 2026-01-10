@@ -6,6 +6,7 @@ export * from "./behavior";
 export * from "./coach";
 export * from "./behaviorTemplate";
 export * from "./behaviorTopic";
+export * from "./call";
 export * from "./daySummary";
 export * from "./emojiId";
 export * from "./experiment";

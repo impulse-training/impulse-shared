@@ -1759,8 +1759,8 @@ export declare const callLogSchema: z.ZodObject<{
         token: z.ZodOptional<z.ZodString>;
         summary: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -2014,8 +2014,8 @@ export declare const callLogSchema: z.ZodObject<{
         token?: string | undefined;
         summary?: string | undefined;
     }, {
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -2277,8 +2277,8 @@ export declare const callLogSchema: z.ZodObject<{
     dateString: string;
     isDisplayable: true;
     data: {
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -2545,8 +2545,8 @@ export declare const callLogSchema: z.ZodObject<{
     dateString: string;
     isDisplayable: true;
     data: {
-        livekitSessionId: string;
         livekitRoomName: string;
+        livekitSessionId: string;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;

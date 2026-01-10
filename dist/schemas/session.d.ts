@@ -8,15 +8,15 @@ export declare const sessionSchema: z.ZodObject<{
     code: z.ZodString;
 }, "strip", z.ZodTypeAny, {
     code: string;
-    participantUids: string[];
     durationMinutes: number;
+    participantUids: string[];
     title?: string | undefined;
     startTime?: import("../types").Timestamp | undefined;
     transcriptSummary?: string | undefined;
 }, {
     code: string;
-    participantUids: string[];
     durationMinutes: number;
+    participantUids: string[];
     title?: string | undefined;
     startTime?: import("../types").Timestamp | undefined;
     transcriptSummary?: string | undefined;
