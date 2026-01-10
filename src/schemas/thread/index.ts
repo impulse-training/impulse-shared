@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 import { AdjustmentThread, adjustmentThreadSchema } from "./adjustment";
 import { BehaviorThread, behaviorThreadSchema } from "./behavior";
 import { GeneralThread, generalThreadSchema } from "./general";

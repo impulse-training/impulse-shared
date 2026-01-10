@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 import { WhatsappExternalSender } from "./whatsappExternalSender";
 export * from "./whatsappExternalSender";
 export declare const externalSenderSchemas: {

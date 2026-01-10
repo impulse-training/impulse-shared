@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 import { DocumentSnapshotLike } from "../types/firebase";
 export interface DocumentReferenceLike<T> {
     id: string;

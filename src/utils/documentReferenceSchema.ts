@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 import { DocumentSnapshotLike } from "../types/firebase";
 
 // Ultimately, we have a problem because our "core" types include references to firestore

@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 export declare const strategyPlanItemSchema: z.ZodObject<{
     planId: z.ZodString;
     plan: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{

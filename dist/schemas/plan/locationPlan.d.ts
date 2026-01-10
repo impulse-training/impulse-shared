@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 export declare const locationPlanSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     name: z.ZodString;

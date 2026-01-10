@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 import { planBaseSchema } from "./base";
 import { locationTriggerSchema } from "./trigger/locationTrigger";
 

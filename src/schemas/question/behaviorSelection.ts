@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 import { questionBaseSchema } from "./base";
 
 export const behaviorSelectionQuestionSchema = questionBaseSchema("behaviorSelection").extend({

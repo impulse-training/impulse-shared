@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 import { emojiIdSchema } from "./emojiId";
 
 export const userProfileSchema = z.object({

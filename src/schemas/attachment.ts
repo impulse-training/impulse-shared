@@ -3,7 +3,7 @@
  *
  * Defines Zod schemas for file/media attachments
  */
-import { z } from "zod";
+import z from "zod";
 import { timestampSchema } from "../utils/timestampSchema";
 
 // Attachment Types

@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 
 export const supportGroupPermissionsSchema = z.object({
   dayOutcomes: z.boolean().default(false),

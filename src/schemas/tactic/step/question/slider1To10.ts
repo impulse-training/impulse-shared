@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 import { questionStepBaseSchema } from "./base";
 
 export const slider1To10QuestionStepSchema = questionStepBaseSchema("question-slider1To10").extend({

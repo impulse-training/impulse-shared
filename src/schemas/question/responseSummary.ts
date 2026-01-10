@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 import { timestampSchema } from "../../utils/timestampSchema";
 import { questionsLogSchema } from "../log/questionsLog";
 

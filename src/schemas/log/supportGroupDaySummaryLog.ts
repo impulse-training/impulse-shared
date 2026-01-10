@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 import { logBaseSchema } from "./base";
 import { objectOf } from "../../utils/objectOf";
 import { supportGroupSummarySchema } from "../utils/supportGroupSummary";

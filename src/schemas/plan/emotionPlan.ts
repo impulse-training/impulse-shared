@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 import { planBaseSchema } from "./base";
 
 export const emotionPlanSchema = planBaseSchema("emotion").extend({

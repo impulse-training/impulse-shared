@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 export declare const goalSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     type: z.ZodLiteral<"eliminate">;
 }, "strip", z.ZodTypeAny, {

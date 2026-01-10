@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 export declare const locationTriggerSchema: z.ZodObject<{
     locationName: z.ZodString;
     address: z.ZodString;

@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 import { Timestamp } from "../types";
 import {
   DocumentReferenceLike,

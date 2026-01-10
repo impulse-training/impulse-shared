@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 export declare const llmAuditEntrySchema: z.ZodObject<{
     userId: z.ZodString;
     logId: z.ZodString;

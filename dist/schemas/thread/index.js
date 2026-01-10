@@ -13,9 +13,12 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
 var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isValidAdjustmentThread = exports.threadIsAdjustmentThread = exports.isValidBehaviorThread = exports.threadIsBehaviorThread = exports.isValidLocationPlanThread = exports.threadIsLocationPlanThread = exports.isValidRecapThread = exports.threadIsRecapThread = exports.isValidTimePlanThread = exports.threadIsTimePlanThread = exports.isValidImpulseThread = exports.threadIsImpulseThread = exports.isValidGeneralThread = exports.threadIsGeneralThread = exports.threadSchema = exports.threadSchemas = void 0;
-const zod_1 = require("zod");
+const zod_1 = __importDefault(require("zod"));
 const adjustment_1 = require("./adjustment");
 const behavior_1 = require("./behavior");
 const general_1 = require("./general");
@@ -40,7 +43,7 @@ exports.threadSchemas = {
     adjustment: adjustment_1.adjustmentThreadSchema,
 };
 // Discriminated union over type
-exports.threadSchema = zod_1.z.discriminatedUnion("type", [
+exports.threadSchema = zod_1.default.discriminatedUnion("type", [
     general_1.generalThreadSchema,
     impulse_1.impulseThreadSchema,
     behavior_1.behaviorThreadSchema,

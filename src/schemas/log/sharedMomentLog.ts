@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 import { documentReferenceSchema } from "../../utils/documentReferenceSchema";
 import { emojiIdSchema } from "../emojiId";
 import { threadSummarySchema } from "../threadSummary";

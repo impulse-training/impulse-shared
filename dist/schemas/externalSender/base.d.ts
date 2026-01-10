@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 export declare function externalSenderBaseSchema<K extends string>(type: K): z.ZodObject<{
     type: z.ZodLiteral<K>;
     uid: z.ZodString;

@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 /**
  * Schema for user summary documents stored in userSummaries collection
  * Contains pre-computed summary information for AI agents

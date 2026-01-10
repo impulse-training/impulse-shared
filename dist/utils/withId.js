@@ -1,8 +1,11 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.withIdSchema = void 0;
 exports.withId = withId;
-const zod_1 = require("zod");
+const zod_1 = __importDefault(require("zod"));
 const documentReferenceSchema_1 = require("./documentReferenceSchema");
 /**
  * Adds id and _ref properties to a document data object
@@ -15,9 +18,9 @@ function withId(doc) {
         id: doc.id,
     };
 }
-const withIdSchema = (schema) => zod_1.z
+const withIdSchema = (schema) => zod_1.default
     .object({
-    id: zod_1.z.string(),
+    id: zod_1.default.string(),
     _ref: documentReferenceSchema_1.documentReferenceSchema,
 })
     .and(schema);

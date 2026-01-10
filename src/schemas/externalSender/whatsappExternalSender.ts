@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 import { externalSenderBaseSchema } from "./base";
 
 export const whatsappExternalSender = externalSenderBaseSchema("whatsapp").extend({

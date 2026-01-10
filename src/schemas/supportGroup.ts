@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 import { objectOf } from "../utils/objectOf";
 import { timestampSchema } from "../utils/timestampSchema";
 import { attachmentSchema } from "./attachment";

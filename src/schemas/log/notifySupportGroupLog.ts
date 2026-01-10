@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 import { objectOf } from "../../utils/objectOf";
 import { emojiIdSchema } from "../emojiId";
 import { userProfileSchema } from "../userProfile";

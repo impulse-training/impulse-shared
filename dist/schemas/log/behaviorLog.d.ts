@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 import { behaviorTrackingDataSchema, BehaviorTrackingData } from "../behaviorTrackingData";
 export { behaviorTrackingDataSchema, BehaviorTrackingData };
 export declare const behaviorLogSchema: z.ZodObject<{

@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 import { BehaviorLog } from "./behaviorLog";
 import { BreathingLog } from "./breathingLog";
 import { CallLog } from "./callLog";

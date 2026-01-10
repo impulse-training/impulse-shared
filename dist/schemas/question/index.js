@@ -13,9 +13,12 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
 var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isQuestion = exports.isValidRecapQuestion = exports.questionIsRecapQuestion = exports.isValidBehaviorSelectionQuestion = exports.questionIsBehaviorSelectionQuestion = exports.isValidSlider1To10Question = exports.questionIsSlider1To10Question = exports.isValidShortTextQuestion = exports.questionIsShortTextQuestion = exports.isValidEmotionQuestion = exports.questionIsEmotionQuestion = exports.isValidTextQuestion = exports.questionIsTextQuestion = exports.questionSchema = exports.QuestionSchemas = exports.responseTypeSchema = exports.responseTypes = void 0;
-const zod_1 = require("zod");
+const zod_1 = __importDefault(require("zod"));
 const behaviorSelection_1 = require("./behaviorSelection");
 const emotion_1 = require("./emotion");
 const recap_1 = require("./recap");
@@ -38,7 +41,7 @@ exports.responseTypes = [
     "behaviorSelection",
     "recap",
 ];
-exports.responseTypeSchema = zod_1.z.enum(exports.responseTypes);
+exports.responseTypeSchema = zod_1.default.enum(exports.responseTypes);
 // Utility to dynamically select the correct schema based on the Question type
 exports.QuestionSchemas = {
     text: text_1.textQuestionSchema,
@@ -48,7 +51,7 @@ exports.QuestionSchemas = {
     behaviorSelection: behaviorSelection_1.behaviorSelectionQuestionSchema,
     recap: recap_1.recapQuestionSchema,
 };
-exports.questionSchema = zod_1.z.discriminatedUnion("responseType", [
+exports.questionSchema = zod_1.default.discriminatedUnion("responseType", [
     exports.QuestionSchemas.text,
     exports.QuestionSchemas.emotion,
     exports.QuestionSchemas.shortText,

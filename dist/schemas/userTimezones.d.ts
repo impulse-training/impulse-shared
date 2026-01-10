@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 export declare const userTimezoneSchema: z.ZodObject<{
     timezone: z.ZodString;
     timezoneOffset: z.ZodOptional<z.ZodNumber>;

@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 import { baseStepSchema } from "./base";
 
 export const breathingStepSchema = baseStepSchema.extend({

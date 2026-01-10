@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 import { DefaultPlan } from "./defaultPlan";
 import { EmotionPlan } from "./emotionPlan";
 import { ImpulsePlan } from "./impulsePlan";

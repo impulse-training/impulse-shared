@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 export declare const socialContexts: readonly ["alone", "with_partner", "with_friends", "public", "work"];
 export declare const locationTypes: readonly ["home", "bedroom", "workplace", "commute", "outdoors", "gym", "other"];
 export declare const timeBands: readonly ["late_night", "morning", "afternoon", "evening"];

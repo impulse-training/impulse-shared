@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 export declare const timePlanSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     name: z.ZodString;

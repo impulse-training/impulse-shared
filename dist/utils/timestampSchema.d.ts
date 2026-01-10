@@ -4,7 +4,7 @@
  * This schema validates that a value is a Firestore Timestamp-like object.
  * Each consuming project (frontend/backend) should use its own Firebase implementation.
  */
-import { z } from "zod";
+import z from "zod";
 import { Timestamp } from "../types/firebase";
 /**
  * Zod schema for Firestore Timestamp

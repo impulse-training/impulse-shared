@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 export declare const whatsappExternalSender: z.ZodObject<{
     type: z.ZodLiteral<"whatsapp">;
     uid: z.ZodString;

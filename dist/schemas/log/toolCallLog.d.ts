@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 export declare const chatCompletionMessageSchema: z.ZodObject<{
     role: z.ZodEnum<["assistant", "user", "system", "tool"]>;
     content: z.ZodOptional<z.ZodUnion<[z.ZodString, z.ZodNull, z.ZodArray<z.ZodAny, "many">]>>;

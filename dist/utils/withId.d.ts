@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 import { DocumentSnapshotLike } from "../types";
 import { DocumentReferenceLike } from "./documentReferenceSchema";
 type WithMaybeId = {

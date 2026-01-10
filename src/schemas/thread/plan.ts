@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 import { planWithIdSchema } from "../plan";
 import { threadBaseSchema } from "./base";
 

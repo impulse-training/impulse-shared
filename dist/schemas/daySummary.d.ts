@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 /** Schema for a single goal comparison entry */
 export declare const goalComparisonEntrySchema: z.ZodObject<{
     goalLabel: z.ZodString;

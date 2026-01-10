@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 export declare const supportGroupPermissionsSchema: z.ZodObject<{
     dayOutcomes: z.ZodDefault<z.ZodBoolean>;
     impulseMoments: z.ZodDefault<z.ZodBoolean>;

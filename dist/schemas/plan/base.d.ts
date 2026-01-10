@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 export declare function planBaseSchema<T extends string>(type: T): z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     name: z.ZodString;

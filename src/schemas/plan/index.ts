@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 import { withIdSchema } from "../../utils/withId";
 import { DefaultPlan, defaultPlanSchema } from "./defaultPlan";
 import { EmotionPlan, emotionPlanSchema } from "./emotionPlan";

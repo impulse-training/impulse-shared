@@ -1,4 +1,4 @@
-import { z } from "zod";
+import z from "zod";
 
 // Import all step schemas
 export * from "./affirmation";
