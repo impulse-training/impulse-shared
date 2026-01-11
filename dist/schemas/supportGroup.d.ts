@@ -586,6 +586,7 @@ export declare const supportGroupSchema: z.ZodObject<{
     tacticCount: z.ZodDefault<z.ZodNumber>;
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    archivedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     behaviorTopicIds: z.ZodOptional<z.ZodArray<z.ZodEnum<[string, ...string[]]>, "many">>;
     timezoneOffsets: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
     matchingMode: z.ZodOptional<z.ZodEnum<["focused", "mixed"]>>;
@@ -707,6 +708,7 @@ export declare const supportGroupSchema: z.ZodObject<{
             tactic?: any;
         } | undefined;
     } | undefined;
+    archivedAt?: import("../types").Timestamp | undefined;
     behaviorTopicIds?: string[] | undefined;
     timezoneOffsets?: number[] | undefined;
     matchingMode?: "focused" | "mixed" | undefined;
@@ -828,6 +830,7 @@ export declare const supportGroupSchema: z.ZodObject<{
         } | undefined;
     } | undefined;
     tacticCount?: number | undefined;
+    archivedAt?: import("../types").Timestamp | undefined;
     behaviorTopicIds?: string[] | undefined;
     timezoneOffsets?: number[] | undefined;
     matchingMode?: "focused" | "mixed" | undefined;

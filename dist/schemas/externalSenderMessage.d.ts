@@ -9,8 +9,8 @@ export declare const externalSenderMessageSchema: z.ZodObject<{
     externalId: z.ZodString;
     role: z.ZodEnum<["assistant", "user", "system", "tool"]>;
 }, "strip", z.ZodTypeAny, {
-    role: "assistant" | "user" | "system" | "tool";
     content: string | null;
+    role: "assistant" | "user" | "system" | "tool";
     externalId: string;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
@@ -18,8 +18,8 @@ export declare const externalSenderMessageSchema: z.ZodObject<{
     senderUid?: string | undefined;
     attachments?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
 }, {
-    role: "assistant" | "user" | "system" | "tool";
     content: string | null;
+    role: "assistant" | "user" | "system" | "tool";
     externalId: string;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;

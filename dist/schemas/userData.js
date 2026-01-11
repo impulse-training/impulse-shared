@@ -45,6 +45,8 @@ exports.userDataSchema = zod_1.z.object({
     hasSetupExperiment: zod_1.z.boolean().optional(),
     // Support group signup wizard completion
     supportGroupSignupCompletedAt: timestampSchema_1.timestampSchema.optional(),
+    // Coach approved user as eligible to join the experiment
+    markedAsEligibleAt: timestampSchema_1.timestampSchema.optional(),
     // Coach flag - set when user is approved as a coach
     isCoach: zod_1.z.boolean().optional(),
 });

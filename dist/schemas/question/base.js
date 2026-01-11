@@ -9,7 +9,7 @@ function questionBaseSchema(type) {
         id: zod_1.z.string().optional(),
         createdAt: timestampSchema_1.timestampSchema.optional(),
         updatedAt: timestampSchema_1.timestampSchema.optional(),
-        text: zod_1.z.string(),
+        text: zod_1.z.string().optional(),
         textAfterResponse: zod_1.z.string().optional(),
         metricId: zod_1.z.string().optional(),
         lastAskedAt: timestampSchema_1.timestampSchema.optional(),

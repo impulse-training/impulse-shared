@@ -55,6 +55,7 @@ exports.supportGroupSchema = zod_1.z.object({
     tacticCount: zod_1.z.number().default(0),
     createdAt: timestampSchema_1.timestampSchema.optional(),
     updatedAt: timestampSchema_1.timestampSchema.optional(),
+    archivedAt: timestampSchema_1.timestampSchema.optional(),
     // Matching criteria for automatic group assignment
     // References to behavior topics this group focuses on
     behaviorTopicIds: zod_1.z.array(behaviorTopic_1.behaviorTopicIdSchema).optional(),

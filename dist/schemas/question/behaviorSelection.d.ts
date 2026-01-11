@@ -3,7 +3,7 @@ export declare const behaviorSelectionQuestionSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-    text: z.ZodString;
+    text: z.ZodOptional<z.ZodString>;
     textAfterResponse: z.ZodOptional<z.ZodString>;
     metricId: z.ZodOptional<z.ZodString>;
     lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -16,7 +16,6 @@ export declare const behaviorSelectionQuestionSchema: z.ZodObject<{
 } & {
     allowMultiple: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
 }, "strip", z.ZodTypeAny, {
-    text: string;
     isTemplate: boolean;
     responseType: "behaviorSelection";
     scope: "success" | "setback" | "impulse" | "recap";
@@ -24,6 +23,7 @@ export declare const behaviorSelectionQuestionSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    text?: string | undefined;
     textAfterResponse?: string | undefined;
     metricId?: string | undefined;
     lastAskedAt?: import("../../types").Timestamp | undefined;
@@ -31,12 +31,12 @@ export declare const behaviorSelectionQuestionSchema: z.ZodObject<{
     numberOfAnswers?: number | undefined;
     isPinned?: boolean | undefined;
 }, {
-    text: string;
     responseType: "behaviorSelection";
     scope: "success" | "setback" | "impulse" | "recap";
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    text?: string | undefined;
     isTemplate?: boolean | undefined;
     textAfterResponse?: string | undefined;
     metricId?: string | undefined;

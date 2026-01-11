@@ -51,6 +51,7 @@ export declare const userDataSchema: z.ZodObject<{
     addToTechSupportGroup: z.ZodOptional<z.ZodBoolean>;
     hasSetupExperiment: z.ZodOptional<z.ZodBoolean>;
     supportGroupSignupCompletedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    markedAsEligibleAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     isCoach: z.ZodOptional<z.ZodBoolean>;
 }, "strip", z.ZodTypeAny, {
     role: "user" | "coach" | "support";
@@ -80,6 +81,7 @@ export declare const userDataSchema: z.ZodObject<{
     addToTechSupportGroup?: boolean | undefined;
     hasSetupExperiment?: boolean | undefined;
     supportGroupSignupCompletedAt?: import("../types").Timestamp | undefined;
+    markedAsEligibleAt?: import("../types").Timestamp | undefined;
     isCoach?: boolean | undefined;
 }, {
     id?: string | undefined;
@@ -109,6 +111,7 @@ export declare const userDataSchema: z.ZodObject<{
     addToTechSupportGroup?: boolean | undefined;
     hasSetupExperiment?: boolean | undefined;
     supportGroupSignupCompletedAt?: import("../types").Timestamp | undefined;
+    markedAsEligibleAt?: import("../types").Timestamp | undefined;
     isCoach?: boolean | undefined;
 }>;
 export type UserData = z.infer<typeof userDataSchema>;

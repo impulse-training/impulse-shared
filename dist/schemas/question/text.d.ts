@@ -3,7 +3,6 @@ export declare const textQuestionSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-    text: z.ZodString;
     textAfterResponse: z.ZodOptional<z.ZodString>;
     metricId: z.ZodOptional<z.ZodString>;
     lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -13,6 +12,8 @@ export declare const textQuestionSchema: z.ZodObject<{
     isPinned: z.ZodOptional<z.ZodBoolean>;
     responseType: z.ZodLiteral<"text">;
     scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
+} & {
+    text: z.ZodString;
 }, "strip", z.ZodTypeAny, {
     text: string;
     isTemplate: boolean;

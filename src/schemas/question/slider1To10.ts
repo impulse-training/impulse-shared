@@ -8,6 +8,7 @@ export const slider1To10QuestionSchema = questionBaseSchema(
     minLabel: z.string().optional(),
     maxLabel: z.string().optional(),
   }),
+  text: z.string(),
 });
 
 export type Slider1To10Question = z.infer<typeof slider1To10QuestionSchema>;

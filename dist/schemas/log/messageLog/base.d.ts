@@ -10,7 +10,7 @@ export declare const messageBaseLogSchema: z.ZodObject<{
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
-    type: z.ZodEnum<["user_message", "assistant_message", "system_message"]>;
+    type: z.ZodEnum<["user_message", "assistant_message", "system_message", "eligible_to_join_impulse"]>;
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
         message: z.ZodAny;
@@ -22,7 +22,7 @@ export declare const messageBaseLogSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../../types").Timestamp;
     updatedAt: import("../../../types").Timestamp;
-    type: "user_message" | "assistant_message" | "system_message";
+    type: "user_message" | "assistant_message" | "system_message" | "eligible_to_join_impulse";
     userId: string;
     dateString: string;
     isDisplayable: true;
@@ -37,7 +37,7 @@ export declare const messageBaseLogSchema: z.ZodObject<{
 }, {
     createdAt: import("../../../types").Timestamp;
     updatedAt: import("../../../types").Timestamp;
-    type: "user_message" | "assistant_message" | "system_message";
+    type: "user_message" | "assistant_message" | "system_message" | "eligible_to_join_impulse";
     userId: string;
     dateString: string;
     isDisplayable: true;

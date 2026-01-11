@@ -7,7 +7,7 @@ export function questionBaseSchema<T extends string>(type: T) {
     id: z.string().optional(),
     createdAt: timestampSchema.optional(),
     updatedAt: timestampSchema.optional(),
-    text: z.string(),
+    text: z.string().optional(),
     textAfterResponse: z.string().optional(),
     metricId: z.string().optional(),
     lastAskedAt: timestampSchema.optional(),
