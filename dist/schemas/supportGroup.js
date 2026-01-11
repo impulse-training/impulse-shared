@@ -47,7 +47,7 @@ exports.supportGroupSchema = zod_1.z.object({
     membersById: (0, objectOf_1.objectOf)(exports.supportGroupMemberSchema),
     memberIds: zod_1.z.array(zod_1.z.string()).default([]), // For efficient array-contains queries
     unreadMessageCountsById: (0, objectOf_1.objectOf)(zod_1.z.number()),
-    image: attachment_1.attachmentSchema,
+    image: attachment_1.attachmentSchema.optional(),
     isPublic: zod_1.z.boolean().optional(),
     isTemplate: zod_1.z.boolean().optional().default(false),
     inviteCode: zod_1.z.string().optional(),

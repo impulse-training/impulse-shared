@@ -315,7 +315,7 @@ export declare const supportGroupSchema: z.ZodObject<{
     }>>;
     memberIds: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
     unreadMessageCountsById: z.ZodRecord<z.ZodString, z.ZodNumber>;
-    image: z.ZodObject<{
+    image: z.ZodOptional<z.ZodObject<{
         createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         uri: z.ZodString;
@@ -393,7 +393,7 @@ export declare const supportGroupSchema: z.ZodObject<{
                 timestampMs?: number | undefined;
             }[] | undefined;
         } | undefined;
-    }>;
+    }>>;
     isPublic: z.ZodOptional<z.ZodBoolean>;
     isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     inviteCode: z.ZodOptional<z.ZodString>;
@@ -592,25 +592,6 @@ export declare const supportGroupSchema: z.ZodObject<{
     acceptsMatching: z.ZodOptional<z.ZodBoolean>;
     maxMembers: z.ZodOptional<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
-    image: {
-        uri: string;
-        storagePath: string;
-        contentType: string;
-        createdAt?: import("../types").Timestamp | undefined;
-        updatedAt?: import("../types").Timestamp | undefined;
-        title?: string | undefined;
-        sizeBytes?: number | undefined;
-        metadata?: {
-            width?: number | undefined;
-            height?: number | undefined;
-            durationMs?: number | undefined;
-            transcript?: string | undefined;
-            meterings?: {
-                db: number;
-                timestampMs?: number | undefined;
-            }[] | undefined;
-        } | undefined;
-    };
     type: "system" | "coach" | "social" | "alignment";
     name: string;
     membersById: Record<string, {
@@ -646,6 +627,25 @@ export declare const supportGroupSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
+    image?: {
+        uri: string;
+        storagePath: string;
+        contentType: string;
+        createdAt?: import("../types").Timestamp | undefined;
+        updatedAt?: import("../types").Timestamp | undefined;
+        title?: string | undefined;
+        sizeBytes?: number | undefined;
+        metadata?: {
+            width?: number | undefined;
+            height?: number | undefined;
+            durationMs?: number | undefined;
+            transcript?: string | undefined;
+            meterings?: {
+                db: number;
+                timestampMs?: number | undefined;
+            }[] | undefined;
+        } | undefined;
+    } | undefined;
     description?: string | undefined;
     coverPhoto?: {
         uri: string;
@@ -713,25 +713,6 @@ export declare const supportGroupSchema: z.ZodObject<{
     acceptsMatching?: boolean | undefined;
     maxMembers?: number | undefined;
 }, {
-    image: {
-        uri: string;
-        storagePath: string;
-        contentType: string;
-        createdAt?: import("../types").Timestamp | undefined;
-        updatedAt?: import("../types").Timestamp | undefined;
-        title?: string | undefined;
-        sizeBytes?: number | undefined;
-        metadata?: {
-            width?: number | undefined;
-            height?: number | undefined;
-            durationMs?: number | undefined;
-            transcript?: string | undefined;
-            meterings?: {
-                db: number;
-                timestampMs?: number | undefined;
-            }[] | undefined;
-        } | undefined;
-    };
     name: string;
     membersById: Record<string, {
         userId: string;
@@ -763,6 +744,25 @@ export declare const supportGroupSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
+    image?: {
+        uri: string;
+        storagePath: string;
+        contentType: string;
+        createdAt?: import("../types").Timestamp | undefined;
+        updatedAt?: import("../types").Timestamp | undefined;
+        title?: string | undefined;
+        sizeBytes?: number | undefined;
+        metadata?: {
+            width?: number | undefined;
+            height?: number | undefined;
+            durationMs?: number | undefined;
+            transcript?: string | undefined;
+            meterings?: {
+                db: number;
+                timestampMs?: number | undefined;
+            }[] | undefined;
+        } | undefined;
+    } | undefined;
     type?: "system" | "coach" | "social" | "alignment" | undefined;
     description?: string | undefined;
     isTemplate?: boolean | undefined;

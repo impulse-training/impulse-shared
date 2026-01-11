@@ -61,7 +61,7 @@ export const supportGroupSchema = z.object({
   membersById: objectOf(supportGroupMemberSchema),
   memberIds: z.array(z.string()).default([]), // For efficient array-contains queries
   unreadMessageCountsById: objectOf(z.number()),
-  image: attachmentSchema,
+  image: attachmentSchema.optional(),
   isPublic: z.boolean().optional(),
   isTemplate: z.boolean().optional().default(false),
   inviteCode: z.string().optional(),
