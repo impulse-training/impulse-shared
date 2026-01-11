@@ -19,6 +19,7 @@ export * from "./llmAuditEntries";
 export * from "./log";
 export * from "./memory";
 export * from "./notification";
+export * from "./paymentToken";
 export * from "./plan";
 export * from "./question";
 export * from "./session";
