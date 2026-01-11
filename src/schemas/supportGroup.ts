@@ -69,6 +69,7 @@ export const supportGroupSchema = z.object({
   tacticCount: z.number().default(0),
   createdAt: timestampSchema.optional(),
   updatedAt: timestampSchema.optional(),
+  archivedAt: timestampSchema.optional(),
 
   // Matching criteria for automatic group assignment
   // References to behavior topics this group focuses on
