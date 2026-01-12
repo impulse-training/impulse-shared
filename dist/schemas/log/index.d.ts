@@ -276,6 +276,8 @@ export declare const logSchemas: {
                 content: z.ZodOptional<z.ZodString>;
                 icon: z.ZodOptional<z.ZodString>;
                 tone: z.ZodOptional<z.ZodEnum<["info", "success", "warning", "neutral"]>>;
+                ctaLabel: z.ZodOptional<z.ZodString>;
+                ctaPath: z.ZodOptional<z.ZodString>;
             }, "passthrough", z.ZodTypeAny, z.objectOutputType<{
                 title: z.ZodOptional<z.ZodString>;
                 body: z.ZodOptional<z.ZodString>;
@@ -283,6 +285,8 @@ export declare const logSchemas: {
                 content: z.ZodOptional<z.ZodString>;
                 icon: z.ZodOptional<z.ZodString>;
                 tone: z.ZodOptional<z.ZodEnum<["info", "success", "warning", "neutral"]>>;
+                ctaLabel: z.ZodOptional<z.ZodString>;
+                ctaPath: z.ZodOptional<z.ZodString>;
             }, z.ZodTypeAny, "passthrough">, z.objectInputType<{
                 title: z.ZodOptional<z.ZodString>;
                 body: z.ZodOptional<z.ZodString>;
@@ -290,6 +294,8 @@ export declare const logSchemas: {
                 content: z.ZodOptional<z.ZodString>;
                 icon: z.ZodOptional<z.ZodString>;
                 tone: z.ZodOptional<z.ZodEnum<["info", "success", "warning", "neutral"]>>;
+                ctaLabel: z.ZodOptional<z.ZodString>;
+                ctaPath: z.ZodOptional<z.ZodString>;
             }, z.ZodTypeAny, "passthrough">>]>;
         }, "strip", z.ZodTypeAny, {
             message: string | z.objectOutputType<{
@@ -299,6 +305,8 @@ export declare const logSchemas: {
                 content: z.ZodOptional<z.ZodString>;
                 icon: z.ZodOptional<z.ZodString>;
                 tone: z.ZodOptional<z.ZodEnum<["info", "success", "warning", "neutral"]>>;
+                ctaLabel: z.ZodOptional<z.ZodString>;
+                ctaPath: z.ZodOptional<z.ZodString>;
             }, z.ZodTypeAny, "passthrough">;
         }, {
             message: string | z.objectInputType<{
@@ -308,6 +316,8 @@ export declare const logSchemas: {
                 content: z.ZodOptional<z.ZodString>;
                 icon: z.ZodOptional<z.ZodString>;
                 tone: z.ZodOptional<z.ZodEnum<["info", "success", "warning", "neutral"]>>;
+                ctaLabel: z.ZodOptional<z.ZodString>;
+                ctaPath: z.ZodOptional<z.ZodString>;
             }, z.ZodTypeAny, "passthrough">;
         }>;
     }, "strip", z.ZodTypeAny, {
@@ -325,6 +335,8 @@ export declare const logSchemas: {
                 content: z.ZodOptional<z.ZodString>;
                 icon: z.ZodOptional<z.ZodString>;
                 tone: z.ZodOptional<z.ZodEnum<["info", "success", "warning", "neutral"]>>;
+                ctaLabel: z.ZodOptional<z.ZodString>;
+                ctaPath: z.ZodOptional<z.ZodString>;
             }, z.ZodTypeAny, "passthrough">;
         };
         id?: string | undefined;
@@ -347,106 +359,8 @@ export declare const logSchemas: {
                 content: z.ZodOptional<z.ZodString>;
                 icon: z.ZodOptional<z.ZodString>;
                 tone: z.ZodOptional<z.ZodEnum<["info", "success", "warning", "neutral"]>>;
-            }, z.ZodTypeAny, "passthrough">;
-        };
-        id?: string | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
-        tacticId?: string | undefined;
-        behaviorIds?: string[] | undefined;
-        callLogDocPath?: string | undefined;
-    }>;
-    eligible_to_join_impulse: z.ZodObject<{
-        id: z.ZodOptional<z.ZodString>;
-        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-        userId: z.ZodString;
-        timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-        dateString: z.ZodString;
-        tacticId: z.ZodOptional<z.ZodString>;
-        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-        callLogDocPath: z.ZodOptional<z.ZodString>;
-        isDisplayable: z.ZodLiteral<true>;
-    } & {
-        type: z.ZodLiteral<"eligible_to_join_impulse">;
-        data: z.ZodObject<{
-            message: z.ZodUnion<[z.ZodString, z.ZodObject<{
-                title: z.ZodOptional<z.ZodString>;
-                body: z.ZodOptional<z.ZodString>;
-                message: z.ZodOptional<z.ZodString>;
-                content: z.ZodOptional<z.ZodString>;
-                icon: z.ZodOptional<z.ZodString>;
-                tone: z.ZodOptional<z.ZodEnum<["info", "success", "warning", "neutral"]>>;
-            }, "passthrough", z.ZodTypeAny, z.objectOutputType<{
-                title: z.ZodOptional<z.ZodString>;
-                body: z.ZodOptional<z.ZodString>;
-                message: z.ZodOptional<z.ZodString>;
-                content: z.ZodOptional<z.ZodString>;
-                icon: z.ZodOptional<z.ZodString>;
-                tone: z.ZodOptional<z.ZodEnum<["info", "success", "warning", "neutral"]>>;
-            }, z.ZodTypeAny, "passthrough">, z.objectInputType<{
-                title: z.ZodOptional<z.ZodString>;
-                body: z.ZodOptional<z.ZodString>;
-                message: z.ZodOptional<z.ZodString>;
-                content: z.ZodOptional<z.ZodString>;
-                icon: z.ZodOptional<z.ZodString>;
-                tone: z.ZodOptional<z.ZodEnum<["info", "success", "warning", "neutral"]>>;
-            }, z.ZodTypeAny, "passthrough">>]>;
-        }, "strip", z.ZodTypeAny, {
-            message: string | z.objectOutputType<{
-                title: z.ZodOptional<z.ZodString>;
-                body: z.ZodOptional<z.ZodString>;
-                message: z.ZodOptional<z.ZodString>;
-                content: z.ZodOptional<z.ZodString>;
-                icon: z.ZodOptional<z.ZodString>;
-                tone: z.ZodOptional<z.ZodEnum<["info", "success", "warning", "neutral"]>>;
-            }, z.ZodTypeAny, "passthrough">;
-        }, {
-            message: string | z.objectInputType<{
-                title: z.ZodOptional<z.ZodString>;
-                body: z.ZodOptional<z.ZodString>;
-                message: z.ZodOptional<z.ZodString>;
-                content: z.ZodOptional<z.ZodString>;
-                icon: z.ZodOptional<z.ZodString>;
-                tone: z.ZodOptional<z.ZodEnum<["info", "success", "warning", "neutral"]>>;
-            }, z.ZodTypeAny, "passthrough">;
-        }>;
-    }, "strip", z.ZodTypeAny, {
-        createdAt: import("../../types").Timestamp;
-        updatedAt: import("../../types").Timestamp;
-        type: "eligible_to_join_impulse";
-        userId: string;
-        dateString: string;
-        isDisplayable: true;
-        data: {
-            message: string | z.objectOutputType<{
-                title: z.ZodOptional<z.ZodString>;
-                body: z.ZodOptional<z.ZodString>;
-                message: z.ZodOptional<z.ZodString>;
-                content: z.ZodOptional<z.ZodString>;
-                icon: z.ZodOptional<z.ZodString>;
-                tone: z.ZodOptional<z.ZodEnum<["info", "success", "warning", "neutral"]>>;
-            }, z.ZodTypeAny, "passthrough">;
-        };
-        id?: string | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
-        tacticId?: string | undefined;
-        behaviorIds?: string[] | undefined;
-        callLogDocPath?: string | undefined;
-    }, {
-        createdAt: import("../../types").Timestamp;
-        updatedAt: import("../../types").Timestamp;
-        type: "eligible_to_join_impulse";
-        userId: string;
-        dateString: string;
-        isDisplayable: true;
-        data: {
-            message: string | z.objectInputType<{
-                title: z.ZodOptional<z.ZodString>;
-                body: z.ZodOptional<z.ZodString>;
-                message: z.ZodOptional<z.ZodString>;
-                content: z.ZodOptional<z.ZodString>;
-                icon: z.ZodOptional<z.ZodString>;
-                tone: z.ZodOptional<z.ZodEnum<["info", "success", "warning", "neutral"]>>;
+                ctaLabel: z.ZodOptional<z.ZodString>;
+                ctaPath: z.ZodOptional<z.ZodString>;
             }, z.ZodTypeAny, "passthrough">;
         };
         id?: string | undefined;
@@ -12508,6 +12422,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             content: z.ZodOptional<z.ZodString>;
             icon: z.ZodOptional<z.ZodString>;
             tone: z.ZodOptional<z.ZodEnum<["info", "success", "warning", "neutral"]>>;
+            ctaLabel: z.ZodOptional<z.ZodString>;
+            ctaPath: z.ZodOptional<z.ZodString>;
         }, "passthrough", z.ZodTypeAny, z.objectOutputType<{
             title: z.ZodOptional<z.ZodString>;
             body: z.ZodOptional<z.ZodString>;
@@ -12515,6 +12431,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             content: z.ZodOptional<z.ZodString>;
             icon: z.ZodOptional<z.ZodString>;
             tone: z.ZodOptional<z.ZodEnum<["info", "success", "warning", "neutral"]>>;
+            ctaLabel: z.ZodOptional<z.ZodString>;
+            ctaPath: z.ZodOptional<z.ZodString>;
         }, z.ZodTypeAny, "passthrough">, z.objectInputType<{
             title: z.ZodOptional<z.ZodString>;
             body: z.ZodOptional<z.ZodString>;
@@ -12522,6 +12440,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             content: z.ZodOptional<z.ZodString>;
             icon: z.ZodOptional<z.ZodString>;
             tone: z.ZodOptional<z.ZodEnum<["info", "success", "warning", "neutral"]>>;
+            ctaLabel: z.ZodOptional<z.ZodString>;
+            ctaPath: z.ZodOptional<z.ZodString>;
         }, z.ZodTypeAny, "passthrough">>]>;
     }, "strip", z.ZodTypeAny, {
         message: string | z.objectOutputType<{
@@ -12531,6 +12451,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             content: z.ZodOptional<z.ZodString>;
             icon: z.ZodOptional<z.ZodString>;
             tone: z.ZodOptional<z.ZodEnum<["info", "success", "warning", "neutral"]>>;
+            ctaLabel: z.ZodOptional<z.ZodString>;
+            ctaPath: z.ZodOptional<z.ZodString>;
         }, z.ZodTypeAny, "passthrough">;
     }, {
         message: string | z.objectInputType<{
@@ -12540,6 +12462,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             content: z.ZodOptional<z.ZodString>;
             icon: z.ZodOptional<z.ZodString>;
             tone: z.ZodOptional<z.ZodEnum<["info", "success", "warning", "neutral"]>>;
+            ctaLabel: z.ZodOptional<z.ZodString>;
+            ctaPath: z.ZodOptional<z.ZodString>;
         }, z.ZodTypeAny, "passthrough">;
     }>;
 }, "strip", z.ZodTypeAny, {
@@ -12557,6 +12481,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             content: z.ZodOptional<z.ZodString>;
             icon: z.ZodOptional<z.ZodString>;
             tone: z.ZodOptional<z.ZodEnum<["info", "success", "warning", "neutral"]>>;
+            ctaLabel: z.ZodOptional<z.ZodString>;
+            ctaPath: z.ZodOptional<z.ZodString>;
         }, z.ZodTypeAny, "passthrough">;
     };
     id?: string | undefined;
@@ -12579,105 +12505,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             content: z.ZodOptional<z.ZodString>;
             icon: z.ZodOptional<z.ZodString>;
             tone: z.ZodOptional<z.ZodEnum<["info", "success", "warning", "neutral"]>>;
-        }, z.ZodTypeAny, "passthrough">;
-    };
-    id?: string | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
-    tacticId?: string | undefined;
-    behaviorIds?: string[] | undefined;
-    callLogDocPath?: string | undefined;
-}>, z.ZodObject<{
-    id: z.ZodOptional<z.ZodString>;
-    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-    userId: z.ZodString;
-    timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-    dateString: z.ZodString;
-    tacticId: z.ZodOptional<z.ZodString>;
-    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-    callLogDocPath: z.ZodOptional<z.ZodString>;
-    isDisplayable: z.ZodLiteral<true>;
-} & {
-    type: z.ZodLiteral<"eligible_to_join_impulse">;
-    data: z.ZodObject<{
-        message: z.ZodUnion<[z.ZodString, z.ZodObject<{
-            title: z.ZodOptional<z.ZodString>;
-            body: z.ZodOptional<z.ZodString>;
-            message: z.ZodOptional<z.ZodString>;
-            content: z.ZodOptional<z.ZodString>;
-            icon: z.ZodOptional<z.ZodString>;
-            tone: z.ZodOptional<z.ZodEnum<["info", "success", "warning", "neutral"]>>;
-        }, "passthrough", z.ZodTypeAny, z.objectOutputType<{
-            title: z.ZodOptional<z.ZodString>;
-            body: z.ZodOptional<z.ZodString>;
-            message: z.ZodOptional<z.ZodString>;
-            content: z.ZodOptional<z.ZodString>;
-            icon: z.ZodOptional<z.ZodString>;
-            tone: z.ZodOptional<z.ZodEnum<["info", "success", "warning", "neutral"]>>;
-        }, z.ZodTypeAny, "passthrough">, z.objectInputType<{
-            title: z.ZodOptional<z.ZodString>;
-            body: z.ZodOptional<z.ZodString>;
-            message: z.ZodOptional<z.ZodString>;
-            content: z.ZodOptional<z.ZodString>;
-            icon: z.ZodOptional<z.ZodString>;
-            tone: z.ZodOptional<z.ZodEnum<["info", "success", "warning", "neutral"]>>;
-        }, z.ZodTypeAny, "passthrough">>]>;
-    }, "strip", z.ZodTypeAny, {
-        message: string | z.objectOutputType<{
-            title: z.ZodOptional<z.ZodString>;
-            body: z.ZodOptional<z.ZodString>;
-            message: z.ZodOptional<z.ZodString>;
-            content: z.ZodOptional<z.ZodString>;
-            icon: z.ZodOptional<z.ZodString>;
-            tone: z.ZodOptional<z.ZodEnum<["info", "success", "warning", "neutral"]>>;
-        }, z.ZodTypeAny, "passthrough">;
-    }, {
-        message: string | z.objectInputType<{
-            title: z.ZodOptional<z.ZodString>;
-            body: z.ZodOptional<z.ZodString>;
-            message: z.ZodOptional<z.ZodString>;
-            content: z.ZodOptional<z.ZodString>;
-            icon: z.ZodOptional<z.ZodString>;
-            tone: z.ZodOptional<z.ZodEnum<["info", "success", "warning", "neutral"]>>;
-        }, z.ZodTypeAny, "passthrough">;
-    }>;
-}, "strip", z.ZodTypeAny, {
-    createdAt: import("../../types").Timestamp;
-    updatedAt: import("../../types").Timestamp;
-    type: "eligible_to_join_impulse";
-    userId: string;
-    dateString: string;
-    isDisplayable: true;
-    data: {
-        message: string | z.objectOutputType<{
-            title: z.ZodOptional<z.ZodString>;
-            body: z.ZodOptional<z.ZodString>;
-            message: z.ZodOptional<z.ZodString>;
-            content: z.ZodOptional<z.ZodString>;
-            icon: z.ZodOptional<z.ZodString>;
-            tone: z.ZodOptional<z.ZodEnum<["info", "success", "warning", "neutral"]>>;
-        }, z.ZodTypeAny, "passthrough">;
-    };
-    id?: string | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
-    tacticId?: string | undefined;
-    behaviorIds?: string[] | undefined;
-    callLogDocPath?: string | undefined;
-}, {
-    createdAt: import("../../types").Timestamp;
-    updatedAt: import("../../types").Timestamp;
-    type: "eligible_to_join_impulse";
-    userId: string;
-    dateString: string;
-    isDisplayable: true;
-    data: {
-        message: string | z.objectInputType<{
-            title: z.ZodOptional<z.ZodString>;
-            body: z.ZodOptional<z.ZodString>;
-            message: z.ZodOptional<z.ZodString>;
-            content: z.ZodOptional<z.ZodString>;
-            icon: z.ZodOptional<z.ZodString>;
-            tone: z.ZodOptional<z.ZodEnum<["info", "success", "warning", "neutral"]>>;
+            ctaLabel: z.ZodOptional<z.ZodString>;
+            ctaPath: z.ZodOptional<z.ZodString>;
         }, z.ZodTypeAny, "passthrough">;
     };
     id?: string | undefined;

@@ -1,6 +1,7 @@
 import { z } from "zod";
 export declare const threadBaseSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
+    type: z.ZodDefault<z.ZodEnum<["impulse", "general", "onboarding", "recap", "behavior", "dayRecap", "timePlan", "locationPlan", "adjustment"]>>;
     title: z.ZodOptional<z.ZodString>;
     plan: z.ZodOptional<z.ZodUnion<[z.ZodIntersection<z.ZodObject<{
         id: z.ZodString;
@@ -373,7 +374,7 @@ export declare const threadBaseSchema: z.ZodObject<{
         lastUsedAt?: import("../../types").Timestamp | undefined;
         deletedAt?: import("../../types").Timestamp | undefined;
     }>>]>>;
-    type: z.ZodDefault<z.ZodEnum<["impulse", "general", "onboarding", "recap", "behavior", "dayRecap", "timePlan", "locationPlan", "adjustment"]>>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     date: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     dateString: z.ZodString;
     userId: z.ZodString;
@@ -2231,6 +2232,7 @@ export declare const threadBaseSchema: z.ZodObject<{
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
     title?: string | undefined;
+    behaviorIds?: string[] | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
     plan?: ({
@@ -2650,6 +2652,7 @@ export declare const threadBaseSchema: z.ZodObject<{
     updatedAt?: import("../../types").Timestamp | undefined;
     title?: string | undefined;
     type?: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
+    behaviorIds?: string[] | undefined;
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;

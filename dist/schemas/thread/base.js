@@ -22,11 +22,12 @@ const threadTypeSchema = zod_1.z.enum([
 // Thread schema
 exports.threadBaseSchema = zod_1.z.object({
     id: zod_1.z.string().optional(),
+    type: threadTypeSchema.default("general"),
     // Optional title for the thread (e.g., plan name)
     title: zod_1.z.string().optional(),
     // Any thread may have an optional plan
     plan: plan_1.planWithIdSchema.optional(),
-    type: threadTypeSchema.default("general"),
+    behaviorIds: zod_1.z.array(zod_1.z.string()).optional(),
     date: timestampSchema_1.timestampSchema,
     dateString: zod_1.z.string(),
     userId: zod_1.z.string(),

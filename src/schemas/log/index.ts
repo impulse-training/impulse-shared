@@ -6,7 +6,6 @@ import { LinkLog, linkLogSchema } from "./linkLog";
 import {
   AssistantMessageLog,
   assistantMessageLogSchema,
-  eligibleToJoinImpulseLogSchema,
   MessageLog,
   SystemMessageLog,
   systemMessageLogSchema,
@@ -40,7 +39,6 @@ export const logSchemas = {
   user: userMessageLogSchema,
   assistant_message: assistantMessageLogSchema,
   system_message: systemMessageLogSchema,
-  eligible_to_join_impulse: eligibleToJoinImpulseLogSchema,
   call: callLogSchema,
   tool_call: toolCallLogSchema,
   tactic: tacticLogSchema,
@@ -109,7 +107,6 @@ export const logSchema = z.discriminatedUnion("type", [
   userMessageLogSchema,
   assistantMessageLogSchema,
   systemMessageLogSchema,
-  eligibleToJoinImpulseLogSchema,
   callLogSchema,
   toolCallLogSchema,
   tacticLogSchema,

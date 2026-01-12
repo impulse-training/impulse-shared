@@ -21,11 +21,12 @@ const threadTypeSchema = z.enum([
 // Thread schema
 export const threadBaseSchema = z.object({
   id: z.string().optional(),
+  type: threadTypeSchema.default("general"),
   // Optional title for the thread (e.g., plan name)
   title: z.string().optional(),
   // Any thread may have an optional plan
   plan: planWithIdSchema.optional(),
-  type: threadTypeSchema.default("general"),
+  behaviorIds: z.array(z.string()).optional(),
   date: timestampSchema,
   dateString: z.string(),
   userId: z.string(),

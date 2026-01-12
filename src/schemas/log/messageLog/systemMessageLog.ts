@@ -11,6 +11,8 @@ export const systemMessageContentSchema = z.union([
       content: z.string().optional(),
       icon: z.string().optional(),
       tone: z.enum(["info", "success", "warning", "neutral"]).optional(),
+      ctaLabel: z.string().optional(),
+      ctaPath: z.string().optional(),
     })
     .passthrough(),
 ]);
