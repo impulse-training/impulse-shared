@@ -110,6 +110,25 @@ export const behaviorStateMetaSchema = z.object({
 });
 export type BehaviorStateMeta = z.infer<typeof behaviorStateMetaSchema>;
 
+export const recentSliceSchema = z.object({
+  days: z
+    .array(
+      z.object({
+        offset: z.number().int().min(0),
+        measured: z.number(),
+        status: z.enum(["MET", "NOT_MET_FAIL", "UNSPECIFIED_FOR_DAY"]),
+      })
+    )
+    .max(5),
+
+  direction: z.enum(["IMPROVING", "DECLINING", "FLAT", "MIXED"]),
+
+  contrast: z.enum(["LOW", "MODERATE", "STRONG"]),
+
+  salience: z.enum(["LOW", "MEDIUM", "HIGH"]),
+});
+export type RecentSlice = z.infer<typeof recentSliceSchema>;
+
 // Window size constants
 export const WINDOW_SIZES = {
   short: 7,
@@ -132,6 +151,8 @@ export const behaviorStateSchema = z.object({
     medium: behaviorWindowSchema,
     long: behaviorWindowSchema,
   }),
+
+  recentSlice: recentSliceSchema.optional(),
 
   meta: behaviorStateMetaSchema,
 });

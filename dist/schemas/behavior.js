@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isBehavior = exports.behaviorSchema = exports.behaviorStateSchema = exports.WINDOW_SIZES = exports.behaviorStateMetaSchema = exports.behaviorStateGoalSchema = exports.behaviorWindowSchema = exports.behaviorMeaningSchema = exports.streaksSchema = exports.behaviorStateGoalTypeSchema = exports.dataCompletenessSchema = exports.stabilitySchema = exports.trendSchema = exports.behaviorTemplateSchema = exports.trackingTypes = void 0;
+exports.isBehavior = exports.behaviorSchema = exports.behaviorStateSchema = exports.WINDOW_SIZES = exports.recentSliceSchema = exports.behaviorStateMetaSchema = exports.behaviorStateGoalSchema = exports.behaviorWindowSchema = exports.behaviorMeaningSchema = exports.streaksSchema = exports.behaviorStateGoalTypeSchema = exports.dataCompletenessSchema = exports.stabilitySchema = exports.trendSchema = exports.behaviorTemplateSchema = exports.trackingTypes = void 0;
 exports.isBehaviorState = isBehaviorState;
 const zod_1 = require("zod");
 const documentReferenceSchema_1 = require("../utils/documentReferenceSchema");
@@ -90,6 +90,18 @@ exports.behaviorStateMetaSchema = zod_1.z.object({
     lastUpdatedAt: timestampSchema_1.timestampSchema,
     dataCompleteness: exports.dataCompletenessSchema,
 });
+exports.recentSliceSchema = zod_1.z.object({
+    days: zod_1.z
+        .array(zod_1.z.object({
+        offset: zod_1.z.number().int().min(0),
+        measured: zod_1.z.number(),
+        status: zod_1.z.enum(["MET", "NOT_MET_FAIL", "UNSPECIFIED_FOR_DAY"]),
+    }))
+        .max(5),
+    direction: zod_1.z.enum(["IMPROVING", "DECLINING", "FLAT", "MIXED"]),
+    contrast: zod_1.z.enum(["LOW", "MODERATE", "STRONG"]),
+    salience: zod_1.z.enum(["LOW", "MEDIUM", "HIGH"]),
+});
 // Window size constants
 exports.WINDOW_SIZES = {
     short: 7,
@@ -107,6 +119,7 @@ exports.behaviorStateSchema = zod_1.z.object({
         medium: exports.behaviorWindowSchema,
         long: exports.behaviorWindowSchema,
     }),
+    recentSlice: exports.recentSliceSchema.optional(),
     meta: exports.behaviorStateMetaSchema,
 });
 function isBehaviorState(value) {

@@ -2,6 +2,7 @@ import { z } from "zod";
 import { BehaviorLog } from "./behaviorLog";
 import { BreathingLog } from "./breathingLog";
 import { CallLog } from "./callLog";
+import { EnableNotificationsCtaLog } from "./enableNotificationsCtaLog";
 import { LinkLog } from "./linkLog";
 import { AssistantMessageLog, MessageLog, SystemMessageLog, UserMessageLog } from "./messageLog";
 import { NotifySupportGroupLog } from "./notifySupportGroupLog";
@@ -12144,13 +12145,70 @@ export declare const logSchemas: {
         behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
     }>;
+    enable_notifications_cta: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        dateString: z.ZodString;
+        tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        callLogDocPath: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"enable_notifications_cta">;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            supportGroupId: z.ZodString;
+            triggeredByUserMessageLogId: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
+            supportGroupId: string;
+            triggeredByUserMessageLogId: string;
+        }, {
+            supportGroupId: string;
+            triggeredByUserMessageLogId: string;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "enable_notifications_cta";
+        userId: string;
+        dateString: string;
+        isDisplayable: true;
+        data: {
+            supportGroupId: string;
+            triggeredByUserMessageLogId: string;
+        };
+        id?: string | undefined;
+        timestamp?: import("../../types").Timestamp | undefined;
+        tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        callLogDocPath?: string | undefined;
+    }, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "enable_notifications_cta";
+        userId: string;
+        dateString: string;
+        isDisplayable: true;
+        data: {
+            supportGroupId: string;
+            triggeredByUserMessageLogId: string;
+        };
+        id?: string | undefined;
+        timestamp?: import("../../types").Timestamp | undefined;
+        tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        callLogDocPath?: string | undefined;
+    }>;
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | BehaviorLog | BreathingLog | ResistedLog | QuestionsLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | ReadyToDebriefLog | SupportGroupDaySummaryLog;
+export type Log = TacticLog | BehaviorLog | BreathingLog | ResistedLog | QuestionsLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | ReadyToDebriefLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog;
 export * from "./behaviorLog";
 export * from "./breathingLog";
 export * from "./callLog";
+export * from "./enableNotificationsCtaLog";
 export * from "./linkLog";
 export * from "./messageLog";
 export * from "./notifySupportGroupLog";
@@ -21442,6 +21500,61 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    dateString: z.ZodString;
+    tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    callLogDocPath: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"enable_notifications_cta">;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        supportGroupId: z.ZodString;
+        triggeredByUserMessageLogId: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        supportGroupId: string;
+        triggeredByUserMessageLogId: string;
+    }, {
+        supportGroupId: string;
+        triggeredByUserMessageLogId: string;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "enable_notifications_cta";
+    userId: string;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        supportGroupId: string;
+        triggeredByUserMessageLogId: string;
+    };
+    id?: string | undefined;
+    timestamp?: import("../../types").Timestamp | undefined;
+    tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    callLogDocPath?: string | undefined;
+}, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "enable_notifications_cta";
+    userId: string;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        supportGroupId: string;
+        triggeredByUserMessageLogId: string;
+    };
+    id?: string | undefined;
+    timestamp?: import("../../types").Timestamp | undefined;
+    tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    callLogDocPath?: string | undefined;
 }>]>;
 export declare const logIsAssistantMessageLog: (value: Omit<Log, "id">) => value is AssistantMessageLog;
 export declare const isValidAssistantMessageLog: (value: unknown) => value is AssistantMessageLog;
@@ -21481,3 +21594,5 @@ export declare const logIsResistedLog: (value: Omit<Log, "id">) => value is Resi
 export declare const isValidResistedLog: (value: unknown) => value is ResistedLog;
 export declare const logIsSupportGroupDaySummaryLog: (value: Omit<Log, "id">) => value is SupportGroupDaySummaryLog;
 export declare const isValidSupportGroupDaySummaryLog: (value: unknown) => value is SupportGroupDaySummaryLog;
+export declare const logIsEnableNotificationsCtaLog: (value: Omit<Log, "id">) => value is EnableNotificationsCtaLog;
+export declare const isValidEnableNotificationsCtaLog: (value: unknown) => value is EnableNotificationsCtaLog;

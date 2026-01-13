@@ -186,6 +186,43 @@ export declare const behaviorStateMetaSchema: z.ZodObject<{
     dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
 }>;
 export type BehaviorStateMeta = z.infer<typeof behaviorStateMetaSchema>;
+export declare const recentSliceSchema: z.ZodObject<{
+    days: z.ZodArray<z.ZodObject<{
+        offset: z.ZodNumber;
+        measured: z.ZodNumber;
+        status: z.ZodEnum<["MET", "NOT_MET_FAIL", "UNSPECIFIED_FOR_DAY"]>;
+    }, "strip", z.ZodTypeAny, {
+        status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
+        offset: number;
+        measured: number;
+    }, {
+        status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
+        offset: number;
+        measured: number;
+    }>, "many">;
+    direction: z.ZodEnum<["IMPROVING", "DECLINING", "FLAT", "MIXED"]>;
+    contrast: z.ZodEnum<["LOW", "MODERATE", "STRONG"]>;
+    salience: z.ZodEnum<["LOW", "MEDIUM", "HIGH"]>;
+}, "strip", z.ZodTypeAny, {
+    days: {
+        status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
+        offset: number;
+        measured: number;
+    }[];
+    direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
+    contrast: "LOW" | "MODERATE" | "STRONG";
+    salience: "HIGH" | "MEDIUM" | "LOW";
+}, {
+    days: {
+        status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
+        offset: number;
+        measured: number;
+    }[];
+    direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
+    contrast: "LOW" | "MODERATE" | "STRONG";
+    salience: "HIGH" | "MEDIUM" | "LOW";
+}>;
+export type RecentSlice = z.infer<typeof recentSliceSchema>;
 export declare const WINDOW_SIZES: {
     readonly short: 7;
     readonly medium: 30;
@@ -526,6 +563,42 @@ export declare const behaviorStateSchema: z.ZodObject<{
             averageMeasured?: number | undefined;
         };
     }>;
+    recentSlice: z.ZodOptional<z.ZodObject<{
+        days: z.ZodArray<z.ZodObject<{
+            offset: z.ZodNumber;
+            measured: z.ZodNumber;
+            status: z.ZodEnum<["MET", "NOT_MET_FAIL", "UNSPECIFIED_FOR_DAY"]>;
+        }, "strip", z.ZodTypeAny, {
+            status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
+            offset: number;
+            measured: number;
+        }, {
+            status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
+            offset: number;
+            measured: number;
+        }>, "many">;
+        direction: z.ZodEnum<["IMPROVING", "DECLINING", "FLAT", "MIXED"]>;
+        contrast: z.ZodEnum<["LOW", "MODERATE", "STRONG"]>;
+        salience: z.ZodEnum<["LOW", "MEDIUM", "HIGH"]>;
+    }, "strip", z.ZodTypeAny, {
+        days: {
+            status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
+            offset: number;
+            measured: number;
+        }[];
+        direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
+        contrast: "LOW" | "MODERATE" | "STRONG";
+        salience: "HIGH" | "MEDIUM" | "LOW";
+    }, {
+        days: {
+            status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
+            offset: number;
+            measured: number;
+        }[];
+        direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
+        contrast: "LOW" | "MODERATE" | "STRONG";
+        salience: "HIGH" | "MEDIUM" | "LOW";
+    }>>;
     meta: z.ZodObject<{
         lastUpdatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
         dataCompleteness: z.ZodEnum<["HIGH", "MEDIUM", "LOW"]>;
@@ -612,6 +685,16 @@ export declare const behaviorStateSchema: z.ZodObject<{
             highRiskContexts?: string[] | undefined;
         };
     } | undefined;
+    recentSlice?: {
+        days: {
+            status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
+            offset: number;
+            measured: number;
+        }[];
+        direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
+        contrast: "LOW" | "MODERATE" | "STRONG";
+        salience: "HIGH" | "MEDIUM" | "LOW";
+    } | undefined;
 }, {
     behaviorId: string;
     windows: {
@@ -687,6 +770,16 @@ export declare const behaviorStateSchema: z.ZodObject<{
             commonTriggers?: string[] | undefined;
             highRiskContexts?: string[] | undefined;
         };
+    } | undefined;
+    recentSlice?: {
+        days: {
+            status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
+            offset: number;
+            measured: number;
+        }[];
+        direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
+        contrast: "LOW" | "MODERATE" | "STRONG";
+        salience: "HIGH" | "MEDIUM" | "LOW";
     } | undefined;
 }>;
 export type BehaviorState = z.infer<typeof behaviorStateSchema>;
@@ -1140,6 +1233,42 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
                 averageMeasured?: number | undefined;
             };
         }>;
+        recentSlice: z.ZodOptional<z.ZodObject<{
+            days: z.ZodArray<z.ZodObject<{
+                offset: z.ZodNumber;
+                measured: z.ZodNumber;
+                status: z.ZodEnum<["MET", "NOT_MET_FAIL", "UNSPECIFIED_FOR_DAY"]>;
+            }, "strip", z.ZodTypeAny, {
+                status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
+                offset: number;
+                measured: number;
+            }, {
+                status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
+                offset: number;
+                measured: number;
+            }>, "many">;
+            direction: z.ZodEnum<["IMPROVING", "DECLINING", "FLAT", "MIXED"]>;
+            contrast: z.ZodEnum<["LOW", "MODERATE", "STRONG"]>;
+            salience: z.ZodEnum<["LOW", "MEDIUM", "HIGH"]>;
+        }, "strip", z.ZodTypeAny, {
+            days: {
+                status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
+                offset: number;
+                measured: number;
+            }[];
+            direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
+            contrast: "LOW" | "MODERATE" | "STRONG";
+            salience: "HIGH" | "MEDIUM" | "LOW";
+        }, {
+            days: {
+                status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
+                offset: number;
+                measured: number;
+            }[];
+            direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
+            contrast: "LOW" | "MODERATE" | "STRONG";
+            salience: "HIGH" | "MEDIUM" | "LOW";
+        }>>;
         meta: z.ZodObject<{
             lastUpdatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
             dataCompleteness: z.ZodEnum<["HIGH", "MEDIUM", "LOW"]>;
@@ -1226,6 +1355,16 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
                 highRiskContexts?: string[] | undefined;
             };
         } | undefined;
+        recentSlice?: {
+            days: {
+                status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
+                offset: number;
+                measured: number;
+            }[];
+            direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
+            contrast: "LOW" | "MODERATE" | "STRONG";
+            salience: "HIGH" | "MEDIUM" | "LOW";
+        } | undefined;
     }, {
         behaviorId: string;
         windows: {
@@ -1301,6 +1440,16 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
                 commonTriggers?: string[] | undefined;
                 highRiskContexts?: string[] | undefined;
             };
+        } | undefined;
+        recentSlice?: {
+            days: {
+                status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
+                offset: number;
+                measured: number;
+            }[];
+            direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
+            contrast: "LOW" | "MODERATE" | "STRONG";
+            salience: "HIGH" | "MEDIUM" | "LOW";
         } | undefined;
     }>>;
 }, "strip", z.ZodTypeAny, {
@@ -1425,6 +1574,16 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
                 highRiskContexts?: string[] | undefined;
             };
         } | undefined;
+        recentSlice?: {
+            days: {
+                status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
+                offset: number;
+                measured: number;
+            }[];
+            direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
+            contrast: "LOW" | "MODERATE" | "STRONG";
+            salience: "HIGH" | "MEDIUM" | "LOW";
+        } | undefined;
     } | undefined;
 }, {
     trackingType: "counter" | "timer";
@@ -1547,6 +1706,16 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
                 commonTriggers?: string[] | undefined;
                 highRiskContexts?: string[] | undefined;
             };
+        } | undefined;
+        recentSlice?: {
+            days: {
+                status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
+                offset: number;
+                measured: number;
+            }[];
+            direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
+            contrast: "LOW" | "MODERATE" | "STRONG";
+            salience: "HIGH" | "MEDIUM" | "LOW";
         } | undefined;
     } | undefined;
 }>, {
@@ -1671,6 +1840,16 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
                 highRiskContexts?: string[] | undefined;
             };
         } | undefined;
+        recentSlice?: {
+            days: {
+                status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
+                offset: number;
+                measured: number;
+            }[];
+            direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
+            contrast: "LOW" | "MODERATE" | "STRONG";
+            salience: "HIGH" | "MEDIUM" | "LOW";
+        } | undefined;
     } | undefined;
 }, {
     trackingType: "counter" | "timer";
@@ -1793,6 +1972,16 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
                 commonTriggers?: string[] | undefined;
                 highRiskContexts?: string[] | undefined;
             };
+        } | undefined;
+        recentSlice?: {
+            days: {
+                status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
+                offset: number;
+                measured: number;
+            }[];
+            direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
+            contrast: "LOW" | "MODERATE" | "STRONG";
+            salience: "HIGH" | "MEDIUM" | "LOW";
         } | undefined;
     } | undefined;
 }>;
