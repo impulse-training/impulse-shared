@@ -36,6 +36,17 @@ const experimentPhaseCompletionSchema = z.object({
   ),
 });
 
+const experimentMemoryNotesEntrySchema = z.object({
+  behaviorId: z.string(),
+  insights: z.array(z.string()).default([]),
+});
+
+const experimentMemorySchema = z.object({
+  notesByDate: z
+    .record(z.string(), experimentMemoryNotesEntrySchema)
+    .default({}),
+});
+
 export const experimentSchema = z.object({
   startedAt: timestampSchema.optional(),
   name: z.string(),
@@ -50,6 +61,7 @@ export const experimentSchema = z.object({
     transition: transitionPhaseConfigSchema.optional(),
     observation: basicPhaseConfigSchema,
   }),
+  memory: experimentMemorySchema.optional(),
   // Map of yyyy-MM-dd -> DaySummary. This is "input" data.
   daySummaries: z.record(z.string(), daySummarySchema).default({}),
 
