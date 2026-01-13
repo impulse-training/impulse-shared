@@ -10,6 +10,8 @@
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc -w",
+    "link:global": "npm link",
+    "unlink:global": "npm unlink -g impulse-shared",
     "prepare": "npm run build",
     "test": "jest",
     "test:watch": "jest --watch"

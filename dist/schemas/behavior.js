@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isBehavior = exports.behaviorSchema = exports.behaviorStateSchema = exports.WINDOW_SIZES = exports.recentSliceSchema = exports.behaviorStateMetaSchema = exports.behaviorStateGoalSchema = exports.behaviorWindowSchema = exports.behaviorMeaningSchema = exports.streaksSchema = exports.behaviorStateGoalTypeSchema = exports.dataCompletenessSchema = exports.stabilitySchema = exports.trendSchema = exports.behaviorTemplateSchema = exports.trackingTypes = void 0;
+exports.isBehavior = exports.behaviorSchema = exports.behaviorStateSchema = exports.WINDOW_SIZES = exports.recentSliceSchema = exports.behaviorStateMetaSchema = exports.behaviorStateGoalSchema = exports.trackingWindowSchema = exports.behaviorWindowSchema = exports.behaviorMeaningSchema = exports.streaksSchema = exports.behaviorStateGoalTypeSchema = exports.dataCompletenessSchema = exports.stabilitySchema = exports.trendSchema = exports.behaviorTemplateSchema = exports.trackingTypes = void 0;
 exports.isBehaviorState = isBehaviorState;
 const zod_1 = require("zod");
 const documentReferenceSchema_1 = require("../utils/documentReferenceSchema");
@@ -62,10 +62,12 @@ exports.behaviorMeaningSchema = zod_1.z.object({
         identityStatement: zod_1.z.string().optional(),
         perceivedControl: zod_1.z.enum(["LOW", "MEDIUM", "HIGH"]),
     }),
-    friction: zod_1.z.object({
+    friction: zod_1.z
+        .object({
         commonTriggers: zod_1.z.array(zod_1.z.string()).optional(),
         highRiskContexts: zod_1.z.array(zod_1.z.string()).optional(),
-    }),
+    })
+        .optional(),
 });
 // BehaviorWindow represents computed metrics for a specific time window (7, 30, or 90 days)
 exports.behaviorWindowSchema = zod_1.z.object({
@@ -76,6 +78,15 @@ exports.behaviorWindowSchema = zod_1.z.object({
     stability: exports.stabilitySchema,
     streaks: exports.streaksSchema,
     recencyWeightedScore: zod_1.z.number().min(0).max(1),
+    sampleCount: zod_1.z.number(),
+});
+// TrackingWindow represents computed metrics for a specific time window based on measured values
+// (used for behaviors without goals).
+exports.trackingWindowSchema = zod_1.z.object({
+    windowSizeDays: zod_1.z.union([zod_1.z.literal(7), zod_1.z.literal(30), zod_1.z.literal(90)]),
+    averageMeasured: zod_1.z.number().optional(),
+    trend: exports.trendSchema,
+    stability: exports.stabilitySchema,
     sampleCount: zod_1.z.number(),
 });
 // Goal information stored in behavior state
@@ -119,6 +130,13 @@ exports.behaviorStateSchema = zod_1.z.object({
         medium: exports.behaviorWindowSchema,
         long: exports.behaviorWindowSchema,
     }),
+    trackingWindows: zod_1.z
+        .object({
+        short: exports.trackingWindowSchema,
+        medium: exports.trackingWindowSchema,
+        long: exports.trackingWindowSchema,
+    })
+        .optional(),
     recentSlice: exports.recentSliceSchema.optional(),
     meta: exports.behaviorStateMetaSchema,
 });

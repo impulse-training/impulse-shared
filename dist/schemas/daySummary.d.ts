@@ -215,7 +215,7 @@ export declare const daySummarySchema: z.ZodObject<{
                     perceivedControl: "HIGH" | "MEDIUM" | "LOW";
                     identityStatement?: string | undefined;
                 }>;
-                friction: z.ZodObject<{
+                friction: z.ZodOptional<z.ZodObject<{
                     commonTriggers: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                     highRiskContexts: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 }, "strip", z.ZodTypeAny, {
@@ -224,7 +224,7 @@ export declare const daySummarySchema: z.ZodObject<{
                 }, {
                     commonTriggers?: string[] | undefined;
                     highRiskContexts?: string[] | undefined;
-                }>;
+                }>>;
             }, "strip", z.ZodTypeAny, {
                 importance: "HIGH" | "MEDIUM" | "LOW" | "CORE";
                 emotionalTone: {
@@ -240,10 +240,10 @@ export declare const daySummarySchema: z.ZodObject<{
                     perceivedControl: "HIGH" | "MEDIUM" | "LOW";
                     identityStatement?: string | undefined;
                 };
-                friction: {
+                friction?: {
                     commonTriggers?: string[] | undefined;
                     highRiskContexts?: string[] | undefined;
-                };
+                } | undefined;
             }, {
                 importance: "HIGH" | "MEDIUM" | "LOW" | "CORE";
                 emotionalTone: {
@@ -259,10 +259,10 @@ export declare const daySummarySchema: z.ZodObject<{
                     perceivedControl: "HIGH" | "MEDIUM" | "LOW";
                     identityStatement?: string | undefined;
                 };
-                friction: {
+                friction?: {
                     commonTriggers?: string[] | undefined;
                     highRiskContexts?: string[] | undefined;
-                };
+                } | undefined;
             }>>;
             windows: z.ZodObject<{
                 short: z.ZodObject<{
@@ -496,6 +496,109 @@ export declare const daySummarySchema: z.ZodObject<{
                     averageMeasured?: number | undefined;
                 };
             }>;
+            trackingWindows: z.ZodOptional<z.ZodObject<{
+                short: z.ZodObject<{
+                    windowSizeDays: z.ZodUnion<[z.ZodLiteral<7>, z.ZodLiteral<30>, z.ZodLiteral<90>]>;
+                    averageMeasured: z.ZodOptional<z.ZodNumber>;
+                    trend: z.ZodEnum<["IMPROVING", "DECLINING", "STABLE", "VOLATILE", "INSUFFICIENT_DATA"]>;
+                    stability: z.ZodEnum<["HIGH", "MEDIUM", "LOW"]>;
+                    sampleCount: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
+                }, {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
+                }>;
+                medium: z.ZodObject<{
+                    windowSizeDays: z.ZodUnion<[z.ZodLiteral<7>, z.ZodLiteral<30>, z.ZodLiteral<90>]>;
+                    averageMeasured: z.ZodOptional<z.ZodNumber>;
+                    trend: z.ZodEnum<["IMPROVING", "DECLINING", "STABLE", "VOLATILE", "INSUFFICIENT_DATA"]>;
+                    stability: z.ZodEnum<["HIGH", "MEDIUM", "LOW"]>;
+                    sampleCount: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
+                }, {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
+                }>;
+                long: z.ZodObject<{
+                    windowSizeDays: z.ZodUnion<[z.ZodLiteral<7>, z.ZodLiteral<30>, z.ZodLiteral<90>]>;
+                    averageMeasured: z.ZodOptional<z.ZodNumber>;
+                    trend: z.ZodEnum<["IMPROVING", "DECLINING", "STABLE", "VOLATILE", "INSUFFICIENT_DATA"]>;
+                    stability: z.ZodEnum<["HIGH", "MEDIUM", "LOW"]>;
+                    sampleCount: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
+                }, {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
+                }>;
+            }, "strip", z.ZodTypeAny, {
+                short: {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
+                };
+                medium: {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
+                };
+                long: {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
+                };
+            }, {
+                short: {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
+                };
+                medium: {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
+                };
+                long: {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
+                };
+            }>>;
             recentSlice: z.ZodOptional<z.ZodObject<{
                 days: z.ZodArray<z.ZodObject<{
                     offset: z.ZodNumber;
@@ -613,9 +716,32 @@ export declare const daySummarySchema: z.ZodObject<{
                     perceivedControl: "HIGH" | "MEDIUM" | "LOW";
                     identityStatement?: string | undefined;
                 };
-                friction: {
+                friction?: {
                     commonTriggers?: string[] | undefined;
                     highRiskContexts?: string[] | undefined;
+                } | undefined;
+            } | undefined;
+            trackingWindows?: {
+                short: {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
+                };
+                medium: {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
+                };
+                long: {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
                 };
             } | undefined;
             recentSlice?: {
@@ -699,9 +825,32 @@ export declare const daySummarySchema: z.ZodObject<{
                     perceivedControl: "HIGH" | "MEDIUM" | "LOW";
                     identityStatement?: string | undefined;
                 };
-                friction: {
+                friction?: {
                     commonTriggers?: string[] | undefined;
                     highRiskContexts?: string[] | undefined;
+                } | undefined;
+            } | undefined;
+            trackingWindows?: {
+                short: {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
+                };
+                medium: {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
+                };
+                long: {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
                 };
             } | undefined;
             recentSlice?: {
@@ -832,9 +981,32 @@ export declare const daySummarySchema: z.ZodObject<{
                     perceivedControl: "HIGH" | "MEDIUM" | "LOW";
                     identityStatement?: string | undefined;
                 };
-                friction: {
+                friction?: {
                     commonTriggers?: string[] | undefined;
                     highRiskContexts?: string[] | undefined;
+                } | undefined;
+            } | undefined;
+            trackingWindows?: {
+                short: {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
+                };
+                medium: {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
+                };
+                long: {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
                 };
             } | undefined;
             recentSlice?: {
@@ -965,9 +1137,32 @@ export declare const daySummarySchema: z.ZodObject<{
                     perceivedControl: "HIGH" | "MEDIUM" | "LOW";
                     identityStatement?: string | undefined;
                 };
-                friction: {
+                friction?: {
                     commonTriggers?: string[] | undefined;
                     highRiskContexts?: string[] | undefined;
+                } | undefined;
+            } | undefined;
+            trackingWindows?: {
+                short: {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
+                };
+                medium: {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
+                };
+                long: {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
                 };
             } | undefined;
             recentSlice?: {
@@ -1098,9 +1293,32 @@ export declare const daySummarySchema: z.ZodObject<{
                     perceivedControl: "HIGH" | "MEDIUM" | "LOW";
                     identityStatement?: string | undefined;
                 };
-                friction: {
+                friction?: {
                     commonTriggers?: string[] | undefined;
                     highRiskContexts?: string[] | undefined;
+                } | undefined;
+            } | undefined;
+            trackingWindows?: {
+                short: {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
+                };
+                medium: {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
+                };
+                long: {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
                 };
             } | undefined;
             recentSlice?: {
@@ -1231,9 +1449,32 @@ export declare const daySummarySchema: z.ZodObject<{
                     perceivedControl: "HIGH" | "MEDIUM" | "LOW";
                     identityStatement?: string | undefined;
                 };
-                friction: {
+                friction?: {
                     commonTriggers?: string[] | undefined;
                     highRiskContexts?: string[] | undefined;
+                } | undefined;
+            } | undefined;
+            trackingWindows?: {
+                short: {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
+                };
+                medium: {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
+                };
+                long: {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
                 };
             } | undefined;
             recentSlice?: {
@@ -1448,9 +1689,32 @@ export declare const daySummarySchema: z.ZodObject<{
                     perceivedControl: "HIGH" | "MEDIUM" | "LOW";
                     identityStatement?: string | undefined;
                 };
-                friction: {
+                friction?: {
                     commonTriggers?: string[] | undefined;
                     highRiskContexts?: string[] | undefined;
+                } | undefined;
+            } | undefined;
+            trackingWindows?: {
+                short: {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
+                };
+                medium: {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
+                };
+                long: {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
                 };
             } | undefined;
             recentSlice?: {
@@ -1620,9 +1884,32 @@ export declare const daySummarySchema: z.ZodObject<{
                     perceivedControl: "HIGH" | "MEDIUM" | "LOW";
                     identityStatement?: string | undefined;
                 };
-                friction: {
+                friction?: {
                     commonTriggers?: string[] | undefined;
                     highRiskContexts?: string[] | undefined;
+                } | undefined;
+            } | undefined;
+            trackingWindows?: {
+                short: {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
+                };
+                medium: {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
+                };
+                long: {
+                    windowSizeDays: 7 | 30 | 90;
+                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                    stability: "HIGH" | "MEDIUM" | "LOW";
+                    sampleCount: number;
+                    averageMeasured?: number | undefined;
                 };
             } | undefined;
             recentSlice?: {

@@ -25,6 +25,18 @@ exports.userDataSchema = zod_1.z.object({
         debriefReminders: true,
     }),
     appVersion: zod_1.z.string().optional(),
+    device: zod_1.z
+        .object({
+        osName: zod_1.z.string().optional(),
+        osVersion: zod_1.z.string().optional(),
+        brand: zod_1.z.string().optional(),
+        manufacturer: zod_1.z.string().optional(),
+        modelName: zod_1.z.string().optional(),
+        modelId: zod_1.z.string().optional(),
+        deviceName: zod_1.z.string().optional(),
+        isDevice: zod_1.z.boolean().optional(),
+    })
+        .optional(),
     isAppEnabled: zod_1.z.boolean().optional(),
     tacticsEnabled: zod_1.z.boolean().default(false),
     // This points to the user's active strategy. It can be updated to rollback.

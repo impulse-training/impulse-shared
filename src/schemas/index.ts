@@ -3,6 +3,7 @@ export * from "./attachment";
 export * from "./audioGenerationJob";
 export * from "./audit";
 export * from "./behavior";
+export * from "./behaviorState";
 export * from "./coach";
 export * from "./behaviorTemplate";
 export * from "./behaviorTopic";
@@ -32,7 +33,6 @@ export * from "./trigger";
 export * from "./userContext";
 export * from "./userData";
 export * from "./userProfile";
-export * from "./userSummary";
 export * from "./userTimezones";
 
 export { isQuestionStepMode } from "./tactic/step/question";

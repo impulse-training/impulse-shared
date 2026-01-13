@@ -16,6 +16,34 @@ export declare const userDataSchema: z.ZodObject<{
         debriefReminders?: boolean | undefined;
     }>>;
     appVersion: z.ZodOptional<z.ZodString>;
+    device: z.ZodOptional<z.ZodObject<{
+        osName: z.ZodOptional<z.ZodString>;
+        osVersion: z.ZodOptional<z.ZodString>;
+        brand: z.ZodOptional<z.ZodString>;
+        manufacturer: z.ZodOptional<z.ZodString>;
+        modelName: z.ZodOptional<z.ZodString>;
+        modelId: z.ZodOptional<z.ZodString>;
+        deviceName: z.ZodOptional<z.ZodString>;
+        isDevice: z.ZodOptional<z.ZodBoolean>;
+    }, "strip", z.ZodTypeAny, {
+        osName?: string | undefined;
+        osVersion?: string | undefined;
+        brand?: string | undefined;
+        manufacturer?: string | undefined;
+        modelName?: string | undefined;
+        modelId?: string | undefined;
+        deviceName?: string | undefined;
+        isDevice?: boolean | undefined;
+    }, {
+        osName?: string | undefined;
+        osVersion?: string | undefined;
+        brand?: string | undefined;
+        manufacturer?: string | undefined;
+        modelName?: string | undefined;
+        modelId?: string | undefined;
+        deviceName?: string | undefined;
+        isDevice?: boolean | undefined;
+    }>>;
     isAppEnabled: z.ZodOptional<z.ZodBoolean>;
     tacticsEnabled: z.ZodDefault<z.ZodBoolean>;
     activeStrategyDoc: z.ZodOptional<z.ZodType<import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>>;
@@ -76,6 +104,16 @@ export declare const userDataSchema: z.ZodObject<{
     } | undefined;
     recoveryKeyHash?: string | undefined;
     appVersion?: string | undefined;
+    device?: {
+        osName?: string | undefined;
+        osVersion?: string | undefined;
+        brand?: string | undefined;
+        manufacturer?: string | undefined;
+        modelName?: string | undefined;
+        modelId?: string | undefined;
+        deviceName?: string | undefined;
+        isDevice?: boolean | undefined;
+    } | undefined;
     isAppEnabled?: boolean | undefined;
     activeStrategyDoc?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown> | undefined;
     addToTechSupportGroup?: boolean | undefined;
@@ -103,6 +141,16 @@ export declare const userDataSchema: z.ZodObject<{
         debriefReminders?: boolean | undefined;
     } | undefined;
     appVersion?: string | undefined;
+    device?: {
+        osName?: string | undefined;
+        osVersion?: string | undefined;
+        brand?: string | undefined;
+        manufacturer?: string | undefined;
+        modelName?: string | undefined;
+        modelId?: string | undefined;
+        deviceName?: string | undefined;
+        isDevice?: boolean | undefined;
+    } | undefined;
     isAppEnabled?: boolean | undefined;
     tacticsEnabled?: boolean | undefined;
     activeStrategyDoc?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown> | undefined;

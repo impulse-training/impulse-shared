@@ -69,10 +69,12 @@ export const behaviorMeaningSchema = z.object({
     identityStatement: z.string().optional(),
     perceivedControl: z.enum(["LOW", "MEDIUM", "HIGH"]),
   }),
-  friction: z.object({
-    commonTriggers: z.array(z.string()).optional(),
-    highRiskContexts: z.array(z.string()).optional(),
-  }),
+  friction: z
+    .object({
+      commonTriggers: z.array(z.string()).optional(),
+      highRiskContexts: z.array(z.string()).optional(),
+    })
+    .optional(),
 });
 export type BehaviorMeaning = z.infer<typeof behaviorMeaningSchema>;
 
@@ -93,6 +95,20 @@ export const behaviorWindowSchema = z.object({
   sampleCount: z.number(),
 });
 export type BehaviorWindow = z.infer<typeof behaviorWindowSchema>;
+
+// TrackingWindow represents computed metrics for a specific time window based on measured values
+// (used for behaviors without goals).
+export const trackingWindowSchema = z.object({
+  windowSizeDays: z.union([z.literal(7), z.literal(30), z.literal(90)]),
+
+  averageMeasured: z.number().optional(),
+
+  trend: trendSchema,
+  stability: stabilitySchema,
+
+  sampleCount: z.number(),
+});
+export type TrackingWindow = z.infer<typeof trackingWindowSchema>;
 
 // Goal information stored in behavior state
 export const behaviorStateGoalSchema = z.object({
@@ -151,6 +167,14 @@ export const behaviorStateSchema = z.object({
     medium: behaviorWindowSchema,
     long: behaviorWindowSchema,
   }),
+
+  trackingWindows: z
+    .object({
+      short: trackingWindowSchema,
+      medium: trackingWindowSchema,
+      long: trackingWindowSchema,
+    })
+    .optional(),
 
   recentSlice: recentSliceSchema.optional(),
 
