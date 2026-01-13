@@ -28,6 +28,18 @@ export const userDataSchema = z.object({
     }),
 
   appVersion: z.string().optional(),
+  device: z
+    .object({
+      osName: z.string().optional(),
+      osVersion: z.string().optional(),
+      brand: z.string().optional(),
+      manufacturer: z.string().optional(),
+      modelName: z.string().optional(),
+      modelId: z.string().optional(),
+      deviceName: z.string().optional(),
+      isDevice: z.boolean().optional(),
+    })
+    .optional(),
   isAppEnabled: z.boolean().optional(),
 
   tacticsEnabled: z.boolean().default(false),
