@@ -6,6 +6,7 @@ export * from "./base";
 export * from "./breathing";
 export * from "./default";
 export * from "./media";
+export * from "./pedometer";
 export * from "./notifySupport";
 export * from "./question";
 
@@ -13,6 +14,7 @@ import { AffirmationStep, affirmationStepSchema } from "./affirmation";
 import { BreathingStep, breathingStepSchema } from "./breathing";
 import { DefaultStep, defaultStepSchema } from "./default";
 import { MediaStep, mediaStepSchema } from "./media";
+import { PedometerStep, pedometerStepSchema } from "./pedometer";
 import { NotifySupportStep, notifySupportStepSchema } from "./notifySupport";
 import {
   QuestionStep,
@@ -28,6 +30,7 @@ export const tacticStepSchema = z.discriminatedUnion("mode", [
   slider1To10QuestionStepSchema,
   mediaStepSchema,
   affirmationStepSchema,
+  pedometerStepSchema,
 ]);
 
 export type TacticStep = z.infer<typeof tacticStepSchema>;
@@ -52,11 +55,15 @@ export const stepIsAffirmationStep = (
   step: TacticStep
 ): step is AffirmationStep => step.mode === "affirmation";
 
+export const stepIsPedometerStep = (step: TacticStep): step is PedometerStep =>
+  step.mode === "pedometer";
+
 // Re-export concrete step types for precise narrowing
 export type {
   BreathingStep,
   DefaultStep,
   MediaStep,
+  PedometerStep,
   NotifySupportStep,
   QuestionStep,
 };
