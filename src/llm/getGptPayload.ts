@@ -17,7 +17,6 @@ import {
   logIsUserMessageLog,
   logIsWidgetSetupLog,
 } from "../schemas/log";
-import { tacticSchema } from "../schemas/tactic/tactic";
 
 export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
   // Handle ReadyToDebriefLog
@@ -45,25 +44,92 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
         ? ((firstTacticRef as { path: string }).path as string)
         : undefined;
 
+    const firstTacticRefDebug =
+      firstTacticRef && typeof firstTacticRef === "object"
+        ? (firstTacticRef as unknown as Record<string, unknown>)
+        : { value: firstTacticRef };
+
     const tacticsByPath = plan?.tacticsByPath as
       | Record<string, unknown>
       | undefined;
     const firstTacticRaw =
       firstTacticPath && tacticsByPath ? tacticsByPath[firstTacticPath] : null;
 
-    const parsedTactic = firstTacticRaw
-      ? tacticSchema.safeParse(firstTacticRaw)
-      : null;
+    console.log("[getGptPayload][PlansLog] Payload build", {
+      activeIndex,
+      hasPlan: Boolean(plan),
+      tacticsCount,
+      firstTacticRef: firstTacticRefDebug,
+      firstTacticPath,
+      hasTacticsByPath: Boolean(tacticsByPath),
+      tacticsByPathKeys:
+        tacticsByPath && typeof tacticsByPath === "object"
+          ? Object.keys(tacticsByPath)
+          : null,
+      firstTacticRawType: typeof firstTacticRaw,
+      firstTacticRaw:
+        firstTacticRaw && typeof firstTacticRaw === "object"
+          ? (firstTacticRaw as unknown as Record<string, unknown>)
+          : firstTacticRaw,
+    });
 
-    const firstTacticTitle = parsedTactic?.success
-      ? parsedTactic.data.title ?? "Untitled tactic"
-      : null;
+    const firstTacticObj: { title?: unknown; steps?: unknown } | null =
+      firstTacticRaw && typeof firstTacticRaw === "object"
+        ? (firstTacticRaw as { title?: unknown; steps?: unknown })
+        : null;
 
-    const firstStepText = parsedTactic?.success
-      ? typeof parsedTactic.data.steps[0]?.text === "string"
-        ? parsedTactic.data.steps[0].text
-        : null
+    const firstTacticTitle =
+      firstTacticObj && typeof firstTacticObj.title === "string"
+        ? firstTacticObj.title
+        : null;
+
+    if (!firstTacticTitle) {
+      console.log("[getGptPayload][PlansLog] Missing first tactic title", {
+        activeIndex,
+        hasPlan: Boolean(plan),
+        tacticsCount,
+        firstTacticRef: firstTacticRefDebug,
+        firstTacticPath,
+        hasTacticsByPath: Boolean(tacticsByPath),
+        tacticsByPathKeys:
+          tacticsByPath && typeof tacticsByPath === "object"
+            ? Object.keys(tacticsByPath)
+            : null,
+        firstTacticRawType: typeof firstTacticRaw,
+        firstTacticRaw:
+          firstTacticRaw && typeof firstTacticRaw === "object"
+            ? (firstTacticRaw as unknown as Record<string, unknown>)
+            : firstTacticRaw,
+      });
+    }
+
+    const steps = Array.isArray(firstTacticObj?.steps)
+      ? (firstTacticObj.steps as unknown[])
       : null;
+    const firstStep =
+      steps && steps.length > 0 && typeof steps[0] === "object" && steps[0]
+        ? (steps[0] as { text?: unknown })
+        : null;
+
+    const firstStepText =
+      firstStep && typeof firstStep.text === "string" ? firstStep.text : null;
+
+    if (!firstStepText) {
+      console.log("[getGptPayload][PlansLog] Missing first step text", {
+        activeIndex,
+        firstTacticTitle,
+        stepsType: Array.isArray(firstTacticObj?.steps)
+          ? "array"
+          : typeof firstTacticObj?.steps,
+        stepsLength: Array.isArray(firstTacticObj?.steps)
+          ? firstTacticObj.steps.length
+          : null,
+        firstStep:
+          firstStep && typeof firstStep === "object"
+            ? (firstStep as unknown as Record<string, unknown>)
+            : firstStep,
+      });
+    }
 
     const parts: string[] = [];
     parts.push(`There is a plan with ${tacticsCount} tactics.`);
