@@ -56,6 +56,10 @@ export function shouldRespondToLogWithAI(
     return true;
   }
 
+  if (isCreating && logIsPlansLog(afterData)) {
+    return true;
+  }
+
   // Case: Widget setup log with changed response field
   if (isNotDeleting && logIsWidgetSetupLog(afterData)) return true;
 

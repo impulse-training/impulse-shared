@@ -7,6 +7,7 @@ import {
   logIsAssistantMessageLog,
   logIsBehaviorLog,
   logIsCallLog,
+  logIsPlansLog,
   logIsQuestionsLog,
   logIsReadyToDebriefLog,
   logIsResistedLog,
@@ -16,7 +17,7 @@ import {
   logIsUserMessageLog,
   logIsWidgetSetupLog,
 } from "../schemas/log";
-import { formatRecapResponse } from "./formatDaySummary";
+import { tacticSchema } from "../schemas/tactic/tactic";
 
 export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
   // Handle ReadyToDebriefLog
@@ -26,6 +27,57 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
         role: "user",
         content:
           "<SYSTEM>User finished a tactic and is ready to debrief</SYSTEM>",
+      },
+    ];
+  }
+
+  if (logIsPlansLog(log)) {
+    const activeIndex = log.data.activeIndex ?? 0;
+    const activePlanEntry = log.data.plans[activeIndex];
+    const plan = activePlanEntry?.plan;
+
+    const tacticsCount = plan?.tactics?.length ?? 0;
+
+    const firstTacticRef = plan?.tactics?.[0];
+    const firstTacticPath =
+      typeof (firstTacticRef as { path?: unknown } | undefined)?.path ===
+      "string"
+        ? ((firstTacticRef as { path: string }).path as string)
+        : undefined;
+
+    const tacticsByPath = plan?.tacticsByPath as
+      | Record<string, unknown>
+      | undefined;
+    const firstTacticRaw =
+      firstTacticPath && tacticsByPath ? tacticsByPath[firstTacticPath] : null;
+
+    const parsedTactic = firstTacticRaw
+      ? tacticSchema.safeParse(firstTacticRaw)
+      : null;
+
+    const firstTacticTitle = parsedTactic?.success
+      ? parsedTactic.data.title ?? "Untitled tactic"
+      : null;
+
+    const firstStepText = parsedTactic?.success
+      ? typeof parsedTactic.data.steps[0]?.text === "string"
+        ? parsedTactic.data.steps[0].text
+        : null
+      : null;
+
+    const parts: string[] = [];
+    parts.push(`There is a plan with ${tacticsCount} tactics.`);
+    if (firstTacticTitle) {
+      parts.push(`First tactic: ${firstTacticTitle}.`);
+    }
+    if (firstStepText) {
+      parts.push(`First step instructions: ${firstStepText}`);
+    }
+
+    return [
+      {
+        role: "user",
+        content: `<SYSTEM>${parts.join(" ")}</SYSTEM>`,
       },
     ];
   }
