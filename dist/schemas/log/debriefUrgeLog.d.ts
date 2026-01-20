@@ -7,21 +7,16 @@ export declare const debriefUrgeLogSchema: z.ZodObject<{
     timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     dateString: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"debriefUrge">;
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
-        debriefAfter: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-        debriefedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         actedOnUrge: z.ZodOptional<z.ZodBoolean>;
     }, "strip", z.ZodTypeAny, {
-        debriefAfter: import("../../types").Timestamp;
-        debriefedAt?: import("../../types").Timestamp | undefined;
         actedOnUrge?: boolean | undefined;
     }, {
-        debriefAfter: import("../../types").Timestamp;
-        debriefedAt?: import("../../types").Timestamp | undefined;
         actedOnUrge?: boolean | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
@@ -32,13 +27,12 @@ export declare const debriefUrgeLogSchema: z.ZodObject<{
     dateString: string;
     isDisplayable: true;
     data: {
-        debriefAfter: import("../../types").Timestamp;
-        debriefedAt?: import("../../types").Timestamp | undefined;
         actedOnUrge?: boolean | undefined;
     };
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -48,13 +42,12 @@ export declare const debriefUrgeLogSchema: z.ZodObject<{
     dateString: string;
     isDisplayable: true;
     data: {
-        debriefAfter: import("../../types").Timestamp;
-        debriefedAt?: import("../../types").Timestamp | undefined;
         actedOnUrge?: boolean | undefined;
     };
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
 }>;
 export type DebriefUrgeLog = z.infer<typeof debriefUrgeLogSchema>;

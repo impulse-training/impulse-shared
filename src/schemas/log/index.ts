@@ -2,6 +2,7 @@ import { z } from "zod";
 import { BehaviorLog, behaviorLogSchema } from "./behaviorLog";
 import { BreathingLog, breathingLogSchema } from "./breathingLog";
 import { CallLog, callLogSchema } from "./callLog";
+import { DebriefUrgeLog, debriefUrgeLogSchema } from "./debriefUrgeLog";
 import {
   EnableNotificationsCtaLog,
   enableNotificationsCtaLogSchema,
@@ -62,6 +63,7 @@ export const logSchemas = {
   ready_to_debrief: readyToDebriefLogSchema,
   support_group_day_summary: supportGroupDaySummaryLogSchema,
   enable_notifications_cta: enableNotificationsCtaLogSchema,
+  debriefUrge: debriefUrgeLogSchema,
 };
 export const logTypes = Object.keys(logSchemas);
 
@@ -87,7 +89,8 @@ export type Log =
   | VideoLog
   | ReadyToDebriefLog
   | SupportGroupDaySummaryLog
-  | EnableNotificationsCtaLog;
+  | EnableNotificationsCtaLog
+  | DebriefUrgeLog;
 
 export * from "./behaviorLog";
 export * from "./breathingLog";
@@ -101,6 +104,7 @@ export * from "./questionsLog";
 export * from "./readyToDebriefLog";
 export * from "./resistedLog";
 export * from "./sharedMomentLog";
+export * from "./debriefUrgeLog";
 export * from "./showTourLog";
 export * from "./summaryLog";
 export * from "./supportGroupDaySummaryLog";
@@ -132,55 +136,56 @@ export const logSchema = z.discriminatedUnion("type", [
   readyToDebriefLogSchema,
   supportGroupDaySummaryLogSchema,
   enableNotificationsCtaLogSchema,
+  debriefUrgeLogSchema,
 ]);
 
 // Export log type guards
 
 export const logIsAssistantMessageLog = (
-  value: Omit<Log, "id">
+  value: Omit<Log, "id">,
 ): value is AssistantMessageLog => value.type === "assistant_message";
 export const isValidAssistantMessageLog = (
-  value: unknown
+  value: unknown,
 ): value is AssistantMessageLog => {
   return assistantMessageLogSchema.safeParse(value).success;
 };
 
 export const logIsSystemMessageLog = (
-  value: Omit<Log, "id">
+  value: Omit<Log, "id">,
 ): value is SystemMessageLog => value.type === "system_message";
 export const isValidSystemMessageLog = (
-  value: unknown
+  value: unknown,
 ): value is SystemMessageLog => {
   return systemMessageLogSchema.safeParse(value).success;
 };
 
 export const logIsShowTourLog = (
-  value: Omit<Log, "id">
+  value: Omit<Log, "id">,
 ): value is ShowTourLog => value.type === "show_tour";
 export const isValidShowTourLog = (value: unknown): value is ShowTourLog => {
   return showTourLogSchema.safeParse(value).success;
 };
 
 export const logIsNotifySupportGroupLog = (
-  value: Omit<Log, "id">
+  value: Omit<Log, "id">,
 ): value is NotifySupportGroupLog => value.type === "notify_support_group";
 export const isValidNotifySupportGroupLog = (
-  value: unknown
+  value: unknown,
 ): value is NotifySupportGroupLog => {
   return notifySupportGroupLogSchema.safeParse(value).success;
 };
 
 export const logIsSharedMomentLog = (
-  value: Omit<Log, "id">
+  value: Omit<Log, "id">,
 ): value is SharedMomentLog => value.type === "shared_moment";
 export const isValidSharedMomentLog = (
-  value: unknown
+  value: unknown,
 ): value is SharedMomentLog => {
   return sharedMomentLogSchema.safeParse(value).success;
 };
 
 export const logIsBehaviorLog = (
-  value: Omit<Log, "id">
+  value: Omit<Log, "id">,
 ): value is BehaviorLog => value.type === "behavior";
 export const isValidBehaviorLog = (value: unknown): value is BehaviorLog => {
   return behaviorLogSchema.safeParse(value).success;
@@ -193,23 +198,23 @@ export const isValidCallLog = (value: unknown): value is CallLog => {
 };
 
 export const logIsToolCallLog = (
-  value: Omit<Log, "id">
+  value: Omit<Log, "id">,
 ): value is ToolCallLog => value.type === "tool_call";
 export const isValidToolCallLog = (value: unknown): value is ToolCallLog => {
   return toolCallLogSchema.safeParse(value).success;
 };
 
 export const logIsWidgetSetupLog = (
-  value: Omit<Log, "id">
+  value: Omit<Log, "id">,
 ): value is WidgetSetupLog => value.type === "widget_setup";
 export const isValidWidgetSetupLog = (
-  value: unknown
+  value: unknown,
 ): value is WidgetSetupLog => {
   return widgetSetupLogSchema.safeParse(value).success;
 };
 
 export const logIsQuestionsLog = (
-  value: Omit<Log, "id">
+  value: Omit<Log, "id">,
 ): value is QuestionsLog => value.type === "questions";
 export const isValidQuestionsLog = (value: unknown): value is QuestionsLog => {
   return questionsLogSchema.safeParse(value).success;
@@ -222,10 +227,10 @@ export const isValidTacticLog = (value: unknown): value is TacticLog => {
 };
 
 export const logIsUserMessageLog = (
-  value: Omit<Log, "id">
+  value: Omit<Log, "id">,
 ): value is UserMessageLog => value.type === "user_message";
 export const isValidUserMessageLog = (
-  value: unknown
+  value: unknown,
 ): value is UserMessageLog => {
   return userMessageLogSchema.safeParse(value).success;
 };
@@ -250,44 +255,53 @@ export const isValidLinkLog = (value: unknown): value is LinkLog => {
 };
 
 export const logIsReadyToDebriefLog = (
-  value: Omit<Log, "id">
+  value: Omit<Log, "id">,
 ): value is ReadyToDebriefLog => value.type === "ready_to_debrief";
 export const isValidReadyToDebriefLog = (
-  value: unknown
+  value: unknown,
 ): value is ReadyToDebriefLog => {
   return readyToDebriefLogSchema.safeParse(value).success;
 };
 
 export const logIsBreathingLog = (
-  value: Omit<Log, "id">
+  value: Omit<Log, "id">,
 ): value is BreathingLog => value.type === "breathing";
 export const isValidBreathingLog = (value: unknown): value is BreathingLog => {
   return breathingLogSchema.safeParse(value).success;
 };
 
 export const logIsResistedLog = (
-  value: Omit<Log, "id">
+  value: Omit<Log, "id">,
 ): value is ResistedLog => value.type === "resisted";
 export const isValidResistedLog = (value: unknown): value is ResistedLog => {
   return resistedLogSchema.safeParse(value).success;
 };
 
 export const logIsSupportGroupDaySummaryLog = (
-  value: Omit<Log, "id">
+  value: Omit<Log, "id">,
 ): value is SupportGroupDaySummaryLog =>
   value.type === "support_group_day_summary";
 export const isValidSupportGroupDaySummaryLog = (
-  value: unknown
+  value: unknown,
 ): value is SupportGroupDaySummaryLog => {
   return supportGroupDaySummaryLogSchema.safeParse(value).success;
 };
 
 export const logIsEnableNotificationsCtaLog = (
-  value: Omit<Log, "id">
+  value: Omit<Log, "id">,
 ): value is EnableNotificationsCtaLog =>
   value.type === "enable_notifications_cta";
 export const isValidEnableNotificationsCtaLog = (
-  value: unknown
+  value: unknown,
 ): value is EnableNotificationsCtaLog => {
   return enableNotificationsCtaLogSchema.safeParse(value).success;
+};
+
+export const logIsDebriefUrgeLog = (
+  value: Omit<Log, "id">,
+): value is DebriefUrgeLog => value.type === "debriefUrge";
+export const isValidDebriefUrgeLog = (
+  value: unknown,
+): value is DebriefUrgeLog => {
+  return debriefUrgeLogSchema.safeParse(value).success;
 };

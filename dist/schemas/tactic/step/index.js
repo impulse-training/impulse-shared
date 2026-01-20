@@ -14,7 +14,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.stepIsAffirmationStep = exports.stepIsDefaultStep = exports.stepIsNotifySupportStep = exports.stepIsBreathingStep = exports.stepIsQuestionStep = exports.stepIsMediaStep = exports.tacticStepSchema = void 0;
+exports.stepIsPedometerStep = exports.stepIsAffirmationStep = exports.stepIsDefaultStep = exports.stepIsNotifySupportStep = exports.stepIsBreathingStep = exports.stepIsQuestionStep = exports.stepIsMediaStep = exports.tacticStepSchema = void 0;
 const zod_1 = require("zod");
 // Import all step schemas
 __exportStar(require("./affirmation"), exports);
@@ -22,12 +22,14 @@ __exportStar(require("./base"), exports);
 __exportStar(require("./breathing"), exports);
 __exportStar(require("./default"), exports);
 __exportStar(require("./media"), exports);
+__exportStar(require("./pedometer"), exports);
 __exportStar(require("./notifySupport"), exports);
 __exportStar(require("./question"), exports);
 const affirmation_1 = require("./affirmation");
 const breathing_1 = require("./breathing");
 const default_1 = require("./default");
 const media_1 = require("./media");
+const pedometer_1 = require("./pedometer");
 const notifySupport_1 = require("./notifySupport");
 const question_1 = require("./question");
 exports.tacticStepSchema = zod_1.z.discriminatedUnion("mode", [
@@ -38,6 +40,7 @@ exports.tacticStepSchema = zod_1.z.discriminatedUnion("mode", [
     question_1.slider1To10QuestionStepSchema,
     media_1.mediaStepSchema,
     affirmation_1.affirmationStepSchema,
+    pedometer_1.pedometerStepSchema,
 ]);
 const stepIsMediaStep = (step) => step.mode === "media";
 exports.stepIsMediaStep = stepIsMediaStep;
@@ -51,3 +54,5 @@ const stepIsDefaultStep = (step) => step.mode === "default";
 exports.stepIsDefaultStep = stepIsDefaultStep;
 const stepIsAffirmationStep = (step) => step.mode === "affirmation";
 exports.stepIsAffirmationStep = stepIsAffirmationStep;
+const stepIsPedometerStep = (step) => step.mode === "pedometer";
+exports.stepIsPedometerStep = stepIsPedometerStep;

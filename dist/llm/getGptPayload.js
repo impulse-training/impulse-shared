@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getGptPayload = getGptPayload;
 const log_1 = require("../schemas/log");
+const buildPlansLogPayload_1 = require("./buildPlansLogPayload");
 function getGptPayload(log) {
     var _a, _b, _c;
     // Handle ReadyToDebriefLog
@@ -12,6 +13,9 @@ function getGptPayload(log) {
                 content: "<SYSTEM>User finished a tactic and is ready to debrief</SYSTEM>",
             },
         ];
+    }
+    if ((0, log_1.logIsPlansLog)(log)) {
+        return (0, buildPlansLogPayload_1.buildPlansLogPayload)(log);
     }
     if ((0, log_1.logIsUserMessageLog)(log)) {
         return [

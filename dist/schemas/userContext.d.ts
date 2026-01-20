@@ -16,9 +16,9 @@ export declare const behaviorContextSchema: z.ZodObject<{
     behaviorId: string;
     behaviorName: string;
     trackingType: "boolean" | "counter" | "timer";
+    insights: string[];
     streakDays: number;
     totalTracked: number;
-    insights: string[];
     effectiveTactics: string[];
     planTacticIds: string[];
     trackingUnit?: string | undefined;
@@ -33,9 +33,9 @@ export declare const behaviorContextSchema: z.ZodObject<{
     description?: string | undefined;
     benefits?: string[] | undefined;
     drawbacks?: string[] | undefined;
+    insights?: string[] | undefined;
     streakDays?: number | undefined;
     totalTracked?: number | undefined;
-    insights?: string[] | undefined;
     effectiveTactics?: string[] | undefined;
     planTacticIds?: string[] | undefined;
 }>;
@@ -92,9 +92,9 @@ export declare const userContextSchema: z.ZodObject<{
         behaviorId: string;
         behaviorName: string;
         trackingType: "boolean" | "counter" | "timer";
+        insights: string[];
         streakDays: number;
         totalTracked: number;
-        insights: string[];
         effectiveTactics: string[];
         planTacticIds: string[];
         trackingUnit?: string | undefined;
@@ -109,9 +109,9 @@ export declare const userContextSchema: z.ZodObject<{
         description?: string | undefined;
         benefits?: string[] | undefined;
         drawbacks?: string[] | undefined;
+        insights?: string[] | undefined;
         streakDays?: number | undefined;
         totalTracked?: number | undefined;
-        insights?: string[] | undefined;
         effectiveTactics?: string[] | undefined;
         planTacticIds?: string[] | undefined;
     }>>;
@@ -166,9 +166,9 @@ export declare const userContextSchema: z.ZodObject<{
         behaviorId: string;
         behaviorName: string;
         trackingType: "boolean" | "counter" | "timer";
+        insights: string[];
         streakDays: number;
         totalTracked: number;
-        insights: string[];
         effectiveTactics: string[];
         planTacticIds: string[];
         trackingUnit?: string | undefined;
@@ -202,9 +202,9 @@ export declare const userContextSchema: z.ZodObject<{
         description?: string | undefined;
         benefits?: string[] | undefined;
         drawbacks?: string[] | undefined;
+        insights?: string[] | undefined;
         streakDays?: number | undefined;
         totalTracked?: number | undefined;
-        insights?: string[] | undefined;
         effectiveTactics?: string[] | undefined;
         planTacticIds?: string[] | undefined;
     }>;

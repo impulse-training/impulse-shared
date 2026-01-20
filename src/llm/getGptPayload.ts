@@ -17,6 +17,7 @@ import {
   logIsUserMessageLog,
   logIsWidgetSetupLog,
 } from "../schemas/log";
+import { buildPlansLogPayload } from "./buildPlansLogPayload";
 
 export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
   // Handle ReadyToDebriefLog
@@ -31,121 +32,7 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
   }
 
   if (logIsPlansLog(log)) {
-    const activeIndex = log.data.activeIndex ?? 0;
-    const activePlanEntry = log.data.plans[activeIndex];
-    const plan = activePlanEntry?.plan;
-
-    const tacticsCount = plan?.tactics?.length ?? 0;
-
-    const firstTacticRef = plan?.tactics?.[0];
-    const firstTacticPath =
-      typeof (firstTacticRef as { path?: unknown } | undefined)?.path ===
-      "string"
-        ? ((firstTacticRef as { path: string }).path as string)
-        : undefined;
-
-    const firstTacticRefDebug =
-      firstTacticRef && typeof firstTacticRef === "object"
-        ? (firstTacticRef as unknown as Record<string, unknown>)
-        : { value: firstTacticRef };
-
-    const tacticsByPath = plan?.tacticsByPath as
-      | Record<string, unknown>
-      | undefined;
-    const firstTacticRaw =
-      firstTacticPath && tacticsByPath ? tacticsByPath[firstTacticPath] : null;
-
-    console.log("[getGptPayload][PlansLog] Payload build", {
-      activeIndex,
-      hasPlan: Boolean(plan),
-      tacticsCount,
-      firstTacticRef: firstTacticRefDebug,
-      firstTacticPath,
-      hasTacticsByPath: Boolean(tacticsByPath),
-      tacticsByPathKeys:
-        tacticsByPath && typeof tacticsByPath === "object"
-          ? Object.keys(tacticsByPath)
-          : null,
-      firstTacticRawType: typeof firstTacticRaw,
-      firstTacticRaw:
-        firstTacticRaw && typeof firstTacticRaw === "object"
-          ? (firstTacticRaw as unknown as Record<string, unknown>)
-          : firstTacticRaw,
-    });
-
-    const firstTacticObj: { title?: unknown; steps?: unknown } | null =
-      firstTacticRaw && typeof firstTacticRaw === "object"
-        ? (firstTacticRaw as { title?: unknown; steps?: unknown })
-        : null;
-
-    const firstTacticTitle =
-      firstTacticObj && typeof firstTacticObj.title === "string"
-        ? firstTacticObj.title
-        : null;
-
-    if (!firstTacticTitle) {
-      console.log("[getGptPayload][PlansLog] Missing first tactic title", {
-        activeIndex,
-        hasPlan: Boolean(plan),
-        tacticsCount,
-        firstTacticRef: firstTacticRefDebug,
-        firstTacticPath,
-        hasTacticsByPath: Boolean(tacticsByPath),
-        tacticsByPathKeys:
-          tacticsByPath && typeof tacticsByPath === "object"
-            ? Object.keys(tacticsByPath)
-            : null,
-        firstTacticRawType: typeof firstTacticRaw,
-        firstTacticRaw:
-          firstTacticRaw && typeof firstTacticRaw === "object"
-            ? (firstTacticRaw as unknown as Record<string, unknown>)
-            : firstTacticRaw,
-      });
-    }
-
-    const steps = Array.isArray(firstTacticObj?.steps)
-      ? (firstTacticObj.steps as unknown[])
-      : null;
-    const firstStep =
-      steps && steps.length > 0 && typeof steps[0] === "object" && steps[0]
-        ? (steps[0] as { text?: unknown })
-        : null;
-
-    const firstStepText =
-      firstStep && typeof firstStep.text === "string" ? firstStep.text : null;
-
-    if (!firstStepText) {
-      console.log("[getGptPayload][PlansLog] Missing first step text", {
-        activeIndex,
-        firstTacticTitle,
-        stepsType: Array.isArray(firstTacticObj?.steps)
-          ? "array"
-          : typeof firstTacticObj?.steps,
-        stepsLength: Array.isArray(firstTacticObj?.steps)
-          ? firstTacticObj.steps.length
-          : null,
-        firstStep:
-          firstStep && typeof firstStep === "object"
-            ? (firstStep as unknown as Record<string, unknown>)
-            : firstStep,
-      });
-    }
-
-    const parts: string[] = [];
-    parts.push(`There is a plan with ${tacticsCount} tactics.`);
-    if (firstTacticTitle) {
-      parts.push(`First tactic: ${firstTacticTitle}.`);
-    }
-    if (firstStepText) {
-      parts.push(`First step instructions: ${firstStepText}`);
-    }
-
-    return [
-      {
-        role: "user",
-        content: `<SYSTEM>${parts.join(" ")}</SYSTEM>`,
-      },
-    ];
+    return buildPlansLogPayload(log);
   }
 
   if (logIsUserMessageLog(log)) {

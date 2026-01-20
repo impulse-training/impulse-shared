@@ -1,3 +1,4 @@
+import { log } from "console";
 import { Thread, threadIsTimePlanThread } from "../schemas";
 import {
   Log,
@@ -18,7 +19,7 @@ import { WithId } from "./withId";
  */
 function isTimePlanFullyCompleted(
   thread: WithId<Thread>,
-  plansLog: PlansLog
+  plansLog: PlansLog,
 ): boolean {
   if (!threadIsTimePlanThread(thread)) return false;
 
@@ -40,7 +41,7 @@ function isTimePlanFullyCompleted(
 export function shouldRespondToLogWithAI(
   thread: WithId<Thread>,
   beforeData: Log | undefined,
-  afterData: Log | undefined
+  afterData: Log | undefined,
 ): boolean {
   const isCreating = !beforeData && afterData;
   const isUpdating = beforeData && afterData;
@@ -56,7 +57,12 @@ export function shouldRespondToLogWithAI(
     return true;
   }
 
-  if (isCreating && logIsPlansLog(afterData)) {
+  // Case: An impulse plan is added to the thread
+  if (
+    isCreating &&
+    logIsPlansLog(afterData) &&
+    afterData.data.plans[0]?.plan.type === "impulse"
+  ) {
     return true;
   }
 

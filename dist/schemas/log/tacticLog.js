@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.tacticLogSchema = exports.tacticResponseSchema = void 0;
 const zod_1 = require("zod");
 const tactic_1 = require("../tactic");
+const timestampSchema_1 = require("../../utils/timestampSchema");
 const base_1 = require("./base");
 /** Response schema for tactic question steps - follows the same pattern as questionsLog */
 exports.tacticResponseSchema = zod_1.z.object({
@@ -26,5 +27,10 @@ exports.tacticLogSchema = base_1.logBaseSchema.extend({
         completed: zod_1.z.boolean().optional(),
         // Optional response for question-type tactic steps
         response: exports.tacticResponseSchema.optional(),
+        // Summary of the tactic chat conversation
+        conversationSummary: zod_1.z.string().optional(),
+        // Summarization lifecycle tracking
+        startedSummarizingConversationAt: timestampSchema_1.timestampSchema.optional(),
+        finishedSummarizingConversationAt: timestampSchema_1.timestampSchema.optional(),
     }),
 });
