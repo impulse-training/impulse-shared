@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { tacticSchema } from "../tactic";
+import { timestampSchema } from "../../utils/timestampSchema";
 import { logBaseSchema } from "./base";
 
 /** Response schema for tactic question steps - follows the same pattern as questionsLog */
@@ -26,6 +27,11 @@ export const tacticLogSchema = logBaseSchema.extend({
     completed: z.boolean().optional(),
     // Optional response for question-type tactic steps
     response: tacticResponseSchema.optional(),
+    // Summary of the tactic chat conversation
+    conversationSummary: z.string().optional(),
+    // Summarization lifecycle tracking
+    startedSummarizingConversationAt: timestampSchema.optional(),
+    finishedSummarizingConversationAt: timestampSchema.optional(),
   }),
 });
 
