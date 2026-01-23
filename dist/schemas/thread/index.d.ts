@@ -5707,6 +5707,7 @@ export declare const threadSchemas: {
         debriefBefore: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         debriefUrgeLogInsertedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         outcomeSelectedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        actedOnUrge: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     }, "strip", z.ZodTypeAny, {
         type: "impulse";
         date: import("../../types").Timestamp;
@@ -5728,6 +5729,7 @@ export declare const threadSchemas: {
         behaviorIds?: string[] | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
+        actedOnUrge?: boolean | null | undefined;
         plan?: ({
             id: string;
             _ref: import("../..").DocumentReferenceLike<unknown>;
@@ -6178,6 +6180,7 @@ export declare const threadSchemas: {
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         summary?: string | undefined;
+        actedOnUrge?: boolean | null | undefined;
         plan?: ({
             id: string;
             _ref: import("../..").DocumentReferenceLike<unknown>;
@@ -28759,6 +28762,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     debriefBefore: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     debriefUrgeLogInsertedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     outcomeSelectedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    actedOnUrge: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
 }, "strip", z.ZodTypeAny, {
     type: "impulse";
     date: import("../../types").Timestamp;
@@ -28780,6 +28784,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     behaviorIds?: string[] | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
+    actedOnUrge?: boolean | null | undefined;
     plan?: ({
         id: string;
         _ref: import("../..").DocumentReferenceLike<unknown>;
@@ -29230,6 +29235,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
+    actedOnUrge?: boolean | null | undefined;
     plan?: ({
         id: string;
         _ref: import("../..").DocumentReferenceLike<unknown>;

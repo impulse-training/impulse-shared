@@ -2402,6 +2402,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
     debriefBefore: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     debriefUrgeLogInsertedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     outcomeSelectedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    actedOnUrge: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
 }, "strip", z.ZodTypeAny, {
     type: "impulse";
     date: import("../../types").Timestamp;
@@ -2423,6 +2424,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
     behaviorIds?: string[] | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
+    actedOnUrge?: boolean | null | undefined;
     plan?: ({
         id: string;
         _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
@@ -2873,6 +2875,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
+    actedOnUrge?: boolean | null | undefined;
     plan?: ({
         id: string;
         _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;

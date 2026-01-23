@@ -12,4 +12,5 @@ exports.impulseThreadSchema = base_1.threadBaseSchema.extend({
     debriefBefore: timestampSchema_1.timestampSchema.optional(),
     debriefUrgeLogInsertedAt: timestampSchema_1.timestampSchema.optional(),
     outcomeSelectedAt: timestampSchema_1.timestampSchema.optional(),
+    actedOnUrge: zod_1.z.boolean().nullable().optional(), // true = acted, false = resisted, null/undefined = not answered
 });

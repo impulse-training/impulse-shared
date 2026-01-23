@@ -10,6 +10,7 @@ export const impulseThreadSchema = threadBaseSchema.extend({
   debriefBefore: timestampSchema.optional(),
   debriefUrgeLogInsertedAt: timestampSchema.optional(),
   outcomeSelectedAt: timestampSchema.optional(),
+  actedOnUrge: z.boolean().nullable().optional(), // true = acted, false = resisted, null/undefined = not answered
 });
 
 export type ImpulseThread = z.infer<typeof impulseThreadSchema>;
