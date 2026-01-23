@@ -5703,11 +5703,9 @@ export declare const threadSchemas: {
     } & {
         type: z.ZodLiteral<"impulse">;
         behaviorDocs: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
-        allImpulseQuestionsAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         debriefAfter: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         debriefBefore: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-        debriefStartedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-        debriefFinishedAt: z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        debriefUrgeLogInsertedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         outcomeSelectedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
         type: "impulse";
@@ -5723,7 +5721,6 @@ export declare const threadSchemas: {
         archiveAfter: import("../../types").Timestamp;
         sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
         behaviorDocs: import("../..").DocumentReferenceLike<unknown>[];
-        debriefFinishedAt: import("../../types").Timestamp | null;
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -6157,10 +6154,9 @@ export declare const threadSchemas: {
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
-        allImpulseQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
         debriefAfter?: import("../../types").Timestamp | undefined;
         debriefBefore?: import("../../types").Timestamp | undefined;
-        debriefStartedAt?: import("../../types").Timestamp | undefined;
+        debriefUrgeLogInsertedAt?: import("../../types").Timestamp | undefined;
         outcomeSelectedAt?: import("../../types").Timestamp | undefined;
     }, {
         type: "impulse";
@@ -6174,7 +6170,6 @@ export declare const threadSchemas: {
         archiveAfter: import("../../types").Timestamp;
         sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
         behaviorDocs: import("../..").DocumentReferenceLike<unknown>[];
-        debriefFinishedAt: import("../../types").Timestamp | null;
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -6610,10 +6605,9 @@ export declare const threadSchemas: {
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
         } | undefined;
-        allImpulseQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
         debriefAfter?: import("../../types").Timestamp | undefined;
         debriefBefore?: import("../../types").Timestamp | undefined;
-        debriefStartedAt?: import("../../types").Timestamp | undefined;
+        debriefUrgeLogInsertedAt?: import("../../types").Timestamp | undefined;
         outcomeSelectedAt?: import("../../types").Timestamp | undefined;
     }>;
     timePlan: z.ZodObject<{
@@ -28761,11 +28755,9 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
 } & {
     type: z.ZodLiteral<"impulse">;
     behaviorDocs: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
-    allImpulseQuestionsAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     debriefAfter: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     debriefBefore: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-    debriefStartedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-    debriefFinishedAt: z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    debriefUrgeLogInsertedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     outcomeSelectedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
     type: "impulse";
@@ -28781,7 +28773,6 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     archiveAfter: import("../../types").Timestamp;
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
     behaviorDocs: import("../..").DocumentReferenceLike<unknown>[];
-    debriefFinishedAt: import("../../types").Timestamp | null;
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
@@ -29215,10 +29206,9 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
-    allImpulseQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
     debriefAfter?: import("../../types").Timestamp | undefined;
     debriefBefore?: import("../../types").Timestamp | undefined;
-    debriefStartedAt?: import("../../types").Timestamp | undefined;
+    debriefUrgeLogInsertedAt?: import("../../types").Timestamp | undefined;
     outcomeSelectedAt?: import("../../types").Timestamp | undefined;
 }, {
     type: "impulse";
@@ -29232,7 +29222,6 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     archiveAfter: import("../../types").Timestamp;
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
     behaviorDocs: import("../..").DocumentReferenceLike<unknown>[];
-    debriefFinishedAt: import("../../types").Timestamp | null;
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
@@ -29668,10 +29657,9 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
-    allImpulseQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
     debriefAfter?: import("../../types").Timestamp | undefined;
     debriefBefore?: import("../../types").Timestamp | undefined;
-    debriefStartedAt?: import("../../types").Timestamp | undefined;
+    debriefUrgeLogInsertedAt?: import("../../types").Timestamp | undefined;
     outcomeSelectedAt?: import("../../types").Timestamp | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;

@@ -65,13 +65,13 @@ export declare const aiMemorySchema: z.ZodObject<{
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
     id: string;
-    content: string;
     source: string;
+    content: string;
     createdAt?: import("../types").Timestamp | undefined;
 }, {
     id: string;
-    content: string;
     source: string;
+    content: string;
     createdAt?: import("../types").Timestamp | undefined;
 }>;
 export declare const userContextSchema: z.ZodObject<{
@@ -141,13 +141,13 @@ export declare const userContextSchema: z.ZodObject<{
         createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
         id: string;
-        content: string;
         source: string;
+        content: string;
         createdAt?: import("../types").Timestamp | undefined;
     }, {
         id: string;
-        content: string;
         source: string;
+        content: string;
         createdAt?: import("../types").Timestamp | undefined;
     }>, "many">>;
     overallInsights: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
@@ -178,8 +178,8 @@ export declare const userContextSchema: z.ZodObject<{
     }>;
     aiMemories: {
         id: string;
-        content: string;
         source: string;
+        content: string;
         createdAt?: import("../types").Timestamp | undefined;
     }[];
     overallInsights: string[];
@@ -212,8 +212,8 @@ export declare const userContextSchema: z.ZodObject<{
     updatedAt?: import("../types").Timestamp | undefined;
     aiMemories?: {
         id: string;
-        content: string;
         source: string;
+        content: string;
         createdAt?: import("../types").Timestamp | undefined;
     }[] | undefined;
     overallInsights?: string[] | undefined;

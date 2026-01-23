@@ -8,10 +8,8 @@ const base_1 = require("./base");
 exports.impulseThreadSchema = base_1.threadBaseSchema.extend({
     type: zod_1.z.literal("impulse"),
     behaviorDocs: zod_1.z.array(documentReferenceSchema_1.documentReferenceSchema),
-    allImpulseQuestionsAnsweredAt: timestampSchema_1.timestampSchema.optional(),
     debriefAfter: timestampSchema_1.timestampSchema.optional(),
     debriefBefore: timestampSchema_1.timestampSchema.optional(),
-    debriefStartedAt: timestampSchema_1.timestampSchema.optional(),
-    debriefFinishedAt: timestampSchema_1.timestampSchema.nullable(),
+    debriefUrgeLogInsertedAt: timestampSchema_1.timestampSchema.optional(),
     outcomeSelectedAt: timestampSchema_1.timestampSchema.optional(),
 });

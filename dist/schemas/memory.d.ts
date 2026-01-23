@@ -13,15 +13,15 @@ export declare const memorySchema: z.ZodObject<{
     title: string;
     importance: number;
     tags: string[];
-    content: string;
     source: string;
+    content: string;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
 }, {
     id: string;
     title: string;
-    content: string;
     source: string;
+    content: string;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     importance?: number | undefined;

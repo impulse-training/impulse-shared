@@ -13077,11 +13077,20 @@ export declare const logSchemas: {
         type: z.ZodLiteral<"debriefUrge">;
         isDisplayable: z.ZodLiteral<true>;
         data: z.ZodObject<{
-            actedOnUrge: z.ZodOptional<z.ZodBoolean>;
+            actedOnUrge: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+            behaviorId: z.ZodOptional<z.ZodString>;
+            source: z.ZodOptional<z.ZodEnum<["scheduled", "manual"]>>;
+            resolvedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         }, "strip", z.ZodTypeAny, {
-            actedOnUrge?: boolean | undefined;
+            behaviorId?: string | undefined;
+            actedOnUrge?: boolean | null | undefined;
+            source?: "scheduled" | "manual" | undefined;
+            resolvedAt?: import("../../types").Timestamp | undefined;
         }, {
-            actedOnUrge?: boolean | undefined;
+            behaviorId?: string | undefined;
+            actedOnUrge?: boolean | null | undefined;
+            source?: "scheduled" | "manual" | undefined;
+            resolvedAt?: import("../../types").Timestamp | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
         createdAt: import("../../types").Timestamp;
@@ -13091,7 +13100,10 @@ export declare const logSchemas: {
         dateString: string;
         isDisplayable: true;
         data: {
-            actedOnUrge?: boolean | undefined;
+            behaviorId?: string | undefined;
+            actedOnUrge?: boolean | null | undefined;
+            source?: "scheduled" | "manual" | undefined;
+            resolvedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
@@ -13106,7 +13118,10 @@ export declare const logSchemas: {
         dateString: string;
         isDisplayable: true;
         data: {
-            actedOnUrge?: boolean | undefined;
+            behaviorId?: string | undefined;
+            actedOnUrge?: boolean | null | undefined;
+            source?: "scheduled" | "manual" | undefined;
+            resolvedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
@@ -23052,11 +23067,20 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     type: z.ZodLiteral<"debriefUrge">;
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
-        actedOnUrge: z.ZodOptional<z.ZodBoolean>;
+        actedOnUrge: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        behaviorId: z.ZodOptional<z.ZodString>;
+        source: z.ZodOptional<z.ZodEnum<["scheduled", "manual"]>>;
+        resolvedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
-        actedOnUrge?: boolean | undefined;
+        behaviorId?: string | undefined;
+        actedOnUrge?: boolean | null | undefined;
+        source?: "scheduled" | "manual" | undefined;
+        resolvedAt?: import("../../types").Timestamp | undefined;
     }, {
-        actedOnUrge?: boolean | undefined;
+        behaviorId?: string | undefined;
+        actedOnUrge?: boolean | null | undefined;
+        source?: "scheduled" | "manual" | undefined;
+        resolvedAt?: import("../../types").Timestamp | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
@@ -23066,7 +23090,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dateString: string;
     isDisplayable: true;
     data: {
-        actedOnUrge?: boolean | undefined;
+        behaviorId?: string | undefined;
+        actedOnUrge?: boolean | null | undefined;
+        source?: "scheduled" | "manual" | undefined;
+        resolvedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
@@ -23081,7 +23108,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dateString: string;
     isDisplayable: true;
     data: {
-        actedOnUrge?: boolean | undefined;
+        behaviorId?: string | undefined;
+        actedOnUrge?: boolean | null | undefined;
+        source?: "scheduled" | "manual" | undefined;
+        resolvedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
