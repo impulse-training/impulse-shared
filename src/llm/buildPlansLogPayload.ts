@@ -71,13 +71,7 @@ export function buildPlansLogPayload(
 
   const tacticsNoun = tacticsCount === 1 ? "tactic" : "tactics";
 
-  const behaviorId = log.data.behaviorId;
-
-  parts.push(
-    typeof behaviorId === "string"
-      ? `A plan is available for behaviorId "${behaviorId}".`
-      : "A plan is available.",
-  );
+  parts.push("A plan is available.");
 
   parts.push(
     `It includes ${tacticsCount} ${tacticsNoun}. The user can choose to start the plan now, or discuss the plan and options before starting.`,
