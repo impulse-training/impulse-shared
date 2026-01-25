@@ -22,6 +22,7 @@ export declare const planSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     numberOfUses: z.ZodDefault<z.ZodNumber>;
     numberOfSuccesses: z.ZodDefault<z.ZodNumber>;
     numberOfSetbacks: z.ZodDefault<z.ZodNumber>;
+    isActive: z.ZodOptional<z.ZodBoolean>;
 }, "strip", z.ZodTypeAny, {
     type: "trigger";
     name: string;
@@ -40,6 +41,7 @@ export declare const planSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     tacticsByPath?: Record<string, any> | undefined;
     lastUsedAt?: import("../../types").Timestamp | undefined;
     deletedAt?: import("../../types").Timestamp | undefined;
+    isActive?: boolean | undefined;
 }, {
     type: "trigger";
     name: string;
@@ -58,6 +60,7 @@ export declare const planSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     numberOfUses?: number | undefined;
     numberOfSuccesses?: number | undefined;
     numberOfSetbacks?: number | undefined;
+    isActive?: boolean | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     name: z.ZodString;
@@ -143,6 +146,7 @@ export declare const planWithIdSchema: z.ZodUnion<[z.ZodIntersection<z.ZodObject
     numberOfUses: z.ZodDefault<z.ZodNumber>;
     numberOfSuccesses: z.ZodDefault<z.ZodNumber>;
     numberOfSetbacks: z.ZodDefault<z.ZodNumber>;
+    isActive: z.ZodOptional<z.ZodBoolean>;
 }, z.UnknownKeysParam, z.ZodTypeAny, {
     type: "trigger";
     name: string;
@@ -161,6 +165,7 @@ export declare const planWithIdSchema: z.ZodUnion<[z.ZodIntersection<z.ZodObject
     tacticsByPath?: Record<string, any> | undefined;
     lastUsedAt?: import("../../types").Timestamp | undefined;
     deletedAt?: import("../../types").Timestamp | undefined;
+    isActive?: boolean | undefined;
 }, {
     type: "trigger";
     name: string;
@@ -179,6 +184,7 @@ export declare const planWithIdSchema: z.ZodUnion<[z.ZodIntersection<z.ZodObject
     numberOfUses?: number | undefined;
     numberOfSuccesses?: number | undefined;
     numberOfSetbacks?: number | undefined;
+    isActive?: boolean | undefined;
 }>>, z.ZodIntersection<z.ZodObject<{
     id: z.ZodString;
     _ref: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;

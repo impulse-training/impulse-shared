@@ -20,6 +20,7 @@ export declare const strategyPlanItemSchema: z.ZodObject<{
         numberOfUses: z.ZodDefault<z.ZodNumber>;
         numberOfSuccesses: z.ZodDefault<z.ZodNumber>;
         numberOfSetbacks: z.ZodDefault<z.ZodNumber>;
+        isActive: z.ZodOptional<z.ZodBoolean>;
     }, "strip", z.ZodTypeAny, {
         type: "trigger";
         name: string;
@@ -38,6 +39,7 @@ export declare const strategyPlanItemSchema: z.ZodObject<{
         tacticsByPath?: Record<string, any> | undefined;
         lastUsedAt?: import("../types").Timestamp | undefined;
         deletedAt?: import("../types").Timestamp | undefined;
+        isActive?: boolean | undefined;
     }, {
         type: "trigger";
         name: string;
@@ -56,6 +58,7 @@ export declare const strategyPlanItemSchema: z.ZodObject<{
         numberOfUses?: number | undefined;
         numberOfSuccesses?: number | undefined;
         numberOfSetbacks?: number | undefined;
+        isActive?: boolean | undefined;
     }>, z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         name: z.ZodString;
@@ -134,6 +137,7 @@ export declare const strategyPlanItemSchema: z.ZodObject<{
         tacticsByPath?: Record<string, any> | undefined;
         lastUsedAt?: import("../types").Timestamp | undefined;
         deletedAt?: import("../types").Timestamp | undefined;
+        isActive?: boolean | undefined;
     } | {
         type: "scheduled";
         name: string;
@@ -174,6 +178,7 @@ export declare const strategyPlanItemSchema: z.ZodObject<{
         numberOfUses?: number | undefined;
         numberOfSuccesses?: number | undefined;
         numberOfSetbacks?: number | undefined;
+        isActive?: boolean | undefined;
     } | {
         type: "scheduled";
         name: string;
@@ -438,6 +443,7 @@ export declare const strategySchema: z.ZodObject<{
             numberOfUses: z.ZodDefault<z.ZodNumber>;
             numberOfSuccesses: z.ZodDefault<z.ZodNumber>;
             numberOfSetbacks: z.ZodDefault<z.ZodNumber>;
+            isActive: z.ZodOptional<z.ZodBoolean>;
         }, "strip", z.ZodTypeAny, {
             type: "trigger";
             name: string;
@@ -456,6 +462,7 @@ export declare const strategySchema: z.ZodObject<{
             tacticsByPath?: Record<string, any> | undefined;
             lastUsedAt?: import("../types").Timestamp | undefined;
             deletedAt?: import("../types").Timestamp | undefined;
+            isActive?: boolean | undefined;
         }, {
             type: "trigger";
             name: string;
@@ -474,6 +481,7 @@ export declare const strategySchema: z.ZodObject<{
             numberOfUses?: number | undefined;
             numberOfSuccesses?: number | undefined;
             numberOfSetbacks?: number | undefined;
+            isActive?: boolean | undefined;
         }>, z.ZodObject<{
             id: z.ZodOptional<z.ZodString>;
             name: z.ZodString;
@@ -552,6 +560,7 @@ export declare const strategySchema: z.ZodObject<{
             tacticsByPath?: Record<string, any> | undefined;
             lastUsedAt?: import("../types").Timestamp | undefined;
             deletedAt?: import("../types").Timestamp | undefined;
+            isActive?: boolean | undefined;
         } | {
             type: "scheduled";
             name: string;
@@ -592,6 +601,7 @@ export declare const strategySchema: z.ZodObject<{
             numberOfUses?: number | undefined;
             numberOfSuccesses?: number | undefined;
             numberOfSetbacks?: number | undefined;
+            isActive?: boolean | undefined;
         } | {
             type: "scheduled";
             name: string;
@@ -853,6 +863,7 @@ export declare const strategySchema: z.ZodObject<{
             tacticsByPath?: Record<string, any> | undefined;
             lastUsedAt?: import("../types").Timestamp | undefined;
             deletedAt?: import("../types").Timestamp | undefined;
+            isActive?: boolean | undefined;
         } | {
             type: "scheduled";
             name: string;
@@ -938,6 +949,7 @@ export declare const strategySchema: z.ZodObject<{
             numberOfUses?: number | undefined;
             numberOfSuccesses?: number | undefined;
             numberOfSetbacks?: number | undefined;
+            isActive?: boolean | undefined;
         } | {
             type: "scheduled";
             name: string;

@@ -11,13 +11,15 @@ export const plansLogSchema = logBaseSchema.extend({
   data: z.object({
     // The behavior these plans are for (optional - not present for time-based plans)
     behaviorId: z.string().optional(),
+    // The trigger these plans are for (optional - null means "something else")
+    triggerId: z.string().nullable().optional(),
     // Array of plans (each plan has tacticsByPath on it)
     plans: z.array(
       z.object({
         planId: z.string(),
         plan: planWithIdSchema,
         completedAt: timestampSchema.optional(),
-      })
+      }),
     ),
     // Index of the currently active/selected plan in the carousel
     activeIndex: z.number().optional(),
