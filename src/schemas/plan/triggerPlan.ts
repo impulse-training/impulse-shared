@@ -7,6 +7,7 @@ export const triggerPlanSchema = planBaseSchema("trigger").extend({
   numberOfUses: z.number().int().nonnegative().default(0),
   numberOfSuccesses: z.number().int().nonnegative().default(0),
   numberOfSetbacks: z.number().int().nonnegative().default(0),
+  isActive: z.boolean().optional(),
 });
 
 export type TriggerPlan = z.infer<typeof triggerPlanSchema>;
