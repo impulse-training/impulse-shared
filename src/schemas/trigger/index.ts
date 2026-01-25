@@ -16,9 +16,7 @@ export type TriggerLocation = z.infer<typeof triggerLocationSchema>;
 // Single trigger schema (not polymorphic)
 export const triggerSchema = z.object({
   id: z.string().optional(),
-  name: z.string(),
   text: z.string().min(1, "Trigger text is required"),
-  description: z.string().optional(),
   ordinal: z.number().optional(),
   location: triggerLocationSchema.optional(),
   createdAt: timestampSchema.optional(),
