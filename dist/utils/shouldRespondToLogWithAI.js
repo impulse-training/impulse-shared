@@ -38,10 +38,10 @@ function shouldRespondToLogWithAI(thread, beforeData, afterData) {
     if (isCreating && (0, log_1.logIsResistedLog)(afterData)) {
         return true;
     }
-    // Case: An impulse plan is added to the thread
+    // Case: A trigger plan is added to the thread
     if (isCreating &&
         (0, log_1.logIsPlansLog)(afterData) &&
-        ((_a = afterData.data.plans[0]) === null || _a === void 0 ? void 0 : _a.plan.type) === "impulse") {
+        ((_a = afterData.data.plans[0]) === null || _a === void 0 ? void 0 : _a.plan.type) === "trigger") {
         return true;
     }
     // Case: Widget setup log with changed response field

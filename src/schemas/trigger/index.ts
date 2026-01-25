@@ -1,43 +1,39 @@
 import { z } from "zod";
+import { timestampSchema } from "../../utils/timestampSchema";
 import { withIdSchema } from "../../utils/withId";
-import { SimpleTrigger, simpleTriggerSchema } from "./simpleTrigger";
-import { TimeTrigger, timeTriggerSchema } from "./timeTrigger";
-import { LocationTrigger, locationTriggerSchema } from "./locationTrigger";
 
-export * from "./simpleTrigger";
-export * from "./timeTrigger";
-export * from "./locationTrigger";
+// Optional location data for location-based triggers
+export const triggerLocationSchema = z.object({
+  locationName: z.string().min(1, "Location name is required"),
+  address: z.string().min(1, "Address is required"),
+  triggerType: z.enum(["arrival", "departure"]),
+  latitude: z.number().min(-90).max(90),
+  longitude: z.number().min(-180).max(180),
+});
 
-export const triggerSchema = z.discriminatedUnion("type", [
-  simpleTriggerSchema,
-  timeTriggerSchema,
-  locationTriggerSchema,
-]);
+export type TriggerLocation = z.infer<typeof triggerLocationSchema>;
+
+// Single trigger schema (not polymorphic)
+export const triggerSchema = z.object({
+  id: z.string().optional(),
+  name: z.string(),
+  text: z.string().min(1, "Trigger text is required"),
+  description: z.string().optional(),
+  ordinal: z.number().optional(),
+  location: triggerLocationSchema.optional(),
+  createdAt: timestampSchema.optional(),
+  updatedAt: timestampSchema.optional(),
+  deletedAt: timestampSchema.optional(),
+});
 
 export type Trigger = z.infer<typeof triggerSchema>;
 
-export const triggerWithIdSchema = z.union([
-  withIdSchema(simpleTriggerSchema),
-  withIdSchema(timeTriggerSchema),
-  withIdSchema(locationTriggerSchema),
-]);
+export const triggerWithIdSchema = withIdSchema(triggerSchema);
 
 export type TriggerWithId = z.infer<typeof triggerWithIdSchema>;
 
-export const triggerIsSimpleTrigger = (
-  value: Trigger,
-): value is SimpleTrigger => value.type === "simple";
-export const isValidSimpleTrigger = (value: unknown): value is SimpleTrigger =>
-  simpleTriggerSchema.safeParse(value).success;
+export const isValidTrigger = (value: unknown): value is Trigger =>
+  triggerSchema.safeParse(value).success;
 
-export const triggerIsTimeTrigger = (value: Trigger): value is TimeTrigger =>
-  value.type === "time";
-export const isValidTimeTrigger = (value: unknown): value is TimeTrigger =>
-  timeTriggerSchema.safeParse(value).success;
-
-export const triggerIsLocationTrigger = (
-  value: Trigger,
-): value is LocationTrigger => value.type === "location";
-export const isValidLocationTrigger = (
-  value: unknown,
-): value is LocationTrigger => locationTriggerSchema.safeParse(value).success;
+export const triggerHasLocation = (trigger: Trigger): boolean =>
+  trigger.location !== undefined;

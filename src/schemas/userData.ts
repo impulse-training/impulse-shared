@@ -1,7 +1,13 @@
 import { z } from "zod";
 import { documentReferenceSchema } from "../utils/documentReferenceSchema";
 import { timestampSchema } from "../utils/timestampSchema";
-import { timeTriggerSchema } from "./plan/trigger/timeTrigger";
+
+// Inline recap trigger schema (time-based)
+const recapTriggerSchema = z.object({
+  hour: z.number().min(0).max(23),
+  minute: z.number().min(0).max(59),
+  weekdays: z.array(z.number().min(0).max(6)).min(1),
+});
 
 export const userDataSchema = z.object({
   id: z.string().optional(),
@@ -56,7 +62,7 @@ export const userDataSchema = z.object({
   // Recap configuration
   recap: z
     .object({
-      trigger: timeTriggerSchema,
+      trigger: recapTriggerSchema,
     })
     .optional(),
 

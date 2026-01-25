@@ -4,7 +4,12 @@ exports.isUserData = exports.userDataSchema = void 0;
 const zod_1 = require("zod");
 const documentReferenceSchema_1 = require("../utils/documentReferenceSchema");
 const timestampSchema_1 = require("../utils/timestampSchema");
-const timeTrigger_1 = require("./plan/trigger/timeTrigger");
+// Inline recap trigger schema (time-based)
+const recapTriggerSchema = zod_1.z.object({
+    hour: zod_1.z.number().min(0).max(23),
+    minute: zod_1.z.number().min(0).max(59),
+    weekdays: zod_1.z.array(zod_1.z.number().min(0).max(6)).min(1),
+});
 exports.userDataSchema = zod_1.z.object({
     id: zod_1.z.string().optional(),
     createdAt: timestampSchema_1.timestampSchema.optional(),
@@ -48,7 +53,7 @@ exports.userDataSchema = zod_1.z.object({
     // Recap configuration
     recap: zod_1.z
         .object({
-        trigger: timeTrigger_1.timeTriggerSchema,
+        trigger: recapTriggerSchema,
     })
         .optional(),
     // If true, this user will be added to the tech support group for all new signups

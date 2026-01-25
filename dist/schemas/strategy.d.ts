@@ -5,7 +5,7 @@ export declare const strategyPlanItemSchema: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         name: z.ZodString;
         description: z.ZodOptional<z.ZodString>;
-        type: z.ZodType<"impulse", z.ZodTypeDef, "impulse">;
+        type: z.ZodType<"trigger", z.ZodTypeDef, "trigger">;
         ordinal: z.ZodOptional<z.ZodNumber>;
         isTemplate: z.ZodOptional<z.ZodBoolean>;
         summary: z.ZodOptional<z.ZodString>;
@@ -16,21 +16,15 @@ export declare const strategyPlanItemSchema: z.ZodObject<{
         updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         deletedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     } & {
-        behaviorId: z.ZodString;
-        behaviorRef: z.ZodType<import("..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("..").DocumentReferenceLike<unknown>>;
-        isActive: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
         lastUsedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         numberOfUses: z.ZodDefault<z.ZodNumber>;
         numberOfSuccesses: z.ZodDefault<z.ZodNumber>;
         numberOfSetbacks: z.ZodDefault<z.ZodNumber>;
     }, "strip", z.ZodTypeAny, {
-        type: "impulse";
-        behaviorId: string;
+        type: "trigger";
         name: string;
         tactics: import("..").DocumentReferenceLike<unknown>[];
         questions: import("..").DocumentReferenceLike<unknown>[];
-        behaviorRef: import("..").DocumentReferenceLike<unknown>;
-        isActive: boolean;
         numberOfUses: number;
         numberOfSuccesses: number;
         numberOfSetbacks: number;
@@ -45,11 +39,9 @@ export declare const strategyPlanItemSchema: z.ZodObject<{
         lastUsedAt?: import("../types").Timestamp | undefined;
         deletedAt?: import("../types").Timestamp | undefined;
     }, {
-        type: "impulse";
-        behaviorId: string;
+        type: "trigger";
         name: string;
         tactics: import("..").DocumentReferenceLike<unknown>[];
-        behaviorRef: import("..").DocumentReferenceLike<unknown>;
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
@@ -61,7 +53,6 @@ export declare const strategyPlanItemSchema: z.ZodObject<{
         questions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
         lastUsedAt?: import("../types").Timestamp | undefined;
         deletedAt?: import("../types").Timestamp | undefined;
-        isActive?: boolean | undefined;
         numberOfUses?: number | undefined;
         numberOfSuccesses?: number | undefined;
         numberOfSetbacks?: number | undefined;
@@ -69,7 +60,7 @@ export declare const strategyPlanItemSchema: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         name: z.ZodString;
         description: z.ZodOptional<z.ZodString>;
-        type: z.ZodType<"time", z.ZodTypeDef, "time">;
+        type: z.ZodType<"scheduled", z.ZodTypeDef, "scheduled">;
         ordinal: z.ZodOptional<z.ZodNumber>;
         isTemplate: z.ZodOptional<z.ZodBoolean>;
         summary: z.ZodOptional<z.ZodString>;
@@ -81,29 +72,17 @@ export declare const strategyPlanItemSchema: z.ZodObject<{
         updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         deletedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     } & {
-        trigger: z.ZodObject<{
-            hour: z.ZodNumber;
-            minute: z.ZodNumber;
-            weekdays: z.ZodArray<z.ZodNumber, "many">;
-        }, "strip", z.ZodTypeAny, {
-            hour: number;
-            minute: number;
-            weekdays: number[];
-        }, {
-            hour: number;
-            minute: number;
-            weekdays: number[];
-        }>;
+        hour: z.ZodNumber;
+        minute: z.ZodNumber;
+        weekdays: z.ZodArray<z.ZodNumber, "many">;
     }, "strip", z.ZodTypeAny, {
-        type: "time";
+        type: "scheduled";
         name: string;
         tactics: import("..").DocumentReferenceLike<unknown>[];
         questions: import("..").DocumentReferenceLike<unknown>[];
-        trigger: {
-            hour: number;
-            minute: number;
-            weekdays: number[];
-        };
+        hour: number;
+        minute: number;
+        weekdays: number[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
@@ -115,93 +94,12 @@ export declare const strategyPlanItemSchema: z.ZodObject<{
         lastUsedAt?: import("../types").Timestamp | undefined;
         deletedAt?: import("../types").Timestamp | undefined;
     }, {
-        type: "time";
+        type: "scheduled";
         name: string;
         tactics: import("..").DocumentReferenceLike<unknown>[];
-        trigger: {
-            hour: number;
-            minute: number;
-            weekdays: number[];
-        };
-        id?: string | undefined;
-        createdAt?: import("../types").Timestamp | undefined;
-        updatedAt?: import("../types").Timestamp | undefined;
-        description?: string | undefined;
-        ordinal?: number | undefined;
-        summary?: string | undefined;
-        isTemplate?: boolean | undefined;
-        tacticsByPath?: Record<string, any> | undefined;
-        questions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
-        lastUsedAt?: import("../types").Timestamp | undefined;
-        deletedAt?: import("../types").Timestamp | undefined;
-    }>, z.ZodObject<{
-        id: z.ZodOptional<z.ZodString>;
-        name: z.ZodString;
-        description: z.ZodOptional<z.ZodString>;
-        type: z.ZodType<"location", z.ZodTypeDef, "location">;
-        ordinal: z.ZodOptional<z.ZodNumber>;
-        isTemplate: z.ZodOptional<z.ZodBoolean>;
-        summary: z.ZodOptional<z.ZodString>;
-        tactics: z.ZodArray<z.ZodType<import("..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("..").DocumentReferenceLike<unknown>>, "many">;
-        tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
-        questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("..").DocumentReferenceLike<unknown>>, "many">>>;
-        lastUsedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-        createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-        updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-        deletedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-    } & {
-        trigger: z.ZodObject<{
-            locationName: z.ZodString;
-            address: z.ZodString;
-            triggerType: z.ZodEnum<["arrival", "departure"]>;
-            latitude: z.ZodNumber;
-            longitude: z.ZodNumber;
-        }, "strip", z.ZodTypeAny, {
-            locationName: string;
-            address: string;
-            triggerType: "arrival" | "departure";
-            latitude: number;
-            longitude: number;
-        }, {
-            locationName: string;
-            address: string;
-            triggerType: "arrival" | "departure";
-            latitude: number;
-            longitude: number;
-        }>;
-    }, "strip", z.ZodTypeAny, {
-        type: "location";
-        name: string;
-        tactics: import("..").DocumentReferenceLike<unknown>[];
-        questions: import("..").DocumentReferenceLike<unknown>[];
-        trigger: {
-            locationName: string;
-            address: string;
-            triggerType: "arrival" | "departure";
-            latitude: number;
-            longitude: number;
-        };
-        id?: string | undefined;
-        createdAt?: import("../types").Timestamp | undefined;
-        updatedAt?: import("../types").Timestamp | undefined;
-        description?: string | undefined;
-        ordinal?: number | undefined;
-        summary?: string | undefined;
-        isTemplate?: boolean | undefined;
-        tacticsByPath?: Record<string, any> | undefined;
-        lastUsedAt?: import("../types").Timestamp | undefined;
-        deletedAt?: import("../types").Timestamp | undefined;
-    }, {
-        type: "location";
-        name: string;
-        tactics: import("..").DocumentReferenceLike<unknown>[];
-        trigger: {
-            locationName: string;
-            address: string;
-            triggerType: "arrival" | "departure";
-            latitude: number;
-            longitude: number;
-        };
+        hour: number;
+        minute: number;
+        weekdays: number[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
@@ -219,13 +117,10 @@ export declare const strategyPlanItemSchema: z.ZodObject<{
     description: string;
     planId: string;
     plan: {
-        type: "impulse";
-        behaviorId: string;
+        type: "trigger";
         name: string;
         tactics: import("..").DocumentReferenceLike<unknown>[];
         questions: import("..").DocumentReferenceLike<unknown>[];
-        behaviorRef: import("..").DocumentReferenceLike<unknown>;
-        isActive: boolean;
         numberOfUses: number;
         numberOfSuccesses: number;
         numberOfSetbacks: number;
@@ -240,37 +135,13 @@ export declare const strategyPlanItemSchema: z.ZodObject<{
         lastUsedAt?: import("../types").Timestamp | undefined;
         deletedAt?: import("../types").Timestamp | undefined;
     } | {
-        type: "location";
+        type: "scheduled";
         name: string;
         tactics: import("..").DocumentReferenceLike<unknown>[];
         questions: import("..").DocumentReferenceLike<unknown>[];
-        trigger: {
-            locationName: string;
-            address: string;
-            triggerType: "arrival" | "departure";
-            latitude: number;
-            longitude: number;
-        };
-        id?: string | undefined;
-        createdAt?: import("../types").Timestamp | undefined;
-        updatedAt?: import("../types").Timestamp | undefined;
-        description?: string | undefined;
-        ordinal?: number | undefined;
-        summary?: string | undefined;
-        isTemplate?: boolean | undefined;
-        tacticsByPath?: Record<string, any> | undefined;
-        lastUsedAt?: import("../types").Timestamp | undefined;
-        deletedAt?: import("../types").Timestamp | undefined;
-    } | {
-        type: "time";
-        name: string;
-        tactics: import("..").DocumentReferenceLike<unknown>[];
-        questions: import("..").DocumentReferenceLike<unknown>[];
-        trigger: {
-            hour: number;
-            minute: number;
-            weekdays: number[];
-        };
+        hour: number;
+        minute: number;
+        weekdays: number[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
@@ -286,11 +157,9 @@ export declare const strategyPlanItemSchema: z.ZodObject<{
     description: string;
     planId: string;
     plan: {
-        type: "impulse";
-        behaviorId: string;
+        type: "trigger";
         name: string;
         tactics: import("..").DocumentReferenceLike<unknown>[];
-        behaviorRef: import("..").DocumentReferenceLike<unknown>;
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
@@ -302,41 +171,16 @@ export declare const strategyPlanItemSchema: z.ZodObject<{
         questions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
         lastUsedAt?: import("../types").Timestamp | undefined;
         deletedAt?: import("../types").Timestamp | undefined;
-        isActive?: boolean | undefined;
         numberOfUses?: number | undefined;
         numberOfSuccesses?: number | undefined;
         numberOfSetbacks?: number | undefined;
     } | {
-        type: "location";
+        type: "scheduled";
         name: string;
         tactics: import("..").DocumentReferenceLike<unknown>[];
-        trigger: {
-            locationName: string;
-            address: string;
-            triggerType: "arrival" | "departure";
-            latitude: number;
-            longitude: number;
-        };
-        id?: string | undefined;
-        createdAt?: import("../types").Timestamp | undefined;
-        updatedAt?: import("../types").Timestamp | undefined;
-        description?: string | undefined;
-        ordinal?: number | undefined;
-        summary?: string | undefined;
-        isTemplate?: boolean | undefined;
-        tacticsByPath?: Record<string, any> | undefined;
-        questions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
-        lastUsedAt?: import("../types").Timestamp | undefined;
-        deletedAt?: import("../types").Timestamp | undefined;
-    } | {
-        type: "time";
-        name: string;
-        tactics: import("..").DocumentReferenceLike<unknown>[];
-        trigger: {
-            hour: number;
-            minute: number;
-            weekdays: number[];
-        };
+        hour: number;
+        minute: number;
+        weekdays: number[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
@@ -579,7 +423,7 @@ export declare const strategySchema: z.ZodObject<{
             id: z.ZodOptional<z.ZodString>;
             name: z.ZodString;
             description: z.ZodOptional<z.ZodString>;
-            type: z.ZodType<"impulse", z.ZodTypeDef, "impulse">;
+            type: z.ZodType<"trigger", z.ZodTypeDef, "trigger">;
             ordinal: z.ZodOptional<z.ZodNumber>;
             isTemplate: z.ZodOptional<z.ZodBoolean>;
             summary: z.ZodOptional<z.ZodString>;
@@ -590,21 +434,15 @@ export declare const strategySchema: z.ZodObject<{
             updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
             deletedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         } & {
-            behaviorId: z.ZodString;
-            behaviorRef: z.ZodType<import("..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("..").DocumentReferenceLike<unknown>>;
-            isActive: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
             lastUsedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
             numberOfUses: z.ZodDefault<z.ZodNumber>;
             numberOfSuccesses: z.ZodDefault<z.ZodNumber>;
             numberOfSetbacks: z.ZodDefault<z.ZodNumber>;
         }, "strip", z.ZodTypeAny, {
-            type: "impulse";
-            behaviorId: string;
+            type: "trigger";
             name: string;
             tactics: import("..").DocumentReferenceLike<unknown>[];
             questions: import("..").DocumentReferenceLike<unknown>[];
-            behaviorRef: import("..").DocumentReferenceLike<unknown>;
-            isActive: boolean;
             numberOfUses: number;
             numberOfSuccesses: number;
             numberOfSetbacks: number;
@@ -619,11 +457,9 @@ export declare const strategySchema: z.ZodObject<{
             lastUsedAt?: import("../types").Timestamp | undefined;
             deletedAt?: import("../types").Timestamp | undefined;
         }, {
-            type: "impulse";
-            behaviorId: string;
+            type: "trigger";
             name: string;
             tactics: import("..").DocumentReferenceLike<unknown>[];
-            behaviorRef: import("..").DocumentReferenceLike<unknown>;
             id?: string | undefined;
             createdAt?: import("../types").Timestamp | undefined;
             updatedAt?: import("../types").Timestamp | undefined;
@@ -635,7 +471,6 @@ export declare const strategySchema: z.ZodObject<{
             questions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
             lastUsedAt?: import("../types").Timestamp | undefined;
             deletedAt?: import("../types").Timestamp | undefined;
-            isActive?: boolean | undefined;
             numberOfUses?: number | undefined;
             numberOfSuccesses?: number | undefined;
             numberOfSetbacks?: number | undefined;
@@ -643,7 +478,7 @@ export declare const strategySchema: z.ZodObject<{
             id: z.ZodOptional<z.ZodString>;
             name: z.ZodString;
             description: z.ZodOptional<z.ZodString>;
-            type: z.ZodType<"time", z.ZodTypeDef, "time">;
+            type: z.ZodType<"scheduled", z.ZodTypeDef, "scheduled">;
             ordinal: z.ZodOptional<z.ZodNumber>;
             isTemplate: z.ZodOptional<z.ZodBoolean>;
             summary: z.ZodOptional<z.ZodString>;
@@ -655,29 +490,17 @@ export declare const strategySchema: z.ZodObject<{
             updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
             deletedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         } & {
-            trigger: z.ZodObject<{
-                hour: z.ZodNumber;
-                minute: z.ZodNumber;
-                weekdays: z.ZodArray<z.ZodNumber, "many">;
-            }, "strip", z.ZodTypeAny, {
-                hour: number;
-                minute: number;
-                weekdays: number[];
-            }, {
-                hour: number;
-                minute: number;
-                weekdays: number[];
-            }>;
+            hour: z.ZodNumber;
+            minute: z.ZodNumber;
+            weekdays: z.ZodArray<z.ZodNumber, "many">;
         }, "strip", z.ZodTypeAny, {
-            type: "time";
+            type: "scheduled";
             name: string;
             tactics: import("..").DocumentReferenceLike<unknown>[];
             questions: import("..").DocumentReferenceLike<unknown>[];
-            trigger: {
-                hour: number;
-                minute: number;
-                weekdays: number[];
-            };
+            hour: number;
+            minute: number;
+            weekdays: number[];
             id?: string | undefined;
             createdAt?: import("../types").Timestamp | undefined;
             updatedAt?: import("../types").Timestamp | undefined;
@@ -689,93 +512,12 @@ export declare const strategySchema: z.ZodObject<{
             lastUsedAt?: import("../types").Timestamp | undefined;
             deletedAt?: import("../types").Timestamp | undefined;
         }, {
-            type: "time";
+            type: "scheduled";
             name: string;
             tactics: import("..").DocumentReferenceLike<unknown>[];
-            trigger: {
-                hour: number;
-                minute: number;
-                weekdays: number[];
-            };
-            id?: string | undefined;
-            createdAt?: import("../types").Timestamp | undefined;
-            updatedAt?: import("../types").Timestamp | undefined;
-            description?: string | undefined;
-            ordinal?: number | undefined;
-            summary?: string | undefined;
-            isTemplate?: boolean | undefined;
-            tacticsByPath?: Record<string, any> | undefined;
-            questions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
-            lastUsedAt?: import("../types").Timestamp | undefined;
-            deletedAt?: import("../types").Timestamp | undefined;
-        }>, z.ZodObject<{
-            id: z.ZodOptional<z.ZodString>;
-            name: z.ZodString;
-            description: z.ZodOptional<z.ZodString>;
-            type: z.ZodType<"location", z.ZodTypeDef, "location">;
-            ordinal: z.ZodOptional<z.ZodNumber>;
-            isTemplate: z.ZodOptional<z.ZodBoolean>;
-            summary: z.ZodOptional<z.ZodString>;
-            tactics: z.ZodArray<z.ZodType<import("..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("..").DocumentReferenceLike<unknown>>, "many">;
-            tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
-            questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("..").DocumentReferenceLike<unknown>>, "many">>>;
-            lastUsedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-            createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-            updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-            deletedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-        } & {
-            trigger: z.ZodObject<{
-                locationName: z.ZodString;
-                address: z.ZodString;
-                triggerType: z.ZodEnum<["arrival", "departure"]>;
-                latitude: z.ZodNumber;
-                longitude: z.ZodNumber;
-            }, "strip", z.ZodTypeAny, {
-                locationName: string;
-                address: string;
-                triggerType: "arrival" | "departure";
-                latitude: number;
-                longitude: number;
-            }, {
-                locationName: string;
-                address: string;
-                triggerType: "arrival" | "departure";
-                latitude: number;
-                longitude: number;
-            }>;
-        }, "strip", z.ZodTypeAny, {
-            type: "location";
-            name: string;
-            tactics: import("..").DocumentReferenceLike<unknown>[];
-            questions: import("..").DocumentReferenceLike<unknown>[];
-            trigger: {
-                locationName: string;
-                address: string;
-                triggerType: "arrival" | "departure";
-                latitude: number;
-                longitude: number;
-            };
-            id?: string | undefined;
-            createdAt?: import("../types").Timestamp | undefined;
-            updatedAt?: import("../types").Timestamp | undefined;
-            description?: string | undefined;
-            ordinal?: number | undefined;
-            summary?: string | undefined;
-            isTemplate?: boolean | undefined;
-            tacticsByPath?: Record<string, any> | undefined;
-            lastUsedAt?: import("../types").Timestamp | undefined;
-            deletedAt?: import("../types").Timestamp | undefined;
-        }, {
-            type: "location";
-            name: string;
-            tactics: import("..").DocumentReferenceLike<unknown>[];
-            trigger: {
-                locationName: string;
-                address: string;
-                triggerType: "arrival" | "departure";
-                latitude: number;
-                longitude: number;
-            };
+            hour: number;
+            minute: number;
+            weekdays: number[];
             id?: string | undefined;
             createdAt?: import("../types").Timestamp | undefined;
             updatedAt?: import("../types").Timestamp | undefined;
@@ -793,13 +535,10 @@ export declare const strategySchema: z.ZodObject<{
         description: string;
         planId: string;
         plan: {
-            type: "impulse";
-            behaviorId: string;
+            type: "trigger";
             name: string;
             tactics: import("..").DocumentReferenceLike<unknown>[];
             questions: import("..").DocumentReferenceLike<unknown>[];
-            behaviorRef: import("..").DocumentReferenceLike<unknown>;
-            isActive: boolean;
             numberOfUses: number;
             numberOfSuccesses: number;
             numberOfSetbacks: number;
@@ -814,37 +553,13 @@ export declare const strategySchema: z.ZodObject<{
             lastUsedAt?: import("../types").Timestamp | undefined;
             deletedAt?: import("../types").Timestamp | undefined;
         } | {
-            type: "location";
+            type: "scheduled";
             name: string;
             tactics: import("..").DocumentReferenceLike<unknown>[];
             questions: import("..").DocumentReferenceLike<unknown>[];
-            trigger: {
-                locationName: string;
-                address: string;
-                triggerType: "arrival" | "departure";
-                latitude: number;
-                longitude: number;
-            };
-            id?: string | undefined;
-            createdAt?: import("../types").Timestamp | undefined;
-            updatedAt?: import("../types").Timestamp | undefined;
-            description?: string | undefined;
-            ordinal?: number | undefined;
-            summary?: string | undefined;
-            isTemplate?: boolean | undefined;
-            tacticsByPath?: Record<string, any> | undefined;
-            lastUsedAt?: import("../types").Timestamp | undefined;
-            deletedAt?: import("../types").Timestamp | undefined;
-        } | {
-            type: "time";
-            name: string;
-            tactics: import("..").DocumentReferenceLike<unknown>[];
-            questions: import("..").DocumentReferenceLike<unknown>[];
-            trigger: {
-                hour: number;
-                minute: number;
-                weekdays: number[];
-            };
+            hour: number;
+            minute: number;
+            weekdays: number[];
             id?: string | undefined;
             createdAt?: import("../types").Timestamp | undefined;
             updatedAt?: import("../types").Timestamp | undefined;
@@ -860,11 +575,9 @@ export declare const strategySchema: z.ZodObject<{
         description: string;
         planId: string;
         plan: {
-            type: "impulse";
-            behaviorId: string;
+            type: "trigger";
             name: string;
             tactics: import("..").DocumentReferenceLike<unknown>[];
-            behaviorRef: import("..").DocumentReferenceLike<unknown>;
             id?: string | undefined;
             createdAt?: import("../types").Timestamp | undefined;
             updatedAt?: import("../types").Timestamp | undefined;
@@ -876,41 +589,16 @@ export declare const strategySchema: z.ZodObject<{
             questions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
             lastUsedAt?: import("../types").Timestamp | undefined;
             deletedAt?: import("../types").Timestamp | undefined;
-            isActive?: boolean | undefined;
             numberOfUses?: number | undefined;
             numberOfSuccesses?: number | undefined;
             numberOfSetbacks?: number | undefined;
         } | {
-            type: "location";
+            type: "scheduled";
             name: string;
             tactics: import("..").DocumentReferenceLike<unknown>[];
-            trigger: {
-                locationName: string;
-                address: string;
-                triggerType: "arrival" | "departure";
-                latitude: number;
-                longitude: number;
-            };
-            id?: string | undefined;
-            createdAt?: import("../types").Timestamp | undefined;
-            updatedAt?: import("../types").Timestamp | undefined;
-            description?: string | undefined;
-            ordinal?: number | undefined;
-            summary?: string | undefined;
-            isTemplate?: boolean | undefined;
-            tacticsByPath?: Record<string, any> | undefined;
-            questions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
-            lastUsedAt?: import("../types").Timestamp | undefined;
-            deletedAt?: import("../types").Timestamp | undefined;
-        } | {
-            type: "time";
-            name: string;
-            tactics: import("..").DocumentReferenceLike<unknown>[];
-            trigger: {
-                hour: number;
-                minute: number;
-                weekdays: number[];
-            };
+            hour: number;
+            minute: number;
+            weekdays: number[];
             id?: string | undefined;
             createdAt?: import("../types").Timestamp | undefined;
             updatedAt?: import("../types").Timestamp | undefined;
@@ -1148,13 +836,10 @@ export declare const strategySchema: z.ZodObject<{
         description: string;
         planId: string;
         plan: {
-            type: "impulse";
-            behaviorId: string;
+            type: "trigger";
             name: string;
             tactics: import("..").DocumentReferenceLike<unknown>[];
             questions: import("..").DocumentReferenceLike<unknown>[];
-            behaviorRef: import("..").DocumentReferenceLike<unknown>;
-            isActive: boolean;
             numberOfUses: number;
             numberOfSuccesses: number;
             numberOfSetbacks: number;
@@ -1169,37 +854,13 @@ export declare const strategySchema: z.ZodObject<{
             lastUsedAt?: import("../types").Timestamp | undefined;
             deletedAt?: import("../types").Timestamp | undefined;
         } | {
-            type: "location";
+            type: "scheduled";
             name: string;
             tactics: import("..").DocumentReferenceLike<unknown>[];
             questions: import("..").DocumentReferenceLike<unknown>[];
-            trigger: {
-                locationName: string;
-                address: string;
-                triggerType: "arrival" | "departure";
-                latitude: number;
-                longitude: number;
-            };
-            id?: string | undefined;
-            createdAt?: import("../types").Timestamp | undefined;
-            updatedAt?: import("../types").Timestamp | undefined;
-            description?: string | undefined;
-            ordinal?: number | undefined;
-            summary?: string | undefined;
-            isTemplate?: boolean | undefined;
-            tacticsByPath?: Record<string, any> | undefined;
-            lastUsedAt?: import("../types").Timestamp | undefined;
-            deletedAt?: import("../types").Timestamp | undefined;
-        } | {
-            type: "time";
-            name: string;
-            tactics: import("..").DocumentReferenceLike<unknown>[];
-            questions: import("..").DocumentReferenceLike<unknown>[];
-            trigger: {
-                hour: number;
-                minute: number;
-                weekdays: number[];
-            };
+            hour: number;
+            minute: number;
+            weekdays: number[];
             id?: string | undefined;
             createdAt?: import("../types").Timestamp | undefined;
             updatedAt?: import("../types").Timestamp | undefined;
@@ -1260,11 +921,9 @@ export declare const strategySchema: z.ZodObject<{
         description: string;
         planId: string;
         plan: {
-            type: "impulse";
-            behaviorId: string;
+            type: "trigger";
             name: string;
             tactics: import("..").DocumentReferenceLike<unknown>[];
-            behaviorRef: import("..").DocumentReferenceLike<unknown>;
             id?: string | undefined;
             createdAt?: import("../types").Timestamp | undefined;
             updatedAt?: import("../types").Timestamp | undefined;
@@ -1276,41 +935,16 @@ export declare const strategySchema: z.ZodObject<{
             questions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
             lastUsedAt?: import("../types").Timestamp | undefined;
             deletedAt?: import("../types").Timestamp | undefined;
-            isActive?: boolean | undefined;
             numberOfUses?: number | undefined;
             numberOfSuccesses?: number | undefined;
             numberOfSetbacks?: number | undefined;
         } | {
-            type: "location";
+            type: "scheduled";
             name: string;
             tactics: import("..").DocumentReferenceLike<unknown>[];
-            trigger: {
-                locationName: string;
-                address: string;
-                triggerType: "arrival" | "departure";
-                latitude: number;
-                longitude: number;
-            };
-            id?: string | undefined;
-            createdAt?: import("../types").Timestamp | undefined;
-            updatedAt?: import("../types").Timestamp | undefined;
-            description?: string | undefined;
-            ordinal?: number | undefined;
-            summary?: string | undefined;
-            isTemplate?: boolean | undefined;
-            tacticsByPath?: Record<string, any> | undefined;
-            questions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
-            lastUsedAt?: import("../types").Timestamp | undefined;
-            deletedAt?: import("../types").Timestamp | undefined;
-        } | {
-            type: "time";
-            name: string;
-            tactics: import("..").DocumentReferenceLike<unknown>[];
-            trigger: {
-                hour: number;
-                minute: number;
-                weekdays: number[];
-            };
+            hour: number;
+            minute: number;
+            weekdays: number[];
             id?: string | undefined;
             createdAt?: import("../types").Timestamp | undefined;
             updatedAt?: import("../types").Timestamp | undefined;

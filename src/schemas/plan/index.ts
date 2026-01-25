@@ -1,39 +1,30 @@
 import { z } from "zod";
 import { withIdSchema } from "../../utils/withId";
-import { ImpulsePlan, impulsePlanSchema } from "./impulsePlan";
-import { LocationPlan, locationPlanSchema } from "./locationPlan";
-import { TimePlan, timePlanSchema } from "./timePlan";
+import { TriggerPlan, triggerPlanSchema } from "./triggerPlan";
+import { ScheduledPlan, scheduledPlanSchema } from "./scheduledPlan";
 
-export * from "./impulsePlan";
-export * from "./locationPlan";
-export * from "./timePlan";
+export * from "./triggerPlan";
+export * from "./scheduledPlan";
 
 export const planSchema = z.discriminatedUnion("type", [
-  impulsePlanSchema,
-  timePlanSchema,
-  locationPlanSchema,
+  triggerPlanSchema,
+  scheduledPlanSchema,
 ]);
 
 export type Plan = z.infer<typeof planSchema>;
 
 // WithId variant for plans
 export const planWithIdSchema = z.union([
-  withIdSchema(impulsePlanSchema),
-  withIdSchema(timePlanSchema),
-  withIdSchema(locationPlanSchema),
+  withIdSchema(triggerPlanSchema),
+  withIdSchema(scheduledPlanSchema),
 ]);
 
-export const planIsTimePlan = (value: Plan): value is TimePlan =>
-  value.type === "time";
-export const isValidTimePlan = (value: unknown): value is TimePlan =>
-  timePlanSchema.safeParse(value).success;
+export const planIsTriggerPlan = (value: Plan): value is TriggerPlan =>
+  value.type === "trigger";
+export const isValidTriggerPlan = (value: unknown): value is TriggerPlan =>
+  triggerPlanSchema.safeParse(value).success;
 
-export const planIsLocationPlan = (value: Plan): value is LocationPlan =>
-  value.type === "location";
-export const isValidLocationPlan = (value: unknown): value is LocationPlan =>
-  locationPlanSchema.safeParse(value).success;
-
-export const planIsImpulsePlan = (value: Plan): value is ImpulsePlan =>
-  value.type === "impulse";
-export const isValidImpulsePlan = (value: unknown): value is ImpulsePlan =>
-  impulsePlanSchema.safeParse(value).success;
+export const planIsScheduledPlan = (value: Plan): value is ScheduledPlan =>
+  value.type === "scheduled";
+export const isValidScheduledPlan = (value: unknown): value is ScheduledPlan =>
+  scheduledPlanSchema.safeParse(value).success;

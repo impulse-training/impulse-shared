@@ -57,11 +57,11 @@ export function shouldRespondToLogWithAI(
     return true;
   }
 
-  // Case: An impulse plan is added to the thread
+  // Case: A trigger plan is added to the thread
   if (
     isCreating &&
     logIsPlansLog(afterData) &&
-    afterData.data.plans[0]?.plan.type === "impulse"
+    afterData.data.plans[0]?.plan.type === "trigger"
   ) {
     return true;
   }
