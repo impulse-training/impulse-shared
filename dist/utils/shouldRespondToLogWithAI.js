@@ -53,8 +53,8 @@ function shouldRespondToLogWithAI(thread, beforeData, afterData) {
         hasNewlyCompletedPlan(beforeData, afterData)) {
         return true;
     }
-    // Case: Impulse can respond when the user logs an outcome (resisted or setback)
-    if (isCreating && (0, log_1.logIsResistedLog)(afterData)) {
+    // Case: Impulse can respond when the user logs a behavior with value=0 (resisted)
+    if (isCreating && (0, log_1.logIsBehaviorLog)(afterData) && afterData.data.value === 0) {
         return true;
     }
     // Case: A trigger plan is added to the thread

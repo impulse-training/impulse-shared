@@ -26,7 +26,6 @@ import {
   ReadyToDebriefLog,
   readyToDebriefLogSchema,
 } from "./readyToDebriefLog";
-import { ResistedLog, resistedLogSchema } from "./resistedLog";
 import { SharedMomentLog, sharedMomentLogSchema } from "./sharedMomentLog";
 import { ShowTourLog, showTourLogSchema } from "./showTourLog";
 import { SummaryLog, summaryLogSchema } from "./summaryLog";
@@ -49,7 +48,6 @@ export const logSchemas = {
   tactic_viewed: tacticLogSchema,
   behavior: behaviorLogSchema,
   breathing: breathingLogSchema,
-  outcome: resistedLogSchema,
   questions: questionsLogSchema,
   plans: plansLogSchema,
   summary: summaryLogSchema,
@@ -72,7 +70,6 @@ export type Log =
   | TacticLog
   | BehaviorLog
   | BreathingLog
-  | ResistedLog
   | QuestionsLog
   | PlansLog
   | ToolCallLog
@@ -99,7 +96,6 @@ export * from "./notifySupportGroupLog";
 export * from "./plansLog";
 export * from "./questionsLog";
 export * from "./readyToDebriefLog";
-export * from "./resistedLog";
 export * from "./sharedMomentLog";
 export * from "./showTourLog";
 export * from "./summaryLog";
@@ -119,7 +115,6 @@ export const logSchema = z.discriminatedUnion("type", [
   tacticLogSchema,
   behaviorLogSchema,
   breathingLogSchema,
-  resistedLogSchema,
   questionsLogSchema,
   plansLogSchema,
   summaryLogSchema,
@@ -263,13 +258,6 @@ export const logIsBreathingLog = (
 ): value is BreathingLog => value.type === "breathing";
 export const isValidBreathingLog = (value: unknown): value is BreathingLog => {
   return breathingLogSchema.safeParse(value).success;
-};
-
-export const logIsResistedLog = (
-  value: Omit<Log, "id">,
-): value is ResistedLog => value.type === "resisted";
-export const isValidResistedLog = (value: unknown): value is ResistedLog => {
-  return resistedLogSchema.safeParse(value).success;
 };
 
 export const logIsSupportGroupDaySummaryLog = (

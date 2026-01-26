@@ -4,7 +4,6 @@ import {
   logIsBehaviorLog,
   logIsPlansLog,
   logIsQuestionsLog,
-  logIsResistedLog,
   logIsShowTourLog,
   logIsUserMessageLog,
   logIsWidgetSetupLog,
@@ -79,8 +78,8 @@ export function shouldRespondToLogWithAI(
     return true;
   }
 
-  // Case: Impulse can respond when the user logs an outcome (resisted or setback)
-  if (isCreating && logIsResistedLog(afterData)) {
+  // Case: Impulse can respond when the user logs a behavior with value=0 (resisted)
+  if (isCreating && logIsBehaviorLog(afterData) && afterData.data.value === 0) {
     return true;
   }
 

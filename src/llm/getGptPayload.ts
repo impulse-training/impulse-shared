@@ -10,7 +10,6 @@ import {
   logIsPlansLog,
   logIsQuestionsLog,
   logIsReadyToDebriefLog,
-  logIsResistedLog,
   logIsShowTourLog,
   logIsTacticLog,
   logIsToolCallLog,
@@ -150,19 +149,6 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
     return messages;
   }
 
-  // Handle ResistedLog
-  if (logIsResistedLog(log)) {
-    const isSuccess = log.data.isSuccess;
-    return [
-      {
-        role: "user",
-        content: isSuccess
-          ? "<SYSTEM>The user successfully resisted an impulse</SYSTEM>"
-          : "<SYSTEM>The user experienced a setback and did not resist an impulse</SYSTEM>",
-      },
-    ];
-  }
-
   // Handle BehaviorLog
   if (logIsBehaviorLog(log)) {
     const { behaviorName, formattedValue, debriefSystemPrompt, source } =
@@ -185,6 +171,17 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
           role: "user",
           content:
             "<SYSTEM>The user is beginning a debrief and has not recorded the outcome yet</SYSTEM>",
+        },
+      ];
+    }
+
+    // Check if this is a "resisted" log (behavior with value=0)
+    const value = log.data.value;
+    if (behaviorName && value === 0) {
+      return [
+        {
+          role: "user",
+          content: "<SYSTEM>The user successfully resisted an impulse</SYSTEM>",
         },
       ];
     }
