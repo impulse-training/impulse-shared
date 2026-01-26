@@ -1,4 +1,3 @@
-import { log } from "console";
 import { Thread, threadIsTimePlanThread } from "../schemas";
 import {
   Log,
@@ -13,6 +12,24 @@ import {
 } from "../schemas/log";
 import { fieldChanged } from "./fields";
 import { WithId } from "./withId";
+
+function hasNewlyCompletedPlan(
+  beforeData: Log | undefined,
+  afterData: PlansLog,
+): boolean {
+  const beforePlans =
+    beforeData && logIsPlansLog(beforeData) ? beforeData.data.plans : [];
+
+  for (const afterPlan of afterData.data.plans) {
+    if (!afterPlan.completedAt) continue;
+    const beforePlan = beforePlans.find((p) => p.planId === afterPlan.planId);
+    if (!beforePlan?.completedAt) {
+      return true;
+    }
+  }
+
+  return false;
+}
 
 /**
  * Check if a timePlan thread's plan is marked as completed in a plansLog
@@ -49,6 +66,16 @@ export function shouldRespondToLogWithAI(
 
   // Case: New message logs (creation event, no before data)
   if (isCreating && logIsUserMessageLog(afterData)) {
+    return true;
+  }
+
+  // Case: A plan was completed (plansLog gains completedAt on a plan entry)
+  if (
+    isNotDeleting &&
+    logIsPlansLog(afterData) &&
+    fieldChanged(beforeData, afterData, "data.plans") &&
+    hasNewlyCompletedPlan(beforeData, afterData)
+  ) {
     return true;
   }
 
