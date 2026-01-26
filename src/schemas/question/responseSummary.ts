@@ -1,6 +1,5 @@
 import { z } from "zod";
 import { timestampSchema } from "../../utils/timestampSchema";
-import { questionsLogSchema } from "../log/questionsLog";
 
 /**
  * Schema for question response summary documents
@@ -12,8 +11,8 @@ import { questionsLogSchema } from "../log/questionsLog";
 export const questionResponseSummarySchema = z.object({
   /** Week ending date in YYYY-MM-DD format (Monday-based weeks) */
   forWeekEndingDateString: z.string(),
-  /** Map of logId to QuestionsLog for all responses in this week */
-  responses: z.record(z.string(), questionsLogSchema),
+  /** Map of logId to stored response payloads for all responses in this week */
+  responses: z.record(z.string(), z.unknown()),
   /** AI-generated summary of the week's responses */
   summaryText: z.string().optional(),
   /** Timestamp when the summary was generated */
@@ -25,6 +24,6 @@ export type QuestionResponseSummary = z.infer<
 >;
 
 export const isQuestionResponseSummary = (
-  value: unknown
+  value: unknown,
 ): value is QuestionResponseSummary =>
   questionResponseSummarySchema.safeParse(value).success;

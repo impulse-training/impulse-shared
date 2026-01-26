@@ -19,12 +19,14 @@ export const timestampSchema = z.custom<Timestamp>(
   (value) => {
     if (value === null || value === undefined) return true;
 
+    if (value instanceof Date) return true;
+
     // Accept Firestore Timestamp-like (has toDate function)
     const hasToDate =
       typeof value === "object" &&
       value !== null &&
-      "toDate" in (value as any) &&
-      typeof (value as any).toDate === "function";
+      "toDate" in value &&
+      typeof (value as { toDate?: unknown }).toDate === "function";
 
     if (hasToDate) return true;
 
@@ -32,11 +34,11 @@ export const timestampSchema = z.custom<Timestamp>(
     if (
       typeof value === "object" &&
       value !== null &&
-      "seconds" in (value as any) &&
-      "nanoseconds" in (value as any)
+      "seconds" in value &&
+      "nanoseconds" in value
     ) {
-      const seconds = (value as any).seconds;
-      const nanos = (value as any).nanoseconds;
+      const seconds = (value as { seconds?: unknown }).seconds;
+      const nanos = (value as { nanoseconds?: unknown }).nanoseconds;
       if (
         (typeof seconds === "number" || typeof seconds === "bigint") &&
         typeof nanos === "number"
@@ -49,5 +51,5 @@ export const timestampSchema = z.custom<Timestamp>(
   },
   {
     message: "Must be a Firestore Timestamp-like object",
-  }
+  },
 );

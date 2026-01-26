@@ -94,7 +94,9 @@ describe("Schema Validation", () => {
         dateString: "2025-01-01",
         mode: "text" as const,
         sharedWithUserIds: [],
+        sharedWithSupportGroups: [],
         emojiId: null,
+        archiveAfter: new Date(),
       };
 
       const result = threadSchema.safeParse(validThread);
@@ -109,9 +111,11 @@ describe("Schema Validation", () => {
         dateString: "2025-01-01",
         mode: "text" as const,
         sharedWithUserIds: [],
+        sharedWithSupportGroups: [],
         behaviorDocs: [],
         emojiId: null,
         debriefFinishedAt: null,
+        archiveAfter: new Date(),
       };
 
       const result = threadSchema.safeParse(validThread);
@@ -123,6 +127,10 @@ describe("Schema Validation", () => {
     it("should validate a day summary", () => {
       const validDaySummary = {
         userId: "user123",
+        impulseThreadOutcomesById: {},
+        behaviorDataTotalByBehaviorId: {},
+        recapRequirementsMetAt: null,
+        summaryText: null,
         supportGroupSummariesById: {},
         sharedWithUserIds: [],
         goalComparisonByBehaviorId: {},
