@@ -5,6 +5,7 @@ import { goalSchema } from "./goal";
 import { behaviorTrackingDataSchema } from "./behaviorTrackingData";
 import { behaviorTemplateBase } from "./behaviorTemplate";
 import { behaviorTopicIdSchema } from "./behaviorTopic";
+import { questionSchema } from "./question";
 
 // Re-export for backward compatibility
 export { trackingTypes } from "./behaviorTemplate";
@@ -133,7 +134,7 @@ export const recentSliceSchema = z.object({
         offset: z.number().int().min(0),
         measured: z.number(),
         status: z.enum(["MET", "NOT_MET_FAIL", "UNSPECIFIED_FOR_DAY"]),
-      })
+      }),
     )
     .max(5),
 
@@ -202,13 +203,11 @@ export const behaviorSchema = behaviorTemplateBase
     // Reference to the behavior topic (e.g., "substances", "digital-screen-use")
     // Used for matching users to support groups with similar focus areas
     behaviorTopicId: behaviorTopicIdSchema.optional(),
-    // Questions to ask during impulse tracking
-    impulseQuestions: z.array(documentReferenceSchema).optional(),
     // Questions to ask during debrief (success/setback)
     debriefQuestions: z
       .object({
-        success: z.array(documentReferenceSchema).optional(),
-        setback: z.array(documentReferenceSchema).optional(),
+        success: z.array(questionSchema),
+        setback: z.array(questionSchema),
       })
       .optional(),
     // Computed state for this behavior (windows, trend, etc.)
