@@ -7,6 +7,7 @@ import {
   logIsAssistantMessageLog,
   logIsBehaviorLog,
   logIsCallLog,
+  logIsDebriefUrgeLog,
   logIsPlansLog,
   logIsQuestionsLog,
   logIsReadyToDebriefLog,
@@ -20,6 +21,45 @@ import {
 import { buildPlansLogPayload } from "./buildPlansLogPayload";
 
 export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
+  if (logIsDebriefUrgeLog(log)) {
+    if (log.data.debriefSystemPrompt) {
+      return [
+        {
+          role: "user",
+          content: `<SYSTEM>${log.data.debriefSystemPrompt}</SYSTEM>`,
+        },
+      ];
+    }
+
+    if (log.data.actedOnUrge === true) {
+      return [
+        {
+          role: "user",
+          content:
+            "<SYSTEM>The user acted on the urge (setback) and is beginning a debrief</SYSTEM>",
+        },
+      ];
+    }
+
+    if (log.data.actedOnUrge === false) {
+      return [
+        {
+          role: "user",
+          content:
+            "<SYSTEM>The user resisted the urge (success) and is beginning a debrief</SYSTEM>",
+        },
+      ];
+    }
+
+    return [
+      {
+        role: "user",
+        content:
+          "<SYSTEM>The user is beginning a debrief and has not recorded the outcome yet</SYSTEM>",
+      },
+    ];
+  }
+
   // Handle ReadyToDebriefLog
   if (logIsReadyToDebriefLog(log)) {
     return [

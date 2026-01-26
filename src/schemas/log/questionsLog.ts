@@ -13,7 +13,7 @@ export const recapResponseValueSchema = z.object({
       value: z.number(),
       formattedValue: z.string(),
       behaviorName: z.string(),
-    })
+    }),
   ),
   summaryText: z.string(),
   /** Goal comparison data keyed by behaviorId */
@@ -34,7 +34,7 @@ const responseSchema = z.object({
     "behaviorSelection",
     "recap",
   ]),
-  value: z.union([z.any(), z.array(z.any())]), // Support both single values and arrays
+  value: z.union([z.unknown(), z.array(z.unknown())]), // Support both single values and arrays
   formattedValue: z.string(),
   color: z.string().optional(),
 });

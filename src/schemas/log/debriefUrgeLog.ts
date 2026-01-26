@@ -10,6 +10,7 @@ export const debriefUrgeLogSchema = logBaseSchema.extend({
     behaviorId: z.string().optional(),
     source: z.enum(["scheduled", "manual"]).optional(),
     resolvedAt: timestampSchema.optional(),
+    debriefSystemPrompt: z.string().optional(),
   }),
 });
 
