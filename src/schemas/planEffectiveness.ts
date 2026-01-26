@@ -1,0 +1,29 @@
+import { z } from "zod";
+import { documentReferenceSchema } from "../utils/documentReferenceSchema";
+
+/**
+ * Represents the outcome data for a single thread where a plan was used.
+ */
+export const planEffectivenessThreadOutcomeSchema = z.object({
+  behaviorDocs: z.array(documentReferenceSchema),
+  started: z.boolean(),
+  completed: z.boolean(),
+  actedOnUrge: z.boolean().nullable().optional(),
+});
+
+export type PlanEffectivenessThreadOutcome = z.infer<
+  typeof planEffectivenessThreadOutcomeSchema
+>;
+
+/**
+ * PlanEffectiveness document schema.
+ * Collection: users/{userId}/planEffectiveness/{planId}
+ *
+ * Tracks how effective a plan has been across multiple threads/impulse moments.
+ */
+export const planEffectivenessSchema = z.object({
+  planId: z.string(),
+  outcomesByThread: z.record(z.string(), planEffectivenessThreadOutcomeSchema),
+});
+
+export type PlanEffectiveness = z.infer<typeof planEffectivenessSchema>;
