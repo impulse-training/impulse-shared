@@ -12,8 +12,8 @@ export declare const memorySchema: z.ZodObject<{
     id: string;
     title: string;
     importance: number;
-    tags: string[];
     source: string;
+    tags: string[];
     content: string;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;

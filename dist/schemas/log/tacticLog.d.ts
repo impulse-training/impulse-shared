@@ -552,6 +552,7 @@ export declare const tacticLogSchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
+                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -572,13 +573,13 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
-                suggestedResponses?: string[] | undefined;
             }, {
                 text: string;
                 mode: "question-text";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
+                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -599,7 +600,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
-                suggestedResponses?: string[] | undefined;
             }>, z.ZodObject<{
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -700,11 +700,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                 }>;
             }, "strip", z.ZodTypeAny, {
                 text: string;
-                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
+                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -730,11 +730,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
             }, {
                 text: string;
-                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
+                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1578,11 +1578,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
+                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1612,6 +1612,7 @@ export declare const tacticLogSchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
+                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -1632,7 +1633,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
-                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -1849,11 +1849,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
+                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -1883,6 +1883,7 @@ export declare const tacticLogSchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
+                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -1903,7 +1904,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
-                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -2142,11 +2142,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
+                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -2176,6 +2176,7 @@ export declare const tacticLogSchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
+                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2196,7 +2197,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
-                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -2427,11 +2427,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
+                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -2461,6 +2461,7 @@ export declare const tacticLogSchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
+                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2481,7 +2482,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
-                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -2720,11 +2720,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
+                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -2754,6 +2754,7 @@ export declare const tacticLogSchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
+                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2774,7 +2775,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
-                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -3018,11 +3018,11 @@ export declare const tacticLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
+                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -3052,6 +3052,7 @@ export declare const tacticLogSchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
+                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -3072,7 +3073,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
-                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;

@@ -99,11 +99,11 @@ export declare const slider1To10QuestionStepSchema: z.ZodObject<{
     }>;
 }, "strip", z.ZodTypeAny, {
     text: string;
-    mode: "question-slider1To10";
     sliderConfig: {
         minLabel?: string | undefined;
         maxLabel?: string | undefined;
     };
+    mode: "question-slider1To10";
     id?: string | undefined;
     createdAt?: import("../../../../types").Timestamp | undefined;
     updatedAt?: import("../../../../types").Timestamp | undefined;
@@ -129,11 +129,11 @@ export declare const slider1To10QuestionStepSchema: z.ZodObject<{
     tags?: string[] | undefined;
 }, {
     text: string;
-    mode: "question-slider1To10";
     sliderConfig: {
         minLabel?: string | undefined;
         maxLabel?: string | undefined;
     };
+    mode: "question-slider1To10";
     id?: string | undefined;
     createdAt?: import("../../../../types").Timestamp | undefined;
     updatedAt?: import("../../../../types").Timestamp | undefined;

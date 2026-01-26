@@ -11,7 +11,7 @@ export declare const slider1To10QuestionSchema: z.ZodObject<{
     isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     isPinned: z.ZodOptional<z.ZodBoolean>;
     responseType: z.ZodLiteral<"slider1To10">;
-    scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
+    scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
 } & {
     sliderConfig: z.ZodObject<{
         minLabel: z.ZodOptional<z.ZodString>;
@@ -26,13 +26,13 @@ export declare const slider1To10QuestionSchema: z.ZodObject<{
     text: z.ZodString;
 }, "strip", z.ZodTypeAny, {
     text: string;
+    isTemplate: boolean;
+    responseType: "slider1To10";
+    scope: "impulse" | "setback" | "success" | "recap";
     sliderConfig: {
         minLabel?: string | undefined;
         maxLabel?: string | undefined;
     };
-    isTemplate: boolean;
-    responseType: "slider1To10";
-    scope: "success" | "setback" | "impulse" | "recap";
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
@@ -44,21 +44,21 @@ export declare const slider1To10QuestionSchema: z.ZodObject<{
     isPinned?: boolean | undefined;
 }, {
     text: string;
+    responseType: "slider1To10";
+    scope: "impulse" | "setback" | "success" | "recap";
     sliderConfig: {
         minLabel?: string | undefined;
         maxLabel?: string | undefined;
     };
-    responseType: "slider1To10";
-    scope: "success" | "setback" | "impulse" | "recap";
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    isTemplate?: boolean | undefined;
     textAfterResponse?: string | undefined;
     metricId?: string | undefined;
     lastAskedAt?: import("../../types").Timestamp | undefined;
     lastAnsweredAt?: import("../../types").Timestamp | undefined;
     numberOfAnswers?: number | undefined;
+    isTemplate?: boolean | undefined;
     isPinned?: boolean | undefined;
 }>;
 export type Slider1To10Question = z.infer<typeof slider1To10QuestionSchema>;

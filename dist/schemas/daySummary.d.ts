@@ -26,26 +26,26 @@ export declare const daySummarySchema: z.ZodObject<{
     impulseThreadOutcomesById: z.ZodRecord<z.ZodString, z.ZodEnum<["success", "partial", "setback"]>>;
     outcome: z.ZodOptional<z.ZodEnum<["success", "partial", "setback"]>>;
     behaviorDataTotalByBehaviorId: z.ZodRecord<z.ZodString, z.ZodObject<{
-        behaviorId: z.ZodString;
-        behaviorName: z.ZodString;
+        behaviorId: z.ZodOptional<z.ZodString>;
+        behaviorName: z.ZodOptional<z.ZodString>;
         behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
-        trackingType: z.ZodEnum<["counter", "timer"]>;
-        value: z.ZodNumber;
-        formattedValue: z.ZodString;
+        trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer"]>>;
+        value: z.ZodOptional<z.ZodNumber>;
+        formattedValue: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
-        value: number;
-        behaviorId: string;
-        behaviorName: string;
-        trackingType: "counter" | "timer";
-        formattedValue: string;
+        value?: number | undefined;
+        behaviorId?: string | undefined;
+        behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
+        trackingType?: "counter" | "timer" | undefined;
+        formattedValue?: string | undefined;
     }, {
-        value: number;
-        behaviorId: string;
-        behaviorName: string;
-        trackingType: "counter" | "timer";
-        formattedValue: string;
+        value?: number | undefined;
+        behaviorId?: string | undefined;
+        behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
+        trackingType?: "counter" | "timer" | undefined;
+        formattedValue?: string | undefined;
     }>>;
     behaviorsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodEffects<z.ZodObject<{
         name: z.ZodString;
@@ -128,39 +128,972 @@ export declare const daySummarySchema: z.ZodObject<{
         lastTrackedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         tactics: z.ZodOptional<z.ZodArray<z.ZodType<import("..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("..").DocumentReferenceLike<unknown>>, "many">>;
         initialUsage: z.ZodOptional<z.ZodObject<{
-            behaviorId: z.ZodString;
-            behaviorName: z.ZodString;
+            behaviorId: z.ZodOptional<z.ZodString>;
+            behaviorName: z.ZodOptional<z.ZodString>;
             behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
-            trackingType: z.ZodEnum<["counter", "timer"]>;
-            value: z.ZodNumber;
-            formattedValue: z.ZodString;
+            trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer"]>>;
+            value: z.ZodOptional<z.ZodNumber>;
+            formattedValue: z.ZodOptional<z.ZodString>;
         }, "strip", z.ZodTypeAny, {
-            value: number;
-            behaviorId: string;
-            behaviorName: string;
-            trackingType: "counter" | "timer";
-            formattedValue: string;
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
         }, {
-            value: number;
-            behaviorId: string;
-            behaviorName: string;
-            trackingType: "counter" | "timer";
-            formattedValue: string;
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
         }>>;
         hidden: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
         behaviorTopicId: z.ZodOptional<z.ZodEnum<[string, ...string[]]>>;
-        impulseQuestions: z.ZodOptional<z.ZodArray<z.ZodType<import("..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("..").DocumentReferenceLike<unknown>>, "many">>;
         debriefQuestions: z.ZodOptional<z.ZodObject<{
-            success: z.ZodOptional<z.ZodArray<z.ZodType<import("..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("..").DocumentReferenceLike<unknown>>, "many">>;
-            setback: z.ZodOptional<z.ZodArray<z.ZodType<import("..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("..").DocumentReferenceLike<unknown>>, "many">>;
+            success: z.ZodArray<z.ZodDiscriminatedUnion<"responseType", [z.ZodObject<{
+                id: z.ZodOptional<z.ZodString>;
+                createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                textAfterResponse: z.ZodOptional<z.ZodString>;
+                metricId: z.ZodOptional<z.ZodString>;
+                lastAskedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                lastAnsweredAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                numberOfAnswers: z.ZodOptional<z.ZodNumber>;
+                isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+                isPinned: z.ZodOptional<z.ZodBoolean>;
+                responseType: z.ZodLiteral<"text">;
+                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+            } & {
+                text: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                text: string;
+                isTemplate: boolean;
+                responseType: "text";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            }, {
+                text: string;
+                responseType: "text";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+            }>, z.ZodObject<{
+                id: z.ZodOptional<z.ZodString>;
+                createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                textAfterResponse: z.ZodOptional<z.ZodString>;
+                metricId: z.ZodOptional<z.ZodString>;
+                lastAskedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                lastAnsweredAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                numberOfAnswers: z.ZodOptional<z.ZodNumber>;
+                isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+                isPinned: z.ZodOptional<z.ZodBoolean>;
+                responseType: z.ZodLiteral<"emotion">;
+                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+            } & {
+                suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                text: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                text: string;
+                isTemplate: boolean;
+                responseType: "emotion";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            }, {
+                text: string;
+                responseType: "emotion";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            }>, z.ZodObject<{
+                id: z.ZodOptional<z.ZodString>;
+                createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                textAfterResponse: z.ZodOptional<z.ZodString>;
+                metricId: z.ZodOptional<z.ZodString>;
+                lastAskedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                lastAnsweredAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                numberOfAnswers: z.ZodOptional<z.ZodNumber>;
+                isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+                isPinned: z.ZodOptional<z.ZodBoolean>;
+                responseType: z.ZodLiteral<"shortText">;
+                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+            } & {
+                suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                text: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                text: string;
+                isTemplate: boolean;
+                responseType: "shortText";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            }, {
+                text: string;
+                responseType: "shortText";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            }>, z.ZodObject<{
+                id: z.ZodOptional<z.ZodString>;
+                createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                textAfterResponse: z.ZodOptional<z.ZodString>;
+                metricId: z.ZodOptional<z.ZodString>;
+                lastAskedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                lastAnsweredAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                numberOfAnswers: z.ZodOptional<z.ZodNumber>;
+                isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+                isPinned: z.ZodOptional<z.ZodBoolean>;
+                responseType: z.ZodLiteral<"slider1To10">;
+                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+            } & {
+                sliderConfig: z.ZodObject<{
+                    minLabel: z.ZodOptional<z.ZodString>;
+                    maxLabel: z.ZodOptional<z.ZodString>;
+                }, "strip", z.ZodTypeAny, {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                }, {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                }>;
+                text: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                text: string;
+                isTemplate: boolean;
+                responseType: "slider1To10";
+                scope: "impulse" | "setback" | "success" | "recap";
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                };
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            }, {
+                text: string;
+                responseType: "slider1To10";
+                scope: "impulse" | "setback" | "success" | "recap";
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                };
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+            }>, z.ZodObject<{
+                id: z.ZodOptional<z.ZodString>;
+                createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                text: z.ZodOptional<z.ZodString>;
+                textAfterResponse: z.ZodOptional<z.ZodString>;
+                metricId: z.ZodOptional<z.ZodString>;
+                lastAskedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                lastAnsweredAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                numberOfAnswers: z.ZodOptional<z.ZodNumber>;
+                isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+                isPinned: z.ZodOptional<z.ZodBoolean>;
+                responseType: z.ZodLiteral<"behaviorSelection">;
+                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+            } & {
+                allowMultiple: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+            }, "strip", z.ZodTypeAny, {
+                isTemplate: boolean;
+                responseType: "behaviorSelection";
+                scope: "impulse" | "setback" | "success" | "recap";
+                allowMultiple: boolean;
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                text?: string | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            }, {
+                responseType: "behaviorSelection";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                text?: string | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+                allowMultiple?: boolean | undefined;
+            }>, z.ZodObject<{
+                id: z.ZodOptional<z.ZodString>;
+                createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                textAfterResponse: z.ZodOptional<z.ZodString>;
+                metricId: z.ZodOptional<z.ZodString>;
+                lastAskedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                lastAnsweredAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                numberOfAnswers: z.ZodOptional<z.ZodNumber>;
+                isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+                isPinned: z.ZodOptional<z.ZodBoolean>;
+                responseType: z.ZodLiteral<"recap">;
+                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+            } & {
+                text: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                text: string;
+                isTemplate: boolean;
+                responseType: "recap";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            }, {
+                text: string;
+                responseType: "recap";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+            }>]>, "many">;
+            setback: z.ZodArray<z.ZodDiscriminatedUnion<"responseType", [z.ZodObject<{
+                id: z.ZodOptional<z.ZodString>;
+                createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                textAfterResponse: z.ZodOptional<z.ZodString>;
+                metricId: z.ZodOptional<z.ZodString>;
+                lastAskedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                lastAnsweredAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                numberOfAnswers: z.ZodOptional<z.ZodNumber>;
+                isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+                isPinned: z.ZodOptional<z.ZodBoolean>;
+                responseType: z.ZodLiteral<"text">;
+                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+            } & {
+                text: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                text: string;
+                isTemplate: boolean;
+                responseType: "text";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            }, {
+                text: string;
+                responseType: "text";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+            }>, z.ZodObject<{
+                id: z.ZodOptional<z.ZodString>;
+                createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                textAfterResponse: z.ZodOptional<z.ZodString>;
+                metricId: z.ZodOptional<z.ZodString>;
+                lastAskedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                lastAnsweredAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                numberOfAnswers: z.ZodOptional<z.ZodNumber>;
+                isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+                isPinned: z.ZodOptional<z.ZodBoolean>;
+                responseType: z.ZodLiteral<"emotion">;
+                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+            } & {
+                suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                text: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                text: string;
+                isTemplate: boolean;
+                responseType: "emotion";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            }, {
+                text: string;
+                responseType: "emotion";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            }>, z.ZodObject<{
+                id: z.ZodOptional<z.ZodString>;
+                createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                textAfterResponse: z.ZodOptional<z.ZodString>;
+                metricId: z.ZodOptional<z.ZodString>;
+                lastAskedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                lastAnsweredAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                numberOfAnswers: z.ZodOptional<z.ZodNumber>;
+                isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+                isPinned: z.ZodOptional<z.ZodBoolean>;
+                responseType: z.ZodLiteral<"shortText">;
+                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+            } & {
+                suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                text: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                text: string;
+                isTemplate: boolean;
+                responseType: "shortText";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            }, {
+                text: string;
+                responseType: "shortText";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            }>, z.ZodObject<{
+                id: z.ZodOptional<z.ZodString>;
+                createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                textAfterResponse: z.ZodOptional<z.ZodString>;
+                metricId: z.ZodOptional<z.ZodString>;
+                lastAskedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                lastAnsweredAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                numberOfAnswers: z.ZodOptional<z.ZodNumber>;
+                isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+                isPinned: z.ZodOptional<z.ZodBoolean>;
+                responseType: z.ZodLiteral<"slider1To10">;
+                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+            } & {
+                sliderConfig: z.ZodObject<{
+                    minLabel: z.ZodOptional<z.ZodString>;
+                    maxLabel: z.ZodOptional<z.ZodString>;
+                }, "strip", z.ZodTypeAny, {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                }, {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                }>;
+                text: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                text: string;
+                isTemplate: boolean;
+                responseType: "slider1To10";
+                scope: "impulse" | "setback" | "success" | "recap";
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                };
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            }, {
+                text: string;
+                responseType: "slider1To10";
+                scope: "impulse" | "setback" | "success" | "recap";
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                };
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+            }>, z.ZodObject<{
+                id: z.ZodOptional<z.ZodString>;
+                createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                text: z.ZodOptional<z.ZodString>;
+                textAfterResponse: z.ZodOptional<z.ZodString>;
+                metricId: z.ZodOptional<z.ZodString>;
+                lastAskedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                lastAnsweredAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                numberOfAnswers: z.ZodOptional<z.ZodNumber>;
+                isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+                isPinned: z.ZodOptional<z.ZodBoolean>;
+                responseType: z.ZodLiteral<"behaviorSelection">;
+                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+            } & {
+                allowMultiple: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+            }, "strip", z.ZodTypeAny, {
+                isTemplate: boolean;
+                responseType: "behaviorSelection";
+                scope: "impulse" | "setback" | "success" | "recap";
+                allowMultiple: boolean;
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                text?: string | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            }, {
+                responseType: "behaviorSelection";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                text?: string | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+                allowMultiple?: boolean | undefined;
+            }>, z.ZodObject<{
+                id: z.ZodOptional<z.ZodString>;
+                createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                textAfterResponse: z.ZodOptional<z.ZodString>;
+                metricId: z.ZodOptional<z.ZodString>;
+                lastAskedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                lastAnsweredAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+                numberOfAnswers: z.ZodOptional<z.ZodNumber>;
+                isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+                isPinned: z.ZodOptional<z.ZodBoolean>;
+                responseType: z.ZodLiteral<"recap">;
+                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
+            } & {
+                text: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                text: string;
+                isTemplate: boolean;
+                responseType: "recap";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            }, {
+                text: string;
+                responseType: "recap";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+            }>]>, "many">;
         }, "strip", z.ZodTypeAny, {
-            success?: import("..").DocumentReferenceLike<unknown>[] | undefined;
-            setback?: import("..").DocumentReferenceLike<unknown>[] | undefined;
+            setback: ({
+                isTemplate: boolean;
+                responseType: "behaviorSelection";
+                scope: "impulse" | "setback" | "success" | "recap";
+                allowMultiple: boolean;
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                text?: string | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "emotion";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "recap";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "shortText";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "slider1To10";
+                scope: "impulse" | "setback" | "success" | "recap";
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                };
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "text";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            })[];
+            success: ({
+                isTemplate: boolean;
+                responseType: "behaviorSelection";
+                scope: "impulse" | "setback" | "success" | "recap";
+                allowMultiple: boolean;
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                text?: string | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "emotion";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "recap";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "shortText";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "slider1To10";
+                scope: "impulse" | "setback" | "success" | "recap";
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                };
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "text";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            })[];
         }, {
-            success?: import("..").DocumentReferenceLike<unknown>[] | undefined;
-            setback?: import("..").DocumentReferenceLike<unknown>[] | undefined;
+            setback: ({
+                responseType: "behaviorSelection";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                text?: string | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+                allowMultiple?: boolean | undefined;
+            } | {
+                text: string;
+                responseType: "emotion";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            } | {
+                text: string;
+                responseType: "recap";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                responseType: "shortText";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            } | {
+                text: string;
+                responseType: "slider1To10";
+                scope: "impulse" | "setback" | "success" | "recap";
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                };
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                responseType: "text";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+            })[];
+            success: ({
+                responseType: "behaviorSelection";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                text?: string | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+                allowMultiple?: boolean | undefined;
+            } | {
+                text: string;
+                responseType: "emotion";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            } | {
+                text: string;
+                responseType: "recap";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                responseType: "shortText";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            } | {
+                text: string;
+                responseType: "slider1To10";
+                scope: "impulse" | "setback" | "success" | "recap";
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                };
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                responseType: "text";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+            })[];
         }>>;
         state: z.ZodOptional<z.ZodObject<{
             behaviorId: z.ZodString;
@@ -226,15 +1159,15 @@ export declare const daySummarySchema: z.ZodObject<{
                     highRiskContexts?: string[] | undefined;
                 }>>;
             }, "strip", z.ZodTypeAny, {
-                importance: "HIGH" | "MEDIUM" | "LOW" | "CORE";
-                emotionalTone: {
-                    primary: "NEUTRAL" | "FRUSTRATED" | "ASHAMED" | "CONFLICTED" | "MOTIVATED" | "RESIGNED";
-                    confidence: "HIGH" | "MEDIUM" | "LOW";
-                };
                 motivation: {
                     reasons: string[];
                     valuesLinked: string[];
                     avoidanceDriven: boolean;
+                };
+                importance: "HIGH" | "MEDIUM" | "LOW" | "CORE";
+                emotionalTone: {
+                    primary: "NEUTRAL" | "FRUSTRATED" | "ASHAMED" | "CONFLICTED" | "MOTIVATED" | "RESIGNED";
+                    confidence: "HIGH" | "MEDIUM" | "LOW";
                 };
                 selfNarrative: {
                     perceivedControl: "HIGH" | "MEDIUM" | "LOW";
@@ -245,15 +1178,15 @@ export declare const daySummarySchema: z.ZodObject<{
                     highRiskContexts?: string[] | undefined;
                 } | undefined;
             }, {
-                importance: "HIGH" | "MEDIUM" | "LOW" | "CORE";
-                emotionalTone: {
-                    primary: "NEUTRAL" | "FRUSTRATED" | "ASHAMED" | "CONFLICTED" | "MOTIVATED" | "RESIGNED";
-                    confidence: "HIGH" | "MEDIUM" | "LOW";
-                };
                 motivation: {
                     reasons: string[];
                     valuesLinked: string[];
                     avoidanceDriven: boolean;
+                };
+                importance: "HIGH" | "MEDIUM" | "LOW" | "CORE";
+                emotionalTone: {
+                    primary: "NEUTRAL" | "FRUSTRATED" | "ASHAMED" | "CONFLICTED" | "MOTIVATED" | "RESIGNED";
+                    confidence: "HIGH" | "MEDIUM" | "LOW";
                 };
                 selfNarrative: {
                     perceivedControl: "HIGH" | "MEDIUM" | "LOW";
@@ -702,15 +1635,15 @@ export declare const daySummarySchema: z.ZodObject<{
                 targetValue?: number | undefined;
             } | undefined;
             meaning?: {
-                importance: "HIGH" | "MEDIUM" | "LOW" | "CORE";
-                emotionalTone: {
-                    primary: "NEUTRAL" | "FRUSTRATED" | "ASHAMED" | "CONFLICTED" | "MOTIVATED" | "RESIGNED";
-                    confidence: "HIGH" | "MEDIUM" | "LOW";
-                };
                 motivation: {
                     reasons: string[];
                     valuesLinked: string[];
                     avoidanceDriven: boolean;
+                };
+                importance: "HIGH" | "MEDIUM" | "LOW" | "CORE";
+                emotionalTone: {
+                    primary: "NEUTRAL" | "FRUSTRATED" | "ASHAMED" | "CONFLICTED" | "MOTIVATED" | "RESIGNED";
+                    confidence: "HIGH" | "MEDIUM" | "LOW";
                 };
                 selfNarrative: {
                     perceivedControl: "HIGH" | "MEDIUM" | "LOW";
@@ -811,15 +1744,15 @@ export declare const daySummarySchema: z.ZodObject<{
                 targetValue?: number | undefined;
             } | undefined;
             meaning?: {
-                importance: "HIGH" | "MEDIUM" | "LOW" | "CORE";
-                emotionalTone: {
-                    primary: "NEUTRAL" | "FRUSTRATED" | "ASHAMED" | "CONFLICTED" | "MOTIVATED" | "RESIGNED";
-                    confidence: "HIGH" | "MEDIUM" | "LOW";
-                };
                 motivation: {
                     reasons: string[];
                     valuesLinked: string[];
                     avoidanceDriven: boolean;
+                };
+                importance: "HIGH" | "MEDIUM" | "LOW" | "CORE";
+                emotionalTone: {
+                    primary: "NEUTRAL" | "FRUSTRATED" | "ASHAMED" | "CONFLICTED" | "MOTIVATED" | "RESIGNED";
+                    confidence: "HIGH" | "MEDIUM" | "LOW";
                 };
                 selfNarrative: {
                     perceivedControl: "HIGH" | "MEDIUM" | "LOW";
@@ -897,18 +1830,199 @@ export declare const daySummarySchema: z.ZodObject<{
         lastTrackedAt?: import("../types").Timestamp | undefined;
         tactics?: import("..").DocumentReferenceLike<unknown>[] | undefined;
         initialUsage?: {
-            value: number;
-            behaviorId: string;
-            behaviorName: string;
-            trackingType: "counter" | "timer";
-            formattedValue: string;
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
         } | undefined;
         behaviorTopicId?: string | undefined;
-        impulseQuestions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
         debriefQuestions?: {
-            success?: import("..").DocumentReferenceLike<unknown>[] | undefined;
-            setback?: import("..").DocumentReferenceLike<unknown>[] | undefined;
+            setback: ({
+                isTemplate: boolean;
+                responseType: "behaviorSelection";
+                scope: "impulse" | "setback" | "success" | "recap";
+                allowMultiple: boolean;
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                text?: string | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "emotion";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "recap";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "shortText";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "slider1To10";
+                scope: "impulse" | "setback" | "success" | "recap";
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                };
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "text";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            })[];
+            success: ({
+                isTemplate: boolean;
+                responseType: "behaviorSelection";
+                scope: "impulse" | "setback" | "success" | "recap";
+                allowMultiple: boolean;
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                text?: string | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "emotion";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "recap";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "shortText";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "slider1To10";
+                scope: "impulse" | "setback" | "success" | "recap";
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                };
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "text";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            })[];
         } | undefined;
         state?: {
             behaviorId: string;
@@ -967,15 +2081,15 @@ export declare const daySummarySchema: z.ZodObject<{
                 targetValue?: number | undefined;
             } | undefined;
             meaning?: {
-                importance: "HIGH" | "MEDIUM" | "LOW" | "CORE";
-                emotionalTone: {
-                    primary: "NEUTRAL" | "FRUSTRATED" | "ASHAMED" | "CONFLICTED" | "MOTIVATED" | "RESIGNED";
-                    confidence: "HIGH" | "MEDIUM" | "LOW";
-                };
                 motivation: {
                     reasons: string[];
                     valuesLinked: string[];
                     avoidanceDriven: boolean;
+                };
+                importance: "HIGH" | "MEDIUM" | "LOW" | "CORE";
+                emotionalTone: {
+                    primary: "NEUTRAL" | "FRUSTRATED" | "ASHAMED" | "CONFLICTED" | "MOTIVATED" | "RESIGNED";
+                    confidence: "HIGH" | "MEDIUM" | "LOW";
                 };
                 selfNarrative: {
                     perceivedControl: "HIGH" | "MEDIUM" | "LOW";
@@ -1052,19 +2166,200 @@ export declare const daySummarySchema: z.ZodObject<{
         lastTrackedAt?: import("../types").Timestamp | undefined;
         tactics?: import("..").DocumentReferenceLike<unknown>[] | undefined;
         initialUsage?: {
-            value: number;
-            behaviorId: string;
-            behaviorName: string;
-            trackingType: "counter" | "timer";
-            formattedValue: string;
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
         } | undefined;
         hidden?: boolean | undefined;
         behaviorTopicId?: string | undefined;
-        impulseQuestions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
         debriefQuestions?: {
-            success?: import("..").DocumentReferenceLike<unknown>[] | undefined;
-            setback?: import("..").DocumentReferenceLike<unknown>[] | undefined;
+            setback: ({
+                responseType: "behaviorSelection";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                text?: string | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+                allowMultiple?: boolean | undefined;
+            } | {
+                text: string;
+                responseType: "emotion";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            } | {
+                text: string;
+                responseType: "recap";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                responseType: "shortText";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            } | {
+                text: string;
+                responseType: "slider1To10";
+                scope: "impulse" | "setback" | "success" | "recap";
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                };
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                responseType: "text";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+            })[];
+            success: ({
+                responseType: "behaviorSelection";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                text?: string | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+                allowMultiple?: boolean | undefined;
+            } | {
+                text: string;
+                responseType: "emotion";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            } | {
+                text: string;
+                responseType: "recap";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                responseType: "shortText";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            } | {
+                text: string;
+                responseType: "slider1To10";
+                scope: "impulse" | "setback" | "success" | "recap";
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                };
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                responseType: "text";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+            })[];
         } | undefined;
         state?: {
             behaviorId: string;
@@ -1123,15 +2418,15 @@ export declare const daySummarySchema: z.ZodObject<{
                 targetValue?: number | undefined;
             } | undefined;
             meaning?: {
-                importance: "HIGH" | "MEDIUM" | "LOW" | "CORE";
-                emotionalTone: {
-                    primary: "NEUTRAL" | "FRUSTRATED" | "ASHAMED" | "CONFLICTED" | "MOTIVATED" | "RESIGNED";
-                    confidence: "HIGH" | "MEDIUM" | "LOW";
-                };
                 motivation: {
                     reasons: string[];
                     valuesLinked: string[];
                     avoidanceDriven: boolean;
+                };
+                importance: "HIGH" | "MEDIUM" | "LOW" | "CORE";
+                emotionalTone: {
+                    primary: "NEUTRAL" | "FRUSTRATED" | "ASHAMED" | "CONFLICTED" | "MOTIVATED" | "RESIGNED";
+                    confidence: "HIGH" | "MEDIUM" | "LOW";
                 };
                 selfNarrative: {
                     perceivedControl: "HIGH" | "MEDIUM" | "LOW";
@@ -1209,18 +2504,199 @@ export declare const daySummarySchema: z.ZodObject<{
         lastTrackedAt?: import("../types").Timestamp | undefined;
         tactics?: import("..").DocumentReferenceLike<unknown>[] | undefined;
         initialUsage?: {
-            value: number;
-            behaviorId: string;
-            behaviorName: string;
-            trackingType: "counter" | "timer";
-            formattedValue: string;
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
         } | undefined;
         behaviorTopicId?: string | undefined;
-        impulseQuestions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
         debriefQuestions?: {
-            success?: import("..").DocumentReferenceLike<unknown>[] | undefined;
-            setback?: import("..").DocumentReferenceLike<unknown>[] | undefined;
+            setback: ({
+                isTemplate: boolean;
+                responseType: "behaviorSelection";
+                scope: "impulse" | "setback" | "success" | "recap";
+                allowMultiple: boolean;
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                text?: string | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "emotion";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "recap";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "shortText";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "slider1To10";
+                scope: "impulse" | "setback" | "success" | "recap";
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                };
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "text";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            })[];
+            success: ({
+                isTemplate: boolean;
+                responseType: "behaviorSelection";
+                scope: "impulse" | "setback" | "success" | "recap";
+                allowMultiple: boolean;
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                text?: string | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "emotion";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "recap";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "shortText";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "slider1To10";
+                scope: "impulse" | "setback" | "success" | "recap";
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                };
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "text";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            })[];
         } | undefined;
         state?: {
             behaviorId: string;
@@ -1279,15 +2755,15 @@ export declare const daySummarySchema: z.ZodObject<{
                 targetValue?: number | undefined;
             } | undefined;
             meaning?: {
-                importance: "HIGH" | "MEDIUM" | "LOW" | "CORE";
-                emotionalTone: {
-                    primary: "NEUTRAL" | "FRUSTRATED" | "ASHAMED" | "CONFLICTED" | "MOTIVATED" | "RESIGNED";
-                    confidence: "HIGH" | "MEDIUM" | "LOW";
-                };
                 motivation: {
                     reasons: string[];
                     valuesLinked: string[];
                     avoidanceDriven: boolean;
+                };
+                importance: "HIGH" | "MEDIUM" | "LOW" | "CORE";
+                emotionalTone: {
+                    primary: "NEUTRAL" | "FRUSTRATED" | "ASHAMED" | "CONFLICTED" | "MOTIVATED" | "RESIGNED";
+                    confidence: "HIGH" | "MEDIUM" | "LOW";
                 };
                 selfNarrative: {
                     perceivedControl: "HIGH" | "MEDIUM" | "LOW";
@@ -1364,19 +2840,200 @@ export declare const daySummarySchema: z.ZodObject<{
         lastTrackedAt?: import("../types").Timestamp | undefined;
         tactics?: import("..").DocumentReferenceLike<unknown>[] | undefined;
         initialUsage?: {
-            value: number;
-            behaviorId: string;
-            behaviorName: string;
-            trackingType: "counter" | "timer";
-            formattedValue: string;
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
         } | undefined;
         hidden?: boolean | undefined;
         behaviorTopicId?: string | undefined;
-        impulseQuestions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
         debriefQuestions?: {
-            success?: import("..").DocumentReferenceLike<unknown>[] | undefined;
-            setback?: import("..").DocumentReferenceLike<unknown>[] | undefined;
+            setback: ({
+                responseType: "behaviorSelection";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                text?: string | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+                allowMultiple?: boolean | undefined;
+            } | {
+                text: string;
+                responseType: "emotion";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            } | {
+                text: string;
+                responseType: "recap";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                responseType: "shortText";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            } | {
+                text: string;
+                responseType: "slider1To10";
+                scope: "impulse" | "setback" | "success" | "recap";
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                };
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                responseType: "text";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+            })[];
+            success: ({
+                responseType: "behaviorSelection";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                text?: string | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+                allowMultiple?: boolean | undefined;
+            } | {
+                text: string;
+                responseType: "emotion";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            } | {
+                text: string;
+                responseType: "recap";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                responseType: "shortText";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            } | {
+                text: string;
+                responseType: "slider1To10";
+                scope: "impulse" | "setback" | "success" | "recap";
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                };
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                responseType: "text";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+            })[];
         } | undefined;
         state?: {
             behaviorId: string;
@@ -1435,15 +3092,15 @@ export declare const daySummarySchema: z.ZodObject<{
                 targetValue?: number | undefined;
             } | undefined;
             meaning?: {
-                importance: "HIGH" | "MEDIUM" | "LOW" | "CORE";
-                emotionalTone: {
-                    primary: "NEUTRAL" | "FRUSTRATED" | "ASHAMED" | "CONFLICTED" | "MOTIVATED" | "RESIGNED";
-                    confidence: "HIGH" | "MEDIUM" | "LOW";
-                };
                 motivation: {
                     reasons: string[];
                     valuesLinked: string[];
                     avoidanceDriven: boolean;
+                };
+                importance: "HIGH" | "MEDIUM" | "LOW" | "CORE";
+                emotionalTone: {
+                    primary: "NEUTRAL" | "FRUSTRATED" | "ASHAMED" | "CONFLICTED" | "MOTIVATED" | "RESIGNED";
+                    confidence: "HIGH" | "MEDIUM" | "LOW";
                 };
                 selfNarrative: {
                     perceivedControl: "HIGH" | "MEDIUM" | "LOW";
@@ -1496,10 +3153,10 @@ export declare const daySummarySchema: z.ZodObject<{
         outcome: z.ZodOptional<z.ZodEnum<["success", "partial", "setback"]>>;
     }, "strip", z.ZodTypeAny, {
         summary: string;
-        outcome?: "success" | "setback" | "partial" | undefined;
+        outcome?: "setback" | "success" | "partial" | undefined;
     }, {
         summary: string;
-        outcome?: "success" | "setback" | "partial" | undefined;
+        outcome?: "setback" | "success" | "partial" | undefined;
     }>>;
     supportGroupPermissionsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodObject<{
         dayOutcomes: z.ZodDefault<z.ZodBoolean>;
@@ -1546,19 +3203,19 @@ export declare const daySummarySchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     userId: string;
     summaryText: string | null;
-    impulseThreadOutcomesById: Record<string, "success" | "setback" | "partial">;
+    impulseThreadOutcomesById: Record<string, "setback" | "success" | "partial">;
     behaviorDataTotalByBehaviorId: Record<string, {
-        value: number;
-        behaviorId: string;
-        behaviorName: string;
-        trackingType: "counter" | "timer";
-        formattedValue: string;
+        value?: number | undefined;
+        behaviorId?: string | undefined;
+        behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
+        trackingType?: "counter" | "timer" | undefined;
+        formattedValue?: string | undefined;
     }>;
     tacticsUsed: any[];
     supportGroupSummariesById: Record<string, {
         summary: string;
-        outcome?: "success" | "setback" | "partial" | undefined;
+        outcome?: "setback" | "success" | "partial" | undefined;
     }>;
     sharedWithUserIds: string[];
     recapRequirementsMetAt: import("../types").Timestamp | null;
@@ -1605,18 +3262,199 @@ export declare const daySummarySchema: z.ZodObject<{
         lastTrackedAt?: import("../types").Timestamp | undefined;
         tactics?: import("..").DocumentReferenceLike<unknown>[] | undefined;
         initialUsage?: {
-            value: number;
-            behaviorId: string;
-            behaviorName: string;
-            trackingType: "counter" | "timer";
-            formattedValue: string;
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
         } | undefined;
         behaviorTopicId?: string | undefined;
-        impulseQuestions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
         debriefQuestions?: {
-            success?: import("..").DocumentReferenceLike<unknown>[] | undefined;
-            setback?: import("..").DocumentReferenceLike<unknown>[] | undefined;
+            setback: ({
+                isTemplate: boolean;
+                responseType: "behaviorSelection";
+                scope: "impulse" | "setback" | "success" | "recap";
+                allowMultiple: boolean;
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                text?: string | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "emotion";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "recap";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "shortText";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "slider1To10";
+                scope: "impulse" | "setback" | "success" | "recap";
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                };
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "text";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            })[];
+            success: ({
+                isTemplate: boolean;
+                responseType: "behaviorSelection";
+                scope: "impulse" | "setback" | "success" | "recap";
+                allowMultiple: boolean;
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                text?: string | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "emotion";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "recap";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "shortText";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "slider1To10";
+                scope: "impulse" | "setback" | "success" | "recap";
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                };
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                isTemplate: boolean;
+                responseType: "text";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isPinned?: boolean | undefined;
+            })[];
         } | undefined;
         state?: {
             behaviorId: string;
@@ -1675,15 +3513,15 @@ export declare const daySummarySchema: z.ZodObject<{
                 targetValue?: number | undefined;
             } | undefined;
             meaning?: {
-                importance: "HIGH" | "MEDIUM" | "LOW" | "CORE";
-                emotionalTone: {
-                    primary: "NEUTRAL" | "FRUSTRATED" | "ASHAMED" | "CONFLICTED" | "MOTIVATED" | "RESIGNED";
-                    confidence: "HIGH" | "MEDIUM" | "LOW";
-                };
                 motivation: {
                     reasons: string[];
                     valuesLinked: string[];
                     avoidanceDriven: boolean;
+                };
+                importance: "HIGH" | "MEDIUM" | "LOW" | "CORE";
+                emotionalTone: {
+                    primary: "NEUTRAL" | "FRUSTRATED" | "ASHAMED" | "CONFLICTED" | "MOTIVATED" | "RESIGNED";
+                    confidence: "HIGH" | "MEDIUM" | "LOW";
                 };
                 selfNarrative: {
                     perceivedControl: "HIGH" | "MEDIUM" | "LOW";
@@ -1729,7 +3567,7 @@ export declare const daySummarySchema: z.ZodObject<{
             } | undefined;
         } | undefined;
     }> | undefined;
-    outcome?: "success" | "setback" | "partial" | undefined;
+    outcome?: "setback" | "success" | "partial" | undefined;
     supportGroupPermissionsById?: Record<string, {
         summary: boolean;
         dayOutcomes: boolean;
@@ -1742,18 +3580,18 @@ export declare const daySummarySchema: z.ZodObject<{
 }, {
     userId: string;
     summaryText: string | null;
-    impulseThreadOutcomesById: Record<string, "success" | "setback" | "partial">;
+    impulseThreadOutcomesById: Record<string, "setback" | "success" | "partial">;
     behaviorDataTotalByBehaviorId: Record<string, {
-        value: number;
-        behaviorId: string;
-        behaviorName: string;
-        trackingType: "counter" | "timer";
-        formattedValue: string;
+        value?: number | undefined;
+        behaviorId?: string | undefined;
+        behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
+        trackingType?: "counter" | "timer" | undefined;
+        formattedValue?: string | undefined;
     }>;
     supportGroupSummariesById: Record<string, {
         summary: string;
-        outcome?: "success" | "setback" | "partial" | undefined;
+        outcome?: "setback" | "success" | "partial" | undefined;
     }>;
     sharedWithUserIds: string[];
     recapRequirementsMetAt: import("../types").Timestamp | null;
@@ -1799,19 +3637,200 @@ export declare const daySummarySchema: z.ZodObject<{
         lastTrackedAt?: import("../types").Timestamp | undefined;
         tactics?: import("..").DocumentReferenceLike<unknown>[] | undefined;
         initialUsage?: {
-            value: number;
-            behaviorId: string;
-            behaviorName: string;
-            trackingType: "counter" | "timer";
-            formattedValue: string;
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
         } | undefined;
         hidden?: boolean | undefined;
         behaviorTopicId?: string | undefined;
-        impulseQuestions?: import("..").DocumentReferenceLike<unknown>[] | undefined;
         debriefQuestions?: {
-            success?: import("..").DocumentReferenceLike<unknown>[] | undefined;
-            setback?: import("..").DocumentReferenceLike<unknown>[] | undefined;
+            setback: ({
+                responseType: "behaviorSelection";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                text?: string | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+                allowMultiple?: boolean | undefined;
+            } | {
+                text: string;
+                responseType: "emotion";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            } | {
+                text: string;
+                responseType: "recap";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                responseType: "shortText";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            } | {
+                text: string;
+                responseType: "slider1To10";
+                scope: "impulse" | "setback" | "success" | "recap";
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                };
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                responseType: "text";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+            })[];
+            success: ({
+                responseType: "behaviorSelection";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                text?: string | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+                allowMultiple?: boolean | undefined;
+            } | {
+                text: string;
+                responseType: "emotion";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            } | {
+                text: string;
+                responseType: "recap";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                responseType: "shortText";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+                suggestedResponses?: string[] | undefined;
+            } | {
+                text: string;
+                responseType: "slider1To10";
+                scope: "impulse" | "setback" | "success" | "recap";
+                sliderConfig: {
+                    minLabel?: string | undefined;
+                    maxLabel?: string | undefined;
+                };
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+            } | {
+                text: string;
+                responseType: "text";
+                scope: "impulse" | "setback" | "success" | "recap";
+                id?: string | undefined;
+                createdAt?: import("../types").Timestamp | undefined;
+                updatedAt?: import("../types").Timestamp | undefined;
+                textAfterResponse?: string | undefined;
+                metricId?: string | undefined;
+                lastAskedAt?: import("../types").Timestamp | undefined;
+                lastAnsweredAt?: import("../types").Timestamp | undefined;
+                numberOfAnswers?: number | undefined;
+                isTemplate?: boolean | undefined;
+                isPinned?: boolean | undefined;
+            })[];
         } | undefined;
         state?: {
             behaviorId: string;
@@ -1870,15 +3889,15 @@ export declare const daySummarySchema: z.ZodObject<{
                 targetValue?: number | undefined;
             } | undefined;
             meaning?: {
-                importance: "HIGH" | "MEDIUM" | "LOW" | "CORE";
-                emotionalTone: {
-                    primary: "NEUTRAL" | "FRUSTRATED" | "ASHAMED" | "CONFLICTED" | "MOTIVATED" | "RESIGNED";
-                    confidence: "HIGH" | "MEDIUM" | "LOW";
-                };
                 motivation: {
                     reasons: string[];
                     valuesLinked: string[];
                     avoidanceDriven: boolean;
+                };
+                importance: "HIGH" | "MEDIUM" | "LOW" | "CORE";
+                emotionalTone: {
+                    primary: "NEUTRAL" | "FRUSTRATED" | "ASHAMED" | "CONFLICTED" | "MOTIVATED" | "RESIGNED";
+                    confidence: "HIGH" | "MEDIUM" | "LOW";
                 };
                 selfNarrative: {
                     perceivedControl: "HIGH" | "MEDIUM" | "LOW";
@@ -1924,7 +3943,7 @@ export declare const daySummarySchema: z.ZodObject<{
             } | undefined;
         } | undefined;
     }> | undefined;
-    outcome?: "success" | "setback" | "partial" | undefined;
+    outcome?: "setback" | "success" | "partial" | undefined;
     tacticsUsed?: any[] | undefined;
     supportGroupPermissionsById?: Record<string, {
         summary?: boolean | undefined;

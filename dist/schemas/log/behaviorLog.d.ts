@@ -18,26 +18,39 @@ export declare const behaviorLogSchema: z.ZodObject<{
     /** If true, Zara should respond to this behavior log */
     shouldZaraRespond: z.ZodOptional<z.ZodBoolean>;
     data: z.ZodObject<{
-        behaviorId: z.ZodString;
-        behaviorName: z.ZodString;
+        behaviorId: z.ZodOptional<z.ZodString>;
+        behaviorName: z.ZodOptional<z.ZodString>;
         behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
-        trackingType: z.ZodEnum<["counter", "timer"]>;
-        value: z.ZodNumber;
-        formattedValue: z.ZodString;
+        trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer"]>>;
+        value: z.ZodOptional<z.ZodNumber>;
+        formattedValue: z.ZodOptional<z.ZodString>;
+    } & {
+        /** Source of the log: scheduled debrief or manual entry */
+        source: z.ZodOptional<z.ZodEnum<["scheduled", "manual"]>>;
+        /** Cached system prompt for debrief context */
+        debriefSystemPrompt: z.ZodOptional<z.ZodString>;
+        /** When the debrief was resolved/answered */
+        resolvedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
-        value: number;
-        behaviorId: string;
-        behaviorName: string;
-        trackingType: "counter" | "timer";
-        formattedValue: string;
+        value?: number | undefined;
+        behaviorId?: string | undefined;
+        behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
+        trackingType?: "counter" | "timer" | undefined;
+        formattedValue?: string | undefined;
+        source?: "scheduled" | "manual" | undefined;
+        debriefSystemPrompt?: string | undefined;
+        resolvedAt?: import("../../types").Timestamp | undefined;
     }, {
-        value: number;
-        behaviorId: string;
-        behaviorName: string;
-        trackingType: "counter" | "timer";
-        formattedValue: string;
+        value?: number | undefined;
+        behaviorId?: string | undefined;
+        behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
+        trackingType?: "counter" | "timer" | undefined;
+        formattedValue?: string | undefined;
+        source?: "scheduled" | "manual" | undefined;
+        debriefSystemPrompt?: string | undefined;
+        resolvedAt?: import("../../types").Timestamp | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
@@ -48,12 +61,15 @@ export declare const behaviorLogSchema: z.ZodObject<{
     isDisplayable: true;
     isAdjustment: boolean;
     data: {
-        value: number;
-        behaviorId: string;
-        behaviorName: string;
-        trackingType: "counter" | "timer";
-        formattedValue: string;
+        value?: number | undefined;
+        behaviorId?: string | undefined;
+        behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
+        trackingType?: "counter" | "timer" | undefined;
+        formattedValue?: string | undefined;
+        source?: "scheduled" | "manual" | undefined;
+        debriefSystemPrompt?: string | undefined;
+        resolvedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;
@@ -69,12 +85,15 @@ export declare const behaviorLogSchema: z.ZodObject<{
     dateString: string;
     isDisplayable: true;
     data: {
-        value: number;
-        behaviorId: string;
-        behaviorName: string;
-        trackingType: "counter" | "timer";
-        formattedValue: string;
+        value?: number | undefined;
+        behaviorId?: string | undefined;
+        behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
+        trackingType?: "counter" | "timer" | undefined;
+        formattedValue?: string | undefined;
+        source?: "scheduled" | "manual" | undefined;
+        debriefSystemPrompt?: string | undefined;
+        resolvedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
     timestamp?: import("../../types").Timestamp | undefined;

@@ -12,7 +12,7 @@ export declare function questionBaseSchema<T extends string>(type: T): z.ZodObje
     isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     isPinned: z.ZodOptional<z.ZodBoolean>;
     responseType: z.ZodLiteral<T>;
-    scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
+    scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
 }, "strip", z.ZodTypeAny, z.objectUtil.addQuestionMarks<z.baseObjectOutputType<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -26,7 +26,7 @@ export declare function questionBaseSchema<T extends string>(type: T): z.ZodObje
     isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     isPinned: z.ZodOptional<z.ZodBoolean>;
     responseType: z.ZodLiteral<T>;
-    scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
+    scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
 }>, any> extends infer T_1 ? { [k in keyof T_1]: z.objectUtil.addQuestionMarks<z.baseObjectOutputType<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -40,7 +40,7 @@ export declare function questionBaseSchema<T extends string>(type: T): z.ZodObje
     isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     isPinned: z.ZodOptional<z.ZodBoolean>;
     responseType: z.ZodLiteral<T>;
-    scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
+    scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
 }>, any>[k]; } : never, z.baseObjectInputType<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -54,7 +54,7 @@ export declare function questionBaseSchema<T extends string>(type: T): z.ZodObje
     isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     isPinned: z.ZodOptional<z.ZodBoolean>;
     responseType: z.ZodLiteral<T>;
-    scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
+    scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
 }> extends infer T_2 ? { [k_1 in keyof T_2]: z.baseObjectInputType<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -68,5 +68,5 @@ export declare function questionBaseSchema<T extends string>(type: T): z.ZodObje
     isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     isPinned: z.ZodOptional<z.ZodBoolean>;
     responseType: z.ZodLiteral<T>;
-    scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
+    scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
 }>[k_1]; } : never>;

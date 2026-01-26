@@ -42,10 +42,10 @@ export declare const impulseThreadSchema: z.ZodObject<{
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        isTemplate?: boolean | undefined;
         description?: string | undefined;
         ordinal?: number | undefined;
         summary?: string | undefined;
-        isTemplate?: boolean | undefined;
         tacticsByPath?: Record<string, any> | undefined;
         lastUsedAt?: import("../../types").Timestamp | undefined;
         deletedAt?: import("../../types").Timestamp | undefined;
@@ -57,10 +57,10 @@ export declare const impulseThreadSchema: z.ZodObject<{
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        isTemplate?: boolean | undefined;
         description?: string | undefined;
         ordinal?: number | undefined;
         summary?: string | undefined;
-        isTemplate?: boolean | undefined;
         tacticsByPath?: Record<string, any> | undefined;
         questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
         lastUsedAt?: import("../../types").Timestamp | undefined;
@@ -108,10 +108,10 @@ export declare const impulseThreadSchema: z.ZodObject<{
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        isTemplate?: boolean | undefined;
         description?: string | undefined;
         ordinal?: number | undefined;
         summary?: string | undefined;
-        isTemplate?: boolean | undefined;
         tacticsByPath?: Record<string, any> | undefined;
         lastUsedAt?: import("../../types").Timestamp | undefined;
         deletedAt?: import("../../types").Timestamp | undefined;
@@ -125,14 +125,81 @@ export declare const impulseThreadSchema: z.ZodObject<{
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        isTemplate?: boolean | undefined;
         description?: string | undefined;
         ordinal?: number | undefined;
         summary?: string | undefined;
-        isTemplate?: boolean | undefined;
         tacticsByPath?: Record<string, any> | undefined;
         questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
         lastUsedAt?: import("../../types").Timestamp | undefined;
         deletedAt?: import("../../types").Timestamp | undefined;
+    }>>, z.ZodIntersection<z.ZodObject<{
+        id: z.ZodString;
+        _ref: z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>;
+    }, "strip", z.ZodTypeAny, {
+        id: string;
+        _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+    }, {
+        id: string;
+        _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+    }>, z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        name: z.ZodString;
+        description: z.ZodOptional<z.ZodString>;
+        type: z.ZodType<"default", z.ZodTypeDef, "default">;
+        ordinal: z.ZodOptional<z.ZodNumber>;
+        isTemplate: z.ZodOptional<z.ZodBoolean>;
+        summary: z.ZodOptional<z.ZodString>;
+        tactics: z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
+        tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+        questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>>;
+        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    } & {
+        lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        numberOfUses: z.ZodDefault<z.ZodNumber>;
+        numberOfSuccesses: z.ZodDefault<z.ZodNumber>;
+        numberOfSetbacks: z.ZodDefault<z.ZodNumber>;
+        isActive: z.ZodOptional<z.ZodBoolean>;
+    }, z.UnknownKeysParam, z.ZodTypeAny, {
+        type: "default";
+        name: string;
+        tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+        questions: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+        numberOfUses: number;
+        numberOfSuccesses: number;
+        numberOfSetbacks: number;
+        id?: string | undefined;
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        isTemplate?: boolean | undefined;
+        description?: string | undefined;
+        ordinal?: number | undefined;
+        summary?: string | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
+        lastUsedAt?: import("../../types").Timestamp | undefined;
+        deletedAt?: import("../../types").Timestamp | undefined;
+        isActive?: boolean | undefined;
+    }, {
+        type: "default";
+        name: string;
+        tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+        id?: string | undefined;
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        isTemplate?: boolean | undefined;
+        description?: string | undefined;
+        ordinal?: number | undefined;
+        summary?: string | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
+        questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+        lastUsedAt?: import("../../types").Timestamp | undefined;
+        deletedAt?: import("../../types").Timestamp | undefined;
+        numberOfUses?: number | undefined;
+        numberOfSuccesses?: number | undefined;
+        numberOfSetbacks?: number | undefined;
+        isActive?: boolean | undefined;
     }>>]>>;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     date: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -663,6 +730,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
+            suggestedResponses?: string[] | undefined;
             backgroundImage?: {
                 uri: string;
                 storagePath: string;
@@ -683,13 +751,13 @@ export declare const impulseThreadSchema: z.ZodObject<{
                 } | undefined;
             } | undefined;
             tags?: string[] | undefined;
-            suggestedResponses?: string[] | undefined;
         }, {
             text: string;
             mode: "question-text";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
+            suggestedResponses?: string[] | undefined;
             backgroundImage?: {
                 uri: string;
                 storagePath: string;
@@ -710,7 +778,6 @@ export declare const impulseThreadSchema: z.ZodObject<{
                 } | undefined;
             } | undefined;
             tags?: string[] | undefined;
-            suggestedResponses?: string[] | undefined;
         }>, z.ZodObject<{
             backgroundImage: z.ZodOptional<z.ZodObject<{
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -811,11 +878,11 @@ export declare const impulseThreadSchema: z.ZodObject<{
             }>;
         }, "strip", z.ZodTypeAny, {
             text: string;
-            mode: "question-slider1To10";
             sliderConfig: {
                 minLabel?: string | undefined;
                 maxLabel?: string | undefined;
             };
+            mode: "question-slider1To10";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -841,11 +908,11 @@ export declare const impulseThreadSchema: z.ZodObject<{
             tags?: string[] | undefined;
         }, {
             text: string;
-            mode: "question-slider1To10";
             sliderConfig: {
                 minLabel?: string | undefined;
                 maxLabel?: string | undefined;
             };
+            mode: "question-slider1To10";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -1689,11 +1756,11 @@ export declare const impulseThreadSchema: z.ZodObject<{
             tags?: string[] | undefined;
         } | {
             text: string;
-            mode: "question-slider1To10";
             sliderConfig: {
                 minLabel?: string | undefined;
                 maxLabel?: string | undefined;
             };
+            mode: "question-slider1To10";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -1723,6 +1790,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
+            suggestedResponses?: string[] | undefined;
             backgroundImage?: {
                 uri: string;
                 storagePath: string;
@@ -1743,7 +1811,6 @@ export declare const impulseThreadSchema: z.ZodObject<{
                 } | undefined;
             } | undefined;
             tags?: string[] | undefined;
-            suggestedResponses?: string[] | undefined;
         })[];
         id?: string | undefined;
         title?: string | undefined;
@@ -1960,11 +2027,11 @@ export declare const impulseThreadSchema: z.ZodObject<{
             tags?: string[] | undefined;
         } | {
             text: string;
-            mode: "question-slider1To10";
             sliderConfig: {
                 minLabel?: string | undefined;
                 maxLabel?: string | undefined;
             };
+            mode: "question-slider1To10";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -1994,6 +2061,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
+            suggestedResponses?: string[] | undefined;
             backgroundImage?: {
                 uri: string;
                 storagePath: string;
@@ -2014,7 +2082,6 @@ export declare const impulseThreadSchema: z.ZodObject<{
                 } | undefined;
             } | undefined;
             tags?: string[] | undefined;
-            suggestedResponses?: string[] | undefined;
         })[];
         id?: string | undefined;
         title?: string | undefined;
@@ -2078,7 +2145,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         firstCallLog: z.ZodOptional<z.ZodAny>;
         hasContent: z.ZodBoolean;
     }, "strip", z.ZodTypeAny, {
-        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -2087,7 +2154,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         firstMessageLog?: any;
         firstCallLog?: any;
     }, {
-        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -2182,10 +2249,11 @@ export declare const impulseThreadSchema: z.ZodObject<{
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
     title?: string | undefined;
+    summarizedAt?: import("../../types").Timestamp | undefined;
     behaviorIds?: string[] | undefined;
+    debriefSystemPrompt?: string | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
-    actedOnUrge?: boolean | null | undefined;
     plan?: ({
         id: string;
         _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
@@ -2200,10 +2268,10 @@ export declare const impulseThreadSchema: z.ZodObject<{
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        isTemplate?: boolean | undefined;
         description?: string | undefined;
         ordinal?: number | undefined;
         summary?: string | undefined;
-        isTemplate?: boolean | undefined;
         tacticsByPath?: Record<string, any> | undefined;
         lastUsedAt?: import("../../types").Timestamp | undefined;
         deletedAt?: import("../../types").Timestamp | undefined;
@@ -2222,15 +2290,36 @@ export declare const impulseThreadSchema: z.ZodObject<{
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        isTemplate?: boolean | undefined;
         description?: string | undefined;
         ordinal?: number | undefined;
         summary?: string | undefined;
-        isTemplate?: boolean | undefined;
         tacticsByPath?: Record<string, any> | undefined;
         lastUsedAt?: import("../../types").Timestamp | undefined;
         deletedAt?: import("../../types").Timestamp | undefined;
+    }) | ({
+        id: string;
+        _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+    } & {
+        type: "default";
+        name: string;
+        tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+        questions: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+        numberOfUses: number;
+        numberOfSuccesses: number;
+        numberOfSetbacks: number;
+        id?: string | undefined;
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        isTemplate?: boolean | undefined;
+        description?: string | undefined;
+        ordinal?: number | undefined;
+        summary?: string | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
+        lastUsedAt?: import("../../types").Timestamp | undefined;
+        deletedAt?: import("../../types").Timestamp | undefined;
+        isActive?: boolean | undefined;
     }) | undefined;
-    summarizedAt?: import("../../types").Timestamp | undefined;
     currentTactic?: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -2404,11 +2493,11 @@ export declare const impulseThreadSchema: z.ZodObject<{
             tags?: string[] | undefined;
         } | {
             text: string;
-            mode: "question-slider1To10";
             sliderConfig: {
                 minLabel?: string | undefined;
                 maxLabel?: string | undefined;
             };
+            mode: "question-slider1To10";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2438,6 +2527,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
+            suggestedResponses?: string[] | undefined;
             backgroundImage?: {
                 uri: string;
                 storagePath: string;
@@ -2458,7 +2548,6 @@ export declare const impulseThreadSchema: z.ZodObject<{
                 } | undefined;
             } | undefined;
             tags?: string[] | undefined;
-            suggestedResponses?: string[] | undefined;
         })[];
         id?: string | undefined;
         title?: string | undefined;
@@ -2505,7 +2594,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
     } | undefined;
     currentTacticStepIndex?: number | undefined;
     summaryData?: {
-        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -2515,7 +2604,6 @@ export declare const impulseThreadSchema: z.ZodObject<{
         firstCallLog?: any;
     } | undefined;
     defaultSystemPrompt?: string | undefined;
-    debriefSystemPrompt?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
     strategyDoc?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown> | undefined;
     allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
@@ -2544,6 +2632,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
     debriefBefore?: import("../../types").Timestamp | undefined;
     debriefUrgeLogInsertedAt?: import("../../types").Timestamp | undefined;
     outcomeSelectedAt?: import("../../types").Timestamp | undefined;
+    actedOnUrge?: boolean | null | undefined;
 }, {
     type: "impulse";
     date: import("../../types").Timestamp;
@@ -2560,11 +2649,12 @@ export declare const impulseThreadSchema: z.ZodObject<{
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
     title?: string | undefined;
+    summarizedAt?: import("../../types").Timestamp | undefined;
     behaviorIds?: string[] | undefined;
+    debriefSystemPrompt?: string | undefined;
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
-    actedOnUrge?: boolean | null | undefined;
     plan?: ({
         id: string;
         _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
@@ -2575,10 +2665,10 @@ export declare const impulseThreadSchema: z.ZodObject<{
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        isTemplate?: boolean | undefined;
         description?: string | undefined;
         ordinal?: number | undefined;
         summary?: string | undefined;
-        isTemplate?: boolean | undefined;
         tacticsByPath?: Record<string, any> | undefined;
         questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
         lastUsedAt?: import("../../types").Timestamp | undefined;
@@ -2600,16 +2690,37 @@ export declare const impulseThreadSchema: z.ZodObject<{
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
+        isTemplate?: boolean | undefined;
         description?: string | undefined;
         ordinal?: number | undefined;
         summary?: string | undefined;
-        isTemplate?: boolean | undefined;
         tacticsByPath?: Record<string, any> | undefined;
         questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
         lastUsedAt?: import("../../types").Timestamp | undefined;
         deletedAt?: import("../../types").Timestamp | undefined;
+    }) | ({
+        id: string;
+        _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+    } & {
+        type: "default";
+        name: string;
+        tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+        id?: string | undefined;
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        isTemplate?: boolean | undefined;
+        description?: string | undefined;
+        ordinal?: number | undefined;
+        summary?: string | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
+        questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+        lastUsedAt?: import("../../types").Timestamp | undefined;
+        deletedAt?: import("../../types").Timestamp | undefined;
+        numberOfUses?: number | undefined;
+        numberOfSuccesses?: number | undefined;
+        numberOfSetbacks?: number | undefined;
+        isActive?: boolean | undefined;
     }) | undefined;
-    summarizedAt?: import("../../types").Timestamp | undefined;
     currentTactic?: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -2783,11 +2894,11 @@ export declare const impulseThreadSchema: z.ZodObject<{
             tags?: string[] | undefined;
         } | {
             text: string;
-            mode: "question-slider1To10";
             sliderConfig: {
                 minLabel?: string | undefined;
                 maxLabel?: string | undefined;
             };
+            mode: "question-slider1To10";
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
@@ -2817,6 +2928,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
             id?: string | undefined;
             createdAt?: import("../../types").Timestamp | undefined;
             updatedAt?: import("../../types").Timestamp | undefined;
+            suggestedResponses?: string[] | undefined;
             backgroundImage?: {
                 uri: string;
                 storagePath: string;
@@ -2837,7 +2949,6 @@ export declare const impulseThreadSchema: z.ZodObject<{
                 } | undefined;
             } | undefined;
             tags?: string[] | undefined;
-            suggestedResponses?: string[] | undefined;
         })[];
         id?: string | undefined;
         title?: string | undefined;
@@ -2885,7 +2996,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
     currentTacticStepIndex?: number | undefined;
     isDraft?: boolean | undefined;
     summaryData?: {
-        type: "behavior" | "impulse" | "recap" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
@@ -2895,7 +3006,6 @@ export declare const impulseThreadSchema: z.ZodObject<{
         firstCallLog?: any;
     } | undefined;
     defaultSystemPrompt?: string | undefined;
-    debriefSystemPrompt?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
     strategyDoc?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown> | undefined;
     allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
@@ -2924,5 +3034,6 @@ export declare const impulseThreadSchema: z.ZodObject<{
     debriefBefore?: import("../../types").Timestamp | undefined;
     debriefUrgeLogInsertedAt?: import("../../types").Timestamp | undefined;
     outcomeSelectedAt?: import("../../types").Timestamp | undefined;
+    actedOnUrge?: boolean | null | undefined;
 }>;
 export type ImpulseThread = z.infer<typeof impulseThreadSchema>;

@@ -19,6 +19,8 @@ const zod_1 = require("zod");
 exports.timestampSchema = zod_1.z.custom((value) => {
     if (value === null || value === undefined)
         return true;
+    if (value instanceof Date)
+        return true;
     // Accept Firestore Timestamp-like (has toDate function)
     const hasToDate = typeof value === "object" &&
         value !== null &&

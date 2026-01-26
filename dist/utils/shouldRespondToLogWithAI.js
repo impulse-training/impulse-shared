@@ -4,6 +4,18 @@ exports.shouldRespondToLogWithAI = shouldRespondToLogWithAI;
 const schemas_1 = require("../schemas");
 const log_1 = require("../schemas/log");
 const fields_1 = require("./fields");
+function hasNewlyCompletedPlan(beforeData, afterData) {
+    const beforePlans = beforeData && (0, log_1.logIsPlansLog)(beforeData) ? beforeData.data.plans : [];
+    for (const afterPlan of afterData.data.plans) {
+        if (!afterPlan.completedAt)
+            continue;
+        const beforePlan = beforePlans.find((p) => p.planId === afterPlan.planId);
+        if (!(beforePlan === null || beforePlan === void 0 ? void 0 : beforePlan.completedAt)) {
+            return true;
+        }
+    }
+    return false;
+}
 /**
  * Check if a timePlan thread's plan is marked as completed in a plansLog
  */
@@ -32,6 +44,13 @@ function shouldRespondToLogWithAI(thread, beforeData, afterData) {
     const isNotDeleting = !!afterData;
     // Case: New message logs (creation event, no before data)
     if (isCreating && (0, log_1.logIsUserMessageLog)(afterData)) {
+        return true;
+    }
+    // Case: A plan was completed (plansLog gains completedAt on a plan entry)
+    if (isNotDeleting &&
+        (0, log_1.logIsPlansLog)(afterData) &&
+        (0, fields_1.fieldChanged)(beforeData, afterData, "data.plans") &&
+        hasNewlyCompletedPlan(beforeData, afterData)) {
         return true;
     }
     // Case: Impulse can respond when the user logs an outcome (resisted or setback)
@@ -65,12 +84,18 @@ function shouldRespondToLogWithAI(thread, beforeData, afterData) {
             return true;
         }
     }
-    // Case: A behavior log was explicitly marked for Zara to respond
-    if (isNotDeleting &&
-        (0, log_1.logIsBehaviorLog)(afterData) &&
-        (0, fields_1.fieldChanged)(beforeData, afterData, "shouldZaraRespond") &&
-        afterData.shouldZaraRespond) {
-        return true;
+    // Case: A behavior log was explicitly marked for Zara to respond, or has debrief system prompt set
+    if (isNotDeleting && (0, log_1.logIsBehaviorLog)(afterData)) {
+        // Respond if shouldZaraRespond was set
+        if ((0, fields_1.fieldChanged)(beforeData, afterData, "shouldZaraRespond") &&
+            afterData.shouldZaraRespond) {
+            return true;
+        }
+        // Respond if debrief system prompt was set (scheduled debrief)
+        if ((0, fields_1.fieldChanged)(beforeData, afterData, "data.debriefSystemPrompt") &&
+            afterData.data.debriefSystemPrompt) {
+            return true;
+        }
     }
     // Case: A plansLog was updated with completedAt for a timePlan thread
     if (isNotDeleting &&

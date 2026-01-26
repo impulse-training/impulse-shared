@@ -7,7 +7,6 @@ import {
   logIsAssistantMessageLog,
   logIsBehaviorLog,
   logIsCallLog,
-  logIsDebriefUrgeLog,
   logIsPlansLog,
   logIsQuestionsLog,
   logIsReadyToDebriefLog,
@@ -21,45 +20,6 @@ import {
 import { buildPlansLogPayload } from "./buildPlansLogPayload";
 
 export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
-  if (logIsDebriefUrgeLog(log)) {
-    if (log.data.debriefSystemPrompt) {
-      return [
-        {
-          role: "user",
-          content: `<SYSTEM>${log.data.debriefSystemPrompt}</SYSTEM>`,
-        },
-      ];
-    }
-
-    if (log.data.actedOnUrge === true) {
-      return [
-        {
-          role: "user",
-          content:
-            "<SYSTEM>The user acted on the urge (setback) and is beginning a debrief</SYSTEM>",
-        },
-      ];
-    }
-
-    if (log.data.actedOnUrge === false) {
-      return [
-        {
-          role: "user",
-          content:
-            "<SYSTEM>The user resisted the urge (success) and is beginning a debrief</SYSTEM>",
-        },
-      ];
-    }
-
-    return [
-      {
-        role: "user",
-        content:
-          "<SYSTEM>The user is beginning a debrief and has not recorded the outcome yet</SYSTEM>",
-      },
-    ];
-  }
-
   // Handle ReadyToDebriefLog
   if (logIsReadyToDebriefLog(log)) {
     return [
@@ -205,21 +165,49 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
 
   // Handle BehaviorLog
   if (logIsBehaviorLog(log)) {
-    const { behaviorName, formattedValue } = log.data;
-    // Format the timestamp for context
-    const timestamp = log.timestamp?.toDate?.() ?? new Date();
-    const timeStr = timestamp.toLocaleTimeString("en-US", {
-      hour: "numeric",
-      minute: "2-digit",
-      hour12: true,
-    });
+    const { behaviorName, formattedValue, debriefSystemPrompt, source } =
+      log.data;
 
-    return [
-      {
-        role: "user",
-        content: `<s>The user has tracked a behavior: ${behaviorName} - ${formattedValue} at ${timeStr}</s>`,
-      },
-    ];
+    // If this is a scheduled debrief log with cached system prompt, use that
+    if (debriefSystemPrompt) {
+      return [
+        {
+          role: "user",
+          content: `<SYSTEM>${debriefSystemPrompt}</SYSTEM>`,
+        },
+      ];
+    }
+
+    // If this is an empty scheduled debrief log (no behavior data yet)
+    if (source === "scheduled" && !behaviorName) {
+      return [
+        {
+          role: "user",
+          content:
+            "<SYSTEM>The user is beginning a debrief and has not recorded the outcome yet</SYSTEM>",
+        },
+      ];
+    }
+
+    // Regular behavior log with tracking data
+    if (behaviorName && formattedValue) {
+      const timestamp = log.timestamp?.toDate?.() ?? new Date();
+      const timeStr = timestamp.toLocaleTimeString("en-US", {
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true,
+      });
+
+      return [
+        {
+          role: "user",
+          content: `<s>The user has tracked a behavior: ${behaviorName} - ${formattedValue} at ${timeStr}</s>`,
+        },
+      ];
+    }
+
+    // Empty behavior log (shouldn't happen in normal flow, but handle gracefully)
+    return [];
   }
 
   // Return empty array for other (unsupported) log types

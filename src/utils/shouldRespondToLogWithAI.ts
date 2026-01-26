@@ -2,7 +2,6 @@ import { Thread, threadIsTimePlanThread } from "../schemas";
 import {
   Log,
   logIsBehaviorLog,
-  logIsDebriefUrgeLog,
   logIsPlansLog,
   logIsQuestionsLog,
   logIsResistedLog,
@@ -121,27 +120,22 @@ export function shouldRespondToLogWithAI(
     }
   }
 
-  // Case: A debrief urge log was answered and/or had its cached debrief prompt set
-  if (
-    isNotDeleting &&
-    logIsDebriefUrgeLog(afterData) &&
-    ((fieldChanged(beforeData, afterData, "data.actedOnUrge") &&
-      afterData.data.actedOnUrge !== null &&
-      afterData.data.actedOnUrge !== undefined) ||
-      (fieldChanged(beforeData, afterData, "data.debriefSystemPrompt") &&
-        !!afterData.data.debriefSystemPrompt))
-  ) {
-    return true;
-  }
-
-  // Case: A behavior log was explicitly marked for Zara to respond
-  if (
-    isNotDeleting &&
-    logIsBehaviorLog(afterData) &&
-    fieldChanged(beforeData, afterData, "shouldZaraRespond") &&
-    afterData.shouldZaraRespond
-  ) {
-    return true;
+  // Case: A behavior log was explicitly marked for Zara to respond, or has debrief system prompt set
+  if (isNotDeleting && logIsBehaviorLog(afterData)) {
+    // Respond if shouldZaraRespond was set
+    if (
+      fieldChanged(beforeData, afterData, "shouldZaraRespond") &&
+      afterData.shouldZaraRespond
+    ) {
+      return true;
+    }
+    // Respond if debrief system prompt was set (scheduled debrief)
+    if (
+      fieldChanged(beforeData, afterData, "data.debriefSystemPrompt") &&
+      afterData.data.debriefSystemPrompt
+    ) {
+      return true;
+    }
   }
 
   // Case: A plansLog was updated with completedAt for a timePlan thread

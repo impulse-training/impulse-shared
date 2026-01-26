@@ -595,6 +595,7 @@ export declare const supportGroupSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: "system" | "coach" | "social" | "alignment";
     name: string;
+    isTemplate: boolean;
     membersById: Record<string, {
         userId: string;
         userProfile: {
@@ -620,7 +621,6 @@ export declare const supportGroupSchema: z.ZodObject<{
         } | undefined;
         joinedAt?: import("../types").Timestamp | undefined;
     }>;
-    isTemplate: boolean;
     ownerId: string;
     memberIds: string[];
     unreadMessageCountsById: Record<string, number>;
@@ -766,8 +766,8 @@ export declare const supportGroupSchema: z.ZodObject<{
         } | undefined;
     } | undefined;
     type?: "system" | "coach" | "social" | "alignment" | undefined;
-    description?: string | undefined;
     isTemplate?: boolean | undefined;
+    description?: string | undefined;
     coverPhoto?: {
         uri: string;
         storagePath: string;

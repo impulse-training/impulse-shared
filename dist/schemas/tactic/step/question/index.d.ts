@@ -101,6 +101,7 @@ export declare const questionStepSchema: z.ZodDiscriminatedUnion<"mode", [z.ZodO
     id?: string | undefined;
     createdAt?: import("../../../../types").Timestamp | undefined;
     updatedAt?: import("../../../../types").Timestamp | undefined;
+    suggestedResponses?: string[] | undefined;
     backgroundImage?: {
         uri: string;
         storagePath: string;
@@ -121,13 +122,13 @@ export declare const questionStepSchema: z.ZodDiscriminatedUnion<"mode", [z.ZodO
         } | undefined;
     } | undefined;
     tags?: string[] | undefined;
-    suggestedResponses?: string[] | undefined;
 }, {
     text: string;
     mode: "question-text";
     id?: string | undefined;
     createdAt?: import("../../../../types").Timestamp | undefined;
     updatedAt?: import("../../../../types").Timestamp | undefined;
+    suggestedResponses?: string[] | undefined;
     backgroundImage?: {
         uri: string;
         storagePath: string;
@@ -148,7 +149,6 @@ export declare const questionStepSchema: z.ZodDiscriminatedUnion<"mode", [z.ZodO
         } | undefined;
     } | undefined;
     tags?: string[] | undefined;
-    suggestedResponses?: string[] | undefined;
 }>, z.ZodObject<{
     backgroundImage: z.ZodOptional<z.ZodObject<{
         createdAt: z.ZodOptional<z.ZodType<import("../../../../types").Timestamp, z.ZodTypeDef, import("../../../../types").Timestamp>>;
@@ -249,11 +249,11 @@ export declare const questionStepSchema: z.ZodDiscriminatedUnion<"mode", [z.ZodO
     }>;
 }, "strip", z.ZodTypeAny, {
     text: string;
-    mode: "question-slider1To10";
     sliderConfig: {
         minLabel?: string | undefined;
         maxLabel?: string | undefined;
     };
+    mode: "question-slider1To10";
     id?: string | undefined;
     createdAt?: import("../../../../types").Timestamp | undefined;
     updatedAt?: import("../../../../types").Timestamp | undefined;
@@ -279,11 +279,11 @@ export declare const questionStepSchema: z.ZodDiscriminatedUnion<"mode", [z.ZodO
     tags?: string[] | undefined;
 }, {
     text: string;
-    mode: "question-slider1To10";
     sliderConfig: {
         minLabel?: string | undefined;
         maxLabel?: string | undefined;
     };
+    mode: "question-slider1To10";
     id?: string | undefined;
     createdAt?: import("../../../../types").Timestamp | undefined;
     updatedAt?: import("../../../../types").Timestamp | undefined;
@@ -411,6 +411,7 @@ export declare const QuestionStepSchemas: {
         id?: string | undefined;
         createdAt?: import("../../../../types").Timestamp | undefined;
         updatedAt?: import("../../../../types").Timestamp | undefined;
+        suggestedResponses?: string[] | undefined;
         backgroundImage?: {
             uri: string;
             storagePath: string;
@@ -431,13 +432,13 @@ export declare const QuestionStepSchemas: {
             } | undefined;
         } | undefined;
         tags?: string[] | undefined;
-        suggestedResponses?: string[] | undefined;
     }, {
         text: string;
         mode: "question-text";
         id?: string | undefined;
         createdAt?: import("../../../../types").Timestamp | undefined;
         updatedAt?: import("../../../../types").Timestamp | undefined;
+        suggestedResponses?: string[] | undefined;
         backgroundImage?: {
             uri: string;
             storagePath: string;
@@ -458,7 +459,6 @@ export declare const QuestionStepSchemas: {
             } | undefined;
         } | undefined;
         tags?: string[] | undefined;
-        suggestedResponses?: string[] | undefined;
     }>;
     readonly "question-slider1To10": z.ZodObject<{
         backgroundImage: z.ZodOptional<z.ZodObject<{
@@ -560,11 +560,11 @@ export declare const QuestionStepSchemas: {
         }>;
     }, "strip", z.ZodTypeAny, {
         text: string;
-        mode: "question-slider1To10";
         sliderConfig: {
             minLabel?: string | undefined;
             maxLabel?: string | undefined;
         };
+        mode: "question-slider1To10";
         id?: string | undefined;
         createdAt?: import("../../../../types").Timestamp | undefined;
         updatedAt?: import("../../../../types").Timestamp | undefined;
@@ -590,11 +590,11 @@ export declare const QuestionStepSchemas: {
         tags?: string[] | undefined;
     }, {
         text: string;
-        mode: "question-slider1To10";
         sliderConfig: {
             minLabel?: string | undefined;
             maxLabel?: string | undefined;
         };
+        mode: "question-slider1To10";
         id?: string | undefined;
         createdAt?: import("../../../../types").Timestamp | undefined;
         updatedAt?: import("../../../../types").Timestamp | undefined;

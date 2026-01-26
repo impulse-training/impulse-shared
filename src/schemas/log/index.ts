@@ -2,7 +2,6 @@ import { z } from "zod";
 import { BehaviorLog, behaviorLogSchema } from "./behaviorLog";
 import { BreathingLog, breathingLogSchema } from "./breathingLog";
 import { CallLog, callLogSchema } from "./callLog";
-import { DebriefUrgeLog, debriefUrgeLogSchema } from "./debriefUrgeLog";
 import {
   EnableNotificationsCtaLog,
   enableNotificationsCtaLogSchema,
@@ -63,7 +62,6 @@ export const logSchemas = {
   ready_to_debrief: readyToDebriefLogSchema,
   support_group_day_summary: supportGroupDaySummaryLogSchema,
   enable_notifications_cta: enableNotificationsCtaLogSchema,
-  debriefUrge: debriefUrgeLogSchema,
 };
 export const logTypes = Object.keys(logSchemas);
 
@@ -89,8 +87,7 @@ export type Log =
   | VideoLog
   | ReadyToDebriefLog
   | SupportGroupDaySummaryLog
-  | EnableNotificationsCtaLog
-  | DebriefUrgeLog;
+  | EnableNotificationsCtaLog;
 
 export * from "./behaviorLog";
 export * from "./breathingLog";
@@ -104,7 +101,6 @@ export * from "./questionsLog";
 export * from "./readyToDebriefLog";
 export * from "./resistedLog";
 export * from "./sharedMomentLog";
-export * from "./debriefUrgeLog";
 export * from "./showTourLog";
 export * from "./summaryLog";
 export * from "./supportGroupDaySummaryLog";
@@ -136,7 +132,6 @@ export const logSchema = z.discriminatedUnion("type", [
   readyToDebriefLogSchema,
   supportGroupDaySummaryLogSchema,
   enableNotificationsCtaLogSchema,
-  debriefUrgeLogSchema,
 ]);
 
 // Export log type guards
@@ -295,13 +290,4 @@ export const isValidEnableNotificationsCtaLog = (
   value: unknown,
 ): value is EnableNotificationsCtaLog => {
   return enableNotificationsCtaLogSchema.safeParse(value).success;
-};
-
-export const logIsDebriefUrgeLog = (
-  value: Omit<Log, "id">,
-): value is DebriefUrgeLog => value.type === "debriefUrge";
-export const isValidDebriefUrgeLog = (
-  value: unknown,
-): value is DebriefUrgeLog => {
-  return debriefUrgeLogSchema.safeParse(value).success;
 };

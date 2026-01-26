@@ -11,7 +11,7 @@ export declare const shortTextQuestionSchema: z.ZodObject<{
     isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     isPinned: z.ZodOptional<z.ZodBoolean>;
     responseType: z.ZodLiteral<"shortText">;
-    scope: z.ZodEnum<["success" | "setback" | "impulse" | "recap", ...("success" | "setback" | "impulse" | "recap")[]]>;
+    scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
 } & {
     suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     text: z.ZodString;
@@ -19,31 +19,31 @@ export declare const shortTextQuestionSchema: z.ZodObject<{
     text: string;
     isTemplate: boolean;
     responseType: "shortText";
-    scope: "success" | "setback" | "impulse" | "recap";
+    scope: "impulse" | "setback" | "success" | "recap";
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    suggestedResponses?: string[] | undefined;
     textAfterResponse?: string | undefined;
     metricId?: string | undefined;
     lastAskedAt?: import("../../types").Timestamp | undefined;
     lastAnsweredAt?: import("../../types").Timestamp | undefined;
     numberOfAnswers?: number | undefined;
     isPinned?: boolean | undefined;
+    suggestedResponses?: string[] | undefined;
 }, {
     text: string;
     responseType: "shortText";
-    scope: "success" | "setback" | "impulse" | "recap";
+    scope: "impulse" | "setback" | "success" | "recap";
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    suggestedResponses?: string[] | undefined;
-    isTemplate?: boolean | undefined;
     textAfterResponse?: string | undefined;
     metricId?: string | undefined;
     lastAskedAt?: import("../../types").Timestamp | undefined;
     lastAnsweredAt?: import("../../types").Timestamp | undefined;
     numberOfAnswers?: number | undefined;
+    isTemplate?: boolean | undefined;
     isPinned?: boolean | undefined;
+    suggestedResponses?: string[] | undefined;
 }>;
 export type ShortTextQuestion = z.infer<typeof shortTextQuestionSchema>;

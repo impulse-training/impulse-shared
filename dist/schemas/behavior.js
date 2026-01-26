@@ -9,6 +9,7 @@ const goal_1 = require("./goal");
 const behaviorTrackingData_1 = require("./behaviorTrackingData");
 const behaviorTemplate_1 = require("./behaviorTemplate");
 const behaviorTopic_1 = require("./behaviorTopic");
+const question_1 = require("./question");
 // Re-export for backward compatibility
 var behaviorTemplate_2 = require("./behaviorTemplate");
 Object.defineProperty(exports, "trackingTypes", { enumerable: true, get: function () { return behaviorTemplate_2.trackingTypes; } });
@@ -159,13 +160,11 @@ exports.behaviorSchema = behaviorTemplate_1.behaviorTemplateBase
     // Reference to the behavior topic (e.g., "substances", "digital-screen-use")
     // Used for matching users to support groups with similar focus areas
     behaviorTopicId: behaviorTopic_1.behaviorTopicIdSchema.optional(),
-    // Questions to ask during impulse tracking
-    impulseQuestions: zod_1.z.array(documentReferenceSchema_1.documentReferenceSchema).optional(),
     // Questions to ask during debrief (success/setback)
     debriefQuestions: zod_1.z
         .object({
-        success: zod_1.z.array(documentReferenceSchema_1.documentReferenceSchema).optional(),
-        setback: zod_1.z.array(documentReferenceSchema_1.documentReferenceSchema).optional(),
+        success: zod_1.z.array(question_1.questionSchema),
+        setback: zod_1.z.array(question_1.questionSchema),
     })
         .optional(),
     // Computed state for this behavior (windows, trend, etc.)
