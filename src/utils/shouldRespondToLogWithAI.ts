@@ -2,6 +2,7 @@ import { Thread, threadIsTimePlanThread } from "../schemas";
 import {
   Log,
   logIsBehaviorLog,
+  logIsDebriefUrgeLog,
   logIsPlansLog,
   logIsQuestionsLog,
   logIsResistedLog,
@@ -118,6 +119,19 @@ export function shouldRespondToLogWithAI(
     if (allAnswered) {
       return true;
     }
+  }
+
+  // Case: A debrief urge log was answered and/or had its cached debrief prompt set
+  if (
+    isNotDeleting &&
+    logIsDebriefUrgeLog(afterData) &&
+    ((fieldChanged(beforeData, afterData, "data.actedOnUrge") &&
+      afterData.data.actedOnUrge !== null &&
+      afterData.data.actedOnUrge !== undefined) ||
+      (fieldChanged(beforeData, afterData, "data.debriefSystemPrompt") &&
+        !!afterData.data.debriefSystemPrompt))
+  ) {
+    return true;
   }
 
   // Case: A behavior log was explicitly marked for Zara to respond
