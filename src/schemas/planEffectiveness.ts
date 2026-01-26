@@ -27,3 +27,16 @@ export const planEffectivenessSchema = z.object({
 });
 
 export type PlanEffectiveness = z.infer<typeof planEffectivenessSchema>;
+
+/**
+ * UserPlanEffectiveness document schema.
+ * Document: users/{userId}/userPlanEffectiveness/aggregate
+ *
+ * Aggregates all planEffectiveness data for a user, keyed by planId.
+ * This allows efficient subscription to all plan effectiveness data in one document.
+ */
+export const userPlanEffectivenessSchema = z.object({
+  byPlanId: z.record(z.string(), planEffectivenessSchema),
+});
+
+export type UserPlanEffectiveness = z.infer<typeof userPlanEffectivenessSchema>;
