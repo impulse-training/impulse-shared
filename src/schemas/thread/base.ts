@@ -24,8 +24,6 @@ export const threadBaseSchema = z.object({
   type: threadTypeSchema.default("general"),
   // Optional title for the thread (e.g., plan name)
   title: z.string().optional(),
-  // Any thread may have an optional plan
-  plan: planWithIdSchema.optional(),
   behaviorIds: z.array(z.string()).optional(),
   date: timestampSchema,
   dateString: z.string(),

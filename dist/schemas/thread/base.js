@@ -5,7 +5,6 @@ const zod_1 = require("zod");
 const documentReferenceSchema_1 = require("../../utils/documentReferenceSchema");
 const timestampSchema_1 = require("../../utils/timestampSchema");
 const emojiId_1 = require("../emojiId");
-const plan_1 = require("../plan");
 const tactic_1 = require("../tactic/tactic");
 const threadSummary_1 = require("../threadSummary");
 const threadTypeSchema = zod_1.z.enum([
@@ -25,8 +24,6 @@ exports.threadBaseSchema = zod_1.z.object({
     type: threadTypeSchema.default("general"),
     // Optional title for the thread (e.g., plan name)
     title: zod_1.z.string().optional(),
-    // Any thread may have an optional plan
-    plan: plan_1.planWithIdSchema.optional(),
     behaviorIds: zod_1.z.array(zod_1.z.string()).optional(),
     date: timestampSchema_1.timestampSchema,
     dateString: zod_1.z.string(),

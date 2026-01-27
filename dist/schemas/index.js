@@ -39,6 +39,7 @@ __exportStar(require("./memory"), exports);
 __exportStar(require("./notification"), exports);
 __exportStar(require("./paymentToken"), exports);
 __exportStar(require("./plan"), exports);
+__exportStar(require("./planEffectiveness"), exports);
 __exportStar(require("./question"), exports);
 __exportStar(require("./session"), exports);
 __exportStar(require("./strategy"), exports);

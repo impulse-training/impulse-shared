@@ -39,11 +39,8 @@ function isTimePlanFullyCompleted(
 ): boolean {
   if (!threadIsTimePlanThread(thread)) return false;
 
-  const planId = thread.plan?.id;
-  if (!planId) return false;
-
   // Check if this plan has completedAt set in the plansLog
-  const planEntry = plansLog.data.plans.find((p) => p.planId === planId);
+  const planEntry = plansLog.data.plans.find((p) => p.planId === thread.planId);
   return !!planEntry?.completedAt;
 }
 

@@ -21,6 +21,7 @@ export * from "./memory";
 export * from "./notification";
 export * from "./paymentToken";
 export * from "./plan";
+export * from "./planEffectiveness";
 export * from "./question";
 export * from "./session";
 export * from "./strategy";

@@ -1,9 +1,8 @@
 import { z } from "zod";
-import { planWithIdSchema } from "../plan";
 import { threadBaseSchema } from "./base";
 
 const planThreadBaseSchema = threadBaseSchema.extend({
-  plan: planWithIdSchema,
+  planId: z.string(),
 });
 
 export const timePlanThreadSchema = planThreadBaseSchema.extend({

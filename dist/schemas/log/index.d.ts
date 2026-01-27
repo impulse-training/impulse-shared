@@ -11039,23 +11039,17 @@ export declare const logSchemas: {
                     tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
                     tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
                     questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
+                    lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 } & {
-                    lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    numberOfUses: z.ZodDefault<z.ZodNumber>;
-                    numberOfSuccesses: z.ZodDefault<z.ZodNumber>;
-                    numberOfSetbacks: z.ZodDefault<z.ZodNumber>;
                     isActive: z.ZodOptional<z.ZodBoolean>;
                 }, z.UnknownKeysParam, z.ZodTypeAny, {
                     type: "trigger";
                     name: string;
                     tactics: import("../..").DocumentReferenceLike<unknown>[];
                     questions: import("../..").DocumentReferenceLike<unknown>[];
-                    numberOfUses: number;
-                    numberOfSuccesses: number;
-                    numberOfSetbacks: number;
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -11082,9 +11076,6 @@ export declare const logSchemas: {
                     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
-                    numberOfUses?: number | undefined;
-                    numberOfSuccesses?: number | undefined;
-                    numberOfSetbacks?: number | undefined;
                     isActive?: boolean | undefined;
                 }>>, z.ZodIntersection<z.ZodObject<{
                     id: z.ZodString;
@@ -11213,10 +11204,10 @@ export declare const logSchemas: {
                     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
+                    isActive?: boolean | undefined;
                     numberOfUses?: number | undefined;
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
-                    isActive?: boolean | undefined;
                 }>>]>;
                 completedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             }, "strip", z.ZodTypeAny, {
@@ -11229,9 +11220,6 @@ export declare const logSchemas: {
                     name: string;
                     tactics: import("../..").DocumentReferenceLike<unknown>[];
                     questions: import("../..").DocumentReferenceLike<unknown>[];
-                    numberOfUses: number;
-                    numberOfSuccesses: number;
-                    numberOfSetbacks: number;
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -11308,9 +11296,6 @@ export declare const logSchemas: {
                     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
-                    numberOfUses?: number | undefined;
-                    numberOfSuccesses?: number | undefined;
-                    numberOfSetbacks?: number | undefined;
                     isActive?: boolean | undefined;
                 }) | ({
                     id: string;
@@ -11351,10 +11336,10 @@ export declare const logSchemas: {
                     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
+                    isActive?: boolean | undefined;
                     numberOfUses?: number | undefined;
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
-                    isActive?: boolean | undefined;
                 });
                 completedAt?: import("../../types").Timestamp | undefined;
             }>, "many">;
@@ -11371,9 +11356,6 @@ export declare const logSchemas: {
                     name: string;
                     tactics: import("../..").DocumentReferenceLike<unknown>[];
                     questions: import("../..").DocumentReferenceLike<unknown>[];
-                    numberOfUses: number;
-                    numberOfSuccesses: number;
-                    numberOfSetbacks: number;
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -11455,9 +11437,6 @@ export declare const logSchemas: {
                     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
-                    numberOfUses?: number | undefined;
-                    numberOfSuccesses?: number | undefined;
-                    numberOfSetbacks?: number | undefined;
                     isActive?: boolean | undefined;
                 }) | ({
                     id: string;
@@ -11498,10 +11477,10 @@ export declare const logSchemas: {
                     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
+                    isActive?: boolean | undefined;
                     numberOfUses?: number | undefined;
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
-                    isActive?: boolean | undefined;
                 });
                 completedAt?: import("../../types").Timestamp | undefined;
             }[];
@@ -11527,9 +11506,6 @@ export declare const logSchemas: {
                     name: string;
                     tactics: import("../..").DocumentReferenceLike<unknown>[];
                     questions: import("../..").DocumentReferenceLike<unknown>[];
-                    numberOfUses: number;
-                    numberOfSuccesses: number;
-                    numberOfSetbacks: number;
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -11624,9 +11600,6 @@ export declare const logSchemas: {
                     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
-                    numberOfUses?: number | undefined;
-                    numberOfSuccesses?: number | undefined;
-                    numberOfSetbacks?: number | undefined;
                     isActive?: boolean | undefined;
                 }) | ({
                     id: string;
@@ -11667,10 +11640,10 @@ export declare const logSchemas: {
                     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
+                    isActive?: boolean | undefined;
                     numberOfUses?: number | undefined;
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
-                    isActive?: boolean | undefined;
                 });
                 completedAt?: import("../../types").Timestamp | undefined;
             }[];
@@ -20466,23 +20439,17 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
                 tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
                 questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
+                lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             } & {
-                lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                numberOfUses: z.ZodDefault<z.ZodNumber>;
-                numberOfSuccesses: z.ZodDefault<z.ZodNumber>;
-                numberOfSetbacks: z.ZodDefault<z.ZodNumber>;
                 isActive: z.ZodOptional<z.ZodBoolean>;
             }, z.UnknownKeysParam, z.ZodTypeAny, {
                 type: "trigger";
                 name: string;
                 tactics: import("../..").DocumentReferenceLike<unknown>[];
                 questions: import("../..").DocumentReferenceLike<unknown>[];
-                numberOfUses: number;
-                numberOfSuccesses: number;
-                numberOfSetbacks: number;
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -20509,9 +20476,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
-                numberOfUses?: number | undefined;
-                numberOfSuccesses?: number | undefined;
-                numberOfSetbacks?: number | undefined;
                 isActive?: boolean | undefined;
             }>>, z.ZodIntersection<z.ZodObject<{
                 id: z.ZodString;
@@ -20640,10 +20604,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
+                isActive?: boolean | undefined;
                 numberOfUses?: number | undefined;
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
-                isActive?: boolean | undefined;
             }>>]>;
             completedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         }, "strip", z.ZodTypeAny, {
@@ -20656,9 +20620,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 name: string;
                 tactics: import("../..").DocumentReferenceLike<unknown>[];
                 questions: import("../..").DocumentReferenceLike<unknown>[];
-                numberOfUses: number;
-                numberOfSuccesses: number;
-                numberOfSetbacks: number;
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -20735,9 +20696,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
-                numberOfUses?: number | undefined;
-                numberOfSuccesses?: number | undefined;
-                numberOfSetbacks?: number | undefined;
                 isActive?: boolean | undefined;
             }) | ({
                 id: string;
@@ -20778,10 +20736,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
+                isActive?: boolean | undefined;
                 numberOfUses?: number | undefined;
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
-                isActive?: boolean | undefined;
             });
             completedAt?: import("../../types").Timestamp | undefined;
         }>, "many">;
@@ -20798,9 +20756,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 name: string;
                 tactics: import("../..").DocumentReferenceLike<unknown>[];
                 questions: import("../..").DocumentReferenceLike<unknown>[];
-                numberOfUses: number;
-                numberOfSuccesses: number;
-                numberOfSetbacks: number;
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -20882,9 +20837,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
-                numberOfUses?: number | undefined;
-                numberOfSuccesses?: number | undefined;
-                numberOfSetbacks?: number | undefined;
                 isActive?: boolean | undefined;
             }) | ({
                 id: string;
@@ -20925,10 +20877,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
+                isActive?: boolean | undefined;
                 numberOfUses?: number | undefined;
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
-                isActive?: boolean | undefined;
             });
             completedAt?: import("../../types").Timestamp | undefined;
         }[];
@@ -20954,9 +20906,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 name: string;
                 tactics: import("../..").DocumentReferenceLike<unknown>[];
                 questions: import("../..").DocumentReferenceLike<unknown>[];
-                numberOfUses: number;
-                numberOfSuccesses: number;
-                numberOfSetbacks: number;
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -21051,9 +21000,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
-                numberOfUses?: number | undefined;
-                numberOfSuccesses?: number | undefined;
-                numberOfSetbacks?: number | undefined;
                 isActive?: boolean | undefined;
             }) | ({
                 id: string;
@@ -21094,10 +21040,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
+                isActive?: boolean | undefined;
                 numberOfUses?: number | undefined;
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
-                isActive?: boolean | undefined;
             });
             completedAt?: import("../../types").Timestamp | undefined;
         }[];

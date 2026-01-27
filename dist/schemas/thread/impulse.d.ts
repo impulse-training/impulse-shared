@@ -2,205 +2,6 @@ import { z } from "zod";
 export declare const impulseThreadSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     title: z.ZodOptional<z.ZodString>;
-    plan: z.ZodOptional<z.ZodUnion<[z.ZodIntersection<z.ZodObject<{
-        id: z.ZodString;
-        _ref: z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>;
-    }, "strip", z.ZodTypeAny, {
-        id: string;
-        _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
-    }, {
-        id: string;
-        _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
-    }>, z.ZodObject<{
-        id: z.ZodOptional<z.ZodString>;
-        name: z.ZodString;
-        description: z.ZodOptional<z.ZodString>;
-        type: z.ZodType<"trigger", z.ZodTypeDef, "trigger">;
-        ordinal: z.ZodOptional<z.ZodNumber>;
-        isTemplate: z.ZodOptional<z.ZodBoolean>;
-        summary: z.ZodOptional<z.ZodString>;
-        tactics: z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
-        tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
-        questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>>;
-        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-        deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-    } & {
-        lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-        numberOfUses: z.ZodDefault<z.ZodNumber>;
-        numberOfSuccesses: z.ZodDefault<z.ZodNumber>;
-        numberOfSetbacks: z.ZodDefault<z.ZodNumber>;
-        isActive: z.ZodOptional<z.ZodBoolean>;
-    }, z.UnknownKeysParam, z.ZodTypeAny, {
-        type: "trigger";
-        name: string;
-        tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
-        questions: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
-        numberOfUses: number;
-        numberOfSuccesses: number;
-        numberOfSetbacks: number;
-        id?: string | undefined;
-        createdAt?: import("../../types").Timestamp | undefined;
-        updatedAt?: import("../../types").Timestamp | undefined;
-        isTemplate?: boolean | undefined;
-        description?: string | undefined;
-        ordinal?: number | undefined;
-        summary?: string | undefined;
-        tacticsByPath?: Record<string, any> | undefined;
-        lastUsedAt?: import("../../types").Timestamp | undefined;
-        deletedAt?: import("../../types").Timestamp | undefined;
-        isActive?: boolean | undefined;
-    }, {
-        type: "trigger";
-        name: string;
-        tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
-        id?: string | undefined;
-        createdAt?: import("../../types").Timestamp | undefined;
-        updatedAt?: import("../../types").Timestamp | undefined;
-        isTemplate?: boolean | undefined;
-        description?: string | undefined;
-        ordinal?: number | undefined;
-        summary?: string | undefined;
-        tacticsByPath?: Record<string, any> | undefined;
-        questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
-        lastUsedAt?: import("../../types").Timestamp | undefined;
-        deletedAt?: import("../../types").Timestamp | undefined;
-        numberOfUses?: number | undefined;
-        numberOfSuccesses?: number | undefined;
-        numberOfSetbacks?: number | undefined;
-        isActive?: boolean | undefined;
-    }>>, z.ZodIntersection<z.ZodObject<{
-        id: z.ZodString;
-        _ref: z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>;
-    }, "strip", z.ZodTypeAny, {
-        id: string;
-        _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
-    }, {
-        id: string;
-        _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
-    }>, z.ZodObject<{
-        id: z.ZodOptional<z.ZodString>;
-        name: z.ZodString;
-        description: z.ZodOptional<z.ZodString>;
-        type: z.ZodType<"scheduled", z.ZodTypeDef, "scheduled">;
-        ordinal: z.ZodOptional<z.ZodNumber>;
-        isTemplate: z.ZodOptional<z.ZodBoolean>;
-        summary: z.ZodOptional<z.ZodString>;
-        tactics: z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
-        tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
-        questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>>;
-        lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-        deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-    } & {
-        hour: z.ZodNumber;
-        minute: z.ZodNumber;
-        weekdays: z.ZodArray<z.ZodNumber, "many">;
-    }, z.UnknownKeysParam, z.ZodTypeAny, {
-        type: "scheduled";
-        name: string;
-        tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
-        questions: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
-        hour: number;
-        minute: number;
-        weekdays: number[];
-        id?: string | undefined;
-        createdAt?: import("../../types").Timestamp | undefined;
-        updatedAt?: import("../../types").Timestamp | undefined;
-        isTemplate?: boolean | undefined;
-        description?: string | undefined;
-        ordinal?: number | undefined;
-        summary?: string | undefined;
-        tacticsByPath?: Record<string, any> | undefined;
-        lastUsedAt?: import("../../types").Timestamp | undefined;
-        deletedAt?: import("../../types").Timestamp | undefined;
-    }, {
-        type: "scheduled";
-        name: string;
-        tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
-        hour: number;
-        minute: number;
-        weekdays: number[];
-        id?: string | undefined;
-        createdAt?: import("../../types").Timestamp | undefined;
-        updatedAt?: import("../../types").Timestamp | undefined;
-        isTemplate?: boolean | undefined;
-        description?: string | undefined;
-        ordinal?: number | undefined;
-        summary?: string | undefined;
-        tacticsByPath?: Record<string, any> | undefined;
-        questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
-        lastUsedAt?: import("../../types").Timestamp | undefined;
-        deletedAt?: import("../../types").Timestamp | undefined;
-    }>>, z.ZodIntersection<z.ZodObject<{
-        id: z.ZodString;
-        _ref: z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>;
-    }, "strip", z.ZodTypeAny, {
-        id: string;
-        _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
-    }, {
-        id: string;
-        _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
-    }>, z.ZodObject<{
-        id: z.ZodOptional<z.ZodString>;
-        name: z.ZodString;
-        description: z.ZodOptional<z.ZodString>;
-        type: z.ZodType<"default", z.ZodTypeDef, "default">;
-        ordinal: z.ZodOptional<z.ZodNumber>;
-        isTemplate: z.ZodOptional<z.ZodBoolean>;
-        summary: z.ZodOptional<z.ZodString>;
-        tactics: z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
-        tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
-        questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>>;
-        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-        deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-    } & {
-        lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-        numberOfUses: z.ZodDefault<z.ZodNumber>;
-        numberOfSuccesses: z.ZodDefault<z.ZodNumber>;
-        numberOfSetbacks: z.ZodDefault<z.ZodNumber>;
-        isActive: z.ZodOptional<z.ZodBoolean>;
-    }, z.UnknownKeysParam, z.ZodTypeAny, {
-        type: "default";
-        name: string;
-        tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
-        questions: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
-        numberOfUses: number;
-        numberOfSuccesses: number;
-        numberOfSetbacks: number;
-        id?: string | undefined;
-        createdAt?: import("../../types").Timestamp | undefined;
-        updatedAt?: import("../../types").Timestamp | undefined;
-        isTemplate?: boolean | undefined;
-        description?: string | undefined;
-        ordinal?: number | undefined;
-        summary?: string | undefined;
-        tacticsByPath?: Record<string, any> | undefined;
-        lastUsedAt?: import("../../types").Timestamp | undefined;
-        deletedAt?: import("../../types").Timestamp | undefined;
-        isActive?: boolean | undefined;
-    }, {
-        type: "default";
-        name: string;
-        tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
-        id?: string | undefined;
-        createdAt?: import("../../types").Timestamp | undefined;
-        updatedAt?: import("../../types").Timestamp | undefined;
-        isTemplate?: boolean | undefined;
-        description?: string | undefined;
-        ordinal?: number | undefined;
-        summary?: string | undefined;
-        tacticsByPath?: Record<string, any> | undefined;
-        questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
-        lastUsedAt?: import("../../types").Timestamp | undefined;
-        deletedAt?: import("../../types").Timestamp | undefined;
-        numberOfUses?: number | undefined;
-        numberOfSuccesses?: number | undefined;
-        numberOfSetbacks?: number | undefined;
-        isActive?: boolean | undefined;
-    }>>]>>;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     date: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     dateString: z.ZodString;
@@ -2226,6 +2027,8 @@ export declare const impulseThreadSchema: z.ZodObject<{
 } & {
     type: z.ZodLiteral<"impulse">;
     behaviorDocs: z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
+    startedPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    completedPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     debriefAfter: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     debriefBefore: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     debriefUrgeLogInsertedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -2254,72 +2057,6 @@ export declare const impulseThreadSchema: z.ZodObject<{
     debriefSystemPrompt?: string | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
-    plan?: ({
-        id: string;
-        _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
-    } & {
-        type: "trigger";
-        name: string;
-        tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
-        questions: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
-        numberOfUses: number;
-        numberOfSuccesses: number;
-        numberOfSetbacks: number;
-        id?: string | undefined;
-        createdAt?: import("../../types").Timestamp | undefined;
-        updatedAt?: import("../../types").Timestamp | undefined;
-        isTemplate?: boolean | undefined;
-        description?: string | undefined;
-        ordinal?: number | undefined;
-        summary?: string | undefined;
-        tacticsByPath?: Record<string, any> | undefined;
-        lastUsedAt?: import("../../types").Timestamp | undefined;
-        deletedAt?: import("../../types").Timestamp | undefined;
-        isActive?: boolean | undefined;
-    }) | ({
-        id: string;
-        _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
-    } & {
-        type: "scheduled";
-        name: string;
-        tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
-        questions: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
-        hour: number;
-        minute: number;
-        weekdays: number[];
-        id?: string | undefined;
-        createdAt?: import("../../types").Timestamp | undefined;
-        updatedAt?: import("../../types").Timestamp | undefined;
-        isTemplate?: boolean | undefined;
-        description?: string | undefined;
-        ordinal?: number | undefined;
-        summary?: string | undefined;
-        tacticsByPath?: Record<string, any> | undefined;
-        lastUsedAt?: import("../../types").Timestamp | undefined;
-        deletedAt?: import("../../types").Timestamp | undefined;
-    }) | ({
-        id: string;
-        _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
-    } & {
-        type: "default";
-        name: string;
-        tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
-        questions: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
-        numberOfUses: number;
-        numberOfSuccesses: number;
-        numberOfSetbacks: number;
-        id?: string | undefined;
-        createdAt?: import("../../types").Timestamp | undefined;
-        updatedAt?: import("../../types").Timestamp | undefined;
-        isTemplate?: boolean | undefined;
-        description?: string | undefined;
-        ordinal?: number | undefined;
-        summary?: string | undefined;
-        tacticsByPath?: Record<string, any> | undefined;
-        lastUsedAt?: import("../../types").Timestamp | undefined;
-        deletedAt?: import("../../types").Timestamp | undefined;
-        isActive?: boolean | undefined;
-    }) | undefined;
     currentTactic?: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -2628,6 +2365,8 @@ export declare const impulseThreadSchema: z.ZodObject<{
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
+    startedPlanIds?: string[] | undefined;
+    completedPlanIds?: string[] | undefined;
     debriefAfter?: import("../../types").Timestamp | undefined;
     debriefBefore?: import("../../types").Timestamp | undefined;
     debriefUrgeLogInsertedAt?: import("../../types").Timestamp | undefined;
@@ -2655,72 +2394,6 @@ export declare const impulseThreadSchema: z.ZodObject<{
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
-    plan?: ({
-        id: string;
-        _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
-    } & {
-        type: "trigger";
-        name: string;
-        tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
-        id?: string | undefined;
-        createdAt?: import("../../types").Timestamp | undefined;
-        updatedAt?: import("../../types").Timestamp | undefined;
-        isTemplate?: boolean | undefined;
-        description?: string | undefined;
-        ordinal?: number | undefined;
-        summary?: string | undefined;
-        tacticsByPath?: Record<string, any> | undefined;
-        questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
-        lastUsedAt?: import("../../types").Timestamp | undefined;
-        deletedAt?: import("../../types").Timestamp | undefined;
-        numberOfUses?: number | undefined;
-        numberOfSuccesses?: number | undefined;
-        numberOfSetbacks?: number | undefined;
-        isActive?: boolean | undefined;
-    }) | ({
-        id: string;
-        _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
-    } & {
-        type: "scheduled";
-        name: string;
-        tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
-        hour: number;
-        minute: number;
-        weekdays: number[];
-        id?: string | undefined;
-        createdAt?: import("../../types").Timestamp | undefined;
-        updatedAt?: import("../../types").Timestamp | undefined;
-        isTemplate?: boolean | undefined;
-        description?: string | undefined;
-        ordinal?: number | undefined;
-        summary?: string | undefined;
-        tacticsByPath?: Record<string, any> | undefined;
-        questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
-        lastUsedAt?: import("../../types").Timestamp | undefined;
-        deletedAt?: import("../../types").Timestamp | undefined;
-    }) | ({
-        id: string;
-        _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
-    } & {
-        type: "default";
-        name: string;
-        tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
-        id?: string | undefined;
-        createdAt?: import("../../types").Timestamp | undefined;
-        updatedAt?: import("../../types").Timestamp | undefined;
-        isTemplate?: boolean | undefined;
-        description?: string | undefined;
-        ordinal?: number | undefined;
-        summary?: string | undefined;
-        tacticsByPath?: Record<string, any> | undefined;
-        questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
-        lastUsedAt?: import("../../types").Timestamp | undefined;
-        deletedAt?: import("../../types").Timestamp | undefined;
-        numberOfUses?: number | undefined;
-        numberOfSuccesses?: number | undefined;
-        numberOfSetbacks?: number | undefined;
-        isActive?: boolean | undefined;
-    }) | undefined;
     currentTactic?: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -3030,6 +2703,8 @@ export declare const impulseThreadSchema: z.ZodObject<{
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
+    startedPlanIds?: string[] | undefined;
+    completedPlanIds?: string[] | undefined;
     debriefAfter?: import("../../types").Timestamp | undefined;
     debriefBefore?: import("../../types").Timestamp | undefined;
     debriefUrgeLogInsertedAt?: import("../../types").Timestamp | undefined;

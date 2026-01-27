@@ -20,14 +20,10 @@ function hasNewlyCompletedPlan(beforeData, afterData) {
  * Check if a timePlan thread's plan is marked as completed in a plansLog
  */
 function isTimePlanFullyCompleted(thread, plansLog) {
-    var _a;
     if (!(0, schemas_1.threadIsTimePlanThread)(thread))
         return false;
-    const planId = (_a = thread.plan) === null || _a === void 0 ? void 0 : _a.id;
-    if (!planId)
-        return false;
     // Check if this plan has completedAt set in the plansLog
-    const planEntry = plansLog.data.plans.find((p) => p.planId === planId);
+    const planEntry = plansLog.data.plans.find((p) => p.planId === thread.planId);
     return !!(planEntry === null || planEntry === void 0 ? void 0 : planEntry.completedAt);
 }
 /**
