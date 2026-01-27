@@ -7,6 +7,7 @@ import {
   logIsShowTourLog,
   logIsUserMessageLog,
   logIsWidgetSetupLog,
+  logIsAssistantMessageLog,
   PlansLog,
 } from "../schemas/log";
 import { fieldChanged } from "./fields";
@@ -55,7 +56,11 @@ export function shouldRespondToLogWithAI(
   thread: WithId<Thread>,
   beforeData: Log | undefined,
   afterData: Log | undefined,
+  previousThreadLog?: Log,
 ): boolean {
+  if (previousThreadLog && logIsAssistantMessageLog(previousThreadLog))
+    return false;
+
   const isCreating = !beforeData && afterData;
   const isUpdating = beforeData && afterData;
   const isNotDeleting = !!afterData;
