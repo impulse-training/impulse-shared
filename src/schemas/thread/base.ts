@@ -49,6 +49,8 @@ export const threadBaseSchema = z.object({
   summarizedAt: timestampSchema.optional(),
   strategyDoc: documentReferenceSchema.optional(),
 
+  triggerId: z.string().nullable().optional(),
+
   agentConnectedAt: timestampSchema.optional(),
   allQuestionsAnsweredAt: timestampSchema.optional(),
 

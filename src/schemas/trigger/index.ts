@@ -19,6 +19,7 @@ export const triggerSchema = z.object({
   text: z.string().min(1, "Trigger text is required"),
   ordinal: z.number().optional(),
   location: triggerLocationSchema.optional(),
+  lastOccurredAt: timestampSchema.optional(),
   createdAt: timestampSchema.optional(),
   updatedAt: timestampSchema.optional(),
   deletedAt: timestampSchema.optional(),
