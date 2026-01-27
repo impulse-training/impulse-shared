@@ -33,8 +33,10 @@ function isTimePlanFullyCompleted(thread, plansLog) {
  * @param afterData The log data after the write
  * @returns True if we should respond with AI, false otherwise
  */
-function shouldRespondToLogWithAI(thread, beforeData, afterData) {
+function shouldRespondToLogWithAI(thread, beforeData, afterData, latestThreadLog) {
     var _a;
+    if (latestThreadLog && (0, log_1.logIsAssistantMessageLog)(latestThreadLog))
+        return false;
     const isCreating = !beforeData && afterData;
     const isUpdating = beforeData && afterData;
     const isNotDeleting = !!afterData;

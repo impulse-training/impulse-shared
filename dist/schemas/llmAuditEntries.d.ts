@@ -1977,6 +1977,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         summaryRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         summarizedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         strategyDoc: z.ZodOptional<z.ZodType<import("..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("..").DocumentReferenceLike<unknown>>>;
+        triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         agentConnectedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         allQuestionsAnsweredAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         archiveAfter: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -2057,6 +2058,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         debriefSystemPrompt?: string | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
+        triggerId?: string | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -2388,6 +2390,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
+        triggerId?: string | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -4670,6 +4673,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         summaryRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         summarizedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         strategyDoc: z.ZodOptional<z.ZodType<import("..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("..").DocumentReferenceLike<unknown>>>;
+        triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         agentConnectedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         allQuestionsAnsweredAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         archiveAfter: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -4732,7 +4736,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         debriefAfter: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         debriefBefore: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         debriefUrgeLogInsertedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-        outcomeSelectedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         actedOnUrge: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     }, "strip", z.ZodTypeAny, {
         type: "impulse";
@@ -4757,6 +4760,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         debriefSystemPrompt?: string | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
+        triggerId?: string | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -5070,7 +5074,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         debriefAfter?: import("../types").Timestamp | undefined;
         debriefBefore?: import("../types").Timestamp | undefined;
         debriefUrgeLogInsertedAt?: import("../types").Timestamp | undefined;
-        outcomeSelectedAt?: import("../types").Timestamp | undefined;
         actedOnUrge?: boolean | null | undefined;
     }, {
         type: "impulse";
@@ -5094,6 +5097,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
+        triggerId?: string | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -5408,7 +5412,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         debriefAfter?: import("../types").Timestamp | undefined;
         debriefBefore?: import("../types").Timestamp | undefined;
         debriefUrgeLogInsertedAt?: import("../types").Timestamp | undefined;
-        outcomeSelectedAt?: import("../types").Timestamp | undefined;
         actedOnUrge?: boolean | null | undefined;
     }>, z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
@@ -7381,6 +7384,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         summaryRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         summarizedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         strategyDoc: z.ZodOptional<z.ZodType<import("..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("..").DocumentReferenceLike<unknown>>>;
+        triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         agentConnectedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         allQuestionsAnsweredAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         archiveAfter: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -7461,6 +7465,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         debriefSystemPrompt?: string | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
+        triggerId?: string | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -7792,6 +7797,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
+        triggerId?: string | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -10074,6 +10080,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         summaryRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         summarizedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         strategyDoc: z.ZodOptional<z.ZodType<import("..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("..").DocumentReferenceLike<unknown>>>;
+        triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         agentConnectedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         allQuestionsAnsweredAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         archiveAfter: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -10156,6 +10163,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         debriefSystemPrompt?: string | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
+        triggerId?: string | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -10488,6 +10496,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
+        triggerId?: string | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -12770,6 +12779,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         summaryRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         summarizedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         strategyDoc: z.ZodOptional<z.ZodType<import("..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("..").DocumentReferenceLike<unknown>>>;
+        triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         agentConnectedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         allQuestionsAnsweredAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         archiveAfter: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -12850,6 +12860,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         debriefSystemPrompt?: string | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
+        triggerId?: string | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -13181,6 +13192,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
+        triggerId?: string | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -15463,6 +15475,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         summaryRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         summarizedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         strategyDoc: z.ZodOptional<z.ZodType<import("..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("..").DocumentReferenceLike<unknown>>>;
+        triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         agentConnectedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         allQuestionsAnsweredAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         archiveAfter: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -15545,6 +15558,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         debriefSystemPrompt?: string | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
+        triggerId?: string | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -15877,6 +15891,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
+        triggerId?: string | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -18159,6 +18174,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         summaryRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         summarizedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         strategyDoc: z.ZodOptional<z.ZodType<import("..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("..").DocumentReferenceLike<unknown>>>;
+        triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         agentConnectedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         allQuestionsAnsweredAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         archiveAfter: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -18239,6 +18255,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         debriefSystemPrompt?: string | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
+        triggerId?: string | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -18570,6 +18587,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
+        triggerId?: string | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -18918,6 +18936,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         debriefSystemPrompt?: string | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
+        triggerId?: string | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -19250,6 +19269,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         debriefSystemPrompt?: string | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
+        triggerId?: string | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -19582,6 +19602,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         debriefSystemPrompt?: string | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
+        triggerId?: string | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -19915,6 +19936,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         debriefSystemPrompt?: string | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
+        triggerId?: string | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -20228,7 +20250,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         debriefAfter?: import("../types").Timestamp | undefined;
         debriefBefore?: import("../types").Timestamp | undefined;
         debriefUrgeLogInsertedAt?: import("../types").Timestamp | undefined;
-        outcomeSelectedAt?: import("../types").Timestamp | undefined;
         actedOnUrge?: boolean | null | undefined;
     } | {
         type: "timePlan";
@@ -20253,6 +20274,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         debriefSystemPrompt?: string | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
+        triggerId?: string | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -20586,6 +20608,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         debriefSystemPrompt?: string | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
+        triggerId?: string | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -20918,6 +20941,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         debriefSystemPrompt?: string | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
+        triggerId?: string | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -21261,6 +21285,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
+        triggerId?: string | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -21593,6 +21618,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
+        triggerId?: string | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -21925,6 +21951,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
+        triggerId?: string | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -22258,6 +22285,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
+        triggerId?: string | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -22572,7 +22600,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         debriefAfter?: import("../types").Timestamp | undefined;
         debriefBefore?: import("../types").Timestamp | undefined;
         debriefUrgeLogInsertedAt?: import("../types").Timestamp | undefined;
-        outcomeSelectedAt?: import("../types").Timestamp | undefined;
         actedOnUrge?: boolean | null | undefined;
     } | {
         type: "timePlan";
@@ -22596,6 +22623,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
+        triggerId?: string | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -22929,6 +22957,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
+        triggerId?: string | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -23261,6 +23290,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
+        triggerId?: string | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;

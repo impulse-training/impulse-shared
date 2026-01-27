@@ -1970,6 +1970,7 @@ export declare const generalThreadSchema: z.ZodObject<{
     summaryRequestedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     summarizedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     strategyDoc: z.ZodOptional<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>>;
+    triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     agentConnectedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     allQuestionsAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     archiveAfter: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -2050,6 +2051,7 @@ export declare const generalThreadSchema: z.ZodObject<{
     debriefSystemPrompt?: string | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
+    triggerId?: string | null | undefined;
     currentTactic?: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -2381,6 +2383,7 @@ export declare const generalThreadSchema: z.ZodObject<{
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
+    triggerId?: string | null | undefined;
     currentTactic?: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
