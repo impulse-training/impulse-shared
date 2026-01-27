@@ -56,9 +56,9 @@ export function shouldRespondToLogWithAI(
   thread: WithId<Thread>,
   beforeData: Log | undefined,
   afterData: Log | undefined,
-  previousThreadLog?: Log,
+  latestThreadLog?: Log,
 ): boolean {
-  if (previousThreadLog && logIsAssistantMessageLog(previousThreadLog))
+  if (latestThreadLog && logIsAssistantMessageLog(latestThreadLog))
     return false;
 
   const isCreating = !beforeData && afterData;
