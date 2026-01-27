@@ -1994,6 +1994,8 @@ export declare const impulseThreadSchema: z.ZodObject<{
     responseStartedProcessingAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    startedPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    completedPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     assistantId: z.ZodOptional<z.ZodString>;
     assistantThreadId: z.ZodOptional<z.ZodString>;
     currentCall: z.ZodOptional<z.ZodObject<{
@@ -2027,8 +2029,6 @@ export declare const impulseThreadSchema: z.ZodObject<{
 } & {
     type: z.ZodLiteral<"impulse">;
     behaviorDocs: z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
-    startedPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-    completedPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     debriefAfter: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     debriefBefore: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     debriefUrgeLogInsertedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -2353,6 +2353,8 @@ export declare const impulseThreadSchema: z.ZodObject<{
     openAfter?: import("../../types").Timestamp | undefined;
     firstOpenedAt?: import("../../types").Timestamp | undefined;
     responseStartedProcessingAt?: import("../../types").Timestamp | undefined;
+    startedPlanIds?: string[] | undefined;
+    completedPlanIds?: string[] | undefined;
     assistantId?: string | undefined;
     assistantThreadId?: string | undefined;
     currentCall?: {
@@ -2365,8 +2367,6 @@ export declare const impulseThreadSchema: z.ZodObject<{
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
-    startedPlanIds?: string[] | undefined;
-    completedPlanIds?: string[] | undefined;
     debriefAfter?: import("../../types").Timestamp | undefined;
     debriefBefore?: import("../../types").Timestamp | undefined;
     debriefUrgeLogInsertedAt?: import("../../types").Timestamp | undefined;
@@ -2691,6 +2691,8 @@ export declare const impulseThreadSchema: z.ZodObject<{
     openAfter?: import("../../types").Timestamp | undefined;
     firstOpenedAt?: import("../../types").Timestamp | undefined;
     responseStartedProcessingAt?: import("../../types").Timestamp | undefined;
+    startedPlanIds?: string[] | undefined;
+    completedPlanIds?: string[] | undefined;
     assistantId?: string | undefined;
     assistantThreadId?: string | undefined;
     currentCall?: {
@@ -2703,8 +2705,6 @@ export declare const impulseThreadSchema: z.ZodObject<{
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
     } | undefined;
-    startedPlanIds?: string[] | undefined;
-    completedPlanIds?: string[] | undefined;
     debriefAfter?: import("../../types").Timestamp | undefined;
     debriefBefore?: import("../../types").Timestamp | undefined;
     debriefUrgeLogInsertedAt?: import("../../types").Timestamp | undefined;

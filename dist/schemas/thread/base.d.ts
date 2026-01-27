@@ -1995,6 +1995,8 @@ export declare const threadBaseSchema: z.ZodObject<{
     responseStartedProcessingAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    startedPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    completedPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     assistantId: z.ZodOptional<z.ZodString>;
     assistantThreadId: z.ZodOptional<z.ZodString>;
     currentCall: z.ZodOptional<z.ZodObject<{
@@ -2343,6 +2345,8 @@ export declare const threadBaseSchema: z.ZodObject<{
     openAfter?: import("../../types").Timestamp | undefined;
     firstOpenedAt?: import("../../types").Timestamp | undefined;
     responseStartedProcessingAt?: import("../../types").Timestamp | undefined;
+    startedPlanIds?: string[] | undefined;
+    completedPlanIds?: string[] | undefined;
     assistantId?: string | undefined;
     assistantThreadId?: string | undefined;
     currentCall?: {
@@ -2673,6 +2677,8 @@ export declare const threadBaseSchema: z.ZodObject<{
     openAfter?: import("../../types").Timestamp | undefined;
     firstOpenedAt?: import("../../types").Timestamp | undefined;
     responseStartedProcessingAt?: import("../../types").Timestamp | undefined;
+    startedPlanIds?: string[] | undefined;
+    completedPlanIds?: string[] | undefined;
     assistantId?: string | undefined;
     assistantThreadId?: string | undefined;
     currentCall?: {
