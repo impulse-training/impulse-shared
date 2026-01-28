@@ -1,12 +1,19 @@
 import { z } from "zod";
 import { documentReferenceSchema } from "../utils/documentReferenceSchema";
 import { timestampSchema } from "../utils/timestampSchema";
+import { supportGroupTypeSchema } from "./supportGroup";
 
 // Inline recap trigger schema (time-based)
 const recapTriggerSchema = z.object({
   hour: z.number().min(0).max(23),
   minute: z.number().min(0).max(59),
   weekdays: z.array(z.number().min(0).max(6)).min(1),
+});
+
+const latestSupportGroupMessageSchema = z.object({
+  senderId: z.string(),
+  message: z.string(),
+  sentAt: timestampSchema,
 });
 
 export const userDataSchema = z.object({
@@ -80,6 +87,10 @@ export const userDataSchema = z.object({
 
   // Coach flag - set when user is approved as a coach
   isCoach: z.boolean().optional(),
+
+  latestSupportGroupMessages: z
+    .record(supportGroupTypeSchema, latestSupportGroupMessageSchema)
+    .optional(),
 });
 
 // Export User type inferred from schema
