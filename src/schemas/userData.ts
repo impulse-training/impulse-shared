@@ -74,7 +74,7 @@ export const userDataSchema = z.object({
     .optional(),
 
   // If true, this user will be added to the tech support group for all new signups
-  addToTechSupportGroup: z.boolean().optional(),
+  isImpulseTeam: z.boolean().optional(),
 
   // Tracks whether user has previously set up an experiment (to skip intro screen)
   hasSetupExperiment: z.boolean().optional(),

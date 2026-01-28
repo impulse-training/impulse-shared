@@ -4,11 +4,17 @@ exports.isUserData = exports.userDataSchema = void 0;
 const zod_1 = require("zod");
 const documentReferenceSchema_1 = require("../utils/documentReferenceSchema");
 const timestampSchema_1 = require("../utils/timestampSchema");
+const supportGroup_1 = require("./supportGroup");
 // Inline recap trigger schema (time-based)
 const recapTriggerSchema = zod_1.z.object({
     hour: zod_1.z.number().min(0).max(23),
     minute: zod_1.z.number().min(0).max(59),
     weekdays: zod_1.z.array(zod_1.z.number().min(0).max(6)).min(1),
+});
+const latestSupportGroupMessageSchema = zod_1.z.object({
+    senderId: zod_1.z.string(),
+    message: zod_1.z.string(),
+    sentAt: timestampSchema_1.timestampSchema,
 });
 exports.userDataSchema = zod_1.z.object({
     id: zod_1.z.string().optional(),
@@ -57,7 +63,7 @@ exports.userDataSchema = zod_1.z.object({
     })
         .optional(),
     // If true, this user will be added to the tech support group for all new signups
-    addToTechSupportGroup: zod_1.z.boolean().optional(),
+    isImpulseTeam: zod_1.z.boolean().optional(),
     // Tracks whether user has previously set up an experiment (to skip intro screen)
     hasSetupExperiment: zod_1.z.boolean().optional(),
     // Support group signup wizard completion
@@ -66,6 +72,9 @@ exports.userDataSchema = zod_1.z.object({
     markedAsEligibleAt: timestampSchema_1.timestampSchema.optional(),
     // Coach flag - set when user is approved as a coach
     isCoach: zod_1.z.boolean().optional(),
+    latestSupportGroupMessages: zod_1.z
+        .record(supportGroup_1.supportGroupTypeSchema, latestSupportGroupMessageSchema)
+        .optional(),
 });
 // Type guard for User
 const isUserData = (value) => exports.userDataSchema.safeParse(value).success;

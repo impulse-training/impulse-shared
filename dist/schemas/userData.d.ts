@@ -76,11 +76,24 @@ export declare const userDataSchema: z.ZodObject<{
             weekdays: number[];
         };
     }>>;
-    addToTechSupportGroup: z.ZodOptional<z.ZodBoolean>;
+    isImpulseTeam: z.ZodOptional<z.ZodBoolean>;
     hasSetupExperiment: z.ZodOptional<z.ZodBoolean>;
     supportGroupSignupCompletedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     markedAsEligibleAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     isCoach: z.ZodOptional<z.ZodBoolean>;
+    latestSupportGroupMessages: z.ZodOptional<z.ZodRecord<z.ZodEnum<["system", "social", "coach", "alignment"]>, z.ZodObject<{
+        senderId: z.ZodString;
+        message: z.ZodString;
+        sentAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    }, "strip", z.ZodTypeAny, {
+        message: string;
+        senderId: string;
+        sentAt: import("../types").Timestamp;
+    }, {
+        message: string;
+        senderId: string;
+        sentAt: import("../types").Timestamp;
+    }>>>;
 }, "strip", z.ZodTypeAny, {
     role: "user" | "coach" | "support";
     defaultThreadMode: "text" | "voice";
@@ -116,11 +129,16 @@ export declare const userDataSchema: z.ZodObject<{
     } | undefined;
     isAppEnabled?: boolean | undefined;
     activeStrategyDoc?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown> | undefined;
-    addToTechSupportGroup?: boolean | undefined;
+    isImpulseTeam?: boolean | undefined;
     hasSetupExperiment?: boolean | undefined;
     supportGroupSignupCompletedAt?: import("../types").Timestamp | undefined;
     markedAsEligibleAt?: import("../types").Timestamp | undefined;
     isCoach?: boolean | undefined;
+    latestSupportGroupMessages?: Partial<Record<"system" | "coach" | "social" | "alignment", {
+        message: string;
+        senderId: string;
+        sentAt: import("../types").Timestamp;
+    }>> | undefined;
 }, {
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
@@ -156,11 +174,16 @@ export declare const userDataSchema: z.ZodObject<{
     activeStrategyDoc?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown> | undefined;
     theme?: "system" | "light" | "dark" | undefined;
     weekStartsOn?: 0 | 1 | undefined;
-    addToTechSupportGroup?: boolean | undefined;
+    isImpulseTeam?: boolean | undefined;
     hasSetupExperiment?: boolean | undefined;
     supportGroupSignupCompletedAt?: import("../types").Timestamp | undefined;
     markedAsEligibleAt?: import("../types").Timestamp | undefined;
     isCoach?: boolean | undefined;
+    latestSupportGroupMessages?: Partial<Record<"system" | "coach" | "social" | "alignment", {
+        message: string;
+        senderId: string;
+        sentAt: import("../types").Timestamp;
+    }>> | undefined;
 }>;
 export type UserData = z.infer<typeof userDataSchema>;
 export declare const isUserData: (value: unknown) => value is UserData;
