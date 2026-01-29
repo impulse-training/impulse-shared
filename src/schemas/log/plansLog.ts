@@ -9,6 +9,7 @@ export const plansLogSchema = logBaseSchema.extend({
   // Plans logs are always displayed in the UI
   isDisplayable: z.literal(true),
   data: z.object({
+    source: z.union([z.literal("trigger"), z.literal("scheduled")]),
     // The trigger these plans are for (optional - null means "something else")
     triggerId: z.string().nullable().optional(),
     // Array of plans (each plan has tacticsByPath on it)
