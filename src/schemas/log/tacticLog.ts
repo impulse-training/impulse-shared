@@ -19,6 +19,8 @@ export const tacticLogSchema = logBaseSchema.extend({
     tactic: tacticSchema,
     // If this tactic activity originated from displaying a plan, include the planId
     planId: z.string().optional(),
+    // If this tactic activity originated from the thread's PlansLogView, include the log id
+    planLogId: z.string().optional(),
     // total number of steps in the tactic at the time of logging
     stepCount: z.number().int().nonnegative().optional(),
     // 0-based indexes of completed steps (progressive)
