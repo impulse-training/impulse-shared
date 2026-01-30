@@ -70,6 +70,8 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
   if (logIsCallLog(log)) {
     const messages: ChatCompletionMessageParam[] = [];
 
+    if (!log.data.endedAt) return [];
+
     if (log.data.summary) {
       messages.push({
         role: "user",
