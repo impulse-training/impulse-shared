@@ -151,8 +151,13 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
 
   // Handle BehaviorLog
   if (logIsBehaviorLog(log)) {
-    const { behaviorName, formattedValue, debriefSystemPrompt, source } =
-      log.data;
+    const {
+      behaviorName,
+      formattedValue,
+      debriefSystemPrompt,
+      source,
+      debriefOutcome,
+    } = log.data;
 
     // If this is a scheduled debrief log with cached system prompt, use that
     if (debriefSystemPrompt) {
@@ -166,6 +171,16 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
 
     // If this is an empty scheduled debrief log (no behavior data yet)
     if (source === "scheduled" && !behaviorName) {
+      if (debriefOutcome === "still_there") {
+        return [
+          {
+            role: "user",
+            content:
+              "<SYSTEM>The user responded to the debrief prompt that the urge is still there</SYSTEM>",
+          },
+        ];
+      }
+
       return [
         {
           role: "user",
