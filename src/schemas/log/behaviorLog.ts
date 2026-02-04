@@ -20,8 +20,6 @@ export const behaviorLogSchema = logBaseSchema.extend({
     source: z.enum(["scheduled", "manual"]).optional(),
     /** Outcome of the scheduled debrief prompt */
     debriefOutcome: z.enum(["acted", "resisted", "still_there"]).optional(),
-    /** Cached system prompt for debrief context */
-    debriefSystemPrompt: z.string().optional(),
     /** When the debrief was resolved/answered */
     resolvedAt: timestampSchema.optional(),
   }),

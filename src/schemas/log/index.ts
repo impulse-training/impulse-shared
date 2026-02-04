@@ -57,7 +57,6 @@ export const logSchemas = {
   notify_support_group: notifySupportGroupLogSchema,
   video: videoLogSchema,
   shared_moment: sharedMomentLogSchema,
-  ready_to_debrief: readyToDebriefLogSchema,
   support_group_day_summary: supportGroupDaySummaryLogSchema,
   enable_notifications_cta: enableNotificationsCtaLogSchema,
 };
@@ -242,15 +241,6 @@ export const logIsLinkLog = (value: Omit<Log, "id">): value is LinkLog =>
   value.type === "link";
 export const isValidLinkLog = (value: unknown): value is LinkLog => {
   return linkLogSchema.safeParse(value).success;
-};
-
-export const logIsReadyToDebriefLog = (
-  value: Omit<Log, "id">,
-): value is ReadyToDebriefLog => value.type === "ready_to_debrief";
-export const isValidReadyToDebriefLog = (
-  value: unknown,
-): value is ReadyToDebriefLog => {
-  return readyToDebriefLogSchema.safeParse(value).success;
 };
 
 export const logIsBreathingLog = (

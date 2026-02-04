@@ -9,29 +9,79 @@ import {
   logIsCallLog,
   logIsPlansLog,
   logIsQuestionsLog,
-  logIsReadyToDebriefLog,
   logIsShowTourLog,
   logIsTacticLog,
   logIsToolCallLog,
   logIsUserMessageLog,
   logIsWidgetSetupLog,
+  BehaviorLog,
 } from "../schemas/log";
 import { buildPlansLogPayload } from "./buildPlansLogPayload";
 
-export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
-  // Handle ReadyToDebriefLog
-  if (logIsReadyToDebriefLog(log)) {
+function buildBehaviorLogPayload(
+  log: BehaviorLog,
+): ChatCompletionMessageParam[] {
+  const { behaviorName, formattedValue, source, debriefOutcome } = log.data;
+
+  const parts: string[] = [];
+
+  if (source === "scheduled" && debriefOutcome) {
+    if (debriefOutcome === "resisted") {
+      parts.push(
+        "<CONTEXT>The user successfully resisted an urge. We're debriefing what helped them resist and what they can learn from it.</CONTEXT>",
+      );
+    } else if (debriefOutcome === "acted") {
+      parts.push(
+        "<CONTEXT>The user acted on an urge. We're debriefing what happened and how to support them in a non-judgmental way.</CONTEXT>",
+      );
+    } else if (debriefOutcome === "still_there") {
+      parts.push(
+        "<CONTEXT>The user reports that the urge is still present. We're helping them process the urge and decide what to do next.</CONTEXT>",
+      );
+    }
+  }
+
+  if (behaviorName && formattedValue) {
+    parts.push(
+      `<CONTEXT>Behavior tracked: ${behaviorName} - ${formattedValue}.</CONTEXT>`,
+    );
+  }
+
+  if (parts.length > 0) {
     return [
       {
         role: "user",
-        content:
-          "<SYSTEM>User finished a tactic and is ready to debrief</SYSTEM>",
+        content: parts.join(" "),
       },
     ];
   }
 
+  // Fallback: regular behavior tracking message without explicit debrief context
+  const timestamp = log.timestamp?.toDate?.() ?? new Date();
+  const timeStr = timestamp.toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  });
+
+  if (behaviorName && formattedValue) {
+    return [
+      {
+        role: "user",
+        content: `<CONTEXT>The user has tracked a behavior: ${behaviorName} - ${formattedValue} at ${timeStr}.</CONTEXT>`,
+      },
+    ];
+  }
+
+  return [];
+}
+
+export function getGptPayload(
+  log: Log,
+  isFinalLogInThread: boolean,
+): ChatCompletionMessageParam[] {
   if (logIsPlansLog(log)) {
-    return buildPlansLogPayload(log);
+    return buildPlansLogPayload(log, isFinalLogInThread);
   }
 
   if (logIsUserMessageLog(log)) {
@@ -45,10 +95,7 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
 
   // Handle AssistantMessageLog
   if (logIsAssistantMessageLog(log)) {
-    const messages: ChatCompletionAssistantMessageParam[] = [];
-    messages.push(log.data.message);
-
-    return messages;
+    return [log.data.message];
   }
 
   // Handle ToolCallLog
@@ -153,75 +200,7 @@ export function getGptPayload(log: Log): ChatCompletionMessageParam[] {
 
   // Handle BehaviorLog
   if (logIsBehaviorLog(log)) {
-    const {
-      behaviorName,
-      formattedValue,
-      debriefSystemPrompt,
-      source,
-      debriefOutcome,
-    } = log.data;
-
-    // If this is a scheduled debrief log with cached system prompt, use that
-    if (debriefSystemPrompt) {
-      return [
-        {
-          role: "user",
-          content: `<SYSTEM>${debriefSystemPrompt}</SYSTEM>`,
-        },
-      ];
-    }
-
-    // If this is an empty scheduled debrief log (no behavior data yet)
-    if (source === "scheduled" && !behaviorName) {
-      if (debriefOutcome === "still_there") {
-        return [
-          {
-            role: "user",
-            content:
-              "<SYSTEM>The user responded to the debrief prompt that the urge is still there</SYSTEM>",
-          },
-        ];
-      }
-
-      return [
-        {
-          role: "user",
-          content:
-            "<SYSTEM>The user is beginning a debrief and has not recorded the outcome yet</SYSTEM>",
-        },
-      ];
-    }
-
-    // Check if this is a "resisted" log (behavior with value=0)
-    const value = log.data.value;
-    if (behaviorName && value === 0) {
-      return [
-        {
-          role: "user",
-          content: "<SYSTEM>The user successfully resisted an impulse</SYSTEM>",
-        },
-      ];
-    }
-
-    // Regular behavior log with tracking data
-    if (behaviorName && formattedValue) {
-      const timestamp = log.timestamp?.toDate?.() ?? new Date();
-      const timeStr = timestamp.toLocaleTimeString("en-US", {
-        hour: "numeric",
-        minute: "2-digit",
-        hour12: true,
-      });
-
-      return [
-        {
-          role: "user",
-          content: `<s>The user has tracked a behavior: ${behaviorName} - ${formattedValue} at ${timeStr}</s>`,
-        },
-      ];
-    }
-
-    // Empty behavior log (shouldn't happen in normal flow, but handle gracefully)
-    return [];
+    return buildBehaviorLogPayload(log);
   }
 
   // Return empty array for other (unsupported) log types

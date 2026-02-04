@@ -47,6 +47,7 @@ function getFirstStepText(tactic: TacticLike | null): string | null {
 
 export function buildPlansLogPayload(
   log: PlansLog,
+  isFinalLogInThread: boolean,
 ): ChatCompletionMessageParam[] {
   const activeIndex = log.data.activeIndex ?? 0;
   const activePlanEntry = log.data.plans[activeIndex];
@@ -71,32 +72,58 @@ export function buildPlansLogPayload(
 
   const tacticsNoun = tacticsCount === 1 ? "tactic" : "tactics";
 
-  parts.push("A plan is available.");
-
-  parts.push(
-    `It includes ${tacticsCount} ${tacticsNoun}. The user can choose to start the plan now, or discuss the plan and options before starting.`,
-  );
-
-  if (firstTacticTitle) {
+  if (isFinalLogInThread) {
+    // Authoritative, directive framing when this is the most recent log
+    parts.push("A plan is available for the user right now.");
     parts.push(
-      `The first tactic in the plan is titled: ${firstTacticTitle}. Do not assume the user has started it.`,
+      `It includes ${tacticsCount} ${tacticsNoun}. You should ask the user whether they want to start this plan now, or talk through the plan and options before starting.`,
+    );
+
+    if (firstTacticTitle) {
+      parts.push(
+        `The first tactic in the plan is titled: ${firstTacticTitle}. Do not assume the user has already started it.`,
+      );
+    }
+
+    if (firstStepText) {
+      parts.push(
+        `If the user chooses to start the first tactic, the first step instructions are: ${firstStepText}.`,
+      );
+    }
+
+    parts.push(
+      "First, ask whether they want to begin the first tactic now or talk it through first.",
+    );
+  } else {
+    // Historical / FYI framing when this log is not the most recent
+    parts.push(
+      "FYI: a plan was added earlier in this thread. This information may no longer be active or relevant.",
+    );
+    parts.push(
+      `The earlier plan included ${tacticsCount} ${tacticsNoun}. Do not assume the user is currently following this plan.`,
+    );
+
+    if (firstTacticTitle) {
+      parts.push(
+        `The first tactic in that earlier plan was titled: ${firstTacticTitle}.`,
+      );
+    }
+
+    if (firstStepText) {
+      parts.push(
+        `If the user explicitly asks about that plan or tactic, you may mention that the first step instructions were: ${firstStepText}.`,
+      );
+    }
+
+    parts.push(
+      "Do not initiate any plan-related actions or suggestions unless the user clearly asks about the plan or tactics.",
     );
   }
-
-  if (firstStepText) {
-    parts.push(
-      `If the user chooses to start the first tactic, the first step instructions are: ${firstStepText}`,
-    );
-  }
-
-  parts.push(
-    "First, ask whether they want to begin the first tactic now or talk it through first.",
-  );
 
   return [
     {
       role: "user",
-      content: `<SYSTEM>${parts.join(" ")}</SYSTEM>`,
+      content: `<CONTEXT>${parts.join(" ")}</CONTEXT>`,
     },
   ];
 }
