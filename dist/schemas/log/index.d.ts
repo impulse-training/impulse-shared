@@ -8,7 +8,6 @@ import { AssistantMessageLog, MessageLog, SystemMessageLog, UserMessageLog } fro
 import { NotifySupportGroupLog } from "./notifySupportGroupLog";
 import { PlansLog } from "./plansLog";
 import { QuestionsLog } from "./questionsLog";
-import { ReadyToDebriefLog } from "./readyToDebriefLog";
 import { SharedMomentLog } from "./sharedMomentLog";
 import { ShowTourLog } from "./showTourLog";
 import { SummaryLog } from "./summaryLog";
@@ -12507,7 +12506,7 @@ export declare const logSchemas: {
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | BehaviorLog | BreathingLog | QuestionsLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | ReadyToDebriefLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog;
+export type Log = TacticLog | BehaviorLog | BreathingLog | QuestionsLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog;
 export * from "./behaviorLog";
 export * from "./breathingLog";
 export * from "./callLog";
@@ -12517,7 +12516,6 @@ export * from "./messageLog";
 export * from "./notifySupportGroupLog";
 export * from "./plansLog";
 export * from "./questionsLog";
-export * from "./readyToDebriefLog";
 export * from "./sharedMomentLog";
 export * from "./showTourLog";
 export * from "./summaryLog";
@@ -21712,7 +21710,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
-}>, any, z.ZodObject<{
+}>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;

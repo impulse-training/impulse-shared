@@ -22,10 +22,6 @@ import {
 } from "./notifySupportGroupLog";
 import { PlansLog, plansLogSchema } from "./plansLog";
 import { QuestionsLog, questionsLogSchema } from "./questionsLog";
-import {
-  ReadyToDebriefLog,
-  readyToDebriefLogSchema,
-} from "./readyToDebriefLog";
 import { SharedMomentLog, sharedMomentLogSchema } from "./sharedMomentLog";
 import { ShowTourLog, showTourLogSchema } from "./showTourLog";
 import { SummaryLog, summaryLogSchema } from "./summaryLog";
@@ -81,7 +77,6 @@ export type Log =
   | NotifySupportGroupLog
   | SharedMomentLog
   | VideoLog
-  | ReadyToDebriefLog
   | SupportGroupDaySummaryLog
   | EnableNotificationsCtaLog;
 
@@ -94,7 +89,6 @@ export * from "./messageLog";
 export * from "./notifySupportGroupLog";
 export * from "./plansLog";
 export * from "./questionsLog";
-export * from "./readyToDebriefLog";
 export * from "./sharedMomentLog";
 export * from "./showTourLog";
 export * from "./summaryLog";
@@ -123,7 +117,6 @@ export const logSchema = z.discriminatedUnion("type", [
   notifySupportGroupLogSchema,
   sharedMomentLogSchema,
   videoLogSchema,
-  readyToDebriefLogSchema,
   supportGroupDaySummaryLogSchema,
   enableNotificationsCtaLogSchema,
 ]);

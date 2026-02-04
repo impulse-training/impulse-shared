@@ -25,7 +25,6 @@ const messageLog_1 = require("./messageLog");
 const notifySupportGroupLog_1 = require("./notifySupportGroupLog");
 const plansLog_1 = require("./plansLog");
 const questionsLog_1 = require("./questionsLog");
-const readyToDebriefLog_1 = require("./readyToDebriefLog");
 const sharedMomentLog_1 = require("./sharedMomentLog");
 const showTourLog_1 = require("./showTourLog");
 const summaryLog_1 = require("./summaryLog");
@@ -66,7 +65,6 @@ __exportStar(require("./messageLog"), exports);
 __exportStar(require("./notifySupportGroupLog"), exports);
 __exportStar(require("./plansLog"), exports);
 __exportStar(require("./questionsLog"), exports);
-__exportStar(require("./readyToDebriefLog"), exports);
 __exportStar(require("./sharedMomentLog"), exports);
 __exportStar(require("./showTourLog"), exports);
 __exportStar(require("./summaryLog"), exports);
@@ -94,7 +92,6 @@ exports.logSchema = zod_1.z.discriminatedUnion("type", [
     notifySupportGroupLog_1.notifySupportGroupLogSchema,
     sharedMomentLog_1.sharedMomentLogSchema,
     videoLog_1.videoLogSchema,
-    readyToDebriefLog_1.readyToDebriefLogSchema,
     supportGroupDaySummaryLog_1.supportGroupDaySummaryLogSchema,
     enableNotificationsCtaLog_1.enableNotificationsCtaLogSchema,
 ]);

@@ -1,5 +1,5 @@
 import { ChatCompletionMessageParam } from "openai/resources/chat";
-import { BehaviorLog } from "../schemas/log";
+import { BehaviorLog } from "../../schemas/log";
 
 export function buildBehaviorLogPayload(
   log: BehaviorLog,

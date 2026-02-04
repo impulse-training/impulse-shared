@@ -1,5 +1,5 @@
 import { ChatCompletionMessageParam } from "openai/resources/chat";
-import { Log } from "../schemas/log";
+import { BehaviorLog, Log, PlansLog } from "../../schemas/log";
 import { buildPlansLogPayload } from "./plans";
 import { buildBehaviorLogPayload } from "./behavior";
 
@@ -9,9 +9,9 @@ export function getGptPayload(
 ): ChatCompletionMessageParam[] {
   switch (log.type) {
     case "plans":
-      return buildPlansLogPayload(log as any, isFinalLogInThread);
+      return buildPlansLogPayload(log as PlansLog, isFinalLogInThread);
     case "behavior":
-      return buildBehaviorLogPayload(log as any);
+      return buildBehaviorLogPayload(log as BehaviorLog);
     default:
       return [];
   }

@@ -89,11 +89,6 @@ function shouldRespondToLogWithAI(thread, beforeData, afterData, latestThreadLog
             afterData.shouldZaraRespond) {
             return true;
         }
-        // Respond if debrief system prompt was set (scheduled debrief)
-        if ((0, fields_1.fieldChanged)(beforeData, afterData, "data.debriefSystemPrompt") &&
-            afterData.data.debriefSystemPrompt) {
-            return true;
-        }
     }
     // Case: A plansLog was updated with completedAt for a timePlan thread
     if (isNotDeleting &&

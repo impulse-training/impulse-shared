@@ -1,5 +1,5 @@
 import { ChatCompletionMessageParam } from "openai/resources/chat";
-import { PlansLog } from "../schemas/log";
+import { PlansLog } from "../../schemas/log";
 
 export function buildPlansLogPayload(
   log: PlansLog,

@@ -130,13 +130,6 @@ export function shouldRespondToLogWithAI(
     ) {
       return true;
     }
-    // Respond if debrief system prompt was set (scheduled debrief)
-    if (
-      fieldChanged(beforeData, afterData, "data.debriefSystemPrompt") &&
-      afterData.data.debriefSystemPrompt
-    ) {
-      return true;
-    }
   }
 
   // Case: A plansLog was updated with completedAt for a timePlan thread
