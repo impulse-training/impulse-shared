@@ -1949,6 +1949,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             } | undefined;
         }>;
         planId: z.ZodOptional<z.ZodString>;
+        planLogId: z.ZodOptional<z.ZodString>;
         stepCount: z.ZodOptional<z.ZodNumber>;
         completedStepIndexes: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
         completed: z.ZodOptional<z.ZodBoolean>;
@@ -2248,6 +2249,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             formattedValue: string;
             responseType: "text" | "slider1To10";
         } | undefined;
+        planLogId?: string | undefined;
         stepCount?: number | undefined;
         completedStepIndexes?: number[] | undefined;
         conversationSummary?: string | undefined;
@@ -2533,6 +2535,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             formattedValue: string;
             responseType: "text" | "slider1To10";
         } | undefined;
+        planLogId?: string | undefined;
         stepCount?: number | undefined;
         completedStepIndexes?: number[] | undefined;
         conversationSummary?: string | undefined;
@@ -2826,6 +2829,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             formattedValue: string;
             responseType: "text" | "slider1To10";
         } | undefined;
+        planLogId?: string | undefined;
         stepCount?: number | undefined;
         completedStepIndexes?: number[] | undefined;
         conversationSummary?: string | undefined;
@@ -3124,6 +3128,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             formattedValue: string;
             responseType: "text" | "slider1To10";
         } | undefined;
+        planLogId?: string | undefined;
         stepCount?: number | undefined;
         completedStepIndexes?: number[] | undefined;
         conversationSummary?: string | undefined;

@@ -2047,7 +2047,6 @@ export declare const threadBaseSchema: z.ZodObject<{
     title?: string | undefined;
     summarizedAt?: import("../../types").Timestamp | undefined;
     behaviorIds?: string[] | undefined;
-    debriefSystemPrompt?: string | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
     triggerId?: string | null | undefined;
@@ -2335,6 +2334,7 @@ export declare const threadBaseSchema: z.ZodObject<{
         firstCallLog?: any;
     } | undefined;
     defaultSystemPrompt?: string | undefined;
+    debriefSystemPrompt?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
     strategyDoc?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown> | undefined;
     allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
@@ -2378,7 +2378,6 @@ export declare const threadBaseSchema: z.ZodObject<{
     type?: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
     summarizedAt?: import("../../types").Timestamp | undefined;
     behaviorIds?: string[] | undefined;
-    debriefSystemPrompt?: string | undefined;
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
@@ -2668,6 +2667,7 @@ export declare const threadBaseSchema: z.ZodObject<{
         firstCallLog?: any;
     } | undefined;
     defaultSystemPrompt?: string | undefined;
+    debriefSystemPrompt?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
     strategyDoc?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown> | undefined;
     allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;

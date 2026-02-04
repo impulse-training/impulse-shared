@@ -16,8 +16,8 @@ exports.behaviorLogSchema = base_1.logBaseSchema.extend({
     data: behaviorTrackingData_1.behaviorTrackingDataSchema.extend({
         /** Source of the log: scheduled debrief or manual entry */
         source: zod_1.z.enum(["scheduled", "manual"]).optional(),
-        /** Cached system prompt for debrief context */
-        debriefSystemPrompt: zod_1.z.string().optional(),
+        /** Outcome of the scheduled debrief prompt */
+        debriefOutcome: zod_1.z.enum(["acted", "resisted", "still_there"]).optional(),
         /** When the debrief was resolved/answered */
         resolvedAt: timestampSchema_1.timestampSchema.optional(),
     }),

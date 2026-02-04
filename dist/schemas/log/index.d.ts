@@ -5555,6 +5555,7 @@ export declare const logSchemas: {
                 } | undefined;
             }>;
             planId: z.ZodOptional<z.ZodString>;
+            planLogId: z.ZodOptional<z.ZodString>;
             stepCount: z.ZodOptional<z.ZodNumber>;
             completedStepIndexes: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
             completed: z.ZodOptional<z.ZodBoolean>;
@@ -5854,6 +5855,7 @@ export declare const logSchemas: {
                 formattedValue: string;
                 responseType: "text" | "slider1To10";
             } | undefined;
+            planLogId?: string | undefined;
             stepCount?: number | undefined;
             completedStepIndexes?: number[] | undefined;
             conversationSummary?: string | undefined;
@@ -6139,6 +6141,7 @@ export declare const logSchemas: {
                 formattedValue: string;
                 responseType: "text" | "slider1To10";
             } | undefined;
+            planLogId?: string | undefined;
             stepCount?: number | undefined;
             completedStepIndexes?: number[] | undefined;
             conversationSummary?: string | undefined;
@@ -6432,6 +6435,7 @@ export declare const logSchemas: {
                 formattedValue: string;
                 responseType: "text" | "slider1To10";
             } | undefined;
+            planLogId?: string | undefined;
             stepCount?: number | undefined;
             completedStepIndexes?: number[] | undefined;
             conversationSummary?: string | undefined;
@@ -6730,6 +6734,7 @@ export declare const logSchemas: {
                 formattedValue: string;
                 responseType: "text" | "slider1To10";
             } | undefined;
+            planLogId?: string | undefined;
             stepCount?: number | undefined;
             completedStepIndexes?: number[] | undefined;
             conversationSummary?: string | undefined;
@@ -8677,6 +8682,7 @@ export declare const logSchemas: {
                 } | undefined;
             }>;
             planId: z.ZodOptional<z.ZodString>;
+            planLogId: z.ZodOptional<z.ZodString>;
             stepCount: z.ZodOptional<z.ZodNumber>;
             completedStepIndexes: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
             completed: z.ZodOptional<z.ZodBoolean>;
@@ -8976,6 +8982,7 @@ export declare const logSchemas: {
                 formattedValue: string;
                 responseType: "text" | "slider1To10";
             } | undefined;
+            planLogId?: string | undefined;
             stepCount?: number | undefined;
             completedStepIndexes?: number[] | undefined;
             conversationSummary?: string | undefined;
@@ -9261,6 +9268,7 @@ export declare const logSchemas: {
                 formattedValue: string;
                 responseType: "text" | "slider1To10";
             } | undefined;
+            planLogId?: string | undefined;
             stepCount?: number | undefined;
             completedStepIndexes?: number[] | undefined;
             conversationSummary?: string | undefined;
@@ -9554,6 +9562,7 @@ export declare const logSchemas: {
                 formattedValue: string;
                 responseType: "text" | "slider1To10";
             } | undefined;
+            planLogId?: string | undefined;
             stepCount?: number | undefined;
             completedStepIndexes?: number[] | undefined;
             conversationSummary?: string | undefined;
@@ -9852,6 +9861,7 @@ export declare const logSchemas: {
                 formattedValue: string;
                 responseType: "text" | "slider1To10";
             } | undefined;
+            planLogId?: string | undefined;
             stepCount?: number | undefined;
             completedStepIndexes?: number[] | undefined;
             conversationSummary?: string | undefined;
@@ -9888,7 +9898,7 @@ export declare const logSchemas: {
             formattedValue: z.ZodOptional<z.ZodString>;
         } & {
             source: z.ZodOptional<z.ZodEnum<["scheduled", "manual"]>>;
-            debriefSystemPrompt: z.ZodOptional<z.ZodString>;
+            debriefOutcome: z.ZodOptional<z.ZodEnum<["acted", "resisted", "still_there"]>>;
             resolvedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         }, "strip", z.ZodTypeAny, {
             value?: number | undefined;
@@ -9898,7 +9908,7 @@ export declare const logSchemas: {
             trackingType?: "counter" | "timer" | undefined;
             formattedValue?: string | undefined;
             source?: "scheduled" | "manual" | undefined;
-            debriefSystemPrompt?: string | undefined;
+            debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
             resolvedAt?: import("../../types").Timestamp | undefined;
         }, {
             value?: number | undefined;
@@ -9908,7 +9918,7 @@ export declare const logSchemas: {
             trackingType?: "counter" | "timer" | undefined;
             formattedValue?: string | undefined;
             source?: "scheduled" | "manual" | undefined;
-            debriefSystemPrompt?: string | undefined;
+            debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
             resolvedAt?: import("../../types").Timestamp | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
@@ -9927,7 +9937,7 @@ export declare const logSchemas: {
             trackingType?: "counter" | "timer" | undefined;
             formattedValue?: string | undefined;
             source?: "scheduled" | "manual" | undefined;
-            debriefSystemPrompt?: string | undefined;
+            debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
             resolvedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
@@ -9951,7 +9961,7 @@ export declare const logSchemas: {
             trackingType?: "counter" | "timer" | undefined;
             formattedValue?: string | undefined;
             source?: "scheduled" | "manual" | undefined;
-            debriefSystemPrompt?: string | undefined;
+            debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
             resolvedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
@@ -11016,6 +11026,7 @@ export declare const logSchemas: {
         type: z.ZodLiteral<"plans">;
         isDisplayable: z.ZodLiteral<true>;
         data: z.ZodObject<{
+            source: z.ZodUnion<[z.ZodLiteral<"trigger">, z.ZodLiteral<"scheduled">]>;
             triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
             plans: z.ZodArray<z.ZodObject<{
                 planId: z.ZodString;
@@ -11346,6 +11357,7 @@ export declare const logSchemas: {
             activeIndex: z.ZodOptional<z.ZodNumber>;
             acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         }, "strip", z.ZodTypeAny, {
+            source: "scheduled" | "trigger";
             plans: {
                 planId: string;
                 plan: ({
@@ -11417,6 +11429,7 @@ export declare const logSchemas: {
             activeIndex?: number | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
         }, {
+            source: "scheduled" | "trigger";
             plans: {
                 planId: string;
                 plan: ({
@@ -11496,6 +11509,7 @@ export declare const logSchemas: {
         dateString: string;
         isDisplayable: true;
         data: {
+            source: "scheduled" | "trigger";
             plans: {
                 planId: string;
                 plan: ({
@@ -11580,6 +11594,7 @@ export declare const logSchemas: {
         dateString: string;
         isDisplayable: true;
         data: {
+            source: "scheduled" | "trigger";
             plans: {
                 planId: string;
                 plan: ({
@@ -12327,44 +12342,6 @@ export declare const logSchemas: {
                 emoji: string;
             } | undefined;
         };
-        id?: string | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
-        tacticId?: string | undefined;
-        behaviorIds?: string[] | undefined;
-        callLogDocPath?: string | undefined;
-    }>;
-    ready_to_debrief: z.ZodObject<{
-        id: z.ZodOptional<z.ZodString>;
-        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-        userId: z.ZodString;
-        timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-        dateString: z.ZodString;
-        tacticId: z.ZodOptional<z.ZodString>;
-        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-        callLogDocPath: z.ZodOptional<z.ZodString>;
-    } & {
-        type: z.ZodLiteral<"ready_to_debrief">;
-        isDisplayable: z.ZodLiteral<true>;
-    }, "strip", z.ZodTypeAny, {
-        createdAt: import("../../types").Timestamp;
-        updatedAt: import("../../types").Timestamp;
-        type: "ready_to_debrief";
-        userId: string;
-        dateString: string;
-        isDisplayable: true;
-        id?: string | undefined;
-        timestamp?: import("../../types").Timestamp | undefined;
-        tacticId?: string | undefined;
-        behaviorIds?: string[] | undefined;
-        callLogDocPath?: string | undefined;
-    }, {
-        createdAt: import("../../types").Timestamp;
-        updatedAt: import("../../types").Timestamp;
-        type: "ready_to_debrief";
-        userId: string;
-        dateString: string;
-        isDisplayable: true;
         id?: string | undefined;
         timestamp?: import("../../types").Timestamp | undefined;
         tacticId?: string | undefined;
@@ -18081,6 +18058,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             } | undefined;
         }>;
         planId: z.ZodOptional<z.ZodString>;
+        planLogId: z.ZodOptional<z.ZodString>;
         stepCount: z.ZodOptional<z.ZodNumber>;
         completedStepIndexes: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
         completed: z.ZodOptional<z.ZodBoolean>;
@@ -18380,6 +18358,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             formattedValue: string;
             responseType: "text" | "slider1To10";
         } | undefined;
+        planLogId?: string | undefined;
         stepCount?: number | undefined;
         completedStepIndexes?: number[] | undefined;
         conversationSummary?: string | undefined;
@@ -18665,6 +18644,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             formattedValue: string;
             responseType: "text" | "slider1To10";
         } | undefined;
+        planLogId?: string | undefined;
         stepCount?: number | undefined;
         completedStepIndexes?: number[] | undefined;
         conversationSummary?: string | undefined;
@@ -18958,6 +18938,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             formattedValue: string;
             responseType: "text" | "slider1To10";
         } | undefined;
+        planLogId?: string | undefined;
         stepCount?: number | undefined;
         completedStepIndexes?: number[] | undefined;
         conversationSummary?: string | undefined;
@@ -19256,6 +19237,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             formattedValue: string;
             responseType: "text" | "slider1To10";
         } | undefined;
+        planLogId?: string | undefined;
         stepCount?: number | undefined;
         completedStepIndexes?: number[] | undefined;
         conversationSummary?: string | undefined;
@@ -19291,7 +19273,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         formattedValue: z.ZodOptional<z.ZodString>;
     } & {
         source: z.ZodOptional<z.ZodEnum<["scheduled", "manual"]>>;
-        debriefSystemPrompt: z.ZodOptional<z.ZodString>;
+        debriefOutcome: z.ZodOptional<z.ZodEnum<["acted", "resisted", "still_there"]>>;
         resolvedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
         value?: number | undefined;
@@ -19301,7 +19283,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         trackingType?: "counter" | "timer" | undefined;
         formattedValue?: string | undefined;
         source?: "scheduled" | "manual" | undefined;
-        debriefSystemPrompt?: string | undefined;
+        debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
         resolvedAt?: import("../../types").Timestamp | undefined;
     }, {
         value?: number | undefined;
@@ -19311,7 +19293,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         trackingType?: "counter" | "timer" | undefined;
         formattedValue?: string | undefined;
         source?: "scheduled" | "manual" | undefined;
-        debriefSystemPrompt?: string | undefined;
+        debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
         resolvedAt?: import("../../types").Timestamp | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
@@ -19330,7 +19312,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         trackingType?: "counter" | "timer" | undefined;
         formattedValue?: string | undefined;
         source?: "scheduled" | "manual" | undefined;
-        debriefSystemPrompt?: string | undefined;
+        debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
         resolvedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
@@ -19354,7 +19336,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         trackingType?: "counter" | "timer" | undefined;
         formattedValue?: string | undefined;
         source?: "scheduled" | "manual" | undefined;
-        debriefSystemPrompt?: string | undefined;
+        debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
         resolvedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
@@ -20416,6 +20398,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     type: z.ZodLiteral<"plans">;
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
+        source: z.ZodUnion<[z.ZodLiteral<"trigger">, z.ZodLiteral<"scheduled">]>;
         triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         plans: z.ZodArray<z.ZodObject<{
             planId: z.ZodString;
@@ -20746,6 +20729,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         activeIndex: z.ZodOptional<z.ZodNumber>;
         acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
+        source: "scheduled" | "trigger";
         plans: {
             planId: string;
             plan: ({
@@ -20817,6 +20801,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         activeIndex?: number | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
     }, {
+        source: "scheduled" | "trigger";
         plans: {
             planId: string;
             plan: ({
@@ -20896,6 +20881,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dateString: string;
     isDisplayable: true;
     data: {
+        source: "scheduled" | "trigger";
         plans: {
             planId: string;
             plan: ({
@@ -20980,6 +20966,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dateString: string;
     isDisplayable: true;
     data: {
+        source: "scheduled" | "trigger";
         plans: {
             planId: string;
             plan: ({
@@ -21725,44 +21712,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
-}>, z.ZodObject<{
-    id: z.ZodOptional<z.ZodString>;
-    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-    userId: z.ZodString;
-    timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-    dateString: z.ZodString;
-    tacticId: z.ZodOptional<z.ZodString>;
-    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-    callLogDocPath: z.ZodOptional<z.ZodString>;
-} & {
-    type: z.ZodLiteral<"ready_to_debrief">;
-    isDisplayable: z.ZodLiteral<true>;
-}, "strip", z.ZodTypeAny, {
-    createdAt: import("../../types").Timestamp;
-    updatedAt: import("../../types").Timestamp;
-    type: "ready_to_debrief";
-    userId: string;
-    dateString: string;
-    isDisplayable: true;
-    id?: string | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
-    tacticId?: string | undefined;
-    behaviorIds?: string[] | undefined;
-    callLogDocPath?: string | undefined;
-}, {
-    createdAt: import("../../types").Timestamp;
-    updatedAt: import("../../types").Timestamp;
-    type: "ready_to_debrief";
-    userId: string;
-    dateString: string;
-    isDisplayable: true;
-    id?: string | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
-    tacticId?: string | undefined;
-    behaviorIds?: string[] | undefined;
-    callLogDocPath?: string | undefined;
-}>, z.ZodObject<{
+}>, any, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -21947,8 +21897,6 @@ export declare const logIsSummaryLog: (value: Omit<Log, "id">) => value is Summa
 export declare const isValidSummaryLog: (value: unknown) => value is SummaryLog;
 export declare const logIsLinkLog: (value: Omit<Log, "id">) => value is LinkLog;
 export declare const isValidLinkLog: (value: unknown) => value is LinkLog;
-export declare const logIsReadyToDebriefLog: (value: Omit<Log, "id">) => value is ReadyToDebriefLog;
-export declare const isValidReadyToDebriefLog: (value: unknown) => value is ReadyToDebriefLog;
 export declare const logIsBreathingLog: (value: Omit<Log, "id">) => value is BreathingLog;
 export declare const isValidBreathingLog: (value: unknown) => value is BreathingLog;
 export declare const logIsSupportGroupDaySummaryLog: (value: Omit<Log, "id">) => value is SupportGroupDaySummaryLog;

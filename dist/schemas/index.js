@@ -44,6 +44,7 @@ __exportStar(require("./question"), exports);
 __exportStar(require("./session"), exports);
 __exportStar(require("./strategy"), exports);
 __exportStar(require("./supportGroup"), exports);
+__exportStar(require("./transcriptItem"), exports);
 __exportStar(require("./utils/supportGroupSummary"), exports);
 __exportStar(require("./tactic"), exports);
 __exportStar(require("./thread"), exports);

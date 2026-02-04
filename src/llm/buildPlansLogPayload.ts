@@ -109,12 +109,6 @@ export function buildPlansLogPayload(
       );
     }
 
-    if (firstStepText) {
-      parts.push(
-        `If the user explicitly asks about that plan or tactic, you may mention that the first step instructions were: ${firstStepText}.`,
-      );
-    }
-
     parts.push(
       "Do not initiate any plan-related actions or suggestions unless the user clearly asks about the plan or tactics.",
     );

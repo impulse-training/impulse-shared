@@ -27,8 +27,8 @@ export declare const behaviorLogSchema: z.ZodObject<{
     } & {
         /** Source of the log: scheduled debrief or manual entry */
         source: z.ZodOptional<z.ZodEnum<["scheduled", "manual"]>>;
-        /** Cached system prompt for debrief context */
-        debriefSystemPrompt: z.ZodOptional<z.ZodString>;
+        /** Outcome of the scheduled debrief prompt */
+        debriefOutcome: z.ZodOptional<z.ZodEnum<["acted", "resisted", "still_there"]>>;
         /** When the debrief was resolved/answered */
         resolvedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
@@ -39,7 +39,7 @@ export declare const behaviorLogSchema: z.ZodObject<{
         trackingType?: "counter" | "timer" | undefined;
         formattedValue?: string | undefined;
         source?: "scheduled" | "manual" | undefined;
-        debriefSystemPrompt?: string | undefined;
+        debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
         resolvedAt?: import("../../types").Timestamp | undefined;
     }, {
         value?: number | undefined;
@@ -49,7 +49,7 @@ export declare const behaviorLogSchema: z.ZodObject<{
         trackingType?: "counter" | "timer" | undefined;
         formattedValue?: string | undefined;
         source?: "scheduled" | "manual" | undefined;
-        debriefSystemPrompt?: string | undefined;
+        debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
         resolvedAt?: import("../../types").Timestamp | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
@@ -68,7 +68,7 @@ export declare const behaviorLogSchema: z.ZodObject<{
         trackingType?: "counter" | "timer" | undefined;
         formattedValue?: string | undefined;
         source?: "scheduled" | "manual" | undefined;
-        debriefSystemPrompt?: string | undefined;
+        debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
         resolvedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
@@ -92,7 +92,7 @@ export declare const behaviorLogSchema: z.ZodObject<{
         trackingType?: "counter" | "timer" | undefined;
         formattedValue?: string | undefined;
         source?: "scheduled" | "manual" | undefined;
-        debriefSystemPrompt?: string | undefined;
+        debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
         resolvedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
