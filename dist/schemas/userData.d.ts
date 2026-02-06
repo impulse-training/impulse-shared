@@ -7,6 +7,7 @@ export declare const userDataSchema: z.ZodObject<{
     defaultThreadMode: z.ZodDefault<z.ZodEnum<["text", "voice"]>>;
     role: z.ZodDefault<z.ZodEnum<["user", "coach", "support"]>>;
     notificationsEnabled: z.ZodDefault<z.ZodBoolean>;
+    notifyOnSignUp: z.ZodDefault<z.ZodBoolean>;
     expoPushToken: z.ZodDefault<z.ZodNullable<z.ZodString>>;
     notificationSettings: z.ZodDefault<z.ZodObject<{
         debriefReminders: z.ZodDefault<z.ZodBoolean>;
@@ -98,6 +99,7 @@ export declare const userDataSchema: z.ZodObject<{
     role: "user" | "coach" | "support";
     defaultThreadMode: "text" | "voice";
     notificationsEnabled: boolean;
+    notifyOnSignUp: boolean;
     expoPushToken: string | null;
     notificationSettings: {
         debriefReminders: boolean;
@@ -154,6 +156,7 @@ export declare const userDataSchema: z.ZodObject<{
     recoveryKeyHash?: string | undefined;
     defaultThreadMode?: "text" | "voice" | undefined;
     notificationsEnabled?: boolean | undefined;
+    notifyOnSignUp?: boolean | undefined;
     expoPushToken?: string | null | undefined;
     notificationSettings?: {
         debriefReminders?: boolean | undefined;

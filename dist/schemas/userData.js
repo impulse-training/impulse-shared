@@ -27,6 +27,7 @@ exports.userDataSchema = zod_1.z.object({
     role: zod_1.z.enum(["user", "coach", "support"]).default("user"),
     // Notification settings
     notificationsEnabled: zod_1.z.boolean().default(true),
+    notifyOnSignUp: zod_1.z.boolean().default(false),
     expoPushToken: zod_1.z.string().nullable().default(null),
     notificationSettings: zod_1.z
         .object({
