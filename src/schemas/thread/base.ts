@@ -2,7 +2,6 @@ import { z } from "zod";
 import { documentReferenceSchema } from "../../utils/documentReferenceSchema";
 import { timestampSchema } from "../../utils/timestampSchema";
 import { emojiIdSchema } from "../emojiId";
-import { planWithIdSchema } from "../plan";
 import { tacticSchema } from "../tactic/tactic";
 import { threadSummarySchema } from "../threadSummary";
 
