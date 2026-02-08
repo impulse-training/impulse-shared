@@ -56,6 +56,10 @@ export const userDataSchema = z.object({
     .optional(),
   isAppEnabled: z.boolean().optional(),
 
+  // Account deletion metadata
+  deletionRequestedAt: timestampSchema.optional(),
+  deletionRequestedBy: z.enum(["user", "admin"]).optional(),
+
   tacticsEnabled: z.boolean().default(false),
 
   // This points to the user's active strategy. It can be updated to rollback.
