@@ -11,6 +11,7 @@ import {
 } from "./plan";
 import { RecapThread, recapThreadSchema } from "./recap";
 import { AlignmentThread, alignmentThreadSchema } from "./alignment";
+import { CommitmentThread, commitmentThreadSchema } from "./commitment";
 
 export * from "../threadSummary";
 export * from "./adjustment";
@@ -20,6 +21,7 @@ export * from "./impulse";
 export * from "./plan";
 export * from "./recap";
 export * from "./alignment";
+export * from "./commitment";
 
 // Map of thread types to their schemas
 export const threadSchemas = {
@@ -31,6 +33,7 @@ export const threadSchemas = {
   locationPlan: locationPlanThreadSchema,
   adjustment: adjustmentThreadSchema,
   alignment: alignmentThreadSchema,
+  commitment: commitmentThreadSchema,
 };
 
 // Discriminated union over type
@@ -43,6 +46,7 @@ export const threadSchema = z.discriminatedUnion("type", [
   recapThreadSchema,
   locationPlanThreadSchema,
   adjustmentThreadSchema,
+  commitmentThreadSchema,
 ]);
 
 export const threadIsGeneralThread = (value: Thread): value is GeneralThread =>
@@ -95,5 +99,12 @@ export const threadIsAdjustmentThread = (
 export const isValidAdjustmentThread = (
   value: unknown,
 ): value is AdjustmentThread => adjustmentThreadSchema.safeParse(value).success;
+
+export const threadIsCommitmentThread = (
+  value: Thread,
+): value is CommitmentThread => value.type === "commitment";
+export const isValidCommitmentThread = (
+  value: unknown,
+): value is CommitmentThread => commitmentThreadSchema.safeParse(value).success;
 
 export type Thread = z.infer<typeof threadSchema>;

@@ -16,6 +16,7 @@ const threadTypeSchema = z.enum([
   "locationPlan",
   "adjustment",
   "alignment",
+  "commitment",
 ]);
 
 // Thread schema
