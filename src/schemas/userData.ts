@@ -26,6 +26,9 @@ export const userDataSchema = z.object({
 
   defaultThreadMode: z.enum(["text", "voice"]).default("text"),
 
+  // Account creation metadata
+  createdViaEmulator: z.boolean().optional(),
+
   // User role
   role: z.enum(["user", "coach", "support"]).default("user"),
 
