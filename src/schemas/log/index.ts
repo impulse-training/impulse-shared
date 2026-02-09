@@ -8,6 +8,10 @@ import {
 } from "./enableNotificationsCtaLog";
 import { LinkLog, linkLogSchema } from "./linkLog";
 import {
+  ProposedExperimentLog,
+  proposedExperimentLogSchema,
+} from "./proposedExperimentLog";
+import {
   AssistantMessageLog,
   assistantMessageLogSchema,
   MessageLog,
@@ -55,6 +59,7 @@ export const logSchemas = {
   shared_moment: sharedMomentLogSchema,
   support_group_day_summary: supportGroupDaySummaryLogSchema,
   enable_notifications_cta: enableNotificationsCtaLogSchema,
+  proposed_experiment: proposedExperimentLogSchema,
 };
 export const logTypes = Object.keys(logSchemas);
 
@@ -78,7 +83,8 @@ export type Log =
   | SharedMomentLog
   | VideoLog
   | SupportGroupDaySummaryLog
-  | EnableNotificationsCtaLog;
+  | EnableNotificationsCtaLog
+  | ProposedExperimentLog;
 
 export * from "./behaviorLog";
 export * from "./breathingLog";
@@ -97,6 +103,7 @@ export * from "./tacticLog";
 export * from "./toolCallLog";
 export * from "./videoLog";
 export * from "./widgetSetupLog";
+export * from "./proposedExperimentLog";
 
 // Discriminated union schema across all log variants
 export const logSchema = z.discriminatedUnion("type", [
@@ -119,6 +126,7 @@ export const logSchema = z.discriminatedUnion("type", [
   videoLogSchema,
   supportGroupDaySummaryLogSchema,
   enableNotificationsCtaLogSchema,
+  proposedExperimentLogSchema,
 ]);
 
 // Export log type guards
