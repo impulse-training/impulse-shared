@@ -50,6 +50,9 @@ exports.userDataSchema = zod_1.z.object({
     })
         .optional(),
     isAppEnabled: zod_1.z.boolean().optional(),
+    // Account deletion metadata
+    deletionRequestedAt: timestampSchema_1.timestampSchema.optional(),
+    deletionRequestedBy: zod_1.z.enum(["user", "admin"]).optional(),
     tacticsEnabled: zod_1.z.boolean().default(false),
     // This points to the user's active strategy. It can be updated to rollback.
     activeStrategyDoc: documentReferenceSchema_1.documentReferenceSchema.optional(),

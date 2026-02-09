@@ -17,6 +17,7 @@ const threadTypeSchema = zod_1.z.enum([
     "timePlan",
     "locationPlan",
     "adjustment",
+    "alignment",
 ]);
 // Thread schema
 exports.threadBaseSchema = zod_1.z.object({

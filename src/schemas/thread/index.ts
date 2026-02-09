@@ -10,6 +10,7 @@ import {
   timePlanThreadSchema,
 } from "./plan";
 import { RecapThread, recapThreadSchema } from "./recap";
+import { AlignmentThread, alignmentThreadSchema } from "./alignment";
 
 export * from "../threadSummary";
 export * from "./adjustment";
@@ -18,6 +19,7 @@ export * from "./general";
 export * from "./impulse";
 export * from "./plan";
 export * from "./recap";
+export * from "./alignment";
 
 // Map of thread types to their schemas
 export const threadSchemas = {
@@ -28,6 +30,7 @@ export const threadSchemas = {
   recap: recapThreadSchema,
   locationPlan: locationPlanThreadSchema,
   adjustment: adjustmentThreadSchema,
+  alignment: alignmentThreadSchema,
 };
 
 // Discriminated union over type
@@ -36,6 +39,7 @@ export const threadSchema = z.discriminatedUnion("type", [
   impulseThreadSchema,
   behaviorThreadSchema,
   timePlanThreadSchema,
+  alignmentThreadSchema,
   recapThreadSchema,
   locationPlanThreadSchema,
   adjustmentThreadSchema,
@@ -52,11 +56,18 @@ export const isValidImpulseThread = (value: unknown): value is ImpulseThread =>
   impulseThreadSchema.safeParse(value).success;
 
 export const threadIsTimePlanThread = (
-  value: Thread
+  value: Thread,
 ): value is TimePlanThread => value.type === "timePlan";
 export const isValidTimePlanThread = (
-  value: unknown
+  value: unknown,
 ): value is TimePlanThread => timePlanThreadSchema.safeParse(value).success;
+
+export const threadIsAlignmentThread = (
+  value: Thread,
+): value is AlignmentThread => value.type === "alignment";
+export const isValidAlignmentThread = (
+  value: unknown,
+): value is AlignmentThread => alignmentThreadSchema.safeParse(value).success;
 
 export const threadIsRecapThread = (value: Thread): value is RecapThread =>
   value.type === "recap";
@@ -64,25 +75,25 @@ export const isValidRecapThread = (value: unknown): value is RecapThread =>
   recapThreadSchema.safeParse(value).success;
 
 export const threadIsLocationPlanThread = (
-  value: Thread
+  value: Thread,
 ): value is LocationPlanThread => value.type === "locationPlan";
 export const isValidLocationPlanThread = (
-  value: unknown
+  value: unknown,
 ): value is LocationPlanThread =>
   locationPlanThreadSchema.safeParse(value).success;
 
 export const threadIsBehaviorThread = (
-  value: Thread
+  value: Thread,
 ): value is BehaviorThread => value.type === "behavior";
 export const isValidBehaviorThread = (
-  value: unknown
+  value: unknown,
 ): value is BehaviorThread => behaviorThreadSchema.safeParse(value).success;
 
 export const threadIsAdjustmentThread = (
-  value: Thread
+  value: Thread,
 ): value is AdjustmentThread => value.type === "adjustment";
 export const isValidAdjustmentThread = (
-  value: unknown
+  value: unknown,
 ): value is AdjustmentThread => adjustmentThreadSchema.safeParse(value).success;
 
 export type Thread = z.infer<typeof threadSchema>;

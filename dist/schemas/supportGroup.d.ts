@@ -593,7 +593,7 @@ export declare const supportGroupSchema: z.ZodObject<{
     acceptsMatching: z.ZodOptional<z.ZodBoolean>;
     maxMembers: z.ZodOptional<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
-    type: "system" | "coach" | "social" | "alignment";
+    type: "system" | "alignment" | "coach" | "social";
     name: string;
     isTemplate: boolean;
     membersById: Record<string, {
@@ -765,7 +765,7 @@ export declare const supportGroupSchema: z.ZodObject<{
             }[] | undefined;
         } | undefined;
     } | undefined;
-    type?: "system" | "coach" | "social" | "alignment" | undefined;
+    type?: "system" | "alignment" | "coach" | "social" | undefined;
     isTemplate?: boolean | undefined;
     description?: string | undefined;
     coverPhoto?: {

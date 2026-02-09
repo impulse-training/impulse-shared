@@ -46,6 +46,8 @@ export declare const userDataSchema: z.ZodObject<{
         isDevice?: boolean | undefined;
     }>>;
     isAppEnabled: z.ZodOptional<z.ZodBoolean>;
+    deletionRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    deletionRequestedBy: z.ZodOptional<z.ZodEnum<["user", "admin"]>>;
     tacticsEnabled: z.ZodDefault<z.ZodBoolean>;
     activeStrategyDoc: z.ZodOptional<z.ZodType<import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>>;
     theme: z.ZodDefault<z.ZodEnum<["light", "dark", "system"]>>;
@@ -130,13 +132,15 @@ export declare const userDataSchema: z.ZodObject<{
         isDevice?: boolean | undefined;
     } | undefined;
     isAppEnabled?: boolean | undefined;
+    deletionRequestedAt?: import("../types").Timestamp | undefined;
+    deletionRequestedBy?: "user" | "admin" | undefined;
     activeStrategyDoc?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown> | undefined;
     isImpulseTeam?: boolean | undefined;
     hasSetupExperiment?: boolean | undefined;
     supportGroupSignupCompletedAt?: import("../types").Timestamp | undefined;
     markedAsEligibleAt?: import("../types").Timestamp | undefined;
     isCoach?: boolean | undefined;
-    latestSupportGroupMessages?: Partial<Record<"system" | "coach" | "social" | "alignment", {
+    latestSupportGroupMessages?: Partial<Record<"system" | "alignment" | "coach" | "social", {
         message: string;
         senderId: string;
         sentAt: import("../types").Timestamp;
@@ -173,6 +177,8 @@ export declare const userDataSchema: z.ZodObject<{
         isDevice?: boolean | undefined;
     } | undefined;
     isAppEnabled?: boolean | undefined;
+    deletionRequestedAt?: import("../types").Timestamp | undefined;
+    deletionRequestedBy?: "user" | "admin" | undefined;
     tacticsEnabled?: boolean | undefined;
     activeStrategyDoc?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown> | undefined;
     theme?: "system" | "light" | "dark" | undefined;
@@ -182,7 +188,7 @@ export declare const userDataSchema: z.ZodObject<{
     supportGroupSignupCompletedAt?: import("../types").Timestamp | undefined;
     markedAsEligibleAt?: import("../types").Timestamp | undefined;
     isCoach?: boolean | undefined;
-    latestSupportGroupMessages?: Partial<Record<"system" | "coach" | "social" | "alignment", {
+    latestSupportGroupMessages?: Partial<Record<"system" | "alignment" | "coach" | "social", {
         message: string;
         senderId: string;
         sentAt: import("../types").Timestamp;

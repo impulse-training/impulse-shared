@@ -1,7 +1,7 @@
 import { z } from "zod";
 export declare const threadBaseSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
-    type: z.ZodDefault<z.ZodEnum<["impulse", "general", "onboarding", "recap", "behavior", "dayRecap", "timePlan", "locationPlan", "adjustment"]>>;
+    type: z.ZodDefault<z.ZodEnum<["impulse", "general", "onboarding", "recap", "behavior", "dayRecap", "timePlan", "locationPlan", "adjustment", "alignment"]>>;
     title: z.ZodOptional<z.ZodString>;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     date: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -2029,7 +2029,7 @@ export declare const threadBaseSchema: z.ZodObject<{
         endedAt?: import("../../types").Timestamp | undefined;
     }>>;
 }, "strip", z.ZodTypeAny, {
-    type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+    type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | "alignment";
     date: import("../../types").Timestamp;
     userId: string;
     dateString: string;
@@ -2375,7 +2375,7 @@ export declare const threadBaseSchema: z.ZodObject<{
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
     title?: string | undefined;
-    type?: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
+    type?: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | "alignment" | undefined;
     summarizedAt?: import("../../types").Timestamp | undefined;
     behaviorIds?: string[] | undefined;
     mode?: "text" | "voice" | undefined;
