@@ -34,7 +34,7 @@ export const userDataSchema = z.object({
 
   // Notification settings
   notificationsEnabled: z.boolean().default(true),
-  notifyOnSignUp: z.boolean().default(false),
+  notifyOnSignUp: z.boolean().optional(),
   expoPushToken: z.string().nullable().default(null),
   notificationSettings: z
     .object({
