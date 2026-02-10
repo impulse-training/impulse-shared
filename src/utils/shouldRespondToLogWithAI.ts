@@ -9,6 +9,7 @@ import {
   logIsWidgetSetupLog,
   logIsAssistantMessageLog,
   PlansLog,
+  ProposedExperimentLog,
 } from "../schemas/log";
 import { fieldChanged } from "./fields";
 import { WithId } from "./withId";
@@ -117,6 +118,20 @@ export function shouldRespondToLogWithAI(
     // Check if all questions now have responses
     const allAnswered = afterData.data.questions.every((q) => q.response);
     if (allAnswered) {
+      return true;
+    }
+  }
+
+  // Case: A proposed experiment was accepted (confirmedAt set)
+  if (
+    isUpdating &&
+    beforeData?.type === "proposed_experiment" &&
+    afterData?.type === "proposed_experiment"
+  ) {
+    const beforeProposed = beforeData as ProposedExperimentLog;
+    const afterProposed = afterData as ProposedExperimentLog;
+
+    if (!beforeProposed.confirmedAt && afterProposed.confirmedAt) {
       return true;
     }
   }

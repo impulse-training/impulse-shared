@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { logBaseSchema } from "./base";
+import { timestampSchema } from "../../utils/timestampSchema";
 
 export const proposedExperimentLogSchema = logBaseSchema.extend({
   type: z.literal("proposed_experiment"),
@@ -16,6 +17,8 @@ export const proposedExperimentLogSchema = logBaseSchema.extend({
   text: z.string().optional(),
   /** Optional CTA button label for confirming the experiment */
   buttonText: z.string().optional(),
+  /** Timestamp when this proposed experiment was confirmed */
+  confirmedAt: timestampSchema.optional(),
 });
 
 export type ProposedExperimentLog = z.infer<typeof proposedExperimentLogSchema>;

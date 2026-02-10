@@ -15,6 +15,7 @@ import {
   logIsUserMessageLog,
   logIsWidgetSetupLog,
   BehaviorLog,
+  ProposedExperimentLog,
 } from "../schemas/log";
 import { buildPlansLogPayload } from "./buildPlansLogPayload";
 
@@ -80,6 +81,28 @@ export function getGptPayload(
   log: Log,
   isFinalLogInThread: boolean,
 ): ChatCompletionMessageParam[] {
+  if (log.type === "proposed_experiment") {
+    const proposedLog = log as ProposedExperimentLog;
+
+    if (isFinalLogInThread) {
+      return [
+        {
+          role: "user",
+          content:
+            "You’re all set — the experiment has started.\n\nFor now, just go about your day as usual. If you drink alcohol, log it here. If you don’t, that’s useful too.\n\nAfter 9:00pm, come back to do a short recap of how the day felt.\n\nWe’ll start with a baseline period for the next N days. After that, we’ll introduce a small change and see what actually moves.",
+        },
+      ];
+    }
+
+    return [
+      {
+        role: "user",
+        content:
+          "The user has accepted the proposed experiment and it's now active (experiment details).",
+      },
+    ];
+  }
+
   if (logIsPlansLog(log)) {
     return buildPlansLogPayload(log, isFinalLogInThread);
   }
