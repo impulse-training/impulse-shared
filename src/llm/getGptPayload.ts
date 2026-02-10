@@ -1,8 +1,6 @@
+import { ChatCompletionMessageParam } from "openai/resources/chat";
 import {
-  ChatCompletionAssistantMessageParam,
-  ChatCompletionMessageParam,
-} from "openai/resources/chat";
-import {
+  BehaviorLog,
   Log,
   logIsAssistantMessageLog,
   logIsBehaviorLog,
@@ -14,8 +12,6 @@ import {
   logIsToolCallLog,
   logIsUserMessageLog,
   logIsWidgetSetupLog,
-  BehaviorLog,
-  ProposedExperimentLog,
 } from "../schemas/log";
 import { buildPlansLogPayload } from "./buildPlansLogPayload";
 
@@ -82,14 +78,54 @@ export function getGptPayload(
   isFinalLogInThread: boolean,
 ): ChatCompletionMessageParam[] {
   if (log.type === "proposed_experiment") {
-    const proposedLog = log as ProposedExperimentLog;
+    // createdExperiment is written by the confirmExperimentFromProposal API
+    const createdExperiment =
+      "createdExperiment" in log
+        ? (
+            log as {
+              createdExperiment?: {
+                baselineDays?: number;
+                observationDays?: number;
+              };
+            }
+          ).createdExperiment
+        : undefined;
+
+    const baselineDays = createdExperiment?.baselineDays ?? 5;
+
+    const behaviorName =
+      "behaviorName" in log
+        ? (log as { behaviorName?: string }).behaviorName
+        : undefined;
+    const metricLabels =
+      "metricLabels" in log
+        ? (log as { metricLabels?: string[] }).metricLabels
+        : undefined;
+
+    const behaviorText =
+      behaviorName && behaviorName.trim().length > 0
+        ? behaviorName
+        : "the behavior you're tracking";
+    const metricsText =
+      metricLabels && metricLabels.length > 0
+        ? metricLabels.join(", ")
+        : "what you agreed to track";
 
     if (isFinalLogInThread) {
       return [
         {
           role: "user",
           content:
-            "You’re all set — the experiment has started.\n\nFor now, just go about your day as usual. If you drink alcohol, log it here. If you don’t, that’s useful too.\n\nAfter 9:00pm, come back to do a short recap of how the day felt.\n\nWe’ll start with a baseline period for the next N days. After that, we’ll introduce a small change and see what actually moves.",
+            "<SYSTEM>\n" +
+            "The user has just accepted a proposed experiment.\n" +
+            "Respond to the user using the following message TEMPLATE, adapting it to what you know about the user's issue and the specific experiment configuration (e.g. behavior, metrics, baseline length).\n" +
+            "Keep the structure and tone, but substitute details appropriately. Do not add extra paragraphs or questions beyond this template.\n\n" +
+            "TEMPLATE:\n" +
+            "You’re all set — the experiment has started.\n\n" +
+            `For now, just go about your day as usual. If you ${behaviorText}, log ${metricsText} here. If you don’t, that’s useful too.\n\n` +
+            "After [RECAP_TIME], come back to do a short recap of how the day felt.\n\n" +
+            `We’ll start with a baseline period for the next ${baselineDays} days. After that, we’ll introduce a small change and see what actually moves.\n` +
+            "</SYSTEM>",
         },
       ];
     }
@@ -98,7 +134,7 @@ export function getGptPayload(
       {
         role: "user",
         content:
-          "The user has accepted the proposed experiment and it's now active (experiment details).",
+          "<SYSTEM>The user has accepted the proposed experiment and it's now active. You do not need to re-explain the experiment; just treat this as context for future replies.</SYSTEM>",
       },
     ];
   }

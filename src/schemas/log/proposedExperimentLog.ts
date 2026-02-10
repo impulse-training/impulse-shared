@@ -19,6 +19,13 @@ export const proposedExperimentLogSchema = logBaseSchema.extend({
   buttonText: z.string().optional(),
   /** Timestamp when this proposed experiment was confirmed */
   confirmedAt: timestampSchema.optional(),
+  /** Summary of the experiment that was actually created when this proposal was confirmed */
+  createdExperiment: z
+    .object({
+      baselineDays: z.number(),
+      observationDays: z.number(),
+    })
+    .optional(),
 });
 
 export type ProposedExperimentLog = z.infer<typeof proposedExperimentLogSchema>;
