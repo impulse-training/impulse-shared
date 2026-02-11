@@ -23,7 +23,7 @@ const transitionPhaseConfigSchema = basicPhaseConfigSchema.extend({
 
 const experimentRequirementsSchema = z.record(
   z.string(),
-  z.boolean().nullable()
+  z.boolean().nullable(),
 );
 
 const experimentPhaseCompletionSchema = z.object({
@@ -32,7 +32,7 @@ const experimentPhaseCompletionSchema = z.object({
     z.object({
       date: z.string(),
       requirementsMet: z.boolean().nullable().default(null),
-    })
+    }),
   ),
 });
 
@@ -79,6 +79,7 @@ export const experimentSchema = z.object({
     observation: experimentPhaseCompletionSchema.optional(),
   }),
   currentPhase: experimentPhaseEnum.default("baseline"),
+  resultsSummary: z.string().optional(),
 });
 
 export type ExperimentPhase = z.infer<typeof experimentPhaseEnum>;
