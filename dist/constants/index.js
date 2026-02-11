@@ -17,3 +17,4 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./questionScopes"), exports);
 __exportStar(require("./metrics"), exports);
 __exportStar(require("./debrief"), exports);
+__exportStar(require("./privacyPolicy"), exports);
