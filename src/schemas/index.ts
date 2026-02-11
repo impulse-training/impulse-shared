@@ -27,6 +27,7 @@ export * from "./question";
 export * from "./session";
 export * from "./strategy";
 export * from "./supportGroup";
+export * from "./supportRequest";
 export * from "./transcriptItem";
 export * from "./utils/supportGroupSummary";
 export * from "./tactic";

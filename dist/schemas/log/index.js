@@ -21,6 +21,7 @@ const breathingLog_1 = require("./breathingLog");
 const callLog_1 = require("./callLog");
 const enableNotificationsCtaLog_1 = require("./enableNotificationsCtaLog");
 const linkLog_1 = require("./linkLog");
+const proposedExperimentLog_1 = require("./proposedExperimentLog");
 const messageLog_1 = require("./messageLog");
 const notifySupportGroupLog_1 = require("./notifySupportGroupLog");
 const plansLog_1 = require("./plansLog");
@@ -54,6 +55,7 @@ exports.logSchemas = {
     shared_moment: sharedMomentLog_1.sharedMomentLogSchema,
     support_group_day_summary: supportGroupDaySummaryLog_1.supportGroupDaySummaryLogSchema,
     enable_notifications_cta: enableNotificationsCtaLog_1.enableNotificationsCtaLogSchema,
+    proposed_experiment: proposedExperimentLog_1.proposedExperimentLogSchema,
 };
 exports.logTypes = Object.keys(exports.logSchemas);
 __exportStar(require("./behaviorLog"), exports);
@@ -73,6 +75,7 @@ __exportStar(require("./tacticLog"), exports);
 __exportStar(require("./toolCallLog"), exports);
 __exportStar(require("./videoLog"), exports);
 __exportStar(require("./widgetSetupLog"), exports);
+__exportStar(require("./proposedExperimentLog"), exports);
 // Discriminated union schema across all log variants
 exports.logSchema = zod_1.z.discriminatedUnion("type", [
     messageLog_1.userMessageLogSchema,
@@ -94,6 +97,7 @@ exports.logSchema = zod_1.z.discriminatedUnion("type", [
     videoLog_1.videoLogSchema,
     supportGroupDaySummaryLog_1.supportGroupDaySummaryLogSchema,
     enableNotificationsCtaLog_1.enableNotificationsCtaLogSchema,
+    proposedExperimentLog_1.proposedExperimentLogSchema,
 ]);
 // Export log type guards
 const logIsAssistantMessageLog = (value) => value.type === "assistant_message";

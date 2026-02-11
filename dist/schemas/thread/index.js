@@ -14,7 +14,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidAdjustmentThread = exports.threadIsAdjustmentThread = exports.isValidBehaviorThread = exports.threadIsBehaviorThread = exports.isValidLocationPlanThread = exports.threadIsLocationPlanThread = exports.isValidRecapThread = exports.threadIsRecapThread = exports.isValidAlignmentThread = exports.threadIsAlignmentThread = exports.isValidTimePlanThread = exports.threadIsTimePlanThread = exports.isValidImpulseThread = exports.threadIsImpulseThread = exports.isValidGeneralThread = exports.threadIsGeneralThread = exports.threadSchema = exports.threadSchemas = void 0;
+exports.isValidCommitmentThread = exports.threadIsCommitmentThread = exports.isValidAdjustmentThread = exports.threadIsAdjustmentThread = exports.isValidBehaviorThread = exports.threadIsBehaviorThread = exports.isValidLocationPlanThread = exports.threadIsLocationPlanThread = exports.isValidRecapThread = exports.threadIsRecapThread = exports.isValidAlignmentThread = exports.threadIsAlignmentThread = exports.isValidTimePlanThread = exports.threadIsTimePlanThread = exports.isValidImpulseThread = exports.threadIsImpulseThread = exports.isValidGeneralThread = exports.threadIsGeneralThread = exports.threadSchema = exports.threadSchemas = void 0;
 const zod_1 = require("zod");
 const adjustment_1 = require("./adjustment");
 const behavior_1 = require("./behavior");
@@ -23,6 +23,7 @@ const impulse_1 = require("./impulse");
 const plan_1 = require("./plan");
 const recap_1 = require("./recap");
 const alignment_1 = require("./alignment");
+const commitment_1 = require("./commitment");
 __exportStar(require("../threadSummary"), exports);
 __exportStar(require("./adjustment"), exports);
 __exportStar(require("./behavior"), exports);
@@ -31,6 +32,7 @@ __exportStar(require("./impulse"), exports);
 __exportStar(require("./plan"), exports);
 __exportStar(require("./recap"), exports);
 __exportStar(require("./alignment"), exports);
+__exportStar(require("./commitment"), exports);
 // Map of thread types to their schemas
 exports.threadSchemas = {
     general: general_1.generalThreadSchema,
@@ -41,6 +43,7 @@ exports.threadSchemas = {
     locationPlan: plan_1.locationPlanThreadSchema,
     adjustment: adjustment_1.adjustmentThreadSchema,
     alignment: alignment_1.alignmentThreadSchema,
+    commitment: commitment_1.commitmentThreadSchema,
 };
 // Discriminated union over type
 exports.threadSchema = zod_1.z.discriminatedUnion("type", [
@@ -52,6 +55,7 @@ exports.threadSchema = zod_1.z.discriminatedUnion("type", [
     recap_1.recapThreadSchema,
     plan_1.locationPlanThreadSchema,
     adjustment_1.adjustmentThreadSchema,
+    commitment_1.commitmentThreadSchema,
 ]);
 const threadIsGeneralThread = (value) => value.type === "general";
 exports.threadIsGeneralThread = threadIsGeneralThread;
@@ -85,3 +89,7 @@ const threadIsAdjustmentThread = (value) => value.type === "adjustment";
 exports.threadIsAdjustmentThread = threadIsAdjustmentThread;
 const isValidAdjustmentThread = (value) => adjustment_1.adjustmentThreadSchema.safeParse(value).success;
 exports.isValidAdjustmentThread = isValidAdjustmentThread;
+const threadIsCommitmentThread = (value) => value.type === "commitment";
+exports.threadIsCommitmentThread = threadIsCommitmentThread;
+const isValidCommitmentThread = (value) => commitment_1.commitmentThreadSchema.safeParse(value).success;
+exports.isValidCommitmentThread = isValidCommitmentThread;

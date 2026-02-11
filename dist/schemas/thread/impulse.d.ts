@@ -1995,6 +1995,8 @@ export declare const impulseThreadSchema: z.ZodObject<{
     responseStartedProcessingAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    lastReadAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    unreadSince: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>>;
     startedPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     completedPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     assistantId: z.ZodOptional<z.ZodString>;
@@ -2354,6 +2356,8 @@ export declare const impulseThreadSchema: z.ZodObject<{
     openAfter?: import("../../types").Timestamp | undefined;
     firstOpenedAt?: import("../../types").Timestamp | undefined;
     responseStartedProcessingAt?: import("../../types").Timestamp | undefined;
+    lastReadAt?: import("../../types").Timestamp | undefined;
+    unreadSince?: Record<string, import("../../types").Timestamp> | undefined;
     startedPlanIds?: string[] | undefined;
     completedPlanIds?: string[] | undefined;
     assistantId?: string | undefined;
@@ -2692,6 +2696,8 @@ export declare const impulseThreadSchema: z.ZodObject<{
     openAfter?: import("../../types").Timestamp | undefined;
     firstOpenedAt?: import("../../types").Timestamp | undefined;
     responseStartedProcessingAt?: import("../../types").Timestamp | undefined;
+    lastReadAt?: import("../../types").Timestamp | undefined;
+    unreadSince?: Record<string, import("../../types").Timestamp> | undefined;
     startedPlanIds?: string[] | undefined;
     completedPlanIds?: string[] | undefined;
     assistantId?: string | undefined;

@@ -1,7 +1,7 @@
 import { z } from "zod";
 export declare const threadBaseSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
-    type: z.ZodDefault<z.ZodEnum<["impulse", "general", "onboarding", "recap", "behavior", "dayRecap", "timePlan", "locationPlan", "adjustment", "alignment"]>>;
+    type: z.ZodDefault<z.ZodEnum<["impulse", "general", "onboarding", "recap", "behavior", "dayRecap", "timePlan", "locationPlan", "adjustment", "alignment", "commitment"]>>;
     title: z.ZodOptional<z.ZodString>;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     date: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -1996,6 +1996,8 @@ export declare const threadBaseSchema: z.ZodObject<{
     responseStartedProcessingAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    lastReadAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    unreadSince: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>>;
     startedPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     completedPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     assistantId: z.ZodOptional<z.ZodString>;
@@ -2029,7 +2031,7 @@ export declare const threadBaseSchema: z.ZodObject<{
         endedAt?: import("../../types").Timestamp | undefined;
     }>>;
 }, "strip", z.ZodTypeAny, {
-    type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | "alignment";
+    type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | "alignment" | "commitment";
     date: import("../../types").Timestamp;
     userId: string;
     dateString: string;
@@ -2347,6 +2349,8 @@ export declare const threadBaseSchema: z.ZodObject<{
     openAfter?: import("../../types").Timestamp | undefined;
     firstOpenedAt?: import("../../types").Timestamp | undefined;
     responseStartedProcessingAt?: import("../../types").Timestamp | undefined;
+    lastReadAt?: import("../../types").Timestamp | undefined;
+    unreadSince?: Record<string, import("../../types").Timestamp> | undefined;
     startedPlanIds?: string[] | undefined;
     completedPlanIds?: string[] | undefined;
     assistantId?: string | undefined;
@@ -2375,7 +2379,7 @@ export declare const threadBaseSchema: z.ZodObject<{
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
     title?: string | undefined;
-    type?: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | "alignment" | undefined;
+    type?: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | "alignment" | "commitment" | undefined;
     summarizedAt?: import("../../types").Timestamp | undefined;
     behaviorIds?: string[] | undefined;
     mode?: "text" | "voice" | undefined;
@@ -2680,6 +2684,8 @@ export declare const threadBaseSchema: z.ZodObject<{
     openAfter?: import("../../types").Timestamp | undefined;
     firstOpenedAt?: import("../../types").Timestamp | undefined;
     responseStartedProcessingAt?: import("../../types").Timestamp | undefined;
+    lastReadAt?: import("../../types").Timestamp | undefined;
+    unreadSince?: Record<string, import("../../types").Timestamp> | undefined;
     startedPlanIds?: string[] | undefined;
     completedPlanIds?: string[] | undefined;
     assistantId?: string | undefined;

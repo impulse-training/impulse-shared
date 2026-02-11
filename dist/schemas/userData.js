@@ -23,11 +23,13 @@ exports.userDataSchema = zod_1.z.object({
     // Authentication
     recoveryKeyHash: zod_1.z.string().optional(),
     defaultThreadMode: zod_1.z.enum(["text", "voice"]).default("text"),
+    // Account creation metadata
+    createdViaEmulator: zod_1.z.boolean().optional(),
     // User role
     role: zod_1.z.enum(["user", "coach", "support"]).default("user"),
     // Notification settings
     notificationsEnabled: zod_1.z.boolean().default(true),
-    notifyOnSignUp: zod_1.z.boolean().default(false),
+    notifyOnSignUp: zod_1.z.boolean().optional(),
     expoPushToken: zod_1.z.string().nullable().default(null),
     notificationSettings: zod_1.z
         .object({

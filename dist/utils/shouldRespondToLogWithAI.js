@@ -82,6 +82,16 @@ function shouldRespondToLogWithAI(thread, beforeData, afterData, latestThreadLog
             return true;
         }
     }
+    // Case: A proposed experiment was accepted (confirmedAt set)
+    if (isUpdating &&
+        (beforeData === null || beforeData === void 0 ? void 0 : beforeData.type) === "proposed_experiment" &&
+        (afterData === null || afterData === void 0 ? void 0 : afterData.type) === "proposed_experiment") {
+        const beforeProposed = beforeData;
+        const afterProposed = afterData;
+        if (!beforeProposed.confirmedAt && afterProposed.confirmedAt) {
+            return true;
+        }
+    }
     // Case: A behavior log was explicitly marked for Zara to respond, or has debrief system prompt set
     if (isNotDeleting && (0, log_1.logIsBehaviorLog)(afterData)) {
         // Respond if shouldZaraRespond was set

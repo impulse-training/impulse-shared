@@ -47,6 +47,49 @@ function buildBehaviorLogPayload(log) {
     return [];
 }
 function getGptPayload(log, isFinalLogInThread) {
+    var _a;
+    if (log.type === "proposed_experiment") {
+        // createdExperiment is written by the confirmExperimentFromProposal API
+        const createdExperiment = "createdExperiment" in log
+            ? log.createdExperiment
+            : undefined;
+        const baselineDays = (_a = createdExperiment === null || createdExperiment === void 0 ? void 0 : createdExperiment.baselineDays) !== null && _a !== void 0 ? _a : 5;
+        const behaviorName = "behaviorName" in log
+            ? log.behaviorName
+            : undefined;
+        const metricLabels = "metricLabels" in log
+            ? log.metricLabels
+            : undefined;
+        const behaviorText = behaviorName && behaviorName.trim().length > 0
+            ? behaviorName
+            : "the behavior you're tracking";
+        const metricsText = metricLabels && metricLabels.length > 0
+            ? metricLabels.join(", ")
+            : "what you agreed to track";
+        if (isFinalLogInThread) {
+            return [
+                {
+                    role: "user",
+                    content: "<SYSTEM>\n" +
+                        "The user has just accepted a proposed experiment.\n" +
+                        "Respond to the user using the following message TEMPLATE, adapting it to what you know about the user's issue and the specific experiment configuration (e.g. behavior, metrics, baseline length).\n" +
+                        "Keep the structure and tone, but substitute details appropriately. Do not add extra paragraphs or questions beyond this template.\n\n" +
+                        "TEMPLATE:\n" +
+                        "You’re all set — the experiment has started.\n\n" +
+                        `For now, just go about your day as usual. If you ${behaviorText}, log ${metricsText} here. If you don’t, that’s useful too.\n\n` +
+                        "After [RECAP_TIME], come back to do a short recap of how the day felt.\n\n" +
+                        `We’ll start with a baseline period for the next ${baselineDays} days. After that, we’ll introduce a small change and see what actually moves.\n` +
+                        "</SYSTEM>",
+                },
+            ];
+        }
+        return [
+            {
+                role: "user",
+                content: "<SYSTEM>The user has accepted the proposed experiment and it's now active. You do not need to re-explain the experiment; just treat this as context for future replies.</SYSTEM>",
+            },
+        ];
+    }
     if ((0, log_1.logIsPlansLog)(log)) {
         return (0, buildPlansLogPayload_1.buildPlansLogPayload)(log, isFinalLogInThread);
     }
