@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isBehavior = exports.behaviorSchema = exports.behaviorStateSchema = exports.WINDOW_SIZES = exports.recentSliceSchema = exports.behaviorStateMetaSchema = exports.behaviorStateGoalSchema = exports.trackingWindowSchema = exports.behaviorWindowSchema = exports.behaviorMeaningSchema = exports.streaksSchema = exports.behaviorStateGoalTypeSchema = exports.dataCompletenessSchema = exports.stabilitySchema = exports.trendSchema = exports.behaviorTemplateSchema = exports.trackingTypes = void 0;
+exports.isBehavior = exports.behaviorSchema = exports.behaviorStateSchema = exports.WINDOW_SIZES = exports.recentSliceSchema = exports.behaviorStateMetaSchema = exports.behaviorStateGoalSchema = exports.trackingWindowSchema = exports.behaviorWindowSchema = exports.behaviorMeaningSchema = exports.globalStreaksSchema = exports.streaksSchema = exports.behaviorStateGoalTypeSchema = exports.dataCompletenessSchema = exports.stabilitySchema = exports.trendSchema = exports.behaviorTemplateSchema = exports.trackingTypes = void 0;
 exports.isBehaviorState = isBehaviorState;
 const zod_1 = require("zod");
 const documentReferenceSchema_1 = require("../utils/documentReferenceSchema");
@@ -34,11 +34,20 @@ exports.behaviorStateGoalTypeSchema = zod_1.z.enum([
     "ELIMINATE",
     "CUSTOM",
 ]);
-// Streaks tracking for a behavior window
+// Streaks tracking for a behavior window (window-scoped)
 exports.streaksSchema = zod_1.z.object({
     longestMet: zod_1.z.number(),
     currentMet: zod_1.z.number(),
     currentFail: zod_1.z.number(),
+});
+// Global streaks tracking (not limited to any window)
+exports.globalStreaksSchema = zod_1.z.object({
+    currentStreak: zod_1.z.number(),
+    longestStreak: zod_1.z.number(),
+    // Date when the current streak started (ISO date string)
+    currentStreakStartDate: zod_1.z.string().optional(),
+    // Date when the longest streak started (ISO date string)
+    longestStreakStartDate: zod_1.z.string().optional(),
 });
 // Rich, reflective meaning associated with a behavior
 exports.behaviorMeaningSchema = zod_1.z.object({
@@ -126,6 +135,8 @@ exports.behaviorStateSchema = zod_1.z.object({
     behaviorId: zod_1.z.string(),
     goal: exports.behaviorStateGoalSchema.optional(),
     meaning: exports.behaviorMeaningSchema.optional(),
+    // Global streaks (not limited to any window)
+    globalStreaks: exports.globalStreaksSchema.optional(),
     windows: zod_1.z.object({
         short: exports.behaviorWindowSchema,
         medium: exports.behaviorWindowSchema,

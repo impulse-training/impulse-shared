@@ -75,6 +75,10 @@ export declare const supportGroupMemberSchema: z.ZodObject<{
             emoji: string;
         } | undefined;
     };
+    currentStreak?: {
+        color: string;
+        streakStart?: import("../types").Timestamp | undefined;
+    } | undefined;
     permissions?: {
         summary: boolean;
         dayOutcomes: boolean;
@@ -84,10 +88,6 @@ export declare const supportGroupMemberSchema: z.ZodObject<{
     notificationPreferences?: {
         plan: boolean;
         messages: boolean;
-    } | undefined;
-    currentStreak?: {
-        color: string;
-        streakStart?: import("../types").Timestamp | undefined;
     } | undefined;
     joinedAt?: import("../types").Timestamp | undefined;
 }, {
@@ -99,6 +99,10 @@ export declare const supportGroupMemberSchema: z.ZodObject<{
             emoji: string;
         } | undefined;
     };
+    currentStreak?: {
+        color: string;
+        streakStart?: import("../types").Timestamp | undefined;
+    } | undefined;
     permissions?: {
         summary?: boolean | undefined;
         dayOutcomes?: boolean | undefined;
@@ -108,10 +112,6 @@ export declare const supportGroupMemberSchema: z.ZodObject<{
     notificationPreferences?: {
         plan?: boolean | undefined;
         messages?: boolean | undefined;
-    } | undefined;
-    currentStreak?: {
-        color: string;
-        streakStart?: import("../types").Timestamp | undefined;
     } | undefined;
     joinedAt?: import("../types").Timestamp | undefined;
 }>;
@@ -273,6 +273,10 @@ export declare const supportGroupSchema: z.ZodObject<{
                 emoji: string;
             } | undefined;
         };
+        currentStreak?: {
+            color: string;
+            streakStart?: import("../types").Timestamp | undefined;
+        } | undefined;
         permissions?: {
             summary: boolean;
             dayOutcomes: boolean;
@@ -282,10 +286,6 @@ export declare const supportGroupSchema: z.ZodObject<{
         notificationPreferences?: {
             plan: boolean;
             messages: boolean;
-        } | undefined;
-        currentStreak?: {
-            color: string;
-            streakStart?: import("../types").Timestamp | undefined;
         } | undefined;
         joinedAt?: import("../types").Timestamp | undefined;
     }, {
@@ -297,6 +297,10 @@ export declare const supportGroupSchema: z.ZodObject<{
                 emoji: string;
             } | undefined;
         };
+        currentStreak?: {
+            color: string;
+            streakStart?: import("../types").Timestamp | undefined;
+        } | undefined;
         permissions?: {
             summary?: boolean | undefined;
             dayOutcomes?: boolean | undefined;
@@ -306,10 +310,6 @@ export declare const supportGroupSchema: z.ZodObject<{
         notificationPreferences?: {
             plan?: boolean | undefined;
             messages?: boolean | undefined;
-        } | undefined;
-        currentStreak?: {
-            color: string;
-            streakStart?: import("../types").Timestamp | undefined;
         } | undefined;
         joinedAt?: import("../types").Timestamp | undefined;
     }>>;
@@ -605,6 +605,10 @@ export declare const supportGroupSchema: z.ZodObject<{
                 emoji: string;
             } | undefined;
         };
+        currentStreak?: {
+            color: string;
+            streakStart?: import("../types").Timestamp | undefined;
+        } | undefined;
         permissions?: {
             summary: boolean;
             dayOutcomes: boolean;
@@ -614,10 +618,6 @@ export declare const supportGroupSchema: z.ZodObject<{
         notificationPreferences?: {
             plan: boolean;
             messages: boolean;
-        } | undefined;
-        currentStreak?: {
-            color: string;
-            streakStart?: import("../types").Timestamp | undefined;
         } | undefined;
         joinedAt?: import("../types").Timestamp | undefined;
     }>;
@@ -725,6 +725,10 @@ export declare const supportGroupSchema: z.ZodObject<{
                 emoji: string;
             } | undefined;
         };
+        currentStreak?: {
+            color: string;
+            streakStart?: import("../types").Timestamp | undefined;
+        } | undefined;
         permissions?: {
             summary?: boolean | undefined;
             dayOutcomes?: boolean | undefined;
@@ -734,10 +738,6 @@ export declare const supportGroupSchema: z.ZodObject<{
         notificationPreferences?: {
             plan?: boolean | undefined;
             messages?: boolean | undefined;
-        } | undefined;
-        currentStreak?: {
-            color: string;
-            streakStart?: import("../types").Timestamp | undefined;
         } | undefined;
         joinedAt?: import("../types").Timestamp | undefined;
     }>;

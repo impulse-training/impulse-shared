@@ -24,6 +24,23 @@ export declare const streaksSchema: z.ZodObject<{
     currentFail: number;
 }>;
 export type Streaks = z.infer<typeof streaksSchema>;
+export declare const globalStreaksSchema: z.ZodObject<{
+    currentStreak: z.ZodNumber;
+    longestStreak: z.ZodNumber;
+    currentStreakStartDate: z.ZodOptional<z.ZodString>;
+    longestStreakStartDate: z.ZodOptional<z.ZodString>;
+}, "strip", z.ZodTypeAny, {
+    currentStreak: number;
+    longestStreak: number;
+    currentStreakStartDate?: string | undefined;
+    longestStreakStartDate?: string | undefined;
+}, {
+    currentStreak: number;
+    longestStreak: number;
+    currentStreakStartDate?: string | undefined;
+    longestStreakStartDate?: string | undefined;
+}>;
+export type GlobalStreaks = z.infer<typeof globalStreaksSchema>;
 export declare const behaviorMeaningSchema: z.ZodObject<{
     importance: z.ZodEnum<["LOW", "MEDIUM", "HIGH", "CORE"]>;
     emotionalTone: z.ZodObject<{
@@ -350,6 +367,22 @@ export declare const behaviorStateSchema: z.ZodObject<{
             commonTriggers?: string[] | undefined;
             highRiskContexts?: string[] | undefined;
         } | undefined;
+    }>>;
+    globalStreaks: z.ZodOptional<z.ZodObject<{
+        currentStreak: z.ZodNumber;
+        longestStreak: z.ZodNumber;
+        currentStreakStartDate: z.ZodOptional<z.ZodString>;
+        longestStreakStartDate: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        currentStreak: number;
+        longestStreak: number;
+        currentStreakStartDate?: string | undefined;
+        longestStreakStartDate?: string | undefined;
+    }, {
+        currentStreak: number;
+        longestStreak: number;
+        currentStreakStartDate?: string | undefined;
+        longestStreakStartDate?: string | undefined;
     }>>;
     windows: z.ZodObject<{
         short: z.ZodObject<{
@@ -808,6 +841,12 @@ export declare const behaviorStateSchema: z.ZodObject<{
             highRiskContexts?: string[] | undefined;
         } | undefined;
     } | undefined;
+    globalStreaks?: {
+        currentStreak: number;
+        longestStreak: number;
+        currentStreakStartDate?: string | undefined;
+        longestStreakStartDate?: string | undefined;
+    } | undefined;
     trackingWindows?: {
         short: {
             windowSizeDays: 7 | 30 | 90;
@@ -916,6 +955,12 @@ export declare const behaviorStateSchema: z.ZodObject<{
             commonTriggers?: string[] | undefined;
             highRiskContexts?: string[] | undefined;
         } | undefined;
+    } | undefined;
+    globalStreaks?: {
+        currentStreak: number;
+        longestStreak: number;
+        currentStreakStartDate?: string | undefined;
+        longestStreakStartDate?: string | undefined;
     } | undefined;
     trackingWindows?: {
         short: {
@@ -2103,6 +2148,22 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
                 highRiskContexts?: string[] | undefined;
             } | undefined;
         }>>;
+        globalStreaks: z.ZodOptional<z.ZodObject<{
+            currentStreak: z.ZodNumber;
+            longestStreak: z.ZodNumber;
+            currentStreakStartDate: z.ZodOptional<z.ZodString>;
+            longestStreakStartDate: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            currentStreak: number;
+            longestStreak: number;
+            currentStreakStartDate?: string | undefined;
+            longestStreakStartDate?: string | undefined;
+        }, {
+            currentStreak: number;
+            longestStreak: number;
+            currentStreakStartDate?: string | undefined;
+            longestStreakStartDate?: string | undefined;
+        }>>;
         windows: z.ZodObject<{
             short: z.ZodObject<{
                 windowSizeDays: z.ZodUnion<[z.ZodLiteral<7>, z.ZodLiteral<30>, z.ZodLiteral<90>]>;
@@ -2560,6 +2621,12 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
                 highRiskContexts?: string[] | undefined;
             } | undefined;
         } | undefined;
+        globalStreaks?: {
+            currentStreak: number;
+            longestStreak: number;
+            currentStreakStartDate?: string | undefined;
+            longestStreakStartDate?: string | undefined;
+        } | undefined;
         trackingWindows?: {
             short: {
                 windowSizeDays: 7 | 30 | 90;
@@ -2668,6 +2735,12 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
                 commonTriggers?: string[] | undefined;
                 highRiskContexts?: string[] | undefined;
             } | undefined;
+        } | undefined;
+        globalStreaks?: {
+            currentStreak: number;
+            longestStreak: number;
+            currentStreakStartDate?: string | undefined;
+            longestStreakStartDate?: string | undefined;
         } | undefined;
         trackingWindows?: {
             short: {
@@ -3006,6 +3079,12 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
                 highRiskContexts?: string[] | undefined;
             } | undefined;
         } | undefined;
+        globalStreaks?: {
+            currentStreak: number;
+            longestStreak: number;
+            currentStreakStartDate?: string | undefined;
+            longestStreakStartDate?: string | undefined;
+        } | undefined;
         trackingWindows?: {
             short: {
                 windowSizeDays: 7 | 30 | 90;
@@ -3342,6 +3421,12 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
                 commonTriggers?: string[] | undefined;
                 highRiskContexts?: string[] | undefined;
             } | undefined;
+        } | undefined;
+        globalStreaks?: {
+            currentStreak: number;
+            longestStreak: number;
+            currentStreakStartDate?: string | undefined;
+            longestStreakStartDate?: string | undefined;
         } | undefined;
         trackingWindows?: {
             short: {
@@ -3680,6 +3765,12 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
                 highRiskContexts?: string[] | undefined;
             } | undefined;
         } | undefined;
+        globalStreaks?: {
+            currentStreak: number;
+            longestStreak: number;
+            currentStreakStartDate?: string | undefined;
+            longestStreakStartDate?: string | undefined;
+        } | undefined;
         trackingWindows?: {
             short: {
                 windowSizeDays: 7 | 30 | 90;
@@ -4016,6 +4107,12 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
                 commonTriggers?: string[] | undefined;
                 highRiskContexts?: string[] | undefined;
             } | undefined;
+        } | undefined;
+        globalStreaks?: {
+            currentStreak: number;
+            longestStreak: number;
+            currentStreakStartDate?: string | undefined;
+            longestStreakStartDate?: string | undefined;
         } | undefined;
         trackingWindows?: {
             short: {
