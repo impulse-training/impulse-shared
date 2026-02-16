@@ -39,13 +39,24 @@ export const behaviorStateGoalTypeSchema = z.enum([
 ]);
 export type BehaviorStateGoalType = z.infer<typeof behaviorStateGoalTypeSchema>;
 
-// Streaks tracking for a behavior window
+// Streaks tracking for a behavior window (window-scoped)
 export const streaksSchema = z.object({
   longestMet: z.number(),
   currentMet: z.number(),
   currentFail: z.number(),
 });
 export type Streaks = z.infer<typeof streaksSchema>;
+
+// Global streaks tracking (not limited to any window)
+export const globalStreaksSchema = z.object({
+  currentStreak: z.number(),
+  longestStreak: z.number(),
+  // Date when the current streak started (ISO date string)
+  currentStreakStartDate: z.string().optional(),
+  // Date when the longest streak started (ISO date string)
+  longestStreakStartDate: z.string().optional(),
+});
+export type GlobalStreaks = z.infer<typeof globalStreaksSchema>;
 
 // Rich, reflective meaning associated with a behavior
 export const behaviorMeaningSchema = z.object({
@@ -162,6 +173,9 @@ export const behaviorStateSchema = z.object({
   goal: behaviorStateGoalSchema.optional(),
 
   meaning: behaviorMeaningSchema.optional(),
+
+  // Global streaks (not limited to any window)
+  globalStreaks: globalStreaksSchema.optional(),
 
   windows: z.object({
     short: behaviorWindowSchema,
