@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isUserData = exports.userDataSchema = void 0;
 const zod_1 = require("zod");
-const documentReferenceSchema_1 = require("../utils/documentReferenceSchema");
 const timestampSchema_1 = require("../utils/timestampSchema");
 const supportGroup_1 = require("./supportGroup");
 // Inline recap trigger schema (time-based)
@@ -56,8 +55,6 @@ exports.userDataSchema = zod_1.z.object({
     deletionRequestedAt: timestampSchema_1.timestampSchema.optional(),
     deletionRequestedBy: zod_1.z.enum(["user", "admin"]).optional(),
     tacticsEnabled: zod_1.z.boolean().default(false),
-    // This points to the user's active strategy. It can be updated to rollback.
-    activeStrategyDoc: documentReferenceSchema_1.documentReferenceSchema.optional(),
     // User preferences
     theme: zod_1.z.enum(["light", "dark", "system"]).default("system"),
     // Calendar preferences
@@ -76,6 +73,7 @@ exports.userDataSchema = zod_1.z.object({
     supportGroupSignupCompletedAt: timestampSchema_1.timestampSchema.optional(),
     // Coach approved user as eligible to join the experiment
     markedAsEligibleAt: timestampSchema_1.timestampSchema.optional(),
+    calendarBehaviorIds: zod_1.z.array(zod_1.z.string()).optional(),
     // Coach flag - set when user is approved as a coach
     isCoach: zod_1.z.boolean().optional(),
     latestSupportGroupMessages: zod_1.z

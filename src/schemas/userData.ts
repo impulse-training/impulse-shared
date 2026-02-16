@@ -65,9 +65,6 @@ export const userDataSchema = z.object({
 
   tacticsEnabled: z.boolean().default(false),
 
-  // This points to the user's active strategy. It can be updated to rollback.
-  activeStrategyDoc: documentReferenceSchema.optional(),
-
   // User preferences
   theme: z.enum(["light", "dark", "system"]).default("system"),
 
@@ -92,6 +89,8 @@ export const userDataSchema = z.object({
 
   // Coach approved user as eligible to join the experiment
   markedAsEligibleAt: timestampSchema.optional(),
+
+  calendarBehaviorIds: z.array(z.string()).optional(),
 
   // Coach flag - set when user is approved as a coach
   isCoach: z.boolean().optional(),

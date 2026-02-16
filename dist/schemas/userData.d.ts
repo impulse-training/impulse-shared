@@ -50,7 +50,6 @@ export declare const userDataSchema: z.ZodObject<{
     deletionRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     deletionRequestedBy: z.ZodOptional<z.ZodEnum<["user", "admin"]>>;
     tacticsEnabled: z.ZodDefault<z.ZodBoolean>;
-    activeStrategyDoc: z.ZodOptional<z.ZodType<import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>>;
     theme: z.ZodDefault<z.ZodEnum<["light", "dark", "system"]>>;
     weekStartsOn: z.ZodDefault<z.ZodUnion<[z.ZodLiteral<0>, z.ZodLiteral<1>]>>;
     recap: z.ZodOptional<z.ZodObject<{
@@ -84,6 +83,7 @@ export declare const userDataSchema: z.ZodObject<{
     hasSetupExperiment: z.ZodOptional<z.ZodBoolean>;
     supportGroupSignupCompletedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     markedAsEligibleAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    calendarBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     isCoach: z.ZodOptional<z.ZodBoolean>;
     latestSupportGroupMessages: z.ZodOptional<z.ZodRecord<z.ZodEnum<["system", "social", "coach", "alignment"]>, z.ZodObject<{
         senderId: z.ZodString;
@@ -136,11 +136,11 @@ export declare const userDataSchema: z.ZodObject<{
     isAppEnabled?: boolean | undefined;
     deletionRequestedAt?: import("../types").Timestamp | undefined;
     deletionRequestedBy?: "user" | "admin" | undefined;
-    activeStrategyDoc?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown> | undefined;
     isImpulseTeam?: boolean | undefined;
     hasSetupExperiment?: boolean | undefined;
     supportGroupSignupCompletedAt?: import("../types").Timestamp | undefined;
     markedAsEligibleAt?: import("../types").Timestamp | undefined;
+    calendarBehaviorIds?: string[] | undefined;
     isCoach?: boolean | undefined;
     latestSupportGroupMessages?: Partial<Record<"system" | "alignment" | "coach" | "social", {
         message: string;
@@ -183,13 +183,13 @@ export declare const userDataSchema: z.ZodObject<{
     deletionRequestedAt?: import("../types").Timestamp | undefined;
     deletionRequestedBy?: "user" | "admin" | undefined;
     tacticsEnabled?: boolean | undefined;
-    activeStrategyDoc?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown> | undefined;
     theme?: "system" | "light" | "dark" | undefined;
     weekStartsOn?: 0 | 1 | undefined;
     isImpulseTeam?: boolean | undefined;
     hasSetupExperiment?: boolean | undefined;
     supportGroupSignupCompletedAt?: import("../types").Timestamp | undefined;
     markedAsEligibleAt?: import("../types").Timestamp | undefined;
+    calendarBehaviorIds?: string[] | undefined;
     isCoach?: boolean | undefined;
     latestSupportGroupMessages?: Partial<Record<"system" | "alignment" | "coach" | "social", {
         message: string;
