@@ -1990,15 +1990,13 @@ export declare const behaviorThreadSchema: z.ZodObject<{
     sharedWithSupportGroups: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
     openAfter: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     firstOpenedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-    responseStartedProcessingAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     lastReadAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     unreadSince: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>>;
+    responseStartedProcessingAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     startedPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     completedPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-    assistantId: z.ZodOptional<z.ZodString>;
-    assistantThreadId: z.ZodOptional<z.ZodString>;
     currentCall: z.ZodOptional<z.ZodObject<{
         logId: z.ZodString;
         token: z.ZodString;
@@ -2345,13 +2343,11 @@ export declare const behaviorThreadSchema: z.ZodObject<{
     sharingMessage?: string | undefined;
     openAfter?: import("../../types").Timestamp | undefined;
     firstOpenedAt?: import("../../types").Timestamp | undefined;
-    responseStartedProcessingAt?: import("../../types").Timestamp | undefined;
     lastReadAt?: import("../../types").Timestamp | undefined;
     unreadSince?: Record<string, import("../../types").Timestamp> | undefined;
+    responseStartedProcessingAt?: import("../../types").Timestamp | undefined;
     startedPlanIds?: string[] | undefined;
     completedPlanIds?: string[] | undefined;
-    assistantId?: string | undefined;
-    assistantThreadId?: string | undefined;
     currentCall?: {
         status: "connecting" | "connected" | "ended";
         livekitRoomName: string;
@@ -2678,13 +2674,11 @@ export declare const behaviorThreadSchema: z.ZodObject<{
     sharingMessage?: string | undefined;
     openAfter?: import("../../types").Timestamp | undefined;
     firstOpenedAt?: import("../../types").Timestamp | undefined;
-    responseStartedProcessingAt?: import("../../types").Timestamp | undefined;
     lastReadAt?: import("../../types").Timestamp | undefined;
     unreadSince?: Record<string, import("../../types").Timestamp> | undefined;
+    responseStartedProcessingAt?: import("../../types").Timestamp | undefined;
     startedPlanIds?: string[] | undefined;
     completedPlanIds?: string[] | undefined;
-    assistantId?: string | undefined;
-    assistantThreadId?: string | undefined;
     currentCall?: {
         status: "connecting" | "connected" | "ended";
         livekitRoomName: string;

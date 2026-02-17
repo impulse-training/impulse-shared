@@ -24,7 +24,6 @@ const threadTypeSchema = zod_1.z.enum([
 exports.threadBaseSchema = zod_1.z.object({
     id: zod_1.z.string().optional(),
     type: threadTypeSchema.default("general"),
-    // Optional title for the thread (e.g., plan name)
     title: zod_1.z.string().optional(),
     behaviorIds: zod_1.z.array(zod_1.z.string()).optional(),
     date: timestampSchema_1.timestampSchema,
@@ -60,16 +59,13 @@ exports.threadBaseSchema = zod_1.z.object({
     sharedWithSupportGroups: zod_1.z.array(documentReferenceSchema_1.documentReferenceSchema),
     openAfter: timestampSchema_1.timestampSchema.optional(),
     firstOpenedAt: timestampSchema_1.timestampSchema.optional(),
-    responseStartedProcessingAt: timestampSchema_1.timestampSchema.optional(),
     updatedAt: timestampSchema_1.timestampSchema.optional(),
     createdAt: timestampSchema_1.timestampSchema.optional(),
     lastReadAt: timestampSchema_1.timestampSchema.optional(),
     unreadSince: zod_1.z.record(zod_1.z.string(), timestampSchema_1.timestampSchema).optional(),
+    responseStartedProcessingAt: timestampSchema_1.timestampSchema.optional(),
     startedPlanIds: zod_1.z.array(zod_1.z.string()).optional(),
     completedPlanIds: zod_1.z.array(zod_1.z.string()).optional(),
-    // OpenAI Assistants API integration
-    assistantId: zod_1.z.string().optional(),
-    assistantThreadId: zod_1.z.string().optional(),
     // Current call status for global voice UI
     currentCall: zod_1.z
         .object({

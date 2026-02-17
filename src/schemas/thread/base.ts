@@ -23,7 +23,6 @@ const threadTypeSchema = z.enum([
 export const threadBaseSchema = z.object({
   id: z.string().optional(),
   type: threadTypeSchema.default("general"),
-  // Optional title for the thread (e.g., plan name)
   title: z.string().optional(),
   behaviorIds: z.array(z.string()).optional(),
   date: timestampSchema,
@@ -69,18 +68,15 @@ export const threadBaseSchema = z.object({
 
   openAfter: timestampSchema.optional(),
   firstOpenedAt: timestampSchema.optional(),
-  responseStartedProcessingAt: timestampSchema.optional(),
   updatedAt: timestampSchema.optional(),
   createdAt: timestampSchema.optional(),
   lastReadAt: timestampSchema.optional(),
   unreadSince: z.record(z.string(), timestampSchema).optional(),
 
+  responseStartedProcessingAt: timestampSchema.optional(),
+
   startedPlanIds: z.array(z.string()).optional(),
   completedPlanIds: z.array(z.string()).optional(),
-
-  // OpenAI Assistants API integration
-  assistantId: z.string().optional(),
-  assistantThreadId: z.string().optional(),
 
   // Current call status for global voice UI
   currentCall: z
