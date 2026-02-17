@@ -9,7 +9,7 @@ exports.logBaseSchema = zod_1.z.object({
     createdAt: timestampSchema_1.timestampSchema,
     updatedAt: timestampSchema_1.timestampSchema,
     userId: zod_1.z.string(), // This is required for collection group queries security rules
-    timestamp: timestampSchema_1.timestampSchema.optional(), // TODO: not sure why optional
+    timestamp: timestampSchema_1.timestampSchema,
     dateString: zod_1.z.string(),
     tacticId: zod_1.z.string().optional(),
     behaviorIds: zod_1.z.array(zod_1.z.string()).optional(),

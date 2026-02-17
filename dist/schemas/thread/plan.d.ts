@@ -1969,7 +1969,6 @@ export declare const timePlanThreadSchema: z.ZodObject<{
     summary: z.ZodOptional<z.ZodString>;
     summaryRequestedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     summarizedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-    strategyDoc: z.ZodOptional<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>>;
     triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     agentConnectedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     allQuestionsAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -2341,7 +2340,6 @@ export declare const timePlanThreadSchema: z.ZodObject<{
     defaultSystemPrompt?: string | undefined;
     debriefSystemPrompt?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
-    strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
     allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
     sharingLevels?: {
         outcome: boolean;
@@ -2677,7 +2675,6 @@ export declare const timePlanThreadSchema: z.ZodObject<{
     defaultSystemPrompt?: string | undefined;
     debriefSystemPrompt?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
-    strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
     allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
     sharingLevels?: {
         outcome: boolean;
@@ -4675,7 +4672,6 @@ export declare const locationPlanThreadSchema: z.ZodObject<{
     summary: z.ZodOptional<z.ZodString>;
     summaryRequestedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     summarizedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-    strategyDoc: z.ZodOptional<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>>;
     triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     agentConnectedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     allQuestionsAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -5047,7 +5043,6 @@ export declare const locationPlanThreadSchema: z.ZodObject<{
     defaultSystemPrompt?: string | undefined;
     debriefSystemPrompt?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
-    strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
     allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
     sharingLevels?: {
         outcome: boolean;
@@ -5383,7 +5378,6 @@ export declare const locationPlanThreadSchema: z.ZodObject<{
     defaultSystemPrompt?: string | undefined;
     debriefSystemPrompt?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
-    strategyDoc?: import("../..").DocumentReferenceLike<unknown> | undefined;
     allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
     sharingLevels?: {
         outcome: boolean;

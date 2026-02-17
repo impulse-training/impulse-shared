@@ -48,7 +48,6 @@ export const threadBaseSchema = z.object({
   summary: z.string().optional(),
   summaryRequestedAt: timestampSchema.optional(),
   summarizedAt: timestampSchema.optional(),
-  strategyDoc: documentReferenceSchema.optional(),
 
   triggerId: z.string().nullable().optional(),
 

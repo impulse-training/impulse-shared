@@ -4,7 +4,7 @@ export declare const linkLogSchema: z.ZodObject<{
     createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     userId: z.ZodString;
-    timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     dateString: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
@@ -22,11 +22,11 @@ export declare const linkLogSchema: z.ZodObject<{
     type: "link";
     userId: string;
     link: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     buttonText: string;
     id?: string | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
@@ -37,11 +37,11 @@ export declare const linkLogSchema: z.ZodObject<{
     type: "link";
     userId: string;
     link: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     buttonText: string;
     id?: string | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;

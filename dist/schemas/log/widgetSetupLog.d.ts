@@ -4,7 +4,7 @@ export declare const widgetSetupLogSchema: z.ZodObject<{
     createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     userId: z.ZodString;
-    timestamp: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     dateString: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
@@ -17,10 +17,10 @@ export declare const widgetSetupLogSchema: z.ZodObject<{
     updatedAt: import("../../types").Timestamp;
     type: "widget_setup";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     id?: string | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
@@ -29,10 +29,10 @@ export declare const widgetSetupLogSchema: z.ZodObject<{
     updatedAt: import("../../types").Timestamp;
     type: "widget_setup";
     userId: string;
+    timestamp: import("../../types").Timestamp;
     dateString: string;
     isDisplayable: true;
     id?: string | undefined;
-    timestamp?: import("../../types").Timestamp | undefined;
     tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;

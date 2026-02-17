@@ -7,7 +7,7 @@ export const logBaseSchema = z.object({
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
   userId: z.string(), // This is required for collection group queries security rules
-  timestamp: timestampSchema.optional(), // TODO: not sure why optional
+  timestamp: timestampSchema,
   dateString: z.string(),
   tacticId: z.string().optional(),
   behaviorIds: z.array(z.string()).optional(),
