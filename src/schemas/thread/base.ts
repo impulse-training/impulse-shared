@@ -38,6 +38,7 @@ export const threadBaseSchema = z.object({
   // Draft threads should be hidden in UI until a log is added
   isDraft: z.boolean().optional().default(false),
 
+  // TODO: review if necessary
   emojiId: emojiIdSchema.nullable(),
 
   // Pre-computed summary data for thread cards - updated when thread is closed

@@ -1942,6 +1942,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
         outcomeLogs: z.ZodArray<z.ZodAny, "many">;
         questionsLogs: z.ZodArray<z.ZodAny, "many">;
+        plansLogs: z.ZodArray<z.ZodAny, "many">;
         firstMessageLog: z.ZodOptional<z.ZodAny>;
         firstCallLog: z.ZodOptional<z.ZodAny>;
         hasContent: z.ZodBoolean;
@@ -1951,6 +1952,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
         questionsLogs: any[];
+        plansLogs: any[];
         hasContent: boolean;
         firstMessageLog?: any;
         firstCallLog?: any;
@@ -1960,6 +1962,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
         questionsLogs: any[];
+        plansLogs: any[];
         hasContent: boolean;
         firstMessageLog?: any;
         firstCallLog?: any;
@@ -2318,6 +2321,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
         questionsLogs: any[];
+        plansLogs: any[];
         hasContent: boolean;
         firstMessageLog?: any;
         firstCallLog?: any;
@@ -2647,6 +2651,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
         questionsLogs: any[];
+        plansLogs: any[];
         hasContent: boolean;
         firstMessageLog?: any;
         firstCallLog?: any;

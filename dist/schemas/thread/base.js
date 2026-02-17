@@ -35,6 +35,7 @@ exports.threadBaseSchema = zod_1.z.object({
     // Whether this thread is a draft (created before any logs exist)
     // Draft threads should be hidden in UI until a log is added
     isDraft: zod_1.z.boolean().optional().default(false),
+    // TODO: review if necessary
     emojiId: emojiId_1.emojiIdSchema.nullable(),
     // Pre-computed summary data for thread cards - updated when thread is closed
     summaryData: threadSummary_1.threadSummarySchema.optional(),
