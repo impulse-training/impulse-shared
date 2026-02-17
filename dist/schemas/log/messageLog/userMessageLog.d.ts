@@ -98,16 +98,6 @@ export declare const userMessageLogSchema: z.ZodObject<{
             }[] | undefined;
         } | undefined;
     }>>;
-    replyTactic: z.ZodOptional<z.ZodObject<{
-        tactic: z.ZodAny;
-        currentStepIndex: z.ZodNumber;
-    }, "strip", z.ZodTypeAny, {
-        currentStepIndex: number;
-        tactic?: any;
-    }, {
-        currentStepIndex: number;
-        tactic?: any;
-    }>>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../../types").Timestamp;
     updatedAt: import("../../../types").Timestamp;
@@ -142,10 +132,6 @@ export declare const userMessageLogSchema: z.ZodObject<{
             }[] | undefined;
         } | undefined;
     } | undefined;
-    replyTactic?: {
-        currentStepIndex: number;
-        tactic?: any;
-    } | undefined;
 }, {
     createdAt: import("../../../types").Timestamp;
     updatedAt: import("../../../types").Timestamp;
@@ -179,10 +165,6 @@ export declare const userMessageLogSchema: z.ZodObject<{
                 timestampMs?: number | undefined;
             }[] | undefined;
         } | undefined;
-    } | undefined;
-    replyTactic?: {
-        currentStepIndex: number;
-        tactic?: any;
     } | undefined;
 }>;
 export type UserMessageLog = z.infer<typeof userMessageLogSchema>;

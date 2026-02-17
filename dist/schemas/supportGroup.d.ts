@@ -496,16 +496,6 @@ export declare const supportGroupSchema: z.ZodObject<{
                 }[] | undefined;
             } | undefined;
         }>>;
-        replyTactic: z.ZodOptional<z.ZodObject<{
-            tactic: z.ZodAny;
-            currentStepIndex: z.ZodNumber;
-        }, "strip", z.ZodTypeAny, {
-            currentStepIndex: number;
-            tactic?: any;
-        }, {
-            currentStepIndex: number;
-            tactic?: any;
-        }>>;
     }, "strip", z.ZodTypeAny, {
         createdAt: import("../types").Timestamp;
         updatedAt: import("../types").Timestamp;
@@ -540,10 +530,6 @@ export declare const supportGroupSchema: z.ZodObject<{
                 }[] | undefined;
             } | undefined;
         } | undefined;
-        replyTactic?: {
-            currentStepIndex: number;
-            tactic?: any;
-        } | undefined;
     }, {
         createdAt: import("../types").Timestamp;
         updatedAt: import("../types").Timestamp;
@@ -577,10 +563,6 @@ export declare const supportGroupSchema: z.ZodObject<{
                     timestampMs?: number | undefined;
                 }[] | undefined;
             } | undefined;
-        } | undefined;
-        replyTactic?: {
-            currentStepIndex: number;
-            tactic?: any;
         } | undefined;
     }>>;
     tacticCount: z.ZodDefault<z.ZodNumber>;
@@ -703,10 +685,6 @@ export declare const supportGroupSchema: z.ZodObject<{
                 }[] | undefined;
             } | undefined;
         } | undefined;
-        replyTactic?: {
-            currentStepIndex: number;
-            tactic?: any;
-        } | undefined;
     } | undefined;
     archivedAt?: import("../types").Timestamp | undefined;
     behaviorTopicIds?: string[] | undefined;
@@ -823,10 +801,6 @@ export declare const supportGroupSchema: z.ZodObject<{
                     timestampMs?: number | undefined;
                 }[] | undefined;
             } | undefined;
-        } | undefined;
-        replyTactic?: {
-            currentStepIndex: number;
-            tactic?: any;
         } | undefined;
     } | undefined;
     tacticCount?: number | undefined;
