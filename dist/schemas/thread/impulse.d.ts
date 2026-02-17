@@ -1965,26 +1965,11 @@ export declare const impulseThreadSchema: z.ZodObject<{
         firstCallLog?: any;
     }>>;
     defaultSystemPrompt: z.ZodOptional<z.ZodString>;
-    debriefSystemPrompt: z.ZodOptional<z.ZodString>;
     summary: z.ZodOptional<z.ZodString>;
     summaryRequestedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     summarizedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     agentConnectedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-    allQuestionsAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-    sharingLevels: z.ZodOptional<z.ZodObject<{
-        impulseMoment: z.ZodBoolean;
-        plansUsed: z.ZodBoolean;
-        outcome: z.ZodBoolean;
-    }, "strip", z.ZodTypeAny, {
-        outcome: boolean;
-        impulseMoment: boolean;
-        plansUsed: boolean;
-    }, {
-        outcome: boolean;
-        impulseMoment: boolean;
-        plansUsed: boolean;
-    }>>;
     sharingMessage: z.ZodOptional<z.ZodString>;
     sharedWithUserIds: z.ZodArray<z.ZodString, "many">;
     sharedWithSupportGroups: z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
@@ -2338,14 +2323,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         firstCallLog?: any;
     } | undefined;
     defaultSystemPrompt?: string | undefined;
-    debriefSystemPrompt?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
-    allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
-    sharingLevels?: {
-        outcome: boolean;
-        impulseMoment: boolean;
-        plansUsed: boolean;
-    } | undefined;
     sharingMessage?: string | undefined;
     openAfter?: import("../../types").Timestamp | undefined;
     firstOpenedAt?: import("../../types").Timestamp | undefined;
@@ -2674,14 +2652,7 @@ export declare const impulseThreadSchema: z.ZodObject<{
         firstCallLog?: any;
     } | undefined;
     defaultSystemPrompt?: string | undefined;
-    debriefSystemPrompt?: string | undefined;
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
-    allQuestionsAnsweredAt?: import("../../types").Timestamp | undefined;
-    sharingLevels?: {
-        outcome: boolean;
-        impulseMoment: boolean;
-        plansUsed: boolean;
-    } | undefined;
     sharingMessage?: string | undefined;
     openAfter?: import("../../types").Timestamp | undefined;
     firstOpenedAt?: import("../../types").Timestamp | undefined;

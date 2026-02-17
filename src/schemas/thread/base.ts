@@ -43,7 +43,6 @@ export const threadBaseSchema = z.object({
   // Pre-computed summary data for thread cards - updated when thread is closed
   summaryData: threadSummarySchema.optional(),
   defaultSystemPrompt: z.string().optional(),
-  debriefSystemPrompt: z.string().optional(),
   summary: z.string().optional(),
   summaryRequestedAt: timestampSchema.optional(),
   summarizedAt: timestampSchema.optional(),
@@ -51,15 +50,6 @@ export const threadBaseSchema = z.object({
   triggerId: z.string().nullable().optional(),
 
   agentConnectedAt: timestampSchema.optional(),
-  allQuestionsAnsweredAt: timestampSchema.optional(),
-
-  sharingLevels: z
-    .object({
-      impulseMoment: z.boolean(),
-      plansUsed: z.boolean(),
-      outcome: z.boolean(),
-    })
-    .optional(),
 
   // Allow for sharing with users
   sharingMessage: z.string().optional(),
@@ -79,6 +69,7 @@ export const threadBaseSchema = z.object({
   completedPlanIds: z.array(z.string()).optional(),
 
   // Current call status for global voice UI
+  // TODO - review if necessary
   currentCall: z
     .object({
       logId: z.string(),

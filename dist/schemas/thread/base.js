@@ -39,20 +39,11 @@ exports.threadBaseSchema = zod_1.z.object({
     // Pre-computed summary data for thread cards - updated when thread is closed
     summaryData: threadSummary_1.threadSummarySchema.optional(),
     defaultSystemPrompt: zod_1.z.string().optional(),
-    debriefSystemPrompt: zod_1.z.string().optional(),
     summary: zod_1.z.string().optional(),
     summaryRequestedAt: timestampSchema_1.timestampSchema.optional(),
     summarizedAt: timestampSchema_1.timestampSchema.optional(),
     triggerId: zod_1.z.string().nullable().optional(),
     agentConnectedAt: timestampSchema_1.timestampSchema.optional(),
-    allQuestionsAnsweredAt: timestampSchema_1.timestampSchema.optional(),
-    sharingLevels: zod_1.z
-        .object({
-        impulseMoment: zod_1.z.boolean(),
-        plansUsed: zod_1.z.boolean(),
-        outcome: zod_1.z.boolean(),
-    })
-        .optional(),
     // Allow for sharing with users
     sharingMessage: zod_1.z.string().optional(),
     sharedWithUserIds: zod_1.z.array(zod_1.z.string()),
@@ -67,6 +58,7 @@ exports.threadBaseSchema = zod_1.z.object({
     startedPlanIds: zod_1.z.array(zod_1.z.string()).optional(),
     completedPlanIds: zod_1.z.array(zod_1.z.string()).optional(),
     // Current call status for global voice UI
+    // TODO - review if necessary
     currentCall: zod_1.z
         .object({
         logId: zod_1.z.string(),
