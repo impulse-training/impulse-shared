@@ -22,7 +22,7 @@ export type CreatePayload<T> = Omit<T, "id" | "createdAt" | "updatedAt">;
  */
 export interface FirestoreDocument {
     id: string;
-    exists: boolean;
+    exists: () => boolean;
     data: () => any;
 }
 /**

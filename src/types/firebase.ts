@@ -25,7 +25,7 @@ export type CreatePayload<T> = Omit<T, "id" | "createdAt" | "updatedAt">;
  */
 export interface FirestoreDocument {
   id: string;
-  exists: boolean;
+  exists: () => boolean;
   data: () => any;
 }
 
@@ -41,7 +41,7 @@ export interface FirestoreInstance {
     };
   };
   runTransaction: <T>(
-    updateFunction: (transaction: any) => Promise<T>
+    updateFunction: (transaction: any) => Promise<T>,
   ) => Promise<T>;
   batch: () => {
     set: (ref: any, data: any, options?: { merge?: boolean }) => any;
@@ -55,7 +55,7 @@ export class DocumentSnapshotLike<T> {
     public readonly exists: boolean,
     public readonly ref: any,
     public readonly id: string,
-    private _data?: T
+    private _data?: T,
   ) {}
 
   data(): T | undefined {
