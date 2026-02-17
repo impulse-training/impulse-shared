@@ -78,7 +78,6 @@ describe("Schema Validation", () => {
                 sharedWithUserIds: [],
                 sharedWithSupportGroups: [],
                 emojiId: null,
-                archiveAfter: new Date(),
             };
             const result = index_1.threadSchema.safeParse(validThread);
             expect(result.success).toBe(true);
@@ -95,7 +94,6 @@ describe("Schema Validation", () => {
                 behaviorDocs: [],
                 emojiId: null,
                 debriefFinishedAt: null,
-                archiveAfter: new Date(),
             };
             const result = index_1.threadSchema.safeParse(validThread);
             expect(result.success).toBe(true);

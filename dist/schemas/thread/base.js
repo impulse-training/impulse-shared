@@ -47,7 +47,6 @@ exports.threadBaseSchema = zod_1.z.object({
     triggerId: zod_1.z.string().nullable().optional(),
     agentConnectedAt: timestampSchema_1.timestampSchema.optional(),
     allQuestionsAnsweredAt: timestampSchema_1.timestampSchema.optional(),
-    archiveAfter: timestampSchema_1.timestampSchema,
     sharingLevels: zod_1.z
         .object({
         impulseMoment: zod_1.z.boolean(),

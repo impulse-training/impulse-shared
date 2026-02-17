@@ -1973,7 +1973,6 @@ export declare const threadBaseSchema: z.ZodObject<{
     triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     agentConnectedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     allQuestionsAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-    archiveAfter: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     sharingLevels: z.ZodOptional<z.ZodObject<{
         impulseMoment: z.ZodBoolean;
         plansUsed: z.ZodBoolean;
@@ -2040,7 +2039,6 @@ export declare const threadBaseSchema: z.ZodObject<{
     } | null;
     sharedWithUserIds: string[];
     isDraft: boolean;
-    archiveAfter: import("../../types").Timestamp;
     sharedWithSupportGroups: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
@@ -2371,7 +2369,6 @@ export declare const threadBaseSchema: z.ZodObject<{
         emoji: string;
     } | null;
     sharedWithUserIds: string[];
-    archiveAfter: import("../../types").Timestamp;
     sharedWithSupportGroups: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;

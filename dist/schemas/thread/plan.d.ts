@@ -1972,7 +1972,6 @@ export declare const timePlanThreadSchema: z.ZodObject<{
     triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     agentConnectedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     allQuestionsAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-    archiveAfter: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     sharingLevels: z.ZodOptional<z.ZodObject<{
         impulseMoment: z.ZodBoolean;
         plansUsed: z.ZodBoolean;
@@ -2043,7 +2042,6 @@ export declare const timePlanThreadSchema: z.ZodObject<{
     planId: string;
     sharedWithUserIds: string[];
     isDraft: boolean;
-    archiveAfter: import("../../types").Timestamp;
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
@@ -2376,7 +2374,6 @@ export declare const timePlanThreadSchema: z.ZodObject<{
     } | null;
     planId: string;
     sharedWithUserIds: string[];
-    archiveAfter: import("../../types").Timestamp;
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
@@ -4675,7 +4672,6 @@ export declare const locationPlanThreadSchema: z.ZodObject<{
     triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     agentConnectedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     allQuestionsAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-    archiveAfter: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     sharingLevels: z.ZodOptional<z.ZodObject<{
         impulseMoment: z.ZodBoolean;
         plansUsed: z.ZodBoolean;
@@ -4746,7 +4742,6 @@ export declare const locationPlanThreadSchema: z.ZodObject<{
     planId: string;
     sharedWithUserIds: string[];
     isDraft: boolean;
-    archiveAfter: import("../../types").Timestamp;
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
@@ -5079,7 +5074,6 @@ export declare const locationPlanThreadSchema: z.ZodObject<{
     } | null;
     planId: string;
     sharedWithUserIds: string[];
-    archiveAfter: import("../../types").Timestamp;
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;

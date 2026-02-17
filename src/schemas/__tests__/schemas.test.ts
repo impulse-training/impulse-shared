@@ -96,7 +96,6 @@ describe("Schema Validation", () => {
         sharedWithUserIds: [],
         sharedWithSupportGroups: [],
         emojiId: null,
-        archiveAfter: new Date(),
       };
 
       const result = threadSchema.safeParse(validThread);
@@ -115,7 +114,6 @@ describe("Schema Validation", () => {
         behaviorDocs: [],
         emojiId: null,
         debriefFinishedAt: null,
-        archiveAfter: new Date(),
       };
 
       const result = threadSchema.safeParse(validThread);
