@@ -20723,6 +20723,7 @@ export declare const threadSchemas: {
         }>>;
     } & {
         type: z.ZodLiteral<"alignment">;
+        notificationsEnabled: z.ZodNullable<z.ZodBoolean>;
     }, "strip", z.ZodTypeAny, {
         type: "alignment";
         date: import("../../types").Timestamp;
@@ -20735,6 +20736,7 @@ export declare const threadSchemas: {
         sharedWithUserIds: string[];
         isDraft: boolean;
         sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
+        notificationsEnabled: boolean | null;
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -21058,6 +21060,7 @@ export declare const threadSchemas: {
         } | null;
         sharedWithUserIds: string[];
         sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
+        notificationsEnabled: boolean | null;
         id?: string | undefined;
         createdAt?: import("../../types").Timestamp | undefined;
         updatedAt?: import("../../types").Timestamp | undefined;
@@ -36740,6 +36743,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     }>>;
 } & {
     type: z.ZodLiteral<"alignment">;
+    notificationsEnabled: z.ZodNullable<z.ZodBoolean>;
 }, "strip", z.ZodTypeAny, {
     type: "alignment";
     date: import("../../types").Timestamp;
@@ -36752,6 +36756,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     sharedWithUserIds: string[];
     isDraft: boolean;
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
+    notificationsEnabled: boolean | null;
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
@@ -37075,6 +37080,7 @@ export declare const threadSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<
     } | null;
     sharedWithUserIds: string[];
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
+    notificationsEnabled: boolean | null;
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;

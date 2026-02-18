@@ -1,4 +1,8 @@
-import { Thread, threadIsTimePlanThread } from "../schemas";
+import {
+  Thread,
+  threadIsAlignmentThread,
+  threadIsTimePlanThread,
+} from "../schemas";
 import {
   Log,
   logIsBehaviorLog,
@@ -10,6 +14,7 @@ import {
   logIsAssistantMessageLog,
   PlansLog,
   ProposedExperimentLog,
+  logIsEnableNotificationsCtaLog,
 } from "../schemas/log";
 import { fieldChanged } from "./fields";
 import { WithId } from "./withId";
@@ -66,8 +71,18 @@ export function shouldRespondToLogWithAI(
   const isUpdating = beforeData && afterData;
   const isNotDeleting = !!afterData;
 
-  // Case: New message logs (creation event, no before data)
-  if (isCreating && logIsUserMessageLog(afterData)) {
+  // Case: this is an alignment thread, and the user hasn't enabled or skipped notifications. We
+  // don't respond with AI - we respond with the notificationsCtaLog
+  if (
+    threadIsAlignmentThread(thread) &&
+    typeof thread.notificationsEnabled === "undefined"
+  ) {
+    return false;
+  }
+
+  // Case: The user has acted on the enable notifications CTA log - now we respond to the original
+  // user message
+  if (isUpdating && logIsEnableNotificationsCtaLog(afterData)) {
     return true;
   }
 

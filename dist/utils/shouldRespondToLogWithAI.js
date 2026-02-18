@@ -40,6 +40,12 @@ function shouldRespondToLogWithAI(thread, beforeData, afterData, latestThreadLog
     const isCreating = !beforeData && afterData;
     const isUpdating = beforeData && afterData;
     const isNotDeleting = !!afterData;
+    // Case: this is an alignment thread, and the user hasn't enabled or skipped notifications
+    if (isUpdating &&
+        (0, schemas_1.threadIsAlignmentThread)(thread) &&
+        typeof afterData.notificationsEnabled === "undefined") {
+        return false;
+    }
     // Case: New message logs (creation event, no before data)
     if (isCreating && (0, log_1.logIsUserMessageLog)(afterData)) {
         return true;

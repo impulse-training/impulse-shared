@@ -100,8 +100,8 @@ export declare const userDataSchema: z.ZodObject<{
     }>>>;
 }, "strip", z.ZodTypeAny, {
     role: "user" | "coach" | "support";
-    defaultThreadMode: "text" | "voice";
     notificationsEnabled: boolean;
+    defaultThreadMode: "text" | "voice";
     expoPushToken: string | null;
     notificationSettings: {
         debriefReminders: boolean;
@@ -159,10 +159,10 @@ export declare const userDataSchema: z.ZodObject<{
         };
     } | undefined;
     role?: "user" | "coach" | "support" | undefined;
+    notificationsEnabled?: boolean | undefined;
     recoveryKeyHash?: string | undefined;
     defaultThreadMode?: "text" | "voice" | undefined;
     createdViaEmulator?: boolean | undefined;
-    notificationsEnabled?: boolean | undefined;
     notifyOnSignUp?: boolean | undefined;
     expoPushToken?: string | null | undefined;
     notificationSettings?: {
