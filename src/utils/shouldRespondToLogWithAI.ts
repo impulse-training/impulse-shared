@@ -77,6 +77,21 @@ export function shouldRespondToLogWithAI(
     notificationsEnabled: typeof (thread as any).notificationsEnabled,
   });
 
+  // Case: The user has acted on the enable notifications CTA log - now we respond to the original
+  // user message. This must be checked BEFORE the alignment thread early-exit below, because at
+  // the time of the CTA response, notificationsEnabled is still undefined on the thread.
+  if (
+    isUpdating &&
+    logIsEnableNotificationsCtaLog(afterData) &&
+    afterData.data.respondedAt &&
+    !(logIsEnableNotificationsCtaLog(beforeData) && beforeData.data.respondedAt)
+  ) {
+    console.log(
+      "User has responded to enable notifications CTA. Responding with AI.",
+    );
+    return true;
+  }
+
   // Case: this is an alignment thread, and the user hasn't enabled or skipped notifications. We
   // don't respond with AI - we respond with the notificationsCtaLog
   if (
@@ -92,20 +107,6 @@ export function shouldRespondToLogWithAI(
   // Case: New message logs (creation event, no before data)
   if (isCreating && logIsUserMessageLog(afterData)) {
     console.log("New message log. Responding with AI.");
-    return true;
-  }
-
-  // Case: The user has acted on the enable notifications CTA log - now we respond to the original
-  // user message
-  if (
-    isUpdating &&
-    logIsEnableNotificationsCtaLog(afterData) &&
-    afterData.data.respondedAt &&
-    !(logIsEnableNotificationsCtaLog(beforeData) && beforeData.data.respondedAt)
-  ) {
-    console.log(
-      "User has responded to enable notifications CTA. Responding with AI.",
-    );
     return true;
   }
 
