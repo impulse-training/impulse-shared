@@ -60,3 +60,4 @@ __exportStar(require("./utils/timestampSchema"), exports);
 __exportStar(require("./utils/validation"), exports);
 __exportStar(require("./utils/withId"), exports);
 __exportStar(require("./utils/formatBehaviorGoal"), exports);
+__exportStar(require("./utils/metricTrend"), exports);

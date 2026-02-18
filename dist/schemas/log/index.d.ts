@@ -10209,6 +10209,180 @@ export declare const logSchemas: {
                         maxLabel?: string | undefined;
                     }>;
                     text: z.ZodString;
+                    state: z.ZodOptional<z.ZodObject<{
+                        questionId: z.ZodString;
+                        windows: z.ZodObject<{
+                            short: z.ZodObject<{
+                                windowSizeDays: z.ZodUnion<[z.ZodLiteral<7>, z.ZodLiteral<30>, z.ZodLiteral<90>]>;
+                                averageValue: z.ZodOptional<z.ZodNumber>;
+                                trend: z.ZodEnum<["IMPROVING", "DECLINING", "STABLE", "VOLATILE", "INSUFFICIENT_DATA"]>;
+                                stability: z.ZodEnum<["HIGH", "MEDIUM", "LOW"]>;
+                                sampleCount: z.ZodNumber;
+                            }, "strip", z.ZodTypeAny, {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            }, {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            }>;
+                            medium: z.ZodObject<{
+                                windowSizeDays: z.ZodUnion<[z.ZodLiteral<7>, z.ZodLiteral<30>, z.ZodLiteral<90>]>;
+                                averageValue: z.ZodOptional<z.ZodNumber>;
+                                trend: z.ZodEnum<["IMPROVING", "DECLINING", "STABLE", "VOLATILE", "INSUFFICIENT_DATA"]>;
+                                stability: z.ZodEnum<["HIGH", "MEDIUM", "LOW"]>;
+                                sampleCount: z.ZodNumber;
+                            }, "strip", z.ZodTypeAny, {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            }, {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            }>;
+                            long: z.ZodObject<{
+                                windowSizeDays: z.ZodUnion<[z.ZodLiteral<7>, z.ZodLiteral<30>, z.ZodLiteral<90>]>;
+                                averageValue: z.ZodOptional<z.ZodNumber>;
+                                trend: z.ZodEnum<["IMPROVING", "DECLINING", "STABLE", "VOLATILE", "INSUFFICIENT_DATA"]>;
+                                stability: z.ZodEnum<["HIGH", "MEDIUM", "LOW"]>;
+                                sampleCount: z.ZodNumber;
+                            }, "strip", z.ZodTypeAny, {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            }, {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            }>;
+                        }, "strip", z.ZodTypeAny, {
+                            short: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                            medium: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                            long: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                        }, {
+                            short: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                            medium: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                            long: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                        }>;
+                        meta: z.ZodObject<{
+                            lastUpdatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+                            dataCompleteness: z.ZodEnum<["HIGH", "MEDIUM", "LOW"]>;
+                        }, "strip", z.ZodTypeAny, {
+                            lastUpdatedAt: import("../../types").Timestamp;
+                            dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
+                        }, {
+                            lastUpdatedAt: import("../../types").Timestamp;
+                            dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
+                        }>;
+                    }, "strip", z.ZodTypeAny, {
+                        questionId: string;
+                        windows: {
+                            short: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                            medium: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                            long: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                        };
+                        meta: {
+                            lastUpdatedAt: import("../../types").Timestamp;
+                            dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
+                        };
+                    }, {
+                        questionId: string;
+                        windows: {
+                            short: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                            medium: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                            long: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                        };
+                        meta: {
+                            lastUpdatedAt: import("../../types").Timestamp;
+                            dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
+                        };
+                    }>>;
                 }, "strip", z.ZodTypeAny, {
                     text: string;
                     isTemplate: boolean;
@@ -10227,6 +10401,36 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
+                    state?: {
+                        questionId: string;
+                        windows: {
+                            short: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                            medium: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                            long: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                        };
+                        meta: {
+                            lastUpdatedAt: import("../../types").Timestamp;
+                            dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
+                        };
+                    } | undefined;
                 }, {
                     text: string;
                     responseType: "slider1To10";
@@ -10245,6 +10449,36 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isTemplate?: boolean | undefined;
                     isPinned?: boolean | undefined;
+                    state?: {
+                        questionId: string;
+                        windows: {
+                            short: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                            medium: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                            long: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                        };
+                        meta: {
+                            lastUpdatedAt: import("../../types").Timestamp;
+                            dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
+                        };
+                    } | undefined;
                 }>, z.ZodObject<{
                     id: z.ZodOptional<z.ZodString>;
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -10429,6 +10663,36 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
+                    state?: {
+                        questionId: string;
+                        windows: {
+                            short: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                            medium: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                            long: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                        };
+                        meta: {
+                            lastUpdatedAt: import("../../types").Timestamp;
+                            dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
+                        };
+                    } | undefined;
                 } | {
                     text: string;
                     isTemplate: boolean;
@@ -10529,6 +10793,36 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isTemplate?: boolean | undefined;
                     isPinned?: boolean | undefined;
+                    state?: {
+                        questionId: string;
+                        windows: {
+                            short: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                            medium: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                            long: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                        };
+                        meta: {
+                            lastUpdatedAt: import("../../types").Timestamp;
+                            dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
+                        };
+                    } | undefined;
                 } | {
                     text: string;
                     responseType: "text";
@@ -10631,6 +10925,36 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
+                    state?: {
+                        questionId: string;
+                        windows: {
+                            short: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                            medium: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                            long: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                        };
+                        meta: {
+                            lastUpdatedAt: import("../../types").Timestamp;
+                            dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
+                        };
+                    } | undefined;
                 } | {
                     text: string;
                     isTemplate: boolean;
@@ -10733,6 +11057,36 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isTemplate?: boolean | undefined;
                     isPinned?: boolean | undefined;
+                    state?: {
+                        questionId: string;
+                        windows: {
+                            short: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                            medium: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                            long: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                        };
+                        meta: {
+                            lastUpdatedAt: import("../../types").Timestamp;
+                            dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
+                        };
+                    } | undefined;
                 } | {
                     text: string;
                     responseType: "text";
@@ -10844,6 +11198,36 @@ export declare const logSchemas: {
                     lastAnsweredAt?: import("../../types").Timestamp | undefined;
                     numberOfAnswers?: number | undefined;
                     isPinned?: boolean | undefined;
+                    state?: {
+                        questionId: string;
+                        windows: {
+                            short: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                            medium: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                            long: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                        };
+                        meta: {
+                            lastUpdatedAt: import("../../types").Timestamp;
+                            dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
+                        };
+                    } | undefined;
                 } | {
                     text: string;
                     isTemplate: boolean;
@@ -10962,6 +11346,36 @@ export declare const logSchemas: {
                     numberOfAnswers?: number | undefined;
                     isTemplate?: boolean | undefined;
                     isPinned?: boolean | undefined;
+                    state?: {
+                        questionId: string;
+                        windows: {
+                            short: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                            medium: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                            long: {
+                                windowSizeDays: 7 | 30 | 90;
+                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                                stability: "HIGH" | "MEDIUM" | "LOW";
+                                sampleCount: number;
+                                averageValue?: number | undefined;
+                            };
+                        };
+                        meta: {
+                            lastUpdatedAt: import("../../types").Timestamp;
+                            dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
+                        };
+                    } | undefined;
                 } | {
                     text: string;
                     responseType: "text";
@@ -19653,6 +20067,180 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     maxLabel?: string | undefined;
                 }>;
                 text: z.ZodString;
+                state: z.ZodOptional<z.ZodObject<{
+                    questionId: z.ZodString;
+                    windows: z.ZodObject<{
+                        short: z.ZodObject<{
+                            windowSizeDays: z.ZodUnion<[z.ZodLiteral<7>, z.ZodLiteral<30>, z.ZodLiteral<90>]>;
+                            averageValue: z.ZodOptional<z.ZodNumber>;
+                            trend: z.ZodEnum<["IMPROVING", "DECLINING", "STABLE", "VOLATILE", "INSUFFICIENT_DATA"]>;
+                            stability: z.ZodEnum<["HIGH", "MEDIUM", "LOW"]>;
+                            sampleCount: z.ZodNumber;
+                        }, "strip", z.ZodTypeAny, {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        }, {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        }>;
+                        medium: z.ZodObject<{
+                            windowSizeDays: z.ZodUnion<[z.ZodLiteral<7>, z.ZodLiteral<30>, z.ZodLiteral<90>]>;
+                            averageValue: z.ZodOptional<z.ZodNumber>;
+                            trend: z.ZodEnum<["IMPROVING", "DECLINING", "STABLE", "VOLATILE", "INSUFFICIENT_DATA"]>;
+                            stability: z.ZodEnum<["HIGH", "MEDIUM", "LOW"]>;
+                            sampleCount: z.ZodNumber;
+                        }, "strip", z.ZodTypeAny, {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        }, {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        }>;
+                        long: z.ZodObject<{
+                            windowSizeDays: z.ZodUnion<[z.ZodLiteral<7>, z.ZodLiteral<30>, z.ZodLiteral<90>]>;
+                            averageValue: z.ZodOptional<z.ZodNumber>;
+                            trend: z.ZodEnum<["IMPROVING", "DECLINING", "STABLE", "VOLATILE", "INSUFFICIENT_DATA"]>;
+                            stability: z.ZodEnum<["HIGH", "MEDIUM", "LOW"]>;
+                            sampleCount: z.ZodNumber;
+                        }, "strip", z.ZodTypeAny, {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        }, {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        }>;
+                    }, "strip", z.ZodTypeAny, {
+                        short: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                        medium: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                        long: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                    }, {
+                        short: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                        medium: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                        long: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                    }>;
+                    meta: z.ZodObject<{
+                        lastUpdatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+                        dataCompleteness: z.ZodEnum<["HIGH", "MEDIUM", "LOW"]>;
+                    }, "strip", z.ZodTypeAny, {
+                        lastUpdatedAt: import("../../types").Timestamp;
+                        dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
+                    }, {
+                        lastUpdatedAt: import("../../types").Timestamp;
+                        dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
+                    }>;
+                }, "strip", z.ZodTypeAny, {
+                    questionId: string;
+                    windows: {
+                        short: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                        medium: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                        long: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                    };
+                    meta: {
+                        lastUpdatedAt: import("../../types").Timestamp;
+                        dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
+                    };
+                }, {
+                    questionId: string;
+                    windows: {
+                        short: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                        medium: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                        long: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                    };
+                    meta: {
+                        lastUpdatedAt: import("../../types").Timestamp;
+                        dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
+                    };
+                }>>;
             }, "strip", z.ZodTypeAny, {
                 text: string;
                 isTemplate: boolean;
@@ -19671,6 +20259,36 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
+                state?: {
+                    questionId: string;
+                    windows: {
+                        short: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                        medium: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                        long: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                    };
+                    meta: {
+                        lastUpdatedAt: import("../../types").Timestamp;
+                        dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
+                    };
+                } | undefined;
             }, {
                 text: string;
                 responseType: "slider1To10";
@@ -19689,6 +20307,36 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isTemplate?: boolean | undefined;
                 isPinned?: boolean | undefined;
+                state?: {
+                    questionId: string;
+                    windows: {
+                        short: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                        medium: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                        long: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                    };
+                    meta: {
+                        lastUpdatedAt: import("../../types").Timestamp;
+                        dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
+                    };
+                } | undefined;
             }>, z.ZodObject<{
                 id: z.ZodOptional<z.ZodString>;
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -19873,6 +20521,36 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
+                state?: {
+                    questionId: string;
+                    windows: {
+                        short: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                        medium: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                        long: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                    };
+                    meta: {
+                        lastUpdatedAt: import("../../types").Timestamp;
+                        dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
+                    };
+                } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
@@ -19973,6 +20651,36 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isTemplate?: boolean | undefined;
                 isPinned?: boolean | undefined;
+                state?: {
+                    questionId: string;
+                    windows: {
+                        short: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                        medium: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                        long: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                    };
+                    meta: {
+                        lastUpdatedAt: import("../../types").Timestamp;
+                        dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
+                    };
+                } | undefined;
             } | {
                 text: string;
                 responseType: "text";
@@ -20075,6 +20783,36 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
+                state?: {
+                    questionId: string;
+                    windows: {
+                        short: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                        medium: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                        long: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                    };
+                    meta: {
+                        lastUpdatedAt: import("../../types").Timestamp;
+                        dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
+                    };
+                } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
@@ -20177,6 +20915,36 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isTemplate?: boolean | undefined;
                 isPinned?: boolean | undefined;
+                state?: {
+                    questionId: string;
+                    windows: {
+                        short: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                        medium: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                        long: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                    };
+                    meta: {
+                        lastUpdatedAt: import("../../types").Timestamp;
+                        dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
+                    };
+                } | undefined;
             } | {
                 text: string;
                 responseType: "text";
@@ -20288,6 +21056,36 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 lastAnsweredAt?: import("../../types").Timestamp | undefined;
                 numberOfAnswers?: number | undefined;
                 isPinned?: boolean | undefined;
+                state?: {
+                    questionId: string;
+                    windows: {
+                        short: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                        medium: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                        long: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                    };
+                    meta: {
+                        lastUpdatedAt: import("../../types").Timestamp;
+                        dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
+                    };
+                } | undefined;
             } | {
                 text: string;
                 isTemplate: boolean;
@@ -20406,6 +21204,36 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfAnswers?: number | undefined;
                 isTemplate?: boolean | undefined;
                 isPinned?: boolean | undefined;
+                state?: {
+                    questionId: string;
+                    windows: {
+                        short: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                        medium: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                        long: {
+                            windowSizeDays: 7 | 30 | 90;
+                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
+                            stability: "HIGH" | "MEDIUM" | "LOW";
+                            sampleCount: number;
+                            averageValue?: number | undefined;
+                        };
+                    };
+                    meta: {
+                        lastUpdatedAt: import("../../types").Timestamp;
+                        dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
+                    };
+                } | undefined;
             } | {
                 text: string;
                 responseType: "text";
