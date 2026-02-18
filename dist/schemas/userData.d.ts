@@ -6,7 +6,7 @@ export declare const userDataSchema: z.ZodObject<{
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     recoveryKeyHash: z.ZodOptional<z.ZodString>;
     defaultThreadMode: z.ZodDefault<z.ZodEnum<["text", "voice"]>>;
-    createdViaEmulator: z.ZodOptional<z.ZodBoolean>;
+    createdViaSimulator: z.ZodOptional<z.ZodBoolean>;
     role: z.ZodDefault<z.ZodEnum<["user", "coach", "support"]>>;
     notificationsEnabled: z.ZodDefault<z.ZodBoolean>;
     notifyOnSignUp: z.ZodOptional<z.ZodBoolean>;
@@ -137,7 +137,7 @@ export declare const userDataSchema: z.ZodObject<{
         };
     } | undefined;
     recoveryKeyHash?: string | undefined;
-    createdViaEmulator?: boolean | undefined;
+    createdViaSimulator?: boolean | undefined;
     notifyOnSignUp?: boolean | undefined;
     appVersion?: string | undefined;
     device?: {
@@ -185,7 +185,7 @@ export declare const userDataSchema: z.ZodObject<{
     notificationsEnabled?: boolean | undefined;
     recoveryKeyHash?: string | undefined;
     defaultThreadMode?: "text" | "voice" | undefined;
-    createdViaEmulator?: boolean | undefined;
+    createdViaSimulator?: boolean | undefined;
     notifyOnSignUp?: boolean | undefined;
     expoPushToken?: string | null | undefined;
     notificationSettings?: {

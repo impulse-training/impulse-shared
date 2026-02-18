@@ -33,7 +33,7 @@ exports.userDataSchema = zod_1.z.object({
     recoveryKeyHash: zod_1.z.string().optional(),
     defaultThreadMode: zod_1.z.enum(["text", "voice"]).default("text"),
     // Account creation metadata
-    createdViaEmulator: zod_1.z.boolean().optional(),
+    createdViaSimulator: zod_1.z.boolean().optional(),
     // User role
     role: zod_1.z.enum(["user", "coach", "support"]).default("user"),
     // Notification settings
