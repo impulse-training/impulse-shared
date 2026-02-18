@@ -18,3 +18,4 @@ __exportStar(require("./questionScopes"), exports);
 __exportStar(require("./metrics"), exports);
 __exportStar(require("./debrief"), exports);
 __exportStar(require("./privacyPolicy"), exports);
+__exportStar(require("./recap"), exports);

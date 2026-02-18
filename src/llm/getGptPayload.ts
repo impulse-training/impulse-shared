@@ -14,6 +14,8 @@ import {
   logIsWidgetSetupLog,
 } from "../schemas/log";
 import { buildPlansLogPayload } from "./buildPlansLogPayload";
+import { extractRelevantContext } from "./extractRelevantContext";
+import { DEFAULT_RECAP_TIME_LABEL } from "../constants";
 
 function buildBehaviorLogPayload(
   log: BehaviorLog,
@@ -120,10 +122,22 @@ export function getGptPayload(
             "The user has just accepted a proposed experiment.\n" +
             "Respond to the user using the following message TEMPLATE, adapting it to what you know about the user's issue and the specific experiment configuration (e.g. behavior, metrics, baseline length).\n" +
             "Keep the structure and tone, but substitute details appropriately. Do not add extra paragraphs or questions beyond this template.\n\n" +
+            "BEHAVIOR:\n" +
+            behaviorText +
+            "\n\n" +
+            "METRICS:\n" +
+            metricsText +
+            "\n\n" +
             "TEMPLATE:\n" +
-            "You’re all set — the experiment has started.\n\n" +
-            `For now, just go about your day as usual. If you ${behaviorText}, log ${metricsText} here. If you don’t, that’s useful too.\n\n` +
-            "After [RECAP_TIME], come back to do a short recap of how the day felt.\n\n" +
+            "You’re all set — the experiment has started - we'll track " +
+            behaviorText +
+            " and " +
+            metricsText +
+            "\n\n" +
+            `For now, just go about your day as usual. If you ${behaviorText}, log it in the app.\n\n` +
+            "After " +
+            DEFAULT_RECAP_TIME_LABEL +
+            ", come back to do a short recap of how the day felt.\n\n" +
             `We’ll start with a baseline period for the next ${baselineDays} days. After that, we’ll introduce a small change and see what actually moves.\n` +
             "</SYSTEM>",
         },
