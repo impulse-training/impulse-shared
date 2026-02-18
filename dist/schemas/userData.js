@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isUserData = exports.userDataSchema = void 0;
+exports.isUserData = exports.userDataSchema = exports.latestThreadMessageTypeSchema = void 0;
 const zod_1 = require("zod");
 const timestampSchema_1 = require("../utils/timestampSchema");
 const supportGroup_1 = require("./supportGroup");
@@ -15,6 +15,16 @@ const latestSupportGroupMessageSchema = zod_1.z.object({
     message: zod_1.z.string(),
     sentAt: timestampSchema_1.timestampSchema,
 });
+const latestThreadMessageSchema = zod_1.z.object({
+    threadId: zod_1.z.string(),
+    message: zod_1.z.string(),
+    role: zod_1.z.enum(["user", "assistant"]),
+    sentAt: timestampSchema_1.timestampSchema,
+});
+exports.latestThreadMessageTypeSchema = zod_1.z.enum([
+    "alignment",
+    "commitment",
+]);
 exports.userDataSchema = zod_1.z.object({
     id: zod_1.z.string().optional(),
     createdAt: timestampSchema_1.timestampSchema.optional(),
@@ -78,6 +88,9 @@ exports.userDataSchema = zod_1.z.object({
     isCoach: zod_1.z.boolean().optional(),
     latestSupportGroupMessages: zod_1.z
         .record(supportGroup_1.supportGroupTypeSchema, latestSupportGroupMessageSchema)
+        .optional(),
+    latestThreadMessages: zod_1.z
+        .record(exports.latestThreadMessageTypeSchema, latestThreadMessageSchema)
         .optional(),
 });
 // Type guard for User

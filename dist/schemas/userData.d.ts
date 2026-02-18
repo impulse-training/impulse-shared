@@ -1,4 +1,5 @@
 import { z } from "zod";
+export declare const latestThreadMessageTypeSchema: z.ZodEnum<["alignment", "commitment"]>;
 export declare const userDataSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -98,6 +99,22 @@ export declare const userDataSchema: z.ZodObject<{
         senderId: string;
         sentAt: import("../types").Timestamp;
     }>>>;
+    latestThreadMessages: z.ZodOptional<z.ZodRecord<z.ZodEnum<["alignment", "commitment"]>, z.ZodObject<{
+        threadId: z.ZodString;
+        message: z.ZodString;
+        role: z.ZodEnum<["user", "assistant"]>;
+        sentAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    }, "strip", z.ZodTypeAny, {
+        message: string;
+        role: "assistant" | "user";
+        sentAt: import("../types").Timestamp;
+        threadId: string;
+    }, {
+        message: string;
+        role: "assistant" | "user";
+        sentAt: import("../types").Timestamp;
+        threadId: string;
+    }>>>;
 }, "strip", z.ZodTypeAny, {
     role: "user" | "coach" | "support";
     notificationsEnabled: boolean;
@@ -147,6 +164,12 @@ export declare const userDataSchema: z.ZodObject<{
         senderId: string;
         sentAt: import("../types").Timestamp;
     }>> | undefined;
+    latestThreadMessages?: Partial<Record<"alignment" | "commitment", {
+        message: string;
+        role: "assistant" | "user";
+        sentAt: import("../types").Timestamp;
+        threadId: string;
+    }>> | undefined;
 }, {
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
@@ -195,6 +218,12 @@ export declare const userDataSchema: z.ZodObject<{
         message: string;
         senderId: string;
         sentAt: import("../types").Timestamp;
+    }>> | undefined;
+    latestThreadMessages?: Partial<Record<"alignment" | "commitment", {
+        message: string;
+        role: "assistant" | "user";
+        sentAt: import("../types").Timestamp;
+        threadId: string;
     }>> | undefined;
 }>;
 export type UserData = z.infer<typeof userDataSchema>;

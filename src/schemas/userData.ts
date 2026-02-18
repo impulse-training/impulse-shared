@@ -16,6 +16,18 @@ const latestSupportGroupMessageSchema = z.object({
   sentAt: timestampSchema,
 });
 
+const latestThreadMessageSchema = z.object({
+  threadId: z.string(),
+  message: z.string(),
+  role: z.enum(["user", "assistant"]),
+  sentAt: timestampSchema,
+});
+
+export const latestThreadMessageTypeSchema = z.enum([
+  "alignment",
+  "commitment",
+]);
+
 export const userDataSchema = z.object({
   id: z.string().optional(),
   createdAt: timestampSchema.optional(),
@@ -97,6 +109,10 @@ export const userDataSchema = z.object({
 
   latestSupportGroupMessages: z
     .record(supportGroupTypeSchema, latestSupportGroupMessageSchema)
+    .optional(),
+
+  latestThreadMessages: z
+    .record(latestThreadMessageTypeSchema, latestThreadMessageSchema)
     .optional(),
 });
 
