@@ -12451,13 +12451,10 @@ export declare const logSchemas: {
         type: z.ZodLiteral<"enable_notifications_cta">;
         isDisplayable: z.ZodLiteral<true>;
         data: z.ZodObject<{
-            supportGroupId: z.ZodString;
             triggeredByUserMessageLogId: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            supportGroupId: string;
             triggeredByUserMessageLogId: string;
         }, {
-            supportGroupId: string;
             triggeredByUserMessageLogId: string;
         }>;
     }, "strip", z.ZodTypeAny, {
@@ -12469,7 +12466,6 @@ export declare const logSchemas: {
         dateString: string;
         isDisplayable: true;
         data: {
-            supportGroupId: string;
             triggeredByUserMessageLogId: string;
         };
         id?: string | undefined;
@@ -12485,7 +12481,6 @@ export declare const logSchemas: {
         dateString: string;
         isDisplayable: true;
         data: {
-            supportGroupId: string;
             triggeredByUserMessageLogId: string;
         };
         id?: string | undefined;
@@ -21880,13 +21875,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     type: z.ZodLiteral<"enable_notifications_cta">;
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
-        supportGroupId: z.ZodString;
         triggeredByUserMessageLogId: z.ZodString;
     }, "strip", z.ZodTypeAny, {
-        supportGroupId: string;
         triggeredByUserMessageLogId: string;
     }, {
-        supportGroupId: string;
         triggeredByUserMessageLogId: string;
     }>;
 }, "strip", z.ZodTypeAny, {
@@ -21898,7 +21890,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dateString: string;
     isDisplayable: true;
     data: {
-        supportGroupId: string;
         triggeredByUserMessageLogId: string;
     };
     id?: string | undefined;
@@ -21914,7 +21905,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dateString: string;
     isDisplayable: true;
     data: {
-        supportGroupId: string;
         triggeredByUserMessageLogId: string;
     };
     id?: string | undefined;

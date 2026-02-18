@@ -5,7 +5,6 @@ export const enableNotificationsCtaLogSchema = logBaseSchema.extend({
   type: z.literal("enable_notifications_cta"),
   isDisplayable: z.literal(true),
   data: z.object({
-    supportGroupId: z.string(),
     triggeredByUserMessageLogId: z.string(),
   }),
 });

@@ -17,6 +17,7 @@ export * from "./utils/documentReferenceSchema";
 export * from "./utils/fields";
 export * from "./utils/objectOf";
 export * from "./utils/shouldRespondToLogWithAI";
+export * from "./utils/shouldRespondWithNotificationCtaLog";
 export * from "./utils/timestampSchema";
 export * from "./utils/validation";
 export * from "./utils/withId";
