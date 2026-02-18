@@ -1970,7 +1970,7 @@ export declare const timePlanThreadSchema: z.ZodObject<{
     defaultSystemPrompt: z.ZodOptional<z.ZodString>;
     summary: z.ZodOptional<z.ZodString>;
     summaryRequestedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-    summarizedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    summarizedAt: z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     agentConnectedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     sharingMessage: z.ZodOptional<z.ZodString>;
@@ -2020,6 +2020,7 @@ export declare const timePlanThreadSchema: z.ZodObject<{
     type: "timePlan";
     date: import("../../types").Timestamp;
     userId: string;
+    summarizedAt: import("../../types").Timestamp | null;
     dateString: string;
     mode: "text" | "voice";
     emojiId: {
@@ -2033,7 +2034,6 @@ export declare const timePlanThreadSchema: z.ZodObject<{
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
     title?: string | undefined;
-    summarizedAt?: import("../../types").Timestamp | undefined;
     behaviorIds?: string[] | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
@@ -2346,6 +2346,7 @@ export declare const timePlanThreadSchema: z.ZodObject<{
     type: "timePlan";
     date: import("../../types").Timestamp;
     userId: string;
+    summarizedAt: import("../../types").Timestamp | null;
     dateString: string;
     emojiId: {
         emoji: string;
@@ -2357,7 +2358,6 @@ export declare const timePlanThreadSchema: z.ZodObject<{
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
     title?: string | undefined;
-    summarizedAt?: import("../../types").Timestamp | undefined;
     behaviorIds?: string[] | undefined;
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
@@ -4640,7 +4640,7 @@ export declare const locationPlanThreadSchema: z.ZodObject<{
     defaultSystemPrompt: z.ZodOptional<z.ZodString>;
     summary: z.ZodOptional<z.ZodString>;
     summaryRequestedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-    summarizedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    summarizedAt: z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     agentConnectedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     sharingMessage: z.ZodOptional<z.ZodString>;
@@ -4690,6 +4690,7 @@ export declare const locationPlanThreadSchema: z.ZodObject<{
     type: "locationPlan";
     date: import("../../types").Timestamp;
     userId: string;
+    summarizedAt: import("../../types").Timestamp | null;
     dateString: string;
     mode: "text" | "voice";
     emojiId: {
@@ -4703,7 +4704,6 @@ export declare const locationPlanThreadSchema: z.ZodObject<{
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
     title?: string | undefined;
-    summarizedAt?: import("../../types").Timestamp | undefined;
     behaviorIds?: string[] | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
@@ -5016,6 +5016,7 @@ export declare const locationPlanThreadSchema: z.ZodObject<{
     type: "locationPlan";
     date: import("../../types").Timestamp;
     userId: string;
+    summarizedAt: import("../../types").Timestamp | null;
     dateString: string;
     emojiId: {
         emoji: string;
@@ -5027,7 +5028,6 @@ export declare const locationPlanThreadSchema: z.ZodObject<{
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
     title?: string | undefined;
-    summarizedAt?: import("../../types").Timestamp | undefined;
     behaviorIds?: string[] | undefined;
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;

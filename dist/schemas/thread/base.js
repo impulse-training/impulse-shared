@@ -42,7 +42,7 @@ exports.threadBaseSchema = zod_1.z.object({
     defaultSystemPrompt: zod_1.z.string().optional(),
     summary: zod_1.z.string().optional(),
     summaryRequestedAt: timestampSchema_1.timestampSchema.optional(),
-    summarizedAt: timestampSchema_1.timestampSchema.optional(),
+    summarizedAt: timestampSchema_1.timestampSchema.nullable(),
     triggerId: zod_1.z.string().nullable().optional(),
     agentConnectedAt: timestampSchema_1.timestampSchema.optional(),
     // Allow for sharing with users

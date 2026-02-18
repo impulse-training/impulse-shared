@@ -46,7 +46,7 @@ export const threadBaseSchema = z.object({
   defaultSystemPrompt: z.string().optional(),
   summary: z.string().optional(),
   summaryRequestedAt: timestampSchema.optional(),
-  summarizedAt: timestampSchema.optional(),
+  summarizedAt: timestampSchema.nullable(),
 
   triggerId: z.string().nullable().optional(),
 
