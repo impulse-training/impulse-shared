@@ -64,12 +64,18 @@ export function shouldRespondToLogWithAI(
   afterData: Log | undefined,
   latestThreadLog?: Log,
 ): boolean {
-  if (latestThreadLog && logIsAssistantMessageLog(latestThreadLog))
+  if (latestThreadLog && logIsAssistantMessageLog(latestThreadLog)) {
+    console.log("Latest message is from assistant. Not responding with AI.");
     return false;
+  }
 
   const isCreating = !beforeData && afterData;
   const isUpdating = beforeData && afterData;
   const isNotDeleting = !!afterData;
+
+  console.log({
+    notificationsEnabled: typeof (thread as any).notificationsEnabled,
+  });
 
   // Case: this is an alignment thread, and the user hasn't enabled or skipped notifications. We
   // don't respond with AI - we respond with the notificationsCtaLog
@@ -77,7 +83,16 @@ export function shouldRespondToLogWithAI(
     threadIsAlignmentThread(thread) &&
     typeof thread.notificationsEnabled === "undefined"
   ) {
+    console.log(
+      "Thread is alignment and notificationsEnabled is undefined. Not responding with AI.",
+    );
     return false;
+  }
+
+  // Case: New message logs (creation event, no before data)
+  if (isCreating && logIsUserMessageLog(afterData)) {
+    console.log("New message log. Responding with AI.");
+    return true;
   }
 
   // Case: The user has acted on the enable notifications CTA log - now we respond to the original
@@ -88,6 +103,9 @@ export function shouldRespondToLogWithAI(
     afterData.data.respondedAt &&
     !(logIsEnableNotificationsCtaLog(beforeData) && beforeData.data.respondedAt)
   ) {
+    console.log(
+      "User has responded to enable notifications CTA. Responding with AI.",
+    );
     return true;
   }
 
@@ -98,11 +116,13 @@ export function shouldRespondToLogWithAI(
     fieldChanged(beforeData, afterData, "data.plans") &&
     hasNewlyCompletedPlan(beforeData, afterData)
   ) {
+    console.log("Plan was completed. Responding with AI.");
     return true;
   }
 
   // Case: Impulse can respond when the user logs a behavior with value=0 (resisted)
   if (isCreating && logIsBehaviorLog(afterData) && afterData.data.value === 0) {
+    console.log("User logged a behavior with value=0. Responding with AI.");
     return true;
   }
 
@@ -112,11 +132,17 @@ export function shouldRespondToLogWithAI(
     logIsPlansLog(afterData) &&
     afterData.data.plans[0]?.plan.type === "trigger"
   ) {
+    console.log("Trigger plan was added. Responding with AI.");
     return true;
   }
 
   // Case: Widget setup log with changed response field
-  if (isNotDeleting && logIsWidgetSetupLog(afterData)) return true;
+  if (isNotDeleting && logIsWidgetSetupLog(afterData)) {
+    console.log(
+      "Widget setup log with changed response field. Responding with AI.",
+    );
+    return true;
+  }
 
   // Case: The user has completed a tour
   if (
@@ -126,6 +152,7 @@ export function shouldRespondToLogWithAI(
     !beforeData?.data.completedAt &&
     afterData.data.completedAt
   ) {
+    console.log("User has completed a tour. Responding with AI.");
     return true;
   }
 
@@ -138,6 +165,7 @@ export function shouldRespondToLogWithAI(
     // Check if all questions now have responses
     const allAnswered = afterData.data.questions.every((q) => q.response);
     if (allAnswered) {
+      console.log("User has answered all questions. Responding with AI.");
       return true;
     }
   }
@@ -152,6 +180,7 @@ export function shouldRespondToLogWithAI(
     const afterProposed = afterData as ProposedExperimentLog;
 
     if (!beforeProposed.confirmedAt && afterProposed.confirmedAt) {
+      console.log("Proposed experiment was accepted. Responding with AI.");
       return true;
     }
   }
@@ -163,6 +192,9 @@ export function shouldRespondToLogWithAI(
       fieldChanged(beforeData, afterData, "shouldZaraRespond") &&
       afterData.shouldZaraRespond
     ) {
+      console.log(
+        "Behavior log was explicitly marked for Zara to respond. Responding with AI.",
+      );
       return true;
     }
   }
@@ -174,8 +206,10 @@ export function shouldRespondToLogWithAI(
     threadIsTimePlanThread(thread) &&
     isTimePlanFullyCompleted(thread, afterData)
   ) {
+    console.log("Time plan was fully completed. Responding with AI.");
     return true;
   }
 
+  console.log("No conditions met. Not responding with AI.");
   return false;
 }
