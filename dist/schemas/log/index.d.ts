@@ -12452,10 +12452,16 @@ export declare const logSchemas: {
         isDisplayable: z.ZodLiteral<true>;
         data: z.ZodObject<{
             triggeredByUserMessageLogId: z.ZodString;
+            respondedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            enabled: z.ZodOptional<z.ZodBoolean>;
         }, "strip", z.ZodTypeAny, {
             triggeredByUserMessageLogId: string;
+            respondedAt?: import("../../types").Timestamp | undefined;
+            enabled?: boolean | undefined;
         }, {
             triggeredByUserMessageLogId: string;
+            respondedAt?: import("../../types").Timestamp | undefined;
+            enabled?: boolean | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
         createdAt: import("../../types").Timestamp;
@@ -12467,6 +12473,8 @@ export declare const logSchemas: {
         isDisplayable: true;
         data: {
             triggeredByUserMessageLogId: string;
+            respondedAt?: import("../../types").Timestamp | undefined;
+            enabled?: boolean | undefined;
         };
         id?: string | undefined;
         tacticId?: string | undefined;
@@ -12482,6 +12490,8 @@ export declare const logSchemas: {
         isDisplayable: true;
         data: {
             triggeredByUserMessageLogId: string;
+            respondedAt?: import("../../types").Timestamp | undefined;
+            enabled?: boolean | undefined;
         };
         id?: string | undefined;
         tacticId?: string | undefined;
@@ -21876,10 +21886,16 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
         triggeredByUserMessageLogId: z.ZodString;
+        respondedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        enabled: z.ZodOptional<z.ZodBoolean>;
     }, "strip", z.ZodTypeAny, {
         triggeredByUserMessageLogId: string;
+        respondedAt?: import("../../types").Timestamp | undefined;
+        enabled?: boolean | undefined;
     }, {
         triggeredByUserMessageLogId: string;
+        respondedAt?: import("../../types").Timestamp | undefined;
+        enabled?: boolean | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
@@ -21891,6 +21907,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: true;
     data: {
         triggeredByUserMessageLogId: string;
+        respondedAt?: import("../../types").Timestamp | undefined;
+        enabled?: boolean | undefined;
     };
     id?: string | undefined;
     tacticId?: string | undefined;
@@ -21906,6 +21924,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: true;
     data: {
         triggeredByUserMessageLogId: string;
+        respondedAt?: import("../../types").Timestamp | undefined;
+        enabled?: boolean | undefined;
     };
     id?: string | undefined;
     tacticId?: string | undefined;

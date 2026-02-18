@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { timestampSchema } from "../../utils/timestampSchema";
 import { logBaseSchema } from "./base";
 
 export const enableNotificationsCtaLogSchema = logBaseSchema.extend({
@@ -6,6 +7,8 @@ export const enableNotificationsCtaLogSchema = logBaseSchema.extend({
   isDisplayable: z.literal(true),
   data: z.object({
     triggeredByUserMessageLogId: z.string(),
+    respondedAt: timestampSchema.optional(),
+    enabled: z.boolean().optional(),
   }),
 });
 
