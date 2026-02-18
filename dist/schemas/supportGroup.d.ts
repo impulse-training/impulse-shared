@@ -630,6 +630,7 @@ export declare const supportGroupSchema: z.ZodObject<{
         } | undefined;
     } | undefined;
     description?: string | undefined;
+    archivedAt?: import("../types").Timestamp | undefined;
     coverPhoto?: {
         uri: string;
         storagePath: string;
@@ -686,7 +687,6 @@ export declare const supportGroupSchema: z.ZodObject<{
             } | undefined;
         } | undefined;
     } | undefined;
-    archivedAt?: import("../types").Timestamp | undefined;
     behaviorTopicIds?: string[] | undefined;
     timezoneOffsets?: number[] | undefined;
     matchingMode?: "focused" | "mixed" | undefined;
@@ -746,6 +746,7 @@ export declare const supportGroupSchema: z.ZodObject<{
     type?: "system" | "alignment" | "coach" | "social" | undefined;
     isTemplate?: boolean | undefined;
     description?: string | undefined;
+    archivedAt?: import("../types").Timestamp | undefined;
     coverPhoto?: {
         uri: string;
         storagePath: string;
@@ -804,7 +805,6 @@ export declare const supportGroupSchema: z.ZodObject<{
         } | undefined;
     } | undefined;
     tacticCount?: number | undefined;
-    archivedAt?: import("../types").Timestamp | undefined;
     behaviorTopicIds?: string[] | undefined;
     timezoneOffsets?: number[] | undefined;
     matchingMode?: "focused" | "mixed" | undefined;

@@ -80,6 +80,8 @@ export const experimentSchema = z.object({
   }),
   currentPhase: experimentPhaseEnum.default("baseline"),
   resultsSummary: z.string().optional(),
+
+  archivedAt: timestampSchema.optional(),
 });
 
 export type ExperimentPhase = z.infer<typeof experimentPhaseEnum>;
