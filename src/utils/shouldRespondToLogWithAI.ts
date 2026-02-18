@@ -82,7 +82,12 @@ export function shouldRespondToLogWithAI(
 
   // Case: The user has acted on the enable notifications CTA log - now we respond to the original
   // user message
-  if (isUpdating && logIsEnableNotificationsCtaLog(afterData)) {
+  if (
+    isUpdating &&
+    logIsEnableNotificationsCtaLog(afterData) &&
+    afterData.data.respondedAt &&
+    !(logIsEnableNotificationsCtaLog(beforeData) && beforeData.data.respondedAt)
+  ) {
     return true;
   }
 

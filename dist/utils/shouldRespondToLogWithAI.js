@@ -48,7 +48,10 @@ function shouldRespondToLogWithAI(thread, beforeData, afterData, latestThreadLog
     }
     // Case: The user has acted on the enable notifications CTA log - now we respond to the original
     // user message
-    if (isUpdating && (0, log_1.logIsEnableNotificationsCtaLog)(afterData)) {
+    if (isUpdating &&
+        (0, log_1.logIsEnableNotificationsCtaLog)(afterData) &&
+        afterData.data.respondedAt &&
+        !((0, log_1.logIsEnableNotificationsCtaLog)(beforeData) && beforeData.data.respondedAt)) {
         return true;
     }
     // Case: A plan was completed (plansLog gains completedAt on a plan entry)
