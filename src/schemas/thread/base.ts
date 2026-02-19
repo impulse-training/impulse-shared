@@ -62,7 +62,7 @@ export const threadBaseSchema = z.object({
   updatedAt: timestampSchema.optional(),
   createdAt: timestampSchema.optional(),
   lastReadAt: timestampSchema.optional(),
-  unreadSince: z.record(z.string(), timestampSchema).optional(),
+  unreadSince: timestampSchema.optional(),
 
   responseStartedProcessingAt: timestampSchema.optional(),
 

@@ -54,7 +54,7 @@ exports.threadBaseSchema = zod_1.z.object({
     updatedAt: timestampSchema_1.timestampSchema.optional(),
     createdAt: timestampSchema_1.timestampSchema.optional(),
     lastReadAt: timestampSchema_1.timestampSchema.optional(),
-    unreadSince: zod_1.z.record(zod_1.z.string(), timestampSchema_1.timestampSchema).optional(),
+    unreadSince: timestampSchema_1.timestampSchema.optional(),
     responseStartedProcessingAt: timestampSchema_1.timestampSchema.optional(),
     startedPlanIds: zod_1.z.array(zod_1.z.string()).optional(),
     completedPlanIds: zod_1.z.array(zod_1.z.string()).optional(),
