@@ -24,6 +24,7 @@ export declare const tacticLogSchema: z.ZodObject<{
     tacticId: z.ZodOptional<z.ZodString>;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
+    impulseId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"tactic">;
     isDisplayable: z.ZodBoolean;
@@ -2841,6 +2842,7 @@ export declare const tacticLogSchema: z.ZodObject<{
     tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
+    impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
@@ -3140,5 +3142,6 @@ export declare const tacticLogSchema: z.ZodObject<{
     tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
+    impulseId?: string | undefined;
 }>;
 export type TacticLog = z.infer<typeof tacticLogSchema>;

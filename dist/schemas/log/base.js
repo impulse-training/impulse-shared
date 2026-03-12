@@ -18,4 +18,6 @@ exports.logBaseSchema = zod_1.z.object({
     // base log schema.
     // TODO: REVIEW
     callLogDocPath: zod_1.z.string().optional(),
+    // Groups logs belonging to the same impulse flow
+    impulseId: zod_1.z.string().optional(),
 });

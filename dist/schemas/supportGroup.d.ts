@@ -407,6 +407,7 @@ export declare const supportGroupSchema: z.ZodObject<{
         tacticId: z.ZodOptional<z.ZodString>;
         behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         callLogDocPath: z.ZodOptional<z.ZodString>;
+        impulseId: z.ZodOptional<z.ZodString>;
         isDisplayable: z.ZodLiteral<true>;
         data: z.ZodObject<{
             message: z.ZodAny;
@@ -511,6 +512,7 @@ export declare const supportGroupSchema: z.ZodObject<{
         tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
+        impulseId?: string | undefined;
         audioAttachment?: {
             uri: string;
             storagePath: string;
@@ -545,6 +547,7 @@ export declare const supportGroupSchema: z.ZodObject<{
         tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
+        impulseId?: string | undefined;
         audioAttachment?: {
             uri: string;
             storagePath: string;
@@ -575,7 +578,7 @@ export declare const supportGroupSchema: z.ZodObject<{
     acceptsMatching: z.ZodOptional<z.ZodBoolean>;
     maxMembers: z.ZodOptional<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
-    type: "system" | "alignment" | "coach" | "social";
+    type: "system" | "alignment" | "social" | "coach";
     name: string;
     isTemplate: boolean;
     membersById: Record<string, {
@@ -667,6 +670,7 @@ export declare const supportGroupSchema: z.ZodObject<{
         tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
+        impulseId?: string | undefined;
         audioAttachment?: {
             uri: string;
             storagePath: string;
@@ -743,7 +747,7 @@ export declare const supportGroupSchema: z.ZodObject<{
             }[] | undefined;
         } | undefined;
     } | undefined;
-    type?: "system" | "alignment" | "coach" | "social" | undefined;
+    type?: "system" | "alignment" | "social" | "coach" | undefined;
     isTemplate?: boolean | undefined;
     description?: string | undefined;
     archivedAt?: import("../types").Timestamp | undefined;
@@ -784,6 +788,7 @@ export declare const supportGroupSchema: z.ZodObject<{
         tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
+        impulseId?: string | undefined;
         audioAttachment?: {
             uri: string;
             storagePath: string;

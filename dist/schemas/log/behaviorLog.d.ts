@@ -11,6 +11,7 @@ export declare const behaviorLogSchema: z.ZodObject<{
     tacticId: z.ZodOptional<z.ZodString>;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
+    impulseId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"behavior">;
     isDisplayable: z.ZodLiteral<true>;
@@ -76,6 +77,7 @@ export declare const behaviorLogSchema: z.ZodObject<{
     tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
+    impulseId?: string | undefined;
     shouldZaraRespond?: boolean | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -100,6 +102,7 @@ export declare const behaviorLogSchema: z.ZodObject<{
     tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
+    impulseId?: string | undefined;
     isAdjustment?: boolean | undefined;
     shouldZaraRespond?: boolean | undefined;
 }>;

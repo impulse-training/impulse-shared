@@ -9,6 +9,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
     tacticId: z.ZodOptional<z.ZodString>;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
+    impulseId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"support_group_day_summary">;
     isDisplayable: z.ZodLiteral<true>;
@@ -74,6 +75,7 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
     tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
+    impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
@@ -98,5 +100,6 @@ export declare const supportGroupDaySummaryLogSchema: z.ZodObject<{
     tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
+    impulseId?: string | undefined;
 }>;
 export type SupportGroupDaySummaryLog = z.infer<typeof supportGroupDaySummaryLogSchema>;

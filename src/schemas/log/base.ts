@@ -16,4 +16,6 @@ export const logBaseSchema = z.object({
   // base log schema.
   // TODO: REVIEW
   callLogDocPath: z.string().optional(),
+  // Groups logs belonging to the same impulse flow
+  impulseId: z.string().optional(),
 });

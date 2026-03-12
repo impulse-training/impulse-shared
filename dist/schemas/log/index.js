@@ -14,13 +14,14 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidEnableNotificationsCtaLog = exports.logIsEnableNotificationsCtaLog = exports.isValidSupportGroupDaySummaryLog = exports.logIsSupportGroupDaySummaryLog = exports.isValidBreathingLog = exports.logIsBreathingLog = exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidPlansLog = exports.logIsPlansLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionsLog = exports.logIsQuestionsLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorLog = exports.logIsBehaviorLog = exports.isValidSharedMomentLog = exports.logIsSharedMomentLog = exports.isValidNotifySupportGroupLog = exports.logIsNotifySupportGroupLog = exports.isValidShowTourLog = exports.logIsShowTourLog = exports.isValidSystemMessageLog = exports.logIsSystemMessageLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
+exports.isValidImpulseStartedLog = exports.logIsImpulseStartedLog = exports.isValidEnableNotificationsCtaLog = exports.logIsEnableNotificationsCtaLog = exports.isValidSupportGroupDaySummaryLog = exports.logIsSupportGroupDaySummaryLog = exports.isValidBreathingLog = exports.logIsBreathingLog = exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidPlansLog = exports.logIsPlansLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidQuestionsLog = exports.logIsQuestionsLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorLog = exports.logIsBehaviorLog = exports.isValidSharedMomentLog = exports.logIsSharedMomentLog = exports.isValidNotifySupportGroupLog = exports.logIsNotifySupportGroupLog = exports.isValidShowTourLog = exports.logIsShowTourLog = exports.isValidSystemMessageLog = exports.logIsSystemMessageLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
 const zod_1 = require("zod");
 const behaviorLog_1 = require("./behaviorLog");
 const breathingLog_1 = require("./breathingLog");
 const callLog_1 = require("./callLog");
 const enableNotificationsCtaLog_1 = require("./enableNotificationsCtaLog");
 const linkLog_1 = require("./linkLog");
+const impulseStartedLog_1 = require("./impulseStartedLog");
 const proposedExperimentLog_1 = require("./proposedExperimentLog");
 const messageLog_1 = require("./messageLog");
 const notifySupportGroupLog_1 = require("./notifySupportGroupLog");
@@ -56,6 +57,7 @@ exports.logSchemas = {
     support_group_day_summary: supportGroupDaySummaryLog_1.supportGroupDaySummaryLogSchema,
     enable_notifications_cta: enableNotificationsCtaLog_1.enableNotificationsCtaLogSchema,
     proposed_experiment: proposedExperimentLog_1.proposedExperimentLogSchema,
+    impulse_started: impulseStartedLog_1.impulseStartedLogSchema,
 };
 exports.logTypes = Object.keys(exports.logSchemas);
 __exportStar(require("./behaviorLog"), exports);
@@ -76,6 +78,7 @@ __exportStar(require("./toolCallLog"), exports);
 __exportStar(require("./videoLog"), exports);
 __exportStar(require("./widgetSetupLog"), exports);
 __exportStar(require("./proposedExperimentLog"), exports);
+__exportStar(require("./impulseStartedLog"), exports);
 // Discriminated union schema across all log variants
 exports.logSchema = zod_1.z.discriminatedUnion("type", [
     messageLog_1.userMessageLogSchema,
@@ -98,6 +101,7 @@ exports.logSchema = zod_1.z.discriminatedUnion("type", [
     supportGroupDaySummaryLog_1.supportGroupDaySummaryLogSchema,
     enableNotificationsCtaLog_1.enableNotificationsCtaLogSchema,
     proposedExperimentLog_1.proposedExperimentLogSchema,
+    impulseStartedLog_1.impulseStartedLogSchema,
 ]);
 // Export log type guards
 const logIsAssistantMessageLog = (value) => value.type === "assistant_message";
@@ -208,3 +212,9 @@ const isValidEnableNotificationsCtaLog = (value) => {
     return enableNotificationsCtaLog_1.enableNotificationsCtaLogSchema.safeParse(value).success;
 };
 exports.isValidEnableNotificationsCtaLog = isValidEnableNotificationsCtaLog;
+const logIsImpulseStartedLog = (value) => value.type === "impulse_started";
+exports.logIsImpulseStartedLog = logIsImpulseStartedLog;
+const isValidImpulseStartedLog = (value) => {
+    return impulseStartedLog_1.impulseStartedLogSchema.safeParse(value).success;
+};
+exports.isValidImpulseStartedLog = isValidImpulseStartedLog;

@@ -8,6 +8,10 @@ import {
 } from "./enableNotificationsCtaLog";
 import { LinkLog, linkLogSchema } from "./linkLog";
 import {
+  ImpulseStartedLog,
+  impulseStartedLogSchema,
+} from "./impulseStartedLog";
+import {
   ProposedExperimentLog,
   proposedExperimentLogSchema,
 } from "./proposedExperimentLog";
@@ -60,6 +64,7 @@ export const logSchemas = {
   support_group_day_summary: supportGroupDaySummaryLogSchema,
   enable_notifications_cta: enableNotificationsCtaLogSchema,
   proposed_experiment: proposedExperimentLogSchema,
+  impulse_started: impulseStartedLogSchema,
 };
 export const logTypes = Object.keys(logSchemas);
 
@@ -84,7 +89,8 @@ export type Log =
   | VideoLog
   | SupportGroupDaySummaryLog
   | EnableNotificationsCtaLog
-  | ProposedExperimentLog;
+  | ProposedExperimentLog
+  | ImpulseStartedLog;
 
 export * from "./behaviorLog";
 export * from "./breathingLog";
@@ -104,6 +110,7 @@ export * from "./toolCallLog";
 export * from "./videoLog";
 export * from "./widgetSetupLog";
 export * from "./proposedExperimentLog";
+export * from "./impulseStartedLog";
 
 // Discriminated union schema across all log variants
 export const logSchema = z.discriminatedUnion("type", [
@@ -127,6 +134,7 @@ export const logSchema = z.discriminatedUnion("type", [
   supportGroupDaySummaryLogSchema,
   enableNotificationsCtaLogSchema,
   proposedExperimentLogSchema,
+  impulseStartedLogSchema,
 ]);
 
 // Export log type guards
@@ -269,4 +277,13 @@ export const isValidEnableNotificationsCtaLog = (
   value: unknown,
 ): value is EnableNotificationsCtaLog => {
   return enableNotificationsCtaLogSchema.safeParse(value).success;
+};
+
+export const logIsImpulseStartedLog = (
+  value: Omit<Log, "id">,
+): value is ImpulseStartedLog => value.type === "impulse_started";
+export const isValidImpulseStartedLog = (
+  value: unknown,
+): value is ImpulseStartedLog => {
+  return impulseStartedLogSchema.safeParse(value).success;
 };

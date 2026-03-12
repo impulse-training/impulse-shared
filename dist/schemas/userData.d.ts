@@ -159,7 +159,7 @@ export declare const userDataSchema: z.ZodObject<{
     markedAsEligibleAt?: import("../types").Timestamp | undefined;
     calendarBehaviorIds?: string[] | undefined;
     isCoach?: boolean | undefined;
-    latestSupportGroupMessages?: Partial<Record<"system" | "alignment" | "coach" | "social", {
+    latestSupportGroupMessages?: Partial<Record<"system" | "alignment" | "social" | "coach", {
         message: string;
         senderId: string;
         sentAt: import("../types").Timestamp;
@@ -214,7 +214,7 @@ export declare const userDataSchema: z.ZodObject<{
     markedAsEligibleAt?: import("../types").Timestamp | undefined;
     calendarBehaviorIds?: string[] | undefined;
     isCoach?: boolean | undefined;
-    latestSupportGroupMessages?: Partial<Record<"system" | "alignment" | "coach" | "social", {
+    latestSupportGroupMessages?: Partial<Record<"system" | "alignment" | "social" | "coach", {
         message: string;
         senderId: string;
         sentAt: import("../types").Timestamp;
