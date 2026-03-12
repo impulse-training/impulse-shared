@@ -17,6 +17,7 @@ export const plansLogSchema = logBaseSchema.extend({
       z.object({
         planId: z.string(),
         plan: planWithIdSchema,
+        startedAt: timestampSchema.optional(),
         completedAt: timestampSchema.optional(),
       }),
     ),

@@ -10295,6 +10295,7 @@ export declare const logSchemas: {
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
                 }>>]>;
+                startedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 completedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             }, "strip", z.ZodTypeAny, {
                 planId: string;
@@ -10361,6 +10362,7 @@ export declare const logSchemas: {
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
                 });
+                startedAt?: import("../../types").Timestamp | undefined;
                 completedAt?: import("../../types").Timestamp | undefined;
             }, {
                 planId: string;
@@ -10427,6 +10429,7 @@ export declare const logSchemas: {
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
                 });
+                startedAt?: import("../../types").Timestamp | undefined;
                 completedAt?: import("../../types").Timestamp | undefined;
             }>, "many">;
             activeIndex: z.ZodOptional<z.ZodNumber>;
@@ -10498,6 +10501,7 @@ export declare const logSchemas: {
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
                 });
+                startedAt?: import("../../types").Timestamp | undefined;
                 completedAt?: import("../../types").Timestamp | undefined;
             }[];
             triggerId?: string | null | undefined;
@@ -10570,6 +10574,7 @@ export declare const logSchemas: {
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
                 });
+                startedAt?: import("../../types").Timestamp | undefined;
                 completedAt?: import("../../types").Timestamp | undefined;
             }[];
             triggerId?: string | null | undefined;
@@ -10651,6 +10656,7 @@ export declare const logSchemas: {
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
                 });
+                startedAt?: import("../../types").Timestamp | undefined;
                 completedAt?: import("../../types").Timestamp | undefined;
             }[];
             triggerId?: string | null | undefined;
@@ -10738,6 +10744,7 @@ export declare const logSchemas: {
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
                 });
+                startedAt?: import("../../types").Timestamp | undefined;
                 completedAt?: import("../../types").Timestamp | undefined;
             }[];
             triggerId?: string | null | undefined;
@@ -19012,6 +19019,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
             }>>]>;
+            startedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             completedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         }, "strip", z.ZodTypeAny, {
             planId: string;
@@ -19078,6 +19086,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
             });
+            startedAt?: import("../../types").Timestamp | undefined;
             completedAt?: import("../../types").Timestamp | undefined;
         }, {
             planId: string;
@@ -19144,6 +19153,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
             });
+            startedAt?: import("../../types").Timestamp | undefined;
             completedAt?: import("../../types").Timestamp | undefined;
         }>, "many">;
         activeIndex: z.ZodOptional<z.ZodNumber>;
@@ -19215,6 +19225,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
             });
+            startedAt?: import("../../types").Timestamp | undefined;
             completedAt?: import("../../types").Timestamp | undefined;
         }[];
         triggerId?: string | null | undefined;
@@ -19287,6 +19298,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
             });
+            startedAt?: import("../../types").Timestamp | undefined;
             completedAt?: import("../../types").Timestamp | undefined;
         }[];
         triggerId?: string | null | undefined;
@@ -19368,6 +19380,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
             });
+            startedAt?: import("../../types").Timestamp | undefined;
             completedAt?: import("../../types").Timestamp | undefined;
         }[];
         triggerId?: string | null | undefined;
@@ -19455,6 +19468,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
             });
+            startedAt?: import("../../types").Timestamp | undefined;
             completedAt?: import("../../types").Timestamp | undefined;
         }[];
         triggerId?: string | null | undefined;
