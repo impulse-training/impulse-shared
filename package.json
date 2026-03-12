@@ -1,6 +1,6 @@
 {
   "name": "impulse-shared",
-  "version": "0.1.1-1773326710",
+  "version": "0.1.1-1773330321",
   "description": "Shared types and utilities for Impulse applications",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,7 +14,8 @@
     "unlink:global": "npm unlink -g impulse-shared",
     "prepare": "npm run build",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "pack-and-update": "./pack-and-update.sh"
   },
   "keywords": [
     "impulse",
