@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isUserData = exports.userDataSchema = exports.latestThreadMessageTypeSchema = void 0;
+exports.isUserData = exports.userDataSchema = exports.latestSessionMessageTypeSchema = void 0;
 const zod_1 = require("zod");
 const timestampSchema_1 = require("../utils/timestampSchema");
 const supportGroup_1 = require("./supportGroup");
@@ -15,13 +15,13 @@ const latestSupportGroupMessageSchema = zod_1.z.object({
     message: zod_1.z.string(),
     sentAt: timestampSchema_1.timestampSchema,
 });
-const latestThreadMessageSchema = zod_1.z.object({
-    threadId: zod_1.z.string(),
+const latestSessionMessageSchema = zod_1.z.object({
+    sessionId: zod_1.z.string(),
     message: zod_1.z.string(),
     role: zod_1.z.enum(["user", "assistant"]),
     sentAt: timestampSchema_1.timestampSchema,
 });
-exports.latestThreadMessageTypeSchema = zod_1.z.enum([
+exports.latestSessionMessageTypeSchema = zod_1.z.enum([
     "alignment",
     "commitment",
 ]);
@@ -31,7 +31,7 @@ exports.userDataSchema = zod_1.z.object({
     updatedAt: timestampSchema_1.timestampSchema.optional(),
     // Authentication
     recoveryKeyHash: zod_1.z.string().optional(),
-    defaultThreadMode: zod_1.z.enum(["text", "voice"]).default("text"),
+    defaultSessionMode: zod_1.z.enum(["text", "voice"]).default("text"),
     // Account creation metadata
     createdViaSimulator: zod_1.z.boolean().optional(),
     // User role
@@ -89,8 +89,8 @@ exports.userDataSchema = zod_1.z.object({
     latestSupportGroupMessages: zod_1.z
         .record(supportGroup_1.supportGroupTypeSchema, latestSupportGroupMessageSchema)
         .optional(),
-    latestThreadMessages: zod_1.z
-        .record(exports.latestThreadMessageTypeSchema, latestThreadMessageSchema)
+    latestSessionMessages: zod_1.z
+        .record(exports.latestSessionMessageTypeSchema, latestSessionMessageSchema)
         .optional(),
 });
 // Type guard for User

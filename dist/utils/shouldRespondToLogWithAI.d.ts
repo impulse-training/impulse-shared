@@ -1,4 +1,4 @@
-import { Thread } from "../schemas";
+import { Session } from "../schemas";
 import { Log } from "../schemas/log";
 import { WithId } from "./withId";
 /**
@@ -8,4 +8,4 @@ import { WithId } from "./withId";
  * @param afterData The log data after the write
  * @returns True if we should respond with AI, false otherwise
  */
-export declare function shouldRespondToLogWithAI(thread: WithId<Thread>, beforeData: Log | undefined, afterData: Log | undefined, latestThreadLog?: Log): boolean;
+export declare function shouldRespondToLogWithAI(session: WithId<Session>, beforeData: Log | undefined, afterData: Log | undefined, latestSessionLog?: Log): boolean;

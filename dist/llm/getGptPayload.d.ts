@@ -1,3 +1,3 @@
 import { ChatCompletionMessageParam } from "openai/resources/chat";
 import { Log } from "../schemas/log";
-export declare function getGptPayload(log: Log, isFinalLogInThread: boolean): ChatCompletionMessageParam[];
+export declare function getGptPayload(log: Log, isFinalLogInSession: boolean): ChatCompletionMessageParam[];

@@ -3,7 +3,7 @@ export declare const insightSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     emotion: z.ZodString;
     associatedBehaviorDocs: z.ZodOptional<z.ZodArray<z.ZodType<import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>;
-    sourceThreadDoc: z.ZodOptional<z.ZodType<import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>>;
+    sourceSessionDoc: z.ZodOptional<z.ZodType<import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>>;
     sourceLogDoc: z.ZodOptional<z.ZodType<import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>>;
     text: z.ZodString;
     /**
@@ -27,7 +27,7 @@ export declare const insightSchema: z.ZodObject<{
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     associatedBehaviorDocs?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
-    sourceThreadDoc?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown> | undefined;
+    sourceSessionDoc?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown> | undefined;
     sourceLogDoc?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown> | undefined;
     contentEligibilityStatus?: "eligible" | "ineligible" | null | undefined;
     contentEligibilityEvaluatedAt?: import("../types").Timestamp | undefined;
@@ -40,7 +40,7 @@ export declare const insightSchema: z.ZodObject<{
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     associatedBehaviorDocs?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
-    sourceThreadDoc?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown> | undefined;
+    sourceSessionDoc?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown> | undefined;
     sourceLogDoc?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown> | undefined;
     contentEligibilityStatus?: "eligible" | "ineligible" | null | undefined;
     contentEligibilityEvaluatedAt?: import("../types").Timestamp | undefined;

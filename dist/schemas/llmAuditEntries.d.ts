@@ -6,7 +6,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
     messages: z.ZodArray<z.ZodAny, "many">;
     response: z.ZodAny;
     toolDefinitions: z.ZodArray<z.ZodAny, "many">;
-    thread: z.ZodOptional<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+    session: z.ZodOptional<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         title: z.ZodOptional<z.ZodString>;
         behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
@@ -538,7 +538,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -559,13 +558,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             }, {
                 text: string;
                 mode: "question-text";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -586,6 +585,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             }>, z.ZodObject<{
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -686,11 +686,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 }>;
             }, "strip", z.ZodTypeAny, {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -716,11 +716,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             }, {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -1564,11 +1564,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -1598,7 +1598,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -1619,6 +1618,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -1835,11 +1835,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -1869,7 +1869,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -1890,6 +1889,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -1948,27 +1948,24 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             outcomeLogs: z.ZodArray<z.ZodAny, "many">;
-            questionsLogs: z.ZodArray<z.ZodAny, "many">;
             plansLogs: z.ZodArray<z.ZodAny, "many">;
             firstMessageLog: z.ZodOptional<z.ZodAny>;
             firstCallLog: z.ZodOptional<z.ZodAny>;
             hasContent: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -2026,7 +2023,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "general";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         mode: "text" | "voice";
         emojiId: {
@@ -2034,6 +2030,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | null;
         sharedWithUserIds: string[];
         isDraft: boolean;
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -2216,11 +2213,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -2250,7 +2247,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2271,6 +2267,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -2317,11 +2314,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -2351,12 +2347,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "general";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         emojiId: {
             emoji: string;
         } | null;
         sharedWithUserIds: string[];
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -2540,11 +2536,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -2574,7 +2570,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -2595,6 +2590,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -2642,11 +2638,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -3204,7 +3199,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -3225,13 +3219,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             }, {
                 text: string;
                 mode: "question-text";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -3252,6 +3246,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             }>, z.ZodObject<{
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -3352,11 +3347,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 }>;
             }, "strip", z.ZodTypeAny, {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -3382,11 +3377,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             }, {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -4230,11 +4225,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -4264,7 +4259,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -4285,6 +4279,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -4501,11 +4496,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -4535,7 +4530,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -4556,6 +4550,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -4614,27 +4609,24 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             outcomeLogs: z.ZodArray<z.ZodAny, "many">;
-            questionsLogs: z.ZodArray<z.ZodAny, "many">;
             plansLogs: z.ZodArray<z.ZodAny, "many">;
             firstMessageLog: z.ZodOptional<z.ZodAny>;
             firstCallLog: z.ZodOptional<z.ZodAny>;
             hasContent: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -4697,7 +4689,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "impulse";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         mode: "text" | "voice";
         emojiId: {
@@ -4705,6 +4696,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | null;
         sharedWithUserIds: string[];
         isDraft: boolean;
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         behaviorDocs: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
@@ -4888,11 +4880,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -4922,7 +4914,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -4943,6 +4934,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -4989,11 +4981,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -5027,12 +5018,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "impulse";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         emojiId: {
             emoji: string;
         } | null;
         sharedWithUserIds: string[];
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         behaviorDocs: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
@@ -5217,11 +5208,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -5251,7 +5242,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -5272,6 +5262,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -5319,11 +5310,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -5885,7 +5875,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -5906,13 +5895,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             }, {
                 text: string;
                 mode: "question-text";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -5933,6 +5922,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             }>, z.ZodObject<{
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -6033,11 +6023,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 }>;
             }, "strip", z.ZodTypeAny, {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -6063,11 +6053,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             }, {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -6911,11 +6901,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -6945,7 +6935,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -6966,6 +6955,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -7182,11 +7172,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -7216,7 +7206,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -7237,6 +7226,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -7295,27 +7285,24 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             outcomeLogs: z.ZodArray<z.ZodAny, "many">;
-            questionsLogs: z.ZodArray<z.ZodAny, "many">;
             plansLogs: z.ZodArray<z.ZodAny, "many">;
             firstMessageLog: z.ZodOptional<z.ZodAny>;
             firstCallLog: z.ZodOptional<z.ZodAny>;
             hasContent: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -7373,7 +7360,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "behavior";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         mode: "text" | "voice";
         emojiId: {
@@ -7381,6 +7367,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | null;
         sharedWithUserIds: string[];
         isDraft: boolean;
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -7563,11 +7550,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -7597,7 +7584,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -7618,6 +7604,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -7664,11 +7651,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -7698,12 +7684,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "behavior";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         emojiId: {
             emoji: string;
         } | null;
         sharedWithUserIds: string[];
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -7887,11 +7873,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -7921,7 +7907,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -7942,6 +7927,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -7989,11 +7975,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -8551,7 +8536,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -8572,13 +8556,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             }, {
                 text: string;
                 mode: "question-text";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -8599,6 +8583,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             }>, z.ZodObject<{
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -8699,11 +8684,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 }>;
             }, "strip", z.ZodTypeAny, {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -8729,11 +8714,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             }, {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -9577,11 +9562,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -9611,7 +9596,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -9632,6 +9616,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -9848,11 +9833,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -9882,7 +9867,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -9903,6 +9887,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -9961,27 +9946,24 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             outcomeLogs: z.ZodArray<z.ZodAny, "many">;
-            questionsLogs: z.ZodArray<z.ZodAny, "many">;
             plansLogs: z.ZodArray<z.ZodAny, "many">;
             firstMessageLog: z.ZodOptional<z.ZodAny>;
             firstCallLog: z.ZodOptional<z.ZodAny>;
             hasContent: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -10040,7 +10022,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "timePlan";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         mode: "text" | "voice";
         emojiId: {
@@ -10049,6 +10030,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         planId: string;
         sharedWithUserIds: string[];
         isDraft: boolean;
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -10231,11 +10213,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -10265,7 +10247,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -10286,6 +10267,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -10332,11 +10314,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -10366,13 +10347,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "timePlan";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         emojiId: {
             emoji: string;
         } | null;
         planId: string;
         sharedWithUserIds: string[];
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -10556,11 +10537,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -10590,7 +10571,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -10611,6 +10591,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -10658,11 +10639,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -11220,7 +11200,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -11241,13 +11220,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             }, {
                 text: string;
                 mode: "question-text";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -11268,6 +11247,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             }>, z.ZodObject<{
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -11368,11 +11348,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 }>;
             }, "strip", z.ZodTypeAny, {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -11398,11 +11378,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             }, {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -12246,11 +12226,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -12280,7 +12260,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -12301,6 +12280,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -12517,11 +12497,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -12551,7 +12531,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -12572,6 +12551,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -12630,27 +12610,24 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             outcomeLogs: z.ZodArray<z.ZodAny, "many">;
-            questionsLogs: z.ZodArray<z.ZodAny, "many">;
             plansLogs: z.ZodArray<z.ZodAny, "many">;
             firstMessageLog: z.ZodOptional<z.ZodAny>;
             firstCallLog: z.ZodOptional<z.ZodAny>;
             hasContent: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -12709,7 +12686,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "alignment";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         mode: "text" | "voice";
         emojiId: {
@@ -12717,6 +12693,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | null;
         sharedWithUserIds: string[];
         isDraft: boolean;
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         notificationsEnabled: boolean | null;
         id?: string | undefined;
@@ -12900,11 +12877,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -12934,7 +12911,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -12955,6 +12931,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -13001,11 +12978,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -13035,12 +13011,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "alignment";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         emojiId: {
             emoji: string;
         } | null;
         sharedWithUserIds: string[];
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         notificationsEnabled: boolean | null;
         id?: string | undefined;
@@ -13225,11 +13201,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -13259,7 +13235,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -13280,6 +13255,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -13327,11 +13303,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -13889,7 +13864,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -13910,13 +13884,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             }, {
                 text: string;
                 mode: "question-text";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -13937,6 +13911,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             }>, z.ZodObject<{
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -14037,11 +14012,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 }>;
             }, "strip", z.ZodTypeAny, {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -14067,11 +14042,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             }, {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -14915,11 +14890,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -14949,7 +14924,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -14970,6 +14944,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -15186,11 +15161,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -15220,7 +15195,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -15241,6 +15215,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -15299,27 +15274,24 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             outcomeLogs: z.ZodArray<z.ZodAny, "many">;
-            questionsLogs: z.ZodArray<z.ZodAny, "many">;
             plansLogs: z.ZodArray<z.ZodAny, "many">;
             firstMessageLog: z.ZodOptional<z.ZodAny>;
             firstCallLog: z.ZodOptional<z.ZodAny>;
             hasContent: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -15377,7 +15349,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "recap";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         mode: "text" | "voice";
         emojiId: {
@@ -15385,6 +15356,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | null;
         sharedWithUserIds: string[];
         isDraft: boolean;
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -15567,11 +15539,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -15601,7 +15573,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -15622,6 +15593,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -15668,11 +15640,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -15702,12 +15673,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "recap";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         emojiId: {
             emoji: string;
         } | null;
         sharedWithUserIds: string[];
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -15891,11 +15862,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -15925,7 +15896,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -15946,6 +15916,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -15993,11 +15964,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -16555,7 +16525,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -16576,13 +16545,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             }, {
                 text: string;
                 mode: "question-text";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -16603,6 +16572,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             }>, z.ZodObject<{
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -16703,11 +16673,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 }>;
             }, "strip", z.ZodTypeAny, {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -16733,11 +16703,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             }, {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -17581,11 +17551,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -17615,7 +17585,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -17636,6 +17605,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -17852,11 +17822,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -17886,7 +17856,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -17907,6 +17876,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -17965,27 +17935,24 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             outcomeLogs: z.ZodArray<z.ZodAny, "many">;
-            questionsLogs: z.ZodArray<z.ZodAny, "many">;
             plansLogs: z.ZodArray<z.ZodAny, "many">;
             firstMessageLog: z.ZodOptional<z.ZodAny>;
             firstCallLog: z.ZodOptional<z.ZodAny>;
             hasContent: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -18044,7 +18011,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "locationPlan";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         mode: "text" | "voice";
         emojiId: {
@@ -18053,6 +18019,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         planId: string;
         sharedWithUserIds: string[];
         isDraft: boolean;
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -18235,11 +18202,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -18269,7 +18236,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -18290,6 +18256,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -18336,11 +18303,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -18370,13 +18336,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "locationPlan";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         emojiId: {
             emoji: string;
         } | null;
         planId: string;
         sharedWithUserIds: string[];
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -18560,11 +18526,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -18594,7 +18560,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -18615,6 +18580,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -18662,11 +18628,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -19224,7 +19189,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -19245,13 +19209,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             }, {
                 text: string;
                 mode: "question-text";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -19272,6 +19236,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             }>, z.ZodObject<{
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -19372,11 +19337,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 }>;
             }, "strip", z.ZodTypeAny, {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -19402,11 +19367,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             }, {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -20250,11 +20215,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -20284,7 +20249,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -20305,6 +20269,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -20521,11 +20486,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -20555,7 +20520,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -20576,6 +20540,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -20634,27 +20599,24 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             outcomeLogs: z.ZodArray<z.ZodAny, "many">;
-            questionsLogs: z.ZodArray<z.ZodAny, "many">;
             plansLogs: z.ZodArray<z.ZodAny, "many">;
             firstMessageLog: z.ZodOptional<z.ZodAny>;
             firstCallLog: z.ZodOptional<z.ZodAny>;
             hasContent: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -20712,7 +20674,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "adjustment";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         mode: "text" | "voice";
         emojiId: {
@@ -20720,6 +20681,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | null;
         sharedWithUserIds: string[];
         isDraft: boolean;
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -20902,11 +20864,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -20936,7 +20898,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -20957,6 +20918,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -21003,11 +20965,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -21037,12 +20998,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "adjustment";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         emojiId: {
             emoji: string;
         } | null;
         sharedWithUserIds: string[];
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -21226,11 +21187,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -21260,7 +21221,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -21281,6 +21241,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -21328,11 +21289,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -21890,7 +21850,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -21911,13 +21870,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             }, {
                 text: string;
                 mode: "question-text";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -21938,6 +21897,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             }>, z.ZodObject<{
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -22038,11 +21998,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 }>;
             }, "strip", z.ZodTypeAny, {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -22068,11 +22028,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             }, {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -22916,11 +22876,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -22950,7 +22910,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -22971,6 +22930,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -23187,11 +23147,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -23221,7 +23181,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -23242,6 +23201,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -23300,27 +23260,24 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             outcomeLogs: z.ZodArray<z.ZodAny, "many">;
-            questionsLogs: z.ZodArray<z.ZodAny, "many">;
             plansLogs: z.ZodArray<z.ZodAny, "many">;
             firstMessageLog: z.ZodOptional<z.ZodAny>;
             firstCallLog: z.ZodOptional<z.ZodAny>;
             hasContent: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -23378,7 +23335,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "commitment";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         mode: "text" | "voice";
         emojiId: {
@@ -23386,6 +23342,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | null;
         sharedWithUserIds: string[];
         isDraft: boolean;
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -23568,11 +23525,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -23602,7 +23559,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -23623,6 +23579,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -23669,11 +23626,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -23703,12 +23659,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "commitment";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         emojiId: {
             emoji: string;
         } | null;
         sharedWithUserIds: string[];
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -23892,11 +23848,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -23926,7 +23882,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -23947,6 +23902,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -23994,11 +23950,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -24039,11 +23994,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
     endedAt?: import("../types").Timestamp | undefined;
     response?: any;
     startedAt?: import("../types").Timestamp | undefined;
-    thread?: {
+    session?: {
         type: "adjustment";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         mode: "text" | "voice";
         emojiId: {
@@ -24051,6 +24005,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | null;
         sharedWithUserIds: string[];
         isDraft: boolean;
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -24233,11 +24188,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -24267,7 +24222,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -24288,6 +24242,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -24334,11 +24289,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -24368,7 +24322,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "behavior";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         mode: "text" | "voice";
         emojiId: {
@@ -24376,6 +24329,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | null;
         sharedWithUserIds: string[];
         isDraft: boolean;
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -24558,11 +24512,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -24592,7 +24546,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -24613,6 +24566,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -24659,11 +24613,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -24693,7 +24646,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "general";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         mode: "text" | "voice";
         emojiId: {
@@ -24701,6 +24653,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | null;
         sharedWithUserIds: string[];
         isDraft: boolean;
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -24883,11 +24836,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -24917,7 +24870,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -24938,6 +24890,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -24984,11 +24937,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -25018,7 +24970,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "impulse";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         mode: "text" | "voice";
         emojiId: {
@@ -25026,6 +24977,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | null;
         sharedWithUserIds: string[];
         isDraft: boolean;
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         behaviorDocs: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
@@ -25209,11 +25161,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -25243,7 +25195,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -25264,6 +25215,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -25310,11 +25262,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -25348,7 +25299,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "timePlan";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         mode: "text" | "voice";
         emojiId: {
@@ -25357,6 +25307,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         planId: string;
         sharedWithUserIds: string[];
         isDraft: boolean;
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -25539,11 +25490,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -25573,7 +25524,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -25594,6 +25544,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -25640,11 +25591,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -25674,7 +25624,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "locationPlan";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         mode: "text" | "voice";
         emojiId: {
@@ -25683,6 +25632,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         planId: string;
         sharedWithUserIds: string[];
         isDraft: boolean;
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -25865,11 +25815,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -25899,7 +25849,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -25920,6 +25869,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -25966,11 +25916,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -26000,7 +25949,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "recap";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         mode: "text" | "voice";
         emojiId: {
@@ -26008,6 +25956,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | null;
         sharedWithUserIds: string[];
         isDraft: boolean;
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -26190,11 +26139,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -26224,7 +26173,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -26245,6 +26193,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -26291,11 +26240,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -26325,7 +26273,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "alignment";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         mode: "text" | "voice";
         emojiId: {
@@ -26333,6 +26280,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | null;
         sharedWithUserIds: string[];
         isDraft: boolean;
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         notificationsEnabled: boolean | null;
         id?: string | undefined;
@@ -26516,11 +26464,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -26550,7 +26498,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -26571,6 +26518,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -26617,11 +26565,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -26651,7 +26598,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "commitment";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         mode: "text" | "voice";
         emojiId: {
@@ -26659,6 +26605,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | null;
         sharedWithUserIds: string[];
         isDraft: boolean;
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -26841,11 +26788,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -26875,7 +26822,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -26896,6 +26842,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -26942,11 +26889,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -26984,16 +26930,16 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
     endedAt?: import("../types").Timestamp | undefined;
     response?: any;
     startedAt?: import("../types").Timestamp | undefined;
-    thread?: {
+    session?: {
         type: "adjustment";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         emojiId: {
             emoji: string;
         } | null;
         sharedWithUserIds: string[];
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -27177,11 +27123,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -27211,7 +27157,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -27232,6 +27177,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -27279,11 +27225,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -27313,12 +27258,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "behavior";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         emojiId: {
             emoji: string;
         } | null;
         sharedWithUserIds: string[];
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -27502,11 +27447,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -27536,7 +27481,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -27557,6 +27501,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -27604,11 +27549,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -27638,12 +27582,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "general";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         emojiId: {
             emoji: string;
         } | null;
         sharedWithUserIds: string[];
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -27827,11 +27771,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -27861,7 +27805,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -27882,6 +27825,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -27929,11 +27873,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -27963,12 +27906,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "impulse";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         emojiId: {
             emoji: string;
         } | null;
         sharedWithUserIds: string[];
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         behaviorDocs: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
@@ -28153,11 +28096,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -28187,7 +28130,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -28208,6 +28150,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -28255,11 +28198,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -28293,13 +28235,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "timePlan";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         emojiId: {
             emoji: string;
         } | null;
         planId: string;
         sharedWithUserIds: string[];
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -28483,11 +28425,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -28517,7 +28459,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -28538,6 +28479,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -28585,11 +28527,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -28619,13 +28560,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "locationPlan";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         emojiId: {
             emoji: string;
         } | null;
         planId: string;
         sharedWithUserIds: string[];
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -28809,11 +28750,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -28843,7 +28784,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -28864,6 +28804,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -28911,11 +28852,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -28945,12 +28885,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "recap";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         emojiId: {
             emoji: string;
         } | null;
         sharedWithUserIds: string[];
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -29134,11 +29074,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -29168,7 +29108,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -29189,6 +29128,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -29236,11 +29176,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -29270,12 +29209,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "alignment";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         emojiId: {
             emoji: string;
         } | null;
         sharedWithUserIds: string[];
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         notificationsEnabled: boolean | null;
         id?: string | undefined;
@@ -29460,11 +29399,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -29494,7 +29433,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -29515,6 +29453,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -29562,11 +29501,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -29596,12 +29534,12 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         type: "commitment";
         date: import("../types").Timestamp;
         userId: string;
-        summarizedAt: import("../types").Timestamp | null;
         dateString: string;
         emojiId: {
             emoji: string;
         } | null;
         sharedWithUserIds: string[];
+        summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -29785,11 +29723,11 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
@@ -29819,7 +29757,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../types").Timestamp | undefined;
                 updatedAt?: import("../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -29840,6 +29777,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -29887,11 +29825,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
         summaryData?: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;

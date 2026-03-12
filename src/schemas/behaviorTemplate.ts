@@ -8,7 +8,7 @@ export type TrackingType = (typeof trackingTypes)[number];
 // collection. We then extend that schema to be the full behavior schema.
 const behaviorTemplateBase = z.object({
   name: z.string(),
-  hasQuestions: z.boolean().optional(),
+
   trackingType: z.enum(trackingTypes),
   trackingUnit: z.string().optional(),
   createdAt: timestampSchema.optional(),
@@ -24,7 +24,7 @@ export const behaviorTemplateSchema = behaviorTemplateBase.superRefine(
         path: ["trackingUnit"],
       });
     }
-  }
+  },
 );
 
 export type BehaviorTemplate = z.infer<typeof behaviorTemplateSchema>;

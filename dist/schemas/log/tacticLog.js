@@ -19,7 +19,7 @@ exports.tacticLogSchema = base_1.logBaseSchema.extend({
         tactic: tactic_1.tacticSchema,
         // If this tactic activity originated from displaying a plan, include the planId
         planId: zod_1.z.string().optional(),
-        // If this tactic activity originated from the thread's PlansLogView, include the log id
+        // If this tactic activity originated from the session's PlansLogView, include the log id
         planLogId: zod_1.z.string().optional(),
         // total number of steps in the tactic at the time of logging
         stepCount: zod_1.z.number().int().nonnegative().optional(),

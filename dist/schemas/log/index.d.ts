@@ -9,7 +9,6 @@ import { ProposedExperimentLog } from "./proposedExperimentLog";
 import { AssistantMessageLog, MessageLog, SystemMessageLog, UserMessageLog } from "./messageLog";
 import { NotifySupportGroupLog } from "./notifySupportGroupLog";
 import { PlansLog } from "./plansLog";
-import { QuestionsLog } from "./questionsLog";
 import { SharedMomentLog } from "./sharedMomentLog";
 import { ShowTourLog } from "./showTourLog";
 import { SummaryLog } from "./summaryLog";
@@ -17,6 +16,7 @@ import { SupportGroupDaySummaryLog } from "./supportGroupDaySummaryLog";
 import { TacticLog } from "./tacticLog";
 import { ToolCallLog } from "./toolCallLog";
 import { VideoLog } from "./videoLog";
+import { MetricLog } from "./metricLog";
 import { WidgetSetupLog } from "./widgetSetupLog";
 export declare const logSchemas: {
     user: z.ZodObject<{
@@ -900,7 +900,6 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -921,13 +920,13 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    suggestedResponses?: string[] | undefined;
                 }, {
                     text: string;
                     mode: "question-text";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -948,6 +947,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    suggestedResponses?: string[] | undefined;
                 }>, z.ZodObject<{
                     backgroundImage: z.ZodOptional<z.ZodObject<{
                         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -1048,11 +1048,11 @@ export declare const logSchemas: {
                     }>;
                 }, "strip", z.ZodTypeAny, {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -1078,11 +1078,11 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 }, {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -1926,11 +1926,11 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -1960,7 +1960,6 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -1981,6 +1980,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    suggestedResponses?: string[] | undefined;
                 })[];
                 id?: string | undefined;
                 title?: string | undefined;
@@ -2197,11 +2197,11 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -2231,7 +2231,6 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -2252,6 +2251,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    suggestedResponses?: string[] | undefined;
                 })[];
                 id?: string | undefined;
                 title?: string | undefined;
@@ -2478,11 +2478,11 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -2512,7 +2512,6 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -2533,6 +2532,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    suggestedResponses?: string[] | undefined;
                 })[];
                 id?: string | undefined;
                 title?: string | undefined;
@@ -2757,11 +2757,11 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -2791,7 +2791,6 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -2812,6 +2811,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    suggestedResponses?: string[] | undefined;
                 })[];
                 id?: string | undefined;
                 title?: string | undefined;
@@ -3045,11 +3045,11 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -3079,7 +3079,6 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -3100,6 +3099,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    suggestedResponses?: string[] | undefined;
                 })[];
                 id?: string | undefined;
                 title?: string | undefined;
@@ -3338,11 +3338,11 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -3372,7 +3372,6 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -3393,6 +3392,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    suggestedResponses?: string[] | undefined;
                 })[];
                 id?: string | undefined;
                 title?: string | undefined;
@@ -4157,7 +4157,6 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -4178,13 +4177,13 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    suggestedResponses?: string[] | undefined;
                 }, {
                     text: string;
                     mode: "question-text";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -4205,6 +4204,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    suggestedResponses?: string[] | undefined;
                 }>, z.ZodObject<{
                     backgroundImage: z.ZodOptional<z.ZodObject<{
                         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -4305,11 +4305,11 @@ export declare const logSchemas: {
                     }>;
                 }, "strip", z.ZodTypeAny, {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -4335,11 +4335,11 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 }, {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -5183,11 +5183,11 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -5217,7 +5217,6 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -5238,6 +5237,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    suggestedResponses?: string[] | undefined;
                 })[];
                 id?: string | undefined;
                 title?: string | undefined;
@@ -5454,11 +5454,11 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -5488,7 +5488,6 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -5509,6 +5508,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    suggestedResponses?: string[] | undefined;
                 })[];
                 id?: string | undefined;
                 title?: string | undefined;
@@ -5748,11 +5748,11 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -5782,7 +5782,6 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -5803,6 +5802,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    suggestedResponses?: string[] | undefined;
                 })[];
                 id?: string | undefined;
                 title?: string | undefined;
@@ -5849,14 +5849,14 @@ export declare const logSchemas: {
             };
             completed?: boolean | undefined;
             planId?: string | undefined;
+            planLogId?: string | undefined;
+            stepCount?: number | undefined;
+            completedStepIndexes?: number[] | undefined;
             response?: {
                 value: string | number;
                 formattedValue: string;
                 responseType: "text" | "slider1To10";
             } | undefined;
-            planLogId?: string | undefined;
-            stepCount?: number | undefined;
-            completedStepIndexes?: number[] | undefined;
             conversationSummary?: string | undefined;
             startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
             finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
@@ -6034,11 +6034,11 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -6068,7 +6068,6 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -6089,6 +6088,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    suggestedResponses?: string[] | undefined;
                 })[];
                 id?: string | undefined;
                 title?: string | undefined;
@@ -6135,14 +6135,14 @@ export declare const logSchemas: {
             };
             completed?: boolean | undefined;
             planId?: string | undefined;
+            planLogId?: string | undefined;
+            stepCount?: number | undefined;
+            completedStepIndexes?: number[] | undefined;
             response?: {
                 value: string | number;
                 formattedValue: string;
                 responseType: "text" | "slider1To10";
             } | undefined;
-            planLogId?: string | undefined;
-            stepCount?: number | undefined;
-            completedStepIndexes?: number[] | undefined;
             conversationSummary?: string | undefined;
             startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
             finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
@@ -6329,11 +6329,11 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -6363,7 +6363,6 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -6384,6 +6383,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    suggestedResponses?: string[] | undefined;
                 })[];
                 id?: string | undefined;
                 title?: string | undefined;
@@ -6430,14 +6430,14 @@ export declare const logSchemas: {
             };
             completed?: boolean | undefined;
             planId?: string | undefined;
+            planLogId?: string | undefined;
+            stepCount?: number | undefined;
+            completedStepIndexes?: number[] | undefined;
             response?: {
                 value: string | number;
                 formattedValue: string;
                 responseType: "text" | "slider1To10";
             } | undefined;
-            planLogId?: string | undefined;
-            stepCount?: number | undefined;
-            completedStepIndexes?: number[] | undefined;
             conversationSummary?: string | undefined;
             startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
             finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
@@ -6629,11 +6629,11 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -6663,7 +6663,6 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -6684,6 +6683,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    suggestedResponses?: string[] | undefined;
                 })[];
                 id?: string | undefined;
                 title?: string | undefined;
@@ -6730,14 +6730,14 @@ export declare const logSchemas: {
             };
             completed?: boolean | undefined;
             planId?: string | undefined;
+            planLogId?: string | undefined;
+            stepCount?: number | undefined;
+            completedStepIndexes?: number[] | undefined;
             response?: {
                 value: string | number;
                 formattedValue: string;
                 responseType: "text" | "slider1To10";
             } | undefined;
-            planLogId?: string | undefined;
-            stepCount?: number | undefined;
-            completedStepIndexes?: number[] | undefined;
             conversationSummary?: string | undefined;
             startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
             finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
@@ -7287,7 +7287,6 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -7308,13 +7307,13 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    suggestedResponses?: string[] | undefined;
                 }, {
                     text: string;
                     mode: "question-text";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -7335,6 +7334,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    suggestedResponses?: string[] | undefined;
                 }>, z.ZodObject<{
                     backgroundImage: z.ZodOptional<z.ZodObject<{
                         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -7435,11 +7435,11 @@ export declare const logSchemas: {
                     }>;
                 }, "strip", z.ZodTypeAny, {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -7465,11 +7465,11 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 }, {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -8313,11 +8313,11 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -8347,7 +8347,6 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -8368,6 +8367,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    suggestedResponses?: string[] | undefined;
                 })[];
                 id?: string | undefined;
                 title?: string | undefined;
@@ -8584,11 +8584,11 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -8618,7 +8618,6 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -8639,6 +8638,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    suggestedResponses?: string[] | undefined;
                 })[];
                 id?: string | undefined;
                 title?: string | undefined;
@@ -8878,11 +8878,11 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -8912,7 +8912,6 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -8933,6 +8932,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    suggestedResponses?: string[] | undefined;
                 })[];
                 id?: string | undefined;
                 title?: string | undefined;
@@ -8979,14 +8979,14 @@ export declare const logSchemas: {
             };
             completed?: boolean | undefined;
             planId?: string | undefined;
+            planLogId?: string | undefined;
+            stepCount?: number | undefined;
+            completedStepIndexes?: number[] | undefined;
             response?: {
                 value: string | number;
                 formattedValue: string;
                 responseType: "text" | "slider1To10";
             } | undefined;
-            planLogId?: string | undefined;
-            stepCount?: number | undefined;
-            completedStepIndexes?: number[] | undefined;
             conversationSummary?: string | undefined;
             startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
             finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
@@ -9164,11 +9164,11 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -9198,7 +9198,6 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -9219,6 +9218,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    suggestedResponses?: string[] | undefined;
                 })[];
                 id?: string | undefined;
                 title?: string | undefined;
@@ -9265,14 +9265,14 @@ export declare const logSchemas: {
             };
             completed?: boolean | undefined;
             planId?: string | undefined;
+            planLogId?: string | undefined;
+            stepCount?: number | undefined;
+            completedStepIndexes?: number[] | undefined;
             response?: {
                 value: string | number;
                 formattedValue: string;
                 responseType: "text" | "slider1To10";
             } | undefined;
-            planLogId?: string | undefined;
-            stepCount?: number | undefined;
-            completedStepIndexes?: number[] | undefined;
             conversationSummary?: string | undefined;
             startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
             finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
@@ -9459,11 +9459,11 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -9493,7 +9493,6 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -9514,6 +9513,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    suggestedResponses?: string[] | undefined;
                 })[];
                 id?: string | undefined;
                 title?: string | undefined;
@@ -9560,14 +9560,14 @@ export declare const logSchemas: {
             };
             completed?: boolean | undefined;
             planId?: string | undefined;
+            planLogId?: string | undefined;
+            stepCount?: number | undefined;
+            completedStepIndexes?: number[] | undefined;
             response?: {
                 value: string | number;
                 formattedValue: string;
                 responseType: "text" | "slider1To10";
             } | undefined;
-            planLogId?: string | undefined;
-            stepCount?: number | undefined;
-            completedStepIndexes?: number[] | undefined;
             conversationSummary?: string | undefined;
             startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
             finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
@@ -9759,11 +9759,11 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
+                    mode: "question-slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
                         maxLabel?: string | undefined;
                     };
-                    mode: "question-slider1To10";
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -9793,7 +9793,6 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    suggestedResponses?: string[] | undefined;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -9814,6 +9813,7 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                    suggestedResponses?: string[] | undefined;
                 })[];
                 id?: string | undefined;
                 title?: string | undefined;
@@ -9860,14 +9860,14 @@ export declare const logSchemas: {
             };
             completed?: boolean | undefined;
             planId?: string | undefined;
+            planLogId?: string | undefined;
+            stepCount?: number | undefined;
+            completedStepIndexes?: number[] | undefined;
             response?: {
                 value: string | number;
                 formattedValue: string;
                 responseType: "text" | "slider1To10";
             } | undefined;
-            planLogId?: string | undefined;
-            stepCount?: number | undefined;
-            completedStepIndexes?: number[] | undefined;
             conversationSummary?: string | undefined;
             startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
             finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
@@ -10058,1387 +10058,6 @@ export declare const logSchemas: {
         callLogDocPath?: string | undefined;
         impulseId?: string | undefined;
     }>;
-    questions: z.ZodObject<{
-        id: z.ZodOptional<z.ZodString>;
-        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-        userId: z.ZodString;
-        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-        dateString: z.ZodString;
-        tacticId: z.ZodOptional<z.ZodString>;
-        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-        callLogDocPath: z.ZodOptional<z.ZodString>;
-        impulseId: z.ZodOptional<z.ZodString>;
-    } & {
-        type: z.ZodLiteral<"questions">;
-        isDisplayable: z.ZodLiteral<true>;
-        text: z.ZodOptional<z.ZodString>;
-        answeredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-        commitStrategy: z.ZodOptional<z.ZodEnum<["live", "explicit"]>>;
-        data: z.ZodObject<{
-            questions: z.ZodArray<z.ZodObject<{
-                questionId: z.ZodOptional<z.ZodString>;
-                question: z.ZodDiscriminatedUnion<"responseType", [z.ZodObject<{
-                    id: z.ZodOptional<z.ZodString>;
-                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    textAfterResponse: z.ZodOptional<z.ZodString>;
-                    metricId: z.ZodOptional<z.ZodString>;
-                    lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    numberOfAnswers: z.ZodOptional<z.ZodNumber>;
-                    isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-                    isPinned: z.ZodOptional<z.ZodBoolean>;
-                    responseType: z.ZodLiteral<"text">;
-                    scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
-                } & {
-                    text: z.ZodString;
-                }, "strip", z.ZodTypeAny, {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "text";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                }, {
-                    text: string;
-                    responseType: "text";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isTemplate?: boolean | undefined;
-                    isPinned?: boolean | undefined;
-                }>, z.ZodObject<{
-                    id: z.ZodOptional<z.ZodString>;
-                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    textAfterResponse: z.ZodOptional<z.ZodString>;
-                    metricId: z.ZodOptional<z.ZodString>;
-                    lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    numberOfAnswers: z.ZodOptional<z.ZodNumber>;
-                    isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-                    isPinned: z.ZodOptional<z.ZodBoolean>;
-                    responseType: z.ZodLiteral<"emotion">;
-                    scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
-                } & {
-                    suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-                    text: z.ZodString;
-                }, "strip", z.ZodTypeAny, {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "emotion";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    suggestedResponses?: string[] | undefined;
-                }, {
-                    text: string;
-                    responseType: "emotion";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isTemplate?: boolean | undefined;
-                    isPinned?: boolean | undefined;
-                    suggestedResponses?: string[] | undefined;
-                }>, z.ZodObject<{
-                    id: z.ZodOptional<z.ZodString>;
-                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    textAfterResponse: z.ZodOptional<z.ZodString>;
-                    metricId: z.ZodOptional<z.ZodString>;
-                    lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    numberOfAnswers: z.ZodOptional<z.ZodNumber>;
-                    isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-                    isPinned: z.ZodOptional<z.ZodBoolean>;
-                    responseType: z.ZodLiteral<"shortText">;
-                    scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
-                } & {
-                    suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-                    text: z.ZodString;
-                }, "strip", z.ZodTypeAny, {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "shortText";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    suggestedResponses?: string[] | undefined;
-                }, {
-                    text: string;
-                    responseType: "shortText";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isTemplate?: boolean | undefined;
-                    isPinned?: boolean | undefined;
-                    suggestedResponses?: string[] | undefined;
-                }>, z.ZodObject<{
-                    id: z.ZodOptional<z.ZodString>;
-                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    textAfterResponse: z.ZodOptional<z.ZodString>;
-                    metricId: z.ZodOptional<z.ZodString>;
-                    lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    numberOfAnswers: z.ZodOptional<z.ZodNumber>;
-                    isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-                    isPinned: z.ZodOptional<z.ZodBoolean>;
-                    responseType: z.ZodLiteral<"slider1To10">;
-                    scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
-                } & {
-                    sliderConfig: z.ZodObject<{
-                        minLabel: z.ZodOptional<z.ZodString>;
-                        maxLabel: z.ZodOptional<z.ZodString>;
-                    }, "strip", z.ZodTypeAny, {
-                        minLabel?: string | undefined;
-                        maxLabel?: string | undefined;
-                    }, {
-                        minLabel?: string | undefined;
-                        maxLabel?: string | undefined;
-                    }>;
-                    text: z.ZodString;
-                    state: z.ZodOptional<z.ZodObject<{
-                        questionId: z.ZodString;
-                        windows: z.ZodObject<{
-                            short: z.ZodObject<{
-                                windowSizeDays: z.ZodUnion<[z.ZodLiteral<7>, z.ZodLiteral<30>, z.ZodLiteral<90>]>;
-                                averageValue: z.ZodOptional<z.ZodNumber>;
-                                trend: z.ZodEnum<["IMPROVING", "DECLINING", "STABLE", "VOLATILE", "INSUFFICIENT_DATA"]>;
-                                stability: z.ZodEnum<["HIGH", "MEDIUM", "LOW"]>;
-                                sampleCount: z.ZodNumber;
-                            }, "strip", z.ZodTypeAny, {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            }, {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            }>;
-                            medium: z.ZodObject<{
-                                windowSizeDays: z.ZodUnion<[z.ZodLiteral<7>, z.ZodLiteral<30>, z.ZodLiteral<90>]>;
-                                averageValue: z.ZodOptional<z.ZodNumber>;
-                                trend: z.ZodEnum<["IMPROVING", "DECLINING", "STABLE", "VOLATILE", "INSUFFICIENT_DATA"]>;
-                                stability: z.ZodEnum<["HIGH", "MEDIUM", "LOW"]>;
-                                sampleCount: z.ZodNumber;
-                            }, "strip", z.ZodTypeAny, {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            }, {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            }>;
-                            long: z.ZodObject<{
-                                windowSizeDays: z.ZodUnion<[z.ZodLiteral<7>, z.ZodLiteral<30>, z.ZodLiteral<90>]>;
-                                averageValue: z.ZodOptional<z.ZodNumber>;
-                                trend: z.ZodEnum<["IMPROVING", "DECLINING", "STABLE", "VOLATILE", "INSUFFICIENT_DATA"]>;
-                                stability: z.ZodEnum<["HIGH", "MEDIUM", "LOW"]>;
-                                sampleCount: z.ZodNumber;
-                            }, "strip", z.ZodTypeAny, {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            }, {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            }>;
-                        }, "strip", z.ZodTypeAny, {
-                            short: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                            medium: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                            long: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                        }, {
-                            short: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                            medium: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                            long: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                        }>;
-                        meta: z.ZodObject<{
-                            lastUpdatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-                            dataCompleteness: z.ZodEnum<["HIGH", "MEDIUM", "LOW"]>;
-                        }, "strip", z.ZodTypeAny, {
-                            lastUpdatedAt: import("../../types").Timestamp;
-                            dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
-                        }, {
-                            lastUpdatedAt: import("../../types").Timestamp;
-                            dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
-                        }>;
-                    }, "strip", z.ZodTypeAny, {
-                        questionId: string;
-                        windows: {
-                            short: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                            medium: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                            long: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                        };
-                        meta: {
-                            lastUpdatedAt: import("../../types").Timestamp;
-                            dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
-                        };
-                    }, {
-                        questionId: string;
-                        windows: {
-                            short: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                            medium: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                            long: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                        };
-                        meta: {
-                            lastUpdatedAt: import("../../types").Timestamp;
-                            dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
-                        };
-                    }>>;
-                }, "strip", z.ZodTypeAny, {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "slider1To10";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    sliderConfig: {
-                        minLabel?: string | undefined;
-                        maxLabel?: string | undefined;
-                    };
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    state?: {
-                        questionId: string;
-                        windows: {
-                            short: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                            medium: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                            long: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                        };
-                        meta: {
-                            lastUpdatedAt: import("../../types").Timestamp;
-                            dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
-                        };
-                    } | undefined;
-                }, {
-                    text: string;
-                    responseType: "slider1To10";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    sliderConfig: {
-                        minLabel?: string | undefined;
-                        maxLabel?: string | undefined;
-                    };
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isTemplate?: boolean | undefined;
-                    isPinned?: boolean | undefined;
-                    state?: {
-                        questionId: string;
-                        windows: {
-                            short: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                            medium: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                            long: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                        };
-                        meta: {
-                            lastUpdatedAt: import("../../types").Timestamp;
-                            dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
-                        };
-                    } | undefined;
-                }>, z.ZodObject<{
-                    id: z.ZodOptional<z.ZodString>;
-                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    text: z.ZodOptional<z.ZodString>;
-                    textAfterResponse: z.ZodOptional<z.ZodString>;
-                    metricId: z.ZodOptional<z.ZodString>;
-                    lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    numberOfAnswers: z.ZodOptional<z.ZodNumber>;
-                    isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-                    isPinned: z.ZodOptional<z.ZodBoolean>;
-                    responseType: z.ZodLiteral<"behaviorSelection">;
-                    scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
-                } & {
-                    allowMultiple: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-                }, "strip", z.ZodTypeAny, {
-                    isTemplate: boolean;
-                    responseType: "behaviorSelection";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    allowMultiple: boolean;
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    text?: string | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                }, {
-                    responseType: "behaviorSelection";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    text?: string | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isTemplate?: boolean | undefined;
-                    isPinned?: boolean | undefined;
-                    allowMultiple?: boolean | undefined;
-                }>, z.ZodObject<{
-                    id: z.ZodOptional<z.ZodString>;
-                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    textAfterResponse: z.ZodOptional<z.ZodString>;
-                    metricId: z.ZodOptional<z.ZodString>;
-                    lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    numberOfAnswers: z.ZodOptional<z.ZodNumber>;
-                    isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-                    isPinned: z.ZodOptional<z.ZodBoolean>;
-                    responseType: z.ZodLiteral<"recap">;
-                    scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
-                } & {
-                    text: z.ZodString;
-                }, "strip", z.ZodTypeAny, {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "recap";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                }, {
-                    text: string;
-                    responseType: "recap";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isTemplate?: boolean | undefined;
-                    isPinned?: boolean | undefined;
-                }>]>;
-                response: z.ZodOptional<z.ZodObject<{
-                    responseType: z.ZodEnum<["text", "shortText", "emotion", "slider1To10", "behaviorSelection", "recap"]>;
-                    value: z.ZodUnion<[z.ZodUnknown, z.ZodArray<z.ZodUnknown, "many">]>;
-                    formattedValue: z.ZodString;
-                    color: z.ZodOptional<z.ZodString>;
-                }, "strip", z.ZodTypeAny, {
-                    formattedValue: string;
-                    responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
-                    value?: unknown;
-                    color?: string | undefined;
-                }, {
-                    formattedValue: string;
-                    responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
-                    value?: unknown;
-                    color?: string | undefined;
-                }>>;
-            }, "strip", z.ZodTypeAny, {
-                question: {
-                    isTemplate: boolean;
-                    responseType: "behaviorSelection";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    allowMultiple: boolean;
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    text?: string | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                } | {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "emotion";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    suggestedResponses?: string[] | undefined;
-                } | {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "recap";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                } | {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "shortText";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    suggestedResponses?: string[] | undefined;
-                } | {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "slider1To10";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    sliderConfig: {
-                        minLabel?: string | undefined;
-                        maxLabel?: string | undefined;
-                    };
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    state?: {
-                        questionId: string;
-                        windows: {
-                            short: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                            medium: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                            long: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                        };
-                        meta: {
-                            lastUpdatedAt: import("../../types").Timestamp;
-                            dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
-                        };
-                    } | undefined;
-                } | {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "text";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                };
-                questionId?: string | undefined;
-                response?: {
-                    formattedValue: string;
-                    responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
-                    value?: unknown;
-                    color?: string | undefined;
-                } | undefined;
-            }, {
-                question: {
-                    responseType: "behaviorSelection";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    text?: string | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isTemplate?: boolean | undefined;
-                    isPinned?: boolean | undefined;
-                    allowMultiple?: boolean | undefined;
-                } | {
-                    text: string;
-                    responseType: "emotion";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isTemplate?: boolean | undefined;
-                    isPinned?: boolean | undefined;
-                    suggestedResponses?: string[] | undefined;
-                } | {
-                    text: string;
-                    responseType: "recap";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isTemplate?: boolean | undefined;
-                    isPinned?: boolean | undefined;
-                } | {
-                    text: string;
-                    responseType: "shortText";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isTemplate?: boolean | undefined;
-                    isPinned?: boolean | undefined;
-                    suggestedResponses?: string[] | undefined;
-                } | {
-                    text: string;
-                    responseType: "slider1To10";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    sliderConfig: {
-                        minLabel?: string | undefined;
-                        maxLabel?: string | undefined;
-                    };
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isTemplate?: boolean | undefined;
-                    isPinned?: boolean | undefined;
-                    state?: {
-                        questionId: string;
-                        windows: {
-                            short: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                            medium: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                            long: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                        };
-                        meta: {
-                            lastUpdatedAt: import("../../types").Timestamp;
-                            dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
-                        };
-                    } | undefined;
-                } | {
-                    text: string;
-                    responseType: "text";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isTemplate?: boolean | undefined;
-                    isPinned?: boolean | undefined;
-                };
-                questionId?: string | undefined;
-                response?: {
-                    formattedValue: string;
-                    responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
-                    value?: unknown;
-                    color?: string | undefined;
-                } | undefined;
-            }>, "many">;
-        }, "strip", z.ZodTypeAny, {
-            questions: {
-                question: {
-                    isTemplate: boolean;
-                    responseType: "behaviorSelection";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    allowMultiple: boolean;
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    text?: string | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                } | {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "emotion";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    suggestedResponses?: string[] | undefined;
-                } | {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "recap";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                } | {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "shortText";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    suggestedResponses?: string[] | undefined;
-                } | {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "slider1To10";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    sliderConfig: {
-                        minLabel?: string | undefined;
-                        maxLabel?: string | undefined;
-                    };
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    state?: {
-                        questionId: string;
-                        windows: {
-                            short: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                            medium: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                            long: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                        };
-                        meta: {
-                            lastUpdatedAt: import("../../types").Timestamp;
-                            dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
-                        };
-                    } | undefined;
-                } | {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "text";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                };
-                questionId?: string | undefined;
-                response?: {
-                    formattedValue: string;
-                    responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
-                    value?: unknown;
-                    color?: string | undefined;
-                } | undefined;
-            }[];
-        }, {
-            questions: {
-                question: {
-                    responseType: "behaviorSelection";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    text?: string | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isTemplate?: boolean | undefined;
-                    isPinned?: boolean | undefined;
-                    allowMultiple?: boolean | undefined;
-                } | {
-                    text: string;
-                    responseType: "emotion";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isTemplate?: boolean | undefined;
-                    isPinned?: boolean | undefined;
-                    suggestedResponses?: string[] | undefined;
-                } | {
-                    text: string;
-                    responseType: "recap";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isTemplate?: boolean | undefined;
-                    isPinned?: boolean | undefined;
-                } | {
-                    text: string;
-                    responseType: "shortText";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isTemplate?: boolean | undefined;
-                    isPinned?: boolean | undefined;
-                    suggestedResponses?: string[] | undefined;
-                } | {
-                    text: string;
-                    responseType: "slider1To10";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    sliderConfig: {
-                        minLabel?: string | undefined;
-                        maxLabel?: string | undefined;
-                    };
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isTemplate?: boolean | undefined;
-                    isPinned?: boolean | undefined;
-                    state?: {
-                        questionId: string;
-                        windows: {
-                            short: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                            medium: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                            long: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                        };
-                        meta: {
-                            lastUpdatedAt: import("../../types").Timestamp;
-                            dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
-                        };
-                    } | undefined;
-                } | {
-                    text: string;
-                    responseType: "text";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isTemplate?: boolean | undefined;
-                    isPinned?: boolean | undefined;
-                };
-                questionId?: string | undefined;
-                response?: {
-                    formattedValue: string;
-                    responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
-                    value?: unknown;
-                    color?: string | undefined;
-                } | undefined;
-            }[];
-        }>;
-    }, "strip", z.ZodTypeAny, {
-        createdAt: import("../../types").Timestamp;
-        updatedAt: import("../../types").Timestamp;
-        type: "questions";
-        userId: string;
-        timestamp: import("../../types").Timestamp;
-        dateString: string;
-        isDisplayable: true;
-        data: {
-            questions: {
-                question: {
-                    isTemplate: boolean;
-                    responseType: "behaviorSelection";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    allowMultiple: boolean;
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    text?: string | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                } | {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "emotion";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    suggestedResponses?: string[] | undefined;
-                } | {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "recap";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                } | {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "shortText";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    suggestedResponses?: string[] | undefined;
-                } | {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "slider1To10";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    sliderConfig: {
-                        minLabel?: string | undefined;
-                        maxLabel?: string | undefined;
-                    };
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                    state?: {
-                        questionId: string;
-                        windows: {
-                            short: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                            medium: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                            long: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                        };
-                        meta: {
-                            lastUpdatedAt: import("../../types").Timestamp;
-                            dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
-                        };
-                    } | undefined;
-                } | {
-                    text: string;
-                    isTemplate: boolean;
-                    responseType: "text";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isPinned?: boolean | undefined;
-                };
-                questionId?: string | undefined;
-                response?: {
-                    formattedValue: string;
-                    responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
-                    value?: unknown;
-                    color?: string | undefined;
-                } | undefined;
-            }[];
-        };
-        id?: string | undefined;
-        text?: string | undefined;
-        tacticId?: string | undefined;
-        behaviorIds?: string[] | undefined;
-        callLogDocPath?: string | undefined;
-        impulseId?: string | undefined;
-        answeredAt?: import("../../types").Timestamp | undefined;
-        commitStrategy?: "live" | "explicit" | undefined;
-    }, {
-        createdAt: import("../../types").Timestamp;
-        updatedAt: import("../../types").Timestamp;
-        type: "questions";
-        userId: string;
-        timestamp: import("../../types").Timestamp;
-        dateString: string;
-        isDisplayable: true;
-        data: {
-            questions: {
-                question: {
-                    responseType: "behaviorSelection";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    text?: string | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isTemplate?: boolean | undefined;
-                    isPinned?: boolean | undefined;
-                    allowMultiple?: boolean | undefined;
-                } | {
-                    text: string;
-                    responseType: "emotion";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isTemplate?: boolean | undefined;
-                    isPinned?: boolean | undefined;
-                    suggestedResponses?: string[] | undefined;
-                } | {
-                    text: string;
-                    responseType: "recap";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isTemplate?: boolean | undefined;
-                    isPinned?: boolean | undefined;
-                } | {
-                    text: string;
-                    responseType: "shortText";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isTemplate?: boolean | undefined;
-                    isPinned?: boolean | undefined;
-                    suggestedResponses?: string[] | undefined;
-                } | {
-                    text: string;
-                    responseType: "slider1To10";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    sliderConfig: {
-                        minLabel?: string | undefined;
-                        maxLabel?: string | undefined;
-                    };
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isTemplate?: boolean | undefined;
-                    isPinned?: boolean | undefined;
-                    state?: {
-                        questionId: string;
-                        windows: {
-                            short: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                            medium: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                            long: {
-                                windowSizeDays: 7 | 30 | 90;
-                                trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                                stability: "HIGH" | "MEDIUM" | "LOW";
-                                sampleCount: number;
-                                averageValue?: number | undefined;
-                            };
-                        };
-                        meta: {
-                            lastUpdatedAt: import("../../types").Timestamp;
-                            dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
-                        };
-                    } | undefined;
-                } | {
-                    text: string;
-                    responseType: "text";
-                    scope: "impulse" | "setback" | "success" | "recap";
-                    id?: string | undefined;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    textAfterResponse?: string | undefined;
-                    metricId?: string | undefined;
-                    lastAskedAt?: import("../../types").Timestamp | undefined;
-                    lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                    numberOfAnswers?: number | undefined;
-                    isTemplate?: boolean | undefined;
-                    isPinned?: boolean | undefined;
-                };
-                questionId?: string | undefined;
-                response?: {
-                    formattedValue: string;
-                    responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
-                    value?: unknown;
-                    color?: string | undefined;
-                } | undefined;
-            }[];
-        };
-        id?: string | undefined;
-        text?: string | undefined;
-        tacticId?: string | undefined;
-        behaviorIds?: string[] | undefined;
-        callLogDocPath?: string | undefined;
-        impulseId?: string | undefined;
-        answeredAt?: import("../../types").Timestamp | undefined;
-        commitStrategy?: "live" | "explicit" | undefined;
-    }>;
     plans: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -11492,10 +10111,10 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    isTemplate?: boolean | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
@@ -11507,10 +10126,10 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    isTemplate?: boolean | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
@@ -11555,10 +10174,10 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    isTemplate?: boolean | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
@@ -11572,10 +10191,10 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    isTemplate?: boolean | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
@@ -11620,10 +10239,10 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    isTemplate?: boolean | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
@@ -11635,10 +10254,10 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    isTemplate?: boolean | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
@@ -11662,10 +10281,10 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    isTemplate?: boolean | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
@@ -11684,10 +10303,10 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    isTemplate?: boolean | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
@@ -11705,10 +10324,10 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    isTemplate?: boolean | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
@@ -11727,10 +10346,10 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    isTemplate?: boolean | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
@@ -11749,10 +10368,10 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    isTemplate?: boolean | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
@@ -11767,10 +10386,10 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    isTemplate?: boolean | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
@@ -11799,10 +10418,10 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    isTemplate?: boolean | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
@@ -11821,10 +10440,10 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    isTemplate?: boolean | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
@@ -11842,10 +10461,10 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    isTemplate?: boolean | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
@@ -11870,10 +10489,10 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    isTemplate?: boolean | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
@@ -11892,10 +10511,10 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    isTemplate?: boolean | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
@@ -11910,10 +10529,10 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    isTemplate?: boolean | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
@@ -11952,10 +10571,10 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    isTemplate?: boolean | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
@@ -11974,10 +10593,10 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    isTemplate?: boolean | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
@@ -11995,10 +10614,10 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    isTemplate?: boolean | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
@@ -12037,10 +10656,10 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    isTemplate?: boolean | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
@@ -12059,10 +10678,10 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    isTemplate?: boolean | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
@@ -12077,10 +10696,10 @@ export declare const logSchemas: {
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
-                    isTemplate?: boolean | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     summary?: string | undefined;
+                    isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
@@ -12668,33 +11287,30 @@ export declare const logSchemas: {
         type: z.ZodLiteral<"shared_moment">;
         isDisplayable: z.ZodLiteral<true>;
         data: z.ZodObject<{
-            threadRef: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
-            threadSummaryData: z.ZodObject<{
+            sessionRef: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
+            sessionSummaryData: z.ZodObject<{
                 type: z.ZodEnum<["impulse", "general", "onboarding", "recap", "behavior", "dayRecap", "timePlan", "locationPlan", "adjustment"]>;
                 tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
                 behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
                 outcomeLogs: z.ZodArray<z.ZodAny, "many">;
-                questionsLogs: z.ZodArray<z.ZodAny, "many">;
                 plansLogs: z.ZodArray<z.ZodAny, "many">;
                 firstMessageLog: z.ZodOptional<z.ZodAny>;
                 firstCallLog: z.ZodOptional<z.ZodAny>;
                 hasContent: z.ZodBoolean;
             }, "strip", z.ZodTypeAny, {
-                type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+                type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
                 tacticsByTitle: Record<string, any[]>;
                 behaviorsByName: Record<string, any[]>;
                 outcomeLogs: any[];
-                questionsLogs: any[];
                 plansLogs: any[];
                 hasContent: boolean;
                 firstMessageLog?: any;
                 firstCallLog?: any;
             }, {
-                type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+                type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
                 tacticsByTitle: Record<string, any[]>;
                 behaviorsByName: Record<string, any[]>;
                 outcomeLogs: any[];
-                questionsLogs: any[];
                 plansLogs: any[];
                 hasContent: boolean;
                 firstMessageLog?: any;
@@ -12709,13 +11325,12 @@ export declare const logSchemas: {
             }>>;
             message: z.ZodOptional<z.ZodString>;
         }, "strip", z.ZodTypeAny, {
-            threadRef: import("../..").DocumentReferenceLike<unknown>;
-            threadSummaryData: {
-                type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            sessionRef: import("../..").DocumentReferenceLike<unknown>;
+            sessionSummaryData: {
+                type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
                 tacticsByTitle: Record<string, any[]>;
                 behaviorsByName: Record<string, any[]>;
                 outcomeLogs: any[];
-                questionsLogs: any[];
                 plansLogs: any[];
                 hasContent: boolean;
                 firstMessageLog?: any;
@@ -12726,13 +11341,12 @@ export declare const logSchemas: {
                 emoji: string;
             } | undefined;
         }, {
-            threadRef: import("../..").DocumentReferenceLike<unknown>;
-            threadSummaryData: {
-                type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            sessionRef: import("../..").DocumentReferenceLike<unknown>;
+            sessionSummaryData: {
+                type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
                 tacticsByTitle: Record<string, any[]>;
                 behaviorsByName: Record<string, any[]>;
                 outcomeLogs: any[];
-                questionsLogs: any[];
                 plansLogs: any[];
                 hasContent: boolean;
                 firstMessageLog?: any;
@@ -12752,13 +11366,12 @@ export declare const logSchemas: {
         dateString: string;
         isDisplayable: true;
         data: {
-            threadRef: import("../..").DocumentReferenceLike<unknown>;
-            threadSummaryData: {
-                type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            sessionRef: import("../..").DocumentReferenceLike<unknown>;
+            sessionSummaryData: {
+                type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
                 tacticsByTitle: Record<string, any[]>;
                 behaviorsByName: Record<string, any[]>;
                 outcomeLogs: any[];
-                questionsLogs: any[];
                 plansLogs: any[];
                 hasContent: boolean;
                 firstMessageLog?: any;
@@ -12783,13 +11396,12 @@ export declare const logSchemas: {
         dateString: string;
         isDisplayable: true;
         data: {
-            threadRef: import("../..").DocumentReferenceLike<unknown>;
-            threadSummaryData: {
-                type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            sessionRef: import("../..").DocumentReferenceLike<unknown>;
+            sessionSummaryData: {
+                type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
                 tacticsByTitle: Record<string, any[]>;
                 behaviorsByName: Record<string, any[]>;
                 outcomeLogs: any[];
-                questionsLogs: any[];
                 plansLogs: any[];
                 hasContent: boolean;
                 firstMessageLog?: any;
@@ -12827,10 +11439,10 @@ export declare const logSchemas: {
                 outcome: z.ZodOptional<z.ZodEnum<["success", "partial", "setback"]>>;
             }, "strip", z.ZodTypeAny, {
                 summary: string;
-                outcome?: "setback" | "success" | "partial" | undefined;
+                outcome?: "success" | "partial" | "setback" | undefined;
             }, {
                 summary: string;
-                outcome?: "setback" | "success" | "partial" | undefined;
+                outcome?: "success" | "partial" | "setback" | undefined;
             }>>;
             colorByUserId: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
             dateString: z.ZodString;
@@ -12841,7 +11453,7 @@ export declare const logSchemas: {
             dateString: string;
             summariesByUserId: Record<string, {
                 summary: string;
-                outcome?: "setback" | "success" | "partial" | undefined;
+                outcome?: "success" | "partial" | "setback" | undefined;
             }>;
             colorByUserId?: Record<string, string> | undefined;
             summarizationCompletedAt?: import("../../types").Timestamp | undefined;
@@ -12851,7 +11463,7 @@ export declare const logSchemas: {
             dateString: string;
             summariesByUserId: Record<string, {
                 summary: string;
-                outcome?: "setback" | "success" | "partial" | undefined;
+                outcome?: "success" | "partial" | "setback" | undefined;
             }>;
             colorByUserId?: Record<string, string> | undefined;
             summarizationCompletedAt?: import("../../types").Timestamp | undefined;
@@ -12870,7 +11482,7 @@ export declare const logSchemas: {
             dateString: string;
             summariesByUserId: Record<string, {
                 summary: string;
-                outcome?: "setback" | "success" | "partial" | undefined;
+                outcome?: "success" | "partial" | "setback" | undefined;
             }>;
             colorByUserId?: Record<string, string> | undefined;
             summarizationCompletedAt?: import("../../types").Timestamp | undefined;
@@ -12895,7 +11507,7 @@ export declare const logSchemas: {
             dateString: string;
             summariesByUserId: Record<string, {
                 summary: string;
-                outcome?: "setback" | "success" | "partial" | undefined;
+                outcome?: "success" | "partial" | "setback" | undefined;
             }>;
             colorByUserId?: Record<string, string> | undefined;
             summarizationCompletedAt?: import("../../types").Timestamp | undefined;
@@ -13107,10 +11719,79 @@ export declare const logSchemas: {
         callLogDocPath?: string | undefined;
         impulseId?: string | undefined;
     }>;
+    metric: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        callLogDocPath: z.ZodOptional<z.ZodString>;
+        impulseId: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"metric">;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            metricId: z.ZodString;
+            metricName: z.ZodString;
+            value: z.ZodNumber;
+            text: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            value: number;
+            metricId: string;
+            metricName: string;
+            text?: string | undefined;
+        }, {
+            value: number;
+            metricId: string;
+            metricName: string;
+            text?: string | undefined;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "metric";
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        isDisplayable: true;
+        data: {
+            value: number;
+            metricId: string;
+            metricName: string;
+            text?: string | undefined;
+        };
+        id?: string | undefined;
+        tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        callLogDocPath?: string | undefined;
+        impulseId?: string | undefined;
+    }, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "metric";
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        isDisplayable: true;
+        data: {
+            value: number;
+            metricId: string;
+            metricName: string;
+            text?: string | undefined;
+        };
+        id?: string | undefined;
+        tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        callLogDocPath?: string | undefined;
+        impulseId?: string | undefined;
+    }>;
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | BehaviorLog | BreathingLog | QuestionsLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ProposedExperimentLog | ImpulseStartedLog;
+export type Log = TacticLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ProposedExperimentLog | ImpulseStartedLog | MetricLog;
 export * from "./behaviorLog";
 export * from "./breathingLog";
 export * from "./callLog";
@@ -13119,7 +11800,6 @@ export * from "./linkLog";
 export * from "./messageLog";
 export * from "./notifySupportGroupLog";
 export * from "./plansLog";
-export * from "./questionsLog";
 export * from "./sharedMomentLog";
 export * from "./showTourLog";
 export * from "./summaryLog";
@@ -13130,6 +11810,7 @@ export * from "./videoLog";
 export * from "./widgetSetupLog";
 export * from "./proposedExperimentLog";
 export * from "./impulseStartedLog";
+export * from "./metricLog";
 export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -14008,7 +12689,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -14029,13 +12709,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             }, {
                 text: string;
                 mode: "question-text";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -14056,6 +12736,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             }>, z.ZodObject<{
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -14156,11 +12837,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }>;
             }, "strip", z.ZodTypeAny, {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -14186,11 +12867,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             }, {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -15034,11 +13715,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -15068,7 +13749,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -15089,6 +13769,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -15305,11 +13986,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -15339,7 +14020,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -15360,6 +14040,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -15586,11 +14267,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -15620,7 +14301,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -15641,6 +14321,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -15865,11 +14546,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -15899,7 +14580,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -15920,6 +14600,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -16153,11 +14834,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -16187,7 +14868,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -16208,6 +14888,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -16446,11 +15127,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -16480,7 +15161,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -16501,6 +15181,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -17263,7 +15944,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -17284,13 +15964,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             }, {
                 text: string;
                 mode: "question-text";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -17311,6 +15991,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             }>, z.ZodObject<{
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -17411,11 +16092,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }>;
             }, "strip", z.ZodTypeAny, {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -17441,11 +16122,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             }, {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -18289,11 +16970,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -18323,7 +17004,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -18344,6 +17024,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -18560,11 +17241,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -18594,7 +17275,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -18615,6 +17295,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -18854,11 +17535,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -18888,7 +17569,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -18909,6 +17589,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -18955,14 +17636,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         };
         completed?: boolean | undefined;
         planId?: string | undefined;
+        planLogId?: string | undefined;
+        stepCount?: number | undefined;
+        completedStepIndexes?: number[] | undefined;
         response?: {
             value: string | number;
             formattedValue: string;
             responseType: "text" | "slider1To10";
         } | undefined;
-        planLogId?: string | undefined;
-        stepCount?: number | undefined;
-        completedStepIndexes?: number[] | undefined;
         conversationSummary?: string | undefined;
         startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
         finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
@@ -19140,11 +17821,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -19174,7 +17855,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -19195,6 +17875,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -19241,14 +17922,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         };
         completed?: boolean | undefined;
         planId?: string | undefined;
+        planLogId?: string | undefined;
+        stepCount?: number | undefined;
+        completedStepIndexes?: number[] | undefined;
         response?: {
             value: string | number;
             formattedValue: string;
             responseType: "text" | "slider1To10";
         } | undefined;
-        planLogId?: string | undefined;
-        stepCount?: number | undefined;
-        completedStepIndexes?: number[] | undefined;
         conversationSummary?: string | undefined;
         startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
         finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
@@ -19435,11 +18116,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -19469,7 +18150,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -19490,6 +18170,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -19536,14 +18217,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         };
         completed?: boolean | undefined;
         planId?: string | undefined;
+        planLogId?: string | undefined;
+        stepCount?: number | undefined;
+        completedStepIndexes?: number[] | undefined;
         response?: {
             value: string | number;
             formattedValue: string;
             responseType: "text" | "slider1To10";
         } | undefined;
-        planLogId?: string | undefined;
-        stepCount?: number | undefined;
-        completedStepIndexes?: number[] | undefined;
         conversationSummary?: string | undefined;
         startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
         finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
@@ -19735,11 +18416,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "question-slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
                     maxLabel?: string | undefined;
                 };
-                mode: "question-slider1To10";
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -19769,7 +18450,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                suggestedResponses?: string[] | undefined;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -19790,6 +18470,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+                suggestedResponses?: string[] | undefined;
             })[];
             id?: string | undefined;
             title?: string | undefined;
@@ -19836,14 +18517,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         };
         completed?: boolean | undefined;
         planId?: string | undefined;
+        planLogId?: string | undefined;
+        stepCount?: number | undefined;
+        completedStepIndexes?: number[] | undefined;
         response?: {
             value: string | number;
             formattedValue: string;
             responseType: "text" | "slider1To10";
         } | undefined;
-        planLogId?: string | undefined;
-        stepCount?: number | undefined;
-        completedStepIndexes?: number[] | undefined;
         conversationSummary?: string | undefined;
         startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
         finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
@@ -20043,1386 +18724,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     callLogDocPath: z.ZodOptional<z.ZodString>;
     impulseId: z.ZodOptional<z.ZodString>;
 } & {
-    type: z.ZodLiteral<"questions">;
-    isDisplayable: z.ZodLiteral<true>;
-    text: z.ZodOptional<z.ZodString>;
-    answeredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-    commitStrategy: z.ZodOptional<z.ZodEnum<["live", "explicit"]>>;
-    data: z.ZodObject<{
-        questions: z.ZodArray<z.ZodObject<{
-            questionId: z.ZodOptional<z.ZodString>;
-            question: z.ZodDiscriminatedUnion<"responseType", [z.ZodObject<{
-                id: z.ZodOptional<z.ZodString>;
-                createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                textAfterResponse: z.ZodOptional<z.ZodString>;
-                metricId: z.ZodOptional<z.ZodString>;
-                lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                numberOfAnswers: z.ZodOptional<z.ZodNumber>;
-                isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-                isPinned: z.ZodOptional<z.ZodBoolean>;
-                responseType: z.ZodLiteral<"text">;
-                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
-            } & {
-                text: z.ZodString;
-            }, "strip", z.ZodTypeAny, {
-                text: string;
-                isTemplate: boolean;
-                responseType: "text";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isPinned?: boolean | undefined;
-            }, {
-                text: string;
-                responseType: "text";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isTemplate?: boolean | undefined;
-                isPinned?: boolean | undefined;
-            }>, z.ZodObject<{
-                id: z.ZodOptional<z.ZodString>;
-                createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                textAfterResponse: z.ZodOptional<z.ZodString>;
-                metricId: z.ZodOptional<z.ZodString>;
-                lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                numberOfAnswers: z.ZodOptional<z.ZodNumber>;
-                isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-                isPinned: z.ZodOptional<z.ZodBoolean>;
-                responseType: z.ZodLiteral<"emotion">;
-                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
-            } & {
-                suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-                text: z.ZodString;
-            }, "strip", z.ZodTypeAny, {
-                text: string;
-                isTemplate: boolean;
-                responseType: "emotion";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isPinned?: boolean | undefined;
-                suggestedResponses?: string[] | undefined;
-            }, {
-                text: string;
-                responseType: "emotion";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isTemplate?: boolean | undefined;
-                isPinned?: boolean | undefined;
-                suggestedResponses?: string[] | undefined;
-            }>, z.ZodObject<{
-                id: z.ZodOptional<z.ZodString>;
-                createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                textAfterResponse: z.ZodOptional<z.ZodString>;
-                metricId: z.ZodOptional<z.ZodString>;
-                lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                numberOfAnswers: z.ZodOptional<z.ZodNumber>;
-                isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-                isPinned: z.ZodOptional<z.ZodBoolean>;
-                responseType: z.ZodLiteral<"shortText">;
-                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
-            } & {
-                suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-                text: z.ZodString;
-            }, "strip", z.ZodTypeAny, {
-                text: string;
-                isTemplate: boolean;
-                responseType: "shortText";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isPinned?: boolean | undefined;
-                suggestedResponses?: string[] | undefined;
-            }, {
-                text: string;
-                responseType: "shortText";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isTemplate?: boolean | undefined;
-                isPinned?: boolean | undefined;
-                suggestedResponses?: string[] | undefined;
-            }>, z.ZodObject<{
-                id: z.ZodOptional<z.ZodString>;
-                createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                textAfterResponse: z.ZodOptional<z.ZodString>;
-                metricId: z.ZodOptional<z.ZodString>;
-                lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                numberOfAnswers: z.ZodOptional<z.ZodNumber>;
-                isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-                isPinned: z.ZodOptional<z.ZodBoolean>;
-                responseType: z.ZodLiteral<"slider1To10">;
-                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
-            } & {
-                sliderConfig: z.ZodObject<{
-                    minLabel: z.ZodOptional<z.ZodString>;
-                    maxLabel: z.ZodOptional<z.ZodString>;
-                }, "strip", z.ZodTypeAny, {
-                    minLabel?: string | undefined;
-                    maxLabel?: string | undefined;
-                }, {
-                    minLabel?: string | undefined;
-                    maxLabel?: string | undefined;
-                }>;
-                text: z.ZodString;
-                state: z.ZodOptional<z.ZodObject<{
-                    questionId: z.ZodString;
-                    windows: z.ZodObject<{
-                        short: z.ZodObject<{
-                            windowSizeDays: z.ZodUnion<[z.ZodLiteral<7>, z.ZodLiteral<30>, z.ZodLiteral<90>]>;
-                            averageValue: z.ZodOptional<z.ZodNumber>;
-                            trend: z.ZodEnum<["IMPROVING", "DECLINING", "STABLE", "VOLATILE", "INSUFFICIENT_DATA"]>;
-                            stability: z.ZodEnum<["HIGH", "MEDIUM", "LOW"]>;
-                            sampleCount: z.ZodNumber;
-                        }, "strip", z.ZodTypeAny, {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        }, {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        }>;
-                        medium: z.ZodObject<{
-                            windowSizeDays: z.ZodUnion<[z.ZodLiteral<7>, z.ZodLiteral<30>, z.ZodLiteral<90>]>;
-                            averageValue: z.ZodOptional<z.ZodNumber>;
-                            trend: z.ZodEnum<["IMPROVING", "DECLINING", "STABLE", "VOLATILE", "INSUFFICIENT_DATA"]>;
-                            stability: z.ZodEnum<["HIGH", "MEDIUM", "LOW"]>;
-                            sampleCount: z.ZodNumber;
-                        }, "strip", z.ZodTypeAny, {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        }, {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        }>;
-                        long: z.ZodObject<{
-                            windowSizeDays: z.ZodUnion<[z.ZodLiteral<7>, z.ZodLiteral<30>, z.ZodLiteral<90>]>;
-                            averageValue: z.ZodOptional<z.ZodNumber>;
-                            trend: z.ZodEnum<["IMPROVING", "DECLINING", "STABLE", "VOLATILE", "INSUFFICIENT_DATA"]>;
-                            stability: z.ZodEnum<["HIGH", "MEDIUM", "LOW"]>;
-                            sampleCount: z.ZodNumber;
-                        }, "strip", z.ZodTypeAny, {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        }, {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        }>;
-                    }, "strip", z.ZodTypeAny, {
-                        short: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                        medium: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                        long: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                    }, {
-                        short: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                        medium: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                        long: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                    }>;
-                    meta: z.ZodObject<{
-                        lastUpdatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-                        dataCompleteness: z.ZodEnum<["HIGH", "MEDIUM", "LOW"]>;
-                    }, "strip", z.ZodTypeAny, {
-                        lastUpdatedAt: import("../../types").Timestamp;
-                        dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
-                    }, {
-                        lastUpdatedAt: import("../../types").Timestamp;
-                        dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
-                    }>;
-                }, "strip", z.ZodTypeAny, {
-                    questionId: string;
-                    windows: {
-                        short: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                        medium: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                        long: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                    };
-                    meta: {
-                        lastUpdatedAt: import("../../types").Timestamp;
-                        dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
-                    };
-                }, {
-                    questionId: string;
-                    windows: {
-                        short: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                        medium: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                        long: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                    };
-                    meta: {
-                        lastUpdatedAt: import("../../types").Timestamp;
-                        dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
-                    };
-                }>>;
-            }, "strip", z.ZodTypeAny, {
-                text: string;
-                isTemplate: boolean;
-                responseType: "slider1To10";
-                scope: "impulse" | "setback" | "success" | "recap";
-                sliderConfig: {
-                    minLabel?: string | undefined;
-                    maxLabel?: string | undefined;
-                };
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isPinned?: boolean | undefined;
-                state?: {
-                    questionId: string;
-                    windows: {
-                        short: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                        medium: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                        long: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                    };
-                    meta: {
-                        lastUpdatedAt: import("../../types").Timestamp;
-                        dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
-                    };
-                } | undefined;
-            }, {
-                text: string;
-                responseType: "slider1To10";
-                scope: "impulse" | "setback" | "success" | "recap";
-                sliderConfig: {
-                    minLabel?: string | undefined;
-                    maxLabel?: string | undefined;
-                };
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isTemplate?: boolean | undefined;
-                isPinned?: boolean | undefined;
-                state?: {
-                    questionId: string;
-                    windows: {
-                        short: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                        medium: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                        long: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                    };
-                    meta: {
-                        lastUpdatedAt: import("../../types").Timestamp;
-                        dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
-                    };
-                } | undefined;
-            }>, z.ZodObject<{
-                id: z.ZodOptional<z.ZodString>;
-                createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                text: z.ZodOptional<z.ZodString>;
-                textAfterResponse: z.ZodOptional<z.ZodString>;
-                metricId: z.ZodOptional<z.ZodString>;
-                lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                numberOfAnswers: z.ZodOptional<z.ZodNumber>;
-                isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-                isPinned: z.ZodOptional<z.ZodBoolean>;
-                responseType: z.ZodLiteral<"behaviorSelection">;
-                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
-            } & {
-                allowMultiple: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-            }, "strip", z.ZodTypeAny, {
-                isTemplate: boolean;
-                responseType: "behaviorSelection";
-                scope: "impulse" | "setback" | "success" | "recap";
-                allowMultiple: boolean;
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                text?: string | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isPinned?: boolean | undefined;
-            }, {
-                responseType: "behaviorSelection";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                text?: string | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isTemplate?: boolean | undefined;
-                isPinned?: boolean | undefined;
-                allowMultiple?: boolean | undefined;
-            }>, z.ZodObject<{
-                id: z.ZodOptional<z.ZodString>;
-                createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                textAfterResponse: z.ZodOptional<z.ZodString>;
-                metricId: z.ZodOptional<z.ZodString>;
-                lastAskedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                lastAnsweredAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                numberOfAnswers: z.ZodOptional<z.ZodNumber>;
-                isTemplate: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-                isPinned: z.ZodOptional<z.ZodBoolean>;
-                responseType: z.ZodLiteral<"recap">;
-                scope: z.ZodEnum<["impulse" | "setback" | "success" | "recap", ...("impulse" | "setback" | "success" | "recap")[]]>;
-            } & {
-                text: z.ZodString;
-            }, "strip", z.ZodTypeAny, {
-                text: string;
-                isTemplate: boolean;
-                responseType: "recap";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isPinned?: boolean | undefined;
-            }, {
-                text: string;
-                responseType: "recap";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isTemplate?: boolean | undefined;
-                isPinned?: boolean | undefined;
-            }>]>;
-            response: z.ZodOptional<z.ZodObject<{
-                responseType: z.ZodEnum<["text", "shortText", "emotion", "slider1To10", "behaviorSelection", "recap"]>;
-                value: z.ZodUnion<[z.ZodUnknown, z.ZodArray<z.ZodUnknown, "many">]>;
-                formattedValue: z.ZodString;
-                color: z.ZodOptional<z.ZodString>;
-            }, "strip", z.ZodTypeAny, {
-                formattedValue: string;
-                responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
-                value?: unknown;
-                color?: string | undefined;
-            }, {
-                formattedValue: string;
-                responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
-                value?: unknown;
-                color?: string | undefined;
-            }>>;
-        }, "strip", z.ZodTypeAny, {
-            question: {
-                isTemplate: boolean;
-                responseType: "behaviorSelection";
-                scope: "impulse" | "setback" | "success" | "recap";
-                allowMultiple: boolean;
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                text?: string | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isPinned?: boolean | undefined;
-            } | {
-                text: string;
-                isTemplate: boolean;
-                responseType: "emotion";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isPinned?: boolean | undefined;
-                suggestedResponses?: string[] | undefined;
-            } | {
-                text: string;
-                isTemplate: boolean;
-                responseType: "recap";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isPinned?: boolean | undefined;
-            } | {
-                text: string;
-                isTemplate: boolean;
-                responseType: "shortText";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isPinned?: boolean | undefined;
-                suggestedResponses?: string[] | undefined;
-            } | {
-                text: string;
-                isTemplate: boolean;
-                responseType: "slider1To10";
-                scope: "impulse" | "setback" | "success" | "recap";
-                sliderConfig: {
-                    minLabel?: string | undefined;
-                    maxLabel?: string | undefined;
-                };
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isPinned?: boolean | undefined;
-                state?: {
-                    questionId: string;
-                    windows: {
-                        short: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                        medium: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                        long: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                    };
-                    meta: {
-                        lastUpdatedAt: import("../../types").Timestamp;
-                        dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
-                    };
-                } | undefined;
-            } | {
-                text: string;
-                isTemplate: boolean;
-                responseType: "text";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isPinned?: boolean | undefined;
-            };
-            questionId?: string | undefined;
-            response?: {
-                formattedValue: string;
-                responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
-                value?: unknown;
-                color?: string | undefined;
-            } | undefined;
-        }, {
-            question: {
-                responseType: "behaviorSelection";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                text?: string | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isTemplate?: boolean | undefined;
-                isPinned?: boolean | undefined;
-                allowMultiple?: boolean | undefined;
-            } | {
-                text: string;
-                responseType: "emotion";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isTemplate?: boolean | undefined;
-                isPinned?: boolean | undefined;
-                suggestedResponses?: string[] | undefined;
-            } | {
-                text: string;
-                responseType: "recap";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isTemplate?: boolean | undefined;
-                isPinned?: boolean | undefined;
-            } | {
-                text: string;
-                responseType: "shortText";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isTemplate?: boolean | undefined;
-                isPinned?: boolean | undefined;
-                suggestedResponses?: string[] | undefined;
-            } | {
-                text: string;
-                responseType: "slider1To10";
-                scope: "impulse" | "setback" | "success" | "recap";
-                sliderConfig: {
-                    minLabel?: string | undefined;
-                    maxLabel?: string | undefined;
-                };
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isTemplate?: boolean | undefined;
-                isPinned?: boolean | undefined;
-                state?: {
-                    questionId: string;
-                    windows: {
-                        short: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                        medium: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                        long: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                    };
-                    meta: {
-                        lastUpdatedAt: import("../../types").Timestamp;
-                        dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
-                    };
-                } | undefined;
-            } | {
-                text: string;
-                responseType: "text";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isTemplate?: boolean | undefined;
-                isPinned?: boolean | undefined;
-            };
-            questionId?: string | undefined;
-            response?: {
-                formattedValue: string;
-                responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
-                value?: unknown;
-                color?: string | undefined;
-            } | undefined;
-        }>, "many">;
-    }, "strip", z.ZodTypeAny, {
-        questions: {
-            question: {
-                isTemplate: boolean;
-                responseType: "behaviorSelection";
-                scope: "impulse" | "setback" | "success" | "recap";
-                allowMultiple: boolean;
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                text?: string | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isPinned?: boolean | undefined;
-            } | {
-                text: string;
-                isTemplate: boolean;
-                responseType: "emotion";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isPinned?: boolean | undefined;
-                suggestedResponses?: string[] | undefined;
-            } | {
-                text: string;
-                isTemplate: boolean;
-                responseType: "recap";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isPinned?: boolean | undefined;
-            } | {
-                text: string;
-                isTemplate: boolean;
-                responseType: "shortText";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isPinned?: boolean | undefined;
-                suggestedResponses?: string[] | undefined;
-            } | {
-                text: string;
-                isTemplate: boolean;
-                responseType: "slider1To10";
-                scope: "impulse" | "setback" | "success" | "recap";
-                sliderConfig: {
-                    minLabel?: string | undefined;
-                    maxLabel?: string | undefined;
-                };
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isPinned?: boolean | undefined;
-                state?: {
-                    questionId: string;
-                    windows: {
-                        short: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                        medium: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                        long: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                    };
-                    meta: {
-                        lastUpdatedAt: import("../../types").Timestamp;
-                        dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
-                    };
-                } | undefined;
-            } | {
-                text: string;
-                isTemplate: boolean;
-                responseType: "text";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isPinned?: boolean | undefined;
-            };
-            questionId?: string | undefined;
-            response?: {
-                formattedValue: string;
-                responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
-                value?: unknown;
-                color?: string | undefined;
-            } | undefined;
-        }[];
-    }, {
-        questions: {
-            question: {
-                responseType: "behaviorSelection";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                text?: string | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isTemplate?: boolean | undefined;
-                isPinned?: boolean | undefined;
-                allowMultiple?: boolean | undefined;
-            } | {
-                text: string;
-                responseType: "emotion";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isTemplate?: boolean | undefined;
-                isPinned?: boolean | undefined;
-                suggestedResponses?: string[] | undefined;
-            } | {
-                text: string;
-                responseType: "recap";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isTemplate?: boolean | undefined;
-                isPinned?: boolean | undefined;
-            } | {
-                text: string;
-                responseType: "shortText";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isTemplate?: boolean | undefined;
-                isPinned?: boolean | undefined;
-                suggestedResponses?: string[] | undefined;
-            } | {
-                text: string;
-                responseType: "slider1To10";
-                scope: "impulse" | "setback" | "success" | "recap";
-                sliderConfig: {
-                    minLabel?: string | undefined;
-                    maxLabel?: string | undefined;
-                };
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isTemplate?: boolean | undefined;
-                isPinned?: boolean | undefined;
-                state?: {
-                    questionId: string;
-                    windows: {
-                        short: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                        medium: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                        long: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                    };
-                    meta: {
-                        lastUpdatedAt: import("../../types").Timestamp;
-                        dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
-                    };
-                } | undefined;
-            } | {
-                text: string;
-                responseType: "text";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isTemplate?: boolean | undefined;
-                isPinned?: boolean | undefined;
-            };
-            questionId?: string | undefined;
-            response?: {
-                formattedValue: string;
-                responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
-                value?: unknown;
-                color?: string | undefined;
-            } | undefined;
-        }[];
-    }>;
-}, "strip", z.ZodTypeAny, {
-    createdAt: import("../../types").Timestamp;
-    updatedAt: import("../../types").Timestamp;
-    type: "questions";
-    userId: string;
-    timestamp: import("../../types").Timestamp;
-    dateString: string;
-    isDisplayable: true;
-    data: {
-        questions: {
-            question: {
-                isTemplate: boolean;
-                responseType: "behaviorSelection";
-                scope: "impulse" | "setback" | "success" | "recap";
-                allowMultiple: boolean;
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                text?: string | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isPinned?: boolean | undefined;
-            } | {
-                text: string;
-                isTemplate: boolean;
-                responseType: "emotion";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isPinned?: boolean | undefined;
-                suggestedResponses?: string[] | undefined;
-            } | {
-                text: string;
-                isTemplate: boolean;
-                responseType: "recap";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isPinned?: boolean | undefined;
-            } | {
-                text: string;
-                isTemplate: boolean;
-                responseType: "shortText";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isPinned?: boolean | undefined;
-                suggestedResponses?: string[] | undefined;
-            } | {
-                text: string;
-                isTemplate: boolean;
-                responseType: "slider1To10";
-                scope: "impulse" | "setback" | "success" | "recap";
-                sliderConfig: {
-                    minLabel?: string | undefined;
-                    maxLabel?: string | undefined;
-                };
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isPinned?: boolean | undefined;
-                state?: {
-                    questionId: string;
-                    windows: {
-                        short: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                        medium: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                        long: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                    };
-                    meta: {
-                        lastUpdatedAt: import("../../types").Timestamp;
-                        dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
-                    };
-                } | undefined;
-            } | {
-                text: string;
-                isTemplate: boolean;
-                responseType: "text";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isPinned?: boolean | undefined;
-            };
-            questionId?: string | undefined;
-            response?: {
-                formattedValue: string;
-                responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
-                value?: unknown;
-                color?: string | undefined;
-            } | undefined;
-        }[];
-    };
-    id?: string | undefined;
-    text?: string | undefined;
-    tacticId?: string | undefined;
-    behaviorIds?: string[] | undefined;
-    callLogDocPath?: string | undefined;
-    impulseId?: string | undefined;
-    answeredAt?: import("../../types").Timestamp | undefined;
-    commitStrategy?: "live" | "explicit" | undefined;
-}, {
-    createdAt: import("../../types").Timestamp;
-    updatedAt: import("../../types").Timestamp;
-    type: "questions";
-    userId: string;
-    timestamp: import("../../types").Timestamp;
-    dateString: string;
-    isDisplayable: true;
-    data: {
-        questions: {
-            question: {
-                responseType: "behaviorSelection";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                text?: string | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isTemplate?: boolean | undefined;
-                isPinned?: boolean | undefined;
-                allowMultiple?: boolean | undefined;
-            } | {
-                text: string;
-                responseType: "emotion";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isTemplate?: boolean | undefined;
-                isPinned?: boolean | undefined;
-                suggestedResponses?: string[] | undefined;
-            } | {
-                text: string;
-                responseType: "recap";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isTemplate?: boolean | undefined;
-                isPinned?: boolean | undefined;
-            } | {
-                text: string;
-                responseType: "shortText";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isTemplate?: boolean | undefined;
-                isPinned?: boolean | undefined;
-                suggestedResponses?: string[] | undefined;
-            } | {
-                text: string;
-                responseType: "slider1To10";
-                scope: "impulse" | "setback" | "success" | "recap";
-                sliderConfig: {
-                    minLabel?: string | undefined;
-                    maxLabel?: string | undefined;
-                };
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isTemplate?: boolean | undefined;
-                isPinned?: boolean | undefined;
-                state?: {
-                    questionId: string;
-                    windows: {
-                        short: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                        medium: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                        long: {
-                            windowSizeDays: 7 | 30 | 90;
-                            trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                            stability: "HIGH" | "MEDIUM" | "LOW";
-                            sampleCount: number;
-                            averageValue?: number | undefined;
-                        };
-                    };
-                    meta: {
-                        lastUpdatedAt: import("../../types").Timestamp;
-                        dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
-                    };
-                } | undefined;
-            } | {
-                text: string;
-                responseType: "text";
-                scope: "impulse" | "setback" | "success" | "recap";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                textAfterResponse?: string | undefined;
-                metricId?: string | undefined;
-                lastAskedAt?: import("../../types").Timestamp | undefined;
-                lastAnsweredAt?: import("../../types").Timestamp | undefined;
-                numberOfAnswers?: number | undefined;
-                isTemplate?: boolean | undefined;
-                isPinned?: boolean | undefined;
-            };
-            questionId?: string | undefined;
-            response?: {
-                formattedValue: string;
-                responseType: "text" | "recap" | "behaviorSelection" | "emotion" | "shortText" | "slider1To10";
-                value?: unknown;
-                color?: string | undefined;
-            } | undefined;
-        }[];
-    };
-    id?: string | undefined;
-    text?: string | undefined;
-    tacticId?: string | undefined;
-    behaviorIds?: string[] | undefined;
-    callLogDocPath?: string | undefined;
-    impulseId?: string | undefined;
-    answeredAt?: import("../../types").Timestamp | undefined;
-    commitStrategy?: "live" | "explicit" | undefined;
-}>, z.ZodObject<{
-    id: z.ZodOptional<z.ZodString>;
-    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-    userId: z.ZodString;
-    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-    dateString: z.ZodString;
-    tacticId: z.ZodOptional<z.ZodString>;
-    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-    callLogDocPath: z.ZodOptional<z.ZodString>;
-    impulseId: z.ZodOptional<z.ZodString>;
-} & {
     type: z.ZodLiteral<"plans">;
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
@@ -21464,10 +18765,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                isTemplate?: boolean | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
+                isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
@@ -21479,10 +18780,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                isTemplate?: boolean | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
+                isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
@@ -21527,10 +18828,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                isTemplate?: boolean | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
+                isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
@@ -21544,10 +18845,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                isTemplate?: boolean | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
+                isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
@@ -21592,10 +18893,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                isTemplate?: boolean | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
+                isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
@@ -21607,10 +18908,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                isTemplate?: boolean | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
+                isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
@@ -21634,10 +18935,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                isTemplate?: boolean | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
+                isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
@@ -21656,10 +18957,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                isTemplate?: boolean | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
+                isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
@@ -21677,10 +18978,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                isTemplate?: boolean | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
+                isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
@@ -21699,10 +19000,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                isTemplate?: boolean | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
+                isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
@@ -21721,10 +19022,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                isTemplate?: boolean | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
+                isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
@@ -21739,10 +19040,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                isTemplate?: boolean | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
+                isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
@@ -21771,10 +19072,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                isTemplate?: boolean | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
+                isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
@@ -21793,10 +19094,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                isTemplate?: boolean | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
+                isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
@@ -21814,10 +19115,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                isTemplate?: boolean | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
+                isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
@@ -21842,10 +19143,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                isTemplate?: boolean | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
+                isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
@@ -21864,10 +19165,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                isTemplate?: boolean | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
+                isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
@@ -21882,10 +19183,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                isTemplate?: boolean | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
+                isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
@@ -21924,10 +19225,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                isTemplate?: boolean | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
+                isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
@@ -21946,10 +19247,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                isTemplate?: boolean | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
+                isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
@@ -21967,10 +19268,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                isTemplate?: boolean | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
+                isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
@@ -22009,10 +19310,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                isTemplate?: boolean | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
+                isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
@@ -22031,10 +19332,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                isTemplate?: boolean | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
+                isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
@@ -22049,10 +19350,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
-                isTemplate?: boolean | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 summary?: string | undefined;
+                isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
@@ -22574,33 +19875,30 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     type: z.ZodLiteral<"shared_moment">;
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
-        threadRef: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
-        threadSummaryData: z.ZodObject<{
+        sessionRef: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
+        sessionSummaryData: z.ZodObject<{
             type: z.ZodEnum<["impulse", "general", "onboarding", "recap", "behavior", "dayRecap", "timePlan", "locationPlan", "adjustment"]>;
             tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             outcomeLogs: z.ZodArray<z.ZodAny, "many">;
-            questionsLogs: z.ZodArray<z.ZodAny, "many">;
             plansLogs: z.ZodArray<z.ZodAny, "many">;
             firstMessageLog: z.ZodOptional<z.ZodAny>;
             firstCallLog: z.ZodOptional<z.ZodAny>;
             hasContent: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -22615,13 +19913,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }>>;
         message: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
-        threadRef: import("../..").DocumentReferenceLike<unknown>;
-        threadSummaryData: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        sessionRef: import("../..").DocumentReferenceLike<unknown>;
+        sessionSummaryData: {
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -22632,13 +19929,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             emoji: string;
         } | undefined;
     }, {
-        threadRef: import("../..").DocumentReferenceLike<unknown>;
-        threadSummaryData: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        sessionRef: import("../..").DocumentReferenceLike<unknown>;
+        sessionSummaryData: {
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -22658,13 +19954,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dateString: string;
     isDisplayable: true;
     data: {
-        threadRef: import("../..").DocumentReferenceLike<unknown>;
-        threadSummaryData: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        sessionRef: import("../..").DocumentReferenceLike<unknown>;
+        sessionSummaryData: {
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -22689,13 +19984,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dateString: string;
     isDisplayable: true;
     data: {
-        threadRef: import("../..").DocumentReferenceLike<unknown>;
-        threadSummaryData: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        sessionRef: import("../..").DocumentReferenceLike<unknown>;
+        sessionSummaryData: {
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -22791,10 +20085,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             outcome: z.ZodOptional<z.ZodEnum<["success", "partial", "setback"]>>;
         }, "strip", z.ZodTypeAny, {
             summary: string;
-            outcome?: "setback" | "success" | "partial" | undefined;
+            outcome?: "success" | "partial" | "setback" | undefined;
         }, {
             summary: string;
-            outcome?: "setback" | "success" | "partial" | undefined;
+            outcome?: "success" | "partial" | "setback" | undefined;
         }>>;
         colorByUserId: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
         dateString: z.ZodString;
@@ -22805,7 +20099,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         dateString: string;
         summariesByUserId: Record<string, {
             summary: string;
-            outcome?: "setback" | "success" | "partial" | undefined;
+            outcome?: "success" | "partial" | "setback" | undefined;
         }>;
         colorByUserId?: Record<string, string> | undefined;
         summarizationCompletedAt?: import("../../types").Timestamp | undefined;
@@ -22815,7 +20109,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         dateString: string;
         summariesByUserId: Record<string, {
             summary: string;
-            outcome?: "setback" | "success" | "partial" | undefined;
+            outcome?: "success" | "partial" | "setback" | undefined;
         }>;
         colorByUserId?: Record<string, string> | undefined;
         summarizationCompletedAt?: import("../../types").Timestamp | undefined;
@@ -22834,7 +20128,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         dateString: string;
         summariesByUserId: Record<string, {
             summary: string;
-            outcome?: "setback" | "success" | "partial" | undefined;
+            outcome?: "success" | "partial" | "setback" | undefined;
         }>;
         colorByUserId?: Record<string, string> | undefined;
         summarizationCompletedAt?: import("../../types").Timestamp | undefined;
@@ -22859,7 +20153,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         dateString: string;
         summariesByUserId: Record<string, {
             summary: string;
-            outcome?: "setback" | "success" | "partial" | undefined;
+            outcome?: "success" | "partial" | "setback" | undefined;
         }>;
         colorByUserId?: Record<string, string> | undefined;
         summarizationCompletedAt?: import("../../types").Timestamp | undefined;
@@ -23067,6 +20361,74 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
     impulseId?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    callLogDocPath: z.ZodOptional<z.ZodString>;
+    impulseId: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"metric">;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        metricId: z.ZodString;
+        metricName: z.ZodString;
+        value: z.ZodNumber;
+        text: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        value: number;
+        metricId: string;
+        metricName: string;
+        text?: string | undefined;
+    }, {
+        value: number;
+        metricId: string;
+        metricName: string;
+        text?: string | undefined;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "metric";
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        value: number;
+        metricId: string;
+        metricName: string;
+        text?: string | undefined;
+    };
+    id?: string | undefined;
+    tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    callLogDocPath?: string | undefined;
+    impulseId?: string | undefined;
+}, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "metric";
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        value: number;
+        metricId: string;
+        metricName: string;
+        text?: string | undefined;
+    };
+    id?: string | undefined;
+    tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    callLogDocPath?: string | undefined;
+    impulseId?: string | undefined;
 }>]>;
 export declare const logIsAssistantMessageLog: (value: Omit<Log, "id">) => value is AssistantMessageLog;
 export declare const isValidAssistantMessageLog: (value: unknown) => value is AssistantMessageLog;
@@ -23086,8 +20448,6 @@ export declare const logIsToolCallLog: (value: Omit<Log, "id">) => value is Tool
 export declare const isValidToolCallLog: (value: unknown) => value is ToolCallLog;
 export declare const logIsWidgetSetupLog: (value: Omit<Log, "id">) => value is WidgetSetupLog;
 export declare const isValidWidgetSetupLog: (value: unknown) => value is WidgetSetupLog;
-export declare const logIsQuestionsLog: (value: Omit<Log, "id">) => value is QuestionsLog;
-export declare const isValidQuestionsLog: (value: unknown) => value is QuestionsLog;
 export declare const logIsTacticLog: (value: Omit<Log, "id">) => value is TacticLog;
 export declare const isValidTacticLog: (value: unknown) => value is TacticLog;
 export declare const logIsUserMessageLog: (value: Omit<Log, "id">) => value is UserMessageLog;
@@ -23104,5 +20464,7 @@ export declare const logIsSupportGroupDaySummaryLog: (value: Omit<Log, "id">) =>
 export declare const isValidSupportGroupDaySummaryLog: (value: unknown) => value is SupportGroupDaySummaryLog;
 export declare const logIsEnableNotificationsCtaLog: (value: Omit<Log, "id">) => value is EnableNotificationsCtaLog;
 export declare const isValidEnableNotificationsCtaLog: (value: unknown) => value is EnableNotificationsCtaLog;
+export declare const logIsMetricLog: (value: Omit<Log, "id">) => value is MetricLog;
+export declare const isValidMetricLog: (value: unknown) => value is MetricLog;
 export declare const logIsImpulseStartedLog: (value: Omit<Log, "id">) => value is ImpulseStartedLog;
 export declare const isValidImpulseStartedLog: (value: unknown) => value is ImpulseStartedLog;

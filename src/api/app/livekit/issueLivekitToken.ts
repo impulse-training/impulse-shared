@@ -1,8 +1,4 @@
 export type IssueLivekitTokenRequestBody = {
-  // In-app calls with Zara
-  threadDocPath?: string;
-
-  // Sessions app calls with humans
   sessionDocPath?: string;
 };
 

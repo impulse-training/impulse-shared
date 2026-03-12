@@ -6,7 +6,6 @@ import {
   logIsBehaviorLog,
   logIsCallLog,
   logIsPlansLog,
-  logIsQuestionsLog,
   logIsShowTourLog,
   logIsTacticLog,
   logIsToolCallLog,
@@ -77,7 +76,7 @@ function buildBehaviorLogPayload(
 
 export function getGptPayload(
   log: Log,
-  isFinalLogInThread: boolean,
+  isFinalLogInSession: boolean,
 ): ChatCompletionMessageParam[] {
   if (log.type === "proposed_experiment") {
     // createdExperiment is written by the confirmExperimentFromProposal API
@@ -113,7 +112,7 @@ export function getGptPayload(
         ? metricLabels.join(", ")
         : "what you agreed to track";
 
-    if (isFinalLogInThread) {
+    if (isFinalLogInSession) {
       return [
         {
           role: "user",
@@ -154,7 +153,7 @@ export function getGptPayload(
   }
 
   if (logIsPlansLog(log)) {
-    return buildPlansLogPayload(log, isFinalLogInThread);
+    return buildPlansLogPayload(log, isFinalLogInSession);
   }
 
   if (logIsUserMessageLog(log)) {
@@ -223,31 +222,6 @@ export function getGptPayload(
         content: `<SYSTEM>The user has installed the Impulse widget!</SYSTEM>`,
       },
     ];
-  }
-
-  // Handle QuestionsLog (multi-question log for recap and experiments)
-  if (logIsQuestionsLog(log)) {
-    const messages: ChatCompletionMessageParam[] = [];
-
-    // Format all questions and responses together
-    const questionsWithResponses = log.data.questions
-      .map((entry) => {
-        const questionText = entry.question.text;
-        const responseValue = entry.response?.formattedValue ?? "Not answered";
-        return `- ${questionText}: ${responseValue}`;
-      })
-      .join("\n");
-
-    const hasAnyResponse = log.data.questions.some((entry) => entry.response);
-
-    if (hasAnyResponse) {
-      messages.push({
-        role: "user",
-        content: `<s>User answered experiment metric questions:\n${questionsWithResponses}</s>`,
-      });
-    }
-
-    return messages;
   }
 
   // Handle ShowTourLog

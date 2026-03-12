@@ -23,7 +23,7 @@ export const daySummarySchema = z.object({
   id: z.string().optional(),
   // dateString: z.string(),
   userId: z.string(),
-  impulseThreadOutcomesById: objectOf(outcomeEnum),
+  impulseSessionOutcomesById: objectOf(outcomeEnum),
   outcome: outcomeEnum.optional(),
   behaviorDataTotalByBehaviorId: objectOf(behaviorTrackingDataSchema),
   behaviorsById: objectOf(behaviorSchema).optional(),

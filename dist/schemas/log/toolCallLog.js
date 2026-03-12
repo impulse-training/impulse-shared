@@ -5,7 +5,7 @@ const zod_1 = require("zod");
 const base_1 = require("./base");
 /**
  * Tool Call Log Schema
- * Represents a log of a tool call in a conversation thread
+ * Represents a log of a tool call in a conversation session
  * Must include tool calls and tool results
  */
 // Approximate OpenAI ChatCompletionMessage schema used in our tool call logging

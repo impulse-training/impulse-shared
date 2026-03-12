@@ -29,7 +29,6 @@ import {
   notifySupportGroupLogSchema,
 } from "./notifySupportGroupLog";
 import { PlansLog, plansLogSchema } from "./plansLog";
-import { QuestionsLog, questionsLogSchema } from "./questionsLog";
 import { SharedMomentLog, sharedMomentLogSchema } from "./sharedMomentLog";
 import { ShowTourLog, showTourLogSchema } from "./showTourLog";
 import { SummaryLog, summaryLogSchema } from "./summaryLog";
@@ -40,6 +39,7 @@ import {
 import { TacticLog, tacticLogSchema } from "./tacticLog";
 import { ToolCallLog, toolCallLogSchema } from "./toolCallLog";
 import { VideoLog, videoLogSchema } from "./videoLog";
+import { MetricLog, metricLogSchema } from "./metricLog";
 import { WidgetSetupLog, widgetSetupLogSchema } from "./widgetSetupLog";
 
 export const logSchemas = {
@@ -52,7 +52,6 @@ export const logSchemas = {
   tactic_viewed: tacticLogSchema,
   behavior: behaviorLogSchema,
   breathing: breathingLogSchema,
-  questions: questionsLogSchema,
   plans: plansLogSchema,
   summary: summaryLogSchema,
   widget_setup: widgetSetupLogSchema,
@@ -65,6 +64,7 @@ export const logSchemas = {
   enable_notifications_cta: enableNotificationsCtaLogSchema,
   proposed_experiment: proposedExperimentLogSchema,
   impulse_started: impulseStartedLogSchema,
+  metric: metricLogSchema,
 };
 export const logTypes = Object.keys(logSchemas);
 
@@ -75,7 +75,6 @@ export type Log =
   | TacticLog
   | BehaviorLog
   | BreathingLog
-  | QuestionsLog
   | PlansLog
   | ToolCallLog
   | MessageLog
@@ -90,7 +89,8 @@ export type Log =
   | SupportGroupDaySummaryLog
   | EnableNotificationsCtaLog
   | ProposedExperimentLog
-  | ImpulseStartedLog;
+  | ImpulseStartedLog
+  | MetricLog;
 
 export * from "./behaviorLog";
 export * from "./breathingLog";
@@ -100,7 +100,6 @@ export * from "./linkLog";
 export * from "./messageLog";
 export * from "./notifySupportGroupLog";
 export * from "./plansLog";
-export * from "./questionsLog";
 export * from "./sharedMomentLog";
 export * from "./showTourLog";
 export * from "./summaryLog";
@@ -111,6 +110,7 @@ export * from "./videoLog";
 export * from "./widgetSetupLog";
 export * from "./proposedExperimentLog";
 export * from "./impulseStartedLog";
+export * from "./metricLog";
 
 // Discriminated union schema across all log variants
 export const logSchema = z.discriminatedUnion("type", [
@@ -122,7 +122,6 @@ export const logSchema = z.discriminatedUnion("type", [
   tacticLogSchema,
   behaviorLogSchema,
   breathingLogSchema,
-  questionsLogSchema,
   plansLogSchema,
   summaryLogSchema,
   widgetSetupLogSchema,
@@ -135,6 +134,7 @@ export const logSchema = z.discriminatedUnion("type", [
   enableNotificationsCtaLogSchema,
   proposedExperimentLogSchema,
   impulseStartedLogSchema,
+  metricLogSchema,
 ]);
 
 // Export log type guards
@@ -211,13 +211,6 @@ export const isValidWidgetSetupLog = (
   return widgetSetupLogSchema.safeParse(value).success;
 };
 
-export const logIsQuestionsLog = (
-  value: Omit<Log, "id">,
-): value is QuestionsLog => value.type === "questions";
-export const isValidQuestionsLog = (value: unknown): value is QuestionsLog => {
-  return questionsLogSchema.safeParse(value).success;
-};
-
 export const logIsTacticLog = (value: Omit<Log, "id">): value is TacticLog =>
   value.type === "tactic";
 export const isValidTacticLog = (value: unknown): value is TacticLog => {
@@ -277,6 +270,12 @@ export const isValidEnableNotificationsCtaLog = (
   value: unknown,
 ): value is EnableNotificationsCtaLog => {
   return enableNotificationsCtaLogSchema.safeParse(value).success;
+};
+
+export const logIsMetricLog = (value: Omit<Log, "id">): value is MetricLog =>
+  value.type === "metric";
+export const isValidMetricLog = (value: unknown): value is MetricLog => {
+  return metricLogSchema.safeParse(value).success;
 };
 
 export const logIsImpulseStartedLog = (

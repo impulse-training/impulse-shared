@@ -11,7 +11,7 @@ export const notifySupportGroupLogSchema = logBaseSchema.extend({
     message: z.any(),
     // Snapshot of the sender's emoji identity (to avoid extra reads)
     emojiId: emojiIdSchema.optional(),
-    // A snapshot of the support groups this thread was shared with at the time of notification,
+    // A snapshot of the support groups this session was shared with at the time of notification,
     // including member details so clients can display who was notified.
     supportGroupsById: objectOf(
       z.object({
@@ -21,9 +21,9 @@ export const notifySupportGroupLogSchema = logBaseSchema.extend({
           z.object({
             userId: z.string(),
             userProfile: userProfileSchema,
-          })
+          }),
         ),
-      })
+      }),
     ),
   }),
 });

@@ -52,7 +52,9 @@ export const experimentSchema = z.object({
   name: z.string(),
   experimentQuestion: z.string(),
   behaviorId: z.string(),
-  questionIds: z.array(z.string()),
+  /** Metric document ids being tracked during this experiment */
+  metricIds: z.array(z.string()).default([]),
+
   pendingTestDescription: z.string().optional(),
   pendingTransitionDescription: z.string().optional(),
   pendingObservationDescription: z.string().optional(),

@@ -33,17 +33,17 @@ export declare const supportGroupMemberSchema: z.ZodObject<{
         dayOutcomes: z.ZodDefault<z.ZodBoolean>;
         impulseMoments: z.ZodDefault<z.ZodBoolean>;
         summary: z.ZodDefault<z.ZodBoolean>;
-        threads: z.ZodDefault<z.ZodBoolean>;
+        sessions: z.ZodDefault<z.ZodBoolean>;
     }, "strip", z.ZodTypeAny, {
         summary: boolean;
         dayOutcomes: boolean;
         impulseMoments: boolean;
-        threads: boolean;
+        sessions: boolean;
     }, {
         summary?: boolean | undefined;
         dayOutcomes?: boolean | undefined;
         impulseMoments?: boolean | undefined;
-        threads?: boolean | undefined;
+        sessions?: boolean | undefined;
     }>>;
     notificationPreferences: z.ZodOptional<z.ZodObject<{
         messages: z.ZodDefault<z.ZodBoolean>;
@@ -83,7 +83,7 @@ export declare const supportGroupMemberSchema: z.ZodObject<{
         summary: boolean;
         dayOutcomes: boolean;
         impulseMoments: boolean;
-        threads: boolean;
+        sessions: boolean;
     } | undefined;
     notificationPreferences?: {
         plan: boolean;
@@ -107,7 +107,7 @@ export declare const supportGroupMemberSchema: z.ZodObject<{
         summary?: boolean | undefined;
         dayOutcomes?: boolean | undefined;
         impulseMoments?: boolean | undefined;
-        threads?: boolean | undefined;
+        sessions?: boolean | undefined;
     } | undefined;
     notificationPreferences?: {
         plan?: boolean | undefined;
@@ -231,17 +231,17 @@ export declare const supportGroupSchema: z.ZodObject<{
             dayOutcomes: z.ZodDefault<z.ZodBoolean>;
             impulseMoments: z.ZodDefault<z.ZodBoolean>;
             summary: z.ZodDefault<z.ZodBoolean>;
-            threads: z.ZodDefault<z.ZodBoolean>;
+            sessions: z.ZodDefault<z.ZodBoolean>;
         }, "strip", z.ZodTypeAny, {
             summary: boolean;
             dayOutcomes: boolean;
             impulseMoments: boolean;
-            threads: boolean;
+            sessions: boolean;
         }, {
             summary?: boolean | undefined;
             dayOutcomes?: boolean | undefined;
             impulseMoments?: boolean | undefined;
-            threads?: boolean | undefined;
+            sessions?: boolean | undefined;
         }>>;
         notificationPreferences: z.ZodOptional<z.ZodObject<{
             messages: z.ZodDefault<z.ZodBoolean>;
@@ -281,7 +281,7 @@ export declare const supportGroupSchema: z.ZodObject<{
             summary: boolean;
             dayOutcomes: boolean;
             impulseMoments: boolean;
-            threads: boolean;
+            sessions: boolean;
         } | undefined;
         notificationPreferences?: {
             plan: boolean;
@@ -305,7 +305,7 @@ export declare const supportGroupSchema: z.ZodObject<{
             summary?: boolean | undefined;
             dayOutcomes?: boolean | undefined;
             impulseMoments?: boolean | undefined;
-            threads?: boolean | undefined;
+            sessions?: boolean | undefined;
         } | undefined;
         notificationPreferences?: {
             plan?: boolean | undefined;
@@ -580,7 +580,6 @@ export declare const supportGroupSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: "system" | "alignment" | "social" | "coach";
     name: string;
-    isTemplate: boolean;
     membersById: Record<string, {
         userId: string;
         userProfile: {
@@ -598,7 +597,7 @@ export declare const supportGroupSchema: z.ZodObject<{
             summary: boolean;
             dayOutcomes: boolean;
             impulseMoments: boolean;
-            threads: boolean;
+            sessions: boolean;
         } | undefined;
         notificationPreferences?: {
             plan: boolean;
@@ -606,6 +605,7 @@ export declare const supportGroupSchema: z.ZodObject<{
         } | undefined;
         joinedAt?: import("../types").Timestamp | undefined;
     }>;
+    isTemplate: boolean;
     ownerId: string;
     memberIds: string[];
     unreadMessageCountsById: Record<string, number>;
@@ -715,7 +715,7 @@ export declare const supportGroupSchema: z.ZodObject<{
             summary?: boolean | undefined;
             dayOutcomes?: boolean | undefined;
             impulseMoments?: boolean | undefined;
-            threads?: boolean | undefined;
+            sessions?: boolean | undefined;
         } | undefined;
         notificationPreferences?: {
             plan?: boolean | undefined;
@@ -748,8 +748,8 @@ export declare const supportGroupSchema: z.ZodObject<{
         } | undefined;
     } | undefined;
     type?: "system" | "alignment" | "social" | "coach" | undefined;
-    isTemplate?: boolean | undefined;
     description?: string | undefined;
+    isTemplate?: boolean | undefined;
     archivedAt?: import("../types").Timestamp | undefined;
     coverPhoto?: {
         uri: string;

@@ -6,7 +6,7 @@ export const insightSchema = z.object({
   id: z.string().optional(),
   emotion: z.string(),
   associatedBehaviorDocs: documentReferenceSchema.array().optional(),
-  sourceThreadDoc: documentReferenceSchema.optional(),
+  sourceSessionDoc: documentReferenceSchema.optional(),
   sourceLogDoc: documentReferenceSchema.optional(),
   text: z.string(),
   /**

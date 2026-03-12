@@ -13,7 +13,7 @@ exports.notifySupportGroupLogSchema = base_1.logBaseSchema.extend({
         message: zod_1.z.any(),
         // Snapshot of the sender's emoji identity (to avoid extra reads)
         emojiId: emojiId_1.emojiIdSchema.optional(),
-        // A snapshot of the support groups this thread was shared with at the time of notification,
+        // A snapshot of the support groups this session was shared with at the time of notification,
         // including member details so clients can display who was notified.
         supportGroupsById: (0, objectOf_1.objectOf)(zod_1.z.object({
             id: zod_1.z.string(),

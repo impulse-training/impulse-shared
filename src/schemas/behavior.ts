@@ -5,7 +5,6 @@ import { goalSchema } from "./goal";
 import { behaviorTrackingDataSchema } from "./behaviorTrackingData";
 import { behaviorTemplateBase } from "./behaviorTemplate";
 import { behaviorTopicIdSchema } from "./behaviorTopic";
-import { questionSchema } from "./question";
 
 // Re-export for backward compatibility
 export { trackingTypes } from "./behaviorTemplate";
@@ -217,13 +216,6 @@ export const behaviorSchema = behaviorTemplateBase
     // Reference to the behavior topic (e.g., "substances", "digital-screen-use")
     // Used for matching users to support groups with similar focus areas
     behaviorTopicId: behaviorTopicIdSchema.optional(),
-    // Questions to ask during debrief (success/setback)
-    debriefQuestions: z
-      .object({
-        success: z.array(questionSchema),
-        setback: z.array(questionSchema),
-      })
-      .optional(),
     // Computed state for this behavior (windows, trend, etc.)
     state: behaviorStateSchema.optional(),
   })

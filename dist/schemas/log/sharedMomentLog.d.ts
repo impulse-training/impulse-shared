@@ -14,33 +14,30 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
     type: z.ZodLiteral<"shared_moment">;
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
-        threadRef: z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>;
-        threadSummaryData: z.ZodObject<{
+        sessionRef: z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>;
+        sessionSummaryData: z.ZodObject<{
             type: z.ZodEnum<["impulse", "general", "onboarding", "recap", "behavior", "dayRecap", "timePlan", "locationPlan", "adjustment"]>;
             tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             outcomeLogs: z.ZodArray<z.ZodAny, "many">;
-            questionsLogs: z.ZodArray<z.ZodAny, "many">;
             plansLogs: z.ZodArray<z.ZodAny, "many">;
             firstMessageLog: z.ZodOptional<z.ZodAny>;
             firstCallLog: z.ZodOptional<z.ZodAny>;
             hasContent: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -55,13 +52,12 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
         }>>;
         message: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
-        threadRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
-        threadSummaryData: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        sessionRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        sessionSummaryData: {
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -72,13 +68,12 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
             emoji: string;
         } | undefined;
     }, {
-        threadRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
-        threadSummaryData: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        sessionRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        sessionSummaryData: {
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -98,13 +93,12 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
     dateString: string;
     isDisplayable: true;
     data: {
-        threadRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
-        threadSummaryData: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        sessionRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        sessionSummaryData: {
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;
@@ -129,13 +123,12 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
     dateString: string;
     isDisplayable: true;
     data: {
-        threadRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
-        threadSummaryData: {
-            type: "impulse" | "recap" | "behavior" | "general" | "onboarding" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
+        sessionRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        sessionSummaryData: {
+            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
-            questionsLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
             firstMessageLog?: any;

@@ -47,7 +47,7 @@ function buildBehaviorLogPayload(log) {
     }
     return [];
 }
-function getGptPayload(log, isFinalLogInThread) {
+function getGptPayload(log, isFinalLogInSession) {
     var _a;
     if (log.type === "proposed_experiment") {
         // createdExperiment is written by the confirmExperimentFromProposal API
@@ -67,7 +67,7 @@ function getGptPayload(log, isFinalLogInThread) {
         const metricsText = metricLabels && metricLabels.length > 0
             ? metricLabels.join(", ")
             : "what you agreed to track";
-        if (isFinalLogInThread) {
+        if (isFinalLogInSession) {
             return [
                 {
                     role: "user",
@@ -104,7 +104,7 @@ function getGptPayload(log, isFinalLogInThread) {
         ];
     }
     if ((0, log_1.logIsPlansLog)(log)) {
-        return (0, buildPlansLogPayload_1.buildPlansLogPayload)(log, isFinalLogInThread);
+        return (0, buildPlansLogPayload_1.buildPlansLogPayload)(log, isFinalLogInSession);
     }
     if ((0, log_1.logIsUserMessageLog)(log)) {
         return [
@@ -164,27 +164,6 @@ function getGptPayload(log, isFinalLogInThread) {
                 content: `<SYSTEM>The user has installed the Impulse widget!</SYSTEM>`,
             },
         ];
-    }
-    // Handle QuestionsLog (multi-question log for recap and experiments)
-    if ((0, log_1.logIsQuestionsLog)(log)) {
-        const messages = [];
-        // Format all questions and responses together
-        const questionsWithResponses = log.data.questions
-            .map((entry) => {
-            var _a, _b;
-            const questionText = entry.question.text;
-            const responseValue = (_b = (_a = entry.response) === null || _a === void 0 ? void 0 : _a.formattedValue) !== null && _b !== void 0 ? _b : "Not answered";
-            return `- ${questionText}: ${responseValue}`;
-        })
-            .join("\n");
-        const hasAnyResponse = log.data.questions.some((entry) => entry.response);
-        if (hasAnyResponse) {
-            messages.push({
-                role: "user",
-                content: `<s>User answered experiment metric questions:\n${questionsWithResponses}</s>`,
-            });
-        }
-        return messages;
     }
     // Handle ShowTourLog
     if ((0, log_1.logIsShowTourLog)(log)) {

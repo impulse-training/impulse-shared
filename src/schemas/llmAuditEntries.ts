@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { timestampSchema } from "../utils/timestampSchema";
-import { threadSchema } from "./thread";
+import { sessionSchema } from "./session";
 
 export const llmAuditEntrySchema = z.object({
   userId: z.string(),
@@ -9,8 +9,8 @@ export const llmAuditEntrySchema = z.object({
   messages: z.array(z.any()),
   response: z.any(),
   toolDefinitions: z.array(z.any()),
-  // Snapshot of the thread at the time of the audit entry
-  thread: threadSchema.optional(),
+  // Snapshot of the session at the time of the audit entry
+  session: sessionSchema.optional(),
   // Timing instrumentation
   startedAt: timestampSchema.optional(),
   endedAt: timestampSchema.optional(),

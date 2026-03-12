@@ -5,11 +5,11 @@ import { buildBehaviorLogPayload } from "./behavior";
 
 export function getGptPayload(
   log: Log,
-  isFinalLogInThread: boolean,
+  isFinalLogInSession: boolean,
 ): ChatCompletionMessageParam[] {
   switch (log.type) {
     case "plans":
-      return buildPlansLogPayload(log as PlansLog, isFinalLogInThread);
+      return buildPlansLogPayload(log as PlansLog, isFinalLogInSession);
     case "behavior":
       return buildBehaviorLogPayload(log as BehaviorLog);
     default:

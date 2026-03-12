@@ -1,2 +1,2 @@
-export declare const logTypes: readonly ["user", "assistant_message", "tool_call", "tactic", "tactic_uncompleted", "behavior", "question", "debrief_answer", "debrief_outcome", "debrief_summary_request", "debrief_summary", "debrief_summary_edited"];
+export declare const logTypes: readonly ["user", "assistant_message", "tool_call", "tactic", "tactic_uncompleted", "behavior", "debrief_answer", "debrief_outcome", "debrief_summary_request", "debrief_summary", "debrief_summary_edited"];
 export type LogType = (typeof logTypes)[number];

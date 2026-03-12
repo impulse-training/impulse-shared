@@ -13,7 +13,7 @@ export const proposedExperimentLogSchema = logBaseSchema.extend({
   metricLabels: z.array(z.string()).min(1),
   /** Optional experiment question draft, if already known */
   experimentQuestion: z.string().optional(),
-  /** Short text shown above the preview in the thread */
+  /** Short text shown above the preview in the session */
   text: z.string().optional(),
   /** Optional CTA button label for confirming the experiment */
   buttonText: z.string().optional(),

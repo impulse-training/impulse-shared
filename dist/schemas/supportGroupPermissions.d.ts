@@ -3,17 +3,17 @@ export declare const supportGroupPermissionsSchema: z.ZodObject<{
     dayOutcomes: z.ZodDefault<z.ZodBoolean>;
     impulseMoments: z.ZodDefault<z.ZodBoolean>;
     summary: z.ZodDefault<z.ZodBoolean>;
-    threads: z.ZodDefault<z.ZodBoolean>;
+    sessions: z.ZodDefault<z.ZodBoolean>;
 }, "strip", z.ZodTypeAny, {
     summary: boolean;
     dayOutcomes: boolean;
     impulseMoments: boolean;
-    threads: boolean;
+    sessions: boolean;
 }, {
     summary?: boolean | undefined;
     dayOutcomes?: boolean | undefined;
     impulseMoments?: boolean | undefined;
-    threads?: boolean | undefined;
+    sessions?: boolean | undefined;
 }>;
 export type SupportGroupPermissions = z.infer<typeof supportGroupPermissionsSchema>;
 export declare const supportGroupNotificationPreferencesSchema: z.ZodObject<{

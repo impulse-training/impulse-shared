@@ -9,7 +9,6 @@ exports.logTypes = [
     "tactic",
     "tactic_uncompleted",
     "behavior",
-    "question",
     "debrief_answer",
     "debrief_outcome",
     "debrief_summary_request",

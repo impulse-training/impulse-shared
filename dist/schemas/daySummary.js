@@ -23,7 +23,7 @@ exports.daySummarySchema = zod_1.z.object({
     id: zod_1.z.string().optional(),
     // dateString: z.string(),
     userId: zod_1.z.string(),
-    impulseThreadOutcomesById: (0, objectOf_1.objectOf)(outcomeEnum),
+    impulseSessionOutcomesById: (0, objectOf_1.objectOf)(outcomeEnum),
     outcome: outcomeEnum.optional(),
     behaviorDataTotalByBehaviorId: (0, objectOf_1.objectOf)(log_1.behaviorTrackingDataSchema),
     behaviorsById: (0, objectOf_1.objectOf)(behavior_1.behaviorSchema).optional(),

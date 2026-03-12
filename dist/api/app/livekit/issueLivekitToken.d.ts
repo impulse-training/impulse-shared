@@ -1,5 +1,4 @@
 export type IssueLivekitTokenRequestBody = {
-    threadDocPath?: string;
     sessionDocPath?: string;
 };
 export type IssueLivekitTokenResponseBody = {

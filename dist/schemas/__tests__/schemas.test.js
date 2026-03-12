@@ -2,38 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const index_1 = require("../index");
 describe("Schema Validation", () => {
-    describe("Question Schema", () => {
-        it("should validate a text question", () => {
-            const validQuestion = {
-                responseType: "text",
-                text: "How are you feeling?",
-                scope: "impulse",
-            };
-            const result = index_1.questionSchema.safeParse(validQuestion);
-            expect(result.success).toBe(true);
-        });
-        it("should validate a slider1To10 question", () => {
-            const validQuestion = {
-                responseType: "slider1To10",
-                text: "Rate your urge",
-                scope: "impulse",
-                sliderConfig: {
-                    minLabel: "Low",
-                    maxLabel: "High",
-                },
-            };
-            const result = index_1.questionSchema.safeParse(validQuestion);
-            expect(result.success).toBe(true);
-        });
-        it("should reject invalid question type", () => {
-            const invalidQuestion = {
-                responseType: "invalid",
-                text: "Test",
-            };
-            const result = index_1.questionSchema.safeParse(invalidQuestion);
-            expect(result.success).toBe(false);
-        });
-    });
     describe("Behavior Schema", () => {
         it("should validate a counter behavior", () => {
             const validBehavior = {
@@ -67,9 +35,9 @@ describe("Schema Validation", () => {
             expect(result.success).toBe(true);
         });
     });
-    describe("Thread Schema", () => {
-        it("should validate a general thread", () => {
-            const validThread = {
+    describe("Session Schema", () => {
+        it("should validate a general session", () => {
+            const validSession = {
                 type: "general",
                 date: new Date(),
                 userId: "user123",
@@ -79,11 +47,11 @@ describe("Schema Validation", () => {
                 sharedWithSupportGroups: [],
                 emojiId: null,
             };
-            const result = index_1.threadSchema.safeParse(validThread);
+            const result = index_1.sessionSchema.safeParse(validSession);
             expect(result.success).toBe(true);
         });
-        it("should validate an impulse thread", () => {
-            const validThread = {
+        it("should validate an impulse session", () => {
+            const validSession = {
                 type: "impulse",
                 date: new Date(),
                 userId: "user123",
@@ -95,7 +63,7 @@ describe("Schema Validation", () => {
                 emojiId: null,
                 debriefFinishedAt: null,
             };
-            const result = index_1.threadSchema.safeParse(validThread);
+            const result = index_1.sessionSchema.safeParse(validSession);
             expect(result.success).toBe(true);
         });
     });
@@ -103,7 +71,7 @@ describe("Schema Validation", () => {
         it("should validate a day summary", () => {
             const validDaySummary = {
                 userId: "user123",
-                impulseThreadOutcomesById: {},
+                impulseSessionOutcomesById: {},
                 behaviorDataTotalByBehaviorId: {},
                 recapRequirementsMetAt: null,
                 summaryText: null,

@@ -8,7 +8,7 @@ exports.insightSchema = zod_1.z.object({
     id: zod_1.z.string().optional(),
     emotion: zod_1.z.string(),
     associatedBehaviorDocs: documentReferenceSchema_1.documentReferenceSchema.array().optional(),
-    sourceThreadDoc: documentReferenceSchema_1.documentReferenceSchema.optional(),
+    sourceSessionDoc: documentReferenceSchema_1.documentReferenceSchema.optional(),
     sourceLogDoc: documentReferenceSchema_1.documentReferenceSchema.optional(),
     text: zod_1.z.string(),
     /**

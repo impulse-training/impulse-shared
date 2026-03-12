@@ -47,7 +47,7 @@ function getFirstStepText(tactic: TacticLike | null): string | null {
 
 export function buildPlansLogPayload(
   log: PlansLog,
-  isFinalLogInThread: boolean,
+  isFinalLogInSession: boolean,
 ): ChatCompletionMessageParam[] {
   const activeIndex = log.data.activeIndex ?? 0;
   const activePlanEntry = log.data.plans[activeIndex];
@@ -72,7 +72,7 @@ export function buildPlansLogPayload(
 
   const tacticsNoun = tacticsCount === 1 ? "tactic" : "tactics";
 
-  if (isFinalLogInThread) {
+  if (isFinalLogInSession) {
     // Authoritative, directive framing when this is the most recent log
     parts.push("A plan is available for the user right now.");
     parts.push(
@@ -97,7 +97,7 @@ export function buildPlansLogPayload(
   } else {
     // Historical / FYI framing when this log is not the most recent
     parts.push(
-      "FYI: a plan was added earlier in this thread. This information may no longer be active or relevant.",
+      "FYI: a plan was added earlier in this session. This information may no longer be active or relevant.",
     );
     parts.push(
       `The earlier plan included ${tacticsCount} ${tacticsNoun}. Do not assume the user is currently following this plan.`,

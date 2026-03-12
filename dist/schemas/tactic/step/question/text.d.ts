@@ -94,7 +94,6 @@ export declare const textQuestionStepSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../../../types").Timestamp | undefined;
     updatedAt?: import("../../../../types").Timestamp | undefined;
-    suggestedResponses?: string[] | undefined;
     backgroundImage?: {
         uri: string;
         storagePath: string;
@@ -115,13 +114,13 @@ export declare const textQuestionStepSchema: z.ZodObject<{
         } | undefined;
     } | undefined;
     tags?: string[] | undefined;
+    suggestedResponses?: string[] | undefined;
 }, {
     text: string;
     mode: "question-text";
     id?: string | undefined;
     createdAt?: import("../../../../types").Timestamp | undefined;
     updatedAt?: import("../../../../types").Timestamp | undefined;
-    suggestedResponses?: string[] | undefined;
     backgroundImage?: {
         uri: string;
         storagePath: string;
@@ -142,5 +141,6 @@ export declare const textQuestionStepSchema: z.ZodObject<{
         } | undefined;
     } | undefined;
     tags?: string[] | undefined;
+    suggestedResponses?: string[] | undefined;
 }>;
 export type TextQuestionStep = z.infer<typeof textQuestionStepSchema>;

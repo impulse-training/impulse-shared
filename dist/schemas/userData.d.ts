@@ -1,11 +1,11 @@
 import { z } from "zod";
-export declare const latestThreadMessageTypeSchema: z.ZodEnum<["alignment", "commitment"]>;
+export declare const latestSessionMessageTypeSchema: z.ZodEnum<["alignment", "commitment"]>;
 export declare const userDataSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     recoveryKeyHash: z.ZodOptional<z.ZodString>;
-    defaultThreadMode: z.ZodDefault<z.ZodEnum<["text", "voice"]>>;
+    defaultSessionMode: z.ZodDefault<z.ZodEnum<["text", "voice"]>>;
     createdViaSimulator: z.ZodOptional<z.ZodBoolean>;
     role: z.ZodDefault<z.ZodEnum<["user", "coach", "support"]>>;
     notificationsEnabled: z.ZodDefault<z.ZodBoolean>;
@@ -99,8 +99,8 @@ export declare const userDataSchema: z.ZodObject<{
         senderId: string;
         sentAt: import("../types").Timestamp;
     }>>>;
-    latestThreadMessages: z.ZodOptional<z.ZodRecord<z.ZodEnum<["alignment", "commitment"]>, z.ZodObject<{
-        threadId: z.ZodString;
+    latestSessionMessages: z.ZodOptional<z.ZodRecord<z.ZodEnum<["alignment", "commitment"]>, z.ZodObject<{
+        sessionId: z.ZodString;
         message: z.ZodString;
         role: z.ZodEnum<["user", "assistant"]>;
         sentAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -108,17 +108,17 @@ export declare const userDataSchema: z.ZodObject<{
         message: string;
         role: "assistant" | "user";
         sentAt: import("../types").Timestamp;
-        threadId: string;
+        sessionId: string;
     }, {
         message: string;
         role: "assistant" | "user";
         sentAt: import("../types").Timestamp;
-        threadId: string;
+        sessionId: string;
     }>>>;
 }, "strip", z.ZodTypeAny, {
     role: "user" | "coach" | "support";
     notificationsEnabled: boolean;
-    defaultThreadMode: "text" | "voice";
+    defaultSessionMode: "text" | "voice";
     expoPushToken: string | null;
     notificationSettings: {
         debriefReminders: boolean;
@@ -164,11 +164,11 @@ export declare const userDataSchema: z.ZodObject<{
         senderId: string;
         sentAt: import("../types").Timestamp;
     }>> | undefined;
-    latestThreadMessages?: Partial<Record<"alignment" | "commitment", {
+    latestSessionMessages?: Partial<Record<"alignment" | "commitment", {
         message: string;
         role: "assistant" | "user";
         sentAt: import("../types").Timestamp;
-        threadId: string;
+        sessionId: string;
     }>> | undefined;
 }, {
     id?: string | undefined;
@@ -184,7 +184,7 @@ export declare const userDataSchema: z.ZodObject<{
     role?: "user" | "coach" | "support" | undefined;
     notificationsEnabled?: boolean | undefined;
     recoveryKeyHash?: string | undefined;
-    defaultThreadMode?: "text" | "voice" | undefined;
+    defaultSessionMode?: "text" | "voice" | undefined;
     createdViaSimulator?: boolean | undefined;
     notifyOnSignUp?: boolean | undefined;
     expoPushToken?: string | null | undefined;
@@ -219,11 +219,11 @@ export declare const userDataSchema: z.ZodObject<{
         senderId: string;
         sentAt: import("../types").Timestamp;
     }>> | undefined;
-    latestThreadMessages?: Partial<Record<"alignment" | "commitment", {
+    latestSessionMessages?: Partial<Record<"alignment" | "commitment", {
         message: string;
         role: "assistant" | "user";
         sentAt: import("../types").Timestamp;
-        threadId: string;
+        sessionId: string;
     }>> | undefined;
 }>;
 export type UserData = z.infer<typeof userDataSchema>;

@@ -16,14 +16,14 @@ const latestSupportGroupMessageSchema = z.object({
   sentAt: timestampSchema,
 });
 
-const latestThreadMessageSchema = z.object({
-  threadId: z.string(),
+const latestSessionMessageSchema = z.object({
+  sessionId: z.string(),
   message: z.string(),
   role: z.enum(["user", "assistant"]),
   sentAt: timestampSchema,
 });
 
-export const latestThreadMessageTypeSchema = z.enum([
+export const latestSessionMessageTypeSchema = z.enum([
   "alignment",
   "commitment",
 ]);
@@ -36,7 +36,7 @@ export const userDataSchema = z.object({
   // Authentication
   recoveryKeyHash: z.string().optional(),
 
-  defaultThreadMode: z.enum(["text", "voice"]).default("text"),
+  defaultSessionMode: z.enum(["text", "voice"]).default("text"),
 
   // Account creation metadata
   createdViaSimulator: z.boolean().optional(),
@@ -111,8 +111,8 @@ export const userDataSchema = z.object({
     .record(supportGroupTypeSchema, latestSupportGroupMessageSchema)
     .optional(),
 
-  latestThreadMessages: z
-    .record(latestThreadMessageTypeSchema, latestThreadMessageSchema)
+  latestSessionMessages: z
+    .record(latestSessionMessageTypeSchema, latestSessionMessageSchema)
     .optional(),
 });
 

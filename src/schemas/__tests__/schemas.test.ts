@@ -1,53 +1,13 @@
 import {
   Behavior,
   behaviorSchema,
-  Question,
-  questionSchema,
-  Thread,
-  threadSchema,
+  Session,
+  sessionSchema,
   DaySummary,
   daySummarySchema,
 } from "../index";
 
 describe("Schema Validation", () => {
-  describe("Question Schema", () => {
-    it("should validate a text question", () => {
-      const validQuestion = {
-        responseType: "text" as const,
-        text: "How are you feeling?",
-        scope: "impulse" as const,
-      };
-
-      const result = questionSchema.safeParse(validQuestion);
-      expect(result.success).toBe(true);
-    });
-
-    it("should validate a slider1To10 question", () => {
-      const validQuestion = {
-        responseType: "slider1To10" as const,
-        text: "Rate your urge",
-        scope: "impulse" as const,
-        sliderConfig: {
-          minLabel: "Low",
-          maxLabel: "High",
-        },
-      };
-
-      const result = questionSchema.safeParse(validQuestion);
-      expect(result.success).toBe(true);
-    });
-
-    it("should reject invalid question type", () => {
-      const invalidQuestion = {
-        responseType: "invalid",
-        text: "Test",
-      };
-
-      const result = questionSchema.safeParse(invalidQuestion);
-      expect(result.success).toBe(false);
-    });
-  });
-
   describe("Behavior Schema", () => {
     it("should validate a counter behavior", () => {
       const validBehavior = {
@@ -85,9 +45,9 @@ describe("Schema Validation", () => {
     });
   });
 
-  describe("Thread Schema", () => {
-    it("should validate a general thread", () => {
-      const validThread = {
+  describe("Session Schema", () => {
+    it("should validate a general session", () => {
+      const validSession = {
         type: "general" as const,
         date: new Date(),
         userId: "user123",
@@ -98,12 +58,12 @@ describe("Schema Validation", () => {
         emojiId: null,
       };
 
-      const result = threadSchema.safeParse(validThread);
+      const result = sessionSchema.safeParse(validSession);
       expect(result.success).toBe(true);
     });
 
-    it("should validate an impulse thread", () => {
-      const validThread = {
+    it("should validate an impulse session", () => {
+      const validSession = {
         type: "impulse" as const,
         date: new Date(),
         userId: "user123",
@@ -116,7 +76,7 @@ describe("Schema Validation", () => {
         debriefFinishedAt: null,
       };
 
-      const result = threadSchema.safeParse(validThread);
+      const result = sessionSchema.safeParse(validSession);
       expect(result.success).toBe(true);
     });
   });
@@ -125,7 +85,7 @@ describe("Schema Validation", () => {
     it("should validate a day summary", () => {
       const validDaySummary = {
         userId: "user123",
-        impulseThreadOutcomesById: {},
+        impulseSessionOutcomesById: {},
         behaviorDataTotalByBehaviorId: {},
         recapRequirementsMetAt: null,
         summaryText: null,

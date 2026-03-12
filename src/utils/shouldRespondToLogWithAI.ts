@@ -1,13 +1,12 @@
 import {
-  Thread,
-  threadIsAlignmentThread,
-  threadIsTimePlanThread,
+  Session,
+  sessionIsAlignmentSession,
+  sessionIsTimePlanSession,
 } from "../schemas";
 import {
   Log,
   logIsBehaviorLog,
   logIsPlansLog,
-  logIsQuestionsLog,
   logIsShowTourLog,
   logIsUserMessageLog,
   logIsWidgetSetupLog,
@@ -38,16 +37,18 @@ function hasNewlyCompletedPlan(
 }
 
 /**
- * Check if a timePlan thread's plan is marked as completed in a plansLog
+ * Check if a timePlan session's plan is marked as completed in a plansLog
  */
 function isTimePlanFullyCompleted(
-  thread: WithId<Thread>,
+  session: WithId<Session>,
   plansLog: PlansLog,
 ): boolean {
-  if (!threadIsTimePlanThread(thread)) return false;
+  if (!sessionIsTimePlanSession(session)) return false;
 
   // Check if this plan has completedAt set in the plansLog
-  const planEntry = plansLog.data.plans.find((p) => p.planId === thread.planId);
+  const planEntry = plansLog.data.plans.find(
+    (p) => p.planId === session.planId,
+  );
   return !!planEntry?.completedAt;
 }
 
@@ -59,12 +60,12 @@ function isTimePlanFullyCompleted(
  * @returns True if we should respond with AI, false otherwise
  */
 export function shouldRespondToLogWithAI(
-  thread: WithId<Thread>,
+  session: WithId<Session>,
   beforeData: Log | undefined,
   afterData: Log | undefined,
-  latestThreadLog?: Log,
+  latestSessionLog?: Log,
 ): boolean {
-  if (latestThreadLog && logIsAssistantMessageLog(latestThreadLog)) {
+  if (latestSessionLog && logIsAssistantMessageLog(latestSessionLog)) {
     console.log("Latest message is from assistant. Not responding with AI.");
     return false;
   }
@@ -74,12 +75,12 @@ export function shouldRespondToLogWithAI(
   const isNotDeleting = !!afterData;
 
   console.log({
-    notificationsEnabled: typeof (thread as any).notificationsEnabled,
+    notificationsEnabled: typeof (session as any).notificationsEnabled,
   });
 
   // Case: The user has acted on the enable notifications CTA log - now we respond to the original
-  // user message. This must be checked BEFORE the alignment thread early-exit below, because at
-  // the time of the CTA response, notificationsEnabled is still undefined on the thread.
+  // user message. This must be checked BEFORE the alignment session early-exit below, because at
+  // the time of the CTA response, notificationsEnabled is still undefined on the session.
   if (
     isUpdating &&
     logIsEnableNotificationsCtaLog(afterData) &&
@@ -92,14 +93,14 @@ export function shouldRespondToLogWithAI(
     return true;
   }
 
-  // Case: this is an alignment thread, and the user hasn't enabled or skipped notifications. We
+  // Case: this is an alignment session, and the user hasn't enabled or skipped notifications. We
   // don't respond with AI - we respond with the notificationsCtaLog
   if (
-    threadIsAlignmentThread(thread) &&
-    typeof thread.notificationsEnabled === "undefined"
+    sessionIsAlignmentSession(session) &&
+    typeof session.notificationsEnabled === "undefined"
   ) {
     console.log(
-      "Thread is alignment and notificationsEnabled is undefined. Not responding with AI.",
+      "Session is alignment and notificationsEnabled is undefined. Not responding with AI.",
     );
     return false;
   }
@@ -127,7 +128,7 @@ export function shouldRespondToLogWithAI(
     return true;
   }
 
-  // Case: A trigger plan is added to the thread
+  // Case: A trigger plan is added to the session
   if (
     isCreating &&
     logIsPlansLog(afterData) &&
@@ -155,20 +156,6 @@ export function shouldRespondToLogWithAI(
   ) {
     console.log("User has completed a tour. Responding with AI.");
     return true;
-  }
-
-  // Case: The user has answered all questions in a QuestionsLog (recap or experiment metrics)
-  if (
-    isNotDeleting &&
-    logIsQuestionsLog(afterData) &&
-    fieldChanged(beforeData, afterData, "data.questions")
-  ) {
-    // Check if all questions now have responses
-    const allAnswered = afterData.data.questions.every((q) => q.response);
-    if (allAnswered) {
-      console.log("User has answered all questions. Responding with AI.");
-      return true;
-    }
   }
 
   // Case: A proposed experiment was accepted (confirmedAt set)
@@ -200,12 +187,12 @@ export function shouldRespondToLogWithAI(
     }
   }
 
-  // Case: A plansLog was updated with completedAt for a timePlan thread
+  // Case: A plansLog was updated with completedAt for a timePlan session
   if (
     isNotDeleting &&
     logIsPlansLog(afterData) &&
-    threadIsTimePlanThread(thread) &&
-    isTimePlanFullyCompleted(thread, afterData)
+    sessionIsTimePlanSession(session) &&
+    isTimePlanFullyCompleted(session, afterData)
   ) {
     console.log("Time plan was fully completed. Responding with AI.");
     return true;
