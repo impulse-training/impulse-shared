@@ -33,6 +33,7 @@ export * from "./tactic";
 export * from "./session";
 export * from "./trigger";
 export * from "./userContext";
+export * from "./userState";
 export * from "./userData";
 export * from "./userProfile";
 export * from "./userTimezones";

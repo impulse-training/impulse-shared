@@ -14,6 +14,7 @@ ADMIN_DIR="$SCRIPT_DIR/../impulse-admin-next"
 TIMESTAMP=$(date +%s)
 VERSION="0.1.1-${TIMESTAMP}"
 TARBALL_NAME="impulse-shared-${VERSION}.tgz"
+STABLE_TARBALL_NAME="impulse-shared.tgz"
 
 echo "==> Setting impulse-shared version to ${VERSION}"
 cd "$SHARED_DIR"
@@ -37,13 +38,15 @@ update_consumer() {
   echo "==> Updating ${NAME}"
 
   # Remove old tarballs (but not the new one)
-  find "$DIR" -maxdepth 1 -name "impulse-shared-*.tgz" ! -name "$TARBALL_NAME" -delete
+  find "$DIR" -maxdepth 1 \( -name "impulse-shared-*.tgz" -o -name "$STABLE_TARBALL_NAME" \) ! -name "$TARBALL_NAME" -delete
+
+  cp "$DIR/$TARBALL_NAME" "$DIR/$STABLE_TARBALL_NAME"
 
   # Update package.json to use the local tarball
   if [[ "$(uname)" == "Darwin" ]]; then
-    sed -i '' "s|\"impulse-shared\": \"[^\"]*\"|\"impulse-shared\": \"file:${TARBALL_NAME}\"|" "$DIR/package.json"
+    sed -i '' "s|\"impulse-shared\": \"[^\"]*\"|\"impulse-shared\": \"file:${STABLE_TARBALL_NAME}\"|" "$DIR/package.json"
   else
-    sed -i "s|\"impulse-shared\": \"[^\"]*\"|\"impulse-shared\": \"file:${TARBALL_NAME}\"|" "$DIR/package.json"
+    sed -i "s|\"impulse-shared\": \"[^\"]*\"|\"impulse-shared\": \"file:${STABLE_TARBALL_NAME}\"|" "$DIR/package.json"
   fi
 
   echo "==> Cleaning npm cache and reinstalling in ${NAME}"
@@ -53,7 +56,7 @@ update_consumer() {
 
   # npm install rewrites package.json with resolved parent-relative paths for file: deps.
   # Re-apply the correct local path after install.
-  local FINAL_REF="file:${TARBALL_NAME}"
+  local FINAL_REF="file:${STABLE_TARBALL_NAME}"
   if [[ "$(uname)" == "Darwin" ]]; then
     sed -i '' "s|\"impulse-shared\": \"file:[^\"]*\\.tgz\"|\"impulse-shared\": \"${FINAL_REF}\"|" "$DIR/package.json"
   else

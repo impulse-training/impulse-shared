@@ -50,6 +50,7 @@ __exportStar(require("./tactic"), exports);
 __exportStar(require("./session"), exports);
 __exportStar(require("./trigger"), exports);
 __exportStar(require("./userContext"), exports);
+__exportStar(require("./userState"), exports);
 __exportStar(require("./userData"), exports);
 __exportStar(require("./userProfile"), exports);
 __exportStar(require("./userTimezones"), exports);
