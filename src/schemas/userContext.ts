@@ -9,19 +9,23 @@ export const behaviorContextSchema = z.object({
   benefits: z.array(z.string()).optional(),
   drawbacks: z.array(z.string()).optional(),
   trackingUnit: z.string().optional(),
-  streakDays: z.number().default(0),
-  totalTracked: z.number().default(0),
-  insights: z.array(z.string()).default([]),
-  effectiveTactics: z.array(z.string()).default([]),
-  planTacticIds: z.array(z.string()).default([]),
+  goalLabel: z.string().optional(),
 });
 
 export const tacticContextSchema = z.object({
   tacticId: z.string(),
-  tacticTitle: z.string(),
-  tacticType: z.string(),
-  completedCount: z.number().default(0),
-  effectiveness: z.number().min(1).max(10).default(5),
+  title: z.string(),
+  description: z.string().optional(),
+  instructions: z.string().optional(),
+});
+
+export const activeExperimentContextSchema = z.object({
+  behaviorId: z.string(),
+  behaviorName: z.string(),
+  experimentQuestion: z.string(),
+  currentPhase: z.enum(["baseline", "transition", "observation"]),
+  phaseDescription: z.string().optional(),
+  observations: z.array(z.string()),
 });
 
 export const aiMemorySchema = z.object({
@@ -34,8 +38,8 @@ export const aiMemorySchema = z.object({
 export const userContextSchema = z.object({
   behaviors: z.record(behaviorContextSchema),
   tactics: z.record(tacticContextSchema),
+  activeExperiment: activeExperimentContextSchema.nullable().optional(),
   aiMemories: z.array(aiMemorySchema).default([]),
-  overallInsights: z.array(z.string()).default([]),
   consolidatedMemory: z.string().default(""),
   createdAt: timestampSchema.optional(),
   updatedAt: timestampSchema.optional(),
@@ -44,9 +48,10 @@ export const userContextSchema = z.object({
 // Export types inferred from schemas
 export type BehaviorContext = z.infer<typeof behaviorContextSchema>;
 export type TacticContext = z.infer<typeof tacticContextSchema>;
+export type ActiveExperimentContext = z.infer<
+  typeof activeExperimentContextSchema
+>;
 export type AIMemory = z.infer<typeof aiMemorySchema>;
-
-// Extend the inferred UserContext type to properly type the record fields
 export type UserContext = z.infer<typeof userContextSchema>;
 
 // Type guard functions

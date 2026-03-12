@@ -20,21 +20,9 @@ function extractRelevantContext(userContext, behaviorId) {
         userContext.behaviors &&
         userContext.behaviors[behaviorId]) {
         behaviorContext = userContext.behaviors[behaviorId];
-        // Get relevant tactics
-        const tacticIds = [
-            ...(userContext.behaviors[behaviorId].planTacticIds || []),
-            ...(userContext.behaviors[behaviorId].effectiveTactics || []),
-        ];
+        // Get all tactics from context
         if (userContext.tactics) {
-            relevantTactics = tacticIds
-                .filter((id, index, self) => self.indexOf(id) === index) // Remove duplicates
-                .map((id) => {
-                // Safely access tactics with the id
-                return id && userContext.tactics
-                    ? userContext.tactics[id]
-                    : undefined;
-            })
-                .filter((tactic) => tactic !== undefined); // Remove undefined tactics
+            relevantTactics = Object.values(userContext.tactics);
         }
         // Get relevant memories
         if (userContext.aiMemories) {

@@ -7,21 +7,13 @@ export declare const behaviorContextSchema: z.ZodObject<{
     benefits: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     drawbacks: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     trackingUnit: z.ZodOptional<z.ZodString>;
-    streakDays: z.ZodDefault<z.ZodNumber>;
-    totalTracked: z.ZodDefault<z.ZodNumber>;
-    insights: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
-    effectiveTactics: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
-    planTacticIds: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+    goalLabel: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     behaviorId: string;
     behaviorName: string;
     trackingType: "boolean" | "counter" | "timer";
-    insights: string[];
-    streakDays: number;
-    totalTracked: number;
-    effectiveTactics: string[];
-    planTacticIds: string[];
     trackingUnit?: string | undefined;
+    goalLabel?: string | undefined;
     description?: string | undefined;
     benefits?: string[] | undefined;
     drawbacks?: string[] | undefined;
@@ -30,33 +22,48 @@ export declare const behaviorContextSchema: z.ZodObject<{
     behaviorName: string;
     trackingType: "boolean" | "counter" | "timer";
     trackingUnit?: string | undefined;
+    goalLabel?: string | undefined;
     description?: string | undefined;
     benefits?: string[] | undefined;
     drawbacks?: string[] | undefined;
-    insights?: string[] | undefined;
-    streakDays?: number | undefined;
-    totalTracked?: number | undefined;
-    effectiveTactics?: string[] | undefined;
-    planTacticIds?: string[] | undefined;
 }>;
 export declare const tacticContextSchema: z.ZodObject<{
     tacticId: z.ZodString;
-    tacticTitle: z.ZodString;
-    tacticType: z.ZodString;
-    completedCount: z.ZodDefault<z.ZodNumber>;
-    effectiveness: z.ZodDefault<z.ZodNumber>;
+    title: z.ZodString;
+    description: z.ZodOptional<z.ZodString>;
+    instructions: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
+    title: string;
     tacticId: string;
-    effectiveness: number;
-    tacticTitle: string;
-    tacticType: string;
-    completedCount: number;
+    description?: string | undefined;
+    instructions?: string | undefined;
 }, {
+    title: string;
     tacticId: string;
-    tacticTitle: string;
-    tacticType: string;
-    effectiveness?: number | undefined;
-    completedCount?: number | undefined;
+    description?: string | undefined;
+    instructions?: string | undefined;
+}>;
+export declare const activeExperimentContextSchema: z.ZodObject<{
+    behaviorId: z.ZodString;
+    behaviorName: z.ZodString;
+    experimentQuestion: z.ZodString;
+    currentPhase: z.ZodEnum<["baseline", "transition", "observation"]>;
+    phaseDescription: z.ZodOptional<z.ZodString>;
+    observations: z.ZodArray<z.ZodString, "many">;
+}, "strip", z.ZodTypeAny, {
+    behaviorId: string;
+    behaviorName: string;
+    experimentQuestion: string;
+    currentPhase: "baseline" | "transition" | "observation";
+    observations: string[];
+    phaseDescription?: string | undefined;
+}, {
+    behaviorId: string;
+    behaviorName: string;
+    experimentQuestion: string;
+    currentPhase: "baseline" | "transition" | "observation";
+    observations: string[];
+    phaseDescription?: string | undefined;
 }>;
 export declare const aiMemorySchema: z.ZodObject<{
     id: z.ZodString;
@@ -83,21 +90,13 @@ export declare const userContextSchema: z.ZodObject<{
         benefits: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         drawbacks: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         trackingUnit: z.ZodOptional<z.ZodString>;
-        streakDays: z.ZodDefault<z.ZodNumber>;
-        totalTracked: z.ZodDefault<z.ZodNumber>;
-        insights: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
-        effectiveTactics: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
-        planTacticIds: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+        goalLabel: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
         behaviorId: string;
         behaviorName: string;
         trackingType: "boolean" | "counter" | "timer";
-        insights: string[];
-        streakDays: number;
-        totalTracked: number;
-        effectiveTactics: string[];
-        planTacticIds: string[];
         trackingUnit?: string | undefined;
+        goalLabel?: string | undefined;
         description?: string | undefined;
         benefits?: string[] | undefined;
         drawbacks?: string[] | undefined;
@@ -106,34 +105,49 @@ export declare const userContextSchema: z.ZodObject<{
         behaviorName: string;
         trackingType: "boolean" | "counter" | "timer";
         trackingUnit?: string | undefined;
+        goalLabel?: string | undefined;
         description?: string | undefined;
         benefits?: string[] | undefined;
         drawbacks?: string[] | undefined;
-        insights?: string[] | undefined;
-        streakDays?: number | undefined;
-        totalTracked?: number | undefined;
-        effectiveTactics?: string[] | undefined;
-        planTacticIds?: string[] | undefined;
     }>>;
     tactics: z.ZodRecord<z.ZodString, z.ZodObject<{
         tacticId: z.ZodString;
-        tacticTitle: z.ZodString;
-        tacticType: z.ZodString;
-        completedCount: z.ZodDefault<z.ZodNumber>;
-        effectiveness: z.ZodDefault<z.ZodNumber>;
+        title: z.ZodString;
+        description: z.ZodOptional<z.ZodString>;
+        instructions: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
+        title: string;
         tacticId: string;
-        effectiveness: number;
-        tacticTitle: string;
-        tacticType: string;
-        completedCount: number;
+        description?: string | undefined;
+        instructions?: string | undefined;
     }, {
+        title: string;
         tacticId: string;
-        tacticTitle: string;
-        tacticType: string;
-        effectiveness?: number | undefined;
-        completedCount?: number | undefined;
+        description?: string | undefined;
+        instructions?: string | undefined;
     }>>;
+    activeExperiment: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        behaviorId: z.ZodString;
+        behaviorName: z.ZodString;
+        experimentQuestion: z.ZodString;
+        currentPhase: z.ZodEnum<["baseline", "transition", "observation"]>;
+        phaseDescription: z.ZodOptional<z.ZodString>;
+        observations: z.ZodArray<z.ZodString, "many">;
+    }, "strip", z.ZodTypeAny, {
+        behaviorId: string;
+        behaviorName: string;
+        experimentQuestion: string;
+        currentPhase: "baseline" | "transition" | "observation";
+        observations: string[];
+        phaseDescription?: string | undefined;
+    }, {
+        behaviorId: string;
+        behaviorName: string;
+        experimentQuestion: string;
+        currentPhase: "baseline" | "transition" | "observation";
+        observations: string[];
+        phaseDescription?: string | undefined;
+    }>>>;
     aiMemories: z.ZodDefault<z.ZodArray<z.ZodObject<{
         id: z.ZodString;
         content: z.ZodString;
@@ -150,28 +164,22 @@ export declare const userContextSchema: z.ZodObject<{
         content: string;
         createdAt?: import("../types").Timestamp | undefined;
     }>, "many">>;
-    overallInsights: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
     consolidatedMemory: z.ZodDefault<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
     tactics: Record<string, {
+        title: string;
         tacticId: string;
-        effectiveness: number;
-        tacticTitle: string;
-        tacticType: string;
-        completedCount: number;
+        description?: string | undefined;
+        instructions?: string | undefined;
     }>;
     behaviors: Record<string, {
         behaviorId: string;
         behaviorName: string;
         trackingType: "boolean" | "counter" | "timer";
-        insights: string[];
-        streakDays: number;
-        totalTracked: number;
-        effectiveTactics: string[];
-        planTacticIds: string[];
         trackingUnit?: string | undefined;
+        goalLabel?: string | undefined;
         description?: string | undefined;
         benefits?: string[] | undefined;
         drawbacks?: string[] | undefined;
@@ -182,45 +190,55 @@ export declare const userContextSchema: z.ZodObject<{
         content: string;
         createdAt?: import("../types").Timestamp | undefined;
     }[];
-    overallInsights: string[];
     consolidatedMemory: string;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
+    activeExperiment?: {
+        behaviorId: string;
+        behaviorName: string;
+        experimentQuestion: string;
+        currentPhase: "baseline" | "transition" | "observation";
+        observations: string[];
+        phaseDescription?: string | undefined;
+    } | null | undefined;
 }, {
     tactics: Record<string, {
+        title: string;
         tacticId: string;
-        tacticTitle: string;
-        tacticType: string;
-        effectiveness?: number | undefined;
-        completedCount?: number | undefined;
+        description?: string | undefined;
+        instructions?: string | undefined;
     }>;
     behaviors: Record<string, {
         behaviorId: string;
         behaviorName: string;
         trackingType: "boolean" | "counter" | "timer";
         trackingUnit?: string | undefined;
+        goalLabel?: string | undefined;
         description?: string | undefined;
         benefits?: string[] | undefined;
         drawbacks?: string[] | undefined;
-        insights?: string[] | undefined;
-        streakDays?: number | undefined;
-        totalTracked?: number | undefined;
-        effectiveTactics?: string[] | undefined;
-        planTacticIds?: string[] | undefined;
     }>;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
+    activeExperiment?: {
+        behaviorId: string;
+        behaviorName: string;
+        experimentQuestion: string;
+        currentPhase: "baseline" | "transition" | "observation";
+        observations: string[];
+        phaseDescription?: string | undefined;
+    } | null | undefined;
     aiMemories?: {
         id: string;
         source: string;
         content: string;
         createdAt?: import("../types").Timestamp | undefined;
     }[] | undefined;
-    overallInsights?: string[] | undefined;
     consolidatedMemory?: string | undefined;
 }>;
 export type BehaviorContext = z.infer<typeof behaviorContextSchema>;
 export type TacticContext = z.infer<typeof tacticContextSchema>;
+export type ActiveExperimentContext = z.infer<typeof activeExperimentContextSchema>;
 export type AIMemory = z.infer<typeof aiMemorySchema>;
 export type UserContext = z.infer<typeof userContextSchema>;
 export declare const isBehaviorContext: (value: unknown) => value is BehaviorContext;

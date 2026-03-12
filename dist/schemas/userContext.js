@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isUserContext = exports.isAIMemory = exports.isTacticContext = exports.isBehaviorContext = exports.userContextSchema = exports.aiMemorySchema = exports.tacticContextSchema = exports.behaviorContextSchema = void 0;
+exports.isUserContext = exports.isAIMemory = exports.isTacticContext = exports.isBehaviorContext = exports.userContextSchema = exports.aiMemorySchema = exports.activeExperimentContextSchema = exports.tacticContextSchema = exports.behaviorContextSchema = void 0;
 const zod_1 = require("zod");
 const timestampSchema_1 = require("../utils/timestampSchema");
 exports.behaviorContextSchema = zod_1.z.object({
@@ -11,18 +11,21 @@ exports.behaviorContextSchema = zod_1.z.object({
     benefits: zod_1.z.array(zod_1.z.string()).optional(),
     drawbacks: zod_1.z.array(zod_1.z.string()).optional(),
     trackingUnit: zod_1.z.string().optional(),
-    streakDays: zod_1.z.number().default(0),
-    totalTracked: zod_1.z.number().default(0),
-    insights: zod_1.z.array(zod_1.z.string()).default([]),
-    effectiveTactics: zod_1.z.array(zod_1.z.string()).default([]),
-    planTacticIds: zod_1.z.array(zod_1.z.string()).default([]),
+    goalLabel: zod_1.z.string().optional(),
 });
 exports.tacticContextSchema = zod_1.z.object({
     tacticId: zod_1.z.string(),
-    tacticTitle: zod_1.z.string(),
-    tacticType: zod_1.z.string(),
-    completedCount: zod_1.z.number().default(0),
-    effectiveness: zod_1.z.number().min(1).max(10).default(5),
+    title: zod_1.z.string(),
+    description: zod_1.z.string().optional(),
+    instructions: zod_1.z.string().optional(),
+});
+exports.activeExperimentContextSchema = zod_1.z.object({
+    behaviorId: zod_1.z.string(),
+    behaviorName: zod_1.z.string(),
+    experimentQuestion: zod_1.z.string(),
+    currentPhase: zod_1.z.enum(["baseline", "transition", "observation"]),
+    phaseDescription: zod_1.z.string().optional(),
+    observations: zod_1.z.array(zod_1.z.string()),
 });
 exports.aiMemorySchema = zod_1.z.object({
     id: zod_1.z.string(),
@@ -33,8 +36,8 @@ exports.aiMemorySchema = zod_1.z.object({
 exports.userContextSchema = zod_1.z.object({
     behaviors: zod_1.z.record(exports.behaviorContextSchema),
     tactics: zod_1.z.record(exports.tacticContextSchema),
+    activeExperiment: exports.activeExperimentContextSchema.nullable().optional(),
     aiMemories: zod_1.z.array(exports.aiMemorySchema).default([]),
-    overallInsights: zod_1.z.array(zod_1.z.string()).default([]),
     consolidatedMemory: zod_1.z.string().default(""),
     createdAt: timestampSchema_1.timestampSchema.optional(),
     updatedAt: timestampSchema_1.timestampSchema.optional(),

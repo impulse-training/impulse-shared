@@ -3,9 +3,10 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
     userId: z.ZodString;
     logId: z.ZodString;
     timestamp: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-    messages: z.ZodArray<z.ZodAny, "many">;
-    response: z.ZodAny;
-    toolDefinitions: z.ZodArray<z.ZodAny, "many">;
+    instructions: z.ZodOptional<z.ZodString>;
+    inputMessages: z.ZodArray<z.ZodRecord<z.ZodString, z.ZodUnknown>, "many">;
+    response: z.ZodRecord<z.ZodString, z.ZodUnknown>;
+    toolDefinitions: z.ZodArray<z.ZodRecord<z.ZodString, z.ZodUnknown>, "many">;
     session: z.ZodOptional<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         title: z.ZodString;
@@ -23983,17 +23984,19 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
     startedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     endedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     durationMs: z.ZodOptional<z.ZodNumber>;
+    processingTimeMs: z.ZodOptional<z.ZodNumber>;
     model: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     userId: string;
-    messages: any[];
+    response: Record<string, unknown>;
     logId: string;
-    toolDefinitions: any[];
+    inputMessages: Record<string, unknown>[];
+    toolDefinitions: Record<string, unknown>[];
     durationMs?: number | undefined;
     timestamp?: import("../types").Timestamp | undefined;
     endedAt?: import("../types").Timestamp | undefined;
-    response?: any;
     startedAt?: import("../types").Timestamp | undefined;
+    instructions?: string | undefined;
     session?: {
         title: string;
         type: "adjustment";
@@ -26919,17 +26922,19 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
     } | undefined;
+    processingTimeMs?: number | undefined;
     model?: string | undefined;
 }, {
     userId: string;
-    messages: any[];
+    response: Record<string, unknown>;
     logId: string;
-    toolDefinitions: any[];
+    inputMessages: Record<string, unknown>[];
+    toolDefinitions: Record<string, unknown>[];
     durationMs?: number | undefined;
     timestamp?: import("../types").Timestamp | undefined;
     endedAt?: import("../types").Timestamp | undefined;
-    response?: any;
     startedAt?: import("../types").Timestamp | undefined;
+    instructions?: string | undefined;
     session?: {
         title: string;
         type: "adjustment";
@@ -29855,6 +29860,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
     } | undefined;
+    processingTimeMs?: number | undefined;
     model?: string | undefined;
 }>;
 export type LLMAuditEntry = z.infer<typeof llmAuditEntrySchema>;

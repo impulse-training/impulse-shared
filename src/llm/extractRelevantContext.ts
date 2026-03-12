@@ -28,7 +28,7 @@ interface ContextExtractionResult {
  */
 export function extractRelevantContext(
   userContext: Partial<UserContext>,
-  behaviorId?: string
+  behaviorId?: string,
 ): ContextExtractionResult {
   let behaviorContext: Partial<BehaviorContext> = {};
   let relevantTactics: TacticContext[] = [];
@@ -41,22 +41,9 @@ export function extractRelevantContext(
   ) {
     behaviorContext = userContext.behaviors[behaviorId];
 
-    // Get relevant tactics
-    const tacticIds = [
-      ...(userContext.behaviors[behaviorId].planTacticIds || []),
-      ...(userContext.behaviors[behaviorId].effectiveTactics || []),
-    ];
-
+    // Get all tactics from context
     if (userContext.tactics) {
-      relevantTactics = tacticIds
-        .filter((id, index, self) => self.indexOf(id) === index) // Remove duplicates
-        .map((id) => {
-          // Safely access tactics with the id
-          return id && userContext.tactics
-            ? userContext.tactics[id]
-            : undefined;
-        })
-        .filter((tactic): tactic is TacticContext => tactic !== undefined); // Remove undefined tactics
+      relevantTactics = Object.values(userContext.tactics);
     }
 
     // Get relevant memories
@@ -65,7 +52,7 @@ export function extractRelevantContext(
         .filter(
           (memory: AIMemory) =>
             memory.content.includes(behaviorId) ||
-            memory.source.includes(behaviorId)
+            memory.source.includes(behaviorId),
         )
         .slice(0, 5); // Limit to 5 memories
     }
