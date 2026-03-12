@@ -23,7 +23,7 @@ const sessionTypeSchema = z.enum([
 export const sessionBaseSchema = z.object({
   id: z.string().optional(),
   type: sessionTypeSchema.default("general"),
-  title: z.string().optional(),
+  title: z.string(),
   behaviorIds: z.array(z.string()).optional(),
   date: timestampSchema,
   dateString: z.string(),

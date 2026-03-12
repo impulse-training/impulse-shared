@@ -106,14 +106,14 @@ export declare const userDataSchema: z.ZodObject<{
         sentAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     }, "strip", z.ZodTypeAny, {
         message: string;
+        sessionId: string;
         role: "assistant" | "user";
         sentAt: import("../types").Timestamp;
-        sessionId: string;
     }, {
         message: string;
+        sessionId: string;
         role: "assistant" | "user";
         sentAt: import("../types").Timestamp;
-        sessionId: string;
     }>>>;
 }, "strip", z.ZodTypeAny, {
     role: "user" | "coach" | "support";
@@ -166,9 +166,9 @@ export declare const userDataSchema: z.ZodObject<{
     }>> | undefined;
     latestSessionMessages?: Partial<Record<"alignment" | "commitment", {
         message: string;
+        sessionId: string;
         role: "assistant" | "user";
         sentAt: import("../types").Timestamp;
-        sessionId: string;
     }>> | undefined;
 }, {
     id?: string | undefined;
@@ -221,9 +221,9 @@ export declare const userDataSchema: z.ZodObject<{
     }>> | undefined;
     latestSessionMessages?: Partial<Record<"alignment" | "commitment", {
         message: string;
+        sessionId: string;
         role: "assistant" | "user";
         sentAt: import("../types").Timestamp;
-        sessionId: string;
     }>> | undefined;
 }>;
 export type UserData = z.infer<typeof userDataSchema>;
