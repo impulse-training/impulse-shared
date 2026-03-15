@@ -57,7 +57,8 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
     }
     // Case: this is an alignment session, and the user hasn't enabled or skipped notifications. We
     // don't respond with AI - we respond with the notificationsCtaLog
-    if ((0, schemas_1.sessionIsAlignmentSession)(session) &&
+    if (session &&
+        (0, schemas_1.sessionIsAlignmentSession)(session) &&
         typeof session.notificationsEnabled === "undefined") {
         console.log("Session is alignment and notificationsEnabled is undefined. Not responding with AI.");
         return false;
@@ -124,6 +125,7 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
     // Case: A plansLog was updated with completedAt for a timePlan session
     if (isNotDeleting &&
         (0, log_1.logIsPlansLog)(afterData) &&
+        session &&
         (0, schemas_1.sessionIsTimePlanSession)(session) &&
         isTimePlanFullyCompleted(session, afterData)) {
         console.log("Time plan was fully completed. Responding with AI.");

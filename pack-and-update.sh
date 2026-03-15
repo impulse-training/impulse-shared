@@ -23,13 +23,14 @@ npm version "$VERSION" --no-git-tag-version --allow-same-version
 echo "==> Building impulse-shared"
 npm run build
 
-echo "==> Packing to all consumers"
-npm pack --pack-destination "$NATIVE_DIR"
-npm pack --pack-destination "$FUNCTIONS_DIR"
-npm pack --pack-destination "$TOOLS_DIR"
-npm pack --pack-destination "$VOICE_AGENT_DIR"
-npm pack --pack-destination "$WEBSITE_DIR"
-npm pack --pack-destination "$ADMIN_DIR"
+echo "==> Packing impulse-shared"
+PACK_OUTPUT=$(npm pack --pack-destination "$SHARED_DIR")
+PACKED_TARBALL_NAME=$(echo "$PACK_OUTPUT" | tail -n 1 | tr -d '\r')
+
+if [[ "$PACKED_TARBALL_NAME" != "$TARBALL_NAME" ]]; then
+  echo "Expected tarball $TARBALL_NAME but got $PACKED_TARBALL_NAME"
+  exit 1
+fi
 
 # Update a consumer package to use the local tarball
 update_consumer() {
@@ -38,9 +39,10 @@ update_consumer() {
   echo "==> Updating ${NAME}"
 
   # Remove old tarballs (but not the new one)
-  find "$DIR" -maxdepth 1 \( -name "impulse-shared-*.tgz" -o -name "$STABLE_TARBALL_NAME" \) ! -name "$TARBALL_NAME" -delete
+  find "$DIR" -maxdepth 1 \( -name "impulse-shared-*.tgz" -o -name "$STABLE_TARBALL_NAME" \) -delete
 
-  cp "$DIR/$TARBALL_NAME" "$DIR/$STABLE_TARBALL_NAME"
+  cp "$SHARED_DIR/$TARBALL_NAME" "$DIR/$TARBALL_NAME"
+  cp "$SHARED_DIR/$TARBALL_NAME" "$DIR/$STABLE_TARBALL_NAME"
 
   # Update package.json to use the local tarball
   if [[ "$(uname)" == "Darwin" ]]; then
@@ -52,7 +54,8 @@ update_consumer() {
   echo "==> Cleaning npm cache and reinstalling in ${NAME}"
   cd "$DIR"
   rm -rf node_modules/impulse-shared
-  npm install
+  npm install --package-lock-only "impulse-shared@file:${STABLE_TARBALL_NAME}"
+  npm install "impulse-shared@file:${STABLE_TARBALL_NAME}"
 
   # npm install rewrites package.json with resolved parent-relative paths for file: deps.
   # Re-apply the correct local path after install.
@@ -70,6 +73,8 @@ update_consumer "$FUNCTIONS_DIR"
 update_consumer "$VOICE_AGENT_DIR"
 update_consumer "$WEBSITE_DIR"
 update_consumer "$ADMIN_DIR"
+
+rm -f "$SHARED_DIR/$TARBALL_NAME"
 
 echo ""
 echo "✅ impulse-shared ${VERSION} installed in all consumers"
