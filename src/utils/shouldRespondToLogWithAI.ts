@@ -74,38 +74,6 @@ export function shouldRespondToLogWithAI(
   const isUpdating = beforeData && afterData;
   const isNotDeleting = !!afterData;
 
-  console.log({
-    notificationsEnabled: typeof (session as any).notificationsEnabled,
-  });
-
-  // Case: The user has acted on the enable notifications CTA log - now we respond to the original
-  // user message. This must be checked BEFORE the alignment session early-exit below, because at
-  // the time of the CTA response, notificationsEnabled is still undefined on the session.
-  if (
-    isUpdating &&
-    logIsEnableNotificationsCtaLog(afterData) &&
-    afterData.data.respondedAt &&
-    !(logIsEnableNotificationsCtaLog(beforeData) && beforeData.data.respondedAt)
-  ) {
-    console.log(
-      "User has responded to enable notifications CTA. Responding with AI.",
-    );
-    return true;
-  }
-
-  // Case: this is an alignment session, and the user hasn't enabled or skipped notifications. We
-  // don't respond with AI - we respond with the notificationsCtaLog
-  if (
-    session &&
-    sessionIsAlignmentSession(session) &&
-    typeof session.notificationsEnabled === "undefined"
-  ) {
-    console.log(
-      "Session is alignment and notificationsEnabled is undefined. Not responding with AI.",
-    );
-    return false;
-  }
-
   // Case: New message logs (creation event, no before data)
   if (isCreating && logIsUserMessageLog(afterData)) {
     console.log("New message log. Responding with AI.");
@@ -157,21 +125,6 @@ export function shouldRespondToLogWithAI(
   ) {
     console.log("User has completed a tour. Responding with AI.");
     return true;
-  }
-
-  // Case: A proposed experiment was accepted (confirmedAt set)
-  if (
-    isUpdating &&
-    beforeData?.type === "proposed_experiment" &&
-    afterData?.type === "proposed_experiment"
-  ) {
-    const beforeProposed = beforeData as ProposedExperimentLog;
-    const afterProposed = afterData as ProposedExperimentLog;
-
-    if (!beforeProposed.confirmedAt && afterProposed.confirmedAt) {
-      console.log("Proposed experiment was accepted. Responding with AI.");
-      return true;
-    }
   }
 
   // Case: A behavior log was explicitly marked for Zara to respond, or has debrief system prompt set
