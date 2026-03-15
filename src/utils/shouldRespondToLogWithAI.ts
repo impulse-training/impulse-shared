@@ -60,7 +60,7 @@ function isTimePlanFullyCompleted(
  * @returns True if we should respond with AI, false otherwise
  */
 export function shouldRespondToLogWithAI(
-  session: WithId<Session>,
+  session: WithId<Session> | undefined,
   beforeData: Log | undefined,
   afterData: Log | undefined,
   latestSessionLog?: Log,
@@ -96,6 +96,7 @@ export function shouldRespondToLogWithAI(
   // Case: this is an alignment session, and the user hasn't enabled or skipped notifications. We
   // don't respond with AI - we respond with the notificationsCtaLog
   if (
+    session &&
     sessionIsAlignmentSession(session) &&
     typeof session.notificationsEnabled === "undefined"
   ) {
@@ -191,6 +192,7 @@ export function shouldRespondToLogWithAI(
   if (
     isNotDeleting &&
     logIsPlansLog(afterData) &&
+    session &&
     sessionIsTimePlanSession(session) &&
     isTimePlanFullyCompleted(session, afterData)
   ) {
