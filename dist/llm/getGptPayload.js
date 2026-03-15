@@ -48,7 +48,7 @@ function buildBehaviorLogPayload(log) {
     return [];
 }
 function getGptPayload(log, isFinalLogInSession) {
-    var _a;
+    var _a, _b;
     if (log.type === "proposed_experiment") {
         // createdExperiment is written by the confirmExperimentFromProposal API
         const createdExperiment = "createdExperiment" in log
@@ -61,12 +61,17 @@ function getGptPayload(log, isFinalLogInSession) {
         const metricLabels = "metricLabels" in log
             ? log.metricLabels
             : undefined;
+        const metricNames = "metrics" in log
+            ? (_b = log.metrics) === null || _b === void 0 ? void 0 : _b.map((metric) => metric.name)
+            : undefined;
         const behaviorText = behaviorName && behaviorName.trim().length > 0
             ? behaviorName
             : "the behavior you're tracking";
-        const metricsText = metricLabels && metricLabels.length > 0
-            ? metricLabels.join(", ")
-            : "what you agreed to track";
+        const metricsText = metricNames && metricNames.length > 0
+            ? metricNames.join(", ")
+            : metricLabels && metricLabels.length > 0
+                ? metricLabels.join(", ")
+                : "what you agreed to track";
         if (isFinalLogInSession) {
             return [
                 {

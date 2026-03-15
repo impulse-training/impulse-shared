@@ -40,6 +40,10 @@ import { TacticLog, tacticLogSchema } from "./tacticLog";
 import { ToolCallLog, toolCallLogSchema } from "./toolCallLog";
 import { VideoLog, videoLogSchema } from "./videoLog";
 import { MetricLog, metricLogSchema } from "./metricLog";
+import {
+  RecapTimePreferenceLog,
+  recapTimePreferenceLogSchema,
+} from "./recapTimePreferenceLog";
 import { WidgetSetupLog, widgetSetupLogSchema } from "./widgetSetupLog";
 
 export const logSchemas = {
@@ -65,6 +69,7 @@ export const logSchemas = {
   proposed_experiment: proposedExperimentLogSchema,
   impulse_started: impulseStartedLogSchema,
   metric: metricLogSchema,
+  recap_time_preference: recapTimePreferenceLogSchema,
 };
 export const logTypes = Object.keys(logSchemas);
 
@@ -90,7 +95,8 @@ export type Log =
   | EnableNotificationsCtaLog
   | ProposedExperimentLog
   | ImpulseStartedLog
-  | MetricLog;
+  | MetricLog
+  | RecapTimePreferenceLog;
 
 export * from "./behaviorLog";
 export * from "./breathingLog";
@@ -111,6 +117,7 @@ export * from "./widgetSetupLog";
 export * from "./proposedExperimentLog";
 export * from "./impulseStartedLog";
 export * from "./metricLog";
+export * from "./recapTimePreferenceLog";
 
 // Discriminated union schema across all log variants
 export const logSchema = z.discriminatedUnion("type", [
@@ -135,6 +142,7 @@ export const logSchema = z.discriminatedUnion("type", [
   proposedExperimentLogSchema,
   impulseStartedLogSchema,
   metricLogSchema,
+  recapTimePreferenceLogSchema,
 ]);
 
 // Export log type guards
@@ -276,6 +284,15 @@ export const logIsMetricLog = (value: Omit<Log, "id">): value is MetricLog =>
   value.type === "metric";
 export const isValidMetricLog = (value: unknown): value is MetricLog => {
   return metricLogSchema.safeParse(value).success;
+};
+
+export const logIsRecapTimePreferenceLog = (
+  value: Omit<Log, "id">,
+): value is RecapTimePreferenceLog => value.type === "recap_time_preference";
+export const isValidRecapTimePreferenceLog = (
+  value: unknown,
+): value is RecapTimePreferenceLog => {
+  return recapTimePreferenceLogSchema.safeParse(value).success;
 };
 
 export const logIsImpulseStartedLog = (

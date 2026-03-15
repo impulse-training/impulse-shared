@@ -56,6 +56,7 @@ __exportStar(require("./utils/fields"), exports);
 __exportStar(require("./utils/objectOf"), exports);
 __exportStar(require("./utils/shouldRespondToLogWithAI"), exports);
 __exportStar(require("./utils/shouldRespondWithNotificationCtaLog"), exports);
+__exportStar(require("./utils/shouldRespondWithRecapTimePreferenceLog"), exports);
 __exportStar(require("./utils/timestampSchema"), exports);
 __exportStar(require("./utils/validation"), exports);
 __exportStar(require("./utils/withId"), exports);

@@ -17,6 +17,7 @@ import { TacticLog } from "./tacticLog";
 import { ToolCallLog } from "./toolCallLog";
 import { VideoLog } from "./videoLog";
 import { MetricLog } from "./metricLog";
+import { RecapTimePreferenceLog } from "./recapTimePreferenceLog";
 import { WidgetSetupLog } from "./widgetSetupLog";
 export declare const logSchemas: {
     user: z.ZodObject<{
@@ -11666,6 +11667,19 @@ export declare const logSchemas: {
         isDisplayable: z.ZodLiteral<true>;
         behaviorId: z.ZodString;
         behaviorName: z.ZodOptional<z.ZodString>;
+        metrics: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            name: z.ZodString;
+            minLabel: z.ZodOptional<z.ZodString>;
+            maxLabel: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            name: string;
+            minLabel?: string | undefined;
+            maxLabel?: string | undefined;
+        }, {
+            name: string;
+            minLabel?: string | undefined;
+            maxLabel?: string | undefined;
+        }>, "many">>;
         metricLabels: z.ZodArray<z.ZodString, "many">;
         experimentQuestion: z.ZodOptional<z.ZodString>;
         text: z.ZodOptional<z.ZodString>;
@@ -11700,6 +11714,11 @@ export declare const logSchemas: {
         callLogDocPath?: string | undefined;
         impulseId?: string | undefined;
         buttonText?: string | undefined;
+        metrics?: {
+            name: string;
+            minLabel?: string | undefined;
+            maxLabel?: string | undefined;
+        }[] | undefined;
         experimentQuestion?: string | undefined;
         confirmedAt?: import("../../types").Timestamp | undefined;
         createdExperiment?: {
@@ -11725,6 +11744,11 @@ export declare const logSchemas: {
         callLogDocPath?: string | undefined;
         impulseId?: string | undefined;
         buttonText?: string | undefined;
+        metrics?: {
+            name: string;
+            minLabel?: string | undefined;
+            maxLabel?: string | undefined;
+        }[] | undefined;
         experimentQuestion?: string | undefined;
         confirmedAt?: import("../../types").Timestamp | undefined;
         createdExperiment?: {
@@ -11871,10 +11895,82 @@ export declare const logSchemas: {
         callLogDocPath?: string | undefined;
         impulseId?: string | undefined;
     }>;
+    recap_time_preference: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        sessionId: z.ZodOptional<z.ZodString>;
+        tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        callLogDocPath: z.ZodOptional<z.ZodString>;
+        impulseId: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"recap_time_preference">;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            triggeredByLogId: z.ZodString;
+            hour: z.ZodOptional<z.ZodNumber>;
+            minute: z.ZodOptional<z.ZodNumber>;
+            respondedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        }, "strip", z.ZodTypeAny, {
+            triggeredByLogId: string;
+            respondedAt?: import("../../types").Timestamp | undefined;
+            hour?: number | undefined;
+            minute?: number | undefined;
+        }, {
+            triggeredByLogId: string;
+            respondedAt?: import("../../types").Timestamp | undefined;
+            hour?: number | undefined;
+            minute?: number | undefined;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "recap_time_preference";
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        isDisplayable: true;
+        data: {
+            triggeredByLogId: string;
+            respondedAt?: import("../../types").Timestamp | undefined;
+            hour?: number | undefined;
+            minute?: number | undefined;
+        };
+        id?: string | undefined;
+        sessionId?: string | undefined;
+        tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        callLogDocPath?: string | undefined;
+        impulseId?: string | undefined;
+    }, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "recap_time_preference";
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        isDisplayable: true;
+        data: {
+            triggeredByLogId: string;
+            respondedAt?: import("../../types").Timestamp | undefined;
+            hour?: number | undefined;
+            minute?: number | undefined;
+        };
+        id?: string | undefined;
+        sessionId?: string | undefined;
+        tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        callLogDocPath?: string | undefined;
+        impulseId?: string | undefined;
+    }>;
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ProposedExperimentLog | ImpulseStartedLog | MetricLog;
+export type Log = TacticLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ProposedExperimentLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog;
 export * from "./behaviorLog";
 export * from "./breathingLog";
 export * from "./callLog";
@@ -11894,6 +11990,7 @@ export * from "./widgetSetupLog";
 export * from "./proposedExperimentLog";
 export * from "./impulseStartedLog";
 export * from "./metricLog";
+export * from "./recapTimePreferenceLog";
 export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -20390,6 +20487,19 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: z.ZodLiteral<true>;
     behaviorId: z.ZodString;
     behaviorName: z.ZodOptional<z.ZodString>;
+    metrics: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        name: z.ZodString;
+        minLabel: z.ZodOptional<z.ZodString>;
+        maxLabel: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        name: string;
+        minLabel?: string | undefined;
+        maxLabel?: string | undefined;
+    }, {
+        name: string;
+        minLabel?: string | undefined;
+        maxLabel?: string | undefined;
+    }>, "many">>;
     metricLabels: z.ZodArray<z.ZodString, "many">;
     experimentQuestion: z.ZodOptional<z.ZodString>;
     text: z.ZodOptional<z.ZodString>;
@@ -20424,6 +20534,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     callLogDocPath?: string | undefined;
     impulseId?: string | undefined;
     buttonText?: string | undefined;
+    metrics?: {
+        name: string;
+        minLabel?: string | undefined;
+        maxLabel?: string | undefined;
+    }[] | undefined;
     experimentQuestion?: string | undefined;
     confirmedAt?: import("../../types").Timestamp | undefined;
     createdExperiment?: {
@@ -20449,6 +20564,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     callLogDocPath?: string | undefined;
     impulseId?: string | undefined;
     buttonText?: string | undefined;
+    metrics?: {
+        name: string;
+        minLabel?: string | undefined;
+        maxLabel?: string | undefined;
+    }[] | undefined;
     experimentQuestion?: string | undefined;
     confirmedAt?: import("../../types").Timestamp | undefined;
     createdExperiment?: {
@@ -20592,6 +20712,77 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
     impulseId?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    sessionId: z.ZodOptional<z.ZodString>;
+    tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    callLogDocPath: z.ZodOptional<z.ZodString>;
+    impulseId: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"recap_time_preference">;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        triggeredByLogId: z.ZodString;
+        hour: z.ZodOptional<z.ZodNumber>;
+        minute: z.ZodOptional<z.ZodNumber>;
+        respondedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    }, "strip", z.ZodTypeAny, {
+        triggeredByLogId: string;
+        respondedAt?: import("../../types").Timestamp | undefined;
+        hour?: number | undefined;
+        minute?: number | undefined;
+    }, {
+        triggeredByLogId: string;
+        respondedAt?: import("../../types").Timestamp | undefined;
+        hour?: number | undefined;
+        minute?: number | undefined;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "recap_time_preference";
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        triggeredByLogId: string;
+        respondedAt?: import("../../types").Timestamp | undefined;
+        hour?: number | undefined;
+        minute?: number | undefined;
+    };
+    id?: string | undefined;
+    sessionId?: string | undefined;
+    tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    callLogDocPath?: string | undefined;
+    impulseId?: string | undefined;
+}, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "recap_time_preference";
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    isDisplayable: true;
+    data: {
+        triggeredByLogId: string;
+        respondedAt?: import("../../types").Timestamp | undefined;
+        hour?: number | undefined;
+        minute?: number | undefined;
+    };
+    id?: string | undefined;
+    sessionId?: string | undefined;
+    tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    callLogDocPath?: string | undefined;
+    impulseId?: string | undefined;
 }>]>;
 export declare const logIsAssistantMessageLog: (value: Omit<Log, "id">) => value is AssistantMessageLog;
 export declare const isValidAssistantMessageLog: (value: unknown) => value is AssistantMessageLog;
@@ -20629,5 +20820,7 @@ export declare const logIsEnableNotificationsCtaLog: (value: Omit<Log, "id">) =>
 export declare const isValidEnableNotificationsCtaLog: (value: unknown) => value is EnableNotificationsCtaLog;
 export declare const logIsMetricLog: (value: Omit<Log, "id">) => value is MetricLog;
 export declare const isValidMetricLog: (value: unknown) => value is MetricLog;
+export declare const logIsRecapTimePreferenceLog: (value: Omit<Log, "id">) => value is RecapTimePreferenceLog;
+export declare const isValidRecapTimePreferenceLog: (value: unknown) => value is RecapTimePreferenceLog;
 export declare const logIsImpulseStartedLog: (value: Omit<Log, "id">) => value is ImpulseStartedLog;
 export declare const isValidImpulseStartedLog: (value: unknown) => value is ImpulseStartedLog;

@@ -102,15 +102,27 @@ export function getGptPayload(
       "metricLabels" in log
         ? (log as { metricLabels?: string[] }).metricLabels
         : undefined;
+    const metricNames =
+      "metrics" in log
+        ? (
+            log as {
+              metrics?: Array<{
+                name: string;
+              }>;
+            }
+          ).metrics?.map((metric) => metric.name)
+        : undefined;
 
     const behaviorText =
       behaviorName && behaviorName.trim().length > 0
         ? behaviorName
         : "the behavior you're tracking";
     const metricsText =
-      metricLabels && metricLabels.length > 0
-        ? metricLabels.join(", ")
-        : "what you agreed to track";
+      metricNames && metricNames.length > 0
+        ? metricNames.join(", ")
+        : metricLabels && metricLabels.length > 0
+          ? metricLabels.join(", ")
+          : "what you agreed to track";
 
     if (isFinalLogInSession) {
       return [
