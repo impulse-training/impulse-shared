@@ -1,6 +1,6 @@
 {
   "name": "impulse-shared",
-  "version": "0.1.1-1773581051",
+  "version": "0.1.1-1773582033",
   "description": "Shared types and utilities for Impulse applications",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

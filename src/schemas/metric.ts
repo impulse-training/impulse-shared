@@ -14,6 +14,10 @@ export const metricSchema = z.object({
   name: z.string().min(1),
   /** Prompt shown when tracking, e.g. "How clear is your thinking?" */
   description: z.string().optional(),
+  /** Label for the low end of the 1-5 scale, e.g. "Very foggy" */
+  minLabel: z.string().optional(),
+  /** Label for the high end of the 1-5 scale, e.g. "Very clear" */
+  maxLabel: z.string().optional(),
   /** If created from METRIC_REGISTRY, stores the registry id for dedup */
   metricRegistryId: z.string().optional(),
   createdAt: timestampSchema.optional(),

@@ -11807,18 +11807,24 @@ export declare const logSchemas: {
         data: z.ZodObject<{
             metricId: z.ZodString;
             metricName: z.ZodString;
-            value: z.ZodNumber;
+            value: z.ZodNullable<z.ZodNumber>;
+            minLabel: z.ZodOptional<z.ZodString>;
+            maxLabel: z.ZodOptional<z.ZodString>;
             text: z.ZodOptional<z.ZodString>;
         }, "strip", z.ZodTypeAny, {
-            value: number;
+            value: number | null;
             metricId: string;
             metricName: string;
             text?: string | undefined;
+            minLabel?: string | undefined;
+            maxLabel?: string | undefined;
         }, {
-            value: number;
+            value: number | null;
             metricId: string;
             metricName: string;
             text?: string | undefined;
+            minLabel?: string | undefined;
+            maxLabel?: string | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
         createdAt: import("../../types").Timestamp;
@@ -11829,10 +11835,12 @@ export declare const logSchemas: {
         dateString: string;
         isDisplayable: true;
         data: {
-            value: number;
+            value: number | null;
             metricId: string;
             metricName: string;
             text?: string | undefined;
+            minLabel?: string | undefined;
+            maxLabel?: string | undefined;
         };
         id?: string | undefined;
         sessionId?: string | undefined;
@@ -11849,10 +11857,12 @@ export declare const logSchemas: {
         dateString: string;
         isDisplayable: true;
         data: {
-            value: number;
+            value: number | null;
             metricId: string;
             metricName: string;
             text?: string | undefined;
+            minLabel?: string | undefined;
+            maxLabel?: string | undefined;
         };
         id?: string | undefined;
         sessionId?: string | undefined;
@@ -20519,18 +20529,24 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: z.ZodObject<{
         metricId: z.ZodString;
         metricName: z.ZodString;
-        value: z.ZodNumber;
+        value: z.ZodNullable<z.ZodNumber>;
+        minLabel: z.ZodOptional<z.ZodString>;
+        maxLabel: z.ZodOptional<z.ZodString>;
         text: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
-        value: number;
+        value: number | null;
         metricId: string;
         metricName: string;
         text?: string | undefined;
+        minLabel?: string | undefined;
+        maxLabel?: string | undefined;
     }, {
-        value: number;
+        value: number | null;
         metricId: string;
         metricName: string;
         text?: string | undefined;
+        minLabel?: string | undefined;
+        maxLabel?: string | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
@@ -20541,10 +20557,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dateString: string;
     isDisplayable: true;
     data: {
-        value: number;
+        value: number | null;
         metricId: string;
         metricName: string;
         text?: string | undefined;
+        minLabel?: string | undefined;
+        maxLabel?: string | undefined;
     };
     id?: string | undefined;
     sessionId?: string | undefined;
@@ -20561,10 +20579,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dateString: string;
     isDisplayable: true;
     data: {
-        value: number;
+        value: number | null;
         metricId: string;
         metricName: string;
         text?: string | undefined;
+        minLabel?: string | undefined;
+        maxLabel?: string | undefined;
     };
     id?: string | undefined;
     sessionId?: string | undefined;
