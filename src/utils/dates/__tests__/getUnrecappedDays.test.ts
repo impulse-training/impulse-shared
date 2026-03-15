@@ -6,7 +6,7 @@ import {
 
 function makeSummaries(
   ids: string[],
-  flags?: Record<string, Partial<DaySummaryLike>>
+  flags?: Record<string, Partial<DaySummaryLike>>,
 ) {
   return ids.map<DaySummaryLike>((id) => ({ id, ...flags?.[id] }));
 }
@@ -20,9 +20,9 @@ describe("getUnrecappedDays (timezone-aware)", () => {
     const summaries: DaySummaryLike[] = makeSummaries(
       ["2025-10-18", "2025-10-19", "2025-10-20"],
       {
-        "2025-10-19": { recapStartedAt: null, recapRequirementsMetAt: null },
-        "2025-10-20": { recapRequirementsMetAt: {} }, // today should be excluded anyway
-      }
+        "2025-10-19": { recapStartedAt: null, dayTotalsConfirmedAt: null },
+        "2025-10-20": { dayTotalsConfirmedAt: {} }, // today should be excluded anyway
+      },
     );
 
     const res = getUnrecappedDays({
@@ -35,14 +35,14 @@ describe("getUnrecappedDays (timezone-aware)", () => {
 
     // Yesterday local is 2025-10-19; it should appear with label "Yesterday"
     expect(
-      res.find((r: UnrecappedDay) => r.dateString === "2025-10-19")
+      res.find((r: UnrecappedDay) => r.dateString === "2025-10-19"),
     ).toBeTruthy();
     const y = res.find((r: UnrecappedDay) => r.dateString === "2025-10-19");
     expect(y?.label).toBe("Yesterday");
 
     // Today (2025-10-20) must not appear
     expect(
-      res.find((r: UnrecappedDay) => r.dateString === "2025-10-20")
+      res.find((r: UnrecappedDay) => r.dateString === "2025-10-20"),
     ).toBeFalsy();
   });
 
@@ -67,10 +67,10 @@ describe("getUnrecappedDays (timezone-aware)", () => {
 
     // Must not include 2025-07-12 since start clamps to 2025-07-13 local
     expect(
-      res.find((r: UnrecappedDay) => r.dateString === "2025-07-12")
+      res.find((r: UnrecappedDay) => r.dateString === "2025-07-12"),
     ).toBeFalsy();
     expect(
-      res.find((r: UnrecappedDay) => r.dateString === "2025-07-13")
+      res.find((r: UnrecappedDay) => r.dateString === "2025-07-13"),
     ).toBeTruthy();
   });
 

@@ -36,8 +36,8 @@ exports.daySummarySchema = zod_1.z.object({
     goalComparisonByBehaviorId: zod_1.z
         .record(zod_1.z.string(), exports.goalComparisonEntrySchema)
         .optional(),
-    // When all recap requirements are met (recap question answered + experiment questions if applicable)
-    recapRequirementsMetAt: timestampSchema_1.timestampSchema.nullable(),
+    // When the user confirms their day totals
+    dayTotalsConfirmedAt: timestampSchema_1.timestampSchema.nullable(),
     // When the user confirms totals and starts the recap flow
     recapStartedAt: timestampSchema_1.timestampSchema.optional(),
     recapCutoffTime: timestampSchema_1.timestampSchema.optional(),

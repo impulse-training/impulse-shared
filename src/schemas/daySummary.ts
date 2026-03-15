@@ -36,8 +36,8 @@ export const daySummarySchema = z.object({
   goalComparisonByBehaviorId: z
     .record(z.string(), goalComparisonEntrySchema)
     .optional(),
-  // When all recap requirements are met (recap question answered + experiment questions if applicable)
-  recapRequirementsMetAt: timestampSchema.nullable(),
+  // When the user confirms their day totals
+  dayTotalsConfirmedAt: timestampSchema.nullable(),
   // When the user confirms totals and starts the recap flow
   recapStartedAt: timestampSchema.optional(),
   recapCutoffTime: timestampSchema.optional(),

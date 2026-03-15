@@ -73,7 +73,7 @@ describe("Schema Validation", () => {
                 userId: "user123",
                 impulseSessionOutcomesById: {},
                 behaviorDataTotalByBehaviorId: {},
-                recapRequirementsMetAt: null,
+                dayTotalsConfirmedAt: null,
                 summaryText: null,
                 supportGroupSummariesById: {},
                 sharedWithUserIds: [],

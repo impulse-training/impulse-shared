@@ -1553,7 +1553,7 @@ export declare const daySummarySchema: z.ZodObject<{
         measured: number;
         targetValue?: number | undefined;
     }>>>;
-    recapRequirementsMetAt: z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    dayTotalsConfirmedAt: z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     recapStartedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     recapCutoffTime: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     supportGroupNotificationSentAtById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>>;
@@ -1577,7 +1577,7 @@ export declare const daySummarySchema: z.ZodObject<{
         outcome?: "success" | "partial" | "setback" | undefined;
     }>;
     sharedWithUserIds: string[];
-    recapRequirementsMetAt: import("../types").Timestamp | null;
+    dayTotalsConfirmedAt: import("../types").Timestamp | null;
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
@@ -1772,7 +1772,7 @@ export declare const daySummarySchema: z.ZodObject<{
         outcome?: "success" | "partial" | "setback" | undefined;
     }>;
     sharedWithUserIds: string[];
-    recapRequirementsMetAt: import("../types").Timestamp | null;
+    dayTotalsConfirmedAt: import("../types").Timestamp | null;
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;

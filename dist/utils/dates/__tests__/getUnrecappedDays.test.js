@@ -10,8 +10,8 @@ describe("getUnrecappedDays (timezone-aware)", () => {
         // Fixed "now": 2025-10-20T10:30:00Z (which is 21:00 local)
         const today = new Date(Date.UTC(2025, 9, 20, 10, 30, 0));
         const summaries = makeSummaries(["2025-10-18", "2025-10-19", "2025-10-20"], {
-            "2025-10-19": { recapStartedAt: null, recapRequirementsMetAt: null },
-            "2025-10-20": { recapRequirementsMetAt: {} }, // today should be excluded anyway
+            "2025-10-19": { recapStartedAt: null, dayTotalsConfirmedAt: null },
+            "2025-10-20": { dayTotalsConfirmedAt: {} }, // today should be excluded anyway
         });
         const res = (0, getUnrecappedDays_1.getUnrecappedDays)({
             dateRangeStart: new Date(Date.UTC(2025, 9, 15)),

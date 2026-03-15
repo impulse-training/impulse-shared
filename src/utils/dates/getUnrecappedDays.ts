@@ -8,7 +8,7 @@
 
 export type DaySummaryLike = {
   id: string; // 'yyyy-MM-dd'
-  recapRequirementsMetAt?: unknown | null;
+  dayTotalsConfirmedAt?: unknown | null;
   recapStartedAt?: unknown | null;
 };
 
@@ -79,7 +79,7 @@ function formatLabel(date: Date, todayUTC: Date, timeZone: string): string {
   const diffDays = Math.floor(
     (fromLocalYMDToUTCStartOfDay(localTodayKey, timeZone).getTime() -
       fromLocalYMDToUTCStartOfDay(localDateKey, timeZone).getTime()) /
-      dayMs
+      dayMs,
   );
   if (diffDays <= 6) {
     return new Intl.DateTimeFormat(undefined, {
@@ -129,7 +129,7 @@ export function getUnrecappedDays(options: {
   while (toLocalKey(cursor, timeZone) <= yesterdayKey) {
     const localKey = toLocalKey(cursor, timeZone);
     const summary = allDaySummaries.find((s) => s.id === localKey);
-    if (!summary?.recapRequirementsMetAt && !summary?.recapStartedAt) {
+    if (!summary?.dayTotalsConfirmedAt && !summary?.recapStartedAt) {
       results.push({
         dateString: localKey,
         label: formatLabel(cursor, todayUTC, timeZone),

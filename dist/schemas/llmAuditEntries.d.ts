@@ -6,7 +6,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
     instructions: z.ZodOptional<z.ZodString>;
     inputMessages: z.ZodArray<z.ZodRecord<z.ZodString, z.ZodUnknown>, "many">;
     response: z.ZodRecord<z.ZodString, z.ZodUnknown>;
-    toolDefinitions: z.ZodArray<z.ZodRecord<z.ZodString, z.ZodUnknown>, "many">;
     session: z.ZodOptional<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         title: z.ZodString;
@@ -23991,7 +23990,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
     response: Record<string, unknown>;
     logId: string;
     inputMessages: Record<string, unknown>[];
-    toolDefinitions: Record<string, unknown>[];
     durationMs?: number | undefined;
     timestamp?: import("../types").Timestamp | undefined;
     endedAt?: import("../types").Timestamp | undefined;
@@ -26929,7 +26927,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
     response: Record<string, unknown>;
     logId: string;
     inputMessages: Record<string, unknown>[];
-    toolDefinitions: Record<string, unknown>[];
     durationMs?: number | undefined;
     timestamp?: import("../types").Timestamp | undefined;
     endedAt?: import("../types").Timestamp | undefined;
