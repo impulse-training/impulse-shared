@@ -15,6 +15,9 @@ export const tourStepSchema = z.object({
   nextOnImpulseButtonPress: z.boolean().optional(),
   borderRadius: z.number().optional(),
   innerPadding: z.number().optional(),
+  minimumRectSize: z
+    .object({ width: z.number(), height: z.number() })
+    .optional(),
 });
 export type TourStep = z.infer<typeof tourStepSchema>;
 
