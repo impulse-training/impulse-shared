@@ -14,7 +14,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidImpulseStartedLog = exports.logIsImpulseStartedLog = exports.isValidRecapTimePreferenceLog = exports.logIsRecapTimePreferenceLog = exports.isValidMetricLog = exports.logIsMetricLog = exports.isValidEnableNotificationsCtaLog = exports.logIsEnableNotificationsCtaLog = exports.isValidSupportGroupDaySummaryLog = exports.logIsSupportGroupDaySummaryLog = exports.isValidBreathingLog = exports.logIsBreathingLog = exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidPlansLog = exports.logIsPlansLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorLog = exports.logIsBehaviorLog = exports.isValidSharedMomentLog = exports.logIsSharedMomentLog = exports.isValidNotifySupportGroupLog = exports.logIsNotifySupportGroupLog = exports.isValidShowTourLog = exports.logIsShowTourLog = exports.isValidSystemMessageLog = exports.logIsSystemMessageLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
+exports.isValidImpulseStartedLog = exports.logIsImpulseStartedLog = exports.isValidDayTotalsPromptLog = exports.logIsDayTotalsPromptLog = exports.isValidRecapTimePreferenceLog = exports.logIsRecapTimePreferenceLog = exports.isValidMetricLog = exports.logIsMetricLog = exports.isValidEnableNotificationsCtaLog = exports.logIsEnableNotificationsCtaLog = exports.isValidSupportGroupDaySummaryLog = exports.logIsSupportGroupDaySummaryLog = exports.isValidBreathingLog = exports.logIsBreathingLog = exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidPlansLog = exports.logIsPlansLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorLog = exports.logIsBehaviorLog = exports.isValidSharedMomentLog = exports.logIsSharedMomentLog = exports.isValidNotifySupportGroupLog = exports.logIsNotifySupportGroupLog = exports.isValidShowTourLog = exports.logIsShowTourLog = exports.isValidSystemMessageLog = exports.logIsSystemMessageLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
 const zod_1 = require("zod");
 const behaviorLog_1 = require("./behaviorLog");
 const breathingLog_1 = require("./breathingLog");
@@ -35,6 +35,7 @@ const toolCallLog_1 = require("./toolCallLog");
 const videoLog_1 = require("./videoLog");
 const metricLog_1 = require("./metricLog");
 const recapTimePreferenceLog_1 = require("./recapTimePreferenceLog");
+const dayTotalsPromptLog_1 = require("./dayTotalsPromptLog");
 const widgetSetupLog_1 = require("./widgetSetupLog");
 exports.logSchemas = {
     user: messageLog_1.userMessageLogSchema,
@@ -60,6 +61,7 @@ exports.logSchemas = {
     impulse_started: impulseStartedLog_1.impulseStartedLogSchema,
     metric: metricLog_1.metricLogSchema,
     recap_time_preference: recapTimePreferenceLog_1.recapTimePreferenceLogSchema,
+    day_totals_prompt: dayTotalsPromptLog_1.dayTotalsPromptLogSchema,
 };
 exports.logTypes = Object.keys(exports.logSchemas);
 __exportStar(require("./behaviorLog"), exports);
@@ -82,6 +84,7 @@ __exportStar(require("./proposedExperimentLog"), exports);
 __exportStar(require("./impulseStartedLog"), exports);
 __exportStar(require("./metricLog"), exports);
 __exportStar(require("./recapTimePreferenceLog"), exports);
+__exportStar(require("./dayTotalsPromptLog"), exports);
 // Discriminated union schema across all log variants
 exports.logSchema = zod_1.z.discriminatedUnion("type", [
     messageLog_1.userMessageLogSchema,
@@ -106,6 +109,7 @@ exports.logSchema = zod_1.z.discriminatedUnion("type", [
     impulseStartedLog_1.impulseStartedLogSchema,
     metricLog_1.metricLogSchema,
     recapTimePreferenceLog_1.recapTimePreferenceLogSchema,
+    dayTotalsPromptLog_1.dayTotalsPromptLogSchema,
 ]);
 // Export log type guards
 const logIsAssistantMessageLog = (value) => value.type === "assistant_message";
@@ -222,6 +226,12 @@ const isValidRecapTimePreferenceLog = (value) => {
     return recapTimePreferenceLog_1.recapTimePreferenceLogSchema.safeParse(value).success;
 };
 exports.isValidRecapTimePreferenceLog = isValidRecapTimePreferenceLog;
+const logIsDayTotalsPromptLog = (value) => value.type === "day_totals_prompt";
+exports.logIsDayTotalsPromptLog = logIsDayTotalsPromptLog;
+const isValidDayTotalsPromptLog = (value) => {
+    return dayTotalsPromptLog_1.dayTotalsPromptLogSchema.safeParse(value).success;
+};
+exports.isValidDayTotalsPromptLog = isValidDayTotalsPromptLog;
 const logIsImpulseStartedLog = (value) => value.type === "impulse_started";
 exports.logIsImpulseStartedLog = logIsImpulseStartedLog;
 const isValidImpulseStartedLog = (value) => {
