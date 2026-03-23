@@ -10879,7 +10879,7 @@ export declare const logSchemas: {
         text: z.ZodString;
         data: z.ZodObject<{
             steps: z.ZodArray<z.ZodObject<{
-                elementRefName: z.ZodString;
+                elementRefName: z.ZodNullable<z.ZodString>;
                 title: z.ZodString;
                 description: z.ZodString;
                 confirmButtonLabel: z.ZodDefault<z.ZodString>;
@@ -10889,7 +10889,7 @@ export declare const logSchemas: {
             }, "strip", z.ZodTypeAny, {
                 title: string;
                 description: string;
-                elementRefName: string;
+                elementRefName: string | null;
                 confirmButtonLabel: string;
                 nextOnImpulseButtonPress?: boolean | undefined;
                 borderRadius?: number | undefined;
@@ -10897,7 +10897,7 @@ export declare const logSchemas: {
             }, {
                 title: string;
                 description: string;
-                elementRefName: string;
+                elementRefName: string | null;
                 confirmButtonLabel?: string | undefined;
                 nextOnImpulseButtonPress?: boolean | undefined;
                 borderRadius?: number | undefined;
@@ -10913,7 +10913,7 @@ export declare const logSchemas: {
             steps: {
                 title: string;
                 description: string;
-                elementRefName: string;
+                elementRefName: string | null;
                 confirmButtonLabel: string;
                 nextOnImpulseButtonPress?: boolean | undefined;
                 borderRadius?: number | undefined;
@@ -10929,7 +10929,7 @@ export declare const logSchemas: {
             steps: {
                 title: string;
                 description: string;
-                elementRefName: string;
+                elementRefName: string | null;
                 confirmButtonLabel?: string | undefined;
                 nextOnImpulseButtonPress?: boolean | undefined;
                 borderRadius?: number | undefined;
@@ -10955,7 +10955,7 @@ export declare const logSchemas: {
             steps: {
                 title: string;
                 description: string;
-                elementRefName: string;
+                elementRefName: string | null;
                 confirmButtonLabel: string;
                 nextOnImpulseButtonPress?: boolean | undefined;
                 borderRadius?: number | undefined;
@@ -10987,7 +10987,7 @@ export declare const logSchemas: {
             steps: {
                 title: string;
                 description: string;
-                elementRefName: string;
+                elementRefName: string | null;
                 confirmButtonLabel?: string | undefined;
                 nextOnImpulseButtonPress?: boolean | undefined;
                 borderRadius?: number | undefined;
@@ -19764,7 +19764,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     text: z.ZodString;
     data: z.ZodObject<{
         steps: z.ZodArray<z.ZodObject<{
-            elementRefName: z.ZodString;
+            elementRefName: z.ZodNullable<z.ZodString>;
             title: z.ZodString;
             description: z.ZodString;
             confirmButtonLabel: z.ZodDefault<z.ZodString>;
@@ -19774,7 +19774,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }, "strip", z.ZodTypeAny, {
             title: string;
             description: string;
-            elementRefName: string;
+            elementRefName: string | null;
             confirmButtonLabel: string;
             nextOnImpulseButtonPress?: boolean | undefined;
             borderRadius?: number | undefined;
@@ -19782,7 +19782,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }, {
             title: string;
             description: string;
-            elementRefName: string;
+            elementRefName: string | null;
             confirmButtonLabel?: string | undefined;
             nextOnImpulseButtonPress?: boolean | undefined;
             borderRadius?: number | undefined;
@@ -19798,7 +19798,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         steps: {
             title: string;
             description: string;
-            elementRefName: string;
+            elementRefName: string | null;
             confirmButtonLabel: string;
             nextOnImpulseButtonPress?: boolean | undefined;
             borderRadius?: number | undefined;
@@ -19814,7 +19814,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         steps: {
             title: string;
             description: string;
-            elementRefName: string;
+            elementRefName: string | null;
             confirmButtonLabel?: string | undefined;
             nextOnImpulseButtonPress?: boolean | undefined;
             borderRadius?: number | undefined;
@@ -19840,7 +19840,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         steps: {
             title: string;
             description: string;
-            elementRefName: string;
+            elementRefName: string | null;
             confirmButtonLabel: string;
             nextOnImpulseButtonPress?: boolean | undefined;
             borderRadius?: number | undefined;
@@ -19872,7 +19872,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         steps: {
             title: string;
             description: string;
-            elementRefName: string;
+            elementRefName: string | null;
             confirmButtonLabel?: string | undefined;
             nextOnImpulseButtonPress?: boolean | undefined;
             borderRadius?: number | undefined;

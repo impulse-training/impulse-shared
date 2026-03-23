@@ -10,7 +10,7 @@ var TourIcon;
     TourIcon["DockMetricsButton"] = "dockMetricsButton";
 })(TourIcon || (exports.TourIcon = TourIcon = {}));
 exports.tourStepSchema = zod_1.z.object({
-    elementRefName: zod_1.z.string(),
+    elementRefName: zod_1.z.string().nullable(),
     title: zod_1.z.string(),
     description: zod_1.z.string(),
     confirmButtonLabel: zod_1.z.string().default("Ok"),

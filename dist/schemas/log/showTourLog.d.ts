@@ -4,7 +4,7 @@ export declare enum TourIcon {
     DockMetricsButton = "dockMetricsButton"
 }
 export declare const tourStepSchema: z.ZodObject<{
-    elementRefName: z.ZodString;
+    elementRefName: z.ZodNullable<z.ZodString>;
     title: z.ZodString;
     description: z.ZodString;
     confirmButtonLabel: z.ZodDefault<z.ZodString>;
@@ -14,7 +14,7 @@ export declare const tourStepSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     title: string;
     description: string;
-    elementRefName: string;
+    elementRefName: string | null;
     confirmButtonLabel: string;
     nextOnImpulseButtonPress?: boolean | undefined;
     borderRadius?: number | undefined;
@@ -22,7 +22,7 @@ export declare const tourStepSchema: z.ZodObject<{
 }, {
     title: string;
     description: string;
-    elementRefName: string;
+    elementRefName: string | null;
     confirmButtonLabel?: string | undefined;
     nextOnImpulseButtonPress?: boolean | undefined;
     borderRadius?: number | undefined;
@@ -47,7 +47,7 @@ export declare const showTourLogSchema: z.ZodObject<{
     text: z.ZodString;
     data: z.ZodObject<{
         steps: z.ZodArray<z.ZodObject<{
-            elementRefName: z.ZodString;
+            elementRefName: z.ZodNullable<z.ZodString>;
             title: z.ZodString;
             description: z.ZodString;
             confirmButtonLabel: z.ZodDefault<z.ZodString>;
@@ -57,7 +57,7 @@ export declare const showTourLogSchema: z.ZodObject<{
         }, "strip", z.ZodTypeAny, {
             title: string;
             description: string;
-            elementRefName: string;
+            elementRefName: string | null;
             confirmButtonLabel: string;
             nextOnImpulseButtonPress?: boolean | undefined;
             borderRadius?: number | undefined;
@@ -65,7 +65,7 @@ export declare const showTourLogSchema: z.ZodObject<{
         }, {
             title: string;
             description: string;
-            elementRefName: string;
+            elementRefName: string | null;
             confirmButtonLabel?: string | undefined;
             nextOnImpulseButtonPress?: boolean | undefined;
             borderRadius?: number | undefined;
@@ -81,7 +81,7 @@ export declare const showTourLogSchema: z.ZodObject<{
         steps: {
             title: string;
             description: string;
-            elementRefName: string;
+            elementRefName: string | null;
             confirmButtonLabel: string;
             nextOnImpulseButtonPress?: boolean | undefined;
             borderRadius?: number | undefined;
@@ -97,7 +97,7 @@ export declare const showTourLogSchema: z.ZodObject<{
         steps: {
             title: string;
             description: string;
-            elementRefName: string;
+            elementRefName: string | null;
             confirmButtonLabel?: string | undefined;
             nextOnImpulseButtonPress?: boolean | undefined;
             borderRadius?: number | undefined;
@@ -123,7 +123,7 @@ export declare const showTourLogSchema: z.ZodObject<{
         steps: {
             title: string;
             description: string;
-            elementRefName: string;
+            elementRefName: string | null;
             confirmButtonLabel: string;
             nextOnImpulseButtonPress?: boolean | undefined;
             borderRadius?: number | undefined;
@@ -155,7 +155,7 @@ export declare const showTourLogSchema: z.ZodObject<{
         steps: {
             title: string;
             description: string;
-            elementRefName: string;
+            elementRefName: string | null;
             confirmButtonLabel?: string | undefined;
             nextOnImpulseButtonPress?: boolean | undefined;
             borderRadius?: number | undefined;
