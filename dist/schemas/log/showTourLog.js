@@ -17,6 +17,9 @@ exports.tourStepSchema = zod_1.z.object({
     nextOnImpulseButtonPress: zod_1.z.boolean().optional(),
     borderRadius: zod_1.z.number().optional(),
     innerPadding: zod_1.z.number().optional(),
+    minimumRectSize: zod_1.z
+        .object({ width: zod_1.z.number(), height: zod_1.z.number() })
+        .optional(),
 });
 exports.showTourLogSchema = base_1.logBaseSchema.extend({
     type: zod_1.z.literal("show_tour"),

@@ -10886,6 +10886,16 @@ export declare const logSchemas: {
                 nextOnImpulseButtonPress: z.ZodOptional<z.ZodBoolean>;
                 borderRadius: z.ZodOptional<z.ZodNumber>;
                 innerPadding: z.ZodOptional<z.ZodNumber>;
+                minimumRectSize: z.ZodOptional<z.ZodObject<{
+                    width: z.ZodNumber;
+                    height: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    width: number;
+                    height: number;
+                }, {
+                    width: number;
+                    height: number;
+                }>>;
             }, "strip", z.ZodTypeAny, {
                 title: string;
                 description: string;
@@ -10894,6 +10904,10 @@ export declare const logSchemas: {
                 nextOnImpulseButtonPress?: boolean | undefined;
                 borderRadius?: number | undefined;
                 innerPadding?: number | undefined;
+                minimumRectSize?: {
+                    width: number;
+                    height: number;
+                } | undefined;
             }, {
                 title: string;
                 description: string;
@@ -10902,6 +10916,10 @@ export declare const logSchemas: {
                 nextOnImpulseButtonPress?: boolean | undefined;
                 borderRadius?: number | undefined;
                 innerPadding?: number | undefined;
+                minimumRectSize?: {
+                    width: number;
+                    height: number;
+                } | undefined;
             }>, "many">;
             firstNavigateToRoute: z.ZodOptional<z.ZodString>;
             startButtonLabel: z.ZodOptional<z.ZodString>;
@@ -10918,6 +10936,10 @@ export declare const logSchemas: {
                 nextOnImpulseButtonPress?: boolean | undefined;
                 borderRadius?: number | undefined;
                 innerPadding?: number | undefined;
+                minimumRectSize?: {
+                    width: number;
+                    height: number;
+                } | undefined;
             }[];
             includeCloseButton: boolean;
             closeButtonText: string;
@@ -10934,6 +10956,10 @@ export declare const logSchemas: {
                 nextOnImpulseButtonPress?: boolean | undefined;
                 borderRadius?: number | undefined;
                 innerPadding?: number | undefined;
+                minimumRectSize?: {
+                    width: number;
+                    height: number;
+                } | undefined;
             }[];
             completedAt?: import("../../types").Timestamp | undefined;
             firstNavigateToRoute?: string | undefined;
@@ -10960,6 +10986,10 @@ export declare const logSchemas: {
                 nextOnImpulseButtonPress?: boolean | undefined;
                 borderRadius?: number | undefined;
                 innerPadding?: number | undefined;
+                minimumRectSize?: {
+                    width: number;
+                    height: number;
+                } | undefined;
             }[];
             includeCloseButton: boolean;
             closeButtonText: string;
@@ -10992,6 +11022,10 @@ export declare const logSchemas: {
                 nextOnImpulseButtonPress?: boolean | undefined;
                 borderRadius?: number | undefined;
                 innerPadding?: number | undefined;
+                minimumRectSize?: {
+                    width: number;
+                    height: number;
+                } | undefined;
             }[];
             completedAt?: import("../../types").Timestamp | undefined;
             firstNavigateToRoute?: string | undefined;
@@ -19771,6 +19805,16 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             nextOnImpulseButtonPress: z.ZodOptional<z.ZodBoolean>;
             borderRadius: z.ZodOptional<z.ZodNumber>;
             innerPadding: z.ZodOptional<z.ZodNumber>;
+            minimumRectSize: z.ZodOptional<z.ZodObject<{
+                width: z.ZodNumber;
+                height: z.ZodNumber;
+            }, "strip", z.ZodTypeAny, {
+                width: number;
+                height: number;
+            }, {
+                width: number;
+                height: number;
+            }>>;
         }, "strip", z.ZodTypeAny, {
             title: string;
             description: string;
@@ -19779,6 +19823,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             nextOnImpulseButtonPress?: boolean | undefined;
             borderRadius?: number | undefined;
             innerPadding?: number | undefined;
+            minimumRectSize?: {
+                width: number;
+                height: number;
+            } | undefined;
         }, {
             title: string;
             description: string;
@@ -19787,6 +19835,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             nextOnImpulseButtonPress?: boolean | undefined;
             borderRadius?: number | undefined;
             innerPadding?: number | undefined;
+            minimumRectSize?: {
+                width: number;
+                height: number;
+            } | undefined;
         }>, "many">;
         firstNavigateToRoute: z.ZodOptional<z.ZodString>;
         startButtonLabel: z.ZodOptional<z.ZodString>;
@@ -19803,6 +19855,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             nextOnImpulseButtonPress?: boolean | undefined;
             borderRadius?: number | undefined;
             innerPadding?: number | undefined;
+            minimumRectSize?: {
+                width: number;
+                height: number;
+            } | undefined;
         }[];
         includeCloseButton: boolean;
         closeButtonText: string;
@@ -19819,6 +19875,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             nextOnImpulseButtonPress?: boolean | undefined;
             borderRadius?: number | undefined;
             innerPadding?: number | undefined;
+            minimumRectSize?: {
+                width: number;
+                height: number;
+            } | undefined;
         }[];
         completedAt?: import("../../types").Timestamp | undefined;
         firstNavigateToRoute?: string | undefined;
@@ -19845,6 +19905,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             nextOnImpulseButtonPress?: boolean | undefined;
             borderRadius?: number | undefined;
             innerPadding?: number | undefined;
+            minimumRectSize?: {
+                width: number;
+                height: number;
+            } | undefined;
         }[];
         includeCloseButton: boolean;
         closeButtonText: string;
@@ -19877,6 +19941,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             nextOnImpulseButtonPress?: boolean | undefined;
             borderRadius?: number | undefined;
             innerPadding?: number | undefined;
+            minimumRectSize?: {
+                width: number;
+                height: number;
+            } | undefined;
         }[];
         completedAt?: import("../../types").Timestamp | undefined;
         firstNavigateToRoute?: string | undefined;

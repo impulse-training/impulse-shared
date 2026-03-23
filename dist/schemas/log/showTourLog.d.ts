@@ -11,6 +11,16 @@ export declare const tourStepSchema: z.ZodObject<{
     nextOnImpulseButtonPress: z.ZodOptional<z.ZodBoolean>;
     borderRadius: z.ZodOptional<z.ZodNumber>;
     innerPadding: z.ZodOptional<z.ZodNumber>;
+    minimumRectSize: z.ZodOptional<z.ZodObject<{
+        width: z.ZodNumber;
+        height: z.ZodNumber;
+    }, "strip", z.ZodTypeAny, {
+        width: number;
+        height: number;
+    }, {
+        width: number;
+        height: number;
+    }>>;
 }, "strip", z.ZodTypeAny, {
     title: string;
     description: string;
@@ -19,6 +29,10 @@ export declare const tourStepSchema: z.ZodObject<{
     nextOnImpulseButtonPress?: boolean | undefined;
     borderRadius?: number | undefined;
     innerPadding?: number | undefined;
+    minimumRectSize?: {
+        width: number;
+        height: number;
+    } | undefined;
 }, {
     title: string;
     description: string;
@@ -27,6 +41,10 @@ export declare const tourStepSchema: z.ZodObject<{
     nextOnImpulseButtonPress?: boolean | undefined;
     borderRadius?: number | undefined;
     innerPadding?: number | undefined;
+    minimumRectSize?: {
+        width: number;
+        height: number;
+    } | undefined;
 }>;
 export type TourStep = z.infer<typeof tourStepSchema>;
 export declare const showTourLogSchema: z.ZodObject<{
@@ -54,6 +72,16 @@ export declare const showTourLogSchema: z.ZodObject<{
             nextOnImpulseButtonPress: z.ZodOptional<z.ZodBoolean>;
             borderRadius: z.ZodOptional<z.ZodNumber>;
             innerPadding: z.ZodOptional<z.ZodNumber>;
+            minimumRectSize: z.ZodOptional<z.ZodObject<{
+                width: z.ZodNumber;
+                height: z.ZodNumber;
+            }, "strip", z.ZodTypeAny, {
+                width: number;
+                height: number;
+            }, {
+                width: number;
+                height: number;
+            }>>;
         }, "strip", z.ZodTypeAny, {
             title: string;
             description: string;
@@ -62,6 +90,10 @@ export declare const showTourLogSchema: z.ZodObject<{
             nextOnImpulseButtonPress?: boolean | undefined;
             borderRadius?: number | undefined;
             innerPadding?: number | undefined;
+            minimumRectSize?: {
+                width: number;
+                height: number;
+            } | undefined;
         }, {
             title: string;
             description: string;
@@ -70,6 +102,10 @@ export declare const showTourLogSchema: z.ZodObject<{
             nextOnImpulseButtonPress?: boolean | undefined;
             borderRadius?: number | undefined;
             innerPadding?: number | undefined;
+            minimumRectSize?: {
+                width: number;
+                height: number;
+            } | undefined;
         }>, "many">;
         firstNavigateToRoute: z.ZodOptional<z.ZodString>;
         startButtonLabel: z.ZodOptional<z.ZodString>;
@@ -86,6 +122,10 @@ export declare const showTourLogSchema: z.ZodObject<{
             nextOnImpulseButtonPress?: boolean | undefined;
             borderRadius?: number | undefined;
             innerPadding?: number | undefined;
+            minimumRectSize?: {
+                width: number;
+                height: number;
+            } | undefined;
         }[];
         includeCloseButton: boolean;
         closeButtonText: string;
@@ -102,6 +142,10 @@ export declare const showTourLogSchema: z.ZodObject<{
             nextOnImpulseButtonPress?: boolean | undefined;
             borderRadius?: number | undefined;
             innerPadding?: number | undefined;
+            minimumRectSize?: {
+                width: number;
+                height: number;
+            } | undefined;
         }[];
         completedAt?: import("../../types").Timestamp | undefined;
         firstNavigateToRoute?: string | undefined;
@@ -128,6 +172,10 @@ export declare const showTourLogSchema: z.ZodObject<{
             nextOnImpulseButtonPress?: boolean | undefined;
             borderRadius?: number | undefined;
             innerPadding?: number | undefined;
+            minimumRectSize?: {
+                width: number;
+                height: number;
+            } | undefined;
         }[];
         includeCloseButton: boolean;
         closeButtonText: string;
@@ -160,6 +208,10 @@ export declare const showTourLogSchema: z.ZodObject<{
             nextOnImpulseButtonPress?: boolean | undefined;
             borderRadius?: number | undefined;
             innerPadding?: number | undefined;
+            minimumRectSize?: {
+                width: number;
+                height: number;
+            } | undefined;
         }[];
         completedAt?: import("../../types").Timestamp | undefined;
         firstNavigateToRoute?: string | undefined;
