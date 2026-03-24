@@ -44,6 +44,7 @@ __exportStar(require("./recapMessage"), exports);
 __exportStar(require("./session"), exports);
 __exportStar(require("./supportGroup"), exports);
 __exportStar(require("./supportRequest"), exports);
+__exportStar(require("./tagGroup"), exports);
 __exportStar(require("./transcriptItem"), exports);
 __exportStar(require("./utils/supportGroupSummary"), exports);
 __exportStar(require("./tactic"), exports);

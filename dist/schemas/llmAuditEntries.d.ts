@@ -2018,6 +2018,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         }>>;
+        tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
     } & {
         type: z.ZodLiteral<"general">;
     }, "strip", z.ZodTypeAny, {
@@ -2039,6 +2040,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -2361,6 +2363,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -4682,6 +4685,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         }>>;
+        tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
     } & {
         type: z.ZodLiteral<"impulse">;
         behaviorDocs: z.ZodArray<z.ZodType<import("..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("..").DocumentReferenceLike<unknown>>, "many">;
@@ -4709,6 +4713,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -5036,6 +5041,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -7361,6 +7367,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         }>>;
+        tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
     } & {
         type: z.ZodLiteral<"behavior">;
     }, "strip", z.ZodTypeAny, {
@@ -7382,6 +7389,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -7704,6 +7712,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -10025,6 +10034,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         }>>;
+        tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
         planId: z.ZodString;
     } & {
         type: z.ZodLiteral<"timePlan">;
@@ -10048,6 +10058,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -10371,6 +10382,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -12692,6 +12704,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         }>>;
+        tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
     } & {
         type: z.ZodLiteral<"alignment">;
         notificationsEnabled: z.ZodNullable<z.ZodBoolean>;
@@ -12715,6 +12728,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -13038,6 +13052,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -15359,6 +15374,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         }>>;
+        tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
     } & {
         type: z.ZodLiteral<"recap">;
     }, "strip", z.ZodTypeAny, {
@@ -15380,6 +15396,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -15702,6 +15719,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -18023,6 +18041,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         }>>;
+        tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
         planId: z.ZodString;
     } & {
         type: z.ZodLiteral<"locationPlan">;
@@ -18046,6 +18065,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -18369,6 +18389,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -20690,6 +20711,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         }>>;
+        tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
     } & {
         type: z.ZodLiteral<"adjustment">;
     }, "strip", z.ZodTypeAny, {
@@ -20711,6 +20733,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -21033,6 +21056,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -23354,6 +23378,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         }>>;
+        tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
     } & {
         type: z.ZodLiteral<"commitment">;
     }, "strip", z.ZodTypeAny, {
@@ -23375,6 +23400,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -23697,6 +23723,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -24041,6 +24068,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -24366,6 +24394,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -24691,6 +24720,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -25017,6 +25047,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -25347,6 +25378,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -25673,6 +25705,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -25998,6 +26031,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -26324,6 +26358,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -26649,6 +26684,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -26984,6 +27020,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -27309,6 +27346,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -27634,6 +27672,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -27960,6 +27999,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -28290,6 +28330,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -28616,6 +28657,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -28941,6 +28983,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -29267,6 +29310,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -29592,6 +29636,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
+        tags?: Record<string, string> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
