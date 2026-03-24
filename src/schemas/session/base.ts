@@ -38,6 +38,10 @@ export const sessionBaseSchema = z.object({
   // Draft sessions should be hidden in UI until a log is added
   isDraft: z.boolean().optional().default(false),
 
+  // "full" = normal session with title, rail, summary
+  // "minimal" = invisible session, logs render bare with a reflect CTA
+  displayMode: z.enum(["full", "minimal"]).optional().default("full"),
+
   // TODO: review if necessary
   emojiId: emojiIdSchema.nullable(),
 
