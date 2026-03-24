@@ -12,15 +12,21 @@ const phaseDataSchema = z.object({
 });
 
 /**
- * Per-phase behavior summary (e.g. daily average count/time).
+ * Per-phase behavior summary from BigQuery (impulse session counts).
  */
 const phaseBehaviorSummarySchema = z.object({
-  /** Total tracked value across all days in this phase */
-  total: z.number(),
-  /** Daily average value */
+  /** Total impulse sessions in this phase */
+  totalSessions: z.number(),
+  /** Sessions where user acted on urge */
+  actedCount: z.number(),
+  /** Sessions where user resisted */
+  resistedCount: z.number(),
+  /** Average sessions per day */
   dailyAverage: z.number(),
-  /** Number of days the behavior was tracked */
-  daysTracked: z.number(),
+  /** Resist rate (0-1) */
+  resistRate: z.number().optional(),
+  /** Number of days with session data */
+  daysWithData: z.number(),
 });
 
 /**
@@ -31,6 +37,15 @@ const phaseMetricSummarySchema = z.object({
   average: z.number(),
   /** Number of individual ratings recorded */
   count: z.number(),
+});
+
+/**
+ * A single day's data point for time series charts.
+ */
+const dailyDataPointSchema = z.object({
+  date: z.string(),
+  value: z.number(),
+  rollingAvg7d: z.number().optional(),
 });
 
 /**
@@ -47,6 +62,8 @@ const metricComparisonSchema = z.object({
   delta: z.number().optional(),
   /** Percentage change from baseline to observation */
   deltaPercent: z.number().optional(),
+  /** Daily time series for charts */
+  dailySeries: z.array(dailyDataPointSchema).optional(),
 });
 
 /**
@@ -63,6 +80,22 @@ const behaviorComparisonSchema = z.object({
   delta: z.number().optional(),
   /** Percentage change from baseline to observation */
   deltaPercent: z.number().optional(),
+  /** Daily time series for charts */
+  dailySeries: z.array(dailyDataPointSchema).optional(),
+});
+
+/**
+ * Lagged-effect insight: how yesterday's behavior relates to today's metric.
+ */
+const laggedInsightSchema = z.object({
+  metricId: z.string(),
+  metricName: z.string(),
+  /** Correlation between previous-day behavior sessions and current-day metric */
+  correlation: z.number(),
+  /** Number of data points used */
+  dataPoints: z.number(),
+  /** Human-readable summary */
+  description: z.string().optional(),
 });
 
 /**
@@ -71,7 +104,7 @@ const behaviorComparisonSchema = z.object({
  *
  * The frontend subscribes to this document for instant rendering and bumps
  * `requestedAt` on mount. A backend trigger compares `requestedAt` vs
- * `fetchedAt` and recomputes from Firestore data when stale.
+ * `fetchedAt` and recomputes from BigQuery/dbt data when stale.
  */
 export const experimentResultsCacheSchema = z.object({
   experimentName: z.string(),
@@ -87,6 +120,9 @@ export const experimentResultsCacheSchema = z.object({
   /** Metric comparisons */
   metricComparisons: z.array(metricComparisonSchema),
 
+  /** Lagged-effect insights (yesterday's behavior → today's metric) */
+  laggedInsights: z.array(laggedInsightSchema).optional(),
+
   /** Set by the frontend each time the screen is viewed */
   requestedAt: timestampSchema,
   /** Set by the backend after a successful computation */
@@ -101,3 +137,5 @@ export type BehaviorComparison = z.infer<typeof behaviorComparisonSchema>;
 export type PhaseBehaviorSummary = z.infer<typeof phaseBehaviorSummarySchema>;
 export type PhaseMetricSummary = z.infer<typeof phaseMetricSummarySchema>;
 export type PhaseData = z.infer<typeof phaseDataSchema>;
+export type DailyDataPoint = z.infer<typeof dailyDataPointSchema>;
+export type LaggedInsight = z.infer<typeof laggedInsightSchema>;
