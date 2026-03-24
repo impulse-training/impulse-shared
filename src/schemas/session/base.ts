@@ -87,4 +87,7 @@ export const sessionBaseSchema = z.object({
       status: z.enum(["connecting", "connected", "ended"]),
     })
     .optional(),
+
+  // Key-value pairs mapping tagGroup doc ID → selected option ID
+  tags: z.record(z.string(), z.string()).optional(),
 });
