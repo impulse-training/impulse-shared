@@ -40,7 +40,7 @@ export const sessionBaseSchema = z.object({
 
   // "full" = normal session with title, rail, summary
   // "minimal" = invisible session, logs render bare with a reflect CTA
-  displayMode: z.enum(["full", "minimal"]).optional().default("full"),
+  displayMode: z.enum(["full", "minimal", "none"]).optional().default("full"),
 
   // TODO: review if necessary
   emojiId: emojiIdSchema.nullable(),

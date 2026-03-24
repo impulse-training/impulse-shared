@@ -1,19 +1,14 @@
-import {
-  Session,
-  sessionIsAlignmentSession,
-  sessionIsTimePlanSession,
-} from "../schemas";
+import { Session, sessionIsTimePlanSession } from "../schemas";
 import {
   Log,
+  logIsAssistantMessageLog,
   logIsBehaviorLog,
+  logIsImpulseStartedLog,
   logIsPlansLog,
   logIsShowTourLog,
   logIsUserMessageLog,
   logIsWidgetSetupLog,
-  logIsAssistantMessageLog,
   PlansLog,
-  ProposedExperimentLog,
-  logIsEnableNotificationsCtaLog,
 } from "../schemas/log";
 import { fieldChanged } from "./fields";
 import { WithId } from "./withId";
@@ -77,6 +72,12 @@ export function shouldRespondToLogWithAI(
   // Case: New message logs (creation event, no before data)
   if (isCreating && logIsUserMessageLog(afterData)) {
     console.log("New message log. Responding with AI.");
+    return true;
+  }
+
+  // Case: An impulse moment has started
+  if (isCreating && logIsImpulseStartedLog(afterData)) {
+    console.log("New impulse started log. Responding with AI.");
     return true;
   }
 
