@@ -1936,7 +1936,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         }>>;
         currentTacticStepIndex: z.ZodOptional<z.ZodNumber>;
         isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-        displayMode: z.ZodDefault<z.ZodOptional<z.ZodEnum<["full", "minimal"]>>>;
+        displayMode: z.ZodDefault<z.ZodOptional<z.ZodEnum<["full", "minimal", "none"]>>>;
         emojiId: z.ZodNullable<z.ZodObject<{
             emoji: z.ZodString;
         }, "strip", z.ZodTypeAny, {
@@ -2032,7 +2032,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | null;
         sharedWithUserIds: string[];
         isDraft: boolean;
-        displayMode: "full" | "minimal";
+        displayMode: "full" | "minimal" | "none";
         summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
@@ -2639,7 +2639,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
-        displayMode?: "full" | "minimal" | undefined;
+        displayMode?: "full" | "minimal" | "none" | undefined;
         summaryData?: {
             type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -4600,7 +4600,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         }>>;
         currentTacticStepIndex: z.ZodOptional<z.ZodNumber>;
         isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-        displayMode: z.ZodDefault<z.ZodOptional<z.ZodEnum<["full", "minimal"]>>>;
+        displayMode: z.ZodDefault<z.ZodOptional<z.ZodEnum<["full", "minimal", "none"]>>>;
         emojiId: z.ZodNullable<z.ZodObject<{
             emoji: z.ZodString;
         }, "strip", z.ZodTypeAny, {
@@ -4701,7 +4701,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | null;
         sharedWithUserIds: string[];
         isDraft: boolean;
-        displayMode: "full" | "minimal";
+        displayMode: "full" | "minimal" | "none";
         summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         behaviorDocs: import("..").DocumentReferenceLike<unknown>[];
@@ -5314,7 +5314,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
-        displayMode?: "full" | "minimal" | undefined;
+        displayMode?: "full" | "minimal" | "none" | undefined;
         summaryData?: {
             type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -7279,7 +7279,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         }>>;
         currentTacticStepIndex: z.ZodOptional<z.ZodNumber>;
         isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-        displayMode: z.ZodDefault<z.ZodOptional<z.ZodEnum<["full", "minimal"]>>>;
+        displayMode: z.ZodDefault<z.ZodOptional<z.ZodEnum<["full", "minimal", "none"]>>>;
         emojiId: z.ZodNullable<z.ZodObject<{
             emoji: z.ZodString;
         }, "strip", z.ZodTypeAny, {
@@ -7375,7 +7375,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | null;
         sharedWithUserIds: string[];
         isDraft: boolean;
-        displayMode: "full" | "minimal";
+        displayMode: "full" | "minimal" | "none";
         summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
@@ -7982,7 +7982,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
-        displayMode?: "full" | "minimal" | undefined;
+        displayMode?: "full" | "minimal" | "none" | undefined;
         summaryData?: {
             type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -9943,7 +9943,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         }>>;
         currentTacticStepIndex: z.ZodOptional<z.ZodNumber>;
         isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-        displayMode: z.ZodDefault<z.ZodOptional<z.ZodEnum<["full", "minimal"]>>>;
+        displayMode: z.ZodDefault<z.ZodOptional<z.ZodEnum<["full", "minimal", "none"]>>>;
         emojiId: z.ZodNullable<z.ZodObject<{
             emoji: z.ZodString;
         }, "strip", z.ZodTypeAny, {
@@ -10041,7 +10041,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         planId: string;
         sharedWithUserIds: string[];
         isDraft: boolean;
-        displayMode: "full" | "minimal";
+        displayMode: "full" | "minimal" | "none";
         summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
@@ -10649,7 +10649,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
-        displayMode?: "full" | "minimal" | undefined;
+        displayMode?: "full" | "minimal" | "none" | undefined;
         summaryData?: {
             type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -12610,7 +12610,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         }>>;
         currentTacticStepIndex: z.ZodOptional<z.ZodNumber>;
         isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-        displayMode: z.ZodDefault<z.ZodOptional<z.ZodEnum<["full", "minimal"]>>>;
+        displayMode: z.ZodDefault<z.ZodOptional<z.ZodEnum<["full", "minimal", "none"]>>>;
         emojiId: z.ZodNullable<z.ZodObject<{
             emoji: z.ZodString;
         }, "strip", z.ZodTypeAny, {
@@ -12707,7 +12707,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | null;
         sharedWithUserIds: string[];
         isDraft: boolean;
-        displayMode: "full" | "minimal";
+        displayMode: "full" | "minimal" | "none";
         summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         notificationsEnabled: boolean | null;
@@ -13316,7 +13316,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
-        displayMode?: "full" | "minimal" | undefined;
+        displayMode?: "full" | "minimal" | "none" | undefined;
         summaryData?: {
             type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -15277,7 +15277,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         }>>;
         currentTacticStepIndex: z.ZodOptional<z.ZodNumber>;
         isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-        displayMode: z.ZodDefault<z.ZodOptional<z.ZodEnum<["full", "minimal"]>>>;
+        displayMode: z.ZodDefault<z.ZodOptional<z.ZodEnum<["full", "minimal", "none"]>>>;
         emojiId: z.ZodNullable<z.ZodObject<{
             emoji: z.ZodString;
         }, "strip", z.ZodTypeAny, {
@@ -15373,7 +15373,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | null;
         sharedWithUserIds: string[];
         isDraft: boolean;
-        displayMode: "full" | "minimal";
+        displayMode: "full" | "minimal" | "none";
         summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
@@ -15980,7 +15980,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
-        displayMode?: "full" | "minimal" | undefined;
+        displayMode?: "full" | "minimal" | "none" | undefined;
         summaryData?: {
             type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -17941,7 +17941,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         }>>;
         currentTacticStepIndex: z.ZodOptional<z.ZodNumber>;
         isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-        displayMode: z.ZodDefault<z.ZodOptional<z.ZodEnum<["full", "minimal"]>>>;
+        displayMode: z.ZodDefault<z.ZodOptional<z.ZodEnum<["full", "minimal", "none"]>>>;
         emojiId: z.ZodNullable<z.ZodObject<{
             emoji: z.ZodString;
         }, "strip", z.ZodTypeAny, {
@@ -18039,7 +18039,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         planId: string;
         sharedWithUserIds: string[];
         isDraft: boolean;
-        displayMode: "full" | "minimal";
+        displayMode: "full" | "minimal" | "none";
         summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
@@ -18647,7 +18647,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
-        displayMode?: "full" | "minimal" | undefined;
+        displayMode?: "full" | "minimal" | "none" | undefined;
         summaryData?: {
             type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -20608,7 +20608,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         }>>;
         currentTacticStepIndex: z.ZodOptional<z.ZodNumber>;
         isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-        displayMode: z.ZodDefault<z.ZodOptional<z.ZodEnum<["full", "minimal"]>>>;
+        displayMode: z.ZodDefault<z.ZodOptional<z.ZodEnum<["full", "minimal", "none"]>>>;
         emojiId: z.ZodNullable<z.ZodObject<{
             emoji: z.ZodString;
         }, "strip", z.ZodTypeAny, {
@@ -20704,7 +20704,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | null;
         sharedWithUserIds: string[];
         isDraft: boolean;
-        displayMode: "full" | "minimal";
+        displayMode: "full" | "minimal" | "none";
         summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
@@ -21311,7 +21311,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
-        displayMode?: "full" | "minimal" | undefined;
+        displayMode?: "full" | "minimal" | "none" | undefined;
         summaryData?: {
             type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -23272,7 +23272,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         }>>;
         currentTacticStepIndex: z.ZodOptional<z.ZodNumber>;
         isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-        displayMode: z.ZodDefault<z.ZodOptional<z.ZodEnum<["full", "minimal"]>>>;
+        displayMode: z.ZodDefault<z.ZodOptional<z.ZodEnum<["full", "minimal", "none"]>>>;
         emojiId: z.ZodNullable<z.ZodObject<{
             emoji: z.ZodString;
         }, "strip", z.ZodTypeAny, {
@@ -23368,7 +23368,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | null;
         sharedWithUserIds: string[];
         isDraft: boolean;
-        displayMode: "full" | "minimal";
+        displayMode: "full" | "minimal" | "none";
         summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
@@ -23975,7 +23975,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
-        displayMode?: "full" | "minimal" | undefined;
+        displayMode?: "full" | "minimal" | "none" | undefined;
         summaryData?: {
             type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -24034,7 +24034,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | null;
         sharedWithUserIds: string[];
         isDraft: boolean;
-        displayMode: "full" | "minimal";
+        displayMode: "full" | "minimal" | "none";
         summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
@@ -24359,7 +24359,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | null;
         sharedWithUserIds: string[];
         isDraft: boolean;
-        displayMode: "full" | "minimal";
+        displayMode: "full" | "minimal" | "none";
         summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
@@ -24684,7 +24684,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | null;
         sharedWithUserIds: string[];
         isDraft: boolean;
-        displayMode: "full" | "minimal";
+        displayMode: "full" | "minimal" | "none";
         summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
@@ -25009,7 +25009,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | null;
         sharedWithUserIds: string[];
         isDraft: boolean;
-        displayMode: "full" | "minimal";
+        displayMode: "full" | "minimal" | "none";
         summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         behaviorDocs: import("..").DocumentReferenceLike<unknown>[];
@@ -25340,7 +25340,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         planId: string;
         sharedWithUserIds: string[];
         isDraft: boolean;
-        displayMode: "full" | "minimal";
+        displayMode: "full" | "minimal" | "none";
         summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
@@ -25666,7 +25666,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         planId: string;
         sharedWithUserIds: string[];
         isDraft: boolean;
-        displayMode: "full" | "minimal";
+        displayMode: "full" | "minimal" | "none";
         summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
@@ -25991,7 +25991,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | null;
         sharedWithUserIds: string[];
         isDraft: boolean;
-        displayMode: "full" | "minimal";
+        displayMode: "full" | "minimal" | "none";
         summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
@@ -26316,7 +26316,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | null;
         sharedWithUserIds: string[];
         isDraft: boolean;
-        displayMode: "full" | "minimal";
+        displayMode: "full" | "minimal" | "none";
         summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         notificationsEnabled: boolean | null;
@@ -26642,7 +26642,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | null;
         sharedWithUserIds: string[];
         isDraft: boolean;
-        displayMode: "full" | "minimal";
+        displayMode: "full" | "minimal" | "none";
         summarizedAt: import("../types").Timestamp | null;
         sharedWithSupportGroups: import("..").DocumentReferenceLike<unknown>[];
         id?: string | undefined;
@@ -27262,7 +27262,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
-        displayMode?: "full" | "minimal" | undefined;
+        displayMode?: "full" | "minimal" | "none" | undefined;
         summaryData?: {
             type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -27587,7 +27587,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
-        displayMode?: "full" | "minimal" | undefined;
+        displayMode?: "full" | "minimal" | "none" | undefined;
         summaryData?: {
             type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -27912,7 +27912,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
-        displayMode?: "full" | "minimal" | undefined;
+        displayMode?: "full" | "minimal" | "none" | undefined;
         summaryData?: {
             type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -28238,7 +28238,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
-        displayMode?: "full" | "minimal" | undefined;
+        displayMode?: "full" | "minimal" | "none" | undefined;
         summaryData?: {
             type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -28568,7 +28568,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
-        displayMode?: "full" | "minimal" | undefined;
+        displayMode?: "full" | "minimal" | "none" | undefined;
         summaryData?: {
             type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -28894,7 +28894,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
-        displayMode?: "full" | "minimal" | undefined;
+        displayMode?: "full" | "minimal" | "none" | undefined;
         summaryData?: {
             type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -29219,7 +29219,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
-        displayMode?: "full" | "minimal" | undefined;
+        displayMode?: "full" | "minimal" | "none" | undefined;
         summaryData?: {
             type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -29545,7 +29545,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
-        displayMode?: "full" | "minimal" | undefined;
+        displayMode?: "full" | "minimal" | "none" | undefined;
         summaryData?: {
             type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
@@ -29870,7 +29870,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         } | undefined;
         currentTacticStepIndex?: number | undefined;
         isDraft?: boolean | undefined;
-        displayMode?: "full" | "minimal" | undefined;
+        displayMode?: "full" | "minimal" | "none" | undefined;
         summaryData?: {
             type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
