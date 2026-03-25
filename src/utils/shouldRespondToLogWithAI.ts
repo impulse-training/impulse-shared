@@ -6,6 +6,7 @@ import {
   logIsImpulseStartedLog,
   logIsPlansLog,
   logIsShowTourLog,
+  logIsTriggerSelectionLog,
   logIsUserMessageLog,
   logIsWidgetSetupLog,
   PlansLog,
@@ -93,7 +94,12 @@ export function shouldRespondToLogWithAI(
   }
 
   // Case: Impulse can respond when the user logs a behavior with value=0 (resisted)
-  if (isCreating && logIsBehaviorLog(afterData) && afterData.data.value === 0) {
+  if (
+    isCreating &&
+    logIsBehaviorLog(afterData) &&
+    afterData.data.value === 0 &&
+    afterData.shouldZaraRespond !== false
+  ) {
     console.log("User logged a behavior with value=0. Responding with AI.");
     return true;
   }
@@ -105,6 +111,19 @@ export function shouldRespondToLogWithAI(
     afterData.data.plans[0]?.plan.type === "trigger"
   ) {
     console.log("Trigger plan was added. Responding with AI.");
+    return true;
+  }
+
+  // Case: User selected "something else" in trigger selection
+  if (
+    isUpdating &&
+    logIsTriggerSelectionLog(afterData) &&
+    fieldChanged(beforeData, afterData, "data.selectedTriggerId") &&
+    afterData.data.selectedTriggerId === null
+  ) {
+    console.log(
+      'Trigger selection "something else" selected. Responding with AI.',
+    );
     return true;
   }
 
