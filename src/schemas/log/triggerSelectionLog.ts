@@ -8,7 +8,8 @@ export const triggerSelectionLogSchema = logBaseSchema.extend({
     triggers: z.array(
       z.object({
         id: z.string(),
-        text: z.string(),
+        // Label is a pre-rendered display string for the trigger
+        label: z.string(),
       }),
     ),
     // null = "something else", undefined = not yet selected

@@ -155,10 +155,20 @@ function getGptPayload(log, isFinalLogInSession) {
         return messages;
     }
     if ((0, log_1.logIsTacticLog)(log)) {
+        const tacticTitle = log.data.tactic.title;
+        const response = log.data.response;
+        if (response) {
+            return [
+                {
+                    role: "user",
+                    content: `<SYSTEM>User completed tactic: ${tacticTitle}. Response: ${response.formattedValue}</SYSTEM>`,
+                },
+            ];
+        }
         return [
             {
                 role: "user",
-                content: `<SYSTEM>User completed tactic: ${log.data.tactic.title}</SYSTEM>`,
+                content: `<SYSTEM>User completed tactic: ${tacticTitle}</SYSTEM>`,
             },
         ];
     }

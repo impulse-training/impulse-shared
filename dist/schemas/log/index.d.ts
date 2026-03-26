@@ -10104,7 +10104,7 @@ export declare const logSchemas: {
         type: z.ZodLiteral<"plans">;
         isDisplayable: z.ZodLiteral<true>;
         data: z.ZodObject<{
-            source: z.ZodUnion<[z.ZodLiteral<"trigger">, z.ZodLiteral<"scheduled">]>;
+            source: z.ZodUnion<[z.ZodLiteral<"trigger">, z.ZodLiteral<"scheduled">, z.ZodLiteral<"tags">]>;
             triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
             plans: z.ZodArray<z.ZodObject<{
                 planId: z.ZodString;
@@ -10128,6 +10128,7 @@ export declare const logSchemas: {
                     tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
                     tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
                     questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
+                    tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodRecord<z.ZodString, z.ZodNumber>>>;
                     lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -10144,6 +10145,7 @@ export declare const logSchemas: {
                     updatedAt?: import("../../types").Timestamp | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
+                    tags?: Record<string, Record<string, number>> | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
@@ -10159,6 +10161,7 @@ export declare const logSchemas: {
                     updatedAt?: import("../../types").Timestamp | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
+                    tags?: Record<string, Record<string, number>> | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
@@ -10186,6 +10189,7 @@ export declare const logSchemas: {
                     tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
                     tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
                     questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
+                    tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodRecord<z.ZodString, z.ZodNumber>>>;
                     lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -10207,6 +10211,7 @@ export declare const logSchemas: {
                     updatedAt?: import("../../types").Timestamp | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
+                    tags?: Record<string, Record<string, number>> | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
@@ -10224,6 +10229,7 @@ export declare const logSchemas: {
                     updatedAt?: import("../../types").Timestamp | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
+                    tags?: Record<string, Record<string, number>> | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
@@ -10250,6 +10256,7 @@ export declare const logSchemas: {
                     tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
                     tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
                     questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
+                    tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodRecord<z.ZodString, z.ZodNumber>>>;
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -10272,6 +10279,7 @@ export declare const logSchemas: {
                     updatedAt?: import("../../types").Timestamp | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
+                    tags?: Record<string, Record<string, number>> | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
@@ -10287,6 +10295,7 @@ export declare const logSchemas: {
                     updatedAt?: import("../../types").Timestamp | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
+                    tags?: Record<string, Record<string, number>> | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
@@ -10315,6 +10324,7 @@ export declare const logSchemas: {
                     updatedAt?: import("../../types").Timestamp | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
+                    tags?: Record<string, Record<string, number>> | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
@@ -10337,6 +10347,7 @@ export declare const logSchemas: {
                     updatedAt?: import("../../types").Timestamp | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
+                    tags?: Record<string, Record<string, number>> | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
@@ -10358,6 +10369,7 @@ export declare const logSchemas: {
                     updatedAt?: import("../../types").Timestamp | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
+                    tags?: Record<string, Record<string, number>> | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
@@ -10381,6 +10393,7 @@ export declare const logSchemas: {
                     updatedAt?: import("../../types").Timestamp | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
+                    tags?: Record<string, Record<string, number>> | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
@@ -10403,6 +10416,7 @@ export declare const logSchemas: {
                     updatedAt?: import("../../types").Timestamp | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
+                    tags?: Record<string, Record<string, number>> | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
@@ -10421,6 +10435,7 @@ export declare const logSchemas: {
                     updatedAt?: import("../../types").Timestamp | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
+                    tags?: Record<string, Record<string, number>> | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
@@ -10438,7 +10453,7 @@ export declare const logSchemas: {
             activeIndex: z.ZodOptional<z.ZodNumber>;
             acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         }, "strip", z.ZodTypeAny, {
-            source: "scheduled" | "trigger";
+            source: "scheduled" | "tags" | "trigger";
             plans: {
                 planId: string;
                 plan: ({
@@ -10454,6 +10469,7 @@ export declare const logSchemas: {
                     updatedAt?: import("../../types").Timestamp | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
+                    tags?: Record<string, Record<string, number>> | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
@@ -10476,6 +10492,7 @@ export declare const logSchemas: {
                     updatedAt?: import("../../types").Timestamp | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
+                    tags?: Record<string, Record<string, number>> | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
@@ -10497,6 +10514,7 @@ export declare const logSchemas: {
                     updatedAt?: import("../../types").Timestamp | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
+                    tags?: Record<string, Record<string, number>> | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
@@ -10511,7 +10529,7 @@ export declare const logSchemas: {
             activeIndex?: number | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
         }, {
-            source: "scheduled" | "trigger";
+            source: "scheduled" | "tags" | "trigger";
             plans: {
                 planId: string;
                 plan: ({
@@ -10526,6 +10544,7 @@ export declare const logSchemas: {
                     updatedAt?: import("../../types").Timestamp | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
+                    tags?: Record<string, Record<string, number>> | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
@@ -10548,6 +10567,7 @@ export declare const logSchemas: {
                     updatedAt?: import("../../types").Timestamp | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
+                    tags?: Record<string, Record<string, number>> | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
@@ -10566,6 +10586,7 @@ export declare const logSchemas: {
                     updatedAt?: import("../../types").Timestamp | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
+                    tags?: Record<string, Record<string, number>> | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
@@ -10593,7 +10614,7 @@ export declare const logSchemas: {
         dateString: string;
         isDisplayable: true;
         data: {
-            source: "scheduled" | "trigger";
+            source: "scheduled" | "tags" | "trigger";
             plans: {
                 planId: string;
                 plan: ({
@@ -10609,6 +10630,7 @@ export declare const logSchemas: {
                     updatedAt?: import("../../types").Timestamp | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
+                    tags?: Record<string, Record<string, number>> | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
@@ -10631,6 +10653,7 @@ export declare const logSchemas: {
                     updatedAt?: import("../../types").Timestamp | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
+                    tags?: Record<string, Record<string, number>> | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
@@ -10652,6 +10675,7 @@ export declare const logSchemas: {
                     updatedAt?: import("../../types").Timestamp | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
+                    tags?: Record<string, Record<string, number>> | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
@@ -10681,7 +10705,7 @@ export declare const logSchemas: {
         dateString: string;
         isDisplayable: true;
         data: {
-            source: "scheduled" | "trigger";
+            source: "scheduled" | "tags" | "trigger";
             plans: {
                 planId: string;
                 plan: ({
@@ -10696,6 +10720,7 @@ export declare const logSchemas: {
                     updatedAt?: import("../../types").Timestamp | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
+                    tags?: Record<string, Record<string, number>> | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
@@ -10718,6 +10743,7 @@ export declare const logSchemas: {
                     updatedAt?: import("../../types").Timestamp | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
+                    tags?: Record<string, Record<string, number>> | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
@@ -10736,6 +10762,7 @@ export declare const logSchemas: {
                     updatedAt?: import("../../types").Timestamp | undefined;
                     description?: string | undefined;
                     ordinal?: number | undefined;
+                    tags?: Record<string, Record<string, number>> | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
@@ -12078,25 +12105,25 @@ export declare const logSchemas: {
         data: z.ZodObject<{
             triggers: z.ZodArray<z.ZodObject<{
                 id: z.ZodString;
-                text: z.ZodString;
+                label: z.ZodString;
             }, "strip", z.ZodTypeAny, {
                 id: string;
-                text: string;
+                label: string;
             }, {
                 id: string;
-                text: string;
+                label: string;
             }>, "many">;
             selectedTriggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         }, "strip", z.ZodTypeAny, {
             triggers: {
                 id: string;
-                text: string;
+                label: string;
             }[];
             selectedTriggerId?: string | null | undefined;
         }, {
             triggers: {
                 id: string;
-                text: string;
+                label: string;
             }[];
             selectedTriggerId?: string | null | undefined;
         }>;
@@ -12111,7 +12138,7 @@ export declare const logSchemas: {
         data: {
             triggers: {
                 id: string;
-                text: string;
+                label: string;
             }[];
             selectedTriggerId?: string | null | undefined;
         };
@@ -12132,7 +12159,7 @@ export declare const logSchemas: {
         data: {
             triggers: {
                 id: string;
-                text: string;
+                label: string;
             }[];
             selectedTriggerId?: string | null | undefined;
         };
@@ -19110,7 +19137,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     type: z.ZodLiteral<"plans">;
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
-        source: z.ZodUnion<[z.ZodLiteral<"trigger">, z.ZodLiteral<"scheduled">]>;
+        source: z.ZodUnion<[z.ZodLiteral<"trigger">, z.ZodLiteral<"scheduled">, z.ZodLiteral<"tags">]>;
         triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         plans: z.ZodArray<z.ZodObject<{
             planId: z.ZodString;
@@ -19134,6 +19161,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
                 tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
                 questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
+                tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodRecord<z.ZodString, z.ZodNumber>>>;
                 lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -19150,6 +19178,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 updatedAt?: import("../../types").Timestamp | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
+                tags?: Record<string, Record<string, number>> | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
@@ -19165,6 +19194,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 updatedAt?: import("../../types").Timestamp | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
+                tags?: Record<string, Record<string, number>> | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
@@ -19192,6 +19222,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
                 tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
                 questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
+                tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodRecord<z.ZodString, z.ZodNumber>>>;
                 lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -19213,6 +19244,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 updatedAt?: import("../../types").Timestamp | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
+                tags?: Record<string, Record<string, number>> | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
@@ -19230,6 +19262,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 updatedAt?: import("../../types").Timestamp | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
+                tags?: Record<string, Record<string, number>> | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
@@ -19256,6 +19289,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
                 tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
                 questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
+                tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodRecord<z.ZodString, z.ZodNumber>>>;
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -19278,6 +19312,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 updatedAt?: import("../../types").Timestamp | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
+                tags?: Record<string, Record<string, number>> | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
@@ -19293,6 +19328,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 updatedAt?: import("../../types").Timestamp | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
+                tags?: Record<string, Record<string, number>> | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
@@ -19321,6 +19357,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 updatedAt?: import("../../types").Timestamp | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
+                tags?: Record<string, Record<string, number>> | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
@@ -19343,6 +19380,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 updatedAt?: import("../../types").Timestamp | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
+                tags?: Record<string, Record<string, number>> | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
@@ -19364,6 +19402,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 updatedAt?: import("../../types").Timestamp | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
+                tags?: Record<string, Record<string, number>> | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
@@ -19387,6 +19426,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 updatedAt?: import("../../types").Timestamp | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
+                tags?: Record<string, Record<string, number>> | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
@@ -19409,6 +19449,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 updatedAt?: import("../../types").Timestamp | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
+                tags?: Record<string, Record<string, number>> | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
@@ -19427,6 +19468,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 updatedAt?: import("../../types").Timestamp | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
+                tags?: Record<string, Record<string, number>> | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
@@ -19444,7 +19486,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         activeIndex: z.ZodOptional<z.ZodNumber>;
         acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
-        source: "scheduled" | "trigger";
+        source: "scheduled" | "tags" | "trigger";
         plans: {
             planId: string;
             plan: ({
@@ -19460,6 +19502,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 updatedAt?: import("../../types").Timestamp | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
+                tags?: Record<string, Record<string, number>> | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
@@ -19482,6 +19525,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 updatedAt?: import("../../types").Timestamp | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
+                tags?: Record<string, Record<string, number>> | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
@@ -19503,6 +19547,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 updatedAt?: import("../../types").Timestamp | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
+                tags?: Record<string, Record<string, number>> | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
@@ -19517,7 +19562,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         activeIndex?: number | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
     }, {
-        source: "scheduled" | "trigger";
+        source: "scheduled" | "tags" | "trigger";
         plans: {
             planId: string;
             plan: ({
@@ -19532,6 +19577,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 updatedAt?: import("../../types").Timestamp | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
+                tags?: Record<string, Record<string, number>> | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
@@ -19554,6 +19600,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 updatedAt?: import("../../types").Timestamp | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
+                tags?: Record<string, Record<string, number>> | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
@@ -19572,6 +19619,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 updatedAt?: import("../../types").Timestamp | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
+                tags?: Record<string, Record<string, number>> | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
@@ -19599,7 +19647,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dateString: string;
     isDisplayable: true;
     data: {
-        source: "scheduled" | "trigger";
+        source: "scheduled" | "tags" | "trigger";
         plans: {
             planId: string;
             plan: ({
@@ -19615,6 +19663,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 updatedAt?: import("../../types").Timestamp | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
+                tags?: Record<string, Record<string, number>> | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
@@ -19637,6 +19686,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 updatedAt?: import("../../types").Timestamp | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
+                tags?: Record<string, Record<string, number>> | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
@@ -19658,6 +19708,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 updatedAt?: import("../../types").Timestamp | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
+                tags?: Record<string, Record<string, number>> | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
@@ -19687,7 +19738,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dateString: string;
     isDisplayable: true;
     data: {
-        source: "scheduled" | "trigger";
+        source: "scheduled" | "tags" | "trigger";
         plans: {
             planId: string;
             plan: ({
@@ -19702,6 +19753,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 updatedAt?: import("../../types").Timestamp | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
+                tags?: Record<string, Record<string, number>> | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
@@ -19724,6 +19776,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 updatedAt?: import("../../types").Timestamp | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
+                tags?: Record<string, Record<string, number>> | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
@@ -19742,6 +19795,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 updatedAt?: import("../../types").Timestamp | undefined;
                 description?: string | undefined;
                 ordinal?: number | undefined;
+                tags?: Record<string, Record<string, number>> | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
@@ -21069,25 +21123,25 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: z.ZodObject<{
         triggers: z.ZodArray<z.ZodObject<{
             id: z.ZodString;
-            text: z.ZodString;
+            label: z.ZodString;
         }, "strip", z.ZodTypeAny, {
             id: string;
-            text: string;
+            label: string;
         }, {
             id: string;
-            text: string;
+            label: string;
         }>, "many">;
         selectedTriggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     }, "strip", z.ZodTypeAny, {
         triggers: {
             id: string;
-            text: string;
+            label: string;
         }[];
         selectedTriggerId?: string | null | undefined;
     }, {
         triggers: {
             id: string;
-            text: string;
+            label: string;
         }[];
         selectedTriggerId?: string | null | undefined;
     }>;
@@ -21102,7 +21156,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: {
         triggers: {
             id: string;
-            text: string;
+            label: string;
         }[];
         selectedTriggerId?: string | null | undefined;
     };
@@ -21123,7 +21177,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: {
         triggers: {
             id: string;
-            text: string;
+            label: string;
         }[];
         selectedTriggerId?: string | null | undefined;
     };

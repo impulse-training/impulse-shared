@@ -13,10 +13,12 @@ export const triggerLocationSchema = z.object({
 
 export type TriggerLocation = z.infer<typeof triggerLocationSchema>;
 
-// Single trigger schema (not polymorphic)
+// Single trigger schema — defined by a combination of tag group/option pairs
 export const triggerSchema = z.object({
   id: z.string().optional(),
-  text: z.string().min(1, "Trigger text is required"),
+  // Tag-based trigger definition: tagGroupId → optionId
+  // e.g. { "activityGroupId": "workingTooHardOptionId", "locationGroupId": "atWorkOptionId" }
+  tags: z.record(z.string(), z.string()),
   ordinal: z.number().optional(),
   location: triggerLocationSchema.optional(),
   lastOccurredAt: timestampSchema.nullable(),

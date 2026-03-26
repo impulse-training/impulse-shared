@@ -17,6 +17,12 @@ function planBaseSchema(type) {
         // Pre-fetched tactics data for efficient rendering (loosely typed for now)
         tacticsByPath: zod_1.z.record(zod_1.z.string(), zod_1.z.any()).optional(),
         questions: zod_1.z.array(documentReferenceSchema_1.documentReferenceSchema).optional().default([]),
+        // Weighted tag affinities for plan matching
+        // tagGroupId → { optionId → weight (0-1) }
+        // e.g. { "emotionGroupId": { "anxious": 0.9, "stressed": 0.7 }, "activityGroupId": { "waiting": 0.6 } }
+        tags: zod_1.z
+            .record(zod_1.z.string(), zod_1.z.record(zod_1.z.string(), zod_1.z.number()))
+            .optional(),
         lastUsedAt: timestampSchema_1.timestampSchema.optional(),
         createdAt: timestampSchema_1.timestampSchema.optional(),
         updatedAt: timestampSchema_1.timestampSchema.optional(),
