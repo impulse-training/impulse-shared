@@ -61,7 +61,10 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         return true;
     }
     // Case: Impulse can respond when the user logs a behavior with value=0 (resisted)
-    if (isCreating && (0, log_1.logIsBehaviorLog)(afterData) && afterData.data.value === 0) {
+    if (isCreating &&
+        (0, log_1.logIsBehaviorLog)(afterData) &&
+        afterData.data.value === 0 &&
+        afterData.shouldZaraRespond !== false) {
         console.log("User logged a behavior with value=0. Responding with AI.");
         return true;
     }
@@ -70,6 +73,14 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         (0, log_1.logIsPlansLog)(afterData) &&
         ((_a = afterData.data.plans[0]) === null || _a === void 0 ? void 0 : _a.plan.type) === "trigger") {
         console.log("Trigger plan was added. Responding with AI.");
+        return true;
+    }
+    // Case: User selected "something else" in trigger selection
+    if (isUpdating &&
+        (0, log_1.logIsTriggerSelectionLog)(afterData) &&
+        (0, fields_1.fieldChanged)(beforeData, afterData, "data.selectedTriggerId") &&
+        afterData.data.selectedTriggerId === null) {
+        console.log('Trigger selection "something else" selected. Responding with AI.');
         return true;
     }
     // Case: Widget setup log with changed response field

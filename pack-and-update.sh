@@ -3,12 +3,36 @@ set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 SHARED_DIR="$SCRIPT_DIR"
-NATIVE_DIR="$SCRIPT_DIR/../impulse-native"
-FUNCTIONS_DIR="$SCRIPT_DIR/../impulse-functions"
-TOOLS_DIR="$SCRIPT_DIR/../impulse-tools"
-VOICE_AGENT_DIR="$SCRIPT_DIR/../impulse-voice-agent"
-WEBSITE_DIR="$SCRIPT_DIR/../impulse-website-tailwind"
-ADMIN_DIR="$SCRIPT_DIR/../impulse-admin-next"
+
+ALL_NAMES="tools native functions voice-agent website admin"
+
+resolve_dir() {
+  case "$1" in
+    tools)       echo "$SCRIPT_DIR/../impulse-tools" ;;
+    native)      echo "$SCRIPT_DIR/../impulse-native" ;;
+    functions)   echo "$SCRIPT_DIR/../impulse-functions" ;;
+    voice-agent) echo "$SCRIPT_DIR/../impulse-voice-agent" ;;
+    website)     echo "$SCRIPT_DIR/../impulse-website-tailwind" ;;
+    admin)       echo "$SCRIPT_DIR/../impulse-admin-next" ;;
+    *) echo ""; return 1 ;;
+  esac
+}
+
+# Parse --only flag (comma-separated list of short names)
+ONLY_TARGETS=""
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --only)
+      ONLY_TARGETS="$2"
+      shift 2
+      ;;
+    *)
+      echo "Unknown argument: $1"
+      echo "Usage: $0 [--only tools,native,functions,voice-agent,website,admin]"
+      exit 1
+      ;;
+  esac
+done
 
 # Generate a timestamp-based prerelease version to bust npm cache
 TIMESTAMP=$(date +%s)
@@ -62,14 +86,21 @@ update_consumer() {
   fi
 }
 
-update_consumer "$TOOLS_DIR"
-update_consumer "$NATIVE_DIR"
-update_consumer "$FUNCTIONS_DIR"
-update_consumer "$VOICE_AGENT_DIR"
-update_consumer "$WEBSITE_DIR"
-update_consumer "$ADMIN_DIR"
+# Determine which consumers to update
+TARGETS="${ONLY_TARGETS:-$ALL_NAMES}"
+IFS=',' read -r -a TARGET_LIST <<< "$(echo "$TARGETS" | tr ' ' ',')"
+
+for target in "${TARGET_LIST[@]}"; do
+  target=$(echo "$target" | xargs) # trim whitespace
+  DIR=$(resolve_dir "$target") || {
+    echo "Unknown consumer: $target"
+    echo "Available: $ALL_NAMES"
+    exit 1
+  }
+  update_consumer "$DIR"
+done
 
 rm -f "$SHARED_DIR/$TARBALL_NAME"
 
 echo ""
-echo "✅ impulse-shared ${VERSION} installed in all consumers"
+echo "✅ impulse-shared ${VERSION} installed in: ${TARGET_LIST[*]}"
