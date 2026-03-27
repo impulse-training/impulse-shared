@@ -167,6 +167,8 @@ exports.behaviorSchema = behaviorTemplate_1.behaviorTemplateBase
     tactics: zod_1.z.array(documentReferenceSchema_1.documentReferenceSchema).optional(),
     initialUsage: behaviorTrackingData_1.behaviorTrackingDataSchema.optional(),
     hidden: zod_1.z.boolean().optional().default(false),
+    // Display color for this behavior (hex string, e.g. "#C4362C")
+    color: zod_1.z.string().optional(),
     // Reference to the behavior topic (e.g., "substances", "digital-screen-use")
     // Used for matching users to support groups with similar focus areas
     behaviorTopicId: behaviorTopic_1.behaviorTopicIdSchema.optional(),

@@ -88,6 +88,20 @@ export const sessionBaseSchema = z.object({
     })
     .optional(),
 
-  // Key-value pairs mapping tagGroup doc ID → selected option ID
-  tags: z.record(z.string(), z.string()).optional(),
+  // Captured GPS location at session start
+  location: z
+    .object({
+      latitude: z.number(),
+      longitude: z.number(),
+      accuracy: z.number().optional(),
+    })
+    .optional(),
+
+  // Multi-select tags: tagGroupId → array of selected optionIds
+  // Also accepts legacy string values for backwards compat
+  tags: z.record(z.string(), z.union([z.string(), z.array(z.string())])).optional(),
+
+  // Deletion state - set when the user initiates deletion from the UI
+  startedDeletingAt: timestampSchema.optional(),
+  deletingError: z.string().optional(),
 });

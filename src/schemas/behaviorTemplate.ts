@@ -11,6 +11,8 @@ const behaviorTemplateBase = z.object({
 
   trackingType: z.enum(trackingTypes),
   trackingUnit: z.string().optional(),
+  // Display color for this behavior (hex string, e.g. "#C4362C")
+  color: z.string().optional(),
   createdAt: timestampSchema.optional(),
   updatedAt: timestampSchema.optional(),
 });

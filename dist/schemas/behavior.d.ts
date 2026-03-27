@@ -1100,6 +1100,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         formattedValue?: string | undefined;
     }>>;
     hidden: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+    color: z.ZodOptional<z.ZodString>;
     behaviorTopicId: z.ZodOptional<z.ZodEnum<[string, ...string[]]>>;
     state: z.ZodOptional<z.ZodObject<{
         behaviorId: z.ZodString;
@@ -1843,6 +1844,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     trackingUnit?: string | undefined;
+    color?: string | undefined;
     goal?: {
         type: "eliminate";
     } | {
@@ -1997,6 +1999,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     trackingUnit?: string | undefined;
+    color?: string | undefined;
     goal?: {
         type: "eliminate";
     } | {
@@ -2155,6 +2158,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     trackingUnit?: string | undefined;
+    color?: string | undefined;
     goal?: {
         type: "eliminate";
     } | {
@@ -2309,6 +2313,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     trackingUnit?: string | undefined;
+    color?: string | undefined;
     goal?: {
         type: "eliminate";
     } | {

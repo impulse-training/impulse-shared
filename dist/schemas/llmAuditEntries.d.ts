@@ -2018,7 +2018,22 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         }>>;
-        tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
+        location: z.ZodOptional<z.ZodObject<{
+            latitude: z.ZodNumber;
+            longitude: z.ZodNumber;
+            accuracy: z.ZodOptional<z.ZodNumber>;
+        }, "strip", z.ZodTypeAny, {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        }, {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        }>>;
+        tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>>;
+        startedDeletingAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+        deletingError: z.ZodOptional<z.ZodString>;
     } & {
         type: z.ZodLiteral<"general">;
     }, "strip", z.ZodTypeAny, {
@@ -2040,7 +2055,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -2347,6 +2362,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
     }, {
         title: string;
         type: "general";
@@ -2363,7 +2385,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -2673,6 +2695,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
     }>, z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         title: z.ZodString;
@@ -4685,13 +4714,28 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         }>>;
-        tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
+        location: z.ZodOptional<z.ZodObject<{
+            latitude: z.ZodNumber;
+            longitude: z.ZodNumber;
+            accuracy: z.ZodOptional<z.ZodNumber>;
+        }, "strip", z.ZodTypeAny, {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        }, {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        }>>;
+        tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>>;
+        startedDeletingAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+        deletingError: z.ZodOptional<z.ZodString>;
     } & {
         type: z.ZodLiteral<"impulse">;
         behaviorDocs: z.ZodArray<z.ZodType<import("..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("..").DocumentReferenceLike<unknown>>, "many">;
         debriefAfter: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         debriefBefore: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-        debriefUrgeLogInsertedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+        debriefUrgeLogInsertedAt: z.ZodOptional<z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>>;
         actedOnUrge: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     }, "strip", z.ZodTypeAny, {
         title: string;
@@ -4713,7 +4757,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -5020,9 +5064,16 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
         debriefAfter?: import("../types").Timestamp | undefined;
         debriefBefore?: import("../types").Timestamp | undefined;
-        debriefUrgeLogInsertedAt?: import("../types").Timestamp | undefined;
+        debriefUrgeLogInsertedAt?: import("../types").Timestamp | null | undefined;
         actedOnUrge?: boolean | null | undefined;
     }, {
         title: string;
@@ -5041,7 +5092,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -5351,9 +5402,16 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
         debriefAfter?: import("../types").Timestamp | undefined;
         debriefBefore?: import("../types").Timestamp | undefined;
-        debriefUrgeLogInsertedAt?: import("../types").Timestamp | undefined;
+        debriefUrgeLogInsertedAt?: import("../types").Timestamp | null | undefined;
         actedOnUrge?: boolean | null | undefined;
     }>, z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
@@ -7367,7 +7425,22 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         }>>;
-        tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
+        location: z.ZodOptional<z.ZodObject<{
+            latitude: z.ZodNumber;
+            longitude: z.ZodNumber;
+            accuracy: z.ZodOptional<z.ZodNumber>;
+        }, "strip", z.ZodTypeAny, {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        }, {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        }>>;
+        tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>>;
+        startedDeletingAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+        deletingError: z.ZodOptional<z.ZodString>;
     } & {
         type: z.ZodLiteral<"behavior">;
     }, "strip", z.ZodTypeAny, {
@@ -7389,7 +7462,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -7696,6 +7769,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
     }, {
         title: string;
         type: "behavior";
@@ -7712,7 +7792,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -8022,6 +8102,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
     }>, z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         title: z.ZodString;
@@ -10034,7 +10121,22 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         }>>;
-        tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
+        location: z.ZodOptional<z.ZodObject<{
+            latitude: z.ZodNumber;
+            longitude: z.ZodNumber;
+            accuracy: z.ZodOptional<z.ZodNumber>;
+        }, "strip", z.ZodTypeAny, {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        }, {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        }>>;
+        tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>>;
+        startedDeletingAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+        deletingError: z.ZodOptional<z.ZodString>;
         planId: z.ZodString;
     } & {
         type: z.ZodLiteral<"timePlan">;
@@ -10058,7 +10160,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -10365,6 +10467,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
     }, {
         title: string;
         type: "timePlan";
@@ -10382,7 +10491,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -10692,6 +10801,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
     }>, z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         title: z.ZodString;
@@ -12704,7 +12820,22 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         }>>;
-        tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
+        location: z.ZodOptional<z.ZodObject<{
+            latitude: z.ZodNumber;
+            longitude: z.ZodNumber;
+            accuracy: z.ZodOptional<z.ZodNumber>;
+        }, "strip", z.ZodTypeAny, {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        }, {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        }>>;
+        tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>>;
+        startedDeletingAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+        deletingError: z.ZodOptional<z.ZodString>;
     } & {
         type: z.ZodLiteral<"alignment">;
         notificationsEnabled: z.ZodNullable<z.ZodBoolean>;
@@ -12728,7 +12859,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -13035,6 +13166,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
     }, {
         title: string;
         type: "alignment";
@@ -13052,7 +13190,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -13362,6 +13500,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
     }>, z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         title: z.ZodString;
@@ -15374,7 +15519,22 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         }>>;
-        tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
+        location: z.ZodOptional<z.ZodObject<{
+            latitude: z.ZodNumber;
+            longitude: z.ZodNumber;
+            accuracy: z.ZodOptional<z.ZodNumber>;
+        }, "strip", z.ZodTypeAny, {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        }, {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        }>>;
+        tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>>;
+        startedDeletingAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+        deletingError: z.ZodOptional<z.ZodString>;
     } & {
         type: z.ZodLiteral<"recap">;
     }, "strip", z.ZodTypeAny, {
@@ -15396,7 +15556,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -15703,6 +15863,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
     }, {
         title: string;
         type: "recap";
@@ -15719,7 +15886,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -16029,6 +16196,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
     }>, z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         title: z.ZodString;
@@ -18041,7 +18215,22 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         }>>;
-        tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
+        location: z.ZodOptional<z.ZodObject<{
+            latitude: z.ZodNumber;
+            longitude: z.ZodNumber;
+            accuracy: z.ZodOptional<z.ZodNumber>;
+        }, "strip", z.ZodTypeAny, {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        }, {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        }>>;
+        tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>>;
+        startedDeletingAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+        deletingError: z.ZodOptional<z.ZodString>;
         planId: z.ZodString;
     } & {
         type: z.ZodLiteral<"locationPlan">;
@@ -18065,7 +18254,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -18372,6 +18561,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
     }, {
         title: string;
         type: "locationPlan";
@@ -18389,7 +18585,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -18699,6 +18895,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
     }>, z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         title: z.ZodString;
@@ -20711,7 +20914,22 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         }>>;
-        tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
+        location: z.ZodOptional<z.ZodObject<{
+            latitude: z.ZodNumber;
+            longitude: z.ZodNumber;
+            accuracy: z.ZodOptional<z.ZodNumber>;
+        }, "strip", z.ZodTypeAny, {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        }, {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        }>>;
+        tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>>;
+        startedDeletingAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+        deletingError: z.ZodOptional<z.ZodString>;
     } & {
         type: z.ZodLiteral<"adjustment">;
     }, "strip", z.ZodTypeAny, {
@@ -20733,7 +20951,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -21040,6 +21258,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
     }, {
         title: string;
         type: "adjustment";
@@ -21056,7 +21281,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -21366,6 +21591,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
     }>, z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         title: z.ZodString;
@@ -23378,7 +23610,22 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         }>>;
-        tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
+        location: z.ZodOptional<z.ZodObject<{
+            latitude: z.ZodNumber;
+            longitude: z.ZodNumber;
+            accuracy: z.ZodOptional<z.ZodNumber>;
+        }, "strip", z.ZodTypeAny, {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        }, {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        }>>;
+        tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>>;
+        startedDeletingAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+        deletingError: z.ZodOptional<z.ZodString>;
     } & {
         type: z.ZodLiteral<"commitment">;
     }, "strip", z.ZodTypeAny, {
@@ -23400,7 +23647,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -23707,6 +23954,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
     }, {
         title: string;
         type: "commitment";
@@ -23723,7 +23977,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -24033,6 +24287,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
     }>]>>;
     startedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     endedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -24068,7 +24329,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -24375,6 +24636,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
     } | {
         title: string;
         type: "behavior";
@@ -24394,7 +24662,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -24701,6 +24969,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
     } | {
         title: string;
         type: "general";
@@ -24720,7 +24995,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -25027,6 +25302,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
     } | {
         title: string;
         type: "impulse";
@@ -25047,7 +25329,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -25354,9 +25636,16 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
         debriefAfter?: import("../types").Timestamp | undefined;
         debriefBefore?: import("../types").Timestamp | undefined;
-        debriefUrgeLogInsertedAt?: import("../types").Timestamp | undefined;
+        debriefUrgeLogInsertedAt?: import("../types").Timestamp | null | undefined;
         actedOnUrge?: boolean | null | undefined;
     } | {
         title: string;
@@ -25378,7 +25667,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -25685,6 +25974,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
     } | {
         title: string;
         type: "locationPlan";
@@ -25705,7 +26001,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -26012,6 +26308,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
     } | {
         title: string;
         type: "recap";
@@ -26031,7 +26334,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -26338,6 +26641,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
     } | {
         title: string;
         type: "alignment";
@@ -26358,7 +26668,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -26665,6 +26975,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
     } | {
         title: string;
         type: "commitment";
@@ -26684,7 +27001,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
@@ -26991,6 +27308,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
     } | undefined;
     processingTimeMs?: number | undefined;
     model?: string | undefined;
@@ -27020,7 +27344,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -27330,6 +27654,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
     } | {
         title: string;
         type: "behavior";
@@ -27346,7 +27677,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -27656,6 +27987,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
     } | {
         title: string;
         type: "general";
@@ -27672,7 +28010,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -27982,6 +28320,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
     } | {
         title: string;
         type: "impulse";
@@ -27999,7 +28344,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -28309,9 +28654,16 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
         debriefAfter?: import("../types").Timestamp | undefined;
         debriefBefore?: import("../types").Timestamp | undefined;
-        debriefUrgeLogInsertedAt?: import("../types").Timestamp | undefined;
+        debriefUrgeLogInsertedAt?: import("../types").Timestamp | null | undefined;
         actedOnUrge?: boolean | null | undefined;
     } | {
         title: string;
@@ -28330,7 +28682,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -28640,6 +28992,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
     } | {
         title: string;
         type: "locationPlan";
@@ -28657,7 +29016,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -28967,6 +29326,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
     } | {
         title: string;
         type: "recap";
@@ -28983,7 +29349,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -29293,6 +29659,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
     } | {
         title: string;
         type: "alignment";
@@ -29310,7 +29683,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -29620,6 +29993,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
     } | {
         title: string;
         type: "commitment";
@@ -29636,7 +30016,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
         behaviorIds?: string[] | undefined;
-        tags?: Record<string, string> | undefined;
+        tags?: Record<string, string | string[]> | undefined;
         mode?: "text" | "voice" | undefined;
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
@@ -29946,6 +30326,13 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             agentConnectedAt?: import("../types").Timestamp | undefined;
             endedAt?: import("../types").Timestamp | undefined;
         } | undefined;
+        location?: {
+            latitude: number;
+            longitude: number;
+            accuracy?: number | undefined;
+        } | undefined;
+        startedDeletingAt?: import("../types").Timestamp | undefined;
+        deletingError?: string | undefined;
     } | undefined;
     processingTimeMs?: number | undefined;
     model?: string | undefined;

@@ -8,7 +8,7 @@ export const impulseSessionSchema = sessionBaseSchema.extend({
   behaviorDocs: z.array(documentReferenceSchema),
   debriefAfter: timestampSchema.optional(),
   debriefBefore: timestampSchema.optional(),
-  debriefUrgeLogInsertedAt: timestampSchema.optional(),
+  debriefUrgeLogInsertedAt: timestampSchema.nullable().optional(),
   actedOnUrge: z.boolean().nullable().optional(), // true = acted, false = resisted, null/undefined = not answered
 });
 

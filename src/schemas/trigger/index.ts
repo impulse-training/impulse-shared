@@ -17,9 +17,14 @@ export type TriggerLocation = z.infer<typeof triggerLocationSchema>;
 export const triggerSchema = z.object({
   id: z.string().optional(),
   // Tag-based trigger definition: tagGroupId → optionId
-  // e.g. { "activityGroupId": "workingTooHardOptionId", "locationGroupId": "atWorkOptionId" }
-  tags: z.record(z.string(), z.string()),
+  tags: z.record(z.string(), z.string()).default({}),
+  behaviorIds: z.array(z.string()).optional(),
+  // Legacy text description (being migrated to tags)
+  text: z.string().optional(),
   ordinal: z.number().optional(),
+  // Arrival/departure for location-based auto-triggering (coordinates come from the location tag group option)
+  triggerType: z.enum(["arrival", "departure"]).optional(),
+  /** @deprecated Use triggerType + location tag group option coordinates instead */
   location: triggerLocationSchema.optional(),
   lastOccurredAt: timestampSchema.nullable(),
   createdAt: timestampSchema.optional(),
