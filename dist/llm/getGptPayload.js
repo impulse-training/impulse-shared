@@ -201,6 +201,34 @@ function getGptPayload(log, isFinalLogInSession) {
     if ((0, log_1.logIsBehaviorLog)(log)) {
         return buildBehaviorLogPayload(log);
     }
+    // Handle DayTotalsConfirmedLog
+    if ((0, log_1.logIsDayTotalsConfirmedLog)(log)) {
+        return [
+            {
+                role: "user",
+                content: "<CONTEXT>The user has confirmed their day totals. Transition to experiment reflection — discuss the day through the lens of the active experiment, and use the createMetricLog tool to prompt the user to rate any untracked metrics.</CONTEXT>",
+            },
+        ];
+    }
+    // Handle MetricLog
+    if ((0, log_1.logIsMetricLog)(log)) {
+        const { metricName, value, minLabel, maxLabel } = log.data;
+        const scaleDesc = minLabel && maxLabel ? ` (${minLabel} to ${maxLabel})` : "";
+        if (value == null) {
+            return [
+                {
+                    role: "user",
+                    content: `<CONTEXT>Metric "${metricName}"${scaleDesc} is awaiting user rating (1-5 scale).</CONTEXT>`,
+                },
+            ];
+        }
+        return [
+            {
+                role: "user",
+                content: `<CONTEXT>User rated "${metricName}": ${value}/5${scaleDesc}.</CONTEXT>`,
+            },
+        ];
+    }
     // Return empty array for other (unsupported) log types
     return [];
 }

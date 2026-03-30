@@ -8,10 +8,10 @@ export function buildBehaviorLogPayload(
 
   const parts: string[] = [];
 
-  if (source === "scheduled" && debriefOutcome) {
+  if (debriefOutcome) {
     if (debriefOutcome === "resisted") {
       parts.push(
-        "<CONTEXT>The user successfully resisted an urge. We're debriefing what helped them resist and what they can learn from it.</CONTEXT>",
+        "<CONTEXT>The user successfully resisted an urge. Celebrate their success warmly, then invite brief reflection — e.g. what helped them resist, what they can take away from this win.</CONTEXT>",
       );
     } else if (debriefOutcome === "acted") {
       parts.push(

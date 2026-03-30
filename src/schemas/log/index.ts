@@ -53,6 +53,10 @@ import {
   triggerSelectionLogSchema,
 } from "./triggerSelectionLog";
 import { WidgetSetupLog, widgetSetupLogSchema } from "./widgetSetupLog";
+import {
+  DayTotalsConfirmedLog,
+  dayTotalsConfirmedLogSchema,
+} from "./dayTotalsConfirmedLog";
 
 export const logSchemas = {
   user: userMessageLogSchema,
@@ -79,6 +83,7 @@ export const logSchemas = {
   metric: metricLogSchema,
   recap_time_preference: recapTimePreferenceLogSchema,
   day_totals_prompt: dayTotalsPromptLogSchema,
+  day_totals_confirmed: dayTotalsConfirmedLogSchema,
   trigger_selection: triggerSelectionLogSchema,
 };
 export const logTypes = Object.keys(logSchemas);
@@ -108,6 +113,7 @@ export type Log =
   | MetricLog
   | RecapTimePreferenceLog
   | DayTotalsPromptLog
+  | DayTotalsConfirmedLog
   | TriggerSelectionLog;
 
 export * from "./behaviorLog";
@@ -131,6 +137,7 @@ export * from "./impulseStartedLog";
 export * from "./metricLog";
 export * from "./recapTimePreferenceLog";
 export * from "./dayTotalsPromptLog";
+export * from "./dayTotalsConfirmedLog";
 export * from "./triggerSelectionLog";
 
 // Discriminated union schema across all log variants
@@ -158,6 +165,7 @@ export const logSchema = z.discriminatedUnion("type", [
   metricLogSchema,
   recapTimePreferenceLogSchema,
   dayTotalsPromptLogSchema,
+  dayTotalsConfirmedLogSchema,
   triggerSelectionLogSchema,
 ]);
 
@@ -319,6 +327,10 @@ export const isValidDayTotalsPromptLog = (
 ): value is DayTotalsPromptLog => {
   return dayTotalsPromptLogSchema.safeParse(value).success;
 };
+
+export const logIsDayTotalsConfirmedLog = (
+  value: Omit<Log, "id">,
+): value is DayTotalsConfirmedLog => value.type === "day_totals_confirmed";
 
 export const logIsImpulseStartedLog = (
   value: Omit<Log, "id">,

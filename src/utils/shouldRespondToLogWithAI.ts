@@ -3,7 +3,9 @@ import {
   Log,
   logIsAssistantMessageLog,
   logIsBehaviorLog,
+  logIsDayTotalsConfirmedLog,
   logIsImpulseStartedLog,
+  logIsMetricLog,
   logIsPlansLog,
   logIsShowTourLog,
   logIsTriggerSelectionLog,
@@ -61,7 +63,21 @@ export function shouldRespondToLogWithAI(
   afterData: Log | undefined,
   latestSessionLog?: Log,
 ): boolean {
-  if (latestSessionLog && logIsAssistantMessageLog(latestSessionLog)) {
+  // Skip the "latest is assistant" guard for metric log ratings,
+  // since the user rates inline without sending a message
+  const isMetricRating =
+    beforeData &&
+    afterData &&
+    logIsMetricLog(afterData) &&
+    afterData.data.value !== null &&
+    logIsMetricLog(beforeData) &&
+    beforeData.data.value === null;
+
+  if (
+    !isMetricRating &&
+    latestSessionLog &&
+    logIsAssistantMessageLog(latestSessionLog)
+  ) {
     console.log("Latest message is from assistant. Not responding with AI.");
     return false;
   }
@@ -170,6 +186,23 @@ export function shouldRespondToLogWithAI(
     isTimePlanFullyCompleted(session, afterData)
   ) {
     console.log("Time plan was fully completed. Responding with AI.");
+    return true;
+  }
+
+  // Case: Day totals confirmed — trigger experiment reflection in recap session
+  if (isCreating && logIsDayTotalsConfirmedLog(afterData)) {
+    console.log("Day totals confirmed. Responding with AI.");
+    return true;
+  }
+
+  // Case: Metric log was rated (value changed from null to a number)
+  if (
+    isUpdating &&
+    logIsMetricLog(afterData) &&
+    afterData.data.value !== null &&
+    (!beforeData || !logIsMetricLog(beforeData) || beforeData.data.value === null)
+  ) {
+    console.log("Metric log was rated. Responding with AI.");
     return true;
   }
 
