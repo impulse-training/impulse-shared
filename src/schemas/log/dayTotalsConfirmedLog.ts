@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { timestampSchema } from "../../utils/timestampSchema";
 import { logBaseSchema } from "./base";
 
 export const dayTotalsConfirmedLogSchema = logBaseSchema.extend({
@@ -6,6 +7,8 @@ export const dayTotalsConfirmedLogSchema = logBaseSchema.extend({
   isDisplayable: z.literal(false),
   data: z.object({
     dateString: z.string(),
+    /** Set when the user requests a late-recap discussion with the AI */
+    discussRequestedAt: timestampSchema.optional(),
   }),
 });
 

@@ -38,10 +38,6 @@ export const sessionBaseSchema = z.object({
   // Draft sessions should be hidden in UI until a log is added
   isDraft: z.boolean().optional().default(false),
 
-  // "full" = normal session rendered as a separate modal screen
-  // "inline" = logs render inline on the journal screen
-  displayMode: z.enum(["full", "inline", "none"]).optional().default("full"),
-
   // TODO: review if necessary
   emojiId: emojiIdSchema.nullable(),
 
@@ -51,6 +47,9 @@ export const sessionBaseSchema = z.object({
   summary: z.string().optional(),
   summaryRequestedAt: timestampSchema.optional(),
   summarizedAt: timestampSchema.nullable(),
+
+  // Where the session was created from
+  origin: z.enum(["native", "mac"]).optional(),
 
   triggerId: z.string().nullable().optional(),
 

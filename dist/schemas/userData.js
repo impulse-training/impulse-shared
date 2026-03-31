@@ -10,6 +10,10 @@ const recapTriggerSchema = zod_1.z.object({
     minute: zod_1.z.number().min(0).max(59),
     weekdays: zod_1.z.array(zod_1.z.number().min(0).max(6)).min(1),
 });
+const recapReminderTimeSchema = zod_1.z.object({
+    hour: zod_1.z.number().min(0).max(23),
+    minute: zod_1.z.number().min(0).max(59),
+});
 const latestSupportGroupMessageSchema = zod_1.z.object({
     senderId: zod_1.z.string(),
     message: zod_1.z.string(),
@@ -73,6 +77,7 @@ exports.userDataSchema = zod_1.z.object({
     recap: zod_1.z
         .object({
         trigger: recapTriggerSchema,
+        reminderTime: recapReminderTimeSchema.optional(),
     })
         .optional(),
     // If true, this user will be added to the tech support group for all new signups

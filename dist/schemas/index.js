@@ -42,6 +42,7 @@ __exportStar(require("./notification"), exports);
 __exportStar(require("./paymentToken"), exports);
 __exportStar(require("./plan"), exports);
 __exportStar(require("./planEffectiveness"), exports);
+__exportStar(require("./quote"), exports);
 __exportStar(require("./recapMessage"), exports);
 __exportStar(require("./session"), exports);
 __exportStar(require("./supportGroup"), exports);

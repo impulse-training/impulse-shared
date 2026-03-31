@@ -10106,6 +10106,7 @@ export declare const logSchemas: {
         isDisplayable: z.ZodLiteral<true>;
         data: z.ZodObject<{
             source: z.ZodUnion<[z.ZodLiteral<"trigger">, z.ZodLiteral<"scheduled">, z.ZodLiteral<"tags">]>;
+            mode: z.ZodOptional<z.ZodEnum<["live", "planning"]>>;
             triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
             plans: z.ZodArray<z.ZodObject<{
                 planId: z.ZodString;
@@ -10526,6 +10527,7 @@ export declare const logSchemas: {
                 startedAt?: import("../../types").Timestamp | undefined;
                 completedAt?: import("../../types").Timestamp | undefined;
             }[];
+            mode?: "live" | "planning" | undefined;
             triggerId?: string | null | undefined;
             activeIndex?: number | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
@@ -10602,6 +10604,7 @@ export declare const logSchemas: {
                 startedAt?: import("../../types").Timestamp | undefined;
                 completedAt?: import("../../types").Timestamp | undefined;
             }[];
+            mode?: "live" | "planning" | undefined;
             triggerId?: string | null | undefined;
             activeIndex?: number | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
@@ -10687,6 +10690,7 @@ export declare const logSchemas: {
                 startedAt?: import("../../types").Timestamp | undefined;
                 completedAt?: import("../../types").Timestamp | undefined;
             }[];
+            mode?: "live" | "planning" | undefined;
             triggerId?: string | null | undefined;
             activeIndex?: number | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
@@ -10778,6 +10782,7 @@ export declare const logSchemas: {
                 startedAt?: import("../../types").Timestamp | undefined;
                 completedAt?: import("../../types").Timestamp | undefined;
             }[];
+            mode?: "live" | "planning" | undefined;
             triggerId?: string | null | undefined;
             activeIndex?: number | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
@@ -11750,14 +11755,11 @@ export declare const logSchemas: {
         buttonText: z.ZodOptional<z.ZodString>;
         confirmedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         createdExperiment: z.ZodOptional<z.ZodObject<{
-            baselineDays: z.ZodNumber;
-            observationDays: z.ZodNumber;
+            experimentId: z.ZodOptional<z.ZodString>;
         }, "strip", z.ZodTypeAny, {
-            baselineDays: number;
-            observationDays: number;
+            experimentId?: string | undefined;
         }, {
-            baselineDays: number;
-            observationDays: number;
+            experimentId?: string | undefined;
         }>>;
     }, "strip", z.ZodTypeAny, {
         createdAt: import("../../types").Timestamp;
@@ -11786,8 +11788,7 @@ export declare const logSchemas: {
         experimentQuestion?: string | undefined;
         confirmedAt?: import("../../types").Timestamp | undefined;
         createdExperiment?: {
-            baselineDays: number;
-            observationDays: number;
+            experimentId?: string | undefined;
         } | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -11816,8 +11817,7 @@ export declare const logSchemas: {
         experimentQuestion?: string | undefined;
         confirmedAt?: import("../../types").Timestamp | undefined;
         createdExperiment?: {
-            baselineDays: number;
-            observationDays: number;
+            experimentId?: string | undefined;
         } | undefined;
     }>;
     impulse_started: z.ZodObject<{
@@ -12105,10 +12105,13 @@ export declare const logSchemas: {
         isDisplayable: z.ZodLiteral<false>;
         data: z.ZodObject<{
             dateString: z.ZodString;
+            discussRequestedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         }, "strip", z.ZodTypeAny, {
             dateString: string;
+            discussRequestedAt?: import("../../types").Timestamp | undefined;
         }, {
             dateString: string;
+            discussRequestedAt?: import("../../types").Timestamp | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
         createdAt: import("../../types").Timestamp;
@@ -12120,6 +12123,7 @@ export declare const logSchemas: {
         isDisplayable: false;
         data: {
             dateString: string;
+            discussRequestedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
         sessionId?: string | undefined;
@@ -12137,6 +12141,7 @@ export declare const logSchemas: {
         isDisplayable: false;
         data: {
             dateString: string;
+            discussRequestedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
         sessionId?: string | undefined;
@@ -19197,6 +19202,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
         source: z.ZodUnion<[z.ZodLiteral<"trigger">, z.ZodLiteral<"scheduled">, z.ZodLiteral<"tags">]>;
+        mode: z.ZodOptional<z.ZodEnum<["live", "planning"]>>;
         triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         plans: z.ZodArray<z.ZodObject<{
             planId: z.ZodString;
@@ -19617,6 +19623,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             startedAt?: import("../../types").Timestamp | undefined;
             completedAt?: import("../../types").Timestamp | undefined;
         }[];
+        mode?: "live" | "planning" | undefined;
         triggerId?: string | null | undefined;
         activeIndex?: number | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
@@ -19693,6 +19700,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             startedAt?: import("../../types").Timestamp | undefined;
             completedAt?: import("../../types").Timestamp | undefined;
         }[];
+        mode?: "live" | "planning" | undefined;
         triggerId?: string | null | undefined;
         activeIndex?: number | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
@@ -19778,6 +19786,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             startedAt?: import("../../types").Timestamp | undefined;
             completedAt?: import("../../types").Timestamp | undefined;
         }[];
+        mode?: "live" | "planning" | undefined;
         triggerId?: string | null | undefined;
         activeIndex?: number | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
@@ -19869,6 +19878,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             startedAt?: import("../../types").Timestamp | undefined;
             completedAt?: import("../../types").Timestamp | undefined;
         }[];
+        mode?: "live" | "planning" | undefined;
         triggerId?: string | null | undefined;
         activeIndex?: number | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
@@ -20831,14 +20841,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     buttonText: z.ZodOptional<z.ZodString>;
     confirmedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     createdExperiment: z.ZodOptional<z.ZodObject<{
-        baselineDays: z.ZodNumber;
-        observationDays: z.ZodNumber;
+        experimentId: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
-        baselineDays: number;
-        observationDays: number;
+        experimentId?: string | undefined;
     }, {
-        baselineDays: number;
-        observationDays: number;
+        experimentId?: string | undefined;
     }>>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
@@ -20867,8 +20874,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     experimentQuestion?: string | undefined;
     confirmedAt?: import("../../types").Timestamp | undefined;
     createdExperiment?: {
-        baselineDays: number;
-        observationDays: number;
+        experimentId?: string | undefined;
     } | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -20897,8 +20903,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     experimentQuestion?: string | undefined;
     confirmedAt?: import("../../types").Timestamp | undefined;
     createdExperiment?: {
-        baselineDays: number;
-        observationDays: number;
+        experimentId?: string | undefined;
     } | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -21181,10 +21186,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: z.ZodLiteral<false>;
     data: z.ZodObject<{
         dateString: z.ZodString;
+        discussRequestedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
         dateString: string;
+        discussRequestedAt?: import("../../types").Timestamp | undefined;
     }, {
         dateString: string;
+        discussRequestedAt?: import("../../types").Timestamp | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
@@ -21196,6 +21204,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: false;
     data: {
         dateString: string;
+        discussRequestedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
     sessionId?: string | undefined;
@@ -21213,6 +21222,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: false;
     data: {
         dateString: string;
+        discussRequestedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
     sessionId?: string | undefined;

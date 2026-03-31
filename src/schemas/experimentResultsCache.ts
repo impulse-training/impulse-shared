@@ -2,20 +2,10 @@ import { z } from "zod";
 import { timestampSchema } from "../utils/timestampSchema";
 
 /**
- * Per-phase summary of behavior tracking data.
+ * Overall behavior summary from BigQuery (impulse session counts).
  */
-const phaseDataSchema = z.object({
-  /** Dates included in this phase */
-  dates: z.array(z.string()),
-  /** Number of days with data */
-  daysWithData: z.number(),
-});
-
-/**
- * Per-phase behavior summary from BigQuery (impulse session counts).
- */
-const phaseBehaviorSummarySchema = z.object({
-  /** Total impulse sessions in this phase */
+const behaviorSummarySchema = z.object({
+  /** Total impulse sessions */
   totalSessions: z.number(),
   /** Sessions where user acted on urge */
   actedCount: z.number(),
@@ -30,10 +20,10 @@ const phaseBehaviorSummarySchema = z.object({
 });
 
 /**
- * Per-phase metric summary (average of 1-5 scale ratings).
+ * Overall metric summary (average of 1-5 scale ratings).
  */
-const phaseMetricSummarySchema = z.object({
-  /** Average rating across all measurements in the phase */
+const metricSummarySchema = z.object({
+  /** Average rating across all measurements */
   average: z.number(),
   /** Number of individual ratings recorded */
   count: z.number(),
@@ -49,37 +39,35 @@ const dailyDataPointSchema = z.object({
 });
 
 /**
- * Comparison of a metric across experiment phases.
+ * Confidence level based on data quantity.
+ * - low: 3-6 days (basic averages only)
+ * - moderate: 7-13 days (+ trends)
+ * - high: 14+ days (+ correlations)
  */
-const metricComparisonSchema = z.object({
+const confidenceLevelEnum = z.enum(["low", "moderate", "high"]);
+
+/**
+ * Overall metric data for the experiment.
+ */
+const metricResultSchema = z.object({
   metricId: z.string(),
   metricName: z.string(),
   minLabel: z.string().optional(),
   maxLabel: z.string().optional(),
-  baseline: phaseMetricSummarySchema.optional(),
-  observation: phaseMetricSummarySchema.optional(),
-  /** Change in average from baseline to observation */
-  delta: z.number().optional(),
-  /** Percentage change from baseline to observation */
-  deltaPercent: z.number().optional(),
+  summary: metricSummarySchema.optional(),
   /** Daily time series for charts */
   dailySeries: z.array(dailyDataPointSchema).optional(),
 });
 
 /**
- * Comparison of behavior data across experiment phases.
+ * Overall behavior data for the experiment.
  */
-const behaviorComparisonSchema = z.object({
+const behaviorResultSchema = z.object({
   behaviorId: z.string(),
   behaviorName: z.string(),
   trackingType: z.string().optional(),
   trackingUnit: z.string().optional(),
-  baseline: phaseBehaviorSummarySchema.optional(),
-  observation: phaseBehaviorSummarySchema.optional(),
-  /** Change in daily average from baseline to observation */
-  delta: z.number().optional(),
-  /** Percentage change from baseline to observation */
-  deltaPercent: z.number().optional(),
+  summary: behaviorSummarySchema.optional(),
   /** Daily time series for charts */
   dailySeries: z.array(dailyDataPointSchema).optional(),
 });
@@ -110,17 +98,19 @@ export const experimentResultsCacheSchema = z.object({
   experimentName: z.string(),
   experimentQuestion: z.string(),
 
-  /** Phase date metadata */
-  baselinePhase: phaseDataSchema.optional(),
-  observationPhase: phaseDataSchema.optional(),
+  /** Total days with data */
+  totalDaysWithData: z.number(),
 
-  /** Primary behavior comparison */
-  behaviorComparison: behaviorComparisonSchema,
+  /** Confidence level based on data quantity */
+  confidence: confidenceLevelEnum,
 
-  /** Metric comparisons */
-  metricComparisons: z.array(metricComparisonSchema),
+  /** Primary behavior data */
+  behaviorResult: behaviorResultSchema,
 
-  /** Lagged-effect insights (yesterday's behavior → today's metric) */
+  /** Metric results */
+  metricResults: z.array(metricResultSchema),
+
+  /** Lagged-effect insights (yesterday's behavior -> today's metric). Only populated at high confidence (14+ days). */
   laggedInsights: z.array(laggedInsightSchema).optional(),
 
   /** Set by the frontend each time the screen is viewed */
@@ -132,10 +122,10 @@ export const experimentResultsCacheSchema = z.object({
 export type ExperimentResultsCache = z.infer<
   typeof experimentResultsCacheSchema
 >;
-export type MetricComparison = z.infer<typeof metricComparisonSchema>;
-export type BehaviorComparison = z.infer<typeof behaviorComparisonSchema>;
-export type PhaseBehaviorSummary = z.infer<typeof phaseBehaviorSummarySchema>;
-export type PhaseMetricSummary = z.infer<typeof phaseMetricSummarySchema>;
-export type PhaseData = z.infer<typeof phaseDataSchema>;
+export type MetricResult = z.infer<typeof metricResultSchema>;
+export type BehaviorResult = z.infer<typeof behaviorResultSchema>;
+export type BehaviorSummary = z.infer<typeof behaviorSummarySchema>;
+export type MetricSummary = z.infer<typeof metricSummarySchema>;
 export type DailyDataPoint = z.infer<typeof dailyDataPointSchema>;
 export type LaggedInsight = z.infer<typeof laggedInsightSchema>;
+export type ConfidenceLevel = z.infer<typeof confidenceLevelEnum>;

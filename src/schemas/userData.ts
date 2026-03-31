@@ -10,6 +10,11 @@ const recapTriggerSchema = z.object({
   weekdays: z.array(z.number().min(0).max(6)).min(1),
 });
 
+const recapReminderTimeSchema = z.object({
+  hour: z.number().min(0).max(23),
+  minute: z.number().min(0).max(59),
+});
+
 const latestSupportGroupMessageSchema = z.object({
   senderId: z.string(),
   message: z.string(),
@@ -87,6 +92,7 @@ export const userDataSchema = z.object({
   recap: z
     .object({
       trigger: recapTriggerSchema,
+      reminderTime: recapReminderTimeSchema.optional(),
     })
     .optional(),
 

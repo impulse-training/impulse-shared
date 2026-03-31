@@ -63,8 +63,8 @@ export function shouldRespondToLogWithAI(
   afterData: Log | undefined,
   latestSessionLog?: Log,
 ): boolean {
-  // Skip the "latest is assistant" guard for metric log ratings,
-  // since the user rates inline without sending a message
+  // Skip the "latest is assistant" guard for inline interactions
+  // where the user acts without sending a message
   const isMetricRating =
     beforeData &&
     afterData &&
@@ -73,8 +73,17 @@ export function shouldRespondToLogWithAI(
     logIsMetricLog(beforeData) &&
     beforeData.data.value === null;
 
+  const isDebriefOutcomeResolved =
+    beforeData &&
+    afterData &&
+    logIsBehaviorLog(afterData) &&
+    afterData.data.source === "scheduled" &&
+    afterData.data.resolvedAt != null &&
+    fieldChanged(beforeData, afterData, "data.resolvedAt");
+
   if (
     !isMetricRating &&
+    !isDebriefOutcomeResolved &&
     latestSessionLog &&
     logIsAssistantMessageLog(latestSessionLog)
   ) {
@@ -163,6 +172,12 @@ export function shouldRespondToLogWithAI(
     return true;
   }
 
+  // Case: Debrief urge outcome was resolved (resisted/still_there)
+  if (isDebriefOutcomeResolved) {
+    console.log("Debrief urge outcome resolved. Responding with AI.");
+    return true;
+  }
+
   // Case: A behavior log was explicitly marked for Zara to respond, or has debrief system prompt set
   if (isNotDeleting && logIsBehaviorLog(afterData)) {
     // Respond if shouldZaraRespond was set
@@ -190,8 +205,49 @@ export function shouldRespondToLogWithAI(
   }
 
   // Case: Day totals confirmed — trigger experiment reflection in recap session
+  // Only respond if the day is still within the recap deadline (10am next day)
   if (isCreating && logIsDayTotalsConfirmedLog(afterData)) {
-    console.log("Day totals confirmed. Responding with AI.");
+    const dateStr = afterData.dateString;
+    const now = new Date();
+    const todayStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+
+    if (dateStr === todayStr) {
+      console.log("Day totals confirmed for today. Responding with AI.");
+      return true;
+    }
+
+    if (dateStr < todayStr) {
+      // Past day: check if within deadline (10am the day after the target date)
+      const [year, month, day] = dateStr.split("-").map(Number);
+      const targetDate = new Date(year, month - 1, day);
+      const deadline = new Date(targetDate);
+      deadline.setDate(deadline.getDate() + 1);
+      deadline.setHours(10, 0, 0, 0);
+
+      if (now < deadline) {
+        console.log("Day totals confirmed within recap deadline. Responding with AI.");
+        return true;
+      }
+
+      console.log("Day totals confirmed past recap deadline. Not responding with AI.");
+      return false;
+    }
+
+    // Future date — shouldn't happen, but don't respond
+    console.log("Day totals confirmed for future date. Not responding with AI.");
+    return false;
+  }
+
+  // Case: Late recap discussion requested — user tapped "Discuss" on a late-recapped day
+  if (
+    isUpdating &&
+    logIsDayTotalsConfirmedLog(afterData) &&
+    afterData.data.discussRequestedAt &&
+    (!beforeData ||
+      !logIsDayTotalsConfirmedLog(beforeData) ||
+      !beforeData.data.discussRequestedAt)
+  ) {
+    console.log("Late recap discussion requested. Responding with AI.");
     return true;
   }
 

@@ -23,8 +23,6 @@ exports.activeExperimentContextSchema = zod_1.z.object({
     behaviorId: zod_1.z.string(),
     behaviorName: zod_1.z.string(),
     experimentQuestion: zod_1.z.string(),
-    currentPhase: zod_1.z.enum(["baseline", "transition", "observation"]),
-    phaseDescription: zod_1.z.string().optional(),
     observations: zod_1.z.array(zod_1.z.string()),
 });
 exports.aiMemorySchema = zod_1.z.object({

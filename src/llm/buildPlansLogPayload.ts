@@ -71,8 +71,22 @@ export function buildPlansLogPayload(
   const parts: string[] = [];
 
   const tacticsNoun = tacticsCount === 1 ? "tactic" : "tactics";
+  const isPlanning = log.data.mode === "planning";
 
-  if (isFinalLogInSession) {
+  if (isPlanning) {
+    // Planning mode framing (recap session — proposing a plan for next time)
+    parts.push(
+      `A plan has been proposed for this trigger. It includes ${tacticsCount} ${tacticsNoun}.`,
+    );
+
+    if (firstTacticTitle) {
+      parts.push(`The first tactic is: ${firstTacticTitle}.`);
+    }
+
+    parts.push(
+      "This plan will be ready for next time this trigger comes up. Ask the user if they'd like to keep this plan, adjust it, or skip it.",
+    );
+  } else if (isFinalLogInSession) {
     // Authoritative, directive framing when this is the most recent log
     parts.push("A plan is available for the user right now.");
     parts.push(

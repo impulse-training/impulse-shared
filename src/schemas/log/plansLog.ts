@@ -14,6 +14,9 @@ export const plansLogSchema = logBaseSchema.extend({
       z.literal("scheduled"),
       z.literal("tags"),
     ]),
+    // "live" (default) = plan to start now (impulse sessions)
+    // "planning" = proposed plan for next time (recap planning phase)
+    mode: z.enum(["live", "planning"]).optional(),
     // The trigger these plans are for (optional - null means "something else")
     triggerId: z.string().nullable().optional(),
     // Array of plans (each plan has tacticsByPath on it)

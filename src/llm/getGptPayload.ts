@@ -81,21 +81,6 @@ export function getGptPayload(
   isFinalLogInSession: boolean,
 ): ChatCompletionMessageParam[] {
   if (log.type === "proposed_experiment") {
-    // createdExperiment is written by the confirmExperimentFromProposal API
-    const createdExperiment =
-      "createdExperiment" in log
-        ? (
-            log as {
-              createdExperiment?: {
-                baselineDays?: number;
-                observationDays?: number;
-              };
-            }
-          ).createdExperiment
-        : undefined;
-
-    const baselineDays = createdExperiment?.baselineDays ?? 5;
-
     const behaviorName =
       "behaviorName" in log
         ? (log as { behaviorName?: string }).behaviorName
@@ -118,7 +103,7 @@ export function getGptPayload(
     const behaviorText =
       behaviorName && behaviorName.trim().length > 0
         ? behaviorName
-        : "the behavior you're tracking";
+        : "the behavior you’re tracking";
     const metricsText =
       metricNames && metricNames.length > 0
         ? metricNames.join(", ")
@@ -133,7 +118,7 @@ export function getGptPayload(
           content:
             "<SYSTEM>\n" +
             "The user has just accepted a proposed experiment.\n" +
-            "Respond to the user using the following message TEMPLATE, adapting it to what you know about the user's issue and the specific experiment configuration (e.g. behavior, metrics, baseline length).\n" +
+            "Respond to the user using the following message TEMPLATE, adapting it to what you know about the user’s issue and the specific experiment configuration (e.g. behavior, metrics).\n" +
             "Keep the structure and tone, but substitute details appropriately. Do not add extra paragraphs or questions beyond this template.\n\n" +
             "BEHAVIOR:\n" +
             behaviorText +
@@ -142,7 +127,7 @@ export function getGptPayload(
             metricsText +
             "\n\n" +
             "TEMPLATE:\n" +
-            "You’re all set — the experiment has started - we'll track " +
+            "You’re all set — the experiment has started - we’ll track " +
             behaviorText +
             " and " +
             metricsText +
@@ -151,7 +136,7 @@ export function getGptPayload(
             "After " +
             DEFAULT_RECAP_TIME_LABEL +
             ", come back to do a short recap of how the day felt.\n\n" +
-            `We’ll start with a baseline period for the next ${baselineDays} days. After that, we’ll introduce a small change and see what actually moves.\n` +
+            "As you track over time, you’ll start seeing insights about how your behavior connects to the metrics you’re measuring.\n" +
             "</SYSTEM>",
         },
       ];

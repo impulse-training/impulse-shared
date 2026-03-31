@@ -25,6 +25,7 @@ export * from "./notification";
 export * from "./paymentToken";
 export * from "./plan";
 export * from "./planEffectiveness";
+export * from "./quote";
 export * from "./recapMessage";
 export * from "./session";
 export * from "./supportGroup";

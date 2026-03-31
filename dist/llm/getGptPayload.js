@@ -48,13 +48,8 @@ function buildBehaviorLogPayload(log) {
     return [];
 }
 function getGptPayload(log, isFinalLogInSession) {
-    var _a, _b;
+    var _a;
     if (log.type === "proposed_experiment") {
-        // createdExperiment is written by the confirmExperimentFromProposal API
-        const createdExperiment = "createdExperiment" in log
-            ? log.createdExperiment
-            : undefined;
-        const baselineDays = (_a = createdExperiment === null || createdExperiment === void 0 ? void 0 : createdExperiment.baselineDays) !== null && _a !== void 0 ? _a : 5;
         const behaviorName = "behaviorName" in log
             ? log.behaviorName
             : undefined;
@@ -62,11 +57,11 @@ function getGptPayload(log, isFinalLogInSession) {
             ? log.metricLabels
             : undefined;
         const metricNames = "metrics" in log
-            ? (_b = log.metrics) === null || _b === void 0 ? void 0 : _b.map((metric) => metric.name)
+            ? (_a = log.metrics) === null || _a === void 0 ? void 0 : _a.map((metric) => metric.name)
             : undefined;
         const behaviorText = behaviorName && behaviorName.trim().length > 0
             ? behaviorName
-            : "the behavior you're tracking";
+            : "the behavior you’re tracking";
         const metricsText = metricNames && metricNames.length > 0
             ? metricNames.join(", ")
             : metricLabels && metricLabels.length > 0
@@ -78,7 +73,7 @@ function getGptPayload(log, isFinalLogInSession) {
                     role: "user",
                     content: "<SYSTEM>\n" +
                         "The user has just accepted a proposed experiment.\n" +
-                        "Respond to the user using the following message TEMPLATE, adapting it to what you know about the user's issue and the specific experiment configuration (e.g. behavior, metrics, baseline length).\n" +
+                        "Respond to the user using the following message TEMPLATE, adapting it to what you know about the user’s issue and the specific experiment configuration (e.g. behavior, metrics).\n" +
                         "Keep the structure and tone, but substitute details appropriately. Do not add extra paragraphs or questions beyond this template.\n\n" +
                         "BEHAVIOR:\n" +
                         behaviorText +
@@ -87,7 +82,7 @@ function getGptPayload(log, isFinalLogInSession) {
                         metricsText +
                         "\n\n" +
                         "TEMPLATE:\n" +
-                        "You’re all set — the experiment has started - we'll track " +
+                        "You’re all set — the experiment has started - we’ll track " +
                         behaviorText +
                         " and " +
                         metricsText +
@@ -96,7 +91,7 @@ function getGptPayload(log, isFinalLogInSession) {
                         "After " +
                         constants_1.DEFAULT_RECAP_TIME_LABEL +
                         ", come back to do a short recap of how the day felt.\n\n" +
-                        `We’ll start with a baseline period for the next ${baselineDays} days. After that, we’ll introduce a small change and see what actually moves.\n` +
+                        "As you track over time, you’ll start seeing insights about how your behavior connects to the metrics you’re measuring.\n" +
                         "</SYSTEM>",
                 },
             ];

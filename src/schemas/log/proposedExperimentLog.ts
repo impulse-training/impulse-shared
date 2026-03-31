@@ -30,8 +30,7 @@ export const proposedExperimentLogSchema = logBaseSchema.extend({
   /** Summary of the experiment that was actually created when this proposal was confirmed */
   createdExperiment: z
     .object({
-      baselineDays: z.number(),
-      observationDays: z.number(),
+      experimentId: z.string().optional(),
     })
     .optional(),
 });

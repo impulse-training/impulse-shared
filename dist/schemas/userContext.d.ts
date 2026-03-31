@@ -47,23 +47,17 @@ export declare const activeExperimentContextSchema: z.ZodObject<{
     behaviorId: z.ZodString;
     behaviorName: z.ZodString;
     experimentQuestion: z.ZodString;
-    currentPhase: z.ZodEnum<["baseline", "transition", "observation"]>;
-    phaseDescription: z.ZodOptional<z.ZodString>;
     observations: z.ZodArray<z.ZodString, "many">;
 }, "strip", z.ZodTypeAny, {
     behaviorId: string;
     behaviorName: string;
     experimentQuestion: string;
-    currentPhase: "baseline" | "transition" | "observation";
     observations: string[];
-    phaseDescription?: string | undefined;
 }, {
     behaviorId: string;
     behaviorName: string;
     experimentQuestion: string;
-    currentPhase: "baseline" | "transition" | "observation";
     observations: string[];
-    phaseDescription?: string | undefined;
 }>;
 export declare const aiMemorySchema: z.ZodObject<{
     id: z.ZodString;
@@ -130,23 +124,17 @@ export declare const userContextSchema: z.ZodObject<{
         behaviorId: z.ZodString;
         behaviorName: z.ZodString;
         experimentQuestion: z.ZodString;
-        currentPhase: z.ZodEnum<["baseline", "transition", "observation"]>;
-        phaseDescription: z.ZodOptional<z.ZodString>;
         observations: z.ZodArray<z.ZodString, "many">;
     }, "strip", z.ZodTypeAny, {
         behaviorId: string;
         behaviorName: string;
         experimentQuestion: string;
-        currentPhase: "baseline" | "transition" | "observation";
         observations: string[];
-        phaseDescription?: string | undefined;
     }, {
         behaviorId: string;
         behaviorName: string;
         experimentQuestion: string;
-        currentPhase: "baseline" | "transition" | "observation";
         observations: string[];
-        phaseDescription?: string | undefined;
     }>>>;
     aiMemories: z.ZodDefault<z.ZodArray<z.ZodObject<{
         id: z.ZodString;
@@ -197,9 +185,7 @@ export declare const userContextSchema: z.ZodObject<{
         behaviorId: string;
         behaviorName: string;
         experimentQuestion: string;
-        currentPhase: "baseline" | "transition" | "observation";
         observations: string[];
-        phaseDescription?: string | undefined;
     } | null | undefined;
 }, {
     tactics: Record<string, {
@@ -224,9 +210,7 @@ export declare const userContextSchema: z.ZodObject<{
         behaviorId: string;
         behaviorName: string;
         experimentQuestion: string;
-        currentPhase: "baseline" | "transition" | "observation";
         observations: string[];
-        phaseDescription?: string | undefined;
     } | null | undefined;
     aiMemories?: {
         id: string;

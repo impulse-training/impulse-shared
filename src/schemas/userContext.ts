@@ -23,8 +23,6 @@ export const activeExperimentContextSchema = z.object({
   behaviorId: z.string(),
   behaviorName: z.string(),
   experimentQuestion: z.string(),
-  currentPhase: z.enum(["baseline", "transition", "observation"]),
-  phaseDescription: z.string().optional(),
   observations: z.array(z.string()),
 });
 

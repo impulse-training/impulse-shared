@@ -67,18 +67,36 @@ export declare const userDataSchema: z.ZodObject<{
             minute: number;
             weekdays: number[];
         }>;
+        reminderTime: z.ZodOptional<z.ZodObject<{
+            hour: z.ZodNumber;
+            minute: z.ZodNumber;
+        }, "strip", z.ZodTypeAny, {
+            hour: number;
+            minute: number;
+        }, {
+            hour: number;
+            minute: number;
+        }>>;
     }, "strip", z.ZodTypeAny, {
         trigger: {
             hour: number;
             minute: number;
             weekdays: number[];
         };
+        reminderTime?: {
+            hour: number;
+            minute: number;
+        } | undefined;
     }, {
         trigger: {
             hour: number;
             minute: number;
             weekdays: number[];
         };
+        reminderTime?: {
+            hour: number;
+            minute: number;
+        } | undefined;
     }>>;
     isImpulseTeam: z.ZodOptional<z.ZodBoolean>;
     hasSetupExperiment: z.ZodOptional<z.ZodBoolean>;
@@ -135,6 +153,10 @@ export declare const userDataSchema: z.ZodObject<{
             minute: number;
             weekdays: number[];
         };
+        reminderTime?: {
+            hour: number;
+            minute: number;
+        } | undefined;
     } | undefined;
     recoveryKeyHash?: string | undefined;
     createdViaSimulator?: boolean | undefined;
@@ -180,6 +202,10 @@ export declare const userDataSchema: z.ZodObject<{
             minute: number;
             weekdays: number[];
         };
+        reminderTime?: {
+            hour: number;
+            minute: number;
+        } | undefined;
     } | undefined;
     role?: "user" | "coach" | "support" | undefined;
     notificationsEnabled?: boolean | undefined;
