@@ -1971,10 +1971,33 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         }>>;
+        behaviorDataTotals: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            behaviorId: z.ZodOptional<z.ZodString>;
+            behaviorName: z.ZodOptional<z.ZodString>;
+            behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
+            trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer"]>>;
+            value: z.ZodOptional<z.ZodNumber>;
+            formattedValue: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }, {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }>, "many">>;
         defaultSystemPrompt: z.ZodOptional<z.ZodString>;
         summary: z.ZodOptional<z.ZodString>;
         summaryRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         summarizedAt: z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+        reflectRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         origin: z.ZodOptional<z.ZodEnum<["native", "mac"]>>;
         triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         agentConnectedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -2341,8 +2364,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -2674,8 +2706,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -4667,10 +4708,33 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         }>>;
+        behaviorDataTotals: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            behaviorId: z.ZodOptional<z.ZodString>;
+            behaviorName: z.ZodOptional<z.ZodString>;
+            behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
+            trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer"]>>;
+            value: z.ZodOptional<z.ZodNumber>;
+            formattedValue: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }, {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }>, "many">>;
         defaultSystemPrompt: z.ZodOptional<z.ZodString>;
         summary: z.ZodOptional<z.ZodString>;
         summaryRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         summarizedAt: z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+        reflectRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         origin: z.ZodOptional<z.ZodEnum<["native", "mac"]>>;
         triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         agentConnectedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -5043,8 +5107,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -5381,8 +5454,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -7378,10 +7460,33 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         }>>;
+        behaviorDataTotals: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            behaviorId: z.ZodOptional<z.ZodString>;
+            behaviorName: z.ZodOptional<z.ZodString>;
+            behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
+            trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer"]>>;
+            value: z.ZodOptional<z.ZodNumber>;
+            formattedValue: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }, {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }>, "many">>;
         defaultSystemPrompt: z.ZodOptional<z.ZodString>;
         summary: z.ZodOptional<z.ZodString>;
         summaryRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         summarizedAt: z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+        reflectRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         origin: z.ZodOptional<z.ZodEnum<["native", "mac"]>>;
         triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         agentConnectedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -7748,8 +7853,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -8081,8 +8195,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -10074,10 +10197,33 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         }>>;
+        behaviorDataTotals: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            behaviorId: z.ZodOptional<z.ZodString>;
+            behaviorName: z.ZodOptional<z.ZodString>;
+            behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
+            trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer"]>>;
+            value: z.ZodOptional<z.ZodNumber>;
+            formattedValue: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }, {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }>, "many">>;
         defaultSystemPrompt: z.ZodOptional<z.ZodString>;
         summary: z.ZodOptional<z.ZodString>;
         summaryRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         summarizedAt: z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+        reflectRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         origin: z.ZodOptional<z.ZodEnum<["native", "mac"]>>;
         triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         agentConnectedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -10446,8 +10592,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -10780,8 +10935,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -12773,10 +12937,33 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         }>>;
+        behaviorDataTotals: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            behaviorId: z.ZodOptional<z.ZodString>;
+            behaviorName: z.ZodOptional<z.ZodString>;
+            behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
+            trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer"]>>;
+            value: z.ZodOptional<z.ZodNumber>;
+            formattedValue: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }, {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }>, "many">>;
         defaultSystemPrompt: z.ZodOptional<z.ZodString>;
         summary: z.ZodOptional<z.ZodString>;
         summaryRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         summarizedAt: z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+        reflectRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         origin: z.ZodOptional<z.ZodEnum<["native", "mac"]>>;
         triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         agentConnectedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -13145,8 +13332,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -13479,8 +13675,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -15472,10 +15677,33 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         }>>;
+        behaviorDataTotals: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            behaviorId: z.ZodOptional<z.ZodString>;
+            behaviorName: z.ZodOptional<z.ZodString>;
+            behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
+            trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer"]>>;
+            value: z.ZodOptional<z.ZodNumber>;
+            formattedValue: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }, {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }>, "many">>;
         defaultSystemPrompt: z.ZodOptional<z.ZodString>;
         summary: z.ZodOptional<z.ZodString>;
         summaryRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         summarizedAt: z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+        reflectRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         origin: z.ZodOptional<z.ZodEnum<["native", "mac"]>>;
         triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         agentConnectedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -15842,8 +16070,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -16175,8 +16412,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -18168,10 +18414,33 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         }>>;
+        behaviorDataTotals: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            behaviorId: z.ZodOptional<z.ZodString>;
+            behaviorName: z.ZodOptional<z.ZodString>;
+            behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
+            trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer"]>>;
+            value: z.ZodOptional<z.ZodNumber>;
+            formattedValue: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }, {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }>, "many">>;
         defaultSystemPrompt: z.ZodOptional<z.ZodString>;
         summary: z.ZodOptional<z.ZodString>;
         summaryRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         summarizedAt: z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+        reflectRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         origin: z.ZodOptional<z.ZodEnum<["native", "mac"]>>;
         triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         agentConnectedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -18540,8 +18809,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -18874,8 +19152,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -20867,10 +21154,33 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         }>>;
+        behaviorDataTotals: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            behaviorId: z.ZodOptional<z.ZodString>;
+            behaviorName: z.ZodOptional<z.ZodString>;
+            behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
+            trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer"]>>;
+            value: z.ZodOptional<z.ZodNumber>;
+            formattedValue: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }, {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }>, "many">>;
         defaultSystemPrompt: z.ZodOptional<z.ZodString>;
         summary: z.ZodOptional<z.ZodString>;
         summaryRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         summarizedAt: z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+        reflectRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         origin: z.ZodOptional<z.ZodEnum<["native", "mac"]>>;
         triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         agentConnectedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -21237,8 +21547,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -21570,8 +21889,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -23563,10 +23891,33 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         }>>;
+        behaviorDataTotals: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            behaviorId: z.ZodOptional<z.ZodString>;
+            behaviorName: z.ZodOptional<z.ZodString>;
+            behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
+            trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer"]>>;
+            value: z.ZodOptional<z.ZodNumber>;
+            formattedValue: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }, {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }>, "many">>;
         defaultSystemPrompt: z.ZodOptional<z.ZodString>;
         summary: z.ZodOptional<z.ZodString>;
         summaryRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         summarizedAt: z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+        reflectRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         origin: z.ZodOptional<z.ZodEnum<["native", "mac"]>>;
         triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         agentConnectedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -23933,8 +24284,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -24266,8 +24626,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -24615,8 +24984,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -24948,8 +25326,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -25281,8 +25668,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -25615,8 +26011,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -25953,8 +26358,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -26287,8 +26701,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -26620,8 +27043,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -26954,8 +27386,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -27287,8 +27728,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -27633,8 +28083,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -27966,8 +28425,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -28299,8 +28767,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -28633,8 +29110,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -28971,8 +29457,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -29305,8 +29800,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -29638,8 +30142,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -29972,8 +30485,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;
@@ -30305,8 +30827,17 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             firstMessageLog?: any;
             firstCallLog?: any;
         } | undefined;
+        behaviorDataTotals?: {
+            value?: number | undefined;
+            behaviorId?: string | undefined;
+            behaviorName?: string | undefined;
+            behaviorTrackingUnit?: string | undefined;
+            trackingType?: "counter" | "timer" | undefined;
+            formattedValue?: string | undefined;
+        }[] | undefined;
         defaultSystemPrompt?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
+        reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
         sharingMessage?: string | undefined;
         openAfter?: import("../types").Timestamp | undefined;

@@ -6,7 +6,7 @@ export declare const notifySupportGroupLogSchema: z.ZodObject<{
     userId: z.ZodString;
     timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     dateString: z.ZodString;
-    sessionId: z.ZodOptional<z.ZodString>;
+    sessionId: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
@@ -143,6 +143,7 @@ export declare const notifySupportGroupLogSchema: z.ZodObject<{
     userId: string;
     timestamp: import("../../types").Timestamp;
     dateString: string;
+    sessionId: string;
     isDisplayable: true;
     data: {
         supportGroupsById: Record<string, {
@@ -165,7 +166,6 @@ export declare const notifySupportGroupLogSchema: z.ZodObject<{
         } | undefined;
     };
     id?: string | undefined;
-    sessionId?: string | undefined;
     tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
@@ -177,6 +177,7 @@ export declare const notifySupportGroupLogSchema: z.ZodObject<{
     userId: string;
     timestamp: import("../../types").Timestamp;
     dateString: string;
+    sessionId: string;
     isDisplayable: true;
     data: {
         supportGroupsById: Record<string, {
@@ -199,7 +200,6 @@ export declare const notifySupportGroupLogSchema: z.ZodObject<{
         } | undefined;
     };
     id?: string | undefined;
-    sessionId?: string | undefined;
     tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;

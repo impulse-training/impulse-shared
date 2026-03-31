@@ -8,7 +8,7 @@ export declare const behaviorLogSchema: z.ZodObject<{
     userId: z.ZodString;
     timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     dateString: z.ZodString;
-    sessionId: z.ZodOptional<z.ZodString>;
+    sessionId: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
@@ -61,6 +61,7 @@ export declare const behaviorLogSchema: z.ZodObject<{
     userId: string;
     timestamp: import("../../types").Timestamp;
     dateString: string;
+    sessionId: string;
     isDisplayable: true;
     isAdjustment: boolean;
     data: {
@@ -75,7 +76,6 @@ export declare const behaviorLogSchema: z.ZodObject<{
         resolvedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
-    sessionId?: string | undefined;
     tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
@@ -88,6 +88,7 @@ export declare const behaviorLogSchema: z.ZodObject<{
     userId: string;
     timestamp: import("../../types").Timestamp;
     dateString: string;
+    sessionId: string;
     isDisplayable: true;
     data: {
         value?: number | undefined;
@@ -101,7 +102,6 @@ export declare const behaviorLogSchema: z.ZodObject<{
         resolvedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
-    sessionId?: string | undefined;
     tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;

@@ -9,7 +9,7 @@ export const logBaseSchema = z.object({
   userId: z.string(), // This is required for collection group queries security rules
   timestamp: timestampSchema,
   dateString: z.string(),
-  sessionId: z.string().optional(),
+  sessionId: z.string(),
   tacticId: z.string().optional(),
   behaviorIds: z.array(z.string()).optional(),
   // A log can be associated with a call, which is also a log. Not all logs should be able to be

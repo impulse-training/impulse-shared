@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { documentReferenceSchema } from "../../utils/documentReferenceSchema";
 import { timestampSchema } from "../../utils/timestampSchema";
+import { behaviorTrackingDataSchema } from "../behaviorTrackingData";
 import { emojiIdSchema } from "../emojiId";
 import { tacticSchema } from "../tactic/tactic";
 import { sessionSummarySchema } from "../sessionSummary";
@@ -43,10 +44,12 @@ export const sessionBaseSchema = z.object({
 
   // Pre-computed summary data for session cards - updated when session is closed
   summaryData: sessionSummarySchema.optional(),
+  behaviorDataTotals: z.array(behaviorTrackingDataSchema).optional(),
   defaultSystemPrompt: z.string().optional(),
   summary: z.string().optional(),
   summaryRequestedAt: timestampSchema.optional(),
   summarizedAt: timestampSchema.nullable(),
+  reflectRequestedAt: timestampSchema.optional(),
 
   // Where the session was created from
   origin: z.enum(["native", "mac"]).optional(),

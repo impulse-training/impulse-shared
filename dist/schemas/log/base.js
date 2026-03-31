@@ -11,7 +11,7 @@ exports.logBaseSchema = zod_1.z.object({
     userId: zod_1.z.string(), // This is required for collection group queries security rules
     timestamp: timestampSchema_1.timestampSchema,
     dateString: zod_1.z.string(),
-    sessionId: zod_1.z.string().optional(),
+    sessionId: zod_1.z.string(),
     tacticId: zod_1.z.string().optional(),
     behaviorIds: zod_1.z.array(zod_1.z.string()).optional(),
     // A log can be associated with a call, which is also a log. Not all logs should be able to be
