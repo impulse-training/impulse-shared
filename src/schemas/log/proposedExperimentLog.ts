@@ -31,6 +31,7 @@ export const proposedExperimentLogSchema = logBaseSchema.extend({
   createdExperiment: z
     .object({
       experimentId: z.string().optional(),
+      baselineDays: z.number().optional(),
     })
     .optional(),
 });

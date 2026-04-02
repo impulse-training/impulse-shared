@@ -12,6 +12,23 @@ const experimentMemorySchema = z.object({
     .default({}),
 });
 
+const phaseCompletionDaySchema = z.object({
+  dateString: z.string(),
+  requirementsMet: z.boolean(),
+});
+
+const phaseCompletionSchema = z.object({
+  startDateString: z.string().optional(),
+  days: z.array(phaseCompletionDaySchema).default([]),
+});
+
+const phaseConfigSchema = z.object({
+  requiredGoal: z.number().optional(),
+  requiredDays: z.number().optional(),
+  requireContiguousDays: z.boolean().optional(),
+  description: z.string().optional(),
+});
+
 export const experimentSchema = z.object({
   startedAt: timestampSchema.optional(),
   name: z.string(),
@@ -24,6 +41,33 @@ export const experimentSchema = z.object({
   resultsSummary: z.string().optional(),
 
   archivedAt: timestampSchema.optional(),
+
+  /** Current phase of the experiment */
+  currentPhase: z
+    .enum(["baseline", "transition", "observation"])
+    .optional(),
+
+  /** Phase configuration */
+  config: z
+    .object({
+      baseline: phaseConfigSchema.optional(),
+      transition: phaseConfigSchema.optional(),
+      observation: phaseConfigSchema.optional(),
+    })
+    .optional(),
+
+  /** Phase completion tracking */
+  completion: z
+    .object({
+      baseline: phaseCompletionSchema.optional(),
+      transition: phaseCompletionSchema.optional(),
+      observation: phaseCompletionSchema.optional(),
+    })
+    .optional(),
+
+  /** Pending descriptions for phase transitions */
+  pendingTransitionDescription: z.string().optional(),
+  pendingObservationDescription: z.string().optional(),
 });
 
 export type Experiment = z.infer<typeof experimentSchema>;

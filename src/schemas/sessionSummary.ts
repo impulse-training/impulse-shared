@@ -18,6 +18,7 @@ export const sessionSummarySchema = z.object({
   behaviorsByName: z.record(z.string(), z.array(z.any())),
   outcomeLogs: z.array(z.any()),
   plansLogs: z.array(z.any()),
+  metricLogs: z.array(z.any()).optional(),
   firstMessageLog: z.any().optional(),
   firstCallLog: z.any().optional(),
   hasContent: z.boolean(),
