@@ -11240,6 +11240,7 @@ export declare const logSchemas: {
                 behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
                 outcomeLogs: z.ZodArray<z.ZodAny, "many">;
                 plansLogs: z.ZodArray<z.ZodAny, "many">;
+                metricLogs: z.ZodOptional<z.ZodArray<z.ZodAny, "many">>;
                 firstMessageLog: z.ZodOptional<z.ZodAny>;
                 firstCallLog: z.ZodOptional<z.ZodAny>;
                 hasContent: z.ZodBoolean;
@@ -11250,6 +11251,7 @@ export declare const logSchemas: {
                 outcomeLogs: any[];
                 plansLogs: any[];
                 hasContent: boolean;
+                metricLogs?: any[] | undefined;
                 firstMessageLog?: any;
                 firstCallLog?: any;
             }, {
@@ -11259,6 +11261,7 @@ export declare const logSchemas: {
                 outcomeLogs: any[];
                 plansLogs: any[];
                 hasContent: boolean;
+                metricLogs?: any[] | undefined;
                 firstMessageLog?: any;
                 firstCallLog?: any;
             }>;
@@ -11279,6 +11282,7 @@ export declare const logSchemas: {
                 outcomeLogs: any[];
                 plansLogs: any[];
                 hasContent: boolean;
+                metricLogs?: any[] | undefined;
                 firstMessageLog?: any;
                 firstCallLog?: any;
             };
@@ -11295,6 +11299,7 @@ export declare const logSchemas: {
                 outcomeLogs: any[];
                 plansLogs: any[];
                 hasContent: boolean;
+                metricLogs?: any[] | undefined;
                 firstMessageLog?: any;
                 firstCallLog?: any;
             };
@@ -11321,6 +11326,7 @@ export declare const logSchemas: {
                 outcomeLogs: any[];
                 plansLogs: any[];
                 hasContent: boolean;
+                metricLogs?: any[] | undefined;
                 firstMessageLog?: any;
                 firstCallLog?: any;
             };
@@ -11352,6 +11358,7 @@ export declare const logSchemas: {
                 outcomeLogs: any[];
                 plansLogs: any[];
                 hasContent: boolean;
+                metricLogs?: any[] | undefined;
                 firstMessageLog?: any;
                 firstCallLog?: any;
             };
@@ -11576,10 +11583,13 @@ export declare const logSchemas: {
         confirmedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         createdExperiment: z.ZodOptional<z.ZodObject<{
             experimentId: z.ZodOptional<z.ZodString>;
+            baselineDays: z.ZodOptional<z.ZodNumber>;
         }, "strip", z.ZodTypeAny, {
             experimentId?: string | undefined;
+            baselineDays?: number | undefined;
         }, {
             experimentId?: string | undefined;
+            baselineDays?: number | undefined;
         }>>;
     }, "strip", z.ZodTypeAny, {
         createdAt: import("../../types").Timestamp;
@@ -11609,6 +11619,7 @@ export declare const logSchemas: {
         confirmedAt?: import("../../types").Timestamp | undefined;
         createdExperiment?: {
             experimentId?: string | undefined;
+            baselineDays?: number | undefined;
         } | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -11638,6 +11649,7 @@ export declare const logSchemas: {
         confirmedAt?: import("../../types").Timestamp | undefined;
         createdExperiment?: {
             experimentId?: string | undefined;
+            baselineDays?: number | undefined;
         } | undefined;
     }>;
     impulse_started: z.ZodObject<{
@@ -20161,6 +20173,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             outcomeLogs: z.ZodArray<z.ZodAny, "many">;
             plansLogs: z.ZodArray<z.ZodAny, "many">;
+            metricLogs: z.ZodOptional<z.ZodArray<z.ZodAny, "many">>;
             firstMessageLog: z.ZodOptional<z.ZodAny>;
             firstCallLog: z.ZodOptional<z.ZodAny>;
             hasContent: z.ZodBoolean;
@@ -20171,6 +20184,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             outcomeLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
+            metricLogs?: any[] | undefined;
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
@@ -20180,6 +20194,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             outcomeLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
+            metricLogs?: any[] | undefined;
             firstMessageLog?: any;
             firstCallLog?: any;
         }>;
@@ -20200,6 +20215,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             outcomeLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
+            metricLogs?: any[] | undefined;
             firstMessageLog?: any;
             firstCallLog?: any;
         };
@@ -20216,6 +20232,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             outcomeLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
+            metricLogs?: any[] | undefined;
             firstMessageLog?: any;
             firstCallLog?: any;
         };
@@ -20242,6 +20259,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             outcomeLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
+            metricLogs?: any[] | undefined;
             firstMessageLog?: any;
             firstCallLog?: any;
         };
@@ -20273,6 +20291,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             outcomeLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
+            metricLogs?: any[] | undefined;
             firstMessageLog?: any;
             firstCallLog?: any;
         };
@@ -20556,10 +20575,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     confirmedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     createdExperiment: z.ZodOptional<z.ZodObject<{
         experimentId: z.ZodOptional<z.ZodString>;
+        baselineDays: z.ZodOptional<z.ZodNumber>;
     }, "strip", z.ZodTypeAny, {
         experimentId?: string | undefined;
+        baselineDays?: number | undefined;
     }, {
         experimentId?: string | undefined;
+        baselineDays?: number | undefined;
     }>>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
@@ -20589,6 +20611,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     confirmedAt?: import("../../types").Timestamp | undefined;
     createdExperiment?: {
         experimentId?: string | undefined;
+        baselineDays?: number | undefined;
     } | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -20618,6 +20641,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     confirmedAt?: import("../../types").Timestamp | undefined;
     createdExperiment?: {
         experimentId?: string | undefined;
+        baselineDays?: number | undefined;
     } | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;

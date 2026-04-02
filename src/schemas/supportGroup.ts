@@ -10,10 +10,6 @@ import {
   supportGroupNotificationPreferencesSchema,
 } from "./supportGroupPermissions";
 
-// Matching criteria schemas
-export const matchingModeSchema = z.enum(["focused", "mixed"]);
-export type MatchingMode = z.infer<typeof matchingModeSchema>;
-
 // Re-export for backward compatibility
 export type {
   SupportGroupPermissions,
@@ -71,14 +67,12 @@ export const supportGroupSchema = z.object({
   updatedAt: timestampSchema.optional(),
   archivedAt: timestampSchema.optional(),
 
-  // Matching criteria for automatic group assignment
-  // References to behavior topics this group focuses on
+  // References to behavior topics this group focuses on (for reference)
   behaviorTopicIds: z.array(behaviorTopicIdSchema).optional(),
   timezoneOffsets: z.array(z.number()).optional(),
-  matchingMode: matchingModeSchema.optional(),
-  // Whether this group accepts new members via matching
-  acceptsMatching: z.boolean().optional(),
-  // Maximum number of members for this group (for small group matching)
+  // Whether this group is open for new members to join
+  isOpen: z.boolean().optional(),
+  // Maximum number of members for this group
   maxMembers: z.number().optional(),
 });
 
@@ -88,7 +82,7 @@ export type SupportGroup = z.infer<typeof supportGroupSchema>;
 
 // Type guard functions
 export const isValidSupportGroupMember = (
-  value: unknown
+  value: unknown,
 ): value is SupportGroupMember => {
   return supportGroupMemberSchema.safeParse(value).success;
 };

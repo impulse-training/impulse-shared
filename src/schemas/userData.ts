@@ -97,6 +97,9 @@ export const userDataSchema = z.object({
   // If true, this user will be added to the tech support group for all new signups
   isImpulseTeam: z.boolean().optional(),
 
+  // If true, this user will be auto-added as a default member of new accountability support groups
+  addToAccountabilitySupportGroups: z.boolean().optional(),
+
   // Tracks whether user has previously set up an experiment (to skip intro screen)
   hasSetupExperiment: z.boolean().optional(),
 
@@ -117,6 +120,13 @@ export const userDataSchema = z.object({
 
   latestSessionMessages: z
     .record(latestSessionMessageTypeSchema, latestSessionMessageSchema)
+    .optional(),
+
+  // One-time migration flags
+  migrations: z
+    .object({
+      recommendedLibraryDone: z.boolean().optional(),
+    })
     .optional(),
 });
 

@@ -1,7 +1,5 @@
 import { z } from "zod";
 import { supportGroupPermissionsSchema, supportGroupNotificationPreferencesSchema } from "./supportGroupPermissions";
-export declare const matchingModeSchema: z.ZodEnum<["focused", "mixed"]>;
-export type MatchingMode = z.infer<typeof matchingModeSchema>;
 export type { SupportGroupPermissions, SupportGroupNotificationPreferences, } from "./supportGroupPermissions";
 export { supportGroupPermissionsSchema, supportGroupNotificationPreferencesSchema, };
 export declare const supportGroupMemberSchema: z.ZodObject<{
@@ -577,8 +575,7 @@ export declare const supportGroupSchema: z.ZodObject<{
     archivedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     behaviorTopicIds: z.ZodOptional<z.ZodArray<z.ZodEnum<[string, ...string[]]>, "many">>;
     timezoneOffsets: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
-    matchingMode: z.ZodOptional<z.ZodEnum<["focused", "mixed"]>>;
-    acceptsMatching: z.ZodOptional<z.ZodBoolean>;
+    isOpen: z.ZodOptional<z.ZodBoolean>;
     maxMembers: z.ZodOptional<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
     type: "system" | "alignment" | "social" | "coach";
@@ -697,8 +694,7 @@ export declare const supportGroupSchema: z.ZodObject<{
     } | undefined;
     behaviorTopicIds?: string[] | undefined;
     timezoneOffsets?: number[] | undefined;
-    matchingMode?: "focused" | "mixed" | undefined;
-    acceptsMatching?: boolean | undefined;
+    isOpen?: boolean | undefined;
     maxMembers?: number | undefined;
 }, {
     name: string;
@@ -817,8 +813,7 @@ export declare const supportGroupSchema: z.ZodObject<{
     tacticCount?: number | undefined;
     behaviorTopicIds?: string[] | undefined;
     timezoneOffsets?: number[] | undefined;
-    matchingMode?: "focused" | "mixed" | undefined;
-    acceptsMatching?: boolean | undefined;
+    isOpen?: boolean | undefined;
     maxMembers?: number | undefined;
 }>;
 export type SupportGroupMember = z.infer<typeof supportGroupMemberSchema>;

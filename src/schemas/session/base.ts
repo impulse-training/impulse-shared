@@ -18,6 +18,7 @@ const sessionTypeSchema = z.enum([
   "adjustment",
   "alignment",
   "commitment",
+  "setup",
 ]);
 
 // Session schema
@@ -38,6 +39,9 @@ export const sessionBaseSchema = z.object({
   // Whether this session is a draft (created before any logs exist)
   // Draft sessions should be hidden in UI until a log is added
   isDraft: z.boolean().optional().default(false),
+
+  // Whether to show the tactics sheet in this session (defaults to true for impulse/general)
+  showTactics: z.boolean().optional(),
 
   // TODO: review if necessary
   emojiId: emojiIdSchema.nullable(),

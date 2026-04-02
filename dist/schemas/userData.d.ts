@@ -98,6 +98,7 @@ export declare const userDataSchema: z.ZodObject<{
         } | undefined;
     }>>;
     isImpulseTeam: z.ZodOptional<z.ZodBoolean>;
+    addToAccountabilitySupportGroups: z.ZodOptional<z.ZodBoolean>;
     hasSetupExperiment: z.ZodOptional<z.ZodBoolean>;
     supportGroupSignupCompletedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     markedAsEligibleAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -132,6 +133,13 @@ export declare const userDataSchema: z.ZodObject<{
         role: "assistant" | "user";
         sentAt: import("../types").Timestamp;
     }>>>;
+    migrations: z.ZodOptional<z.ZodObject<{
+        recommendedLibraryDone: z.ZodOptional<z.ZodBoolean>;
+    }, "strip", z.ZodTypeAny, {
+        recommendedLibraryDone?: boolean | undefined;
+    }, {
+        recommendedLibraryDone?: boolean | undefined;
+    }>>;
 }, "strip", z.ZodTypeAny, {
     role: "user" | "coach" | "support";
     notificationsEnabled: boolean;
@@ -174,6 +182,7 @@ export declare const userDataSchema: z.ZodObject<{
     deletionRequestedAt?: import("../types").Timestamp | undefined;
     deletionRequestedBy?: "user" | "admin" | undefined;
     isImpulseTeam?: boolean | undefined;
+    addToAccountabilitySupportGroups?: boolean | undefined;
     hasSetupExperiment?: boolean | undefined;
     supportGroupSignupCompletedAt?: import("../types").Timestamp | undefined;
     markedAsEligibleAt?: import("../types").Timestamp | undefined;
@@ -190,6 +199,9 @@ export declare const userDataSchema: z.ZodObject<{
         role: "assistant" | "user";
         sentAt: import("../types").Timestamp;
     }>> | undefined;
+    migrations?: {
+        recommendedLibraryDone?: boolean | undefined;
+    } | undefined;
 }, {
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
@@ -232,6 +244,7 @@ export declare const userDataSchema: z.ZodObject<{
     theme?: "system" | "light" | "dark" | undefined;
     weekStartsOn?: 0 | 1 | undefined;
     isImpulseTeam?: boolean | undefined;
+    addToAccountabilitySupportGroups?: boolean | undefined;
     hasSetupExperiment?: boolean | undefined;
     supportGroupSignupCompletedAt?: import("../types").Timestamp | undefined;
     markedAsEligibleAt?: import("../types").Timestamp | undefined;
@@ -248,6 +261,9 @@ export declare const userDataSchema: z.ZodObject<{
         role: "assistant" | "user";
         sentAt: import("../types").Timestamp;
     }>> | undefined;
+    migrations?: {
+        recommendedLibraryDone?: boolean | undefined;
+    } | undefined;
 }>;
 export type UserData = z.infer<typeof userDataSchema>;
 export declare const isUserData: (value: unknown) => value is UserData;

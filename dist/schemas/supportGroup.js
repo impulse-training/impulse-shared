@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidSupportGroup = exports.isValidSupportGroupMember = exports.supportGroupSchema = exports.supportGroupTypeSchema = exports.supportGroupMemberSchema = exports.supportGroupNotificationPreferencesSchema = exports.supportGroupPermissionsSchema = exports.matchingModeSchema = void 0;
+exports.isValidSupportGroup = exports.isValidSupportGroupMember = exports.supportGroupSchema = exports.supportGroupTypeSchema = exports.supportGroupMemberSchema = exports.supportGroupNotificationPreferencesSchema = exports.supportGroupPermissionsSchema = void 0;
 const zod_1 = require("zod");
 const objectOf_1 = require("../utils/objectOf");
 const timestampSchema_1 = require("../utils/timestampSchema");
@@ -11,8 +11,6 @@ const userProfile_1 = require("./userProfile");
 const supportGroupPermissions_1 = require("./supportGroupPermissions");
 Object.defineProperty(exports, "supportGroupPermissionsSchema", { enumerable: true, get: function () { return supportGroupPermissions_1.supportGroupPermissionsSchema; } });
 Object.defineProperty(exports, "supportGroupNotificationPreferencesSchema", { enumerable: true, get: function () { return supportGroupPermissions_1.supportGroupNotificationPreferencesSchema; } });
-// Matching criteria schemas
-exports.matchingModeSchema = zod_1.z.enum(["focused", "mixed"]);
 // Support Group Member Schema
 exports.supportGroupMemberSchema = zod_1.z.object({
     userId: zod_1.z.string(),
@@ -56,14 +54,12 @@ exports.supportGroupSchema = zod_1.z.object({
     createdAt: timestampSchema_1.timestampSchema.optional(),
     updatedAt: timestampSchema_1.timestampSchema.optional(),
     archivedAt: timestampSchema_1.timestampSchema.optional(),
-    // Matching criteria for automatic group assignment
-    // References to behavior topics this group focuses on
+    // References to behavior topics this group focuses on (for reference)
     behaviorTopicIds: zod_1.z.array(behaviorTopic_1.behaviorTopicIdSchema).optional(),
     timezoneOffsets: zod_1.z.array(zod_1.z.number()).optional(),
-    matchingMode: exports.matchingModeSchema.optional(),
-    // Whether this group accepts new members via matching
-    acceptsMatching: zod_1.z.boolean().optional(),
-    // Maximum number of members for this group (for small group matching)
+    // Whether this group is open for new members to join
+    isOpen: zod_1.z.boolean().optional(),
+    // Maximum number of members for this group
     maxMembers: zod_1.z.number().optional(),
 });
 // Type guard functions

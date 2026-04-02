@@ -81,6 +81,8 @@ exports.userDataSchema = zod_1.z.object({
         .optional(),
     // If true, this user will be added to the tech support group for all new signups
     isImpulseTeam: zod_1.z.boolean().optional(),
+    // If true, this user will be auto-added as a default member of new accountability support groups
+    addToAccountabilitySupportGroups: zod_1.z.boolean().optional(),
     // Tracks whether user has previously set up an experiment (to skip intro screen)
     hasSetupExperiment: zod_1.z.boolean().optional(),
     // Support group signup wizard completion
@@ -95,6 +97,12 @@ exports.userDataSchema = zod_1.z.object({
         .optional(),
     latestSessionMessages: zod_1.z
         .record(exports.latestSessionMessageTypeSchema, latestSessionMessageSchema)
+        .optional(),
+    // One-time migration flags
+    migrations: zod_1.z
+        .object({
+        recommendedLibraryDone: zod_1.z.boolean().optional(),
+    })
         .optional(),
 });
 // Type guard for User
