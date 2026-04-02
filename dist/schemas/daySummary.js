@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.daySummarySchema = exports.goalComparisonEntrySchema = void 0;
+exports.daySummarySchema = exports.recapResponseValueSchema = exports.goalComparisonEntrySchema = void 0;
 exports.isValidDaySummary = isValidDaySummary;
 const zod_1 = require("zod");
 const objectOf_1 = require("../utils/objectOf");
@@ -18,6 +18,19 @@ exports.goalComparisonEntrySchema = zod_1.z.object({
     measured: zod_1.z.number(),
     targetValue: zod_1.z.number().optional(),
     status: zod_1.z.enum(["MET", "NOT_MET_FAIL", "UNSPECIFIED_FOR_DAY", "NO_GOAL"]),
+});
+/** Structured value emitted by the RecapResponseControl when the user confirms totals */
+exports.recapResponseValueSchema = zod_1.z.object({
+    behaviorTotals: zod_1.z.record(zod_1.z.string(), zod_1.z.object({
+        value: zod_1.z.number(),
+        formattedValue: zod_1.z.string(),
+        behaviorName: zod_1.z.string(),
+    })),
+    summaryText: zod_1.z.string(),
+    goalComparisonByBehaviorId: zod_1.z
+        .record(zod_1.z.string(), exports.goalComparisonEntrySchema)
+        .optional(),
+    behaviorsById: zod_1.z.record(zod_1.z.string(), behavior_1.behaviorSchema).optional(),
 });
 exports.daySummarySchema = zod_1.z.object({
     id: zod_1.z.string().optional(),

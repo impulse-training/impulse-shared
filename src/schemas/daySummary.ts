@@ -19,6 +19,24 @@ export const goalComparisonEntrySchema = z.object({
 });
 export type GoalComparisonEntry = z.infer<typeof goalComparisonEntrySchema>;
 
+/** Structured value emitted by the RecapResponseControl when the user confirms totals */
+export const recapResponseValueSchema = z.object({
+  behaviorTotals: z.record(
+    z.string(),
+    z.object({
+      value: z.number(),
+      formattedValue: z.string(),
+      behaviorName: z.string(),
+    }),
+  ),
+  summaryText: z.string(),
+  goalComparisonByBehaviorId: z
+    .record(z.string(), goalComparisonEntrySchema)
+    .optional(),
+  behaviorsById: z.record(z.string(), behaviorSchema).optional(),
+});
+export type RecapResponseValue = z.infer<typeof recapResponseValueSchema>;
+
 export const daySummarySchema = z.object({
   id: z.string().optional(),
   // dateString: z.string(),
