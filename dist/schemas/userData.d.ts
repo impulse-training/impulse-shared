@@ -50,7 +50,6 @@ export declare const userDataSchema: z.ZodObject<{
     isAppEnabled: z.ZodOptional<z.ZodBoolean>;
     deletionRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     deletionRequestedBy: z.ZodOptional<z.ZodEnum<["user", "admin"]>>;
-    tacticsEnabled: z.ZodDefault<z.ZodBoolean>;
     theme: z.ZodDefault<z.ZodEnum<["light", "dark", "system"]>>;
     weekStartsOn: z.ZodDefault<z.ZodUnion<[z.ZodLiteral<0>, z.ZodLiteral<1>]>>;
     recap: z.ZodOptional<z.ZodObject<{
@@ -141,7 +140,6 @@ export declare const userDataSchema: z.ZodObject<{
     notificationSettings: {
         debriefReminders: boolean;
     };
-    tacticsEnabled: boolean;
     theme: "system" | "light" | "dark";
     weekStartsOn: 0 | 1;
     id?: string | undefined;
@@ -231,7 +229,6 @@ export declare const userDataSchema: z.ZodObject<{
     isAppEnabled?: boolean | undefined;
     deletionRequestedAt?: import("../types").Timestamp | undefined;
     deletionRequestedBy?: "user" | "admin" | undefined;
-    tacticsEnabled?: boolean | undefined;
     theme?: "system" | "light" | "dark" | undefined;
     weekStartsOn?: 0 | 1 | undefined;
     isImpulseTeam?: boolean | undefined;

@@ -68,7 +68,6 @@ exports.userDataSchema = zod_1.z.object({
     // Account deletion metadata
     deletionRequestedAt: timestampSchema_1.timestampSchema.optional(),
     deletionRequestedBy: zod_1.z.enum(["user", "admin"]).optional(),
-    tacticsEnabled: zod_1.z.boolean().default(false),
     // User preferences
     theme: zod_1.z.enum(["light", "dark", "system"]).default("system"),
     // Calendar preferences

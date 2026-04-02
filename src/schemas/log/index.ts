@@ -30,7 +30,6 @@ import {
 } from "./notifySupportGroupLog";
 import { PlansLog, plansLogSchema } from "./plansLog";
 import { SharedMomentLog, sharedMomentLogSchema } from "./sharedMomentLog";
-import { ShowTourLog, showTourLogSchema } from "./showTourLog";
 import { SummaryLog, summaryLogSchema } from "./summaryLog";
 import {
   SupportGroupDaySummaryLog,
@@ -57,6 +56,10 @@ import {
   DayTotalsConfirmedLog,
   dayTotalsConfirmedLogSchema,
 } from "./dayTotalsConfirmedLog";
+import {
+  RequestPermissionsLog,
+  requestPermissionsLogSchema,
+} from "./requestPermissionsLog";
 
 export const logSchemas = {
   user: userMessageLogSchema,
@@ -71,7 +74,6 @@ export const logSchemas = {
   plans: plansLogSchema,
   summary: summaryLogSchema,
   widget_setup: widgetSetupLogSchema,
-  show_tour: showTourLogSchema,
   link: linkLogSchema,
   notify_support_group: notifySupportGroupLogSchema,
   video: videoLogSchema,
@@ -85,6 +87,7 @@ export const logSchemas = {
   day_totals_prompt: dayTotalsPromptLogSchema,
   day_totals_confirmed: dayTotalsConfirmedLogSchema,
   trigger_selection: triggerSelectionLogSchema,
+  request_permissions: requestPermissionsLogSchema,
 };
 export const logTypes = Object.keys(logSchemas);
 
@@ -101,7 +104,6 @@ export type Log =
   | SummaryLog
   | CallLog
   | WidgetSetupLog
-  | ShowTourLog
   | LinkLog
   | NotifySupportGroupLog
   | SharedMomentLog
@@ -114,7 +116,8 @@ export type Log =
   | RecapTimePreferenceLog
   | DayTotalsPromptLog
   | DayTotalsConfirmedLog
-  | TriggerSelectionLog;
+  | TriggerSelectionLog
+  | RequestPermissionsLog;
 
 export * from "./behaviorLog";
 export * from "./breathingLog";
@@ -125,7 +128,7 @@ export * from "./messageLog";
 export * from "./notifySupportGroupLog";
 export * from "./plansLog";
 export * from "./sharedMomentLog";
-export * from "./showTourLog";
+export * from "./tourStep";
 export * from "./summaryLog";
 export * from "./supportGroupDaySummaryLog";
 export * from "./tacticLog";
@@ -139,6 +142,7 @@ export * from "./recapTimePreferenceLog";
 export * from "./dayTotalsPromptLog";
 export * from "./dayTotalsConfirmedLog";
 export * from "./triggerSelectionLog";
+export * from "./requestPermissionsLog";
 
 // Discriminated union schema across all log variants
 export const logSchema = z.discriminatedUnion("type", [
@@ -153,7 +157,6 @@ export const logSchema = z.discriminatedUnion("type", [
   plansLogSchema,
   summaryLogSchema,
   widgetSetupLogSchema,
-  showTourLogSchema,
   linkLogSchema,
   notifySupportGroupLogSchema,
   sharedMomentLogSchema,
@@ -167,6 +170,7 @@ export const logSchema = z.discriminatedUnion("type", [
   dayTotalsPromptLogSchema,
   dayTotalsConfirmedLogSchema,
   triggerSelectionLogSchema,
+  requestPermissionsLogSchema,
 ]);
 
 // Export log type guards
@@ -187,13 +191,6 @@ export const isValidSystemMessageLog = (
   value: unknown,
 ): value is SystemMessageLog => {
   return systemMessageLogSchema.safeParse(value).success;
-};
-
-export const logIsShowTourLog = (
-  value: Omit<Log, "id">,
-): value is ShowTourLog => value.type === "show_tour";
-export const isValidShowTourLog = (value: unknown): value is ShowTourLog => {
-  return showTourLogSchema.safeParse(value).success;
 };
 
 export const logIsNotifySupportGroupLog = (
@@ -339,6 +336,15 @@ export const isValidImpulseStartedLog = (
   value: unknown,
 ): value is ImpulseStartedLog => {
   return impulseStartedLogSchema.safeParse(value).success;
+};
+
+export const logIsRequestPermissionsLog = (
+  value: Omit<Log, "id">,
+): value is RequestPermissionsLog => value.type === "request_permissions";
+export const isValidRequestPermissionsLog = (
+  value: unknown,
+): value is RequestPermissionsLog => {
+  return requestPermissionsLogSchema.safeParse(value).success;
 };
 
 export const logIsTriggerSelectionLog = (

@@ -7,7 +7,6 @@ import {
   logIsImpulseStartedLog,
   logIsMetricLog,
   logIsPlansLog,
-  logIsShowTourLog,
   logIsTriggerSelectionLog,
   logIsUserMessageLog,
   logIsWidgetSetupLog,
@@ -157,18 +156,6 @@ export function shouldRespondToLogWithAI(
     console.log(
       "Widget setup log with changed response field. Responding with AI.",
     );
-    return true;
-  }
-
-  // Case: The user has completed a tour
-  if (
-    isUpdating &&
-    logIsShowTourLog(beforeData) &&
-    logIsShowTourLog(afterData) &&
-    !beforeData?.data.completedAt &&
-    afterData.data.completedAt
-  ) {
-    console.log("User has completed a tour. Responding with AI.");
     return true;
   }
 

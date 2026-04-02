@@ -80,8 +80,6 @@ export const userDataSchema = z.object({
   deletionRequestedAt: timestampSchema.optional(),
   deletionRequestedBy: z.enum(["user", "admin"]).optional(),
 
-  tacticsEnabled: z.boolean().default(false),
-
   // User preferences
   theme: z.enum(["light", "dark", "system"]).default("system"),
 

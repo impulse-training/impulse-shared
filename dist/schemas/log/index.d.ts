@@ -10,7 +10,6 @@ import { AssistantMessageLog, MessageLog, SystemMessageLog, UserMessageLog } fro
 import { NotifySupportGroupLog } from "./notifySupportGroupLog";
 import { PlansLog } from "./plansLog";
 import { SharedMomentLog } from "./sharedMomentLog";
-import { ShowTourLog } from "./showTourLog";
 import { SummaryLog } from "./summaryLog";
 import { SupportGroupDaySummaryLog } from "./supportGroupDaySummaryLog";
 import { TacticLog } from "./tacticLog";
@@ -22,6 +21,7 @@ import { DayTotalsPromptLog } from "./dayTotalsPromptLog";
 import { TriggerSelectionLog } from "./triggerSelectionLog";
 import { WidgetSetupLog } from "./widgetSetupLog";
 import { DayTotalsConfirmedLog } from "./dayTotalsConfirmedLog";
+import { RequestPermissionsLog } from "./requestPermissionsLog";
 export declare const logSchemas: {
     user: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
@@ -10895,186 +10895,6 @@ export declare const logSchemas: {
         callLogDocPath?: string | undefined;
         impulseId?: string | undefined;
     }>;
-    show_tour: z.ZodObject<{
-        id: z.ZodOptional<z.ZodString>;
-        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-        userId: z.ZodString;
-        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-        dateString: z.ZodString;
-        sessionId: z.ZodString;
-        tacticId: z.ZodOptional<z.ZodString>;
-        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-        callLogDocPath: z.ZodOptional<z.ZodString>;
-        impulseId: z.ZodOptional<z.ZodString>;
-    } & {
-        type: z.ZodLiteral<"show_tour">;
-        isDisplayable: z.ZodLiteral<true>;
-        text: z.ZodString;
-        data: z.ZodObject<{
-            steps: z.ZodArray<z.ZodObject<{
-                elementRefName: z.ZodNullable<z.ZodString>;
-                title: z.ZodString;
-                description: z.ZodString;
-                confirmButtonLabel: z.ZodDefault<z.ZodString>;
-                nextOnImpulseButtonPress: z.ZodOptional<z.ZodBoolean>;
-                borderRadius: z.ZodOptional<z.ZodNumber>;
-                innerPadding: z.ZodOptional<z.ZodNumber>;
-                minimumRectSize: z.ZodOptional<z.ZodObject<{
-                    width: z.ZodNumber;
-                    height: z.ZodNumber;
-                }, "strip", z.ZodTypeAny, {
-                    width: number;
-                    height: number;
-                }, {
-                    width: number;
-                    height: number;
-                }>>;
-            }, "strip", z.ZodTypeAny, {
-                title: string;
-                description: string;
-                elementRefName: string | null;
-                confirmButtonLabel: string;
-                nextOnImpulseButtonPress?: boolean | undefined;
-                borderRadius?: number | undefined;
-                innerPadding?: number | undefined;
-                minimumRectSize?: {
-                    width: number;
-                    height: number;
-                } | undefined;
-            }, {
-                title: string;
-                description: string;
-                elementRefName: string | null;
-                confirmButtonLabel?: string | undefined;
-                nextOnImpulseButtonPress?: boolean | undefined;
-                borderRadius?: number | undefined;
-                innerPadding?: number | undefined;
-                minimumRectSize?: {
-                    width: number;
-                    height: number;
-                } | undefined;
-            }>, "many">;
-            firstNavigateToRoute: z.ZodOptional<z.ZodString>;
-            startButtonLabel: z.ZodOptional<z.ZodString>;
-            completedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-            includeCloseButton: z.ZodDefault<z.ZodBoolean>;
-            closeButtonText: z.ZodDefault<z.ZodString>;
-            closeButtonHref: z.ZodDefault<z.ZodString>;
-        }, "strip", z.ZodTypeAny, {
-            steps: {
-                title: string;
-                description: string;
-                elementRefName: string | null;
-                confirmButtonLabel: string;
-                nextOnImpulseButtonPress?: boolean | undefined;
-                borderRadius?: number | undefined;
-                innerPadding?: number | undefined;
-                minimumRectSize?: {
-                    width: number;
-                    height: number;
-                } | undefined;
-            }[];
-            includeCloseButton: boolean;
-            closeButtonText: string;
-            closeButtonHref: string;
-            completedAt?: import("../../types").Timestamp | undefined;
-            firstNavigateToRoute?: string | undefined;
-            startButtonLabel?: string | undefined;
-        }, {
-            steps: {
-                title: string;
-                description: string;
-                elementRefName: string | null;
-                confirmButtonLabel?: string | undefined;
-                nextOnImpulseButtonPress?: boolean | undefined;
-                borderRadius?: number | undefined;
-                innerPadding?: number | undefined;
-                minimumRectSize?: {
-                    width: number;
-                    height: number;
-                } | undefined;
-            }[];
-            completedAt?: import("../../types").Timestamp | undefined;
-            firstNavigateToRoute?: string | undefined;
-            startButtonLabel?: string | undefined;
-            includeCloseButton?: boolean | undefined;
-            closeButtonText?: string | undefined;
-            closeButtonHref?: string | undefined;
-        }>;
-    }, "strip", z.ZodTypeAny, {
-        createdAt: import("../../types").Timestamp;
-        updatedAt: import("../../types").Timestamp;
-        text: string;
-        type: "show_tour";
-        userId: string;
-        timestamp: import("../../types").Timestamp;
-        dateString: string;
-        sessionId: string;
-        isDisplayable: true;
-        data: {
-            steps: {
-                title: string;
-                description: string;
-                elementRefName: string | null;
-                confirmButtonLabel: string;
-                nextOnImpulseButtonPress?: boolean | undefined;
-                borderRadius?: number | undefined;
-                innerPadding?: number | undefined;
-                minimumRectSize?: {
-                    width: number;
-                    height: number;
-                } | undefined;
-            }[];
-            includeCloseButton: boolean;
-            closeButtonText: string;
-            closeButtonHref: string;
-            completedAt?: import("../../types").Timestamp | undefined;
-            firstNavigateToRoute?: string | undefined;
-            startButtonLabel?: string | undefined;
-        };
-        id?: string | undefined;
-        tacticId?: string | undefined;
-        behaviorIds?: string[] | undefined;
-        callLogDocPath?: string | undefined;
-        impulseId?: string | undefined;
-    }, {
-        createdAt: import("../../types").Timestamp;
-        updatedAt: import("../../types").Timestamp;
-        text: string;
-        type: "show_tour";
-        userId: string;
-        timestamp: import("../../types").Timestamp;
-        dateString: string;
-        sessionId: string;
-        isDisplayable: true;
-        data: {
-            steps: {
-                title: string;
-                description: string;
-                elementRefName: string | null;
-                confirmButtonLabel?: string | undefined;
-                nextOnImpulseButtonPress?: boolean | undefined;
-                borderRadius?: number | undefined;
-                innerPadding?: number | undefined;
-                minimumRectSize?: {
-                    width: number;
-                    height: number;
-                } | undefined;
-            }[];
-            completedAt?: import("../../types").Timestamp | undefined;
-            firstNavigateToRoute?: string | undefined;
-            startButtonLabel?: string | undefined;
-            includeCloseButton?: boolean | undefined;
-            closeButtonText?: string | undefined;
-            closeButtonHref?: string | undefined;
-        };
-        id?: string | undefined;
-        tacticId?: string | undefined;
-        behaviorIds?: string[] | undefined;
-        callLogDocPath?: string | undefined;
-        impulseId?: string | undefined;
-    }>;
     link: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -12233,10 +12053,82 @@ export declare const logSchemas: {
         callLogDocPath?: string | undefined;
         impulseId?: string | undefined;
     }>;
+    request_permissions: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        sessionId: z.ZodString;
+        tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        callLogDocPath: z.ZodOptional<z.ZodString>;
+        impulseId: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"request_permissions">;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            permissionType: z.ZodEnum<["foreground_location"]>;
+            locationName: z.ZodOptional<z.ZodString>;
+            respondedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            granted: z.ZodOptional<z.ZodBoolean>;
+        }, "strip", z.ZodTypeAny, {
+            permissionType: "foreground_location";
+            respondedAt?: import("../../types").Timestamp | undefined;
+            locationName?: string | undefined;
+            granted?: boolean | undefined;
+        }, {
+            permissionType: "foreground_location";
+            respondedAt?: import("../../types").Timestamp | undefined;
+            locationName?: string | undefined;
+            granted?: boolean | undefined;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "request_permissions";
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        sessionId: string;
+        isDisplayable: true;
+        data: {
+            permissionType: "foreground_location";
+            respondedAt?: import("../../types").Timestamp | undefined;
+            locationName?: string | undefined;
+            granted?: boolean | undefined;
+        };
+        id?: string | undefined;
+        tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        callLogDocPath?: string | undefined;
+        impulseId?: string | undefined;
+    }, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "request_permissions";
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        sessionId: string;
+        isDisplayable: true;
+        data: {
+            permissionType: "foreground_location";
+            respondedAt?: import("../../types").Timestamp | undefined;
+            locationName?: string | undefined;
+            granted?: boolean | undefined;
+        };
+        id?: string | undefined;
+        tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        callLogDocPath?: string | undefined;
+        impulseId?: string | undefined;
+    }>;
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | ShowTourLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ProposedExperimentLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | DayTotalsConfirmedLog | TriggerSelectionLog;
+export type Log = TacticLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ProposedExperimentLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | DayTotalsConfirmedLog | TriggerSelectionLog | RequestPermissionsLog;
 export * from "./behaviorLog";
 export * from "./breathingLog";
 export * from "./callLog";
@@ -12246,7 +12138,7 @@ export * from "./messageLog";
 export * from "./notifySupportGroupLog";
 export * from "./plansLog";
 export * from "./sharedMomentLog";
-export * from "./showTourLog";
+export * from "./tourStep";
 export * from "./summaryLog";
 export * from "./supportGroupDaySummaryLog";
 export * from "./tacticLog";
@@ -12260,6 +12152,7 @@ export * from "./recapTimePreferenceLog";
 export * from "./dayTotalsPromptLog";
 export * from "./dayTotalsConfirmedLog";
 export * from "./triggerSelectionLog";
+export * from "./requestPermissionsLog";
 export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -20001,185 +19894,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     callLogDocPath: z.ZodOptional<z.ZodString>;
     impulseId: z.ZodOptional<z.ZodString>;
 } & {
-    type: z.ZodLiteral<"show_tour">;
-    isDisplayable: z.ZodLiteral<true>;
-    text: z.ZodString;
-    data: z.ZodObject<{
-        steps: z.ZodArray<z.ZodObject<{
-            elementRefName: z.ZodNullable<z.ZodString>;
-            title: z.ZodString;
-            description: z.ZodString;
-            confirmButtonLabel: z.ZodDefault<z.ZodString>;
-            nextOnImpulseButtonPress: z.ZodOptional<z.ZodBoolean>;
-            borderRadius: z.ZodOptional<z.ZodNumber>;
-            innerPadding: z.ZodOptional<z.ZodNumber>;
-            minimumRectSize: z.ZodOptional<z.ZodObject<{
-                width: z.ZodNumber;
-                height: z.ZodNumber;
-            }, "strip", z.ZodTypeAny, {
-                width: number;
-                height: number;
-            }, {
-                width: number;
-                height: number;
-            }>>;
-        }, "strip", z.ZodTypeAny, {
-            title: string;
-            description: string;
-            elementRefName: string | null;
-            confirmButtonLabel: string;
-            nextOnImpulseButtonPress?: boolean | undefined;
-            borderRadius?: number | undefined;
-            innerPadding?: number | undefined;
-            minimumRectSize?: {
-                width: number;
-                height: number;
-            } | undefined;
-        }, {
-            title: string;
-            description: string;
-            elementRefName: string | null;
-            confirmButtonLabel?: string | undefined;
-            nextOnImpulseButtonPress?: boolean | undefined;
-            borderRadius?: number | undefined;
-            innerPadding?: number | undefined;
-            minimumRectSize?: {
-                width: number;
-                height: number;
-            } | undefined;
-        }>, "many">;
-        firstNavigateToRoute: z.ZodOptional<z.ZodString>;
-        startButtonLabel: z.ZodOptional<z.ZodString>;
-        completedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-        includeCloseButton: z.ZodDefault<z.ZodBoolean>;
-        closeButtonText: z.ZodDefault<z.ZodString>;
-        closeButtonHref: z.ZodDefault<z.ZodString>;
-    }, "strip", z.ZodTypeAny, {
-        steps: {
-            title: string;
-            description: string;
-            elementRefName: string | null;
-            confirmButtonLabel: string;
-            nextOnImpulseButtonPress?: boolean | undefined;
-            borderRadius?: number | undefined;
-            innerPadding?: number | undefined;
-            minimumRectSize?: {
-                width: number;
-                height: number;
-            } | undefined;
-        }[];
-        includeCloseButton: boolean;
-        closeButtonText: string;
-        closeButtonHref: string;
-        completedAt?: import("../../types").Timestamp | undefined;
-        firstNavigateToRoute?: string | undefined;
-        startButtonLabel?: string | undefined;
-    }, {
-        steps: {
-            title: string;
-            description: string;
-            elementRefName: string | null;
-            confirmButtonLabel?: string | undefined;
-            nextOnImpulseButtonPress?: boolean | undefined;
-            borderRadius?: number | undefined;
-            innerPadding?: number | undefined;
-            minimumRectSize?: {
-                width: number;
-                height: number;
-            } | undefined;
-        }[];
-        completedAt?: import("../../types").Timestamp | undefined;
-        firstNavigateToRoute?: string | undefined;
-        startButtonLabel?: string | undefined;
-        includeCloseButton?: boolean | undefined;
-        closeButtonText?: string | undefined;
-        closeButtonHref?: string | undefined;
-    }>;
-}, "strip", z.ZodTypeAny, {
-    createdAt: import("../../types").Timestamp;
-    updatedAt: import("../../types").Timestamp;
-    text: string;
-    type: "show_tour";
-    userId: string;
-    timestamp: import("../../types").Timestamp;
-    dateString: string;
-    sessionId: string;
-    isDisplayable: true;
-    data: {
-        steps: {
-            title: string;
-            description: string;
-            elementRefName: string | null;
-            confirmButtonLabel: string;
-            nextOnImpulseButtonPress?: boolean | undefined;
-            borderRadius?: number | undefined;
-            innerPadding?: number | undefined;
-            minimumRectSize?: {
-                width: number;
-                height: number;
-            } | undefined;
-        }[];
-        includeCloseButton: boolean;
-        closeButtonText: string;
-        closeButtonHref: string;
-        completedAt?: import("../../types").Timestamp | undefined;
-        firstNavigateToRoute?: string | undefined;
-        startButtonLabel?: string | undefined;
-    };
-    id?: string | undefined;
-    tacticId?: string | undefined;
-    behaviorIds?: string[] | undefined;
-    callLogDocPath?: string | undefined;
-    impulseId?: string | undefined;
-}, {
-    createdAt: import("../../types").Timestamp;
-    updatedAt: import("../../types").Timestamp;
-    text: string;
-    type: "show_tour";
-    userId: string;
-    timestamp: import("../../types").Timestamp;
-    dateString: string;
-    sessionId: string;
-    isDisplayable: true;
-    data: {
-        steps: {
-            title: string;
-            description: string;
-            elementRefName: string | null;
-            confirmButtonLabel?: string | undefined;
-            nextOnImpulseButtonPress?: boolean | undefined;
-            borderRadius?: number | undefined;
-            innerPadding?: number | undefined;
-            minimumRectSize?: {
-                width: number;
-                height: number;
-            } | undefined;
-        }[];
-        completedAt?: import("../../types").Timestamp | undefined;
-        firstNavigateToRoute?: string | undefined;
-        startButtonLabel?: string | undefined;
-        includeCloseButton?: boolean | undefined;
-        closeButtonText?: string | undefined;
-        closeButtonHref?: string | undefined;
-    };
-    id?: string | undefined;
-    tacticId?: string | undefined;
-    behaviorIds?: string[] | undefined;
-    callLogDocPath?: string | undefined;
-    impulseId?: string | undefined;
-}>, z.ZodObject<{
-    id: z.ZodOptional<z.ZodString>;
-    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-    userId: z.ZodString;
-    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-    dateString: z.ZodString;
-    sessionId: z.ZodString;
-    tacticId: z.ZodOptional<z.ZodString>;
-    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-    callLogDocPath: z.ZodOptional<z.ZodString>;
-    impulseId: z.ZodOptional<z.ZodString>;
-} & {
     type: z.ZodLiteral<"link">;
     isDisplayable: z.ZodLiteral<true>;
     text: z.ZodString;
@@ -21312,13 +21026,82 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
     impulseId?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    sessionId: z.ZodString;
+    tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    callLogDocPath: z.ZodOptional<z.ZodString>;
+    impulseId: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"request_permissions">;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        permissionType: z.ZodEnum<["foreground_location"]>;
+        locationName: z.ZodOptional<z.ZodString>;
+        respondedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        granted: z.ZodOptional<z.ZodBoolean>;
+    }, "strip", z.ZodTypeAny, {
+        permissionType: "foreground_location";
+        respondedAt?: import("../../types").Timestamp | undefined;
+        locationName?: string | undefined;
+        granted?: boolean | undefined;
+    }, {
+        permissionType: "foreground_location";
+        respondedAt?: import("../../types").Timestamp | undefined;
+        locationName?: string | undefined;
+        granted?: boolean | undefined;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "request_permissions";
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    sessionId: string;
+    isDisplayable: true;
+    data: {
+        permissionType: "foreground_location";
+        respondedAt?: import("../../types").Timestamp | undefined;
+        locationName?: string | undefined;
+        granted?: boolean | undefined;
+    };
+    id?: string | undefined;
+    tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    callLogDocPath?: string | undefined;
+    impulseId?: string | undefined;
+}, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "request_permissions";
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    sessionId: string;
+    isDisplayable: true;
+    data: {
+        permissionType: "foreground_location";
+        respondedAt?: import("../../types").Timestamp | undefined;
+        locationName?: string | undefined;
+        granted?: boolean | undefined;
+    };
+    id?: string | undefined;
+    tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    callLogDocPath?: string | undefined;
+    impulseId?: string | undefined;
 }>]>;
 export declare const logIsAssistantMessageLog: (value: Omit<Log, "id">) => value is AssistantMessageLog;
 export declare const isValidAssistantMessageLog: (value: unknown) => value is AssistantMessageLog;
 export declare const logIsSystemMessageLog: (value: Omit<Log, "id">) => value is SystemMessageLog;
 export declare const isValidSystemMessageLog: (value: unknown) => value is SystemMessageLog;
-export declare const logIsShowTourLog: (value: Omit<Log, "id">) => value is ShowTourLog;
-export declare const isValidShowTourLog: (value: unknown) => value is ShowTourLog;
 export declare const logIsNotifySupportGroupLog: (value: Omit<Log, "id">) => value is NotifySupportGroupLog;
 export declare const isValidNotifySupportGroupLog: (value: unknown) => value is NotifySupportGroupLog;
 export declare const logIsSharedMomentLog: (value: Omit<Log, "id">) => value is SharedMomentLog;
@@ -21356,5 +21139,7 @@ export declare const isValidDayTotalsPromptLog: (value: unknown) => value is Day
 export declare const logIsDayTotalsConfirmedLog: (value: Omit<Log, "id">) => value is DayTotalsConfirmedLog;
 export declare const logIsImpulseStartedLog: (value: Omit<Log, "id">) => value is ImpulseStartedLog;
 export declare const isValidImpulseStartedLog: (value: unknown) => value is ImpulseStartedLog;
+export declare const logIsRequestPermissionsLog: (value: Omit<Log, "id">) => value is RequestPermissionsLog;
+export declare const isValidRequestPermissionsLog: (value: unknown) => value is RequestPermissionsLog;
 export declare const logIsTriggerSelectionLog: (value: Omit<Log, "id">) => value is TriggerSelectionLog;
 export declare const isValidTriggerSelectionLog: (value: unknown) => value is TriggerSelectionLog;

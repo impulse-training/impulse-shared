@@ -8,7 +8,6 @@ import {
   logIsDayTotalsConfirmedLog,
   logIsMetricLog,
   logIsPlansLog,
-  logIsShowTourLog,
   logIsTacticLog,
   logIsToolCallLog,
   logIsUserMessageLog,
@@ -233,27 +232,6 @@ export function getGptPayload(
         content: `<SYSTEM>The user has installed the Impulse widget!</SYSTEM>`,
       },
     ];
-  }
-
-  // Handle ShowTourLog
-  if (logIsShowTourLog(log)) {
-    const messages: ChatCompletionMessageParam[] = [];
-
-    // Always include an assistant message about the tour being shown
-    messages.push({
-      role: "assistant",
-      content: `<SYSTEM>Tour has been shown to the user: ${log.text}</SYSTEM>`,
-    });
-
-    // If the tour is completed, include a user message
-    if (log.data.completedAt) {
-      messages.push({
-        role: "user",
-        content: "<SYSTEM>The user has completed the tour</SYSTEM>",
-      });
-    }
-
-    return messages;
   }
 
   // Handle BehaviorLog

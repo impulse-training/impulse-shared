@@ -105,15 +105,6 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         console.log("Widget setup log with changed response field. Responding with AI.");
         return true;
     }
-    // Case: The user has completed a tour
-    if (isUpdating &&
-        (0, log_1.logIsShowTourLog)(beforeData) &&
-        (0, log_1.logIsShowTourLog)(afterData) &&
-        !(beforeData === null || beforeData === void 0 ? void 0 : beforeData.data.completedAt) &&
-        afterData.data.completedAt) {
-        console.log("User has completed a tour. Responding with AI.");
-        return true;
-    }
     // Case: Debrief urge outcome was resolved (resisted/still_there)
     if (isDebriefOutcomeResolved) {
         console.log("Debrief urge outcome resolved. Responding with AI.");

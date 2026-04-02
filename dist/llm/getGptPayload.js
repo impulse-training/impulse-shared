@@ -175,23 +175,6 @@ function getGptPayload(log, isFinalLogInSession) {
             },
         ];
     }
-    // Handle ShowTourLog
-    if ((0, log_1.logIsShowTourLog)(log)) {
-        const messages = [];
-        // Always include an assistant message about the tour being shown
-        messages.push({
-            role: "assistant",
-            content: `<SYSTEM>Tour has been shown to the user: ${log.text}</SYSTEM>`,
-        });
-        // If the tour is completed, include a user message
-        if (log.data.completedAt) {
-            messages.push({
-                role: "user",
-                content: "<SYSTEM>The user has completed the tour</SYSTEM>",
-            });
-        }
-        return messages;
-    }
     // Handle BehaviorLog
     if ((0, log_1.logIsBehaviorLog)(log)) {
         return buildBehaviorLogPayload(log);
