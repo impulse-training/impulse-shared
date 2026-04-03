@@ -64,11 +64,6 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         console.log("New message log. Responding with AI.");
         return true;
     }
-    // Case: An impulse moment has started
-    if (isCreating && (0, log_1.logIsImpulseStartedLog)(afterData)) {
-        console.log("New impulse started log. Responding with AI.");
-        return true;
-    }
     // Case: A plan was completed (plansLog gains completedAt on a plan entry)
     if (isNotDeleting &&
         (0, log_1.logIsPlansLog)(afterData) &&

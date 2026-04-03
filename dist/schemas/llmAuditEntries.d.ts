@@ -15853,6 +15853,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         deletingError: z.ZodOptional<z.ZodString>;
     } & {
         type: z.ZodLiteral<"recap">;
+        completedAt: z.ZodOptional<z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>>;
     }, "strip", z.ZodTypeAny, {
         title: string;
         type: "recap";
@@ -15875,6 +15876,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
+        completedAt?: import("../types").Timestamp | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -16220,6 +16222,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
+        completedAt?: import("../types").Timestamp | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -26928,6 +26931,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
+        completedAt?: import("../types").Timestamp | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -30062,6 +30066,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
+        completedAt?: import("../types").Timestamp | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;

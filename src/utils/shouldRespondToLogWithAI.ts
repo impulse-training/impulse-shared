@@ -100,12 +100,6 @@ export function shouldRespondToLogWithAI(
     return true;
   }
 
-  // Case: An impulse moment has started
-  if (isCreating && logIsImpulseStartedLog(afterData)) {
-    console.log("New impulse started log. Responding with AI.");
-    return true;
-  }
-
   // Case: A plan was completed (plansLog gains completedAt on a plan entry)
   if (
     isNotDeleting &&
