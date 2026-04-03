@@ -54,6 +54,15 @@ export const daySummarySchema = z.object({
   goalComparisonByBehaviorId: z
     .record(z.string(), goalComparisonEntrySchema)
     .optional(),
+  // Per-behavior impulse data aggregated from impulse sessions for this day
+  impulsesByBehaviorId: z
+    .record(
+      z.string(),
+      z.object({
+        actedOnUrge: z.boolean(),
+      }),
+    )
+    .optional(),
   // When the user confirms their day totals
   dayTotalsConfirmedAt: timestampSchema.nullable(),
   // When the user confirms totals and starts the recap flow

@@ -5,7 +5,7 @@ import {
   logIsAssistantMessageLog,
   logIsBehaviorLog,
   logIsCallLog,
-  logIsDayTotalsConfirmedLog,
+  logIsDayTotalsPromptLog,
   logIsMetricLog,
   logIsPlansLog,
   logIsTacticLog,
@@ -24,7 +24,7 @@ function buildBehaviorLogPayload(
 
   const parts: string[] = [];
 
-  if (source === "scheduled" && debriefOutcome) {
+  if (debriefOutcome) {
     if (debriefOutcome === "resisted") {
       parts.push(
         "<CONTEXT>The user successfully resisted an urge. We're debriefing what helped them resist and what they can learn from it.</CONTEXT>",
@@ -239,8 +239,8 @@ export function getGptPayload(
     return buildBehaviorLogPayload(log);
   }
 
-  // Handle DayTotalsConfirmedLog
-  if (logIsDayTotalsConfirmedLog(log)) {
+  // Handle DayTotalsPromptLog with confirmedAt (day totals confirmed)
+  if (logIsDayTotalsPromptLog(log) && log.data.confirmedAt) {
     return [
       {
         role: "user",

@@ -51,6 +51,7 @@ export const sessionBaseSchema = z.object({
   behaviorDataTotals: z.array(behaviorTrackingDataSchema).optional(),
   defaultSystemPrompt: z.string().optional(),
   summary: z.string().optional(),
+  aiSummary: z.string().optional(),
   summaryRequestedAt: timestampSchema.optional(),
   summarizedAt: timestampSchema.nullable(),
   reflectRequestedAt: timestampSchema.optional(),

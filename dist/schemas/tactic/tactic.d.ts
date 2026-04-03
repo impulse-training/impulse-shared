@@ -83,6 +83,8 @@ export declare const indicationSchema: z.ZodObject<{
         weight: number;
     }[] | undefined;
 }>;
+export declare const tacticPhaseSchema: z.ZodEnum<["regulate", "shift", "reengage"]>;
+export type TacticPhase = z.infer<typeof tacticPhaseSchema>;
 export declare const tacticSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     title: z.ZodOptional<z.ZodString>;
@@ -90,6 +92,7 @@ export declare const tacticSchema: z.ZodObject<{
     aiInstructions: z.ZodOptional<z.ZodString>;
     createdByUid: z.ZodOptional<z.ZodString>;
     recommended: z.ZodOptional<z.ZodBoolean>;
+    phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>;
     steps: z.ZodArray<z.ZodDiscriminatedUnion<"mode", [z.ZodObject<{
         backgroundImage: z.ZodOptional<z.ZodObject<{
             createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -1696,6 +1699,7 @@ export declare const tacticSchema: z.ZodObject<{
     aiInstructions?: string | undefined;
     createdByUid?: string | undefined;
     recommended?: boolean | undefined;
+    phase?: "shift" | "regulate" | "reengage" | undefined;
     isMultiStep?: boolean | undefined;
     autoplay?: boolean | undefined;
     indications?: {
@@ -1967,6 +1971,7 @@ export declare const tacticSchema: z.ZodObject<{
     aiInstructions?: string | undefined;
     createdByUid?: string | undefined;
     recommended?: boolean | undefined;
+    phase?: "shift" | "regulate" | "reengage" | undefined;
     isMultiStep?: boolean | undefined;
     autoplay?: boolean | undefined;
     indications?: {

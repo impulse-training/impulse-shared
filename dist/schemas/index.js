@@ -37,6 +37,7 @@ __exportStar(require("./insight"), exports);
 __exportStar(require("./llmAuditEntries"), exports);
 __exportStar(require("./log"), exports);
 __exportStar(require("./memory"), exports);
+__exportStar(require("./monthSummary"), exports);
 __exportStar(require("./metric"), exports);
 __exportStar(require("./notification"), exports);
 __exportStar(require("./paymentToken"), exports);

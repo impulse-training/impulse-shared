@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.tacticSchema = exports.indicationSchema = exports.behaviorIndicationSchema = exports.questionResponseIndicationSchema = void 0;
+exports.tacticSchema = exports.tacticPhaseSchema = exports.indicationSchema = exports.behaviorIndicationSchema = exports.questionResponseIndicationSchema = void 0;
 const zod_1 = require("zod");
 const timestampSchema_1 = require("../../utils/timestampSchema");
 const step_1 = require("./step");
@@ -28,6 +28,7 @@ exports.indicationSchema = zod_1.z.object({
     questionResponses: zod_1.z.array(exports.questionResponseIndicationSchema).optional(),
     behaviors: zod_1.z.array(exports.behaviorIndicationSchema).optional(),
 });
+exports.tacticPhaseSchema = zod_1.z.enum(["regulate", "shift", "reengage"]);
 exports.tacticSchema = zod_1.z.object({
     id: zod_1.z.string().optional(),
     title: zod_1.z.string().min(1).optional(),
@@ -35,6 +36,7 @@ exports.tacticSchema = zod_1.z.object({
     aiInstructions: zod_1.z.string().optional(),
     createdByUid: zod_1.z.string().optional(),
     recommended: zod_1.z.boolean().optional(),
+    phase: exports.tacticPhaseSchema.optional(),
     steps: zod_1.z.array(step_1.tacticStepSchema).min(1),
     tags: zod_1.z.array(zod_1.z.string()).optional(),
     isMultiStep: zod_1.z.boolean().optional(), // If true, show multi-step editor UI

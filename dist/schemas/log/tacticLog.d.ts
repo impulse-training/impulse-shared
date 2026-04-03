@@ -37,6 +37,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             aiInstructions: z.ZodOptional<z.ZodString>;
             createdByUid: z.ZodOptional<z.ZodString>;
             recommended: z.ZodOptional<z.ZodBoolean>;
+            phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>;
             steps: z.ZodArray<z.ZodDiscriminatedUnion<"mode", [z.ZodObject<{
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -1643,6 +1644,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -1914,6 +1916,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -2208,6 +2211,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -2494,6 +2498,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -2790,6 +2795,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -3091,6 +3097,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {

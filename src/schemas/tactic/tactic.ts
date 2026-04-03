@@ -29,6 +29,9 @@ export const indicationSchema = z.object({
   behaviors: z.array(behaviorIndicationSchema).optional(),
 });
 
+export const tacticPhaseSchema = z.enum(["regulate", "shift", "reengage"]);
+export type TacticPhase = z.infer<typeof tacticPhaseSchema>;
+
 export const tacticSchema = z.object({
   id: z.string().optional(),
   title: z.string().min(1).optional(),
@@ -36,6 +39,7 @@ export const tacticSchema = z.object({
   aiInstructions: z.string().optional(),
   createdByUid: z.string().optional(),
   recommended: z.boolean().optional(),
+  phase: tacticPhaseSchema.optional(),
   steps: z.array(tacticStepSchema).min(1),
   tags: z.array(z.string()).optional(),
   isMultiStep: z.boolean().optional(), // If true, show multi-step editor UI

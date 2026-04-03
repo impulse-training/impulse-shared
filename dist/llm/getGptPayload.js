@@ -8,7 +8,7 @@ function buildBehaviorLogPayload(log) {
     var _a, _b, _c;
     const { behaviorName, formattedValue, source, debriefOutcome } = log.data;
     const parts = [];
-    if (source === "scheduled" && debriefOutcome) {
+    if (debriefOutcome) {
         if (debriefOutcome === "resisted") {
             parts.push("<CONTEXT>The user successfully resisted an urge. We're debriefing what helped them resist and what they can learn from it.</CONTEXT>");
         }
@@ -179,8 +179,8 @@ function getGptPayload(log, isFinalLogInSession) {
     if ((0, log_1.logIsBehaviorLog)(log)) {
         return buildBehaviorLogPayload(log);
     }
-    // Handle DayTotalsConfirmedLog
-    if ((0, log_1.logIsDayTotalsConfirmedLog)(log)) {
+    // Handle DayTotalsPromptLog with confirmedAt (day totals confirmed)
+    if ((0, log_1.logIsDayTotalsPromptLog)(log) && log.data.confirmedAt) {
         return [
             {
                 role: "user",

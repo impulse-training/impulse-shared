@@ -20,6 +20,7 @@ export * from "./insight";
 export * from "./llmAuditEntries";
 export * from "./log";
 export * from "./memory";
+export * from "./monthSummary";
 export * from "./metric";
 export * from "./notification";
 export * from "./paymentToken";

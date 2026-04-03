@@ -21,6 +21,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions: z.ZodOptional<z.ZodString>;
             createdByUid: z.ZodOptional<z.ZodString>;
             recommended: z.ZodOptional<z.ZodBoolean>;
+            phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>;
             steps: z.ZodArray<z.ZodDiscriminatedUnion<"mode", [z.ZodObject<{
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -1627,6 +1628,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -1898,6 +1900,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -1999,6 +2002,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         }>, "many">>;
         defaultSystemPrompt: z.ZodOptional<z.ZodString>;
         summary: z.ZodOptional<z.ZodString>;
+        aiSummary: z.ZodOptional<z.ZodString>;
         summaryRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         summarizedAt: z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         reflectRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -2321,6 +2325,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -2379,6 +2384,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -2664,6 +2670,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -2723,6 +2730,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -2766,6 +2774,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions: z.ZodOptional<z.ZodString>;
             createdByUid: z.ZodOptional<z.ZodString>;
             recommended: z.ZodOptional<z.ZodBoolean>;
+            phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>;
             steps: z.ZodArray<z.ZodDiscriminatedUnion<"mode", [z.ZodObject<{
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -4372,6 +4381,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -4643,6 +4653,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -4744,6 +4755,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         }>, "many">>;
         defaultSystemPrompt: z.ZodOptional<z.ZodString>;
         summary: z.ZodOptional<z.ZodString>;
+        aiSummary: z.ZodOptional<z.ZodString>;
         summaryRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         summarizedAt: z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         reflectRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -4836,6 +4848,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
+        actedOnUrge?: boolean | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -5072,6 +5085,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -5130,6 +5144,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -5161,7 +5176,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         debriefAfter?: import("../types").Timestamp | undefined;
         debriefBefore?: import("../types").Timestamp | undefined;
         debriefUrgeLogInsertedAt?: import("../types").Timestamp | null | undefined;
-        actedOnUrge?: boolean | null | undefined;
     }, {
         title: string;
         type: "impulse";
@@ -5184,6 +5198,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
+        actedOnUrge?: boolean | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -5420,6 +5435,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -5479,6 +5495,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -5510,7 +5527,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         debriefAfter?: import("../types").Timestamp | undefined;
         debriefBefore?: import("../types").Timestamp | undefined;
         debriefUrgeLogInsertedAt?: import("../types").Timestamp | null | undefined;
-        actedOnUrge?: boolean | null | undefined;
     }>, z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         title: z.ZodString;
@@ -5526,6 +5542,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions: z.ZodOptional<z.ZodString>;
             createdByUid: z.ZodOptional<z.ZodString>;
             recommended: z.ZodOptional<z.ZodBoolean>;
+            phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>;
             steps: z.ZodArray<z.ZodDiscriminatedUnion<"mode", [z.ZodObject<{
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -7132,6 +7149,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -7403,6 +7421,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -7504,6 +7523,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         }>, "many">>;
         defaultSystemPrompt: z.ZodOptional<z.ZodString>;
         summary: z.ZodOptional<z.ZodString>;
+        aiSummary: z.ZodOptional<z.ZodString>;
         summaryRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         summarizedAt: z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         reflectRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -7826,6 +7846,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -7884,6 +7905,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -8169,6 +8191,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -8228,6 +8251,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -8271,6 +8295,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions: z.ZodOptional<z.ZodString>;
             createdByUid: z.ZodOptional<z.ZodString>;
             recommended: z.ZodOptional<z.ZodBoolean>;
+            phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>;
             steps: z.ZodArray<z.ZodDiscriminatedUnion<"mode", [z.ZodObject<{
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -9877,6 +9902,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -10148,6 +10174,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -10249,6 +10276,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         }>, "many">>;
         defaultSystemPrompt: z.ZodOptional<z.ZodString>;
         summary: z.ZodOptional<z.ZodString>;
+        aiSummary: z.ZodOptional<z.ZodString>;
         summaryRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         summarizedAt: z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         reflectRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -10573,6 +10601,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -10631,6 +10660,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -10917,6 +10947,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -10976,6 +11007,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -11019,6 +11051,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions: z.ZodOptional<z.ZodString>;
             createdByUid: z.ZodOptional<z.ZodString>;
             recommended: z.ZodOptional<z.ZodBoolean>;
+            phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>;
             steps: z.ZodArray<z.ZodDiscriminatedUnion<"mode", [z.ZodObject<{
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -12625,6 +12658,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -12896,6 +12930,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -12997,6 +13032,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         }>, "many">>;
         defaultSystemPrompt: z.ZodOptional<z.ZodString>;
         summary: z.ZodOptional<z.ZodString>;
+        aiSummary: z.ZodOptional<z.ZodString>;
         summaryRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         summarizedAt: z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         reflectRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -13321,6 +13357,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -13379,6 +13416,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -13665,6 +13703,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -13724,6 +13763,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -13767,6 +13807,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions: z.ZodOptional<z.ZodString>;
             createdByUid: z.ZodOptional<z.ZodString>;
             recommended: z.ZodOptional<z.ZodBoolean>;
+            phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>;
             steps: z.ZodArray<z.ZodDiscriminatedUnion<"mode", [z.ZodObject<{
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -15373,6 +15414,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -15644,6 +15686,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -15745,6 +15788,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         }>, "many">>;
         defaultSystemPrompt: z.ZodOptional<z.ZodString>;
         summary: z.ZodOptional<z.ZodString>;
+        aiSummary: z.ZodOptional<z.ZodString>;
         summaryRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         summarizedAt: z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         reflectRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -16067,6 +16111,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -16125,6 +16170,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -16410,6 +16456,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -16469,6 +16516,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -16512,6 +16560,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions: z.ZodOptional<z.ZodString>;
             createdByUid: z.ZodOptional<z.ZodString>;
             recommended: z.ZodOptional<z.ZodBoolean>;
+            phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>;
             steps: z.ZodArray<z.ZodDiscriminatedUnion<"mode", [z.ZodObject<{
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -18118,6 +18167,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -18389,6 +18439,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -18490,6 +18541,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         }>, "many">>;
         defaultSystemPrompt: z.ZodOptional<z.ZodString>;
         summary: z.ZodOptional<z.ZodString>;
+        aiSummary: z.ZodOptional<z.ZodString>;
         summaryRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         summarizedAt: z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         reflectRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -18814,6 +18866,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -18872,6 +18925,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -19158,6 +19212,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -19217,6 +19272,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -19260,6 +19316,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions: z.ZodOptional<z.ZodString>;
             createdByUid: z.ZodOptional<z.ZodString>;
             recommended: z.ZodOptional<z.ZodBoolean>;
+            phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>;
             steps: z.ZodArray<z.ZodDiscriminatedUnion<"mode", [z.ZodObject<{
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -20866,6 +20923,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -21137,6 +21195,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -21238,6 +21297,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         }>, "many">>;
         defaultSystemPrompt: z.ZodOptional<z.ZodString>;
         summary: z.ZodOptional<z.ZodString>;
+        aiSummary: z.ZodOptional<z.ZodString>;
         summaryRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         summarizedAt: z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         reflectRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -21560,6 +21620,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -21618,6 +21679,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -21903,6 +21965,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -21962,6 +22025,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -22005,6 +22069,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions: z.ZodOptional<z.ZodString>;
             createdByUid: z.ZodOptional<z.ZodString>;
             recommended: z.ZodOptional<z.ZodBoolean>;
+            phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>;
             steps: z.ZodArray<z.ZodDiscriminatedUnion<"mode", [z.ZodObject<{
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -23611,6 +23676,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -23882,6 +23948,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -23983,6 +24050,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         }>, "many">>;
         defaultSystemPrompt: z.ZodOptional<z.ZodString>;
         summary: z.ZodOptional<z.ZodString>;
+        aiSummary: z.ZodOptional<z.ZodString>;
         summaryRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         summarizedAt: z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         reflectRequestedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -24305,6 +24373,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -24363,6 +24432,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -24648,6 +24718,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -24707,6 +24778,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -25009,6 +25081,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -25067,6 +25140,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -25353,6 +25427,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -25411,6 +25486,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -25697,6 +25773,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -25755,6 +25832,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -25806,6 +25884,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
+        actedOnUrge?: boolean | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -26042,6 +26121,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -26100,6 +26180,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -26131,7 +26212,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         debriefAfter?: import("../types").Timestamp | undefined;
         debriefBefore?: import("../types").Timestamp | undefined;
         debriefUrgeLogInsertedAt?: import("../types").Timestamp | null | undefined;
-        actedOnUrge?: boolean | null | undefined;
     } | {
         title: string;
         type: "timePlan";
@@ -26391,6 +26471,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -26449,6 +26530,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -26736,6 +26818,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -26794,6 +26877,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -27080,6 +27164,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -27138,6 +27223,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -27425,6 +27511,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -27483,6 +27570,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -27769,6 +27857,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -27827,6 +27916,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -28125,6 +28215,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -28184,6 +28275,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -28469,6 +28561,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -28528,6 +28621,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -28813,6 +28907,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -28872,6 +28967,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -28922,6 +29018,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         agentConnectedAt?: import("../types").Timestamp | undefined;
         summary?: string | undefined;
         triggerId?: string | null | undefined;
+        actedOnUrge?: boolean | null | undefined;
         currentTactic?: {
             createdAt: import("../types").Timestamp;
             updatedAt: import("../types").Timestamp;
@@ -29158,6 +29255,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -29217,6 +29315,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -29248,7 +29347,6 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
         debriefAfter?: import("../types").Timestamp | undefined;
         debriefBefore?: import("../types").Timestamp | undefined;
         debriefUrgeLogInsertedAt?: import("../types").Timestamp | null | undefined;
-        actedOnUrge?: boolean | null | undefined;
     } | {
         title: string;
         type: "timePlan";
@@ -29507,6 +29605,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -29566,6 +29665,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -29852,6 +29952,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -29911,6 +30012,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -30196,6 +30298,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -30255,6 +30358,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -30541,6 +30645,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -30600,6 +30705,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;
@@ -30885,6 +30991,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -30944,6 +31051,7 @@ export declare const llmAuditEntrySchema: z.ZodObject<{
             formattedValue?: string | undefined;
         }[] | undefined;
         defaultSystemPrompt?: string | undefined;
+        aiSummary?: string | undefined;
         summaryRequestedAt?: import("../types").Timestamp | undefined;
         reflectRequestedAt?: import("../types").Timestamp | undefined;
         origin?: "native" | "mac" | undefined;

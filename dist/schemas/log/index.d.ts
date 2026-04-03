@@ -20,7 +20,6 @@ import { RecapTimePreferenceLog } from "./recapTimePreferenceLog";
 import { DayTotalsPromptLog } from "./dayTotalsPromptLog";
 import { TriggerSelectionLog } from "./triggerSelectionLog";
 import { WidgetSetupLog } from "./widgetSetupLog";
-import { DayTotalsConfirmedLog } from "./dayTotalsConfirmedLog";
 import { RequestPermissionsLog } from "./requestPermissionsLog";
 export declare const logSchemas: {
     user: z.ZodObject<{
@@ -397,6 +396,7 @@ export declare const logSchemas: {
                 aiInstructions: z.ZodOptional<z.ZodString>;
                 createdByUid: z.ZodOptional<z.ZodString>;
                 recommended: z.ZodOptional<z.ZodBoolean>;
+                phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>;
                 steps: z.ZodArray<z.ZodDiscriminatedUnion<"mode", [z.ZodObject<{
                     backgroundImage: z.ZodOptional<z.ZodObject<{
                         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -2003,6 +2003,7 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
+                phase?: "shift" | "regulate" | "reengage" | undefined;
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
@@ -2274,6 +2275,7 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
+                phase?: "shift" | "regulate" | "reengage" | undefined;
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
@@ -2555,6 +2557,7 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
+                phase?: "shift" | "regulate" | "reengage" | undefined;
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
@@ -2834,6 +2837,7 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
+                phase?: "shift" | "regulate" | "reengage" | undefined;
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
@@ -3123,6 +3127,7 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
+                phase?: "shift" | "regulate" | "reengage" | undefined;
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
@@ -3417,6 +3422,7 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
+                phase?: "shift" | "regulate" | "reengage" | undefined;
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
@@ -3660,6 +3666,7 @@ export declare const logSchemas: {
                 aiInstructions: z.ZodOptional<z.ZodString>;
                 createdByUid: z.ZodOptional<z.ZodString>;
                 recommended: z.ZodOptional<z.ZodBoolean>;
+                phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>;
                 steps: z.ZodArray<z.ZodDiscriminatedUnion<"mode", [z.ZodObject<{
                     backgroundImage: z.ZodOptional<z.ZodObject<{
                         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -5266,6 +5273,7 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
+                phase?: "shift" | "regulate" | "reengage" | undefined;
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
@@ -5537,6 +5545,7 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
+                phase?: "shift" | "regulate" | "reengage" | undefined;
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
@@ -5831,6 +5840,7 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
+                phase?: "shift" | "regulate" | "reengage" | undefined;
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
@@ -6117,6 +6127,7 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
+                phase?: "shift" | "regulate" | "reengage" | undefined;
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
@@ -6413,6 +6424,7 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
+                phase?: "shift" | "regulate" | "reengage" | undefined;
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
@@ -6714,6 +6726,7 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
+                phase?: "shift" | "regulate" | "reengage" | undefined;
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
@@ -6793,6 +6806,7 @@ export declare const logSchemas: {
                 aiInstructions: z.ZodOptional<z.ZodString>;
                 createdByUid: z.ZodOptional<z.ZodString>;
                 recommended: z.ZodOptional<z.ZodBoolean>;
+                phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>;
                 steps: z.ZodArray<z.ZodDiscriminatedUnion<"mode", [z.ZodObject<{
                     backgroundImage: z.ZodOptional<z.ZodObject<{
                         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -8399,6 +8413,7 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
+                phase?: "shift" | "regulate" | "reengage" | undefined;
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
@@ -8670,6 +8685,7 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
+                phase?: "shift" | "regulate" | "reengage" | undefined;
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
@@ -8964,6 +8980,7 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
+                phase?: "shift" | "regulate" | "reengage" | undefined;
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
@@ -9250,6 +9267,7 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
+                phase?: "shift" | "regulate" | "reengage" | undefined;
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
@@ -9546,6 +9564,7 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
+                phase?: "shift" | "regulate" | "reengage" | undefined;
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
@@ -9847,6 +9866,7 @@ export declare const logSchemas: {
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
+                phase?: "shift" | "regulate" | "reengage" | undefined;
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
@@ -11880,82 +11900,29 @@ export declare const logSchemas: {
         isDisplayable: z.ZodLiteral<true>;
         data: z.ZodObject<{
             targetDateString: z.ZodString;
-        }, "strip", z.ZodTypeAny, {
-            targetDateString: string;
-        }, {
-            targetDateString: string;
-        }>;
-    }, "strip", z.ZodTypeAny, {
-        createdAt: import("../../types").Timestamp;
-        updatedAt: import("../../types").Timestamp;
-        type: "day_totals_prompt";
-        userId: string;
-        timestamp: import("../../types").Timestamp;
-        dateString: string;
-        sessionId: string;
-        isDisplayable: true;
-        data: {
-            targetDateString: string;
-        };
-        id?: string | undefined;
-        tacticId?: string | undefined;
-        behaviorIds?: string[] | undefined;
-        callLogDocPath?: string | undefined;
-        impulseId?: string | undefined;
-    }, {
-        createdAt: import("../../types").Timestamp;
-        updatedAt: import("../../types").Timestamp;
-        type: "day_totals_prompt";
-        userId: string;
-        timestamp: import("../../types").Timestamp;
-        dateString: string;
-        sessionId: string;
-        isDisplayable: true;
-        data: {
-            targetDateString: string;
-        };
-        id?: string | undefined;
-        tacticId?: string | undefined;
-        behaviorIds?: string[] | undefined;
-        callLogDocPath?: string | undefined;
-        impulseId?: string | undefined;
-    }>;
-    day_totals_confirmed: z.ZodObject<{
-        id: z.ZodOptional<z.ZodString>;
-        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-        userId: z.ZodString;
-        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-        dateString: z.ZodString;
-        sessionId: z.ZodString;
-        tacticId: z.ZodOptional<z.ZodString>;
-        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-        callLogDocPath: z.ZodOptional<z.ZodString>;
-        impulseId: z.ZodOptional<z.ZodString>;
-    } & {
-        type: z.ZodLiteral<"day_totals_confirmed">;
-        isDisplayable: z.ZodLiteral<false>;
-        data: z.ZodObject<{
-            dateString: z.ZodString;
+            confirmedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             discussRequestedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         }, "strip", z.ZodTypeAny, {
-            dateString: string;
+            targetDateString: string;
+            confirmedAt?: import("../../types").Timestamp | undefined;
             discussRequestedAt?: import("../../types").Timestamp | undefined;
         }, {
-            dateString: string;
+            targetDateString: string;
+            confirmedAt?: import("../../types").Timestamp | undefined;
             discussRequestedAt?: import("../../types").Timestamp | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
-        type: "day_totals_confirmed";
+        type: "day_totals_prompt";
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
         sessionId: string;
-        isDisplayable: false;
+        isDisplayable: true;
         data: {
-            dateString: string;
+            targetDateString: string;
+            confirmedAt?: import("../../types").Timestamp | undefined;
             discussRequestedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
@@ -11966,14 +11933,15 @@ export declare const logSchemas: {
     }, {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
-        type: "day_totals_confirmed";
+        type: "day_totals_prompt";
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
         sessionId: string;
-        isDisplayable: false;
+        isDisplayable: true;
         data: {
-            dateString: string;
+            targetDateString: string;
+            confirmedAt?: import("../../types").Timestamp | undefined;
             discussRequestedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
@@ -12140,7 +12108,7 @@ export declare const logSchemas: {
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ProposedExperimentLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | DayTotalsConfirmedLog | TriggerSelectionLog | RequestPermissionsLog;
+export type Log = TacticLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ProposedExperimentLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | TriggerSelectionLog | RequestPermissionsLog;
 export * from "./behaviorLog";
 export * from "./breathingLog";
 export * from "./callLog";
@@ -12162,7 +12130,6 @@ export * from "./impulseStartedLog";
 export * from "./metricLog";
 export * from "./recapTimePreferenceLog";
 export * from "./dayTotalsPromptLog";
-export * from "./dayTotalsConfirmedLog";
 export * from "./triggerSelectionLog";
 export * from "./requestPermissionsLog";
 export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
@@ -12536,6 +12503,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             aiInstructions: z.ZodOptional<z.ZodString>;
             createdByUid: z.ZodOptional<z.ZodString>;
             recommended: z.ZodOptional<z.ZodBoolean>;
+            phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>;
             steps: z.ZodArray<z.ZodDiscriminatedUnion<"mode", [z.ZodObject<{
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -14142,6 +14110,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -14413,6 +14382,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -14694,6 +14664,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -14973,6 +14944,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -15262,6 +15234,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -15556,6 +15529,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -15797,6 +15771,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             aiInstructions: z.ZodOptional<z.ZodString>;
             createdByUid: z.ZodOptional<z.ZodString>;
             recommended: z.ZodOptional<z.ZodBoolean>;
+            phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>;
             steps: z.ZodArray<z.ZodDiscriminatedUnion<"mode", [z.ZodObject<{
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -17403,6 +17378,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -17674,6 +17650,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -17968,6 +17945,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -18254,6 +18232,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -18550,6 +18529,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -18851,6 +18831,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
@@ -20868,81 +20849,29 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
         targetDateString: z.ZodString;
-    }, "strip", z.ZodTypeAny, {
-        targetDateString: string;
-    }, {
-        targetDateString: string;
-    }>;
-}, "strip", z.ZodTypeAny, {
-    createdAt: import("../../types").Timestamp;
-    updatedAt: import("../../types").Timestamp;
-    type: "day_totals_prompt";
-    userId: string;
-    timestamp: import("../../types").Timestamp;
-    dateString: string;
-    sessionId: string;
-    isDisplayable: true;
-    data: {
-        targetDateString: string;
-    };
-    id?: string | undefined;
-    tacticId?: string | undefined;
-    behaviorIds?: string[] | undefined;
-    callLogDocPath?: string | undefined;
-    impulseId?: string | undefined;
-}, {
-    createdAt: import("../../types").Timestamp;
-    updatedAt: import("../../types").Timestamp;
-    type: "day_totals_prompt";
-    userId: string;
-    timestamp: import("../../types").Timestamp;
-    dateString: string;
-    sessionId: string;
-    isDisplayable: true;
-    data: {
-        targetDateString: string;
-    };
-    id?: string | undefined;
-    tacticId?: string | undefined;
-    behaviorIds?: string[] | undefined;
-    callLogDocPath?: string | undefined;
-    impulseId?: string | undefined;
-}>, z.ZodObject<{
-    id: z.ZodOptional<z.ZodString>;
-    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-    userId: z.ZodString;
-    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-    dateString: z.ZodString;
-    sessionId: z.ZodString;
-    tacticId: z.ZodOptional<z.ZodString>;
-    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-    callLogDocPath: z.ZodOptional<z.ZodString>;
-    impulseId: z.ZodOptional<z.ZodString>;
-} & {
-    type: z.ZodLiteral<"day_totals_confirmed">;
-    isDisplayable: z.ZodLiteral<false>;
-    data: z.ZodObject<{
-        dateString: z.ZodString;
+        confirmedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         discussRequestedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
-        dateString: string;
+        targetDateString: string;
+        confirmedAt?: import("../../types").Timestamp | undefined;
         discussRequestedAt?: import("../../types").Timestamp | undefined;
     }, {
-        dateString: string;
+        targetDateString: string;
+        confirmedAt?: import("../../types").Timestamp | undefined;
         discussRequestedAt?: import("../../types").Timestamp | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
-    type: "day_totals_confirmed";
+    type: "day_totals_prompt";
     userId: string;
     timestamp: import("../../types").Timestamp;
     dateString: string;
     sessionId: string;
-    isDisplayable: false;
+    isDisplayable: true;
     data: {
-        dateString: string;
+        targetDateString: string;
+        confirmedAt?: import("../../types").Timestamp | undefined;
         discussRequestedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
@@ -20953,14 +20882,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
 }, {
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
-    type: "day_totals_confirmed";
+    type: "day_totals_prompt";
     userId: string;
     timestamp: import("../../types").Timestamp;
     dateString: string;
     sessionId: string;
-    isDisplayable: false;
+    isDisplayable: true;
     data: {
-        dateString: string;
+        targetDateString: string;
+        confirmedAt?: import("../../types").Timestamp | undefined;
         discussRequestedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
@@ -21160,7 +21090,6 @@ export declare const logIsRecapTimePreferenceLog: (value: Omit<Log, "id">) => va
 export declare const isValidRecapTimePreferenceLog: (value: unknown) => value is RecapTimePreferenceLog;
 export declare const logIsDayTotalsPromptLog: (value: Omit<Log, "id">) => value is DayTotalsPromptLog;
 export declare const isValidDayTotalsPromptLog: (value: unknown) => value is DayTotalsPromptLog;
-export declare const logIsDayTotalsConfirmedLog: (value: Omit<Log, "id">) => value is DayTotalsConfirmedLog;
 export declare const logIsImpulseStartedLog: (value: Omit<Log, "id">) => value is ImpulseStartedLog;
 export declare const isValidImpulseStartedLog: (value: unknown) => value is ImpulseStartedLog;
 export declare const logIsRequestPermissionsLog: (value: Omit<Log, "id">) => value is RequestPermissionsLog;

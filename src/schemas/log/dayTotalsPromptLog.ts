@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { timestampSchema } from "../../utils/timestampSchema";
 import { logBaseSchema } from "./base";
 
 export const dayTotalsPromptLogSchema = logBaseSchema.extend({
@@ -7,6 +8,10 @@ export const dayTotalsPromptLogSchema = logBaseSchema.extend({
   data: z.object({
     /** The dateString this prompt is for (typically the current day) */
     targetDateString: z.string(),
+    /** Set when the user confirms their day totals */
+    confirmedAt: timestampSchema.optional(),
+    /** Set when the user requests a late-recap discussion with the AI */
+    discussRequestedAt: timestampSchema.optional(),
   }),
 });
 

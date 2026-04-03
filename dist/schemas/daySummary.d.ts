@@ -3402,6 +3402,13 @@ export declare const daySummarySchema: z.ZodObject<{
         measured: number;
         targetValue?: number | undefined;
     }>>>;
+    impulsesByBehaviorId: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodObject<{
+        actedOnUrge: z.ZodBoolean;
+    }, "strip", z.ZodTypeAny, {
+        actedOnUrge: boolean;
+    }, {
+        actedOnUrge: boolean;
+    }>>>;
     dayTotalsConfirmedAt: z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     recapStartedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     recapCutoffTime: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -3602,6 +3609,9 @@ export declare const daySummarySchema: z.ZodObject<{
         impulseMoments: boolean;
         sessions: boolean;
     }> | undefined;
+    impulsesByBehaviorId?: Record<string, {
+        actedOnUrge: boolean;
+    }> | undefined;
     recapStartedAt?: import("../types").Timestamp | undefined;
     recapCutoffTime?: import("../types").Timestamp | undefined;
     supportGroupNotificationSentAtById?: Record<string, import("../types").Timestamp> | undefined;
@@ -3798,6 +3808,9 @@ export declare const daySummarySchema: z.ZodObject<{
         dayOutcomes?: boolean | undefined;
         impulseMoments?: boolean | undefined;
         sessions?: boolean | undefined;
+    }> | undefined;
+    impulsesByBehaviorId?: Record<string, {
+        actedOnUrge: boolean;
     }> | undefined;
     recapStartedAt?: import("../types").Timestamp | undefined;
     recapCutoffTime?: import("../types").Timestamp | undefined;

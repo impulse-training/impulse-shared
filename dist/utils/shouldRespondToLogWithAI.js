@@ -128,10 +128,16 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         console.log("Time plan was fully completed. Responding with AI.");
         return true;
     }
-    // Case: Day totals confirmed — trigger experiment reflection in recap session
-    // Only respond if the day is still within the recap deadline (10am next day)
-    if (isCreating && (0, log_1.logIsDayTotalsConfirmedLog)(afterData)) {
-        const dateStr = afterData.dateString;
+    // Case: Day totals confirmed — the day_totals_prompt log is updated with confirmedAt.
+    // Trigger experiment reflection. Only respond if within the recap deadline (10am next day).
+    if (isUpdating &&
+        afterData &&
+        (0, log_1.logIsDayTotalsPromptLog)(afterData) &&
+        afterData.data.confirmedAt &&
+        (!beforeData ||
+            !(0, log_1.logIsDayTotalsPromptLog)(beforeData) ||
+            !beforeData.data.confirmedAt)) {
+        const dateStr = afterData.data.targetDateString;
         const now = new Date();
         const todayStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
         if (dateStr === todayStr) {
@@ -158,10 +164,11 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
     }
     // Case: Late recap discussion requested — user tapped "Discuss" on a late-recapped day
     if (isUpdating &&
-        (0, log_1.logIsDayTotalsConfirmedLog)(afterData) &&
+        afterData &&
+        (0, log_1.logIsDayTotalsPromptLog)(afterData) &&
         afterData.data.discussRequestedAt &&
         (!beforeData ||
-            !(0, log_1.logIsDayTotalsConfirmedLog)(beforeData) ||
+            !(0, log_1.logIsDayTotalsPromptLog)(beforeData) ||
             !beforeData.data.discussRequestedAt)) {
         console.log("Late recap discussion requested. Responding with AI.");
         return true;
