@@ -1670,7 +1670,25 @@ export declare const logSchemas: {
                         behaviorName: string;
                         weight: number;
                     }>, "many">>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                        tagGroupName: z.ZodString;
+                        optionLabels: z.ZodArray<z.ZodString, "many">;
+                        weight: z.ZodNumber;
+                    }, "strip", z.ZodTypeAny, {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }, {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }>, "many">>;
                 }, "strip", z.ZodTypeAny, {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -1683,6 +1701,11 @@ export declare const logSchemas: {
                         weight: number;
                     }[] | undefined;
                 }, {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -1725,7 +1748,25 @@ export declare const logSchemas: {
                         behaviorName: string;
                         weight: number;
                     }>, "many">>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                        tagGroupName: z.ZodString;
+                        optionLabels: z.ZodArray<z.ZodString, "many">;
+                        weight: z.ZodNumber;
+                    }, "strip", z.ZodTypeAny, {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }, {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }>, "many">>;
                 }, "strip", z.ZodTypeAny, {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -1738,6 +1779,11 @@ export declare const logSchemas: {
                         weight: number;
                     }[] | undefined;
                 }, {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -2007,6 +2053,11 @@ export declare const logSchemas: {
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -2020,6 +2071,11 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -2279,6 +2335,11 @@ export declare const logSchemas: {
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -2292,6 +2353,11 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -2561,6 +2627,11 @@ export declare const logSchemas: {
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -2574,6 +2645,11 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -2841,6 +2917,11 @@ export declare const logSchemas: {
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -2854,6 +2935,11 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -3131,6 +3217,11 @@ export declare const logSchemas: {
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -3144,6 +3235,11 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -3426,6 +3522,11 @@ export declare const logSchemas: {
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -3439,6 +3540,11 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -4940,7 +5046,25 @@ export declare const logSchemas: {
                         behaviorName: string;
                         weight: number;
                     }>, "many">>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                        tagGroupName: z.ZodString;
+                        optionLabels: z.ZodArray<z.ZodString, "many">;
+                        weight: z.ZodNumber;
+                    }, "strip", z.ZodTypeAny, {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }, {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }>, "many">>;
                 }, "strip", z.ZodTypeAny, {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -4953,6 +5077,11 @@ export declare const logSchemas: {
                         weight: number;
                     }[] | undefined;
                 }, {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -4995,7 +5124,25 @@ export declare const logSchemas: {
                         behaviorName: string;
                         weight: number;
                     }>, "many">>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                        tagGroupName: z.ZodString;
+                        optionLabels: z.ZodArray<z.ZodString, "many">;
+                        weight: z.ZodNumber;
+                    }, "strip", z.ZodTypeAny, {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }, {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }>, "many">>;
                 }, "strip", z.ZodTypeAny, {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -5008,6 +5155,11 @@ export declare const logSchemas: {
                         weight: number;
                     }[] | undefined;
                 }, {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -5277,6 +5429,11 @@ export declare const logSchemas: {
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -5290,6 +5447,11 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -5549,6 +5711,11 @@ export declare const logSchemas: {
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -5562,6 +5729,11 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -5603,6 +5775,8 @@ export declare const logSchemas: {
             conversationSummary: z.ZodOptional<z.ZodString>;
             startedSummarizingConversationAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             finishedSummarizingConversationAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            rating: z.ZodOptional<z.ZodEnum<["helpful", "not_helpful"]>>;
+            ratedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         }, "strip", z.ZodTypeAny, {
             tactic: {
                 createdAt: import("../../types").Timestamp;
@@ -5844,6 +6018,11 @@ export declare const logSchemas: {
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -5857,6 +6036,11 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -5890,6 +6074,8 @@ export declare const logSchemas: {
             conversationSummary?: string | undefined;
             startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
             finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
+            rating?: "helpful" | "not_helpful" | undefined;
+            ratedAt?: import("../../types").Timestamp | undefined;
         }, {
             tactic: {
                 createdAt: import("../../types").Timestamp;
@@ -6131,6 +6317,11 @@ export declare const logSchemas: {
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -6144,6 +6335,11 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -6177,6 +6373,8 @@ export declare const logSchemas: {
             conversationSummary?: string | undefined;
             startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
             finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
+            rating?: "helpful" | "not_helpful" | undefined;
+            ratedAt?: import("../../types").Timestamp | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
         createdAt: import("../../types").Timestamp;
@@ -6428,6 +6626,11 @@ export declare const logSchemas: {
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -6441,6 +6644,11 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -6474,6 +6682,8 @@ export declare const logSchemas: {
             conversationSummary?: string | undefined;
             startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
             finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
+            rating?: "helpful" | "not_helpful" | undefined;
+            ratedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
         tacticId?: string | undefined;
@@ -6730,6 +6940,11 @@ export declare const logSchemas: {
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -6743,6 +6958,11 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -6776,6 +6996,8 @@ export declare const logSchemas: {
             conversationSummary?: string | undefined;
             startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
             finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
+            rating?: "helpful" | "not_helpful" | undefined;
+            ratedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
         tacticId?: string | undefined;
@@ -8080,7 +8302,25 @@ export declare const logSchemas: {
                         behaviorName: string;
                         weight: number;
                     }>, "many">>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                        tagGroupName: z.ZodString;
+                        optionLabels: z.ZodArray<z.ZodString, "many">;
+                        weight: z.ZodNumber;
+                    }, "strip", z.ZodTypeAny, {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }, {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }>, "many">>;
                 }, "strip", z.ZodTypeAny, {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -8093,6 +8333,11 @@ export declare const logSchemas: {
                         weight: number;
                     }[] | undefined;
                 }, {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -8135,7 +8380,25 @@ export declare const logSchemas: {
                         behaviorName: string;
                         weight: number;
                     }>, "many">>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                        tagGroupName: z.ZodString;
+                        optionLabels: z.ZodArray<z.ZodString, "many">;
+                        weight: z.ZodNumber;
+                    }, "strip", z.ZodTypeAny, {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }, {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }>, "many">>;
                 }, "strip", z.ZodTypeAny, {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -8148,6 +8411,11 @@ export declare const logSchemas: {
                         weight: number;
                     }[] | undefined;
                 }, {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -8417,6 +8685,11 @@ export declare const logSchemas: {
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -8430,6 +8703,11 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -8689,6 +8967,11 @@ export declare const logSchemas: {
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -8702,6 +8985,11 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -8743,6 +9031,8 @@ export declare const logSchemas: {
             conversationSummary: z.ZodOptional<z.ZodString>;
             startedSummarizingConversationAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             finishedSummarizingConversationAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            rating: z.ZodOptional<z.ZodEnum<["helpful", "not_helpful"]>>;
+            ratedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         }, "strip", z.ZodTypeAny, {
             tactic: {
                 createdAt: import("../../types").Timestamp;
@@ -8984,6 +9274,11 @@ export declare const logSchemas: {
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -8997,6 +9292,11 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -9030,6 +9330,8 @@ export declare const logSchemas: {
             conversationSummary?: string | undefined;
             startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
             finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
+            rating?: "helpful" | "not_helpful" | undefined;
+            ratedAt?: import("../../types").Timestamp | undefined;
         }, {
             tactic: {
                 createdAt: import("../../types").Timestamp;
@@ -9271,6 +9573,11 @@ export declare const logSchemas: {
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -9284,6 +9591,11 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -9317,6 +9629,8 @@ export declare const logSchemas: {
             conversationSummary?: string | undefined;
             startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
             finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
+            rating?: "helpful" | "not_helpful" | undefined;
+            ratedAt?: import("../../types").Timestamp | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
         createdAt: import("../../types").Timestamp;
@@ -9568,6 +9882,11 @@ export declare const logSchemas: {
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -9581,6 +9900,11 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -9614,6 +9938,8 @@ export declare const logSchemas: {
             conversationSummary?: string | undefined;
             startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
             finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
+            rating?: "helpful" | "not_helpful" | undefined;
+            ratedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
         tacticId?: string | undefined;
@@ -9870,6 +10196,11 @@ export declare const logSchemas: {
                 isMultiStep?: boolean | undefined;
                 autoplay?: boolean | undefined;
                 indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -9883,6 +10214,11 @@ export declare const logSchemas: {
                     }[] | undefined;
                 } | undefined;
                 contraindications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
                     questionResponses?: {
                         questionId: string;
                         questionPrompt: string;
@@ -9916,6 +10252,8 @@ export declare const logSchemas: {
             conversationSummary?: string | undefined;
             startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
             finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
+            rating?: "helpful" | "not_helpful" | undefined;
+            ratedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
         tacticId?: string | undefined;
@@ -10125,7 +10463,7 @@ export declare const logSchemas: {
         type: z.ZodLiteral<"plans">;
         isDisplayable: z.ZodLiteral<true>;
         data: z.ZodObject<{
-            source: z.ZodUnion<[z.ZodLiteral<"trigger">, z.ZodLiteral<"scheduled">, z.ZodLiteral<"tags">]>;
+            source: z.ZodUnion<[z.ZodLiteral<"trigger">, z.ZodLiteral<"scheduled">, z.ZodLiteral<"tags">, z.ZodLiteral<"improvised">]>;
             mode: z.ZodOptional<z.ZodEnum<["live", "planning"]>>;
             triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
             plans: z.ZodArray<z.ZodObject<{
@@ -10475,7 +10813,7 @@ export declare const logSchemas: {
             activeIndex: z.ZodOptional<z.ZodNumber>;
             acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         }, "strip", z.ZodTypeAny, {
-            source: "scheduled" | "tags" | "trigger";
+            source: "scheduled" | "tags" | "trigger" | "improvised";
             plans: {
                 planId: string;
                 plan: ({
@@ -10552,7 +10890,7 @@ export declare const logSchemas: {
             activeIndex?: number | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
         }, {
-            source: "scheduled" | "tags" | "trigger";
+            source: "scheduled" | "tags" | "trigger" | "improvised";
             plans: {
                 planId: string;
                 plan: ({
@@ -10639,7 +10977,7 @@ export declare const logSchemas: {
         sessionId: string;
         isDisplayable: true;
         data: {
-            source: "scheduled" | "tags" | "trigger";
+            source: "scheduled" | "tags" | "trigger" | "improvised";
             plans: {
                 planId: string;
                 plan: ({
@@ -10731,7 +11069,7 @@ export declare const logSchemas: {
         sessionId: string;
         isDisplayable: true;
         data: {
-            source: "scheduled" | "tags" | "trigger";
+            source: "scheduled" | "tags" | "trigger" | "improvised";
             plans: {
                 planId: string;
                 plan: ({
@@ -13777,7 +14115,25 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     behaviorName: string;
                     weight: number;
                 }>, "many">>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                    tagGroupName: z.ZodString;
+                    optionLabels: z.ZodArray<z.ZodString, "many">;
+                    weight: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }, {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }>, "many">>;
             }, "strip", z.ZodTypeAny, {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -13790,6 +14146,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                 }[] | undefined;
             }, {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -13832,7 +14193,25 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     behaviorName: string;
                     weight: number;
                 }>, "many">>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                    tagGroupName: z.ZodString;
+                    optionLabels: z.ZodArray<z.ZodString, "many">;
+                    weight: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }, {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }>, "many">>;
             }, "strip", z.ZodTypeAny, {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -13845,6 +14224,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                 }[] | undefined;
             }, {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -14114,6 +14498,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -14127,6 +14516,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -14386,6 +14780,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -14399,6 +14798,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -14668,6 +15072,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -14681,6 +15090,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -14948,6 +15362,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -14961,6 +15380,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -15238,6 +15662,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -15251,6 +15680,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -15533,6 +15967,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -15546,6 +15985,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -17045,7 +17489,25 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     behaviorName: string;
                     weight: number;
                 }>, "many">>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                    tagGroupName: z.ZodString;
+                    optionLabels: z.ZodArray<z.ZodString, "many">;
+                    weight: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }, {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }>, "many">>;
             }, "strip", z.ZodTypeAny, {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -17058,6 +17520,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                 }[] | undefined;
             }, {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -17100,7 +17567,25 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     behaviorName: string;
                     weight: number;
                 }>, "many">>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                    tagGroupName: z.ZodString;
+                    optionLabels: z.ZodArray<z.ZodString, "many">;
+                    weight: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }, {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }>, "many">>;
             }, "strip", z.ZodTypeAny, {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -17113,6 +17598,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                 }[] | undefined;
             }, {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -17382,6 +17872,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -17395,6 +17890,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -17654,6 +18154,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -17667,6 +18172,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -17708,6 +18218,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         conversationSummary: z.ZodOptional<z.ZodString>;
         startedSummarizingConversationAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         finishedSummarizingConversationAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        rating: z.ZodOptional<z.ZodEnum<["helpful", "not_helpful"]>>;
+        ratedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
         tactic: {
             createdAt: import("../../types").Timestamp;
@@ -17949,6 +18461,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -17962,6 +18479,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -17995,6 +18517,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         conversationSummary?: string | undefined;
         startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
         finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
+        rating?: "helpful" | "not_helpful" | undefined;
+        ratedAt?: import("../../types").Timestamp | undefined;
     }, {
         tactic: {
             createdAt: import("../../types").Timestamp;
@@ -18236,6 +18760,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -18249,6 +18778,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -18282,6 +18816,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         conversationSummary?: string | undefined;
         startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
         finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
+        rating?: "helpful" | "not_helpful" | undefined;
+        ratedAt?: import("../../types").Timestamp | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
@@ -18533,6 +19069,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -18546,6 +19087,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -18579,6 +19125,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         conversationSummary?: string | undefined;
         startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
         finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
+        rating?: "helpful" | "not_helpful" | undefined;
+        ratedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
     tacticId?: string | undefined;
@@ -18835,6 +19383,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -18848,6 +19401,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -18881,6 +19439,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         conversationSummary?: string | undefined;
         startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
         finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
+        rating?: "helpful" | "not_helpful" | undefined;
+        ratedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
     tacticId?: string | undefined;
@@ -19087,7 +19647,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     type: z.ZodLiteral<"plans">;
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
-        source: z.ZodUnion<[z.ZodLiteral<"trigger">, z.ZodLiteral<"scheduled">, z.ZodLiteral<"tags">]>;
+        source: z.ZodUnion<[z.ZodLiteral<"trigger">, z.ZodLiteral<"scheduled">, z.ZodLiteral<"tags">, z.ZodLiteral<"improvised">]>;
         mode: z.ZodOptional<z.ZodEnum<["live", "planning"]>>;
         triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         plans: z.ZodArray<z.ZodObject<{
@@ -19437,7 +19997,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         activeIndex: z.ZodOptional<z.ZodNumber>;
         acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
-        source: "scheduled" | "tags" | "trigger";
+        source: "scheduled" | "tags" | "trigger" | "improvised";
         plans: {
             planId: string;
             plan: ({
@@ -19514,7 +20074,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         activeIndex?: number | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
     }, {
-        source: "scheduled" | "tags" | "trigger";
+        source: "scheduled" | "tags" | "trigger" | "improvised";
         plans: {
             planId: string;
             plan: ({
@@ -19601,7 +20161,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     sessionId: string;
     isDisplayable: true;
     data: {
-        source: "scheduled" | "tags" | "trigger";
+        source: "scheduled" | "tags" | "trigger" | "improvised";
         plans: {
             planId: string;
             plan: ({
@@ -19693,7 +20253,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     sessionId: string;
     isDisplayable: true;
     data: {
-        source: "scheduled" | "tags" | "trigger";
+        source: "scheduled" | "tags" | "trigger" | "improvised";
         plans: {
             planId: string;
             plan: ({

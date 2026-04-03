@@ -34,5 +34,8 @@ exports.tacticLogSchema = base_1.logBaseSchema.extend({
         // Summarization lifecycle tracking
         startedSummarizingConversationAt: timestampSchema_1.timestampSchema.optional(),
         finishedSummarizingConversationAt: timestampSchema_1.timestampSchema.optional(),
+        // User rating of how helpful the tactic was
+        rating: zod_1.z.enum(["helpful", "not_helpful"]).optional(),
+        ratedAt: timestampSchema_1.timestampSchema.optional(),
     }),
 });

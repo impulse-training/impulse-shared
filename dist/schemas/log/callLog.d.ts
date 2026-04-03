@@ -1296,7 +1296,25 @@ export declare const callLogSchema: z.ZodObject<{
                     behaviorName: string;
                     weight: number;
                 }>, "many">>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                    tagGroupName: z.ZodString;
+                    optionLabels: z.ZodArray<z.ZodString, "many">;
+                    weight: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }, {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }>, "many">>;
             }, "strip", z.ZodTypeAny, {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -1309,6 +1327,11 @@ export declare const callLogSchema: z.ZodObject<{
                     weight: number;
                 }[] | undefined;
             }, {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -1351,7 +1374,25 @@ export declare const callLogSchema: z.ZodObject<{
                     behaviorName: string;
                     weight: number;
                 }>, "many">>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                    tagGroupName: z.ZodString;
+                    optionLabels: z.ZodArray<z.ZodString, "many">;
+                    weight: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }, {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }>, "many">>;
             }, "strip", z.ZodTypeAny, {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -1364,6 +1405,11 @@ export declare const callLogSchema: z.ZodObject<{
                     weight: number;
                 }[] | undefined;
             }, {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -1633,6 +1679,11 @@ export declare const callLogSchema: z.ZodObject<{
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -1646,6 +1697,11 @@ export declare const callLogSchema: z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -1905,6 +1961,11 @@ export declare const callLogSchema: z.ZodObject<{
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -1918,6 +1979,11 @@ export declare const callLogSchema: z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -2187,6 +2253,11 @@ export declare const callLogSchema: z.ZodObject<{
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -2200,6 +2271,11 @@ export declare const callLogSchema: z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -2467,6 +2543,11 @@ export declare const callLogSchema: z.ZodObject<{
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -2480,6 +2561,11 @@ export declare const callLogSchema: z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -2757,6 +2843,11 @@ export declare const callLogSchema: z.ZodObject<{
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -2770,6 +2861,11 @@ export declare const callLogSchema: z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -3052,6 +3148,11 @@ export declare const callLogSchema: z.ZodObject<{
             isMultiStep?: boolean | undefined;
             autoplay?: boolean | undefined;
             indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;
@@ -3065,6 +3166,11 @@ export declare const callLogSchema: z.ZodObject<{
                 }[] | undefined;
             } | undefined;
             contraindications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
                 questionResponses?: {
                     questionId: string;
                     questionPrompt: string;

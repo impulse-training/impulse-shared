@@ -23,10 +23,21 @@ export const behaviorIndicationSchema = z.object({
   weight: z.number(),
 });
 
+export const tagIndicationSchema = z.object({
+  // Tag group name (e.g. "activity", "emotion") — matched by name, not ID,
+  // since global/seed tactics don't know user-specific Firestore IDs
+  tagGroupName: z.string(),
+  // Option labels to match (case-insensitive), e.g. ["exercising", "walking"]
+  optionLabels: z.array(z.string()).min(1),
+  // Weight for how strongly this indication should influence suggestion ranking
+  weight: z.number(),
+});
+
 // Container schema that can include multiple sources of indications
 export const indicationSchema = z.object({
   questionResponses: z.array(questionResponseIndicationSchema).optional(),
   behaviors: z.array(behaviorIndicationSchema).optional(),
+  tags: z.array(tagIndicationSchema).optional(),
 });
 
 export const tacticPhaseSchema = z.enum(["regulate", "shift", "reengage"]);
@@ -66,4 +77,5 @@ export type QuestionResponseIndication = z.infer<
   typeof questionResponseIndicationSchema
 >;
 export type BehaviorIndication = z.infer<typeof behaviorIndicationSchema>;
+export type TagIndication = z.infer<typeof tagIndicationSchema>;
 export type Indication = z.infer<typeof indicationSchema>;

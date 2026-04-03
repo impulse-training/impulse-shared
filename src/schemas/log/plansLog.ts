@@ -13,6 +13,7 @@ export const plansLogSchema = logBaseSchema.extend({
       z.literal("trigger"),
       z.literal("scheduled"),
       z.literal("tags"),
+      z.literal("improvised"),
     ]),
     // "live" (default) = plan to start now (impulse sessions)
     // "planning" = proposed plan for next time (recap planning phase)

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.tacticSchema = exports.tacticPhaseSchema = exports.indicationSchema = exports.behaviorIndicationSchema = exports.questionResponseIndicationSchema = void 0;
+exports.tacticSchema = exports.tacticPhaseSchema = exports.indicationSchema = exports.tagIndicationSchema = exports.behaviorIndicationSchema = exports.questionResponseIndicationSchema = void 0;
 const zod_1 = require("zod");
 const timestampSchema_1 = require("../../utils/timestampSchema");
 const step_1 = require("./step");
@@ -23,10 +23,20 @@ exports.behaviorIndicationSchema = zod_1.z.object({
     // Weight for how strongly this indication should influence suggestion ranking
     weight: zod_1.z.number(),
 });
+exports.tagIndicationSchema = zod_1.z.object({
+    // Tag group name (e.g. "activity", "emotion") — matched by name, not ID,
+    // since global/seed tactics don't know user-specific Firestore IDs
+    tagGroupName: zod_1.z.string(),
+    // Option labels to match (case-insensitive), e.g. ["exercising", "walking"]
+    optionLabels: zod_1.z.array(zod_1.z.string()).min(1),
+    // Weight for how strongly this indication should influence suggestion ranking
+    weight: zod_1.z.number(),
+});
 // Container schema that can include multiple sources of indications
 exports.indicationSchema = zod_1.z.object({
     questionResponses: zod_1.z.array(exports.questionResponseIndicationSchema).optional(),
     behaviors: zod_1.z.array(exports.behaviorIndicationSchema).optional(),
+    tags: zod_1.z.array(exports.tagIndicationSchema).optional(),
 });
 exports.tacticPhaseSchema = zod_1.z.enum(["regulate", "shift", "reengage"]);
 exports.tacticSchema = zod_1.z.object({

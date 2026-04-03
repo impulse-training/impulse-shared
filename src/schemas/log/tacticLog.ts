@@ -34,6 +34,9 @@ export const tacticLogSchema = logBaseSchema.extend({
     // Summarization lifecycle tracking
     startedSummarizingConversationAt: timestampSchema.optional(),
     finishedSummarizingConversationAt: timestampSchema.optional(),
+    // User rating of how helpful the tactic was
+    rating: z.enum(["helpful", "not_helpful"]).optional(),
+    ratedAt: timestampSchema.optional(),
   }),
 });
 
