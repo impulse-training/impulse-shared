@@ -1,4 +1,5 @@
 import { Session, sessionIsTimePlanSession } from "../schemas";
+import { getRecapDeadline } from "./dates";
 import {
   Log,
   logIsAssistantMessageLog,
@@ -7,6 +8,7 @@ import {
   logIsImpulseStartedLog,
   logIsMetricLog,
   logIsPlansLog,
+  logIsTacticReviewLog,
   logIsTriggerSelectionLog,
   logIsUserMessageLog,
   logIsWidgetSetupLog,
@@ -80,9 +82,15 @@ export function shouldRespondToLogWithAI(
     afterData.data.resolvedAt != null &&
     fieldChanged(beforeData, afterData, "data.resolvedAt");
 
+  const isDayTotalsPromptAction =
+    beforeData &&
+    afterData &&
+    logIsDayTotalsPromptLog(afterData);
+
   if (
     !isMetricRating &&
     !isDebriefOutcomeResolved &&
+    !isDayTotalsPromptAction &&
     latestSessionLog &&
     logIsAssistantMessageLog(latestSessionLog)
   ) {
@@ -206,12 +214,9 @@ export function shouldRespondToLogWithAI(
     }
 
     if (dateStr < todayStr) {
-      // Past day: check if within deadline (10am the day after the target date)
-      const [year, month, day] = dateStr.split("-").map(Number);
-      const targetDate = new Date(year, month - 1, day);
-      const deadline = new Date(targetDate);
-      deadline.setDate(deadline.getDate() + 1);
-      deadline.setHours(10, 0, 0, 0);
+      // Past day: check if within recap deadline (end of the day after the target date).
+      // Uses UTC buffer since this runs on the server.
+      const deadline = getRecapDeadline(dateStr, true);
 
       if (now < deadline) {
         console.log("Day totals confirmed within recap deadline. Responding with AI.");
@@ -249,6 +254,20 @@ export function shouldRespondToLogWithAI(
     (!beforeData || !logIsMetricLog(beforeData) || beforeData.data.value === null)
   ) {
     console.log("Metric log was rated. Responding with AI.");
+    return true;
+  }
+
+  // Case: Tactic review completed — user finished reviewing tactics in the recap
+  if (
+    isUpdating &&
+    afterData &&
+    logIsTacticReviewLog(afterData) &&
+    afterData.data.completedAt &&
+    (!beforeData ||
+      !logIsTacticReviewLog(beforeData) ||
+      !beforeData.data.completedAt)
+  ) {
+    console.log("Tactic review completed. Responding with AI.");
     return true;
   }
 

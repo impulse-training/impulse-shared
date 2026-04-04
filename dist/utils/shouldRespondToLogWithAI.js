@@ -176,6 +176,17 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         console.log("Metric log was rated. Responding with AI.");
         return true;
     }
+    // Case: Tactic review completed — user finished reviewing tactics in the recap
+    if (isUpdating &&
+        afterData &&
+        (0, log_1.logIsTacticReviewLog)(afterData) &&
+        afterData.data.completedAt &&
+        (!beforeData ||
+            !(0, log_1.logIsTacticReviewLog)(beforeData) ||
+            !beforeData.data.completedAt)) {
+        console.log("Tactic review completed. Responding with AI.");
+        return true;
+    }
     console.log("No conditions met. Not responding with AI.");
     return false;
 }
