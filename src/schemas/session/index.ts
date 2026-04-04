@@ -12,6 +12,7 @@ import {
 import { RecapSession, recapSessionSchema } from "./recap";
 import { AlignmentSession, alignmentSessionSchema } from "./alignment";
 import { CommitmentSession, commitmentSessionSchema } from "./commitment";
+import { WelcomeSession, welcomeSessionSchema } from "./welcome";
 
 export * from "../sessionSummary";
 export * from "./adjustment";
@@ -22,6 +23,7 @@ export * from "./plan";
 export * from "./recap";
 export * from "./alignment";
 export * from "./commitment";
+export * from "./welcome";
 
 // Map of session types to their schemas
 export const sessionSchemas = {
@@ -34,6 +36,7 @@ export const sessionSchemas = {
   adjustment: adjustmentSessionSchema,
   alignment: alignmentSessionSchema,
   commitment: commitmentSessionSchema,
+  welcome: welcomeSessionSchema,
 };
 
 // Discriminated union over type
@@ -47,6 +50,7 @@ export const sessionSchema = z.discriminatedUnion("type", [
   locationPlanSessionSchema,
   adjustmentSessionSchema,
   commitmentSessionSchema,
+  welcomeSessionSchema,
 ]);
 
 export const sessionIsGeneralSession = (
@@ -112,5 +116,23 @@ export const isValidCommitmentSession = (
   value: unknown,
 ): value is CommitmentSession =>
   commitmentSessionSchema.safeParse(value).success;
+
+export const sessionIsWelcomeSession = (
+  value: Session,
+): value is WelcomeSession => value.type === "welcome";
+export const isValidWelcomeSession = (
+  value: unknown,
+): value is WelcomeSession => welcomeSessionSchema.safeParse(value).success;
+
+const noSummarizeSessionTypes: Session["type"][] = [
+  "adjustment",
+  "welcome",
+];
+
+export function shouldSummarizeSession(
+  session: Pick<Session, "type">,
+): boolean {
+  return !noSummarizeSessionTypes.includes(session.type);
+}
 
 export type Session = z.infer<typeof sessionSchema>;

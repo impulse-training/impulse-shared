@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.shouldRespondToLogWithAI = shouldRespondToLogWithAI;
 const schemas_1 = require("../schemas");
+const dates_1 = require("./dates");
 const log_1 = require("../schemas/log");
 const fields_1 = require("./fields");
 function hasNewlyCompletedPlan(beforeData, afterData) {
@@ -49,8 +50,12 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         afterData.data.source === "scheduled" &&
         afterData.data.resolvedAt != null &&
         (0, fields_1.fieldChanged)(beforeData, afterData, "data.resolvedAt");
+    const isDayTotalsPromptAction = beforeData &&
+        afterData &&
+        (0, log_1.logIsDayTotalsPromptLog)(afterData);
     if (!isMetricRating &&
         !isDebriefOutcomeResolved &&
+        !isDayTotalsPromptAction &&
         latestSessionLog &&
         (0, log_1.logIsAssistantMessageLog)(latestSessionLog)) {
         console.log("Latest message is from assistant. Not responding with AI.");
@@ -140,12 +145,9 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
             return true;
         }
         if (dateStr < todayStr) {
-            // Past day: check if within deadline (10am the day after the target date)
-            const [year, month, day] = dateStr.split("-").map(Number);
-            const targetDate = new Date(year, month - 1, day);
-            const deadline = new Date(targetDate);
-            deadline.setDate(deadline.getDate() + 1);
-            deadline.setHours(10, 0, 0, 0);
+            // Past day: check if within recap deadline (end of the day after the target date).
+            // Uses UTC buffer since this runs on the server.
+            const deadline = (0, dates_1.getRecapDeadline)(dateStr, true);
             if (now < deadline) {
                 console.log("Day totals confirmed within recap deadline. Responding with AI.");
                 return true;
