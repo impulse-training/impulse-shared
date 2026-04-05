@@ -141,6 +141,7 @@ export const isValidWelcomeSession = (
 
 const noSummarizeSessionTypes: Session["type"][] = [
   "adjustment",
+  "setup",
   "tactic",
   "welcome",
 ];

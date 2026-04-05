@@ -367,3 +367,7 @@ export const isValidTacticReviewLog = (
 ): value is TacticReviewLog => {
   return tacticReviewLogSchema.safeParse(value).success;
 };
+
+export const logIsSetupModeChoiceLog = (
+  value: Omit<Log, "id">,
+): value is SetupModeChoiceLog => value.type === "setup_mode_choice";

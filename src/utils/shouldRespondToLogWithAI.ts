@@ -8,6 +8,7 @@ import {
   logIsImpulseStartedLog,
   logIsMetricLog,
   logIsPlansLog,
+  logIsSetupModeChoiceLog,
   logIsTacticReviewLog,
   logIsTriggerSelectionLog,
   logIsUserMessageLog,
@@ -87,10 +88,18 @@ export function shouldRespondToLogWithAI(
     afterData &&
     logIsDayTotalsPromptLog(afterData);
 
+  const isSetupModeTextChoice =
+    beforeData &&
+    afterData &&
+    logIsSetupModeChoiceLog(afterData) &&
+    afterData.data.choice === "text" &&
+    fieldChanged(beforeData, afterData, "data.choice");
+
   if (
     !isMetricRating &&
     !isDebriefOutcomeResolved &&
     !isDayTotalsPromptAction &&
+    !isSetupModeTextChoice &&
     latestSessionLog &&
     logIsAssistantMessageLog(latestSessionLog)
   ) {
@@ -158,6 +167,12 @@ export function shouldRespondToLogWithAI(
     console.log(
       "Widget setup log with changed response field. Responding with AI.",
     );
+    return true;
+  }
+
+  // Case: Setup mode text choice was made
+  if (isSetupModeTextChoice) {
+    console.log("Setup mode text choice made. Responding with AI.");
     return true;
   }
 
