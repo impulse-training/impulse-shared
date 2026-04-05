@@ -60,6 +60,10 @@ import {
   TacticReviewLog,
   tacticReviewLogSchema,
 } from "./tacticReviewLog";
+import {
+  SetupModeChoiceLog,
+  setupModeChoiceLogSchema,
+} from "./setupModeChoiceLog";
 
 export const logSchemas = {
   user: userMessageLogSchema,
@@ -88,6 +92,7 @@ export const logSchemas = {
   trigger_selection: triggerSelectionLogSchema,
   request_permissions: requestPermissionsLogSchema,
   tactic_review: tacticReviewLogSchema,
+  setup_mode_choice: setupModeChoiceLogSchema,
 };
 export const logTypes = Object.keys(logSchemas);
 
@@ -117,7 +122,8 @@ export type Log =
   | DayTotalsPromptLog
   | TriggerSelectionLog
   | RequestPermissionsLog
-  | TacticReviewLog;
+  | TacticReviewLog
+  | SetupModeChoiceLog;
 
 export * from "./behaviorLog";
 export * from "./breathingLog";
@@ -143,6 +149,7 @@ export * from "./dayTotalsPromptLog";
 export * from "./triggerSelectionLog";
 export * from "./requestPermissionsLog";
 export * from "./tacticReviewLog";
+export * from "./setupModeChoiceLog";
 
 // Discriminated union schema across all log variants
 export const logSchema = z.discriminatedUnion("type", [

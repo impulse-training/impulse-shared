@@ -1,6 +1,6 @@
 {
   "name": "impulse-shared",
-  "version": "0.1.1-1775328011",
+  "version": "0.1.1-1775361662",
   "description": "Shared types and utilities for Impulse applications",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -27,6 +27,7 @@
   "dependencies": {
     "date-fns": "^4.1.0",
     "date-fns-tz": "^3.2.0",
+    "impulse-shared": "file:impulse-shared-0.1.1-1775361662.tgz",
     "lodash": "^4.17.21",
     "openai": "^4.87.3",
     "pluralize": "^8.0.0",

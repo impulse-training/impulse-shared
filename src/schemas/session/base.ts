@@ -20,6 +20,7 @@ const sessionTypeSchema = z.enum([
   "commitment",
   "setup",
   "welcome",
+  "tactic",
 ]);
 
 // Session schema

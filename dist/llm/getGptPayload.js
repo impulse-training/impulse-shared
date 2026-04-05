@@ -4,19 +4,33 @@ exports.getGptPayload = getGptPayload;
 const log_1 = require("../schemas/log");
 const buildPlansLogPayload_1 = require("./buildPlansLogPayload");
 const constants_1 = require("../constants");
-function buildBehaviorLogPayload(log) {
+function buildBehaviorLogPayload(log, options) {
     var _a, _b, _c;
     const { behaviorName, formattedValue, source, debriefOutcome } = log.data;
     const parts = [];
     if (debriefOutcome) {
-        if (debriefOutcome === "resisted") {
-            parts.push("<CONTEXT>The user successfully resisted an urge. We're debriefing what helped them resist and what they can learn from it.</CONTEXT>");
+        if (options === null || options === void 0 ? void 0 : options.forSummarization) {
+            // Facts only — no AI conversation instructions
+            if (debriefOutcome === "resisted") {
+                parts.push("<CONTEXT>The user resisted the urge.</CONTEXT>");
+            }
+            else if (debriefOutcome === "acted") {
+                parts.push("<CONTEXT>The user acted on the urge.</CONTEXT>");
+            }
+            else if (debriefOutcome === "still_there") {
+                parts.push("<CONTEXT>The user reported the urge was still present.</CONTEXT>");
+            }
         }
-        else if (debriefOutcome === "acted") {
-            parts.push("<CONTEXT>The user acted on an urge. We're debriefing what happened and how to support them in a non-judgmental way.</CONTEXT>");
-        }
-        else if (debriefOutcome === "still_there") {
-            parts.push("<CONTEXT>The user reports that the urge is still present. We're helping them process the urge and decide what to do next.</CONTEXT>");
+        else {
+            if (debriefOutcome === "resisted") {
+                parts.push("<CONTEXT>The user successfully resisted an urge. We're debriefing what helped them resist and what they can learn from it.</CONTEXT>");
+            }
+            else if (debriefOutcome === "acted") {
+                parts.push("<CONTEXT>The user acted on an urge. We're debriefing what happened and how to support them in a non-judgmental way.</CONTEXT>");
+            }
+            else if (debriefOutcome === "still_there") {
+                parts.push("<CONTEXT>The user reports that the urge is still present. We're helping them process the urge and decide what to do next.</CONTEXT>");
+            }
         }
     }
     if (behaviorName && formattedValue) {
@@ -47,7 +61,7 @@ function buildBehaviorLogPayload(log) {
     }
     return [];
 }
-function getGptPayload(log, isFinalLogInSession) {
+function getGptPayload(log, isFinalLogInSession, options) {
     var _a;
     if (log.type === "proposed_experiment") {
         const behaviorName = "behaviorName" in log
@@ -104,6 +118,10 @@ function getGptPayload(log, isFinalLogInSession) {
         ];
     }
     if ((0, log_1.logIsPlansLog)(log)) {
+        // Plans logs contain AI instructions that pollute summaries.
+        // Actual plan usage is captured by separate tactic logs.
+        if (options === null || options === void 0 ? void 0 : options.forSummarization)
+            return [];
         return (0, buildPlansLogPayload_1.buildPlansLogPayload)(log, isFinalLogInSession);
     }
     if ((0, log_1.logIsUserMessageLog)(log)) {
@@ -177,7 +195,7 @@ function getGptPayload(log, isFinalLogInSession) {
     }
     // Handle BehaviorLog
     if ((0, log_1.logIsBehaviorLog)(log)) {
-        return buildBehaviorLogPayload(log);
+        return buildBehaviorLogPayload(log, options);
     }
     // Handle DayTotalsPromptLog with confirmedAt (day totals confirmed)
     if ((0, log_1.logIsDayTotalsPromptLog)(log) && log.data.confirmedAt) {

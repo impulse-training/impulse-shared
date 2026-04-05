@@ -2,7 +2,7 @@ import { z } from "zod";
 import { timestampSchema } from "../utils/timestampSchema";
 import { sessionSchema } from "./session";
 
-export const llmAuditEntrySchema = z.object({
+export const llmAuditEntrySchema: z.ZodObject<any> = z.object({
   userId: z.string(),
   logId: z.string(),
   timestamp: timestampSchema.optional(),

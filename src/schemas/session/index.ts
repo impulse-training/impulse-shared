@@ -12,7 +12,9 @@ import {
 import { RecapSession, recapSessionSchema } from "./recap";
 import { AlignmentSession, alignmentSessionSchema } from "./alignment";
 import { CommitmentSession, commitmentSessionSchema } from "./commitment";
+import { TacticSession, tacticSessionSchema } from "./tactic";
 import { WelcomeSession, welcomeSessionSchema } from "./welcome";
+import { SetupSession, setupSessionSchema } from "./setup";
 
 export * from "../sessionSummary";
 export * from "./adjustment";
@@ -23,7 +25,9 @@ export * from "./plan";
 export * from "./recap";
 export * from "./alignment";
 export * from "./commitment";
+export * from "./tactic";
 export * from "./welcome";
+export * from "./setup";
 
 // Map of session types to their schemas
 export const sessionSchemas = {
@@ -36,7 +40,9 @@ export const sessionSchemas = {
   adjustment: adjustmentSessionSchema,
   alignment: alignmentSessionSchema,
   commitment: commitmentSessionSchema,
+  tactic: tacticSessionSchema,
   welcome: welcomeSessionSchema,
+  setup: setupSessionSchema,
 };
 
 // Discriminated union over type
@@ -50,7 +56,9 @@ export const sessionSchema = z.discriminatedUnion("type", [
   locationPlanSessionSchema,
   adjustmentSessionSchema,
   commitmentSessionSchema,
+  tacticSessionSchema,
   welcomeSessionSchema,
+  setupSessionSchema,
 ]);
 
 export const sessionIsGeneralSession = (
@@ -117,6 +125,13 @@ export const isValidCommitmentSession = (
 ): value is CommitmentSession =>
   commitmentSessionSchema.safeParse(value).success;
 
+export const sessionIsTacticSession = (
+  value: Session,
+): value is TacticSession => value.type === "tactic";
+export const isValidTacticSession = (
+  value: unknown,
+): value is TacticSession => tacticSessionSchema.safeParse(value).success;
+
 export const sessionIsWelcomeSession = (
   value: Session,
 ): value is WelcomeSession => value.type === "welcome";
@@ -126,6 +141,7 @@ export const isValidWelcomeSession = (
 
 const noSummarizeSessionTypes: Session["type"][] = [
   "adjustment",
+  "tactic",
   "welcome",
 ];
 

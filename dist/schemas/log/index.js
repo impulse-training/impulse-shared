@@ -39,6 +39,7 @@ const triggerSelectionLog_1 = require("./triggerSelectionLog");
 const widgetSetupLog_1 = require("./widgetSetupLog");
 const requestPermissionsLog_1 = require("./requestPermissionsLog");
 const tacticReviewLog_1 = require("./tacticReviewLog");
+const setupModeChoiceLog_1 = require("./setupModeChoiceLog");
 exports.logSchemas = {
     user: messageLog_1.userMessageLogSchema,
     assistant_message: messageLog_1.assistantMessageLogSchema,
@@ -66,6 +67,7 @@ exports.logSchemas = {
     trigger_selection: triggerSelectionLog_1.triggerSelectionLogSchema,
     request_permissions: requestPermissionsLog_1.requestPermissionsLogSchema,
     tactic_review: tacticReviewLog_1.tacticReviewLogSchema,
+    setup_mode_choice: setupModeChoiceLog_1.setupModeChoiceLogSchema,
 };
 exports.logTypes = Object.keys(exports.logSchemas);
 __exportStar(require("./behaviorLog"), exports);
@@ -92,6 +94,7 @@ __exportStar(require("./dayTotalsPromptLog"), exports);
 __exportStar(require("./triggerSelectionLog"), exports);
 __exportStar(require("./requestPermissionsLog"), exports);
 __exportStar(require("./tacticReviewLog"), exports);
+__exportStar(require("./setupModeChoiceLog"), exports);
 // Discriminated union schema across all log variants
 exports.logSchema = zod_1.z.discriminatedUnion("type", [
     messageLog_1.userMessageLogSchema,

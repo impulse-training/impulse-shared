@@ -17,26 +17,48 @@ import { buildPlansLogPayload } from "./buildPlansLogPayload";
 import { extractRelevantContext } from "./extractRelevantContext";
 import { DEFAULT_RECAP_TIME_LABEL } from "../constants";
 
+interface PayloadOptions {
+  forSummarization?: boolean;
+}
+
 function buildBehaviorLogPayload(
   log: BehaviorLog,
+  options?: PayloadOptions,
 ): ChatCompletionMessageParam[] {
   const { behaviorName, formattedValue, source, debriefOutcome } = log.data;
 
   const parts: string[] = [];
 
   if (debriefOutcome) {
-    if (debriefOutcome === "resisted") {
-      parts.push(
-        "<CONTEXT>The user successfully resisted an urge. We're debriefing what helped them resist and what they can learn from it.</CONTEXT>",
-      );
-    } else if (debriefOutcome === "acted") {
-      parts.push(
-        "<CONTEXT>The user acted on an urge. We're debriefing what happened and how to support them in a non-judgmental way.</CONTEXT>",
-      );
-    } else if (debriefOutcome === "still_there") {
-      parts.push(
-        "<CONTEXT>The user reports that the urge is still present. We're helping them process the urge and decide what to do next.</CONTEXT>",
-      );
+    if (options?.forSummarization) {
+      // Facts only — no AI conversation instructions
+      if (debriefOutcome === "resisted") {
+        parts.push(
+          "<CONTEXT>The user resisted the urge.</CONTEXT>",
+        );
+      } else if (debriefOutcome === "acted") {
+        parts.push(
+          "<CONTEXT>The user acted on the urge.</CONTEXT>",
+        );
+      } else if (debriefOutcome === "still_there") {
+        parts.push(
+          "<CONTEXT>The user reported the urge was still present.</CONTEXT>",
+        );
+      }
+    } else {
+      if (debriefOutcome === "resisted") {
+        parts.push(
+          "<CONTEXT>The user successfully resisted an urge. We're debriefing what helped them resist and what they can learn from it.</CONTEXT>",
+        );
+      } else if (debriefOutcome === "acted") {
+        parts.push(
+          "<CONTEXT>The user acted on an urge. We're debriefing what happened and how to support them in a non-judgmental way.</CONTEXT>",
+        );
+      } else if (debriefOutcome === "still_there") {
+        parts.push(
+          "<CONTEXT>The user reports that the urge is still present. We're helping them process the urge and decide what to do next.</CONTEXT>",
+        );
+      }
     }
   }
 
@@ -78,6 +100,7 @@ function buildBehaviorLogPayload(
 export function getGptPayload(
   log: Log,
   isFinalLogInSession: boolean,
+  options?: PayloadOptions,
 ): ChatCompletionMessageParam[] {
   if (log.type === "proposed_experiment") {
     const behaviorName =
@@ -151,6 +174,9 @@ export function getGptPayload(
   }
 
   if (logIsPlansLog(log)) {
+    // Plans logs contain AI instructions that pollute summaries.
+    // Actual plan usage is captured by separate tactic logs.
+    if (options?.forSummarization) return [];
     return buildPlansLogPayload(log, isFinalLogInSession);
   }
 
@@ -236,7 +262,7 @@ export function getGptPayload(
 
   // Handle BehaviorLog
   if (logIsBehaviorLog(log)) {
-    return buildBehaviorLogPayload(log);
+    return buildBehaviorLogPayload(log, options);
   }
 
   // Handle DayTotalsPromptLog with confirmedAt (day totals confirmed)
