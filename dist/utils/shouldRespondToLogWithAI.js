@@ -53,9 +53,15 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
     const isDayTotalsPromptAction = beforeData &&
         afterData &&
         (0, log_1.logIsDayTotalsPromptLog)(afterData);
+    const isSetupModeTextChoice = beforeData &&
+        afterData &&
+        (0, log_1.logIsSetupModeChoiceLog)(afterData) &&
+        afterData.data.choice === "text" &&
+        (0, fields_1.fieldChanged)(beforeData, afterData, "data.choice");
     if (!isMetricRating &&
         !isDebriefOutcomeResolved &&
         !isDayTotalsPromptAction &&
+        !isSetupModeTextChoice &&
         latestSessionLog &&
         (0, log_1.logIsAssistantMessageLog)(latestSessionLog)) {
         console.log("Latest message is from assistant. Not responding with AI.");
@@ -103,6 +109,11 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
     // Case: Widget setup log with changed response field
     if (isNotDeleting && (0, log_1.logIsWidgetSetupLog)(afterData)) {
         console.log("Widget setup log with changed response field. Responding with AI.");
+        return true;
+    }
+    // Case: Setup mode text choice was made
+    if (isSetupModeTextChoice) {
+        console.log("Setup mode text choice made. Responding with AI.");
         return true;
     }
     // Case: Debrief urge outcome was resolved (resisted/still_there)

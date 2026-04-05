@@ -49,9 +49,10 @@ exports.daySummarySchema = zod_1.z.object({
     goalComparisonByBehaviorId: zod_1.z
         .record(zod_1.z.string(), exports.goalComparisonEntrySchema)
         .optional(),
-    // Per-behavior impulse data aggregated from impulse sessions for this day
-    impulsesByBehaviorId: zod_1.z
+    // Per-session impulse data, keyed by sessionId for clean deletion tracking
+    impulsesBySessionId: zod_1.z
         .record(zod_1.z.string(), zod_1.z.object({
+        behaviorIds: zod_1.z.array(zod_1.z.string()),
         actedOnUrge: zod_1.z.boolean(),
     }))
         .optional(),

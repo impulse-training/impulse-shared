@@ -29277,3 +29277,4 @@ export declare const logIsTriggerSelectionLog: (value: Omit<Log, "id">) => value
 export declare const isValidTriggerSelectionLog: (value: unknown) => value is TriggerSelectionLog;
 export declare const logIsTacticReviewLog: (value: Omit<Log, "id">) => value is TacticReviewLog;
 export declare const isValidTacticReviewLog: (value: unknown) => value is TacticReviewLog;
+export declare const logIsSetupModeChoiceLog: (value: Omit<Log, "id">) => value is SetupModeChoiceLog;

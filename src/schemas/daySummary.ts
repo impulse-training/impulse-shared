@@ -54,11 +54,12 @@ export const daySummarySchema = z.object({
   goalComparisonByBehaviorId: z
     .record(z.string(), goalComparisonEntrySchema)
     .optional(),
-  // Per-behavior impulse data aggregated from impulse sessions for this day
-  impulsesByBehaviorId: z
+  // Per-session impulse data, keyed by sessionId for clean deletion tracking
+  impulsesBySessionId: z
     .record(
       z.string(),
       z.object({
+        behaviorIds: z.array(z.string()),
         actedOnUrge: z.boolean(),
       }),
     )
