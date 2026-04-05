@@ -24,7 +24,6 @@ const phaseCompletionSchema = z.object({
 
 const phaseConfigSchema = z.object({
   requiredGoal: z.number().optional(),
-  requiredDays: z.number().optional(),
   requireContiguousDays: z.boolean().optional(),
   description: z.string().optional(),
 });
@@ -63,6 +62,22 @@ export const experimentSchema = z.object({
       transition: phaseCompletionSchema.optional(),
       observation: phaseCompletionSchema.optional(),
     })
+    .optional(),
+
+  /** Set by scheduled function when baseline has enough data to suggest a transition trial */
+  suggestTransition: z.boolean().optional(),
+
+  /** Set by recap AI when it surfaces the experiment analysis to the user */
+  chartUnlocked: z.boolean().optional(),
+
+  /** AI-generated insight blocks, written once during recap conversation */
+  insights: z
+    .array(
+      z.object({
+        heading: z.string(),
+        body: z.string(),
+      }),
+    )
     .optional(),
 
   /** Pending descriptions for phase transitions */
