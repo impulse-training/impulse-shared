@@ -83,20 +83,8 @@ export const sessionBaseSchema = z.object({
   startedPlanIds: z.array(z.string()).optional(),
   completedPlanIds: z.array(z.string()).optional(),
 
-  // Current call status for global voice UI
-  // TODO - review if necessary
-  currentCall: z
-    .object({
-      logId: z.string(),
-      token: z.string(),
-      livekitRoomName: z.string(),
-      livekitSessionId: z.string(),
-      startedAt: timestampSchema,
-      agentConnectedAt: timestampSchema.optional(),
-      endedAt: timestampSchema.optional(),
-      status: z.enum(["connecting", "connected", "ended"]),
-    })
-    .optional(),
+  // ID of the active call log document (in users/{userId}/logs)
+  activeCallLogId: z.string().optional(),
 
   // Captured GPS location at session start
   location: z

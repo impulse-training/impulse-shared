@@ -22,6 +22,8 @@ export const metricSchema = z.object({
   metricRegistryId: z.string().optional(),
   createdAt: timestampSchema.optional(),
   updatedAt: timestampSchema.optional(),
+  /** Set when the user initiates deletion; the metric shows as "deleting" until removed */
+  startedDeletingAt: timestampSchema.optional(),
 });
 
 export type Metric = z.infer<typeof metricSchema>;
