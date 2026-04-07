@@ -87,27 +87,28 @@ export function buildPlansLogPayload(
       "This plan will be ready for next time this trigger comes up. Ask the user if they'd like to keep this plan, adjust it, or skip it.",
     );
   } else if (isFinalLogInSession) {
-    // Authoritative, directive framing when this is the most recent log
+    // Authoritative, directive framing when this is the most recent log.
+    // In an active impulse moment, the assistant should lead with the first
+    // tactic rather than pausing to ask whether the user wants to discuss the
+    // plan first.
     parts.push("A plan is available for the user right now.");
     parts.push(
-      `It includes ${tacticsCount} ${tacticsNoun}. You should ask the user whether they want to start this plan now, or talk through the plan and options before starting.`,
+      `It includes ${tacticsCount} ${tacticsNoun}. Since this is an active impulse moment, guide the user into the first tactic right away instead of asking whether they want to discuss the plan first.`,
     );
 
     if (firstTacticTitle) {
       parts.push(
-        `The first tactic in the plan is titled: ${firstTacticTitle}. Do not assume the user has already started it.`,
+        `The first tactic in the plan is titled: ${firstTacticTitle}. Suggest that tactic now using the suggestTactic tool, but do not assume the user has already started it.`,
       );
     }
 
     if (firstStepText) {
       parts.push(
-        `If the user chooses to start the first tactic, the first step instructions are: ${firstStepText}.`,
+        `The first step instructions are: ${firstStepText}. Use them to frame a brief, action-oriented introduction to the tactic.`,
       );
     }
 
-    parts.push(
-      "First, ask whether they want to begin the first tactic now or talk it through first.",
-    );
+    parts.push("Keep the response brief, direct, and focused on getting the user into the tactic immediately.");
   } else {
     // Historical / FYI framing when this log is not the most recent
     parts.push(

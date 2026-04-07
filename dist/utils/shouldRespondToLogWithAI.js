@@ -59,11 +59,17 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         afterData.data.choice === "text" &&
         (0, fields_1.fieldChanged)(beforeData, afterData, "data.choice");
     const isTagsUpdated = !beforeData && afterData && (0, log_1.logIsTagsUpdatedLog)(afterData);
+    const isTacticCompleted = beforeData &&
+        afterData &&
+        (0, log_1.logIsTacticLog)(afterData) &&
+        afterData.data.completed === true &&
+        (!(0, log_1.logIsTacticLog)(beforeData) || beforeData.data.completed !== true);
     if (!isMetricRating &&
         !isDebriefOutcomeResolved &&
         !isDayTotalsPromptAction &&
         !isSetupModeTextChoice &&
         !isTagsUpdated &&
+        !isTacticCompleted &&
         latestSessionLog &&
         (0, log_1.logIsAssistantMessageLog)(latestSessionLog)) {
         console.log("Latest message is from assistant. Not responding with AI.");
@@ -194,6 +200,11 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         afterData.data.value !== null &&
         (!beforeData || !(0, log_1.logIsMetricLog)(beforeData) || beforeData.data.value === null)) {
         console.log("Metric log was rated. Responding with AI.");
+        return true;
+    }
+    // Case: Tactic log was completed — user finished a suggested tactic
+    if (isTacticCompleted) {
+        console.log("Tactic was completed. Responding with AI.");
         return true;
     }
     // Case: Tactic review completed — user finished reviewing tactics in the recap

@@ -169,8 +169,9 @@ function getGptPayload(log, isFinalLogInSession, options) {
     }
     if ((0, log_1.logIsTacticLog)(log)) {
         const tacticTitle = log.data.tactic.title;
+        const isCompleted = log.data.completed === true;
         const response = log.data.response;
-        if (response) {
+        if (isCompleted && response) {
             return [
                 {
                     role: "user",
@@ -178,12 +179,16 @@ function getGptPayload(log, isFinalLogInSession, options) {
                 },
             ];
         }
-        return [
-            {
-                role: "user",
-                content: `<SYSTEM>User completed tactic: ${tacticTitle}</SYSTEM>`,
-            },
-        ];
+        if (isCompleted) {
+            return [
+                {
+                    role: "user",
+                    content: `<SYSTEM>User completed tactic: ${tacticTitle}</SYSTEM>`,
+                },
+            ];
+        }
+        // Tactic was suggested but not yet completed — skip from conversation
+        return [];
     }
     if ((0, log_1.logIsWidgetSetupLog)(log)) {
         return [

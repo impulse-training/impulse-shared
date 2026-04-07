@@ -10,6 +10,7 @@ import {
   logIsPlansLog,
   logIsSetupModeChoiceLog,
   logIsTacticReviewLog,
+  logIsTacticLog,
   logIsTagsUpdatedLog,
   logIsTriggerSelectionLog,
   logIsUserMessageLog,
@@ -99,12 +100,20 @@ export function shouldRespondToLogWithAI(
   const isTagsUpdated =
     !beforeData && afterData && logIsTagsUpdatedLog(afterData);
 
+  const isTacticCompleted =
+    beforeData &&
+    afterData &&
+    logIsTacticLog(afterData) &&
+    afterData.data.completed === true &&
+    (!logIsTacticLog(beforeData) || beforeData.data.completed !== true);
+
   if (
     !isMetricRating &&
     !isDebriefOutcomeResolved &&
     !isDayTotalsPromptAction &&
     !isSetupModeTextChoice &&
     !isTagsUpdated &&
+    !isTacticCompleted &&
     latestSessionLog &&
     logIsAssistantMessageLog(latestSessionLog)
   ) {
@@ -280,6 +289,12 @@ export function shouldRespondToLogWithAI(
     (!beforeData || !logIsMetricLog(beforeData) || beforeData.data.value === null)
   ) {
     console.log("Metric log was rated. Responding with AI.");
+    return true;
+  }
+
+  // Case: Tactic log was completed — user finished a suggested tactic
+  if (isTacticCompleted) {
+    console.log("Tactic was completed. Responding with AI.");
     return true;
   }
 
