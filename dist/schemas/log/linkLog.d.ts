@@ -20,10 +20,10 @@ export declare const linkLogSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
-    text: string;
     type: "link";
-    userId: string;
+    text: string;
     link: string;
+    userId: string;
     timestamp: import("../../types").Timestamp;
     dateString: string;
     sessionId: string;
@@ -37,10 +37,10 @@ export declare const linkLogSchema: z.ZodObject<{
 }, {
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
-    text: string;
     type: "link";
-    userId: string;
+    text: string;
     link: string;
+    userId: string;
     timestamp: import("../../types").Timestamp;
     dateString: string;
     sessionId: string;

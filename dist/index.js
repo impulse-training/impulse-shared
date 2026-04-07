@@ -62,4 +62,4 @@ __exportStar(require("./utils/validation"), exports);
 __exportStar(require("./utils/withId"), exports);
 __exportStar(require("./utils/formatBehaviorGoal"), exports);
 __exportStar(require("./utils/tacticScoring"), exports);
-__exportStar(require("./utils/tags"), exports);
+__exportStar(require("./utils/behaviorColors"), exports);

@@ -30,7 +30,7 @@ export * from "./welcome";
 export * from "./setup";
 
 // Map of session types to their schemas
-export const sessionSchemas = {
+export const sessionSchemas: Record<string, z.ZodTypeAny> = {
   general: generalSessionSchema,
   impulse: impulseSessionSchema,
   timePlan: timePlanSessionSchema,
@@ -46,7 +46,7 @@ export const sessionSchemas = {
 };
 
 // Discriminated union over type
-export const sessionSchema = z.discriminatedUnion("type", [
+export const sessionSchema: z.ZodDiscriminatedUnion<"type", [typeof generalSessionSchema, typeof impulseSessionSchema, typeof behaviorSessionSchema, typeof timePlanSessionSchema, typeof alignmentSessionSchema, typeof recapSessionSchema, typeof locationPlanSessionSchema, typeof adjustmentSessionSchema, typeof commitmentSessionSchema, typeof tacticSessionSchema, typeof welcomeSessionSchema, typeof setupSessionSchema]> = z.discriminatedUnion("type", [
   generalSessionSchema,
   impulseSessionSchema,
   behaviorSessionSchema,

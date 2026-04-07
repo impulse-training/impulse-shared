@@ -225,6 +225,17 @@ function getGptPayload(log, isFinalLogInSession, options) {
             },
         ];
     }
+    // Tags updated from UI — inform the AI so it can respond with tactic suggestions
+    if (log.type === "tags_updated") {
+        return [
+            {
+                role: "user",
+                content: "<SYSTEM>The user just updated their session tags using the tag bar. " +
+                    "Review the updated tags in your context and respond appropriately. " +
+                    "If recommended tactics are now available, consider suggesting one.</SYSTEM>",
+            },
+        ];
+    }
     // Return empty array for other (unsupported) log types
     return [];
 }

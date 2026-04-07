@@ -67,6 +67,16 @@ export const tacticSchema = z.object({
       prompt: z.string().optional(),
     })
     .optional(),
+  // Audio generation fields — when a tactic is created with AI-generated audio,
+  // these track the generation lifecycle directly on the tactic document.
+  generationStatus: z
+    .enum(["pending", "processing", "completed", "failed"])
+    .optional(),
+  generationError: z.string().optional(),
+  generationProvider: z.string().optional(),
+  generationProviderJobId: z.string().optional(),
+  generationPrompt: z.string().optional(),
+  generationVoice: z.enum(["m", "f"]).nullable().optional(),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
 });

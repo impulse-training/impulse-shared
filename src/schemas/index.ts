@@ -1,6 +1,6 @@
 // Export all schema types and validation functions
+export * from "./adminDashboardCache";
 export * from "./attachment";
-export * from "./audioGenerationJob";
 export * from "./audit";
 export * from "./behavior";
 export * from "./behaviorPatternsCache";
@@ -13,9 +13,6 @@ export * from "./emojiId";
 export * from "./experiment";
 export * from "./experimentResultsCache";
 export * from "./goal";
-export * from "./externalSender";
-export * from "./externalSenderMessage";
-export * from "./externalSenderSession";
 export * from "./insight";
 export * from "./llmAuditEntries";
 export * from "./log";

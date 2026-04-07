@@ -10,108 +10,108 @@ exports.getDefaultImageByName = getDefaultImageByName;
 const baseImages = [
     // regulate
     {
-        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-tmp.appspot.com/o/tactics%2Fcalm-ocean.png?alt=media&token=ce21e6f5-b09a-40fb-9673-a48c3be8d56b",
-        storagePath: "tactics/calm-ocean.png",
-        contentType: "image/png",
+        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-mode.firebasestorage.app/o/tactics%2Fcalm-ocean.webp?alt=media&token=ce03c8ee-5d7d-4a64-b1c7-b451e00f81b9",
+        storagePath: "tactics/calm-ocean.webp",
+        contentType: "image/webp",
     },
     {
-        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-tmp.appspot.com/o/tactics%2Ftwilight.png?alt=media&token=a4c93ea6-b379-49c0-9d46-d0f40732173f",
-        storagePath: "tactics/twilight.png",
-        contentType: "image/png",
+        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-mode.firebasestorage.app/o/tactics%2Ftwilight.webp?alt=media&token=de592169-bde2-4949-96b9-99649395615f",
+        storagePath: "tactics/twilight.webp",
+        contentType: "image/webp",
     },
     {
-        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-tmp.appspot.com/o/tactics%2Frose-petals.png?alt=media&token=286a66b0-cd93-4f39-a590-d09c854e0649",
-        storagePath: "tactics/rose-petals.png",
-        contentType: "image/png",
+        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-mode.firebasestorage.app/o/tactics%2Frose-petals.webp?alt=media&token=a128398e-19c7-4822-8614-22f78193e9bf",
+        storagePath: "tactics/rose-petals.webp",
+        contentType: "image/webp",
     },
     // shift
     {
-        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-tmp.appspot.com/o/tactics%2Fsunrise-ember.png?alt=media&token=61d06da6-9fd8-4508-821e-1d4c9d8f9452",
-        storagePath: "tactics/sunrise-ember.png",
-        contentType: "image/png",
+        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-mode.firebasestorage.app/o/tactics%2Fsunrise-ember.webp?alt=media&token=ecf28c65-84b4-4e47-9615-14eb8e93d4ec",
+        storagePath: "tactics/sunrise-ember.webp",
+        contentType: "image/webp",
     },
     {
-        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-tmp.appspot.com/o/tactics%2Ffresh-teal.png?alt=media&token=6027c4b1-3577-4dc8-a4b1-c79c7e826a4f",
-        storagePath: "tactics/fresh-teal.png",
-        contentType: "image/png",
+        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-mode.firebasestorage.app/o/tactics%2Ffresh-teal.webp?alt=media&token=2cff1473-0274-4f67-9591-864c3a056c68",
+        storagePath: "tactics/fresh-teal.webp",
+        contentType: "image/webp",
     },
     // reengage
     {
-        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-tmp.appspot.com/o/tactics%2Fforest-path.png?alt=media&token=9ed59464-fbb9-4d42-a330-e5367b18d671",
-        storagePath: "tactics/forest-path.png",
-        contentType: "image/png",
+        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-mode.firebasestorage.app/o/tactics%2Fforest-path.webp?alt=media&token=6f954255-13f7-4e53-bd4d-589e4114acf5",
+        storagePath: "tactics/forest-path.webp",
+        contentType: "image/webp",
     },
     {
-        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-tmp.appspot.com/o/tactics%2Fwarm-glow.png?alt=media&token=11738e50-60b7-4f8a-8ade-6f9b0647aa15",
-        storagePath: "tactics/warm-glow.png",
-        contentType: "image/png",
+        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-mode.firebasestorage.app/o/tactics%2Fwarm-glow.webp?alt=media&token=88df70cc-5b0b-4c17-bfb9-bcef0ed938f8",
+        storagePath: "tactics/warm-glow.webp",
+        contentType: "image/webp",
     },
     // neutral
     {
-        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-tmp.appspot.com/o/tactics%2Fdeep-space.png?alt=media&token=84751ce0-e990-46a0-8d28-1de3494fb6f7",
-        storagePath: "tactics/deep-space.png",
-        contentType: "image/png",
+        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-mode.firebasestorage.app/o/tactics%2Fdeep-space.webp?alt=media&token=d6110dd1-f89f-40b4-8f67-4626fd6aa3c6",
+        storagePath: "tactics/deep-space.webp",
+        contentType: "image/webp",
     },
     {
-        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-tmp.appspot.com/o/tactics%2Fsoft-dawn.png?alt=media&token=96704304-1359-4b7c-8509-f83fae3c1190",
-        storagePath: "tactics/soft-dawn.png",
-        contentType: "image/png",
+        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-mode.firebasestorage.app/o/tactics%2Fsoft-dawn.webp?alt=media&token=b5228b55-63b2-45b9-a0f5-6286bab6ae1c",
+        storagePath: "tactics/soft-dawn.webp",
+        contentType: "image/webp",
     },
     // batch 2
     {
-        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-tmp.appspot.com/o/tactics%2Farctic-blue.png?alt=media&token=667c5c77-c635-48db-82bd-2b64f7689d86",
-        storagePath: "tactics/arctic-blue.png",
-        contentType: "image/png",
+        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-mode.firebasestorage.app/o/tactics%2Farctic-blue.webp?alt=media&token=57c44837-134b-47d4-be38-612e71b78f7c",
+        storagePath: "tactics/arctic-blue.webp",
+        contentType: "image/webp",
     },
     {
-        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-tmp.appspot.com/o/tactics%2Fgolden-hour.png?alt=media&token=e9e88443-0b1f-426c-b3e9-ef1bca422935",
-        storagePath: "tactics/golden-hour.png",
-        contentType: "image/png",
+        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-mode.firebasestorage.app/o/tactics%2Fgolden-hour.webp?alt=media&token=b4fb5857-8a67-4305-be2b-82303d59239c",
+        storagePath: "tactics/golden-hour.webp",
+        contentType: "image/webp",
     },
     {
-        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-tmp.appspot.com/o/tactics%2Fsage-mist.png?alt=media&token=84d1ac57-9883-45de-b399-ae8c6ab91653",
-        storagePath: "tactics/sage-mist.png",
-        contentType: "image/png",
+        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-mode.firebasestorage.app/o/tactics%2Fsage-mist.webp?alt=media&token=e7e7aac3-126b-4c35-b621-3c062d5a6cfb",
+        storagePath: "tactics/sage-mist.webp",
+        contentType: "image/webp",
     },
     {
-        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-tmp.appspot.com/o/tactics%2Fburgundy-wine.png?alt=media&token=64d07db9-9a57-40d7-bc9a-0a064cbc0c31",
-        storagePath: "tactics/burgundy-wine.png",
-        contentType: "image/png",
+        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-mode.firebasestorage.app/o/tactics%2Fburgundy-wine.webp?alt=media&token=ad962c59-01cf-4934-8fca-7e7e5dd77965",
+        storagePath: "tactics/burgundy-wine.webp",
+        contentType: "image/webp",
     },
     {
-        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-tmp.appspot.com/o/tactics%2Fmidnight-navy.png?alt=media&token=f3d5ccdf-0de8-4fc4-9851-f8a84dec90d3",
-        storagePath: "tactics/midnight-navy.png",
-        contentType: "image/png",
+        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-mode.firebasestorage.app/o/tactics%2Fmidnight-navy.webp?alt=media&token=957dcbe3-eddf-4a56-bc82-4bb6246334c5",
+        storagePath: "tactics/midnight-navy.webp",
+        contentType: "image/webp",
     },
     {
-        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-tmp.appspot.com/o/tactics%2Fcopper-rust.png?alt=media&token=eaf71215-056d-4194-b2c8-c934f6b987ff",
-        storagePath: "tactics/copper-rust.png",
-        contentType: "image/png",
+        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-mode.firebasestorage.app/o/tactics%2Fcopper-rust.webp?alt=media&token=952c5dd8-3ced-4faa-b518-024b3a2d6c55",
+        storagePath: "tactics/copper-rust.webp",
+        contentType: "image/webp",
     },
     {
-        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-tmp.appspot.com/o/tactics%2Flavender-haze.png?alt=media&token=b5163c58-91a7-44a7-8dee-2f1f3a8f8f17",
-        storagePath: "tactics/lavender-haze.png",
-        contentType: "image/png",
+        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-mode.firebasestorage.app/o/tactics%2Flavender-haze.webp?alt=media&token=b3a68441-5caf-4858-a32d-81e7e978ea65",
+        storagePath: "tactics/lavender-haze.webp",
+        contentType: "image/webp",
     },
     {
-        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-tmp.appspot.com/o/tactics%2Fsteel-storm.png?alt=media&token=a6ddb02d-2c8d-4538-ba4f-8dc826e6a451",
-        storagePath: "tactics/steel-storm.png",
-        contentType: "image/png",
+        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-mode.firebasestorage.app/o/tactics%2Fsteel-storm.webp?alt=media&token=4ac1804e-901d-442f-a777-8bdbccd22b7f",
+        storagePath: "tactics/steel-storm.webp",
+        contentType: "image/webp",
     },
     {
-        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-tmp.appspot.com/o/tactics%2Fember-glow.png?alt=media&token=bda6642e-4000-4a85-8780-1b0f6d4b8dde",
-        storagePath: "tactics/ember-glow.png",
-        contentType: "image/png",
+        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-mode.firebasestorage.app/o/tactics%2Fember-glow.webp?alt=media&token=d47475d3-29d2-4a0f-bbe4-b8a3b9178a01",
+        storagePath: "tactics/ember-glow.webp",
+        contentType: "image/webp",
     },
     {
-        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-tmp.appspot.com/o/tactics%2Focean-depth.png?alt=media&token=f0aec1a4-e13e-46d8-8178-335a157de8ba",
-        storagePath: "tactics/ocean-depth.png",
-        contentType: "image/png",
+        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-mode.firebasestorage.app/o/tactics%2Focean-depth.webp?alt=media&token=8d8cf8ef-fbbf-478a-9f0e-1dc494528920",
+        storagePath: "tactics/ocean-depth.webp",
+        contentType: "image/webp",
     },
     {
-        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-tmp.appspot.com/o/tactics%2Fautumn-earth.png?alt=media&token=4069e544-19eb-4e66-90d4-b0dce0d6a974",
-        storagePath: "tactics/autumn-earth.png",
-        contentType: "image/png",
+        uri: "https://firebasestorage.googleapis.com/v0/b/impulse-mode.firebasestorage.app/o/tactics%2Fautumn-earth.webp?alt=media&token=ada05096-9420-49ac-a049-cbc680a43a6b",
+        storagePath: "tactics/autumn-earth.webp",
+        contentType: "image/webp",
     },
 ];
 exports.defaultImages = baseImages;
@@ -126,5 +126,5 @@ function getRandomDefaultImage() {
  * Get a specific default image by its filename (without extension)
  */
 function getDefaultImageByName(name) {
-    return exports.defaultImages.find((img) => img.storagePath === `tactics/${name}.png`);
+    return exports.defaultImages.find((img) => img.storagePath === `tactics/${name}.webp`);
 }

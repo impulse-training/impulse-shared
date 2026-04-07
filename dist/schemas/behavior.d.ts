@@ -1,6 +1,6 @@
 import { z } from "zod";
-export { trackingTypes } from "./behaviorTemplate";
-export type { BehaviorTemplate, TrackingType } from "./behaviorTemplate";
+export { trackingTypes, baselinePeriods } from "./behaviorTemplate";
+export type { BehaviorTemplate, TrackingType, BaselinePeriod, } from "./behaviorTemplate";
 export { behaviorTemplateSchema } from "./behaviorTemplate";
 export declare const trendSchema: z.ZodEnum<["IMPROVING", "DECLINING", "STABLE", "VOLATILE", "INSUFFICIENT_DATA"]>;
 export type Trend = z.infer<typeof trendSchema>;
@@ -1002,6 +1002,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     name: z.ZodString;
     trackingType: z.ZodEnum<["counter", "timer"]>;
     trackingUnit: z.ZodOptional<z.ZodString>;
+    baselinePeriod: z.ZodOptional<z.ZodEnum<["daily", "weekly"]>>;
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 } & {
@@ -1037,41 +1038,41 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
             6: z.ZodNumber;
         }, "strip", z.ZodTypeAny, {
             0: number;
-            5: number;
             1: number;
             2: number;
-            4: number;
+            5: number;
             3: number;
+            4: number;
             6: number;
         }, {
             0: number;
-            5: number;
             1: number;
             2: number;
-            4: number;
+            5: number;
             3: number;
+            4: number;
             6: number;
         }>;
     }, "strip", z.ZodTypeAny, {
         type: "reduceIndividualDays";
         dailyTargets: {
             0: number;
-            5: number;
             1: number;
             2: number;
-            4: number;
+            5: number;
             3: number;
+            4: number;
             6: number;
         };
     }, {
         type: "reduceIndividualDays";
         dailyTargets: {
             0: number;
-            5: number;
             1: number;
             2: number;
-            4: number;
+            5: number;
             3: number;
+            4: number;
             6: number;
         };
     }>]>>;
@@ -1084,6 +1085,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer"]>>;
         value: z.ZodOptional<z.ZodNumber>;
         formattedValue: z.ZodOptional<z.ZodString>;
+        period: z.ZodOptional<z.ZodEnum<["daily", "weekly"]>>;
     }, "strip", z.ZodTypeAny, {
         value?: number | undefined;
         behaviorId?: string | undefined;
@@ -1091,6 +1093,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         behaviorTrackingUnit?: string | undefined;
         trackingType?: "counter" | "timer" | undefined;
         formattedValue?: string | undefined;
+        period?: "daily" | "weekly" | undefined;
     }, {
         value?: number | undefined;
         behaviorId?: string | undefined;
@@ -1098,6 +1101,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         behaviorTrackingUnit?: string | undefined;
         trackingType?: "counter" | "timer" | undefined;
         formattedValue?: string | undefined;
+        period?: "daily" | "weekly" | undefined;
     }>>;
     hidden: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     color: z.ZodOptional<z.ZodString>;
@@ -1844,6 +1848,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     trackingUnit?: string | undefined;
+    baselinePeriod?: "daily" | "weekly" | undefined;
     color?: string | undefined;
     goal?: {
         type: "eliminate";
@@ -1854,11 +1859,11 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         type: "reduceIndividualDays";
         dailyTargets: {
             0: number;
-            5: number;
             1: number;
             2: number;
-            4: number;
+            5: number;
             3: number;
+            4: number;
             6: number;
         };
     } | undefined;
@@ -1871,6 +1876,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         behaviorTrackingUnit?: string | undefined;
         trackingType?: "counter" | "timer" | undefined;
         formattedValue?: string | undefined;
+        period?: "daily" | "weekly" | undefined;
     } | undefined;
     behaviorTopicId?: string | undefined;
     state?: {
@@ -1999,6 +2005,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     trackingUnit?: string | undefined;
+    baselinePeriod?: "daily" | "weekly" | undefined;
     color?: string | undefined;
     goal?: {
         type: "eliminate";
@@ -2009,11 +2016,11 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         type: "reduceIndividualDays";
         dailyTargets: {
             0: number;
-            5: number;
             1: number;
             2: number;
-            4: number;
+            5: number;
             3: number;
+            4: number;
             6: number;
         };
     } | undefined;
@@ -2027,6 +2034,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         behaviorTrackingUnit?: string | undefined;
         trackingType?: "counter" | "timer" | undefined;
         formattedValue?: string | undefined;
+        period?: "daily" | "weekly" | undefined;
     } | undefined;
     hidden?: boolean | undefined;
     behaviorTopicId?: string | undefined;
@@ -2158,6 +2166,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     trackingUnit?: string | undefined;
+    baselinePeriod?: "daily" | "weekly" | undefined;
     color?: string | undefined;
     goal?: {
         type: "eliminate";
@@ -2168,11 +2177,11 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         type: "reduceIndividualDays";
         dailyTargets: {
             0: number;
-            5: number;
             1: number;
             2: number;
-            4: number;
+            5: number;
             3: number;
+            4: number;
             6: number;
         };
     } | undefined;
@@ -2185,6 +2194,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         behaviorTrackingUnit?: string | undefined;
         trackingType?: "counter" | "timer" | undefined;
         formattedValue?: string | undefined;
+        period?: "daily" | "weekly" | undefined;
     } | undefined;
     behaviorTopicId?: string | undefined;
     state?: {
@@ -2313,6 +2323,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     trackingUnit?: string | undefined;
+    baselinePeriod?: "daily" | "weekly" | undefined;
     color?: string | undefined;
     goal?: {
         type: "eliminate";
@@ -2323,11 +2334,11 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         type: "reduceIndividualDays";
         dailyTargets: {
             0: number;
-            5: number;
             1: number;
             2: number;
-            4: number;
+            5: number;
             3: number;
+            4: number;
             6: number;
         };
     } | undefined;
@@ -2341,6 +2352,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         behaviorTrackingUnit?: string | undefined;
         trackingType?: "counter" | "timer" | undefined;
         formattedValue?: string | undefined;
+        period?: "daily" | "weekly" | undefined;
     } | undefined;
     hidden?: boolean | undefined;
     behaviorTopicId?: string | undefined;

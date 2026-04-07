@@ -63,6 +63,16 @@ exports.tacticSchema = zod_1.z.object({
         prompt: zod_1.z.string().optional(),
     })
         .optional(),
+    // Audio generation fields — when a tactic is created with AI-generated audio,
+    // these track the generation lifecycle directly on the tactic document.
+    generationStatus: zod_1.z
+        .enum(["pending", "processing", "completed", "failed"])
+        .optional(),
+    generationError: zod_1.z.string().optional(),
+    generationProvider: zod_1.z.string().optional(),
+    generationProviderJobId: zod_1.z.string().optional(),
+    generationPrompt: zod_1.z.string().optional(),
+    generationVoice: zod_1.z.enum(["m", "f"]).nullable().optional(),
     createdAt: timestampSchema_1.timestampSchema,
     updatedAt: timestampSchema_1.timestampSchema,
 });

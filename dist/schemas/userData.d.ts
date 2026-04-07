@@ -133,6 +133,7 @@ export declare const userDataSchema: z.ZodObject<{
         role: "assistant" | "user";
         sentAt: import("../types").Timestamp;
     }>>>;
+    country: z.ZodOptional<z.ZodString>;
     migrations: z.ZodOptional<z.ZodObject<{
         recommendedLibraryDone: z.ZodOptional<z.ZodBoolean>;
     }, "strip", z.ZodTypeAny, {
@@ -153,6 +154,7 @@ export declare const userDataSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
+    country?: string | undefined;
     recap?: {
         trigger: {
             hour: number;
@@ -206,6 +208,7 @@ export declare const userDataSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
+    country?: string | undefined;
     recap?: {
         trigger: {
             hour: number;

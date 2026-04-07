@@ -10,6 +10,7 @@ import {
   logIsPlansLog,
   logIsSetupModeChoiceLog,
   logIsTacticReviewLog,
+  logIsTagsUpdatedLog,
   logIsTriggerSelectionLog,
   logIsUserMessageLog,
   logIsWidgetSetupLog,
@@ -95,11 +96,15 @@ export function shouldRespondToLogWithAI(
     afterData.data.choice === "text" &&
     fieldChanged(beforeData, afterData, "data.choice");
 
+  const isTagsUpdated =
+    !beforeData && afterData && logIsTagsUpdatedLog(afterData);
+
   if (
     !isMetricRating &&
     !isDebriefOutcomeResolved &&
     !isDayTotalsPromptAction &&
     !isSetupModeTextChoice &&
+    !isTagsUpdated &&
     latestSessionLog &&
     logIsAssistantMessageLog(latestSessionLog)
   ) {
@@ -114,6 +119,12 @@ export function shouldRespondToLogWithAI(
   // Case: New message logs (creation event, no before data)
   if (isCreating && logIsUserMessageLog(afterData)) {
     console.log("New message log. Responding with AI.");
+    return true;
+  }
+
+  // Case: Tags updated from UI — user set/changed session tags manually
+  if (isTagsUpdated) {
+    console.log("Tags updated from UI. Responding with AI.");
     return true;
   }
 

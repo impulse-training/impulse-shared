@@ -26,41 +26,41 @@ export declare const goalSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         6: z.ZodNumber;
     }, "strip", z.ZodTypeAny, {
         0: number;
-        5: number;
         1: number;
         2: number;
-        4: number;
+        5: number;
         3: number;
+        4: number;
         6: number;
     }, {
         0: number;
-        5: number;
         1: number;
         2: number;
-        4: number;
+        5: number;
         3: number;
+        4: number;
         6: number;
     }>;
 }, "strip", z.ZodTypeAny, {
     type: "reduceIndividualDays";
     dailyTargets: {
         0: number;
-        5: number;
         1: number;
         2: number;
-        4: number;
+        5: number;
         3: number;
+        4: number;
         6: number;
     };
 }, {
     type: "reduceIndividualDays";
     dailyTargets: {
         0: number;
-        5: number;
         1: number;
         2: number;
-        4: number;
+        5: number;
         3: number;
+        4: number;
         6: number;
     };
 }>]>;

@@ -26,6 +26,7 @@ export declare const behaviorLogSchema: z.ZodObject<{
         trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer"]>>;
         value: z.ZodOptional<z.ZodNumber>;
         formattedValue: z.ZodOptional<z.ZodString>;
+        period: z.ZodOptional<z.ZodEnum<["daily", "weekly"]>>;
     } & {
         /** Source of the log: scheduled debrief or manual entry */
         source: z.ZodOptional<z.ZodEnum<["scheduled", "manual"]>>;
@@ -40,6 +41,7 @@ export declare const behaviorLogSchema: z.ZodObject<{
         behaviorTrackingUnit?: string | undefined;
         trackingType?: "counter" | "timer" | undefined;
         formattedValue?: string | undefined;
+        period?: "daily" | "weekly" | undefined;
         source?: "scheduled" | "manual" | undefined;
         debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
         resolvedAt?: import("../../types").Timestamp | undefined;
@@ -50,6 +52,7 @@ export declare const behaviorLogSchema: z.ZodObject<{
         behaviorTrackingUnit?: string | undefined;
         trackingType?: "counter" | "timer" | undefined;
         formattedValue?: string | undefined;
+        period?: "daily" | "weekly" | undefined;
         source?: "scheduled" | "manual" | undefined;
         debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
         resolvedAt?: import("../../types").Timestamp | undefined;
@@ -71,6 +74,7 @@ export declare const behaviorLogSchema: z.ZodObject<{
         behaviorTrackingUnit?: string | undefined;
         trackingType?: "counter" | "timer" | undefined;
         formattedValue?: string | undefined;
+        period?: "daily" | "weekly" | undefined;
         source?: "scheduled" | "manual" | undefined;
         debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
         resolvedAt?: import("../../types").Timestamp | undefined;
@@ -97,6 +101,7 @@ export declare const behaviorLogSchema: z.ZodObject<{
         behaviorTrackingUnit?: string | undefined;
         trackingType?: "counter" | "timer" | undefined;
         formattedValue?: string | undefined;
+        period?: "daily" | "weekly" | undefined;
         source?: "scheduled" | "manual" | undefined;
         debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
         resolvedAt?: import("../../types").Timestamp | undefined;

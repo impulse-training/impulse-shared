@@ -9,4 +9,6 @@ exports.behaviorTrackingDataSchema = zod_1.z.object({
     trackingType: zod_1.z.enum(["counter", "timer"]).optional(),
     value: zod_1.z.number().optional(), // Count or time in seconds
     formattedValue: zod_1.z.string().optional(),
+    // Period for the baseline value (e.g. "3 times per week" vs "30min per day")
+    period: zod_1.z.enum(["daily", "weekly"]).optional(),
 });

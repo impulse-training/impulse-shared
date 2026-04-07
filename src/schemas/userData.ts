@@ -122,6 +122,9 @@ export const userDataSchema = z.object({
     .record(latestSessionMessageTypeSchema, latestSessionMessageSchema)
     .optional(),
 
+  // User location (ISO 3166-1 alpha-2 country code)
+  country: z.string().optional(),
+
   // One-time migration flags
   migrations: z
     .object({

@@ -7,8 +7,12 @@ import { behaviorTemplateBase } from "./behaviorTemplate";
 import { behaviorTopicIdSchema } from "./behaviorTopic";
 
 // Re-export for backward compatibility
-export { trackingTypes } from "./behaviorTemplate";
-export type { BehaviorTemplate, TrackingType } from "./behaviorTemplate";
+export { trackingTypes, baselinePeriods } from "./behaviorTemplate";
+export type {
+  BehaviorTemplate,
+  TrackingType,
+  BaselinePeriod,
+} from "./behaviorTemplate";
 export { behaviorTemplateSchema } from "./behaviorTemplate";
 
 // Trend indicates the direction of behavior adherence over time

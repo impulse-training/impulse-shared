@@ -728,6 +728,7 @@ export declare const supportGroupSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
+    type?: "system" | "alignment" | "social" | "coach" | undefined;
     image?: {
         uri: string;
         storagePath: string;
@@ -747,7 +748,6 @@ export declare const supportGroupSchema: z.ZodObject<{
             }[] | undefined;
         } | undefined;
     } | undefined;
-    type?: "system" | "alignment" | "social" | "coach" | undefined;
     description?: string | undefined;
     isTemplate?: boolean | undefined;
     archivedAt?: import("../types").Timestamp | undefined;

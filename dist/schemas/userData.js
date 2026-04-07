@@ -98,6 +98,8 @@ exports.userDataSchema = zod_1.z.object({
     latestSessionMessages: zod_1.z
         .record(exports.latestSessionMessageTypeSchema, latestSessionMessageSchema)
         .optional(),
+    // User location (ISO 3166-1 alpha-2 country code)
+    country: zod_1.z.string().optional(),
     // One-time migration flags
     migrations: zod_1.z
         .object({

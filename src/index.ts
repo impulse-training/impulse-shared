@@ -24,4 +24,4 @@ export * from "./utils/validation";
 export * from "./utils/withId";
 export * from "./utils/formatBehaviorGoal";
 export * from "./utils/tacticScoring";
-export * from "./utils/tags";
+export * from "./utils/behaviorColors";

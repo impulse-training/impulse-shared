@@ -1009,6 +1009,262 @@ export declare const tacticLogSchema: z.ZodObject<{
                 } | undefined;
                 tags?: string[] | undefined;
             }>, z.ZodObject<{
+                text: z.ZodOptional<z.ZodString>;
+                backgroundImage: z.ZodOptional<z.ZodObject<{
+                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    uri: z.ZodString;
+                    storagePath: z.ZodString;
+                    contentType: z.ZodString;
+                    title: z.ZodOptional<z.ZodString>;
+                    sizeBytes: z.ZodOptional<z.ZodNumber>;
+                    metadata: z.ZodOptional<z.ZodObject<{
+                        width: z.ZodOptional<z.ZodNumber>;
+                        height: z.ZodOptional<z.ZodNumber>;
+                        durationMs: z.ZodOptional<z.ZodNumber>;
+                        transcript: z.ZodOptional<z.ZodString>;
+                        meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                            db: z.ZodNumber;
+                            timestampMs: z.ZodOptional<z.ZodNumber>;
+                        }, "strip", z.ZodTypeAny, {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }, {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }>, "many">>;
+                    }, "strip", z.ZodTypeAny, {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    }, {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    }>>;
+                }, "strip", z.ZodTypeAny, {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }, {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }>>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+            } & {
+                mode: z.ZodLiteral<"audio">;
+                audio: z.ZodOptional<z.ZodObject<{
+                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    uri: z.ZodString;
+                    storagePath: z.ZodString;
+                    contentType: z.ZodString;
+                    title: z.ZodOptional<z.ZodString>;
+                    sizeBytes: z.ZodOptional<z.ZodNumber>;
+                    metadata: z.ZodOptional<z.ZodObject<{
+                        width: z.ZodOptional<z.ZodNumber>;
+                        height: z.ZodOptional<z.ZodNumber>;
+                        durationMs: z.ZodOptional<z.ZodNumber>;
+                        transcript: z.ZodOptional<z.ZodString>;
+                        meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                            db: z.ZodNumber;
+                            timestampMs: z.ZodOptional<z.ZodNumber>;
+                        }, "strip", z.ZodTypeAny, {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }, {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }>, "many">>;
+                    }, "strip", z.ZodTypeAny, {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    }, {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    }>>;
+                }, "strip", z.ZodTypeAny, {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }, {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }>>;
+                generationJobId: z.ZodOptional<z.ZodString>;
+                autoplay: z.ZodOptional<z.ZodBoolean>;
+                loopCount: z.ZodOptional<z.ZodNumber>;
+            }, "strip", z.ZodTypeAny, {
+                mode: "audio";
+                audio?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                generationJobId?: string | undefined;
+                autoplay?: boolean | undefined;
+                loopCount?: number | undefined;
+            }, {
+                mode: "audio";
+                audio?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                generationJobId?: string | undefined;
+                autoplay?: boolean | undefined;
+                loopCount?: number | undefined;
+            }>, z.ZodObject<{
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -1445,13 +1701,19 @@ export declare const tacticLogSchema: z.ZodObject<{
                 prompt: z.ZodOptional<z.ZodString>;
             }, "strip", z.ZodTypeAny, {
                 goal: string;
-                prompt?: string | undefined;
                 defaultConversationMode?: "text" | "voice" | undefined;
+                prompt?: string | undefined;
             }, {
                 goal: string;
-                prompt?: string | undefined;
                 defaultConversationMode?: "text" | "voice" | undefined;
+                prompt?: string | undefined;
             }>>;
+            generationStatus: z.ZodOptional<z.ZodEnum<["pending", "processing", "completed", "failed"]>>;
+            generationError: z.ZodOptional<z.ZodString>;
+            generationProvider: z.ZodOptional<z.ZodString>;
+            generationProviderJobId: z.ZodOptional<z.ZodString>;
+            generationPrompt: z.ZodOptional<z.ZodString>;
+            generationVoice: z.ZodOptional<z.ZodNullable<z.ZodEnum<["m", "f"]>>>;
             createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
             updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
         }, "strip", z.ZodTypeAny, {
@@ -1483,6 +1745,51 @@ export declare const tacticLogSchema: z.ZodObject<{
                 } | undefined;
                 tags?: string[] | undefined;
             } | {
+                mode: "audio";
+                audio?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                generationJobId?: string | undefined;
+                autoplay?: boolean | undefined;
+                loopCount?: number | undefined;
+            } | {
                 mode: "breathing";
                 breathingPattern: {
                     inhale: number;
@@ -1687,12 +1994,12 @@ export declare const tacticLogSchema: z.ZodObject<{
             title?: string | undefined;
             description?: string | undefined;
             tags?: string[] | undefined;
+            autoplay?: boolean | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
             phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
-            autoplay?: boolean | undefined;
             indications?: {
                 tags?: {
                     weight: number;
@@ -1733,9 +2040,15 @@ export declare const tacticLogSchema: z.ZodObject<{
             timeToComplete?: "medium" | "long" | "quick" | undefined;
             aiConfiguration?: {
                 goal: string;
-                prompt?: string | undefined;
                 defaultConversationMode?: "text" | "voice" | undefined;
+                prompt?: string | undefined;
             } | undefined;
+            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationError?: string | undefined;
+            generationProvider?: string | undefined;
+            generationProviderJobId?: string | undefined;
+            generationPrompt?: string | undefined;
+            generationVoice?: "m" | "f" | null | undefined;
         }, {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -1765,6 +2078,51 @@ export declare const tacticLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
                 repeatCount?: number | undefined;
             } | {
+                mode: "audio";
+                audio?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                generationJobId?: string | undefined;
+                autoplay?: boolean | undefined;
+                loopCount?: number | undefined;
+            } | {
                 mode: "breathing";
                 breathingPattern: {
                     inhale: number;
@@ -1969,12 +2327,12 @@ export declare const tacticLogSchema: z.ZodObject<{
             title?: string | undefined;
             description?: string | undefined;
             tags?: string[] | undefined;
+            autoplay?: boolean | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
             phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
-            autoplay?: boolean | undefined;
             indications?: {
                 tags?: {
                     weight: number;
@@ -2015,9 +2373,15 @@ export declare const tacticLogSchema: z.ZodObject<{
             timeToComplete?: "medium" | "long" | "quick" | undefined;
             aiConfiguration?: {
                 goal: string;
-                prompt?: string | undefined;
                 defaultConversationMode?: "text" | "voice" | undefined;
+                prompt?: string | undefined;
             } | undefined;
+            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationError?: string | undefined;
+            generationProvider?: string | undefined;
+            generationProviderJobId?: string | undefined;
+            generationPrompt?: string | undefined;
+            generationVoice?: "m" | "f" | null | undefined;
         }>;
         planId: z.ZodOptional<z.ZodString>;
         planLogId: z.ZodOptional<z.ZodString>;
@@ -2072,6 +2436,51 @@ export declare const tacticLogSchema: z.ZodObject<{
                 } | undefined;
                 tags?: string[] | undefined;
             } | {
+                mode: "audio";
+                audio?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                generationJobId?: string | undefined;
+                autoplay?: boolean | undefined;
+                loopCount?: number | undefined;
+            } | {
                 mode: "breathing";
                 breathingPattern: {
                     inhale: number;
@@ -2276,12 +2685,12 @@ export declare const tacticLogSchema: z.ZodObject<{
             title?: string | undefined;
             description?: string | undefined;
             tags?: string[] | undefined;
+            autoplay?: boolean | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
             phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
-            autoplay?: boolean | undefined;
             indications?: {
                 tags?: {
                     weight: number;
@@ -2322,9 +2731,15 @@ export declare const tacticLogSchema: z.ZodObject<{
             timeToComplete?: "medium" | "long" | "quick" | undefined;
             aiConfiguration?: {
                 goal: string;
-                prompt?: string | undefined;
                 defaultConversationMode?: "text" | "voice" | undefined;
+                prompt?: string | undefined;
             } | undefined;
+            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationError?: string | undefined;
+            generationProvider?: string | undefined;
+            generationProviderJobId?: string | undefined;
+            generationPrompt?: string | undefined;
+            generationVoice?: "m" | "f" | null | undefined;
         };
         completed?: boolean | undefined;
         planId?: string | undefined;
@@ -2371,6 +2786,51 @@ export declare const tacticLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
                 repeatCount?: number | undefined;
             } | {
+                mode: "audio";
+                audio?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                generationJobId?: string | undefined;
+                autoplay?: boolean | undefined;
+                loopCount?: number | undefined;
+            } | {
                 mode: "breathing";
                 breathingPattern: {
                     inhale: number;
@@ -2575,12 +3035,12 @@ export declare const tacticLogSchema: z.ZodObject<{
             title?: string | undefined;
             description?: string | undefined;
             tags?: string[] | undefined;
+            autoplay?: boolean | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
             phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
-            autoplay?: boolean | undefined;
             indications?: {
                 tags?: {
                     weight: number;
@@ -2621,9 +3081,15 @@ export declare const tacticLogSchema: z.ZodObject<{
             timeToComplete?: "medium" | "long" | "quick" | undefined;
             aiConfiguration?: {
                 goal: string;
-                prompt?: string | undefined;
                 defaultConversationMode?: "text" | "voice" | undefined;
+                prompt?: string | undefined;
             } | undefined;
+            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationError?: string | undefined;
+            generationProvider?: string | undefined;
+            generationProviderJobId?: string | undefined;
+            generationPrompt?: string | undefined;
+            generationVoice?: "m" | "f" | null | undefined;
         };
         completed?: boolean | undefined;
         planId?: string | undefined;
@@ -2680,6 +3146,51 @@ export declare const tacticLogSchema: z.ZodObject<{
                 } | undefined;
                 tags?: string[] | undefined;
             } | {
+                mode: "audio";
+                audio?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                generationJobId?: string | undefined;
+                autoplay?: boolean | undefined;
+                loopCount?: number | undefined;
+            } | {
                 mode: "breathing";
                 breathingPattern: {
                     inhale: number;
@@ -2884,12 +3395,12 @@ export declare const tacticLogSchema: z.ZodObject<{
             title?: string | undefined;
             description?: string | undefined;
             tags?: string[] | undefined;
+            autoplay?: boolean | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
             phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
-            autoplay?: boolean | undefined;
             indications?: {
                 tags?: {
                     weight: number;
@@ -2930,9 +3441,15 @@ export declare const tacticLogSchema: z.ZodObject<{
             timeToComplete?: "medium" | "long" | "quick" | undefined;
             aiConfiguration?: {
                 goal: string;
-                prompt?: string | undefined;
                 defaultConversationMode?: "text" | "voice" | undefined;
+                prompt?: string | undefined;
             } | undefined;
+            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationError?: string | undefined;
+            generationProvider?: string | undefined;
+            generationProviderJobId?: string | undefined;
+            generationPrompt?: string | undefined;
+            generationVoice?: "m" | "f" | null | undefined;
         };
         completed?: boolean | undefined;
         planId?: string | undefined;
@@ -2994,6 +3511,51 @@ export declare const tacticLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
                 repeatCount?: number | undefined;
             } | {
+                mode: "audio";
+                audio?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                generationJobId?: string | undefined;
+                autoplay?: boolean | undefined;
+                loopCount?: number | undefined;
+            } | {
                 mode: "breathing";
                 breathingPattern: {
                     inhale: number;
@@ -3198,12 +3760,12 @@ export declare const tacticLogSchema: z.ZodObject<{
             title?: string | undefined;
             description?: string | undefined;
             tags?: string[] | undefined;
+            autoplay?: boolean | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
             phase?: "shift" | "regulate" | "reengage" | undefined;
             isMultiStep?: boolean | undefined;
-            autoplay?: boolean | undefined;
             indications?: {
                 tags?: {
                     weight: number;
@@ -3244,9 +3806,15 @@ export declare const tacticLogSchema: z.ZodObject<{
             timeToComplete?: "medium" | "long" | "quick" | undefined;
             aiConfiguration?: {
                 goal: string;
-                prompt?: string | undefined;
                 defaultConversationMode?: "text" | "voice" | undefined;
+                prompt?: string | undefined;
             } | undefined;
+            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationError?: string | undefined;
+            generationProvider?: string | undefined;
+            generationProviderJobId?: string | undefined;
+            generationPrompt?: string | undefined;
+            generationVoice?: "m" | "f" | null | undefined;
         };
         completed?: boolean | undefined;
         planId?: string | undefined;

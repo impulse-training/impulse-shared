@@ -12,6 +12,7 @@ export const monthSummaryDayEntrySchema = z.object({
 export type MonthSummaryDayEntry = z.infer<typeof monthSummaryDayEntrySchema>;
 
 export const monthSummarySchema = z.object({
+  id: z.string().optional(),
   userId: z.string(),
   /** Month in "yyyy-MM" format */
   month: z.string(),

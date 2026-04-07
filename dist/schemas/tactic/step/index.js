@@ -14,10 +14,11 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.stepIsPedometerStep = exports.stepIsAffirmationStep = exports.stepIsDefaultStep = exports.stepIsNotifySupportStep = exports.stepIsBreathingStep = exports.stepIsQuestionStep = exports.stepIsMediaStep = exports.tacticStepSchema = void 0;
+exports.stepIsPedometerStep = exports.stepIsAffirmationStep = exports.stepIsDefaultStep = exports.stepIsNotifySupportStep = exports.stepIsBreathingStep = exports.stepIsQuestionStep = exports.stepIsAudioStep = exports.stepIsMediaStep = exports.tacticStepSchema = void 0;
 const zod_1 = require("zod");
 // Import all step schemas
 __exportStar(require("./affirmation"), exports);
+__exportStar(require("./audio"), exports);
 __exportStar(require("./base"), exports);
 __exportStar(require("./breathing"), exports);
 __exportStar(require("./default"), exports);
@@ -26,6 +27,7 @@ __exportStar(require("./pedometer"), exports);
 __exportStar(require("./notifySupport"), exports);
 __exportStar(require("./question"), exports);
 const affirmation_1 = require("./affirmation");
+const audio_1 = require("./audio");
 const breathing_1 = require("./breathing");
 const default_1 = require("./default");
 const media_1 = require("./media");
@@ -39,11 +41,14 @@ exports.tacticStepSchema = zod_1.z.discriminatedUnion("mode", [
     question_1.textQuestionStepSchema,
     question_1.slider1To10QuestionStepSchema,
     media_1.mediaStepSchema,
+    audio_1.audioStepSchema,
     affirmation_1.affirmationStepSchema,
     pedometer_1.pedometerStepSchema,
 ]);
 const stepIsMediaStep = (step) => step.mode === "media";
 exports.stepIsMediaStep = stepIsMediaStep;
+const stepIsAudioStep = (step) => step.mode === "audio";
+exports.stepIsAudioStep = stepIsAudioStep;
 const stepIsQuestionStep = (step) => step.mode === "question-text" || step.mode === "question-slider1To10";
 exports.stepIsQuestionStep = stepIsQuestionStep;
 const stepIsBreathingStep = (step) => step.mode === "breathing";

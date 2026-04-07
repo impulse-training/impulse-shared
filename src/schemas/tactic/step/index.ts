@@ -2,6 +2,7 @@ import { z } from "zod";
 
 // Import all step schemas
 export * from "./affirmation";
+export * from "./audio";
 export * from "./base";
 export * from "./breathing";
 export * from "./default";
@@ -11,6 +12,7 @@ export * from "./notifySupport";
 export * from "./question";
 
 import { AffirmationStep, affirmationStepSchema } from "./affirmation";
+import { AudioStep, audioStepSchema } from "./audio";
 import { BreathingStep, breathingStepSchema } from "./breathing";
 import { DefaultStep, defaultStepSchema } from "./default";
 import { MediaStep, mediaStepSchema } from "./media";
@@ -29,6 +31,7 @@ export const tacticStepSchema = z.discriminatedUnion("mode", [
   textQuestionStepSchema,
   slider1To10QuestionStepSchema,
   mediaStepSchema,
+  audioStepSchema,
   affirmationStepSchema,
   pedometerStepSchema,
 ]);
@@ -37,6 +40,9 @@ export type TacticStep = z.infer<typeof tacticStepSchema>;
 
 export const stepIsMediaStep = (step: TacticStep): step is MediaStep =>
   step.mode === "media";
+
+export const stepIsAudioStep = (step: TacticStep): step is AudioStep =>
+  step.mode === "audio";
 
 export const stepIsQuestionStep = (step: TacticStep): step is QuestionStep =>
   step.mode === "question-text" || step.mode === "question-slider1To10";
@@ -60,6 +66,7 @@ export const stepIsPedometerStep = (step: TacticStep): step is PedometerStep =>
 
 // Re-export concrete step types for precise narrowing
 export type {
+  AudioStep,
   BreathingStep,
   DefaultStep,
   MediaStep,

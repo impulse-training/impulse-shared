@@ -58,10 +58,12 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         (0, log_1.logIsSetupModeChoiceLog)(afterData) &&
         afterData.data.choice === "text" &&
         (0, fields_1.fieldChanged)(beforeData, afterData, "data.choice");
+    const isTagsUpdated = !beforeData && afterData && (0, log_1.logIsTagsUpdatedLog)(afterData);
     if (!isMetricRating &&
         !isDebriefOutcomeResolved &&
         !isDayTotalsPromptAction &&
         !isSetupModeTextChoice &&
+        !isTagsUpdated &&
         latestSessionLog &&
         (0, log_1.logIsAssistantMessageLog)(latestSessionLog)) {
         console.log("Latest message is from assistant. Not responding with AI.");
@@ -73,6 +75,11 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
     // Case: New message logs (creation event, no before data)
     if (isCreating && (0, log_1.logIsUserMessageLog)(afterData)) {
         console.log("New message log. Responding with AI.");
+        return true;
+    }
+    // Case: Tags updated from UI — user set/changed session tags manually
+    if (isTagsUpdated) {
+        console.log("Tags updated from UI. Responding with AI.");
         return true;
     }
     // Case: A plan was completed (plansLog gains completedAt on a plan entry)
