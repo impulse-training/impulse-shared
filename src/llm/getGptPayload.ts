@@ -305,13 +305,30 @@ export function getGptPayload(
 
   // Tags updated from UI — inform the AI so it can respond with tactic suggestions
   if (log.type === "tags_updated") {
+    const tactics = (log as any).data?.recommendedTactics as
+      | Array<{ tacticId: string; title: string; description?: string; phase?: string }>
+      | undefined;
+
+    let tacticsContext = "";
+    if (tactics && tactics.length > 0) {
+      const lines = tactics.map(
+        (t) =>
+          `- [id=${t.tacticId}] "${t.title}"${t.phase ? ` (${t.phase})` : ""}${t.description ? ` — ${t.description}` : ""}`,
+      );
+      tacticsContext =
+        "\n\nRecommended tactics (use suggestTactic with the tactic ID):\n" +
+        lines.join("\n");
+    }
+
     return [
       {
         role: "user",
         content:
           "<SYSTEM>The user just updated their session tags using the tag bar. " +
           "Review the updated tags in your context and respond appropriately. " +
-          "If recommended tactics are now available, consider suggesting one.</SYSTEM>",
+          "Suggest a tactic using the suggestTactic tool." +
+          tacticsContext +
+          "</SYSTEM>",
       },
     ];
   }

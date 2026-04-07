@@ -12201,6 +12201,44 @@ export declare const logSchemas: {
                     tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
                     questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
                     tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodRecord<z.ZodString, z.ZodNumber>>>;
+                    indications: z.ZodOptional<z.ZodObject<{
+                        tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                            tagGroupName: z.ZodString;
+                            optionLabels: z.ZodArray<z.ZodString, "many">;
+                            weight: z.ZodNumber;
+                        }, "strip", z.ZodTypeAny, {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }, {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }>, "many">>;
+                        behaviorTemplateNames: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                    }, "strip", z.ZodTypeAny, {
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }[] | undefined;
+                        behaviorTemplateNames?: string[] | undefined;
+                    }, {
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }[] | undefined;
+                        behaviorTemplateNames?: string[] | undefined;
+                    }>>;
+                    isGenerated: z.ZodOptional<z.ZodBoolean>;
+                    generationSource: z.ZodOptional<z.ZodEnum<["impulse_debrief"]>>;
+                    generationSignature: z.ZodOptional<z.ZodString>;
+                    generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                    generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
+                    numberOfUses: z.ZodOptional<z.ZodNumber>;
+                    numberOfSuccesses: z.ZodOptional<z.ZodNumber>;
+                    numberOfSetbacks: z.ZodOptional<z.ZodNumber>;
                     lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -12218,9 +12256,25 @@ export declare const logSchemas: {
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     tags?: Record<string, Record<string, number>> | undefined;
+                    indications?: {
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }[] | undefined;
+                        behaviorTemplateNames?: string[] | undefined;
+                    } | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
+                    isGenerated?: boolean | undefined;
+                    generationSource?: "impulse_debrief" | undefined;
+                    generationSignature?: string | undefined;
+                    generatedFromTacticIds?: string[] | undefined;
+                    generatedFromSessionCount?: number | undefined;
+                    numberOfUses?: number | undefined;
+                    numberOfSuccesses?: number | undefined;
+                    numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
@@ -12234,10 +12288,26 @@ export declare const logSchemas: {
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     tags?: Record<string, Record<string, number>> | undefined;
+                    indications?: {
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }[] | undefined;
+                        behaviorTemplateNames?: string[] | undefined;
+                    } | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                    isGenerated?: boolean | undefined;
+                    generationSource?: "impulse_debrief" | undefined;
+                    generationSignature?: string | undefined;
+                    generatedFromTacticIds?: string[] | undefined;
+                    generatedFromSessionCount?: number | undefined;
+                    numberOfUses?: number | undefined;
+                    numberOfSuccesses?: number | undefined;
+                    numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
@@ -12262,6 +12332,44 @@ export declare const logSchemas: {
                     tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
                     questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
                     tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodRecord<z.ZodString, z.ZodNumber>>>;
+                    indications: z.ZodOptional<z.ZodObject<{
+                        tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                            tagGroupName: z.ZodString;
+                            optionLabels: z.ZodArray<z.ZodString, "many">;
+                            weight: z.ZodNumber;
+                        }, "strip", z.ZodTypeAny, {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }, {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }>, "many">>;
+                        behaviorTemplateNames: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                    }, "strip", z.ZodTypeAny, {
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }[] | undefined;
+                        behaviorTemplateNames?: string[] | undefined;
+                    }, {
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }[] | undefined;
+                        behaviorTemplateNames?: string[] | undefined;
+                    }>>;
+                    isGenerated: z.ZodOptional<z.ZodBoolean>;
+                    generationSource: z.ZodOptional<z.ZodEnum<["impulse_debrief"]>>;
+                    generationSignature: z.ZodOptional<z.ZodString>;
+                    generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                    generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
+                    numberOfUses: z.ZodOptional<z.ZodNumber>;
+                    numberOfSuccesses: z.ZodOptional<z.ZodNumber>;
+                    numberOfSetbacks: z.ZodOptional<z.ZodNumber>;
                     lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -12284,9 +12392,25 @@ export declare const logSchemas: {
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     tags?: Record<string, Record<string, number>> | undefined;
+                    indications?: {
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }[] | undefined;
+                        behaviorTemplateNames?: string[] | undefined;
+                    } | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
+                    isGenerated?: boolean | undefined;
+                    generationSource?: "impulse_debrief" | undefined;
+                    generationSignature?: string | undefined;
+                    generatedFromTacticIds?: string[] | undefined;
+                    generatedFromSessionCount?: number | undefined;
+                    numberOfUses?: number | undefined;
+                    numberOfSuccesses?: number | undefined;
+                    numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                 }, {
@@ -12302,10 +12426,26 @@ export declare const logSchemas: {
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     tags?: Record<string, Record<string, number>> | undefined;
+                    indications?: {
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }[] | undefined;
+                        behaviorTemplateNames?: string[] | undefined;
+                    } | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                    isGenerated?: boolean | undefined;
+                    generationSource?: "impulse_debrief" | undefined;
+                    generationSignature?: string | undefined;
+                    generatedFromTacticIds?: string[] | undefined;
+                    generatedFromSessionCount?: number | undefined;
+                    numberOfUses?: number | undefined;
+                    numberOfSuccesses?: number | undefined;
+                    numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                 }>>, z.ZodIntersection<z.ZodObject<{
@@ -12329,6 +12469,41 @@ export declare const logSchemas: {
                     tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
                     questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
                     tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodRecord<z.ZodString, z.ZodNumber>>>;
+                    indications: z.ZodOptional<z.ZodObject<{
+                        tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                            tagGroupName: z.ZodString;
+                            optionLabels: z.ZodArray<z.ZodString, "many">;
+                            weight: z.ZodNumber;
+                        }, "strip", z.ZodTypeAny, {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }, {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }>, "many">>;
+                        behaviorTemplateNames: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                    }, "strip", z.ZodTypeAny, {
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }[] | undefined;
+                        behaviorTemplateNames?: string[] | undefined;
+                    }, {
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }[] | undefined;
+                        behaviorTemplateNames?: string[] | undefined;
+                    }>>;
+                    isGenerated: z.ZodOptional<z.ZodBoolean>;
+                    generationSource: z.ZodOptional<z.ZodEnum<["impulse_debrief"]>>;
+                    generationSignature: z.ZodOptional<z.ZodString>;
+                    generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                    generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -12352,9 +12527,22 @@ export declare const logSchemas: {
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     tags?: Record<string, Record<string, number>> | undefined;
+                    indications?: {
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }[] | undefined;
+                        behaviorTemplateNames?: string[] | undefined;
+                    } | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
+                    isGenerated?: boolean | undefined;
+                    generationSource?: "impulse_debrief" | undefined;
+                    generationSignature?: string | undefined;
+                    generatedFromTacticIds?: string[] | undefined;
+                    generatedFromSessionCount?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
@@ -12368,16 +12556,29 @@ export declare const logSchemas: {
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     tags?: Record<string, Record<string, number>> | undefined;
+                    indications?: {
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }[] | undefined;
+                        behaviorTemplateNames?: string[] | undefined;
+                    } | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
-                    lastUsedAt?: import("../../types").Timestamp | undefined;
-                    deletedAt?: import("../../types").Timestamp | undefined;
-                    isActive?: boolean | undefined;
+                    isGenerated?: boolean | undefined;
+                    generationSource?: "impulse_debrief" | undefined;
+                    generationSignature?: string | undefined;
+                    generatedFromTacticIds?: string[] | undefined;
+                    generatedFromSessionCount?: number | undefined;
                     numberOfUses?: number | undefined;
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
+                    lastUsedAt?: import("../../types").Timestamp | undefined;
+                    deletedAt?: import("../../types").Timestamp | undefined;
+                    isActive?: boolean | undefined;
                 }>>]>;
                 startedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 completedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -12397,9 +12598,25 @@ export declare const logSchemas: {
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     tags?: Record<string, Record<string, number>> | undefined;
+                    indications?: {
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }[] | undefined;
+                        behaviorTemplateNames?: string[] | undefined;
+                    } | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
+                    isGenerated?: boolean | undefined;
+                    generationSource?: "impulse_debrief" | undefined;
+                    generationSignature?: string | undefined;
+                    generatedFromTacticIds?: string[] | undefined;
+                    generatedFromSessionCount?: number | undefined;
+                    numberOfUses?: number | undefined;
+                    numberOfSuccesses?: number | undefined;
+                    numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
@@ -12420,9 +12637,25 @@ export declare const logSchemas: {
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     tags?: Record<string, Record<string, number>> | undefined;
+                    indications?: {
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }[] | undefined;
+                        behaviorTemplateNames?: string[] | undefined;
+                    } | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
+                    isGenerated?: boolean | undefined;
+                    generationSource?: "impulse_debrief" | undefined;
+                    generationSignature?: string | undefined;
+                    generatedFromTacticIds?: string[] | undefined;
+                    generatedFromSessionCount?: number | undefined;
+                    numberOfUses?: number | undefined;
+                    numberOfSuccesses?: number | undefined;
+                    numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                 }) | ({
@@ -12442,9 +12675,22 @@ export declare const logSchemas: {
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     tags?: Record<string, Record<string, number>> | undefined;
+                    indications?: {
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }[] | undefined;
+                        behaviorTemplateNames?: string[] | undefined;
+                    } | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
+                    isGenerated?: boolean | undefined;
+                    generationSource?: "impulse_debrief" | undefined;
+                    generationSignature?: string | undefined;
+                    generatedFromTacticIds?: string[] | undefined;
+                    generatedFromSessionCount?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
@@ -12466,10 +12712,26 @@ export declare const logSchemas: {
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     tags?: Record<string, Record<string, number>> | undefined;
+                    indications?: {
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }[] | undefined;
+                        behaviorTemplateNames?: string[] | undefined;
+                    } | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                    isGenerated?: boolean | undefined;
+                    generationSource?: "impulse_debrief" | undefined;
+                    generationSignature?: string | undefined;
+                    generatedFromTacticIds?: string[] | undefined;
+                    generatedFromSessionCount?: number | undefined;
+                    numberOfUses?: number | undefined;
+                    numberOfSuccesses?: number | undefined;
+                    numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
@@ -12489,10 +12751,26 @@ export declare const logSchemas: {
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     tags?: Record<string, Record<string, number>> | undefined;
+                    indications?: {
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }[] | undefined;
+                        behaviorTemplateNames?: string[] | undefined;
+                    } | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                    isGenerated?: boolean | undefined;
+                    generationSource?: "impulse_debrief" | undefined;
+                    generationSignature?: string | undefined;
+                    generatedFromTacticIds?: string[] | undefined;
+                    generatedFromSessionCount?: number | undefined;
+                    numberOfUses?: number | undefined;
+                    numberOfSuccesses?: number | undefined;
+                    numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                 }) | ({
@@ -12508,16 +12786,29 @@ export declare const logSchemas: {
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     tags?: Record<string, Record<string, number>> | undefined;
+                    indications?: {
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }[] | undefined;
+                        behaviorTemplateNames?: string[] | undefined;
+                    } | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
-                    lastUsedAt?: import("../../types").Timestamp | undefined;
-                    deletedAt?: import("../../types").Timestamp | undefined;
-                    isActive?: boolean | undefined;
+                    isGenerated?: boolean | undefined;
+                    generationSource?: "impulse_debrief" | undefined;
+                    generationSignature?: string | undefined;
+                    generatedFromTacticIds?: string[] | undefined;
+                    generatedFromSessionCount?: number | undefined;
                     numberOfUses?: number | undefined;
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
+                    lastUsedAt?: import("../../types").Timestamp | undefined;
+                    deletedAt?: import("../../types").Timestamp | undefined;
+                    isActive?: boolean | undefined;
                 });
                 startedAt?: import("../../types").Timestamp | undefined;
                 completedAt?: import("../../types").Timestamp | undefined;
@@ -12542,9 +12833,25 @@ export declare const logSchemas: {
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     tags?: Record<string, Record<string, number>> | undefined;
+                    indications?: {
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }[] | undefined;
+                        behaviorTemplateNames?: string[] | undefined;
+                    } | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
+                    isGenerated?: boolean | undefined;
+                    generationSource?: "impulse_debrief" | undefined;
+                    generationSignature?: string | undefined;
+                    generatedFromTacticIds?: string[] | undefined;
+                    generatedFromSessionCount?: number | undefined;
+                    numberOfUses?: number | undefined;
+                    numberOfSuccesses?: number | undefined;
+                    numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
@@ -12565,9 +12872,25 @@ export declare const logSchemas: {
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     tags?: Record<string, Record<string, number>> | undefined;
+                    indications?: {
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }[] | undefined;
+                        behaviorTemplateNames?: string[] | undefined;
+                    } | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
+                    isGenerated?: boolean | undefined;
+                    generationSource?: "impulse_debrief" | undefined;
+                    generationSignature?: string | undefined;
+                    generatedFromTacticIds?: string[] | undefined;
+                    generatedFromSessionCount?: number | undefined;
+                    numberOfUses?: number | undefined;
+                    numberOfSuccesses?: number | undefined;
+                    numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                 }) | ({
@@ -12587,9 +12910,22 @@ export declare const logSchemas: {
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     tags?: Record<string, Record<string, number>> | undefined;
+                    indications?: {
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }[] | undefined;
+                        behaviorTemplateNames?: string[] | undefined;
+                    } | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
+                    isGenerated?: boolean | undefined;
+                    generationSource?: "impulse_debrief" | undefined;
+                    generationSignature?: string | undefined;
+                    generatedFromTacticIds?: string[] | undefined;
+                    generatedFromSessionCount?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
@@ -12618,10 +12954,26 @@ export declare const logSchemas: {
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     tags?: Record<string, Record<string, number>> | undefined;
+                    indications?: {
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }[] | undefined;
+                        behaviorTemplateNames?: string[] | undefined;
+                    } | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                    isGenerated?: boolean | undefined;
+                    generationSource?: "impulse_debrief" | undefined;
+                    generationSignature?: string | undefined;
+                    generatedFromTacticIds?: string[] | undefined;
+                    generatedFromSessionCount?: number | undefined;
+                    numberOfUses?: number | undefined;
+                    numberOfSuccesses?: number | undefined;
+                    numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
@@ -12641,10 +12993,26 @@ export declare const logSchemas: {
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     tags?: Record<string, Record<string, number>> | undefined;
+                    indications?: {
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }[] | undefined;
+                        behaviorTemplateNames?: string[] | undefined;
+                    } | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                    isGenerated?: boolean | undefined;
+                    generationSource?: "impulse_debrief" | undefined;
+                    generationSignature?: string | undefined;
+                    generatedFromTacticIds?: string[] | undefined;
+                    generatedFromSessionCount?: number | undefined;
+                    numberOfUses?: number | undefined;
+                    numberOfSuccesses?: number | undefined;
+                    numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                 }) | ({
@@ -12660,16 +13028,29 @@ export declare const logSchemas: {
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     tags?: Record<string, Record<string, number>> | undefined;
+                    indications?: {
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }[] | undefined;
+                        behaviorTemplateNames?: string[] | undefined;
+                    } | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
-                    lastUsedAt?: import("../../types").Timestamp | undefined;
-                    deletedAt?: import("../../types").Timestamp | undefined;
-                    isActive?: boolean | undefined;
+                    isGenerated?: boolean | undefined;
+                    generationSource?: "impulse_debrief" | undefined;
+                    generationSignature?: string | undefined;
+                    generatedFromTacticIds?: string[] | undefined;
+                    generatedFromSessionCount?: number | undefined;
                     numberOfUses?: number | undefined;
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
+                    lastUsedAt?: import("../../types").Timestamp | undefined;
+                    deletedAt?: import("../../types").Timestamp | undefined;
+                    isActive?: boolean | undefined;
                 });
                 startedAt?: import("../../types").Timestamp | undefined;
                 completedAt?: import("../../types").Timestamp | undefined;
@@ -12706,9 +13087,25 @@ export declare const logSchemas: {
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     tags?: Record<string, Record<string, number>> | undefined;
+                    indications?: {
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }[] | undefined;
+                        behaviorTemplateNames?: string[] | undefined;
+                    } | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
+                    isGenerated?: boolean | undefined;
+                    generationSource?: "impulse_debrief" | undefined;
+                    generationSignature?: string | undefined;
+                    generatedFromTacticIds?: string[] | undefined;
+                    generatedFromSessionCount?: number | undefined;
+                    numberOfUses?: number | undefined;
+                    numberOfSuccesses?: number | undefined;
+                    numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
@@ -12729,9 +13126,25 @@ export declare const logSchemas: {
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     tags?: Record<string, Record<string, number>> | undefined;
+                    indications?: {
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }[] | undefined;
+                        behaviorTemplateNames?: string[] | undefined;
+                    } | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
+                    isGenerated?: boolean | undefined;
+                    generationSource?: "impulse_debrief" | undefined;
+                    generationSignature?: string | undefined;
+                    generatedFromTacticIds?: string[] | undefined;
+                    generatedFromSessionCount?: number | undefined;
+                    numberOfUses?: number | undefined;
+                    numberOfSuccesses?: number | undefined;
+                    numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                 }) | ({
@@ -12751,9 +13164,22 @@ export declare const logSchemas: {
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     tags?: Record<string, Record<string, number>> | undefined;
+                    indications?: {
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }[] | undefined;
+                        behaviorTemplateNames?: string[] | undefined;
+                    } | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
+                    isGenerated?: boolean | undefined;
+                    generationSource?: "impulse_debrief" | undefined;
+                    generationSignature?: string | undefined;
+                    generatedFromTacticIds?: string[] | undefined;
+                    generatedFromSessionCount?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
@@ -12797,10 +13223,26 @@ export declare const logSchemas: {
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     tags?: Record<string, Record<string, number>> | undefined;
+                    indications?: {
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }[] | undefined;
+                        behaviorTemplateNames?: string[] | undefined;
+                    } | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                    isGenerated?: boolean | undefined;
+                    generationSource?: "impulse_debrief" | undefined;
+                    generationSignature?: string | undefined;
+                    generatedFromTacticIds?: string[] | undefined;
+                    generatedFromSessionCount?: number | undefined;
+                    numberOfUses?: number | undefined;
+                    numberOfSuccesses?: number | undefined;
+                    numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
@@ -12820,10 +13262,26 @@ export declare const logSchemas: {
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     tags?: Record<string, Record<string, number>> | undefined;
+                    indications?: {
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }[] | undefined;
+                        behaviorTemplateNames?: string[] | undefined;
+                    } | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                    isGenerated?: boolean | undefined;
+                    generationSource?: "impulse_debrief" | undefined;
+                    generationSignature?: string | undefined;
+                    generatedFromTacticIds?: string[] | undefined;
+                    generatedFromSessionCount?: number | undefined;
+                    numberOfUses?: number | undefined;
+                    numberOfSuccesses?: number | undefined;
+                    numberOfSetbacks?: number | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                 }) | ({
@@ -12839,16 +13297,29 @@ export declare const logSchemas: {
                     description?: string | undefined;
                     ordinal?: number | undefined;
                     tags?: Record<string, Record<string, number>> | undefined;
+                    indications?: {
+                        tags?: {
+                            weight: number;
+                            tagGroupName: string;
+                            optionLabels: string[];
+                        }[] | undefined;
+                        behaviorTemplateNames?: string[] | undefined;
+                    } | undefined;
                     summary?: string | undefined;
                     isTemplate?: boolean | undefined;
                     tacticsByPath?: Record<string, any> | undefined;
                     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
-                    lastUsedAt?: import("../../types").Timestamp | undefined;
-                    deletedAt?: import("../../types").Timestamp | undefined;
-                    isActive?: boolean | undefined;
+                    isGenerated?: boolean | undefined;
+                    generationSource?: "impulse_debrief" | undefined;
+                    generationSignature?: string | undefined;
+                    generatedFromTacticIds?: string[] | undefined;
+                    generatedFromSessionCount?: number | undefined;
                     numberOfUses?: number | undefined;
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
+                    lastUsedAt?: import("../../types").Timestamp | undefined;
+                    deletedAt?: import("../../types").Timestamp | undefined;
+                    isActive?: boolean | undefined;
                 });
                 startedAt?: import("../../types").Timestamp | undefined;
                 completedAt?: import("../../types").Timestamp | undefined;
@@ -27095,6 +27566,44 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
                 questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
                 tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodRecord<z.ZodString, z.ZodNumber>>>;
+                indications: z.ZodOptional<z.ZodObject<{
+                    tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                        tagGroupName: z.ZodString;
+                        optionLabels: z.ZodArray<z.ZodString, "many">;
+                        weight: z.ZodNumber;
+                    }, "strip", z.ZodTypeAny, {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }, {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }>, "many">>;
+                    behaviorTemplateNames: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                }, "strip", z.ZodTypeAny, {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
+                    behaviorTemplateNames?: string[] | undefined;
+                }, {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
+                    behaviorTemplateNames?: string[] | undefined;
+                }>>;
+                isGenerated: z.ZodOptional<z.ZodBoolean>;
+                generationSource: z.ZodOptional<z.ZodEnum<["impulse_debrief"]>>;
+                generationSignature: z.ZodOptional<z.ZodString>;
+                generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
+                numberOfUses: z.ZodOptional<z.ZodNumber>;
+                numberOfSuccesses: z.ZodOptional<z.ZodNumber>;
+                numberOfSetbacks: z.ZodOptional<z.ZodNumber>;
                 lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -27112,9 +27621,25 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 tags?: Record<string, Record<string, number>> | undefined;
+                indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
+                    behaviorTemplateNames?: string[] | undefined;
+                } | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
+                isGenerated?: boolean | undefined;
+                generationSource?: "impulse_debrief" | undefined;
+                generationSignature?: string | undefined;
+                generatedFromTacticIds?: string[] | undefined;
+                generatedFromSessionCount?: number | undefined;
+                numberOfUses?: number | undefined;
+                numberOfSuccesses?: number | undefined;
+                numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
@@ -27128,10 +27653,26 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 tags?: Record<string, Record<string, number>> | undefined;
+                indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
+                    behaviorTemplateNames?: string[] | undefined;
+                } | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                isGenerated?: boolean | undefined;
+                generationSource?: "impulse_debrief" | undefined;
+                generationSignature?: string | undefined;
+                generatedFromTacticIds?: string[] | undefined;
+                generatedFromSessionCount?: number | undefined;
+                numberOfUses?: number | undefined;
+                numberOfSuccesses?: number | undefined;
+                numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
@@ -27156,6 +27697,44 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
                 questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
                 tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodRecord<z.ZodString, z.ZodNumber>>>;
+                indications: z.ZodOptional<z.ZodObject<{
+                    tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                        tagGroupName: z.ZodString;
+                        optionLabels: z.ZodArray<z.ZodString, "many">;
+                        weight: z.ZodNumber;
+                    }, "strip", z.ZodTypeAny, {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }, {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }>, "many">>;
+                    behaviorTemplateNames: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                }, "strip", z.ZodTypeAny, {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
+                    behaviorTemplateNames?: string[] | undefined;
+                }, {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
+                    behaviorTemplateNames?: string[] | undefined;
+                }>>;
+                isGenerated: z.ZodOptional<z.ZodBoolean>;
+                generationSource: z.ZodOptional<z.ZodEnum<["impulse_debrief"]>>;
+                generationSignature: z.ZodOptional<z.ZodString>;
+                generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
+                numberOfUses: z.ZodOptional<z.ZodNumber>;
+                numberOfSuccesses: z.ZodOptional<z.ZodNumber>;
+                numberOfSetbacks: z.ZodOptional<z.ZodNumber>;
                 lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -27178,9 +27757,25 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 tags?: Record<string, Record<string, number>> | undefined;
+                indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
+                    behaviorTemplateNames?: string[] | undefined;
+                } | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
+                isGenerated?: boolean | undefined;
+                generationSource?: "impulse_debrief" | undefined;
+                generationSignature?: string | undefined;
+                generatedFromTacticIds?: string[] | undefined;
+                generatedFromSessionCount?: number | undefined;
+                numberOfUses?: number | undefined;
+                numberOfSuccesses?: number | undefined;
+                numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
             }, {
@@ -27196,10 +27791,26 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 tags?: Record<string, Record<string, number>> | undefined;
+                indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
+                    behaviorTemplateNames?: string[] | undefined;
+                } | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                isGenerated?: boolean | undefined;
+                generationSource?: "impulse_debrief" | undefined;
+                generationSignature?: string | undefined;
+                generatedFromTacticIds?: string[] | undefined;
+                generatedFromSessionCount?: number | undefined;
+                numberOfUses?: number | undefined;
+                numberOfSuccesses?: number | undefined;
+                numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
             }>>, z.ZodIntersection<z.ZodObject<{
@@ -27223,6 +27834,41 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
                 questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
                 tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodRecord<z.ZodString, z.ZodNumber>>>;
+                indications: z.ZodOptional<z.ZodObject<{
+                    tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                        tagGroupName: z.ZodString;
+                        optionLabels: z.ZodArray<z.ZodString, "many">;
+                        weight: z.ZodNumber;
+                    }, "strip", z.ZodTypeAny, {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }, {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }>, "many">>;
+                    behaviorTemplateNames: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                }, "strip", z.ZodTypeAny, {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
+                    behaviorTemplateNames?: string[] | undefined;
+                }, {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
+                    behaviorTemplateNames?: string[] | undefined;
+                }>>;
+                isGenerated: z.ZodOptional<z.ZodBoolean>;
+                generationSource: z.ZodOptional<z.ZodEnum<["impulse_debrief"]>>;
+                generationSignature: z.ZodOptional<z.ZodString>;
+                generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -27246,9 +27892,22 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 tags?: Record<string, Record<string, number>> | undefined;
+                indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
+                    behaviorTemplateNames?: string[] | undefined;
+                } | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
+                isGenerated?: boolean | undefined;
+                generationSource?: "impulse_debrief" | undefined;
+                generationSignature?: string | undefined;
+                generatedFromTacticIds?: string[] | undefined;
+                generatedFromSessionCount?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
@@ -27262,16 +27921,29 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 tags?: Record<string, Record<string, number>> | undefined;
+                indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
+                    behaviorTemplateNames?: string[] | undefined;
+                } | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
-                lastUsedAt?: import("../../types").Timestamp | undefined;
-                deletedAt?: import("../../types").Timestamp | undefined;
-                isActive?: boolean | undefined;
+                isGenerated?: boolean | undefined;
+                generationSource?: "impulse_debrief" | undefined;
+                generationSignature?: string | undefined;
+                generatedFromTacticIds?: string[] | undefined;
+                generatedFromSessionCount?: number | undefined;
                 numberOfUses?: number | undefined;
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
+                lastUsedAt?: import("../../types").Timestamp | undefined;
+                deletedAt?: import("../../types").Timestamp | undefined;
+                isActive?: boolean | undefined;
             }>>]>;
             startedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             completedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -27291,9 +27963,25 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 tags?: Record<string, Record<string, number>> | undefined;
+                indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
+                    behaviorTemplateNames?: string[] | undefined;
+                } | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
+                isGenerated?: boolean | undefined;
+                generationSource?: "impulse_debrief" | undefined;
+                generationSignature?: string | undefined;
+                generatedFromTacticIds?: string[] | undefined;
+                generatedFromSessionCount?: number | undefined;
+                numberOfUses?: number | undefined;
+                numberOfSuccesses?: number | undefined;
+                numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
@@ -27314,9 +28002,25 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 tags?: Record<string, Record<string, number>> | undefined;
+                indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
+                    behaviorTemplateNames?: string[] | undefined;
+                } | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
+                isGenerated?: boolean | undefined;
+                generationSource?: "impulse_debrief" | undefined;
+                generationSignature?: string | undefined;
+                generatedFromTacticIds?: string[] | undefined;
+                generatedFromSessionCount?: number | undefined;
+                numberOfUses?: number | undefined;
+                numberOfSuccesses?: number | undefined;
+                numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
             }) | ({
@@ -27336,9 +28040,22 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 tags?: Record<string, Record<string, number>> | undefined;
+                indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
+                    behaviorTemplateNames?: string[] | undefined;
+                } | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
+                isGenerated?: boolean | undefined;
+                generationSource?: "impulse_debrief" | undefined;
+                generationSignature?: string | undefined;
+                generatedFromTacticIds?: string[] | undefined;
+                generatedFromSessionCount?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
@@ -27360,10 +28077,26 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 tags?: Record<string, Record<string, number>> | undefined;
+                indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
+                    behaviorTemplateNames?: string[] | undefined;
+                } | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                isGenerated?: boolean | undefined;
+                generationSource?: "impulse_debrief" | undefined;
+                generationSignature?: string | undefined;
+                generatedFromTacticIds?: string[] | undefined;
+                generatedFromSessionCount?: number | undefined;
+                numberOfUses?: number | undefined;
+                numberOfSuccesses?: number | undefined;
+                numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
@@ -27383,10 +28116,26 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 tags?: Record<string, Record<string, number>> | undefined;
+                indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
+                    behaviorTemplateNames?: string[] | undefined;
+                } | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                isGenerated?: boolean | undefined;
+                generationSource?: "impulse_debrief" | undefined;
+                generationSignature?: string | undefined;
+                generatedFromTacticIds?: string[] | undefined;
+                generatedFromSessionCount?: number | undefined;
+                numberOfUses?: number | undefined;
+                numberOfSuccesses?: number | undefined;
+                numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
             }) | ({
@@ -27402,16 +28151,29 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 tags?: Record<string, Record<string, number>> | undefined;
+                indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
+                    behaviorTemplateNames?: string[] | undefined;
+                } | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
-                lastUsedAt?: import("../../types").Timestamp | undefined;
-                deletedAt?: import("../../types").Timestamp | undefined;
-                isActive?: boolean | undefined;
+                isGenerated?: boolean | undefined;
+                generationSource?: "impulse_debrief" | undefined;
+                generationSignature?: string | undefined;
+                generatedFromTacticIds?: string[] | undefined;
+                generatedFromSessionCount?: number | undefined;
                 numberOfUses?: number | undefined;
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
+                lastUsedAt?: import("../../types").Timestamp | undefined;
+                deletedAt?: import("../../types").Timestamp | undefined;
+                isActive?: boolean | undefined;
             });
             startedAt?: import("../../types").Timestamp | undefined;
             completedAt?: import("../../types").Timestamp | undefined;
@@ -27436,9 +28198,25 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 tags?: Record<string, Record<string, number>> | undefined;
+                indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
+                    behaviorTemplateNames?: string[] | undefined;
+                } | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
+                isGenerated?: boolean | undefined;
+                generationSource?: "impulse_debrief" | undefined;
+                generationSignature?: string | undefined;
+                generatedFromTacticIds?: string[] | undefined;
+                generatedFromSessionCount?: number | undefined;
+                numberOfUses?: number | undefined;
+                numberOfSuccesses?: number | undefined;
+                numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
@@ -27459,9 +28237,25 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 tags?: Record<string, Record<string, number>> | undefined;
+                indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
+                    behaviorTemplateNames?: string[] | undefined;
+                } | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
+                isGenerated?: boolean | undefined;
+                generationSource?: "impulse_debrief" | undefined;
+                generationSignature?: string | undefined;
+                generatedFromTacticIds?: string[] | undefined;
+                generatedFromSessionCount?: number | undefined;
+                numberOfUses?: number | undefined;
+                numberOfSuccesses?: number | undefined;
+                numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
             }) | ({
@@ -27481,9 +28275,22 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 tags?: Record<string, Record<string, number>> | undefined;
+                indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
+                    behaviorTemplateNames?: string[] | undefined;
+                } | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
+                isGenerated?: boolean | undefined;
+                generationSource?: "impulse_debrief" | undefined;
+                generationSignature?: string | undefined;
+                generatedFromTacticIds?: string[] | undefined;
+                generatedFromSessionCount?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
@@ -27512,10 +28319,26 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 tags?: Record<string, Record<string, number>> | undefined;
+                indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
+                    behaviorTemplateNames?: string[] | undefined;
+                } | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                isGenerated?: boolean | undefined;
+                generationSource?: "impulse_debrief" | undefined;
+                generationSignature?: string | undefined;
+                generatedFromTacticIds?: string[] | undefined;
+                generatedFromSessionCount?: number | undefined;
+                numberOfUses?: number | undefined;
+                numberOfSuccesses?: number | undefined;
+                numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
@@ -27535,10 +28358,26 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 tags?: Record<string, Record<string, number>> | undefined;
+                indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
+                    behaviorTemplateNames?: string[] | undefined;
+                } | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                isGenerated?: boolean | undefined;
+                generationSource?: "impulse_debrief" | undefined;
+                generationSignature?: string | undefined;
+                generatedFromTacticIds?: string[] | undefined;
+                generatedFromSessionCount?: number | undefined;
+                numberOfUses?: number | undefined;
+                numberOfSuccesses?: number | undefined;
+                numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
             }) | ({
@@ -27554,16 +28393,29 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 tags?: Record<string, Record<string, number>> | undefined;
+                indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
+                    behaviorTemplateNames?: string[] | undefined;
+                } | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
-                lastUsedAt?: import("../../types").Timestamp | undefined;
-                deletedAt?: import("../../types").Timestamp | undefined;
-                isActive?: boolean | undefined;
+                isGenerated?: boolean | undefined;
+                generationSource?: "impulse_debrief" | undefined;
+                generationSignature?: string | undefined;
+                generatedFromTacticIds?: string[] | undefined;
+                generatedFromSessionCount?: number | undefined;
                 numberOfUses?: number | undefined;
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
+                lastUsedAt?: import("../../types").Timestamp | undefined;
+                deletedAt?: import("../../types").Timestamp | undefined;
+                isActive?: boolean | undefined;
             });
             startedAt?: import("../../types").Timestamp | undefined;
             completedAt?: import("../../types").Timestamp | undefined;
@@ -27600,9 +28452,25 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 tags?: Record<string, Record<string, number>> | undefined;
+                indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
+                    behaviorTemplateNames?: string[] | undefined;
+                } | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
+                isGenerated?: boolean | undefined;
+                generationSource?: "impulse_debrief" | undefined;
+                generationSignature?: string | undefined;
+                generatedFromTacticIds?: string[] | undefined;
+                generatedFromSessionCount?: number | undefined;
+                numberOfUses?: number | undefined;
+                numberOfSuccesses?: number | undefined;
+                numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
@@ -27623,9 +28491,25 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 tags?: Record<string, Record<string, number>> | undefined;
+                indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
+                    behaviorTemplateNames?: string[] | undefined;
+                } | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
+                isGenerated?: boolean | undefined;
+                generationSource?: "impulse_debrief" | undefined;
+                generationSignature?: string | undefined;
+                generatedFromTacticIds?: string[] | undefined;
+                generatedFromSessionCount?: number | undefined;
+                numberOfUses?: number | undefined;
+                numberOfSuccesses?: number | undefined;
+                numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
             }) | ({
@@ -27645,9 +28529,22 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 tags?: Record<string, Record<string, number>> | undefined;
+                indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
+                    behaviorTemplateNames?: string[] | undefined;
+                } | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
+                isGenerated?: boolean | undefined;
+                generationSource?: "impulse_debrief" | undefined;
+                generationSignature?: string | undefined;
+                generatedFromTacticIds?: string[] | undefined;
+                generatedFromSessionCount?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
@@ -27691,10 +28588,26 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 tags?: Record<string, Record<string, number>> | undefined;
+                indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
+                    behaviorTemplateNames?: string[] | undefined;
+                } | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                isGenerated?: boolean | undefined;
+                generationSource?: "impulse_debrief" | undefined;
+                generationSignature?: string | undefined;
+                generatedFromTacticIds?: string[] | undefined;
+                generatedFromSessionCount?: number | undefined;
+                numberOfUses?: number | undefined;
+                numberOfSuccesses?: number | undefined;
+                numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
@@ -27714,10 +28627,26 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 tags?: Record<string, Record<string, number>> | undefined;
+                indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
+                    behaviorTemplateNames?: string[] | undefined;
+                } | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
+                isGenerated?: boolean | undefined;
+                generationSource?: "impulse_debrief" | undefined;
+                generationSignature?: string | undefined;
+                generatedFromTacticIds?: string[] | undefined;
+                generatedFromSessionCount?: number | undefined;
+                numberOfUses?: number | undefined;
+                numberOfSuccesses?: number | undefined;
+                numberOfSetbacks?: number | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
             }) | ({
@@ -27733,16 +28662,29 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 description?: string | undefined;
                 ordinal?: number | undefined;
                 tags?: Record<string, Record<string, number>> | undefined;
+                indications?: {
+                    tags?: {
+                        weight: number;
+                        tagGroupName: string;
+                        optionLabels: string[];
+                    }[] | undefined;
+                    behaviorTemplateNames?: string[] | undefined;
+                } | undefined;
                 summary?: string | undefined;
                 isTemplate?: boolean | undefined;
                 tacticsByPath?: Record<string, any> | undefined;
                 questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
-                lastUsedAt?: import("../../types").Timestamp | undefined;
-                deletedAt?: import("../../types").Timestamp | undefined;
-                isActive?: boolean | undefined;
+                isGenerated?: boolean | undefined;
+                generationSource?: "impulse_debrief" | undefined;
+                generationSignature?: string | undefined;
+                generatedFromTacticIds?: string[] | undefined;
+                generatedFromSessionCount?: number | undefined;
                 numberOfUses?: number | undefined;
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
+                lastUsedAt?: import("../../types").Timestamp | undefined;
+                deletedAt?: import("../../types").Timestamp | undefined;
+                isActive?: boolean | undefined;
             });
             startedAt?: import("../../types").Timestamp | undefined;
             completedAt?: import("../../types").Timestamp | undefined;

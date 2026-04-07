@@ -104,11 +104,11 @@ export function buildPlansLogPayload(
 
     if (firstStepText) {
       parts.push(
-        `The first step instructions are: ${firstStepText}. Use them to frame a brief, action-oriented introduction to the tactic.`,
+        `The first step instructions are: ${firstStepText}. This is context for tool selection only. Do NOT repeat these instructions in the assistant message. Instead, write a short introduction to the tactic and let the tactic card carry the actual step-by-step guidance.`,
       );
     }
 
-    parts.push("Keep the response brief, direct, and focused on getting the user into the tactic immediately.");
+    parts.push("Keep the response brief, direct, and focused on getting the user into the tactic immediately. If a tactic card is available, do not deliver the tactic in plain text.");
   } else {
     // Historical / FYI framing when this log is not the most recent
     parts.push(

@@ -39,12 +39,19 @@ TIMESTAMP=$(date +%s)
 VERSION="0.1.1-${TIMESTAMP}"
 TARBALL_NAME="impulse-shared-${VERSION}.tgz"
 
+clean_local_artifacts() {
+  find "$SHARED_DIR" -maxdepth 1 -name "impulse-shared-*.tgz" -delete
+}
+
 echo "==> Setting impulse-shared version to ${VERSION}"
 cd "$SHARED_DIR"
 npm version "$VERSION" --no-git-tag-version --allow-same-version
 
 echo "==> Building impulse-shared"
 npm run build
+
+echo "==> Cleaning old local impulse-shared artifacts"
+clean_local_artifacts
 
 echo "==> Packing impulse-shared"
 PACK_OUTPUT=$(npm pack --pack-destination "$SHARED_DIR")

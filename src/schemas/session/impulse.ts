@@ -10,6 +10,7 @@ export const impulseSessionSchema = sessionBaseSchema.extend({
   debriefBefore: timestampSchema.optional(),
   debriefUrgeLogInsertedAt: timestampSchema.nullable().optional(),
   actedOnUrge: z.boolean().nullable().optional(), // true = acted, false = resisted, null/undefined = not answered
+  generatedPlanId: z.string().optional(),
 });
 
 export type ImpulseSession = z.infer<typeof impulseSessionSchema>;
