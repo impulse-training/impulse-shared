@@ -11,10 +11,10 @@ export const proposedExperimentMetricSchema = z.object({
 export const proposedExperimentLogSchema = logBaseSchema.extend({
   type: z.literal("proposed_experiment"),
   isDisplayable: z.literal(true),
-  /** Behavior that this proposed experiment is about */
-  behaviorId: z.string(),
-  /** Optional human-readable behavior name for nicer display */
-  behaviorName: z.string().optional(),
+  /** Behaviors that this proposed experiment is about */
+  behaviorIds: z.array(z.string()).min(1),
+  /** Optional human-readable behavior names for nicer display */
+  behaviorNames: z.array(z.string()).optional(),
   /** Structured metrics chosen by the user, including optional scale labels */
   metrics: z.array(proposedExperimentMetricSchema).min(1).optional(),
   /** Metric labels chosen by the user (names only, no pre-created questions) */

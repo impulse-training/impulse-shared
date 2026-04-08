@@ -44,18 +44,18 @@ export declare const tacticContextSchema: z.ZodObject<{
     instructions?: string | undefined;
 }>;
 export declare const activeExperimentContextSchema: z.ZodObject<{
-    behaviorId: z.ZodString;
-    behaviorName: z.ZodString;
+    behaviorIds: z.ZodArray<z.ZodString, "many">;
+    behaviorNames: z.ZodArray<z.ZodString, "many">;
     experimentQuestion: z.ZodString;
     observations: z.ZodArray<z.ZodString, "many">;
 }, "strip", z.ZodTypeAny, {
-    behaviorId: string;
-    behaviorName: string;
+    behaviorIds: string[];
+    behaviorNames: string[];
     experimentQuestion: string;
     observations: string[];
 }, {
-    behaviorId: string;
-    behaviorName: string;
+    behaviorIds: string[];
+    behaviorNames: string[];
     experimentQuestion: string;
     observations: string[];
 }>;
@@ -121,18 +121,18 @@ export declare const userContextSchema: z.ZodObject<{
         instructions?: string | undefined;
     }>>;
     activeExperiment: z.ZodOptional<z.ZodNullable<z.ZodObject<{
-        behaviorId: z.ZodString;
-        behaviorName: z.ZodString;
+        behaviorIds: z.ZodArray<z.ZodString, "many">;
+        behaviorNames: z.ZodArray<z.ZodString, "many">;
         experimentQuestion: z.ZodString;
         observations: z.ZodArray<z.ZodString, "many">;
     }, "strip", z.ZodTypeAny, {
-        behaviorId: string;
-        behaviorName: string;
+        behaviorIds: string[];
+        behaviorNames: string[];
         experimentQuestion: string;
         observations: string[];
     }, {
-        behaviorId: string;
-        behaviorName: string;
+        behaviorIds: string[];
+        behaviorNames: string[];
         experimentQuestion: string;
         observations: string[];
     }>>>;
@@ -182,8 +182,8 @@ export declare const userContextSchema: z.ZodObject<{
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     activeExperiment?: {
-        behaviorId: string;
-        behaviorName: string;
+        behaviorIds: string[];
+        behaviorNames: string[];
         experimentQuestion: string;
         observations: string[];
     } | null | undefined;
@@ -207,8 +207,8 @@ export declare const userContextSchema: z.ZodObject<{
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     activeExperiment?: {
-        behaviorId: string;
-        behaviorName: string;
+        behaviorIds: string[];
+        behaviorNames: string[];
         experimentQuestion: string;
         observations: string[];
     } | null | undefined;

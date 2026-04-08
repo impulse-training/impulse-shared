@@ -20,8 +20,8 @@ export const tacticContextSchema = z.object({
 });
 
 export const activeExperimentContextSchema = z.object({
-  behaviorId: z.string(),
-  behaviorName: z.string(),
+  behaviorIds: z.array(z.string()),
+  behaviorNames: z.array(z.string()),
   experimentQuestion: z.string(),
   observations: z.array(z.string()),
 });

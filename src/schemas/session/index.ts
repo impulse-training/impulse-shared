@@ -15,6 +15,10 @@ import { CommitmentSession, commitmentSessionSchema } from "./commitment";
 import { TacticSession, tacticSessionSchema } from "./tactic";
 import { WelcomeSession, welcomeSessionSchema } from "./welcome";
 import { SetupSession, setupSessionSchema } from "./setup";
+import {
+  RecoveryKeySession,
+  recoveryKeySessionSchema,
+} from "./recoveryKey";
 
 export * from "../sessionSummary";
 export * from "./adjustment";
@@ -28,6 +32,7 @@ export * from "./commitment";
 export * from "./tactic";
 export * from "./welcome";
 export * from "./setup";
+export * from "./recoveryKey";
 
 // Map of session types to their schemas
 export const sessionSchemas: Record<string, z.ZodTypeAny> = {
@@ -43,10 +48,11 @@ export const sessionSchemas: Record<string, z.ZodTypeAny> = {
   tactic: tacticSessionSchema,
   welcome: welcomeSessionSchema,
   setup: setupSessionSchema,
+  recoveryKey: recoveryKeySessionSchema,
 };
 
 // Discriminated union over type
-export const sessionSchema: z.ZodDiscriminatedUnion<"type", [typeof generalSessionSchema, typeof impulseSessionSchema, typeof behaviorSessionSchema, typeof timePlanSessionSchema, typeof alignmentSessionSchema, typeof recapSessionSchema, typeof locationPlanSessionSchema, typeof adjustmentSessionSchema, typeof commitmentSessionSchema, typeof tacticSessionSchema, typeof welcomeSessionSchema, typeof setupSessionSchema]> = z.discriminatedUnion("type", [
+export const sessionSchema: z.ZodDiscriminatedUnion<"type", [typeof generalSessionSchema, typeof impulseSessionSchema, typeof behaviorSessionSchema, typeof timePlanSessionSchema, typeof alignmentSessionSchema, typeof recapSessionSchema, typeof locationPlanSessionSchema, typeof adjustmentSessionSchema, typeof commitmentSessionSchema, typeof tacticSessionSchema, typeof welcomeSessionSchema, typeof setupSessionSchema, typeof recoveryKeySessionSchema]> = z.discriminatedUnion("type", [
   generalSessionSchema,
   impulseSessionSchema,
   behaviorSessionSchema,
@@ -59,6 +65,7 @@ export const sessionSchema: z.ZodDiscriminatedUnion<"type", [typeof generalSessi
   tacticSessionSchema,
   welcomeSessionSchema,
   setupSessionSchema,
+  recoveryKeySessionSchema,
 ]);
 
 export const sessionIsGeneralSession = (
@@ -139,11 +146,20 @@ export const isValidWelcomeSession = (
   value: unknown,
 ): value is WelcomeSession => welcomeSessionSchema.safeParse(value).success;
 
+export const sessionIsRecoveryKeySession = (
+  value: Session,
+): value is RecoveryKeySession => value.type === "recoveryKey";
+export const isValidRecoveryKeySession = (
+  value: unknown,
+): value is RecoveryKeySession =>
+  recoveryKeySessionSchema.safeParse(value).success;
+
 const noSummarizeSessionTypes: Session["type"][] = [
   "adjustment",
   "setup",
   "tactic",
   "welcome",
+  "recoveryKey",
 ];
 
 export function shouldSummarizeSession(

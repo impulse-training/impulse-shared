@@ -54,6 +54,7 @@ exports.tacticSchema = zod_1.z.object({
     // AI metadata for tactic suggestion
     indications: exports.indicationSchema.optional(),
     contraindications: exports.indicationSchema.optional(),
+    completionTrigger: zod_1.z.enum(["device-restart"]).optional(), // Auto-complete when this condition is detected
     effectiveness: zod_1.z.enum(["low", "medium", "high"]).optional(), // General effectiveness rating
     timeToComplete: zod_1.z.enum(["quick", "medium", "long"]).optional(), // How long the tactic takes
     aiConfiguration: zod_1.z

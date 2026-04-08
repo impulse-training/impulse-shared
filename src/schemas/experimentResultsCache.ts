@@ -76,6 +76,7 @@ const behaviorResultSchema = z.object({
  * Lagged-effect insight: how yesterday's behavior relates to today's metric.
  */
 const laggedInsightSchema = z.object({
+  behaviorId: z.string(),
   metricId: z.string(),
   metricName: z.string(),
   /** Correlation between previous-day behavior sessions and current-day metric */
@@ -104,8 +105,8 @@ export const experimentResultsCacheSchema = z.object({
   /** Confidence level based on data quantity */
   confidence: confidenceLevelEnum,
 
-  /** Primary behavior data */
-  behaviorResult: behaviorResultSchema,
+  /** Per-behavior results */
+  behaviorResults: z.array(behaviorResultSchema),
 
   /** Metric results */
   metricResults: z.array(metricResultSchema),

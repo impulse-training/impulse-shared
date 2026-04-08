@@ -222,6 +222,8 @@ export const behaviorSchema = behaviorTemplateBase
     // Reference to the behavior topic (e.g., "substances", "digital-screen-use")
     // Used for matching users to support groups with similar focus areas
     behaviorTopicId: behaviorTopicIdSchema.optional(),
+    // When true, the recap session should collect baseline usage data for this behavior
+    needsBaselineData: z.boolean().optional().default(false),
     // Computed state for this behavior (windows, trend, etc.)
     state: behaviorStateSchema.optional(),
   })

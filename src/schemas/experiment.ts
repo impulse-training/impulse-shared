@@ -2,7 +2,7 @@ import { z } from "zod";
 import { timestampSchema } from "../utils/timestampSchema";
 
 const experimentMemoryNotesEntrySchema = z.object({
-  behaviorId: z.string(),
+  behaviorIds: z.array(z.string()),
   insights: z.array(z.string()).default([]),
 });
 
@@ -32,7 +32,7 @@ export const experimentSchema = z.object({
   startedAt: timestampSchema.optional(),
   name: z.string(),
   experimentQuestion: z.string(),
-  behaviorId: z.string(),
+  behaviorIds: z.array(z.string()).min(1),
   /** Metric document ids being tracked during this experiment */
   metricIds: z.array(z.string()).default([]),
 

@@ -24,6 +24,8 @@ import { RequestPermissionsLog } from "./requestPermissionsLog";
 import { TacticReviewLog } from "./tacticReviewLog";
 import { SetupModeChoiceLog } from "./setupModeChoiceLog";
 import { TagsUpdatedLog } from "./tagsUpdatedLog";
+import { CrisisResourceLog } from "./crisisResourceLog";
+import { RecoveryKeyLog } from "./recoveryKeyLog";
 export declare const logSchemas: {
     user: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
@@ -2055,6 +2057,7 @@ export declare const logSchemas: {
                         weight: number;
                     }[] | undefined;
                 }>>;
+                completionTrigger: z.ZodOptional<z.ZodEnum<["device-restart"]>>;
                 effectiveness: z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>;
                 timeToComplete: z.ZodOptional<z.ZodEnum<["quick", "medium", "long"]>>;
                 aiConfiguration: z.ZodOptional<z.ZodObject<{
@@ -2398,6 +2401,7 @@ export declare const logSchemas: {
                         weight: number;
                     }[] | undefined;
                 } | undefined;
+                completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
                 aiConfiguration?: {
@@ -2731,6 +2735,7 @@ export declare const logSchemas: {
                         weight: number;
                     }[] | undefined;
                 } | undefined;
+                completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
                 aiConfiguration?: {
@@ -3074,6 +3079,7 @@ export declare const logSchemas: {
                         weight: number;
                     }[] | undefined;
                 } | undefined;
+                completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
                 aiConfiguration?: {
@@ -3415,6 +3421,7 @@ export declare const logSchemas: {
                         weight: number;
                     }[] | undefined;
                 } | undefined;
+                completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
                 aiConfiguration?: {
@@ -3766,6 +3773,7 @@ export declare const logSchemas: {
                         weight: number;
                     }[] | undefined;
                 } | undefined;
+                completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
                 aiConfiguration?: {
@@ -4122,6 +4130,7 @@ export declare const logSchemas: {
                         weight: number;
                     }[] | undefined;
                 } | undefined;
+                completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
                 aiConfiguration?: {
@@ -5999,6 +6008,7 @@ export declare const logSchemas: {
                         weight: number;
                     }[] | undefined;
                 }>>;
+                completionTrigger: z.ZodOptional<z.ZodEnum<["device-restart"]>>;
                 effectiveness: z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>;
                 timeToComplete: z.ZodOptional<z.ZodEnum<["quick", "medium", "long"]>>;
                 aiConfiguration: z.ZodOptional<z.ZodObject<{
@@ -6342,6 +6352,7 @@ export declare const logSchemas: {
                         weight: number;
                     }[] | undefined;
                 } | undefined;
+                completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
                 aiConfiguration?: {
@@ -6675,6 +6686,7 @@ export declare const logSchemas: {
                         weight: number;
                     }[] | undefined;
                 } | undefined;
+                completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
                 aiConfiguration?: {
@@ -7033,6 +7045,7 @@ export declare const logSchemas: {
                         weight: number;
                     }[] | undefined;
                 } | undefined;
+                completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
                 aiConfiguration?: {
@@ -7383,6 +7396,7 @@ export declare const logSchemas: {
                         weight: number;
                     }[] | undefined;
                 } | undefined;
+                completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
                 aiConfiguration?: {
@@ -7743,6 +7757,7 @@ export declare const logSchemas: {
                         weight: number;
                     }[] | undefined;
                 } | undefined;
+                completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
                 aiConfiguration?: {
@@ -8108,6 +8123,7 @@ export declare const logSchemas: {
                         weight: number;
                     }[] | undefined;
                 } | undefined;
+                completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
                 aiConfiguration?: {
@@ -9823,6 +9839,7 @@ export declare const logSchemas: {
                         weight: number;
                     }[] | undefined;
                 }>>;
+                completionTrigger: z.ZodOptional<z.ZodEnum<["device-restart"]>>;
                 effectiveness: z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>;
                 timeToComplete: z.ZodOptional<z.ZodEnum<["quick", "medium", "long"]>>;
                 aiConfiguration: z.ZodOptional<z.ZodObject<{
@@ -10166,6 +10183,7 @@ export declare const logSchemas: {
                         weight: number;
                     }[] | undefined;
                 } | undefined;
+                completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
                 aiConfiguration?: {
@@ -10499,6 +10517,7 @@ export declare const logSchemas: {
                         weight: number;
                     }[] | undefined;
                 } | undefined;
+                completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
                 aiConfiguration?: {
@@ -10857,6 +10876,7 @@ export declare const logSchemas: {
                         weight: number;
                     }[] | undefined;
                 } | undefined;
+                completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
                 aiConfiguration?: {
@@ -11207,6 +11227,7 @@ export declare const logSchemas: {
                         weight: number;
                     }[] | undefined;
                 } | undefined;
+                completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
                 aiConfiguration?: {
@@ -11567,6 +11588,7 @@ export declare const logSchemas: {
                         weight: number;
                     }[] | undefined;
                 } | undefined;
+                completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
                 aiConfiguration?: {
@@ -11932,6 +11954,7 @@ export declare const logSchemas: {
                         weight: number;
                     }[] | undefined;
                 } | undefined;
+                completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
                 aiConfiguration?: {
@@ -14096,14 +14119,13 @@ export declare const logSchemas: {
         dateString: z.ZodString;
         sessionId: z.ZodString;
         tacticId: z.ZodOptional<z.ZodString>;
-        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         callLogDocPath: z.ZodOptional<z.ZodString>;
         impulseId: z.ZodOptional<z.ZodString>;
     } & {
         type: z.ZodLiteral<"proposed_experiment">;
         isDisplayable: z.ZodLiteral<true>;
-        behaviorId: z.ZodString;
-        behaviorName: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodArray<z.ZodString, "many">;
+        behaviorNames: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         metrics: z.ZodOptional<z.ZodArray<z.ZodObject<{
             name: z.ZodString;
             minLabel: z.ZodOptional<z.ZodString>;
@@ -14136,21 +14158,20 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "proposed_experiment";
-        behaviorId: string;
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
         sessionId: string;
+        behaviorIds: string[];
         isDisplayable: true;
         metricLabels: string[];
         id?: string | undefined;
         text?: string | undefined;
-        behaviorName?: string | undefined;
         tacticId?: string | undefined;
-        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
         impulseId?: string | undefined;
         buttonText?: string | undefined;
+        behaviorNames?: string[] | undefined;
         metrics?: {
             name: string;
             minLabel?: string | undefined;
@@ -14166,21 +14187,20 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "proposed_experiment";
-        behaviorId: string;
         userId: string;
         timestamp: import("../../types").Timestamp;
         dateString: string;
         sessionId: string;
+        behaviorIds: string[];
         isDisplayable: true;
         metricLabels: string[];
         id?: string | undefined;
         text?: string | undefined;
-        behaviorName?: string | undefined;
         tacticId?: string | undefined;
-        behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
         impulseId?: string | undefined;
         buttonText?: string | undefined;
+        behaviorNames?: string[] | undefined;
         metrics?: {
             name: string;
             minLabel?: string | undefined;
@@ -16306,6 +16326,7 @@ export declare const logSchemas: {
                             weight: number;
                         }[] | undefined;
                     }>>;
+                    completionTrigger: z.ZodOptional<z.ZodEnum<["device-restart"]>>;
                     effectiveness: z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>;
                     timeToComplete: z.ZodOptional<z.ZodEnum<["quick", "medium", "long"]>>;
                     aiConfiguration: z.ZodOptional<z.ZodObject<{
@@ -16649,6 +16670,7 @@ export declare const logSchemas: {
                             weight: number;
                         }[] | undefined;
                     } | undefined;
+                    completionTrigger?: "device-restart" | undefined;
                     effectiveness?: "medium" | "low" | "high" | undefined;
                     timeToComplete?: "medium" | "long" | "quick" | undefined;
                     aiConfiguration?: {
@@ -16982,6 +17004,7 @@ export declare const logSchemas: {
                             weight: number;
                         }[] | undefined;
                     } | undefined;
+                    completionTrigger?: "device-restart" | undefined;
                     effectiveness?: "medium" | "low" | "high" | undefined;
                     timeToComplete?: "medium" | "long" | "quick" | undefined;
                     aiConfiguration?: {
@@ -17320,6 +17343,7 @@ export declare const logSchemas: {
                             weight: number;
                         }[] | undefined;
                     } | undefined;
+                    completionTrigger?: "device-restart" | undefined;
                     effectiveness?: "medium" | "low" | "high" | undefined;
                     timeToComplete?: "medium" | "long" | "quick" | undefined;
                     aiConfiguration?: {
@@ -17658,6 +17682,7 @@ export declare const logSchemas: {
                             weight: number;
                         }[] | undefined;
                     } | undefined;
+                    completionTrigger?: "device-restart" | undefined;
                     effectiveness?: "medium" | "low" | "high" | undefined;
                     timeToComplete?: "medium" | "long" | "quick" | undefined;
                     aiConfiguration?: {
@@ -17999,6 +18024,7 @@ export declare const logSchemas: {
                             weight: number;
                         }[] | undefined;
                     } | undefined;
+                    completionTrigger?: "device-restart" | undefined;
                     effectiveness?: "medium" | "low" | "high" | undefined;
                     timeToComplete?: "medium" | "long" | "quick" | undefined;
                     aiConfiguration?: {
@@ -18340,6 +18366,7 @@ export declare const logSchemas: {
                             weight: number;
                         }[] | undefined;
                     } | undefined;
+                    completionTrigger?: "device-restart" | undefined;
                     effectiveness?: "medium" | "low" | "high" | undefined;
                     timeToComplete?: "medium" | "long" | "quick" | undefined;
                     aiConfiguration?: {
@@ -18691,6 +18718,7 @@ export declare const logSchemas: {
                             weight: number;
                         }[] | undefined;
                     } | undefined;
+                    completionTrigger?: "device-restart" | undefined;
                     effectiveness?: "medium" | "low" | "high" | undefined;
                     timeToComplete?: "medium" | "long" | "quick" | undefined;
                     aiConfiguration?: {
@@ -19047,6 +19075,7 @@ export declare const logSchemas: {
                             weight: number;
                         }[] | undefined;
                     } | undefined;
+                    completionTrigger?: "device-restart" | undefined;
                     effectiveness?: "medium" | "low" | "high" | undefined;
                     timeToComplete?: "medium" | "long" | "quick" | undefined;
                     aiConfiguration?: {
@@ -19192,10 +19221,134 @@ export declare const logSchemas: {
         callLogDocPath?: string | undefined;
         impulseId?: string | undefined;
     }>;
+    crisis_resource: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        sessionId: z.ZodString;
+        tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        callLogDocPath: z.ZodOptional<z.ZodString>;
+        impulseId: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"crisis_resource">;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            triggeredByLogId: z.ZodString;
+            riskLevel: z.ZodEnum<["low", "high"]>;
+        }, "strip", z.ZodTypeAny, {
+            triggeredByLogId: string;
+            riskLevel: "low" | "high";
+        }, {
+            triggeredByLogId: string;
+            riskLevel: "low" | "high";
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "crisis_resource";
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        sessionId: string;
+        isDisplayable: true;
+        data: {
+            triggeredByLogId: string;
+            riskLevel: "low" | "high";
+        };
+        id?: string | undefined;
+        tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        callLogDocPath?: string | undefined;
+        impulseId?: string | undefined;
+    }, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "crisis_resource";
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        sessionId: string;
+        isDisplayable: true;
+        data: {
+            triggeredByLogId: string;
+            riskLevel: "low" | "high";
+        };
+        id?: string | undefined;
+        tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        callLogDocPath?: string | undefined;
+        impulseId?: string | undefined;
+    }>;
+    recovery_key: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        sessionId: z.ZodString;
+        tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        callLogDocPath: z.ZodOptional<z.ZodString>;
+        impulseId: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"recovery_key">;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            recoveryKey: z.ZodString;
+            action: z.ZodEnum<["saved", "copied", "downloaded"]>;
+        }, "strip", z.ZodTypeAny, {
+            recoveryKey: string;
+            action: "saved" | "copied" | "downloaded";
+        }, {
+            recoveryKey: string;
+            action: "saved" | "copied" | "downloaded";
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "recovery_key";
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        sessionId: string;
+        isDisplayable: true;
+        data: {
+            recoveryKey: string;
+            action: "saved" | "copied" | "downloaded";
+        };
+        id?: string | undefined;
+        tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        callLogDocPath?: string | undefined;
+        impulseId?: string | undefined;
+    }, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "recovery_key";
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        sessionId: string;
+        isDisplayable: true;
+        data: {
+            recoveryKey: string;
+            action: "saved" | "copied" | "downloaded";
+        };
+        id?: string | undefined;
+        tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        callLogDocPath?: string | undefined;
+        impulseId?: string | undefined;
+    }>;
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ProposedExperimentLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | TriggerSelectionLog | RequestPermissionsLog | TacticReviewLog | SetupModeChoiceLog | TagsUpdatedLog;
+export type Log = TacticLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ProposedExperimentLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | TriggerSelectionLog | RequestPermissionsLog | TacticReviewLog | SetupModeChoiceLog | TagsUpdatedLog | CrisisResourceLog | RecoveryKeyLog;
 export * from "./behaviorLog";
 export * from "./breathingLog";
 export * from "./callLog";
@@ -19222,6 +19375,8 @@ export * from "./requestPermissionsLog";
 export * from "./tacticReviewLog";
 export * from "./setupModeChoiceLog";
 export * from "./tagsUpdatedLog";
+export * from "./crisisResourceLog";
+export * from "./recoveryKeyLog";
 export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -21249,6 +21404,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                 }[] | undefined;
             }>>;
+            completionTrigger: z.ZodOptional<z.ZodEnum<["device-restart"]>>;
             effectiveness: z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>;
             timeToComplete: z.ZodOptional<z.ZodEnum<["quick", "medium", "long"]>>;
             aiConfiguration: z.ZodOptional<z.ZodObject<{
@@ -21592,6 +21748,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                 }[] | undefined;
             } | undefined;
+            completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
             aiConfiguration?: {
@@ -21925,6 +22082,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                 }[] | undefined;
             } | undefined;
+            completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
             aiConfiguration?: {
@@ -22268,6 +22426,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                 }[] | undefined;
             } | undefined;
+            completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
             aiConfiguration?: {
@@ -22609,6 +22768,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                 }[] | undefined;
             } | undefined;
+            completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
             aiConfiguration?: {
@@ -22960,6 +23120,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                 }[] | undefined;
             } | undefined;
+            completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
             aiConfiguration?: {
@@ -23316,6 +23477,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                 }[] | undefined;
             } | undefined;
+            completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
             aiConfiguration?: {
@@ -25191,6 +25353,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                 }[] | undefined;
             }>>;
+            completionTrigger: z.ZodOptional<z.ZodEnum<["device-restart"]>>;
             effectiveness: z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>;
             timeToComplete: z.ZodOptional<z.ZodEnum<["quick", "medium", "long"]>>;
             aiConfiguration: z.ZodOptional<z.ZodObject<{
@@ -25534,6 +25697,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                 }[] | undefined;
             } | undefined;
+            completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
             aiConfiguration?: {
@@ -25867,6 +26031,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                 }[] | undefined;
             } | undefined;
+            completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
             aiConfiguration?: {
@@ -26225,6 +26390,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                 }[] | undefined;
             } | undefined;
+            completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
             aiConfiguration?: {
@@ -26575,6 +26741,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                 }[] | undefined;
             } | undefined;
+            completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
             aiConfiguration?: {
@@ -26935,6 +27102,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                 }[] | undefined;
             } | undefined;
+            completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
             aiConfiguration?: {
@@ -27300,6 +27468,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                 }[] | undefined;
             } | undefined;
+            completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
             aiConfiguration?: {
@@ -29452,14 +29621,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dateString: z.ZodString;
     sessionId: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
-    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     callLogDocPath: z.ZodOptional<z.ZodString>;
     impulseId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"proposed_experiment">;
     isDisplayable: z.ZodLiteral<true>;
-    behaviorId: z.ZodString;
-    behaviorName: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodArray<z.ZodString, "many">;
+    behaviorNames: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     metrics: z.ZodOptional<z.ZodArray<z.ZodObject<{
         name: z.ZodString;
         minLabel: z.ZodOptional<z.ZodString>;
@@ -29492,21 +29660,20 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "proposed_experiment";
-    behaviorId: string;
     userId: string;
     timestamp: import("../../types").Timestamp;
     dateString: string;
     sessionId: string;
+    behaviorIds: string[];
     isDisplayable: true;
     metricLabels: string[];
     id?: string | undefined;
     text?: string | undefined;
-    behaviorName?: string | undefined;
     tacticId?: string | undefined;
-    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
     impulseId?: string | undefined;
     buttonText?: string | undefined;
+    behaviorNames?: string[] | undefined;
     metrics?: {
         name: string;
         minLabel?: string | undefined;
@@ -29522,21 +29689,20 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "proposed_experiment";
-    behaviorId: string;
     userId: string;
     timestamp: import("../../types").Timestamp;
     dateString: string;
     sessionId: string;
+    behaviorIds: string[];
     isDisplayable: true;
     metricLabels: string[];
     id?: string | undefined;
     text?: string | undefined;
-    behaviorName?: string | undefined;
     tacticId?: string | undefined;
-    behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
     impulseId?: string | undefined;
     buttonText?: string | undefined;
+    behaviorNames?: string[] | undefined;
     metrics?: {
         name: string;
         minLabel?: string | undefined;
@@ -31655,6 +31821,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         weight: number;
                     }[] | undefined;
                 }>>;
+                completionTrigger: z.ZodOptional<z.ZodEnum<["device-restart"]>>;
                 effectiveness: z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>;
                 timeToComplete: z.ZodOptional<z.ZodEnum<["quick", "medium", "long"]>>;
                 aiConfiguration: z.ZodOptional<z.ZodObject<{
@@ -31998,6 +32165,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         weight: number;
                     }[] | undefined;
                 } | undefined;
+                completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
                 aiConfiguration?: {
@@ -32331,6 +32499,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         weight: number;
                     }[] | undefined;
                 } | undefined;
+                completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
                 aiConfiguration?: {
@@ -32669,6 +32838,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         weight: number;
                     }[] | undefined;
                 } | undefined;
+                completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
                 aiConfiguration?: {
@@ -33007,6 +33177,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         weight: number;
                     }[] | undefined;
                 } | undefined;
+                completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
                 aiConfiguration?: {
@@ -33348,6 +33519,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         weight: number;
                     }[] | undefined;
                 } | undefined;
+                completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
                 aiConfiguration?: {
@@ -33689,6 +33861,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         weight: number;
                     }[] | undefined;
                 } | undefined;
+                completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
                 aiConfiguration?: {
@@ -34040,6 +34213,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         weight: number;
                     }[] | undefined;
                 } | undefined;
+                completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
                 aiConfiguration?: {
@@ -34396,6 +34570,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         weight: number;
                     }[] | undefined;
                 } | undefined;
+                completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
                 aiConfiguration?: {
@@ -34477,6 +34652,128 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
     impulseId?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    sessionId: z.ZodString;
+    tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    callLogDocPath: z.ZodOptional<z.ZodString>;
+    impulseId: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"crisis_resource">;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        triggeredByLogId: z.ZodString;
+        riskLevel: z.ZodEnum<["low", "high"]>;
+    }, "strip", z.ZodTypeAny, {
+        triggeredByLogId: string;
+        riskLevel: "low" | "high";
+    }, {
+        triggeredByLogId: string;
+        riskLevel: "low" | "high";
+    }>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "crisis_resource";
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    sessionId: string;
+    isDisplayable: true;
+    data: {
+        triggeredByLogId: string;
+        riskLevel: "low" | "high";
+    };
+    id?: string | undefined;
+    tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    callLogDocPath?: string | undefined;
+    impulseId?: string | undefined;
+}, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "crisis_resource";
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    sessionId: string;
+    isDisplayable: true;
+    data: {
+        triggeredByLogId: string;
+        riskLevel: "low" | "high";
+    };
+    id?: string | undefined;
+    tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    callLogDocPath?: string | undefined;
+    impulseId?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    sessionId: z.ZodString;
+    tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    callLogDocPath: z.ZodOptional<z.ZodString>;
+    impulseId: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"recovery_key">;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        recoveryKey: z.ZodString;
+        action: z.ZodEnum<["saved", "copied", "downloaded"]>;
+    }, "strip", z.ZodTypeAny, {
+        recoveryKey: string;
+        action: "saved" | "copied" | "downloaded";
+    }, {
+        recoveryKey: string;
+        action: "saved" | "copied" | "downloaded";
+    }>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "recovery_key";
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    sessionId: string;
+    isDisplayable: true;
+    data: {
+        recoveryKey: string;
+        action: "saved" | "copied" | "downloaded";
+    };
+    id?: string | undefined;
+    tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    callLogDocPath?: string | undefined;
+    impulseId?: string | undefined;
+}, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "recovery_key";
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    sessionId: string;
+    isDisplayable: true;
+    data: {
+        recoveryKey: string;
+        action: "saved" | "copied" | "downloaded";
+    };
+    id?: string | undefined;
+    tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    callLogDocPath?: string | undefined;
+    impulseId?: string | undefined;
 }>]>;
 export declare const logIsAssistantMessageLog: (value: Omit<Log, "id">) => value is AssistantMessageLog;
 export declare const isValidAssistantMessageLog: (value: unknown) => value is AssistantMessageLog;
@@ -34526,3 +34823,5 @@ export declare const logIsTacticReviewLog: (value: Omit<Log, "id">) => value is 
 export declare const isValidTacticReviewLog: (value: unknown) => value is TacticReviewLog;
 export declare const logIsSetupModeChoiceLog: (value: Omit<Log, "id">) => value is SetupModeChoiceLog;
 export declare const logIsTagsUpdatedLog: (value: Omit<Log, "id">) => value is TagsUpdatedLog;
+export declare const logIsCrisisResourceLog: (value: Omit<Log, "id">) => value is CrisisResourceLog;
+export declare const logIsRecoveryKeyLog: (value: Omit<Log, "id">) => value is RecoveryKeyLog;

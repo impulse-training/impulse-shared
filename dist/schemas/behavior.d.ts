@@ -1106,6 +1106,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     hidden: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     color: z.ZodOptional<z.ZodString>;
     behaviorTopicId: z.ZodOptional<z.ZodEnum<[string, ...string[]]>>;
+    needsBaselineData: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     state: z.ZodOptional<z.ZodObject<{
         behaviorId: z.ZodString;
         goal: z.ZodOptional<z.ZodObject<{
@@ -1844,6 +1845,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     benefits: string[];
     drawbacks: string[];
     hidden: boolean;
+    needsBaselineData: boolean;
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
@@ -2038,6 +2040,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     } | undefined;
     hidden?: boolean | undefined;
     behaviorTopicId?: string | undefined;
+    needsBaselineData?: boolean | undefined;
     state?: {
         behaviorId: string;
         windows: {
@@ -2162,6 +2165,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     benefits: string[];
     drawbacks: string[];
     hidden: boolean;
+    needsBaselineData: boolean;
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
@@ -2356,6 +2360,7 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     } | undefined;
     hidden?: boolean | undefined;
     behaviorTopicId?: string | undefined;
+    needsBaselineData?: boolean | undefined;
     state?: {
         behaviorId: string;
         windows: {

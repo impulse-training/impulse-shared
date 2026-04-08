@@ -58,6 +58,7 @@ export const tacticSchema = z.object({
   // AI metadata for tactic suggestion
   indications: indicationSchema.optional(),
   contraindications: indicationSchema.optional(),
+  completionTrigger: z.enum(["device-restart"]).optional(), // Auto-complete when this condition is detected
   effectiveness: z.enum(["low", "medium", "high"]).optional(), // General effectiveness rating
   timeToComplete: z.enum(["quick", "medium", "long"]).optional(), // How long the tactic takes
   aiConfiguration: z

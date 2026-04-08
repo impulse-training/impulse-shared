@@ -68,6 +68,14 @@ import {
   TagsUpdatedLog,
   tagsUpdatedLogSchema,
 } from "./tagsUpdatedLog";
+import {
+  CrisisResourceLog,
+  crisisResourceLogSchema,
+} from "./crisisResourceLog";
+import {
+  RecoveryKeyLog,
+  recoveryKeyLogSchema,
+} from "./recoveryKeyLog";
 
 export const logSchemas = {
   user: userMessageLogSchema,
@@ -98,6 +106,8 @@ export const logSchemas = {
   tactic_review: tacticReviewLogSchema,
   setup_mode_choice: setupModeChoiceLogSchema,
   tags_updated: tagsUpdatedLogSchema,
+  crisis_resource: crisisResourceLogSchema,
+  recovery_key: recoveryKeyLogSchema,
 };
 export const logTypes = Object.keys(logSchemas);
 
@@ -129,7 +139,9 @@ export type Log =
   | RequestPermissionsLog
   | TacticReviewLog
   | SetupModeChoiceLog
-  | TagsUpdatedLog;
+  | TagsUpdatedLog
+  | CrisisResourceLog
+  | RecoveryKeyLog;
 
 export * from "./behaviorLog";
 export * from "./breathingLog";
@@ -157,6 +169,8 @@ export * from "./requestPermissionsLog";
 export * from "./tacticReviewLog";
 export * from "./setupModeChoiceLog";
 export * from "./tagsUpdatedLog";
+export * from "./crisisResourceLog";
+export * from "./recoveryKeyLog";
 
 // Discriminated union schema across all log variants
 export const logSchema = z.discriminatedUnion("type", [
@@ -186,6 +200,8 @@ export const logSchema = z.discriminatedUnion("type", [
   requestPermissionsLogSchema,
   tacticReviewLogSchema,
   tagsUpdatedLogSchema,
+  crisisResourceLogSchema,
+  recoveryKeyLogSchema,
 ]);
 
 // Export log type guards
@@ -383,3 +399,11 @@ export const logIsSetupModeChoiceLog = (
 export const logIsTagsUpdatedLog = (
   value: Omit<Log, "id">,
 ): value is TagsUpdatedLog => value.type === "tags_updated";
+
+export const logIsCrisisResourceLog = (
+  value: Omit<Log, "id">,
+): value is CrisisResourceLog => value.type === "crisis_resource";
+
+export const logIsRecoveryKeyLog = (
+  value: Omit<Log, "id">,
+): value is RecoveryKeyLog => value.type === "recovery_key";

@@ -1693,6 +1693,7 @@ export declare const tacticLogSchema: z.ZodObject<{
                     weight: number;
                 }[] | undefined;
             }>>;
+            completionTrigger: z.ZodOptional<z.ZodEnum<["device-restart"]>>;
             effectiveness: z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>;
             timeToComplete: z.ZodOptional<z.ZodEnum<["quick", "medium", "long"]>>;
             aiConfiguration: z.ZodOptional<z.ZodObject<{
@@ -2036,6 +2037,7 @@ export declare const tacticLogSchema: z.ZodObject<{
                     weight: number;
                 }[] | undefined;
             } | undefined;
+            completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
             aiConfiguration?: {
@@ -2369,6 +2371,7 @@ export declare const tacticLogSchema: z.ZodObject<{
                     weight: number;
                 }[] | undefined;
             } | undefined;
+            completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
             aiConfiguration?: {
@@ -2727,6 +2730,7 @@ export declare const tacticLogSchema: z.ZodObject<{
                     weight: number;
                 }[] | undefined;
             } | undefined;
+            completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
             aiConfiguration?: {
@@ -3077,6 +3081,7 @@ export declare const tacticLogSchema: z.ZodObject<{
                     weight: number;
                 }[] | undefined;
             } | undefined;
+            completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
             aiConfiguration?: {
@@ -3437,6 +3442,7 @@ export declare const tacticLogSchema: z.ZodObject<{
                     weight: number;
                 }[] | undefined;
             } | undefined;
+            completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
             aiConfiguration?: {
@@ -3802,6 +3808,7 @@ export declare const tacticLogSchema: z.ZodObject<{
                     weight: number;
                 }[] | undefined;
             } | undefined;
+            completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
             aiConfiguration?: {

@@ -20,8 +20,8 @@ exports.tacticContextSchema = zod_1.z.object({
     instructions: zod_1.z.string().optional(),
 });
 exports.activeExperimentContextSchema = zod_1.z.object({
-    behaviorId: zod_1.z.string(),
-    behaviorName: zod_1.z.string(),
+    behaviorIds: zod_1.z.array(zod_1.z.string()),
+    behaviorNames: zod_1.z.array(zod_1.z.string()),
     experimentQuestion: zod_1.z.string(),
     observations: zod_1.z.array(zod_1.z.string()),
 });

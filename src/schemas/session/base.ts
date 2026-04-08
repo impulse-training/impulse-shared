@@ -21,6 +21,7 @@ const sessionTypeSchema = z.enum([
   "setup",
   "welcome",
   "tactic",
+  "recoveryKey",
 ]);
 
 // Session schema
