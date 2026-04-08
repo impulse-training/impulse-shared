@@ -19302,13 +19302,10 @@ export declare const logSchemas: {
         type: z.ZodLiteral<"recovery_key">;
         isDisplayable: z.ZodLiteral<true>;
         data: z.ZodObject<{
-            recoveryKey: z.ZodString;
             action: z.ZodEnum<["saved", "copied", "downloaded"]>;
         }, "strip", z.ZodTypeAny, {
-            recoveryKey: string;
             action: "saved" | "copied" | "downloaded";
         }, {
-            recoveryKey: string;
             action: "saved" | "copied" | "downloaded";
         }>;
     }, "strip", z.ZodTypeAny, {
@@ -19321,7 +19318,6 @@ export declare const logSchemas: {
         sessionId: string;
         isDisplayable: true;
         data: {
-            recoveryKey: string;
             action: "saved" | "copied" | "downloaded";
         };
         id?: string | undefined;
@@ -19339,7 +19335,6 @@ export declare const logSchemas: {
         sessionId: string;
         isDisplayable: true;
         data: {
-            recoveryKey: string;
             action: "saved" | "copied" | "downloaded";
         };
         id?: string | undefined;
@@ -34735,13 +34730,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     type: z.ZodLiteral<"recovery_key">;
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
-        recoveryKey: z.ZodString;
         action: z.ZodEnum<["saved", "copied", "downloaded"]>;
     }, "strip", z.ZodTypeAny, {
-        recoveryKey: string;
         action: "saved" | "copied" | "downloaded";
     }, {
-        recoveryKey: string;
         action: "saved" | "copied" | "downloaded";
     }>;
 }, "strip", z.ZodTypeAny, {
@@ -34754,7 +34746,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     sessionId: string;
     isDisplayable: true;
     data: {
-        recoveryKey: string;
         action: "saved" | "copied" | "downloaded";
     };
     id?: string | undefined;
@@ -34772,7 +34763,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     sessionId: string;
     isDisplayable: true;
     data: {
-        recoveryKey: string;
         action: "saved" | "copied" | "downloaded";
     };
     id?: string | undefined;
