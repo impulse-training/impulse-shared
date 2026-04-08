@@ -125,6 +125,12 @@ export const userDataSchema = z.object({
   // User location (ISO 3166-1 alpha-2 country code)
   country: z.string().optional(),
 
+  // Recovery key saved status
+  recoveryKeySaved: z.boolean().optional(),
+
+  // Disclaimer acceptance
+  disclaimerAcceptedAt: timestampSchema.optional(),
+
   // One-time migration flags
   migrations: z
     .object({

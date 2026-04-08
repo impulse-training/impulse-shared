@@ -13477,6 +13477,7 @@ export declare const logSchemas: {
         text: z.ZodString;
         link: z.ZodString;
         buttonText: z.ZodString;
+        icon: z.ZodOptional<z.ZodEnum<["link", "rocket", "party", "check"]>>;
     }, "strip", z.ZodTypeAny, {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -13494,6 +13495,7 @@ export declare const logSchemas: {
         behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
         impulseId?: string | undefined;
+        icon?: "link" | "rocket" | "party" | "check" | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -13511,6 +13513,7 @@ export declare const logSchemas: {
         behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
         impulseId?: string | undefined;
+        icon?: "link" | "rocket" | "party" | "check" | undefined;
     }>;
     notify_support_group: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
@@ -28985,6 +28988,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     text: z.ZodString;
     link: z.ZodString;
     buttonText: z.ZodString;
+    icon: z.ZodOptional<z.ZodEnum<["link", "rocket", "party", "check"]>>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
@@ -29002,6 +29006,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
     impulseId?: string | undefined;
+    icon?: "link" | "rocket" | "party" | "check" | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
@@ -29019,6 +29024,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
     impulseId?: string | undefined;
+    icon?: "link" | "rocket" | "party" | "check" | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;

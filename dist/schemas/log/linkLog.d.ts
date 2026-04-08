@@ -17,6 +17,7 @@ export declare const linkLogSchema: z.ZodObject<{
     text: z.ZodString;
     link: z.ZodString;
     buttonText: z.ZodString;
+    icon: z.ZodOptional<z.ZodEnum<["link", "rocket", "party", "check"]>>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
@@ -34,6 +35,7 @@ export declare const linkLogSchema: z.ZodObject<{
     behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
     impulseId?: string | undefined;
+    icon?: "link" | "rocket" | "party" | "check" | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
@@ -51,5 +53,6 @@ export declare const linkLogSchema: z.ZodObject<{
     behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
     impulseId?: string | undefined;
+    icon?: "link" | "rocket" | "party" | "check" | undefined;
 }>;
 export type LinkLog = z.infer<typeof linkLogSchema>;

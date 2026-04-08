@@ -134,6 +134,8 @@ export declare const userDataSchema: z.ZodObject<{
         sentAt: import("../types").Timestamp;
     }>>>;
     country: z.ZodOptional<z.ZodString>;
+    recoveryKeySaved: z.ZodOptional<z.ZodBoolean>;
+    disclaimerAcceptedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     migrations: z.ZodOptional<z.ZodObject<{
         recommendedLibraryDone: z.ZodOptional<z.ZodBoolean>;
     }, "strip", z.ZodTypeAny, {
@@ -201,6 +203,8 @@ export declare const userDataSchema: z.ZodObject<{
         role: "assistant" | "user";
         sentAt: import("../types").Timestamp;
     }>> | undefined;
+    recoveryKeySaved?: boolean | undefined;
+    disclaimerAcceptedAt?: import("../types").Timestamp | undefined;
     migrations?: {
         recommendedLibraryDone?: boolean | undefined;
     } | undefined;
@@ -264,6 +268,8 @@ export declare const userDataSchema: z.ZodObject<{
         role: "assistant" | "user";
         sentAt: import("../types").Timestamp;
     }>> | undefined;
+    recoveryKeySaved?: boolean | undefined;
+    disclaimerAcceptedAt?: import("../types").Timestamp | undefined;
     migrations?: {
         recommendedLibraryDone?: boolean | undefined;
     } | undefined;

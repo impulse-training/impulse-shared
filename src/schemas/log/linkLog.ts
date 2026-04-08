@@ -9,6 +9,7 @@ export const linkLogSchema = logBaseSchema.extend({
   text: z.string(),
   link: z.string(),
   buttonText: z.string(),
+  icon: z.enum(["link", "rocket", "party", "check"]).optional(),
 });
 
 // Export the LinkLog type using yup.InferType

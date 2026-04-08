@@ -100,6 +100,10 @@ exports.userDataSchema = zod_1.z.object({
         .optional(),
     // User location (ISO 3166-1 alpha-2 country code)
     country: zod_1.z.string().optional(),
+    // Recovery key saved status
+    recoveryKeySaved: zod_1.z.boolean().optional(),
+    // Disclaimer acceptance
+    disclaimerAcceptedAt: timestampSchema_1.timestampSchema.optional(),
     // One-time migration flags
     migrations: zod_1.z
         .object({

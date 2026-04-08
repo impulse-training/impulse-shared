@@ -10,4 +10,5 @@ exports.linkLogSchema = base_1.logBaseSchema.extend({
     text: zod_1.z.string(),
     link: zod_1.z.string(),
     buttonText: zod_1.z.string(),
+    icon: zod_1.z.enum(["link", "rocket", "party", "check"]).optional(),
 });
