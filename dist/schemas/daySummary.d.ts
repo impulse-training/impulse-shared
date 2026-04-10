@@ -60,6 +60,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         trackingType: z.ZodEnum<["counter", "timer"]>;
         trackingUnit: z.ZodOptional<z.ZodString>;
         baselinePeriod: z.ZodOptional<z.ZodEnum<["daily", "weekly"]>>;
+        synonyms: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     } & {
@@ -909,6 +910,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         trackingUnit?: string | undefined;
         baselinePeriod?: "daily" | "weekly" | undefined;
         color?: string | undefined;
+        synonyms?: string[] | undefined;
         goal?: {
             type: "eliminate";
         } | {
@@ -1066,6 +1068,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         trackingUnit?: string | undefined;
         baselinePeriod?: "daily" | "weekly" | undefined;
         color?: string | undefined;
+        synonyms?: string[] | undefined;
         goal?: {
             type: "eliminate";
         } | {
@@ -1229,6 +1232,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         trackingUnit?: string | undefined;
         baselinePeriod?: "daily" | "weekly" | undefined;
         color?: string | undefined;
+        synonyms?: string[] | undefined;
         goal?: {
             type: "eliminate";
         } | {
@@ -1386,6 +1390,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         trackingUnit?: string | undefined;
         baselinePeriod?: "daily" | "weekly" | undefined;
         color?: string | undefined;
+        synonyms?: string[] | undefined;
         goal?: {
             type: "eliminate";
         } | {
@@ -1564,6 +1569,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         trackingUnit?: string | undefined;
         baselinePeriod?: "daily" | "weekly" | undefined;
         color?: string | undefined;
+        synonyms?: string[] | undefined;
         goal?: {
             type: "eliminate";
         } | {
@@ -1736,6 +1742,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         trackingUnit?: string | undefined;
         baselinePeriod?: "daily" | "weekly" | undefined;
         color?: string | undefined;
+        synonyms?: string[] | undefined;
         goal?: {
             type: "eliminate";
         } | {
@@ -1922,6 +1929,7 @@ export declare const daySummarySchema: z.ZodObject<{
         trackingType: z.ZodEnum<["counter", "timer"]>;
         trackingUnit: z.ZodOptional<z.ZodString>;
         baselinePeriod: z.ZodOptional<z.ZodEnum<["daily", "weekly"]>>;
+        synonyms: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     } & {
@@ -2771,6 +2779,7 @@ export declare const daySummarySchema: z.ZodObject<{
         trackingUnit?: string | undefined;
         baselinePeriod?: "daily" | "weekly" | undefined;
         color?: string | undefined;
+        synonyms?: string[] | undefined;
         goal?: {
             type: "eliminate";
         } | {
@@ -2928,6 +2937,7 @@ export declare const daySummarySchema: z.ZodObject<{
         trackingUnit?: string | undefined;
         baselinePeriod?: "daily" | "weekly" | undefined;
         color?: string | undefined;
+        synonyms?: string[] | undefined;
         goal?: {
             type: "eliminate";
         } | {
@@ -3091,6 +3101,7 @@ export declare const daySummarySchema: z.ZodObject<{
         trackingUnit?: string | undefined;
         baselinePeriod?: "daily" | "weekly" | undefined;
         color?: string | undefined;
+        synonyms?: string[] | undefined;
         goal?: {
             type: "eliminate";
         } | {
@@ -3248,6 +3259,7 @@ export declare const daySummarySchema: z.ZodObject<{
         trackingUnit?: string | undefined;
         baselinePeriod?: "daily" | "weekly" | undefined;
         color?: string | undefined;
+        synonyms?: string[] | undefined;
         goal?: {
             type: "eliminate";
         } | {
@@ -3507,6 +3519,7 @@ export declare const daySummarySchema: z.ZodObject<{
         trackingUnit?: string | undefined;
         baselinePeriod?: "daily" | "weekly" | undefined;
         color?: string | undefined;
+        synonyms?: string[] | undefined;
         goal?: {
             type: "eliminate";
         } | {
@@ -3708,6 +3721,7 @@ export declare const daySummarySchema: z.ZodObject<{
         trackingUnit?: string | undefined;
         baselinePeriod?: "daily" | "weekly" | undefined;
         color?: string | undefined;
+        synonyms?: string[] | undefined;
         goal?: {
             type: "eliminate";
         } | {

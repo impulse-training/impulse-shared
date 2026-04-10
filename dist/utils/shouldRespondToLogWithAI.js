@@ -58,7 +58,10 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         (0, log_1.logIsSetupModeChoiceLog)(afterData) &&
         afterData.data.choice === "text" &&
         (0, fields_1.fieldChanged)(beforeData, afterData, "data.choice");
-    const isTagsUpdated = !beforeData && afterData && (0, log_1.logIsTagsUpdatedLog)(afterData);
+    const isTagsUpdated = !beforeData &&
+        afterData &&
+        (0, log_1.logIsTagsUpdatedLog)(afterData) &&
+        !(session && (0, schemas_1.sessionIsImpulseSession)(session) && session.phase === "debrief");
     const isTacticCompleted = beforeData &&
         afterData &&
         (0, log_1.logIsTacticLog)(afterData) &&

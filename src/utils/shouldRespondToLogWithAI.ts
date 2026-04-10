@@ -1,4 +1,8 @@
-import { Session, sessionIsTimePlanSession } from "../schemas";
+import {
+  Session,
+  sessionIsImpulseSession,
+  sessionIsTimePlanSession,
+} from "../schemas";
 import { getRecapDeadline } from "./dates";
 import {
   Log,
@@ -86,9 +90,7 @@ export function shouldRespondToLogWithAI(
     fieldChanged(beforeData, afterData, "data.resolvedAt");
 
   const isDayTotalsPromptAction =
-    beforeData &&
-    afterData &&
-    logIsDayTotalsPromptLog(afterData);
+    beforeData && afterData && logIsDayTotalsPromptLog(afterData);
 
   const isSetupModeTextChoice =
     beforeData &&
@@ -98,7 +100,14 @@ export function shouldRespondToLogWithAI(
     fieldChanged(beforeData, afterData, "data.choice");
 
   const isTagsUpdated =
-    !beforeData && afterData && logIsTagsUpdatedLog(afterData);
+    !beforeData &&
+    afterData &&
+    logIsTagsUpdatedLog(afterData) &&
+    !(
+      session &&
+      sessionIsImpulseSession(session) &&
+      session.phase === "debrief"
+    );
 
   const isTacticCompleted =
     beforeData &&
@@ -112,7 +121,6 @@ export function shouldRespondToLogWithAI(
     !isDebriefOutcomeResolved &&
     !isDayTotalsPromptAction &&
     !isSetupModeTextChoice &&
-    !isTagsUpdated &&
     !isTacticCompleted &&
     latestSessionLog &&
     logIsAssistantMessageLog(latestSessionLog)
@@ -254,16 +262,22 @@ export function shouldRespondToLogWithAI(
       const deadline = getRecapDeadline(dateStr, true);
 
       if (now < deadline) {
-        console.log("Day totals confirmed within recap deadline. Responding with AI.");
+        console.log(
+          "Day totals confirmed within recap deadline. Responding with AI.",
+        );
         return true;
       }
 
-      console.log("Day totals confirmed past recap deadline. Not responding with AI.");
+      console.log(
+        "Day totals confirmed past recap deadline. Not responding with AI.",
+      );
       return false;
     }
 
     // Future date — shouldn't happen, but don't respond
-    console.log("Day totals confirmed for future date. Not responding with AI.");
+    console.log(
+      "Day totals confirmed for future date. Not responding with AI.",
+    );
     return false;
   }
 
@@ -286,7 +300,9 @@ export function shouldRespondToLogWithAI(
     isUpdating &&
     logIsMetricLog(afterData) &&
     afterData.data.value !== null &&
-    (!beforeData || !logIsMetricLog(beforeData) || beforeData.data.value === null)
+    (!beforeData ||
+      !logIsMetricLog(beforeData) ||
+      beforeData.data.value === null)
   ) {
     console.log("Metric log was rated. Responding with AI.");
     return true;

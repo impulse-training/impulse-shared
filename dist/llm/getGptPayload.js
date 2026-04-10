@@ -23,7 +23,7 @@ function buildBehaviorLogPayload(log, options) {
         }
         else {
             if (debriefOutcome === "resisted") {
-                parts.push("<CONTEXT>The user successfully resisted an urge. We're debriefing what helped them resist and what they can learn from it.</CONTEXT>");
+                parts.push("<CONTEXT>The user resisted the urge and is now debriefing. Do not assume they engaged with any tactic that was suggested earlier — each tactic log in the transcript states whether it was completed or left unengaged. Only reference what the transcript actually shows.</CONTEXT>");
             }
             else if (debriefOutcome === "acted") {
                 parts.push("<CONTEXT>The user acted on an urge. We're debriefing what happened and how to support them in a non-judgmental way.</CONTEXT>");
@@ -171,6 +171,7 @@ function getGptPayload(log, isFinalLogInSession, options) {
         const tacticTitle = log.data.tactic.title;
         const isCompleted = log.data.completed === true;
         const response = log.data.response;
+        const isDebrief = (options === null || options === void 0 ? void 0 : options.sessionPhase) === "debrief";
         if (isCompleted && response) {
             return [
                 {
@@ -187,8 +188,22 @@ function getGptPayload(log, isFinalLogInSession, options) {
                 },
             ];
         }
-        // Tactic was suggested but not yet completed — skip from conversation
-        return [];
+        // Tactic was suggested but not completed. Render it explicitly so the AI
+        // does not assume the user engaged with it.
+        if (isDebrief) {
+            return [
+                {
+                    role: "user",
+                    content: `<SYSTEM>Earlier in this session you suggested the tactic "${tacticTitle}", but the user did NOT start or complete it. Do not praise the user for doing this tactic.</SYSTEM>`,
+                },
+            ];
+        }
+        return [
+            {
+                role: "user",
+                content: `<SYSTEM>You suggested the tactic "${tacticTitle}". The user has not engaged with it yet — do not assume they have done it.</SYSTEM>`,
+            },
+        ];
     }
     if ((0, log_1.logIsWidgetSetupLog)(log)) {
         return [
