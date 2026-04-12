@@ -8,4 +8,4 @@ import { WithId } from "./withId";
  * @param afterData The log data after the write
  * @returns True if we should respond with AI, false otherwise
  */
-export declare function shouldRespondToLogWithAI(session: WithId<Session> | undefined, beforeData: Log | undefined, afterData: Log | undefined, latestSessionLog?: Log): boolean;
+export declare function shouldRespondToLogWithAI(session: WithId<Session> | undefined, beforeData: Log | undefined, afterData: Log | undefined, latestSessionLog?: Log, timezone?: string): boolean;

@@ -88,6 +88,32 @@ const laggedInsightSchema = z.object({
 });
 
 /**
+ * A discovered behavior × metric correlation from mart_behavior_metric_insights.
+ * Surfaced regardless of whether the metric was selected upfront for the experiment.
+ */
+const discoveredInsightSchema = z.object({
+  behaviorId: z.string(),
+  metricId: z.string(),
+  metricName: z.string(),
+  /** Non-null for feeling-type metrics (activated/stressed/calm/low) */
+  quadrant: z.enum(["activated", "stressed", "calm", "low"]).nullable(),
+  /** Strongest correlation (same-day or lagged) */
+  rBest: z.number(),
+  /** Which window was stronger */
+  rBestLag: z.enum(["same_day", "lagged"]),
+  /** Direction of the correlation */
+  direction: z.enum(["positive", "negative"]),
+  /** Magnitude bucket */
+  strength: z.enum(["strong", "moderate", "weak"]),
+  /** Days of overlap used for the best correlation */
+  overlapDaysBest: z.number(),
+  /** Grand average of the metric across overlap days */
+  metricGrandAvg: z.number(),
+  /** Grand average of behavior sessions across overlap days */
+  behaviorGrandAvg: z.number(),
+});
+
+/**
  * Cached experiment results.
  * Collection: users/{userId}/experimentResultsCache/{experimentId}
  *
@@ -114,6 +140,11 @@ export const experimentResultsCacheSchema = z.object({
   /** Lagged-effect insights (yesterday's behavior -> today's metric). Only populated at high confidence (14+ days). */
   laggedInsights: z.array(laggedInsightSchema).optional(),
 
+  /** Pre-computed behavior × metric correlations from mart_behavior_metric_insights.
+   *  Surfaced for any metric with sufficient overlap (≥7 days, |r| ≥ 0.3),
+   *  regardless of which metrics were pre-selected for the experiment. */
+  discoveredInsights: z.array(discoveredInsightSchema).optional(),
+
   /** Set by the frontend each time the screen is viewed */
   requestedAt: timestampSchema,
   /** Set by the backend after a successful computation */
@@ -129,4 +160,5 @@ export type BehaviorSummary = z.infer<typeof behaviorSummarySchema>;
 export type MetricSummary = z.infer<typeof metricSummarySchema>;
 export type DailyDataPoint = z.infer<typeof dailyDataPointSchema>;
 export type LaggedInsight = z.infer<typeof laggedInsightSchema>;
+export type DiscoveredInsight = z.infer<typeof discoveredInsightSchema>;
 export type ConfidenceLevel = z.infer<typeof confidenceLevelEnum>;

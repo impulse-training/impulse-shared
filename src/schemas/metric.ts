@@ -20,6 +20,8 @@ export const metricSchema = z.object({
   maxLabel: z.string().optional(),
   /** If created from METRIC_REGISTRY, stores the registry id for dedup */
   metricRegistryId: z.string().optional(),
+  /** Circumplex quadrant — present only on pre-seeded feeling metrics */
+  quadrant: z.enum(["activated", "stressed", "calm", "low"]).optional(),
   createdAt: timestampSchema.optional(),
   updatedAt: timestampSchema.optional(),
   /** Set when the user initiates deletion; the metric shows as "deleting" until removed */

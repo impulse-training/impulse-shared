@@ -34,7 +34,7 @@ function isTimePlanFullyCompleted(session, plansLog) {
  * @param afterData The log data after the write
  * @returns True if we should respond with AI, false otherwise
  */
-function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionLog) {
+function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionLog, timezone) {
     var _a;
     // Skip the "latest is assistant" guard for inline interactions
     // where the user acts without sending a message
@@ -50,9 +50,7 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         afterData.data.source === "scheduled" &&
         afterData.data.resolvedAt != null &&
         (0, fields_1.fieldChanged)(beforeData, afterData, "data.resolvedAt");
-    const isDayTotalsPromptAction = beforeData &&
-        afterData &&
-        (0, log_1.logIsDayTotalsPromptLog)(afterData);
+    const isDayTotalsPromptAction = beforeData && afterData && (0, log_1.logIsDayTotalsPromptLog)(afterData);
     const isSetupModeTextChoice = beforeData &&
         afterData &&
         (0, log_1.logIsSetupModeChoiceLog)(afterData) &&
@@ -61,7 +59,9 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
     const isTagsUpdated = !beforeData &&
         afterData &&
         (0, log_1.logIsTagsUpdatedLog)(afterData) &&
-        !(session && (0, schemas_1.sessionIsImpulseSession)(session) && session.phase === "debrief");
+        !(session &&
+            (0, schemas_1.sessionIsImpulseSession)(session) &&
+            session.phase === "debrief");
     const isTacticCompleted = beforeData &&
         afterData &&
         (0, log_1.logIsTacticLog)(afterData) &&
@@ -71,7 +71,6 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         !isDebriefOutcomeResolved &&
         !isDayTotalsPromptAction &&
         !isSetupModeTextChoice &&
-        !isTagsUpdated &&
         !isTacticCompleted &&
         latestSessionLog &&
         (0, log_1.logIsAssistantMessageLog)(latestSessionLog)) {
@@ -166,15 +165,16 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
             !beforeData.data.confirmedAt)) {
         const dateStr = afterData.data.targetDateString;
         const now = new Date();
-        const todayStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+        const todayStr = timezone
+            ? (0, dates_1.getDateString)(now, timezone)
+            : `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
         if (dateStr === todayStr) {
             console.log("Day totals confirmed for today. Responding with AI.");
             return true;
         }
         if (dateStr < todayStr) {
-            // Past day: check if within recap deadline (end of the day after the target date).
-            // Uses UTC buffer since this runs on the server.
-            const deadline = (0, dates_1.getRecapDeadline)(dateStr, true);
+            // Past day: check if within recap deadline (midnight at end of day after target, in user's timezone).
+            const deadline = (0, dates_1.getRecapDeadline)(dateStr, timezone);
             if (now < deadline) {
                 console.log("Day totals confirmed within recap deadline. Responding with AI.");
                 return true;
@@ -201,7 +201,9 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
     if (isUpdating &&
         (0, log_1.logIsMetricLog)(afterData) &&
         afterData.data.value !== null &&
-        (!beforeData || !(0, log_1.logIsMetricLog)(beforeData) || beforeData.data.value === null)) {
+        (!beforeData ||
+            !(0, log_1.logIsMetricLog)(beforeData) ||
+            beforeData.data.value === null)) {
         console.log("Metric log was rated. Responding with AI.");
         return true;
     }

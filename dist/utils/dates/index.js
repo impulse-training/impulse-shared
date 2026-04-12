@@ -27,17 +27,23 @@ function getDateString(date, timezone) {
 }
 /**
  * Get the recap deadline for a given target date string.
- * "Late" means after midnight at the end of the day after the target date.
+ * The deadline is midnight at the start of (targetDate + 2 days) in the user's timezone —
+ * i.e. the end of the day after the target date.
  *
  * @param targetDateString - The date being recapped (e.g. "2026-04-03")
- * @param utcBuffer - If true, adds 12h buffer to handle server-side UTC execution.
- *                    Use true on the server, false on the client (which has local time).
+ * @param timezone - The user's IANA timezone (e.g. "America/Mexico_City").
+ *                   Omit on the client — JS local time is used instead.
  */
-function getRecapDeadline(targetDateString, utcBuffer = false) {
+function getRecapDeadline(targetDateString, timezone) {
     const [year, month, day] = targetDateString.split("-").map(Number);
-    const targetDate = new Date(year, month - 1, day);
-    const deadline = new Date(targetDate);
-    deadline.setDate(deadline.getDate() + 2);
-    deadline.setHours(utcBuffer ? 12 : 0, 0, 0, 0);
-    return deadline;
+    // +2 days: JS Date handles month/year rollover automatically
+    const deadlineLocalDate = new Date(year, month - 1, day + 2);
+    const deadlineDateStr = (0, date_fns_1.format)(deadlineLocalDate, exports.DATE_FORMAT);
+    if (timezone) {
+        // Midnight in the user's timezone → UTC Date
+        return (0, date_fns_tz_1.fromZonedTime)(`${deadlineDateStr}T00:00:00`, timezone);
+    }
+    // Client-side: midnight in device local time
+    deadlineLocalDate.setHours(0, 0, 0, 0);
+    return deadlineLocalDate;
 }

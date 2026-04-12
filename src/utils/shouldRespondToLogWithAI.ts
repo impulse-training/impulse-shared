@@ -3,7 +3,7 @@ import {
   sessionIsImpulseSession,
   sessionIsTimePlanSession,
 } from "../schemas";
-import { getRecapDeadline } from "./dates";
+import { getDateString, getRecapDeadline } from "./dates";
 import {
   Log,
   logIsAssistantMessageLog,
@@ -70,6 +70,7 @@ export function shouldRespondToLogWithAI(
   beforeData: Log | undefined,
   afterData: Log | undefined,
   latestSessionLog?: Log,
+  timezone?: string,
 ): boolean {
   // Skip the "latest is assistant" guard for inline interactions
   // where the user acts without sending a message
@@ -249,7 +250,9 @@ export function shouldRespondToLogWithAI(
   ) {
     const dateStr = afterData.data.targetDateString;
     const now = new Date();
-    const todayStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+    const todayStr = timezone
+      ? getDateString(now, timezone)
+      : `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
 
     if (dateStr === todayStr) {
       console.log("Day totals confirmed for today. Responding with AI.");
@@ -257,9 +260,8 @@ export function shouldRespondToLogWithAI(
     }
 
     if (dateStr < todayStr) {
-      // Past day: check if within recap deadline (end of the day after the target date).
-      // Uses UTC buffer since this runs on the server.
-      const deadline = getRecapDeadline(dateStr, true);
+      // Past day: check if within recap deadline (midnight at end of day after target, in user's timezone).
+      const deadline = getRecapDeadline(dateStr, timezone);
 
       if (now < deadline) {
         console.log(
