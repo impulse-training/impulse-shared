@@ -76,6 +76,10 @@ import {
   RecoveryKeyLog,
   recoveryKeyLogSchema,
 } from "./recoveryKeyLog";
+import {
+  CloseButtonLog,
+  closeButtonLogSchema,
+} from "./closeButtonLog";
 
 export const logSchemas = {
   user: userMessageLogSchema,
@@ -108,6 +112,7 @@ export const logSchemas = {
   tags_updated: tagsUpdatedLogSchema,
   crisis_resource: crisisResourceLogSchema,
   recovery_key: recoveryKeyLogSchema,
+  close_button: closeButtonLogSchema,
 };
 export const logTypes = Object.keys(logSchemas);
 

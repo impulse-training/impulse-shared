@@ -99,6 +99,9 @@ export const sessionBaseSchema = z.object({
   // Multi-select tags: tagGroupId → array of selected optionIds
   tags: z.record(z.string(), z.array(z.string())).optional(),
 
+  // Set when the AI calls showCloseButton — indicates the conversation has reached a natural end
+  aiFinalizedAt: timestampSchema.optional(),
+
   // Deletion state - set when the user initiates deletion from the UI
   startedDeletingAt: timestampSchema.optional(),
   deletingError: z.string().optional(),
