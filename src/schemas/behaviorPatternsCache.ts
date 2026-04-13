@@ -54,6 +54,11 @@ export const behaviorPatternsCacheSchema = z.object({
   requestedAt: timestampSchema,
   /** Set by the backend after a successful BigQuery refresh */
   fetchedAt: timestampSchema.optional(),
+  /** Set by the backend if the last refresh attempt failed; cleared on success */
+  lastError: z
+    .object({ message: z.string(), occurredAt: timestampSchema })
+    .nullable()
+    .optional(),
 });
 
 export type BehaviorPatternsCache = z.infer<

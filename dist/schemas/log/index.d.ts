@@ -14288,6 +14288,7 @@ export declare const logSchemas: {
     } & {
         type: z.ZodLiteral<"metric">;
         isDisplayable: z.ZodLiteral<true>;
+        shouldZaraRespond: z.ZodOptional<z.ZodBoolean>;
         data: z.ZodObject<{
             metricId: z.ZodString;
             metricName: z.ZodString;
@@ -14336,6 +14337,7 @@ export declare const logSchemas: {
         behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
         impulseId?: string | undefined;
+        shouldZaraRespond?: boolean | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -14359,6 +14361,7 @@ export declare const logSchemas: {
         behaviorIds?: string[] | undefined;
         callLogDocPath?: string | undefined;
         impulseId?: string | undefined;
+        shouldZaraRespond?: boolean | undefined;
     }>;
     recap_time_preference: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
@@ -29791,6 +29794,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
 } & {
     type: z.ZodLiteral<"metric">;
     isDisplayable: z.ZodLiteral<true>;
+    shouldZaraRespond: z.ZodOptional<z.ZodBoolean>;
     data: z.ZodObject<{
         metricId: z.ZodString;
         metricName: z.ZodString;
@@ -29839,6 +29843,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
     impulseId?: string | undefined;
+    shouldZaraRespond?: boolean | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
@@ -29862,6 +29867,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     behaviorIds?: string[] | undefined;
     callLogDocPath?: string | undefined;
     impulseId?: string | undefined;
+    shouldZaraRespond?: boolean | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;

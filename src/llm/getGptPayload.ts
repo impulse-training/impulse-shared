@@ -301,21 +301,38 @@ export function getGptPayload(
 
   // Handle MetricLog
   if (logIsMetricLog(log)) {
-    const { metricName, value, minLabel, maxLabel } = log.data;
+    const { metricName, value, minLabel, maxLabel, quadrant } = log.data;
     const scaleDesc =
       minLabel && maxLabel ? ` (${minLabel} to ${maxLabel})` : "";
     if (value == null) {
       return [
         {
           role: "user",
-          content: `<CONTEXT>Metric "${metricName}"${scaleDesc} is awaiting user rating (1-5 scale).</CONTEXT>`,
+          content: `<CONTEXT>Metric "${metricName}"${scaleDesc} is awaiting user rating (1-10 scale).</CONTEXT>`,
+        },
+      ];
+    }
+    // Feeling metric (has quadrant) — use feeling-specific wording
+    if (quadrant) {
+      if (isFinalLogInSession && log.shouldZaraRespond) {
+        return [
+          {
+            role: "user",
+            content: `<CONTEXT>The user is feeling ${metricName} (${quadrant}), rated ${value}/10${scaleDesc}. They want to discuss this feeling.</CONTEXT>`,
+          },
+        ];
+      }
+      return [
+        {
+          role: "user",
+          content: `<CONTEXT>User is feeling "${metricName}" (${quadrant}): ${value}/10${scaleDesc}.</CONTEXT>`,
         },
       ];
     }
     return [
       {
         role: "user",
-        content: `<CONTEXT>User rated "${metricName}": ${value}/5${scaleDesc}.</CONTEXT>`,
+        content: `<CONTEXT>User rated "${metricName}": ${value}/10${scaleDesc}.</CONTEXT>`,
       },
     ];
   }

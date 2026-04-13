@@ -111,6 +111,9 @@ const discoveredInsightSchema = z.object({
   metricGrandAvg: z.number(),
   /** Grand average of behavior sessions across overlap days */
   behaviorGrandAvg: z.number(),
+  /** Daily time series — populated when data is available, enabling the same
+   *  chart treatment as intentionally-tracked experiment metrics. */
+  dailySeries: z.array(dailyDataPointSchema).optional(),
 });
 
 /**

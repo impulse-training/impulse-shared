@@ -145,6 +145,14 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
             return true;
         }
     }
+    // Case: A metric log was explicitly marked for Zara to respond (e.g. feeling discussion requested)
+    if (isNotDeleting && (0, log_1.logIsMetricLog)(afterData)) {
+        if ((0, fields_1.fieldChanged)(beforeData, afterData, "shouldZaraRespond") &&
+            afterData.shouldZaraRespond) {
+            console.log("Metric log marked for Zara to respond. Responding with AI.");
+            return true;
+        }
+    }
     // Case: A plansLog was updated with completedAt for a timePlan session
     if (isNotDeleting &&
         (0, log_1.logIsPlansLog)(afterData) &&

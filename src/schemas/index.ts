@@ -19,6 +19,7 @@ export * from "./log";
 export * from "./memory";
 export * from "./monthSummary";
 export * from "./metric";
+export * from "./metricState";
 export * from "./notification";
 export * from "./paymentToken";
 export * from "./plan";

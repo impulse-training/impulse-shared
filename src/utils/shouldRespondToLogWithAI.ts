@@ -225,6 +225,19 @@ export function shouldRespondToLogWithAI(
     }
   }
 
+  // Case: A metric log was explicitly marked for Zara to respond (e.g. feeling discussion requested)
+  if (isNotDeleting && logIsMetricLog(afterData)) {
+    if (
+      fieldChanged(beforeData, afterData, "shouldZaraRespond") &&
+      afterData.shouldZaraRespond
+    ) {
+      console.log(
+        "Metric log marked for Zara to respond. Responding with AI.",
+      );
+      return true;
+    }
+  }
+
   // Case: A plansLog was updated with completedAt for a timePlan session
   if (
     isNotDeleting &&
