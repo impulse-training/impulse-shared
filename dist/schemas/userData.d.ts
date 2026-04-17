@@ -10,6 +10,7 @@ export declare const userDataSchema: z.ZodObject<{
     role: z.ZodDefault<z.ZodEnum<["user", "coach", "support"]>>;
     notificationsEnabled: z.ZodDefault<z.ZodBoolean>;
     notifyOnSignUp: z.ZodOptional<z.ZodBoolean>;
+    notifyOnCoachingApplication: z.ZodOptional<z.ZodBoolean>;
     expoPushToken: z.ZodDefault<z.ZodNullable<z.ZodString>>;
     notificationSettings: z.ZodDefault<z.ZodObject<{
         debriefReminders: z.ZodDefault<z.ZodBoolean>;
@@ -171,6 +172,7 @@ export declare const userDataSchema: z.ZodObject<{
     recoveryKeyHash?: string | undefined;
     createdViaSimulator?: boolean | undefined;
     notifyOnSignUp?: boolean | undefined;
+    notifyOnCoachingApplication?: boolean | undefined;
     appVersion?: string | undefined;
     device?: {
         osName?: string | undefined;
@@ -230,6 +232,7 @@ export declare const userDataSchema: z.ZodObject<{
     defaultSessionMode?: "text" | "voice" | undefined;
     createdViaSimulator?: boolean | undefined;
     notifyOnSignUp?: boolean | undefined;
+    notifyOnCoachingApplication?: boolean | undefined;
     expoPushToken?: string | null | undefined;
     notificationSettings?: {
         debriefReminders?: boolean | undefined;

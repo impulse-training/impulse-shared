@@ -14,11 +14,6 @@ exports.logBaseSchema = zod_1.z.object({
     sessionId: zod_1.z.string(),
     tacticId: zod_1.z.string().optional(),
     behaviorIds: zod_1.z.array(zod_1.z.string()).optional(),
-    // A log can be associated with a call, which is also a log. Not all logs should be able to be
-    // associated with a call, but it's simplest to just define this as an optional property on our
-    // base log schema.
-    // TODO: REVIEW
-    callLogDocPath: zod_1.z.string().optional(),
     // Groups logs belonging to the same impulse flow
     impulseId: zod_1.z.string().optional(),
 });

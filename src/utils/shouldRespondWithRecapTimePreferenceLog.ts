@@ -1,5 +1,5 @@
 import { Session, sessionIsAlignmentSession } from "../schemas";
-import { Log, ProposedExperimentLog } from "../schemas/log";
+import { ImageLog, Log, ProposedExperimentLog } from "../schemas/log";
 import { WithId } from "./withId";
 
 /**
@@ -7,11 +7,7 @@ import { WithId } from "./withId";
  * This happens when:
  * 1. The session is an alignment session
  * 2. A proposed_experiment log was just confirmed (confirmedAt was set)
- *
- * @param session The session document
- * @param beforeData The log data before the write
- * @param afterData The log data after the write
- * @returns True if we should add a recap time preference log, false otherwise
+ *    OR an image log was just acknowledged (acknowledgedAt was set)
  */
 export function shouldRespondWithRecapTimePreferenceLog(
   session: WithId<Session>,
@@ -20,18 +16,24 @@ export function shouldRespondWithRecapTimePreferenceLog(
 ): boolean {
   if (!beforeData || !afterData) return false;
 
-  // Only for alignment sessions
   if (!sessionIsAlignmentSession(session)) return false;
 
-  // Only when a proposed_experiment log gains confirmedAt
-  if (afterData.type !== "proposed_experiment") return false;
-  if (beforeData.type !== "proposed_experiment") return false;
+  // When a proposed_experiment log gains confirmedAt
+  if (
+    afterData.type === "proposed_experiment" &&
+    beforeData.type === "proposed_experiment"
+  ) {
+    const before = beforeData as ProposedExperimentLog;
+    const after = afterData as ProposedExperimentLog;
+    if (after.confirmedAt && !before.confirmedAt) return true;
+  }
 
-  const before = beforeData as ProposedExperimentLog;
-  const after = afterData as ProposedExperimentLog;
+  // When an image log gains acknowledgedAt (e.g. "Got it" on ImpulseMode intro)
+  if (afterData.type === "image" && beforeData.type === "image") {
+    const before = beforeData as ImageLog;
+    const after = afterData as ImageLog;
+    if (after.data.acknowledgedAt && !before.data.acknowledgedAt) return true;
+  }
 
-  if (!after.confirmedAt) return false;
-  if (before.confirmedAt) return false;
-
-  return true;
+  return false;
 }

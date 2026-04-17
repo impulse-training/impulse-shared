@@ -43,6 +43,7 @@ exports.userDataSchema = zod_1.z.object({
     // Notification settings
     notificationsEnabled: zod_1.z.boolean().default(true),
     notifyOnSignUp: zod_1.z.boolean().optional(),
+    notifyOnCoachingApplication: zod_1.z.boolean().optional(),
     expoPushToken: zod_1.z.string().nullable().default(null),
     notificationSettings: zod_1.z
         .object({

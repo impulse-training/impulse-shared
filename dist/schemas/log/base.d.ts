@@ -9,7 +9,6 @@ export declare const logBaseSchema: z.ZodObject<{
     sessionId: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-    callLogDocPath: z.ZodOptional<z.ZodString>;
     impulseId: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
@@ -21,7 +20,6 @@ export declare const logBaseSchema: z.ZodObject<{
     id?: string | undefined;
     tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
-    callLogDocPath?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -33,6 +31,5 @@ export declare const logBaseSchema: z.ZodObject<{
     id?: string | undefined;
     tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
-    callLogDocPath?: string | undefined;
     impulseId?: string | undefined;
 }>;

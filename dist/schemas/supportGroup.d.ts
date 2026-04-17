@@ -405,7 +405,6 @@ export declare const supportGroupSchema: z.ZodObject<{
         sessionId: z.ZodString;
         tacticId: z.ZodOptional<z.ZodString>;
         behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-        callLogDocPath: z.ZodOptional<z.ZodString>;
         impulseId: z.ZodOptional<z.ZodString>;
         isDisplayable: z.ZodLiteral<true>;
         data: z.ZodObject<{
@@ -511,7 +510,6 @@ export declare const supportGroupSchema: z.ZodObject<{
         id?: string | undefined;
         tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
-        callLogDocPath?: string | undefined;
         impulseId?: string | undefined;
         audioAttachment?: {
             uri: string;
@@ -547,7 +545,6 @@ export declare const supportGroupSchema: z.ZodObject<{
         id?: string | undefined;
         tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
-        callLogDocPath?: string | undefined;
         impulseId?: string | undefined;
         audioAttachment?: {
             uri: string;
@@ -670,7 +667,6 @@ export declare const supportGroupSchema: z.ZodObject<{
         id?: string | undefined;
         tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
-        callLogDocPath?: string | undefined;
         impulseId?: string | undefined;
         audioAttachment?: {
             uri: string;
@@ -788,7 +784,6 @@ export declare const supportGroupSchema: z.ZodObject<{
         id?: string | undefined;
         tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
-        callLogDocPath?: string | undefined;
         impulseId?: string | undefined;
         audioAttachment?: {
             uri: string;

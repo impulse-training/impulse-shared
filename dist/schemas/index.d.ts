@@ -7,6 +7,7 @@ export * from "./behaviorState";
 export * from "./behaviorTemplate";
 export * from "./behaviorTopic";
 export * from "./call";
+export * from "./coachingApplication";
 export * from "./daySummary";
 export * from "./emojiId";
 export * from "./experiment";

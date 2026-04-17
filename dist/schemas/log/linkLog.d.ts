@@ -9,7 +9,6 @@ export declare const linkLogSchema: z.ZodObject<{
     sessionId: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-    callLogDocPath: z.ZodOptional<z.ZodString>;
     impulseId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"link">;
@@ -33,7 +32,6 @@ export declare const linkLogSchema: z.ZodObject<{
     id?: string | undefined;
     tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
-    callLogDocPath?: string | undefined;
     impulseId?: string | undefined;
     icon?: "link" | "rocket" | "party" | "check" | undefined;
 }, {
@@ -51,7 +49,6 @@ export declare const linkLogSchema: z.ZodObject<{
     id?: string | undefined;
     tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
-    callLogDocPath?: string | undefined;
     impulseId?: string | undefined;
     icon?: "link" | "rocket" | "party" | "check" | undefined;
 }>;

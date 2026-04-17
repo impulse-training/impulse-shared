@@ -80,6 +80,10 @@ import {
   CloseButtonLog,
   closeButtonLogSchema,
 } from "./closeButtonLog";
+import {
+  ImageLog,
+  imageLogSchema,
+} from "./imageLog";
 
 export const logSchemas = {
   user: userMessageLogSchema,
@@ -113,6 +117,7 @@ export const logSchemas = {
   crisis_resource: crisisResourceLogSchema,
   recovery_key: recoveryKeyLogSchema,
   close_button: closeButtonLogSchema,
+  image: imageLogSchema,
 };
 export const logTypes = Object.keys(logSchemas);
 
@@ -146,7 +151,9 @@ export type Log =
   | SetupModeChoiceLog
   | TagsUpdatedLog
   | CrisisResourceLog
-  | RecoveryKeyLog;
+  | RecoveryKeyLog
+  | CloseButtonLog
+  | ImageLog;
 
 export * from "./behaviorLog";
 export * from "./breathingLog";
@@ -176,6 +183,8 @@ export * from "./setupModeChoiceLog";
 export * from "./tagsUpdatedLog";
 export * from "./crisisResourceLog";
 export * from "./recoveryKeyLog";
+export * from "./closeButtonLog";
+export * from "./imageLog";
 
 // Discriminated union schema across all log variants
 export const logSchema = z.discriminatedUnion("type", [
@@ -207,6 +216,8 @@ export const logSchema = z.discriminatedUnion("type", [
   tagsUpdatedLogSchema,
   crisisResourceLogSchema,
   recoveryKeyLogSchema,
+  closeButtonLogSchema,
+  imageLogSchema,
 ]);
 
 // Export log type guards
@@ -412,3 +423,11 @@ export const logIsCrisisResourceLog = (
 export const logIsRecoveryKeyLog = (
   value: Omit<Log, "id">,
 ): value is RecoveryKeyLog => value.type === "recovery_key";
+
+export const logIsCloseButtonLog = (
+  value: Omit<Log, "id">,
+): value is CloseButtonLog => value.type === "close_button";
+
+export const logIsImageLog = (
+  value: Omit<Log, "id">,
+): value is ImageLog => value.type === "image";
