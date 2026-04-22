@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.tacticLogSchema = exports.tacticResponseSchema = void 0;
 const zod_1 = require("zod");
 const tactic_1 = require("../tactic");
+const attachment_1 = require("../attachment");
 const timestampSchema_1 = require("../../utils/timestampSchema");
 const base_1 = require("./base");
 /** Response schema for tactic question steps - follows the same pattern as questionsLog */
@@ -34,6 +35,8 @@ exports.tacticLogSchema = base_1.logBaseSchema.extend({
         // Summarization lifecycle tracking
         startedSummarizingConversationAt: timestampSchema_1.timestampSchema.optional(),
         finishedSummarizingConversationAt: timestampSchema_1.timestampSchema.optional(),
+        // Photos uploaded to verify step completion, keyed by step index
+        verificationPhotos: zod_1.z.record(zod_1.z.coerce.number(), attachment_1.attachmentSchema).optional(),
         // User rating of how helpful the tactic was
         rating: zod_1.z.enum(["helpful", "not_helpful"]).optional(),
         ratedAt: timestampSchema_1.timestampSchema.optional(),

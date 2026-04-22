@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { tacticSchema } from "../tactic";
+import { attachmentSchema } from "../attachment";
 import { timestampSchema } from "../../utils/timestampSchema";
 import { logBaseSchema } from "./base";
 
@@ -34,6 +35,8 @@ export const tacticLogSchema = logBaseSchema.extend({
     // Summarization lifecycle tracking
     startedSummarizingConversationAt: timestampSchema.optional(),
     finishedSummarizingConversationAt: timestampSchema.optional(),
+    // Photos uploaded to verify step completion, keyed by step index
+    verificationPhotos: z.record(z.coerce.number(), attachmentSchema).optional(),
     // User rating of how helpful the tactic was
     rating: z.enum(["helpful", "not_helpful"]).optional(),
     ratedAt: timestampSchema.optional(),

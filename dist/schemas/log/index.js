@@ -15,7 +15,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.logIsSetupModeChoiceLog = exports.isValidTacticReviewLog = exports.logIsTacticReviewLog = exports.isValidTriggerSelectionLog = exports.logIsTriggerSelectionLog = exports.isValidRequestPermissionsLog = exports.logIsRequestPermissionsLog = exports.isValidImpulseStartedLog = exports.logIsImpulseStartedLog = exports.isValidDayTotalsPromptLog = exports.logIsDayTotalsPromptLog = exports.isValidRecapTimePreferenceLog = exports.logIsRecapTimePreferenceLog = exports.isValidMetricLog = exports.logIsMetricLog = exports.isValidEnableNotificationsCtaLog = exports.logIsEnableNotificationsCtaLog = exports.isValidSupportGroupDaySummaryLog = exports.logIsSupportGroupDaySummaryLog = exports.isValidBreathingLog = exports.logIsBreathingLog = exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidPlansLog = exports.logIsPlansLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorLog = exports.logIsBehaviorLog = exports.isValidSharedMomentLog = exports.logIsSharedMomentLog = exports.isValidNotifySupportGroupLog = exports.logIsNotifySupportGroupLog = exports.isValidSystemMessageLog = exports.logIsSystemMessageLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
-exports.logIsImageLog = exports.logIsCloseButtonLog = exports.logIsRecoveryKeyLog = exports.logIsCrisisResourceLog = exports.logIsTagsUpdatedLog = void 0;
+exports.logIsPhotoLog = exports.logIsImageLog = exports.logIsCloseButtonLog = exports.logIsRecoveryKeyLog = exports.logIsCrisisResourceLog = exports.logIsTagsUpdatedLog = void 0;
 const zod_1 = require("zod");
 const behaviorLog_1 = require("./behaviorLog");
 const breathingLog_1 = require("./breathingLog");
@@ -46,6 +46,7 @@ const crisisResourceLog_1 = require("./crisisResourceLog");
 const recoveryKeyLog_1 = require("./recoveryKeyLog");
 const closeButtonLog_1 = require("./closeButtonLog");
 const imageLog_1 = require("./imageLog");
+const photoLog_1 = require("./photoLog");
 exports.logSchemas = {
     user: messageLog_1.userMessageLogSchema,
     assistant_message: messageLog_1.assistantMessageLogSchema,
@@ -79,6 +80,7 @@ exports.logSchemas = {
     recovery_key: recoveryKeyLog_1.recoveryKeyLogSchema,
     close_button: closeButtonLog_1.closeButtonLogSchema,
     image: imageLog_1.imageLogSchema,
+    photo: photoLog_1.photoLogSchema,
 };
 exports.logTypes = Object.keys(exports.logSchemas);
 __exportStar(require("./behaviorLog"), exports);
@@ -111,6 +113,7 @@ __exportStar(require("./crisisResourceLog"), exports);
 __exportStar(require("./recoveryKeyLog"), exports);
 __exportStar(require("./closeButtonLog"), exports);
 __exportStar(require("./imageLog"), exports);
+__exportStar(require("./photoLog"), exports);
 // Discriminated union schema across all log variants
 exports.logSchema = zod_1.z.discriminatedUnion("type", [
     messageLog_1.userMessageLogSchema,
@@ -143,6 +146,7 @@ exports.logSchema = zod_1.z.discriminatedUnion("type", [
     recoveryKeyLog_1.recoveryKeyLogSchema,
     closeButtonLog_1.closeButtonLogSchema,
     imageLog_1.imageLogSchema,
+    photoLog_1.photoLogSchema,
 ]);
 // Export log type guards
 const logIsAssistantMessageLog = (value) => value.type === "assistant_message";
@@ -295,3 +299,5 @@ const logIsCloseButtonLog = (value) => value.type === "close_button";
 exports.logIsCloseButtonLog = logIsCloseButtonLog;
 const logIsImageLog = (value) => value.type === "image";
 exports.logIsImageLog = logIsImageLog;
+const logIsPhotoLog = (value) => value.type === "photo";
+exports.logIsPhotoLog = logIsPhotoLog;

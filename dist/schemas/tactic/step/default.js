@@ -7,4 +7,5 @@ exports.defaultStepSchema = base_1.baseStepSchema.extend({
     mode: zod_1.z.literal("default").optional(),
     text: zod_1.z.string().min(1),
     durationSeconds: zod_1.z.number().int().positive().optional(),
+    requiresPhotoVerification: zod_1.z.boolean().optional(),
 });

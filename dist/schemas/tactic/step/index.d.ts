@@ -101,6 +101,7 @@ export declare const tacticStepSchema: z.ZodDiscriminatedUnion<"mode", [z.ZodObj
     mode: z.ZodOptional<z.ZodLiteral<"default">>;
     text: z.ZodString;
     durationSeconds: z.ZodOptional<z.ZodNumber>;
+    requiresPhotoVerification: z.ZodOptional<z.ZodBoolean>;
 }, "strip", z.ZodTypeAny, {
     text: string;
     backgroundImage?: {
@@ -125,6 +126,7 @@ export declare const tacticStepSchema: z.ZodDiscriminatedUnion<"mode", [z.ZodObj
     tags?: string[] | undefined;
     mode?: "default" | undefined;
     durationSeconds?: number | undefined;
+    requiresPhotoVerification?: boolean | undefined;
 }, {
     text: string;
     backgroundImage?: {
@@ -149,6 +151,7 @@ export declare const tacticStepSchema: z.ZodDiscriminatedUnion<"mode", [z.ZodObj
     tags?: string[] | undefined;
     mode?: "default" | undefined;
     durationSeconds?: number | undefined;
+    requiresPhotoVerification?: boolean | undefined;
 }>, z.ZodObject<{
     text: z.ZodOptional<z.ZodString>;
     backgroundImage: z.ZodOptional<z.ZodObject<{

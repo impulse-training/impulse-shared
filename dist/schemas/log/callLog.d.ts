@@ -107,6 +107,7 @@ export declare const callLogSchema: z.ZodObject<{
                 mode: z.ZodOptional<z.ZodLiteral<"default">>;
                 text: z.ZodString;
                 durationSeconds: z.ZodOptional<z.ZodNumber>;
+                requiresPhotoVerification: z.ZodOptional<z.ZodBoolean>;
             }, "strip", z.ZodTypeAny, {
                 text: string;
                 backgroundImage?: {
@@ -131,6 +132,7 @@ export declare const callLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
                 mode?: "default" | undefined;
                 durationSeconds?: number | undefined;
+                requiresPhotoVerification?: boolean | undefined;
             }, {
                 text: string;
                 backgroundImage?: {
@@ -155,6 +157,7 @@ export declare const callLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
                 mode?: "default" | undefined;
                 durationSeconds?: number | undefined;
+                requiresPhotoVerification?: boolean | undefined;
             }>, z.ZodObject<{
                 text: z.ZodOptional<z.ZodString>;
                 backgroundImage: z.ZodOptional<z.ZodObject<{
@@ -1827,6 +1830,7 @@ export declare const callLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
                 mode?: "default" | undefined;
                 durationSeconds?: number | undefined;
+                requiresPhotoVerification?: boolean | undefined;
             } | {
                 mode: "media";
                 media: {
@@ -2161,6 +2165,7 @@ export declare const callLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
                 mode?: "default" | undefined;
                 durationSeconds?: number | undefined;
+                requiresPhotoVerification?: boolean | undefined;
             } | {
                 mode: "media";
                 media: {
@@ -2505,6 +2510,7 @@ export declare const callLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
                 mode?: "default" | undefined;
                 durationSeconds?: number | undefined;
+                requiresPhotoVerification?: boolean | undefined;
             } | {
                 mode: "media";
                 media: {
@@ -2847,6 +2853,7 @@ export declare const callLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
                 mode?: "default" | undefined;
                 durationSeconds?: number | undefined;
+                requiresPhotoVerification?: boolean | undefined;
             } | {
                 mode: "media";
                 media: {
@@ -3199,6 +3206,7 @@ export declare const callLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
                 mode?: "default" | undefined;
                 durationSeconds?: number | undefined;
+                requiresPhotoVerification?: boolean | undefined;
             } | {
                 mode: "media";
                 media: {
@@ -3555,6 +3563,7 @@ export declare const callLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
                 mode?: "default" | undefined;
                 durationSeconds?: number | undefined;
+                requiresPhotoVerification?: boolean | undefined;
             } | {
                 mode: "media";
                 media: {

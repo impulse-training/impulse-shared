@@ -28,6 +28,7 @@ import { CrisisResourceLog } from "./crisisResourceLog";
 import { RecoveryKeyLog } from "./recoveryKeyLog";
 import { CloseButtonLog } from "./closeButtonLog";
 import { ImageLog } from "./imageLog";
+import { PhotoLog } from "./photoLog";
 export declare const logSchemas: {
     user: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
@@ -479,6 +480,7 @@ export declare const logSchemas: {
                     mode: z.ZodOptional<z.ZodLiteral<"default">>;
                     text: z.ZodString;
                     durationSeconds: z.ZodOptional<z.ZodNumber>;
+                    requiresPhotoVerification: z.ZodOptional<z.ZodBoolean>;
                 }, "strip", z.ZodTypeAny, {
                     text: string;
                     backgroundImage?: {
@@ -503,6 +505,7 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 }, {
                     text: string;
                     backgroundImage?: {
@@ -527,6 +530,7 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 }>, z.ZodObject<{
                     text: z.ZodOptional<z.ZodString>;
                     backgroundImage: z.ZodOptional<z.ZodObject<{
@@ -2199,6 +2203,7 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 } | {
                     mode: "media";
                     media: {
@@ -2533,6 +2538,7 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 } | {
                     mode: "media";
                     media: {
@@ -2877,6 +2883,7 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 } | {
                     mode: "media";
                     media: {
@@ -3219,6 +3226,7 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 } | {
                     mode: "media";
                     media: {
@@ -3571,6 +3579,7 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 } | {
                     mode: "media";
                     media: {
@@ -3927,6 +3936,7 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 } | {
                     mode: "media";
                     media: {
@@ -4424,6 +4434,7 @@ export declare const logSchemas: {
                     mode: z.ZodOptional<z.ZodLiteral<"default">>;
                     text: z.ZodString;
                     durationSeconds: z.ZodOptional<z.ZodNumber>;
+                    requiresPhotoVerification: z.ZodOptional<z.ZodBoolean>;
                 }, "strip", z.ZodTypeAny, {
                     text: string;
                     backgroundImage?: {
@@ -4448,6 +4459,7 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 }, {
                     text: string;
                     backgroundImage?: {
@@ -4472,6 +4484,7 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 }>, z.ZodObject<{
                     text: z.ZodOptional<z.ZodString>;
                     backgroundImage: z.ZodOptional<z.ZodObject<{
@@ -6144,6 +6157,7 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 } | {
                     mode: "media";
                     media: {
@@ -6478,6 +6492,7 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 } | {
                     mode: "media";
                     media: {
@@ -6708,6 +6723,85 @@ export declare const logSchemas: {
             conversationSummary: z.ZodOptional<z.ZodString>;
             startedSummarizingConversationAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             finishedSummarizingConversationAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            verificationPhotos: z.ZodOptional<z.ZodRecord<z.ZodNumber, z.ZodObject<{
+                createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                uri: z.ZodString;
+                storagePath: z.ZodString;
+                contentType: z.ZodString;
+                title: z.ZodOptional<z.ZodString>;
+                sizeBytes: z.ZodOptional<z.ZodNumber>;
+                metadata: z.ZodOptional<z.ZodObject<{
+                    width: z.ZodOptional<z.ZodNumber>;
+                    height: z.ZodOptional<z.ZodNumber>;
+                    durationMs: z.ZodOptional<z.ZodNumber>;
+                    transcript: z.ZodOptional<z.ZodString>;
+                    meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                        db: z.ZodNumber;
+                        timestampMs: z.ZodOptional<z.ZodNumber>;
+                    }, "strip", z.ZodTypeAny, {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }, {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }>, "many">>;
+                }, "strip", z.ZodTypeAny, {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                }, {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                }>>;
+            }, "strip", z.ZodTypeAny, {
+                uri: string;
+                storagePath: string;
+                contentType: string;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                title?: string | undefined;
+                sizeBytes?: number | undefined;
+                metadata?: {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                } | undefined;
+            }, {
+                uri: string;
+                storagePath: string;
+                contentType: string;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                title?: string | undefined;
+                sizeBytes?: number | undefined;
+                metadata?: {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                } | undefined;
+            }>>>;
             rating: z.ZodOptional<z.ZodEnum<["helpful", "not_helpful"]>>;
             ratedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         }, "strip", z.ZodTypeAny, {
@@ -6837,6 +6931,7 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 } | {
                     mode: "media";
                     media: {
@@ -7059,6 +7154,25 @@ export declare const logSchemas: {
             conversationSummary?: string | undefined;
             startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
             finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
+            verificationPhotos?: Record<number, {
+                uri: string;
+                storagePath: string;
+                contentType: string;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                title?: string | undefined;
+                sizeBytes?: number | undefined;
+                metadata?: {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                } | undefined;
+            }> | undefined;
             rating?: "helpful" | "not_helpful" | undefined;
             ratedAt?: import("../../types").Timestamp | undefined;
         }, {
@@ -7188,6 +7302,7 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 } | {
                     mode: "media";
                     media: {
@@ -7410,6 +7525,25 @@ export declare const logSchemas: {
             conversationSummary?: string | undefined;
             startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
             finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
+            verificationPhotos?: Record<number, {
+                uri: string;
+                storagePath: string;
+                contentType: string;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                title?: string | undefined;
+                sizeBytes?: number | undefined;
+                metadata?: {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                } | undefined;
+            }> | undefined;
             rating?: "helpful" | "not_helpful" | undefined;
             ratedAt?: import("../../types").Timestamp | undefined;
         }>;
@@ -7549,6 +7683,7 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 } | {
                     mode: "media";
                     media: {
@@ -7771,6 +7906,25 @@ export declare const logSchemas: {
             conversationSummary?: string | undefined;
             startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
             finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
+            verificationPhotos?: Record<number, {
+                uri: string;
+                storagePath: string;
+                contentType: string;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                title?: string | undefined;
+                sizeBytes?: number | undefined;
+                metadata?: {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                } | undefined;
+            }> | undefined;
             rating?: "helpful" | "not_helpful" | undefined;
             ratedAt?: import("../../types").Timestamp | undefined;
         };
@@ -7914,6 +8068,7 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 } | {
                     mode: "media";
                     media: {
@@ -8136,6 +8291,25 @@ export declare const logSchemas: {
             conversationSummary?: string | undefined;
             startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
             finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
+            verificationPhotos?: Record<number, {
+                uri: string;
+                storagePath: string;
+                contentType: string;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                title?: string | undefined;
+                sizeBytes?: number | undefined;
+                metadata?: {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                } | undefined;
+            }> | undefined;
             rating?: "helpful" | "not_helpful" | undefined;
             ratedAt?: import("../../types").Timestamp | undefined;
         };
@@ -8252,6 +8426,7 @@ export declare const logSchemas: {
                     mode: z.ZodOptional<z.ZodLiteral<"default">>;
                     text: z.ZodString;
                     durationSeconds: z.ZodOptional<z.ZodNumber>;
+                    requiresPhotoVerification: z.ZodOptional<z.ZodBoolean>;
                 }, "strip", z.ZodTypeAny, {
                     text: string;
                     backgroundImage?: {
@@ -8276,6 +8451,7 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 }, {
                     text: string;
                     backgroundImage?: {
@@ -8300,6 +8476,7 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 }>, z.ZodObject<{
                     text: z.ZodOptional<z.ZodString>;
                     backgroundImage: z.ZodOptional<z.ZodObject<{
@@ -9972,6 +10149,7 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 } | {
                     mode: "media";
                     media: {
@@ -10306,6 +10484,7 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 } | {
                     mode: "media";
                     media: {
@@ -10536,6 +10715,85 @@ export declare const logSchemas: {
             conversationSummary: z.ZodOptional<z.ZodString>;
             startedSummarizingConversationAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             finishedSummarizingConversationAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            verificationPhotos: z.ZodOptional<z.ZodRecord<z.ZodNumber, z.ZodObject<{
+                createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                uri: z.ZodString;
+                storagePath: z.ZodString;
+                contentType: z.ZodString;
+                title: z.ZodOptional<z.ZodString>;
+                sizeBytes: z.ZodOptional<z.ZodNumber>;
+                metadata: z.ZodOptional<z.ZodObject<{
+                    width: z.ZodOptional<z.ZodNumber>;
+                    height: z.ZodOptional<z.ZodNumber>;
+                    durationMs: z.ZodOptional<z.ZodNumber>;
+                    transcript: z.ZodOptional<z.ZodString>;
+                    meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                        db: z.ZodNumber;
+                        timestampMs: z.ZodOptional<z.ZodNumber>;
+                    }, "strip", z.ZodTypeAny, {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }, {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }>, "many">>;
+                }, "strip", z.ZodTypeAny, {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                }, {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                }>>;
+            }, "strip", z.ZodTypeAny, {
+                uri: string;
+                storagePath: string;
+                contentType: string;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                title?: string | undefined;
+                sizeBytes?: number | undefined;
+                metadata?: {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                } | undefined;
+            }, {
+                uri: string;
+                storagePath: string;
+                contentType: string;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                title?: string | undefined;
+                sizeBytes?: number | undefined;
+                metadata?: {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                } | undefined;
+            }>>>;
             rating: z.ZodOptional<z.ZodEnum<["helpful", "not_helpful"]>>;
             ratedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         }, "strip", z.ZodTypeAny, {
@@ -10665,6 +10923,7 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 } | {
                     mode: "media";
                     media: {
@@ -10887,6 +11146,25 @@ export declare const logSchemas: {
             conversationSummary?: string | undefined;
             startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
             finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
+            verificationPhotos?: Record<number, {
+                uri: string;
+                storagePath: string;
+                contentType: string;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                title?: string | undefined;
+                sizeBytes?: number | undefined;
+                metadata?: {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                } | undefined;
+            }> | undefined;
             rating?: "helpful" | "not_helpful" | undefined;
             ratedAt?: import("../../types").Timestamp | undefined;
         }, {
@@ -11016,6 +11294,7 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 } | {
                     mode: "media";
                     media: {
@@ -11238,6 +11517,25 @@ export declare const logSchemas: {
             conversationSummary?: string | undefined;
             startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
             finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
+            verificationPhotos?: Record<number, {
+                uri: string;
+                storagePath: string;
+                contentType: string;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                title?: string | undefined;
+                sizeBytes?: number | undefined;
+                metadata?: {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                } | undefined;
+            }> | undefined;
             rating?: "helpful" | "not_helpful" | undefined;
             ratedAt?: import("../../types").Timestamp | undefined;
         }>;
@@ -11377,6 +11675,7 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 } | {
                     mode: "media";
                     media: {
@@ -11599,6 +11898,25 @@ export declare const logSchemas: {
             conversationSummary?: string | undefined;
             startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
             finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
+            verificationPhotos?: Record<number, {
+                uri: string;
+                storagePath: string;
+                contentType: string;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                title?: string | undefined;
+                sizeBytes?: number | undefined;
+                metadata?: {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                } | undefined;
+            }> | undefined;
             rating?: "helpful" | "not_helpful" | undefined;
             ratedAt?: import("../../types").Timestamp | undefined;
         };
@@ -11742,6 +12060,7 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 } | {
                     mode: "media";
                     media: {
@@ -11964,6 +12283,25 @@ export declare const logSchemas: {
             conversationSummary?: string | undefined;
             startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
             finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
+            verificationPhotos?: Record<number, {
+                uri: string;
+                storagePath: string;
+                contentType: string;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                title?: string | undefined;
+                sizeBytes?: number | undefined;
+                metadata?: {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                } | undefined;
+            }> | undefined;
             rating?: "helpful" | "not_helpful" | undefined;
             ratedAt?: import("../../types").Timestamp | undefined;
         };
@@ -14693,6 +15031,7 @@ export declare const logSchemas: {
                         mode: z.ZodOptional<z.ZodLiteral<"default">>;
                         text: z.ZodString;
                         durationSeconds: z.ZodOptional<z.ZodNumber>;
+                        requiresPhotoVerification: z.ZodOptional<z.ZodBoolean>;
                     }, "strip", z.ZodTypeAny, {
                         text: string;
                         backgroundImage?: {
@@ -14717,6 +15056,7 @@ export declare const logSchemas: {
                         tags?: string[] | undefined;
                         mode?: "default" | undefined;
                         durationSeconds?: number | undefined;
+                        requiresPhotoVerification?: boolean | undefined;
                     }, {
                         text: string;
                         backgroundImage?: {
@@ -14741,6 +15081,7 @@ export declare const logSchemas: {
                         tags?: string[] | undefined;
                         mode?: "default" | undefined;
                         durationSeconds?: number | undefined;
+                        requiresPhotoVerification?: boolean | undefined;
                     }>, z.ZodObject<{
                         text: z.ZodOptional<z.ZodString>;
                         backgroundImage: z.ZodOptional<z.ZodObject<{
@@ -16413,6 +16754,7 @@ export declare const logSchemas: {
                         tags?: string[] | undefined;
                         mode?: "default" | undefined;
                         durationSeconds?: number | undefined;
+                        requiresPhotoVerification?: boolean | undefined;
                     } | {
                         mode: "media";
                         media: {
@@ -16747,6 +17089,7 @@ export declare const logSchemas: {
                         tags?: string[] | undefined;
                         mode?: "default" | undefined;
                         durationSeconds?: number | undefined;
+                        requiresPhotoVerification?: boolean | undefined;
                     } | {
                         mode: "media";
                         media: {
@@ -17086,6 +17429,7 @@ export declare const logSchemas: {
                         tags?: string[] | undefined;
                         mode?: "default" | undefined;
                         durationSeconds?: number | undefined;
+                        requiresPhotoVerification?: boolean | undefined;
                     } | {
                         mode: "media";
                         media: {
@@ -17425,6 +17769,7 @@ export declare const logSchemas: {
                         tags?: string[] | undefined;
                         mode?: "default" | undefined;
                         durationSeconds?: number | undefined;
+                        requiresPhotoVerification?: boolean | undefined;
                     } | {
                         mode: "media";
                         media: {
@@ -17767,6 +18112,7 @@ export declare const logSchemas: {
                         tags?: string[] | undefined;
                         mode?: "default" | undefined;
                         durationSeconds?: number | undefined;
+                        requiresPhotoVerification?: boolean | undefined;
                     } | {
                         mode: "media";
                         media: {
@@ -18109,6 +18455,7 @@ export declare const logSchemas: {
                         tags?: string[] | undefined;
                         mode?: "default" | undefined;
                         durationSeconds?: number | undefined;
+                        requiresPhotoVerification?: boolean | undefined;
                     } | {
                         mode: "media";
                         media: {
@@ -18461,6 +18808,7 @@ export declare const logSchemas: {
                         tags?: string[] | undefined;
                         mode?: "default" | undefined;
                         durationSeconds?: number | undefined;
+                        requiresPhotoVerification?: boolean | undefined;
                     } | {
                         mode: "media";
                         media: {
@@ -18817,6 +19165,7 @@ export declare const logSchemas: {
                         tags?: string[] | undefined;
                         mode?: "default" | undefined;
                         durationSeconds?: number | undefined;
+                        requiresPhotoVerification?: boolean | undefined;
                     } | {
                         mode: "media";
                         media: {
@@ -19376,10 +19725,219 @@ export declare const logSchemas: {
         behaviorIds?: string[] | undefined;
         impulseId?: string | undefined;
     }>;
+    photo: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        sessionId: z.ZodString;
+        tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        impulseId: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"photo">;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            photo: z.ZodObject<{
+                createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                uri: z.ZodString;
+                storagePath: z.ZodString;
+                contentType: z.ZodString;
+                title: z.ZodOptional<z.ZodString>;
+                sizeBytes: z.ZodOptional<z.ZodNumber>;
+                metadata: z.ZodOptional<z.ZodObject<{
+                    width: z.ZodOptional<z.ZodNumber>;
+                    height: z.ZodOptional<z.ZodNumber>;
+                    durationMs: z.ZodOptional<z.ZodNumber>;
+                    transcript: z.ZodOptional<z.ZodString>;
+                    meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                        db: z.ZodNumber;
+                        timestampMs: z.ZodOptional<z.ZodNumber>;
+                    }, "strip", z.ZodTypeAny, {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }, {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }>, "many">>;
+                }, "strip", z.ZodTypeAny, {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                }, {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                }>>;
+            }, "strip", z.ZodTypeAny, {
+                uri: string;
+                storagePath: string;
+                contentType: string;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                title?: string | undefined;
+                sizeBytes?: number | undefined;
+                metadata?: {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                } | undefined;
+            }, {
+                uri: string;
+                storagePath: string;
+                contentType: string;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                title?: string | undefined;
+                sizeBytes?: number | undefined;
+                metadata?: {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                } | undefined;
+            }>;
+            caption: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            photo: {
+                uri: string;
+                storagePath: string;
+                contentType: string;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                title?: string | undefined;
+                sizeBytes?: number | undefined;
+                metadata?: {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                } | undefined;
+            };
+            caption?: string | undefined;
+        }, {
+            photo: {
+                uri: string;
+                storagePath: string;
+                contentType: string;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                title?: string | undefined;
+                sizeBytes?: number | undefined;
+                metadata?: {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                } | undefined;
+            };
+            caption?: string | undefined;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "photo";
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        sessionId: string;
+        isDisplayable: true;
+        data: {
+            photo: {
+                uri: string;
+                storagePath: string;
+                contentType: string;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                title?: string | undefined;
+                sizeBytes?: number | undefined;
+                metadata?: {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                } | undefined;
+            };
+            caption?: string | undefined;
+        };
+        id?: string | undefined;
+        tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        impulseId?: string | undefined;
+    }, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "photo";
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        dateString: string;
+        sessionId: string;
+        isDisplayable: true;
+        data: {
+            photo: {
+                uri: string;
+                storagePath: string;
+                contentType: string;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                title?: string | undefined;
+                sizeBytes?: number | undefined;
+                metadata?: {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                } | undefined;
+            };
+            caption?: string | undefined;
+        };
+        id?: string | undefined;
+        tacticId?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        impulseId?: string | undefined;
+    }>;
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ProposedExperimentLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | TriggerSelectionLog | RequestPermissionsLog | TacticReviewLog | SetupModeChoiceLog | TagsUpdatedLog | CrisisResourceLog | RecoveryKeyLog | CloseButtonLog | ImageLog;
+export type Log = TacticLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ProposedExperimentLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | TriggerSelectionLog | RequestPermissionsLog | TacticReviewLog | SetupModeChoiceLog | TagsUpdatedLog | CrisisResourceLog | RecoveryKeyLog | CloseButtonLog | ImageLog | PhotoLog;
 export * from "./behaviorLog";
 export * from "./breathingLog";
 export * from "./callLog";
@@ -19410,6 +19968,7 @@ export * from "./crisisResourceLog";
 export * from "./recoveryKeyLog";
 export * from "./closeButtonLog";
 export * from "./imageLog";
+export * from "./photoLog";
 export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -19857,6 +20416,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 mode: z.ZodOptional<z.ZodLiteral<"default">>;
                 text: z.ZodString;
                 durationSeconds: z.ZodOptional<z.ZodNumber>;
+                requiresPhotoVerification: z.ZodOptional<z.ZodBoolean>;
             }, "strip", z.ZodTypeAny, {
                 text: string;
                 backgroundImage?: {
@@ -19881,6 +20441,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
                 mode?: "default" | undefined;
                 durationSeconds?: number | undefined;
+                requiresPhotoVerification?: boolean | undefined;
             }, {
                 text: string;
                 backgroundImage?: {
@@ -19905,6 +20466,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
                 mode?: "default" | undefined;
                 durationSeconds?: number | undefined;
+                requiresPhotoVerification?: boolean | undefined;
             }>, z.ZodObject<{
                 text: z.ZodOptional<z.ZodString>;
                 backgroundImage: z.ZodOptional<z.ZodObject<{
@@ -21577,6 +22139,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
                 mode?: "default" | undefined;
                 durationSeconds?: number | undefined;
+                requiresPhotoVerification?: boolean | undefined;
             } | {
                 mode: "media";
                 media: {
@@ -21911,6 +22474,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
                 mode?: "default" | undefined;
                 durationSeconds?: number | undefined;
+                requiresPhotoVerification?: boolean | undefined;
             } | {
                 mode: "media";
                 media: {
@@ -22255,6 +22819,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
                 mode?: "default" | undefined;
                 durationSeconds?: number | undefined;
+                requiresPhotoVerification?: boolean | undefined;
             } | {
                 mode: "media";
                 media: {
@@ -22597,6 +23162,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
                 mode?: "default" | undefined;
                 durationSeconds?: number | undefined;
+                requiresPhotoVerification?: boolean | undefined;
             } | {
                 mode: "media";
                 media: {
@@ -22949,6 +23515,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
                 mode?: "default" | undefined;
                 durationSeconds?: number | undefined;
+                requiresPhotoVerification?: boolean | undefined;
             } | {
                 mode: "media";
                 media: {
@@ -23305,6 +23872,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
                 mode?: "default" | undefined;
                 durationSeconds?: number | undefined;
+                requiresPhotoVerification?: boolean | undefined;
             } | {
                 mode: "media";
                 media: {
@@ -23800,6 +24368,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 mode: z.ZodOptional<z.ZodLiteral<"default">>;
                 text: z.ZodString;
                 durationSeconds: z.ZodOptional<z.ZodNumber>;
+                requiresPhotoVerification: z.ZodOptional<z.ZodBoolean>;
             }, "strip", z.ZodTypeAny, {
                 text: string;
                 backgroundImage?: {
@@ -23824,6 +24393,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
                 mode?: "default" | undefined;
                 durationSeconds?: number | undefined;
+                requiresPhotoVerification?: boolean | undefined;
             }, {
                 text: string;
                 backgroundImage?: {
@@ -23848,6 +24418,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
                 mode?: "default" | undefined;
                 durationSeconds?: number | undefined;
+                requiresPhotoVerification?: boolean | undefined;
             }>, z.ZodObject<{
                 text: z.ZodOptional<z.ZodString>;
                 backgroundImage: z.ZodOptional<z.ZodObject<{
@@ -25520,6 +26091,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
                 mode?: "default" | undefined;
                 durationSeconds?: number | undefined;
+                requiresPhotoVerification?: boolean | undefined;
             } | {
                 mode: "media";
                 media: {
@@ -25854,6 +26426,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
                 mode?: "default" | undefined;
                 durationSeconds?: number | undefined;
+                requiresPhotoVerification?: boolean | undefined;
             } | {
                 mode: "media";
                 media: {
@@ -26084,6 +26657,85 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         conversationSummary: z.ZodOptional<z.ZodString>;
         startedSummarizingConversationAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         finishedSummarizingConversationAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        verificationPhotos: z.ZodOptional<z.ZodRecord<z.ZodNumber, z.ZodObject<{
+            createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            uri: z.ZodString;
+            storagePath: z.ZodString;
+            contentType: z.ZodString;
+            title: z.ZodOptional<z.ZodString>;
+            sizeBytes: z.ZodOptional<z.ZodNumber>;
+            metadata: z.ZodOptional<z.ZodObject<{
+                width: z.ZodOptional<z.ZodNumber>;
+                height: z.ZodOptional<z.ZodNumber>;
+                durationMs: z.ZodOptional<z.ZodNumber>;
+                transcript: z.ZodOptional<z.ZodString>;
+                meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                    db: z.ZodNumber;
+                    timestampMs: z.ZodOptional<z.ZodNumber>;
+                }, "strip", z.ZodTypeAny, {
+                    db: number;
+                    timestampMs?: number | undefined;
+                }, {
+                    db: number;
+                    timestampMs?: number | undefined;
+                }>, "many">>;
+            }, "strip", z.ZodTypeAny, {
+                width?: number | undefined;
+                height?: number | undefined;
+                durationMs?: number | undefined;
+                transcript?: string | undefined;
+                meterings?: {
+                    db: number;
+                    timestampMs?: number | undefined;
+                }[] | undefined;
+            }, {
+                width?: number | undefined;
+                height?: number | undefined;
+                durationMs?: number | undefined;
+                transcript?: string | undefined;
+                meterings?: {
+                    db: number;
+                    timestampMs?: number | undefined;
+                }[] | undefined;
+            }>>;
+        }, "strip", z.ZodTypeAny, {
+            uri: string;
+            storagePath: string;
+            contentType: string;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            title?: string | undefined;
+            sizeBytes?: number | undefined;
+            metadata?: {
+                width?: number | undefined;
+                height?: number | undefined;
+                durationMs?: number | undefined;
+                transcript?: string | undefined;
+                meterings?: {
+                    db: number;
+                    timestampMs?: number | undefined;
+                }[] | undefined;
+            } | undefined;
+        }, {
+            uri: string;
+            storagePath: string;
+            contentType: string;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            title?: string | undefined;
+            sizeBytes?: number | undefined;
+            metadata?: {
+                width?: number | undefined;
+                height?: number | undefined;
+                durationMs?: number | undefined;
+                transcript?: string | undefined;
+                meterings?: {
+                    db: number;
+                    timestampMs?: number | undefined;
+                }[] | undefined;
+            } | undefined;
+        }>>>;
         rating: z.ZodOptional<z.ZodEnum<["helpful", "not_helpful"]>>;
         ratedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
@@ -26213,6 +26865,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
                 mode?: "default" | undefined;
                 durationSeconds?: number | undefined;
+                requiresPhotoVerification?: boolean | undefined;
             } | {
                 mode: "media";
                 media: {
@@ -26435,6 +27088,25 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         conversationSummary?: string | undefined;
         startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
         finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
+        verificationPhotos?: Record<number, {
+            uri: string;
+            storagePath: string;
+            contentType: string;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            title?: string | undefined;
+            sizeBytes?: number | undefined;
+            metadata?: {
+                width?: number | undefined;
+                height?: number | undefined;
+                durationMs?: number | undefined;
+                transcript?: string | undefined;
+                meterings?: {
+                    db: number;
+                    timestampMs?: number | undefined;
+                }[] | undefined;
+            } | undefined;
+        }> | undefined;
         rating?: "helpful" | "not_helpful" | undefined;
         ratedAt?: import("../../types").Timestamp | undefined;
     }, {
@@ -26564,6 +27236,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
                 mode?: "default" | undefined;
                 durationSeconds?: number | undefined;
+                requiresPhotoVerification?: boolean | undefined;
             } | {
                 mode: "media";
                 media: {
@@ -26786,6 +27459,25 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         conversationSummary?: string | undefined;
         startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
         finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
+        verificationPhotos?: Record<number, {
+            uri: string;
+            storagePath: string;
+            contentType: string;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            title?: string | undefined;
+            sizeBytes?: number | undefined;
+            metadata?: {
+                width?: number | undefined;
+                height?: number | undefined;
+                durationMs?: number | undefined;
+                transcript?: string | undefined;
+                meterings?: {
+                    db: number;
+                    timestampMs?: number | undefined;
+                }[] | undefined;
+            } | undefined;
+        }> | undefined;
         rating?: "helpful" | "not_helpful" | undefined;
         ratedAt?: import("../../types").Timestamp | undefined;
     }>;
@@ -26925,6 +27617,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
                 mode?: "default" | undefined;
                 durationSeconds?: number | undefined;
+                requiresPhotoVerification?: boolean | undefined;
             } | {
                 mode: "media";
                 media: {
@@ -27147,6 +27840,25 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         conversationSummary?: string | undefined;
         startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
         finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
+        verificationPhotos?: Record<number, {
+            uri: string;
+            storagePath: string;
+            contentType: string;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            title?: string | undefined;
+            sizeBytes?: number | undefined;
+            metadata?: {
+                width?: number | undefined;
+                height?: number | undefined;
+                durationMs?: number | undefined;
+                transcript?: string | undefined;
+                meterings?: {
+                    db: number;
+                    timestampMs?: number | undefined;
+                }[] | undefined;
+            } | undefined;
+        }> | undefined;
         rating?: "helpful" | "not_helpful" | undefined;
         ratedAt?: import("../../types").Timestamp | undefined;
     };
@@ -27290,6 +28002,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
                 mode?: "default" | undefined;
                 durationSeconds?: number | undefined;
+                requiresPhotoVerification?: boolean | undefined;
             } | {
                 mode: "media";
                 media: {
@@ -27512,6 +28225,25 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         conversationSummary?: string | undefined;
         startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
         finishedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
+        verificationPhotos?: Record<number, {
+            uri: string;
+            storagePath: string;
+            contentType: string;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            title?: string | undefined;
+            sizeBytes?: number | undefined;
+            metadata?: {
+                width?: number | undefined;
+                height?: number | undefined;
+                durationMs?: number | undefined;
+                transcript?: string | undefined;
+                meterings?: {
+                    db: number;
+                    timestampMs?: number | undefined;
+                }[] | undefined;
+            } | undefined;
+        }> | undefined;
         rating?: "helpful" | "not_helpful" | undefined;
         ratedAt?: import("../../types").Timestamp | undefined;
     };
@@ -30222,6 +30954,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     mode: z.ZodOptional<z.ZodLiteral<"default">>;
                     text: z.ZodString;
                     durationSeconds: z.ZodOptional<z.ZodNumber>;
+                    requiresPhotoVerification: z.ZodOptional<z.ZodBoolean>;
                 }, "strip", z.ZodTypeAny, {
                     text: string;
                     backgroundImage?: {
@@ -30246,6 +30979,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 }, {
                     text: string;
                     backgroundImage?: {
@@ -30270,6 +31004,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 }>, z.ZodObject<{
                     text: z.ZodOptional<z.ZodString>;
                     backgroundImage: z.ZodOptional<z.ZodObject<{
@@ -31942,6 +32677,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 } | {
                     mode: "media";
                     media: {
@@ -32276,6 +33012,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 } | {
                     mode: "media";
                     media: {
@@ -32615,6 +33352,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 } | {
                     mode: "media";
                     media: {
@@ -32954,6 +33692,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 } | {
                     mode: "media";
                     media: {
@@ -33296,6 +34035,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 } | {
                     mode: "media";
                     media: {
@@ -33638,6 +34378,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 } | {
                     mode: "media";
                     media: {
@@ -33990,6 +34731,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 } | {
                     mode: "media";
                     media: {
@@ -34346,6 +35088,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tags?: string[] | undefined;
                     mode?: "default" | undefined;
                     durationSeconds?: number | undefined;
+                    requiresPhotoVerification?: boolean | undefined;
                 } | {
                     mode: "media";
                     media: {
@@ -34840,6 +35583,214 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
     impulseId?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    sessionId: z.ZodString;
+    tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    impulseId: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"photo">;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        photo: z.ZodObject<{
+            createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            uri: z.ZodString;
+            storagePath: z.ZodString;
+            contentType: z.ZodString;
+            title: z.ZodOptional<z.ZodString>;
+            sizeBytes: z.ZodOptional<z.ZodNumber>;
+            metadata: z.ZodOptional<z.ZodObject<{
+                width: z.ZodOptional<z.ZodNumber>;
+                height: z.ZodOptional<z.ZodNumber>;
+                durationMs: z.ZodOptional<z.ZodNumber>;
+                transcript: z.ZodOptional<z.ZodString>;
+                meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                    db: z.ZodNumber;
+                    timestampMs: z.ZodOptional<z.ZodNumber>;
+                }, "strip", z.ZodTypeAny, {
+                    db: number;
+                    timestampMs?: number | undefined;
+                }, {
+                    db: number;
+                    timestampMs?: number | undefined;
+                }>, "many">>;
+            }, "strip", z.ZodTypeAny, {
+                width?: number | undefined;
+                height?: number | undefined;
+                durationMs?: number | undefined;
+                transcript?: string | undefined;
+                meterings?: {
+                    db: number;
+                    timestampMs?: number | undefined;
+                }[] | undefined;
+            }, {
+                width?: number | undefined;
+                height?: number | undefined;
+                durationMs?: number | undefined;
+                transcript?: string | undefined;
+                meterings?: {
+                    db: number;
+                    timestampMs?: number | undefined;
+                }[] | undefined;
+            }>>;
+        }, "strip", z.ZodTypeAny, {
+            uri: string;
+            storagePath: string;
+            contentType: string;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            title?: string | undefined;
+            sizeBytes?: number | undefined;
+            metadata?: {
+                width?: number | undefined;
+                height?: number | undefined;
+                durationMs?: number | undefined;
+                transcript?: string | undefined;
+                meterings?: {
+                    db: number;
+                    timestampMs?: number | undefined;
+                }[] | undefined;
+            } | undefined;
+        }, {
+            uri: string;
+            storagePath: string;
+            contentType: string;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            title?: string | undefined;
+            sizeBytes?: number | undefined;
+            metadata?: {
+                width?: number | undefined;
+                height?: number | undefined;
+                durationMs?: number | undefined;
+                transcript?: string | undefined;
+                meterings?: {
+                    db: number;
+                    timestampMs?: number | undefined;
+                }[] | undefined;
+            } | undefined;
+        }>;
+        caption: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        photo: {
+            uri: string;
+            storagePath: string;
+            contentType: string;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            title?: string | undefined;
+            sizeBytes?: number | undefined;
+            metadata?: {
+                width?: number | undefined;
+                height?: number | undefined;
+                durationMs?: number | undefined;
+                transcript?: string | undefined;
+                meterings?: {
+                    db: number;
+                    timestampMs?: number | undefined;
+                }[] | undefined;
+            } | undefined;
+        };
+        caption?: string | undefined;
+    }, {
+        photo: {
+            uri: string;
+            storagePath: string;
+            contentType: string;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            title?: string | undefined;
+            sizeBytes?: number | undefined;
+            metadata?: {
+                width?: number | undefined;
+                height?: number | undefined;
+                durationMs?: number | undefined;
+                transcript?: string | undefined;
+                meterings?: {
+                    db: number;
+                    timestampMs?: number | undefined;
+                }[] | undefined;
+            } | undefined;
+        };
+        caption?: string | undefined;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "photo";
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    sessionId: string;
+    isDisplayable: true;
+    data: {
+        photo: {
+            uri: string;
+            storagePath: string;
+            contentType: string;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            title?: string | undefined;
+            sizeBytes?: number | undefined;
+            metadata?: {
+                width?: number | undefined;
+                height?: number | undefined;
+                durationMs?: number | undefined;
+                transcript?: string | undefined;
+                meterings?: {
+                    db: number;
+                    timestampMs?: number | undefined;
+                }[] | undefined;
+            } | undefined;
+        };
+        caption?: string | undefined;
+    };
+    id?: string | undefined;
+    tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    impulseId?: string | undefined;
+}, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "photo";
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    dateString: string;
+    sessionId: string;
+    isDisplayable: true;
+    data: {
+        photo: {
+            uri: string;
+            storagePath: string;
+            contentType: string;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            title?: string | undefined;
+            sizeBytes?: number | undefined;
+            metadata?: {
+                width?: number | undefined;
+                height?: number | undefined;
+                durationMs?: number | undefined;
+                transcript?: string | undefined;
+                meterings?: {
+                    db: number;
+                    timestampMs?: number | undefined;
+                }[] | undefined;
+            } | undefined;
+        };
+        caption?: string | undefined;
+    };
+    id?: string | undefined;
+    tacticId?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    impulseId?: string | undefined;
 }>]>;
 export declare const logIsAssistantMessageLog: (value: Omit<Log, "id">) => value is AssistantMessageLog;
 export declare const isValidAssistantMessageLog: (value: unknown) => value is AssistantMessageLog;
@@ -34893,3 +35844,4 @@ export declare const logIsCrisisResourceLog: (value: Omit<Log, "id">) => value i
 export declare const logIsRecoveryKeyLog: (value: Omit<Log, "id">) => value is RecoveryKeyLog;
 export declare const logIsCloseButtonLog: (value: Omit<Log, "id">) => value is CloseButtonLog;
 export declare const logIsImageLog: (value: Omit<Log, "id">) => value is ImageLog;
+export declare const logIsPhotoLog: (value: Omit<Log, "id">) => value is PhotoLog;
