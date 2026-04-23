@@ -80,6 +80,7 @@ export const sessionBaseSchema = z.object({
   unreadSince: timestampSchema.optional(),
 
   responseStartedProcessingAt: timestampSchema.optional(),
+  responseRequestId: z.string().optional(),
   planStartedProcessingAt: timestampSchema.optional(),
 
   startedPlanIds: z.array(z.string()).optional(),
