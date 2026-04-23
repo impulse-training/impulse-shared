@@ -210,13 +210,15 @@ export const behaviorSchema = behaviorTemplateBase
     id: z.string().optional(),
     description: z.string(),
     ordinal: z.number().default(0),
-    benefits: z.array(z.string()),
-    drawbacks: z.array(z.string()),
+    benefits: z.array(z.string()).default([]),
+    drawbacks: z.array(z.string()).default([]),
     goal: goalSchema.optional(),
     lastTrackedAt: timestampSchema.optional(),
     tactics: z.array(documentReferenceSchema).optional(),
     initialUsage: behaviorTrackingDataSchema.optional(),
     hidden: z.boolean().optional().default(false),
+    behaviorTemplateId: z.string().optional(),
+    answeredRecapQuestionIds: z.array(z.string()).optional(),
     // Display color for this behavior (hex string, e.g. "#C4362C")
     color: z.string().optional(),
     // Reference to the behavior topic (e.g., "substances", "digital-screen-use")

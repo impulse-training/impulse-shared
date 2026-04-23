@@ -4,7 +4,7 @@ import { timestampSchema } from "../utils/timestampSchema";
 export const behaviorContextSchema = z.object({
   behaviorId: z.string(),
   behaviorName: z.string(),
-  trackingType: z.enum(["counter", "timer", "boolean"]),
+  trackingType: z.enum(["counter", "timer", "boolean", "scale"]),
   description: z.string().optional(),
   benefits: z.array(z.string()).optional(),
   drawbacks: z.array(z.string()).optional(),

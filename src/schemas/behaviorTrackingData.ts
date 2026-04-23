@@ -4,7 +4,7 @@ export const behaviorTrackingDataSchema = z.object({
   behaviorId: z.string().optional(),
   behaviorName: z.string().optional(),
   behaviorTrackingUnit: z.string().optional(),
-  trackingType: z.enum(["counter", "timer"]).optional(),
+  trackingType: z.enum(["counter", "timer", "scale"]).optional(),
   value: z.number().optional(), // Count or time in seconds
   formattedValue: z.string().optional(),
   // Period for the baseline value (e.g. "3 times per week" vs "30min per day")

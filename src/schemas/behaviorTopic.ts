@@ -56,6 +56,13 @@ export const BEHAVIOR_TOPICS = {
       "Behaviors related to food consumption patterns like overeating, junk food, and late night snacking.",
     icon: "🍔",
   },
+  sexual: {
+    id: "sexual",
+    name: "Sexual Behaviors",
+    description:
+      "Compulsive sexual behaviors including masturbation and other patterns that feel out of control.",
+    icon: "🔒",
+  },
 } as const;
 
 export type BehaviorTopicId = keyof typeof BEHAVIOR_TOPICS;

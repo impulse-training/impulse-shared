@@ -6,7 +6,7 @@ const timestampSchema_1 = require("../utils/timestampSchema");
 exports.behaviorContextSchema = zod_1.z.object({
     behaviorId: zod_1.z.string(),
     behaviorName: zod_1.z.string(),
-    trackingType: zod_1.z.enum(["counter", "timer", "boolean"]),
+    trackingType: zod_1.z.enum(["counter", "timer", "boolean", "scale"]),
     description: zod_1.z.string().optional(),
     benefits: zod_1.z.array(zod_1.z.string()).optional(),
     drawbacks: zod_1.z.array(zod_1.z.string()).optional(),

@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { timestampSchema } from "../utils/timestampSchema";
 
-export const trackingTypes = ["counter", "timer"] as const;
+export const trackingTypes = ["counter", "timer", "scale"] as const;
 export type TrackingType = (typeof trackingTypes)[number];
 
 export const baselinePeriods = ["daily", "weekly"] as const;
@@ -22,6 +22,7 @@ const behaviorTemplateBase = z.object({
   // Alternative phrases/synonyms for this behavior name (e.g. ["porn", "adult content"] for
   // "Pornography"). Used to mask hidden behaviors when the AI uses variant wording in chat.
   synonyms: z.array(z.string()).optional(),
+  recapQuestionSequence: z.array(z.string()).optional(),
   createdAt: timestampSchema.optional(),
   updatedAt: timestampSchema.optional(),
 });

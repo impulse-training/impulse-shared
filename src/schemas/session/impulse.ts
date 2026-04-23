@@ -11,6 +11,8 @@ export const impulseSessionSchema = sessionBaseSchema.extend({
   debriefBefore: timestampSchema.optional(),
   debriefUrgeLogInsertedAt: timestampSchema.nullable().optional(),
   actedOnUrge: z.boolean().nullable().optional(), // true = acted, false = resisted, null/undefined = not answered
+  mostHelpfulTacticId: z.string().nullable().optional(),
+  debriefNote: z.string().nullable().optional(),
   generatedPlanId: z.string().optional(),
   // Protocol phase the user is currently in. Drives how getGptPayload renders
   // context for tactic/behavior logs so the AI grounds its responses correctly.

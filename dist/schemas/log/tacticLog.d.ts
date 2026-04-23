@@ -2390,6 +2390,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             generationPrompt?: string | undefined;
             generationVoice?: "m" | "f" | null | undefined;
         }>;
+        tacticRefPath: z.ZodString;
         planId: z.ZodOptional<z.ZodString>;
         planLogId: z.ZodOptional<z.ZodString>;
         stepCount: z.ZodOptional<z.ZodNumber>;
@@ -2829,6 +2830,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             generationPrompt?: string | undefined;
             generationVoice?: "m" | "f" | null | undefined;
         };
+        tacticRefPath: string;
         completed?: boolean | undefined;
         planId?: string | undefined;
         planLogId?: string | undefined;
@@ -3200,6 +3202,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             generationPrompt?: string | undefined;
             generationVoice?: "m" | "f" | null | undefined;
         };
+        tacticRefPath: string;
         completed?: boolean | undefined;
         planId?: string | undefined;
         planLogId?: string | undefined;
@@ -3581,6 +3584,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             generationPrompt?: string | undefined;
             generationVoice?: "m" | "f" | null | undefined;
         };
+        tacticRefPath: string;
         completed?: boolean | undefined;
         planId?: string | undefined;
         planLogId?: string | undefined;
@@ -3966,6 +3970,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             generationPrompt?: string | undefined;
             generationVoice?: "m" | "f" | null | undefined;
         };
+        tacticRefPath: string;
         completed?: boolean | undefined;
         planId?: string | undefined;
         planLogId?: string | undefined;

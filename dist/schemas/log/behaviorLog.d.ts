@@ -22,7 +22,7 @@ export declare const behaviorLogSchema: z.ZodObject<{
         behaviorId: z.ZodOptional<z.ZodString>;
         behaviorName: z.ZodOptional<z.ZodString>;
         behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
-        trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer"]>>;
+        trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer", "scale"]>>;
         value: z.ZodOptional<z.ZodNumber>;
         formattedValue: z.ZodOptional<z.ZodString>;
         period: z.ZodOptional<z.ZodEnum<["daily", "weekly"]>>;
@@ -38,7 +38,7 @@ export declare const behaviorLogSchema: z.ZodObject<{
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
-        trackingType?: "counter" | "timer" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
         source?: "scheduled" | "manual" | undefined;
@@ -49,7 +49,7 @@ export declare const behaviorLogSchema: z.ZodObject<{
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
-        trackingType?: "counter" | "timer" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
         source?: "scheduled" | "manual" | undefined;
@@ -71,7 +71,7 @@ export declare const behaviorLogSchema: z.ZodObject<{
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
-        trackingType?: "counter" | "timer" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
         source?: "scheduled" | "manual" | undefined;
@@ -97,7 +97,7 @@ export declare const behaviorLogSchema: z.ZodObject<{
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
-        trackingType?: "counter" | "timer" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
         source?: "scheduled" | "manual" | undefined;

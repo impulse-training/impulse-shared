@@ -6702,6 +6702,7 @@ export declare const logSchemas: {
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
             }>;
+            tacticRefPath: z.ZodString;
             planId: z.ZodOptional<z.ZodString>;
             planLogId: z.ZodOptional<z.ZodString>;
             stepCount: z.ZodOptional<z.ZodNumber>;
@@ -7141,6 +7142,7 @@ export declare const logSchemas: {
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
             };
+            tacticRefPath: string;
             completed?: boolean | undefined;
             planId?: string | undefined;
             planLogId?: string | undefined;
@@ -7512,6 +7514,7 @@ export declare const logSchemas: {
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
             };
+            tacticRefPath: string;
             completed?: boolean | undefined;
             planId?: string | undefined;
             planLogId?: string | undefined;
@@ -7893,6 +7896,7 @@ export declare const logSchemas: {
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
             };
+            tacticRefPath: string;
             completed?: boolean | undefined;
             planId?: string | undefined;
             planLogId?: string | undefined;
@@ -8278,6 +8282,7 @@ export declare const logSchemas: {
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
             };
+            tacticRefPath: string;
             completed?: boolean | undefined;
             planId?: string | undefined;
             planLogId?: string | undefined;
@@ -10694,6 +10699,7 @@ export declare const logSchemas: {
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
             }>;
+            tacticRefPath: z.ZodString;
             planId: z.ZodOptional<z.ZodString>;
             planLogId: z.ZodOptional<z.ZodString>;
             stepCount: z.ZodOptional<z.ZodNumber>;
@@ -11133,6 +11139,7 @@ export declare const logSchemas: {
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
             };
+            tacticRefPath: string;
             completed?: boolean | undefined;
             planId?: string | undefined;
             planLogId?: string | undefined;
@@ -11504,6 +11511,7 @@ export declare const logSchemas: {
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
             };
+            tacticRefPath: string;
             completed?: boolean | undefined;
             planId?: string | undefined;
             planLogId?: string | undefined;
@@ -11885,6 +11893,7 @@ export declare const logSchemas: {
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
             };
+            tacticRefPath: string;
             completed?: boolean | undefined;
             planId?: string | undefined;
             planLogId?: string | undefined;
@@ -12270,6 +12279,7 @@ export declare const logSchemas: {
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
             };
+            tacticRefPath: string;
             completed?: boolean | undefined;
             planId?: string | undefined;
             planLogId?: string | undefined;
@@ -12330,7 +12340,7 @@ export declare const logSchemas: {
             behaviorId: z.ZodOptional<z.ZodString>;
             behaviorName: z.ZodOptional<z.ZodString>;
             behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
-            trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer"]>>;
+            trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer", "scale"]>>;
             value: z.ZodOptional<z.ZodNumber>;
             formattedValue: z.ZodOptional<z.ZodString>;
             period: z.ZodOptional<z.ZodEnum<["daily", "weekly"]>>;
@@ -12343,7 +12353,7 @@ export declare const logSchemas: {
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
-            trackingType?: "counter" | "timer" | undefined;
+            trackingType?: "counter" | "timer" | "scale" | undefined;
             formattedValue?: string | undefined;
             period?: "daily" | "weekly" | undefined;
             source?: "scheduled" | "manual" | undefined;
@@ -12354,7 +12364,7 @@ export declare const logSchemas: {
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
-            trackingType?: "counter" | "timer" | undefined;
+            trackingType?: "counter" | "timer" | "scale" | undefined;
             formattedValue?: string | undefined;
             period?: "daily" | "weekly" | undefined;
             source?: "scheduled" | "manual" | undefined;
@@ -12376,7 +12386,7 @@ export declare const logSchemas: {
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
-            trackingType?: "counter" | "timer" | undefined;
+            trackingType?: "counter" | "timer" | "scale" | undefined;
             formattedValue?: string | undefined;
             period?: "daily" | "weekly" | undefined;
             source?: "scheduled" | "manual" | undefined;
@@ -12402,7 +12412,7 @@ export declare const logSchemas: {
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
-            trackingType?: "counter" | "timer" | undefined;
+            trackingType?: "counter" | "timer" | "scale" | undefined;
             formattedValue?: string | undefined;
             period?: "daily" | "weekly" | undefined;
             source?: "scheduled" | "manual" | undefined;
@@ -26636,6 +26646,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             generationPrompt?: string | undefined;
             generationVoice?: "m" | "f" | null | undefined;
         }>;
+        tacticRefPath: z.ZodString;
         planId: z.ZodOptional<z.ZodString>;
         planLogId: z.ZodOptional<z.ZodString>;
         stepCount: z.ZodOptional<z.ZodNumber>;
@@ -27075,6 +27086,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             generationPrompt?: string | undefined;
             generationVoice?: "m" | "f" | null | undefined;
         };
+        tacticRefPath: string;
         completed?: boolean | undefined;
         planId?: string | undefined;
         planLogId?: string | undefined;
@@ -27446,6 +27458,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             generationPrompt?: string | undefined;
             generationVoice?: "m" | "f" | null | undefined;
         };
+        tacticRefPath: string;
         completed?: boolean | undefined;
         planId?: string | undefined;
         planLogId?: string | undefined;
@@ -27827,6 +27840,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             generationPrompt?: string | undefined;
             generationVoice?: "m" | "f" | null | undefined;
         };
+        tacticRefPath: string;
         completed?: boolean | undefined;
         planId?: string | undefined;
         planLogId?: string | undefined;
@@ -28212,6 +28226,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             generationPrompt?: string | undefined;
             generationVoice?: "m" | "f" | null | undefined;
         };
+        tacticRefPath: string;
         completed?: boolean | undefined;
         planId?: string | undefined;
         planLogId?: string | undefined;
@@ -28271,7 +28286,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         behaviorId: z.ZodOptional<z.ZodString>;
         behaviorName: z.ZodOptional<z.ZodString>;
         behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
-        trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer"]>>;
+        trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer", "scale"]>>;
         value: z.ZodOptional<z.ZodNumber>;
         formattedValue: z.ZodOptional<z.ZodString>;
         period: z.ZodOptional<z.ZodEnum<["daily", "weekly"]>>;
@@ -28284,7 +28299,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
-        trackingType?: "counter" | "timer" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
         source?: "scheduled" | "manual" | undefined;
@@ -28295,7 +28310,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
-        trackingType?: "counter" | "timer" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
         source?: "scheduled" | "manual" | undefined;
@@ -28317,7 +28332,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
-        trackingType?: "counter" | "timer" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
         source?: "scheduled" | "manual" | undefined;
@@ -28343,7 +28358,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
-        trackingType?: "counter" | "timer" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
         source?: "scheduled" | "manual" | undefined;

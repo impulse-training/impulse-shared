@@ -4,3 +4,5 @@ export const DEFAULT_RECAP_TRIGGER = {
 } as const;
 
 export const DEFAULT_RECAP_TIME_LABEL = "9pm" as const;
+
+export const MAX_FOCUS_BEHAVIORS = 2;

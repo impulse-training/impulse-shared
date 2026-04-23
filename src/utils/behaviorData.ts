@@ -2,6 +2,19 @@ import { BehaviorTrackingData } from "../schemas";
 
 const pluralize = require("pluralize");
 
+export const scaleLevels = [
+  { value: 0, label: "Zero" },
+  { value: 1, label: "Low" },
+  { value: 2, label: "Medium" },
+  { value: 3, label: "High" },
+] as const;
+
+export type ScaleLevel = (typeof scaleLevels)[number];
+
+export function getScaleLabel(value: number): string {
+  return scaleLevels.find((l) => l.value === value)?.label ?? "Unknown";
+}
+
 type Args = {
   trackingType: BehaviorTrackingData["trackingType"];
   value: number;
@@ -13,11 +26,10 @@ export function getFormattedValue({
   value,
   behaviorTrackingUnit,
 }: Args) {
-  // When tracking type is timer, value is in seconds. Return it as `${hours}h ${minutes}m`
   if (trackingType === "timer") {
     const hours = Math.floor(value / 3600);
     const minutes = Math.floor((value % 3600) / 60);
-    
+
     if (hours === 0) {
       return `${minutes}m`;
     } else if (minutes === 0) {
@@ -25,6 +37,10 @@ export function getFormattedValue({
     } else {
       return `${hours}h ${minutes}m`;
     }
+  }
+
+  if (trackingType === "scale") {
+    return getScaleLabel(value);
   }
 
   return pluralize(behaviorTrackingUnit || "times", value, true);

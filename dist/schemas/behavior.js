@@ -161,13 +161,15 @@ exports.behaviorSchema = behaviorTemplate_1.behaviorTemplateBase
     id: zod_1.z.string().optional(),
     description: zod_1.z.string(),
     ordinal: zod_1.z.number().default(0),
-    benefits: zod_1.z.array(zod_1.z.string()),
-    drawbacks: zod_1.z.array(zod_1.z.string()),
+    benefits: zod_1.z.array(zod_1.z.string()).default([]),
+    drawbacks: zod_1.z.array(zod_1.z.string()).default([]),
     goal: goal_1.goalSchema.optional(),
     lastTrackedAt: timestampSchema_1.timestampSchema.optional(),
     tactics: zod_1.z.array(documentReferenceSchema_1.documentReferenceSchema).optional(),
     initialUsage: behaviorTrackingData_1.behaviorTrackingDataSchema.optional(),
     hidden: zod_1.z.boolean().optional().default(false),
+    behaviorTemplateId: zod_1.z.string().optional(),
+    answeredRecapQuestionIds: zod_1.z.array(zod_1.z.string()).optional(),
     // Display color for this behavior (hex string, e.g. "#C4362C")
     color: zod_1.z.string().optional(),
     // Reference to the behavior topic (e.g., "substances", "digital-screen-use")

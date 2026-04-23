@@ -18,6 +18,8 @@ exports.tacticLogSchema = base_1.logBaseSchema.extend({
     isDisplayable: zod_1.z.boolean(),
     data: zod_1.z.object({
         tactic: tactic_1.tacticSchema,
+        // Firestore document path of the tactic (e.g. "users/{uid}/tactics/{id}" or "tactics/{id}")
+        tacticRefPath: zod_1.z.string(),
         // If this tactic activity originated from displaying a plan, include the planId
         planId: zod_1.z.string().optional(),
         // If this tactic activity originated from the session's PlansLogView, include the log id

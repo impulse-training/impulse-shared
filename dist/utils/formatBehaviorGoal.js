@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.formatBehaviorGoal = formatBehaviorGoal;
+const behaviorData_1 = require("./behaviorData");
 const DAY_LABELS = {
     0: "Sun",
     1: "Mon",
@@ -21,13 +22,16 @@ function formatBehaviorGoal(behavior, goal) {
     const effectiveGoal = goal !== null && goal !== void 0 ? goal : behavior.goal;
     if (!effectiveGoal)
         return null;
-    const unitPlural = behavior.trackingType === "counter"
-        ? behavior.trackingUnit || "times"
-        : "minutes";
-    return formatRichGoal(effectiveGoal, unitPlural);
+    const isScale = behavior.trackingType === "scale";
+    const unitPlural = isScale
+        ? "level"
+        : behavior.trackingType === "counter"
+            ? behavior.trackingUnit || "times"
+            : "minutes";
+    return formatRichGoal(effectiveGoal, unitPlural, isScale);
 }
 // Original rich formatter, now factored so we can reuse with or without units
-function formatRichGoal(goal, unitPlural) {
+function formatRichGoal(goal, unitPlural, isScale = false) {
     const DAY_LABELS = {
         0: "Sun",
         1: "Mon",
@@ -44,6 +48,11 @@ function formatRichGoal(goal, unitPlural) {
         }
         return unitPlural;
     }
+    const formatTarget = (target) => {
+        if (isScale)
+            return (0, behaviorData_1.getScaleLabel)(target);
+        return `${target} ${unitFor(target, unitPlural)}`;
+    };
     if (goal.type === "eliminate") {
         return "Eliminate this behavior";
     }
@@ -51,8 +60,7 @@ function formatRichGoal(goal, unitPlural) {
         if (goal.target === 0) {
             return "Eliminate this behavior";
         }
-        const unit = unitFor(goal.target, unitPlural);
-        return `At most ${goal.target} ${unit} daily`;
+        return `At most ${formatTarget(goal.target)} daily`;
     }
     if (goal.type === "reduceIndividualDays") {
         const { dailyTargets } = goal;
@@ -62,8 +70,7 @@ function formatRichGoal(goal, unitPlural) {
             if (targets[0] === 0) {
                 return "Eliminate this behavior";
             }
-            const unit = unitFor(targets[0], unitPlural);
-            return `At most ${targets[0]} ${unit} daily`;
+            return `At most ${formatTarget(targets[0])} daily`;
         }
         const weekdayTargets = [
             dailyTargets[1],
@@ -82,10 +89,10 @@ function formatRichGoal(goal, unitPlural) {
             const we = weekendTargets[0];
             const weekdayPart = wd === 0
                 ? "Eliminate weekdays"
-                : `At most ${wd} ${unitFor(wd, unitPlural)} weekdays`;
+                : `At most ${formatTarget(wd)} weekdays`;
             const weekendPart = we === 0
                 ? "Eliminate weekends"
-                : `At most ${we} ${unitFor(we, unitPlural)} weekends`;
+                : `At most ${formatTarget(we)} weekends`;
             return `${weekdayPart}, ${weekendPart}`;
         }
         const counts = new Map();
@@ -115,12 +122,12 @@ function formatRichGoal(goal, unitPlural) {
                         parts.push(`Eliminate ${daysLabel}`);
                     }
                     else {
-                        parts.push(`At most ${t} ${unitFor(t, unitPlural)} ${daysLabel}`);
+                        parts.push(`At most ${formatTarget(t)} ${daysLabel}`);
                     }
                 });
                 const majorityPart = majorityTarget === 0
                     ? "Eliminate all other days"
-                    : `At most ${majorityTarget} ${unitFor(majorityTarget, unitPlural)} all other days`;
+                    : `At most ${formatTarget(majorityTarget)} all other days`;
                 parts.push(majorityPart);
                 return parts.join("; ");
             }
@@ -140,8 +147,7 @@ function formatRichGoal(goal, unitPlural) {
                 parts.push(`Eliminate ${daysLabel}`);
             }
             else {
-                const unit = unitFor(target, unitPlural);
-                parts.push(`At most ${target} ${unit} ${daysLabel}`);
+                parts.push(`At most ${formatTarget(target)} ${daysLabel}`);
             }
         });
         if (groupEntries.length > MAX_GROUPS) {

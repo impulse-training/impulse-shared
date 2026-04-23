@@ -57,18 +57,19 @@ export declare const recapResponseValueSchema: z.ZodObject<{
     }>>>;
     behaviorsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodEffects<z.ZodObject<{
         name: z.ZodString;
-        trackingType: z.ZodEnum<["counter", "timer"]>;
+        trackingType: z.ZodEnum<["counter", "timer", "scale"]>;
         trackingUnit: z.ZodOptional<z.ZodString>;
         baselinePeriod: z.ZodOptional<z.ZodEnum<["daily", "weekly"]>>;
         synonyms: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        recapQuestionSequence: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     } & {
         id: z.ZodOptional<z.ZodString>;
         description: z.ZodString;
         ordinal: z.ZodDefault<z.ZodNumber>;
-        benefits: z.ZodArray<z.ZodString, "many">;
-        drawbacks: z.ZodArray<z.ZodString, "many">;
+        benefits: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+        drawbacks: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
         goal: z.ZodOptional<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             type: z.ZodLiteral<"eliminate">;
         }, "strip", z.ZodTypeAny, {
@@ -140,7 +141,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             behaviorId: z.ZodOptional<z.ZodString>;
             behaviorName: z.ZodOptional<z.ZodString>;
             behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
-            trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer"]>>;
+            trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer", "scale"]>>;
             value: z.ZodOptional<z.ZodNumber>;
             formattedValue: z.ZodOptional<z.ZodString>;
             period: z.ZodOptional<z.ZodEnum<["daily", "weekly"]>>;
@@ -149,7 +150,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
-            trackingType?: "counter" | "timer" | undefined;
+            trackingType?: "counter" | "timer" | "scale" | undefined;
             formattedValue?: string | undefined;
             period?: "daily" | "weekly" | undefined;
         }, {
@@ -157,11 +158,13 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
-            trackingType?: "counter" | "timer" | undefined;
+            trackingType?: "counter" | "timer" | "scale" | undefined;
             formattedValue?: string | undefined;
             period?: "daily" | "weekly" | undefined;
         }>>;
         hidden: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+        behaviorTemplateId: z.ZodOptional<z.ZodString>;
+        answeredRecapQuestionIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         color: z.ZodOptional<z.ZodString>;
         behaviorTopicId: z.ZodOptional<z.ZodEnum<[string, ...string[]]>>;
         needsBaselineData: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
@@ -896,7 +899,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             } | undefined;
         }>>;
     }, "strip", z.ZodTypeAny, {
-        trackingType: "counter" | "timer";
+        trackingType: "counter" | "timer" | "scale";
         name: string;
         description: string;
         ordinal: number;
@@ -911,6 +914,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         baselinePeriod?: "daily" | "weekly" | undefined;
         color?: string | undefined;
         synonyms?: string[] | undefined;
+        recapQuestionSequence?: string[] | undefined;
         goal?: {
             type: "eliminate";
         } | {
@@ -935,10 +939,12 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
-            trackingType?: "counter" | "timer" | undefined;
+            trackingType?: "counter" | "timer" | "scale" | undefined;
             formattedValue?: string | undefined;
             period?: "daily" | "weekly" | undefined;
         } | undefined;
+        behaviorTemplateId?: string | undefined;
+        answeredRecapQuestionIds?: string[] | undefined;
         behaviorTopicId?: string | undefined;
         state?: {
             behaviorId: string;
@@ -1057,11 +1063,9 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             } | undefined;
         } | undefined;
     }, {
-        trackingType: "counter" | "timer";
+        trackingType: "counter" | "timer" | "scale";
         name: string;
         description: string;
-        benefits: string[];
-        drawbacks: string[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
@@ -1069,6 +1073,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         baselinePeriod?: "daily" | "weekly" | undefined;
         color?: string | undefined;
         synonyms?: string[] | undefined;
+        recapQuestionSequence?: string[] | undefined;
         goal?: {
             type: "eliminate";
         } | {
@@ -1087,6 +1092,8 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             };
         } | undefined;
         ordinal?: number | undefined;
+        benefits?: string[] | undefined;
+        drawbacks?: string[] | undefined;
         lastTrackedAt?: import("../types").Timestamp | undefined;
         tactics?: import("..").DocumentReferenceLike<unknown>[] | undefined;
         initialUsage?: {
@@ -1094,11 +1101,13 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
-            trackingType?: "counter" | "timer" | undefined;
+            trackingType?: "counter" | "timer" | "scale" | undefined;
             formattedValue?: string | undefined;
             period?: "daily" | "weekly" | undefined;
         } | undefined;
         hidden?: boolean | undefined;
+        behaviorTemplateId?: string | undefined;
+        answeredRecapQuestionIds?: string[] | undefined;
         behaviorTopicId?: string | undefined;
         needsBaselineData?: boolean | undefined;
         state?: {
@@ -1218,7 +1227,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             } | undefined;
         } | undefined;
     }>, {
-        trackingType: "counter" | "timer";
+        trackingType: "counter" | "timer" | "scale";
         name: string;
         description: string;
         ordinal: number;
@@ -1233,6 +1242,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         baselinePeriod?: "daily" | "weekly" | undefined;
         color?: string | undefined;
         synonyms?: string[] | undefined;
+        recapQuestionSequence?: string[] | undefined;
         goal?: {
             type: "eliminate";
         } | {
@@ -1257,10 +1267,12 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
-            trackingType?: "counter" | "timer" | undefined;
+            trackingType?: "counter" | "timer" | "scale" | undefined;
             formattedValue?: string | undefined;
             period?: "daily" | "weekly" | undefined;
         } | undefined;
+        behaviorTemplateId?: string | undefined;
+        answeredRecapQuestionIds?: string[] | undefined;
         behaviorTopicId?: string | undefined;
         state?: {
             behaviorId: string;
@@ -1379,11 +1391,9 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             } | undefined;
         } | undefined;
     }, {
-        trackingType: "counter" | "timer";
+        trackingType: "counter" | "timer" | "scale";
         name: string;
         description: string;
-        benefits: string[];
-        drawbacks: string[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
@@ -1391,6 +1401,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         baselinePeriod?: "daily" | "weekly" | undefined;
         color?: string | undefined;
         synonyms?: string[] | undefined;
+        recapQuestionSequence?: string[] | undefined;
         goal?: {
             type: "eliminate";
         } | {
@@ -1409,6 +1420,8 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             };
         } | undefined;
         ordinal?: number | undefined;
+        benefits?: string[] | undefined;
+        drawbacks?: string[] | undefined;
         lastTrackedAt?: import("../types").Timestamp | undefined;
         tactics?: import("..").DocumentReferenceLike<unknown>[] | undefined;
         initialUsage?: {
@@ -1416,11 +1429,13 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
-            trackingType?: "counter" | "timer" | undefined;
+            trackingType?: "counter" | "timer" | "scale" | undefined;
             formattedValue?: string | undefined;
             period?: "daily" | "weekly" | undefined;
         } | undefined;
         hidden?: boolean | undefined;
+        behaviorTemplateId?: string | undefined;
+        answeredRecapQuestionIds?: string[] | undefined;
         behaviorTopicId?: string | undefined;
         needsBaselineData?: boolean | undefined;
         state?: {
@@ -1555,7 +1570,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         targetValue?: number | undefined;
     }> | undefined;
     behaviorsById?: Record<string, {
-        trackingType: "counter" | "timer";
+        trackingType: "counter" | "timer" | "scale";
         name: string;
         description: string;
         ordinal: number;
@@ -1570,6 +1585,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         baselinePeriod?: "daily" | "weekly" | undefined;
         color?: string | undefined;
         synonyms?: string[] | undefined;
+        recapQuestionSequence?: string[] | undefined;
         goal?: {
             type: "eliminate";
         } | {
@@ -1594,10 +1610,12 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
-            trackingType?: "counter" | "timer" | undefined;
+            trackingType?: "counter" | "timer" | "scale" | undefined;
             formattedValue?: string | undefined;
             period?: "daily" | "weekly" | undefined;
         } | undefined;
+        behaviorTemplateId?: string | undefined;
+        answeredRecapQuestionIds?: string[] | undefined;
         behaviorTopicId?: string | undefined;
         state?: {
             behaviorId: string;
@@ -1731,11 +1749,9 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         targetValue?: number | undefined;
     }> | undefined;
     behaviorsById?: Record<string, {
-        trackingType: "counter" | "timer";
+        trackingType: "counter" | "timer" | "scale";
         name: string;
         description: string;
-        benefits: string[];
-        drawbacks: string[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
@@ -1743,6 +1759,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         baselinePeriod?: "daily" | "weekly" | undefined;
         color?: string | undefined;
         synonyms?: string[] | undefined;
+        recapQuestionSequence?: string[] | undefined;
         goal?: {
             type: "eliminate";
         } | {
@@ -1761,6 +1778,8 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             };
         } | undefined;
         ordinal?: number | undefined;
+        benefits?: string[] | undefined;
+        drawbacks?: string[] | undefined;
         lastTrackedAt?: import("../types").Timestamp | undefined;
         tactics?: import("..").DocumentReferenceLike<unknown>[] | undefined;
         initialUsage?: {
@@ -1768,11 +1787,13 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
-            trackingType?: "counter" | "timer" | undefined;
+            trackingType?: "counter" | "timer" | "scale" | undefined;
             formattedValue?: string | undefined;
             period?: "daily" | "weekly" | undefined;
         } | undefined;
         hidden?: boolean | undefined;
+        behaviorTemplateId?: string | undefined;
+        answeredRecapQuestionIds?: string[] | undefined;
         behaviorTopicId?: string | undefined;
         needsBaselineData?: boolean | undefined;
         state?: {
@@ -1903,7 +1924,7 @@ export declare const daySummarySchema: z.ZodObject<{
         behaviorId: z.ZodOptional<z.ZodString>;
         behaviorName: z.ZodOptional<z.ZodString>;
         behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
-        trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer"]>>;
+        trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer", "scale"]>>;
         value: z.ZodOptional<z.ZodNumber>;
         formattedValue: z.ZodOptional<z.ZodString>;
         period: z.ZodOptional<z.ZodEnum<["daily", "weekly"]>>;
@@ -1912,7 +1933,7 @@ export declare const daySummarySchema: z.ZodObject<{
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
-        trackingType?: "counter" | "timer" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
     }, {
@@ -1920,24 +1941,25 @@ export declare const daySummarySchema: z.ZodObject<{
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
-        trackingType?: "counter" | "timer" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
     }>>;
     behaviorsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodEffects<z.ZodObject<{
         name: z.ZodString;
-        trackingType: z.ZodEnum<["counter", "timer"]>;
+        trackingType: z.ZodEnum<["counter", "timer", "scale"]>;
         trackingUnit: z.ZodOptional<z.ZodString>;
         baselinePeriod: z.ZodOptional<z.ZodEnum<["daily", "weekly"]>>;
         synonyms: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        recapQuestionSequence: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     } & {
         id: z.ZodOptional<z.ZodString>;
         description: z.ZodString;
         ordinal: z.ZodDefault<z.ZodNumber>;
-        benefits: z.ZodArray<z.ZodString, "many">;
-        drawbacks: z.ZodArray<z.ZodString, "many">;
+        benefits: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+        drawbacks: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
         goal: z.ZodOptional<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             type: z.ZodLiteral<"eliminate">;
         }, "strip", z.ZodTypeAny, {
@@ -2009,7 +2031,7 @@ export declare const daySummarySchema: z.ZodObject<{
             behaviorId: z.ZodOptional<z.ZodString>;
             behaviorName: z.ZodOptional<z.ZodString>;
             behaviorTrackingUnit: z.ZodOptional<z.ZodString>;
-            trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer"]>>;
+            trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer", "scale"]>>;
             value: z.ZodOptional<z.ZodNumber>;
             formattedValue: z.ZodOptional<z.ZodString>;
             period: z.ZodOptional<z.ZodEnum<["daily", "weekly"]>>;
@@ -2018,7 +2040,7 @@ export declare const daySummarySchema: z.ZodObject<{
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
-            trackingType?: "counter" | "timer" | undefined;
+            trackingType?: "counter" | "timer" | "scale" | undefined;
             formattedValue?: string | undefined;
             period?: "daily" | "weekly" | undefined;
         }, {
@@ -2026,11 +2048,13 @@ export declare const daySummarySchema: z.ZodObject<{
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
-            trackingType?: "counter" | "timer" | undefined;
+            trackingType?: "counter" | "timer" | "scale" | undefined;
             formattedValue?: string | undefined;
             period?: "daily" | "weekly" | undefined;
         }>>;
         hidden: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+        behaviorTemplateId: z.ZodOptional<z.ZodString>;
+        answeredRecapQuestionIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         color: z.ZodOptional<z.ZodString>;
         behaviorTopicId: z.ZodOptional<z.ZodEnum<[string, ...string[]]>>;
         needsBaselineData: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
@@ -2765,7 +2789,7 @@ export declare const daySummarySchema: z.ZodObject<{
             } | undefined;
         }>>;
     }, "strip", z.ZodTypeAny, {
-        trackingType: "counter" | "timer";
+        trackingType: "counter" | "timer" | "scale";
         name: string;
         description: string;
         ordinal: number;
@@ -2780,6 +2804,7 @@ export declare const daySummarySchema: z.ZodObject<{
         baselinePeriod?: "daily" | "weekly" | undefined;
         color?: string | undefined;
         synonyms?: string[] | undefined;
+        recapQuestionSequence?: string[] | undefined;
         goal?: {
             type: "eliminate";
         } | {
@@ -2804,10 +2829,12 @@ export declare const daySummarySchema: z.ZodObject<{
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
-            trackingType?: "counter" | "timer" | undefined;
+            trackingType?: "counter" | "timer" | "scale" | undefined;
             formattedValue?: string | undefined;
             period?: "daily" | "weekly" | undefined;
         } | undefined;
+        behaviorTemplateId?: string | undefined;
+        answeredRecapQuestionIds?: string[] | undefined;
         behaviorTopicId?: string | undefined;
         state?: {
             behaviorId: string;
@@ -2926,11 +2953,9 @@ export declare const daySummarySchema: z.ZodObject<{
             } | undefined;
         } | undefined;
     }, {
-        trackingType: "counter" | "timer";
+        trackingType: "counter" | "timer" | "scale";
         name: string;
         description: string;
-        benefits: string[];
-        drawbacks: string[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
@@ -2938,6 +2963,7 @@ export declare const daySummarySchema: z.ZodObject<{
         baselinePeriod?: "daily" | "weekly" | undefined;
         color?: string | undefined;
         synonyms?: string[] | undefined;
+        recapQuestionSequence?: string[] | undefined;
         goal?: {
             type: "eliminate";
         } | {
@@ -2956,6 +2982,8 @@ export declare const daySummarySchema: z.ZodObject<{
             };
         } | undefined;
         ordinal?: number | undefined;
+        benefits?: string[] | undefined;
+        drawbacks?: string[] | undefined;
         lastTrackedAt?: import("../types").Timestamp | undefined;
         tactics?: import("..").DocumentReferenceLike<unknown>[] | undefined;
         initialUsage?: {
@@ -2963,11 +2991,13 @@ export declare const daySummarySchema: z.ZodObject<{
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
-            trackingType?: "counter" | "timer" | undefined;
+            trackingType?: "counter" | "timer" | "scale" | undefined;
             formattedValue?: string | undefined;
             period?: "daily" | "weekly" | undefined;
         } | undefined;
         hidden?: boolean | undefined;
+        behaviorTemplateId?: string | undefined;
+        answeredRecapQuestionIds?: string[] | undefined;
         behaviorTopicId?: string | undefined;
         needsBaselineData?: boolean | undefined;
         state?: {
@@ -3087,7 +3117,7 @@ export declare const daySummarySchema: z.ZodObject<{
             } | undefined;
         } | undefined;
     }>, {
-        trackingType: "counter" | "timer";
+        trackingType: "counter" | "timer" | "scale";
         name: string;
         description: string;
         ordinal: number;
@@ -3102,6 +3132,7 @@ export declare const daySummarySchema: z.ZodObject<{
         baselinePeriod?: "daily" | "weekly" | undefined;
         color?: string | undefined;
         synonyms?: string[] | undefined;
+        recapQuestionSequence?: string[] | undefined;
         goal?: {
             type: "eliminate";
         } | {
@@ -3126,10 +3157,12 @@ export declare const daySummarySchema: z.ZodObject<{
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
-            trackingType?: "counter" | "timer" | undefined;
+            trackingType?: "counter" | "timer" | "scale" | undefined;
             formattedValue?: string | undefined;
             period?: "daily" | "weekly" | undefined;
         } | undefined;
+        behaviorTemplateId?: string | undefined;
+        answeredRecapQuestionIds?: string[] | undefined;
         behaviorTopicId?: string | undefined;
         state?: {
             behaviorId: string;
@@ -3248,11 +3281,9 @@ export declare const daySummarySchema: z.ZodObject<{
             } | undefined;
         } | undefined;
     }, {
-        trackingType: "counter" | "timer";
+        trackingType: "counter" | "timer" | "scale";
         name: string;
         description: string;
-        benefits: string[];
-        drawbacks: string[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
@@ -3260,6 +3291,7 @@ export declare const daySummarySchema: z.ZodObject<{
         baselinePeriod?: "daily" | "weekly" | undefined;
         color?: string | undefined;
         synonyms?: string[] | undefined;
+        recapQuestionSequence?: string[] | undefined;
         goal?: {
             type: "eliminate";
         } | {
@@ -3278,6 +3310,8 @@ export declare const daySummarySchema: z.ZodObject<{
             };
         } | undefined;
         ordinal?: number | undefined;
+        benefits?: string[] | undefined;
+        drawbacks?: string[] | undefined;
         lastTrackedAt?: import("../types").Timestamp | undefined;
         tactics?: import("..").DocumentReferenceLike<unknown>[] | undefined;
         initialUsage?: {
@@ -3285,11 +3319,13 @@ export declare const daySummarySchema: z.ZodObject<{
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
-            trackingType?: "counter" | "timer" | undefined;
+            trackingType?: "counter" | "timer" | "scale" | undefined;
             formattedValue?: string | undefined;
             period?: "daily" | "weekly" | undefined;
         } | undefined;
         hidden?: boolean | undefined;
+        behaviorTemplateId?: string | undefined;
+        answeredRecapQuestionIds?: string[] | undefined;
         behaviorTopicId?: string | undefined;
         needsBaselineData?: boolean | undefined;
         state?: {
@@ -3482,7 +3518,7 @@ export declare const daySummarySchema: z.ZodObject<{
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
-        trackingType?: "counter" | "timer" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
     }>;
@@ -3505,7 +3541,7 @@ export declare const daySummarySchema: z.ZodObject<{
         targetValue?: number | undefined;
     }> | undefined;
     behaviorsById?: Record<string, {
-        trackingType: "counter" | "timer";
+        trackingType: "counter" | "timer" | "scale";
         name: string;
         description: string;
         ordinal: number;
@@ -3520,6 +3556,7 @@ export declare const daySummarySchema: z.ZodObject<{
         baselinePeriod?: "daily" | "weekly" | undefined;
         color?: string | undefined;
         synonyms?: string[] | undefined;
+        recapQuestionSequence?: string[] | undefined;
         goal?: {
             type: "eliminate";
         } | {
@@ -3544,10 +3581,12 @@ export declare const daySummarySchema: z.ZodObject<{
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
-            trackingType?: "counter" | "timer" | undefined;
+            trackingType?: "counter" | "timer" | "scale" | undefined;
             formattedValue?: string | undefined;
             period?: "daily" | "weekly" | undefined;
         } | undefined;
+        behaviorTemplateId?: string | undefined;
+        answeredRecapQuestionIds?: string[] | undefined;
         behaviorTopicId?: string | undefined;
         state?: {
             behaviorId: string;
@@ -3688,7 +3727,7 @@ export declare const daySummarySchema: z.ZodObject<{
         behaviorId?: string | undefined;
         behaviorName?: string | undefined;
         behaviorTrackingUnit?: string | undefined;
-        trackingType?: "counter" | "timer" | undefined;
+        trackingType?: "counter" | "timer" | "scale" | undefined;
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
     }>;
@@ -3710,11 +3749,9 @@ export declare const daySummarySchema: z.ZodObject<{
         targetValue?: number | undefined;
     }> | undefined;
     behaviorsById?: Record<string, {
-        trackingType: "counter" | "timer";
+        trackingType: "counter" | "timer" | "scale";
         name: string;
         description: string;
-        benefits: string[];
-        drawbacks: string[];
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
@@ -3722,6 +3759,7 @@ export declare const daySummarySchema: z.ZodObject<{
         baselinePeriod?: "daily" | "weekly" | undefined;
         color?: string | undefined;
         synonyms?: string[] | undefined;
+        recapQuestionSequence?: string[] | undefined;
         goal?: {
             type: "eliminate";
         } | {
@@ -3740,6 +3778,8 @@ export declare const daySummarySchema: z.ZodObject<{
             };
         } | undefined;
         ordinal?: number | undefined;
+        benefits?: string[] | undefined;
+        drawbacks?: string[] | undefined;
         lastTrackedAt?: import("../types").Timestamp | undefined;
         tactics?: import("..").DocumentReferenceLike<unknown>[] | undefined;
         initialUsage?: {
@@ -3747,11 +3787,13 @@ export declare const daySummarySchema: z.ZodObject<{
             behaviorId?: string | undefined;
             behaviorName?: string | undefined;
             behaviorTrackingUnit?: string | undefined;
-            trackingType?: "counter" | "timer" | undefined;
+            trackingType?: "counter" | "timer" | "scale" | undefined;
             formattedValue?: string | undefined;
             period?: "daily" | "weekly" | undefined;
         } | undefined;
         hidden?: boolean | undefined;
+        behaviorTemplateId?: string | undefined;
+        answeredRecapQuestionIds?: string[] | undefined;
         behaviorTopicId?: string | undefined;
         needsBaselineData?: boolean | undefined;
         state?: {

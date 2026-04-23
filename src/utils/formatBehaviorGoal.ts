@@ -1,5 +1,6 @@
 import { Behavior } from "../schemas";
 import { Goal } from "../schemas/goal";
+import { getScaleLabel } from "./behaviorData";
 
 const DAY_LABELS: Record<number, string> = {
   0: "Sun",
@@ -34,17 +35,20 @@ export function formatBehaviorGoal(
 ): string | null {
   const effectiveGoal = goal ?? (behavior.goal as Goal | null | undefined);
   if (!effectiveGoal) return null;
-  const unitPlural =
-    behavior.trackingType === "counter"
+  const isScale = behavior.trackingType === "scale";
+  const unitPlural = isScale
+    ? "level"
+    : behavior.trackingType === "counter"
       ? behavior.trackingUnit || "times"
       : "minutes";
-  return formatRichGoal(effectiveGoal, unitPlural);
+  return formatRichGoal(effectiveGoal, unitPlural, isScale);
 }
 
 // Original rich formatter, now factored so we can reuse with or without units
 function formatRichGoal(
   goal: NonNullable<Behavior["goal"]>,
-  unitPlural: string
+  unitPlural: string,
+  isScale: boolean = false,
 ): string | null {
   const DAY_LABELS: Record<number, string> = {
     0: "Sun",
@@ -63,6 +67,11 @@ function formatRichGoal(
     return unitPlural;
   }
 
+  const formatTarget = (target: number): string => {
+    if (isScale) return getScaleLabel(target);
+    return `${target} ${unitFor(target, unitPlural)}`;
+  };
+
   if (goal.type === "eliminate") {
     return "Eliminate this behavior";
   }
@@ -71,8 +80,7 @@ function formatRichGoal(
     if (goal.target === 0) {
       return "Eliminate this behavior";
     }
-    const unit = unitFor(goal.target, unitPlural);
-    return `At most ${goal.target} ${unit} daily`;
+    return `At most ${formatTarget(goal.target)} daily`;
   }
 
   if (goal.type === "reduceIndividualDays") {
@@ -86,8 +94,7 @@ function formatRichGoal(
       if (targets[0] === 0) {
         return "Eliminate this behavior";
       }
-      const unit = unitFor(targets[0], unitPlural);
-      return `At most ${targets[0]} ${unit} daily`;
+      return `At most ${formatTarget(targets[0])} daily`;
     }
 
     const weekdayTargets = [
@@ -116,11 +123,11 @@ function formatRichGoal(
       const weekdayPart =
         wd === 0
           ? "Eliminate weekdays"
-          : `At most ${wd} ${unitFor(wd, unitPlural)} weekdays`;
+          : `At most ${formatTarget(wd)} weekdays`;
       const weekendPart =
         we === 0
           ? "Eliminate weekends"
-          : `At most ${we} ${unitFor(we, unitPlural)} weekends`;
+          : `At most ${formatTarget(we)} weekends`;
 
       return `${weekdayPart}, ${weekendPart}`;
     }
@@ -155,17 +162,14 @@ function formatRichGoal(
           if (t === 0) {
             parts.push(`Eliminate ${daysLabel}`);
           } else {
-            parts.push(`At most ${t} ${unitFor(t, unitPlural)} ${daysLabel}`);
+            parts.push(`At most ${formatTarget(t)} ${daysLabel}`);
           }
         });
 
         const majorityPart =
           majorityTarget === 0
             ? "Eliminate all other days"
-            : `At most ${majorityTarget} ${unitFor(
-                majorityTarget,
-                unitPlural
-              )} all other days`;
+            : `At most ${formatTarget(majorityTarget)} all other days`;
 
         parts.push(majorityPart);
         return parts.join("; ");
@@ -191,8 +195,7 @@ function formatRichGoal(
       if (target === 0) {
         parts.push(`Eliminate ${daysLabel}`);
       } else {
-        const unit = unitFor(target, unitPlural);
-        parts.push(`At most ${target} ${unit} ${daysLabel}`);
+        parts.push(`At most ${formatTarget(target)} ${daysLabel}`);
       }
     });
 
