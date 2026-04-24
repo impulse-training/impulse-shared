@@ -20,6 +20,7 @@ export * from "./memory";
 export * from "./monthSummary";
 export * from "./metric";
 export * from "./metricState";
+export * from "./milestoneAchievement";
 export * from "./notification";
 export * from "./paymentToken";
 export * from "./plan";

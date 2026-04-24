@@ -27,3 +27,4 @@ export * from "./utils/tacticScoring";
 export * from "./utils/planScoring";
 export * from "./utils/behaviorColors";
 export * from "./utils/selfHarmKeywords";
+export * from "./utils/milestoneLadder";

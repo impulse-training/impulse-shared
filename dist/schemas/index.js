@@ -38,6 +38,7 @@ __exportStar(require("./memory"), exports);
 __exportStar(require("./monthSummary"), exports);
 __exportStar(require("./metric"), exports);
 __exportStar(require("./metricState"), exports);
+__exportStar(require("./milestoneAchievement"), exports);
 __exportStar(require("./notification"), exports);
 __exportStar(require("./paymentToken"), exports);
 __exportStar(require("./plan"), exports);

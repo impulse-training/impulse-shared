@@ -9,6 +9,7 @@ const goal_1 = require("./goal");
 const behaviorTrackingData_1 = require("./behaviorTrackingData");
 const behaviorTemplate_1 = require("./behaviorTemplate");
 const behaviorTopic_1 = require("./behaviorTopic");
+const milestoneAchievement_1 = require("./milestoneAchievement");
 // Re-export for backward compatibility
 var behaviorTemplate_2 = require("./behaviorTemplate");
 Object.defineProperty(exports, "trackingTypes", { enumerable: true, get: function () { return behaviorTemplate_2.trackingTypes; } });
@@ -150,6 +151,7 @@ exports.behaviorStateSchema = zod_1.z.object({
     })
         .optional(),
     recentSlice: exports.recentSliceSchema.optional(),
+    milestoneProgress: milestoneAchievement_1.milestoneProgressSchema.optional(),
     meta: exports.behaviorStateMetaSchema,
 });
 function isBehaviorState(value) {
@@ -177,6 +179,7 @@ exports.behaviorSchema = behaviorTemplate_1.behaviorTemplateBase
     behaviorTopicId: behaviorTopic_1.behaviorTopicIdSchema.optional(),
     // When true, the recap session should collect baseline usage data for this behavior
     needsBaselineData: zod_1.z.boolean().optional().default(false),
+    customMilestoneRungs: zod_1.z.array(milestoneAchievement_1.milestoneRungSchema).optional(),
     // Computed state for this behavior (windows, trend, etc.)
     state: exports.behaviorStateSchema.optional(),
 })

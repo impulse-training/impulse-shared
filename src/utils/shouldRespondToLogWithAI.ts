@@ -16,6 +16,7 @@ import {
   logIsTacticReviewLog,
   logIsTacticLog,
   logIsTagsUpdatedLog,
+  logIsToolCallLog,
   logIsTriggerSelectionLog,
   logIsUserMessageLog,
   logIsWidgetSetupLog,
@@ -117,16 +118,22 @@ export function shouldRespondToLogWithAI(
     afterData.data.completed === true &&
     (!logIsTacticLog(beforeData) || beforeData.data.completed !== true);
 
+  const latestIsAssistantOutput =
+    latestSessionLog &&
+    (logIsAssistantMessageLog(latestSessionLog) ||
+      logIsToolCallLog(latestSessionLog) ||
+      (logIsTacticLog(latestSessionLog) &&
+        !latestSessionLog.data.completed));
+
   if (
     !isMetricRating &&
     !isDebriefOutcomeResolved &&
     !isDayTotalsPromptAction &&
     !isSetupModeTextChoice &&
     !isTacticCompleted &&
-    latestSessionLog &&
-    logIsAssistantMessageLog(latestSessionLog)
+    latestIsAssistantOutput
   ) {
-    console.log("Latest message is from assistant. Not responding with AI.");
+    console.log("Latest log is assistant output. Not responding with AI.");
     return false;
   }
 

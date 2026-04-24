@@ -80,6 +80,7 @@ function formatRichGoal(
     if (goal.target === 0) {
       return "Eliminate this behavior";
     }
+    if (isScale) return formatTarget(goal.target);
     return `At most ${formatTarget(goal.target)} daily`;
   }
 

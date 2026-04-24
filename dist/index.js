@@ -65,3 +65,4 @@ __exportStar(require("./utils/tacticScoring"), exports);
 __exportStar(require("./utils/planScoring"), exports);
 __exportStar(require("./utils/behaviorColors"), exports);
 __exportStar(require("./utils/selfHarmKeywords"), exports);
+__exportStar(require("./utils/milestoneLadder"), exports);

@@ -168,6 +168,19 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         color: z.ZodOptional<z.ZodString>;
         behaviorTopicId: z.ZodOptional<z.ZodEnum<[string, ...string[]]>>;
         needsBaselineData: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+        customMilestoneRungs: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            days: z.ZodNumber;
+            label: z.ZodString;
+            isCustom: z.ZodOptional<z.ZodBoolean>;
+        }, "strip", z.ZodTypeAny, {
+            days: number;
+            label: string;
+            isCustom?: boolean | undefined;
+        }, {
+            days: number;
+            label: string;
+            isCustom?: boolean | undefined;
+        }>, "many">>;
         state: z.ZodOptional<z.ZodObject<{
             behaviorId: z.ZodString;
             goal: z.ZodOptional<z.ZodObject<{
@@ -657,6 +670,59 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                 contrast: "LOW" | "MODERATE" | "STRONG";
                 salience: "HIGH" | "MEDIUM" | "LOW";
             }>>;
+            milestoneProgress: z.ZodOptional<z.ZodObject<{
+                lastAchievedRung: z.ZodNullable<z.ZodObject<{
+                    days: z.ZodNumber;
+                    label: z.ZodString;
+                    isCustom: z.ZodOptional<z.ZodBoolean>;
+                }, "strip", z.ZodTypeAny, {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                }, {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                }>>;
+                nextRung: z.ZodNullable<z.ZodObject<{
+                    days: z.ZodNumber;
+                    label: z.ZodString;
+                    isCustom: z.ZodOptional<z.ZodBoolean>;
+                }, "strip", z.ZodTypeAny, {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                }, {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                }>>;
+                currentStreakDays: z.ZodNumber;
+            }, "strip", z.ZodTypeAny, {
+                lastAchievedRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                nextRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                currentStreakDays: number;
+            }, {
+                lastAchievedRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                nextRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                currentStreakDays: number;
+            }>>;
             meta: z.ZodObject<{
                 lastUpdatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
                 dataCompleteness: z.ZodEnum<["HIGH", "MEDIUM", "LOW"]>;
@@ -782,6 +848,19 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                 contrast: "LOW" | "MODERATE" | "STRONG";
                 salience: "HIGH" | "MEDIUM" | "LOW";
             } | undefined;
+            milestoneProgress?: {
+                lastAchievedRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                nextRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                currentStreakDays: number;
+            } | undefined;
         }, {
             behaviorId: string;
             windows: {
@@ -897,6 +976,19 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                 contrast: "LOW" | "MODERATE" | "STRONG";
                 salience: "HIGH" | "MEDIUM" | "LOW";
             } | undefined;
+            milestoneProgress?: {
+                lastAchievedRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                nextRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                currentStreakDays: number;
+            } | undefined;
         }>>;
     }, "strip", z.ZodTypeAny, {
         trackingType: "counter" | "timer" | "scale";
@@ -946,6 +1038,11 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         behaviorTemplateId?: string | undefined;
         answeredRecapQuestionIds?: string[] | undefined;
         behaviorTopicId?: string | undefined;
+        customMilestoneRungs?: {
+            days: number;
+            label: string;
+            isCustom?: boolean | undefined;
+        }[] | undefined;
         state?: {
             behaviorId: string;
             windows: {
@@ -1060,6 +1157,19 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                 direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
                 contrast: "LOW" | "MODERATE" | "STRONG";
                 salience: "HIGH" | "MEDIUM" | "LOW";
+            } | undefined;
+            milestoneProgress?: {
+                lastAchievedRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                nextRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                currentStreakDays: number;
             } | undefined;
         } | undefined;
     }, {
@@ -1110,6 +1220,11 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         answeredRecapQuestionIds?: string[] | undefined;
         behaviorTopicId?: string | undefined;
         needsBaselineData?: boolean | undefined;
+        customMilestoneRungs?: {
+            days: number;
+            label: string;
+            isCustom?: boolean | undefined;
+        }[] | undefined;
         state?: {
             behaviorId: string;
             windows: {
@@ -1224,6 +1339,19 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                 direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
                 contrast: "LOW" | "MODERATE" | "STRONG";
                 salience: "HIGH" | "MEDIUM" | "LOW";
+            } | undefined;
+            milestoneProgress?: {
+                lastAchievedRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                nextRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                currentStreakDays: number;
             } | undefined;
         } | undefined;
     }>, {
@@ -1274,6 +1402,11 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         behaviorTemplateId?: string | undefined;
         answeredRecapQuestionIds?: string[] | undefined;
         behaviorTopicId?: string | undefined;
+        customMilestoneRungs?: {
+            days: number;
+            label: string;
+            isCustom?: boolean | undefined;
+        }[] | undefined;
         state?: {
             behaviorId: string;
             windows: {
@@ -1388,6 +1521,19 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                 direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
                 contrast: "LOW" | "MODERATE" | "STRONG";
                 salience: "HIGH" | "MEDIUM" | "LOW";
+            } | undefined;
+            milestoneProgress?: {
+                lastAchievedRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                nextRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                currentStreakDays: number;
             } | undefined;
         } | undefined;
     }, {
@@ -1438,6 +1584,11 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         answeredRecapQuestionIds?: string[] | undefined;
         behaviorTopicId?: string | undefined;
         needsBaselineData?: boolean | undefined;
+        customMilestoneRungs?: {
+            days: number;
+            label: string;
+            isCustom?: boolean | undefined;
+        }[] | undefined;
         state?: {
             behaviorId: string;
             windows: {
@@ -1552,6 +1703,19 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                 direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
                 contrast: "LOW" | "MODERATE" | "STRONG";
                 salience: "HIGH" | "MEDIUM" | "LOW";
+            } | undefined;
+            milestoneProgress?: {
+                lastAchievedRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                nextRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                currentStreakDays: number;
             } | undefined;
         } | undefined;
     }>>>;
@@ -1617,6 +1781,11 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         behaviorTemplateId?: string | undefined;
         answeredRecapQuestionIds?: string[] | undefined;
         behaviorTopicId?: string | undefined;
+        customMilestoneRungs?: {
+            days: number;
+            label: string;
+            isCustom?: boolean | undefined;
+        }[] | undefined;
         state?: {
             behaviorId: string;
             windows: {
@@ -1731,6 +1900,19 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                 direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
                 contrast: "LOW" | "MODERATE" | "STRONG";
                 salience: "HIGH" | "MEDIUM" | "LOW";
+            } | undefined;
+            milestoneProgress?: {
+                lastAchievedRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                nextRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                currentStreakDays: number;
             } | undefined;
         } | undefined;
     }> | undefined;
@@ -1796,6 +1978,11 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         answeredRecapQuestionIds?: string[] | undefined;
         behaviorTopicId?: string | undefined;
         needsBaselineData?: boolean | undefined;
+        customMilestoneRungs?: {
+            days: number;
+            label: string;
+            isCustom?: boolean | undefined;
+        }[] | undefined;
         state?: {
             behaviorId: string;
             windows: {
@@ -1910,6 +2097,19 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                 direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
                 contrast: "LOW" | "MODERATE" | "STRONG";
                 salience: "HIGH" | "MEDIUM" | "LOW";
+            } | undefined;
+            milestoneProgress?: {
+                lastAchievedRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                nextRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                currentStreakDays: number;
             } | undefined;
         } | undefined;
     }> | undefined;
@@ -2058,6 +2258,19 @@ export declare const daySummarySchema: z.ZodObject<{
         color: z.ZodOptional<z.ZodString>;
         behaviorTopicId: z.ZodOptional<z.ZodEnum<[string, ...string[]]>>;
         needsBaselineData: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+        customMilestoneRungs: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            days: z.ZodNumber;
+            label: z.ZodString;
+            isCustom: z.ZodOptional<z.ZodBoolean>;
+        }, "strip", z.ZodTypeAny, {
+            days: number;
+            label: string;
+            isCustom?: boolean | undefined;
+        }, {
+            days: number;
+            label: string;
+            isCustom?: boolean | undefined;
+        }>, "many">>;
         state: z.ZodOptional<z.ZodObject<{
             behaviorId: z.ZodString;
             goal: z.ZodOptional<z.ZodObject<{
@@ -2547,6 +2760,59 @@ export declare const daySummarySchema: z.ZodObject<{
                 contrast: "LOW" | "MODERATE" | "STRONG";
                 salience: "HIGH" | "MEDIUM" | "LOW";
             }>>;
+            milestoneProgress: z.ZodOptional<z.ZodObject<{
+                lastAchievedRung: z.ZodNullable<z.ZodObject<{
+                    days: z.ZodNumber;
+                    label: z.ZodString;
+                    isCustom: z.ZodOptional<z.ZodBoolean>;
+                }, "strip", z.ZodTypeAny, {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                }, {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                }>>;
+                nextRung: z.ZodNullable<z.ZodObject<{
+                    days: z.ZodNumber;
+                    label: z.ZodString;
+                    isCustom: z.ZodOptional<z.ZodBoolean>;
+                }, "strip", z.ZodTypeAny, {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                }, {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                }>>;
+                currentStreakDays: z.ZodNumber;
+            }, "strip", z.ZodTypeAny, {
+                lastAchievedRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                nextRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                currentStreakDays: number;
+            }, {
+                lastAchievedRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                nextRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                currentStreakDays: number;
+            }>>;
             meta: z.ZodObject<{
                 lastUpdatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
                 dataCompleteness: z.ZodEnum<["HIGH", "MEDIUM", "LOW"]>;
@@ -2672,6 +2938,19 @@ export declare const daySummarySchema: z.ZodObject<{
                 contrast: "LOW" | "MODERATE" | "STRONG";
                 salience: "HIGH" | "MEDIUM" | "LOW";
             } | undefined;
+            milestoneProgress?: {
+                lastAchievedRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                nextRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                currentStreakDays: number;
+            } | undefined;
         }, {
             behaviorId: string;
             windows: {
@@ -2787,6 +3066,19 @@ export declare const daySummarySchema: z.ZodObject<{
                 contrast: "LOW" | "MODERATE" | "STRONG";
                 salience: "HIGH" | "MEDIUM" | "LOW";
             } | undefined;
+            milestoneProgress?: {
+                lastAchievedRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                nextRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                currentStreakDays: number;
+            } | undefined;
         }>>;
     }, "strip", z.ZodTypeAny, {
         trackingType: "counter" | "timer" | "scale";
@@ -2836,6 +3128,11 @@ export declare const daySummarySchema: z.ZodObject<{
         behaviorTemplateId?: string | undefined;
         answeredRecapQuestionIds?: string[] | undefined;
         behaviorTopicId?: string | undefined;
+        customMilestoneRungs?: {
+            days: number;
+            label: string;
+            isCustom?: boolean | undefined;
+        }[] | undefined;
         state?: {
             behaviorId: string;
             windows: {
@@ -2950,6 +3247,19 @@ export declare const daySummarySchema: z.ZodObject<{
                 direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
                 contrast: "LOW" | "MODERATE" | "STRONG";
                 salience: "HIGH" | "MEDIUM" | "LOW";
+            } | undefined;
+            milestoneProgress?: {
+                lastAchievedRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                nextRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                currentStreakDays: number;
             } | undefined;
         } | undefined;
     }, {
@@ -3000,6 +3310,11 @@ export declare const daySummarySchema: z.ZodObject<{
         answeredRecapQuestionIds?: string[] | undefined;
         behaviorTopicId?: string | undefined;
         needsBaselineData?: boolean | undefined;
+        customMilestoneRungs?: {
+            days: number;
+            label: string;
+            isCustom?: boolean | undefined;
+        }[] | undefined;
         state?: {
             behaviorId: string;
             windows: {
@@ -3114,6 +3429,19 @@ export declare const daySummarySchema: z.ZodObject<{
                 direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
                 contrast: "LOW" | "MODERATE" | "STRONG";
                 salience: "HIGH" | "MEDIUM" | "LOW";
+            } | undefined;
+            milestoneProgress?: {
+                lastAchievedRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                nextRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                currentStreakDays: number;
             } | undefined;
         } | undefined;
     }>, {
@@ -3164,6 +3492,11 @@ export declare const daySummarySchema: z.ZodObject<{
         behaviorTemplateId?: string | undefined;
         answeredRecapQuestionIds?: string[] | undefined;
         behaviorTopicId?: string | undefined;
+        customMilestoneRungs?: {
+            days: number;
+            label: string;
+            isCustom?: boolean | undefined;
+        }[] | undefined;
         state?: {
             behaviorId: string;
             windows: {
@@ -3278,6 +3611,19 @@ export declare const daySummarySchema: z.ZodObject<{
                 direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
                 contrast: "LOW" | "MODERATE" | "STRONG";
                 salience: "HIGH" | "MEDIUM" | "LOW";
+            } | undefined;
+            milestoneProgress?: {
+                lastAchievedRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                nextRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                currentStreakDays: number;
             } | undefined;
         } | undefined;
     }, {
@@ -3328,6 +3674,11 @@ export declare const daySummarySchema: z.ZodObject<{
         answeredRecapQuestionIds?: string[] | undefined;
         behaviorTopicId?: string | undefined;
         needsBaselineData?: boolean | undefined;
+        customMilestoneRungs?: {
+            days: number;
+            label: string;
+            isCustom?: boolean | undefined;
+        }[] | undefined;
         state?: {
             behaviorId: string;
             windows: {
@@ -3442,6 +3793,19 @@ export declare const daySummarySchema: z.ZodObject<{
                 direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
                 contrast: "LOW" | "MODERATE" | "STRONG";
                 salience: "HIGH" | "MEDIUM" | "LOW";
+            } | undefined;
+            milestoneProgress?: {
+                lastAchievedRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                nextRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                currentStreakDays: number;
             } | undefined;
         } | undefined;
     }>>>;
@@ -3588,6 +3952,11 @@ export declare const daySummarySchema: z.ZodObject<{
         behaviorTemplateId?: string | undefined;
         answeredRecapQuestionIds?: string[] | undefined;
         behaviorTopicId?: string | undefined;
+        customMilestoneRungs?: {
+            days: number;
+            label: string;
+            isCustom?: boolean | undefined;
+        }[] | undefined;
         state?: {
             behaviorId: string;
             windows: {
@@ -3702,6 +4071,19 @@ export declare const daySummarySchema: z.ZodObject<{
                 direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
                 contrast: "LOW" | "MODERATE" | "STRONG";
                 salience: "HIGH" | "MEDIUM" | "LOW";
+            } | undefined;
+            milestoneProgress?: {
+                lastAchievedRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                nextRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                currentStreakDays: number;
             } | undefined;
         } | undefined;
     }> | undefined;
@@ -3796,6 +4178,11 @@ export declare const daySummarySchema: z.ZodObject<{
         answeredRecapQuestionIds?: string[] | undefined;
         behaviorTopicId?: string | undefined;
         needsBaselineData?: boolean | undefined;
+        customMilestoneRungs?: {
+            days: number;
+            label: string;
+            isCustom?: boolean | undefined;
+        }[] | undefined;
         state?: {
             behaviorId: string;
             windows: {
@@ -3910,6 +4297,19 @@ export declare const daySummarySchema: z.ZodObject<{
                 direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
                 contrast: "LOW" | "MODERATE" | "STRONG";
                 salience: "HIGH" | "MEDIUM" | "LOW";
+            } | undefined;
+            milestoneProgress?: {
+                lastAchievedRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                nextRung: {
+                    days: number;
+                    label: string;
+                    isCustom?: boolean | undefined;
+                } | null;
+                currentStreakDays: number;
             } | undefined;
         } | undefined;
     }> | undefined;

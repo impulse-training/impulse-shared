@@ -5,6 +5,10 @@ import { goalSchema } from "./goal";
 import { behaviorTrackingDataSchema } from "./behaviorTrackingData";
 import { behaviorTemplateBase } from "./behaviorTemplate";
 import { behaviorTopicIdSchema } from "./behaviorTopic";
+import {
+  milestoneProgressSchema,
+  milestoneRungSchema,
+} from "./milestoneAchievement";
 
 // Re-export for backward compatibility
 export { trackingTypes, baselinePeriods } from "./behaviorTemplate";
@@ -196,6 +200,8 @@ export const behaviorStateSchema = z.object({
 
   recentSlice: recentSliceSchema.optional(),
 
+  milestoneProgress: milestoneProgressSchema.optional(),
+
   meta: behaviorStateMetaSchema,
 });
 export type BehaviorState = z.infer<typeof behaviorStateSchema>;
@@ -226,6 +232,7 @@ export const behaviorSchema = behaviorTemplateBase
     behaviorTopicId: behaviorTopicIdSchema.optional(),
     // When true, the recap session should collect baseline usage data for this behavior
     needsBaselineData: z.boolean().optional().default(false),
+    customMilestoneRungs: z.array(milestoneRungSchema).optional(),
     // Computed state for this behavior (windows, trend, etc.)
     state: behaviorStateSchema.optional(),
   })

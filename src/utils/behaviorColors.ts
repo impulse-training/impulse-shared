@@ -1,19 +1,25 @@
-/**
- * Shared color palette and name-to-color mapping for behaviors.
- * Used at creation time to assign a default color.
- */
+import type { Behavior } from "../schemas/behavior";
+import type { WithId } from "./withId";
 
 const COLORS = {
   RED: "#C4362C",
-  ORANGE: "#E8910C",
-  AMBER: "#D97706",
-  GREEN: "#2E8B57",
-  CYAN: "#0891B2",
-  BLUE: "#3B82F6",
+  ORANGE: "#F97316",
+  BROWN: "#6F4E37",
+  GREEN: "#16A34A",
+  BLUE: "#1D4ED8",
   PURPLE: "#7C5CFC",
   PINK: "#BE185D",
-  GRAY: "#6B7280",
 } as const;
+
+export const BEHAVIOR_COLOR_OPTIONS = [
+  COLORS.RED,
+  COLORS.ORANGE,
+  COLORS.BROWN,
+  COLORS.GREEN,
+  COLORS.BLUE,
+  COLORS.PURPLE,
+  COLORS.PINK,
+];
 
 const NAME_TO_COLOR: Record<string, string> = {
   // Digital
@@ -23,43 +29,43 @@ const NAME_TO_COLOR: Record<string, string> = {
   youtube: COLORS.ORANGE,
   "binge watching": COLORS.PURPLE,
   pornography: COLORS.RED,
-  "video games": COLORS.CYAN,
-  "phone checking": COLORS.GRAY,
-  "news reading": COLORS.GRAY,
+  "video games": COLORS.BLUE,
+  "phone checking": COLORS.BLUE,
+  "news reading": COLORS.BLUE,
   // Substances
-  alcohol: COLORS.AMBER,
+  alcohol: COLORS.BROWN,
   "smoking cigarettes": COLORS.ORANGE,
-  vaping: COLORS.GRAY,
-  coffee: COLORS.AMBER,
-  caffeine: COLORS.AMBER,
+  vaping: COLORS.BROWN,
+  coffee: COLORS.BROWN,
+  caffeine: COLORS.BROWN,
   // BFRBs
   "hair pulling": COLORS.PINK,
   "skin picking": COLORS.PINK,
   "nail biting": COLORS.PINK,
   // Avoidance
   procrastination: COLORS.ORANGE,
-  "compulsive cleaning": COLORS.CYAN,
+  "compulsive cleaning": COLORS.GREEN,
   "focus avoidance": COLORS.ORANGE,
   // Emotional
   "negative self-talk": COLORS.PURPLE,
   "excessive worrying": COLORS.PURPLE,
   rumination: COLORS.PURPLE,
   "anger outbursts": COLORS.RED,
-  gossiping: COLORS.GRAY,
+  gossiping: COLORS.PURPLE,
   // Financial
   gambling: COLORS.GREEN,
   overspending: COLORS.GREEN,
   "online shopping": COLORS.GREEN,
   // Eating
-  overeating: COLORS.AMBER,
+  overeating: COLORS.BROWN,
   "junk food": COLORS.ORANGE,
-  "late night snacking": COLORS.AMBER,
+  "late night snacking": COLORS.BROWN,
   "sugar consumption": COLORS.ORANGE,
   // Common custom names
   twitter: COLORS.BLUE,
   "twitter/videos": COLORS.ORANGE,
   instagram: COLORS.PINK,
-  tiktok: COLORS.CYAN,
+  tiktok: COLORS.BLUE,
   reddit: COLORS.ORANGE,
   weed: COLORS.GREEN,
   marijuana: COLORS.GREEN,
@@ -68,30 +74,40 @@ const NAME_TO_COLOR: Record<string, string> = {
   smoking: COLORS.ORANGE,
 };
 
-const FALLBACK_COLORS = [
-  COLORS.RED,
-  COLORS.ORANGE,
-  COLORS.GREEN,
-  COLORS.PURPLE,
-  COLORS.BLUE,
-  COLORS.AMBER,
-  COLORS.CYAN,
-  COLORS.PINK,
-];
-
-/**
- * Guess a color for a behavior based on its name.
- * @param name - The behavior name
- * @param index - Fallback index for behaviors with no name match (default 0)
- */
 export function guessBehaviorColor(name: string, index: number = 0): string {
   const lower = name.toLowerCase().trim();
   if (NAME_TO_COLOR[lower]) return NAME_TO_COLOR[lower];
 
-  // Partial match: check if any known name is contained in the behavior name
   for (const [key, color] of Object.entries(NAME_TO_COLOR)) {
     if (lower.includes(key) || key.includes(lower)) return color;
   }
 
-  return FALLBACK_COLORS[index % FALLBACK_COLORS.length];
+  return BEHAVIOR_COLOR_OPTIONS[index % BEHAVIOR_COLOR_OPTIONS.length];
+}
+
+export function getBehaviorColor(
+  behavior: WithId<Behavior>,
+  index: number = 0,
+): string {
+  if (behavior.color) return behavior.color;
+  return BEHAVIOR_COLOR_OPTIONS[index % BEHAVIOR_COLOR_OPTIONS.length];
+}
+
+export function toPastel(hex: string, mix: number = 0.65): string {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+
+  const pr = Math.round(r + (255 - r) * mix);
+  const pg = Math.round(g + (255 - g) * mix);
+  const pb = Math.round(b + (255 - b) * mix);
+
+  return `#${pr.toString(16).padStart(2, "0")}${pg.toString(16).padStart(2, "0")}${pb.toString(16).padStart(2, "0")}`;
+}
+
+export function getBehaviorPastelColor(
+  behavior: WithId<Behavior>,
+  index: number = 0,
+): string {
+  return toPastel(getBehaviorColor(behavior, index));
 }

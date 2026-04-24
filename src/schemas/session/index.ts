@@ -20,6 +20,7 @@ import {
   recoveryKeySessionSchema,
 } from "./recoveryKey";
 import { DemoSession, demoSessionSchema } from "./demo";
+import { MilestoneSession, milestoneSessionSchema } from "./milestone";
 
 export * from "../sessionSummary";
 export * from "./adjustment";
@@ -36,6 +37,7 @@ export * from "./welcome";
 export * from "./setup";
 export * from "./recoveryKey";
 export * from "./demo";
+export * from "./milestone";
 
 // Map of session types to their schemas
 export const sessionSchemas: Record<string, z.ZodTypeAny> = {
@@ -53,10 +55,11 @@ export const sessionSchemas: Record<string, z.ZodTypeAny> = {
   setup: setupSessionSchema,
   recoveryKey: recoveryKeySessionSchema,
   demo: demoSessionSchema,
+  milestone: milestoneSessionSchema,
 };
 
 // Discriminated union over type
-export const sessionSchema: z.ZodDiscriminatedUnion<"type", [typeof generalSessionSchema, typeof impulseSessionSchema, typeof behaviorSessionSchema, typeof timePlanSessionSchema, typeof alignmentSessionSchema, typeof recapSessionSchema, typeof locationPlanSessionSchema, typeof adjustmentSessionSchema, typeof commitmentSessionSchema, typeof tacticSessionSchema, typeof welcomeSessionSchema, typeof setupSessionSchema, typeof recoveryKeySessionSchema, typeof demoSessionSchema]> = z.discriminatedUnion("type", [
+export const sessionSchema: z.ZodDiscriminatedUnion<"type", [typeof generalSessionSchema, typeof impulseSessionSchema, typeof behaviorSessionSchema, typeof timePlanSessionSchema, typeof alignmentSessionSchema, typeof recapSessionSchema, typeof locationPlanSessionSchema, typeof adjustmentSessionSchema, typeof commitmentSessionSchema, typeof tacticSessionSchema, typeof welcomeSessionSchema, typeof setupSessionSchema, typeof recoveryKeySessionSchema, typeof demoSessionSchema, typeof milestoneSessionSchema]> = z.discriminatedUnion("type", [
   generalSessionSchema,
   impulseSessionSchema,
   behaviorSessionSchema,
@@ -71,6 +74,7 @@ export const sessionSchema: z.ZodDiscriminatedUnion<"type", [typeof generalSessi
   setupSessionSchema,
   recoveryKeySessionSchema,
   demoSessionSchema,
+  milestoneSessionSchema,
 ]);
 
 export const sessionIsGeneralSession = (
@@ -166,6 +170,13 @@ export const isValidDemoSession = (
   value: unknown,
 ): value is DemoSession => demoSessionSchema.safeParse(value).success;
 
+export const sessionIsMilestoneSession = (
+  value: Session,
+): value is MilestoneSession => value.type === "milestone";
+export const isValidMilestoneSession = (
+  value: unknown,
+): value is MilestoneSession => milestoneSessionSchema.safeParse(value).success;
+
 const noSummarizeSessionTypes: Session["type"][] = [
   "adjustment",
   "setup",
@@ -173,6 +184,7 @@ const noSummarizeSessionTypes: Session["type"][] = [
   "welcome",
   "recoveryKey",
   "demo",
+  "milestone",
 ];
 
 export function shouldSummarizeSession(

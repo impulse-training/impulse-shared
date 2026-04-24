@@ -67,14 +67,18 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         (0, log_1.logIsTacticLog)(afterData) &&
         afterData.data.completed === true &&
         (!(0, log_1.logIsTacticLog)(beforeData) || beforeData.data.completed !== true);
+    const latestIsAssistantOutput = latestSessionLog &&
+        ((0, log_1.logIsAssistantMessageLog)(latestSessionLog) ||
+            (0, log_1.logIsToolCallLog)(latestSessionLog) ||
+            ((0, log_1.logIsTacticLog)(latestSessionLog) &&
+                !latestSessionLog.data.completed));
     if (!isMetricRating &&
         !isDebriefOutcomeResolved &&
         !isDayTotalsPromptAction &&
         !isSetupModeTextChoice &&
         !isTacticCompleted &&
-        latestSessionLog &&
-        (0, log_1.logIsAssistantMessageLog)(latestSessionLog)) {
-        console.log("Latest message is from assistant. Not responding with AI.");
+        latestIsAssistantOutput) {
+        console.log("Latest log is assistant output. Not responding with AI.");
         return false;
     }
     const isCreating = !beforeData && afterData;
