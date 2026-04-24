@@ -17,6 +17,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.isQuestionStepMode = void 0;
 // Export all schema types and validation functions
 __exportStar(require("./adminDashboardCache"), exports);
+__exportStar(require("./answeredRecapQuestion"), exports);
 __exportStar(require("./attachment"), exports);
 __exportStar(require("./audit"), exports);
 __exportStar(require("./behavior"), exports);

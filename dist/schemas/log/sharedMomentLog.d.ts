@@ -93,10 +93,10 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "shared_moment";
+    sessionId: string;
+    dateString: string;
     userId: string;
     timestamp: import("../../types").Timestamp;
-    dateString: string;
-    sessionId: string;
     isDisplayable: true;
     data: {
         sessionRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
@@ -124,10 +124,10 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "shared_moment";
+    sessionId: string;
+    dateString: string;
     userId: string;
     timestamp: import("../../types").Timestamp;
-    dateString: string;
-    sessionId: string;
     isDisplayable: true;
     data: {
         sessionRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;

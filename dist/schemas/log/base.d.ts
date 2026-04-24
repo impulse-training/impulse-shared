@@ -13,10 +13,10 @@ export declare const logBaseSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
+    sessionId: string;
+    dateString: string;
     userId: string;
     timestamp: import("../../types").Timestamp;
-    dateString: string;
-    sessionId: string;
     id?: string | undefined;
     tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
@@ -24,10 +24,10 @@ export declare const logBaseSchema: z.ZodObject<{
 }, {
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
+    sessionId: string;
+    dateString: string;
     userId: string;
     timestamp: import("../../types").Timestamp;
-    dateString: string;
-    sessionId: string;
     id?: string | undefined;
     tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;

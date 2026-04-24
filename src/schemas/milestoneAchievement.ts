@@ -20,6 +20,7 @@ export const milestoneAchievementSchema = z.object({
   achievedAt: timestampSchema,
   streakLengthAtAchievement: z.number().int(),
   reflectionSessionId: z.string().optional(),
+  reflectionSummary: z.string().optional(),
 });
 export type MilestoneAchievement = z.infer<typeof milestoneAchievementSchema>;
 

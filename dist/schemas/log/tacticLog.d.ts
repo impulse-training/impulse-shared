@@ -3242,10 +3242,10 @@ export declare const tacticLogSchema: z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "tactic";
+    sessionId: string;
+    dateString: string;
     userId: string;
     timestamp: import("../../types").Timestamp;
-    dateString: string;
-    sessionId: string;
     isDisplayable: boolean;
     data: {
         tactic: {
@@ -3628,10 +3628,10 @@ export declare const tacticLogSchema: z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "tactic";
+    sessionId: string;
+    dateString: string;
     userId: string;
     timestamp: import("../../types").Timestamp;
-    dateString: string;
-    sessionId: string;
     isDisplayable: boolean;
     data: {
         tactic: {

@@ -1,4 +1,5 @@
 export * from "./adminDashboardCache";
+export * from "./answeredRecapQuestion";
 export * from "./attachment";
 export * from "./audit";
 export * from "./behavior";

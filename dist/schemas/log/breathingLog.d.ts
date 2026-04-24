@@ -39,10 +39,10 @@ export declare const breathingLogSchema: z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "breathing";
+    sessionId: string;
+    dateString: string;
     userId: string;
     timestamp: import("../../types").Timestamp;
-    dateString: string;
-    sessionId: string;
     isDisplayable: true;
     data: {
         inhaleSeconds: number;
@@ -60,10 +60,10 @@ export declare const breathingLogSchema: z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "breathing";
+    sessionId: string;
+    dateString: string;
     userId: string;
     timestamp: import("../../types").Timestamp;
-    dateString: string;
-    sessionId: string;
     isDisplayable: true;
     data: {
         inhaleSeconds: number;

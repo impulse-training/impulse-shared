@@ -26,10 +26,10 @@ export declare const videoLogSchema: z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "video";
+    sessionId: string;
+    dateString: string;
     userId: string;
     timestamp: import("../../types").Timestamp;
-    dateString: string;
-    sessionId: string;
     isDisplayable: true;
     data: {
         sourceUri: string;
@@ -44,10 +44,10 @@ export declare const videoLogSchema: z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "video";
+    sessionId: string;
+    dateString: string;
     userId: string;
     timestamp: import("../../types").Timestamp;
-    dateString: string;
-    sessionId: string;
     isDisplayable: true;
     data: {
         sourceUri: string;

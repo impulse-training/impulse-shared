@@ -224,7 +224,6 @@ export const behaviorSchema = behaviorTemplateBase
     initialUsage: behaviorTrackingDataSchema.optional(),
     hidden: z.boolean().optional().default(false),
     behaviorTemplateId: z.string().optional(),
-    answeredRecapQuestionIds: z.array(z.string()).optional(),
     // Display color for this behavior (hex string, e.g. "#C4362C")
     color: z.string().optional(),
     // Reference to the behavior topic (e.g., "substances", "digital-screen-use")

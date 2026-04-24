@@ -17,10 +17,10 @@ export declare const widgetSetupLogSchema: z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "widget_setup";
+    sessionId: string;
+    dateString: string;
     userId: string;
     timestamp: import("../../types").Timestamp;
-    dateString: string;
-    sessionId: string;
     isDisplayable: true;
     id?: string | undefined;
     tacticId?: string | undefined;
@@ -30,10 +30,10 @@ export declare const widgetSetupLogSchema: z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "widget_setup";
+    sessionId: string;
+    dateString: string;
     userId: string;
     timestamp: import("../../types").Timestamp;
-    dateString: string;
-    sessionId: string;
     isDisplayable: true;
     id?: string | undefined;
     tacticId?: string | undefined;

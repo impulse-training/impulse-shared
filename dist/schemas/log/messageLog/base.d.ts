@@ -24,10 +24,10 @@ export declare const messageBaseLogSchema: z.ZodObject<{
     createdAt: import("../../../types").Timestamp;
     updatedAt: import("../../../types").Timestamp;
     type: "user_message" | "assistant_message" | "system_message";
+    sessionId: string;
+    dateString: string;
     userId: string;
     timestamp: import("../../../types").Timestamp;
-    dateString: string;
-    sessionId: string;
     isDisplayable: true;
     data: {
         message?: any;
@@ -40,10 +40,10 @@ export declare const messageBaseLogSchema: z.ZodObject<{
     createdAt: import("../../../types").Timestamp;
     updatedAt: import("../../../types").Timestamp;
     type: "user_message" | "assistant_message" | "system_message";
+    sessionId: string;
+    dateString: string;
     userId: string;
     timestamp: import("../../../types").Timestamp;
-    dateString: string;
-    sessionId: string;
     isDisplayable: true;
     data: {
         message?: any;

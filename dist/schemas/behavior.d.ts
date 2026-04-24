@@ -1186,7 +1186,6 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     }>>;
     hidden: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     behaviorTemplateId: z.ZodOptional<z.ZodString>;
-    answeredRecapQuestionIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     color: z.ZodOptional<z.ZodString>;
     behaviorTopicId: z.ZodOptional<z.ZodEnum<[string, ...string[]]>>;
     needsBaselineData: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
@@ -2058,7 +2057,6 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         period?: "daily" | "weekly" | undefined;
     } | undefined;
     behaviorTemplateId?: string | undefined;
-    answeredRecapQuestionIds?: string[] | undefined;
     behaviorTopicId?: string | undefined;
     customMilestoneRungs?: {
         days: number;
@@ -2239,7 +2237,6 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     } | undefined;
     hidden?: boolean | undefined;
     behaviorTemplateId?: string | undefined;
-    answeredRecapQuestionIds?: string[] | undefined;
     behaviorTopicId?: string | undefined;
     needsBaselineData?: boolean | undefined;
     customMilestoneRungs?: {
@@ -2422,7 +2419,6 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
         period?: "daily" | "weekly" | undefined;
     } | undefined;
     behaviorTemplateId?: string | undefined;
-    answeredRecapQuestionIds?: string[] | undefined;
     behaviorTopicId?: string | undefined;
     customMilestoneRungs?: {
         days: number;
@@ -2603,7 +2599,6 @@ export declare const behaviorSchema: z.ZodEffects<z.ZodObject<{
     } | undefined;
     hidden?: boolean | undefined;
     behaviorTemplateId?: string | undefined;
-    answeredRecapQuestionIds?: string[] | undefined;
     behaviorTopicId?: string | undefined;
     needsBaselineData?: boolean | undefined;
     customMilestoneRungs?: {

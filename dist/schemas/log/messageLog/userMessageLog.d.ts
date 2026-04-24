@@ -103,10 +103,10 @@ export declare const userMessageLogSchema: z.ZodObject<{
     createdAt: import("../../../types").Timestamp;
     updatedAt: import("../../../types").Timestamp;
     type: "user_message";
+    sessionId: string;
+    dateString: string;
     userId: string;
     timestamp: import("../../../types").Timestamp;
-    dateString: string;
-    sessionId: string;
     isDisplayable: true;
     data: {
         message?: any;
@@ -138,10 +138,10 @@ export declare const userMessageLogSchema: z.ZodObject<{
     createdAt: import("../../../types").Timestamp;
     updatedAt: import("../../../types").Timestamp;
     type: "user_message";
+    sessionId: string;
+    dateString: string;
     userId: string;
     timestamp: import("../../../types").Timestamp;
-    dateString: string;
-    sessionId: string;
     isDisplayable: true;
     data: {
         message?: any;

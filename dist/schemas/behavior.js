@@ -171,7 +171,6 @@ exports.behaviorSchema = behaviorTemplate_1.behaviorTemplateBase
     initialUsage: behaviorTrackingData_1.behaviorTrackingDataSchema.optional(),
     hidden: zod_1.z.boolean().optional().default(false),
     behaviorTemplateId: zod_1.z.string().optional(),
-    answeredRecapQuestionIds: zod_1.z.array(zod_1.z.string()).optional(),
     // Display color for this behavior (hex string, e.g. "#C4362C")
     color: zod_1.z.string().optional(),
     // Reference to the behavior topic (e.g., "substances", "digital-screen-use")
