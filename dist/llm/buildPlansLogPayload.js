@@ -29,6 +29,25 @@ function getFirstStepText(tactic) {
     const step = first;
     return typeof step.text === "string" ? step.text : null;
 }
+function getTacticIdFromPath(path) {
+    const segments = path.split("/");
+    return segments[segments.length - 1];
+}
+function getAllTactics(tacticsRefs, tacticsByPath) {
+    if (!Array.isArray(tacticsRefs))
+        return [];
+    const results = [];
+    for (const ref of tacticsRefs) {
+        const path = getDocPath(ref);
+        if (!path)
+            continue;
+        const id = getTacticIdFromPath(path);
+        const tactic = getTacticLikeFromTacticsByPath(tacticsByPath, path);
+        const title = tactic && typeof tactic.title === "string" ? tactic.title : id;
+        results.push({ id, title });
+    }
+    return results;
+}
 function buildPlansLogPayload(log, isFinalLogInSession) {
     var _a, _b, _c, _d;
     const activeIndex = (_a = log.data.activeIndex) !== null && _a !== void 0 ? _a : 0;
@@ -69,13 +88,25 @@ function buildPlansLogPayload(log, isFinalLogInSession) {
         parts.push("Keep the response brief, direct, and focused on getting the user into the tactic immediately. If a tactic card is available, do not deliver the tactic in plain text.");
     }
     else {
-        // Historical / FYI framing when this log is not the most recent
-        parts.push("FYI: a plan was added earlier in this session. This information may no longer be active or relevant.");
-        parts.push(`The earlier plan included ${tacticsCount} ${tacticsNoun}. Do not assume the user is currently following this plan.`);
-        if (firstTacticTitle) {
-            parts.push(`The first tactic in that earlier plan was titled: ${firstTacticTitle}.`);
+        const isUserPlan = log.data.source === "trigger";
+        const allTactics = getAllTactics(plan === null || plan === void 0 ? void 0 : plan.tactics, plan === null || plan === void 0 ? void 0 : plan.tacticsByPath);
+        if (isUserPlan && allTactics.length > 0) {
+            parts.push(`The user's plan is active for this session with ${tacticsCount} ${tacticsNoun} (in order):`);
+            allTactics.forEach((t, i) => {
+                parts.push(`${i + 1}. [id=${t.id}] "${t.title}"`);
+            });
+            parts.push("After the user completes a tactic, immediately suggest the next uncompleted tactic in the plan using the suggestTactic tool. Do not ask whether they want to continue — lead them directly into it.");
         }
-        parts.push("Do not initiate any plan-related actions or suggestions unless the user clearly asks about the plan or tactics.");
+        else {
+            parts.push(`A plan was suggested earlier in this session with ${tacticsCount} ${tacticsNoun}.`);
+            if (allTactics.length > 0) {
+                parts.push("Available tactics:");
+                allTactics.forEach((t, i) => {
+                    parts.push(`${i + 1}. [id=${t.id}] "${t.title}"`);
+                });
+            }
+            parts.push("Follow the user's lead. You may suggest the next tactic if the moment feels right, but do not force progression.");
+        }
     }
     return [
         {
