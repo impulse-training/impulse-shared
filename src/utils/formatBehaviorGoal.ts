@@ -73,12 +73,12 @@ function formatRichGoal(
   };
 
   if (goal.type === "eliminate") {
-    return "Eliminate this behavior";
+    return "Eliminate";
   }
 
   if (goal.type === "reduceEveryDay") {
     if (goal.target === 0) {
-      return "Eliminate this behavior";
+      return "Eliminate";
     }
     if (isScale) return formatTarget(goal.target);
     return `At most ${formatTarget(goal.target)} daily`;
@@ -93,7 +93,7 @@ function formatRichGoal(
     const allSame = targets.every((t) => t === targets[0]);
     if (allSame) {
       if (targets[0] === 0) {
-        return "Eliminate this behavior";
+        return "Eliminate";
       }
       return `At most ${formatTarget(targets[0])} daily`;
     }

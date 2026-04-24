@@ -188,20 +188,26 @@ function getGptPayload(log, isFinalLogInSession, options) {
                 },
             ];
         }
-        // Tactic was suggested but not completed. Render it explicitly so the AI
-        // does not assume the user engaged with it.
+        if (options === null || options === void 0 ? void 0 : options.forSummarization) {
+            return [
+                {
+                    role: "user",
+                    content: `<SYSTEM>Tactic suggested: "${tacticTitle}" — not started or completed.</SYSTEM>`,
+                },
+            ];
+        }
         if (isDebrief) {
             return [
                 {
                     role: "user",
-                    content: `<SYSTEM>Earlier in this session you suggested the tactic "${tacticTitle}", but the user did NOT start or complete it. Do not praise the user for doing this tactic.</SYSTEM>`,
+                    content: `<SYSTEM>Earlier in this session Zara suggested the tactic "${tacticTitle}", but the user did NOT start or complete it. Do not praise the user for doing this tactic.</SYSTEM>`,
                 },
             ];
         }
         return [
             {
                 role: "user",
-                content: `<SYSTEM>You suggested the tactic "${tacticTitle}". The user has not engaged with it yet — do not assume they have done it.</SYSTEM>`,
+                content: `<SYSTEM>Zara suggested the tactic "${tacticTitle}". The user has not engaged with it yet — do not assume they have done it.</SYSTEM>`,
             },
         ];
     }

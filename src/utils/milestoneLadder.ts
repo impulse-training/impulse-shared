@@ -13,7 +13,7 @@ const RUNG_LABELS: Record<number, string> = {
 };
 
 const ELIMINATE_THRESHOLDS = [1, 3, 7, 14, 30, 90, 180, 365];
-const STREAK_THRESHOLDS = [3, 7, 14, 30, 90, 180, 365];
+const STREAK_THRESHOLDS = [1, 3, 7, 14, 30, 90, 180, 365];
 
 function thresholdsToRungs(thresholds: number[]): MilestoneRung[] {
   return thresholds.map((days) => ({

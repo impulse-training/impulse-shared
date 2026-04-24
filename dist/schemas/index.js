@@ -31,6 +31,7 @@ __exportStar(require("./daySummary"), exports);
 __exportStar(require("./emojiId"), exports);
 __exportStar(require("./experiment"), exports);
 __exportStar(require("./experimentResultsCache"), exports);
+__exportStar(require("./first"), exports);
 __exportStar(require("./goal"), exports);
 __exportStar(require("./insight"), exports);
 __exportStar(require("./llmAuditEntries"), exports);

@@ -4,6 +4,7 @@ exports.isUserData = exports.userDataSchema = exports.latestSessionMessageTypeSc
 const zod_1 = require("zod");
 const timestampSchema_1 = require("../utils/timestampSchema");
 const supportGroup_1 = require("./supportGroup");
+const first_1 = require("./first");
 // Inline recap trigger schema (time-based)
 const recapTriggerSchema = zod_1.z.object({
     hour: zod_1.z.number().min(0).max(23),
@@ -111,6 +112,8 @@ exports.userDataSchema = zod_1.z.object({
         recommendedLibraryDone: zod_1.z.boolean().optional(),
     })
         .optional(),
+    // "Firsts" — one-time achievements (e.g. first impulse button press)
+    firsts: first_1.firstsSchema.optional(),
 });
 // Type guard for User
 const isUserData = (value) => exports.userDataSchema.safeParse(value).success;

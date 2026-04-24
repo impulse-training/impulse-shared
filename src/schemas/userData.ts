@@ -2,6 +2,7 @@ import { z } from "zod";
 import { documentReferenceSchema } from "../utils/documentReferenceSchema";
 import { timestampSchema } from "../utils/timestampSchema";
 import { supportGroupTypeSchema } from "./supportGroup";
+import { firstsSchema } from "./first";
 
 // Inline recap trigger schema (time-based)
 const recapTriggerSchema = z.object({
@@ -138,6 +139,9 @@ export const userDataSchema = z.object({
       recommendedLibraryDone: z.boolean().optional(),
     })
     .optional(),
+
+  // "Firsts" — one-time achievements (e.g. first impulse button press)
+  firsts: firstsSchema.optional(),
 });
 
 // Export User type inferred from schema

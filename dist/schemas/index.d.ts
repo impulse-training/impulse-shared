@@ -13,6 +13,7 @@ export * from "./daySummary";
 export * from "./emojiId";
 export * from "./experiment";
 export * from "./experimentResultsCache";
+export * from "./first";
 export * from "./goal";
 export * from "./insight";
 export * from "./llmAuditEntries";
