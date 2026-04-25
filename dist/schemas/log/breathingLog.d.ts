@@ -53,8 +53,8 @@ export declare const breathingLogSchema: z.ZodObject<{
         totalDurationSeconds: number;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -74,8 +74,8 @@ export declare const breathingLogSchema: z.ZodObject<{
         totalDurationSeconds: number;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>;
 export type BreathingLog = z.infer<typeof breathingLogSchema>;

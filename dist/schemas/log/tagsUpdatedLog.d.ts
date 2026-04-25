@@ -38,8 +38,8 @@ export declare const tagsUpdatedLogSchema: z.ZodObject<{
         tags: Record<string, string | string[]>;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -54,8 +54,8 @@ export declare const tagsUpdatedLogSchema: z.ZodObject<{
         tags: Record<string, string | string[]>;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>;
 export type TagsUpdatedLog = z.infer<typeof tagsUpdatedLogSchema>;

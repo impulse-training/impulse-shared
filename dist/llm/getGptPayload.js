@@ -62,7 +62,7 @@ function buildBehaviorLogPayload(log, options) {
     return [];
 }
 function getGptPayload(log, isFinalLogInSession, options) {
-    var _a, _b;
+    var _a, _b, _c;
     if (log.type === "proposed_experiment") {
         const behaviorName = "behaviorName" in log
             ? log.behaviorName
@@ -114,6 +114,19 @@ function getGptPayload(log, isFinalLogInSession, options) {
             {
                 role: "user",
                 content: "<SYSTEM>The user has accepted the proposed experiment and it's now active. You do not need to re-explain the experiment; just treat this as context for future replies.</SYSTEM>",
+            },
+        ];
+    }
+    if ((0, log_1.logIsProposedStrategyModificationLog)(log)) {
+        if (log.data.status !== "accepted")
+            return [];
+        const title = log.data.title.trim();
+        const summary = (_b = log.data.summary) === null || _b === void 0 ? void 0 : _b.trim();
+        const context = summary ? `${title}: ${summary}` : title;
+        return [
+            {
+                role: "user",
+                content: `<SYSTEM>The user accepted a suggested strategy update. Saved strategy: ${context}.</SYSTEM>`,
             },
         ];
     }
@@ -270,7 +283,7 @@ function getGptPayload(log, isFinalLogInSession, options) {
     }
     // Tags updated from UI — inform the AI so it can respond with tactic suggestions
     if (log.type === "tags_updated") {
-        const tactics = (_b = log.data) === null || _b === void 0 ? void 0 : _b.recommendedTactics;
+        const tactics = (_c = log.data) === null || _c === void 0 ? void 0 : _c.recommendedTactics;
         let tacticsContext = "";
         if (tactics && tactics.length > 0) {
             const lines = tactics.map((t) => `- [id=${t.tacticId}] "${t.title}"${t.phase ? ` (${t.phase})` : ""}${t.description ? ` — ${t.description}` : ""}`);

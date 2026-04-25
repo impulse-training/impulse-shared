@@ -115,8 +115,8 @@ export declare const systemMessageLogSchema: z.ZodObject<{
         }, z.ZodTypeAny, "passthrough">;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../../types").Timestamp;
@@ -140,8 +140,8 @@ export declare const systemMessageLogSchema: z.ZodObject<{
         }, z.ZodTypeAny, "passthrough">;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>;
 export type SystemMessageLog = z.infer<typeof systemMessageLogSchema>;

@@ -17,6 +17,7 @@ export const impulseSessionSchema = sessionBaseSchema.extend({
   // Protocol phase the user is currently in. Drives how getGptPayload renders
   // context for tactic/behavior logs so the AI grounds its responses correctly.
   phase: sessionPhaseSchema.optional(),
+  hasScheduledCheckIn: z.boolean().optional(),
 });
 
 export type ImpulseSession = z.infer<typeof impulseSessionSchema>;

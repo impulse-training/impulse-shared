@@ -48,6 +48,7 @@ __exportStar(require("./planEffectiveness"), exports);
 __exportStar(require("./quote"), exports);
 __exportStar(require("./recapMessage"), exports);
 __exportStar(require("./recapQuestion"), exports);
+__exportStar(require("./scheduledCheckIn"), exports);
 __exportStar(require("./session"), exports);
 __exportStar(require("./supportGroup"), exports);
 __exportStar(require("./supportRequest"), exports);

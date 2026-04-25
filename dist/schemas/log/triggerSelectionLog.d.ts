@@ -55,8 +55,8 @@ export declare const triggerSelectionLogSchema: z.ZodObject<{
         selectedTriggerId?: string | null | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -75,8 +75,8 @@ export declare const triggerSelectionLogSchema: z.ZodObject<{
         selectedTriggerId?: string | null | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>;
 export type TriggerSelectionLog = z.infer<typeof triggerSelectionLogSchema>;

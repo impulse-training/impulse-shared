@@ -11,15 +11,18 @@ export declare const answeredRecapQuestionSchema: z.ZodObject<{
     sessionId: z.ZodString;
     dateString: z.ZodString;
     answerSummary: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
 }, "strip", z.ZodTypeAny, {
     answeredAt: import("../types").Timestamp;
     sessionId: string;
     dateString: string;
     answerSummary?: string | undefined;
+    behaviorIds?: string[] | undefined;
 }, {
     answeredAt: import("../types").Timestamp;
     sessionId: string;
     dateString: string;
     answerSummary?: string | undefined;
+    behaviorIds?: string[] | undefined;
 }>;
 export type AnsweredRecapQuestion = z.infer<typeof answeredRecapQuestionSchema>;

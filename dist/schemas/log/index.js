@@ -15,7 +15,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.logIsSetupModeChoiceLog = exports.isValidTacticReviewLog = exports.logIsTacticReviewLog = exports.isValidTriggerSelectionLog = exports.logIsTriggerSelectionLog = exports.isValidRequestPermissionsLog = exports.logIsRequestPermissionsLog = exports.isValidImpulseStartedLog = exports.logIsImpulseStartedLog = exports.isValidDayTotalsPromptLog = exports.logIsDayTotalsPromptLog = exports.isValidRecapTimePreferenceLog = exports.logIsRecapTimePreferenceLog = exports.isValidMetricLog = exports.logIsMetricLog = exports.isValidEnableNotificationsCtaLog = exports.logIsEnableNotificationsCtaLog = exports.isValidSupportGroupDaySummaryLog = exports.logIsSupportGroupDaySummaryLog = exports.isValidBreathingLog = exports.logIsBreathingLog = exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidPlansLog = exports.logIsPlansLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorLog = exports.logIsBehaviorLog = exports.isValidSharedMomentLog = exports.logIsSharedMomentLog = exports.isValidNotifySupportGroupLog = exports.logIsNotifySupportGroupLog = exports.isValidSystemMessageLog = exports.logIsSystemMessageLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
-exports.logIsPhotoLog = exports.logIsImageLog = exports.logIsCloseButtonLog = exports.logIsRecoveryKeyLog = exports.logIsCrisisResourceLog = exports.logIsTagsUpdatedLog = void 0;
+exports.logIsPhotoLog = exports.logIsImageLog = exports.logIsCloseButtonLog = exports.logIsRecoveryKeyLog = exports.logIsCrisisResourceLog = exports.logIsTagsUpdatedLog = exports.logIsProposedStrategyModificationLog = void 0;
 const zod_1 = require("zod");
 const behaviorLog_1 = require("./behaviorLog");
 const breathingLog_1 = require("./breathingLog");
@@ -24,6 +24,7 @@ const enableNotificationsCtaLog_1 = require("./enableNotificationsCtaLog");
 const linkLog_1 = require("./linkLog");
 const impulseStartedLog_1 = require("./impulseStartedLog");
 const proposedExperimentLog_1 = require("./proposedExperimentLog");
+const proposedStrategyModificationLog_1 = require("./proposedStrategyModificationLog");
 const messageLog_1 = require("./messageLog");
 const notifySupportGroupLog_1 = require("./notifySupportGroupLog");
 const plansLog_1 = require("./plansLog");
@@ -67,6 +68,7 @@ exports.logSchemas = {
     support_group_day_summary: supportGroupDaySummaryLog_1.supportGroupDaySummaryLogSchema,
     enable_notifications_cta: enableNotificationsCtaLog_1.enableNotificationsCtaLogSchema,
     proposed_experiment: proposedExperimentLog_1.proposedExperimentLogSchema,
+    proposed_strategy_modification: proposedStrategyModificationLog_1.proposedStrategyModificationLogSchema,
     impulse_started: impulseStartedLog_1.impulseStartedLogSchema,
     metric: metricLog_1.metricLogSchema,
     recap_time_preference: recapTimePreferenceLog_1.recapTimePreferenceLogSchema,
@@ -100,6 +102,7 @@ __exportStar(require("./toolCallLog"), exports);
 __exportStar(require("./videoLog"), exports);
 __exportStar(require("./widgetSetupLog"), exports);
 __exportStar(require("./proposedExperimentLog"), exports);
+__exportStar(require("./proposedStrategyModificationLog"), exports);
 __exportStar(require("./impulseStartedLog"), exports);
 __exportStar(require("./metricLog"), exports);
 __exportStar(require("./recapTimePreferenceLog"), exports);
@@ -134,6 +137,7 @@ exports.logSchema = zod_1.z.discriminatedUnion("type", [
     supportGroupDaySummaryLog_1.supportGroupDaySummaryLogSchema,
     enableNotificationsCtaLog_1.enableNotificationsCtaLogSchema,
     proposedExperimentLog_1.proposedExperimentLogSchema,
+    proposedStrategyModificationLog_1.proposedStrategyModificationLogSchema,
     impulseStartedLog_1.impulseStartedLogSchema,
     metricLog_1.metricLogSchema,
     recapTimePreferenceLog_1.recapTimePreferenceLogSchema,
@@ -289,6 +293,8 @@ const isValidTacticReviewLog = (value) => {
 exports.isValidTacticReviewLog = isValidTacticReviewLog;
 const logIsSetupModeChoiceLog = (value) => value.type === "setup_mode_choice";
 exports.logIsSetupModeChoiceLog = logIsSetupModeChoiceLog;
+const logIsProposedStrategyModificationLog = (value) => value.type === "proposed_strategy_modification";
+exports.logIsProposedStrategyModificationLog = logIsProposedStrategyModificationLog;
 const logIsTagsUpdatedLog = (value) => value.type === "tags_updated";
 exports.logIsTagsUpdatedLog = logIsTagsUpdatedLog;
 const logIsCrisisResourceLog = (value) => value.type === "crisis_resource";

@@ -3621,8 +3621,8 @@ export declare const tacticLogSchema: z.ZodObject<{
         ratedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -4007,8 +4007,8 @@ export declare const tacticLogSchema: z.ZodObject<{
         ratedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>;
 export type TacticLog = z.infer<typeof tacticLogSchema>;

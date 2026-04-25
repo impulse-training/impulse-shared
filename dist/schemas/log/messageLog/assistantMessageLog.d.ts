@@ -33,8 +33,8 @@ export declare const assistantMessageLogSchema: z.ZodObject<{
         message?: any;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../../types").Timestamp;
@@ -49,8 +49,8 @@ export declare const assistantMessageLogSchema: z.ZodObject<{
         message?: any;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>;
 export type AssistantMessageLog = z.infer<typeof assistantMessageLogSchema>;

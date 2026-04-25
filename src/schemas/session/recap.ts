@@ -19,6 +19,8 @@ export const recapSessionSchema = sessionBaseSchema.extend({
   recapQuestionSource: recapQuestionSourceSchema.optional(),
   focusBehaviorId: z.string().optional(),
   focusBehaviorName: z.string().optional(),
+  focusBehaviorIds: z.array(z.string()).optional(),
+  focusBehaviorNames: z.array(z.string()).optional(),
 });
 
 export type RecapSession = z.infer<typeof recapSessionSchema>;

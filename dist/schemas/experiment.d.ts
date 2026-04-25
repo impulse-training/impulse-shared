@@ -73,8 +73,8 @@ export declare const experimentSchema: z.ZodObject<{
         heading: string;
     }>, "many">>;
 }, "strip", z.ZodTypeAny, {
-    name: string;
     behaviorIds: string[];
+    name: string;
     experimentQuestion: string;
     stage: "observe" | "intervene" | "maintain";
     metricIds: string[];
@@ -106,8 +106,8 @@ export declare const experimentSchema: z.ZodObject<{
     hypothesis?: string | undefined;
     chartUnlocked?: boolean | undefined;
 }, {
-    name: string;
     behaviorIds: string[];
+    name: string;
     experimentQuestion: string;
     goal?: {
         target: number;

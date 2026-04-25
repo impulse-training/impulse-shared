@@ -112,8 +112,8 @@ export declare const userMessageLogSchema: z.ZodObject<{
         message?: any;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
     audioAttachment?: {
         uri: string;
@@ -147,8 +147,8 @@ export declare const userMessageLogSchema: z.ZodObject<{
         message?: any;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
     audioAttachment?: {
         uri: string;

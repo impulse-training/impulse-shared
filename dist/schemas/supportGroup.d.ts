@@ -508,8 +508,8 @@ export declare const supportGroupSchema: z.ZodObject<{
             message?: any;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
         audioAttachment?: {
             uri: string;
@@ -543,8 +543,8 @@ export declare const supportGroupSchema: z.ZodObject<{
             message?: any;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
         audioAttachment?: {
             uri: string;
@@ -665,8 +665,8 @@ export declare const supportGroupSchema: z.ZodObject<{
             message?: any;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
         audioAttachment?: {
             uri: string;
@@ -782,8 +782,8 @@ export declare const supportGroupSchema: z.ZodObject<{
             message?: any;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
         audioAttachment?: {
             uri: string;

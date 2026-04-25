@@ -2486,6 +2486,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
     debriefNote: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     generatedPlanId: z.ZodOptional<z.ZodString>;
     phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage", "debrief"]>>;
+    hasScheduledCheckIn: z.ZodOptional<z.ZodBoolean>;
 }, "strip", z.ZodTypeAny, {
     type: "impulse";
     date: import("../../types").Timestamp;
@@ -2899,6 +2900,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
     mostHelpfulTacticId?: string | null | undefined;
     debriefNote?: string | null | undefined;
     generatedPlanId?: string | undefined;
+    hasScheduledCheckIn?: boolean | undefined;
 }, {
     type: "impulse";
     date: import("../../types").Timestamp;
@@ -3312,5 +3314,6 @@ export declare const impulseSessionSchema: z.ZodObject<{
     mostHelpfulTacticId?: string | null | undefined;
     debriefNote?: string | null | undefined;
     generatedPlanId?: string | undefined;
+    hasScheduledCheckIn?: boolean | undefined;
 }>;
 export type ImpulseSession = z.infer<typeof impulseSessionSchema>;

@@ -117,8 +117,8 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
         } | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -148,8 +148,8 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
         } | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>;
 export type SharedMomentLog = z.infer<typeof sharedMomentLogSchema>;

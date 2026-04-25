@@ -7153,8 +7153,8 @@ export declare const tacticReviewLogSchema: z.ZodObject<{
         completedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -7510,8 +7510,8 @@ export declare const tacticReviewLogSchema: z.ZodObject<{
         completedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>;
 export type TacticReviewLog = z.infer<typeof tacticReviewLogSchema>;

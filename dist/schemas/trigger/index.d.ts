@@ -56,9 +56,9 @@ export declare const triggerSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    behaviorIds?: string[] | undefined;
     text?: string | undefined;
     ordinal?: number | undefined;
-    behaviorIds?: string[] | undefined;
     deletedAt?: import("../../types").Timestamp | undefined;
     location?: {
         locationName: string;
@@ -73,9 +73,9 @@ export declare const triggerSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    behaviorIds?: string[] | undefined;
     text?: string | undefined;
     ordinal?: number | undefined;
-    behaviorIds?: string[] | undefined;
     tags?: Record<string, string> | undefined;
     deletedAt?: import("../../types").Timestamp | undefined;
     location?: {
@@ -134,9 +134,9 @@ export declare const triggerWithIdSchema: z.ZodIntersection<z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    behaviorIds?: string[] | undefined;
     text?: string | undefined;
     ordinal?: number | undefined;
-    behaviorIds?: string[] | undefined;
     deletedAt?: import("../../types").Timestamp | undefined;
     location?: {
         locationName: string;
@@ -151,9 +151,9 @@ export declare const triggerWithIdSchema: z.ZodIntersection<z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    behaviorIds?: string[] | undefined;
     text?: string | undefined;
     ordinal?: number | undefined;
-    behaviorIds?: string[] | undefined;
     tags?: Record<string, string> | undefined;
     deletedAt?: import("../../types").Timestamp | undefined;
     location?: {

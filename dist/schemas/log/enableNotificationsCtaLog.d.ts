@@ -41,8 +41,8 @@ export declare const enableNotificationsCtaLogSchema: z.ZodObject<{
         enabled?: boolean | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -59,8 +59,8 @@ export declare const enableNotificationsCtaLogSchema: z.ZodObject<{
         enabled?: boolean | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>;
 export type EnableNotificationsCtaLog = z.infer<typeof enableNotificationsCtaLogSchema>;

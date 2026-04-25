@@ -16,6 +16,10 @@ import {
   proposedExperimentLogSchema,
 } from "./proposedExperimentLog";
 import {
+  ProposedStrategyModificationLog,
+  proposedStrategyModificationLogSchema,
+} from "./proposedStrategyModificationLog";
+import {
   AssistantMessageLog,
   assistantMessageLogSchema,
   MessageLog,
@@ -109,6 +113,7 @@ export const logSchemas = {
   support_group_day_summary: supportGroupDaySummaryLogSchema,
   enable_notifications_cta: enableNotificationsCtaLogSchema,
   proposed_experiment: proposedExperimentLogSchema,
+  proposed_strategy_modification: proposedStrategyModificationLogSchema,
   impulse_started: impulseStartedLogSchema,
   metric: metricLogSchema,
   recap_time_preference: recapTimePreferenceLogSchema,
@@ -146,6 +151,7 @@ export type Log =
   | SupportGroupDaySummaryLog
   | EnableNotificationsCtaLog
   | ProposedExperimentLog
+  | ProposedStrategyModificationLog
   | ImpulseStartedLog
   | MetricLog
   | RecapTimePreferenceLog
@@ -178,6 +184,7 @@ export * from "./toolCallLog";
 export * from "./videoLog";
 export * from "./widgetSetupLog";
 export * from "./proposedExperimentLog";
+export * from "./proposedStrategyModificationLog";
 export * from "./impulseStartedLog";
 export * from "./metricLog";
 export * from "./recapTimePreferenceLog";
@@ -213,6 +220,7 @@ export const logSchema = z.discriminatedUnion("type", [
   supportGroupDaySummaryLogSchema,
   enableNotificationsCtaLogSchema,
   proposedExperimentLogSchema,
+  proposedStrategyModificationLogSchema,
   impulseStartedLogSchema,
   metricLogSchema,
   recapTimePreferenceLogSchema,
@@ -419,6 +427,11 @@ export const isValidTacticReviewLog = (
 export const logIsSetupModeChoiceLog = (
   value: Omit<Log, "id">,
 ): value is SetupModeChoiceLog => value.type === "setup_mode_choice";
+
+export const logIsProposedStrategyModificationLog = (
+  value: Omit<Log, "id">,
+): value is ProposedStrategyModificationLog =>
+  value.type === "proposed_strategy_modification";
 
 export const logIsTagsUpdatedLog = (
   value: Omit<Log, "id">,

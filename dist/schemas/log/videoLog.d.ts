@@ -35,10 +35,10 @@ export declare const videoLogSchema: z.ZodObject<{
         sourceUri: string;
     };
     id?: string | undefined;
+    behaviorIds?: string[] | undefined;
     text?: string | undefined;
     title?: string | undefined;
     tacticId?: string | undefined;
-    behaviorIds?: string[] | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -53,10 +53,10 @@ export declare const videoLogSchema: z.ZodObject<{
         sourceUri: string;
     };
     id?: string | undefined;
+    behaviorIds?: string[] | undefined;
     text?: string | undefined;
     title?: string | undefined;
     tacticId?: string | undefined;
-    behaviorIds?: string[] | undefined;
     impulseId?: string | undefined;
 }>;
 export type VideoLog = z.infer<typeof videoLogSchema>;

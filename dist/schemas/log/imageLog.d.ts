@@ -37,8 +37,8 @@ export declare const imageLogSchema: z.ZodObject<{
         acknowledgedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -54,8 +54,8 @@ export declare const imageLogSchema: z.ZodObject<{
         acknowledgedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>;
 export type ImageLog = z.infer<typeof imageLogSchema>;

@@ -33,8 +33,8 @@ export declare const closeButtonLogSchema: z.ZodObject<{
         label: string;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -49,8 +49,8 @@ export declare const closeButtonLogSchema: z.ZodObject<{
         label: string;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>;
 export type CloseButtonLog = z.infer<typeof closeButtonLogSchema>;

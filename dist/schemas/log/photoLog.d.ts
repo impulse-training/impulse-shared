@@ -169,8 +169,8 @@ export declare const photoLogSchema: z.ZodObject<{
         caption?: string | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -204,8 +204,8 @@ export declare const photoLogSchema: z.ZodObject<{
         caption?: string | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>;
 export type PhotoLog = z.infer<typeof photoLogSchema>;

@@ -55,7 +55,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         measured: number;
         targetValue?: number | undefined;
     }>>>;
-    behaviorsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodEffects<z.ZodObject<{
+    behaviorsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodObject<{
         name: z.ZodString;
         trackingType: z.ZodEnum<["counter", "timer", "scale"]>;
         trackingUnit: z.ZodOptional<z.ZodString>;
@@ -180,6 +180,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             label: string;
             isCustom?: boolean | undefined;
         }>, "many">>;
+        isDefault: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
         state: z.ZodOptional<z.ZodObject<{
             behaviorId: z.ZodString;
             goal: z.ZodOptional<z.ZodObject<{
@@ -998,6 +999,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         drawbacks: string[];
         hidden: boolean;
         needsBaselineData: boolean;
+        isDefault: boolean;
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
@@ -1222,368 +1224,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             label: string;
             isCustom?: boolean | undefined;
         }[] | undefined;
-        state?: {
-            behaviorId: string;
-            windows: {
-                short: {
-                    windowSizeDays: 7 | 30 | 90;
-                    adherenceRate: number;
-                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                    stability: "HIGH" | "MEDIUM" | "LOW";
-                    streaks: {
-                        longestMet: number;
-                        currentMet: number;
-                        currentFail: number;
-                    };
-                    recencyWeightedScore: number;
-                    sampleCount: number;
-                    averageMeasured?: number | undefined;
-                };
-                medium: {
-                    windowSizeDays: 7 | 30 | 90;
-                    adherenceRate: number;
-                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                    stability: "HIGH" | "MEDIUM" | "LOW";
-                    streaks: {
-                        longestMet: number;
-                        currentMet: number;
-                        currentFail: number;
-                    };
-                    recencyWeightedScore: number;
-                    sampleCount: number;
-                    averageMeasured?: number | undefined;
-                };
-                long: {
-                    windowSizeDays: 7 | 30 | 90;
-                    adherenceRate: number;
-                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                    stability: "HIGH" | "MEDIUM" | "LOW";
-                    streaks: {
-                        longestMet: number;
-                        currentMet: number;
-                        currentFail: number;
-                    };
-                    recencyWeightedScore: number;
-                    sampleCount: number;
-                    averageMeasured?: number | undefined;
-                };
-            };
-            meta: {
-                lastUpdatedAt: import("../types").Timestamp;
-                dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
-            };
-            goal?: {
-                goalLabel: string;
-                unit: string;
-                goalType: "MAX_PER_DAY" | "MIN_PER_DAY" | "ELIMINATE" | "CUSTOM";
-                targetValue?: number | undefined;
-            } | undefined;
-            meaning?: {
-                importance: "HIGH" | "MEDIUM" | "LOW" | "CORE";
-                emotionalTone: {
-                    primary: "NEUTRAL" | "FRUSTRATED" | "ASHAMED" | "CONFLICTED" | "MOTIVATED" | "RESIGNED";
-                    confidence: "HIGH" | "MEDIUM" | "LOW";
-                };
-                motivation: {
-                    reasons: string[];
-                    valuesLinked: string[];
-                    avoidanceDriven: boolean;
-                };
-                selfNarrative: {
-                    perceivedControl: "HIGH" | "MEDIUM" | "LOW";
-                    identityStatement?: string | undefined;
-                };
-                friction?: {
-                    commonTriggers?: string[] | undefined;
-                    highRiskContexts?: string[] | undefined;
-                } | undefined;
-            } | undefined;
-            globalStreaks?: {
-                currentStreak: number;
-                longestStreak: number;
-                currentStreakStartDate?: string | undefined;
-                longestStreakStartDate?: string | undefined;
-            } | undefined;
-            trackingWindows?: {
-                short: {
-                    windowSizeDays: 7 | 30 | 90;
-                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                    stability: "HIGH" | "MEDIUM" | "LOW";
-                    sampleCount: number;
-                    averageMeasured?: number | undefined;
-                };
-                medium: {
-                    windowSizeDays: 7 | 30 | 90;
-                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                    stability: "HIGH" | "MEDIUM" | "LOW";
-                    sampleCount: number;
-                    averageMeasured?: number | undefined;
-                };
-                long: {
-                    windowSizeDays: 7 | 30 | 90;
-                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                    stability: "HIGH" | "MEDIUM" | "LOW";
-                    sampleCount: number;
-                    averageMeasured?: number | undefined;
-                };
-            } | undefined;
-            recentSlice?: {
-                days: {
-                    status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
-                    offset: number;
-                    measured: number;
-                }[];
-                direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
-                contrast: "LOW" | "MODERATE" | "STRONG";
-                salience: "HIGH" | "MEDIUM" | "LOW";
-            } | undefined;
-            milestoneProgress?: {
-                lastAchievedRung: {
-                    days: number;
-                    label: string;
-                    isCustom?: boolean | undefined;
-                } | null;
-                nextRung: {
-                    days: number;
-                    label: string;
-                    isCustom?: boolean | undefined;
-                } | null;
-                currentStreakDays: number;
-            } | undefined;
-        } | undefined;
-    }>, {
-        trackingType: "counter" | "timer" | "scale";
-        name: string;
-        description: string;
-        ordinal: number;
-        benefits: string[];
-        drawbacks: string[];
-        hidden: boolean;
-        needsBaselineData: boolean;
-        id?: string | undefined;
-        createdAt?: import("../types").Timestamp | undefined;
-        updatedAt?: import("../types").Timestamp | undefined;
-        trackingUnit?: string | undefined;
-        baselinePeriod?: "daily" | "weekly" | undefined;
-        color?: string | undefined;
-        synonyms?: string[] | undefined;
-        recapQuestionSequence?: string[] | undefined;
-        goal?: {
-            type: "eliminate";
-        } | {
-            type: "reduceEveryDay";
-            target: number;
-        } | {
-            type: "reduceIndividualDays";
-            dailyTargets: {
-                0: number;
-                1: number;
-                2: number;
-                5: number;
-                3: number;
-                4: number;
-                6: number;
-            };
-        } | undefined;
-        lastTrackedAt?: import("../types").Timestamp | undefined;
-        tactics?: import("..").DocumentReferenceLike<unknown>[] | undefined;
-        initialUsage?: {
-            value?: number | undefined;
-            behaviorId?: string | undefined;
-            behaviorName?: string | undefined;
-            behaviorTrackingUnit?: string | undefined;
-            trackingType?: "counter" | "timer" | "scale" | undefined;
-            formattedValue?: string | undefined;
-            period?: "daily" | "weekly" | undefined;
-        } | undefined;
-        behaviorTemplateId?: string | undefined;
-        behaviorTopicId?: string | undefined;
-        customMilestoneRungs?: {
-            days: number;
-            label: string;
-            isCustom?: boolean | undefined;
-        }[] | undefined;
-        state?: {
-            behaviorId: string;
-            windows: {
-                short: {
-                    windowSizeDays: 7 | 30 | 90;
-                    adherenceRate: number;
-                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                    stability: "HIGH" | "MEDIUM" | "LOW";
-                    streaks: {
-                        longestMet: number;
-                        currentMet: number;
-                        currentFail: number;
-                    };
-                    recencyWeightedScore: number;
-                    sampleCount: number;
-                    averageMeasured?: number | undefined;
-                };
-                medium: {
-                    windowSizeDays: 7 | 30 | 90;
-                    adherenceRate: number;
-                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                    stability: "HIGH" | "MEDIUM" | "LOW";
-                    streaks: {
-                        longestMet: number;
-                        currentMet: number;
-                        currentFail: number;
-                    };
-                    recencyWeightedScore: number;
-                    sampleCount: number;
-                    averageMeasured?: number | undefined;
-                };
-                long: {
-                    windowSizeDays: 7 | 30 | 90;
-                    adherenceRate: number;
-                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                    stability: "HIGH" | "MEDIUM" | "LOW";
-                    streaks: {
-                        longestMet: number;
-                        currentMet: number;
-                        currentFail: number;
-                    };
-                    recencyWeightedScore: number;
-                    sampleCount: number;
-                    averageMeasured?: number | undefined;
-                };
-            };
-            meta: {
-                lastUpdatedAt: import("../types").Timestamp;
-                dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
-            };
-            goal?: {
-                goalLabel: string;
-                unit: string;
-                goalType: "MAX_PER_DAY" | "MIN_PER_DAY" | "ELIMINATE" | "CUSTOM";
-                targetValue?: number | undefined;
-            } | undefined;
-            meaning?: {
-                importance: "HIGH" | "MEDIUM" | "LOW" | "CORE";
-                emotionalTone: {
-                    primary: "NEUTRAL" | "FRUSTRATED" | "ASHAMED" | "CONFLICTED" | "MOTIVATED" | "RESIGNED";
-                    confidence: "HIGH" | "MEDIUM" | "LOW";
-                };
-                motivation: {
-                    reasons: string[];
-                    valuesLinked: string[];
-                    avoidanceDriven: boolean;
-                };
-                selfNarrative: {
-                    perceivedControl: "HIGH" | "MEDIUM" | "LOW";
-                    identityStatement?: string | undefined;
-                };
-                friction?: {
-                    commonTriggers?: string[] | undefined;
-                    highRiskContexts?: string[] | undefined;
-                } | undefined;
-            } | undefined;
-            globalStreaks?: {
-                currentStreak: number;
-                longestStreak: number;
-                currentStreakStartDate?: string | undefined;
-                longestStreakStartDate?: string | undefined;
-            } | undefined;
-            trackingWindows?: {
-                short: {
-                    windowSizeDays: 7 | 30 | 90;
-                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                    stability: "HIGH" | "MEDIUM" | "LOW";
-                    sampleCount: number;
-                    averageMeasured?: number | undefined;
-                };
-                medium: {
-                    windowSizeDays: 7 | 30 | 90;
-                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                    stability: "HIGH" | "MEDIUM" | "LOW";
-                    sampleCount: number;
-                    averageMeasured?: number | undefined;
-                };
-                long: {
-                    windowSizeDays: 7 | 30 | 90;
-                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                    stability: "HIGH" | "MEDIUM" | "LOW";
-                    sampleCount: number;
-                    averageMeasured?: number | undefined;
-                };
-            } | undefined;
-            recentSlice?: {
-                days: {
-                    status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
-                    offset: number;
-                    measured: number;
-                }[];
-                direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
-                contrast: "LOW" | "MODERATE" | "STRONG";
-                salience: "HIGH" | "MEDIUM" | "LOW";
-            } | undefined;
-            milestoneProgress?: {
-                lastAchievedRung: {
-                    days: number;
-                    label: string;
-                    isCustom?: boolean | undefined;
-                } | null;
-                nextRung: {
-                    days: number;
-                    label: string;
-                    isCustom?: boolean | undefined;
-                } | null;
-                currentStreakDays: number;
-            } | undefined;
-        } | undefined;
-    }, {
-        trackingType: "counter" | "timer" | "scale";
-        name: string;
-        description: string;
-        id?: string | undefined;
-        createdAt?: import("../types").Timestamp | undefined;
-        updatedAt?: import("../types").Timestamp | undefined;
-        trackingUnit?: string | undefined;
-        baselinePeriod?: "daily" | "weekly" | undefined;
-        color?: string | undefined;
-        synonyms?: string[] | undefined;
-        recapQuestionSequence?: string[] | undefined;
-        goal?: {
-            type: "eliminate";
-        } | {
-            type: "reduceEveryDay";
-            target: number;
-        } | {
-            type: "reduceIndividualDays";
-            dailyTargets: {
-                0: number;
-                1: number;
-                2: number;
-                5: number;
-                3: number;
-                4: number;
-                6: number;
-            };
-        } | undefined;
-        ordinal?: number | undefined;
-        benefits?: string[] | undefined;
-        drawbacks?: string[] | undefined;
-        lastTrackedAt?: import("../types").Timestamp | undefined;
-        tactics?: import("..").DocumentReferenceLike<unknown>[] | undefined;
-        initialUsage?: {
-            value?: number | undefined;
-            behaviorId?: string | undefined;
-            behaviorName?: string | undefined;
-            behaviorTrackingUnit?: string | undefined;
-            trackingType?: "counter" | "timer" | "scale" | undefined;
-            formattedValue?: string | undefined;
-            period?: "daily" | "weekly" | undefined;
-        } | undefined;
-        hidden?: boolean | undefined;
-        behaviorTemplateId?: string | undefined;
-        behaviorTopicId?: string | undefined;
-        needsBaselineData?: boolean | undefined;
-        customMilestoneRungs?: {
-            days: number;
-            label: string;
-            isCustom?: boolean | undefined;
-        }[] | undefined;
+        isDefault?: boolean | undefined;
         state?: {
             behaviorId: string;
             windows: {
@@ -1737,6 +1378,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         drawbacks: string[];
         hidden: boolean;
         needsBaselineData: boolean;
+        isDefault: boolean;
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
@@ -1976,6 +1618,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             label: string;
             isCustom?: boolean | undefined;
         }[] | undefined;
+        isDefault?: boolean | undefined;
         state?: {
             behaviorId: string;
             windows: {
@@ -2138,7 +1781,7 @@ export declare const daySummarySchema: z.ZodObject<{
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
     }>>;
-    behaviorsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodEffects<z.ZodObject<{
+    behaviorsById: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodObject<{
         name: z.ZodString;
         trackingType: z.ZodEnum<["counter", "timer", "scale"]>;
         trackingUnit: z.ZodOptional<z.ZodString>;
@@ -2263,6 +1906,7 @@ export declare const daySummarySchema: z.ZodObject<{
             label: string;
             isCustom?: boolean | undefined;
         }>, "many">>;
+        isDefault: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
         state: z.ZodOptional<z.ZodObject<{
             behaviorId: z.ZodString;
             goal: z.ZodOptional<z.ZodObject<{
@@ -3081,6 +2725,7 @@ export declare const daySummarySchema: z.ZodObject<{
         drawbacks: string[];
         hidden: boolean;
         needsBaselineData: boolean;
+        isDefault: boolean;
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
@@ -3305,368 +2950,7 @@ export declare const daySummarySchema: z.ZodObject<{
             label: string;
             isCustom?: boolean | undefined;
         }[] | undefined;
-        state?: {
-            behaviorId: string;
-            windows: {
-                short: {
-                    windowSizeDays: 7 | 30 | 90;
-                    adherenceRate: number;
-                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                    stability: "HIGH" | "MEDIUM" | "LOW";
-                    streaks: {
-                        longestMet: number;
-                        currentMet: number;
-                        currentFail: number;
-                    };
-                    recencyWeightedScore: number;
-                    sampleCount: number;
-                    averageMeasured?: number | undefined;
-                };
-                medium: {
-                    windowSizeDays: 7 | 30 | 90;
-                    adherenceRate: number;
-                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                    stability: "HIGH" | "MEDIUM" | "LOW";
-                    streaks: {
-                        longestMet: number;
-                        currentMet: number;
-                        currentFail: number;
-                    };
-                    recencyWeightedScore: number;
-                    sampleCount: number;
-                    averageMeasured?: number | undefined;
-                };
-                long: {
-                    windowSizeDays: 7 | 30 | 90;
-                    adherenceRate: number;
-                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                    stability: "HIGH" | "MEDIUM" | "LOW";
-                    streaks: {
-                        longestMet: number;
-                        currentMet: number;
-                        currentFail: number;
-                    };
-                    recencyWeightedScore: number;
-                    sampleCount: number;
-                    averageMeasured?: number | undefined;
-                };
-            };
-            meta: {
-                lastUpdatedAt: import("../types").Timestamp;
-                dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
-            };
-            goal?: {
-                goalLabel: string;
-                unit: string;
-                goalType: "MAX_PER_DAY" | "MIN_PER_DAY" | "ELIMINATE" | "CUSTOM";
-                targetValue?: number | undefined;
-            } | undefined;
-            meaning?: {
-                importance: "HIGH" | "MEDIUM" | "LOW" | "CORE";
-                emotionalTone: {
-                    primary: "NEUTRAL" | "FRUSTRATED" | "ASHAMED" | "CONFLICTED" | "MOTIVATED" | "RESIGNED";
-                    confidence: "HIGH" | "MEDIUM" | "LOW";
-                };
-                motivation: {
-                    reasons: string[];
-                    valuesLinked: string[];
-                    avoidanceDriven: boolean;
-                };
-                selfNarrative: {
-                    perceivedControl: "HIGH" | "MEDIUM" | "LOW";
-                    identityStatement?: string | undefined;
-                };
-                friction?: {
-                    commonTriggers?: string[] | undefined;
-                    highRiskContexts?: string[] | undefined;
-                } | undefined;
-            } | undefined;
-            globalStreaks?: {
-                currentStreak: number;
-                longestStreak: number;
-                currentStreakStartDate?: string | undefined;
-                longestStreakStartDate?: string | undefined;
-            } | undefined;
-            trackingWindows?: {
-                short: {
-                    windowSizeDays: 7 | 30 | 90;
-                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                    stability: "HIGH" | "MEDIUM" | "LOW";
-                    sampleCount: number;
-                    averageMeasured?: number | undefined;
-                };
-                medium: {
-                    windowSizeDays: 7 | 30 | 90;
-                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                    stability: "HIGH" | "MEDIUM" | "LOW";
-                    sampleCount: number;
-                    averageMeasured?: number | undefined;
-                };
-                long: {
-                    windowSizeDays: 7 | 30 | 90;
-                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                    stability: "HIGH" | "MEDIUM" | "LOW";
-                    sampleCount: number;
-                    averageMeasured?: number | undefined;
-                };
-            } | undefined;
-            recentSlice?: {
-                days: {
-                    status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
-                    offset: number;
-                    measured: number;
-                }[];
-                direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
-                contrast: "LOW" | "MODERATE" | "STRONG";
-                salience: "HIGH" | "MEDIUM" | "LOW";
-            } | undefined;
-            milestoneProgress?: {
-                lastAchievedRung: {
-                    days: number;
-                    label: string;
-                    isCustom?: boolean | undefined;
-                } | null;
-                nextRung: {
-                    days: number;
-                    label: string;
-                    isCustom?: boolean | undefined;
-                } | null;
-                currentStreakDays: number;
-            } | undefined;
-        } | undefined;
-    }>, {
-        trackingType: "counter" | "timer" | "scale";
-        name: string;
-        description: string;
-        ordinal: number;
-        benefits: string[];
-        drawbacks: string[];
-        hidden: boolean;
-        needsBaselineData: boolean;
-        id?: string | undefined;
-        createdAt?: import("../types").Timestamp | undefined;
-        updatedAt?: import("../types").Timestamp | undefined;
-        trackingUnit?: string | undefined;
-        baselinePeriod?: "daily" | "weekly" | undefined;
-        color?: string | undefined;
-        synonyms?: string[] | undefined;
-        recapQuestionSequence?: string[] | undefined;
-        goal?: {
-            type: "eliminate";
-        } | {
-            type: "reduceEveryDay";
-            target: number;
-        } | {
-            type: "reduceIndividualDays";
-            dailyTargets: {
-                0: number;
-                1: number;
-                2: number;
-                5: number;
-                3: number;
-                4: number;
-                6: number;
-            };
-        } | undefined;
-        lastTrackedAt?: import("../types").Timestamp | undefined;
-        tactics?: import("..").DocumentReferenceLike<unknown>[] | undefined;
-        initialUsage?: {
-            value?: number | undefined;
-            behaviorId?: string | undefined;
-            behaviorName?: string | undefined;
-            behaviorTrackingUnit?: string | undefined;
-            trackingType?: "counter" | "timer" | "scale" | undefined;
-            formattedValue?: string | undefined;
-            period?: "daily" | "weekly" | undefined;
-        } | undefined;
-        behaviorTemplateId?: string | undefined;
-        behaviorTopicId?: string | undefined;
-        customMilestoneRungs?: {
-            days: number;
-            label: string;
-            isCustom?: boolean | undefined;
-        }[] | undefined;
-        state?: {
-            behaviorId: string;
-            windows: {
-                short: {
-                    windowSizeDays: 7 | 30 | 90;
-                    adherenceRate: number;
-                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                    stability: "HIGH" | "MEDIUM" | "LOW";
-                    streaks: {
-                        longestMet: number;
-                        currentMet: number;
-                        currentFail: number;
-                    };
-                    recencyWeightedScore: number;
-                    sampleCount: number;
-                    averageMeasured?: number | undefined;
-                };
-                medium: {
-                    windowSizeDays: 7 | 30 | 90;
-                    adherenceRate: number;
-                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                    stability: "HIGH" | "MEDIUM" | "LOW";
-                    streaks: {
-                        longestMet: number;
-                        currentMet: number;
-                        currentFail: number;
-                    };
-                    recencyWeightedScore: number;
-                    sampleCount: number;
-                    averageMeasured?: number | undefined;
-                };
-                long: {
-                    windowSizeDays: 7 | 30 | 90;
-                    adherenceRate: number;
-                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                    stability: "HIGH" | "MEDIUM" | "LOW";
-                    streaks: {
-                        longestMet: number;
-                        currentMet: number;
-                        currentFail: number;
-                    };
-                    recencyWeightedScore: number;
-                    sampleCount: number;
-                    averageMeasured?: number | undefined;
-                };
-            };
-            meta: {
-                lastUpdatedAt: import("../types").Timestamp;
-                dataCompleteness: "HIGH" | "MEDIUM" | "LOW";
-            };
-            goal?: {
-                goalLabel: string;
-                unit: string;
-                goalType: "MAX_PER_DAY" | "MIN_PER_DAY" | "ELIMINATE" | "CUSTOM";
-                targetValue?: number | undefined;
-            } | undefined;
-            meaning?: {
-                importance: "HIGH" | "MEDIUM" | "LOW" | "CORE";
-                emotionalTone: {
-                    primary: "NEUTRAL" | "FRUSTRATED" | "ASHAMED" | "CONFLICTED" | "MOTIVATED" | "RESIGNED";
-                    confidence: "HIGH" | "MEDIUM" | "LOW";
-                };
-                motivation: {
-                    reasons: string[];
-                    valuesLinked: string[];
-                    avoidanceDriven: boolean;
-                };
-                selfNarrative: {
-                    perceivedControl: "HIGH" | "MEDIUM" | "LOW";
-                    identityStatement?: string | undefined;
-                };
-                friction?: {
-                    commonTriggers?: string[] | undefined;
-                    highRiskContexts?: string[] | undefined;
-                } | undefined;
-            } | undefined;
-            globalStreaks?: {
-                currentStreak: number;
-                longestStreak: number;
-                currentStreakStartDate?: string | undefined;
-                longestStreakStartDate?: string | undefined;
-            } | undefined;
-            trackingWindows?: {
-                short: {
-                    windowSizeDays: 7 | 30 | 90;
-                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                    stability: "HIGH" | "MEDIUM" | "LOW";
-                    sampleCount: number;
-                    averageMeasured?: number | undefined;
-                };
-                medium: {
-                    windowSizeDays: 7 | 30 | 90;
-                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                    stability: "HIGH" | "MEDIUM" | "LOW";
-                    sampleCount: number;
-                    averageMeasured?: number | undefined;
-                };
-                long: {
-                    windowSizeDays: 7 | 30 | 90;
-                    trend: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA";
-                    stability: "HIGH" | "MEDIUM" | "LOW";
-                    sampleCount: number;
-                    averageMeasured?: number | undefined;
-                };
-            } | undefined;
-            recentSlice?: {
-                days: {
-                    status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
-                    offset: number;
-                    measured: number;
-                }[];
-                direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
-                contrast: "LOW" | "MODERATE" | "STRONG";
-                salience: "HIGH" | "MEDIUM" | "LOW";
-            } | undefined;
-            milestoneProgress?: {
-                lastAchievedRung: {
-                    days: number;
-                    label: string;
-                    isCustom?: boolean | undefined;
-                } | null;
-                nextRung: {
-                    days: number;
-                    label: string;
-                    isCustom?: boolean | undefined;
-                } | null;
-                currentStreakDays: number;
-            } | undefined;
-        } | undefined;
-    }, {
-        trackingType: "counter" | "timer" | "scale";
-        name: string;
-        description: string;
-        id?: string | undefined;
-        createdAt?: import("../types").Timestamp | undefined;
-        updatedAt?: import("../types").Timestamp | undefined;
-        trackingUnit?: string | undefined;
-        baselinePeriod?: "daily" | "weekly" | undefined;
-        color?: string | undefined;
-        synonyms?: string[] | undefined;
-        recapQuestionSequence?: string[] | undefined;
-        goal?: {
-            type: "eliminate";
-        } | {
-            type: "reduceEveryDay";
-            target: number;
-        } | {
-            type: "reduceIndividualDays";
-            dailyTargets: {
-                0: number;
-                1: number;
-                2: number;
-                5: number;
-                3: number;
-                4: number;
-                6: number;
-            };
-        } | undefined;
-        ordinal?: number | undefined;
-        benefits?: string[] | undefined;
-        drawbacks?: string[] | undefined;
-        lastTrackedAt?: import("../types").Timestamp | undefined;
-        tactics?: import("..").DocumentReferenceLike<unknown>[] | undefined;
-        initialUsage?: {
-            value?: number | undefined;
-            behaviorId?: string | undefined;
-            behaviorName?: string | undefined;
-            behaviorTrackingUnit?: string | undefined;
-            trackingType?: "counter" | "timer" | "scale" | undefined;
-            formattedValue?: string | undefined;
-            period?: "daily" | "weekly" | undefined;
-        } | undefined;
-        hidden?: boolean | undefined;
-        behaviorTemplateId?: string | undefined;
-        behaviorTopicId?: string | undefined;
-        needsBaselineData?: boolean | undefined;
-        customMilestoneRungs?: {
-            days: number;
-            label: string;
-            isCustom?: boolean | undefined;
-        }[] | undefined;
+        isDefault?: boolean | undefined;
         state?: {
             behaviorId: string;
             windows: {
@@ -3901,6 +3185,7 @@ export declare const daySummarySchema: z.ZodObject<{
         drawbacks: string[];
         hidden: boolean;
         needsBaselineData: boolean;
+        isDefault: boolean;
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
         updatedAt?: import("../types").Timestamp | undefined;
@@ -4169,6 +3454,7 @@ export declare const daySummarySchema: z.ZodObject<{
             label: string;
             isCustom?: boolean | undefined;
         }[] | undefined;
+        isDefault?: boolean | undefined;
         state?: {
             behaviorId: string;
             windows: {

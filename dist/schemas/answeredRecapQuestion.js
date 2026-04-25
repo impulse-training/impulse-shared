@@ -15,4 +15,5 @@ exports.answeredRecapQuestionSchema = zod_1.z.object({
     sessionId: zod_1.z.string(),
     dateString: zod_1.z.string(),
     answerSummary: zod_1.z.string().optional(),
+    behaviorIds: zod_1.z.array(zod_1.z.string()).optional(),
 });

@@ -2484,6 +2484,8 @@ export declare const recapSessionSchema: z.ZodObject<{
     recapQuestionSource: z.ZodOptional<z.ZodEnum<["sequence", "baseline", "milestone", "trend", "approaching_milestone"]>>;
     focusBehaviorId: z.ZodOptional<z.ZodString>;
     focusBehaviorName: z.ZodOptional<z.ZodString>;
+    focusBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    focusBehaviorNames: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
 }, "strip", z.ZodTypeAny, {
     type: "recap";
     date: import("../../types").Timestamp;
@@ -2893,6 +2895,8 @@ export declare const recapSessionSchema: z.ZodObject<{
     recapQuestionSource?: "trend" | "milestone" | "sequence" | "baseline" | "approaching_milestone" | undefined;
     focusBehaviorId?: string | undefined;
     focusBehaviorName?: string | undefined;
+    focusBehaviorIds?: string[] | undefined;
+    focusBehaviorNames?: string[] | undefined;
 }, {
     type: "recap";
     date: import("../../types").Timestamp;
@@ -3302,5 +3306,7 @@ export declare const recapSessionSchema: z.ZodObject<{
     recapQuestionSource?: "trend" | "milestone" | "sequence" | "baseline" | "approaching_milestone" | undefined;
     focusBehaviorId?: string | undefined;
     focusBehaviorName?: string | undefined;
+    focusBehaviorIds?: string[] | undefined;
+    focusBehaviorNames?: string[] | undefined;
 }>;
 export type RecapSession = z.infer<typeof recapSessionSchema>;

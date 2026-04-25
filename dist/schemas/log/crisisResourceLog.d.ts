@@ -37,8 +37,8 @@ export declare const crisisResourceLogSchema: z.ZodObject<{
         riskLevel: "low" | "high";
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -54,8 +54,8 @@ export declare const crisisResourceLogSchema: z.ZodObject<{
         riskLevel: "low" | "high";
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>;
 export type CrisisResourceLog = z.infer<typeof crisisResourceLogSchema>;

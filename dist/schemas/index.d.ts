@@ -30,6 +30,7 @@ export * from "./planEffectiveness";
 export * from "./quote";
 export * from "./recapMessage";
 export * from "./recapQuestion";
+export * from "./scheduledCheckIn";
 export * from "./session";
 export * from "./supportGroup";
 export * from "./supportRequest";

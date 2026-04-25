@@ -61,9 +61,9 @@ export declare const proposedExperimentLogSchema: z.ZodObject<{
     type: "proposed_experiment";
     sessionId: string;
     dateString: string;
+    behaviorIds: string[];
     userId: string;
     timestamp: import("../../types").Timestamp;
-    behaviorIds: string[];
     isDisplayable: true;
     metricLabels: string[];
     id?: string | undefined;
@@ -89,9 +89,9 @@ export declare const proposedExperimentLogSchema: z.ZodObject<{
     type: "proposed_experiment";
     sessionId: string;
     dateString: string;
+    behaviorIds: string[];
     userId: string;
     timestamp: import("../../types").Timestamp;
-    behaviorIds: string[];
     isDisplayable: true;
     metricLabels: string[];
     id?: string | undefined;

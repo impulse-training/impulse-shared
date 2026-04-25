@@ -142,6 +142,10 @@ export const userDataSchema = z.object({
 
   // "Firsts" — one-time achievements (e.g. first impulse button press)
   firsts: firstsSchema.optional(),
+
+  // Roadmap / "What we're building" seen tracker
+  seenRoadmapItemIds: z.array(z.string()).optional(),
+  roadmapNotificationsEnabled: z.boolean().optional(),
 });
 
 // Export User type inferred from schema

@@ -114,6 +114,9 @@ exports.userDataSchema = zod_1.z.object({
         .optional(),
     // "Firsts" — one-time achievements (e.g. first impulse button press)
     firsts: first_1.firstsSchema.optional(),
+    // Roadmap / "What we're building" seen tracker
+    seenRoadmapItemIds: zod_1.z.array(zod_1.z.string()).optional(),
+    roadmapNotificationsEnabled: zod_1.z.boolean().optional(),
 });
 // Type guard for User
 const isUserData = (value) => exports.userDataSchema.safeParse(value).success;

@@ -30,8 +30,8 @@ export declare const linkLogSchema: z.ZodObject<{
     isDisplayable: true;
     buttonText: string;
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
     icon?: "link" | "rocket" | "party" | "check" | undefined;
 }, {
@@ -47,8 +47,8 @@ export declare const linkLogSchema: z.ZodObject<{
     isDisplayable: true;
     buttonText: string;
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
     icon?: "link" | "rocket" | "party" | "check" | undefined;
 }>;

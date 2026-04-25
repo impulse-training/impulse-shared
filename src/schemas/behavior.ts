@@ -232,17 +232,9 @@ export const behaviorSchema = behaviorTemplateBase
     // When true, the recap session should collect baseline usage data for this behavior
     needsBaselineData: z.boolean().optional().default(false),
     customMilestoneRungs: z.array(milestoneRungSchema).optional(),
+    isDefault: z.boolean().optional().default(true),
     // Computed state for this behavior (windows, trend, etc.)
     state: behaviorStateSchema.optional(),
-  })
-  .superRefine((val, ctx) => {
-    if (val.trackingType === "counter" && !val.trackingUnit) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: "Tracking unit is required when tracking type is 'counter'",
-        path: ["trackingUnit"],
-      });
-    }
   });
 
 // Export types inferred from schemas

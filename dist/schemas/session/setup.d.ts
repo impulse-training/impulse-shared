@@ -2496,8 +2496,8 @@ export declare const setupSessionSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    behaviorId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    behaviorId?: string | undefined;
     tags?: Record<string, string[]> | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
@@ -2900,8 +2900,8 @@ export declare const setupSessionSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    behaviorId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    behaviorId?: string | undefined;
     tags?: Record<string, string[]> | undefined;
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;

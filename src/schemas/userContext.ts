@@ -39,6 +39,8 @@ export const userContextSchema = z.object({
   activeExperiment: activeExperimentContextSchema.nullable().optional(),
   aiMemories: z.array(aiMemorySchema).default([]),
   consolidatedMemory: z.string().default(""),
+  communicationProfile: z.string().optional(),
+  communicationProfileVersion: z.number().optional(),
   createdAt: timestampSchema.optional(),
   updatedAt: timestampSchema.optional(),
 });

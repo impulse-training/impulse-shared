@@ -44,8 +44,8 @@ export declare const dayTotalsPromptLogSchema: z.ZodObject<{
         discussRequestedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -62,8 +62,8 @@ export declare const dayTotalsPromptLogSchema: z.ZodObject<{
         discussRequestedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>;
 export type DayTotalsPromptLog = z.infer<typeof dayTotalsPromptLogSchema>;

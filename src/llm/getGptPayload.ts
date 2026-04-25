@@ -8,6 +8,7 @@ import {
   logIsDayTotalsPromptLog,
   logIsMetricLog,
   logIsPlansLog,
+  logIsProposedStrategyModificationLog,
   logIsTacticLog,
   logIsToolCallLog,
   logIsUserMessageLog,
@@ -171,6 +172,21 @@ export function getGptPayload(
         role: "user",
         content:
           "<SYSTEM>The user has accepted the proposed experiment and it's now active. You do not need to re-explain the experiment; just treat this as context for future replies.</SYSTEM>",
+      },
+    ];
+  }
+
+  if (logIsProposedStrategyModificationLog(log)) {
+    if (log.data.status !== "accepted") return [];
+
+    const title = log.data.title.trim();
+    const summary = log.data.summary?.trim();
+    const context = summary ? `${title}: ${summary}` : title;
+
+    return [
+      {
+        role: "user",
+        content: `<SYSTEM>The user accepted a suggested strategy update. Saved strategy: ${context}.</SYSTEM>`,
       },
     ];
   }

@@ -33,8 +33,8 @@ export declare const messageBaseLogSchema: z.ZodObject<{
         message?: any;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../../types").Timestamp;
@@ -49,7 +49,7 @@ export declare const messageBaseLogSchema: z.ZodObject<{
         message?: any;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>;

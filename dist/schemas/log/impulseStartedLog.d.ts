@@ -33,8 +33,8 @@ export declare const impulseStartedLogSchema: z.ZodObject<{
         behaviorIds?: string[] | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -49,8 +49,8 @@ export declare const impulseStartedLogSchema: z.ZodObject<{
         behaviorIds?: string[] | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>;
 export type ImpulseStartedLog = z.infer<typeof impulseStartedLogSchema>;

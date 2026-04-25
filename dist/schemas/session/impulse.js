@@ -19,4 +19,5 @@ exports.impulseSessionSchema = base_1.sessionBaseSchema.extend({
     // Protocol phase the user is currently in. Drives how getGptPayload renders
     // context for tactic/behavior logs so the AI grounds its responses correctly.
     phase: phase_1.sessionPhaseSchema.optional(),
+    hasScheduledCheckIn: zod_1.z.boolean().optional(),
 });

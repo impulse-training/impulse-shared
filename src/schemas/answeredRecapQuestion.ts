@@ -13,6 +13,7 @@ export const answeredRecapQuestionSchema = z.object({
   sessionId: z.string(),
   dateString: z.string(),
   answerSummary: z.string().optional(),
+  behaviorIds: z.array(z.string()).optional(),
 });
 
 export type AnsweredRecapQuestion = z.infer<typeof answeredRecapQuestionSchema>;

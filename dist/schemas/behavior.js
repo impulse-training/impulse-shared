@@ -179,17 +179,9 @@ exports.behaviorSchema = behaviorTemplate_1.behaviorTemplateBase
     // When true, the recap session should collect baseline usage data for this behavior
     needsBaselineData: zod_1.z.boolean().optional().default(false),
     customMilestoneRungs: zod_1.z.array(milestoneAchievement_1.milestoneRungSchema).optional(),
+    isDefault: zod_1.z.boolean().optional().default(true),
     // Computed state for this behavior (windows, trend, etc.)
     state: exports.behaviorStateSchema.optional(),
-})
-    .superRefine((val, ctx) => {
-    if (val.trackingType === "counter" && !val.trackingUnit) {
-        ctx.addIssue({
-            code: zod_1.z.ZodIssueCode.custom,
-            message: "Tracking unit is required when tracking type is 'counter'",
-            path: ["trackingUnit"],
-        });
-    }
 });
 const isBehavior = (value) => exports.behaviorSchema.safeParse(value).success;
 exports.isBehavior = isBehavior;

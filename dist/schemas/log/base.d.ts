@@ -18,8 +18,8 @@ export declare const logBaseSchema: z.ZodObject<{
     userId: string;
     timestamp: import("../../types").Timestamp;
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -29,7 +29,7 @@ export declare const logBaseSchema: z.ZodObject<{
     userId: string;
     timestamp: import("../../types").Timestamp;
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>;

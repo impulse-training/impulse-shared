@@ -79,8 +79,8 @@ export declare const behaviorLogSchema: z.ZodObject<{
         resolvedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
     shouldZaraRespond?: boolean | undefined;
 }, {
@@ -105,8 +105,8 @@ export declare const behaviorLogSchema: z.ZodObject<{
         resolvedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
     isAdjustment?: boolean | undefined;
     shouldZaraRespond?: boolean | undefined;

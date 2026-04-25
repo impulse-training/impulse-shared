@@ -70,8 +70,8 @@ export declare const metricLogSchema: z.ZodObject<{
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
     shouldZaraRespond?: boolean | undefined;
 }, {
@@ -93,8 +93,8 @@ export declare const metricLogSchema: z.ZodObject<{
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
     shouldZaraRespond?: boolean | undefined;
 }>;

@@ -165,8 +165,8 @@ export declare const notifySupportGroupLogSchema: z.ZodObject<{
         } | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -198,8 +198,8 @@ export declare const notifySupportGroupLogSchema: z.ZodObject<{
         } | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>;
 export type NotifySupportGroupLog = z.infer<typeof notifySupportGroupLogSchema>;

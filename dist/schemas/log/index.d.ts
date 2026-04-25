@@ -6,6 +6,7 @@ import { EnableNotificationsCtaLog } from "./enableNotificationsCtaLog";
 import { LinkLog } from "./linkLog";
 import { ImpulseStartedLog } from "./impulseStartedLog";
 import { ProposedExperimentLog } from "./proposedExperimentLog";
+import { ProposedStrategyModificationLog } from "./proposedStrategyModificationLog";
 import { AssistantMessageLog, MessageLog, SystemMessageLog, UserMessageLog } from "./messageLog";
 import { NotifySupportGroupLog } from "./notifySupportGroupLog";
 import { PlansLog } from "./plansLog";
@@ -143,8 +144,8 @@ export declare const logSchemas: {
             message?: any;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
         audioAttachment?: {
             uri: string;
@@ -178,8 +179,8 @@ export declare const logSchemas: {
             message?: any;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
         audioAttachment?: {
             uri: string;
@@ -235,8 +236,8 @@ export declare const logSchemas: {
             message?: any;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -251,8 +252,8 @@ export declare const logSchemas: {
             message?: any;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }>;
     system_message: z.ZodObject<{
@@ -343,8 +344,8 @@ export declare const logSchemas: {
             }, z.ZodTypeAny, "passthrough">;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -368,8 +369,8 @@ export declare const logSchemas: {
             }, z.ZodTypeAny, "passthrough">;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }>;
     call: z.ZodObject<{
@@ -3795,8 +3796,8 @@ export declare const logSchemas: {
             summary?: string | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -4152,8 +4153,8 @@ export declare const logSchemas: {
             summary?: string | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }>;
     tool_call: z.ZodObject<{
@@ -4292,8 +4293,8 @@ export declare const logSchemas: {
             toolCallResults: any[];
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -4322,8 +4323,8 @@ export declare const logSchemas: {
             toolCallResults: any[];
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }>;
     tactic: z.ZodObject<{
@@ -7933,8 +7934,8 @@ export declare const logSchemas: {
             ratedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -8319,8 +8320,8 @@ export declare const logSchemas: {
             ratedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }>;
     tactic_viewed: z.ZodObject<{
@@ -11930,8 +11931,8 @@ export declare const logSchemas: {
             ratedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -12316,8 +12317,8 @@ export declare const logSchemas: {
             ratedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }>;
     behavior: z.ZodObject<{
@@ -12394,8 +12395,8 @@ export declare const logSchemas: {
             resolvedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
         shouldZaraRespond?: boolean | undefined;
     }, {
@@ -12420,8 +12421,8 @@ export declare const logSchemas: {
             resolvedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
         isAdjustment?: boolean | undefined;
         shouldZaraRespond?: boolean | undefined;
@@ -12480,8 +12481,8 @@ export declare const logSchemas: {
             totalDurationSeconds: number;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -12501,8 +12502,8 @@ export declare const logSchemas: {
             totalDurationSeconds: number;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }>;
     plans: z.ZodObject<{
@@ -12928,7 +12929,6 @@ export declare const logSchemas: {
                 startedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 completedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             }, "strip", z.ZodTypeAny, {
-                planId: string;
                 plan: ({
                     id: string;
                     _ref: import("../..").DocumentReferenceLike<unknown>;
@@ -13040,10 +13040,10 @@ export declare const logSchemas: {
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
                 });
+                planId: string;
                 startedAt?: import("../../types").Timestamp | undefined;
                 completedAt?: import("../../types").Timestamp | undefined;
             }, {
-                planId: string;
                 plan: ({
                     id: string;
                     _ref: import("../..").DocumentReferenceLike<unknown>;
@@ -13155,6 +13155,7 @@ export declare const logSchemas: {
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
                 });
+                planId: string;
                 startedAt?: import("../../types").Timestamp | undefined;
                 completedAt?: import("../../types").Timestamp | undefined;
             }>, "many">;
@@ -13163,7 +13164,6 @@ export declare const logSchemas: {
         }, "strip", z.ZodTypeAny, {
             source: "scheduled" | "tags" | "trigger" | "improvised";
             plans: {
-                planId: string;
                 plan: ({
                     id: string;
                     _ref: import("../..").DocumentReferenceLike<unknown>;
@@ -13275,17 +13275,17 @@ export declare const logSchemas: {
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
                 });
+                planId: string;
                 startedAt?: import("../../types").Timestamp | undefined;
                 completedAt?: import("../../types").Timestamp | undefined;
             }[];
             mode?: "live" | "planning" | undefined;
+            acceptedAt?: import("../../types").Timestamp | undefined;
             triggerId?: string | null | undefined;
             activeIndex?: number | undefined;
-            acceptedAt?: import("../../types").Timestamp | undefined;
         }, {
             source: "scheduled" | "tags" | "trigger" | "improvised";
             plans: {
-                planId: string;
                 plan: ({
                     id: string;
                     _ref: import("../..").DocumentReferenceLike<unknown>;
@@ -13397,13 +13397,14 @@ export declare const logSchemas: {
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
                 });
+                planId: string;
                 startedAt?: import("../../types").Timestamp | undefined;
                 completedAt?: import("../../types").Timestamp | undefined;
             }[];
             mode?: "live" | "planning" | undefined;
+            acceptedAt?: import("../../types").Timestamp | undefined;
             triggerId?: string | null | undefined;
             activeIndex?: number | undefined;
-            acceptedAt?: import("../../types").Timestamp | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
         createdAt: import("../../types").Timestamp;
@@ -13417,7 +13418,6 @@ export declare const logSchemas: {
         data: {
             source: "scheduled" | "tags" | "trigger" | "improvised";
             plans: {
-                planId: string;
                 plan: ({
                     id: string;
                     _ref: import("../..").DocumentReferenceLike<unknown>;
@@ -13529,17 +13529,18 @@ export declare const logSchemas: {
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
                 });
+                planId: string;
                 startedAt?: import("../../types").Timestamp | undefined;
                 completedAt?: import("../../types").Timestamp | undefined;
             }[];
             mode?: "live" | "planning" | undefined;
+            acceptedAt?: import("../../types").Timestamp | undefined;
             triggerId?: string | null | undefined;
             activeIndex?: number | undefined;
-            acceptedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -13553,7 +13554,6 @@ export declare const logSchemas: {
         data: {
             source: "scheduled" | "tags" | "trigger" | "improvised";
             plans: {
-                planId: string;
                 plan: ({
                     id: string;
                     _ref: import("../..").DocumentReferenceLike<unknown>;
@@ -13665,17 +13665,18 @@ export declare const logSchemas: {
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
                 });
+                planId: string;
                 startedAt?: import("../../types").Timestamp | undefined;
                 completedAt?: import("../../types").Timestamp | undefined;
             }[];
             mode?: "live" | "planning" | undefined;
+            acceptedAt?: import("../../types").Timestamp | undefined;
             triggerId?: string | null | undefined;
             activeIndex?: number | undefined;
-            acceptedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }>;
     summary: z.ZodObject<{
@@ -13712,8 +13713,8 @@ export declare const logSchemas: {
             summary: string;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -13728,8 +13729,8 @@ export declare const logSchemas: {
             summary: string;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }>;
     widget_setup: z.ZodObject<{
@@ -13756,8 +13757,8 @@ export declare const logSchemas: {
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -13769,8 +13770,8 @@ export declare const logSchemas: {
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }>;
     link: z.ZodObject<{
@@ -13804,8 +13805,8 @@ export declare const logSchemas: {
         isDisplayable: true;
         buttonText: string;
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
         icon?: "link" | "rocket" | "party" | "check" | undefined;
     }, {
@@ -13821,8 +13822,8 @@ export declare const logSchemas: {
         isDisplayable: true;
         buttonText: string;
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
         icon?: "link" | "rocket" | "party" | "check" | undefined;
     }>;
@@ -13992,8 +13993,8 @@ export declare const logSchemas: {
             } | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -14025,8 +14026,8 @@ export declare const logSchemas: {
             } | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }>;
     video: z.ZodObject<{
@@ -14065,10 +14066,10 @@ export declare const logSchemas: {
             sourceUri: string;
         };
         id?: string | undefined;
+        behaviorIds?: string[] | undefined;
         text?: string | undefined;
         title?: string | undefined;
         tacticId?: string | undefined;
-        behaviorIds?: string[] | undefined;
         impulseId?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -14083,10 +14084,10 @@ export declare const logSchemas: {
             sourceUri: string;
         };
         id?: string | undefined;
+        behaviorIds?: string[] | undefined;
         text?: string | undefined;
         title?: string | undefined;
         tacticId?: string | undefined;
-        behaviorIds?: string[] | undefined;
         impulseId?: string | undefined;
     }>;
     shared_moment: z.ZodObject<{
@@ -14207,8 +14208,8 @@ export declare const logSchemas: {
             } | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -14238,8 +14239,8 @@ export declare const logSchemas: {
             } | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }>;
     support_group_day_summary: z.ZodObject<{
@@ -14315,9 +14316,9 @@ export declare const logSchemas: {
             summarizationFailedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
+        behaviorIds?: string[] | undefined;
         text?: string | undefined;
         tacticId?: string | undefined;
-        behaviorIds?: string[] | undefined;
         impulseId?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -14340,9 +14341,9 @@ export declare const logSchemas: {
             summarizationFailedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
+        behaviorIds?: string[] | undefined;
         text?: string | undefined;
         tacticId?: string | undefined;
-        behaviorIds?: string[] | undefined;
         impulseId?: string | undefined;
     }>;
     enable_notifications_cta: z.ZodObject<{
@@ -14387,8 +14388,8 @@ export declare const logSchemas: {
             enabled?: boolean | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -14405,8 +14406,8 @@ export declare const logSchemas: {
             enabled?: boolean | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }>;
     proposed_experiment: z.ZodObject<{
@@ -14458,9 +14459,9 @@ export declare const logSchemas: {
         type: "proposed_experiment";
         sessionId: string;
         dateString: string;
+        behaviorIds: string[];
         userId: string;
         timestamp: import("../../types").Timestamp;
-        behaviorIds: string[];
         isDisplayable: true;
         metricLabels: string[];
         id?: string | undefined;
@@ -14486,9 +14487,9 @@ export declare const logSchemas: {
         type: "proposed_experiment";
         sessionId: string;
         dateString: string;
+        behaviorIds: string[];
         userId: string;
         timestamp: import("../../types").Timestamp;
-        behaviorIds: string[];
         isDisplayable: true;
         metricLabels: string[];
         id?: string | undefined;
@@ -14508,6 +14509,232 @@ export declare const logSchemas: {
             experimentId?: string | undefined;
             baselineDays?: number | undefined;
         } | undefined;
+    }>;
+    proposed_strategy_modification: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        sessionId: z.ZodString;
+        tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        impulseId: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"proposed_strategy_modification">;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            title: z.ZodString;
+            summary: z.ZodOptional<z.ZodString>;
+            status: z.ZodDefault<z.ZodEnum<["pending", "accepted", "declined"]>>;
+            operations: z.ZodArray<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+                type: z.ZodLiteral<"create_trigger">;
+                clientId: z.ZodString;
+                trigger: z.ZodObject<{
+                    id: z.ZodOptional<z.ZodString>;
+                    title: z.ZodOptional<z.ZodString>;
+                    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                    tags: z.ZodDefault<z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>>;
+                }, "strip", z.ZodTypeAny, {
+                    tags: Record<string, string | string[]>;
+                    id?: string | undefined;
+                    behaviorIds?: string[] | undefined;
+                    title?: string | undefined;
+                }, {
+                    id?: string | undefined;
+                    behaviorIds?: string[] | undefined;
+                    title?: string | undefined;
+                    tags?: Record<string, string | string[]> | undefined;
+                }>;
+            }, "strip", z.ZodTypeAny, {
+                type: "create_trigger";
+                clientId: string;
+                trigger: {
+                    tags: Record<string, string | string[]>;
+                    id?: string | undefined;
+                    behaviorIds?: string[] | undefined;
+                    title?: string | undefined;
+                };
+            }, {
+                type: "create_trigger";
+                clientId: string;
+                trigger: {
+                    id?: string | undefined;
+                    behaviorIds?: string[] | undefined;
+                    title?: string | undefined;
+                    tags?: Record<string, string | string[]> | undefined;
+                };
+            }>, z.ZodObject<{
+                type: z.ZodLiteral<"create_plan">;
+                triggerClientId: z.ZodString;
+                plan: z.ZodObject<{
+                    id: z.ZodOptional<z.ZodString>;
+                    name: z.ZodString;
+                    tacticIds: z.ZodArray<z.ZodString, "many">;
+                }, "strip", z.ZodTypeAny, {
+                    name: string;
+                    tacticIds: string[];
+                    id?: string | undefined;
+                }, {
+                    name: string;
+                    tacticIds: string[];
+                    id?: string | undefined;
+                }>;
+            }, "strip", z.ZodTypeAny, {
+                type: "create_plan";
+                triggerClientId: string;
+                plan: {
+                    name: string;
+                    tacticIds: string[];
+                    id?: string | undefined;
+                };
+            }, {
+                type: "create_plan";
+                triggerClientId: string;
+                plan: {
+                    name: string;
+                    tacticIds: string[];
+                    id?: string | undefined;
+                };
+            }>]>, "many">;
+            acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            declinedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            createdTriggerIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+            createdPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        }, "strip", z.ZodTypeAny, {
+            status: "declined" | "pending" | "accepted";
+            title: string;
+            operations: ({
+                type: "create_trigger";
+                clientId: string;
+                trigger: {
+                    tags: Record<string, string | string[]>;
+                    id?: string | undefined;
+                    behaviorIds?: string[] | undefined;
+                    title?: string | undefined;
+                };
+            } | {
+                type: "create_plan";
+                triggerClientId: string;
+                plan: {
+                    name: string;
+                    tacticIds: string[];
+                    id?: string | undefined;
+                };
+            })[];
+            summary?: string | undefined;
+            acceptedAt?: import("../../types").Timestamp | undefined;
+            declinedAt?: import("../../types").Timestamp | undefined;
+            createdTriggerIds?: string[] | undefined;
+            createdPlanIds?: string[] | undefined;
+        }, {
+            title: string;
+            operations: ({
+                type: "create_trigger";
+                clientId: string;
+                trigger: {
+                    id?: string | undefined;
+                    behaviorIds?: string[] | undefined;
+                    title?: string | undefined;
+                    tags?: Record<string, string | string[]> | undefined;
+                };
+            } | {
+                type: "create_plan";
+                triggerClientId: string;
+                plan: {
+                    name: string;
+                    tacticIds: string[];
+                    id?: string | undefined;
+                };
+            })[];
+            status?: "declined" | "pending" | "accepted" | undefined;
+            summary?: string | undefined;
+            acceptedAt?: import("../../types").Timestamp | undefined;
+            declinedAt?: import("../../types").Timestamp | undefined;
+            createdTriggerIds?: string[] | undefined;
+            createdPlanIds?: string[] | undefined;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "proposed_strategy_modification";
+        sessionId: string;
+        dateString: string;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: true;
+        data: {
+            status: "declined" | "pending" | "accepted";
+            title: string;
+            operations: ({
+                type: "create_trigger";
+                clientId: string;
+                trigger: {
+                    tags: Record<string, string | string[]>;
+                    id?: string | undefined;
+                    behaviorIds?: string[] | undefined;
+                    title?: string | undefined;
+                };
+            } | {
+                type: "create_plan";
+                triggerClientId: string;
+                plan: {
+                    name: string;
+                    tacticIds: string[];
+                    id?: string | undefined;
+                };
+            })[];
+            summary?: string | undefined;
+            acceptedAt?: import("../../types").Timestamp | undefined;
+            declinedAt?: import("../../types").Timestamp | undefined;
+            createdTriggerIds?: string[] | undefined;
+            createdPlanIds?: string[] | undefined;
+        };
+        id?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
+        impulseId?: string | undefined;
+    }, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "proposed_strategy_modification";
+        sessionId: string;
+        dateString: string;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: true;
+        data: {
+            title: string;
+            operations: ({
+                type: "create_trigger";
+                clientId: string;
+                trigger: {
+                    id?: string | undefined;
+                    behaviorIds?: string[] | undefined;
+                    title?: string | undefined;
+                    tags?: Record<string, string | string[]> | undefined;
+                };
+            } | {
+                type: "create_plan";
+                triggerClientId: string;
+                plan: {
+                    name: string;
+                    tacticIds: string[];
+                    id?: string | undefined;
+                };
+            })[];
+            status?: "declined" | "pending" | "accepted" | undefined;
+            summary?: string | undefined;
+            acceptedAt?: import("../../types").Timestamp | undefined;
+            declinedAt?: import("../../types").Timestamp | undefined;
+            createdTriggerIds?: string[] | undefined;
+            createdPlanIds?: string[] | undefined;
+        };
+        id?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
+        impulseId?: string | undefined;
     }>;
     impulse_started: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
@@ -14543,8 +14770,8 @@ export declare const logSchemas: {
             behaviorIds?: string[] | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -14559,8 +14786,8 @@ export declare const logSchemas: {
             behaviorIds?: string[] | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }>;
     metric: z.ZodObject<{
@@ -14622,8 +14849,8 @@ export declare const logSchemas: {
             quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
         shouldZaraRespond?: boolean | undefined;
     }, {
@@ -14645,8 +14872,8 @@ export declare const logSchemas: {
             quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
         shouldZaraRespond?: boolean | undefined;
     }>;
@@ -14696,8 +14923,8 @@ export declare const logSchemas: {
             minute?: number | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -14715,8 +14942,8 @@ export declare const logSchemas: {
             minute?: number | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }>;
     day_totals_prompt: z.ZodObject<{
@@ -14761,8 +14988,8 @@ export declare const logSchemas: {
             discussRequestedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -14779,8 +15006,8 @@ export declare const logSchemas: {
             discussRequestedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }>;
     trigger_selection: z.ZodObject<{
@@ -14839,8 +15066,8 @@ export declare const logSchemas: {
             selectedTriggerId?: string | null | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -14859,8 +15086,8 @@ export declare const logSchemas: {
             selectedTriggerId?: string | null | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }>;
     request_permissions: z.ZodObject<{
@@ -14909,8 +15136,8 @@ export declare const logSchemas: {
             granted?: boolean | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -14928,8 +15155,8 @@ export declare const logSchemas: {
             granted?: boolean | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }>;
     tactic_review: z.ZodObject<{
@@ -19035,8 +19262,8 @@ export declare const logSchemas: {
             completedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -19392,8 +19619,8 @@ export declare const logSchemas: {
             completedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }>;
     setup_mode_choice: z.ZodObject<{
@@ -19434,8 +19661,8 @@ export declare const logSchemas: {
             choice?: "text" | "voice" | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -19451,8 +19678,8 @@ export declare const logSchemas: {
             choice?: "text" | "voice" | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }>;
     tags_updated: z.ZodObject<{
@@ -19489,8 +19716,8 @@ export declare const logSchemas: {
             tags: Record<string, string | string[]>;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -19505,8 +19732,8 @@ export declare const logSchemas: {
             tags: Record<string, string | string[]>;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }>;
     crisis_resource: z.ZodObject<{
@@ -19547,8 +19774,8 @@ export declare const logSchemas: {
             riskLevel: "low" | "high";
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -19564,8 +19791,8 @@ export declare const logSchemas: {
             riskLevel: "low" | "high";
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }>;
     recovery_key: z.ZodObject<{
@@ -19602,8 +19829,8 @@ export declare const logSchemas: {
             action: "saved" | "copied" | "downloaded";
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -19618,8 +19845,8 @@ export declare const logSchemas: {
             action: "saved" | "copied" | "downloaded";
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }>;
     close_button: z.ZodObject<{
@@ -19656,8 +19883,8 @@ export declare const logSchemas: {
             label: string;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -19672,8 +19899,8 @@ export declare const logSchemas: {
             label: string;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }>;
     image: z.ZodObject<{
@@ -19714,8 +19941,8 @@ export declare const logSchemas: {
             acknowledgedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -19731,8 +19958,8 @@ export declare const logSchemas: {
             acknowledgedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }>;
     photo: z.ZodObject<{
@@ -19905,8 +20132,8 @@ export declare const logSchemas: {
             caption?: string | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
@@ -19940,14 +20167,14 @@ export declare const logSchemas: {
             caption?: string | undefined;
         };
         id?: string | undefined;
-        tacticId?: string | undefined;
         behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
         impulseId?: string | undefined;
     }>;
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ProposedExperimentLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | TriggerSelectionLog | RequestPermissionsLog | TacticReviewLog | SetupModeChoiceLog | TagsUpdatedLog | CrisisResourceLog | RecoveryKeyLog | CloseButtonLog | ImageLog | PhotoLog;
+export type Log = TacticLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ProposedExperimentLog | ProposedStrategyModificationLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | TriggerSelectionLog | RequestPermissionsLog | TacticReviewLog | SetupModeChoiceLog | TagsUpdatedLog | CrisisResourceLog | RecoveryKeyLog | CloseButtonLog | ImageLog | PhotoLog;
 export * from "./behaviorLog";
 export * from "./breathingLog";
 export * from "./callLog";
@@ -19965,6 +20192,7 @@ export * from "./toolCallLog";
 export * from "./videoLog";
 export * from "./widgetSetupLog";
 export * from "./proposedExperimentLog";
+export * from "./proposedStrategyModificationLog";
 export * from "./impulseStartedLog";
 export * from "./metricLog";
 export * from "./recapTimePreferenceLog";
@@ -20092,8 +20320,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         message?: any;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
     audioAttachment?: {
         uri: string;
@@ -20127,8 +20355,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         message?: any;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
     audioAttachment?: {
         uri: string;
@@ -20183,8 +20411,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         message?: any;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -20199,8 +20427,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         message?: any;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -20290,8 +20518,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }, z.ZodTypeAny, "passthrough">;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -20315,8 +20543,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }, z.ZodTypeAny, "passthrough">;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -23741,8 +23969,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         summary?: string | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -24098,8 +24326,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         summary?: string | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -24237,8 +24465,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         toolCallResults: any[];
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -24267,8 +24495,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         toolCallResults: any[];
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -27877,8 +28105,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         ratedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -28263,8 +28491,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         ratedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -28340,8 +28568,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         resolvedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
     shouldZaraRespond?: boolean | undefined;
 }, {
@@ -28366,8 +28594,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         resolvedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
     isAdjustment?: boolean | undefined;
     shouldZaraRespond?: boolean | undefined;
@@ -28425,8 +28653,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         totalDurationSeconds: number;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -28446,8 +28674,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         totalDurationSeconds: number;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -28872,7 +29100,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             startedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             completedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         }, "strip", z.ZodTypeAny, {
-            planId: string;
             plan: ({
                 id: string;
                 _ref: import("../..").DocumentReferenceLike<unknown>;
@@ -28984,10 +29211,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
             });
+            planId: string;
             startedAt?: import("../../types").Timestamp | undefined;
             completedAt?: import("../../types").Timestamp | undefined;
         }, {
-            planId: string;
             plan: ({
                 id: string;
                 _ref: import("../..").DocumentReferenceLike<unknown>;
@@ -29099,6 +29326,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
             });
+            planId: string;
             startedAt?: import("../../types").Timestamp | undefined;
             completedAt?: import("../../types").Timestamp | undefined;
         }>, "many">;
@@ -29107,7 +29335,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     }, "strip", z.ZodTypeAny, {
         source: "scheduled" | "tags" | "trigger" | "improvised";
         plans: {
-            planId: string;
             plan: ({
                 id: string;
                 _ref: import("../..").DocumentReferenceLike<unknown>;
@@ -29219,17 +29446,17 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
             });
+            planId: string;
             startedAt?: import("../../types").Timestamp | undefined;
             completedAt?: import("../../types").Timestamp | undefined;
         }[];
         mode?: "live" | "planning" | undefined;
+        acceptedAt?: import("../../types").Timestamp | undefined;
         triggerId?: string | null | undefined;
         activeIndex?: number | undefined;
-        acceptedAt?: import("../../types").Timestamp | undefined;
     }, {
         source: "scheduled" | "tags" | "trigger" | "improvised";
         plans: {
-            planId: string;
             plan: ({
                 id: string;
                 _ref: import("../..").DocumentReferenceLike<unknown>;
@@ -29341,13 +29568,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
             });
+            planId: string;
             startedAt?: import("../../types").Timestamp | undefined;
             completedAt?: import("../../types").Timestamp | undefined;
         }[];
         mode?: "live" | "planning" | undefined;
+        acceptedAt?: import("../../types").Timestamp | undefined;
         triggerId?: string | null | undefined;
         activeIndex?: number | undefined;
-        acceptedAt?: import("../../types").Timestamp | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
@@ -29361,7 +29589,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: {
         source: "scheduled" | "tags" | "trigger" | "improvised";
         plans: {
-            planId: string;
             plan: ({
                 id: string;
                 _ref: import("../..").DocumentReferenceLike<unknown>;
@@ -29473,17 +29700,18 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
             });
+            planId: string;
             startedAt?: import("../../types").Timestamp | undefined;
             completedAt?: import("../../types").Timestamp | undefined;
         }[];
         mode?: "live" | "planning" | undefined;
+        acceptedAt?: import("../../types").Timestamp | undefined;
         triggerId?: string | null | undefined;
         activeIndex?: number | undefined;
-        acceptedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -29497,7 +29725,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: {
         source: "scheduled" | "tags" | "trigger" | "improvised";
         plans: {
-            planId: string;
             plan: ({
                 id: string;
                 _ref: import("../..").DocumentReferenceLike<unknown>;
@@ -29609,17 +29836,18 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
             });
+            planId: string;
             startedAt?: import("../../types").Timestamp | undefined;
             completedAt?: import("../../types").Timestamp | undefined;
         }[];
         mode?: "live" | "planning" | undefined;
+        acceptedAt?: import("../../types").Timestamp | undefined;
         triggerId?: string | null | undefined;
         activeIndex?: number | undefined;
-        acceptedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -29655,8 +29883,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         summary: string;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -29671,8 +29899,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         summary: string;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -29698,8 +29926,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -29711,8 +29939,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -29745,8 +29973,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: true;
     buttonText: string;
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
     icon?: "link" | "rocket" | "party" | "check" | undefined;
 }, {
@@ -29762,8 +29990,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: true;
     buttonText: string;
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
     icon?: "link" | "rocket" | "party" | "check" | undefined;
 }>, z.ZodObject<{
@@ -29932,8 +30160,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         } | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -29965,8 +30193,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         } | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -30086,8 +30314,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         } | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -30117,8 +30345,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         } | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -30156,10 +30384,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         sourceUri: string;
     };
     id?: string | undefined;
+    behaviorIds?: string[] | undefined;
     text?: string | undefined;
     title?: string | undefined;
     tacticId?: string | undefined;
-    behaviorIds?: string[] | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -30174,10 +30402,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         sourceUri: string;
     };
     id?: string | undefined;
+    behaviorIds?: string[] | undefined;
     text?: string | undefined;
     title?: string | undefined;
     tacticId?: string | undefined;
-    behaviorIds?: string[] | undefined;
     impulseId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -30252,9 +30480,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         summarizationFailedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
+    behaviorIds?: string[] | undefined;
     text?: string | undefined;
     tacticId?: string | undefined;
-    behaviorIds?: string[] | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -30277,9 +30505,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         summarizationFailedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
+    behaviorIds?: string[] | undefined;
     text?: string | undefined;
     tacticId?: string | undefined;
-    behaviorIds?: string[] | undefined;
     impulseId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -30323,8 +30551,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         enabled?: boolean | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -30341,8 +30569,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         enabled?: boolean | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -30393,9 +30621,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     type: "proposed_experiment";
     sessionId: string;
     dateString: string;
+    behaviorIds: string[];
     userId: string;
     timestamp: import("../../types").Timestamp;
-    behaviorIds: string[];
     isDisplayable: true;
     metricLabels: string[];
     id?: string | undefined;
@@ -30421,9 +30649,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     type: "proposed_experiment";
     sessionId: string;
     dateString: string;
+    behaviorIds: string[];
     userId: string;
     timestamp: import("../../types").Timestamp;
-    behaviorIds: string[];
     isDisplayable: true;
     metricLabels: string[];
     id?: string | undefined;
@@ -30443,6 +30671,231 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         experimentId?: string | undefined;
         baselineDays?: number | undefined;
     } | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    sessionId: z.ZodString;
+    tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    impulseId: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"proposed_strategy_modification">;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        title: z.ZodString;
+        summary: z.ZodOptional<z.ZodString>;
+        status: z.ZodDefault<z.ZodEnum<["pending", "accepted", "declined"]>>;
+        operations: z.ZodArray<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+            type: z.ZodLiteral<"create_trigger">;
+            clientId: z.ZodString;
+            trigger: z.ZodObject<{
+                id: z.ZodOptional<z.ZodString>;
+                title: z.ZodOptional<z.ZodString>;
+                behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                tags: z.ZodDefault<z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>>;
+            }, "strip", z.ZodTypeAny, {
+                tags: Record<string, string | string[]>;
+                id?: string | undefined;
+                behaviorIds?: string[] | undefined;
+                title?: string | undefined;
+            }, {
+                id?: string | undefined;
+                behaviorIds?: string[] | undefined;
+                title?: string | undefined;
+                tags?: Record<string, string | string[]> | undefined;
+            }>;
+        }, "strip", z.ZodTypeAny, {
+            type: "create_trigger";
+            clientId: string;
+            trigger: {
+                tags: Record<string, string | string[]>;
+                id?: string | undefined;
+                behaviorIds?: string[] | undefined;
+                title?: string | undefined;
+            };
+        }, {
+            type: "create_trigger";
+            clientId: string;
+            trigger: {
+                id?: string | undefined;
+                behaviorIds?: string[] | undefined;
+                title?: string | undefined;
+                tags?: Record<string, string | string[]> | undefined;
+            };
+        }>, z.ZodObject<{
+            type: z.ZodLiteral<"create_plan">;
+            triggerClientId: z.ZodString;
+            plan: z.ZodObject<{
+                id: z.ZodOptional<z.ZodString>;
+                name: z.ZodString;
+                tacticIds: z.ZodArray<z.ZodString, "many">;
+            }, "strip", z.ZodTypeAny, {
+                name: string;
+                tacticIds: string[];
+                id?: string | undefined;
+            }, {
+                name: string;
+                tacticIds: string[];
+                id?: string | undefined;
+            }>;
+        }, "strip", z.ZodTypeAny, {
+            type: "create_plan";
+            triggerClientId: string;
+            plan: {
+                name: string;
+                tacticIds: string[];
+                id?: string | undefined;
+            };
+        }, {
+            type: "create_plan";
+            triggerClientId: string;
+            plan: {
+                name: string;
+                tacticIds: string[];
+                id?: string | undefined;
+            };
+        }>]>, "many">;
+        acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        declinedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        createdTriggerIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        createdPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strip", z.ZodTypeAny, {
+        status: "declined" | "pending" | "accepted";
+        title: string;
+        operations: ({
+            type: "create_trigger";
+            clientId: string;
+            trigger: {
+                tags: Record<string, string | string[]>;
+                id?: string | undefined;
+                behaviorIds?: string[] | undefined;
+                title?: string | undefined;
+            };
+        } | {
+            type: "create_plan";
+            triggerClientId: string;
+            plan: {
+                name: string;
+                tacticIds: string[];
+                id?: string | undefined;
+            };
+        })[];
+        summary?: string | undefined;
+        acceptedAt?: import("../../types").Timestamp | undefined;
+        declinedAt?: import("../../types").Timestamp | undefined;
+        createdTriggerIds?: string[] | undefined;
+        createdPlanIds?: string[] | undefined;
+    }, {
+        title: string;
+        operations: ({
+            type: "create_trigger";
+            clientId: string;
+            trigger: {
+                id?: string | undefined;
+                behaviorIds?: string[] | undefined;
+                title?: string | undefined;
+                tags?: Record<string, string | string[]> | undefined;
+            };
+        } | {
+            type: "create_plan";
+            triggerClientId: string;
+            plan: {
+                name: string;
+                tacticIds: string[];
+                id?: string | undefined;
+            };
+        })[];
+        status?: "declined" | "pending" | "accepted" | undefined;
+        summary?: string | undefined;
+        acceptedAt?: import("../../types").Timestamp | undefined;
+        declinedAt?: import("../../types").Timestamp | undefined;
+        createdTriggerIds?: string[] | undefined;
+        createdPlanIds?: string[] | undefined;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "proposed_strategy_modification";
+    sessionId: string;
+    dateString: string;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: true;
+    data: {
+        status: "declined" | "pending" | "accepted";
+        title: string;
+        operations: ({
+            type: "create_trigger";
+            clientId: string;
+            trigger: {
+                tags: Record<string, string | string[]>;
+                id?: string | undefined;
+                behaviorIds?: string[] | undefined;
+                title?: string | undefined;
+            };
+        } | {
+            type: "create_plan";
+            triggerClientId: string;
+            plan: {
+                name: string;
+                tacticIds: string[];
+                id?: string | undefined;
+            };
+        })[];
+        summary?: string | undefined;
+        acceptedAt?: import("../../types").Timestamp | undefined;
+        declinedAt?: import("../../types").Timestamp | undefined;
+        createdTriggerIds?: string[] | undefined;
+        createdPlanIds?: string[] | undefined;
+    };
+    id?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
+    impulseId?: string | undefined;
+}, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "proposed_strategy_modification";
+    sessionId: string;
+    dateString: string;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: true;
+    data: {
+        title: string;
+        operations: ({
+            type: "create_trigger";
+            clientId: string;
+            trigger: {
+                id?: string | undefined;
+                behaviorIds?: string[] | undefined;
+                title?: string | undefined;
+                tags?: Record<string, string | string[]> | undefined;
+            };
+        } | {
+            type: "create_plan";
+            triggerClientId: string;
+            plan: {
+                name: string;
+                tacticIds: string[];
+                id?: string | undefined;
+            };
+        })[];
+        status?: "declined" | "pending" | "accepted" | undefined;
+        summary?: string | undefined;
+        acceptedAt?: import("../../types").Timestamp | undefined;
+        declinedAt?: import("../../types").Timestamp | undefined;
+        createdTriggerIds?: string[] | undefined;
+        createdPlanIds?: string[] | undefined;
+    };
+    id?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
+    impulseId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -30477,8 +30930,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         behaviorIds?: string[] | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -30493,8 +30946,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         behaviorIds?: string[] | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -30555,8 +31008,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
     shouldZaraRespond?: boolean | undefined;
 }, {
@@ -30578,8 +31031,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
     shouldZaraRespond?: boolean | undefined;
 }>, z.ZodObject<{
@@ -30628,8 +31081,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         minute?: number | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -30647,8 +31100,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         minute?: number | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -30692,8 +31145,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         discussRequestedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -30710,8 +31163,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         discussRequestedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -30769,8 +31222,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         selectedTriggerId?: string | null | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -30789,8 +31242,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         selectedTriggerId?: string | null | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -30838,8 +31291,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         granted?: boolean | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -30857,8 +31310,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         granted?: boolean | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -34963,8 +35416,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         completedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -35320,8 +35773,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         completedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -35357,8 +35810,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         tags: Record<string, string | string[]>;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -35373,8 +35826,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         tags: Record<string, string | string[]>;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -35414,8 +35867,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         riskLevel: "low" | "high";
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -35431,8 +35884,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         riskLevel: "low" | "high";
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -35468,8 +35921,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         action: "saved" | "copied" | "downloaded";
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -35484,8 +35937,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         action: "saved" | "copied" | "downloaded";
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -35521,8 +35974,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         label: string;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -35537,8 +35990,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         label: string;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -35578,8 +36031,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         acknowledgedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -35595,8 +36048,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         acknowledgedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -35768,8 +36221,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         caption?: string | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -35803,8 +36256,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         caption?: string | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>]>;
 export declare const logIsAssistantMessageLog: (value: Omit<Log, "id">) => value is AssistantMessageLog;
@@ -35854,6 +36307,7 @@ export declare const isValidTriggerSelectionLog: (value: unknown) => value is Tr
 export declare const logIsTacticReviewLog: (value: Omit<Log, "id">) => value is TacticReviewLog;
 export declare const isValidTacticReviewLog: (value: unknown) => value is TacticReviewLog;
 export declare const logIsSetupModeChoiceLog: (value: Omit<Log, "id">) => value is SetupModeChoiceLog;
+export declare const logIsProposedStrategyModificationLog: (value: Omit<Log, "id">) => value is ProposedStrategyModificationLog;
 export declare const logIsTagsUpdatedLog: (value: Omit<Log, "id">) => value is TagsUpdatedLog;
 export declare const logIsCrisisResourceLog: (value: Omit<Log, "id">) => value is CrisisResourceLog;
 export declare const logIsRecoveryKeyLog: (value: Omit<Log, "id">) => value is RecoveryKeyLog;

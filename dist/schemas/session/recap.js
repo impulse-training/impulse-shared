@@ -19,4 +19,6 @@ exports.recapSessionSchema = base_1.sessionBaseSchema.extend({
     recapQuestionSource: exports.recapQuestionSourceSchema.optional(),
     focusBehaviorId: zod_1.z.string().optional(),
     focusBehaviorName: zod_1.z.string().optional(),
+    focusBehaviorIds: zod_1.z.array(zod_1.z.string()).optional(),
+    focusBehaviorNames: zod_1.z.array(zod_1.z.string()).optional(),
 });

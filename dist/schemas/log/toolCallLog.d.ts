@@ -195,8 +195,8 @@ export declare const toolCallLogSchema: z.ZodObject<{
         toolCallResults: any[];
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -225,8 +225,8 @@ export declare const toolCallLogSchema: z.ZodObject<{
         toolCallResults: any[];
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>;
 export type ToolCallLog = z.infer<typeof toolCallLogSchema>;

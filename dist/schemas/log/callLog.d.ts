@@ -3422,8 +3422,8 @@ export declare const callLogSchema: z.ZodObject<{
         summary?: string | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -3779,8 +3779,8 @@ export declare const callLogSchema: z.ZodObject<{
         summary?: string | undefined;
     };
     id?: string | undefined;
-    tacticId?: string | undefined;
     behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
     impulseId?: string | undefined;
 }>;
 export type CallLog = z.infer<typeof callLogSchema>;
