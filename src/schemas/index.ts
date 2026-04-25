@@ -19,7 +19,6 @@ export * from "./goal";
 export * from "./insight";
 export * from "./llmAuditEntries";
 export * from "./log";
-export * from "./memory";
 export * from "./monthSummary";
 export * from "./metric";
 export * from "./metricState";

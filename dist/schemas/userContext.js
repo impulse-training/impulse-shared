@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isUserContext = exports.isAIMemory = exports.isTacticContext = exports.isBehaviorContext = exports.userContextSchema = exports.aiMemorySchema = exports.activeExperimentContextSchema = exports.tacticContextSchema = exports.behaviorContextSchema = void 0;
+exports.isUserContext = exports.isTacticContext = exports.isBehaviorContext = exports.userContextSchema = exports.activeExperimentContextSchema = exports.tacticContextSchema = exports.behaviorContextSchema = void 0;
 const zod_1 = require("zod");
 const timestampSchema_1 = require("../utils/timestampSchema");
 exports.behaviorContextSchema = zod_1.z.object({
@@ -25,18 +25,12 @@ exports.activeExperimentContextSchema = zod_1.z.object({
     experimentQuestion: zod_1.z.string(),
     observations: zod_1.z.array(zod_1.z.string()),
 });
-exports.aiMemorySchema = zod_1.z.object({
-    id: zod_1.z.string(),
-    content: zod_1.z.string(),
-    source: zod_1.z.string(),
-    createdAt: timestampSchema_1.timestampSchema.optional(),
-});
 exports.userContextSchema = zod_1.z.object({
     behaviors: zod_1.z.record(exports.behaviorContextSchema),
     tactics: zod_1.z.record(exports.tacticContextSchema),
     activeExperiment: exports.activeExperimentContextSchema.nullable().optional(),
-    aiMemories: zod_1.z.array(exports.aiMemorySchema).default([]),
-    consolidatedMemory: zod_1.z.string().default(""),
+    communicationProfile: zod_1.z.string().optional(),
+    communicationProfileVersion: zod_1.z.number().optional(),
     createdAt: timestampSchema_1.timestampSchema.optional(),
     updatedAt: timestampSchema_1.timestampSchema.optional(),
 });
@@ -49,10 +43,6 @@ const isTacticContext = (value) => {
     return exports.tacticContextSchema.safeParse(value).success;
 };
 exports.isTacticContext = isTacticContext;
-const isAIMemory = (value) => {
-    return exports.aiMemorySchema.safeParse(value).success;
-};
-exports.isAIMemory = isAIMemory;
 const isUserContext = (value) => {
     return exports.userContextSchema.safeParse(value).success;
 };

@@ -15,7 +15,6 @@ import {
   logIsWidgetSetupLog,
 } from "../schemas/log";
 import { buildPlansLogPayload } from "./buildPlansLogPayload";
-import { extractRelevantContext } from "./extractRelevantContext";
 import { DEFAULT_RECAP_TIME_LABEL } from "../constants";
 import { SessionPhase } from "../schemas/session/phase";
 

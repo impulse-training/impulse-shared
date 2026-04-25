@@ -59,22 +59,6 @@ export declare const activeExperimentContextSchema: z.ZodObject<{
     experimentQuestion: string;
     observations: string[];
 }>;
-export declare const aiMemorySchema: z.ZodObject<{
-    id: z.ZodString;
-    content: z.ZodString;
-    source: z.ZodString;
-    createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-}, "strip", z.ZodTypeAny, {
-    id: string;
-    source: string;
-    content: string;
-    createdAt?: import("../types").Timestamp | undefined;
-}, {
-    id: string;
-    source: string;
-    content: string;
-    createdAt?: import("../types").Timestamp | undefined;
-}>;
 export declare const userContextSchema: z.ZodObject<{
     behaviors: z.ZodRecord<z.ZodString, z.ZodObject<{
         behaviorId: z.ZodString;
@@ -136,23 +120,8 @@ export declare const userContextSchema: z.ZodObject<{
         experimentQuestion: string;
         observations: string[];
     }>>>;
-    aiMemories: z.ZodDefault<z.ZodArray<z.ZodObject<{
-        id: z.ZodString;
-        content: z.ZodString;
-        source: z.ZodString;
-        createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
-    }, "strip", z.ZodTypeAny, {
-        id: string;
-        source: string;
-        content: string;
-        createdAt?: import("../types").Timestamp | undefined;
-    }, {
-        id: string;
-        source: string;
-        content: string;
-        createdAt?: import("../types").Timestamp | undefined;
-    }>, "many">>;
-    consolidatedMemory: z.ZodDefault<z.ZodString>;
+    communicationProfile: z.ZodOptional<z.ZodString>;
+    communicationProfileVersion: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
@@ -172,13 +141,6 @@ export declare const userContextSchema: z.ZodObject<{
         benefits?: string[] | undefined;
         drawbacks?: string[] | undefined;
     }>;
-    aiMemories: {
-        id: string;
-        source: string;
-        content: string;
-        createdAt?: import("../types").Timestamp | undefined;
-    }[];
-    consolidatedMemory: string;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     activeExperiment?: {
@@ -187,6 +149,8 @@ export declare const userContextSchema: z.ZodObject<{
         experimentQuestion: string;
         observations: string[];
     } | null | undefined;
+    communicationProfile?: string | undefined;
+    communicationProfileVersion?: number | undefined;
 }, {
     tactics: Record<string, {
         title: string;
@@ -212,20 +176,13 @@ export declare const userContextSchema: z.ZodObject<{
         experimentQuestion: string;
         observations: string[];
     } | null | undefined;
-    aiMemories?: {
-        id: string;
-        source: string;
-        content: string;
-        createdAt?: import("../types").Timestamp | undefined;
-    }[] | undefined;
-    consolidatedMemory?: string | undefined;
+    communicationProfile?: string | undefined;
+    communicationProfileVersion?: number | undefined;
 }>;
 export type BehaviorContext = z.infer<typeof behaviorContextSchema>;
 export type TacticContext = z.infer<typeof tacticContextSchema>;
 export type ActiveExperimentContext = z.infer<typeof activeExperimentContextSchema>;
-export type AIMemory = z.infer<typeof aiMemorySchema>;
 export type UserContext = z.infer<typeof userContextSchema>;
 export declare const isBehaviorContext: (value: unknown) => value is BehaviorContext;
 export declare const isTacticContext: (value: unknown) => value is TacticContext;
-export declare const isAIMemory: (value: unknown) => value is AIMemory;
 export declare const isUserContext: (value: unknown) => value is UserContext;

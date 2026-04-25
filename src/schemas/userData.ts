@@ -146,6 +146,8 @@ export const userDataSchema = z.object({
   // Roadmap / "What we're building" seen tracker
   seenRoadmapItemIds: z.array(z.string()).optional(),
   roadmapNotificationsEnabled: z.boolean().optional(),
+
+  concurrentUserAccountIds: z.array(z.string()).optional(),
 });
 
 // Export User type inferred from schema

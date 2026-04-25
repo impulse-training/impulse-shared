@@ -26,19 +26,10 @@ export const activeExperimentContextSchema = z.object({
   observations: z.array(z.string()),
 });
 
-export const aiMemorySchema = z.object({
-  id: z.string(),
-  content: z.string(),
-  source: z.string(),
-  createdAt: timestampSchema.optional(),
-});
-
 export const userContextSchema = z.object({
   behaviors: z.record(behaviorContextSchema),
   tactics: z.record(tacticContextSchema),
   activeExperiment: activeExperimentContextSchema.nullable().optional(),
-  aiMemories: z.array(aiMemorySchema).default([]),
-  consolidatedMemory: z.string().default(""),
   communicationProfile: z.string().optional(),
   communicationProfileVersion: z.number().optional(),
   createdAt: timestampSchema.optional(),
@@ -51,7 +42,6 @@ export type TacticContext = z.infer<typeof tacticContextSchema>;
 export type ActiveExperimentContext = z.infer<
   typeof activeExperimentContextSchema
 >;
-export type AIMemory = z.infer<typeof aiMemorySchema>;
 export type UserContext = z.infer<typeof userContextSchema>;
 
 // Type guard functions
@@ -61,10 +51,6 @@ export const isBehaviorContext = (value: unknown): value is BehaviorContext => {
 
 export const isTacticContext = (value: unknown): value is TacticContext => {
   return tacticContextSchema.safeParse(value).success;
-};
-
-export const isAIMemory = (value: unknown): value is AIMemory => {
-  return aiMemorySchema.safeParse(value).success;
 };
 
 export const isUserContext = (value: unknown): value is UserContext => {
