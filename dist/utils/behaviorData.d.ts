@@ -1,8 +1,5 @@
 import { BehaviorTrackingData } from "../schemas";
 export declare const scaleLevels: readonly [{
-    readonly value: 0;
-    readonly label: "Zero";
-}, {
     readonly value: 1;
     readonly label: "Low";
 }, {

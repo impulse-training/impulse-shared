@@ -4,7 +4,7 @@ import { WithId } from "./withId";
 /**
  * Check if we should respond to a log write event with a notification CTA log.
  * This happens when:
- * 1. The session is an alignment session
+ * 1. The session is an onboarding session
  * 2. The user hasn't yet enabled or skipped notifications (notificationsEnabled is undefined)
  * 3. A recap_time_preference log was just responded to (respondedAt was set)
  *

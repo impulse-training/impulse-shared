@@ -1,6 +1,6 @@
 import { z } from "zod";
-export { trackingTypes, baselinePeriods } from "./behaviorTemplate";
-export type { BehaviorTemplate, TrackingType, BaselinePeriod, } from "./behaviorTemplate";
+export { trackingTypes, baselinePeriods, streakLabels } from "./behaviorTemplate";
+export type { BehaviorTemplate, TrackingType, BaselinePeriod, StreakLabel, } from "./behaviorTemplate";
 export { behaviorTemplateSchema } from "./behaviorTemplate";
 export declare const trendSchema: z.ZodEnum<["IMPROVING", "DECLINING", "STABLE", "VOLATILE", "INSUFFICIENT_DATA"]>;
 export type Trend = z.infer<typeof trendSchema>;
@@ -1083,6 +1083,7 @@ export declare const behaviorSchema: z.ZodObject<{
     trackingUnit: z.ZodOptional<z.ZodString>;
     baselinePeriod: z.ZodOptional<z.ZodEnum<["daily", "weekly"]>>;
     synonyms: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    streakLabel: z.ZodOptional<z.ZodEnum<["clean", "free", "sober"]>>;
     recapQuestionSequence: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -2029,6 +2030,7 @@ export declare const behaviorSchema: z.ZodObject<{
     baselinePeriod?: "daily" | "weekly" | undefined;
     color?: string | undefined;
     synonyms?: string[] | undefined;
+    streakLabel?: "clean" | "free" | "sober" | undefined;
     recapQuestionSequence?: string[] | undefined;
     goal?: {
         type: "eliminate";
@@ -2205,6 +2207,7 @@ export declare const behaviorSchema: z.ZodObject<{
     baselinePeriod?: "daily" | "weekly" | undefined;
     color?: string | undefined;
     synonyms?: string[] | undefined;
+    streakLabel?: "clean" | "free" | "sober" | undefined;
     recapQuestionSequence?: string[] | undefined;
     goal?: {
         type: "eliminate";

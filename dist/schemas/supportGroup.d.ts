@@ -113,11 +113,11 @@ export declare const supportGroupMemberSchema: z.ZodObject<{
     } | undefined;
     joinedAt?: import("../types").Timestamp | undefined;
 }>;
-export declare const supportGroupTypeSchema: z.ZodEnum<["system", "social", "coach", "alignment"]>;
+export declare const supportGroupTypeSchema: z.ZodEnum<["system", "social", "coach", "onboarding", "alignment"]>;
 export type SupportGroupType = z.infer<typeof supportGroupTypeSchema>;
 export declare const supportGroupSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
-    type: z.ZodDefault<z.ZodEnum<["system", "social", "coach", "alignment"]>>;
+    type: z.ZodDefault<z.ZodEnum<["system", "social", "coach", "onboarding", "alignment"]>>;
     name: z.ZodString;
     description: z.ZodOptional<z.ZodString>;
     ownerId: z.ZodString;
@@ -575,7 +575,7 @@ export declare const supportGroupSchema: z.ZodObject<{
     isOpen: z.ZodOptional<z.ZodBoolean>;
     maxMembers: z.ZodOptional<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
-    type: "system" | "alignment" | "social" | "coach";
+    type: "onboarding" | "system" | "alignment" | "social" | "coach";
     name: string;
     membersById: Record<string, {
         userId: string;
@@ -724,7 +724,7 @@ export declare const supportGroupSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
-    type?: "system" | "alignment" | "social" | "coach" | undefined;
+    type?: "onboarding" | "system" | "alignment" | "social" | "coach" | undefined;
     image?: {
         uri: string;
         storagePath: string;

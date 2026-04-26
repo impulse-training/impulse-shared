@@ -30,6 +30,8 @@ const latestSessionMessageSchema = z.object({
 });
 
 export const latestSessionMessageTypeSchema = z.enum([
+  "onboarding",
+  // TODO: Remove after 2026-05-26. Legacy session message key.
   "alignment",
   "commitment",
 ]);

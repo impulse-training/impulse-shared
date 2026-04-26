@@ -5,7 +5,8 @@ import { GeneralSession, generalSessionSchema } from "./general";
 import { ImpulseSession, impulseSessionSchema } from "./impulse";
 import { LocationPlanSession, locationPlanSessionSchema, TimePlanSession, timePlanSessionSchema } from "./plan";
 import { RecapSession, recapSessionSchema } from "./recap";
-import { AlignmentSession, alignmentSessionSchema } from "./alignment";
+import { OnboardingSession, onboardingSessionSchema } from "./onboarding";
+import { alignmentSessionSchema } from "./alignment";
 import { CommitmentSession, commitmentSessionSchema } from "./commitment";
 import { TacticSession, tacticSessionSchema } from "./tactic";
 import { WelcomeSession, welcomeSessionSchema } from "./welcome";
@@ -21,6 +22,7 @@ export * from "./impulse";
 export * from "./phase";
 export * from "./plan";
 export * from "./recap";
+export * from "./onboarding";
 export * from "./alignment";
 export * from "./commitment";
 export * from "./tactic";
@@ -30,15 +32,34 @@ export * from "./recoveryKey";
 export * from "./demo";
 export * from "./milestone";
 export declare const sessionSchemas: Record<string, z.ZodTypeAny>;
-export declare const sessionSchema: z.ZodDiscriminatedUnion<"type", [typeof generalSessionSchema, typeof impulseSessionSchema, typeof behaviorSessionSchema, typeof timePlanSessionSchema, typeof alignmentSessionSchema, typeof recapSessionSchema, typeof locationPlanSessionSchema, typeof adjustmentSessionSchema, typeof commitmentSessionSchema, typeof tacticSessionSchema, typeof welcomeSessionSchema, typeof setupSessionSchema, typeof recoveryKeySessionSchema, typeof demoSessionSchema, typeof milestoneSessionSchema]>;
+export declare const sessionSchema: z.ZodDiscriminatedUnion<"type", [
+    typeof generalSessionSchema,
+    typeof impulseSessionSchema,
+    typeof behaviorSessionSchema,
+    typeof timePlanSessionSchema,
+    typeof onboardingSessionSchema,
+    typeof alignmentSessionSchema,
+    typeof recapSessionSchema,
+    typeof locationPlanSessionSchema,
+    typeof adjustmentSessionSchema,
+    typeof commitmentSessionSchema,
+    typeof tacticSessionSchema,
+    typeof welcomeSessionSchema,
+    typeof setupSessionSchema,
+    typeof recoveryKeySessionSchema,
+    typeof demoSessionSchema,
+    typeof milestoneSessionSchema
+]>;
 export declare const sessionIsGeneralSession: (value: Session) => value is GeneralSession;
 export declare const isValidGeneralSession: (value: unknown) => value is GeneralSession;
 export declare const sessionIsImpulseSession: (value: Session) => value is ImpulseSession;
 export declare const isValidImpulseSession: (value: unknown) => value is ImpulseSession;
 export declare const sessionIsTimePlanSession: (value: Session) => value is TimePlanSession;
 export declare const isValidTimePlanSession: (value: unknown) => value is TimePlanSession;
-export declare const sessionIsAlignmentSession: (value: Session) => value is AlignmentSession;
-export declare const isValidAlignmentSession: (value: unknown) => value is AlignmentSession;
+export declare const sessionIsOnboardingSession: (value: Session) => value is OnboardingSession;
+export declare const isValidOnboardingSession: (value: unknown) => value is OnboardingSession;
+export declare const sessionIsAlignmentSession: (value: Session) => value is OnboardingSession;
+export declare const isValidAlignmentSession: (value: unknown) => value is OnboardingSession;
 export declare const sessionIsRecapSession: (value: Session) => value is RecapSession;
 export declare const isValidRecapSession: (value: unknown) => value is RecapSession;
 export declare const sessionIsLocationPlanSession: (value: Session) => value is LocationPlanSession;

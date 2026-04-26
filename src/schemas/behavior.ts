@@ -11,11 +11,12 @@ import {
 } from "./milestoneAchievement";
 
 // Re-export for backward compatibility
-export { trackingTypes, baselinePeriods } from "./behaviorTemplate";
+export { trackingTypes, baselinePeriods, streakLabels } from "./behaviorTemplate";
 export type {
   BehaviorTemplate,
   TrackingType,
   BaselinePeriod,
+  StreakLabel,
 } from "./behaviorTemplate";
 export { behaviorTemplateSchema } from "./behaviorTemplate";
 

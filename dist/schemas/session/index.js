@@ -14,7 +14,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidMilestoneSession = exports.sessionIsMilestoneSession = exports.isValidDemoSession = exports.sessionIsDemoSession = exports.isValidRecoveryKeySession = exports.sessionIsRecoveryKeySession = exports.isValidWelcomeSession = exports.sessionIsWelcomeSession = exports.isValidTacticSession = exports.sessionIsTacticSession = exports.isValidCommitmentSession = exports.sessionIsCommitmentSession = exports.isValidAdjustmentSession = exports.sessionIsAdjustmentSession = exports.isValidBehaviorSession = exports.sessionIsBehaviorSession = exports.isValidLocationPlanSession = exports.sessionIsLocationPlanSession = exports.isValidRecapSession = exports.sessionIsRecapSession = exports.isValidAlignmentSession = exports.sessionIsAlignmentSession = exports.isValidTimePlanSession = exports.sessionIsTimePlanSession = exports.isValidImpulseSession = exports.sessionIsImpulseSession = exports.isValidGeneralSession = exports.sessionIsGeneralSession = exports.sessionSchema = exports.sessionSchemas = void 0;
+exports.isValidMilestoneSession = exports.sessionIsMilestoneSession = exports.isValidDemoSession = exports.sessionIsDemoSession = exports.isValidRecoveryKeySession = exports.sessionIsRecoveryKeySession = exports.isValidWelcomeSession = exports.sessionIsWelcomeSession = exports.isValidTacticSession = exports.sessionIsTacticSession = exports.isValidCommitmentSession = exports.sessionIsCommitmentSession = exports.isValidAdjustmentSession = exports.sessionIsAdjustmentSession = exports.isValidBehaviorSession = exports.sessionIsBehaviorSession = exports.isValidLocationPlanSession = exports.sessionIsLocationPlanSession = exports.isValidRecapSession = exports.sessionIsRecapSession = exports.isValidAlignmentSession = exports.sessionIsAlignmentSession = exports.isValidOnboardingSession = exports.sessionIsOnboardingSession = exports.isValidTimePlanSession = exports.sessionIsTimePlanSession = exports.isValidImpulseSession = exports.sessionIsImpulseSession = exports.isValidGeneralSession = exports.sessionIsGeneralSession = exports.sessionSchema = exports.sessionSchemas = void 0;
 exports.shouldSummarizeSession = shouldSummarizeSession;
 const zod_1 = require("zod");
 const adjustment_1 = require("./adjustment");
@@ -23,6 +23,8 @@ const general_1 = require("./general");
 const impulse_1 = require("./impulse");
 const plan_1 = require("./plan");
 const recap_1 = require("./recap");
+const onboarding_1 = require("./onboarding");
+// TODO: Remove after 2026-05-26 — legacy import for "alignment" → "onboarding" rename
 const alignment_1 = require("./alignment");
 const commitment_1 = require("./commitment");
 const tactic_1 = require("./tactic");
@@ -39,6 +41,8 @@ __exportStar(require("./impulse"), exports);
 __exportStar(require("./phase"), exports);
 __exportStar(require("./plan"), exports);
 __exportStar(require("./recap"), exports);
+__exportStar(require("./onboarding"), exports);
+// TODO: Remove after 2026-05-26 — legacy re-export for "alignment" → "onboarding" rename
 __exportStar(require("./alignment"), exports);
 __exportStar(require("./commitment"), exports);
 __exportStar(require("./tactic"), exports);
@@ -56,6 +60,8 @@ exports.sessionSchemas = {
     recap: recap_1.recapSessionSchema,
     locationPlan: plan_1.locationPlanSessionSchema,
     adjustment: adjustment_1.adjustmentSessionSchema,
+    onboarding: onboarding_1.onboardingSessionSchema,
+    // TODO: Remove after 2026-05-26 — legacy key for "alignment" → "onboarding" rename
     alignment: alignment_1.alignmentSessionSchema,
     commitment: commitment_1.commitmentSessionSchema,
     tactic: tactic_1.tacticSessionSchema,
@@ -71,6 +77,8 @@ exports.sessionSchema = zod_1.z.discriminatedUnion("type", [
     impulse_1.impulseSessionSchema,
     behavior_1.behaviorSessionSchema,
     plan_1.timePlanSessionSchema,
+    onboarding_1.onboardingSessionSchema,
+    // TODO: Remove after 2026-05-26 — legacy schema for "alignment" → "onboarding" rename
     alignment_1.alignmentSessionSchema,
     recap_1.recapSessionSchema,
     plan_1.locationPlanSessionSchema,
@@ -95,10 +103,14 @@ const sessionIsTimePlanSession = (value) => value.type === "timePlan";
 exports.sessionIsTimePlanSession = sessionIsTimePlanSession;
 const isValidTimePlanSession = (value) => plan_1.timePlanSessionSchema.safeParse(value).success;
 exports.isValidTimePlanSession = isValidTimePlanSession;
-const sessionIsAlignmentSession = (value) => value.type === "alignment";
-exports.sessionIsAlignmentSession = sessionIsAlignmentSession;
-const isValidAlignmentSession = (value) => alignment_1.alignmentSessionSchema.safeParse(value).success;
-exports.isValidAlignmentSession = isValidAlignmentSession;
+const sessionIsOnboardingSession = (value) => value.type === "onboarding" || value.type === "alignment";
+exports.sessionIsOnboardingSession = sessionIsOnboardingSession;
+const isValidOnboardingSession = (value) => onboarding_1.onboardingSessionSchema.safeParse(value).success ||
+    alignment_1.alignmentSessionSchema.safeParse(value).success;
+exports.isValidOnboardingSession = isValidOnboardingSession;
+// TODO: Remove after 2026-05-26 — legacy aliases for "alignment" → "onboarding" rename
+exports.sessionIsAlignmentSession = exports.sessionIsOnboardingSession;
+exports.isValidAlignmentSession = exports.isValidOnboardingSession;
 const sessionIsRecapSession = (value) => value.type === "recap";
 exports.sessionIsRecapSession = sessionIsRecapSession;
 const isValidRecapSession = (value) => recap_1.recapSessionSchema.safeParse(value).success;

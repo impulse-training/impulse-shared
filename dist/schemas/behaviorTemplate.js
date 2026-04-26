@@ -1,10 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.behaviorTemplateBase = exports.behaviorTemplateSchema = exports.baselinePeriods = exports.trackingTypes = void 0;
+exports.behaviorTemplateBase = exports.behaviorTemplateSchema = exports.streakLabels = exports.baselinePeriods = exports.trackingTypes = void 0;
 const zod_1 = require("zod");
 const timestampSchema_1 = require("../utils/timestampSchema");
 exports.trackingTypes = ["counter", "timer", "scale"];
 exports.baselinePeriods = ["daily", "weekly"];
+exports.streakLabels = ["clean", "free", "sober"];
 // These are foundational attributes, and correspond to documents in a top-level behaviorTemplates
 // collection. We then extend that schema to be the full behavior schema.
 const behaviorTemplateBase = zod_1.z.object({
@@ -19,6 +20,7 @@ const behaviorTemplateBase = zod_1.z.object({
     // Alternative phrases/synonyms for this behavior name (e.g. ["porn", "adult content"] for
     // "Pornography"). Used to mask hidden behaviors when the AI uses variant wording in chat.
     synonyms: zod_1.z.array(zod_1.z.string()).optional(),
+    streakLabel: zod_1.z.enum(exports.streakLabels).optional(),
     recapQuestionSequence: zod_1.z.array(zod_1.z.string()).optional(),
     createdAt: timestampSchema_1.timestampSchema.optional(),
     updatedAt: timestampSchema_1.timestampSchema.optional(),

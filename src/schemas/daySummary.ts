@@ -43,6 +43,7 @@ export const daySummarySchema = z.object({
   userId: z.string(),
   impulseSessionOutcomesById: objectOf(outcomeEnum),
   outcome: outcomeEnum.optional(),
+  // value units: minutes for timer, raw count for counter, scale level (1-3) for scale
   behaviorDataTotalByBehaviorId: objectOf(behaviorTrackingDataSchema),
   behaviorsById: objectOf(behaviorSchema).optional(),
   tacticsUsed: z.array(z.any()).default([]),

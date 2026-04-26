@@ -5,7 +5,6 @@ exports.getScaleLabel = getScaleLabel;
 exports.getFormattedValue = getFormattedValue;
 const pluralize = require("pluralize");
 exports.scaleLevels = [
-    { value: 0, label: "Zero" },
     { value: 1, label: "Low" },
     { value: 2, label: "Medium" },
     { value: 3, label: "High" },

@@ -27,6 +27,8 @@ const latestSessionMessageSchema = zod_1.z.object({
     sentAt: timestampSchema_1.timestampSchema,
 });
 exports.latestSessionMessageTypeSchema = zod_1.z.enum([
+    "onboarding",
+    // TODO: Remove after 2026-05-26. Legacy session message key.
     "alignment",
     "commitment",
 ]);
@@ -117,6 +119,7 @@ exports.userDataSchema = zod_1.z.object({
     // Roadmap / "What we're building" seen tracker
     seenRoadmapItemIds: zod_1.z.array(zod_1.z.string()).optional(),
     roadmapNotificationsEnabled: zod_1.z.boolean().optional(),
+    concurrentUserAccountIds: zod_1.z.array(zod_1.z.string()).optional(),
 });
 // Type guard for User
 const isUserData = (value) => exports.userDataSchema.safeParse(value).success;

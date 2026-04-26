@@ -1,5 +1,5 @@
 import { z } from "zod";
-export declare const latestSessionMessageTypeSchema: z.ZodEnum<["alignment", "commitment"]>;
+export declare const latestSessionMessageTypeSchema: z.ZodEnum<["onboarding", "alignment", "commitment"]>;
 export declare const userDataSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -105,7 +105,7 @@ export declare const userDataSchema: z.ZodObject<{
     markedAsEligibleAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     calendarBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     isCoach: z.ZodOptional<z.ZodBoolean>;
-    latestSupportGroupMessages: z.ZodOptional<z.ZodRecord<z.ZodEnum<["system", "social", "coach", "alignment"]>, z.ZodObject<{
+    latestSupportGroupMessages: z.ZodOptional<z.ZodRecord<z.ZodEnum<["system", "social", "coach", "onboarding", "alignment"]>, z.ZodObject<{
         senderId: z.ZodString;
         message: z.ZodString;
         sentAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -118,7 +118,7 @@ export declare const userDataSchema: z.ZodObject<{
         sentAt: import("../types").Timestamp;
         senderId: string;
     }>>>;
-    latestSessionMessages: z.ZodOptional<z.ZodRecord<z.ZodEnum<["alignment", "commitment"]>, z.ZodObject<{
+    latestSessionMessages: z.ZodOptional<z.ZodRecord<z.ZodEnum<["onboarding", "alignment", "commitment"]>, z.ZodObject<{
         sessionId: z.ZodString;
         message: z.ZodString;
         role: z.ZodEnum<["user", "assistant"]>;
@@ -156,6 +156,7 @@ export declare const userDataSchema: z.ZodObject<{
     }>>>;
     seenRoadmapItemIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     roadmapNotificationsEnabled: z.ZodOptional<z.ZodBoolean>;
+    concurrentUserAccountIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
 }, "strip", z.ZodTypeAny, {
     role: "user" | "coach" | "support";
     notificationsEnabled: boolean;
@@ -206,12 +207,12 @@ export declare const userDataSchema: z.ZodObject<{
     markedAsEligibleAt?: import("../types").Timestamp | undefined;
     calendarBehaviorIds?: string[] | undefined;
     isCoach?: boolean | undefined;
-    latestSupportGroupMessages?: Partial<Record<"system" | "alignment" | "social" | "coach", {
+    latestSupportGroupMessages?: Partial<Record<"onboarding" | "system" | "alignment" | "social" | "coach", {
         message: string;
         sentAt: import("../types").Timestamp;
         senderId: string;
     }>> | undefined;
-    latestSessionMessages?: Partial<Record<"alignment" | "commitment", {
+    latestSessionMessages?: Partial<Record<"onboarding" | "alignment" | "commitment", {
         message: string;
         sessionId: string;
         role: "assistant" | "user";
@@ -228,6 +229,7 @@ export declare const userDataSchema: z.ZodObject<{
     }>> | undefined;
     seenRoadmapItemIds?: string[] | undefined;
     roadmapNotificationsEnabled?: boolean | undefined;
+    concurrentUserAccountIds?: string[] | undefined;
 }, {
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
@@ -278,12 +280,12 @@ export declare const userDataSchema: z.ZodObject<{
     markedAsEligibleAt?: import("../types").Timestamp | undefined;
     calendarBehaviorIds?: string[] | undefined;
     isCoach?: boolean | undefined;
-    latestSupportGroupMessages?: Partial<Record<"system" | "alignment" | "social" | "coach", {
+    latestSupportGroupMessages?: Partial<Record<"onboarding" | "system" | "alignment" | "social" | "coach", {
         message: string;
         sentAt: import("../types").Timestamp;
         senderId: string;
     }>> | undefined;
-    latestSessionMessages?: Partial<Record<"alignment" | "commitment", {
+    latestSessionMessages?: Partial<Record<"onboarding" | "alignment" | "commitment", {
         message: string;
         sessionId: string;
         role: "assistant" | "user";
@@ -300,6 +302,7 @@ export declare const userDataSchema: z.ZodObject<{
     }>> | undefined;
     seenRoadmapItemIds?: string[] | undefined;
     roadmapNotificationsEnabled?: boolean | undefined;
+    concurrentUserAccountIds?: string[] | undefined;
 }>;
 export type UserData = z.infer<typeof userDataSchema>;
 export declare const isUserData: (value: unknown) => value is UserData;

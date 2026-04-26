@@ -16,7 +16,7 @@ const sessionTypeSchema = z.enum([
   "timePlan",
   "locationPlan",
   "adjustment",
-  "alignment",
+  "alignment", // TODO: Remove after 2026-05-26 — legacy value, replaced by "onboarding"
   "commitment",
   "setup",
   "welcome",

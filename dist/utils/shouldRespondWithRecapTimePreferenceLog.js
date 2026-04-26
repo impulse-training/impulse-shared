@@ -5,14 +5,14 @@ const schemas_1 = require("../schemas");
 /**
  * Check if we should respond to a log write event with a recap time preference log.
  * This happens when:
- * 1. The session is an alignment session
+ * 1. The session is an onboarding session
  * 2. A proposed_experiment log was just confirmed (confirmedAt was set)
  *    OR an image log was just acknowledged (acknowledgedAt was set)
  */
 function shouldRespondWithRecapTimePreferenceLog(session, beforeData, afterData) {
     if (!beforeData || !afterData)
         return false;
-    if (!(0, schemas_1.sessionIsAlignmentSession)(session))
+    if (!(0, schemas_1.sessionIsOnboardingSession)(session))
         return false;
     // When a proposed_experiment log gains confirmedAt
     if (afterData.type === "proposed_experiment" &&

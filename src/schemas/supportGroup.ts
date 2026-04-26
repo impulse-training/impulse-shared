@@ -42,6 +42,8 @@ export const supportGroupTypeSchema = z.enum([
   "system",
   "social",
   "coach",
+  "onboarding",
+  // TODO: Remove after 2026-05-26. Legacy support group type.
   "alignment",
 ]);
 export type SupportGroupType = z.infer<typeof supportGroupTypeSchema>;

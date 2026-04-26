@@ -1,11 +1,11 @@
-import { Session, sessionIsAlignmentSession } from "../schemas";
+import { Session, sessionIsOnboardingSession } from "../schemas";
 import { Log, logIsRecapTimePreferenceLog } from "../schemas/log";
 import { WithId } from "./withId";
 
 /**
  * Check if we should respond to a log write event with a notification CTA log.
  * This happens when:
- * 1. The session is an alignment session
+ * 1. The session is an onboarding session
  * 2. The user hasn't yet enabled or skipped notifications (notificationsEnabled is undefined)
  * 3. A recap_time_preference log was just responded to (respondedAt was set)
  *
@@ -21,8 +21,8 @@ export function shouldRespondWithNotificationCtaLog(
 ): boolean {
   if (!afterData) return false;
 
-  // Only for alignment sessions
-  if (!sessionIsAlignmentSession(session)) return false;
+  // Only for onboarding sessions
+  if (!sessionIsOnboardingSession(session)) return false;
 
   // Only if notifications haven't been enabled or skipped yet
   if (typeof session.notificationsEnabled !== "undefined") return false;

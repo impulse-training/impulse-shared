@@ -10,15 +10,14 @@ import {
   timePlanSessionSchema,
 } from "./plan";
 import { RecapSession, recapSessionSchema } from "./recap";
+import { OnboardingSession, onboardingSessionSchema } from "./onboarding";
+// TODO: Remove after 2026-05-26 — legacy import for "alignment" → "onboarding" rename
 import { AlignmentSession, alignmentSessionSchema } from "./alignment";
 import { CommitmentSession, commitmentSessionSchema } from "./commitment";
 import { TacticSession, tacticSessionSchema } from "./tactic";
 import { WelcomeSession, welcomeSessionSchema } from "./welcome";
 import { SetupSession, setupSessionSchema } from "./setup";
-import {
-  RecoveryKeySession,
-  recoveryKeySessionSchema,
-} from "./recoveryKey";
+import { RecoveryKeySession, recoveryKeySessionSchema } from "./recoveryKey";
 import { DemoSession, demoSessionSchema } from "./demo";
 import { MilestoneSession, milestoneSessionSchema } from "./milestone";
 
@@ -30,6 +29,8 @@ export * from "./impulse";
 export * from "./phase";
 export * from "./plan";
 export * from "./recap";
+export * from "./onboarding";
+// TODO: Remove after 2026-05-26 — legacy re-export for "alignment" → "onboarding" rename
 export * from "./alignment";
 export * from "./commitment";
 export * from "./tactic";
@@ -48,6 +49,8 @@ export const sessionSchemas: Record<string, z.ZodTypeAny> = {
   recap: recapSessionSchema,
   locationPlan: locationPlanSessionSchema,
   adjustment: adjustmentSessionSchema,
+  onboarding: onboardingSessionSchema,
+  // TODO: Remove after 2026-05-26 — legacy key for "alignment" → "onboarding" rename
   alignment: alignmentSessionSchema,
   commitment: commitmentSessionSchema,
   tactic: tacticSessionSchema,
@@ -59,11 +62,33 @@ export const sessionSchemas: Record<string, z.ZodTypeAny> = {
 };
 
 // Discriminated union over type
-export const sessionSchema: z.ZodDiscriminatedUnion<"type", [typeof generalSessionSchema, typeof impulseSessionSchema, typeof behaviorSessionSchema, typeof timePlanSessionSchema, typeof alignmentSessionSchema, typeof recapSessionSchema, typeof locationPlanSessionSchema, typeof adjustmentSessionSchema, typeof commitmentSessionSchema, typeof tacticSessionSchema, typeof welcomeSessionSchema, typeof setupSessionSchema, typeof recoveryKeySessionSchema, typeof demoSessionSchema, typeof milestoneSessionSchema]> = z.discriminatedUnion("type", [
+export const sessionSchema: z.ZodDiscriminatedUnion<
+  "type",
+  [
+    typeof generalSessionSchema,
+    typeof impulseSessionSchema,
+    typeof behaviorSessionSchema,
+    typeof timePlanSessionSchema,
+    typeof onboardingSessionSchema,
+    typeof alignmentSessionSchema,
+    typeof recapSessionSchema,
+    typeof locationPlanSessionSchema,
+    typeof adjustmentSessionSchema,
+    typeof commitmentSessionSchema,
+    typeof tacticSessionSchema,
+    typeof welcomeSessionSchema,
+    typeof setupSessionSchema,
+    typeof recoveryKeySessionSchema,
+    typeof demoSessionSchema,
+    typeof milestoneSessionSchema,
+  ]
+> = z.discriminatedUnion("type", [
   generalSessionSchema,
   impulseSessionSchema,
   behaviorSessionSchema,
   timePlanSessionSchema,
+  onboardingSessionSchema,
+  // TODO: Remove after 2026-05-26 — legacy schema for "alignment" → "onboarding" rename
   alignmentSessionSchema,
   recapSessionSchema,
   locationPlanSessionSchema,
@@ -98,12 +123,21 @@ export const isValidTimePlanSession = (
   value: unknown,
 ): value is TimePlanSession => timePlanSessionSchema.safeParse(value).success;
 
-export const sessionIsAlignmentSession = (
+export const sessionIsOnboardingSession = (
   value: Session,
-): value is AlignmentSession => value.type === "alignment";
-export const isValidAlignmentSession = (
+  // TODO: Remove "alignment" fallback after 2026-05-26
+): value is OnboardingSession =>
+  value.type === "onboarding" || (value.type as string) === "alignment";
+export const isValidOnboardingSession = (
   value: unknown,
-): value is AlignmentSession => alignmentSessionSchema.safeParse(value).success;
+  // TODO: Remove "alignment" fallback after 2026-05-26
+): value is OnboardingSession =>
+  onboardingSessionSchema.safeParse(value).success ||
+  alignmentSessionSchema.safeParse(value).success;
+
+// TODO: Remove after 2026-05-26 — legacy aliases for "alignment" → "onboarding" rename
+export const sessionIsAlignmentSession = sessionIsOnboardingSession;
+export const isValidAlignmentSession = isValidOnboardingSession;
 
 export const sessionIsRecapSession = (value: Session): value is RecapSession =>
   value.type === "recap";
@@ -144,9 +178,8 @@ export const isValidCommitmentSession = (
 export const sessionIsTacticSession = (
   value: Session,
 ): value is TacticSession => value.type === "tactic";
-export const isValidTacticSession = (
-  value: unknown,
-): value is TacticSession => tacticSessionSchema.safeParse(value).success;
+export const isValidTacticSession = (value: unknown): value is TacticSession =>
+  tacticSessionSchema.safeParse(value).success;
 
 export const sessionIsWelcomeSession = (
   value: Session,
@@ -163,12 +196,10 @@ export const isValidRecoveryKeySession = (
 ): value is RecoveryKeySession =>
   recoveryKeySessionSchema.safeParse(value).success;
 
-export const sessionIsDemoSession = (
-  value: Session,
-): value is DemoSession => value.type === "demo";
-export const isValidDemoSession = (
-  value: unknown,
-): value is DemoSession => demoSessionSchema.safeParse(value).success;
+export const sessionIsDemoSession = (value: Session): value is DemoSession =>
+  value.type === "demo";
+export const isValidDemoSession = (value: unknown): value is DemoSession =>
+  demoSessionSchema.safeParse(value).success;
 
 export const sessionIsMilestoneSession = (
   value: Session,

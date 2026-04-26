@@ -7,6 +7,9 @@ export type TrackingType = (typeof trackingTypes)[number];
 export const baselinePeriods = ["daily", "weekly"] as const;
 export type BaselinePeriod = (typeof baselinePeriods)[number];
 
+export const streakLabels = ["clean", "free", "sober"] as const;
+export type StreakLabel = (typeof streakLabels)[number];
+
 // These are foundational attributes, and correspond to documents in a top-level behaviorTemplates
 // collection. We then extend that schema to be the full behavior schema.
 const behaviorTemplateBase = z.object({
@@ -22,6 +25,7 @@ const behaviorTemplateBase = z.object({
   // Alternative phrases/synonyms for this behavior name (e.g. ["porn", "adult content"] for
   // "Pornography"). Used to mask hidden behaviors when the AI uses variant wording in chat.
   synonyms: z.array(z.string()).optional(),
+  streakLabel: z.enum(streakLabels).optional(),
   recapQuestionSequence: z.array(z.string()).optional(),
   createdAt: timestampSchema.optional(),
   updatedAt: timestampSchema.optional(),

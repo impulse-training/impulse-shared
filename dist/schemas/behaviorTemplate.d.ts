@@ -3,6 +3,8 @@ export declare const trackingTypes: readonly ["counter", "timer", "scale"];
 export type TrackingType = (typeof trackingTypes)[number];
 export declare const baselinePeriods: readonly ["daily", "weekly"];
 export type BaselinePeriod = (typeof baselinePeriods)[number];
+export declare const streakLabels: readonly ["clean", "free", "sober"];
+export type StreakLabel = (typeof streakLabels)[number];
 declare const behaviorTemplateBase: z.ZodObject<{
     name: z.ZodString;
     trackingType: z.ZodEnum<["counter", "timer", "scale"]>;
@@ -10,6 +12,7 @@ declare const behaviorTemplateBase: z.ZodObject<{
     baselinePeriod: z.ZodOptional<z.ZodEnum<["daily", "weekly"]>>;
     color: z.ZodOptional<z.ZodString>;
     synonyms: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    streakLabel: z.ZodOptional<z.ZodEnum<["clean", "free", "sober"]>>;
     recapQuestionSequence: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -22,6 +25,7 @@ declare const behaviorTemplateBase: z.ZodObject<{
     baselinePeriod?: "daily" | "weekly" | undefined;
     color?: string | undefined;
     synonyms?: string[] | undefined;
+    streakLabel?: "clean" | "free" | "sober" | undefined;
     recapQuestionSequence?: string[] | undefined;
 }, {
     trackingType: "counter" | "timer" | "scale";
@@ -32,6 +36,7 @@ declare const behaviorTemplateBase: z.ZodObject<{
     baselinePeriod?: "daily" | "weekly" | undefined;
     color?: string | undefined;
     synonyms?: string[] | undefined;
+    streakLabel?: "clean" | "free" | "sober" | undefined;
     recapQuestionSequence?: string[] | undefined;
 }>;
 export declare const behaviorTemplateSchema: z.ZodEffects<z.ZodObject<{
@@ -41,6 +46,7 @@ export declare const behaviorTemplateSchema: z.ZodEffects<z.ZodObject<{
     baselinePeriod: z.ZodOptional<z.ZodEnum<["daily", "weekly"]>>;
     color: z.ZodOptional<z.ZodString>;
     synonyms: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    streakLabel: z.ZodOptional<z.ZodEnum<["clean", "free", "sober"]>>;
     recapQuestionSequence: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -53,6 +59,7 @@ export declare const behaviorTemplateSchema: z.ZodEffects<z.ZodObject<{
     baselinePeriod?: "daily" | "weekly" | undefined;
     color?: string | undefined;
     synonyms?: string[] | undefined;
+    streakLabel?: "clean" | "free" | "sober" | undefined;
     recapQuestionSequence?: string[] | undefined;
 }, {
     trackingType: "counter" | "timer" | "scale";
@@ -63,6 +70,7 @@ export declare const behaviorTemplateSchema: z.ZodEffects<z.ZodObject<{
     baselinePeriod?: "daily" | "weekly" | undefined;
     color?: string | undefined;
     synonyms?: string[] | undefined;
+    streakLabel?: "clean" | "free" | "sober" | undefined;
     recapQuestionSequence?: string[] | undefined;
 }>, {
     trackingType: "counter" | "timer" | "scale";
@@ -73,6 +81,7 @@ export declare const behaviorTemplateSchema: z.ZodEffects<z.ZodObject<{
     baselinePeriod?: "daily" | "weekly" | undefined;
     color?: string | undefined;
     synonyms?: string[] | undefined;
+    streakLabel?: "clean" | "free" | "sober" | undefined;
     recapQuestionSequence?: string[] | undefined;
 }, {
     trackingType: "counter" | "timer" | "scale";
@@ -83,6 +92,7 @@ export declare const behaviorTemplateSchema: z.ZodEffects<z.ZodObject<{
     baselinePeriod?: "daily" | "weekly" | undefined;
     color?: string | undefined;
     synonyms?: string[] | undefined;
+    streakLabel?: "clean" | "free" | "sober" | undefined;
     recapQuestionSequence?: string[] | undefined;
 }>;
 export type BehaviorTemplate = z.infer<typeof behaviorTemplateSchema>;

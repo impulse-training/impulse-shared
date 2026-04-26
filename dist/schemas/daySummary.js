@@ -38,6 +38,7 @@ exports.daySummarySchema = zod_1.z.object({
     userId: zod_1.z.string(),
     impulseSessionOutcomesById: (0, objectOf_1.objectOf)(outcomeEnum),
     outcome: outcomeEnum.optional(),
+    // value units: minutes for timer, raw count for counter, scale level (1-3) for scale
     behaviorDataTotalByBehaviorId: (0, objectOf_1.objectOf)(log_1.behaviorTrackingDataSchema),
     behaviorsById: (0, objectOf_1.objectOf)(behavior_1.behaviorSchema).optional(),
     tacticsUsed: zod_1.z.array(zod_1.z.any()).default([]),
