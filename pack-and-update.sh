@@ -4,7 +4,7 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 SHARED_DIR="$SCRIPT_DIR"
 
-ALL_NAMES="tools native functions voice-agent website admin"
+ALL_NAMES="tools native functions voice-agent website admin dashboard"
 
 resolve_dir() {
   case "$1" in
@@ -14,6 +14,7 @@ resolve_dir() {
     voice-agent) echo "$SCRIPT_DIR/../impulse-voice-agent" ;;
     website)     echo "$SCRIPT_DIR/../impulse-website-tailwind" ;;
     admin)       echo "$SCRIPT_DIR/../impulse-admin-next" ;;
+    dashboard)   echo "$SCRIPT_DIR/../impulse-dashboard" ;;
     *) echo ""; return 1 ;;
   esac
 }
@@ -28,7 +29,7 @@ while [[ $# -gt 0 ]]; do
       ;;
     *)
       echo "Unknown argument: $1"
-      echo "Usage: $0 [--only tools,native,functions,voice-agent,website,admin]"
+      echo "Usage: $0 [--only tools,native,functions,voice-agent,website,admin,dashboard]"
       exit 1
       ;;
   esac
