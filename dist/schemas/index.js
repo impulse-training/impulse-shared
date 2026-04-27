@@ -52,6 +52,7 @@ __exportStar(require("./session"), exports);
 __exportStar(require("./supportGroup"), exports);
 __exportStar(require("./supportRequest"), exports);
 __exportStar(require("./systemUpdate"), exports);
+__exportStar(require("./task"), exports);
 __exportStar(require("./tagGroup"), exports);
 __exportStar(require("./transcriptItem"), exports);
 __exportStar(require("./utils/supportGroupSummary"), exports);

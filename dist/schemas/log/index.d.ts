@@ -30,6 +30,7 @@ import { RecoveryKeyLog } from "./recoveryKeyLog";
 import { CloseButtonLog } from "./closeButtonLog";
 import { ImageLog } from "./imageLog";
 import { PhotoLog } from "./photoLog";
+import { LogWithResponseButtonsLog } from "./logWithResponseButtonsLog";
 export declare const logSchemas: {
     user: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
@@ -20171,10 +20172,134 @@ export declare const logSchemas: {
         tacticId?: string | undefined;
         impulseId?: string | undefined;
     }>;
+    log_with_response_buttons: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        sessionId: z.ZodString;
+        tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        impulseId: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"log_with_response_buttons">;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            title: z.ZodString;
+            body: z.ZodOptional<z.ZodString>;
+            taskId: z.ZodOptional<z.ZodString>;
+            taskType: z.ZodOptional<z.ZodString>;
+            buttons: z.ZodArray<z.ZodObject<{
+                id: z.ZodString;
+                label: z.ZodString;
+                responseText: z.ZodString;
+                style: z.ZodOptional<z.ZodEnum<["primary", "secondary", "destructive"]>>;
+            }, "strip", z.ZodTypeAny, {
+                id: string;
+                label: string;
+                responseText: string;
+                style?: "primary" | "secondary" | "destructive" | undefined;
+            }, {
+                id: string;
+                label: string;
+                responseText: string;
+                style?: "primary" | "secondary" | "destructive" | undefined;
+            }>, "many">;
+            selectedButtonId: z.ZodOptional<z.ZodString>;
+            selectedResponseText: z.ZodOptional<z.ZodString>;
+            respondedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        }, "strip", z.ZodTypeAny, {
+            title: string;
+            buttons: {
+                id: string;
+                label: string;
+                responseText: string;
+                style?: "primary" | "secondary" | "destructive" | undefined;
+            }[];
+            respondedAt?: import("../../types").Timestamp | undefined;
+            body?: string | undefined;
+            taskId?: string | undefined;
+            taskType?: string | undefined;
+            selectedButtonId?: string | undefined;
+            selectedResponseText?: string | undefined;
+        }, {
+            title: string;
+            buttons: {
+                id: string;
+                label: string;
+                responseText: string;
+                style?: "primary" | "secondary" | "destructive" | undefined;
+            }[];
+            respondedAt?: import("../../types").Timestamp | undefined;
+            body?: string | undefined;
+            taskId?: string | undefined;
+            taskType?: string | undefined;
+            selectedButtonId?: string | undefined;
+            selectedResponseText?: string | undefined;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "log_with_response_buttons";
+        sessionId: string;
+        dateString: string;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: true;
+        data: {
+            title: string;
+            buttons: {
+                id: string;
+                label: string;
+                responseText: string;
+                style?: "primary" | "secondary" | "destructive" | undefined;
+            }[];
+            respondedAt?: import("../../types").Timestamp | undefined;
+            body?: string | undefined;
+            taskId?: string | undefined;
+            taskType?: string | undefined;
+            selectedButtonId?: string | undefined;
+            selectedResponseText?: string | undefined;
+        };
+        id?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
+        impulseId?: string | undefined;
+    }, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "log_with_response_buttons";
+        sessionId: string;
+        dateString: string;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: true;
+        data: {
+            title: string;
+            buttons: {
+                id: string;
+                label: string;
+                responseText: string;
+                style?: "primary" | "secondary" | "destructive" | undefined;
+            }[];
+            respondedAt?: import("../../types").Timestamp | undefined;
+            body?: string | undefined;
+            taskId?: string | undefined;
+            taskType?: string | undefined;
+            selectedButtonId?: string | undefined;
+            selectedResponseText?: string | undefined;
+        };
+        id?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
+        impulseId?: string | undefined;
+    }>;
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ProposedExperimentLog | ProposedStrategyModificationLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | TriggerSelectionLog | RequestPermissionsLog | TacticReviewLog | SetupModeChoiceLog | TagsUpdatedLog | CrisisResourceLog | RecoveryKeyLog | CloseButtonLog | ImageLog | PhotoLog;
+export type Log = TacticLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ProposedExperimentLog | ProposedStrategyModificationLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | TriggerSelectionLog | RequestPermissionsLog | TacticReviewLog | SetupModeChoiceLog | TagsUpdatedLog | CrisisResourceLog | RecoveryKeyLog | CloseButtonLog | ImageLog | PhotoLog | LogWithResponseButtonsLog;
 export * from "./behaviorLog";
 export * from "./breathingLog";
 export * from "./callLog";
@@ -20207,6 +20332,7 @@ export * from "./recoveryKeyLog";
 export * from "./closeButtonLog";
 export * from "./imageLog";
 export * from "./photoLog";
+export * from "./logWithResponseButtonsLog";
 export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -36259,6 +36385,129 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     behaviorIds?: string[] | undefined;
     tacticId?: string | undefined;
     impulseId?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    sessionId: z.ZodString;
+    tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    impulseId: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"log_with_response_buttons">;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        title: z.ZodString;
+        body: z.ZodOptional<z.ZodString>;
+        taskId: z.ZodOptional<z.ZodString>;
+        taskType: z.ZodOptional<z.ZodString>;
+        buttons: z.ZodArray<z.ZodObject<{
+            id: z.ZodString;
+            label: z.ZodString;
+            responseText: z.ZodString;
+            style: z.ZodOptional<z.ZodEnum<["primary", "secondary", "destructive"]>>;
+        }, "strip", z.ZodTypeAny, {
+            id: string;
+            label: string;
+            responseText: string;
+            style?: "primary" | "secondary" | "destructive" | undefined;
+        }, {
+            id: string;
+            label: string;
+            responseText: string;
+            style?: "primary" | "secondary" | "destructive" | undefined;
+        }>, "many">;
+        selectedButtonId: z.ZodOptional<z.ZodString>;
+        selectedResponseText: z.ZodOptional<z.ZodString>;
+        respondedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    }, "strip", z.ZodTypeAny, {
+        title: string;
+        buttons: {
+            id: string;
+            label: string;
+            responseText: string;
+            style?: "primary" | "secondary" | "destructive" | undefined;
+        }[];
+        respondedAt?: import("../../types").Timestamp | undefined;
+        body?: string | undefined;
+        taskId?: string | undefined;
+        taskType?: string | undefined;
+        selectedButtonId?: string | undefined;
+        selectedResponseText?: string | undefined;
+    }, {
+        title: string;
+        buttons: {
+            id: string;
+            label: string;
+            responseText: string;
+            style?: "primary" | "secondary" | "destructive" | undefined;
+        }[];
+        respondedAt?: import("../../types").Timestamp | undefined;
+        body?: string | undefined;
+        taskId?: string | undefined;
+        taskType?: string | undefined;
+        selectedButtonId?: string | undefined;
+        selectedResponseText?: string | undefined;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "log_with_response_buttons";
+    sessionId: string;
+    dateString: string;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: true;
+    data: {
+        title: string;
+        buttons: {
+            id: string;
+            label: string;
+            responseText: string;
+            style?: "primary" | "secondary" | "destructive" | undefined;
+        }[];
+        respondedAt?: import("../../types").Timestamp | undefined;
+        body?: string | undefined;
+        taskId?: string | undefined;
+        taskType?: string | undefined;
+        selectedButtonId?: string | undefined;
+        selectedResponseText?: string | undefined;
+    };
+    id?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
+    impulseId?: string | undefined;
+}, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "log_with_response_buttons";
+    sessionId: string;
+    dateString: string;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: true;
+    data: {
+        title: string;
+        buttons: {
+            id: string;
+            label: string;
+            responseText: string;
+            style?: "primary" | "secondary" | "destructive" | undefined;
+        }[];
+        respondedAt?: import("../../types").Timestamp | undefined;
+        body?: string | undefined;
+        taskId?: string | undefined;
+        taskType?: string | undefined;
+        selectedButtonId?: string | undefined;
+        selectedResponseText?: string | undefined;
+    };
+    id?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
+    impulseId?: string | undefined;
 }>]>;
 export declare const logIsAssistantMessageLog: (value: Omit<Log, "id">) => value is AssistantMessageLog;
 export declare const isValidAssistantMessageLog: (value: unknown) => value is AssistantMessageLog;
@@ -36314,3 +36563,4 @@ export declare const logIsRecoveryKeyLog: (value: Omit<Log, "id">) => value is R
 export declare const logIsCloseButtonLog: (value: Omit<Log, "id">) => value is CloseButtonLog;
 export declare const logIsImageLog: (value: Omit<Log, "id">) => value is ImageLog;
 export declare const logIsPhotoLog: (value: Omit<Log, "id">) => value is PhotoLog;
+export declare const logIsLogWithResponseButtonsLog: (value: Omit<Log, "id">) => value is LogWithResponseButtonsLog;

@@ -90,15 +90,6 @@ export const sessionBaseSchema = z.object({
   // ID of the active call log document (in users/{userId}/logs)
   activeCallLogId: z.string().optional(),
 
-  // Captured GPS location at session start
-  location: z
-    .object({
-      latitude: z.number(),
-      longitude: z.number(),
-      accuracy: z.number().optional(),
-    })
-    .optional(),
-
   // Multi-select tags: tagGroupId → array of selected optionIds
   tags: z.record(z.string(), z.array(z.string())).optional(),
 

@@ -4,13 +4,12 @@ exports.triggerHasLocation = exports.isValidTrigger = exports.triggerWithIdSchem
 const zod_1 = require("zod");
 const timestampSchema_1 = require("../../utils/timestampSchema");
 const withId_1 = require("../../utils/withId");
-// Optional location data for location-based triggers
+// Optional location reference for location-based triggers. Coordinates and
+// addresses live only on the user's device.
 exports.triggerLocationSchema = zod_1.z.object({
     locationName: zod_1.z.string().min(1, "Location name is required"),
-    address: zod_1.z.string().min(1, "Address is required"),
     triggerType: zod_1.z.enum(["arrival", "departure"]),
-    latitude: zod_1.z.number().min(-90).max(90),
-    longitude: zod_1.z.number().min(-180).max(180),
+    localLocationRef: zod_1.z.string().min(1, "Location reference is required"),
 });
 // Single trigger schema — defined by a combination of tag group/option pairs
 exports.triggerSchema = zod_1.z.object({
@@ -21,9 +20,9 @@ exports.triggerSchema = zod_1.z.object({
     // Legacy text description (being migrated to tags)
     text: zod_1.z.string().optional(),
     ordinal: zod_1.z.number().optional(),
-    // Arrival/departure for location-based auto-triggering (coordinates come from the location tag group option)
+    // Arrival/departure for location-based auto-triggering (coordinates are resolved locally)
     triggerType: zod_1.z.enum(["arrival", "departure"]).optional(),
-    /** @deprecated Use triggerType + location tag group option coordinates instead */
+    /** @deprecated Use triggerType + location tag group option localLocationRef instead */
     location: exports.triggerLocationSchema.optional(),
     lastOccurredAt: timestampSchema_1.timestampSchema.nullable(),
     createdAt: timestampSchema_1.timestampSchema.optional(),

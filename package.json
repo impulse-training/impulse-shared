@@ -1,6 +1,6 @@
 {
   "name": "impulse-shared",
-  "version": "0.1.1-1777222916",
+  "version": "0.1.1-1777318497",
   "description": "Shared types and utilities for Impulse applications",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -30,7 +30,6 @@
     "lodash": "^4.17.21",
     "openai": "^4.87.3",
     "pluralize": "^8.0.0",
-    "typescript": "^5.8.2",
     "zod": "^3.25.76"
   },
   "devDependencies": {
@@ -38,6 +37,7 @@
     "@types/lodash": "^4.17.16",
     "@types/node": "^20.11.5",
     "jest": "^29.7.0",
-    "ts-jest": "^29.1.2"
+    "ts-jest": "^29.1.2",
+    "typescript": "^5.8.2"
   }
 }

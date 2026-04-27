@@ -1,21 +1,15 @@
 import { z } from "zod";
 export declare const triggerLocationSchema: z.ZodObject<{
     locationName: z.ZodString;
-    address: z.ZodString;
     triggerType: z.ZodEnum<["arrival", "departure"]>;
-    latitude: z.ZodNumber;
-    longitude: z.ZodNumber;
+    localLocationRef: z.ZodString;
 }, "strip", z.ZodTypeAny, {
     locationName: string;
-    latitude: number;
-    longitude: number;
-    address: string;
+    localLocationRef: string;
     triggerType: "arrival" | "departure";
 }, {
     locationName: string;
-    latitude: number;
-    longitude: number;
-    address: string;
+    localLocationRef: string;
     triggerType: "arrival" | "departure";
 }>;
 export type TriggerLocation = z.infer<typeof triggerLocationSchema>;
@@ -26,24 +20,18 @@ export declare const triggerSchema: z.ZodObject<{
     text: z.ZodOptional<z.ZodString>;
     ordinal: z.ZodOptional<z.ZodNumber>;
     triggerType: z.ZodOptional<z.ZodEnum<["arrival", "departure"]>>;
-    /** @deprecated Use triggerType + location tag group option coordinates instead */
+    /** @deprecated Use triggerType + location tag group option localLocationRef instead */
     location: z.ZodOptional<z.ZodObject<{
         locationName: z.ZodString;
-        address: z.ZodString;
         triggerType: z.ZodEnum<["arrival", "departure"]>;
-        latitude: z.ZodNumber;
-        longitude: z.ZodNumber;
+        localLocationRef: z.ZodString;
     }, "strip", z.ZodTypeAny, {
         locationName: string;
-        latitude: number;
-        longitude: number;
-        address: string;
+        localLocationRef: string;
         triggerType: "arrival" | "departure";
     }, {
         locationName: string;
-        latitude: number;
-        longitude: number;
-        address: string;
+        localLocationRef: string;
         triggerType: "arrival" | "departure";
     }>>;
     lastOccurredAt: z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -62,9 +50,7 @@ export declare const triggerSchema: z.ZodObject<{
     deletedAt?: import("../../types").Timestamp | undefined;
     location?: {
         locationName: string;
-        latitude: number;
-        longitude: number;
-        address: string;
+        localLocationRef: string;
         triggerType: "arrival" | "departure";
     } | undefined;
     triggerType?: "arrival" | "departure" | undefined;
@@ -80,9 +66,7 @@ export declare const triggerSchema: z.ZodObject<{
     deletedAt?: import("../../types").Timestamp | undefined;
     location?: {
         locationName: string;
-        latitude: number;
-        longitude: number;
-        address: string;
+        localLocationRef: string;
         triggerType: "arrival" | "departure";
     } | undefined;
     triggerType?: "arrival" | "departure" | undefined;
@@ -104,24 +88,18 @@ export declare const triggerWithIdSchema: z.ZodIntersection<z.ZodObject<{
     text: z.ZodOptional<z.ZodString>;
     ordinal: z.ZodOptional<z.ZodNumber>;
     triggerType: z.ZodOptional<z.ZodEnum<["arrival", "departure"]>>;
-    /** @deprecated Use triggerType + location tag group option coordinates instead */
+    /** @deprecated Use triggerType + location tag group option localLocationRef instead */
     location: z.ZodOptional<z.ZodObject<{
         locationName: z.ZodString;
-        address: z.ZodString;
         triggerType: z.ZodEnum<["arrival", "departure"]>;
-        latitude: z.ZodNumber;
-        longitude: z.ZodNumber;
+        localLocationRef: z.ZodString;
     }, "strip", z.ZodTypeAny, {
         locationName: string;
-        latitude: number;
-        longitude: number;
-        address: string;
+        localLocationRef: string;
         triggerType: "arrival" | "departure";
     }, {
         locationName: string;
-        latitude: number;
-        longitude: number;
-        address: string;
+        localLocationRef: string;
         triggerType: "arrival" | "departure";
     }>>;
     lastOccurredAt: z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -140,9 +118,7 @@ export declare const triggerWithIdSchema: z.ZodIntersection<z.ZodObject<{
     deletedAt?: import("../../types").Timestamp | undefined;
     location?: {
         locationName: string;
-        latitude: number;
-        longitude: number;
-        address: string;
+        localLocationRef: string;
         triggerType: "arrival" | "departure";
     } | undefined;
     triggerType?: "arrival" | "departure" | undefined;
@@ -158,9 +134,7 @@ export declare const triggerWithIdSchema: z.ZodIntersection<z.ZodObject<{
     deletedAt?: import("../../types").Timestamp | undefined;
     location?: {
         locationName: string;
-        latitude: number;
-        longitude: number;
-        address: string;
+        localLocationRef: string;
         triggerType: "arrival" | "departure";
     } | undefined;
     triggerType?: "arrival" | "departure" | undefined;

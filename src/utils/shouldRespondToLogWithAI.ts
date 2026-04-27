@@ -10,6 +10,7 @@ import {
   logIsBehaviorLog,
   logIsDayTotalsPromptLog,
   logIsImpulseStartedLog,
+  logIsLogWithResponseButtonsLog,
   logIsMetricLog,
   logIsPlansLog,
   logIsSetupModeChoiceLog,
@@ -118,6 +119,13 @@ export function shouldRespondToLogWithAI(
     afterData.data.completed === true &&
     (!logIsTacticLog(beforeData) || beforeData.data.completed !== true);
 
+  const isResponseButtonSelected =
+    beforeData &&
+    afterData &&
+    logIsLogWithResponseButtonsLog(afterData) &&
+    !!afterData.data.selectedResponseText &&
+    fieldChanged(beforeData, afterData, "data.selectedResponseText");
+
   const latestIsAssistantOutput =
     latestSessionLog &&
     (logIsAssistantMessageLog(latestSessionLog) ||
@@ -131,6 +139,7 @@ export function shouldRespondToLogWithAI(
     !isDayTotalsPromptAction &&
     !isSetupModeTextChoice &&
     !isTacticCompleted &&
+    !isResponseButtonSelected &&
     latestIsAssistantOutput
   ) {
     console.log("Latest log is assistant output. Not responding with AI.");
@@ -333,6 +342,11 @@ export function shouldRespondToLogWithAI(
   // Case: Tactic log was completed — user finished a suggested tactic
   if (isTacticCompleted) {
     console.log("Tactic was completed. Responding with AI.");
+    return true;
+  }
+
+  if (isResponseButtonSelected) {
+    console.log("Response button selected. Responding with AI.");
     return true;
   }
 

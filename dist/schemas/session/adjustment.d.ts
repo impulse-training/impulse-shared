@@ -2458,19 +2458,6 @@ export declare const adjustmentSessionSchema: z.ZodObject<{
     startedPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     completedPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     activeCallLogId: z.ZodOptional<z.ZodString>;
-    location: z.ZodOptional<z.ZodObject<{
-        latitude: z.ZodNumber;
-        longitude: z.ZodNumber;
-        accuracy: z.ZodOptional<z.ZodNumber>;
-    }, "strip", z.ZodTypeAny, {
-        latitude: number;
-        longitude: number;
-        accuracy?: number | undefined;
-    }, {
-        latitude: number;
-        longitude: number;
-        accuracy?: number | undefined;
-    }>>;
     tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodArray<z.ZodString, "many">>>;
     aiFinalizedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     startedDeletingAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -2873,11 +2860,6 @@ export declare const adjustmentSessionSchema: z.ZodObject<{
     startedPlanIds?: string[] | undefined;
     completedPlanIds?: string[] | undefined;
     activeCallLogId?: string | undefined;
-    location?: {
-        latitude: number;
-        longitude: number;
-        accuracy?: number | undefined;
-    } | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
@@ -3277,11 +3259,6 @@ export declare const adjustmentSessionSchema: z.ZodObject<{
     startedPlanIds?: string[] | undefined;
     completedPlanIds?: string[] | undefined;
     activeCallLogId?: string | undefined;
-    location?: {
-        latitude: number;
-        longitude: number;
-        accuracy?: number | undefined;
-    } | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;

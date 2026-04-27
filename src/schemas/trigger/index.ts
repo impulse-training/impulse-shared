@@ -2,13 +2,12 @@ import { z } from "zod";
 import { timestampSchema } from "../../utils/timestampSchema";
 import { withIdSchema } from "../../utils/withId";
 
-// Optional location data for location-based triggers
+// Optional location reference for location-based triggers. Coordinates and
+// addresses live only on the user's device.
 export const triggerLocationSchema = z.object({
   locationName: z.string().min(1, "Location name is required"),
-  address: z.string().min(1, "Address is required"),
   triggerType: z.enum(["arrival", "departure"]),
-  latitude: z.number().min(-90).max(90),
-  longitude: z.number().min(-180).max(180),
+  localLocationRef: z.string().min(1, "Location reference is required"),
 });
 
 export type TriggerLocation = z.infer<typeof triggerLocationSchema>;
@@ -22,9 +21,9 @@ export const triggerSchema = z.object({
   // Legacy text description (being migrated to tags)
   text: z.string().optional(),
   ordinal: z.number().optional(),
-  // Arrival/departure for location-based auto-triggering (coordinates come from the location tag group option)
+  // Arrival/departure for location-based auto-triggering (coordinates are resolved locally)
   triggerType: z.enum(["arrival", "departure"]).optional(),
-  /** @deprecated Use triggerType + location tag group option coordinates instead */
+  /** @deprecated Use triggerType + location tag group option localLocationRef instead */
   location: triggerLocationSchema.optional(),
   lastOccurredAt: timestampSchema.nullable(),
   createdAt: timestampSchema.optional(),

@@ -76,14 +76,6 @@ exports.sessionBaseSchema = zod_1.z.object({
     completedPlanIds: zod_1.z.array(zod_1.z.string()).optional(),
     // ID of the active call log document (in users/{userId}/logs)
     activeCallLogId: zod_1.z.string().optional(),
-    // Captured GPS location at session start
-    location: zod_1.z
-        .object({
-        latitude: zod_1.z.number(),
-        longitude: zod_1.z.number(),
-        accuracy: zod_1.z.number().optional(),
-    })
-        .optional(),
     // Multi-select tags: tagGroupId → array of selected optionIds
     tags: zod_1.z.record(zod_1.z.string(), zod_1.z.array(zod_1.z.string())).optional(),
     // Set when the AI calls showCloseButton — indicates the conversation has reached a natural end

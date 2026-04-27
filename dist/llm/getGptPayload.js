@@ -62,7 +62,7 @@ function buildBehaviorLogPayload(log, options) {
     return [];
 }
 function getGptPayload(log, isFinalLogInSession, options) {
-    var _a, _b, _c;
+    var _a, _b, _c, _d;
     if (log.type === "proposed_experiment") {
         const behaviorName = "behaviorName" in log
             ? log.behaviorName
@@ -127,6 +127,26 @@ function getGptPayload(log, isFinalLogInSession, options) {
             {
                 role: "user",
                 content: `<SYSTEM>The user accepted a suggested strategy update. Saved strategy: ${context}.</SYSTEM>`,
+            },
+        ];
+    }
+    if ((0, log_1.logIsLogWithResponseButtonsLog)(log)) {
+        const selected = (_c = log.data.selectedResponseText) === null || _c === void 0 ? void 0 : _c.trim();
+        if (selected) {
+            return [
+                {
+                    role: "user",
+                    content: selected,
+                },
+            ];
+        }
+        const taskContext = log.data.taskId
+            ? ` Task id: ${log.data.taskId}${log.data.taskType ? ` (${log.data.taskType})` : ""}.`
+            : "";
+        return [
+            {
+                role: "user",
+                content: `<SYSTEM>Zara showed the user a response-button prompt: ${log.data.title}.${taskContext} No button has been selected yet.</SYSTEM>`,
             },
         ];
     }
@@ -283,7 +303,7 @@ function getGptPayload(log, isFinalLogInSession, options) {
     }
     // Tags updated from UI — inform the AI so it can respond with tactic suggestions
     if (log.type === "tags_updated") {
-        const tactics = (_c = log.data) === null || _c === void 0 ? void 0 : _c.recommendedTactics;
+        const tactics = (_d = log.data) === null || _d === void 0 ? void 0 : _d.recommendedTactics;
         let tacticsContext = "";
         if (tactics && tactics.length > 0) {
             const lines = tactics.map((t) => `- [id=${t.tacticId}] "${t.title}"${t.phase ? ` (${t.phase})` : ""}${t.description ? ` — ${t.description}` : ""}`);

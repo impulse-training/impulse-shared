@@ -8,6 +8,7 @@ import {
   logIsDayTotalsPromptLog,
   logIsMetricLog,
   logIsPlansLog,
+  logIsLogWithResponseButtonsLog,
   logIsProposedStrategyModificationLog,
   logIsTacticLog,
   logIsToolCallLog,
@@ -186,6 +187,28 @@ export function getGptPayload(
       {
         role: "user",
         content: `<SYSTEM>The user accepted a suggested strategy update. Saved strategy: ${context}.</SYSTEM>`,
+      },
+    ];
+  }
+
+  if (logIsLogWithResponseButtonsLog(log)) {
+    const selected = log.data.selectedResponseText?.trim();
+    if (selected) {
+      return [
+        {
+          role: "user",
+          content: selected,
+        },
+      ];
+    }
+
+    const taskContext = log.data.taskId
+      ? ` Task id: ${log.data.taskId}${log.data.taskType ? ` (${log.data.taskType})` : ""}.`
+      : "";
+    return [
+      {
+        role: "user",
+        content: `<SYSTEM>Zara showed the user a response-button prompt: ${log.data.title}.${taskContext} No button has been selected yet.</SYSTEM>`,
       },
     ];
   }
