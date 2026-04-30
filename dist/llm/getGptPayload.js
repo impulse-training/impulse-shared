@@ -270,7 +270,7 @@ function getGptPayload(log, isFinalLogInSession, options) {
             return [
                 {
                     role: "user",
-                    content: `<CONTEXT>Metric "${metricName}"${scaleDesc} is awaiting user rating (1-10 scale).</CONTEXT>`,
+                    content: `<CONTEXT>Metric "${metricName}"${scaleDesc} is awaiting user rating (1-5 scale).</CONTEXT>`,
                 },
             ];
         }
@@ -280,21 +280,21 @@ function getGptPayload(log, isFinalLogInSession, options) {
                 return [
                     {
                         role: "user",
-                        content: `<CONTEXT>The user is feeling ${metricName} (${quadrant}), rated ${value}/10${scaleDesc}. They want to discuss this feeling.</CONTEXT>`,
+                        content: `<CONTEXT>The user is feeling ${metricName} (${quadrant}), rated ${value}/5${scaleDesc}. They want to discuss this feeling.</CONTEXT>`,
                     },
                 ];
             }
             return [
                 {
                     role: "user",
-                    content: `<CONTEXT>User is feeling "${metricName}" (${quadrant}): ${value}/10${scaleDesc}.</CONTEXT>`,
+                    content: `<CONTEXT>User is feeling "${metricName}" (${quadrant}): ${value}/5${scaleDesc}.</CONTEXT>`,
                 },
             ];
         }
         return [
             {
                 role: "user",
-                content: `<CONTEXT>User rated "${metricName}": ${value}/10${scaleDesc}.</CONTEXT>`,
+                content: `<CONTEXT>User rated "${metricName}": ${value}/5${scaleDesc}.</CONTEXT>`,
             },
         ];
     }

@@ -10,7 +10,7 @@ import {
 
 /**
  * Computed metrics for a specific time window (7, 30, or 90 days).
- * Analogous to BehaviorWindow, but for continuous 1-10 scale values.
+ * Analogous to BehaviorWindow, but for continuous 1-5 scale values.
  */
 export const metricWindowSchema = z.object({
   windowSizeDays: z.union([z.literal(7), z.literal(30), z.literal(90)]),
@@ -65,7 +65,7 @@ export const metricStateSchema = z.object({
   recentSlice: metricRecentSliceSchema.optional(),
   /**
    * A pre-generated natural-language summary for the AI, e.g.
-   * "The user has been scoring low energy lately (avg 3.4/10), and this has been declining."
+   * "The user has been scoring low energy lately (avg 3.4/5), and this has been declining."
    */
   textSummary: z.string(),
   meta: z.object({
@@ -81,7 +81,7 @@ export type MetricState = z.infer<typeof metricStateSchema>;
  * A user-level metric document.
  * Path: users/{userId}/metrics/{metricId}
  *
- * Metrics are lightweight self-report scales (1-10) that users track
+ * Metrics are lightweight self-report scales (1-5) that users track
  * during experiments to measure how a behavior change affects them.
  */
 export const metricSchema = z.object({
@@ -90,9 +90,9 @@ export const metricSchema = z.object({
   name: z.string().min(1),
   /** Prompt shown when tracking, e.g. "How clear is your thinking?" */
   description: z.string().optional(),
-  /** Label for the low end of the 1-10 scale, e.g. "Very foggy" */
+  /** Label for the low end of the 1-5 scale, e.g. "Very foggy" */
   minLabel: z.string().optional(),
-  /** Label for the high end of the 1-10 scale, e.g. "Very clear" */
+  /** Label for the high end of the 1-5 scale, e.g. "Very clear" */
   maxLabel: z.string().optional(),
   /** If created from METRIC_REGISTRY, stores the registry id for dedup */
   metricRegistryId: z.string().optional(),

@@ -17,8 +17,8 @@ exports.metricLogSchema = base_1.logBaseSchema.extend({
         metricId: zod_1.z.string(),
         /** Denormalized metric name for display */
         metricName: zod_1.z.string(),
-        /** 1–10 scale rating, null when awaiting user input */
-        value: zod_1.z.number().int().min(1).max(10).nullable(),
+        /** 1–5 scale rating, null when awaiting user input */
+        value: zod_1.z.number().int().min(1).max(5).nullable(),
         /** Denormalized label for the low end of the scale */
         minLabel: zod_1.z.string().optional(),
         /** Denormalized label for the high end of the scale */

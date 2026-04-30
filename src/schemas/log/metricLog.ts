@@ -15,8 +15,8 @@ export const metricLogSchema = logBaseSchema.extend({
     metricId: z.string(),
     /** Denormalized metric name for display */
     metricName: z.string(),
-    /** 1–10 scale rating, null when awaiting user input */
-    value: z.number().int().min(1).max(10).nullable(),
+    /** 1–5 scale rating, null when awaiting user input */
+    value: z.number().int().min(1).max(5).nullable(),
     /** Denormalized label for the low end of the scale */
     minLabel: z.string().optional(),
     /** Denormalized label for the high end of the scale */

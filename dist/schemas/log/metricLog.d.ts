@@ -24,7 +24,7 @@ export declare const metricLogSchema: z.ZodObject<{
         metricId: z.ZodString;
         /** Denormalized metric name for display */
         metricName: z.ZodString;
-        /** 1–10 scale rating, null when awaiting user input */
+        /** 1–5 scale rating, null when awaiting user input */
         value: z.ZodNullable<z.ZodNumber>;
         /** Denormalized label for the low end of the scale */
         minLabel: z.ZodOptional<z.ZodString>;

@@ -10,6 +10,7 @@ export const taskBaseSchema = z.object({
   title: z.string().min(1),
   instructions: z.string().min(1),
   context: z.string().optional(),
+  minAppVersion: z.string().optional(),
   createdBy: z.string().optional(),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
@@ -57,14 +58,31 @@ export const suggestStrategyTaskSchema = taskBaseSchema.extend({
   }),
 });
 
+export const proposedMetricSchema = z.object({
+  name: z.string().min(1),
+  minLabel: z.string().optional(),
+  maxLabel: z.string().optional(),
+});
+
+export const proposeExperimentTaskSchema = taskBaseSchema.extend({
+  type: z.literal("propose_experiment"),
+  proposedExperiment: z.object({
+    behaviorId: z.string().min(1),
+    metrics: z.array(proposedMetricSchema).min(1),
+    experimentQuestion: z.string().min(1),
+  }),
+});
+
 export const taskSchema = z.discriminatedUnion("type", [
   mergeBehaviorsTaskSchema,
   suggestStrategyTaskSchema,
+  proposeExperimentTaskSchema,
 ]);
 
 export type TaskStatus = z.infer<typeof taskStatusSchema>;
 export type MergeBehaviorsTask = z.infer<typeof mergeBehaviorsTaskSchema>;
 export type SuggestStrategyTask = z.infer<typeof suggestStrategyTaskSchema>;
+export type ProposeExperimentTask = z.infer<typeof proposeExperimentTaskSchema>;
 export type Task = z.infer<typeof taskSchema>;
 
 export const isTask = (value: unknown): value is Task =>
@@ -79,3 +97,8 @@ export const isSuggestStrategyTask = (
   value: unknown,
 ): value is SuggestStrategyTask =>
   suggestStrategyTaskSchema.safeParse(value).success;
+
+export const isProposeExperimentTask = (
+  value: unknown,
+): value is ProposeExperimentTask =>
+  proposeExperimentTaskSchema.safeParse(value).success;

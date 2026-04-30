@@ -8,7 +8,7 @@ const behavior_1 = require("./behavior");
 // ─── Metric State (computed cache, stored on the metric document) ─────────────
 /**
  * Computed metrics for a specific time window (7, 30, or 90 days).
- * Analogous to BehaviorWindow, but for continuous 1-10 scale values.
+ * Analogous to BehaviorWindow, but for continuous 1-5 scale values.
  */
 exports.metricWindowSchema = zod_1.z.object({
     windowSizeDays: zod_1.z.union([zod_1.z.literal(7), zod_1.z.literal(30), zod_1.z.literal(90)]),
@@ -57,7 +57,7 @@ exports.metricStateSchema = zod_1.z.object({
     recentSlice: exports.metricRecentSliceSchema.optional(),
     /**
      * A pre-generated natural-language summary for the AI, e.g.
-     * "The user has been scoring low energy lately (avg 3.4/10), and this has been declining."
+     * "The user has been scoring low energy lately (avg 3.4/5), and this has been declining."
      */
     textSummary: zod_1.z.string(),
     meta: zod_1.z.object({
@@ -70,7 +70,7 @@ exports.metricStateSchema = zod_1.z.object({
  * A user-level metric document.
  * Path: users/{userId}/metrics/{metricId}
  *
- * Metrics are lightweight self-report scales (1-10) that users track
+ * Metrics are lightweight self-report scales (1-5) that users track
  * during experiments to measure how a behavior change affects them.
  */
 exports.metricSchema = zod_1.z.object({
@@ -79,9 +79,9 @@ exports.metricSchema = zod_1.z.object({
     name: zod_1.z.string().min(1),
     /** Prompt shown when tracking, e.g. "How clear is your thinking?" */
     description: zod_1.z.string().optional(),
-    /** Label for the low end of the 1-10 scale, e.g. "Very foggy" */
+    /** Label for the low end of the 1-5 scale, e.g. "Very foggy" */
     minLabel: zod_1.z.string().optional(),
-    /** Label for the high end of the 1-10 scale, e.g. "Very clear" */
+    /** Label for the high end of the 1-5 scale, e.g. "Very clear" */
     maxLabel: zod_1.z.string().optional(),
     /** If created from METRIC_REGISTRY, stores the registry id for dedup */
     metricRegistryId: zod_1.z.string().optional(),
