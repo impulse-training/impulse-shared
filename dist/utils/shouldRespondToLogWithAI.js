@@ -67,9 +67,9 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         (0, log_1.logIsTacticLog)(afterData) &&
         afterData.data.completed === true &&
         (!(0, log_1.logIsTacticLog)(beforeData) || beforeData.data.completed !== true);
-    const isResponseButtonSelected = beforeData &&
+    const isMergeBehaviorsResponseSelected = beforeData &&
         afterData &&
-        (0, log_1.logIsLogWithResponseButtonsLog)(afterData) &&
+        (0, log_1.logIsMergeBehaviorsProposalLog)(afterData) &&
         !!afterData.data.selectedResponseText &&
         (0, fields_1.fieldChanged)(beforeData, afterData, "data.selectedResponseText");
     const latestIsAssistantOutput = latestSessionLog &&
@@ -82,7 +82,7 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         !isDayTotalsPromptAction &&
         !isSetupModeTextChoice &&
         !isTacticCompleted &&
-        !isResponseButtonSelected &&
+        !isMergeBehaviorsResponseSelected &&
         latestIsAssistantOutput) {
         console.log("Latest log is assistant output. Not responding with AI.");
         return false;
@@ -230,8 +230,8 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         console.log("Tactic was completed. Responding with AI.");
         return true;
     }
-    if (isResponseButtonSelected) {
-        console.log("Response button selected. Responding with AI.");
+    if (isMergeBehaviorsResponseSelected) {
+        console.log("Merge behaviors response selected. Responding with AI.");
         return true;
     }
     // Case: Tactic review completed — user finished reviewing tactics in the recap

@@ -182,6 +182,9 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             isCustom?: boolean | undefined;
         }>, "many">>;
         isDefault: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+        mergedIntoBehaviorId: z.ZodOptional<z.ZodString>;
+        mergedFromBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        mergedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         state: z.ZodOptional<z.ZodObject<{
             behaviorId: z.ZodString;
             goal: z.ZodOptional<z.ZodObject<{
@@ -1045,6 +1048,9 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             label: string;
             isCustom?: boolean | undefined;
         }[] | undefined;
+        mergedIntoBehaviorId?: string | undefined;
+        mergedFromBehaviorIds?: string[] | undefined;
+        mergedAt?: import("../types").Timestamp | undefined;
         state?: {
             behaviorId: string;
             windows: {
@@ -1228,6 +1234,9 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             isCustom?: boolean | undefined;
         }[] | undefined;
         isDefault?: boolean | undefined;
+        mergedIntoBehaviorId?: string | undefined;
+        mergedFromBehaviorIds?: string[] | undefined;
+        mergedAt?: import("../types").Timestamp | undefined;
         state?: {
             behaviorId: string;
             windows: {
@@ -1426,6 +1435,9 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             label: string;
             isCustom?: boolean | undefined;
         }[] | undefined;
+        mergedIntoBehaviorId?: string | undefined;
+        mergedFromBehaviorIds?: string[] | undefined;
+        mergedAt?: import("../types").Timestamp | undefined;
         state?: {
             behaviorId: string;
             windows: {
@@ -1624,6 +1636,9 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             isCustom?: boolean | undefined;
         }[] | undefined;
         isDefault?: boolean | undefined;
+        mergedIntoBehaviorId?: string | undefined;
+        mergedFromBehaviorIds?: string[] | undefined;
+        mergedAt?: import("../types").Timestamp | undefined;
         state?: {
             behaviorId: string;
             windows: {
@@ -1913,6 +1928,9 @@ export declare const daySummarySchema: z.ZodObject<{
             isCustom?: boolean | undefined;
         }>, "many">>;
         isDefault: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+        mergedIntoBehaviorId: z.ZodOptional<z.ZodString>;
+        mergedFromBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        mergedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         state: z.ZodOptional<z.ZodObject<{
             behaviorId: z.ZodString;
             goal: z.ZodOptional<z.ZodObject<{
@@ -2776,6 +2794,9 @@ export declare const daySummarySchema: z.ZodObject<{
             label: string;
             isCustom?: boolean | undefined;
         }[] | undefined;
+        mergedIntoBehaviorId?: string | undefined;
+        mergedFromBehaviorIds?: string[] | undefined;
+        mergedAt?: import("../types").Timestamp | undefined;
         state?: {
             behaviorId: string;
             windows: {
@@ -2959,6 +2980,9 @@ export declare const daySummarySchema: z.ZodObject<{
             isCustom?: boolean | undefined;
         }[] | undefined;
         isDefault?: boolean | undefined;
+        mergedIntoBehaviorId?: string | undefined;
+        mergedFromBehaviorIds?: string[] | undefined;
+        mergedAt?: import("../types").Timestamp | undefined;
         state?: {
             behaviorId: string;
             windows: {
@@ -3238,6 +3262,9 @@ export declare const daySummarySchema: z.ZodObject<{
             label: string;
             isCustom?: boolean | undefined;
         }[] | undefined;
+        mergedIntoBehaviorId?: string | undefined;
+        mergedFromBehaviorIds?: string[] | undefined;
+        mergedAt?: import("../types").Timestamp | undefined;
         state?: {
             behaviorId: string;
             windows: {
@@ -3465,6 +3492,9 @@ export declare const daySummarySchema: z.ZodObject<{
             isCustom?: boolean | undefined;
         }[] | undefined;
         isDefault?: boolean | undefined;
+        mergedIntoBehaviorId?: string | undefined;
+        mergedFromBehaviorIds?: string[] | undefined;
+        mergedAt?: import("../types").Timestamp | undefined;
         state?: {
             behaviorId: string;
             windows: {

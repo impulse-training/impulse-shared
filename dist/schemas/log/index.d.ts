@@ -30,7 +30,7 @@ import { RecoveryKeyLog } from "./recoveryKeyLog";
 import { CloseButtonLog } from "./closeButtonLog";
 import { ImageLog } from "./imageLog";
 import { PhotoLog } from "./photoLog";
-import { LogWithResponseButtonsLog } from "./logWithResponseButtonsLog";
+import { MergeBehaviorsProposalLog } from "./mergeBehaviorsProposalLog";
 export declare const logSchemas: {
     user: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
@@ -20172,7 +20172,7 @@ export declare const logSchemas: {
         tacticId?: string | undefined;
         impulseId?: string | undefined;
     }>;
-    log_with_response_buttons: z.ZodObject<{
+    merge_behaviors_proposal: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
         updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -20184,13 +20184,12 @@ export declare const logSchemas: {
         behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         impulseId: z.ZodOptional<z.ZodString>;
     } & {
-        type: z.ZodLiteral<"log_with_response_buttons">;
+        type: z.ZodLiteral<"merge_behaviors_proposal">;
         isDisplayable: z.ZodLiteral<true>;
         data: z.ZodObject<{
             title: z.ZodString;
             body: z.ZodOptional<z.ZodString>;
-            taskId: z.ZodOptional<z.ZodString>;
-            taskType: z.ZodOptional<z.ZodString>;
+            taskId: z.ZodString;
             buttons: z.ZodArray<z.ZodObject<{
                 id: z.ZodString;
                 label: z.ZodString;
@@ -20212,6 +20211,7 @@ export declare const logSchemas: {
             respondedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         }, "strip", z.ZodTypeAny, {
             title: string;
+            taskId: string;
             buttons: {
                 id: string;
                 label: string;
@@ -20220,12 +20220,11 @@ export declare const logSchemas: {
             }[];
             respondedAt?: import("../../types").Timestamp | undefined;
             body?: string | undefined;
-            taskId?: string | undefined;
-            taskType?: string | undefined;
             selectedButtonId?: string | undefined;
             selectedResponseText?: string | undefined;
         }, {
             title: string;
+            taskId: string;
             buttons: {
                 id: string;
                 label: string;
@@ -20234,15 +20233,13 @@ export declare const logSchemas: {
             }[];
             respondedAt?: import("../../types").Timestamp | undefined;
             body?: string | undefined;
-            taskId?: string | undefined;
-            taskType?: string | undefined;
             selectedButtonId?: string | undefined;
             selectedResponseText?: string | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
-        type: "log_with_response_buttons";
+        type: "merge_behaviors_proposal";
         sessionId: string;
         dateString: string;
         userId: string;
@@ -20250,6 +20247,7 @@ export declare const logSchemas: {
         isDisplayable: true;
         data: {
             title: string;
+            taskId: string;
             buttons: {
                 id: string;
                 label: string;
@@ -20258,8 +20256,6 @@ export declare const logSchemas: {
             }[];
             respondedAt?: import("../../types").Timestamp | undefined;
             body?: string | undefined;
-            taskId?: string | undefined;
-            taskType?: string | undefined;
             selectedButtonId?: string | undefined;
             selectedResponseText?: string | undefined;
         };
@@ -20270,7 +20266,7 @@ export declare const logSchemas: {
     }, {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
-        type: "log_with_response_buttons";
+        type: "merge_behaviors_proposal";
         sessionId: string;
         dateString: string;
         userId: string;
@@ -20278,6 +20274,7 @@ export declare const logSchemas: {
         isDisplayable: true;
         data: {
             title: string;
+            taskId: string;
             buttons: {
                 id: string;
                 label: string;
@@ -20286,8 +20283,6 @@ export declare const logSchemas: {
             }[];
             respondedAt?: import("../../types").Timestamp | undefined;
             body?: string | undefined;
-            taskId?: string | undefined;
-            taskType?: string | undefined;
             selectedButtonId?: string | undefined;
             selectedResponseText?: string | undefined;
         };
@@ -20299,7 +20294,7 @@ export declare const logSchemas: {
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ProposedExperimentLog | ProposedStrategyModificationLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | TriggerSelectionLog | RequestPermissionsLog | TacticReviewLog | SetupModeChoiceLog | TagsUpdatedLog | CrisisResourceLog | RecoveryKeyLog | CloseButtonLog | ImageLog | PhotoLog | LogWithResponseButtonsLog;
+export type Log = TacticLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ProposedExperimentLog | ProposedStrategyModificationLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | TriggerSelectionLog | RequestPermissionsLog | TacticReviewLog | SetupModeChoiceLog | TagsUpdatedLog | CrisisResourceLog | RecoveryKeyLog | CloseButtonLog | ImageLog | PhotoLog | MergeBehaviorsProposalLog;
 export * from "./behaviorLog";
 export * from "./breathingLog";
 export * from "./callLog";
@@ -20332,7 +20327,7 @@ export * from "./recoveryKeyLog";
 export * from "./closeButtonLog";
 export * from "./imageLog";
 export * from "./photoLog";
-export * from "./logWithResponseButtonsLog";
+export * from "./mergeBehaviorsProposalLog";
 export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -36397,13 +36392,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     impulseId: z.ZodOptional<z.ZodString>;
 } & {
-    type: z.ZodLiteral<"log_with_response_buttons">;
+    type: z.ZodLiteral<"merge_behaviors_proposal">;
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
         title: z.ZodString;
         body: z.ZodOptional<z.ZodString>;
-        taskId: z.ZodOptional<z.ZodString>;
-        taskType: z.ZodOptional<z.ZodString>;
+        taskId: z.ZodString;
         buttons: z.ZodArray<z.ZodObject<{
             id: z.ZodString;
             label: z.ZodString;
@@ -36425,6 +36419,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         respondedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
         title: string;
+        taskId: string;
         buttons: {
             id: string;
             label: string;
@@ -36433,12 +36428,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }[];
         respondedAt?: import("../../types").Timestamp | undefined;
         body?: string | undefined;
-        taskId?: string | undefined;
-        taskType?: string | undefined;
         selectedButtonId?: string | undefined;
         selectedResponseText?: string | undefined;
     }, {
         title: string;
+        taskId: string;
         buttons: {
             id: string;
             label: string;
@@ -36447,15 +36441,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }[];
         respondedAt?: import("../../types").Timestamp | undefined;
         body?: string | undefined;
-        taskId?: string | undefined;
-        taskType?: string | undefined;
         selectedButtonId?: string | undefined;
         selectedResponseText?: string | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
-    type: "log_with_response_buttons";
+    type: "merge_behaviors_proposal";
     sessionId: string;
     dateString: string;
     userId: string;
@@ -36463,6 +36455,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: true;
     data: {
         title: string;
+        taskId: string;
         buttons: {
             id: string;
             label: string;
@@ -36471,8 +36464,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }[];
         respondedAt?: import("../../types").Timestamp | undefined;
         body?: string | undefined;
-        taskId?: string | undefined;
-        taskType?: string | undefined;
         selectedButtonId?: string | undefined;
         selectedResponseText?: string | undefined;
     };
@@ -36483,7 +36474,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
 }, {
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
-    type: "log_with_response_buttons";
+    type: "merge_behaviors_proposal";
     sessionId: string;
     dateString: string;
     userId: string;
@@ -36491,6 +36482,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: true;
     data: {
         title: string;
+        taskId: string;
         buttons: {
             id: string;
             label: string;
@@ -36499,8 +36491,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }[];
         respondedAt?: import("../../types").Timestamp | undefined;
         body?: string | undefined;
-        taskId?: string | undefined;
-        taskType?: string | undefined;
         selectedButtonId?: string | undefined;
         selectedResponseText?: string | undefined;
     };
@@ -36563,4 +36553,4 @@ export declare const logIsRecoveryKeyLog: (value: Omit<Log, "id">) => value is R
 export declare const logIsCloseButtonLog: (value: Omit<Log, "id">) => value is CloseButtonLog;
 export declare const logIsImageLog: (value: Omit<Log, "id">) => value is ImageLog;
 export declare const logIsPhotoLog: (value: Omit<Log, "id">) => value is PhotoLog;
-export declare const logIsLogWithResponseButtonsLog: (value: Omit<Log, "id">) => value is LogWithResponseButtonsLog;
+export declare const logIsMergeBehaviorsProposalLog: (value: Omit<Log, "id">) => value is MergeBehaviorsProposalLog;

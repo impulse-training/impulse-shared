@@ -28,12 +28,43 @@ export const mergeBehaviorsTaskSchema = taskBaseSchema.extend({
   }),
 });
 
+const strategyOperationSchema = z.discriminatedUnion("type", [
+  z.object({
+    type: z.literal("create_trigger"),
+    clientId: z.string().min(1),
+    trigger: z.object({
+      title: z.string().optional(),
+      tags: z.record(z.string(), z.string()).optional(),
+      behaviorIds: z.array(z.string()).optional(),
+    }),
+  }),
+  z.object({
+    type: z.literal("create_plan"),
+    triggerClientId: z.string().min(1),
+    plan: z.object({
+      name: z.string().min(1),
+      tacticIds: z.array(z.string()).min(1),
+    }),
+  }),
+]);
+
+export const suggestStrategyTaskSchema = taskBaseSchema.extend({
+  type: z.literal("suggest_strategy"),
+  suggestedStrategy: z.object({
+    title: z.string().min(1),
+    summary: z.string().min(1),
+    operations: z.array(strategyOperationSchema).min(1),
+  }),
+});
+
 export const taskSchema = z.discriminatedUnion("type", [
   mergeBehaviorsTaskSchema,
+  suggestStrategyTaskSchema,
 ]);
 
 export type TaskStatus = z.infer<typeof taskStatusSchema>;
 export type MergeBehaviorsTask = z.infer<typeof mergeBehaviorsTaskSchema>;
+export type SuggestStrategyTask = z.infer<typeof suggestStrategyTaskSchema>;
 export type Task = z.infer<typeof taskSchema>;
 
 export const isTask = (value: unknown): value is Task =>
@@ -43,3 +74,8 @@ export const isMergeBehaviorsTask = (
   value: unknown,
 ): value is MergeBehaviorsTask =>
   mergeBehaviorsTaskSchema.safeParse(value).success;
+
+export const isSuggestStrategyTask = (
+  value: unknown,
+): value is SuggestStrategyTask =>
+  suggestStrategyTaskSchema.safeParse(value).success;

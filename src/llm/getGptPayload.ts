@@ -8,7 +8,7 @@ import {
   logIsDayTotalsPromptLog,
   logIsMetricLog,
   logIsPlansLog,
-  logIsLogWithResponseButtonsLog,
+  logIsMergeBehaviorsProposalLog,
   logIsProposedStrategyModificationLog,
   logIsTacticLog,
   logIsToolCallLog,
@@ -191,7 +191,7 @@ export function getGptPayload(
     ];
   }
 
-  if (logIsLogWithResponseButtonsLog(log)) {
+  if (logIsMergeBehaviorsProposalLog(log)) {
     const selected = log.data.selectedResponseText?.trim();
     if (selected) {
       return [
@@ -202,13 +202,10 @@ export function getGptPayload(
       ];
     }
 
-    const taskContext = log.data.taskId
-      ? ` Task id: ${log.data.taskId}${log.data.taskType ? ` (${log.data.taskType})` : ""}.`
-      : "";
     return [
       {
         role: "user",
-        content: `<SYSTEM>Zara showed the user a response-button prompt: ${log.data.title}.${taskContext} No button has been selected yet.</SYSTEM>`,
+        content: `<SYSTEM>Zara showed the user a merge-behaviors proposal: ${log.data.title}. Task id: ${log.data.taskId}. No button has been selected yet.</SYSTEM>`,
       },
     ];
   }

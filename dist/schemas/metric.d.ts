@@ -348,6 +348,9 @@ export declare const metricSchema: z.ZodObject<{
     metricRegistryId: z.ZodOptional<z.ZodString>;
     /** Circumplex quadrant — present only on pre-seeded feeling metrics */
     quadrant: z.ZodOptional<z.ZodEnum<["activated", "stressed", "calm", "low"]>>;
+    /** Whether higher or lower values are desirable. Used to filter insights
+     *  so we never present a harmful behavior as producing positive outcomes. */
+    desiredDirection: z.ZodOptional<z.ZodEnum<["higher", "lower"]>>;
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     /** Set when the user initiates deletion; the metric shows as "deleting" until removed */
@@ -656,6 +659,7 @@ export declare const metricSchema: z.ZodObject<{
     quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     startedDeletingAt?: import("../types").Timestamp | undefined;
     metricRegistryId?: string | undefined;
+    desiredDirection?: "higher" | "lower" | undefined;
 }, {
     name: string;
     id?: string | undefined;
@@ -707,6 +711,12 @@ export declare const metricSchema: z.ZodObject<{
     quadrant?: "low" | "activated" | "stressed" | "calm" | undefined;
     startedDeletingAt?: import("../types").Timestamp | undefined;
     metricRegistryId?: string | undefined;
+    desiredDirection?: "higher" | "lower" | undefined;
 }>;
 export type Metric = z.infer<typeof metricSchema>;
 export declare const isMetric: (value: unknown) => value is Metric;
+/**
+ * Resolve the desired direction for a metric, falling back to quadrant
+ * heuristics or "higher" for metrics that predate the field.
+ */
+export declare function resolveDesiredDirection(metric: Pick<Metric, "desiredDirection" | "quadrant">): "higher" | "lower";

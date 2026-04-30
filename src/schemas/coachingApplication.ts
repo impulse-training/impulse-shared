@@ -4,6 +4,7 @@ import { timestampSchema } from "../utils/timestampSchema";
 
 export const coachingApplicationSchema = z.object({
   id: z.string(),
+  userId: z.string().optional(),
   name: z.string(),
   email: z.string().email(),
   urgePattern: z.string().optional(),
@@ -12,6 +13,8 @@ export const coachingApplicationSchema = z.object({
   sourceIpHash: z.string().optional(),
   status: z.enum(["new", "reviewed", "contacted", "enrolled", "declined"])
     .default("new"),
+  reviewedBy: z.string().optional(),
+  reviewedAt: timestampSchema.optional(),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
 });

@@ -130,7 +130,7 @@ function getGptPayload(log, isFinalLogInSession, options) {
             },
         ];
     }
-    if ((0, log_1.logIsLogWithResponseButtonsLog)(log)) {
+    if ((0, log_1.logIsMergeBehaviorsProposalLog)(log)) {
         const selected = (_c = log.data.selectedResponseText) === null || _c === void 0 ? void 0 : _c.trim();
         if (selected) {
             return [
@@ -140,13 +140,10 @@ function getGptPayload(log, isFinalLogInSession, options) {
                 },
             ];
         }
-        const taskContext = log.data.taskId
-            ? ` Task id: ${log.data.taskId}${log.data.taskType ? ` (${log.data.taskType})` : ""}.`
-            : "";
         return [
             {
                 role: "user",
-                content: `<SYSTEM>Zara showed the user a response-button prompt: ${log.data.title}.${taskContext} No button has been selected yet.</SYSTEM>`,
+                content: `<SYSTEM>Zara showed the user a merge-behaviors proposal: ${log.data.title}. Task id: ${log.data.taskId}. No button has been selected yet.</SYSTEM>`,
             },
         ];
     }

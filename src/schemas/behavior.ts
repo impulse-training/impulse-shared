@@ -234,6 +234,9 @@ export const behaviorSchema = behaviorTemplateBase
     needsBaselineData: z.boolean().optional().default(false),
     customMilestoneRungs: z.array(milestoneRungSchema).optional(),
     isDefault: z.boolean().optional().default(true),
+    mergedIntoBehaviorId: z.string().optional(),
+    mergedFromBehaviorIds: z.array(z.string()).optional(),
+    mergedAt: timestampSchema.optional(),
     // Computed state for this behavior (windows, trend, etc.)
     state: behaviorStateSchema.optional(),
   });

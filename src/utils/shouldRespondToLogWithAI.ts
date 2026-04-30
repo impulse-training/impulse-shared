@@ -10,7 +10,7 @@ import {
   logIsBehaviorLog,
   logIsDayTotalsPromptLog,
   logIsImpulseStartedLog,
-  logIsLogWithResponseButtonsLog,
+  logIsMergeBehaviorsProposalLog,
   logIsMetricLog,
   logIsPlansLog,
   logIsSetupModeChoiceLog,
@@ -119,10 +119,10 @@ export function shouldRespondToLogWithAI(
     afterData.data.completed === true &&
     (!logIsTacticLog(beforeData) || beforeData.data.completed !== true);
 
-  const isResponseButtonSelected =
+  const isMergeBehaviorsResponseSelected =
     beforeData &&
     afterData &&
-    logIsLogWithResponseButtonsLog(afterData) &&
+    logIsMergeBehaviorsProposalLog(afterData) &&
     !!afterData.data.selectedResponseText &&
     fieldChanged(beforeData, afterData, "data.selectedResponseText");
 
@@ -139,7 +139,7 @@ export function shouldRespondToLogWithAI(
     !isDayTotalsPromptAction &&
     !isSetupModeTextChoice &&
     !isTacticCompleted &&
-    !isResponseButtonSelected &&
+    !isMergeBehaviorsResponseSelected &&
     latestIsAssistantOutput
   ) {
     console.log("Latest log is assistant output. Not responding with AI.");
@@ -345,8 +345,8 @@ export function shouldRespondToLogWithAI(
     return true;
   }
 
-  if (isResponseButtonSelected) {
-    console.log("Response button selected. Responding with AI.");
+  if (isMergeBehaviorsResponseSelected) {
+    console.log("Merge behaviors response selected. Responding with AI.");
     return true;
   }
 

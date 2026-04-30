@@ -181,6 +181,9 @@ exports.behaviorSchema = behaviorTemplate_1.behaviorTemplateBase
     needsBaselineData: zod_1.z.boolean().optional().default(false),
     customMilestoneRungs: zod_1.z.array(milestoneAchievement_1.milestoneRungSchema).optional(),
     isDefault: zod_1.z.boolean().optional().default(true),
+    mergedIntoBehaviorId: zod_1.z.string().optional(),
+    mergedFromBehaviorIds: zod_1.z.array(zod_1.z.string()).optional(),
+    mergedAt: timestampSchema_1.timestampSchema.optional(),
     // Computed state for this behavior (windows, trend, etc.)
     state: exports.behaviorStateSchema.optional(),
 });

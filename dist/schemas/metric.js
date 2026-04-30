@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isMetric = exports.metricSchema = exports.metricStateSchema = exports.metricRecentSliceSchema = exports.metricWindowSchema = void 0;
+exports.resolveDesiredDirection = resolveDesiredDirection;
 const zod_1 = require("zod");
 const timestampSchema_1 = require("../utils/timestampSchema");
 const behavior_1 = require("./behavior");
@@ -86,6 +87,9 @@ exports.metricSchema = zod_1.z.object({
     metricRegistryId: zod_1.z.string().optional(),
     /** Circumplex quadrant — present only on pre-seeded feeling metrics */
     quadrant: zod_1.z.enum(["activated", "stressed", "calm", "low"]).optional(),
+    /** Whether higher or lower values are desirable. Used to filter insights
+     *  so we never present a harmful behavior as producing positive outcomes. */
+    desiredDirection: zod_1.z.enum(["higher", "lower"]).optional(),
     createdAt: timestampSchema_1.timestampSchema.optional(),
     updatedAt: timestampSchema_1.timestampSchema.optional(),
     /** Set when the user initiates deletion; the metric shows as "deleting" until removed */
@@ -95,3 +99,14 @@ exports.metricSchema = zod_1.z.object({
 });
 const isMetric = (value) => exports.metricSchema.safeParse(value).success;
 exports.isMetric = isMetric;
+/**
+ * Resolve the desired direction for a metric, falling back to quadrant
+ * heuristics or "higher" for metrics that predate the field.
+ */
+function resolveDesiredDirection(metric) {
+    if (metric.desiredDirection)
+        return metric.desiredDirection;
+    if (metric.quadrant === "stressed" || metric.quadrant === "low")
+        return "lower";
+    return "higher";
+}

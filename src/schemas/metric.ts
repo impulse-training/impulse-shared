@@ -98,6 +98,9 @@ export const metricSchema = z.object({
   metricRegistryId: z.string().optional(),
   /** Circumplex quadrant — present only on pre-seeded feeling metrics */
   quadrant: z.enum(["activated", "stressed", "calm", "low"]).optional(),
+  /** Whether higher or lower values are desirable. Used to filter insights
+   *  so we never present a harmful behavior as producing positive outcomes. */
+  desiredDirection: z.enum(["higher", "lower"]).optional(),
   createdAt: timestampSchema.optional(),
   updatedAt: timestampSchema.optional(),
   /** Set when the user initiates deletion; the metric shows as "deleting" until removed */
@@ -110,3 +113,16 @@ export type Metric = z.infer<typeof metricSchema>;
 
 export const isMetric = (value: unknown): value is Metric =>
   metricSchema.safeParse(value).success;
+
+/**
+ * Resolve the desired direction for a metric, falling back to quadrant
+ * heuristics or "higher" for metrics that predate the field.
+ */
+export function resolveDesiredDirection(
+  metric: Pick<Metric, "desiredDirection" | "quadrant">,
+): "higher" | "lower" {
+  if (metric.desiredDirection) return metric.desiredDirection;
+  if (metric.quadrant === "stressed" || metric.quadrant === "low")
+    return "lower";
+  return "higher";
+}
