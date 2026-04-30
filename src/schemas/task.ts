@@ -11,6 +11,8 @@ export const taskBaseSchema = z.object({
   instructions: z.string().min(1),
   context: z.string().optional(),
   minAppVersion: z.string().optional(),
+  requiredTools: z.array(z.string()).optional(),
+  dependsOnTaskId: z.string().optional(),
   createdBy: z.string().optional(),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
