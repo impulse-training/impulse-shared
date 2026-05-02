@@ -184,6 +184,8 @@ exports.behaviorSchema = behaviorTemplate_1.behaviorTemplateBase
     mergedIntoBehaviorId: zod_1.z.string().optional(),
     mergedFromBehaviorIds: zod_1.z.array(zod_1.z.string()).optional(),
     mergedAt: timestampSchema_1.timestampSchema.optional(),
+    // User-confirmed streak start date (ISO string), set when backdating a streak after a goal change
+    streakOverrideStartDate: zod_1.z.string().optional(),
     // Computed state for this behavior (windows, trend, etc.)
     state: exports.behaviorStateSchema.optional(),
 });

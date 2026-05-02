@@ -7,7 +7,7 @@ const dotStatusSchema = zod_1.z.enum(["full", "pastel"]);
 exports.monthSummaryDayEntrySchema = zod_1.z.object({
     /** Whether dayTotalsConfirmedAt is non-null (day recap is confirmed) */
     confirmed: zod_1.z.boolean(),
-    /** Per-behavior dot intensity: "full" (goal not met / acted on urge) or "pastel" (within goal / resisted) */
+    /** Per-behavior dot status: "full" (filled — goal not met / acted on urge) or "pastel" (ring — within goal / resisted) */
     dots: zod_1.z.record(zod_1.z.string(), dotStatusSchema),
 });
 exports.monthSummarySchema = zod_1.z.object({

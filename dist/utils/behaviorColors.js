@@ -1,10 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BEHAVIOR_COLOR_OPTIONS = void 0;
+exports.BEHAVIOR_DOT = exports.BEHAVIOR_COLOR_OPTIONS = void 0;
 exports.guessBehaviorColor = guessBehaviorColor;
 exports.getBehaviorColor = getBehaviorColor;
-exports.toPastel = toPastel;
-exports.getBehaviorPastelColor = getBehaviorPastelColor;
 const COLORS = {
     RED: "#C4362C",
     ORANGE: "#F97316",
@@ -90,15 +88,11 @@ function getBehaviorColor(behavior, index = 0) {
         return behavior.color;
     return exports.BEHAVIOR_COLOR_OPTIONS[index % exports.BEHAVIOR_COLOR_OPTIONS.length];
 }
-function toPastel(hex, mix = 0.65) {
-    const r = parseInt(hex.slice(1, 3), 16);
-    const g = parseInt(hex.slice(3, 5), 16);
-    const b = parseInt(hex.slice(5, 7), 16);
-    const pr = Math.round(r + (255 - r) * mix);
-    const pg = Math.round(g + (255 - g) * mix);
-    const pb = Math.round(b + (255 - b) * mix);
-    return `#${pr.toString(16).padStart(2, "0")}${pg.toString(16).padStart(2, "0")}${pb.toString(16).padStart(2, "0")}`;
-}
-function getBehaviorPastelColor(behavior, index = 0) {
-    return toPastel(getBehaviorColor(behavior, index));
-}
+exports.BEHAVIOR_DOT = {
+    FILLED_SIZE: 6,
+    FILLED_RADIUS: 3,
+    RING_SIZE: 8,
+    RING_RADIUS: 4,
+    RING_BORDER_WIDTH: 2.5,
+    RING_BG_OPACITY: "26",
+};

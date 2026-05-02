@@ -9,10 +9,16 @@ const strategyTriggerDraftSchema = z.object({
   tags: z.record(z.string(), z.union([z.string(), z.array(z.string())])).default({}),
 });
 
+const newTacticDraftSchema = z.object({
+  title: z.string().min(1),
+  description: z.string().optional(),
+});
+
 const strategyPlanDraftSchema = z.object({
   id: z.string().optional(),
   name: z.string().min(1),
-  tacticIds: z.array(z.string()).min(1),
+  tacticIds: z.array(z.string()).default([]),
+  newTactics: z.array(newTacticDraftSchema).optional(),
 });
 
 export const createTriggerStrategyOperationSchema = z.object({

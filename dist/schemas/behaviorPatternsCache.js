@@ -34,7 +34,7 @@ const tagDrilldownRowSchema = zod_1.z.object({
 });
 /**
  * Cached behavior pattern analytics data.
- * Collection: users/{userId}/behaviorPatternsCache/{behaviorId}
+ * Document: users/{userId}/behaviors/{behaviorId}/cache/behaviorPatterns
  *
  * The frontend subscribes to this document for instant rendering and bumps
  * `requestedAt` on mount. A backend trigger compares `requestedAt` vs

@@ -93,21 +93,11 @@ export function getBehaviorColor(
   return BEHAVIOR_COLOR_OPTIONS[index % BEHAVIOR_COLOR_OPTIONS.length];
 }
 
-export function toPastel(hex: string, mix: number = 0.65): string {
-  const r = parseInt(hex.slice(1, 3), 16);
-  const g = parseInt(hex.slice(3, 5), 16);
-  const b = parseInt(hex.slice(5, 7), 16);
-
-  const pr = Math.round(r + (255 - r) * mix);
-  const pg = Math.round(g + (255 - g) * mix);
-  const pb = Math.round(b + (255 - b) * mix);
-
-  return `#${pr.toString(16).padStart(2, "0")}${pg.toString(16).padStart(2, "0")}${pb.toString(16).padStart(2, "0")}`;
-}
-
-export function getBehaviorPastelColor(
-  behavior: WithId<Behavior>,
-  index: number = 0,
-): string {
-  return toPastel(getBehaviorColor(behavior, index));
-}
+export const BEHAVIOR_DOT = {
+  FILLED_SIZE: 6,
+  FILLED_RADIUS: 3,
+  RING_SIZE: 8,
+  RING_RADIUS: 4,
+  RING_BORDER_WIDTH: 2.5,
+  RING_BG_OPACITY: "26",
+} as const;

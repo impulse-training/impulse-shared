@@ -237,6 +237,8 @@ export const behaviorSchema = behaviorTemplateBase
     mergedIntoBehaviorId: z.string().optional(),
     mergedFromBehaviorIds: z.array(z.string()).optional(),
     mergedAt: timestampSchema.optional(),
+    // User-confirmed streak start date (ISO string), set when backdating a streak after a goal change
+    streakOverrideStartDate: z.string().optional(),
     // Computed state for this behavior (windows, trend, etc.)
     state: behaviorStateSchema.optional(),
   });

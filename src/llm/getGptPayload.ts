@@ -335,7 +335,7 @@ export function getGptPayload(
       {
         role: "user",
         content:
-          "<CONTEXT>The user has confirmed their day totals. Transition to experiment reflection — discuss the day through the lens of the active experiment, and use the createMetricLog tool to prompt the user to rate any untracked metrics.</CONTEXT>",
+          "<CONTEXT>The user has confirmed their day totals. Transition to tonight's recap question.</CONTEXT>",
       },
     ];
   }

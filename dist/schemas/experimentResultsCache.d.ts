@@ -322,7 +322,7 @@ declare const discoveredInsightSchema: z.ZodObject<{
 }>;
 /**
  * Cached experiment results.
- * Collection: users/{userId}/experimentResultsCache/{experimentId}
+ * Document: users/{userId}/experiments/{experimentId}/cache/experimentResults
  *
  * The frontend subscribes to this document for instant rendering and bumps
  * `requestedAt` on mount. A backend trigger compares `requestedAt` vs

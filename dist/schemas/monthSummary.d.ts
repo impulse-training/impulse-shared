@@ -2,7 +2,7 @@ import { z } from "zod";
 export declare const monthSummaryDayEntrySchema: z.ZodObject<{
     /** Whether dayTotalsConfirmedAt is non-null (day recap is confirmed) */
     confirmed: z.ZodBoolean;
-    /** Per-behavior dot intensity: "full" (goal not met / acted on urge) or "pastel" (within goal / resisted) */
+    /** Per-behavior dot status: "full" (filled — goal not met / acted on urge) or "pastel" (ring — within goal / resisted) */
     dots: z.ZodRecord<z.ZodString, z.ZodEnum<["full", "pastel"]>>;
 }, "strip", z.ZodTypeAny, {
     confirmed: boolean;
@@ -21,7 +21,7 @@ export declare const monthSummarySchema: z.ZodObject<{
     days: z.ZodRecord<z.ZodString, z.ZodObject<{
         /** Whether dayTotalsConfirmedAt is non-null (day recap is confirmed) */
         confirmed: z.ZodBoolean;
-        /** Per-behavior dot intensity: "full" (goal not met / acted on urge) or "pastel" (within goal / resisted) */
+        /** Per-behavior dot status: "full" (filled — goal not met / acted on urge) or "pastel" (ring — within goal / resisted) */
         dots: z.ZodRecord<z.ZodString, z.ZodEnum<["full", "pastel"]>>;
     }, "strip", z.ZodTypeAny, {
         confirmed: boolean;

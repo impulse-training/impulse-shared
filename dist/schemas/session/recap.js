@@ -15,6 +15,8 @@ exports.recapSessionSchema = base_1.sessionBaseSchema.extend({
     type: zod_1.z.literal("recap"),
     /** Set when user confirms day totals — mirrors daySummary.dayTotalsConfirmedAt */
     completedAt: timestampSchema_1.timestampSchema.nullable().optional(),
+    /** True while open tasks are being resolved before day totals */
+    pendingTaskResolution: zod_1.z.boolean().optional(),
     recapQuestionId: zod_1.z.string().nullable().optional(),
     recapQuestionSource: exports.recapQuestionSourceSchema.optional(),
     focusBehaviorId: zod_1.z.string().optional(),

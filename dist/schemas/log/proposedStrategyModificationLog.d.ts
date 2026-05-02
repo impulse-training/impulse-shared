@@ -18,15 +18,33 @@ declare const strategyTriggerDraftSchema: z.ZodObject<{
 declare const strategyPlanDraftSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     name: z.ZodString;
-    tacticIds: z.ZodArray<z.ZodString, "many">;
+    tacticIds: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+    newTactics: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        title: z.ZodString;
+        description: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        title: string;
+        description?: string | undefined;
+    }, {
+        title: string;
+        description?: string | undefined;
+    }>, "many">>;
 }, "strip", z.ZodTypeAny, {
     name: string;
     tacticIds: string[];
     id?: string | undefined;
+    newTactics?: {
+        title: string;
+        description?: string | undefined;
+    }[] | undefined;
 }, {
     name: string;
-    tacticIds: string[];
     id?: string | undefined;
+    tacticIds?: string[] | undefined;
+    newTactics?: {
+        title: string;
+        description?: string | undefined;
+    }[] | undefined;
 }>;
 export declare const createTriggerStrategyOperationSchema: z.ZodObject<{
     type: z.ZodLiteral<"create_trigger">;
@@ -72,15 +90,33 @@ export declare const createPlanStrategyOperationSchema: z.ZodObject<{
     plan: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         name: z.ZodString;
-        tacticIds: z.ZodArray<z.ZodString, "many">;
+        tacticIds: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+        newTactics: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            title: z.ZodString;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            title: string;
+            description?: string | undefined;
+        }, {
+            title: string;
+            description?: string | undefined;
+        }>, "many">>;
     }, "strip", z.ZodTypeAny, {
         name: string;
         tacticIds: string[];
         id?: string | undefined;
+        newTactics?: {
+            title: string;
+            description?: string | undefined;
+        }[] | undefined;
     }, {
         name: string;
-        tacticIds: string[];
         id?: string | undefined;
+        tacticIds?: string[] | undefined;
+        newTactics?: {
+            title: string;
+            description?: string | undefined;
+        }[] | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     type: "create_plan";
@@ -89,14 +125,22 @@ export declare const createPlanStrategyOperationSchema: z.ZodObject<{
         name: string;
         tacticIds: string[];
         id?: string | undefined;
+        newTactics?: {
+            title: string;
+            description?: string | undefined;
+        }[] | undefined;
     };
 }, {
     type: "create_plan";
     triggerClientId: string;
     plan: {
         name: string;
-        tacticIds: string[];
         id?: string | undefined;
+        tacticIds?: string[] | undefined;
+        newTactics?: {
+            title: string;
+            description?: string | undefined;
+        }[] | undefined;
     };
 }>;
 export declare const strategyModificationOperationSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
@@ -142,15 +186,33 @@ export declare const strategyModificationOperationSchema: z.ZodDiscriminatedUnio
     plan: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         name: z.ZodString;
-        tacticIds: z.ZodArray<z.ZodString, "many">;
+        tacticIds: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+        newTactics: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            title: z.ZodString;
+            description: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            title: string;
+            description?: string | undefined;
+        }, {
+            title: string;
+            description?: string | undefined;
+        }>, "many">>;
     }, "strip", z.ZodTypeAny, {
         name: string;
         tacticIds: string[];
         id?: string | undefined;
+        newTactics?: {
+            title: string;
+            description?: string | undefined;
+        }[] | undefined;
     }, {
         name: string;
-        tacticIds: string[];
         id?: string | undefined;
+        tacticIds?: string[] | undefined;
+        newTactics?: {
+            title: string;
+            description?: string | undefined;
+        }[] | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     type: "create_plan";
@@ -159,14 +221,22 @@ export declare const strategyModificationOperationSchema: z.ZodDiscriminatedUnio
         name: string;
         tacticIds: string[];
         id?: string | undefined;
+        newTactics?: {
+            title: string;
+            description?: string | undefined;
+        }[] | undefined;
     };
 }, {
     type: "create_plan";
     triggerClientId: string;
     plan: {
         name: string;
-        tacticIds: string[];
         id?: string | undefined;
+        tacticIds?: string[] | undefined;
+        newTactics?: {
+            title: string;
+            description?: string | undefined;
+        }[] | undefined;
     };
 }>]>;
 export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
@@ -230,15 +300,33 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
             plan: z.ZodObject<{
                 id: z.ZodOptional<z.ZodString>;
                 name: z.ZodString;
-                tacticIds: z.ZodArray<z.ZodString, "many">;
+                tacticIds: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+                newTactics: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                    title: z.ZodString;
+                    description: z.ZodOptional<z.ZodString>;
+                }, "strip", z.ZodTypeAny, {
+                    title: string;
+                    description?: string | undefined;
+                }, {
+                    title: string;
+                    description?: string | undefined;
+                }>, "many">>;
             }, "strip", z.ZodTypeAny, {
                 name: string;
                 tacticIds: string[];
                 id?: string | undefined;
+                newTactics?: {
+                    title: string;
+                    description?: string | undefined;
+                }[] | undefined;
             }, {
                 name: string;
-                tacticIds: string[];
                 id?: string | undefined;
+                tacticIds?: string[] | undefined;
+                newTactics?: {
+                    title: string;
+                    description?: string | undefined;
+                }[] | undefined;
             }>;
         }, "strip", z.ZodTypeAny, {
             type: "create_plan";
@@ -247,14 +335,22 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                 name: string;
                 tacticIds: string[];
                 id?: string | undefined;
+                newTactics?: {
+                    title: string;
+                    description?: string | undefined;
+                }[] | undefined;
             };
         }, {
             type: "create_plan";
             triggerClientId: string;
             plan: {
                 name: string;
-                tacticIds: string[];
                 id?: string | undefined;
+                tacticIds?: string[] | undefined;
+                newTactics?: {
+                    title: string;
+                    description?: string | undefined;
+                }[] | undefined;
             };
         }>]>, "many">;
         acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -280,6 +376,10 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                 name: string;
                 tacticIds: string[];
                 id?: string | undefined;
+                newTactics?: {
+                    title: string;
+                    description?: string | undefined;
+                }[] | undefined;
             };
         })[];
         summary?: string | undefined;
@@ -303,8 +403,12 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
             triggerClientId: string;
             plan: {
                 name: string;
-                tacticIds: string[];
                 id?: string | undefined;
+                tacticIds?: string[] | undefined;
+                newTactics?: {
+                    title: string;
+                    description?: string | undefined;
+                }[] | undefined;
             };
         })[];
         status?: "declined" | "pending" | "accepted" | undefined;
@@ -342,6 +446,10 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                 name: string;
                 tacticIds: string[];
                 id?: string | undefined;
+                newTactics?: {
+                    title: string;
+                    description?: string | undefined;
+                }[] | undefined;
             };
         })[];
         summary?: string | undefined;
@@ -379,8 +487,12 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
             triggerClientId: string;
             plan: {
                 name: string;
-                tacticIds: string[];
                 id?: string | undefined;
+                tacticIds?: string[] | undefined;
+                newTactics?: {
+                    title: string;
+                    description?: string | undefined;
+                }[] | undefined;
             };
         })[];
         status?: "declined" | "pending" | "accepted" | undefined;

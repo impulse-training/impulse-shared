@@ -15,6 +15,8 @@ export const recapSessionSchema = sessionBaseSchema.extend({
   type: z.literal("recap"),
   /** Set when user confirms day totals — mirrors daySummary.dayTotalsConfirmedAt */
   completedAt: timestampSchema.nullable().optional(),
+  /** True while open tasks are being resolved before day totals */
+  pendingTaskResolution: z.boolean().optional(),
   recapQuestionId: z.string().nullable().optional(),
   recapQuestionSource: recapQuestionSourceSchema.optional(),
   focusBehaviorId: z.string().optional(),

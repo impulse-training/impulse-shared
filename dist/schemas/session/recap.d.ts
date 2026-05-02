@@ -2467,6 +2467,7 @@ export declare const recapSessionSchema: z.ZodObject<{
 } & {
     type: z.ZodLiteral<"recap">;
     completedAt: z.ZodOptional<z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>>;
+    pendingTaskResolution: z.ZodOptional<z.ZodBoolean>;
     recapQuestionId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     recapQuestionSource: z.ZodOptional<z.ZodEnum<["sequence", "baseline", "milestone", "trend", "approaching_milestone"]>>;
     focusBehaviorId: z.ZodOptional<z.ZodString>;
@@ -2873,6 +2874,7 @@ export declare const recapSessionSchema: z.ZodObject<{
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
+    pendingTaskResolution?: boolean | undefined;
     recapQuestionId?: string | null | undefined;
     recapQuestionSource?: "trend" | "milestone" | "sequence" | "baseline" | "approaching_milestone" | undefined;
     focusBehaviorId?: string | undefined;
@@ -3279,6 +3281,7 @@ export declare const recapSessionSchema: z.ZodObject<{
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
+    pendingTaskResolution?: boolean | undefined;
     recapQuestionId?: string | null | undefined;
     recapQuestionSource?: "trend" | "milestone" | "sequence" | "baseline" | "approaching_milestone" | undefined;
     focusBehaviorId?: string | undefined;

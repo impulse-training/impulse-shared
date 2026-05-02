@@ -1207,6 +1207,7 @@ export declare const behaviorSchema: z.ZodObject<{
     mergedIntoBehaviorId: z.ZodOptional<z.ZodString>;
     mergedFromBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     mergedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    streakOverrideStartDate: z.ZodOptional<z.ZodString>;
     state: z.ZodOptional<z.ZodObject<{
         behaviorId: z.ZodString;
         goal: z.ZodOptional<z.ZodObject<{
@@ -2073,6 +2074,7 @@ export declare const behaviorSchema: z.ZodObject<{
     mergedIntoBehaviorId?: string | undefined;
     mergedFromBehaviorIds?: string[] | undefined;
     mergedAt?: import("../types").Timestamp | undefined;
+    streakOverrideStartDate?: string | undefined;
     state?: {
         behaviorId: string;
         windows: {
@@ -2259,6 +2261,7 @@ export declare const behaviorSchema: z.ZodObject<{
     mergedIntoBehaviorId?: string | undefined;
     mergedFromBehaviorIds?: string[] | undefined;
     mergedAt?: import("../types").Timestamp | undefined;
+    streakOverrideStartDate?: string | undefined;
     state?: {
         behaviorId: string;
         windows: {

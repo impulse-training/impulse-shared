@@ -14572,15 +14572,33 @@ export declare const logSchemas: {
                 plan: z.ZodObject<{
                     id: z.ZodOptional<z.ZodString>;
                     name: z.ZodString;
-                    tacticIds: z.ZodArray<z.ZodString, "many">;
+                    tacticIds: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+                    newTactics: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                        title: z.ZodString;
+                        description: z.ZodOptional<z.ZodString>;
+                    }, "strip", z.ZodTypeAny, {
+                        title: string;
+                        description?: string | undefined;
+                    }, {
+                        title: string;
+                        description?: string | undefined;
+                    }>, "many">>;
                 }, "strip", z.ZodTypeAny, {
                     name: string;
                     tacticIds: string[];
                     id?: string | undefined;
+                    newTactics?: {
+                        title: string;
+                        description?: string | undefined;
+                    }[] | undefined;
                 }, {
                     name: string;
-                    tacticIds: string[];
                     id?: string | undefined;
+                    tacticIds?: string[] | undefined;
+                    newTactics?: {
+                        title: string;
+                        description?: string | undefined;
+                    }[] | undefined;
                 }>;
             }, "strip", z.ZodTypeAny, {
                 type: "create_plan";
@@ -14589,14 +14607,22 @@ export declare const logSchemas: {
                     name: string;
                     tacticIds: string[];
                     id?: string | undefined;
+                    newTactics?: {
+                        title: string;
+                        description?: string | undefined;
+                    }[] | undefined;
                 };
             }, {
                 type: "create_plan";
                 triggerClientId: string;
                 plan: {
                     name: string;
-                    tacticIds: string[];
                     id?: string | undefined;
+                    tacticIds?: string[] | undefined;
+                    newTactics?: {
+                        title: string;
+                        description?: string | undefined;
+                    }[] | undefined;
                 };
             }>]>, "many">;
             acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -14622,6 +14648,10 @@ export declare const logSchemas: {
                     name: string;
                     tacticIds: string[];
                     id?: string | undefined;
+                    newTactics?: {
+                        title: string;
+                        description?: string | undefined;
+                    }[] | undefined;
                 };
             })[];
             summary?: string | undefined;
@@ -14645,8 +14675,12 @@ export declare const logSchemas: {
                 triggerClientId: string;
                 plan: {
                     name: string;
-                    tacticIds: string[];
                     id?: string | undefined;
+                    tacticIds?: string[] | undefined;
+                    newTactics?: {
+                        title: string;
+                        description?: string | undefined;
+                    }[] | undefined;
                 };
             })[];
             status?: "declined" | "pending" | "accepted" | undefined;
@@ -14684,6 +14718,10 @@ export declare const logSchemas: {
                     name: string;
                     tacticIds: string[];
                     id?: string | undefined;
+                    newTactics?: {
+                        title: string;
+                        description?: string | undefined;
+                    }[] | undefined;
                 };
             })[];
             summary?: string | undefined;
@@ -14721,8 +14759,12 @@ export declare const logSchemas: {
                 triggerClientId: string;
                 plan: {
                     name: string;
-                    tacticIds: string[];
                     id?: string | undefined;
+                    tacticIds?: string[] | undefined;
+                    newTactics?: {
+                        title: string;
+                        description?: string | undefined;
+                    }[] | undefined;
                 };
             })[];
             status?: "declined" | "pending" | "accepted" | undefined;
@@ -30853,15 +30895,33 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             plan: z.ZodObject<{
                 id: z.ZodOptional<z.ZodString>;
                 name: z.ZodString;
-                tacticIds: z.ZodArray<z.ZodString, "many">;
+                tacticIds: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+                newTactics: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                    title: z.ZodString;
+                    description: z.ZodOptional<z.ZodString>;
+                }, "strip", z.ZodTypeAny, {
+                    title: string;
+                    description?: string | undefined;
+                }, {
+                    title: string;
+                    description?: string | undefined;
+                }>, "many">>;
             }, "strip", z.ZodTypeAny, {
                 name: string;
                 tacticIds: string[];
                 id?: string | undefined;
+                newTactics?: {
+                    title: string;
+                    description?: string | undefined;
+                }[] | undefined;
             }, {
                 name: string;
-                tacticIds: string[];
                 id?: string | undefined;
+                tacticIds?: string[] | undefined;
+                newTactics?: {
+                    title: string;
+                    description?: string | undefined;
+                }[] | undefined;
             }>;
         }, "strip", z.ZodTypeAny, {
             type: "create_plan";
@@ -30870,14 +30930,22 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 name: string;
                 tacticIds: string[];
                 id?: string | undefined;
+                newTactics?: {
+                    title: string;
+                    description?: string | undefined;
+                }[] | undefined;
             };
         }, {
             type: "create_plan";
             triggerClientId: string;
             plan: {
                 name: string;
-                tacticIds: string[];
                 id?: string | undefined;
+                tacticIds?: string[] | undefined;
+                newTactics?: {
+                    title: string;
+                    description?: string | undefined;
+                }[] | undefined;
             };
         }>]>, "many">;
         acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -30903,6 +30971,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 name: string;
                 tacticIds: string[];
                 id?: string | undefined;
+                newTactics?: {
+                    title: string;
+                    description?: string | undefined;
+                }[] | undefined;
             };
         })[];
         summary?: string | undefined;
@@ -30926,8 +30998,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             triggerClientId: string;
             plan: {
                 name: string;
-                tacticIds: string[];
                 id?: string | undefined;
+                tacticIds?: string[] | undefined;
+                newTactics?: {
+                    title: string;
+                    description?: string | undefined;
+                }[] | undefined;
             };
         })[];
         status?: "declined" | "pending" | "accepted" | undefined;
@@ -30965,6 +31041,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 name: string;
                 tacticIds: string[];
                 id?: string | undefined;
+                newTactics?: {
+                    title: string;
+                    description?: string | undefined;
+                }[] | undefined;
             };
         })[];
         summary?: string | undefined;
@@ -31002,8 +31082,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             triggerClientId: string;
             plan: {
                 name: string;
-                tacticIds: string[];
                 id?: string | undefined;
+                tacticIds?: string[] | undefined;
+                newTactics?: {
+                    title: string;
+                    description?: string | undefined;
+                }[] | undefined;
             };
         })[];
         status?: "declined" | "pending" | "accepted" | undefined;
