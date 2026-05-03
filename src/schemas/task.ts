@@ -3,9 +3,12 @@ import { timestampSchema } from "../utils/timestampSchema";
 
 export const taskStatusSchema = z.enum(["open", "completed", "dismissed"]);
 
+export const taskCategorySchema = z.enum(["zara", "deterministic"]);
+
 export const taskBaseSchema = z.object({
   id: z.string().optional(),
   userId: z.string(),
+  category: taskCategorySchema.default("zara"),
   status: taskStatusSchema.default("open"),
   title: z.string().min(1),
   instructions: z.string().min(1),
@@ -81,6 +84,7 @@ export const taskSchema = z.discriminatedUnion("type", [
   proposeExperimentTaskSchema,
 ]);
 
+export type TaskCategory = z.infer<typeof taskCategorySchema>;
 export type TaskStatus = z.infer<typeof taskStatusSchema>;
 export type MergeBehaviorsTask = z.infer<typeof mergeBehaviorsTaskSchema>;
 export type SuggestStrategyTask = z.infer<typeof suggestStrategyTaskSchema>;
