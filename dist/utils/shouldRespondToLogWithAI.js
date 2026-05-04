@@ -56,6 +56,11 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         (0, log_1.logIsSetupModeChoiceLog)(afterData) &&
         afterData.data.choice === "text" &&
         (0, fields_1.fieldChanged)(beforeData, afterData, "data.choice");
+    const isShortcutSetupTextChoice = beforeData &&
+        afterData &&
+        (0, log_1.logIsShortcutSetupIntroLog)(afterData) &&
+        afterData.data.choice === "text" &&
+        (0, fields_1.fieldChanged)(beforeData, afterData, "data.choice");
     const isTagsUpdated = !beforeData &&
         afterData &&
         (0, log_1.logIsTagsUpdatedLog)(afterData) &&
@@ -81,6 +86,7 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         !isDebriefOutcomeResolved &&
         !isDayTotalsPromptAction &&
         !isSetupModeTextChoice &&
+        !isShortcutSetupTextChoice &&
         !isTacticCompleted &&
         !isMergeBehaviorsResponseSelected &&
         latestIsAssistantOutput) {
@@ -139,6 +145,11 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
     // Case: Setup mode text choice was made
     if (isSetupModeTextChoice) {
         console.log("Setup mode text choice made. Responding with AI.");
+        return true;
+    }
+    // Case: Shortcut setup intro — user chose text instructions
+    if (isShortcutSetupTextChoice) {
+        console.log("Shortcut setup text choice made. Responding with AI.");
         return true;
     }
     // Case: Debrief urge outcome was resolved (resisted/still_there)

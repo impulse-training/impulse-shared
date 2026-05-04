@@ -37,6 +37,7 @@ exports.sessionBaseSchema = zod_1.z.object({
     dateString: zod_1.z.string(),
     userId: zod_1.z.string(),
     mode: zod_1.z.enum(["text", "voice"]).default("text"),
+    voiceEnabled: zod_1.z.boolean().optional(),
     currentTactic: tactic_1.tacticSchema.optional(),
     currentTacticStepIndex: zod_1.z.number().optional(),
     // Whether this session is a draft (created before any logs exist)

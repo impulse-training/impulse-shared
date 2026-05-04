@@ -7,6 +7,7 @@ export declare const alignmentSessionSchema: z.ZodObject<{
     dateString: z.ZodString;
     userId: z.ZodString;
     mode: z.ZodDefault<z.ZodEnum<["text", "voice"]>>;
+    voiceEnabled: z.ZodOptional<z.ZodBoolean>;
     currentTactic: z.ZodOptional<z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         title: z.ZodOptional<z.ZodString>;
@@ -2488,6 +2489,7 @@ export declare const alignmentSessionSchema: z.ZodObject<{
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
     triggerId?: string | null | undefined;
+    voiceEnabled?: boolean | undefined;
     currentTactic?: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -2887,6 +2889,7 @@ export declare const alignmentSessionSchema: z.ZodObject<{
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
     triggerId?: string | null | undefined;
+    voiceEnabled?: boolean | undefined;
     currentTactic?: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;

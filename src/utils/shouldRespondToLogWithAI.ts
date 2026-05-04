@@ -14,6 +14,7 @@ import {
   logIsMetricLog,
   logIsPlansLog,
   logIsSetupModeChoiceLog,
+  logIsShortcutSetupIntroLog,
   logIsTacticReviewLog,
   logIsTacticLog,
   logIsTagsUpdatedLog,
@@ -102,6 +103,13 @@ export function shouldRespondToLogWithAI(
     afterData.data.choice === "text" &&
     fieldChanged(beforeData, afterData, "data.choice");
 
+  const isShortcutSetupTextChoice =
+    beforeData &&
+    afterData &&
+    logIsShortcutSetupIntroLog(afterData) &&
+    afterData.data.choice === "text" &&
+    fieldChanged(beforeData, afterData, "data.choice");
+
   const isTagsUpdated =
     !beforeData &&
     afterData &&
@@ -138,6 +146,7 @@ export function shouldRespondToLogWithAI(
     !isDebriefOutcomeResolved &&
     !isDayTotalsPromptAction &&
     !isSetupModeTextChoice &&
+    !isShortcutSetupTextChoice &&
     !isTacticCompleted &&
     !isMergeBehaviorsResponseSelected &&
     latestIsAssistantOutput
@@ -218,6 +227,12 @@ export function shouldRespondToLogWithAI(
   // Case: Setup mode text choice was made
   if (isSetupModeTextChoice) {
     console.log("Setup mode text choice made. Responding with AI.");
+    return true;
+  }
+
+  // Case: Shortcut setup intro — user chose text instructions
+  if (isShortcutSetupTextChoice) {
+    console.log("Shortcut setup text choice made. Responding with AI.");
     return true;
   }
 

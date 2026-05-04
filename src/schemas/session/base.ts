@@ -37,6 +37,7 @@ export const sessionBaseSchema = z.object({
   userId: z.string(),
 
   mode: z.enum(["text", "voice"]).default("text"),
+  voiceEnabled: z.boolean().optional(),
 
   currentTactic: tacticSchema.optional(),
   currentTacticStepIndex: z.number().optional(),

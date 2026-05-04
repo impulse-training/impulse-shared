@@ -32,6 +32,7 @@ import { ImageLog } from "./imageLog";
 import { PhotoLog } from "./photoLog";
 import { MergeBehaviorsProposalLog } from "./mergeBehaviorsProposalLog";
 import { MaskBehaviorProposalLog } from "./maskBehaviorProposalLog";
+import { ShortcutSetupIntroLog } from "./shortcutSetupIntroLog";
 export declare const logSchemas: {
     user: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
@@ -20485,10 +20486,79 @@ export declare const logSchemas: {
         tacticId?: string | undefined;
         impulseId?: string | undefined;
     }>;
+    shortcut_setup_intro: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        sessionId: z.ZodString;
+        tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        impulseId: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"shortcut_setup_intro">;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            shortcutType: z.ZodEnum<["back_tap", "lock_screen_widget"]>;
+            message: z.ZodString;
+            respondedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            choice: z.ZodOptional<z.ZodEnum<["voice", "text", "skip"]>>;
+        }, "strip", z.ZodTypeAny, {
+            message: string;
+            shortcutType: "back_tap" | "lock_screen_widget";
+            respondedAt?: import("../../types").Timestamp | undefined;
+            choice?: "text" | "voice" | "skip" | undefined;
+        }, {
+            message: string;
+            shortcutType: "back_tap" | "lock_screen_widget";
+            respondedAt?: import("../../types").Timestamp | undefined;
+            choice?: "text" | "voice" | "skip" | undefined;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "shortcut_setup_intro";
+        sessionId: string;
+        dateString: string;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: true;
+        data: {
+            message: string;
+            shortcutType: "back_tap" | "lock_screen_widget";
+            respondedAt?: import("../../types").Timestamp | undefined;
+            choice?: "text" | "voice" | "skip" | undefined;
+        };
+        id?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
+        impulseId?: string | undefined;
+    }, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "shortcut_setup_intro";
+        sessionId: string;
+        dateString: string;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: true;
+        data: {
+            message: string;
+            shortcutType: "back_tap" | "lock_screen_widget";
+            respondedAt?: import("../../types").Timestamp | undefined;
+            choice?: "text" | "voice" | "skip" | undefined;
+        };
+        id?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
+        impulseId?: string | undefined;
+    }>;
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ProposedExperimentLog | ProposedStrategyModificationLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | TriggerSelectionLog | RequestPermissionsLog | TacticReviewLog | SetupModeChoiceLog | TagsUpdatedLog | CrisisResourceLog | RecoveryKeyLog | CloseButtonLog | ImageLog | PhotoLog | MergeBehaviorsProposalLog | MaskBehaviorProposalLog;
+export type Log = TacticLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ProposedExperimentLog | ProposedStrategyModificationLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | TriggerSelectionLog | RequestPermissionsLog | TacticReviewLog | SetupModeChoiceLog | TagsUpdatedLog | CrisisResourceLog | RecoveryKeyLog | CloseButtonLog | ImageLog | PhotoLog | MergeBehaviorsProposalLog | MaskBehaviorProposalLog | ShortcutSetupIntroLog;
 export * from "./behaviorLog";
 export * from "./breathingLog";
 export * from "./callLog";
@@ -20523,6 +20593,7 @@ export * from "./imageLog";
 export * from "./photoLog";
 export * from "./mergeBehaviorsProposalLog";
 export * from "./maskBehaviorProposalLog";
+export * from "./shortcutSetupIntroLog";
 export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -36885,6 +36956,74 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     behaviorIds?: string[] | undefined;
     tacticId?: string | undefined;
     impulseId?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    sessionId: z.ZodString;
+    tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    impulseId: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"shortcut_setup_intro">;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        shortcutType: z.ZodEnum<["back_tap", "lock_screen_widget"]>;
+        message: z.ZodString;
+        respondedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        choice: z.ZodOptional<z.ZodEnum<["voice", "text", "skip"]>>;
+    }, "strip", z.ZodTypeAny, {
+        message: string;
+        shortcutType: "back_tap" | "lock_screen_widget";
+        respondedAt?: import("../../types").Timestamp | undefined;
+        choice?: "text" | "voice" | "skip" | undefined;
+    }, {
+        message: string;
+        shortcutType: "back_tap" | "lock_screen_widget";
+        respondedAt?: import("../../types").Timestamp | undefined;
+        choice?: "text" | "voice" | "skip" | undefined;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "shortcut_setup_intro";
+    sessionId: string;
+    dateString: string;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: true;
+    data: {
+        message: string;
+        shortcutType: "back_tap" | "lock_screen_widget";
+        respondedAt?: import("../../types").Timestamp | undefined;
+        choice?: "text" | "voice" | "skip" | undefined;
+    };
+    id?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
+    impulseId?: string | undefined;
+}, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "shortcut_setup_intro";
+    sessionId: string;
+    dateString: string;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: true;
+    data: {
+        message: string;
+        shortcutType: "back_tap" | "lock_screen_widget";
+        respondedAt?: import("../../types").Timestamp | undefined;
+        choice?: "text" | "voice" | "skip" | undefined;
+    };
+    id?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
+    impulseId?: string | undefined;
 }>]>;
 export declare const logIsAssistantMessageLog: (value: Omit<Log, "id">) => value is AssistantMessageLog;
 export declare const isValidAssistantMessageLog: (value: unknown) => value is AssistantMessageLog;
@@ -36942,3 +37081,4 @@ export declare const logIsImageLog: (value: Omit<Log, "id">) => value is ImageLo
 export declare const logIsPhotoLog: (value: Omit<Log, "id">) => value is PhotoLog;
 export declare const logIsMergeBehaviorsProposalLog: (value: Omit<Log, "id">) => value is MergeBehaviorsProposalLog;
 export declare const logIsMaskBehaviorProposalLog: (value: Omit<Log, "id">) => value is MaskBehaviorProposalLog;
+export declare const logIsShortcutSetupIntroLog: (value: Omit<Log, "id">) => value is ShortcutSetupIntroLog;

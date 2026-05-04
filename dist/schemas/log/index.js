@@ -15,7 +15,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.logIsSetupModeChoiceLog = exports.isValidTacticReviewLog = exports.logIsTacticReviewLog = exports.isValidTriggerSelectionLog = exports.logIsTriggerSelectionLog = exports.isValidRequestPermissionsLog = exports.logIsRequestPermissionsLog = exports.isValidImpulseStartedLog = exports.logIsImpulseStartedLog = exports.isValidDayTotalsPromptLog = exports.logIsDayTotalsPromptLog = exports.isValidRecapTimePreferenceLog = exports.logIsRecapTimePreferenceLog = exports.isValidMetricLog = exports.logIsMetricLog = exports.isValidEnableNotificationsCtaLog = exports.logIsEnableNotificationsCtaLog = exports.isValidSupportGroupDaySummaryLog = exports.logIsSupportGroupDaySummaryLog = exports.isValidBreathingLog = exports.logIsBreathingLog = exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidPlansLog = exports.logIsPlansLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorLog = exports.logIsBehaviorLog = exports.isValidSharedMomentLog = exports.logIsSharedMomentLog = exports.isValidNotifySupportGroupLog = exports.logIsNotifySupportGroupLog = exports.isValidSystemMessageLog = exports.logIsSystemMessageLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
-exports.logIsMaskBehaviorProposalLog = exports.logIsMergeBehaviorsProposalLog = exports.logIsPhotoLog = exports.logIsImageLog = exports.logIsCloseButtonLog = exports.logIsRecoveryKeyLog = exports.logIsCrisisResourceLog = exports.logIsTagsUpdatedLog = exports.logIsProposedStrategyModificationLog = void 0;
+exports.logIsShortcutSetupIntroLog = exports.logIsMaskBehaviorProposalLog = exports.logIsMergeBehaviorsProposalLog = exports.logIsPhotoLog = exports.logIsImageLog = exports.logIsCloseButtonLog = exports.logIsRecoveryKeyLog = exports.logIsCrisisResourceLog = exports.logIsTagsUpdatedLog = exports.logIsProposedStrategyModificationLog = void 0;
 const zod_1 = require("zod");
 const behaviorLog_1 = require("./behaviorLog");
 const breathingLog_1 = require("./breathingLog");
@@ -50,6 +50,7 @@ const imageLog_1 = require("./imageLog");
 const photoLog_1 = require("./photoLog");
 const mergeBehaviorsProposalLog_1 = require("./mergeBehaviorsProposalLog");
 const maskBehaviorProposalLog_1 = require("./maskBehaviorProposalLog");
+const shortcutSetupIntroLog_1 = require("./shortcutSetupIntroLog");
 exports.logSchemas = {
     user: messageLog_1.userMessageLogSchema,
     assistant_message: messageLog_1.assistantMessageLogSchema,
@@ -87,6 +88,7 @@ exports.logSchemas = {
     photo: photoLog_1.photoLogSchema,
     merge_behaviors_proposal: mergeBehaviorsProposalLog_1.mergeBehaviorsProposalLogSchema,
     mask_behavior_proposal: maskBehaviorProposalLog_1.maskBehaviorProposalLogSchema,
+    shortcut_setup_intro: shortcutSetupIntroLog_1.shortcutSetupIntroLogSchema,
 };
 exports.logTypes = Object.keys(exports.logSchemas);
 __exportStar(require("./behaviorLog"), exports);
@@ -123,6 +125,7 @@ __exportStar(require("./imageLog"), exports);
 __exportStar(require("./photoLog"), exports);
 __exportStar(require("./mergeBehaviorsProposalLog"), exports);
 __exportStar(require("./maskBehaviorProposalLog"), exports);
+__exportStar(require("./shortcutSetupIntroLog"), exports);
 // Discriminated union schema across all log variants
 exports.logSchema = zod_1.z.discriminatedUnion("type", [
     messageLog_1.userMessageLogSchema,
@@ -159,6 +162,7 @@ exports.logSchema = zod_1.z.discriminatedUnion("type", [
     photoLog_1.photoLogSchema,
     mergeBehaviorsProposalLog_1.mergeBehaviorsProposalLogSchema,
     maskBehaviorProposalLog_1.maskBehaviorProposalLogSchema,
+    shortcutSetupIntroLog_1.shortcutSetupIntroLogSchema,
 ]);
 // Export log type guards
 const logIsAssistantMessageLog = (value) => value.type === "assistant_message";
@@ -319,3 +323,5 @@ const logIsMergeBehaviorsProposalLog = (value) => value.type === "merge_behavior
 exports.logIsMergeBehaviorsProposalLog = logIsMergeBehaviorsProposalLog;
 const logIsMaskBehaviorProposalLog = (value) => value.type === "mask_behavior_proposal";
 exports.logIsMaskBehaviorProposalLog = logIsMaskBehaviorProposalLog;
+const logIsShortcutSetupIntroLog = (value) => value.type === "shortcut_setup_intro";
+exports.logIsShortcutSetupIntroLog = logIsShortcutSetupIntroLog;
