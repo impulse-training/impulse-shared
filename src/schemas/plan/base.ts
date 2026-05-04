@@ -42,6 +42,8 @@ export function planBaseSchema<T extends string>(type: T) {
     generationSignature: z.string().optional(),
     generatedFromTacticIds: z.array(z.string()).optional(),
     generatedFromSessionCount: z.number().int().nonnegative().optional(),
+    // Which behaviors this plan applies to. Empty/undefined = all behaviors.
+    behaviorIds: z.array(z.string()).optional(),
     // Cross-user effectiveness counters (incremented atomically on shared plan docs)
     numberOfUses: z.number().int().nonnegative().optional(),
     numberOfSuccesses: z.number().int().nonnegative().optional(),

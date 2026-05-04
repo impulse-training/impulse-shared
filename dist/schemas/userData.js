@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isUserData = exports.userDataSchema = exports.latestSessionMessageTypeSchema = void 0;
+exports.isUserData = exports.userDataSchema = void 0;
 const zod_1 = require("zod");
 const timestampSchema_1 = require("../utils/timestampSchema");
 const supportGroup_1 = require("./supportGroup");
@@ -20,18 +20,6 @@ const latestSupportGroupMessageSchema = zod_1.z.object({
     message: zod_1.z.string(),
     sentAt: timestampSchema_1.timestampSchema,
 });
-const latestSessionMessageSchema = zod_1.z.object({
-    sessionId: zod_1.z.string(),
-    message: zod_1.z.string(),
-    role: zod_1.z.enum(["user", "assistant"]),
-    sentAt: timestampSchema_1.timestampSchema,
-});
-exports.latestSessionMessageTypeSchema = zod_1.z.enum([
-    "onboarding",
-    // TODO: Remove after 2026-05-26. Legacy session message key.
-    "alignment",
-    "commitment",
-]);
 exports.userDataSchema = zod_1.z.object({
     id: zod_1.z.string().optional(),
     createdAt: timestampSchema_1.timestampSchema.optional(),
@@ -99,9 +87,6 @@ exports.userDataSchema = zod_1.z.object({
     latestSupportGroupMessages: zod_1.z
         .record(supportGroup_1.supportGroupTypeSchema, latestSupportGroupMessageSchema)
         .optional(),
-    latestSessionMessages: zod_1.z
-        .record(exports.latestSessionMessageTypeSchema, latestSessionMessageSchema)
-        .optional(),
     // User location (ISO 3166-1 alpha-2 country code)
     country: zod_1.z.string().optional(),
     // Recovery key saved status
@@ -120,6 +105,18 @@ exports.userDataSchema = zod_1.z.object({
     seenRoadmapItemIds: zod_1.z.array(zod_1.z.string()).optional(),
     roadmapNotificationsEnabled: zod_1.z.boolean().optional(),
     concurrentUserAccountIds: zod_1.z.array(zod_1.z.string()).optional(),
+    // Generated fake name for admin display
+    pseudonym: zod_1.z.string().optional(),
+    // Emoji avatar chosen by user (synced from userProfile)
+    emojiId: zod_1.z.object({ emoji: zod_1.z.string() }).optional(),
+    // Denormalized from auth custom claims so admin can query without auth lookup
+    onboardingCompleted: zod_1.z.boolean().optional(),
+    // Denormalized behavior names for admin list display
+    behaviorNames: zod_1.z.array(zod_1.z.string()).optional(),
+    engagement: zod_1.z
+        .enum(["engaged", "distant", "churned", "abandoned"])
+        .nullable()
+        .optional(),
 });
 // Type guard for User
 const isUserData = (value) => exports.userDataSchema.safeParse(value).success;

@@ -89,6 +89,7 @@ export declare function planBaseSchema<T extends string>(type: T): z.ZodObject<{
     generationSignature: z.ZodOptional<z.ZodString>;
     generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     numberOfUses: z.ZodOptional<z.ZodNumber>;
     numberOfSuccesses: z.ZodOptional<z.ZodNumber>;
     numberOfSetbacks: z.ZodOptional<z.ZodNumber>;
@@ -143,6 +144,7 @@ export declare function planBaseSchema<T extends string>(type: T): z.ZodObject<{
     generationSignature: z.ZodOptional<z.ZodString>;
     generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     numberOfUses: z.ZodOptional<z.ZodNumber>;
     numberOfSuccesses: z.ZodOptional<z.ZodNumber>;
     numberOfSetbacks: z.ZodOptional<z.ZodNumber>;
@@ -197,6 +199,7 @@ export declare function planBaseSchema<T extends string>(type: T): z.ZodObject<{
     generationSignature: z.ZodOptional<z.ZodString>;
     generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     numberOfUses: z.ZodOptional<z.ZodNumber>;
     numberOfSuccesses: z.ZodOptional<z.ZodNumber>;
     numberOfSetbacks: z.ZodOptional<z.ZodNumber>;
@@ -251,6 +254,7 @@ export declare function planBaseSchema<T extends string>(type: T): z.ZodObject<{
     generationSignature: z.ZodOptional<z.ZodString>;
     generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     numberOfUses: z.ZodOptional<z.ZodNumber>;
     numberOfSuccesses: z.ZodOptional<z.ZodNumber>;
     numberOfSetbacks: z.ZodOptional<z.ZodNumber>;
@@ -305,6 +309,7 @@ export declare function planBaseSchema<T extends string>(type: T): z.ZodObject<{
     generationSignature: z.ZodOptional<z.ZodString>;
     generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     numberOfUses: z.ZodOptional<z.ZodNumber>;
     numberOfSuccesses: z.ZodOptional<z.ZodNumber>;
     numberOfSetbacks: z.ZodOptional<z.ZodNumber>;

@@ -43,6 +43,8 @@ function planBaseSchema(type) {
         generationSignature: zod_1.z.string().optional(),
         generatedFromTacticIds: zod_1.z.array(zod_1.z.string()).optional(),
         generatedFromSessionCount: zod_1.z.number().int().nonnegative().optional(),
+        // Which behaviors this plan applies to. Empty/undefined = all behaviors.
+        behaviorIds: zod_1.z.array(zod_1.z.string()).optional(),
         // Cross-user effectiveness counters (incremented atomically on shared plan docs)
         numberOfUses: zod_1.z.number().int().nonnegative().optional(),
         numberOfSuccesses: zod_1.z.number().int().nonnegative().optional(),

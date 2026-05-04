@@ -18,7 +18,7 @@ const behaviorTemplateBase = zod_1.z.object({
     // Display color for this behavior (hex string, e.g. "#C4362C")
     color: zod_1.z.string().optional(),
     // Alternative phrases/synonyms for this behavior name (e.g. ["porn", "adult content"] for
-    // "Pornography"). Used to mask hidden behaviors when the AI uses variant wording in chat.
+    // "Pornography"). Used to mask masked behaviors when the AI uses variant wording in chat.
     synonyms: zod_1.z.array(zod_1.z.string()).optional(),
     streakLabel: zod_1.z.enum(exports.streakLabels).optional(),
     recapQuestionSequence: zod_1.z.array(zod_1.z.string()).optional(),

@@ -46,6 +46,7 @@ export declare const defaultPlanSchema: z.ZodObject<{
     generationSignature: z.ZodOptional<z.ZodString>;
     generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -66,6 +67,7 @@ export declare const defaultPlanSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    behaviorIds?: string[] | undefined;
     description?: string | undefined;
     ordinal?: number | undefined;
     tags?: Record<string, Record<string, number>> | undefined;
@@ -95,6 +97,7 @@ export declare const defaultPlanSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    behaviorIds?: string[] | undefined;
     description?: string | undefined;
     ordinal?: number | undefined;
     tags?: Record<string, Record<string, number>> | undefined;

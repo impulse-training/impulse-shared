@@ -78,10 +78,16 @@ export const proposeExperimentTaskSchema = taskBaseSchema.extend({
   }),
 });
 
+export const proposeMaskBehaviorTaskSchema = taskBaseSchema.extend({
+  type: z.literal("propose_mask_behavior"),
+  behaviorId: z.string().min(1),
+});
+
 export const taskSchema = z.discriminatedUnion("type", [
   mergeBehaviorsTaskSchema,
   suggestStrategyTaskSchema,
   proposeExperimentTaskSchema,
+  proposeMaskBehaviorTaskSchema,
 ]);
 
 export type TaskCategory = z.infer<typeof taskCategorySchema>;
@@ -89,6 +95,7 @@ export type TaskStatus = z.infer<typeof taskStatusSchema>;
 export type MergeBehaviorsTask = z.infer<typeof mergeBehaviorsTaskSchema>;
 export type SuggestStrategyTask = z.infer<typeof suggestStrategyTaskSchema>;
 export type ProposeExperimentTask = z.infer<typeof proposeExperimentTaskSchema>;
+export type ProposeMaskBehaviorTask = z.infer<typeof proposeMaskBehaviorTaskSchema>;
 export type Task = z.infer<typeof taskSchema>;
 
 export const isTask = (value: unknown): value is Task =>
@@ -108,3 +115,8 @@ export const isProposeExperimentTask = (
   value: unknown,
 ): value is ProposeExperimentTask =>
   proposeExperimentTaskSchema.safeParse(value).success;
+
+export const isProposeMaskBehaviorTask = (
+  value: unknown,
+): value is ProposeMaskBehaviorTask =>
+  proposeMaskBehaviorTaskSchema.safeParse(value).success;

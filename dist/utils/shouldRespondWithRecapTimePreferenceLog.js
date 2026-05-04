@@ -4,24 +4,15 @@ exports.shouldRespondWithRecapTimePreferenceLog = shouldRespondWithRecapTimePref
 const schemas_1 = require("../schemas");
 /**
  * Check if we should respond to a log write event with a recap time preference log.
- * This happens when:
- * 1. The session is an onboarding session
- * 2. A proposed_experiment log was just confirmed (confirmedAt was set)
- *    OR an image log was just acknowledged (acknowledgedAt was set)
+ * This is a safety-net trigger only — showImpulseModeIntro creates the recap
+ * time preference directly. This fires if the user acknowledges the image log
+ * and no recap_time_preference exists yet.
  */
 function shouldRespondWithRecapTimePreferenceLog(session, beforeData, afterData) {
     if (!beforeData || !afterData)
         return false;
     if (!(0, schemas_1.sessionIsOnboardingSession)(session))
         return false;
-    // When a proposed_experiment log gains confirmedAt
-    if (afterData.type === "proposed_experiment" &&
-        beforeData.type === "proposed_experiment") {
-        const before = beforeData;
-        const after = afterData;
-        if (after.confirmedAt && !before.confirmedAt)
-            return true;
-    }
     // When an image log gains acknowledgedAt (e.g. "Got it" on ImpulseMode intro)
     if (afterData.type === "image" && beforeData.type === "image") {
         const before = beforeData;

@@ -22,20 +22,6 @@ const latestSupportGroupMessageSchema = z.object({
   sentAt: timestampSchema,
 });
 
-const latestSessionMessageSchema = z.object({
-  sessionId: z.string(),
-  message: z.string(),
-  role: z.enum(["user", "assistant"]),
-  sentAt: timestampSchema,
-});
-
-export const latestSessionMessageTypeSchema = z.enum([
-  "onboarding",
-  // TODO: Remove after 2026-05-26. Legacy session message key.
-  "alignment",
-  "commitment",
-]);
-
 export const userDataSchema = z.object({
   id: z.string().optional(),
   createdAt: timestampSchema.optional(),
@@ -122,10 +108,6 @@ export const userDataSchema = z.object({
     .record(supportGroupTypeSchema, latestSupportGroupMessageSchema)
     .optional(),
 
-  latestSessionMessages: z
-    .record(latestSessionMessageTypeSchema, latestSessionMessageSchema)
-    .optional(),
-
   // User location (ISO 3166-1 alpha-2 country code)
   country: z.string().optional(),
 
@@ -150,6 +132,23 @@ export const userDataSchema = z.object({
   roadmapNotificationsEnabled: z.boolean().optional(),
 
   concurrentUserAccountIds: z.array(z.string()).optional(),
+
+  // Generated fake name for admin display
+  pseudonym: z.string().optional(),
+
+  // Emoji avatar chosen by user (synced from userProfile)
+  emojiId: z.object({ emoji: z.string() }).optional(),
+
+  // Denormalized from auth custom claims so admin can query without auth lookup
+  onboardingCompleted: z.boolean().optional(),
+
+  // Denormalized behavior names for admin list display
+  behaviorNames: z.array(z.string()).optional(),
+
+  engagement: z
+    .enum(["engaged", "distant", "churned", "abandoned"])
+    .nullable()
+    .optional(),
 });
 
 // Export User type inferred from schema

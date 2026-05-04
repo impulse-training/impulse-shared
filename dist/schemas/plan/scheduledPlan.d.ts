@@ -46,6 +46,7 @@ export declare const scheduledPlanSchema: z.ZodObject<{
     generationSignature: z.ZodOptional<z.ZodString>;
     generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     numberOfUses: z.ZodOptional<z.ZodNumber>;
     numberOfSuccesses: z.ZodOptional<z.ZodNumber>;
     numberOfSetbacks: z.ZodOptional<z.ZodNumber>;
@@ -68,6 +69,7 @@ export declare const scheduledPlanSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    behaviorIds?: string[] | undefined;
     description?: string | undefined;
     ordinal?: number | undefined;
     tags?: Record<string, Record<string, number>> | undefined;
@@ -102,6 +104,7 @@ export declare const scheduledPlanSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
+    behaviorIds?: string[] | undefined;
     description?: string | undefined;
     ordinal?: number | undefined;
     tags?: Record<string, Record<string, number>> | undefined;
