@@ -319,6 +319,16 @@ function getGptPayload(log, isFinalLogInSession, options) {
             },
         ];
     }
+    if (log.type === "impulse_started") {
+        return [
+            {
+                role: "user",
+                content: "<SYSTEM>The user just activated Impulse Mode via their shortcut (widget or back-tap). " +
+                    "This confirms their shortcut is installed and working. " +
+                    "Acknowledge their success and move on to the next step.</SYSTEM>",
+            },
+        ];
+    }
     // Return empty array for other (unsupported) log types
     return [];
 }

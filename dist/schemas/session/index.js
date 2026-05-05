@@ -14,7 +14,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidMilestoneSession = exports.sessionIsMilestoneSession = exports.isValidDemoSession = exports.sessionIsDemoSession = exports.isValidRecoveryKeySession = exports.sessionIsRecoveryKeySession = exports.isValidWelcomeSession = exports.sessionIsWelcomeSession = exports.isValidTacticSession = exports.sessionIsTacticSession = exports.isValidCommitmentSession = exports.sessionIsCommitmentSession = exports.isValidAdjustmentSession = exports.sessionIsAdjustmentSession = exports.isValidBehaviorSession = exports.sessionIsBehaviorSession = exports.isValidLocationPlanSession = exports.sessionIsLocationPlanSession = exports.isValidRecapSession = exports.sessionIsRecapSession = exports.isValidAlignmentSession = exports.sessionIsAlignmentSession = exports.isValidOnboardingSession = exports.sessionIsOnboardingSession = exports.isValidTimePlanSession = exports.sessionIsTimePlanSession = exports.isValidImpulseSession = exports.sessionIsImpulseSession = exports.isValidGeneralSession = exports.sessionIsGeneralSession = exports.sessionSchema = exports.sessionSchemas = void 0;
+exports.isValidMilestoneSession = exports.sessionIsMilestoneSession = exports.isValidDemoSession = exports.sessionIsDemoSession = exports.isValidTasksSession = exports.sessionIsTasksSession = exports.isValidRecoveryKeySession = exports.sessionIsRecoveryKeySession = exports.isValidWelcomeSession = exports.sessionIsWelcomeSession = exports.isValidTacticSession = exports.sessionIsTacticSession = exports.isValidCommitmentSession = exports.sessionIsCommitmentSession = exports.isValidAdjustmentSession = exports.sessionIsAdjustmentSession = exports.isValidBehaviorSession = exports.sessionIsBehaviorSession = exports.isValidLocationPlanSession = exports.sessionIsLocationPlanSession = exports.isValidRecapSession = exports.sessionIsRecapSession = exports.isValidAlignmentSession = exports.sessionIsAlignmentSession = exports.isValidOnboardingSession = exports.sessionIsOnboardingSession = exports.isValidTimePlanSession = exports.sessionIsTimePlanSession = exports.isValidImpulseSession = exports.sessionIsImpulseSession = exports.isValidGeneralSession = exports.sessionIsGeneralSession = exports.sessionSchema = exports.sessionSchemas = void 0;
 exports.shouldSummarizeSession = shouldSummarizeSession;
 const zod_1 = require("zod");
 const adjustment_1 = require("./adjustment");
@@ -31,6 +31,7 @@ const tactic_1 = require("./tactic");
 const welcome_1 = require("./welcome");
 const setup_1 = require("./setup");
 const recoveryKey_1 = require("./recoveryKey");
+const tasks_1 = require("./tasks");
 const demo_1 = require("./demo");
 const milestone_1 = require("./milestone");
 __exportStar(require("../sessionSummary"), exports);
@@ -49,6 +50,7 @@ __exportStar(require("./tactic"), exports);
 __exportStar(require("./welcome"), exports);
 __exportStar(require("./setup"), exports);
 __exportStar(require("./recoveryKey"), exports);
+__exportStar(require("./tasks"), exports);
 __exportStar(require("./demo"), exports);
 __exportStar(require("./milestone"), exports);
 // Map of session types to their schemas
@@ -68,6 +70,7 @@ exports.sessionSchemas = {
     welcome: welcome_1.welcomeSessionSchema,
     setup: setup_1.setupSessionSchema,
     recoveryKey: recoveryKey_1.recoveryKeySessionSchema,
+    tasks: tasks_1.tasksSessionSchema,
     demo: demo_1.demoSessionSchema,
     milestone: milestone_1.milestoneSessionSchema,
 };
@@ -88,6 +91,7 @@ exports.sessionSchema = zod_1.z.discriminatedUnion("type", [
     welcome_1.welcomeSessionSchema,
     setup_1.setupSessionSchema,
     recoveryKey_1.recoveryKeySessionSchema,
+    tasks_1.tasksSessionSchema,
     demo_1.demoSessionSchema,
     milestone_1.milestoneSessionSchema,
 ]);
@@ -143,6 +147,10 @@ const sessionIsRecoveryKeySession = (value) => value.type === "recoveryKey";
 exports.sessionIsRecoveryKeySession = sessionIsRecoveryKeySession;
 const isValidRecoveryKeySession = (value) => recoveryKey_1.recoveryKeySessionSchema.safeParse(value).success;
 exports.isValidRecoveryKeySession = isValidRecoveryKeySession;
+const sessionIsTasksSession = (value) => value.type === "tasks";
+exports.sessionIsTasksSession = sessionIsTasksSession;
+const isValidTasksSession = (value) => tasks_1.tasksSessionSchema.safeParse(value).success;
+exports.isValidTasksSession = isValidTasksSession;
 const sessionIsDemoSession = (value) => value.type === "demo";
 exports.sessionIsDemoSession = sessionIsDemoSession;
 const isValidDemoSession = (value) => demo_1.demoSessionSchema.safeParse(value).success;
@@ -157,6 +165,7 @@ const noSummarizeSessionTypes = [
     "tactic",
     "welcome",
     "recoveryKey",
+    "tasks",
     "demo",
     "milestone",
 ];

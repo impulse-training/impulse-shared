@@ -23,7 +23,8 @@ const sessionTypeSchema = zod_1.z.enum([
     "setup",
     "welcome",
     "tactic",
-    "recoveryKey",
+    "recoveryKey", // TODO: Remove after 2026-07-05 — replaced by "tasks" session type
+    "tasks",
     "demo",
     "milestone",
 ]);

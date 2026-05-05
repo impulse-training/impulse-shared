@@ -83,11 +83,39 @@ export const proposeMaskBehaviorTaskSchema = taskBaseSchema.extend({
   behaviorId: z.string().min(1),
 });
 
+const sessionLogTemplateSchema = z.object({
+  type: z.string(),
+  isDisplayable: z.literal(true),
+  data: z.record(z.string(), z.any()),
+  message: z
+    .object({
+      role: z.enum(["assistant", "user"]),
+      content: z.string(),
+    })
+    .optional(),
+});
+
+const sessionNotificationTemplateSchema = z.object({
+  title: z.string(),
+  body: z.string(),
+  data: z.record(z.string(), z.any()).optional(),
+});
+
+export const createSessionTaskSchema = taskBaseSchema.extend({
+  type: z.literal("create_session"),
+  sessionTemplate: z.object({
+    title: z.string(),
+    logs: z.array(sessionLogTemplateSchema),
+    notification: sessionNotificationTemplateSchema.optional(),
+  }),
+});
+
 export const taskSchema = z.discriminatedUnion("type", [
   mergeBehaviorsTaskSchema,
   suggestStrategyTaskSchema,
   proposeExperimentTaskSchema,
   proposeMaskBehaviorTaskSchema,
+  createSessionTaskSchema,
 ]);
 
 export type TaskCategory = z.infer<typeof taskCategorySchema>;
@@ -96,6 +124,7 @@ export type MergeBehaviorsTask = z.infer<typeof mergeBehaviorsTaskSchema>;
 export type SuggestStrategyTask = z.infer<typeof suggestStrategyTaskSchema>;
 export type ProposeExperimentTask = z.infer<typeof proposeExperimentTaskSchema>;
 export type ProposeMaskBehaviorTask = z.infer<typeof proposeMaskBehaviorTaskSchema>;
+export type CreateSessionTask = z.infer<typeof createSessionTaskSchema>;
 export type Task = z.infer<typeof taskSchema>;
 
 export const isTask = (value: unknown): value is Task =>

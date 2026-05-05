@@ -1,6 +1,7 @@
 import {
   Session,
   sessionIsImpulseSession,
+  sessionIsOnboardingSession,
   sessionIsTimePlanSession,
 } from "../schemas";
 import { getDateString, getRecapDeadline } from "./dates";
@@ -10,6 +11,7 @@ import {
   logIsBehaviorLog,
   logIsDayTotalsPromptLog,
   logIsImpulseStartedLog,
+  logIsMaskBehaviorProposalLog,
   logIsMergeBehaviorsProposalLog,
   logIsMetricLog,
   logIsPlansLog,
@@ -134,6 +136,20 @@ export function shouldRespondToLogWithAI(
     !!afterData.data.selectedResponseText &&
     fieldChanged(beforeData, afterData, "data.selectedResponseText");
 
+  const isMaskBehaviorResponseSelected =
+    beforeData &&
+    afterData &&
+    logIsMaskBehaviorProposalLog(afterData) &&
+    !!afterData.data.selectedResponseText &&
+    fieldChanged(beforeData, afterData, "data.selectedResponseText");
+
+  const isImpulseStartedDuringOnboarding =
+    !beforeData &&
+    afterData &&
+    logIsImpulseStartedLog(afterData) &&
+    session &&
+    sessionIsOnboardingSession(session);
+
   const latestIsAssistantOutput =
     latestSessionLog &&
     (logIsAssistantMessageLog(latestSessionLog) ||
@@ -149,6 +165,8 @@ export function shouldRespondToLogWithAI(
     !isShortcutSetupTextChoice &&
     !isTacticCompleted &&
     !isMergeBehaviorsResponseSelected &&
+    !isMaskBehaviorResponseSelected &&
+    !isImpulseStartedDuringOnboarding &&
     latestIsAssistantOutput
   ) {
     console.log("Latest log is assistant output. Not responding with AI.");
@@ -233,6 +251,12 @@ export function shouldRespondToLogWithAI(
   // Case: Shortcut setup intro — user chose text instructions
   if (isShortcutSetupTextChoice) {
     console.log("Shortcut setup text choice made. Responding with AI.");
+    return true;
+  }
+
+  // Case: impulse_started during onboarding — user tested their shortcut
+  if (isImpulseStartedDuringOnboarding) {
+    console.log("Impulse started during onboarding. Responding with AI.");
     return true;
   }
 
@@ -362,6 +386,11 @@ export function shouldRespondToLogWithAI(
 
   if (isMergeBehaviorsResponseSelected) {
     console.log("Merge behaviors response selected. Responding with AI.");
+    return true;
+  }
+
+  if (isMaskBehaviorResponseSelected) {
+    console.log("Mask behavior response selected. Responding with AI.");
     return true;
   }
 

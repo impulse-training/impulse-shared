@@ -12,6 +12,7 @@ import { TacticSession, tacticSessionSchema } from "./tactic";
 import { WelcomeSession, welcomeSessionSchema } from "./welcome";
 import { setupSessionSchema } from "./setup";
 import { RecoveryKeySession, recoveryKeySessionSchema } from "./recoveryKey";
+import { TasksSession, tasksSessionSchema } from "./tasks";
 import { DemoSession, demoSessionSchema } from "./demo";
 import { MilestoneSession, milestoneSessionSchema } from "./milestone";
 export * from "../sessionSummary";
@@ -29,6 +30,7 @@ export * from "./tactic";
 export * from "./welcome";
 export * from "./setup";
 export * from "./recoveryKey";
+export * from "./tasks";
 export * from "./demo";
 export * from "./milestone";
 export declare const sessionSchemas: Record<string, z.ZodTypeAny>;
@@ -47,6 +49,7 @@ export declare const sessionSchema: z.ZodDiscriminatedUnion<"type", [
     typeof welcomeSessionSchema,
     typeof setupSessionSchema,
     typeof recoveryKeySessionSchema,
+    typeof tasksSessionSchema,
     typeof demoSessionSchema,
     typeof milestoneSessionSchema
 ]>;
@@ -76,6 +79,8 @@ export declare const sessionIsWelcomeSession: (value: Session) => value is Welco
 export declare const isValidWelcomeSession: (value: unknown) => value is WelcomeSession;
 export declare const sessionIsRecoveryKeySession: (value: Session) => value is RecoveryKeySession;
 export declare const isValidRecoveryKeySession: (value: unknown) => value is RecoveryKeySession;
+export declare const sessionIsTasksSession: (value: Session) => value is TasksSession;
+export declare const isValidTasksSession: (value: unknown) => value is TasksSession;
 export declare const sessionIsDemoSession: (value: Session) => value is DemoSession;
 export declare const isValidDemoSession: (value: unknown) => value is DemoSession;
 export declare const sessionIsMilestoneSession: (value: Session) => value is MilestoneSession;

@@ -18,6 +18,7 @@ import { TacticSession, tacticSessionSchema } from "./tactic";
 import { WelcomeSession, welcomeSessionSchema } from "./welcome";
 import { SetupSession, setupSessionSchema } from "./setup";
 import { RecoveryKeySession, recoveryKeySessionSchema } from "./recoveryKey";
+import { TasksSession, tasksSessionSchema } from "./tasks";
 import { DemoSession, demoSessionSchema } from "./demo";
 import { MilestoneSession, milestoneSessionSchema } from "./milestone";
 
@@ -37,6 +38,7 @@ export * from "./tactic";
 export * from "./welcome";
 export * from "./setup";
 export * from "./recoveryKey";
+export * from "./tasks";
 export * from "./demo";
 export * from "./milestone";
 
@@ -57,6 +59,7 @@ export const sessionSchemas: Record<string, z.ZodTypeAny> = {
   welcome: welcomeSessionSchema,
   setup: setupSessionSchema,
   recoveryKey: recoveryKeySessionSchema,
+  tasks: tasksSessionSchema,
   demo: demoSessionSchema,
   milestone: milestoneSessionSchema,
 };
@@ -79,6 +82,7 @@ export const sessionSchema: z.ZodDiscriminatedUnion<
     typeof welcomeSessionSchema,
     typeof setupSessionSchema,
     typeof recoveryKeySessionSchema,
+    typeof tasksSessionSchema,
     typeof demoSessionSchema,
     typeof milestoneSessionSchema,
   ]
@@ -98,6 +102,7 @@ export const sessionSchema: z.ZodDiscriminatedUnion<
   welcomeSessionSchema,
   setupSessionSchema,
   recoveryKeySessionSchema,
+  tasksSessionSchema,
   demoSessionSchema,
   milestoneSessionSchema,
 ]);
@@ -196,6 +201,13 @@ export const isValidRecoveryKeySession = (
 ): value is RecoveryKeySession =>
   recoveryKeySessionSchema.safeParse(value).success;
 
+export const sessionIsTasksSession = (
+  value: Session,
+): value is TasksSession => value.type === "tasks";
+export const isValidTasksSession = (
+  value: unknown,
+): value is TasksSession => tasksSessionSchema.safeParse(value).success;
+
 export const sessionIsDemoSession = (value: Session): value is DemoSession =>
   value.type === "demo";
 export const isValidDemoSession = (value: unknown): value is DemoSession =>
@@ -214,6 +226,7 @@ const noSummarizeSessionTypes: Session["type"][] = [
   "tactic",
   "welcome",
   "recoveryKey",
+  "tasks",
   "demo",
   "milestone",
 ];
