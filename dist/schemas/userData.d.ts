@@ -127,7 +127,7 @@ export declare const userDataSchema: z.ZodObject<{
     }, {
         recommendedLibraryDone?: boolean | undefined;
     }>>;
-    firsts: z.ZodOptional<z.ZodRecord<z.ZodEnum<["installWidget", "impulseButton", "triedTactic", "voiceSession", "resistedUrge"]>, z.ZodObject<{
+    firsts: z.ZodOptional<z.ZodRecord<z.ZodEnum<["impulseButton", "triedTactic", "voiceSession", "resistedUrge"]>, z.ZodObject<{
         achievedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
         sessionId: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
@@ -215,7 +215,7 @@ export declare const userDataSchema: z.ZodObject<{
     migrations?: {
         recommendedLibraryDone?: boolean | undefined;
     } | undefined;
-    firsts?: Partial<Record<"installWidget" | "impulseButton" | "triedTactic" | "voiceSession" | "resistedUrge", {
+    firsts?: Partial<Record<"impulseButton" | "triedTactic" | "voiceSession" | "resistedUrge", {
         achievedAt: import("../types").Timestamp;
         sessionId?: string | undefined;
     }>> | undefined;
@@ -289,7 +289,7 @@ export declare const userDataSchema: z.ZodObject<{
     migrations?: {
         recommendedLibraryDone?: boolean | undefined;
     } | undefined;
-    firsts?: Partial<Record<"installWidget" | "impulseButton" | "triedTactic" | "voiceSession" | "resistedUrge", {
+    firsts?: Partial<Record<"impulseButton" | "triedTactic" | "voiceSession" | "resistedUrge", {
         achievedAt: import("../types").Timestamp;
         sessionId?: string | undefined;
     }>> | undefined;

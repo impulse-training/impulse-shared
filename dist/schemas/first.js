@@ -6,7 +6,6 @@ exports.getAllFirsts = getAllFirsts;
 const zod_1 = require("zod");
 const timestampSchema_1 = require("../utils/timestampSchema");
 exports.firstKinds = [
-    "installWidget",
     "impulseButton",
     "triedTactic",
     "voiceSession",
@@ -14,25 +13,21 @@ exports.firstKinds = [
 ];
 exports.firstKindSchema = zod_1.z.enum(exports.firstKinds);
 exports.FIRST_DEFINITIONS = {
-    installWidget: {
-        label: "Install the impulse lock screen widget",
-        order: 0,
-    },
     impulseButton: {
-        label: "Press the impulse button in an impulse moment",
-        order: 1,
+        label: "Activate Impulse Mode in an impulse moment",
+        order: 0,
     },
     triedTactic: {
         label: "Try a tactic in an impulse moment",
-        order: 2,
+        order: 1,
     },
     voiceSession: {
         label: "Talk with Zara using voice mode",
-        order: 3,
+        order: 2,
     },
     resistedUrge: {
         label: "Resist an urge in an impulse moment",
-        order: 4,
+        order: 3,
     },
 };
 exports.achievedFirstSchema = zod_1.z.object({
@@ -41,8 +36,7 @@ exports.achievedFirstSchema = zod_1.z.object({
 });
 exports.firstsSchema = zod_1.z.record(exports.firstKindSchema, exports.achievedFirstSchema);
 function getNextFirst(achieved) {
-    const sorted = Object.entries(exports.FIRST_DEFINITIONS)
-        .sort(([, a], [, b]) => a.order - b.order);
+    const sorted = Object.entries(exports.FIRST_DEFINITIONS).sort(([, a], [, b]) => a.order - b.order);
     for (const [kind, def] of sorted) {
         if (!(achieved === null || achieved === void 0 ? void 0 : achieved[kind]))
             return { kind, label: def.label, route: def.route };

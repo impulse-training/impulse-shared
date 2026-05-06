@@ -1,6 +1,6 @@
 import { z } from "zod";
-export declare const firstKinds: readonly ["installWidget", "impulseButton", "triedTactic", "voiceSession", "resistedUrge"];
-export declare const firstKindSchema: z.ZodEnum<["installWidget", "impulseButton", "triedTactic", "voiceSession", "resistedUrge"]>;
+export declare const firstKinds: readonly ["impulseButton", "triedTactic", "voiceSession", "resistedUrge"];
+export declare const firstKindSchema: z.ZodEnum<["impulseButton", "triedTactic", "voiceSession", "resistedUrge"]>;
 export type FirstKind = z.infer<typeof firstKindSchema>;
 export interface FirstDefinition {
     label: string;
@@ -19,7 +19,7 @@ export declare const achievedFirstSchema: z.ZodObject<{
     sessionId?: string | undefined;
 }>;
 export type AchievedFirst = z.infer<typeof achievedFirstSchema>;
-export declare const firstsSchema: z.ZodRecord<z.ZodEnum<["installWidget", "impulseButton", "triedTactic", "voiceSession", "resistedUrge"]>, z.ZodObject<{
+export declare const firstsSchema: z.ZodRecord<z.ZodEnum<["impulseButton", "triedTactic", "voiceSession", "resistedUrge"]>, z.ZodObject<{
     achievedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     sessionId: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {

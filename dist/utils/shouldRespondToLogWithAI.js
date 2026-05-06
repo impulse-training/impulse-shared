@@ -82,6 +82,11 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         (0, log_1.logIsMaskBehaviorProposalLog)(afterData) &&
         !!afterData.data.selectedResponseText &&
         (0, fields_1.fieldChanged)(beforeData, afterData, "data.selectedResponseText");
+    const isImpulseStartedDuringOnboarding = !beforeData &&
+        afterData &&
+        (0, log_1.logIsImpulseStartedLog)(afterData) &&
+        session &&
+        (0, schemas_1.sessionIsOnboardingSession)(session);
     const latestIsAssistantOutput = latestSessionLog &&
         ((0, log_1.logIsAssistantMessageLog)(latestSessionLog) ||
             (0, log_1.logIsToolCallLog)(latestSessionLog) ||
@@ -95,6 +100,7 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         !isTacticCompleted &&
         !isMergeBehaviorsResponseSelected &&
         !isMaskBehaviorResponseSelected &&
+        !isImpulseStartedDuringOnboarding &&
         latestIsAssistantOutput) {
         console.log("Latest log is assistant output. Not responding with AI.");
         return false;
@@ -156,6 +162,11 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
     // Case: Shortcut setup intro — user chose text instructions
     if (isShortcutSetupTextChoice) {
         console.log("Shortcut setup text choice made. Responding with AI.");
+        return true;
+    }
+    // Case: impulse_started during onboarding — user tested their shortcut
+    if (isImpulseStartedDuringOnboarding) {
+        console.log("Impulse started during onboarding. Responding with AI.");
         return true;
     }
     // Case: Debrief urge outcome was resolved (resisted/still_there)
