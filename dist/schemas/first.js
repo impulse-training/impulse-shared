@@ -17,7 +17,6 @@ exports.FIRST_DEFINITIONS = {
     installWidget: {
         label: "Install the impulse lock screen widget",
         order: 0,
-        route: "/session/setup",
     },
     impulseButton: {
         label: "Press the impulse button in an impulse moment",
