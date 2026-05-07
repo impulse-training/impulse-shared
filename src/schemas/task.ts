@@ -110,12 +110,23 @@ export const createSessionTaskSchema = taskBaseSchema.extend({
   }),
 });
 
+export const recapQuestionTaskSchema = taskBaseSchema.extend({
+  type: z.literal("recap_question"),
+  recapQuestionId: z.string(),
+  behaviorId: z.string(),
+  behaviorName: z.string(),
+  ordinal: z.number().int().min(0),
+  answerSummary: z.string().optional(),
+  claimedBySessionId: z.string().optional(),
+});
+
 export const taskSchema = z.discriminatedUnion("type", [
   mergeBehaviorsTaskSchema,
   suggestStrategyTaskSchema,
   proposeExperimentTaskSchema,
   proposeMaskBehaviorTaskSchema,
   createSessionTaskSchema,
+  recapQuestionTaskSchema,
 ]);
 
 export type TaskCategory = z.infer<typeof taskCategorySchema>;
@@ -125,6 +136,7 @@ export type SuggestStrategyTask = z.infer<typeof suggestStrategyTaskSchema>;
 export type ProposeExperimentTask = z.infer<typeof proposeExperimentTaskSchema>;
 export type ProposeMaskBehaviorTask = z.infer<typeof proposeMaskBehaviorTaskSchema>;
 export type CreateSessionTask = z.infer<typeof createSessionTaskSchema>;
+export type RecapQuestionTask = z.infer<typeof recapQuestionTaskSchema>;
 export type Task = z.infer<typeof taskSchema>;
 
 export const isTask = (value: unknown): value is Task =>
@@ -149,3 +161,8 @@ export const isProposeMaskBehaviorTask = (
   value: unknown,
 ): value is ProposeMaskBehaviorTask =>
   proposeMaskBehaviorTaskSchema.safeParse(value).success;
+
+export const isRecapQuestionTask = (
+  value: unknown,
+): value is RecapQuestionTask =>
+  recapQuestionTaskSchema.safeParse(value).success;

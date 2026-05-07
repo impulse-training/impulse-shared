@@ -19,6 +19,7 @@ export const recapSessionSchema = sessionBaseSchema.extend({
   pendingTaskResolution: z.boolean().optional(),
   recapQuestionId: z.string().nullable().optional(),
   recapQuestionSource: recapQuestionSourceSchema.optional(),
+  recapQuestionTaskId: z.string().optional(),
   focusBehaviorId: z.string().optional(),
   focusBehaviorName: z.string().optional(),
   focusBehaviorIds: z.array(z.string()).optional(),

@@ -19,6 +19,7 @@ exports.recapSessionSchema = base_1.sessionBaseSchema.extend({
     pendingTaskResolution: zod_1.z.boolean().optional(),
     recapQuestionId: zod_1.z.string().nullable().optional(),
     recapQuestionSource: exports.recapQuestionSourceSchema.optional(),
+    recapQuestionTaskId: zod_1.z.string().optional(),
     focusBehaviorId: zod_1.z.string().optional(),
     focusBehaviorName: zod_1.z.string().optional(),
     focusBehaviorIds: zod_1.z.array(zod_1.z.string()).optional(),

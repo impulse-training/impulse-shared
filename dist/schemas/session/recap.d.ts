@@ -2471,6 +2471,7 @@ export declare const recapSessionSchema: z.ZodObject<{
     pendingTaskResolution: z.ZodOptional<z.ZodBoolean>;
     recapQuestionId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     recapQuestionSource: z.ZodOptional<z.ZodEnum<["sequence", "baseline", "milestone", "trend", "approaching_milestone"]>>;
+    recapQuestionTaskId: z.ZodOptional<z.ZodString>;
     focusBehaviorId: z.ZodOptional<z.ZodString>;
     focusBehaviorName: z.ZodOptional<z.ZodString>;
     focusBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
@@ -2879,6 +2880,7 @@ export declare const recapSessionSchema: z.ZodObject<{
     pendingTaskResolution?: boolean | undefined;
     recapQuestionId?: string | null | undefined;
     recapQuestionSource?: "trend" | "milestone" | "sequence" | "baseline" | "approaching_milestone" | undefined;
+    recapQuestionTaskId?: string | undefined;
     focusBehaviorId?: string | undefined;
     focusBehaviorName?: string | undefined;
     focusBehaviorIds?: string[] | undefined;
@@ -3287,6 +3289,7 @@ export declare const recapSessionSchema: z.ZodObject<{
     pendingTaskResolution?: boolean | undefined;
     recapQuestionId?: string | null | undefined;
     recapQuestionSource?: "trend" | "milestone" | "sequence" | "baseline" | "approaching_milestone" | undefined;
+    recapQuestionTaskId?: string | undefined;
     focusBehaviorId?: string | undefined;
     focusBehaviorName?: string | undefined;
     focusBehaviorIds?: string[] | undefined;
