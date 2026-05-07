@@ -5,6 +5,7 @@ export declare const userDataSchema: z.ZodObject<{
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     recoveryKeyHash: z.ZodOptional<z.ZodString>;
     defaultSessionMode: z.ZodDefault<z.ZodEnum<["text", "voice"]>>;
+    llmProvider: z.ZodOptional<z.ZodEnum<["openai", "anthropic"]>>;
     createdViaSimulator: z.ZodOptional<z.ZodBoolean>;
     role: z.ZodDefault<z.ZodEnum<["user", "coach", "support"]>>;
     notificationsEnabled: z.ZodDefault<z.ZodBoolean>;
@@ -181,6 +182,7 @@ export declare const userDataSchema: z.ZodObject<{
         } | undefined;
     } | undefined;
     recoveryKeyHash?: string | undefined;
+    llmProvider?: "openai" | "anthropic" | undefined;
     createdViaSimulator?: boolean | undefined;
     notifyOnSignUp?: boolean | undefined;
     notifyOnCoachingApplication?: boolean | undefined;
@@ -249,6 +251,7 @@ export declare const userDataSchema: z.ZodObject<{
     notificationsEnabled?: boolean | undefined;
     recoveryKeyHash?: string | undefined;
     defaultSessionMode?: "text" | "voice" | undefined;
+    llmProvider?: "openai" | "anthropic" | undefined;
     createdViaSimulator?: boolean | undefined;
     notifyOnSignUp?: boolean | undefined;
     notifyOnCoachingApplication?: boolean | undefined;

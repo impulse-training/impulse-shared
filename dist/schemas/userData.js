@@ -27,6 +27,7 @@ exports.userDataSchema = zod_1.z.object({
     // Authentication
     recoveryKeyHash: zod_1.z.string().optional(),
     defaultSessionMode: zod_1.z.enum(["text", "voice"]).default("text"),
+    llmProvider: zod_1.z.enum(["openai", "anthropic"]).optional(),
     // Account creation metadata
     createdViaSimulator: zod_1.z.boolean().optional(),
     // User role

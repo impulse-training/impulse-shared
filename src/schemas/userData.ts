@@ -31,6 +31,7 @@ export const userDataSchema = z.object({
   recoveryKeyHash: z.string().optional(),
 
   defaultSessionMode: z.enum(["text", "voice"]).default("text"),
+  llmProvider: z.enum(["openai", "anthropic"]).optional(),
 
   // Account creation metadata
   createdViaSimulator: z.boolean().optional(),
