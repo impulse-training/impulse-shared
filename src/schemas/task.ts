@@ -120,6 +120,24 @@ export const recapQuestionTaskSchema = taskBaseSchema.extend({
   claimedBySessionId: z.string().optional(),
 });
 
+export const reviewTriggerTaskSchema = taskBaseSchema.extend({
+  type: z.literal("review_trigger"),
+  impulseSessionId: z.string(),
+  debriefOutcome: z.enum(["acted", "resisted"]),
+  suggestedTrigger: z.object({
+    tags: z.record(z.string(), z.string()),
+    behaviorIds: z.array(z.string()).optional(),
+  }),
+  suggestedPlan: z.object({
+    name: z.string(),
+    tacticIds: z.array(z.string()).optional(),
+    newTactics: z.array(z.object({
+      title: z.string(),
+      description: z.string().optional(),
+    })).optional(),
+  }),
+});
+
 export const taskSchema = z.discriminatedUnion("type", [
   mergeBehaviorsTaskSchema,
   suggestStrategyTaskSchema,
@@ -127,6 +145,7 @@ export const taskSchema = z.discriminatedUnion("type", [
   proposeMaskBehaviorTaskSchema,
   createSessionTaskSchema,
   recapQuestionTaskSchema,
+  reviewTriggerTaskSchema,
 ]);
 
 export type TaskCategory = z.infer<typeof taskCategorySchema>;
@@ -137,6 +156,7 @@ export type ProposeExperimentTask = z.infer<typeof proposeExperimentTaskSchema>;
 export type ProposeMaskBehaviorTask = z.infer<typeof proposeMaskBehaviorTaskSchema>;
 export type CreateSessionTask = z.infer<typeof createSessionTaskSchema>;
 export type RecapQuestionTask = z.infer<typeof recapQuestionTaskSchema>;
+export type ReviewTriggerTask = z.infer<typeof reviewTriggerTaskSchema>;
 export type Task = z.infer<typeof taskSchema>;
 
 export const isTask = (value: unknown): value is Task =>
@@ -166,3 +186,8 @@ export const isRecapQuestionTask = (
   value: unknown,
 ): value is RecapQuestionTask =>
   recapQuestionTaskSchema.safeParse(value).success;
+
+export const isReviewTriggerTask = (
+  value: unknown,
+): value is ReviewTriggerTask =>
+  reviewTriggerTaskSchema.safeParse(value).success;
