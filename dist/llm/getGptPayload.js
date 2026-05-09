@@ -300,6 +300,8 @@ function getGptPayload(log, isFinalLogInSession, options) {
     }
     // Tags updated from UI — inform the AI so it can respond with tactic suggestions
     if (log.type === "tags_updated") {
+        if (options === null || options === void 0 ? void 0 : options.forSummarization)
+            return [];
         const tactics = (_d = log.data) === null || _d === void 0 ? void 0 : _d.recommendedTactics;
         let tacticsContext = "";
         if (tactics && tactics.length > 0) {
@@ -320,14 +322,19 @@ function getGptPayload(log, isFinalLogInSession, options) {
         ];
     }
     if (log.type === "impulse_started") {
-        return [
-            {
-                role: "user",
-                content: "<SYSTEM>The user just activated Impulse Mode via their shortcut (widget or back-tap). " +
-                    "This confirms their shortcut is installed and working. " +
-                    "Acknowledge their success and move on to the next step.</SYSTEM>",
-            },
-        ];
+        if (options === null || options === void 0 ? void 0 : options.forSummarization)
+            return [];
+        if ((options === null || options === void 0 ? void 0 : options.sessionType) === "onboarding") {
+            return [
+                {
+                    role: "user",
+                    content: "<SYSTEM>The user just activated Impulse Mode via their shortcut (widget or back-tap). " +
+                        "This confirms their shortcut is installed and working. " +
+                        "Acknowledge their success and move on to the next step.</SYSTEM>",
+                },
+            ];
+        }
+        return [];
     }
     // Return empty array for other (unsupported) log types
     return [];

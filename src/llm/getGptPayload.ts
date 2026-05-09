@@ -22,6 +22,7 @@ import { SessionPhase } from "../schemas/session/phase";
 interface PayloadOptions {
   forSummarization?: boolean;
   sessionPhase?: SessionPhase;
+  sessionType?: string;
 }
 
 function buildBehaviorLogPayload(
@@ -380,6 +381,8 @@ export function getGptPayload(
 
   // Tags updated from UI — inform the AI so it can respond with tactic suggestions
   if (log.type === "tags_updated") {
+    if (options?.forSummarization) return [];
+
     const tactics = (log as any).data?.recommendedTactics as
       | Array<{ tacticId: string; title: string; description?: string; phase?: string }>
       | undefined;
@@ -409,15 +412,21 @@ export function getGptPayload(
   }
 
   if (log.type === "impulse_started") {
-    return [
-      {
-        role: "user",
-        content:
-          "<SYSTEM>The user just activated Impulse Mode via their shortcut (widget or back-tap). " +
-          "This confirms their shortcut is installed and working. " +
-          "Acknowledge their success and move on to the next step.</SYSTEM>",
-      },
-    ];
+    if (options?.forSummarization) return [];
+
+    if (options?.sessionType === "onboarding") {
+      return [
+        {
+          role: "user",
+          content:
+            "<SYSTEM>The user just activated Impulse Mode via their shortcut (widget or back-tap). " +
+            "This confirms their shortcut is installed and working. " +
+            "Acknowledge their success and move on to the next step.</SYSTEM>",
+        },
+      ];
+    }
+
+    return [];
   }
 
   // Return empty array for other (unsupported) log types
