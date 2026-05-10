@@ -77,6 +77,7 @@ export declare const userDataSchema: z.ZodObject<{
             hour: number;
             minute: number;
         }>>;
+        pausedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
         trigger: {
             hour: number;
@@ -87,6 +88,7 @@ export declare const userDataSchema: z.ZodObject<{
             hour: number;
             minute: number;
         } | undefined;
+        pausedAt?: import("../types").Timestamp | undefined;
     }, {
         trigger: {
             hour: number;
@@ -97,6 +99,7 @@ export declare const userDataSchema: z.ZodObject<{
             hour: number;
             minute: number;
         } | undefined;
+        pausedAt?: import("../types").Timestamp | undefined;
     }>>;
     isImpulseTeam: z.ZodOptional<z.ZodBoolean>;
     addToAccountabilitySupportGroups: z.ZodOptional<z.ZodBoolean>;
@@ -180,6 +183,7 @@ export declare const userDataSchema: z.ZodObject<{
             hour: number;
             minute: number;
         } | undefined;
+        pausedAt?: import("../types").Timestamp | undefined;
     } | undefined;
     recoveryKeyHash?: string | undefined;
     llmProvider?: "openai" | "anthropic" | undefined;
@@ -246,6 +250,7 @@ export declare const userDataSchema: z.ZodObject<{
             hour: number;
             minute: number;
         } | undefined;
+        pausedAt?: import("../types").Timestamp | undefined;
     } | undefined;
     role?: "user" | "coach" | "support" | undefined;
     notificationsEnabled?: boolean | undefined;

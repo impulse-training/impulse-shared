@@ -73,15 +73,29 @@ const NAME_TO_COLOR = {
     sugar: COLORS.ORANGE,
     smoking: COLORS.ORANGE,
 };
-function guessBehaviorColor(name, index = 0) {
+function guessBehaviorColor(name, index = 0, usedColors = []) {
     const lower = name.toLowerCase().trim();
-    if (NAME_TO_COLOR[lower])
-        return NAME_TO_COLOR[lower];
-    for (const [key, color] of Object.entries(NAME_TO_COLOR)) {
-        if (lower.includes(key) || key.includes(lower))
-            return color;
+    let guessed;
+    if (NAME_TO_COLOR[lower]) {
+        guessed = NAME_TO_COLOR[lower];
     }
-    return exports.BEHAVIOR_COLOR_OPTIONS[index % exports.BEHAVIOR_COLOR_OPTIONS.length];
+    else {
+        for (const [key, color] of Object.entries(NAME_TO_COLOR)) {
+            if (lower.includes(key) || key.includes(lower)) {
+                guessed = color;
+                break;
+            }
+        }
+    }
+    if (!guessed) {
+        guessed = exports.BEHAVIOR_COLOR_OPTIONS[index % exports.BEHAVIOR_COLOR_OPTIONS.length];
+    }
+    if (usedColors.length > 0 && usedColors.includes(guessed)) {
+        const available = exports.BEHAVIOR_COLOR_OPTIONS.filter((c) => !usedColors.includes(c));
+        if (available.length > 0)
+            return available[0];
+    }
+    return guessed;
 }
 function getBehaviorColor(behavior, index = 0) {
     if (behavior.color)

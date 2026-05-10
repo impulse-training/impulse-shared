@@ -1,4 +1,18 @@
 import { z } from "zod";
+export declare const allowedWindowSchema: z.ZodObject<{
+    dayOfWeek: z.ZodNumber;
+    startTime: z.ZodString;
+    endTime: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    dayOfWeek: number;
+    startTime: string;
+    endTime: string;
+}, {
+    dayOfWeek: number;
+    startTime: string;
+    endTime: string;
+}>;
+export type AllowedWindow = z.infer<typeof allowedWindowSchema>;
 export declare const goalSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     type: z.ZodLiteral<"eliminate">;
 }, "strip", z.ZodTypeAny, {
@@ -30,16 +44,16 @@ export declare const goalSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         2: number;
         5: number;
         3: number;
-        4: number;
         6: number;
+        4: number;
     }, {
         0: number;
         1: number;
         2: number;
         5: number;
         3: number;
-        4: number;
         6: number;
+        4: number;
     }>;
 }, "strip", z.ZodTypeAny, {
     type: "reduceIndividualDays";
@@ -49,8 +63,8 @@ export declare const goalSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         2: number;
         5: number;
         3: number;
-        4: number;
         6: number;
+        4: number;
     };
 }, {
     type: "reduceIndividualDays";
@@ -60,8 +74,37 @@ export declare const goalSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         2: number;
         5: number;
         3: number;
-        4: number;
         6: number;
+        4: number;
     };
+}>, z.ZodObject<{
+    type: z.ZodLiteral<"contain">;
+    allowedWindows: z.ZodArray<z.ZodObject<{
+        dayOfWeek: z.ZodNumber;
+        startTime: z.ZodString;
+        endTime: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        dayOfWeek: number;
+        startTime: string;
+        endTime: string;
+    }, {
+        dayOfWeek: number;
+        startTime: string;
+        endTime: string;
+    }>, "many">;
+}, "strip", z.ZodTypeAny, {
+    type: "contain";
+    allowedWindows: {
+        dayOfWeek: number;
+        startTime: string;
+        endTime: string;
+    }[];
+}, {
+    type: "contain";
+    allowedWindows: {
+        dayOfWeek: number;
+        startTime: string;
+        endTime: string;
+    }[];
 }>]>;
 export type Goal = z.infer<typeof goalSchema>;

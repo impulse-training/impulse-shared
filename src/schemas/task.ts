@@ -13,6 +13,7 @@ export const taskBaseSchema = z.object({
   title: z.string().min(1),
   instructions: z.string().min(1),
   context: z.string().optional(),
+  ordinal: z.number().int().min(0).optional(),
   minAppVersion: z.string().optional(),
   requiredTools: z.array(z.string()).optional(),
   dependsOnTaskId: z.string().optional(),
@@ -95,19 +96,24 @@ const sessionLogTemplateSchema = z.object({
     .optional(),
 });
 
-const sessionNotificationTemplateSchema = z.object({
-  title: z.string(),
-  body: z.string(),
-  data: z.record(z.string(), z.any()).optional(),
-});
-
 export const createSessionTaskSchema = taskBaseSchema.extend({
   type: z.literal("create_session"),
+  lazy: z.boolean().default(false),
+  taskIds: z.array(z.string()).optional(),
+  notification: z.object({
+    title: z.string(),
+    body: z.string(),
+    data: z.record(z.string(), z.any()).optional(),
+  }).optional(),
   sessionTemplate: z.object({
     title: z.string(),
     logs: z.array(sessionLogTemplateSchema),
-    notification: sessionNotificationTemplateSchema.optional(),
-  }),
+    notification: z.object({
+      title: z.string(),
+      body: z.string(),
+      data: z.record(z.string(), z.any()).optional(),
+    }).optional(),
+  }).optional(),
 });
 
 export const recapQuestionTaskSchema = taskBaseSchema.extend({

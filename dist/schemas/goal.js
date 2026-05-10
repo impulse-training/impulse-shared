@@ -1,8 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.goalSchema = void 0;
+exports.goalSchema = exports.allowedWindowSchema = void 0;
 const zod_1 = require("zod");
-// Daily goals schema - supports eliminate or reduce with targets
+exports.allowedWindowSchema = zod_1.z.object({
+    dayOfWeek: zod_1.z.number().min(0).max(6),
+    startTime: zod_1.z.string(),
+    endTime: zod_1.z.string(),
+});
+// Daily goals schema - supports eliminate, reduce, or contain
 exports.goalSchema = zod_1.z.discriminatedUnion("type", [
     // Eliminate - goal is to have 0 of this behavior
     zod_1.z.object({
@@ -25,5 +30,10 @@ exports.goalSchema = zod_1.z.discriminatedUnion("type", [
             5: zod_1.z.number(), // Friday
             6: zod_1.z.number(), // Saturday
         }),
+    }),
+    // Contain - restrict to allowed day+time windows
+    zod_1.z.object({
+        type: zod_1.z.literal("contain"),
+        allowedWindows: zod_1.z.array(exports.allowedWindowSchema),
     }),
 ]);

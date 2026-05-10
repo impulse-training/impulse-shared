@@ -64,6 +64,16 @@ function formatRichGoal(goal, unitPlural, isScale = false) {
             return formatTarget(goal.target);
         return `At most ${formatTarget(goal.target)} daily`;
     }
+    if (goal.type === "contain") {
+        const { allowedWindows } = goal;
+        if (allowedWindows.length === 0)
+            return "Eliminate";
+        const parts = allowedWindows.map((w) => {
+            const day = DAY_LABELS[w.dayOfWeek] || `Day ${w.dayOfWeek}`;
+            return `${day} ${w.startTime}–${w.endTime}`;
+        });
+        return `Only ${parts.join(", ")}`;
+    }
     if (goal.type === "reduceIndividualDays") {
         const { dailyTargets } = goal;
         const targets = [0, 1, 2, 3, 4, 5, 6].map((d) => dailyTargets[d]);

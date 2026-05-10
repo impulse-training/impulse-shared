@@ -9,8 +9,8 @@ export declare const callSchema: z.ZodObject<{
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
-    livekitRoomName: string;
     startTime: import("../types").Timestamp;
+    livekitRoomName: string;
     durationMinutes: number;
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
@@ -18,8 +18,8 @@ export declare const callSchema: z.ZodObject<{
     bookedByUserId?: string | undefined;
     bookedAt?: import("../types").Timestamp | undefined;
 }, {
-    livekitRoomName: string;
     startTime: import("../types").Timestamp;
+    livekitRoomName: string;
     durationMinutes: number;
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;

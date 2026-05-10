@@ -4,6 +4,17 @@ import { timestampSchema } from "../../utils/timestampSchema";
 import { sessionBaseSchema } from "./base";
 import { sessionPhaseSchema } from "./phase";
 
+export const recommendedTacticSchema = z.object({
+  tacticId: z.string(),
+  title: z.string(),
+  description: z.string().optional(),
+  phase: z.string().optional(),
+  firstStepText: z.string().optional(),
+  tacticRefPath: z.string().optional(),
+});
+
+export type RecommendedTactic = z.infer<typeof recommendedTacticSchema>;
+
 export const impulseSessionSchema = sessionBaseSchema.extend({
   type: z.literal("impulse"),
   behaviorDocs: z.array(documentReferenceSchema),
@@ -18,6 +29,7 @@ export const impulseSessionSchema = sessionBaseSchema.extend({
   // context for tactic/behavior logs so the AI grounds its responses correctly.
   phase: sessionPhaseSchema.optional(),
   hasScheduledCheckIn: z.boolean().optional(),
+  recommendedTactics: z.array(recommendedTacticSchema).optional(),
 });
 
 export type ImpulseSession = z.infer<typeof impulseSessionSchema>;

@@ -1,11 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.impulseSessionSchema = void 0;
+exports.impulseSessionSchema = exports.recommendedTacticSchema = void 0;
 const zod_1 = require("zod");
 const documentReferenceSchema_1 = require("../../utils/documentReferenceSchema");
 const timestampSchema_1 = require("../../utils/timestampSchema");
 const base_1 = require("./base");
 const phase_1 = require("./phase");
+exports.recommendedTacticSchema = zod_1.z.object({
+    tacticId: zod_1.z.string(),
+    title: zod_1.z.string(),
+    description: zod_1.z.string().optional(),
+    phase: zod_1.z.string().optional(),
+    firstStepText: zod_1.z.string().optional(),
+    tacticRefPath: zod_1.z.string().optional(),
+});
 exports.impulseSessionSchema = base_1.sessionBaseSchema.extend({
     type: zod_1.z.literal("impulse"),
     behaviorDocs: zod_1.z.array(documentReferenceSchema_1.documentReferenceSchema),
@@ -20,4 +28,5 @@ exports.impulseSessionSchema = base_1.sessionBaseSchema.extend({
     // context for tactic/behavior logs so the AI grounds its responses correctly.
     phase: phase_1.sessionPhaseSchema.optional(),
     hasScheduledCheckIn: zod_1.z.boolean().optional(),
+    recommendedTactics: zod_1.z.array(exports.recommendedTacticSchema).optional(),
 });

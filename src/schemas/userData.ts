@@ -82,6 +82,7 @@ export const userDataSchema = z.object({
     .object({
       trigger: recapTriggerSchema,
       reminderTime: recapReminderTimeSchema.optional(),
+      pausedAt: timestampSchema.optional(),
     })
     .optional(),
 

@@ -1,4 +1,27 @@
 import { z } from "zod";
+export declare const recommendedTacticSchema: z.ZodObject<{
+    tacticId: z.ZodString;
+    title: z.ZodString;
+    description: z.ZodOptional<z.ZodString>;
+    phase: z.ZodOptional<z.ZodString>;
+    firstStepText: z.ZodOptional<z.ZodString>;
+    tacticRefPath: z.ZodOptional<z.ZodString>;
+}, "strip", z.ZodTypeAny, {
+    title: string;
+    tacticId: string;
+    description?: string | undefined;
+    phase?: string | undefined;
+    tacticRefPath?: string | undefined;
+    firstStepText?: string | undefined;
+}, {
+    title: string;
+    tacticId: string;
+    description?: string | undefined;
+    phase?: string | undefined;
+    tacticRefPath?: string | undefined;
+    firstStepText?: string | undefined;
+}>;
+export type RecommendedTactic = z.infer<typeof recommendedTacticSchema>;
 export declare const impulseSessionSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     title: z.ZodString;
@@ -2475,6 +2498,28 @@ export declare const impulseSessionSchema: z.ZodObject<{
     generatedPlanId: z.ZodOptional<z.ZodString>;
     phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage", "debrief"]>>;
     hasScheduledCheckIn: z.ZodOptional<z.ZodBoolean>;
+    recommendedTactics: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        tacticId: z.ZodString;
+        title: z.ZodString;
+        description: z.ZodOptional<z.ZodString>;
+        phase: z.ZodOptional<z.ZodString>;
+        firstStepText: z.ZodOptional<z.ZodString>;
+        tacticRefPath: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        title: string;
+        tacticId: string;
+        description?: string | undefined;
+        phase?: string | undefined;
+        tacticRefPath?: string | undefined;
+        firstStepText?: string | undefined;
+    }, {
+        title: string;
+        tacticId: string;
+        description?: string | undefined;
+        phase?: string | undefined;
+        tacticRefPath?: string | undefined;
+        firstStepText?: string | undefined;
+    }>, "many">>;
 }, "strip", z.ZodTypeAny, {
     type: "impulse";
     date: import("../../types").Timestamp;
@@ -2885,6 +2930,14 @@ export declare const impulseSessionSchema: z.ZodObject<{
     debriefNote?: string | null | undefined;
     generatedPlanId?: string | undefined;
     hasScheduledCheckIn?: boolean | undefined;
+    recommendedTactics?: {
+        title: string;
+        tacticId: string;
+        description?: string | undefined;
+        phase?: string | undefined;
+        tacticRefPath?: string | undefined;
+        firstStepText?: string | undefined;
+    }[] | undefined;
 }, {
     type: "impulse";
     date: import("../../types").Timestamp;
@@ -3295,5 +3348,13 @@ export declare const impulseSessionSchema: z.ZodObject<{
     debriefNote?: string | null | undefined;
     generatedPlanId?: string | undefined;
     hasScheduledCheckIn?: boolean | undefined;
+    recommendedTactics?: {
+        title: string;
+        tacticId: string;
+        description?: string | undefined;
+        phase?: string | undefined;
+        tacticRefPath?: string | undefined;
+        firstStepText?: string | undefined;
+    }[] | undefined;
 }>;
 export type ImpulseSession = z.infer<typeof impulseSessionSchema>;

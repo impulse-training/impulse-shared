@@ -74,15 +74,37 @@ const NAME_TO_COLOR: Record<string, string> = {
   smoking: COLORS.ORANGE,
 };
 
-export function guessBehaviorColor(name: string, index: number = 0): string {
+export function guessBehaviorColor(
+  name: string,
+  index: number = 0,
+  usedColors: string[] = [],
+): string {
   const lower = name.toLowerCase().trim();
-  if (NAME_TO_COLOR[lower]) return NAME_TO_COLOR[lower];
 
-  for (const [key, color] of Object.entries(NAME_TO_COLOR)) {
-    if (lower.includes(key) || key.includes(lower)) return color;
+  let guessed: string | undefined;
+  if (NAME_TO_COLOR[lower]) {
+    guessed = NAME_TO_COLOR[lower];
+  } else {
+    for (const [key, color] of Object.entries(NAME_TO_COLOR)) {
+      if (lower.includes(key) || key.includes(lower)) {
+        guessed = color;
+        break;
+      }
+    }
   }
 
-  return BEHAVIOR_COLOR_OPTIONS[index % BEHAVIOR_COLOR_OPTIONS.length];
+  if (!guessed) {
+    guessed = BEHAVIOR_COLOR_OPTIONS[index % BEHAVIOR_COLOR_OPTIONS.length];
+  }
+
+  if (usedColors.length > 0 && usedColors.includes(guessed)) {
+    const available = BEHAVIOR_COLOR_OPTIONS.filter(
+      (c) => !usedColors.includes(c),
+    );
+    if (available.length > 0) return available[0];
+  }
+
+  return guessed;
 }
 
 export function getBehaviorColor(

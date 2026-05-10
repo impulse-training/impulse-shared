@@ -70,6 +70,7 @@ exports.userDataSchema = zod_1.z.object({
         .object({
         trigger: recapTriggerSchema,
         reminderTime: recapReminderTimeSchema.optional(),
+        pausedAt: timestampSchema_1.timestampSchema.optional(),
     })
         .optional(),
     // If true, this user will be added to the tech support group for all new signups

@@ -1,6 +1,14 @@
 import { z } from "zod";
 
-// Daily goals schema - supports eliminate or reduce with targets
+export const allowedWindowSchema = z.object({
+  dayOfWeek: z.number().min(0).max(6),
+  startTime: z.string(),
+  endTime: z.string(),
+});
+
+export type AllowedWindow = z.infer<typeof allowedWindowSchema>;
+
+// Daily goals schema - supports eliminate, reduce, or contain
 export const goalSchema = z.discriminatedUnion("type", [
   // Eliminate - goal is to have 0 of this behavior
   z.object({
@@ -23,6 +31,11 @@ export const goalSchema = z.discriminatedUnion("type", [
       5: z.number(), // Friday
       6: z.number(), // Saturday
     }),
+  }),
+  // Contain - restrict to allowed day+time windows
+  z.object({
+    type: z.literal("contain"),
+    allowedWindows: z.array(allowedWindowSchema),
   }),
 ]);
 
