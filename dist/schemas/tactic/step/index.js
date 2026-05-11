@@ -14,7 +14,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.stepIsPedometerStep = exports.stepIsAffirmationStep = exports.stepIsDefaultStep = exports.stepIsNotifySupportStep = exports.stepIsBreathingStep = exports.stepIsQuestionStep = exports.stepIsAudioStep = exports.stepIsMediaStep = exports.tacticStepSchema = void 0;
+exports.stepIsZaraStep = exports.stepIsPedometerStep = exports.stepIsAffirmationStep = exports.stepIsDefaultStep = exports.stepIsNotifySupportStep = exports.stepIsBreathingStep = exports.stepIsQuestionStep = exports.stepIsAudioStep = exports.stepIsMediaStep = exports.tacticStepSchema = void 0;
 const zod_1 = require("zod");
 // Import all step schemas
 __exportStar(require("./affirmation"), exports);
@@ -26,6 +26,7 @@ __exportStar(require("./media"), exports);
 __exportStar(require("./pedometer"), exports);
 __exportStar(require("./notifySupport"), exports);
 __exportStar(require("./question"), exports);
+__exportStar(require("./zara"), exports);
 const affirmation_1 = require("./affirmation");
 const audio_1 = require("./audio");
 const breathing_1 = require("./breathing");
@@ -34,6 +35,7 @@ const media_1 = require("./media");
 const pedometer_1 = require("./pedometer");
 const notifySupport_1 = require("./notifySupport");
 const question_1 = require("./question");
+const zara_1 = require("./zara");
 exports.tacticStepSchema = zod_1.z.discriminatedUnion("mode", [
     default_1.defaultStepSchema,
     breathing_1.breathingStepSchema,
@@ -44,6 +46,7 @@ exports.tacticStepSchema = zod_1.z.discriminatedUnion("mode", [
     audio_1.audioStepSchema,
     affirmation_1.affirmationStepSchema,
     pedometer_1.pedometerStepSchema,
+    zara_1.zaraStepSchema,
 ]);
 const stepIsMediaStep = (step) => step.mode === "media";
 exports.stepIsMediaStep = stepIsMediaStep;
@@ -61,3 +64,5 @@ const stepIsAffirmationStep = (step) => step.mode === "affirmation";
 exports.stepIsAffirmationStep = stepIsAffirmationStep;
 const stepIsPedometerStep = (step) => step.mode === "pedometer";
 exports.stepIsPedometerStep = stepIsPedometerStep;
+const stepIsZaraStep = (step) => step.mode === "zara";
+exports.stepIsZaraStep = stepIsZaraStep;

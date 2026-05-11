@@ -1,7 +1,5 @@
 import { z } from "zod";
-export declare const recapQuestionSourceSchema: z.ZodEnum<["sequence", "baseline", "milestone", "trend", "approaching_milestone"]>;
-export type RecapQuestionSource = z.infer<typeof recapQuestionSourceSchema>;
-export declare const recapSessionSchema: z.ZodObject<{
+export declare const tasksSessionSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     title: z.ZodString;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
@@ -2648,18 +2646,11 @@ export declare const recapSessionSchema: z.ZodObject<{
     startedDeletingAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     deletingError: z.ZodOptional<z.ZodString>;
 } & {
-    type: z.ZodLiteral<"recap">;
+    type: z.ZodLiteral<"tasks">;
     completedAt: z.ZodOptional<z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>>;
-    pendingTaskResolution: z.ZodOptional<z.ZodBoolean>;
-    recapQuestionId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    recapQuestionSource: z.ZodOptional<z.ZodEnum<["sequence", "baseline", "milestone", "trend", "approaching_milestone"]>>;
-    recapQuestionTaskId: z.ZodOptional<z.ZodString>;
-    focusBehaviorId: z.ZodOptional<z.ZodString>;
-    focusBehaviorName: z.ZodOptional<z.ZodString>;
-    focusBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-    focusBehaviorNames: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    taskId: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    type: "recap";
+    type: "tasks";
     date: import("../../types").Timestamp;
     dateString: string;
     title: string;
@@ -2681,6 +2672,7 @@ export declare const recapSessionSchema: z.ZodObject<{
     summary?: string | undefined;
     triggerId?: string | null | undefined;
     completedAt?: import("../../types").Timestamp | null | undefined;
+    taskId?: string | undefined;
     voiceEnabled?: boolean | undefined;
     currentTactic?: {
         createdAt: import("../../types").Timestamp;
@@ -3084,16 +3076,8 @@ export declare const recapSessionSchema: z.ZodObject<{
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
-    pendingTaskResolution?: boolean | undefined;
-    recapQuestionId?: string | null | undefined;
-    recapQuestionSource?: "trend" | "milestone" | "sequence" | "baseline" | "approaching_milestone" | undefined;
-    recapQuestionTaskId?: string | undefined;
-    focusBehaviorId?: string | undefined;
-    focusBehaviorName?: string | undefined;
-    focusBehaviorIds?: string[] | undefined;
-    focusBehaviorNames?: string[] | undefined;
 }, {
-    type: "recap";
+    type: "tasks";
     date: import("../../types").Timestamp;
     dateString: string;
     title: string;
@@ -3114,6 +3098,7 @@ export declare const recapSessionSchema: z.ZodObject<{
     summary?: string | undefined;
     triggerId?: string | null | undefined;
     completedAt?: import("../../types").Timestamp | null | undefined;
+    taskId?: string | undefined;
     voiceEnabled?: boolean | undefined;
     currentTactic?: {
         createdAt: import("../../types").Timestamp;
@@ -3518,13 +3503,5 @@ export declare const recapSessionSchema: z.ZodObject<{
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
-    pendingTaskResolution?: boolean | undefined;
-    recapQuestionId?: string | null | undefined;
-    recapQuestionSource?: "trend" | "milestone" | "sequence" | "baseline" | "approaching_milestone" | undefined;
-    recapQuestionTaskId?: string | undefined;
-    focusBehaviorId?: string | undefined;
-    focusBehaviorName?: string | undefined;
-    focusBehaviorIds?: string[] | undefined;
-    focusBehaviorNames?: string[] | undefined;
 }>;
-export type RecapSession = z.infer<typeof recapSessionSchema>;
+export type TasksSession = z.infer<typeof tasksSessionSchema>;

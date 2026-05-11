@@ -20,6 +20,10 @@ import { RecoveryKeySession, recoveryKeySessionSchema } from "./recoveryKey";
 import { TasksSession, tasksSessionSchema } from "./tasks";
 import { DemoSession, demoSessionSchema } from "./demo";
 import { MilestoneSession, milestoneSessionSchema } from "./milestone";
+import {
+  ToolkitPlanningSession,
+  toolkitPlanningSessionSchema,
+} from "./toolkitPlanning";
 
 export * from "../sessionSummary";
 export * from "./adjustment";
@@ -39,6 +43,7 @@ export * from "./recoveryKey";
 export * from "./tasks";
 export * from "./demo";
 export * from "./milestone";
+export * from "./toolkitPlanning";
 
 // Map of session types to their schemas
 export const sessionSchemas: Record<string, z.ZodTypeAny> = {
@@ -59,6 +64,7 @@ export const sessionSchemas: Record<string, z.ZodTypeAny> = {
   tasks: tasksSessionSchema,
   demo: demoSessionSchema,
   milestone: milestoneSessionSchema,
+  toolkitPlanning: toolkitPlanningSessionSchema,
 };
 
 // Discriminated union over type
@@ -81,6 +87,7 @@ export const sessionSchema: z.ZodDiscriminatedUnion<
     typeof tasksSessionSchema,
     typeof demoSessionSchema,
     typeof milestoneSessionSchema,
+    typeof toolkitPlanningSessionSchema,
   ]
 > = z.discriminatedUnion("type", [
   generalSessionSchema,
@@ -100,6 +107,7 @@ export const sessionSchema: z.ZodDiscriminatedUnion<
   tasksSessionSchema,
   demoSessionSchema,
   milestoneSessionSchema,
+  toolkitPlanningSessionSchema,
 ]);
 
 export const sessionIsGeneralSession = (
@@ -209,6 +217,14 @@ export const isValidMilestoneSession = (
   value: unknown,
 ): value is MilestoneSession => milestoneSessionSchema.safeParse(value).success;
 
+export const sessionIsToolkitPlanningSession = (
+  value: Session,
+): value is ToolkitPlanningSession => value.type === "toolkitPlanning";
+export const isValidToolkitPlanningSession = (
+  value: unknown,
+): value is ToolkitPlanningSession =>
+  toolkitPlanningSessionSchema.safeParse(value).success;
+
 const noSummarizeSessionTypes: Session["type"][] = [
   "adjustment",
   "tactic",
@@ -217,6 +233,7 @@ const noSummarizeSessionTypes: Session["type"][] = [
   "tasks",
   "demo",
   "milestone",
+  "toolkitPlanning",
 ];
 
 export function shouldSummarizeSession(

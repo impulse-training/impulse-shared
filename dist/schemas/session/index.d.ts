@@ -14,6 +14,7 @@ import { RecoveryKeySession, recoveryKeySessionSchema } from "./recoveryKey";
 import { TasksSession, tasksSessionSchema } from "./tasks";
 import { DemoSession, demoSessionSchema } from "./demo";
 import { MilestoneSession, milestoneSessionSchema } from "./milestone";
+import { ToolkitPlanningSession, toolkitPlanningSessionSchema } from "./toolkitPlanning";
 export * from "../sessionSummary";
 export * from "./adjustment";
 export * from "./behavior";
@@ -31,6 +32,7 @@ export * from "./recoveryKey";
 export * from "./tasks";
 export * from "./demo";
 export * from "./milestone";
+export * from "./toolkitPlanning";
 export declare const sessionSchemas: Record<string, z.ZodTypeAny>;
 export declare const sessionSchema: z.ZodDiscriminatedUnion<"type", [
     typeof generalSessionSchema,
@@ -48,7 +50,8 @@ export declare const sessionSchema: z.ZodDiscriminatedUnion<"type", [
     typeof recoveryKeySessionSchema,
     typeof tasksSessionSchema,
     typeof demoSessionSchema,
-    typeof milestoneSessionSchema
+    typeof milestoneSessionSchema,
+    typeof toolkitPlanningSessionSchema
 ]>;
 export declare const sessionIsGeneralSession: (value: Session) => value is GeneralSession;
 export declare const isValidGeneralSession: (value: unknown) => value is GeneralSession;
@@ -80,5 +83,7 @@ export declare const sessionIsDemoSession: (value: Session) => value is DemoSess
 export declare const isValidDemoSession: (value: unknown) => value is DemoSession;
 export declare const sessionIsMilestoneSession: (value: Session) => value is MilestoneSession;
 export declare const isValidMilestoneSession: (value: unknown) => value is MilestoneSession;
+export declare const sessionIsToolkitPlanningSession: (value: Session) => value is ToolkitPlanningSession;
+export declare const isValidToolkitPlanningSession: (value: unknown) => value is ToolkitPlanningSession;
 export declare function shouldSummarizeSession(session: Pick<Session, "type">): boolean;
 export type Session = z.infer<typeof sessionSchema>;

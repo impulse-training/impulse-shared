@@ -14,7 +14,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidMilestoneSession = exports.sessionIsMilestoneSession = exports.isValidDemoSession = exports.sessionIsDemoSession = exports.isValidTasksSession = exports.sessionIsTasksSession = exports.isValidRecoveryKeySession = exports.sessionIsRecoveryKeySession = exports.isValidWelcomeSession = exports.sessionIsWelcomeSession = exports.isValidTacticSession = exports.sessionIsTacticSession = exports.isValidCommitmentSession = exports.sessionIsCommitmentSession = exports.isValidAdjustmentSession = exports.sessionIsAdjustmentSession = exports.isValidBehaviorSession = exports.sessionIsBehaviorSession = exports.isValidLocationPlanSession = exports.sessionIsLocationPlanSession = exports.isValidRecapSession = exports.sessionIsRecapSession = exports.isValidOnboardingSession = exports.sessionIsOnboardingSession = exports.isValidTimePlanSession = exports.sessionIsTimePlanSession = exports.isValidImpulseSession = exports.sessionIsImpulseSession = exports.isValidGeneralSession = exports.sessionIsGeneralSession = exports.sessionSchema = exports.sessionSchemas = void 0;
+exports.isValidToolkitPlanningSession = exports.sessionIsToolkitPlanningSession = exports.isValidMilestoneSession = exports.sessionIsMilestoneSession = exports.isValidDemoSession = exports.sessionIsDemoSession = exports.isValidTasksSession = exports.sessionIsTasksSession = exports.isValidRecoveryKeySession = exports.sessionIsRecoveryKeySession = exports.isValidWelcomeSession = exports.sessionIsWelcomeSession = exports.isValidTacticSession = exports.sessionIsTacticSession = exports.isValidCommitmentSession = exports.sessionIsCommitmentSession = exports.isValidAdjustmentSession = exports.sessionIsAdjustmentSession = exports.isValidBehaviorSession = exports.sessionIsBehaviorSession = exports.isValidLocationPlanSession = exports.sessionIsLocationPlanSession = exports.isValidRecapSession = exports.sessionIsRecapSession = exports.isValidOnboardingSession = exports.sessionIsOnboardingSession = exports.isValidTimePlanSession = exports.sessionIsTimePlanSession = exports.isValidImpulseSession = exports.sessionIsImpulseSession = exports.isValidGeneralSession = exports.sessionIsGeneralSession = exports.sessionSchema = exports.sessionSchemas = void 0;
 exports.shouldSummarizeSession = shouldSummarizeSession;
 const zod_1 = require("zod");
 const adjustment_1 = require("./adjustment");
@@ -33,6 +33,7 @@ const recoveryKey_1 = require("./recoveryKey");
 const tasks_1 = require("./tasks");
 const demo_1 = require("./demo");
 const milestone_1 = require("./milestone");
+const toolkitPlanning_1 = require("./toolkitPlanning");
 __exportStar(require("../sessionSummary"), exports);
 __exportStar(require("./adjustment"), exports);
 __exportStar(require("./behavior"), exports);
@@ -51,6 +52,7 @@ __exportStar(require("./recoveryKey"), exports);
 __exportStar(require("./tasks"), exports);
 __exportStar(require("./demo"), exports);
 __exportStar(require("./milestone"), exports);
+__exportStar(require("./toolkitPlanning"), exports);
 // Map of session types to their schemas
 exports.sessionSchemas = {
     general: general_1.generalSessionSchema,
@@ -70,6 +72,7 @@ exports.sessionSchemas = {
     tasks: tasks_1.tasksSessionSchema,
     demo: demo_1.demoSessionSchema,
     milestone: milestone_1.milestoneSessionSchema,
+    toolkitPlanning: toolkitPlanning_1.toolkitPlanningSessionSchema,
 };
 // Discriminated union over type
 exports.sessionSchema = zod_1.z.discriminatedUnion("type", [
@@ -90,6 +93,7 @@ exports.sessionSchema = zod_1.z.discriminatedUnion("type", [
     tasks_1.tasksSessionSchema,
     demo_1.demoSessionSchema,
     milestone_1.milestoneSessionSchema,
+    toolkitPlanning_1.toolkitPlanningSessionSchema,
 ]);
 const sessionIsGeneralSession = (value) => value.type === "general";
 exports.sessionIsGeneralSession = sessionIsGeneralSession;
@@ -152,6 +156,10 @@ const sessionIsMilestoneSession = (value) => value.type === "milestone";
 exports.sessionIsMilestoneSession = sessionIsMilestoneSession;
 const isValidMilestoneSession = (value) => milestone_1.milestoneSessionSchema.safeParse(value).success;
 exports.isValidMilestoneSession = isValidMilestoneSession;
+const sessionIsToolkitPlanningSession = (value) => value.type === "toolkitPlanning";
+exports.sessionIsToolkitPlanningSession = sessionIsToolkitPlanningSession;
+const isValidToolkitPlanningSession = (value) => toolkitPlanning_1.toolkitPlanningSessionSchema.safeParse(value).success;
+exports.isValidToolkitPlanningSession = isValidToolkitPlanningSession;
 const noSummarizeSessionTypes = [
     "adjustment",
     "tactic",
@@ -160,6 +168,7 @@ const noSummarizeSessionTypes = [
     "tasks",
     "demo",
     "milestone",
+    "toolkitPlanning",
 ];
 function shouldSummarizeSession(session) {
     return !noSummarizeSessionTypes.includes(session.type);

@@ -8,6 +8,7 @@ export * from "./media";
 export * from "./pedometer";
 export * from "./notifySupport";
 export * from "./question";
+export * from "./zara";
 import { AffirmationStep } from "./affirmation";
 import { AudioStep } from "./audio";
 import { BreathingStep } from "./breathing";
@@ -16,6 +17,7 @@ import { MediaStep } from "./media";
 import { PedometerStep } from "./pedometer";
 import { NotifySupportStep } from "./notifySupport";
 import { QuestionStep } from "./question";
+import { ZaraStep } from "./zara";
 export declare const tacticStepSchema: z.ZodDiscriminatedUnion<"mode", [z.ZodObject<{
     backgroundImage: z.ZodOptional<z.ZodObject<{
         createdAt: z.ZodOptional<z.ZodType<import("../../../types").Timestamp, z.ZodTypeDef, import("../../../types").Timestamp>>;
@@ -1514,6 +1516,139 @@ export declare const tacticStepSchema: z.ZodDiscriminatedUnion<"mode", [z.ZodObj
         } | undefined;
     } | undefined;
     tags?: string[] | undefined;
+}>, z.ZodObject<{
+    text: z.ZodOptional<z.ZodString>;
+    backgroundImage: z.ZodOptional<z.ZodObject<{
+        createdAt: z.ZodOptional<z.ZodType<import("../../../types").Timestamp, z.ZodTypeDef, import("../../../types").Timestamp>>;
+        updatedAt: z.ZodOptional<z.ZodType<import("../../../types").Timestamp, z.ZodTypeDef, import("../../../types").Timestamp>>;
+        uri: z.ZodString;
+        storagePath: z.ZodString;
+        contentType: z.ZodString;
+        title: z.ZodOptional<z.ZodString>;
+        sizeBytes: z.ZodOptional<z.ZodNumber>;
+        metadata: z.ZodOptional<z.ZodObject<{
+            width: z.ZodOptional<z.ZodNumber>;
+            height: z.ZodOptional<z.ZodNumber>;
+            durationMs: z.ZodOptional<z.ZodNumber>;
+            transcript: z.ZodOptional<z.ZodString>;
+            meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                db: z.ZodNumber;
+                timestampMs: z.ZodOptional<z.ZodNumber>;
+            }, "strip", z.ZodTypeAny, {
+                db: number;
+                timestampMs?: number | undefined;
+            }, {
+                db: number;
+                timestampMs?: number | undefined;
+            }>, "many">>;
+        }, "strip", z.ZodTypeAny, {
+            width?: number | undefined;
+            height?: number | undefined;
+            durationMs?: number | undefined;
+            transcript?: string | undefined;
+            meterings?: {
+                db: number;
+                timestampMs?: number | undefined;
+            }[] | undefined;
+        }, {
+            width?: number | undefined;
+            height?: number | undefined;
+            durationMs?: number | undefined;
+            transcript?: string | undefined;
+            meterings?: {
+                db: number;
+                timestampMs?: number | undefined;
+            }[] | undefined;
+        }>>;
+    }, "strip", z.ZodTypeAny, {
+        uri: string;
+        storagePath: string;
+        contentType: string;
+        createdAt?: import("../../../types").Timestamp | undefined;
+        updatedAt?: import("../../../types").Timestamp | undefined;
+        title?: string | undefined;
+        sizeBytes?: number | undefined;
+        metadata?: {
+            width?: number | undefined;
+            height?: number | undefined;
+            durationMs?: number | undefined;
+            transcript?: string | undefined;
+            meterings?: {
+                db: number;
+                timestampMs?: number | undefined;
+            }[] | undefined;
+        } | undefined;
+    }, {
+        uri: string;
+        storagePath: string;
+        contentType: string;
+        createdAt?: import("../../../types").Timestamp | undefined;
+        updatedAt?: import("../../../types").Timestamp | undefined;
+        title?: string | undefined;
+        sizeBytes?: number | undefined;
+        metadata?: {
+            width?: number | undefined;
+            height?: number | undefined;
+            durationMs?: number | undefined;
+            transcript?: string | undefined;
+            meterings?: {
+                db: number;
+                timestampMs?: number | undefined;
+            }[] | undefined;
+        } | undefined;
+    }>>;
+    tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+} & {
+    mode: z.ZodLiteral<"zara">;
+    direction: z.ZodOptional<z.ZodString>;
+}, "strip", z.ZodTypeAny, {
+    mode: "zara";
+    text?: string | undefined;
+    direction?: string | undefined;
+    backgroundImage?: {
+        uri: string;
+        storagePath: string;
+        contentType: string;
+        createdAt?: import("../../../types").Timestamp | undefined;
+        updatedAt?: import("../../../types").Timestamp | undefined;
+        title?: string | undefined;
+        sizeBytes?: number | undefined;
+        metadata?: {
+            width?: number | undefined;
+            height?: number | undefined;
+            durationMs?: number | undefined;
+            transcript?: string | undefined;
+            meterings?: {
+                db: number;
+                timestampMs?: number | undefined;
+            }[] | undefined;
+        } | undefined;
+    } | undefined;
+    tags?: string[] | undefined;
+}, {
+    mode: "zara";
+    text?: string | undefined;
+    direction?: string | undefined;
+    backgroundImage?: {
+        uri: string;
+        storagePath: string;
+        contentType: string;
+        createdAt?: import("../../../types").Timestamp | undefined;
+        updatedAt?: import("../../../types").Timestamp | undefined;
+        title?: string | undefined;
+        sizeBytes?: number | undefined;
+        metadata?: {
+            width?: number | undefined;
+            height?: number | undefined;
+            durationMs?: number | undefined;
+            transcript?: string | undefined;
+            meterings?: {
+                db: number;
+                timestampMs?: number | undefined;
+            }[] | undefined;
+        } | undefined;
+    } | undefined;
+    tags?: string[] | undefined;
 }>]>;
 export type TacticStep = z.infer<typeof tacticStepSchema>;
 export declare const stepIsMediaStep: (step: TacticStep) => step is MediaStep;
@@ -1524,4 +1659,5 @@ export declare const stepIsNotifySupportStep: (step: TacticStep) => step is Noti
 export declare const stepIsDefaultStep: (step: TacticStep) => step is DefaultStep;
 export declare const stepIsAffirmationStep: (step: TacticStep) => step is AffirmationStep;
 export declare const stepIsPedometerStep: (step: TacticStep) => step is PedometerStep;
-export type { AudioStep, BreathingStep, DefaultStep, MediaStep, PedometerStep, NotifySupportStep, QuestionStep, };
+export declare const stepIsZaraStep: (step: TacticStep) => step is ZaraStep;
+export type { AudioStep, BreathingStep, DefaultStep, MediaStep, PedometerStep, NotifySupportStep, QuestionStep, ZaraStep, };

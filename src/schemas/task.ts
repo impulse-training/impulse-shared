@@ -144,6 +144,10 @@ export const reviewTriggerTaskSchema = taskBaseSchema.extend({
   }),
 });
 
+export const toolkitPlanningTaskSchema = taskBaseSchema.extend({
+  type: z.literal("toolkit_planning"),
+});
+
 export const taskSchema = z.discriminatedUnion("type", [
   mergeBehaviorsTaskSchema,
   suggestStrategyTaskSchema,
@@ -152,6 +156,7 @@ export const taskSchema = z.discriminatedUnion("type", [
   createSessionTaskSchema,
   recapQuestionTaskSchema,
   reviewTriggerTaskSchema,
+  toolkitPlanningTaskSchema,
 ]);
 
 export type TaskCategory = z.infer<typeof taskCategorySchema>;
@@ -163,6 +168,7 @@ export type ProposeMaskBehaviorTask = z.infer<typeof proposeMaskBehaviorTaskSche
 export type CreateSessionTask = z.infer<typeof createSessionTaskSchema>;
 export type RecapQuestionTask = z.infer<typeof recapQuestionTaskSchema>;
 export type ReviewTriggerTask = z.infer<typeof reviewTriggerTaskSchema>;
+export type ToolkitPlanningTask = z.infer<typeof toolkitPlanningTaskSchema>;
 export type Task = z.infer<typeof taskSchema>;
 
 export const isTask = (value: unknown): value is Task =>
@@ -197,3 +203,8 @@ export const isReviewTriggerTask = (
   value: unknown,
 ): value is ReviewTriggerTask =>
   reviewTriggerTaskSchema.safeParse(value).success;
+
+export const isToolkitPlanningTask = (
+  value: unknown,
+): value is ToolkitPlanningTask =>
+  toolkitPlanningTaskSchema.safeParse(value).success;

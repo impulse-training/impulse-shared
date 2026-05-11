@@ -26,6 +26,7 @@ const sessionTypeSchema = zod_1.z.enum([
     "tasks",
     "demo",
     "milestone",
+    "toolkitPlanning",
 ]);
 // Session schema
 exports.sessionBaseSchema = zod_1.z.object({
@@ -72,6 +73,7 @@ exports.sessionBaseSchema = zod_1.z.object({
     unreadSince: timestampSchema_1.timestampSchema.optional(),
     responseStartedProcessingAt: timestampSchema_1.timestampSchema.optional(),
     responseRequestId: zod_1.z.string().optional(),
+    responseError: zod_1.z.string().nullable().optional(),
     planStartedProcessingAt: timestampSchema_1.timestampSchema.optional(),
     startedPlanIds: zod_1.z.array(zod_1.z.string()).optional(),
     completedPlanIds: zod_1.z.array(zod_1.z.string()).optional(),
