@@ -104,6 +104,10 @@ import {
   ShortcutSetupIntroLog,
   shortcutSetupIntroLogSchema,
 } from "./shortcutSetupIntroLog";
+import {
+  TacticSuggestionsLog,
+  tacticSuggestionsLogSchema,
+} from "./tacticSuggestionsLog";
 
 export const logSchemas = {
   user: userMessageLogSchema,
@@ -143,6 +147,7 @@ export const logSchemas = {
   merge_behaviors_proposal: mergeBehaviorsProposalLogSchema,
   mask_behavior_proposal: maskBehaviorProposalLogSchema,
   shortcut_setup_intro: shortcutSetupIntroLogSchema,
+  tactic_suggestions: tacticSuggestionsLogSchema,
 };
 export const logTypes = Object.keys(logSchemas);
 
@@ -183,7 +188,8 @@ export type Log =
   | PhotoLog
   | MergeBehaviorsProposalLog
   | MaskBehaviorProposalLog
-  | ShortcutSetupIntroLog;
+  | ShortcutSetupIntroLog
+  | TacticSuggestionsLog;
 
 export * from "./behaviorLog";
 export * from "./breathingLog";
@@ -220,6 +226,7 @@ export * from "./photoLog";
 export * from "./mergeBehaviorsProposalLog";
 export * from "./maskBehaviorProposalLog";
 export * from "./shortcutSetupIntroLog";
+export * from "./tacticSuggestionsLog";
 
 // Discriminated union schema across all log variants
 export const logSchema = z.discriminatedUnion("type", [
@@ -258,6 +265,7 @@ export const logSchema = z.discriminatedUnion("type", [
   mergeBehaviorsProposalLogSchema,
   maskBehaviorProposalLogSchema,
   shortcutSetupIntroLogSchema,
+  tacticSuggestionsLogSchema,
 ]);
 
 // Export log type guards
@@ -495,3 +503,8 @@ export const logIsShortcutSetupIntroLog = (
   value: Omit<Log, "id">,
 ): value is ShortcutSetupIntroLog =>
   value.type === "shortcut_setup_intro";
+
+export const logIsTacticSuggestionsLog = (
+  value: Omit<Log, "id">,
+): value is TacticSuggestionsLog =>
+  value.type === "tactic_suggestions";

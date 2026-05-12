@@ -1,20 +1,4 @@
 import { z } from "zod";
-export declare const questionResponseIndicationSchema: z.ZodObject<{
-    questionId: z.ZodString;
-    questionPrompt: z.ZodString;
-    responseSubstrings: z.ZodArray<z.ZodString, "many">;
-    weight: z.ZodNumber;
-}, "strip", z.ZodTypeAny, {
-    questionId: string;
-    questionPrompt: string;
-    responseSubstrings: string[];
-    weight: number;
-}, {
-    questionId: string;
-    questionPrompt: string;
-    responseSubstrings: string[];
-    weight: number;
-}>;
 export declare const behaviorIndicationSchema: z.ZodObject<{
     behaviorId: z.ZodString;
     behaviorName: z.ZodString;
@@ -42,22 +26,6 @@ export declare const tagIndicationSchema: z.ZodObject<{
     optionLabels: string[];
 }>;
 export declare const indicationSchema: z.ZodObject<{
-    questionResponses: z.ZodOptional<z.ZodArray<z.ZodObject<{
-        questionId: z.ZodString;
-        questionPrompt: z.ZodString;
-        responseSubstrings: z.ZodArray<z.ZodString, "many">;
-        weight: z.ZodNumber;
-    }, "strip", z.ZodTypeAny, {
-        questionId: string;
-        questionPrompt: string;
-        responseSubstrings: string[];
-        weight: number;
-    }, {
-        questionId: string;
-        questionPrompt: string;
-        responseSubstrings: string[];
-        weight: number;
-    }>, "many">>;
     behaviors: z.ZodOptional<z.ZodArray<z.ZodObject<{
         behaviorId: z.ZodString;
         behaviorName: z.ZodString;
@@ -90,12 +58,6 @@ export declare const indicationSchema: z.ZodObject<{
         tagGroupName: string;
         optionLabels: string[];
     }[] | undefined;
-    questionResponses?: {
-        questionId: string;
-        questionPrompt: string;
-        responseSubstrings: string[];
-        weight: number;
-    }[] | undefined;
     behaviors?: {
         behaviorId: string;
         behaviorName: string;
@@ -106,12 +68,6 @@ export declare const indicationSchema: z.ZodObject<{
         weight: number;
         tagGroupName: string;
         optionLabels: string[];
-    }[] | undefined;
-    questionResponses?: {
-        questionId: string;
-        questionPrompt: string;
-        responseSubstrings: string[];
-        weight: number;
     }[] | undefined;
     behaviors?: {
         behaviorId: string;
@@ -1765,22 +1721,6 @@ export declare const tacticSchema: z.ZodObject<{
     isMultiStep: z.ZodOptional<z.ZodBoolean>;
     autoplay: z.ZodOptional<z.ZodBoolean>;
     indications: z.ZodOptional<z.ZodObject<{
-        questionResponses: z.ZodOptional<z.ZodArray<z.ZodObject<{
-            questionId: z.ZodString;
-            questionPrompt: z.ZodString;
-            responseSubstrings: z.ZodArray<z.ZodString, "many">;
-            weight: z.ZodNumber;
-        }, "strip", z.ZodTypeAny, {
-            questionId: string;
-            questionPrompt: string;
-            responseSubstrings: string[];
-            weight: number;
-        }, {
-            questionId: string;
-            questionPrompt: string;
-            responseSubstrings: string[];
-            weight: number;
-        }>, "many">>;
         behaviors: z.ZodOptional<z.ZodArray<z.ZodObject<{
             behaviorId: z.ZodString;
             behaviorName: z.ZodString;
@@ -1813,12 +1753,6 @@ export declare const tacticSchema: z.ZodObject<{
             tagGroupName: string;
             optionLabels: string[];
         }[] | undefined;
-        questionResponses?: {
-            questionId: string;
-            questionPrompt: string;
-            responseSubstrings: string[];
-            weight: number;
-        }[] | undefined;
         behaviors?: {
             behaviorId: string;
             behaviorName: string;
@@ -1829,12 +1763,6 @@ export declare const tacticSchema: z.ZodObject<{
             weight: number;
             tagGroupName: string;
             optionLabels: string[];
-        }[] | undefined;
-        questionResponses?: {
-            questionId: string;
-            questionPrompt: string;
-            responseSubstrings: string[];
-            weight: number;
         }[] | undefined;
         behaviors?: {
             behaviorId: string;
@@ -1843,22 +1771,6 @@ export declare const tacticSchema: z.ZodObject<{
         }[] | undefined;
     }>>;
     contraindications: z.ZodOptional<z.ZodObject<{
-        questionResponses: z.ZodOptional<z.ZodArray<z.ZodObject<{
-            questionId: z.ZodString;
-            questionPrompt: z.ZodString;
-            responseSubstrings: z.ZodArray<z.ZodString, "many">;
-            weight: z.ZodNumber;
-        }, "strip", z.ZodTypeAny, {
-            questionId: string;
-            questionPrompt: string;
-            responseSubstrings: string[];
-            weight: number;
-        }, {
-            questionId: string;
-            questionPrompt: string;
-            responseSubstrings: string[];
-            weight: number;
-        }>, "many">>;
         behaviors: z.ZodOptional<z.ZodArray<z.ZodObject<{
             behaviorId: z.ZodString;
             behaviorName: z.ZodString;
@@ -1891,12 +1803,6 @@ export declare const tacticSchema: z.ZodObject<{
             tagGroupName: string;
             optionLabels: string[];
         }[] | undefined;
-        questionResponses?: {
-            questionId: string;
-            questionPrompt: string;
-            responseSubstrings: string[];
-            weight: number;
-        }[] | undefined;
         behaviors?: {
             behaviorId: string;
             behaviorName: string;
@@ -1907,12 +1813,6 @@ export declare const tacticSchema: z.ZodObject<{
             weight: number;
             tagGroupName: string;
             optionLabels: string[];
-        }[] | undefined;
-        questionResponses?: {
-            questionId: string;
-            questionPrompt: string;
-            responseSubstrings: string[];
-            weight: number;
         }[] | undefined;
         behaviors?: {
             behaviorId: string;
@@ -2259,12 +2159,6 @@ export declare const tacticSchema: z.ZodObject<{
             tagGroupName: string;
             optionLabels: string[];
         }[] | undefined;
-        questionResponses?: {
-            questionId: string;
-            questionPrompt: string;
-            responseSubstrings: string[];
-            weight: number;
-        }[] | undefined;
         behaviors?: {
             behaviorId: string;
             behaviorName: string;
@@ -2276,12 +2170,6 @@ export declare const tacticSchema: z.ZodObject<{
             weight: number;
             tagGroupName: string;
             optionLabels: string[];
-        }[] | undefined;
-        questionResponses?: {
-            questionId: string;
-            questionPrompt: string;
-            responseSubstrings: string[];
-            weight: number;
         }[] | undefined;
         behaviors?: {
             behaviorId: string;
@@ -2618,12 +2506,6 @@ export declare const tacticSchema: z.ZodObject<{
             tagGroupName: string;
             optionLabels: string[];
         }[] | undefined;
-        questionResponses?: {
-            questionId: string;
-            questionPrompt: string;
-            responseSubstrings: string[];
-            weight: number;
-        }[] | undefined;
         behaviors?: {
             behaviorId: string;
             behaviorName: string;
@@ -2635,12 +2517,6 @@ export declare const tacticSchema: z.ZodObject<{
             weight: number;
             tagGroupName: string;
             optionLabels: string[];
-        }[] | undefined;
-        questionResponses?: {
-            questionId: string;
-            questionPrompt: string;
-            responseSubstrings: string[];
-            weight: number;
         }[] | undefined;
         behaviors?: {
             behaviorId: string;
@@ -2664,7 +2540,6 @@ export declare const tacticSchema: z.ZodObject<{
     generationVoice?: "m" | "f" | null | undefined;
 }>;
 export type Tactic = z.infer<typeof tacticSchema>;
-export type QuestionResponseIndication = z.infer<typeof questionResponseIndicationSchema>;
 export type BehaviorIndication = z.infer<typeof behaviorIndicationSchema>;
 export type TagIndication = z.infer<typeof tagIndicationSchema>;
 export type Indication = z.infer<typeof indicationSchema>;

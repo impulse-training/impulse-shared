@@ -18,8 +18,8 @@ export declare function buildTagGroupLookup(tagGroups: Array<{
     id: string;
     data: TagGroup;
 }>): TagGroupLookup;
-export declare function scoreTactic(tactic: TacticWithMeta, sessionTags: Record<string, string[]>, recentTacticIds: string[], tacticRatings: Map<string, TacticRatings>, lookup: TagGroupLookup): number | null;
-export declare function selectBestTacticsPerPhase(allTactics: TacticWithMeta[], sessionTags: Record<string, string[]>, recentTacticIds: string[], tacticRatings: Map<string, TacticRatings>, lookup: TagGroupLookup): TacticWithMeta[];
+export declare function scoreTactic(tactic: TacticWithMeta, sessionTags: Record<string, string[]>, recentTacticIds: string[], tacticRatings: Map<string, TacticRatings>, lookup: TagGroupLookup, behaviorIds?: string[]): number | null;
+export declare function selectBestTacticsPerPhase(allTactics: TacticWithMeta[], sessionTags: Record<string, string[]>, recentTacticIds: string[], tacticRatings: Map<string, TacticRatings>, lookup: TagGroupLookup, behaviorIds?: string[]): TacticWithMeta[];
 /**
  * Returns true if the session has any primary tag groups with values set,
  * or has any behavior IDs assigned. Used to gate plan improvisation —

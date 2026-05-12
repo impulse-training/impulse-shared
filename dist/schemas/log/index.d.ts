@@ -33,6 +33,7 @@ import { PhotoLog } from "./photoLog";
 import { MergeBehaviorsProposalLog } from "./mergeBehaviorsProposalLog";
 import { MaskBehaviorProposalLog } from "./maskBehaviorProposalLog";
 import { ShortcutSetupIntroLog } from "./shortcutSetupIntroLog";
+import { TacticSuggestionsLog } from "./tacticSuggestionsLog";
 export declare const logSchemas: {
     user: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
@@ -2035,22 +2036,6 @@ export declare const logSchemas: {
                 isMultiStep: z.ZodOptional<z.ZodBoolean>;
                 autoplay: z.ZodOptional<z.ZodBoolean>;
                 indications: z.ZodOptional<z.ZodObject<{
-                    questionResponses: z.ZodOptional<z.ZodArray<z.ZodObject<{
-                        questionId: z.ZodString;
-                        questionPrompt: z.ZodString;
-                        responseSubstrings: z.ZodArray<z.ZodString, "many">;
-                        weight: z.ZodNumber;
-                    }, "strip", z.ZodTypeAny, {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }, {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }>, "many">>;
                     behaviors: z.ZodOptional<z.ZodArray<z.ZodObject<{
                         behaviorId: z.ZodString;
                         behaviorName: z.ZodString;
@@ -2083,12 +2068,6 @@ export declare const logSchemas: {
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -2099,12 +2078,6 @@ export declare const logSchemas: {
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -2113,22 +2086,6 @@ export declare const logSchemas: {
                     }[] | undefined;
                 }>>;
                 contraindications: z.ZodOptional<z.ZodObject<{
-                    questionResponses: z.ZodOptional<z.ZodArray<z.ZodObject<{
-                        questionId: z.ZodString;
-                        questionPrompt: z.ZodString;
-                        responseSubstrings: z.ZodArray<z.ZodString, "many">;
-                        weight: z.ZodNumber;
-                    }, "strip", z.ZodTypeAny, {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }, {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }>, "many">>;
                     behaviors: z.ZodOptional<z.ZodArray<z.ZodObject<{
                         behaviorId: z.ZodString;
                         behaviorName: z.ZodString;
@@ -2161,12 +2118,6 @@ export declare const logSchemas: {
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -2177,12 +2128,6 @@ export declare const logSchemas: {
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -2529,12 +2474,6 @@ export declare const logSchemas: {
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -2546,12 +2485,6 @@ export declare const logSchemas: {
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -2888,12 +2821,6 @@ export declare const logSchemas: {
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -2905,12 +2832,6 @@ export declare const logSchemas: {
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -3257,12 +3178,6 @@ export declare const logSchemas: {
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -3274,12 +3189,6 @@ export declare const logSchemas: {
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -3624,12 +3533,6 @@ export declare const logSchemas: {
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -3641,12 +3544,6 @@ export declare const logSchemas: {
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -4001,12 +3898,6 @@ export declare const logSchemas: {
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -4018,12 +3909,6 @@ export declare const logSchemas: {
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -4382,12 +4267,6 @@ export declare const logSchemas: {
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -4399,12 +4278,6 @@ export declare const logSchemas: {
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -6266,22 +6139,6 @@ export declare const logSchemas: {
                 isMultiStep: z.ZodOptional<z.ZodBoolean>;
                 autoplay: z.ZodOptional<z.ZodBoolean>;
                 indications: z.ZodOptional<z.ZodObject<{
-                    questionResponses: z.ZodOptional<z.ZodArray<z.ZodObject<{
-                        questionId: z.ZodString;
-                        questionPrompt: z.ZodString;
-                        responseSubstrings: z.ZodArray<z.ZodString, "many">;
-                        weight: z.ZodNumber;
-                    }, "strip", z.ZodTypeAny, {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }, {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }>, "many">>;
                     behaviors: z.ZodOptional<z.ZodArray<z.ZodObject<{
                         behaviorId: z.ZodString;
                         behaviorName: z.ZodString;
@@ -6314,12 +6171,6 @@ export declare const logSchemas: {
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -6330,12 +6181,6 @@ export declare const logSchemas: {
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -6344,22 +6189,6 @@ export declare const logSchemas: {
                     }[] | undefined;
                 }>>;
                 contraindications: z.ZodOptional<z.ZodObject<{
-                    questionResponses: z.ZodOptional<z.ZodArray<z.ZodObject<{
-                        questionId: z.ZodString;
-                        questionPrompt: z.ZodString;
-                        responseSubstrings: z.ZodArray<z.ZodString, "many">;
-                        weight: z.ZodNumber;
-                    }, "strip", z.ZodTypeAny, {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }, {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }>, "many">>;
                     behaviors: z.ZodOptional<z.ZodArray<z.ZodObject<{
                         behaviorId: z.ZodString;
                         behaviorName: z.ZodString;
@@ -6392,12 +6221,6 @@ export declare const logSchemas: {
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -6408,12 +6231,6 @@ export declare const logSchemas: {
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -6760,12 +6577,6 @@ export declare const logSchemas: {
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -6777,12 +6588,6 @@ export declare const logSchemas: {
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -7119,12 +6924,6 @@ export declare const logSchemas: {
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -7136,12 +6935,6 @@ export declare const logSchemas: {
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -7583,12 +7376,6 @@ export declare const logSchemas: {
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -7600,12 +7387,6 @@ export declare const logSchemas: {
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -7979,12 +7760,6 @@ export declare const logSchemas: {
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -7996,12 +7771,6 @@ export declare const logSchemas: {
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -8385,12 +8154,6 @@ export declare const logSchemas: {
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -8402,12 +8165,6 @@ export declare const logSchemas: {
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -8795,12 +8552,6 @@ export declare const logSchemas: {
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -8812,12 +8563,6 @@ export declare const logSchemas: {
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -10540,22 +10285,6 @@ export declare const logSchemas: {
                 isMultiStep: z.ZodOptional<z.ZodBoolean>;
                 autoplay: z.ZodOptional<z.ZodBoolean>;
                 indications: z.ZodOptional<z.ZodObject<{
-                    questionResponses: z.ZodOptional<z.ZodArray<z.ZodObject<{
-                        questionId: z.ZodString;
-                        questionPrompt: z.ZodString;
-                        responseSubstrings: z.ZodArray<z.ZodString, "many">;
-                        weight: z.ZodNumber;
-                    }, "strip", z.ZodTypeAny, {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }, {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }>, "many">>;
                     behaviors: z.ZodOptional<z.ZodArray<z.ZodObject<{
                         behaviorId: z.ZodString;
                         behaviorName: z.ZodString;
@@ -10588,12 +10317,6 @@ export declare const logSchemas: {
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -10604,12 +10327,6 @@ export declare const logSchemas: {
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -10618,22 +10335,6 @@ export declare const logSchemas: {
                     }[] | undefined;
                 }>>;
                 contraindications: z.ZodOptional<z.ZodObject<{
-                    questionResponses: z.ZodOptional<z.ZodArray<z.ZodObject<{
-                        questionId: z.ZodString;
-                        questionPrompt: z.ZodString;
-                        responseSubstrings: z.ZodArray<z.ZodString, "many">;
-                        weight: z.ZodNumber;
-                    }, "strip", z.ZodTypeAny, {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }, {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }>, "many">>;
                     behaviors: z.ZodOptional<z.ZodArray<z.ZodObject<{
                         behaviorId: z.ZodString;
                         behaviorName: z.ZodString;
@@ -10666,12 +10367,6 @@ export declare const logSchemas: {
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -10682,12 +10377,6 @@ export declare const logSchemas: {
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -11034,12 +10723,6 @@ export declare const logSchemas: {
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -11051,12 +10734,6 @@ export declare const logSchemas: {
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -11393,12 +11070,6 @@ export declare const logSchemas: {
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -11410,12 +11081,6 @@ export declare const logSchemas: {
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -11857,12 +11522,6 @@ export declare const logSchemas: {
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -11874,12 +11533,6 @@ export declare const logSchemas: {
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -12253,12 +11906,6 @@ export declare const logSchemas: {
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -12270,12 +11917,6 @@ export declare const logSchemas: {
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -12659,12 +12300,6 @@ export declare const logSchemas: {
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -12676,12 +12311,6 @@ export declare const logSchemas: {
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -13069,12 +12698,6 @@ export declare const logSchemas: {
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -13086,12 +12709,6 @@ export declare const logSchemas: {
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -17722,22 +17339,6 @@ export declare const logSchemas: {
                     isMultiStep: z.ZodOptional<z.ZodBoolean>;
                     autoplay: z.ZodOptional<z.ZodBoolean>;
                     indications: z.ZodOptional<z.ZodObject<{
-                        questionResponses: z.ZodOptional<z.ZodArray<z.ZodObject<{
-                            questionId: z.ZodString;
-                            questionPrompt: z.ZodString;
-                            responseSubstrings: z.ZodArray<z.ZodString, "many">;
-                            weight: z.ZodNumber;
-                        }, "strip", z.ZodTypeAny, {
-                            questionId: string;
-                            questionPrompt: string;
-                            responseSubstrings: string[];
-                            weight: number;
-                        }, {
-                            questionId: string;
-                            questionPrompt: string;
-                            responseSubstrings: string[];
-                            weight: number;
-                        }>, "many">>;
                         behaviors: z.ZodOptional<z.ZodArray<z.ZodObject<{
                             behaviorId: z.ZodString;
                             behaviorName: z.ZodString;
@@ -17770,12 +17371,6 @@ export declare const logSchemas: {
                             tagGroupName: string;
                             optionLabels: string[];
                         }[] | undefined;
-                        questionResponses?: {
-                            questionId: string;
-                            questionPrompt: string;
-                            responseSubstrings: string[];
-                            weight: number;
-                        }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
                             behaviorName: string;
@@ -17786,12 +17381,6 @@ export declare const logSchemas: {
                             weight: number;
                             tagGroupName: string;
                             optionLabels: string[];
-                        }[] | undefined;
-                        questionResponses?: {
-                            questionId: string;
-                            questionPrompt: string;
-                            responseSubstrings: string[];
-                            weight: number;
                         }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
@@ -17800,22 +17389,6 @@ export declare const logSchemas: {
                         }[] | undefined;
                     }>>;
                     contraindications: z.ZodOptional<z.ZodObject<{
-                        questionResponses: z.ZodOptional<z.ZodArray<z.ZodObject<{
-                            questionId: z.ZodString;
-                            questionPrompt: z.ZodString;
-                            responseSubstrings: z.ZodArray<z.ZodString, "many">;
-                            weight: z.ZodNumber;
-                        }, "strip", z.ZodTypeAny, {
-                            questionId: string;
-                            questionPrompt: string;
-                            responseSubstrings: string[];
-                            weight: number;
-                        }, {
-                            questionId: string;
-                            questionPrompt: string;
-                            responseSubstrings: string[];
-                            weight: number;
-                        }>, "many">>;
                         behaviors: z.ZodOptional<z.ZodArray<z.ZodObject<{
                             behaviorId: z.ZodString;
                             behaviorName: z.ZodString;
@@ -17848,12 +17421,6 @@ export declare const logSchemas: {
                             tagGroupName: string;
                             optionLabels: string[];
                         }[] | undefined;
-                        questionResponses?: {
-                            questionId: string;
-                            questionPrompt: string;
-                            responseSubstrings: string[];
-                            weight: number;
-                        }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
                             behaviorName: string;
@@ -17864,12 +17431,6 @@ export declare const logSchemas: {
                             weight: number;
                             tagGroupName: string;
                             optionLabels: string[];
-                        }[] | undefined;
-                        questionResponses?: {
-                            questionId: string;
-                            questionPrompt: string;
-                            responseSubstrings: string[];
-                            weight: number;
                         }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
@@ -18216,12 +17777,6 @@ export declare const logSchemas: {
                             tagGroupName: string;
                             optionLabels: string[];
                         }[] | undefined;
-                        questionResponses?: {
-                            questionId: string;
-                            questionPrompt: string;
-                            responseSubstrings: string[];
-                            weight: number;
-                        }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
                             behaviorName: string;
@@ -18233,12 +17788,6 @@ export declare const logSchemas: {
                             weight: number;
                             tagGroupName: string;
                             optionLabels: string[];
-                        }[] | undefined;
-                        questionResponses?: {
-                            questionId: string;
-                            questionPrompt: string;
-                            responseSubstrings: string[];
-                            weight: number;
                         }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
@@ -18575,12 +18124,6 @@ export declare const logSchemas: {
                             tagGroupName: string;
                             optionLabels: string[];
                         }[] | undefined;
-                        questionResponses?: {
-                            questionId: string;
-                            questionPrompt: string;
-                            responseSubstrings: string[];
-                            weight: number;
-                        }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
                             behaviorName: string;
@@ -18592,12 +18135,6 @@ export declare const logSchemas: {
                             weight: number;
                             tagGroupName: string;
                             optionLabels: string[];
-                        }[] | undefined;
-                        questionResponses?: {
-                            questionId: string;
-                            questionPrompt: string;
-                            responseSubstrings: string[];
-                            weight: number;
                         }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
@@ -18939,12 +18476,6 @@ export declare const logSchemas: {
                             tagGroupName: string;
                             optionLabels: string[];
                         }[] | undefined;
-                        questionResponses?: {
-                            questionId: string;
-                            questionPrompt: string;
-                            responseSubstrings: string[];
-                            weight: number;
-                        }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
                             behaviorName: string;
@@ -18956,12 +18487,6 @@ export declare const logSchemas: {
                             weight: number;
                             tagGroupName: string;
                             optionLabels: string[];
-                        }[] | undefined;
-                        questionResponses?: {
-                            questionId: string;
-                            questionPrompt: string;
-                            responseSubstrings: string[];
-                            weight: number;
                         }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
@@ -19303,12 +18828,6 @@ export declare const logSchemas: {
                             tagGroupName: string;
                             optionLabels: string[];
                         }[] | undefined;
-                        questionResponses?: {
-                            questionId: string;
-                            questionPrompt: string;
-                            responseSubstrings: string[];
-                            weight: number;
-                        }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
                             behaviorName: string;
@@ -19320,12 +18839,6 @@ export declare const logSchemas: {
                             weight: number;
                             tagGroupName: string;
                             optionLabels: string[];
-                        }[] | undefined;
-                        questionResponses?: {
-                            questionId: string;
-                            questionPrompt: string;
-                            responseSubstrings: string[];
-                            weight: number;
                         }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
@@ -19670,12 +19183,6 @@ export declare const logSchemas: {
                             tagGroupName: string;
                             optionLabels: string[];
                         }[] | undefined;
-                        questionResponses?: {
-                            questionId: string;
-                            questionPrompt: string;
-                            responseSubstrings: string[];
-                            weight: number;
-                        }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
                             behaviorName: string;
@@ -19687,12 +19194,6 @@ export declare const logSchemas: {
                             weight: number;
                             tagGroupName: string;
                             optionLabels: string[];
-                        }[] | undefined;
-                        questionResponses?: {
-                            questionId: string;
-                            questionPrompt: string;
-                            responseSubstrings: string[];
-                            weight: number;
                         }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
@@ -20037,12 +19538,6 @@ export declare const logSchemas: {
                             tagGroupName: string;
                             optionLabels: string[];
                         }[] | undefined;
-                        questionResponses?: {
-                            questionId: string;
-                            questionPrompt: string;
-                            responseSubstrings: string[];
-                            weight: number;
-                        }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
                             behaviorName: string;
@@ -20054,12 +19549,6 @@ export declare const logSchemas: {
                             weight: number;
                             tagGroupName: string;
                             optionLabels: string[];
-                        }[] | undefined;
-                        questionResponses?: {
-                            questionId: string;
-                            questionPrompt: string;
-                            responseSubstrings: string[];
-                            weight: number;
                         }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
@@ -20414,12 +19903,6 @@ export declare const logSchemas: {
                             tagGroupName: string;
                             optionLabels: string[];
                         }[] | undefined;
-                        questionResponses?: {
-                            questionId: string;
-                            questionPrompt: string;
-                            responseSubstrings: string[];
-                            weight: number;
-                        }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
                             behaviorName: string;
@@ -20431,12 +19914,6 @@ export declare const logSchemas: {
                             weight: number;
                             tagGroupName: string;
                             optionLabels: string[];
-                        }[] | undefined;
-                        questionResponses?: {
-                            questionId: string;
-                            questionPrompt: string;
-                            responseSubstrings: string[];
-                            weight: number;
                         }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
@@ -20795,12 +20272,6 @@ export declare const logSchemas: {
                             tagGroupName: string;
                             optionLabels: string[];
                         }[] | undefined;
-                        questionResponses?: {
-                            questionId: string;
-                            questionPrompt: string;
-                            responseSubstrings: string[];
-                            weight: number;
-                        }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
                             behaviorName: string;
@@ -20812,12 +20283,6 @@ export declare const logSchemas: {
                             weight: number;
                             tagGroupName: string;
                             optionLabels: string[];
-                        }[] | undefined;
-                        questionResponses?: {
-                            questionId: string;
-                            questionPrompt: string;
-                            responseSubstrings: string[];
-                            weight: number;
                         }[] | undefined;
                         behaviors?: {
                             behaviorId: string;
@@ -21711,10 +21176,111 @@ export declare const logSchemas: {
         tacticId?: string | undefined;
         impulseId?: string | undefined;
     }>;
+    tactic_suggestions: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        sessionId: z.ZodString;
+        tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        impulseId: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"tactic_suggestions">;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            taskId: z.ZodString;
+            suggestions: z.ZodArray<z.ZodObject<{
+                theme: z.ZodString;
+                guidance: z.ZodOptional<z.ZodString>;
+                tacticId: z.ZodOptional<z.ZodString>;
+                tactic: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+                selectedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            }, "strip", z.ZodTypeAny, {
+                theme: string;
+                tacticId?: string | undefined;
+                tactic?: Record<string, any> | undefined;
+                guidance?: string | undefined;
+                selectedAt?: import("../../types").Timestamp | undefined;
+            }, {
+                theme: string;
+                tacticId?: string | undefined;
+                tactic?: Record<string, any> | undefined;
+                guidance?: string | undefined;
+                selectedAt?: import("../../types").Timestamp | undefined;
+            }>, "many">;
+        }, "strip", z.ZodTypeAny, {
+            taskId: string;
+            suggestions: {
+                theme: string;
+                tacticId?: string | undefined;
+                tactic?: Record<string, any> | undefined;
+                guidance?: string | undefined;
+                selectedAt?: import("../../types").Timestamp | undefined;
+            }[];
+        }, {
+            taskId: string;
+            suggestions: {
+                theme: string;
+                tacticId?: string | undefined;
+                tactic?: Record<string, any> | undefined;
+                guidance?: string | undefined;
+                selectedAt?: import("../../types").Timestamp | undefined;
+            }[];
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "tactic_suggestions";
+        sessionId: string;
+        dateString: string;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: true;
+        data: {
+            taskId: string;
+            suggestions: {
+                theme: string;
+                tacticId?: string | undefined;
+                tactic?: Record<string, any> | undefined;
+                guidance?: string | undefined;
+                selectedAt?: import("../../types").Timestamp | undefined;
+            }[];
+        };
+        id?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
+        impulseId?: string | undefined;
+    }, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "tactic_suggestions";
+        sessionId: string;
+        dateString: string;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: true;
+        data: {
+            taskId: string;
+            suggestions: {
+                theme: string;
+                tacticId?: string | undefined;
+                tactic?: Record<string, any> | undefined;
+                guidance?: string | undefined;
+                selectedAt?: import("../../types").Timestamp | undefined;
+            }[];
+        };
+        id?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
+        impulseId?: string | undefined;
+    }>;
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ProposedExperimentLog | ProposedStrategyModificationLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | TriggerSelectionLog | RequestPermissionsLog | TacticReviewLog | SetupModeChoiceLog | TagsUpdatedLog | CrisisResourceLog | RecoveryKeyLog | CloseButtonLog | ImageLog | PhotoLog | MergeBehaviorsProposalLog | MaskBehaviorProposalLog | ShortcutSetupIntroLog;
+export type Log = TacticLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ProposedExperimentLog | ProposedStrategyModificationLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | TriggerSelectionLog | RequestPermissionsLog | TacticReviewLog | SetupModeChoiceLog | TagsUpdatedLog | CrisisResourceLog | RecoveryKeyLog | CloseButtonLog | ImageLog | PhotoLog | MergeBehaviorsProposalLog | MaskBehaviorProposalLog | ShortcutSetupIntroLog | TacticSuggestionsLog;
 export * from "./behaviorLog";
 export * from "./breathingLog";
 export * from "./callLog";
@@ -21750,6 +21316,7 @@ export * from "./photoLog";
 export * from "./mergeBehaviorsProposalLog";
 export * from "./maskBehaviorProposalLog";
 export * from "./shortcutSetupIntroLog";
+export * from "./tacticSuggestionsLog";
 export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -23748,22 +23315,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             isMultiStep: z.ZodOptional<z.ZodBoolean>;
             autoplay: z.ZodOptional<z.ZodBoolean>;
             indications: z.ZodOptional<z.ZodObject<{
-                questionResponses: z.ZodOptional<z.ZodArray<z.ZodObject<{
-                    questionId: z.ZodString;
-                    questionPrompt: z.ZodString;
-                    responseSubstrings: z.ZodArray<z.ZodString, "many">;
-                    weight: z.ZodNumber;
-                }, "strip", z.ZodTypeAny, {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
-                }, {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
-                }>, "many">>;
                 behaviors: z.ZodOptional<z.ZodArray<z.ZodObject<{
                     behaviorId: z.ZodString;
                     behaviorName: z.ZodString;
@@ -23796,12 +23347,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tagGroupName: string;
                     optionLabels: string[];
                 }[] | undefined;
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
@@ -23812,12 +23357,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                     tagGroupName: string;
                     optionLabels: string[];
-                }[] | undefined;
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
                 }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
@@ -23826,22 +23365,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[] | undefined;
             }>>;
             contraindications: z.ZodOptional<z.ZodObject<{
-                questionResponses: z.ZodOptional<z.ZodArray<z.ZodObject<{
-                    questionId: z.ZodString;
-                    questionPrompt: z.ZodString;
-                    responseSubstrings: z.ZodArray<z.ZodString, "many">;
-                    weight: z.ZodNumber;
-                }, "strip", z.ZodTypeAny, {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
-                }, {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
-                }>, "many">>;
                 behaviors: z.ZodOptional<z.ZodArray<z.ZodObject<{
                     behaviorId: z.ZodString;
                     behaviorName: z.ZodString;
@@ -23874,12 +23397,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tagGroupName: string;
                     optionLabels: string[];
                 }[] | undefined;
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
@@ -23890,12 +23407,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                     tagGroupName: string;
                     optionLabels: string[];
-                }[] | undefined;
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
                 }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
@@ -24242,12 +23753,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tagGroupName: string;
                     optionLabels: string[];
                 }[] | undefined;
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
@@ -24259,12 +23764,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                     tagGroupName: string;
                     optionLabels: string[];
-                }[] | undefined;
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
                 }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
@@ -24601,12 +24100,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tagGroupName: string;
                     optionLabels: string[];
                 }[] | undefined;
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
@@ -24618,12 +24111,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                     tagGroupName: string;
                     optionLabels: string[];
-                }[] | undefined;
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
                 }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
@@ -24970,12 +24457,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tagGroupName: string;
                     optionLabels: string[];
                 }[] | undefined;
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
@@ -24987,12 +24468,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                     tagGroupName: string;
                     optionLabels: string[];
-                }[] | undefined;
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
                 }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
@@ -25337,12 +24812,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tagGroupName: string;
                     optionLabels: string[];
                 }[] | undefined;
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
@@ -25354,12 +24823,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                     tagGroupName: string;
                     optionLabels: string[];
-                }[] | undefined;
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
                 }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
@@ -25714,12 +25177,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tagGroupName: string;
                     optionLabels: string[];
                 }[] | undefined;
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
@@ -25731,12 +25188,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                     tagGroupName: string;
                     optionLabels: string[];
-                }[] | undefined;
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
                 }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
@@ -26095,12 +25546,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tagGroupName: string;
                     optionLabels: string[];
                 }[] | undefined;
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
@@ -26112,12 +25557,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                     tagGroupName: string;
                     optionLabels: string[];
-                }[] | undefined;
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
                 }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
@@ -27977,22 +27416,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             isMultiStep: z.ZodOptional<z.ZodBoolean>;
             autoplay: z.ZodOptional<z.ZodBoolean>;
             indications: z.ZodOptional<z.ZodObject<{
-                questionResponses: z.ZodOptional<z.ZodArray<z.ZodObject<{
-                    questionId: z.ZodString;
-                    questionPrompt: z.ZodString;
-                    responseSubstrings: z.ZodArray<z.ZodString, "many">;
-                    weight: z.ZodNumber;
-                }, "strip", z.ZodTypeAny, {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
-                }, {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
-                }>, "many">>;
                 behaviors: z.ZodOptional<z.ZodArray<z.ZodObject<{
                     behaviorId: z.ZodString;
                     behaviorName: z.ZodString;
@@ -28025,12 +27448,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tagGroupName: string;
                     optionLabels: string[];
                 }[] | undefined;
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
@@ -28041,12 +27458,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                     tagGroupName: string;
                     optionLabels: string[];
-                }[] | undefined;
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
                 }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
@@ -28055,22 +27466,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[] | undefined;
             }>>;
             contraindications: z.ZodOptional<z.ZodObject<{
-                questionResponses: z.ZodOptional<z.ZodArray<z.ZodObject<{
-                    questionId: z.ZodString;
-                    questionPrompt: z.ZodString;
-                    responseSubstrings: z.ZodArray<z.ZodString, "many">;
-                    weight: z.ZodNumber;
-                }, "strip", z.ZodTypeAny, {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
-                }, {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
-                }>, "many">>;
                 behaviors: z.ZodOptional<z.ZodArray<z.ZodObject<{
                     behaviorId: z.ZodString;
                     behaviorName: z.ZodString;
@@ -28103,12 +27498,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tagGroupName: string;
                     optionLabels: string[];
                 }[] | undefined;
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
@@ -28119,12 +27508,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                     tagGroupName: string;
                     optionLabels: string[];
-                }[] | undefined;
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
                 }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
@@ -28471,12 +27854,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tagGroupName: string;
                     optionLabels: string[];
                 }[] | undefined;
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
@@ -28488,12 +27865,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                     tagGroupName: string;
                     optionLabels: string[];
-                }[] | undefined;
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
                 }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
@@ -28830,12 +28201,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tagGroupName: string;
                     optionLabels: string[];
                 }[] | undefined;
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
@@ -28847,12 +28212,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                     tagGroupName: string;
                     optionLabels: string[];
-                }[] | undefined;
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
                 }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
@@ -29294,12 +28653,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tagGroupName: string;
                     optionLabels: string[];
                 }[] | undefined;
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
@@ -29311,12 +28664,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                     tagGroupName: string;
                     optionLabels: string[];
-                }[] | undefined;
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
                 }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
@@ -29690,12 +29037,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tagGroupName: string;
                     optionLabels: string[];
                 }[] | undefined;
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
@@ -29707,12 +29048,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                     tagGroupName: string;
                     optionLabels: string[];
-                }[] | undefined;
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
                 }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
@@ -30096,12 +29431,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tagGroupName: string;
                     optionLabels: string[];
                 }[] | undefined;
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
@@ -30113,12 +29442,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                     tagGroupName: string;
                     optionLabels: string[];
-                }[] | undefined;
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
                 }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
@@ -30506,12 +29829,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tagGroupName: string;
                     optionLabels: string[];
                 }[] | undefined;
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
-                }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
@@ -30523,12 +29840,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     weight: number;
                     tagGroupName: string;
                     optionLabels: string[];
-                }[] | undefined;
-                questionResponses?: {
-                    questionId: string;
-                    questionPrompt: string;
-                    responseSubstrings: string[];
-                    weight: number;
                 }[] | undefined;
                 behaviors?: {
                     behaviorId: string;
@@ -35139,22 +34450,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 isMultiStep: z.ZodOptional<z.ZodBoolean>;
                 autoplay: z.ZodOptional<z.ZodBoolean>;
                 indications: z.ZodOptional<z.ZodObject<{
-                    questionResponses: z.ZodOptional<z.ZodArray<z.ZodObject<{
-                        questionId: z.ZodString;
-                        questionPrompt: z.ZodString;
-                        responseSubstrings: z.ZodArray<z.ZodString, "many">;
-                        weight: z.ZodNumber;
-                    }, "strip", z.ZodTypeAny, {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }, {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }>, "many">>;
                     behaviors: z.ZodOptional<z.ZodArray<z.ZodObject<{
                         behaviorId: z.ZodString;
                         behaviorName: z.ZodString;
@@ -35187,12 +34482,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -35203,12 +34492,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -35217,22 +34500,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     }[] | undefined;
                 }>>;
                 contraindications: z.ZodOptional<z.ZodObject<{
-                    questionResponses: z.ZodOptional<z.ZodArray<z.ZodObject<{
-                        questionId: z.ZodString;
-                        questionPrompt: z.ZodString;
-                        responseSubstrings: z.ZodArray<z.ZodString, "many">;
-                        weight: z.ZodNumber;
-                    }, "strip", z.ZodTypeAny, {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }, {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }>, "many">>;
                     behaviors: z.ZodOptional<z.ZodArray<z.ZodObject<{
                         behaviorId: z.ZodString;
                         behaviorName: z.ZodString;
@@ -35265,12 +34532,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -35281,12 +34542,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -35633,12 +34888,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -35650,12 +34899,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -35992,12 +35235,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -36009,12 +35246,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -36356,12 +35587,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -36373,12 +35598,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -36720,12 +35939,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -36737,12 +35950,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -37087,12 +36294,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -37104,12 +36305,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -37454,12 +36649,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -37471,12 +36660,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -37831,12 +37014,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -37848,12 +37025,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -38212,12 +37383,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         tagGroupName: string;
                         optionLabels: string[];
                     }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
-                    }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
                         behaviorName: string;
@@ -38229,12 +37394,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         weight: number;
                         tagGroupName: string;
                         optionLabels: string[];
-                    }[] | undefined;
-                    questionResponses?: {
-                        questionId: string;
-                        questionPrompt: string;
-                        responseSubstrings: string[];
-                        weight: number;
                     }[] | undefined;
                     behaviors?: {
                         behaviorId: string;
@@ -39059,6 +38218,106 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     behaviorIds?: string[] | undefined;
     tacticId?: string | undefined;
     impulseId?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    sessionId: z.ZodString;
+    tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    impulseId: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"tactic_suggestions">;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        taskId: z.ZodString;
+        suggestions: z.ZodArray<z.ZodObject<{
+            theme: z.ZodString;
+            guidance: z.ZodOptional<z.ZodString>;
+            tacticId: z.ZodOptional<z.ZodString>;
+            tactic: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+            selectedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        }, "strip", z.ZodTypeAny, {
+            theme: string;
+            tacticId?: string | undefined;
+            tactic?: Record<string, any> | undefined;
+            guidance?: string | undefined;
+            selectedAt?: import("../../types").Timestamp | undefined;
+        }, {
+            theme: string;
+            tacticId?: string | undefined;
+            tactic?: Record<string, any> | undefined;
+            guidance?: string | undefined;
+            selectedAt?: import("../../types").Timestamp | undefined;
+        }>, "many">;
+    }, "strip", z.ZodTypeAny, {
+        taskId: string;
+        suggestions: {
+            theme: string;
+            tacticId?: string | undefined;
+            tactic?: Record<string, any> | undefined;
+            guidance?: string | undefined;
+            selectedAt?: import("../../types").Timestamp | undefined;
+        }[];
+    }, {
+        taskId: string;
+        suggestions: {
+            theme: string;
+            tacticId?: string | undefined;
+            tactic?: Record<string, any> | undefined;
+            guidance?: string | undefined;
+            selectedAt?: import("../../types").Timestamp | undefined;
+        }[];
+    }>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "tactic_suggestions";
+    sessionId: string;
+    dateString: string;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: true;
+    data: {
+        taskId: string;
+        suggestions: {
+            theme: string;
+            tacticId?: string | undefined;
+            tactic?: Record<string, any> | undefined;
+            guidance?: string | undefined;
+            selectedAt?: import("../../types").Timestamp | undefined;
+        }[];
+    };
+    id?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
+    impulseId?: string | undefined;
+}, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "tactic_suggestions";
+    sessionId: string;
+    dateString: string;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: true;
+    data: {
+        taskId: string;
+        suggestions: {
+            theme: string;
+            tacticId?: string | undefined;
+            tactic?: Record<string, any> | undefined;
+            guidance?: string | undefined;
+            selectedAt?: import("../../types").Timestamp | undefined;
+        }[];
+    };
+    id?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
+    impulseId?: string | undefined;
 }>]>;
 export declare const logIsAssistantMessageLog: (value: Omit<Log, "id">) => value is AssistantMessageLog;
 export declare const isValidAssistantMessageLog: (value: unknown) => value is AssistantMessageLog;
@@ -39117,3 +38376,4 @@ export declare const logIsPhotoLog: (value: Omit<Log, "id">) => value is PhotoLo
 export declare const logIsMergeBehaviorsProposalLog: (value: Omit<Log, "id">) => value is MergeBehaviorsProposalLog;
 export declare const logIsMaskBehaviorProposalLog: (value: Omit<Log, "id">) => value is MaskBehaviorProposalLog;
 export declare const logIsShortcutSetupIntroLog: (value: Omit<Log, "id">) => value is ShortcutSetupIntroLog;
+export declare const logIsTacticSuggestionsLog: (value: Omit<Log, "id">) => value is TacticSuggestionsLog;

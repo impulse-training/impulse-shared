@@ -966,6 +966,85 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     createdBy?: string | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }>;
+export declare const suggestTacticTaskSchema: z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    userId: z.ZodString;
+    category: z.ZodDefault<z.ZodEnum<["zara", "deterministic"]>>;
+    status: z.ZodDefault<z.ZodEnum<["open", "completed", "dismissed"]>>;
+    title: z.ZodString;
+    instructions: z.ZodString;
+    context: z.ZodOptional<z.ZodString>;
+    ordinal: z.ZodOptional<z.ZodNumber>;
+    minAppVersion: z.ZodOptional<z.ZodString>;
+    requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    createdBy: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+} & {
+    type: z.ZodLiteral<"suggest_tactic">;
+    suggestions: z.ZodArray<z.ZodObject<{
+        theme: z.ZodString;
+        guidance: z.ZodOptional<z.ZodString>;
+        tacticId: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        theme: string;
+        tacticId?: string | undefined;
+        guidance?: string | undefined;
+    }, {
+        theme: string;
+        tacticId?: string | undefined;
+        guidance?: string | undefined;
+    }>, "many">;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "suggest_tactic";
+    status: "completed" | "open" | "dismissed";
+    title: string;
+    userId: string;
+    suggestions: {
+        theme: string;
+        tacticId?: string | undefined;
+        guidance?: string | undefined;
+    }[];
+    instructions: string;
+    category: "zara" | "deterministic";
+    id?: string | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    context?: string | undefined;
+    minAppVersion?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    createdBy?: string | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+}, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "suggest_tactic";
+    title: string;
+    userId: string;
+    suggestions: {
+        theme: string;
+        tacticId?: string | undefined;
+        guidance?: string | undefined;
+    }[];
+    instructions: string;
+    id?: string | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    category?: "zara" | "deterministic" | undefined;
+    context?: string | undefined;
+    minAppVersion?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    createdBy?: string | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+}>;
 export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -1858,6 +1937,84 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     createdBy?: string | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    userId: z.ZodString;
+    category: z.ZodDefault<z.ZodEnum<["zara", "deterministic"]>>;
+    status: z.ZodDefault<z.ZodEnum<["open", "completed", "dismissed"]>>;
+    title: z.ZodString;
+    instructions: z.ZodString;
+    context: z.ZodOptional<z.ZodString>;
+    ordinal: z.ZodOptional<z.ZodNumber>;
+    minAppVersion: z.ZodOptional<z.ZodString>;
+    requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    createdBy: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+} & {
+    type: z.ZodLiteral<"suggest_tactic">;
+    suggestions: z.ZodArray<z.ZodObject<{
+        theme: z.ZodString;
+        guidance: z.ZodOptional<z.ZodString>;
+        tacticId: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        theme: string;
+        tacticId?: string | undefined;
+        guidance?: string | undefined;
+    }, {
+        theme: string;
+        tacticId?: string | undefined;
+        guidance?: string | undefined;
+    }>, "many">;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "suggest_tactic";
+    status: "completed" | "open" | "dismissed";
+    title: string;
+    userId: string;
+    suggestions: {
+        theme: string;
+        tacticId?: string | undefined;
+        guidance?: string | undefined;
+    }[];
+    instructions: string;
+    category: "zara" | "deterministic";
+    id?: string | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    context?: string | undefined;
+    minAppVersion?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    createdBy?: string | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+}, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "suggest_tactic";
+    title: string;
+    userId: string;
+    suggestions: {
+        theme: string;
+        tacticId?: string | undefined;
+        guidance?: string | undefined;
+    }[];
+    instructions: string;
+    id?: string | undefined;
+    status?: "completed" | "open" | "dismissed" | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    category?: "zara" | "deterministic" | undefined;
+    context?: string | undefined;
+    minAppVersion?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    createdBy?: string | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
 }>]>;
 export type TaskCategory = z.infer<typeof taskCategorySchema>;
 export type TaskStatus = z.infer<typeof taskStatusSchema>;
@@ -1869,6 +2026,7 @@ export type CreateSessionTask = z.infer<typeof createSessionTaskSchema>;
 export type RecapQuestionTask = z.infer<typeof recapQuestionTaskSchema>;
 export type ReviewTriggerTask = z.infer<typeof reviewTriggerTaskSchema>;
 export type ToolkitPlanningTask = z.infer<typeof toolkitPlanningTaskSchema>;
+export type SuggestTacticTask = z.infer<typeof suggestTacticTaskSchema>;
 export type Task = z.infer<typeof taskSchema>;
 export declare const isTask: (value: unknown) => value is Task;
 export declare const isMergeBehaviorsTask: (value: unknown) => value is MergeBehaviorsTask;
@@ -1878,3 +2036,4 @@ export declare const isProposeMaskBehaviorTask: (value: unknown) => value is Pro
 export declare const isRecapQuestionTask: (value: unknown) => value is RecapQuestionTask;
 export declare const isReviewTriggerTask: (value: unknown) => value is ReviewTriggerTask;
 export declare const isToolkitPlanningTask: (value: unknown) => value is ToolkitPlanningTask;
+export declare const isSuggestTacticTask: (value: unknown) => value is SuggestTacticTask;

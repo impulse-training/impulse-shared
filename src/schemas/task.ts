@@ -148,6 +148,17 @@ export const toolkitPlanningTaskSchema = taskBaseSchema.extend({
   type: z.literal("toolkit_planning"),
 });
 
+const tacticSuggestionSchema = z.object({
+  theme: z.string().min(1),
+  guidance: z.string().optional(),
+  tacticId: z.string().optional(),
+});
+
+export const suggestTacticTaskSchema = taskBaseSchema.extend({
+  type: z.literal("suggest_tactic"),
+  suggestions: z.array(tacticSuggestionSchema).min(1),
+});
+
 export const taskSchema = z.discriminatedUnion("type", [
   mergeBehaviorsTaskSchema,
   suggestStrategyTaskSchema,
@@ -157,6 +168,7 @@ export const taskSchema = z.discriminatedUnion("type", [
   recapQuestionTaskSchema,
   reviewTriggerTaskSchema,
   toolkitPlanningTaskSchema,
+  suggestTacticTaskSchema,
 ]);
 
 export type TaskCategory = z.infer<typeof taskCategorySchema>;
@@ -169,6 +181,7 @@ export type CreateSessionTask = z.infer<typeof createSessionTaskSchema>;
 export type RecapQuestionTask = z.infer<typeof recapQuestionTaskSchema>;
 export type ReviewTriggerTask = z.infer<typeof reviewTriggerTaskSchema>;
 export type ToolkitPlanningTask = z.infer<typeof toolkitPlanningTaskSchema>;
+export type SuggestTacticTask = z.infer<typeof suggestTacticTaskSchema>;
 export type Task = z.infer<typeof taskSchema>;
 
 export const isTask = (value: unknown): value is Task =>
@@ -208,3 +221,8 @@ export const isToolkitPlanningTask = (
   value: unknown,
 ): value is ToolkitPlanningTask =>
   toolkitPlanningTaskSchema.safeParse(value).success;
+
+export const isSuggestTacticTask = (
+  value: unknown,
+): value is SuggestTacticTask =>
+  suggestTacticTaskSchema.safeParse(value).success;

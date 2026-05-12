@@ -33,8 +33,8 @@ function tagIndicationMatchesSession(indication, sessionTags, lookup) {
     return false;
 }
 // ── Score a single tactic ────────────────────────────────────────────────────
-function scoreTactic(tactic, sessionTags, recentTacticIds, tacticRatings, lookup) {
-    var _a, _b;
+function scoreTactic(tactic, sessionTags, recentTacticIds, tacticRatings, lookup, behaviorIds) {
+    var _a, _b, _c;
     // 1. Hard exclude: tag contraindications
     if ((_a = tactic.contraindications) === null || _a === void 0 ? void 0 : _a.tags) {
         for (const contra of tactic.contraindications.tags) {
@@ -45,20 +45,28 @@ function scoreTactic(tactic, sessionTags, recentTacticIds, tacticRatings, lookup
     }
     // 2. Base score
     let score = 1;
-    // 3. Tag indication boost
-    if ((_b = tactic.indications) === null || _b === void 0 ? void 0 : _b.tags) {
+    // 3. Behavior indication boost
+    if (((_b = tactic.indications) === null || _b === void 0 ? void 0 : _b.behaviors) && (behaviorIds === null || behaviorIds === void 0 ? void 0 : behaviorIds.length)) {
+        for (const indication of tactic.indications.behaviors) {
+            if (behaviorIds.includes(indication.behaviorId)) {
+                score += indication.weight;
+            }
+        }
+    }
+    // 4. Tag indication boost
+    if ((_c = tactic.indications) === null || _c === void 0 ? void 0 : _c.tags) {
         for (const indication of tactic.indications.tags) {
             if (tagIndicationMatchesSession(indication, sessionTags, lookup)) {
                 score += indication.weight;
             }
         }
     }
-    // 4. Recency penalty -- most recent 3 completed tactics are penalized
+    // 5. Recency penalty -- most recent 3 completed tactics are penalized
     const recencyIndex = recentTacticIds.indexOf(tactic.id);
     if (recencyIndex !== -1 && recencyIndex < 3) {
         score -= 3 - recencyIndex; // -3, -2, -1
     }
-    // 5. User rating boost
+    // 6. User rating boost
     const ratings = tacticRatings.get(tactic.id);
     if (ratings) {
         const total = ratings.helpful + ratings.notHelpful;
@@ -72,14 +80,14 @@ function scoreTactic(tactic, sessionTags, recentTacticIds, tacticRatings, lookup
     return score;
 }
 // ── Select best tactic per phase ─────────────────────────────────────────────
-function selectBestTacticsPerPhase(allTactics, sessionTags, recentTacticIds, tacticRatings, lookup) {
+function selectBestTacticsPerPhase(allTactics, sessionTags, recentTacticIds, tacticRatings, lookup, behaviorIds) {
     const phases = ["regulate", "shift", "reengage"];
     const selected = [];
     for (const phase of phases) {
         const phaseTactics = allTactics.filter((t) => t.phase === phase);
         let best = null;
         for (const tactic of phaseTactics) {
-            const score = scoreTactic(tactic, sessionTags, recentTacticIds, tacticRatings, lookup);
+            const score = scoreTactic(tactic, sessionTags, recentTacticIds, tacticRatings, lookup, behaviorIds);
             if (score === null)
                 continue;
             if (!best || score > best.score) {

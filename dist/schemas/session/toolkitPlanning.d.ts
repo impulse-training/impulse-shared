@@ -1652,22 +1652,6 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
         isMultiStep: z.ZodOptional<z.ZodBoolean>;
         autoplay: z.ZodOptional<z.ZodBoolean>;
         indications: z.ZodOptional<z.ZodObject<{
-            questionResponses: z.ZodOptional<z.ZodArray<z.ZodObject<{
-                questionId: z.ZodString;
-                questionPrompt: z.ZodString;
-                responseSubstrings: z.ZodArray<z.ZodString, "many">;
-                weight: z.ZodNumber;
-            }, "strip", z.ZodTypeAny, {
-                questionId: string;
-                questionPrompt: string;
-                responseSubstrings: string[];
-                weight: number;
-            }, {
-                questionId: string;
-                questionPrompt: string;
-                responseSubstrings: string[];
-                weight: number;
-            }>, "many">>;
             behaviors: z.ZodOptional<z.ZodArray<z.ZodObject<{
                 behaviorId: z.ZodString;
                 behaviorName: z.ZodString;
@@ -1700,12 +1684,6 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
                 tagGroupName: string;
                 optionLabels: string[];
             }[] | undefined;
-            questionResponses?: {
-                questionId: string;
-                questionPrompt: string;
-                responseSubstrings: string[];
-                weight: number;
-            }[] | undefined;
             behaviors?: {
                 behaviorId: string;
                 behaviorName: string;
@@ -1716,12 +1694,6 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
                 weight: number;
                 tagGroupName: string;
                 optionLabels: string[];
-            }[] | undefined;
-            questionResponses?: {
-                questionId: string;
-                questionPrompt: string;
-                responseSubstrings: string[];
-                weight: number;
             }[] | undefined;
             behaviors?: {
                 behaviorId: string;
@@ -1730,22 +1702,6 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
             }[] | undefined;
         }>>;
         contraindications: z.ZodOptional<z.ZodObject<{
-            questionResponses: z.ZodOptional<z.ZodArray<z.ZodObject<{
-                questionId: z.ZodString;
-                questionPrompt: z.ZodString;
-                responseSubstrings: z.ZodArray<z.ZodString, "many">;
-                weight: z.ZodNumber;
-            }, "strip", z.ZodTypeAny, {
-                questionId: string;
-                questionPrompt: string;
-                responseSubstrings: string[];
-                weight: number;
-            }, {
-                questionId: string;
-                questionPrompt: string;
-                responseSubstrings: string[];
-                weight: number;
-            }>, "many">>;
             behaviors: z.ZodOptional<z.ZodArray<z.ZodObject<{
                 behaviorId: z.ZodString;
                 behaviorName: z.ZodString;
@@ -1778,12 +1734,6 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
                 tagGroupName: string;
                 optionLabels: string[];
             }[] | undefined;
-            questionResponses?: {
-                questionId: string;
-                questionPrompt: string;
-                responseSubstrings: string[];
-                weight: number;
-            }[] | undefined;
             behaviors?: {
                 behaviorId: string;
                 behaviorName: string;
@@ -1794,12 +1744,6 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
                 weight: number;
                 tagGroupName: string;
                 optionLabels: string[];
-            }[] | undefined;
-            questionResponses?: {
-                questionId: string;
-                questionPrompt: string;
-                responseSubstrings: string[];
-                weight: number;
             }[] | undefined;
             behaviors?: {
                 behaviorId: string;
@@ -2146,12 +2090,6 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
                 tagGroupName: string;
                 optionLabels: string[];
             }[] | undefined;
-            questionResponses?: {
-                questionId: string;
-                questionPrompt: string;
-                responseSubstrings: string[];
-                weight: number;
-            }[] | undefined;
             behaviors?: {
                 behaviorId: string;
                 behaviorName: string;
@@ -2163,12 +2101,6 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
                 weight: number;
                 tagGroupName: string;
                 optionLabels: string[];
-            }[] | undefined;
-            questionResponses?: {
-                questionId: string;
-                questionPrompt: string;
-                responseSubstrings: string[];
-                weight: number;
             }[] | undefined;
             behaviors?: {
                 behaviorId: string;
@@ -2505,12 +2437,6 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
                 tagGroupName: string;
                 optionLabels: string[];
             }[] | undefined;
-            questionResponses?: {
-                questionId: string;
-                questionPrompt: string;
-                responseSubstrings: string[];
-                weight: number;
-            }[] | undefined;
             behaviors?: {
                 behaviorId: string;
                 behaviorName: string;
@@ -2522,12 +2448,6 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
                 weight: number;
                 tagGroupName: string;
                 optionLabels: string[];
-            }[] | undefined;
-            questionResponses?: {
-                questionId: string;
-                questionPrompt: string;
-                responseSubstrings: string[];
-                weight: number;
             }[] | undefined;
             behaviors?: {
                 behaviorId: string;
@@ -2648,6 +2568,17 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
 } & {
     type: z.ZodLiteral<"toolkitPlanning">;
     taskId: z.ZodOptional<z.ZodString>;
+    entryPoint: z.ZodOptional<z.ZodEnum<["discover", "plan"]>>;
+    triggerContext: z.ZodOptional<z.ZodObject<{
+        triggerId: z.ZodString;
+        triggerTitle: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        triggerId: string;
+        triggerTitle: string;
+    }, {
+        triggerId: string;
+        triggerTitle: string;
+    }>>;
 }, "strip", z.ZodTypeAny, {
     type: "toolkitPlanning";
     date: import("../../types").Timestamp;
@@ -2987,12 +2918,6 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
                 tagGroupName: string;
                 optionLabels: string[];
             }[] | undefined;
-            questionResponses?: {
-                questionId: string;
-                questionPrompt: string;
-                responseSubstrings: string[];
-                weight: number;
-            }[] | undefined;
             behaviors?: {
                 behaviorId: string;
                 behaviorName: string;
@@ -3004,12 +2929,6 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
                 weight: number;
                 tagGroupName: string;
                 optionLabels: string[];
-            }[] | undefined;
-            questionResponses?: {
-                questionId: string;
-                questionPrompt: string;
-                responseSubstrings: string[];
-                weight: number;
             }[] | undefined;
             behaviors?: {
                 behaviorId: string;
@@ -3074,6 +2993,11 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
+    entryPoint?: "plan" | "discover" | undefined;
+    triggerContext?: {
+        triggerId: string;
+        triggerTitle: string;
+    } | undefined;
 }, {
     type: "toolkitPlanning";
     date: import("../../types").Timestamp;
@@ -3412,12 +3336,6 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
                 tagGroupName: string;
                 optionLabels: string[];
             }[] | undefined;
-            questionResponses?: {
-                questionId: string;
-                questionPrompt: string;
-                responseSubstrings: string[];
-                weight: number;
-            }[] | undefined;
             behaviors?: {
                 behaviorId: string;
                 behaviorName: string;
@@ -3429,12 +3347,6 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
                 weight: number;
                 tagGroupName: string;
                 optionLabels: string[];
-            }[] | undefined;
-            questionResponses?: {
-                questionId: string;
-                questionPrompt: string;
-                responseSubstrings: string[];
-                weight: number;
             }[] | undefined;
             behaviors?: {
                 behaviorId: string;
@@ -3500,5 +3412,10 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
+    entryPoint?: "plan" | "discover" | undefined;
+    triggerContext?: {
+        triggerId: string;
+        triggerTitle: string;
+    } | undefined;
 }>;
 export type ToolkitPlanningSession = z.infer<typeof toolkitPlanningSessionSchema>;

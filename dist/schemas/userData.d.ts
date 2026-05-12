@@ -157,13 +157,13 @@ export declare const userDataSchema: z.ZodObject<{
     engagement: z.ZodOptional<z.ZodNullable<z.ZodEnum<["engaged", "distant", "churned", "abandoned"]>>>;
 }, "strip", z.ZodTypeAny, {
     role: "user" | "coach" | "support";
+    theme: "system" | "light" | "dark";
     notificationsEnabled: boolean;
     defaultSessionMode: "text" | "voice";
     expoPushToken: string | null;
     notificationSettings: {
         debriefReminders: boolean;
     };
-    theme: "system" | "light" | "dark";
     weekStartsOn: 0 | 1;
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
@@ -253,6 +253,7 @@ export declare const userDataSchema: z.ZodObject<{
         pausedAt?: import("../types").Timestamp | undefined;
     } | undefined;
     role?: "user" | "coach" | "support" | undefined;
+    theme?: "system" | "light" | "dark" | undefined;
     notificationsEnabled?: boolean | undefined;
     recoveryKeyHash?: string | undefined;
     defaultSessionMode?: "text" | "voice" | undefined;
@@ -278,7 +279,6 @@ export declare const userDataSchema: z.ZodObject<{
     isAppEnabled?: boolean | undefined;
     deletionRequestedAt?: import("../types").Timestamp | undefined;
     deletionRequestedBy?: "user" | "admin" | undefined;
-    theme?: "system" | "light" | "dark" | undefined;
     weekStartsOn?: 0 | 1 | undefined;
     isImpulseTeam?: boolean | undefined;
     addToAccountabilitySupportGroups?: boolean | undefined;

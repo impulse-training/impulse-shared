@@ -72,6 +72,7 @@ export function scoreTactic(
   recentTacticIds: string[],
   tacticRatings: Map<string, TacticRatings>,
   lookup: TagGroupLookup,
+  behaviorIds?: string[],
 ): number | null {
   // 1. Hard exclude: tag contraindications
   if (tactic.contraindications?.tags) {
@@ -85,7 +86,16 @@ export function scoreTactic(
   // 2. Base score
   let score = 1;
 
-  // 3. Tag indication boost
+  // 3. Behavior indication boost
+  if (tactic.indications?.behaviors && behaviorIds?.length) {
+    for (const indication of tactic.indications.behaviors) {
+      if (behaviorIds.includes(indication.behaviorId)) {
+        score += indication.weight;
+      }
+    }
+  }
+
+  // 4. Tag indication boost
   if (tactic.indications?.tags) {
     for (const indication of tactic.indications.tags) {
       if (tagIndicationMatchesSession(indication, sessionTags, lookup)) {
@@ -94,13 +104,13 @@ export function scoreTactic(
     }
   }
 
-  // 4. Recency penalty -- most recent 3 completed tactics are penalized
+  // 5. Recency penalty -- most recent 3 completed tactics are penalized
   const recencyIndex = recentTacticIds.indexOf(tactic.id);
   if (recencyIndex !== -1 && recencyIndex < 3) {
     score -= 3 - recencyIndex; // -3, -2, -1
   }
 
-  // 5. User rating boost
+  // 6. User rating boost
   const ratings = tacticRatings.get(tactic.id);
   if (ratings) {
     const total = ratings.helpful + ratings.notHelpful;
@@ -123,6 +133,7 @@ export function selectBestTacticsPerPhase(
   recentTacticIds: string[],
   tacticRatings: Map<string, TacticRatings>,
   lookup: TagGroupLookup,
+  behaviorIds?: string[],
 ): TacticWithMeta[] {
   const phases: TacticPhase[] = ["regulate", "shift", "reengage"];
   const selected: TacticWithMeta[] = [];
@@ -138,6 +149,7 @@ export function selectBestTacticsPerPhase(
         recentTacticIds,
         tacticRatings,
         lookup,
+        behaviorIds,
       );
       if (score === null) continue;
       if (!best || score > best.score) {

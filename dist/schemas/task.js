@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isToolkitPlanningTask = exports.isReviewTriggerTask = exports.isRecapQuestionTask = exports.isProposeMaskBehaviorTask = exports.isProposeExperimentTask = exports.isSuggestStrategyTask = exports.isMergeBehaviorsTask = exports.isTask = exports.taskSchema = exports.toolkitPlanningTaskSchema = exports.reviewTriggerTaskSchema = exports.recapQuestionTaskSchema = exports.createSessionTaskSchema = exports.proposeMaskBehaviorTaskSchema = exports.proposeExperimentTaskSchema = exports.proposedMetricSchema = exports.suggestStrategyTaskSchema = exports.mergeBehaviorsTaskSchema = exports.taskBaseSchema = exports.taskCategorySchema = exports.taskStatusSchema = void 0;
+exports.isSuggestTacticTask = exports.isToolkitPlanningTask = exports.isReviewTriggerTask = exports.isRecapQuestionTask = exports.isProposeMaskBehaviorTask = exports.isProposeExperimentTask = exports.isSuggestStrategyTask = exports.isMergeBehaviorsTask = exports.isTask = exports.taskSchema = exports.suggestTacticTaskSchema = exports.toolkitPlanningTaskSchema = exports.reviewTriggerTaskSchema = exports.recapQuestionTaskSchema = exports.createSessionTaskSchema = exports.proposeMaskBehaviorTaskSchema = exports.proposeExperimentTaskSchema = exports.proposedMetricSchema = exports.suggestStrategyTaskSchema = exports.mergeBehaviorsTaskSchema = exports.taskBaseSchema = exports.taskCategorySchema = exports.taskStatusSchema = void 0;
 const zod_1 = require("zod");
 const timestampSchema_1 = require("../utils/timestampSchema");
 exports.taskStatusSchema = zod_1.z.enum(["open", "completed", "dismissed"]);
@@ -136,6 +136,15 @@ exports.reviewTriggerTaskSchema = exports.taskBaseSchema.extend({
 exports.toolkitPlanningTaskSchema = exports.taskBaseSchema.extend({
     type: zod_1.z.literal("toolkit_planning"),
 });
+const tacticSuggestionSchema = zod_1.z.object({
+    theme: zod_1.z.string().min(1),
+    guidance: zod_1.z.string().optional(),
+    tacticId: zod_1.z.string().optional(),
+});
+exports.suggestTacticTaskSchema = exports.taskBaseSchema.extend({
+    type: zod_1.z.literal("suggest_tactic"),
+    suggestions: zod_1.z.array(tacticSuggestionSchema).min(1),
+});
 exports.taskSchema = zod_1.z.discriminatedUnion("type", [
     exports.mergeBehaviorsTaskSchema,
     exports.suggestStrategyTaskSchema,
@@ -145,6 +154,7 @@ exports.taskSchema = zod_1.z.discriminatedUnion("type", [
     exports.recapQuestionTaskSchema,
     exports.reviewTriggerTaskSchema,
     exports.toolkitPlanningTaskSchema,
+    exports.suggestTacticTaskSchema,
 ]);
 const isTask = (value) => exports.taskSchema.safeParse(value).success;
 exports.isTask = isTask;
@@ -162,3 +172,5 @@ const isReviewTriggerTask = (value) => exports.reviewTriggerTaskSchema.safeParse
 exports.isReviewTriggerTask = isReviewTriggerTask;
 const isToolkitPlanningTask = (value) => exports.toolkitPlanningTaskSchema.safeParse(value).success;
 exports.isToolkitPlanningTask = isToolkitPlanningTask;
+const isSuggestTacticTask = (value) => exports.suggestTacticTaskSchema.safeParse(value).success;
+exports.isSuggestTacticTask = isSuggestTacticTask;

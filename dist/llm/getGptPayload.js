@@ -336,6 +336,23 @@ function getGptPayload(log, isFinalLogInSession, options) {
         }
         return [];
     }
+    if (log.type === "tactic_suggestions") {
+        const data = log.data;
+        const suggestions = data === null || data === void 0 ? void 0 : data.suggestions;
+        if (!(suggestions === null || suggestions === void 0 ? void 0 : suggestions.length))
+            return [];
+        const parts = suggestions.map((s) => {
+            if (s.tacticId)
+                return `"${s.theme}" (existing tactic ${s.tacticId})`;
+            return `"${s.theme}" (template — needs personalization${s.guidance ? `, guidance: ${s.guidance}` : ""})`;
+        });
+        return [
+            {
+                role: "user",
+                content: `<SYSTEM>Tactic suggestion cards were shown to the user: ${parts.join("; ")}. For existing tactics, the user can add them via the + button. For templates, the user will tap to express interest and you should help personalize the tactic.</SYSTEM>`,
+            },
+        ];
+    }
     // Return empty array for other (unsupported) log types
     return [];
 }

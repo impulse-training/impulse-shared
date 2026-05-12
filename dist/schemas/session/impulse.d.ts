@@ -1675,22 +1675,6 @@ export declare const impulseSessionSchema: z.ZodObject<{
         isMultiStep: z.ZodOptional<z.ZodBoolean>;
         autoplay: z.ZodOptional<z.ZodBoolean>;
         indications: z.ZodOptional<z.ZodObject<{
-            questionResponses: z.ZodOptional<z.ZodArray<z.ZodObject<{
-                questionId: z.ZodString;
-                questionPrompt: z.ZodString;
-                responseSubstrings: z.ZodArray<z.ZodString, "many">;
-                weight: z.ZodNumber;
-            }, "strip", z.ZodTypeAny, {
-                questionId: string;
-                questionPrompt: string;
-                responseSubstrings: string[];
-                weight: number;
-            }, {
-                questionId: string;
-                questionPrompt: string;
-                responseSubstrings: string[];
-                weight: number;
-            }>, "many">>;
             behaviors: z.ZodOptional<z.ZodArray<z.ZodObject<{
                 behaviorId: z.ZodString;
                 behaviorName: z.ZodString;
@@ -1723,12 +1707,6 @@ export declare const impulseSessionSchema: z.ZodObject<{
                 tagGroupName: string;
                 optionLabels: string[];
             }[] | undefined;
-            questionResponses?: {
-                questionId: string;
-                questionPrompt: string;
-                responseSubstrings: string[];
-                weight: number;
-            }[] | undefined;
             behaviors?: {
                 behaviorId: string;
                 behaviorName: string;
@@ -1739,12 +1717,6 @@ export declare const impulseSessionSchema: z.ZodObject<{
                 weight: number;
                 tagGroupName: string;
                 optionLabels: string[];
-            }[] | undefined;
-            questionResponses?: {
-                questionId: string;
-                questionPrompt: string;
-                responseSubstrings: string[];
-                weight: number;
             }[] | undefined;
             behaviors?: {
                 behaviorId: string;
@@ -1753,22 +1725,6 @@ export declare const impulseSessionSchema: z.ZodObject<{
             }[] | undefined;
         }>>;
         contraindications: z.ZodOptional<z.ZodObject<{
-            questionResponses: z.ZodOptional<z.ZodArray<z.ZodObject<{
-                questionId: z.ZodString;
-                questionPrompt: z.ZodString;
-                responseSubstrings: z.ZodArray<z.ZodString, "many">;
-                weight: z.ZodNumber;
-            }, "strip", z.ZodTypeAny, {
-                questionId: string;
-                questionPrompt: string;
-                responseSubstrings: string[];
-                weight: number;
-            }, {
-                questionId: string;
-                questionPrompt: string;
-                responseSubstrings: string[];
-                weight: number;
-            }>, "many">>;
             behaviors: z.ZodOptional<z.ZodArray<z.ZodObject<{
                 behaviorId: z.ZodString;
                 behaviorName: z.ZodString;
@@ -1801,12 +1757,6 @@ export declare const impulseSessionSchema: z.ZodObject<{
                 tagGroupName: string;
                 optionLabels: string[];
             }[] | undefined;
-            questionResponses?: {
-                questionId: string;
-                questionPrompt: string;
-                responseSubstrings: string[];
-                weight: number;
-            }[] | undefined;
             behaviors?: {
                 behaviorId: string;
                 behaviorName: string;
@@ -1817,12 +1767,6 @@ export declare const impulseSessionSchema: z.ZodObject<{
                 weight: number;
                 tagGroupName: string;
                 optionLabels: string[];
-            }[] | undefined;
-            questionResponses?: {
-                questionId: string;
-                questionPrompt: string;
-                responseSubstrings: string[];
-                weight: number;
             }[] | undefined;
             behaviors?: {
                 behaviorId: string;
@@ -2169,12 +2113,6 @@ export declare const impulseSessionSchema: z.ZodObject<{
                 tagGroupName: string;
                 optionLabels: string[];
             }[] | undefined;
-            questionResponses?: {
-                questionId: string;
-                questionPrompt: string;
-                responseSubstrings: string[];
-                weight: number;
-            }[] | undefined;
             behaviors?: {
                 behaviorId: string;
                 behaviorName: string;
@@ -2186,12 +2124,6 @@ export declare const impulseSessionSchema: z.ZodObject<{
                 weight: number;
                 tagGroupName: string;
                 optionLabels: string[];
-            }[] | undefined;
-            questionResponses?: {
-                questionId: string;
-                questionPrompt: string;
-                responseSubstrings: string[];
-                weight: number;
             }[] | undefined;
             behaviors?: {
                 behaviorId: string;
@@ -2528,12 +2460,6 @@ export declare const impulseSessionSchema: z.ZodObject<{
                 tagGroupName: string;
                 optionLabels: string[];
             }[] | undefined;
-            questionResponses?: {
-                questionId: string;
-                questionPrompt: string;
-                responseSubstrings: string[];
-                weight: number;
-            }[] | undefined;
             behaviors?: {
                 behaviorId: string;
                 behaviorName: string;
@@ -2545,12 +2471,6 @@ export declare const impulseSessionSchema: z.ZodObject<{
                 weight: number;
                 tagGroupName: string;
                 optionLabels: string[];
-            }[] | undefined;
-            questionResponses?: {
-                questionId: string;
-                questionPrompt: string;
-                responseSubstrings: string[];
-                weight: number;
             }[] | undefined;
             behaviors?: {
                 behaviorId: string;
@@ -3043,12 +2963,6 @@ export declare const impulseSessionSchema: z.ZodObject<{
                 tagGroupName: string;
                 optionLabels: string[];
             }[] | undefined;
-            questionResponses?: {
-                questionId: string;
-                questionPrompt: string;
-                responseSubstrings: string[];
-                weight: number;
-            }[] | undefined;
             behaviors?: {
                 behaviorId: string;
                 behaviorName: string;
@@ -3060,12 +2974,6 @@ export declare const impulseSessionSchema: z.ZodObject<{
                 weight: number;
                 tagGroupName: string;
                 optionLabels: string[];
-            }[] | undefined;
-            questionResponses?: {
-                questionId: string;
-                questionPrompt: string;
-                responseSubstrings: string[];
-                weight: number;
             }[] | undefined;
             behaviors?: {
                 behaviorId: string;
@@ -3485,12 +3393,6 @@ export declare const impulseSessionSchema: z.ZodObject<{
                 tagGroupName: string;
                 optionLabels: string[];
             }[] | undefined;
-            questionResponses?: {
-                questionId: string;
-                questionPrompt: string;
-                responseSubstrings: string[];
-                weight: number;
-            }[] | undefined;
             behaviors?: {
                 behaviorId: string;
                 behaviorName: string;
@@ -3502,12 +3404,6 @@ export declare const impulseSessionSchema: z.ZodObject<{
                 weight: number;
                 tagGroupName: string;
                 optionLabels: string[];
-            }[] | undefined;
-            questionResponses?: {
-                questionId: string;
-                questionPrompt: string;
-                responseSubstrings: string[];
-                weight: number;
             }[] | undefined;
             behaviors?: {
                 behaviorId: string;
