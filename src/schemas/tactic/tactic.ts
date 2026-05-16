@@ -31,7 +31,7 @@ export type TacticPhase = z.infer<typeof tacticPhaseSchema>;
 
 export const tacticSchema = z.object({
   id: z.string().optional(),
-  title: z.string().min(1).optional(),
+  title: z.string().optional(),
   description: z.string().optional(),
   aiInstructions: z.string().optional(),
   createdByUid: z.string().optional(),

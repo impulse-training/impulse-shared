@@ -28,7 +28,7 @@ exports.indicationSchema = zod_1.z.object({
 exports.tacticPhaseSchema = zod_1.z.enum(["regulate", "shift", "reengage"]);
 exports.tacticSchema = zod_1.z.object({
     id: zod_1.z.string().optional(),
-    title: zod_1.z.string().min(1).optional(),
+    title: zod_1.z.string().optional(),
     description: zod_1.z.string().optional(),
     aiInstructions: zod_1.z.string().optional(),
     createdByUid: zod_1.z.string().optional(),
