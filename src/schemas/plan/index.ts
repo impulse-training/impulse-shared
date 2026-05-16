@@ -7,6 +7,7 @@ import { DefaultPlan, defaultPlanSchema } from "./defaultPlan";
 export * from "./triggerPlan";
 export * from "./scheduledPlan";
 export * from "./defaultPlan";
+export * from "./planStep";
 
 export const planSchema = z.discriminatedUnion("type", [
   triggerPlanSchema,

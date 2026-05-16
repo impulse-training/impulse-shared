@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { documentReferenceSchema } from "../../utils/documentReferenceSchema";
 import { timestampSchema } from "../../utils/timestampSchema";
+import { planStepSchema } from "./planStep";
 
 export const planTagIndicationSchema = z.object({
   // Tag group name (e.g. "emotion") matched by label so shared plans can work
@@ -42,6 +43,9 @@ export function planBaseSchema<T extends string>(type: T) {
     generationSignature: z.string().optional(),
     generatedFromTacticIds: z.array(z.string()).optional(),
     generatedFromSessionCount: z.number().int().nonnegative().optional(),
+    // Mixed step types: fixed tactics and collection picks.
+    // When present, takes precedence over the `tactics` array.
+    planSteps: z.array(planStepSchema).optional(),
     // Which behaviors this plan applies to. Empty/undefined = all behaviors.
     behaviorIds: z.array(z.string()).optional(),
     // Cross-user effectiveness counters (incremented atomically on shared plan docs)

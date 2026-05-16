@@ -64,6 +64,7 @@ export const tacticSchema = z.object({
   generationProviderJobId: z.string().optional(),
   generationPrompt: z.string().optional(),
   generationVoice: z.enum(["m", "f"]).nullable().optional(),
+  collectionTemplateIds: z.array(z.string()).optional(),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
 });
