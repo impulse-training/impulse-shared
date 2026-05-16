@@ -1,5 +1,5 @@
 import { z } from "zod";
-export declare const recapQuestionSourceSchema: z.ZodEnum<["sequence", "baseline", "milestone", "trend", "approaching_milestone"]>;
+export declare const recapQuestionSourceSchema: z.ZodEnum<["sequence", "baseline", "milestone", "trend"]>;
 export type RecapQuestionSource = z.infer<typeof recapQuestionSourceSchema>;
 export declare const recapSessionSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -1599,6 +1599,142 @@ export declare const recapSessionSchema: z.ZodObject<{
             }>>;
             tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         } & {
+            mode: z.ZodLiteral<"phoneCall">;
+            contactName: z.ZodString;
+            phoneNumber: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
+            mode: "phoneCall";
+            contactName: string;
+            phoneNumber: string;
+            text?: string | undefined;
+            backgroundImage?: {
+                uri: string;
+                storagePath: string;
+                contentType: string;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                title?: string | undefined;
+                sizeBytes?: number | undefined;
+                metadata?: {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                } | undefined;
+            } | undefined;
+            tags?: string[] | undefined;
+        }, {
+            mode: "phoneCall";
+            contactName: string;
+            phoneNumber: string;
+            text?: string | undefined;
+            backgroundImage?: {
+                uri: string;
+                storagePath: string;
+                contentType: string;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                title?: string | undefined;
+                sizeBytes?: number | undefined;
+                metadata?: {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                } | undefined;
+            } | undefined;
+            tags?: string[] | undefined;
+        }>, z.ZodObject<{
+            text: z.ZodOptional<z.ZodString>;
+            backgroundImage: z.ZodOptional<z.ZodObject<{
+                createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                uri: z.ZodString;
+                storagePath: z.ZodString;
+                contentType: z.ZodString;
+                title: z.ZodOptional<z.ZodString>;
+                sizeBytes: z.ZodOptional<z.ZodNumber>;
+                metadata: z.ZodOptional<z.ZodObject<{
+                    width: z.ZodOptional<z.ZodNumber>;
+                    height: z.ZodOptional<z.ZodNumber>;
+                    durationMs: z.ZodOptional<z.ZodNumber>;
+                    transcript: z.ZodOptional<z.ZodString>;
+                    meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                        db: z.ZodNumber;
+                        timestampMs: z.ZodOptional<z.ZodNumber>;
+                    }, "strip", z.ZodTypeAny, {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }, {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }>, "many">>;
+                }, "strip", z.ZodTypeAny, {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                }, {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                }>>;
+            }, "strip", z.ZodTypeAny, {
+                uri: string;
+                storagePath: string;
+                contentType: string;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                title?: string | undefined;
+                sizeBytes?: number | undefined;
+                metadata?: {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                } | undefined;
+            }, {
+                uri: string;
+                storagePath: string;
+                contentType: string;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                title?: string | undefined;
+                sizeBytes?: number | undefined;
+                metadata?: {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                } | undefined;
+            }>>;
+            tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        } & {
             mode: z.ZodLiteral<"zara">;
             direction: z.ZodOptional<z.ZodString>;
         }, "strip", z.ZodTypeAny, {
@@ -1996,6 +2132,31 @@ export declare const recapSessionSchema: z.ZodObject<{
             } | undefined;
             tags?: string[] | undefined;
         } | {
+            mode: "phoneCall";
+            contactName: string;
+            phoneNumber: string;
+            text?: string | undefined;
+            backgroundImage?: {
+                uri: string;
+                storagePath: string;
+                contentType: string;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                title?: string | undefined;
+                sizeBytes?: number | undefined;
+                metadata?: {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                } | undefined;
+            } | undefined;
+            tags?: string[] | undefined;
+        } | {
             text: string;
             mode: "question-slider1To10";
             sliderConfig: {
@@ -2323,6 +2484,31 @@ export declare const recapSessionSchema: z.ZodObject<{
             text: string;
             mode: "notifySupport";
             groupId: string;
+            backgroundImage?: {
+                uri: string;
+                storagePath: string;
+                contentType: string;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                title?: string | undefined;
+                sizeBytes?: number | undefined;
+                metadata?: {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                } | undefined;
+            } | undefined;
+            tags?: string[] | undefined;
+        } | {
+            mode: "phoneCall";
+            contactName: string;
+            phoneNumber: string;
+            text?: string | undefined;
             backgroundImage?: {
                 uri: string;
                 storagePath: string;
@@ -2575,7 +2761,7 @@ export declare const recapSessionSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>>;
     pendingTaskResolution: z.ZodOptional<z.ZodBoolean>;
     recapQuestionId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    recapQuestionSource: z.ZodOptional<z.ZodEnum<["sequence", "baseline", "milestone", "trend", "approaching_milestone"]>>;
+    recapQuestionSource: z.ZodOptional<z.ZodEnum<["sequence", "baseline", "milestone", "trend"]>>;
     recapQuestionTaskId: z.ZodOptional<z.ZodString>;
     focusBehaviorId: z.ZodOptional<z.ZodString>;
     focusBehaviorName: z.ZodOptional<z.ZodString>;
@@ -2823,6 +3009,31 @@ export declare const recapSessionSchema: z.ZodObject<{
             } | undefined;
             tags?: string[] | undefined;
         } | {
+            mode: "phoneCall";
+            contactName: string;
+            phoneNumber: string;
+            text?: string | undefined;
+            backgroundImage?: {
+                uri: string;
+                storagePath: string;
+                contentType: string;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                title?: string | undefined;
+                sizeBytes?: number | undefined;
+                metadata?: {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                } | undefined;
+            } | undefined;
+            tags?: string[] | undefined;
+        } | {
             text: string;
             mode: "question-slider1To10";
             sliderConfig: {
@@ -2998,7 +3209,7 @@ export declare const recapSessionSchema: z.ZodObject<{
     deletingError?: string | undefined;
     pendingTaskResolution?: boolean | undefined;
     recapQuestionId?: string | null | undefined;
-    recapQuestionSource?: "trend" | "milestone" | "sequence" | "baseline" | "approaching_milestone" | undefined;
+    recapQuestionSource?: "trend" | "milestone" | "sequence" | "baseline" | undefined;
     recapQuestionTaskId?: string | undefined;
     focusBehaviorId?: string | undefined;
     focusBehaviorName?: string | undefined;
@@ -3245,6 +3456,31 @@ export declare const recapSessionSchema: z.ZodObject<{
             } | undefined;
             tags?: string[] | undefined;
         } | {
+            mode: "phoneCall";
+            contactName: string;
+            phoneNumber: string;
+            text?: string | undefined;
+            backgroundImage?: {
+                uri: string;
+                storagePath: string;
+                contentType: string;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                title?: string | undefined;
+                sizeBytes?: number | undefined;
+                metadata?: {
+                    width?: number | undefined;
+                    height?: number | undefined;
+                    durationMs?: number | undefined;
+                    transcript?: string | undefined;
+                    meterings?: {
+                        db: number;
+                        timestampMs?: number | undefined;
+                    }[] | undefined;
+                } | undefined;
+            } | undefined;
+            tags?: string[] | undefined;
+        } | {
             text: string;
             mode: "question-slider1To10";
             sliderConfig: {
@@ -3421,7 +3657,7 @@ export declare const recapSessionSchema: z.ZodObject<{
     deletingError?: string | undefined;
     pendingTaskResolution?: boolean | undefined;
     recapQuestionId?: string | null | undefined;
-    recapQuestionSource?: "trend" | "milestone" | "sequence" | "baseline" | "approaching_milestone" | undefined;
+    recapQuestionSource?: "trend" | "milestone" | "sequence" | "baseline" | undefined;
     recapQuestionTaskId?: string | undefined;
     focusBehaviorId?: string | undefined;
     focusBehaviorName?: string | undefined;

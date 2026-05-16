@@ -7,7 +7,6 @@ export const recapQuestionSourceSchema = z.enum([
   "baseline",
   "milestone",
   "trend",
-  "approaching_milestone",
 ]);
 export type RecapQuestionSource = z.infer<typeof recapQuestionSourceSchema>;
 

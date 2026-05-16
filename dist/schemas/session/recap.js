@@ -9,7 +9,6 @@ exports.recapQuestionSourceSchema = zod_1.z.enum([
     "baseline",
     "milestone",
     "trend",
-    "approaching_milestone",
 ]);
 exports.recapSessionSchema = base_1.sessionBaseSchema.extend({
     type: zod_1.z.literal("recap"),
