@@ -9,6 +9,7 @@ export * from "./default";
 export * from "./media";
 export * from "./pedometer";
 export * from "./notifySupport";
+export * from "./phoneCall";
 export * from "./question";
 export * from "./zara";
 
@@ -19,6 +20,7 @@ import { DefaultStep, defaultStepSchema } from "./default";
 import { MediaStep, mediaStepSchema } from "./media";
 import { PedometerStep, pedometerStepSchema } from "./pedometer";
 import { NotifySupportStep, notifySupportStepSchema } from "./notifySupport";
+import { PhoneCallStep, phoneCallStepSchema } from "./phoneCall";
 import {
   QuestionStep,
   slider1To10QuestionStepSchema,
@@ -36,6 +38,7 @@ export const tacticStepSchema = z.discriminatedUnion("mode", [
   audioStepSchema,
   affirmationStepSchema,
   pedometerStepSchema,
+  phoneCallStepSchema,
   zaraStepSchema,
 ]);
 
@@ -67,6 +70,10 @@ export const stepIsAffirmationStep = (
 export const stepIsPedometerStep = (step: TacticStep): step is PedometerStep =>
   step.mode === "pedometer";
 
+export const stepIsPhoneCallStep = (
+  step: TacticStep
+): step is PhoneCallStep => step.mode === "phoneCall";
+
 export const stepIsZaraStep = (step: TacticStep): step is ZaraStep =>
   step.mode === "zara";
 
@@ -78,6 +85,7 @@ export type {
   MediaStep,
   PedometerStep,
   NotifySupportStep,
+  PhoneCallStep,
   QuestionStep,
   ZaraStep,
 };
