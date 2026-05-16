@@ -89,6 +89,28 @@ export declare function planBaseSchema<T extends string>(type: T): z.ZodObject<{
     generationSignature: z.ZodOptional<z.ZodString>;
     generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
+    planSteps: z.ZodOptional<z.ZodArray<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+        type: z.ZodLiteral<"fixedTactic">;
+        tacticRef: z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>;
+    }, "strip", z.ZodTypeAny, {
+        type: "fixedTactic";
+        tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+    }, {
+        type: "fixedTactic";
+        tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+    }>, z.ZodObject<{
+        type: z.ZodLiteral<"collectionPick">;
+        collectionId: z.ZodString;
+        label: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        type: "collectionPick";
+        collectionId: string;
+        label?: string | undefined;
+    }, {
+        type: "collectionPick";
+        collectionId: string;
+        label?: string | undefined;
+    }>]>, "many">>;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     numberOfUses: z.ZodOptional<z.ZodNumber>;
     numberOfSuccesses: z.ZodOptional<z.ZodNumber>;
@@ -144,6 +166,28 @@ export declare function planBaseSchema<T extends string>(type: T): z.ZodObject<{
     generationSignature: z.ZodOptional<z.ZodString>;
     generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
+    planSteps: z.ZodOptional<z.ZodArray<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+        type: z.ZodLiteral<"fixedTactic">;
+        tacticRef: z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>;
+    }, "strip", z.ZodTypeAny, {
+        type: "fixedTactic";
+        tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+    }, {
+        type: "fixedTactic";
+        tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+    }>, z.ZodObject<{
+        type: z.ZodLiteral<"collectionPick">;
+        collectionId: z.ZodString;
+        label: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        type: "collectionPick";
+        collectionId: string;
+        label?: string | undefined;
+    }, {
+        type: "collectionPick";
+        collectionId: string;
+        label?: string | undefined;
+    }>]>, "many">>;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     numberOfUses: z.ZodOptional<z.ZodNumber>;
     numberOfSuccesses: z.ZodOptional<z.ZodNumber>;
@@ -199,6 +243,28 @@ export declare function planBaseSchema<T extends string>(type: T): z.ZodObject<{
     generationSignature: z.ZodOptional<z.ZodString>;
     generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
+    planSteps: z.ZodOptional<z.ZodArray<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+        type: z.ZodLiteral<"fixedTactic">;
+        tacticRef: z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>;
+    }, "strip", z.ZodTypeAny, {
+        type: "fixedTactic";
+        tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+    }, {
+        type: "fixedTactic";
+        tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+    }>, z.ZodObject<{
+        type: z.ZodLiteral<"collectionPick">;
+        collectionId: z.ZodString;
+        label: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        type: "collectionPick";
+        collectionId: string;
+        label?: string | undefined;
+    }, {
+        type: "collectionPick";
+        collectionId: string;
+        label?: string | undefined;
+    }>]>, "many">>;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     numberOfUses: z.ZodOptional<z.ZodNumber>;
     numberOfSuccesses: z.ZodOptional<z.ZodNumber>;
@@ -254,6 +320,28 @@ export declare function planBaseSchema<T extends string>(type: T): z.ZodObject<{
     generationSignature: z.ZodOptional<z.ZodString>;
     generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
+    planSteps: z.ZodOptional<z.ZodArray<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+        type: z.ZodLiteral<"fixedTactic">;
+        tacticRef: z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>;
+    }, "strip", z.ZodTypeAny, {
+        type: "fixedTactic";
+        tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+    }, {
+        type: "fixedTactic";
+        tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+    }>, z.ZodObject<{
+        type: z.ZodLiteral<"collectionPick">;
+        collectionId: z.ZodString;
+        label: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        type: "collectionPick";
+        collectionId: string;
+        label?: string | undefined;
+    }, {
+        type: "collectionPick";
+        collectionId: string;
+        label?: string | undefined;
+    }>]>, "many">>;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     numberOfUses: z.ZodOptional<z.ZodNumber>;
     numberOfSuccesses: z.ZodOptional<z.ZodNumber>;
@@ -309,6 +397,28 @@ export declare function planBaseSchema<T extends string>(type: T): z.ZodObject<{
     generationSignature: z.ZodOptional<z.ZodString>;
     generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
+    planSteps: z.ZodOptional<z.ZodArray<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+        type: z.ZodLiteral<"fixedTactic">;
+        tacticRef: z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>;
+    }, "strip", z.ZodTypeAny, {
+        type: "fixedTactic";
+        tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+    }, {
+        type: "fixedTactic";
+        tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+    }>, z.ZodObject<{
+        type: z.ZodLiteral<"collectionPick">;
+        collectionId: z.ZodString;
+        label: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        type: "collectionPick";
+        collectionId: string;
+        label?: string | undefined;
+    }, {
+        type: "collectionPick";
+        collectionId: string;
+        label?: string | undefined;
+    }>]>, "many">>;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     numberOfUses: z.ZodOptional<z.ZodNumber>;
     numberOfSuccesses: z.ZodOptional<z.ZodNumber>;

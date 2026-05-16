@@ -1796,6 +1796,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
         generationProviderJobId: z.ZodOptional<z.ZodString>;
         generationPrompt: z.ZodOptional<z.ZodString>;
         generationVoice: z.ZodOptional<z.ZodNullable<z.ZodEnum<["m", "f"]>>>;
+        collectionTemplateIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
         updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     }, "strip", z.ZodTypeAny, {
@@ -2145,6 +2146,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
         generationProviderJobId?: string | undefined;
         generationPrompt?: string | undefined;
         generationVoice?: "m" | "f" | null | undefined;
+        collectionTemplateIds?: string[] | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -2492,6 +2494,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
         generationProviderJobId?: string | undefined;
         generationPrompt?: string | undefined;
         generationVoice?: "m" | "f" | null | undefined;
+        collectionTemplateIds?: string[] | undefined;
     }>>;
     currentTacticStepIndex: z.ZodOptional<z.ZodNumber>;
     isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
@@ -2995,6 +2998,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
         generationProviderJobId?: string | undefined;
         generationPrompt?: string | undefined;
         generationVoice?: "m" | "f" | null | undefined;
+        collectionTemplateIds?: string[] | undefined;
     } | undefined;
     currentTacticStepIndex?: number | undefined;
     showTactics?: boolean | undefined;
@@ -3425,6 +3429,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
         generationProviderJobId?: string | undefined;
         generationPrompt?: string | undefined;
         generationVoice?: "m" | "f" | null | undefined;
+        collectionTemplateIds?: string[] | undefined;
     } | undefined;
     currentTacticStepIndex?: number | undefined;
     isDraft?: boolean | undefined;

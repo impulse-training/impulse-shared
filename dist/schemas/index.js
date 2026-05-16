@@ -57,6 +57,7 @@ __exportStar(require("./tagGroup"), exports);
 __exportStar(require("./transcriptItem"), exports);
 __exportStar(require("./utils/supportGroupSummary"), exports);
 __exportStar(require("./tactic"), exports);
+__exportStar(require("./tacticCollection"), exports);
 __exportStar(require("./session"), exports);
 __exportStar(require("./trigger"), exports);
 __exportStar(require("./userContext"), exports);

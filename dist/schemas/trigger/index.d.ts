@@ -4,13 +4,13 @@ export declare const triggerLocationSchema: z.ZodObject<{
     triggerType: z.ZodEnum<["arrival", "departure"]>;
     localLocationRef: z.ZodString;
 }, "strip", z.ZodTypeAny, {
+    triggerType: "arrival" | "departure";
     locationName: string;
     localLocationRef: string;
-    triggerType: "arrival" | "departure";
 }, {
+    triggerType: "arrival" | "departure";
     locationName: string;
     localLocationRef: string;
-    triggerType: "arrival" | "departure";
 }>;
 export type TriggerLocation = z.infer<typeof triggerLocationSchema>;
 export declare const triggerSchema: z.ZodObject<{
@@ -26,13 +26,13 @@ export declare const triggerSchema: z.ZodObject<{
         triggerType: z.ZodEnum<["arrival", "departure"]>;
         localLocationRef: z.ZodString;
     }, "strip", z.ZodTypeAny, {
+        triggerType: "arrival" | "departure";
         locationName: string;
         localLocationRef: string;
-        triggerType: "arrival" | "departure";
     }, {
+        triggerType: "arrival" | "departure";
         locationName: string;
         localLocationRef: string;
-        triggerType: "arrival" | "departure";
     }>>;
     lastOccurredAt: z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -47,13 +47,13 @@ export declare const triggerSchema: z.ZodObject<{
     behaviorIds?: string[] | undefined;
     text?: string | undefined;
     ordinal?: number | undefined;
+    triggerType?: "arrival" | "departure" | undefined;
     deletedAt?: import("../../types").Timestamp | undefined;
     location?: {
+        triggerType: "arrival" | "departure";
         locationName: string;
         localLocationRef: string;
-        triggerType: "arrival" | "departure";
     } | undefined;
-    triggerType?: "arrival" | "departure" | undefined;
 }, {
     lastOccurredAt: import("../../types").Timestamp | null;
     id?: string | undefined;
@@ -63,13 +63,13 @@ export declare const triggerSchema: z.ZodObject<{
     text?: string | undefined;
     ordinal?: number | undefined;
     tags?: Record<string, string> | undefined;
+    triggerType?: "arrival" | "departure" | undefined;
     deletedAt?: import("../../types").Timestamp | undefined;
     location?: {
+        triggerType: "arrival" | "departure";
         locationName: string;
         localLocationRef: string;
-        triggerType: "arrival" | "departure";
     } | undefined;
-    triggerType?: "arrival" | "departure" | undefined;
 }>;
 export type Trigger = z.infer<typeof triggerSchema>;
 export declare const triggerWithIdSchema: z.ZodIntersection<z.ZodObject<{
@@ -94,13 +94,13 @@ export declare const triggerWithIdSchema: z.ZodIntersection<z.ZodObject<{
         triggerType: z.ZodEnum<["arrival", "departure"]>;
         localLocationRef: z.ZodString;
     }, "strip", z.ZodTypeAny, {
+        triggerType: "arrival" | "departure";
         locationName: string;
         localLocationRef: string;
-        triggerType: "arrival" | "departure";
     }, {
+        triggerType: "arrival" | "departure";
         locationName: string;
         localLocationRef: string;
-        triggerType: "arrival" | "departure";
     }>>;
     lastOccurredAt: z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -115,13 +115,13 @@ export declare const triggerWithIdSchema: z.ZodIntersection<z.ZodObject<{
     behaviorIds?: string[] | undefined;
     text?: string | undefined;
     ordinal?: number | undefined;
+    triggerType?: "arrival" | "departure" | undefined;
     deletedAt?: import("../../types").Timestamp | undefined;
     location?: {
+        triggerType: "arrival" | "departure";
         locationName: string;
         localLocationRef: string;
-        triggerType: "arrival" | "departure";
     } | undefined;
-    triggerType?: "arrival" | "departure" | undefined;
 }, {
     lastOccurredAt: import("../../types").Timestamp | null;
     id?: string | undefined;
@@ -131,13 +131,13 @@ export declare const triggerWithIdSchema: z.ZodIntersection<z.ZodObject<{
     text?: string | undefined;
     ordinal?: number | undefined;
     tags?: Record<string, string> | undefined;
+    triggerType?: "arrival" | "departure" | undefined;
     deletedAt?: import("../../types").Timestamp | undefined;
     location?: {
+        triggerType: "arrival" | "departure";
         locationName: string;
         localLocationRef: string;
-        triggerType: "arrival" | "departure";
     } | undefined;
-    triggerType?: "arrival" | "departure" | undefined;
 }>>;
 export type TriggerWithId = z.infer<typeof triggerWithIdSchema>;
 export declare const isValidTrigger: (value: unknown) => value is Trigger;

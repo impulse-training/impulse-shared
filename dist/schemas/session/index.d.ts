@@ -7,7 +7,6 @@ import { LocationPlanSession, locationPlanSessionSchema, TimePlanSession, timePl
 import { RecapSession, recapSessionSchema } from "./recap";
 import { OnboardingSession, onboardingSessionSchema } from "./onboarding";
 import { alignmentSessionSchema } from "./alignment";
-import { CommitmentSession, commitmentSessionSchema } from "./commitment";
 import { TacticSession, tacticSessionSchema } from "./tactic";
 import { WelcomeSession, welcomeSessionSchema } from "./welcome";
 import { RecoveryKeySession, recoveryKeySessionSchema } from "./recoveryKey";
@@ -25,7 +24,6 @@ export * from "./plan";
 export * from "./recap";
 export * from "./onboarding";
 export * from "./alignment";
-export * from "./commitment";
 export * from "./tactic";
 export * from "./welcome";
 export * from "./recoveryKey";
@@ -44,7 +42,6 @@ export declare const sessionSchema: z.ZodDiscriminatedUnion<"type", [
     typeof recapSessionSchema,
     typeof locationPlanSessionSchema,
     typeof adjustmentSessionSchema,
-    typeof commitmentSessionSchema,
     typeof tacticSessionSchema,
     typeof welcomeSessionSchema,
     typeof recoveryKeySessionSchema,
@@ -69,8 +66,6 @@ export declare const sessionIsBehaviorSession: (value: Session) => value is Beha
 export declare const isValidBehaviorSession: (value: unknown) => value is BehaviorSession;
 export declare const sessionIsAdjustmentSession: (value: Session) => value is AdjustmentSession;
 export declare const isValidAdjustmentSession: (value: unknown) => value is AdjustmentSession;
-export declare const sessionIsCommitmentSession: (value: Session) => value is CommitmentSession;
-export declare const isValidCommitmentSession: (value: unknown) => value is CommitmentSession;
 export declare const sessionIsTacticSession: (value: Session) => value is TacticSession;
 export declare const isValidTacticSession: (value: unknown) => value is TacticSession;
 export declare const sessionIsWelcomeSession: (value: Session) => value is WelcomeSession;

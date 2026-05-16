@@ -1,6 +1,7 @@
 import { z } from "zod";
 export declare const taskStatusSchema: z.ZodEnum<["open", "completed", "dismissed"]>;
 export declare const taskCategorySchema: z.ZodEnum<["zara", "deterministic"]>;
+export declare const claimableSessionTypeSchema: z.ZodEnum<["recap", "general", "toolkitPlanning"]>;
 export declare const taskBaseSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -13,6 +14,7 @@ export declare const taskBaseSchema: z.ZodObject<{
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -26,6 +28,7 @@ export declare const taskBaseSchema: z.ZodObject<{
     userId: string;
     instructions: string;
     category: "zara" | "deterministic";
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
@@ -41,6 +44,7 @@ export declare const taskBaseSchema: z.ZodObject<{
     title: string;
     userId: string;
     instructions: string;
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     id?: string | undefined;
     status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
@@ -65,6 +69,7 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -98,6 +103,7 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     userId: string;
     instructions: string;
     category: "zara" | "deterministic";
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     sourceBehaviorIds: string[];
     targetBehavior: {
         name: string;
@@ -121,6 +127,7 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     title: string;
     userId: string;
     instructions: string;
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     sourceBehaviorIds: string[];
     targetBehavior: {
         name: string;
@@ -152,6 +159,7 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -169,96 +177,143 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
                 title: z.ZodOptional<z.ZodString>;
                 tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
                 behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                triggerType: z.ZodOptional<z.ZodEnum<["arrival", "departure"]>>;
+                locationName: z.ZodOptional<z.ZodString>;
             }, "strip", z.ZodTypeAny, {
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
                 tags?: Record<string, string> | undefined;
+                triggerType?: "arrival" | "departure" | undefined;
+                locationName?: string | undefined;
             }, {
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
                 tags?: Record<string, string> | undefined;
+                triggerType?: "arrival" | "departure" | undefined;
+                locationName?: string | undefined;
             }>;
         }, "strip", z.ZodTypeAny, {
             type: "create_trigger";
-            clientId: string;
             trigger: {
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
                 tags?: Record<string, string> | undefined;
+                triggerType?: "arrival" | "departure" | undefined;
+                locationName?: string | undefined;
             };
+            clientId: string;
         }, {
             type: "create_trigger";
-            clientId: string;
             trigger: {
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
                 tags?: Record<string, string> | undefined;
+                triggerType?: "arrival" | "departure" | undefined;
+                locationName?: string | undefined;
             };
+            clientId: string;
         }>, z.ZodObject<{
             type: z.ZodLiteral<"create_plan">;
-            triggerClientId: z.ZodString;
+            triggerClientId: z.ZodOptional<z.ZodString>;
+            existingTriggerId: z.ZodOptional<z.ZodString>;
             plan: z.ZodObject<{
                 name: z.ZodString;
                 tacticIds: z.ZodArray<z.ZodString, "many">;
+                planType: z.ZodOptional<z.ZodEnum<["trigger", "scheduled"]>>;
+                hour: z.ZodOptional<z.ZodNumber>;
+                minute: z.ZodOptional<z.ZodNumber>;
+                weekdays: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
             }, "strip", z.ZodTypeAny, {
                 name: string;
                 tacticIds: string[];
+                planType?: "scheduled" | "trigger" | undefined;
+                hour?: number | undefined;
+                minute?: number | undefined;
+                weekdays?: number[] | undefined;
             }, {
                 name: string;
                 tacticIds: string[];
+                planType?: "scheduled" | "trigger" | undefined;
+                hour?: number | undefined;
+                minute?: number | undefined;
+                weekdays?: number[] | undefined;
             }>;
         }, "strip", z.ZodTypeAny, {
             type: "create_plan";
-            triggerClientId: string;
             plan: {
                 name: string;
                 tacticIds: string[];
+                planType?: "scheduled" | "trigger" | undefined;
+                hour?: number | undefined;
+                minute?: number | undefined;
+                weekdays?: number[] | undefined;
             };
+            triggerClientId?: string | undefined;
+            existingTriggerId?: string | undefined;
         }, {
             type: "create_plan";
-            triggerClientId: string;
             plan: {
                 name: string;
                 tacticIds: string[];
+                planType?: "scheduled" | "trigger" | undefined;
+                hour?: number | undefined;
+                minute?: number | undefined;
+                weekdays?: number[] | undefined;
             };
+            triggerClientId?: string | undefined;
+            existingTriggerId?: string | undefined;
         }>]>, "many">;
     }, "strip", z.ZodTypeAny, {
         title: string;
         summary: string;
         operations: ({
             type: "create_trigger";
-            clientId: string;
             trigger: {
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
                 tags?: Record<string, string> | undefined;
+                triggerType?: "arrival" | "departure" | undefined;
+                locationName?: string | undefined;
             };
+            clientId: string;
         } | {
             type: "create_plan";
-            triggerClientId: string;
             plan: {
                 name: string;
                 tacticIds: string[];
+                planType?: "scheduled" | "trigger" | undefined;
+                hour?: number | undefined;
+                minute?: number | undefined;
+                weekdays?: number[] | undefined;
             };
+            triggerClientId?: string | undefined;
+            existingTriggerId?: string | undefined;
         })[];
     }, {
         title: string;
         summary: string;
         operations: ({
             type: "create_trigger";
-            clientId: string;
             trigger: {
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
                 tags?: Record<string, string> | undefined;
+                triggerType?: "arrival" | "departure" | undefined;
+                locationName?: string | undefined;
             };
+            clientId: string;
         } | {
             type: "create_plan";
-            triggerClientId: string;
             plan: {
                 name: string;
                 tacticIds: string[];
+                planType?: "scheduled" | "trigger" | undefined;
+                hour?: number | undefined;
+                minute?: number | undefined;
+                weekdays?: number[] | undefined;
             };
+            triggerClientId?: string | undefined;
+            existingTriggerId?: string | undefined;
         })[];
     }>;
 }, "strip", z.ZodTypeAny, {
@@ -270,24 +325,32 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
     userId: string;
     instructions: string;
     category: "zara" | "deterministic";
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     suggestedStrategy: {
         title: string;
         summary: string;
         operations: ({
             type: "create_trigger";
-            clientId: string;
             trigger: {
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
                 tags?: Record<string, string> | undefined;
+                triggerType?: "arrival" | "departure" | undefined;
+                locationName?: string | undefined;
             };
+            clientId: string;
         } | {
             type: "create_plan";
-            triggerClientId: string;
             plan: {
                 name: string;
                 tacticIds: string[];
+                planType?: "scheduled" | "trigger" | undefined;
+                hour?: number | undefined;
+                minute?: number | undefined;
+                weekdays?: number[] | undefined;
             };
+            triggerClientId?: string | undefined;
+            existingTriggerId?: string | undefined;
         })[];
     };
     id?: string | undefined;
@@ -306,24 +369,32 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
     title: string;
     userId: string;
     instructions: string;
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     suggestedStrategy: {
         title: string;
         summary: string;
         operations: ({
             type: "create_trigger";
-            clientId: string;
             trigger: {
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
                 tags?: Record<string, string> | undefined;
+                triggerType?: "arrival" | "departure" | undefined;
+                locationName?: string | undefined;
             };
+            clientId: string;
         } | {
             type: "create_plan";
-            triggerClientId: string;
             plan: {
                 name: string;
                 tacticIds: string[];
+                planType?: "scheduled" | "trigger" | undefined;
+                hour?: number | undefined;
+                minute?: number | undefined;
+                weekdays?: number[] | undefined;
             };
+            triggerClientId?: string | undefined;
+            existingTriggerId?: string | undefined;
         })[];
     };
     id?: string | undefined;
@@ -363,6 +434,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -412,6 +484,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
     userId: string;
     instructions: string;
     category: "zara" | "deterministic";
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     proposedExperiment: {
         behaviorId: string;
         metrics: {
@@ -437,6 +510,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
     title: string;
     userId: string;
     instructions: string;
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     proposedExperiment: {
         behaviorId: string;
         metrics: {
@@ -470,6 +544,7 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -488,6 +563,7 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     userId: string;
     instructions: string;
     category: "zara" | "deterministic";
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
@@ -505,6 +581,7 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     behaviorId: string;
     userId: string;
     instructions: string;
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     id?: string | undefined;
     status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
@@ -529,6 +606,7 @@ export declare const createSessionTaskSchema: z.ZodObject<{
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -639,6 +717,7 @@ export declare const createSessionTaskSchema: z.ZodObject<{
     userId: string;
     instructions: string;
     category: "zara" | "deterministic";
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     lazy: boolean;
     id?: string | undefined;
     ordinal?: number | undefined;
@@ -679,6 +758,7 @@ export declare const createSessionTaskSchema: z.ZodObject<{
     title: string;
     userId: string;
     instructions: string;
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     id?: string | undefined;
     status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
@@ -726,6 +806,7 @@ export declare const recapQuestionTaskSchema: z.ZodObject<{
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -752,6 +833,7 @@ export declare const recapQuestionTaskSchema: z.ZodObject<{
     recapQuestionId: string;
     instructions: string;
     category: "zara" | "deterministic";
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     id?: string | undefined;
     answerSummary?: string | undefined;
     completedAt?: import("../types").Timestamp | undefined;
@@ -773,6 +855,7 @@ export declare const recapQuestionTaskSchema: z.ZodObject<{
     userId: string;
     recapQuestionId: string;
     instructions: string;
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     id?: string | undefined;
     status?: "completed" | "open" | "dismissed" | undefined;
     answerSummary?: string | undefined;
@@ -798,6 +881,7 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -855,6 +939,7 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     debriefOutcome: "acted" | "resisted";
     instructions: string;
     category: "zara" | "deterministic";
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     impulseSessionId: string;
     suggestedTrigger: {
         tags: Record<string, string>;
@@ -885,6 +970,7 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     userId: string;
     debriefOutcome: "acted" | "resisted";
     instructions: string;
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     impulseSessionId: string;
     suggestedTrigger: {
         tags: Record<string, string>;
@@ -922,6 +1008,7 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -938,6 +1025,7 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     userId: string;
     instructions: string;
     category: "zara" | "deterministic";
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
@@ -954,6 +1042,7 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     title: string;
     userId: string;
     instructions: string;
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     id?: string | undefined;
     status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
@@ -978,6 +1067,7 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -1012,6 +1102,7 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
     }[];
     instructions: string;
     category: "zara" | "deterministic";
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
@@ -1033,6 +1124,7 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
         guidance?: string | undefined;
     }[];
     instructions: string;
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     id?: string | undefined;
     status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
@@ -1057,6 +1149,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -1090,6 +1183,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     userId: string;
     instructions: string;
     category: "zara" | "deterministic";
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     sourceBehaviorIds: string[];
     targetBehavior: {
         name: string;
@@ -1113,6 +1207,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     title: string;
     userId: string;
     instructions: string;
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     sourceBehaviorIds: string[];
     targetBehavior: {
         name: string;
@@ -1143,6 +1238,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -1160,96 +1256,143 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 title: z.ZodOptional<z.ZodString>;
                 tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
                 behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                triggerType: z.ZodOptional<z.ZodEnum<["arrival", "departure"]>>;
+                locationName: z.ZodOptional<z.ZodString>;
             }, "strip", z.ZodTypeAny, {
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
                 tags?: Record<string, string> | undefined;
+                triggerType?: "arrival" | "departure" | undefined;
+                locationName?: string | undefined;
             }, {
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
                 tags?: Record<string, string> | undefined;
+                triggerType?: "arrival" | "departure" | undefined;
+                locationName?: string | undefined;
             }>;
         }, "strip", z.ZodTypeAny, {
             type: "create_trigger";
-            clientId: string;
             trigger: {
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
                 tags?: Record<string, string> | undefined;
+                triggerType?: "arrival" | "departure" | undefined;
+                locationName?: string | undefined;
             };
+            clientId: string;
         }, {
             type: "create_trigger";
-            clientId: string;
             trigger: {
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
                 tags?: Record<string, string> | undefined;
+                triggerType?: "arrival" | "departure" | undefined;
+                locationName?: string | undefined;
             };
+            clientId: string;
         }>, z.ZodObject<{
             type: z.ZodLiteral<"create_plan">;
-            triggerClientId: z.ZodString;
+            triggerClientId: z.ZodOptional<z.ZodString>;
+            existingTriggerId: z.ZodOptional<z.ZodString>;
             plan: z.ZodObject<{
                 name: z.ZodString;
                 tacticIds: z.ZodArray<z.ZodString, "many">;
+                planType: z.ZodOptional<z.ZodEnum<["trigger", "scheduled"]>>;
+                hour: z.ZodOptional<z.ZodNumber>;
+                minute: z.ZodOptional<z.ZodNumber>;
+                weekdays: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
             }, "strip", z.ZodTypeAny, {
                 name: string;
                 tacticIds: string[];
+                planType?: "scheduled" | "trigger" | undefined;
+                hour?: number | undefined;
+                minute?: number | undefined;
+                weekdays?: number[] | undefined;
             }, {
                 name: string;
                 tacticIds: string[];
+                planType?: "scheduled" | "trigger" | undefined;
+                hour?: number | undefined;
+                minute?: number | undefined;
+                weekdays?: number[] | undefined;
             }>;
         }, "strip", z.ZodTypeAny, {
             type: "create_plan";
-            triggerClientId: string;
             plan: {
                 name: string;
                 tacticIds: string[];
+                planType?: "scheduled" | "trigger" | undefined;
+                hour?: number | undefined;
+                minute?: number | undefined;
+                weekdays?: number[] | undefined;
             };
+            triggerClientId?: string | undefined;
+            existingTriggerId?: string | undefined;
         }, {
             type: "create_plan";
-            triggerClientId: string;
             plan: {
                 name: string;
                 tacticIds: string[];
+                planType?: "scheduled" | "trigger" | undefined;
+                hour?: number | undefined;
+                minute?: number | undefined;
+                weekdays?: number[] | undefined;
             };
+            triggerClientId?: string | undefined;
+            existingTriggerId?: string | undefined;
         }>]>, "many">;
     }, "strip", z.ZodTypeAny, {
         title: string;
         summary: string;
         operations: ({
             type: "create_trigger";
-            clientId: string;
             trigger: {
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
                 tags?: Record<string, string> | undefined;
+                triggerType?: "arrival" | "departure" | undefined;
+                locationName?: string | undefined;
             };
+            clientId: string;
         } | {
             type: "create_plan";
-            triggerClientId: string;
             plan: {
                 name: string;
                 tacticIds: string[];
+                planType?: "scheduled" | "trigger" | undefined;
+                hour?: number | undefined;
+                minute?: number | undefined;
+                weekdays?: number[] | undefined;
             };
+            triggerClientId?: string | undefined;
+            existingTriggerId?: string | undefined;
         })[];
     }, {
         title: string;
         summary: string;
         operations: ({
             type: "create_trigger";
-            clientId: string;
             trigger: {
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
                 tags?: Record<string, string> | undefined;
+                triggerType?: "arrival" | "departure" | undefined;
+                locationName?: string | undefined;
             };
+            clientId: string;
         } | {
             type: "create_plan";
-            triggerClientId: string;
             plan: {
                 name: string;
                 tacticIds: string[];
+                planType?: "scheduled" | "trigger" | undefined;
+                hour?: number | undefined;
+                minute?: number | undefined;
+                weekdays?: number[] | undefined;
             };
+            triggerClientId?: string | undefined;
+            existingTriggerId?: string | undefined;
         })[];
     }>;
 }, "strip", z.ZodTypeAny, {
@@ -1261,24 +1404,32 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     userId: string;
     instructions: string;
     category: "zara" | "deterministic";
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     suggestedStrategy: {
         title: string;
         summary: string;
         operations: ({
             type: "create_trigger";
-            clientId: string;
             trigger: {
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
                 tags?: Record<string, string> | undefined;
+                triggerType?: "arrival" | "departure" | undefined;
+                locationName?: string | undefined;
             };
+            clientId: string;
         } | {
             type: "create_plan";
-            triggerClientId: string;
             plan: {
                 name: string;
                 tacticIds: string[];
+                planType?: "scheduled" | "trigger" | undefined;
+                hour?: number | undefined;
+                minute?: number | undefined;
+                weekdays?: number[] | undefined;
             };
+            triggerClientId?: string | undefined;
+            existingTriggerId?: string | undefined;
         })[];
     };
     id?: string | undefined;
@@ -1297,24 +1448,32 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     title: string;
     userId: string;
     instructions: string;
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     suggestedStrategy: {
         title: string;
         summary: string;
         operations: ({
             type: "create_trigger";
-            clientId: string;
             trigger: {
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
                 tags?: Record<string, string> | undefined;
+                triggerType?: "arrival" | "departure" | undefined;
+                locationName?: string | undefined;
             };
+            clientId: string;
         } | {
             type: "create_plan";
-            triggerClientId: string;
             plan: {
                 name: string;
                 tacticIds: string[];
+                planType?: "scheduled" | "trigger" | undefined;
+                hour?: number | undefined;
+                minute?: number | undefined;
+                weekdays?: number[] | undefined;
             };
+            triggerClientId?: string | undefined;
+            existingTriggerId?: string | undefined;
         })[];
     };
     id?: string | undefined;
@@ -1340,6 +1499,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -1389,6 +1549,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     userId: string;
     instructions: string;
     category: "zara" | "deterministic";
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     proposedExperiment: {
         behaviorId: string;
         metrics: {
@@ -1414,6 +1575,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     title: string;
     userId: string;
     instructions: string;
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     proposedExperiment: {
         behaviorId: string;
         metrics: {
@@ -1446,6 +1608,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -1464,6 +1627,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     userId: string;
     instructions: string;
     category: "zara" | "deterministic";
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
@@ -1481,6 +1645,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     behaviorId: string;
     userId: string;
     instructions: string;
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     id?: string | undefined;
     status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
@@ -1504,6 +1669,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -1614,6 +1780,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     userId: string;
     instructions: string;
     category: "zara" | "deterministic";
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     lazy: boolean;
     id?: string | undefined;
     ordinal?: number | undefined;
@@ -1654,6 +1821,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     title: string;
     userId: string;
     instructions: string;
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     id?: string | undefined;
     status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
@@ -1700,6 +1868,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -1726,6 +1895,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     recapQuestionId: string;
     instructions: string;
     category: "zara" | "deterministic";
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     id?: string | undefined;
     answerSummary?: string | undefined;
     completedAt?: import("../types").Timestamp | undefined;
@@ -1747,6 +1917,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     userId: string;
     recapQuestionId: string;
     instructions: string;
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     id?: string | undefined;
     status?: "completed" | "open" | "dismissed" | undefined;
     answerSummary?: string | undefined;
@@ -1771,6 +1942,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -1828,6 +2000,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     debriefOutcome: "acted" | "resisted";
     instructions: string;
     category: "zara" | "deterministic";
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     impulseSessionId: string;
     suggestedTrigger: {
         tags: Record<string, string>;
@@ -1858,6 +2031,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     userId: string;
     debriefOutcome: "acted" | "resisted";
     instructions: string;
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     impulseSessionId: string;
     suggestedTrigger: {
         tags: Record<string, string>;
@@ -1894,6 +2068,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -1910,6 +2085,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     userId: string;
     instructions: string;
     category: "zara" | "deterministic";
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
@@ -1926,6 +2102,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     title: string;
     userId: string;
     instructions: string;
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     id?: string | undefined;
     status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
@@ -1949,6 +2126,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     minAppVersion: z.ZodOptional<z.ZodString>;
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -1983,6 +2161,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     }[];
     instructions: string;
     category: "zara" | "deterministic";
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     id?: string | undefined;
     ordinal?: number | undefined;
     completedAt?: import("../types").Timestamp | undefined;
@@ -2004,6 +2183,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         guidance?: string | undefined;
     }[];
     instructions: string;
+    claimableSessionTypes: ("general" | "recap" | "toolkitPlanning")[];
     id?: string | undefined;
     status?: "completed" | "open" | "dismissed" | undefined;
     ordinal?: number | undefined;
@@ -2018,6 +2198,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
 }>]>;
 export type TaskCategory = z.infer<typeof taskCategorySchema>;
 export type TaskStatus = z.infer<typeof taskStatusSchema>;
+export type ClaimableSessionType = z.infer<typeof claimableSessionTypeSchema>;
 export type MergeBehaviorsTask = z.infer<typeof mergeBehaviorsTaskSchema>;
 export type SuggestStrategyTask = z.infer<typeof suggestStrategyTaskSchema>;
 export type ProposeExperimentTask = z.infer<typeof proposeExperimentTaskSchema>;

@@ -61,6 +61,7 @@ exports.tacticSchema = zod_1.z.object({
     generationProviderJobId: zod_1.z.string().optional(),
     generationPrompt: zod_1.z.string().optional(),
     generationVoice: zod_1.z.enum(["m", "f"]).nullable().optional(),
+    collectionTemplateIds: zod_1.z.array(zod_1.z.string()).optional(),
     createdAt: timestampSchema_1.timestampSchema,
     updatedAt: timestampSchema_1.timestampSchema,
 });

@@ -4,16 +4,22 @@ declare const strategyTriggerDraftSchema: z.ZodObject<{
     title: z.ZodOptional<z.ZodString>;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     tags: z.ZodDefault<z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>>;
+    triggerType: z.ZodOptional<z.ZodEnum<["arrival", "departure"]>>;
+    locationName: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     tags: Record<string, string | string[]>;
     id?: string | undefined;
     behaviorIds?: string[] | undefined;
     title?: string | undefined;
+    triggerType?: "arrival" | "departure" | undefined;
+    locationName?: string | undefined;
 }, {
     id?: string | undefined;
     behaviorIds?: string[] | undefined;
     title?: string | undefined;
     tags?: Record<string, string | string[]> | undefined;
+    triggerType?: "arrival" | "departure" | undefined;
+    locationName?: string | undefined;
 }>;
 declare const strategyPlanDraftSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -29,6 +35,10 @@ declare const strategyPlanDraftSchema: z.ZodObject<{
         title: string;
         description?: string | undefined;
     }>, "many">>;
+    planType: z.ZodOptional<z.ZodEnum<["trigger", "scheduled"]>>;
+    hour: z.ZodOptional<z.ZodNumber>;
+    minute: z.ZodOptional<z.ZodNumber>;
+    weekdays: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
 }, "strip", z.ZodTypeAny, {
     name: string;
     tacticIds: string[];
@@ -37,6 +47,10 @@ declare const strategyPlanDraftSchema: z.ZodObject<{
         title: string;
         description?: string | undefined;
     }[] | undefined;
+    planType?: "scheduled" | "trigger" | undefined;
+    hour?: number | undefined;
+    minute?: number | undefined;
+    weekdays?: number[] | undefined;
 }, {
     name: string;
     id?: string | undefined;
@@ -45,6 +59,10 @@ declare const strategyPlanDraftSchema: z.ZodObject<{
         title: string;
         description?: string | undefined;
     }[] | undefined;
+    planType?: "scheduled" | "trigger" | undefined;
+    hour?: number | undefined;
+    minute?: number | undefined;
+    weekdays?: number[] | undefined;
 }>;
 export declare const createTriggerStrategyOperationSchema: z.ZodObject<{
     type: z.ZodLiteral<"create_trigger">;
@@ -54,39 +72,50 @@ export declare const createTriggerStrategyOperationSchema: z.ZodObject<{
         title: z.ZodOptional<z.ZodString>;
         behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         tags: z.ZodDefault<z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>>;
+        triggerType: z.ZodOptional<z.ZodEnum<["arrival", "departure"]>>;
+        locationName: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
         tags: Record<string, string | string[]>;
         id?: string | undefined;
         behaviorIds?: string[] | undefined;
         title?: string | undefined;
+        triggerType?: "arrival" | "departure" | undefined;
+        locationName?: string | undefined;
     }, {
         id?: string | undefined;
         behaviorIds?: string[] | undefined;
         title?: string | undefined;
         tags?: Record<string, string | string[]> | undefined;
+        triggerType?: "arrival" | "departure" | undefined;
+        locationName?: string | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     type: "create_trigger";
-    clientId: string;
     trigger: {
         tags: Record<string, string | string[]>;
         id?: string | undefined;
         behaviorIds?: string[] | undefined;
         title?: string | undefined;
+        triggerType?: "arrival" | "departure" | undefined;
+        locationName?: string | undefined;
     };
+    clientId: string;
 }, {
     type: "create_trigger";
-    clientId: string;
     trigger: {
         id?: string | undefined;
         behaviorIds?: string[] | undefined;
         title?: string | undefined;
         tags?: Record<string, string | string[]> | undefined;
+        triggerType?: "arrival" | "departure" | undefined;
+        locationName?: string | undefined;
     };
+    clientId: string;
 }>;
 export declare const createPlanStrategyOperationSchema: z.ZodObject<{
     type: z.ZodLiteral<"create_plan">;
-    triggerClientId: z.ZodString;
+    triggerClientId: z.ZodOptional<z.ZodString>;
+    existingTriggerId: z.ZodOptional<z.ZodString>;
     plan: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         name: z.ZodString;
@@ -101,6 +130,10 @@ export declare const createPlanStrategyOperationSchema: z.ZodObject<{
             title: string;
             description?: string | undefined;
         }>, "many">>;
+        planType: z.ZodOptional<z.ZodEnum<["trigger", "scheduled"]>>;
+        hour: z.ZodOptional<z.ZodNumber>;
+        minute: z.ZodOptional<z.ZodNumber>;
+        weekdays: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
     }, "strip", z.ZodTypeAny, {
         name: string;
         tacticIds: string[];
@@ -109,6 +142,10 @@ export declare const createPlanStrategyOperationSchema: z.ZodObject<{
             title: string;
             description?: string | undefined;
         }[] | undefined;
+        planType?: "scheduled" | "trigger" | undefined;
+        hour?: number | undefined;
+        minute?: number | undefined;
+        weekdays?: number[] | undefined;
     }, {
         name: string;
         id?: string | undefined;
@@ -117,10 +154,13 @@ export declare const createPlanStrategyOperationSchema: z.ZodObject<{
             title: string;
             description?: string | undefined;
         }[] | undefined;
+        planType?: "scheduled" | "trigger" | undefined;
+        hour?: number | undefined;
+        minute?: number | undefined;
+        weekdays?: number[] | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     type: "create_plan";
-    triggerClientId: string;
     plan: {
         name: string;
         tacticIds: string[];
@@ -129,10 +169,15 @@ export declare const createPlanStrategyOperationSchema: z.ZodObject<{
             title: string;
             description?: string | undefined;
         }[] | undefined;
+        planType?: "scheduled" | "trigger" | undefined;
+        hour?: number | undefined;
+        minute?: number | undefined;
+        weekdays?: number[] | undefined;
     };
+    triggerClientId?: string | undefined;
+    existingTriggerId?: string | undefined;
 }, {
     type: "create_plan";
-    triggerClientId: string;
     plan: {
         name: string;
         id?: string | undefined;
@@ -141,7 +186,13 @@ export declare const createPlanStrategyOperationSchema: z.ZodObject<{
             title: string;
             description?: string | undefined;
         }[] | undefined;
+        planType?: "scheduled" | "trigger" | undefined;
+        hour?: number | undefined;
+        minute?: number | undefined;
+        weekdays?: number[] | undefined;
     };
+    triggerClientId?: string | undefined;
+    existingTriggerId?: string | undefined;
 }>;
 export declare const strategyModificationOperationSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     type: z.ZodLiteral<"create_trigger">;
@@ -151,38 +202,49 @@ export declare const strategyModificationOperationSchema: z.ZodDiscriminatedUnio
         title: z.ZodOptional<z.ZodString>;
         behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         tags: z.ZodDefault<z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>>;
+        triggerType: z.ZodOptional<z.ZodEnum<["arrival", "departure"]>>;
+        locationName: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
         tags: Record<string, string | string[]>;
         id?: string | undefined;
         behaviorIds?: string[] | undefined;
         title?: string | undefined;
+        triggerType?: "arrival" | "departure" | undefined;
+        locationName?: string | undefined;
     }, {
         id?: string | undefined;
         behaviorIds?: string[] | undefined;
         title?: string | undefined;
         tags?: Record<string, string | string[]> | undefined;
+        triggerType?: "arrival" | "departure" | undefined;
+        locationName?: string | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     type: "create_trigger";
-    clientId: string;
     trigger: {
         tags: Record<string, string | string[]>;
         id?: string | undefined;
         behaviorIds?: string[] | undefined;
         title?: string | undefined;
+        triggerType?: "arrival" | "departure" | undefined;
+        locationName?: string | undefined;
     };
+    clientId: string;
 }, {
     type: "create_trigger";
-    clientId: string;
     trigger: {
         id?: string | undefined;
         behaviorIds?: string[] | undefined;
         title?: string | undefined;
         tags?: Record<string, string | string[]> | undefined;
+        triggerType?: "arrival" | "departure" | undefined;
+        locationName?: string | undefined;
     };
+    clientId: string;
 }>, z.ZodObject<{
     type: z.ZodLiteral<"create_plan">;
-    triggerClientId: z.ZodString;
+    triggerClientId: z.ZodOptional<z.ZodString>;
+    existingTriggerId: z.ZodOptional<z.ZodString>;
     plan: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         name: z.ZodString;
@@ -197,6 +259,10 @@ export declare const strategyModificationOperationSchema: z.ZodDiscriminatedUnio
             title: string;
             description?: string | undefined;
         }>, "many">>;
+        planType: z.ZodOptional<z.ZodEnum<["trigger", "scheduled"]>>;
+        hour: z.ZodOptional<z.ZodNumber>;
+        minute: z.ZodOptional<z.ZodNumber>;
+        weekdays: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
     }, "strip", z.ZodTypeAny, {
         name: string;
         tacticIds: string[];
@@ -205,6 +271,10 @@ export declare const strategyModificationOperationSchema: z.ZodDiscriminatedUnio
             title: string;
             description?: string | undefined;
         }[] | undefined;
+        planType?: "scheduled" | "trigger" | undefined;
+        hour?: number | undefined;
+        minute?: number | undefined;
+        weekdays?: number[] | undefined;
     }, {
         name: string;
         id?: string | undefined;
@@ -213,10 +283,13 @@ export declare const strategyModificationOperationSchema: z.ZodDiscriminatedUnio
             title: string;
             description?: string | undefined;
         }[] | undefined;
+        planType?: "scheduled" | "trigger" | undefined;
+        hour?: number | undefined;
+        minute?: number | undefined;
+        weekdays?: number[] | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     type: "create_plan";
-    triggerClientId: string;
     plan: {
         name: string;
         tacticIds: string[];
@@ -225,10 +298,15 @@ export declare const strategyModificationOperationSchema: z.ZodDiscriminatedUnio
             title: string;
             description?: string | undefined;
         }[] | undefined;
+        planType?: "scheduled" | "trigger" | undefined;
+        hour?: number | undefined;
+        minute?: number | undefined;
+        weekdays?: number[] | undefined;
     };
+    triggerClientId?: string | undefined;
+    existingTriggerId?: string | undefined;
 }, {
     type: "create_plan";
-    triggerClientId: string;
     plan: {
         name: string;
         id?: string | undefined;
@@ -237,7 +315,13 @@ export declare const strategyModificationOperationSchema: z.ZodDiscriminatedUnio
             title: string;
             description?: string | undefined;
         }[] | undefined;
+        planType?: "scheduled" | "trigger" | undefined;
+        hour?: number | undefined;
+        minute?: number | undefined;
+        weekdays?: number[] | undefined;
     };
+    triggerClientId?: string | undefined;
+    existingTriggerId?: string | undefined;
 }>]>;
 export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -265,38 +349,49 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                 title: z.ZodOptional<z.ZodString>;
                 behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 tags: z.ZodDefault<z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>>;
+                triggerType: z.ZodOptional<z.ZodEnum<["arrival", "departure"]>>;
+                locationName: z.ZodOptional<z.ZodString>;
             }, "strip", z.ZodTypeAny, {
                 tags: Record<string, string | string[]>;
                 id?: string | undefined;
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
+                triggerType?: "arrival" | "departure" | undefined;
+                locationName?: string | undefined;
             }, {
                 id?: string | undefined;
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
                 tags?: Record<string, string | string[]> | undefined;
+                triggerType?: "arrival" | "departure" | undefined;
+                locationName?: string | undefined;
             }>;
         }, "strip", z.ZodTypeAny, {
             type: "create_trigger";
-            clientId: string;
             trigger: {
                 tags: Record<string, string | string[]>;
                 id?: string | undefined;
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
+                triggerType?: "arrival" | "departure" | undefined;
+                locationName?: string | undefined;
             };
+            clientId: string;
         }, {
             type: "create_trigger";
-            clientId: string;
             trigger: {
                 id?: string | undefined;
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
                 tags?: Record<string, string | string[]> | undefined;
+                triggerType?: "arrival" | "departure" | undefined;
+                locationName?: string | undefined;
             };
+            clientId: string;
         }>, z.ZodObject<{
             type: z.ZodLiteral<"create_plan">;
-            triggerClientId: z.ZodString;
+            triggerClientId: z.ZodOptional<z.ZodString>;
+            existingTriggerId: z.ZodOptional<z.ZodString>;
             plan: z.ZodObject<{
                 id: z.ZodOptional<z.ZodString>;
                 name: z.ZodString;
@@ -311,6 +406,10 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                     title: string;
                     description?: string | undefined;
                 }>, "many">>;
+                planType: z.ZodOptional<z.ZodEnum<["trigger", "scheduled"]>>;
+                hour: z.ZodOptional<z.ZodNumber>;
+                minute: z.ZodOptional<z.ZodNumber>;
+                weekdays: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
             }, "strip", z.ZodTypeAny, {
                 name: string;
                 tacticIds: string[];
@@ -319,6 +418,10 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                     title: string;
                     description?: string | undefined;
                 }[] | undefined;
+                planType?: "scheduled" | "trigger" | undefined;
+                hour?: number | undefined;
+                minute?: number | undefined;
+                weekdays?: number[] | undefined;
             }, {
                 name: string;
                 id?: string | undefined;
@@ -327,10 +430,13 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                     title: string;
                     description?: string | undefined;
                 }[] | undefined;
+                planType?: "scheduled" | "trigger" | undefined;
+                hour?: number | undefined;
+                minute?: number | undefined;
+                weekdays?: number[] | undefined;
             }>;
         }, "strip", z.ZodTypeAny, {
             type: "create_plan";
-            triggerClientId: string;
             plan: {
                 name: string;
                 tacticIds: string[];
@@ -339,10 +445,15 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                     title: string;
                     description?: string | undefined;
                 }[] | undefined;
+                planType?: "scheduled" | "trigger" | undefined;
+                hour?: number | undefined;
+                minute?: number | undefined;
+                weekdays?: number[] | undefined;
             };
+            triggerClientId?: string | undefined;
+            existingTriggerId?: string | undefined;
         }, {
             type: "create_plan";
-            triggerClientId: string;
             plan: {
                 name: string;
                 id?: string | undefined;
@@ -351,7 +462,13 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                     title: string;
                     description?: string | undefined;
                 }[] | undefined;
+                planType?: "scheduled" | "trigger" | undefined;
+                hour?: number | undefined;
+                minute?: number | undefined;
+                weekdays?: number[] | undefined;
             };
+            triggerClientId?: string | undefined;
+            existingTriggerId?: string | undefined;
         }>]>, "many">;
         acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         declinedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -362,16 +479,17 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
         title: string;
         operations: ({
             type: "create_trigger";
-            clientId: string;
             trigger: {
                 tags: Record<string, string | string[]>;
                 id?: string | undefined;
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
+                triggerType?: "arrival" | "departure" | undefined;
+                locationName?: string | undefined;
             };
+            clientId: string;
         } | {
             type: "create_plan";
-            triggerClientId: string;
             plan: {
                 name: string;
                 tacticIds: string[];
@@ -380,7 +498,13 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                     title: string;
                     description?: string | undefined;
                 }[] | undefined;
+                planType?: "scheduled" | "trigger" | undefined;
+                hour?: number | undefined;
+                minute?: number | undefined;
+                weekdays?: number[] | undefined;
             };
+            triggerClientId?: string | undefined;
+            existingTriggerId?: string | undefined;
         })[];
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
@@ -391,16 +515,17 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
         title: string;
         operations: ({
             type: "create_trigger";
-            clientId: string;
             trigger: {
                 id?: string | undefined;
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
                 tags?: Record<string, string | string[]> | undefined;
+                triggerType?: "arrival" | "departure" | undefined;
+                locationName?: string | undefined;
             };
+            clientId: string;
         } | {
             type: "create_plan";
-            triggerClientId: string;
             plan: {
                 name: string;
                 id?: string | undefined;
@@ -409,7 +534,13 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                     title: string;
                     description?: string | undefined;
                 }[] | undefined;
+                planType?: "scheduled" | "trigger" | undefined;
+                hour?: number | undefined;
+                minute?: number | undefined;
+                weekdays?: number[] | undefined;
             };
+            triggerClientId?: string | undefined;
+            existingTriggerId?: string | undefined;
         })[];
         status?: "declined" | "pending" | "accepted" | undefined;
         summary?: string | undefined;
@@ -432,16 +563,17 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
         title: string;
         operations: ({
             type: "create_trigger";
-            clientId: string;
             trigger: {
                 tags: Record<string, string | string[]>;
                 id?: string | undefined;
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
+                triggerType?: "arrival" | "departure" | undefined;
+                locationName?: string | undefined;
             };
+            clientId: string;
         } | {
             type: "create_plan";
-            triggerClientId: string;
             plan: {
                 name: string;
                 tacticIds: string[];
@@ -450,7 +582,13 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                     title: string;
                     description?: string | undefined;
                 }[] | undefined;
+                planType?: "scheduled" | "trigger" | undefined;
+                hour?: number | undefined;
+                minute?: number | undefined;
+                weekdays?: number[] | undefined;
             };
+            triggerClientId?: string | undefined;
+            existingTriggerId?: string | undefined;
         })[];
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
@@ -475,16 +613,17 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
         title: string;
         operations: ({
             type: "create_trigger";
-            clientId: string;
             trigger: {
                 id?: string | undefined;
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
                 tags?: Record<string, string | string[]> | undefined;
+                triggerType?: "arrival" | "departure" | undefined;
+                locationName?: string | undefined;
             };
+            clientId: string;
         } | {
             type: "create_plan";
-            triggerClientId: string;
             plan: {
                 name: string;
                 id?: string | undefined;
@@ -493,7 +632,13 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                     title: string;
                     description?: string | undefined;
                 }[] | undefined;
+                planType?: "scheduled" | "trigger" | undefined;
+                hour?: number | undefined;
+                minute?: number | undefined;
+                weekdays?: number[] | undefined;
             };
+            triggerClientId?: string | undefined;
+            existingTriggerId?: string | undefined;
         })[];
         status?: "declined" | "pending" | "accepted" | undefined;
         summary?: string | undefined;

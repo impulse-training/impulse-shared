@@ -46,6 +46,28 @@ export declare const defaultPlanSchema: z.ZodObject<{
     generationSignature: z.ZodOptional<z.ZodString>;
     generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
+    planSteps: z.ZodOptional<z.ZodArray<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+        type: z.ZodLiteral<"fixedTactic">;
+        tacticRef: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
+    }, "strip", z.ZodTypeAny, {
+        type: "fixedTactic";
+        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+    }, {
+        type: "fixedTactic";
+        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+    }>, z.ZodObject<{
+        type: z.ZodLiteral<"collectionPick">;
+        collectionId: z.ZodString;
+        label: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        type: "collectionPick";
+        collectionId: string;
+        label?: string | undefined;
+    }, {
+        type: "collectionPick";
+        collectionId: string;
+        label?: string | undefined;
+    }>]>, "many">>;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -87,6 +109,14 @@ export declare const defaultPlanSchema: z.ZodObject<{
     generationSignature?: string | undefined;
     generatedFromTacticIds?: string[] | undefined;
     generatedFromSessionCount?: number | undefined;
+    planSteps?: ({
+        type: "fixedTactic";
+        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+    } | {
+        type: "collectionPick";
+        collectionId: string;
+        label?: string | undefined;
+    })[] | undefined;
     lastUsedAt?: import("../../types").Timestamp | undefined;
     deletedAt?: import("../../types").Timestamp | undefined;
     isActive?: boolean | undefined;
@@ -118,6 +148,14 @@ export declare const defaultPlanSchema: z.ZodObject<{
     generationSignature?: string | undefined;
     generatedFromTacticIds?: string[] | undefined;
     generatedFromSessionCount?: number | undefined;
+    planSteps?: ({
+        type: "fixedTactic";
+        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+    } | {
+        type: "collectionPick";
+        collectionId: string;
+        label?: string | undefined;
+    })[] | undefined;
     numberOfUses?: number | undefined;
     numberOfSuccesses?: number | undefined;
     numberOfSetbacks?: number | undefined;

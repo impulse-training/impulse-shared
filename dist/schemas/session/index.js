@@ -14,7 +14,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidToolkitPlanningSession = exports.sessionIsToolkitPlanningSession = exports.isValidMilestoneSession = exports.sessionIsMilestoneSession = exports.isValidDemoSession = exports.sessionIsDemoSession = exports.isValidTasksSession = exports.sessionIsTasksSession = exports.isValidRecoveryKeySession = exports.sessionIsRecoveryKeySession = exports.isValidWelcomeSession = exports.sessionIsWelcomeSession = exports.isValidTacticSession = exports.sessionIsTacticSession = exports.isValidCommitmentSession = exports.sessionIsCommitmentSession = exports.isValidAdjustmentSession = exports.sessionIsAdjustmentSession = exports.isValidBehaviorSession = exports.sessionIsBehaviorSession = exports.isValidLocationPlanSession = exports.sessionIsLocationPlanSession = exports.isValidRecapSession = exports.sessionIsRecapSession = exports.isValidOnboardingSession = exports.sessionIsOnboardingSession = exports.isValidTimePlanSession = exports.sessionIsTimePlanSession = exports.isValidImpulseSession = exports.sessionIsImpulseSession = exports.isValidGeneralSession = exports.sessionIsGeneralSession = exports.sessionSchema = exports.sessionSchemas = void 0;
+exports.isValidToolkitPlanningSession = exports.sessionIsToolkitPlanningSession = exports.isValidMilestoneSession = exports.sessionIsMilestoneSession = exports.isValidDemoSession = exports.sessionIsDemoSession = exports.isValidTasksSession = exports.sessionIsTasksSession = exports.isValidRecoveryKeySession = exports.sessionIsRecoveryKeySession = exports.isValidWelcomeSession = exports.sessionIsWelcomeSession = exports.isValidTacticSession = exports.sessionIsTacticSession = exports.isValidAdjustmentSession = exports.sessionIsAdjustmentSession = exports.isValidBehaviorSession = exports.sessionIsBehaviorSession = exports.isValidLocationPlanSession = exports.sessionIsLocationPlanSession = exports.isValidRecapSession = exports.sessionIsRecapSession = exports.isValidOnboardingSession = exports.sessionIsOnboardingSession = exports.isValidTimePlanSession = exports.sessionIsTimePlanSession = exports.isValidImpulseSession = exports.sessionIsImpulseSession = exports.isValidGeneralSession = exports.sessionIsGeneralSession = exports.sessionSchema = exports.sessionSchemas = void 0;
 exports.shouldSummarizeSession = shouldSummarizeSession;
 const zod_1 = require("zod");
 const adjustment_1 = require("./adjustment");
@@ -26,7 +26,6 @@ const recap_1 = require("./recap");
 const onboarding_1 = require("./onboarding");
 // TODO: Remove after 2026-05-26 — legacy import for "alignment" → "onboarding" rename
 const alignment_1 = require("./alignment");
-const commitment_1 = require("./commitment");
 const tactic_1 = require("./tactic");
 const welcome_1 = require("./welcome");
 const recoveryKey_1 = require("./recoveryKey");
@@ -45,7 +44,6 @@ __exportStar(require("./recap"), exports);
 __exportStar(require("./onboarding"), exports);
 // TODO: Remove after 2026-05-26 — legacy re-export for "alignment" → "onboarding" rename
 __exportStar(require("./alignment"), exports);
-__exportStar(require("./commitment"), exports);
 __exportStar(require("./tactic"), exports);
 __exportStar(require("./welcome"), exports);
 __exportStar(require("./recoveryKey"), exports);
@@ -65,7 +63,6 @@ exports.sessionSchemas = {
     onboarding: onboarding_1.onboardingSessionSchema,
     // TODO: Remove after 2026-05-26 — legacy key for "alignment" → "onboarding" rename
     alignment: alignment_1.alignmentSessionSchema,
-    commitment: commitment_1.commitmentSessionSchema,
     tactic: tactic_1.tacticSessionSchema,
     welcome: welcome_1.welcomeSessionSchema,
     recoveryKey: recoveryKey_1.recoveryKeySessionSchema,
@@ -86,7 +83,6 @@ exports.sessionSchema = zod_1.z.discriminatedUnion("type", [
     recap_1.recapSessionSchema,
     plan_1.locationPlanSessionSchema,
     adjustment_1.adjustmentSessionSchema,
-    commitment_1.commitmentSessionSchema,
     tactic_1.tacticSessionSchema,
     welcome_1.welcomeSessionSchema,
     recoveryKey_1.recoveryKeySessionSchema,
@@ -128,10 +124,6 @@ const sessionIsAdjustmentSession = (value) => value.type === "adjustment";
 exports.sessionIsAdjustmentSession = sessionIsAdjustmentSession;
 const isValidAdjustmentSession = (value) => adjustment_1.adjustmentSessionSchema.safeParse(value).success;
 exports.isValidAdjustmentSession = isValidAdjustmentSession;
-const sessionIsCommitmentSession = (value) => value.type === "commitment";
-exports.sessionIsCommitmentSession = sessionIsCommitmentSession;
-const isValidCommitmentSession = (value) => commitment_1.commitmentSessionSchema.safeParse(value).success;
-exports.isValidCommitmentSession = isValidCommitmentSession;
 const sessionIsTacticSession = (value) => value.type === "tactic";
 exports.sessionIsTacticSession = sessionIsTacticSession;
 const isValidTacticSession = (value) => tactic_1.tacticSessionSchema.safeParse(value).success;

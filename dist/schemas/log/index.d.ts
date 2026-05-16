@@ -2157,6 +2157,7 @@ export declare const logSchemas: {
                 generationProviderJobId: z.ZodOptional<z.ZodString>;
                 generationPrompt: z.ZodOptional<z.ZodString>;
                 generationVoice: z.ZodOptional<z.ZodNullable<z.ZodEnum<["m", "f"]>>>;
+                collectionTemplateIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
                 updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
             }, "strip", z.ZodTypeAny, {
@@ -2506,6 +2507,7 @@ export declare const logSchemas: {
                 generationProviderJobId?: string | undefined;
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
+                collectionTemplateIds?: string[] | undefined;
             }, {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
@@ -2853,6 +2855,7 @@ export declare const logSchemas: {
                 generationProviderJobId?: string | undefined;
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
+                collectionTemplateIds?: string[] | undefined;
             }>>;
             agentConnectedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             endedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -3210,6 +3213,7 @@ export declare const logSchemas: {
                 generationProviderJobId?: string | undefined;
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
+                collectionTemplateIds?: string[] | undefined;
             } | undefined;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
@@ -3565,6 +3569,7 @@ export declare const logSchemas: {
                 generationProviderJobId?: string | undefined;
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
+                collectionTemplateIds?: string[] | undefined;
             } | undefined;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
@@ -3930,6 +3935,7 @@ export declare const logSchemas: {
                 generationProviderJobId?: string | undefined;
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
+                collectionTemplateIds?: string[] | undefined;
             } | undefined;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
@@ -4299,6 +4305,7 @@ export declare const logSchemas: {
                 generationProviderJobId?: string | undefined;
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
+                collectionTemplateIds?: string[] | undefined;
             } | undefined;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
@@ -6260,6 +6267,7 @@ export declare const logSchemas: {
                 generationProviderJobId: z.ZodOptional<z.ZodString>;
                 generationPrompt: z.ZodOptional<z.ZodString>;
                 generationVoice: z.ZodOptional<z.ZodNullable<z.ZodEnum<["m", "f"]>>>;
+                collectionTemplateIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
                 updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
             }, "strip", z.ZodTypeAny, {
@@ -6609,6 +6617,7 @@ export declare const logSchemas: {
                 generationProviderJobId?: string | undefined;
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
+                collectionTemplateIds?: string[] | undefined;
             }, {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
@@ -6956,6 +6965,7 @@ export declare const logSchemas: {
                 generationProviderJobId?: string | undefined;
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
+                collectionTemplateIds?: string[] | undefined;
             }>;
             tacticRefPath: z.ZodString;
             planId: z.ZodOptional<z.ZodString>;
@@ -7408,6 +7418,7 @@ export declare const logSchemas: {
                 generationProviderJobId?: string | undefined;
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
+                collectionTemplateIds?: string[] | undefined;
             };
             tacticRefPath: string;
             completed?: boolean | undefined;
@@ -7792,6 +7803,7 @@ export declare const logSchemas: {
                 generationProviderJobId?: string | undefined;
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
+                collectionTemplateIds?: string[] | undefined;
             };
             tacticRefPath: string;
             completed?: boolean | undefined;
@@ -8186,6 +8198,7 @@ export declare const logSchemas: {
                 generationProviderJobId?: string | undefined;
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
+                collectionTemplateIds?: string[] | undefined;
             };
             tacticRefPath: string;
             completed?: boolean | undefined;
@@ -8584,6 +8597,7 @@ export declare const logSchemas: {
                 generationProviderJobId?: string | undefined;
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
+                collectionTemplateIds?: string[] | undefined;
             };
             tacticRefPath: string;
             completed?: boolean | undefined;
@@ -10406,6 +10420,7 @@ export declare const logSchemas: {
                 generationProviderJobId: z.ZodOptional<z.ZodString>;
                 generationPrompt: z.ZodOptional<z.ZodString>;
                 generationVoice: z.ZodOptional<z.ZodNullable<z.ZodEnum<["m", "f"]>>>;
+                collectionTemplateIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
                 updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
             }, "strip", z.ZodTypeAny, {
@@ -10755,6 +10770,7 @@ export declare const logSchemas: {
                 generationProviderJobId?: string | undefined;
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
+                collectionTemplateIds?: string[] | undefined;
             }, {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
@@ -11102,6 +11118,7 @@ export declare const logSchemas: {
                 generationProviderJobId?: string | undefined;
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
+                collectionTemplateIds?: string[] | undefined;
             }>;
             tacticRefPath: z.ZodString;
             planId: z.ZodOptional<z.ZodString>;
@@ -11554,6 +11571,7 @@ export declare const logSchemas: {
                 generationProviderJobId?: string | undefined;
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
+                collectionTemplateIds?: string[] | undefined;
             };
             tacticRefPath: string;
             completed?: boolean | undefined;
@@ -11938,6 +11956,7 @@ export declare const logSchemas: {
                 generationProviderJobId?: string | undefined;
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
+                collectionTemplateIds?: string[] | undefined;
             };
             tacticRefPath: string;
             completed?: boolean | undefined;
@@ -12332,6 +12351,7 @@ export declare const logSchemas: {
                 generationProviderJobId?: string | undefined;
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
+                collectionTemplateIds?: string[] | undefined;
             };
             tacticRefPath: string;
             completed?: boolean | undefined;
@@ -12730,6 +12750,7 @@ export declare const logSchemas: {
                 generationProviderJobId?: string | undefined;
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
+                collectionTemplateIds?: string[] | undefined;
             };
             tacticRefPath: string;
             completed?: boolean | undefined;
@@ -13033,6 +13054,28 @@ export declare const logSchemas: {
                     generationSignature: z.ZodOptional<z.ZodString>;
                     generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                     generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
+                    planSteps: z.ZodOptional<z.ZodArray<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+                        type: z.ZodLiteral<"fixedTactic">;
+                        tacticRef: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
+                    }, "strip", z.ZodTypeAny, {
+                        type: "fixedTactic";
+                        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                    }, {
+                        type: "fixedTactic";
+                        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                    }>, z.ZodObject<{
+                        type: z.ZodLiteral<"collectionPick">;
+                        collectionId: z.ZodString;
+                        label: z.ZodOptional<z.ZodString>;
+                    }, "strip", z.ZodTypeAny, {
+                        type: "collectionPick";
+                        collectionId: string;
+                        label?: string | undefined;
+                    }, {
+                        type: "collectionPick";
+                        collectionId: string;
+                        label?: string | undefined;
+                    }>]>, "many">>;
                     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                     numberOfUses: z.ZodOptional<z.ZodNumber>;
                     numberOfSuccesses: z.ZodOptional<z.ZodNumber>;
@@ -13071,6 +13114,14 @@ export declare const logSchemas: {
                     generationSignature?: string | undefined;
                     generatedFromTacticIds?: string[] | undefined;
                     generatedFromSessionCount?: number | undefined;
+                    planSteps?: ({
+                        type: "fixedTactic";
+                        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                    } | {
+                        type: "collectionPick";
+                        collectionId: string;
+                        label?: string | undefined;
+                    })[] | undefined;
                     numberOfUses?: number | undefined;
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
@@ -13105,6 +13156,14 @@ export declare const logSchemas: {
                     generationSignature?: string | undefined;
                     generatedFromTacticIds?: string[] | undefined;
                     generatedFromSessionCount?: number | undefined;
+                    planSteps?: ({
+                        type: "fixedTactic";
+                        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                    } | {
+                        type: "collectionPick";
+                        collectionId: string;
+                        label?: string | undefined;
+                    })[] | undefined;
                     numberOfUses?: number | undefined;
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
@@ -13167,6 +13226,28 @@ export declare const logSchemas: {
                     generationSignature: z.ZodOptional<z.ZodString>;
                     generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                     generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
+                    planSteps: z.ZodOptional<z.ZodArray<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+                        type: z.ZodLiteral<"fixedTactic">;
+                        tacticRef: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
+                    }, "strip", z.ZodTypeAny, {
+                        type: "fixedTactic";
+                        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                    }, {
+                        type: "fixedTactic";
+                        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                    }>, z.ZodObject<{
+                        type: z.ZodLiteral<"collectionPick">;
+                        collectionId: z.ZodString;
+                        label: z.ZodOptional<z.ZodString>;
+                    }, "strip", z.ZodTypeAny, {
+                        type: "collectionPick";
+                        collectionId: string;
+                        label?: string | undefined;
+                    }, {
+                        type: "collectionPick";
+                        collectionId: string;
+                        label?: string | undefined;
+                    }>]>, "many">>;
                     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                     numberOfUses: z.ZodOptional<z.ZodNumber>;
                     numberOfSuccesses: z.ZodOptional<z.ZodNumber>;
@@ -13183,10 +13264,10 @@ export declare const logSchemas: {
                     type: "scheduled";
                     name: string;
                     tactics: import("../..").DocumentReferenceLike<unknown>[];
-                    questions: import("../..").DocumentReferenceLike<unknown>[];
                     hour: number;
                     minute: number;
                     weekdays: number[];
+                    questions: import("../..").DocumentReferenceLike<unknown>[];
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -13210,6 +13291,14 @@ export declare const logSchemas: {
                     generationSignature?: string | undefined;
                     generatedFromTacticIds?: string[] | undefined;
                     generatedFromSessionCount?: number | undefined;
+                    planSteps?: ({
+                        type: "fixedTactic";
+                        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                    } | {
+                        type: "collectionPick";
+                        collectionId: string;
+                        label?: string | undefined;
+                    })[] | undefined;
                     numberOfUses?: number | undefined;
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
@@ -13246,6 +13335,14 @@ export declare const logSchemas: {
                     generationSignature?: string | undefined;
                     generatedFromTacticIds?: string[] | undefined;
                     generatedFromSessionCount?: number | undefined;
+                    planSteps?: ({
+                        type: "fixedTactic";
+                        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                    } | {
+                        type: "collectionPick";
+                        collectionId: string;
+                        label?: string | undefined;
+                    })[] | undefined;
                     numberOfUses?: number | undefined;
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
@@ -13307,6 +13404,28 @@ export declare const logSchemas: {
                     generationSignature: z.ZodOptional<z.ZodString>;
                     generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                     generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
+                    planSteps: z.ZodOptional<z.ZodArray<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+                        type: z.ZodLiteral<"fixedTactic">;
+                        tacticRef: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
+                    }, "strip", z.ZodTypeAny, {
+                        type: "fixedTactic";
+                        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                    }, {
+                        type: "fixedTactic";
+                        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                    }>, z.ZodObject<{
+                        type: z.ZodLiteral<"collectionPick">;
+                        collectionId: z.ZodString;
+                        label: z.ZodOptional<z.ZodString>;
+                    }, "strip", z.ZodTypeAny, {
+                        type: "collectionPick";
+                        collectionId: string;
+                        label?: string | undefined;
+                    }, {
+                        type: "collectionPick";
+                        collectionId: string;
+                        label?: string | undefined;
+                    }>]>, "many">>;
                     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -13348,6 +13467,14 @@ export declare const logSchemas: {
                     generationSignature?: string | undefined;
                     generatedFromTacticIds?: string[] | undefined;
                     generatedFromSessionCount?: number | undefined;
+                    planSteps?: ({
+                        type: "fixedTactic";
+                        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                    } | {
+                        type: "collectionPick";
+                        collectionId: string;
+                        label?: string | undefined;
+                    })[] | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
@@ -13379,6 +13506,14 @@ export declare const logSchemas: {
                     generationSignature?: string | undefined;
                     generatedFromTacticIds?: string[] | undefined;
                     generatedFromSessionCount?: number | undefined;
+                    planSteps?: ({
+                        type: "fixedTactic";
+                        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                    } | {
+                        type: "collectionPick";
+                        collectionId: string;
+                        label?: string | undefined;
+                    })[] | undefined;
                     numberOfUses?: number | undefined;
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
@@ -13420,6 +13555,14 @@ export declare const logSchemas: {
                     generationSignature?: string | undefined;
                     generatedFromTacticIds?: string[] | undefined;
                     generatedFromSessionCount?: number | undefined;
+                    planSteps?: ({
+                        type: "fixedTactic";
+                        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                    } | {
+                        type: "collectionPick";
+                        collectionId: string;
+                        label?: string | undefined;
+                    })[] | undefined;
                     numberOfUses?: number | undefined;
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
@@ -13433,10 +13576,10 @@ export declare const logSchemas: {
                     type: "scheduled";
                     name: string;
                     tactics: import("../..").DocumentReferenceLike<unknown>[];
-                    questions: import("../..").DocumentReferenceLike<unknown>[];
                     hour: number;
                     minute: number;
                     weekdays: number[];
+                    questions: import("../..").DocumentReferenceLike<unknown>[];
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -13460,6 +13603,14 @@ export declare const logSchemas: {
                     generationSignature?: string | undefined;
                     generatedFromTacticIds?: string[] | undefined;
                     generatedFromSessionCount?: number | undefined;
+                    planSteps?: ({
+                        type: "fixedTactic";
+                        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                    } | {
+                        type: "collectionPick";
+                        collectionId: string;
+                        label?: string | undefined;
+                    })[] | undefined;
                     numberOfUses?: number | undefined;
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
@@ -13499,6 +13650,14 @@ export declare const logSchemas: {
                     generationSignature?: string | undefined;
                     generatedFromTacticIds?: string[] | undefined;
                     generatedFromSessionCount?: number | undefined;
+                    planSteps?: ({
+                        type: "fixedTactic";
+                        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                    } | {
+                        type: "collectionPick";
+                        collectionId: string;
+                        label?: string | undefined;
+                    })[] | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
@@ -13538,6 +13697,14 @@ export declare const logSchemas: {
                     generationSignature?: string | undefined;
                     generatedFromTacticIds?: string[] | undefined;
                     generatedFromSessionCount?: number | undefined;
+                    planSteps?: ({
+                        type: "fixedTactic";
+                        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                    } | {
+                        type: "collectionPick";
+                        collectionId: string;
+                        label?: string | undefined;
+                    })[] | undefined;
                     numberOfUses?: number | undefined;
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
@@ -13578,6 +13745,14 @@ export declare const logSchemas: {
                     generationSignature?: string | undefined;
                     generatedFromTacticIds?: string[] | undefined;
                     generatedFromSessionCount?: number | undefined;
+                    planSteps?: ({
+                        type: "fixedTactic";
+                        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                    } | {
+                        type: "collectionPick";
+                        collectionId: string;
+                        label?: string | undefined;
+                    })[] | undefined;
                     numberOfUses?: number | undefined;
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
@@ -13614,6 +13789,14 @@ export declare const logSchemas: {
                     generationSignature?: string | undefined;
                     generatedFromTacticIds?: string[] | undefined;
                     generatedFromSessionCount?: number | undefined;
+                    planSteps?: ({
+                        type: "fixedTactic";
+                        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                    } | {
+                        type: "collectionPick";
+                        collectionId: string;
+                        label?: string | undefined;
+                    })[] | undefined;
                     numberOfUses?: number | undefined;
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
@@ -13661,6 +13844,14 @@ export declare const logSchemas: {
                     generationSignature?: string | undefined;
                     generatedFromTacticIds?: string[] | undefined;
                     generatedFromSessionCount?: number | undefined;
+                    planSteps?: ({
+                        type: "fixedTactic";
+                        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                    } | {
+                        type: "collectionPick";
+                        collectionId: string;
+                        label?: string | undefined;
+                    })[] | undefined;
                     numberOfUses?: number | undefined;
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
@@ -13674,10 +13865,10 @@ export declare const logSchemas: {
                     type: "scheduled";
                     name: string;
                     tactics: import("../..").DocumentReferenceLike<unknown>[];
-                    questions: import("../..").DocumentReferenceLike<unknown>[];
                     hour: number;
                     minute: number;
                     weekdays: number[];
+                    questions: import("../..").DocumentReferenceLike<unknown>[];
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -13701,6 +13892,14 @@ export declare const logSchemas: {
                     generationSignature?: string | undefined;
                     generatedFromTacticIds?: string[] | undefined;
                     generatedFromSessionCount?: number | undefined;
+                    planSteps?: ({
+                        type: "fixedTactic";
+                        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                    } | {
+                        type: "collectionPick";
+                        collectionId: string;
+                        label?: string | undefined;
+                    })[] | undefined;
                     numberOfUses?: number | undefined;
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
@@ -13740,6 +13939,14 @@ export declare const logSchemas: {
                     generationSignature?: string | undefined;
                     generatedFromTacticIds?: string[] | undefined;
                     generatedFromSessionCount?: number | undefined;
+                    planSteps?: ({
+                        type: "fixedTactic";
+                        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                    } | {
+                        type: "collectionPick";
+                        collectionId: string;
+                        label?: string | undefined;
+                    })[] | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
@@ -13786,6 +13993,14 @@ export declare const logSchemas: {
                     generationSignature?: string | undefined;
                     generatedFromTacticIds?: string[] | undefined;
                     generatedFromSessionCount?: number | undefined;
+                    planSteps?: ({
+                        type: "fixedTactic";
+                        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                    } | {
+                        type: "collectionPick";
+                        collectionId: string;
+                        label?: string | undefined;
+                    })[] | undefined;
                     numberOfUses?: number | undefined;
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
@@ -13826,6 +14041,14 @@ export declare const logSchemas: {
                     generationSignature?: string | undefined;
                     generatedFromTacticIds?: string[] | undefined;
                     generatedFromSessionCount?: number | undefined;
+                    planSteps?: ({
+                        type: "fixedTactic";
+                        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                    } | {
+                        type: "collectionPick";
+                        collectionId: string;
+                        label?: string | undefined;
+                    })[] | undefined;
                     numberOfUses?: number | undefined;
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
@@ -13862,6 +14085,14 @@ export declare const logSchemas: {
                     generationSignature?: string | undefined;
                     generatedFromTacticIds?: string[] | undefined;
                     generatedFromSessionCount?: number | undefined;
+                    planSteps?: ({
+                        type: "fixedTactic";
+                        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                    } | {
+                        type: "collectionPick";
+                        collectionId: string;
+                        label?: string | undefined;
+                    })[] | undefined;
                     numberOfUses?: number | undefined;
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
@@ -13921,6 +14152,14 @@ export declare const logSchemas: {
                     generationSignature?: string | undefined;
                     generatedFromTacticIds?: string[] | undefined;
                     generatedFromSessionCount?: number | undefined;
+                    planSteps?: ({
+                        type: "fixedTactic";
+                        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                    } | {
+                        type: "collectionPick";
+                        collectionId: string;
+                        label?: string | undefined;
+                    })[] | undefined;
                     numberOfUses?: number | undefined;
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
@@ -13934,10 +14173,10 @@ export declare const logSchemas: {
                     type: "scheduled";
                     name: string;
                     tactics: import("../..").DocumentReferenceLike<unknown>[];
-                    questions: import("../..").DocumentReferenceLike<unknown>[];
                     hour: number;
                     minute: number;
                     weekdays: number[];
+                    questions: import("../..").DocumentReferenceLike<unknown>[];
                     id?: string | undefined;
                     createdAt?: import("../../types").Timestamp | undefined;
                     updatedAt?: import("../../types").Timestamp | undefined;
@@ -13961,6 +14200,14 @@ export declare const logSchemas: {
                     generationSignature?: string | undefined;
                     generatedFromTacticIds?: string[] | undefined;
                     generatedFromSessionCount?: number | undefined;
+                    planSteps?: ({
+                        type: "fixedTactic";
+                        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                    } | {
+                        type: "collectionPick";
+                        collectionId: string;
+                        label?: string | undefined;
+                    })[] | undefined;
                     numberOfUses?: number | undefined;
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
@@ -14000,6 +14247,14 @@ export declare const logSchemas: {
                     generationSignature?: string | undefined;
                     generatedFromTacticIds?: string[] | undefined;
                     generatedFromSessionCount?: number | undefined;
+                    planSteps?: ({
+                        type: "fixedTactic";
+                        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                    } | {
+                        type: "collectionPick";
+                        collectionId: string;
+                        label?: string | undefined;
+                    })[] | undefined;
                     lastUsedAt?: import("../../types").Timestamp | undefined;
                     deletedAt?: import("../../types").Timestamp | undefined;
                     isActive?: boolean | undefined;
@@ -14060,6 +14315,14 @@ export declare const logSchemas: {
                     generationSignature?: string | undefined;
                     generatedFromTacticIds?: string[] | undefined;
                     generatedFromSessionCount?: number | undefined;
+                    planSteps?: ({
+                        type: "fixedTactic";
+                        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                    } | {
+                        type: "collectionPick";
+                        collectionId: string;
+                        label?: string | undefined;
+                    })[] | undefined;
                     numberOfUses?: number | undefined;
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
@@ -14100,6 +14363,14 @@ export declare const logSchemas: {
                     generationSignature?: string | undefined;
                     generatedFromTacticIds?: string[] | undefined;
                     generatedFromSessionCount?: number | undefined;
+                    planSteps?: ({
+                        type: "fixedTactic";
+                        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                    } | {
+                        type: "collectionPick";
+                        collectionId: string;
+                        label?: string | undefined;
+                    })[] | undefined;
                     numberOfUses?: number | undefined;
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
@@ -14136,6 +14407,14 @@ export declare const logSchemas: {
                     generationSignature?: string | undefined;
                     generatedFromTacticIds?: string[] | undefined;
                     generatedFromSessionCount?: number | undefined;
+                    planSteps?: ({
+                        type: "fixedTactic";
+                        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                    } | {
+                        type: "collectionPick";
+                        collectionId: string;
+                        label?: string | undefined;
+                    })[] | undefined;
                     numberOfUses?: number | undefined;
                     numberOfSuccesses?: number | undefined;
                     numberOfSetbacks?: number | undefined;
@@ -15014,38 +15293,49 @@ export declare const logSchemas: {
                     title: z.ZodOptional<z.ZodString>;
                     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                     tags: z.ZodDefault<z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>>;
+                    triggerType: z.ZodOptional<z.ZodEnum<["arrival", "departure"]>>;
+                    locationName: z.ZodOptional<z.ZodString>;
                 }, "strip", z.ZodTypeAny, {
                     tags: Record<string, string | string[]>;
                     id?: string | undefined;
                     behaviorIds?: string[] | undefined;
                     title?: string | undefined;
+                    triggerType?: "arrival" | "departure" | undefined;
+                    locationName?: string | undefined;
                 }, {
                     id?: string | undefined;
                     behaviorIds?: string[] | undefined;
                     title?: string | undefined;
                     tags?: Record<string, string | string[]> | undefined;
+                    triggerType?: "arrival" | "departure" | undefined;
+                    locationName?: string | undefined;
                 }>;
             }, "strip", z.ZodTypeAny, {
                 type: "create_trigger";
-                clientId: string;
                 trigger: {
                     tags: Record<string, string | string[]>;
                     id?: string | undefined;
                     behaviorIds?: string[] | undefined;
                     title?: string | undefined;
+                    triggerType?: "arrival" | "departure" | undefined;
+                    locationName?: string | undefined;
                 };
+                clientId: string;
             }, {
                 type: "create_trigger";
-                clientId: string;
                 trigger: {
                     id?: string | undefined;
                     behaviorIds?: string[] | undefined;
                     title?: string | undefined;
                     tags?: Record<string, string | string[]> | undefined;
+                    triggerType?: "arrival" | "departure" | undefined;
+                    locationName?: string | undefined;
                 };
+                clientId: string;
             }>, z.ZodObject<{
                 type: z.ZodLiteral<"create_plan">;
-                triggerClientId: z.ZodString;
+                triggerClientId: z.ZodOptional<z.ZodString>;
+                existingTriggerId: z.ZodOptional<z.ZodString>;
                 plan: z.ZodObject<{
                     id: z.ZodOptional<z.ZodString>;
                     name: z.ZodString;
@@ -15060,6 +15350,10 @@ export declare const logSchemas: {
                         title: string;
                         description?: string | undefined;
                     }>, "many">>;
+                    planType: z.ZodOptional<z.ZodEnum<["trigger", "scheduled"]>>;
+                    hour: z.ZodOptional<z.ZodNumber>;
+                    minute: z.ZodOptional<z.ZodNumber>;
+                    weekdays: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
                 }, "strip", z.ZodTypeAny, {
                     name: string;
                     tacticIds: string[];
@@ -15068,6 +15362,10 @@ export declare const logSchemas: {
                         title: string;
                         description?: string | undefined;
                     }[] | undefined;
+                    planType?: "scheduled" | "trigger" | undefined;
+                    hour?: number | undefined;
+                    minute?: number | undefined;
+                    weekdays?: number[] | undefined;
                 }, {
                     name: string;
                     id?: string | undefined;
@@ -15076,10 +15374,13 @@ export declare const logSchemas: {
                         title: string;
                         description?: string | undefined;
                     }[] | undefined;
+                    planType?: "scheduled" | "trigger" | undefined;
+                    hour?: number | undefined;
+                    minute?: number | undefined;
+                    weekdays?: number[] | undefined;
                 }>;
             }, "strip", z.ZodTypeAny, {
                 type: "create_plan";
-                triggerClientId: string;
                 plan: {
                     name: string;
                     tacticIds: string[];
@@ -15088,10 +15389,15 @@ export declare const logSchemas: {
                         title: string;
                         description?: string | undefined;
                     }[] | undefined;
+                    planType?: "scheduled" | "trigger" | undefined;
+                    hour?: number | undefined;
+                    minute?: number | undefined;
+                    weekdays?: number[] | undefined;
                 };
+                triggerClientId?: string | undefined;
+                existingTriggerId?: string | undefined;
             }, {
                 type: "create_plan";
-                triggerClientId: string;
                 plan: {
                     name: string;
                     id?: string | undefined;
@@ -15100,7 +15406,13 @@ export declare const logSchemas: {
                         title: string;
                         description?: string | undefined;
                     }[] | undefined;
+                    planType?: "scheduled" | "trigger" | undefined;
+                    hour?: number | undefined;
+                    minute?: number | undefined;
+                    weekdays?: number[] | undefined;
                 };
+                triggerClientId?: string | undefined;
+                existingTriggerId?: string | undefined;
             }>]>, "many">;
             acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             declinedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -15111,16 +15423,17 @@ export declare const logSchemas: {
             title: string;
             operations: ({
                 type: "create_trigger";
-                clientId: string;
                 trigger: {
                     tags: Record<string, string | string[]>;
                     id?: string | undefined;
                     behaviorIds?: string[] | undefined;
                     title?: string | undefined;
+                    triggerType?: "arrival" | "departure" | undefined;
+                    locationName?: string | undefined;
                 };
+                clientId: string;
             } | {
                 type: "create_plan";
-                triggerClientId: string;
                 plan: {
                     name: string;
                     tacticIds: string[];
@@ -15129,7 +15442,13 @@ export declare const logSchemas: {
                         title: string;
                         description?: string | undefined;
                     }[] | undefined;
+                    planType?: "scheduled" | "trigger" | undefined;
+                    hour?: number | undefined;
+                    minute?: number | undefined;
+                    weekdays?: number[] | undefined;
                 };
+                triggerClientId?: string | undefined;
+                existingTriggerId?: string | undefined;
             })[];
             summary?: string | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
@@ -15140,16 +15459,17 @@ export declare const logSchemas: {
             title: string;
             operations: ({
                 type: "create_trigger";
-                clientId: string;
                 trigger: {
                     id?: string | undefined;
                     behaviorIds?: string[] | undefined;
                     title?: string | undefined;
                     tags?: Record<string, string | string[]> | undefined;
+                    triggerType?: "arrival" | "departure" | undefined;
+                    locationName?: string | undefined;
                 };
+                clientId: string;
             } | {
                 type: "create_plan";
-                triggerClientId: string;
                 plan: {
                     name: string;
                     id?: string | undefined;
@@ -15158,7 +15478,13 @@ export declare const logSchemas: {
                         title: string;
                         description?: string | undefined;
                     }[] | undefined;
+                    planType?: "scheduled" | "trigger" | undefined;
+                    hour?: number | undefined;
+                    minute?: number | undefined;
+                    weekdays?: number[] | undefined;
                 };
+                triggerClientId?: string | undefined;
+                existingTriggerId?: string | undefined;
             })[];
             status?: "declined" | "pending" | "accepted" | undefined;
             summary?: string | undefined;
@@ -15181,16 +15507,17 @@ export declare const logSchemas: {
             title: string;
             operations: ({
                 type: "create_trigger";
-                clientId: string;
                 trigger: {
                     tags: Record<string, string | string[]>;
                     id?: string | undefined;
                     behaviorIds?: string[] | undefined;
                     title?: string | undefined;
+                    triggerType?: "arrival" | "departure" | undefined;
+                    locationName?: string | undefined;
                 };
+                clientId: string;
             } | {
                 type: "create_plan";
-                triggerClientId: string;
                 plan: {
                     name: string;
                     tacticIds: string[];
@@ -15199,7 +15526,13 @@ export declare const logSchemas: {
                         title: string;
                         description?: string | undefined;
                     }[] | undefined;
+                    planType?: "scheduled" | "trigger" | undefined;
+                    hour?: number | undefined;
+                    minute?: number | undefined;
+                    weekdays?: number[] | undefined;
                 };
+                triggerClientId?: string | undefined;
+                existingTriggerId?: string | undefined;
             })[];
             summary?: string | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
@@ -15224,16 +15557,17 @@ export declare const logSchemas: {
             title: string;
             operations: ({
                 type: "create_trigger";
-                clientId: string;
                 trigger: {
                     id?: string | undefined;
                     behaviorIds?: string[] | undefined;
                     title?: string | undefined;
                     tags?: Record<string, string | string[]> | undefined;
+                    triggerType?: "arrival" | "departure" | undefined;
+                    locationName?: string | undefined;
                 };
+                clientId: string;
             } | {
                 type: "create_plan";
-                triggerClientId: string;
                 plan: {
                     name: string;
                     id?: string | undefined;
@@ -15242,7 +15576,13 @@ export declare const logSchemas: {
                         title: string;
                         description?: string | undefined;
                     }[] | undefined;
+                    planType?: "scheduled" | "trigger" | undefined;
+                    hour?: number | undefined;
+                    minute?: number | undefined;
+                    weekdays?: number[] | undefined;
                 };
+                triggerClientId?: string | undefined;
+                existingTriggerId?: string | undefined;
             })[];
             status?: "declined" | "pending" | "accepted" | undefined;
             summary?: string | undefined;
@@ -17460,6 +17800,7 @@ export declare const logSchemas: {
                     generationProviderJobId: z.ZodOptional<z.ZodString>;
                     generationPrompt: z.ZodOptional<z.ZodString>;
                     generationVoice: z.ZodOptional<z.ZodNullable<z.ZodEnum<["m", "f"]>>>;
+                    collectionTemplateIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                     createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
                     updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
                 }, "strip", z.ZodTypeAny, {
@@ -17809,6 +18150,7 @@ export declare const logSchemas: {
                     generationProviderJobId?: string | undefined;
                     generationPrompt?: string | undefined;
                     generationVoice?: "m" | "f" | null | undefined;
+                    collectionTemplateIds?: string[] | undefined;
                 }, {
                     createdAt: import("../../types").Timestamp;
                     updatedAt: import("../../types").Timestamp;
@@ -18156,6 +18498,7 @@ export declare const logSchemas: {
                     generationProviderJobId?: string | undefined;
                     generationPrompt?: string | undefined;
                     generationVoice?: "m" | "f" | null | undefined;
+                    collectionTemplateIds?: string[] | undefined;
                 }>;
                 tacticLogId: z.ZodString;
                 rating: z.ZodOptional<z.ZodNullable<z.ZodEnum<["helpful", "not_helpful"]>>>;
@@ -18508,6 +18851,7 @@ export declare const logSchemas: {
                     generationProviderJobId?: string | undefined;
                     generationPrompt?: string | undefined;
                     generationVoice?: "m" | "f" | null | undefined;
+                    collectionTemplateIds?: string[] | undefined;
                 };
                 tacticLogId: string;
                 rating?: "helpful" | "not_helpful" | null | undefined;
@@ -18860,6 +19204,7 @@ export declare const logSchemas: {
                     generationProviderJobId?: string | undefined;
                     generationPrompt?: string | undefined;
                     generationVoice?: "m" | "f" | null | undefined;
+                    collectionTemplateIds?: string[] | undefined;
                 };
                 tacticLogId: string;
                 rating?: "helpful" | "not_helpful" | null | undefined;
@@ -19215,6 +19560,7 @@ export declare const logSchemas: {
                     generationProviderJobId?: string | undefined;
                     generationPrompt?: string | undefined;
                     generationVoice?: "m" | "f" | null | undefined;
+                    collectionTemplateIds?: string[] | undefined;
                 };
                 tacticLogId: string;
                 rating?: "helpful" | "not_helpful" | null | undefined;
@@ -19570,6 +19916,7 @@ export declare const logSchemas: {
                     generationProviderJobId?: string | undefined;
                     generationPrompt?: string | undefined;
                     generationVoice?: "m" | "f" | null | undefined;
+                    collectionTemplateIds?: string[] | undefined;
                 };
                 tacticLogId: string;
                 rating?: "helpful" | "not_helpful" | null | undefined;
@@ -19935,6 +20282,7 @@ export declare const logSchemas: {
                     generationProviderJobId?: string | undefined;
                     generationPrompt?: string | undefined;
                     generationVoice?: "m" | "f" | null | undefined;
+                    collectionTemplateIds?: string[] | undefined;
                 };
                 tacticLogId: string;
                 rating?: "helpful" | "not_helpful" | null | undefined;
@@ -20304,6 +20652,7 @@ export declare const logSchemas: {
                     generationProviderJobId?: string | undefined;
                     generationPrompt?: string | undefined;
                     generationVoice?: "m" | "f" | null | undefined;
+                    collectionTemplateIds?: string[] | undefined;
                 };
                 tacticLogId: string;
                 rating?: "helpful" | "not_helpful" | null | undefined;
@@ -23436,6 +23785,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             generationProviderJobId: z.ZodOptional<z.ZodString>;
             generationPrompt: z.ZodOptional<z.ZodString>;
             generationVoice: z.ZodOptional<z.ZodNullable<z.ZodEnum<["m", "f"]>>>;
+            collectionTemplateIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
             updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
         }, "strip", z.ZodTypeAny, {
@@ -23785,6 +24135,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             generationProviderJobId?: string | undefined;
             generationPrompt?: string | undefined;
             generationVoice?: "m" | "f" | null | undefined;
+            collectionTemplateIds?: string[] | undefined;
         }, {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -24132,6 +24483,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             generationProviderJobId?: string | undefined;
             generationPrompt?: string | undefined;
             generationVoice?: "m" | "f" | null | undefined;
+            collectionTemplateIds?: string[] | undefined;
         }>>;
         agentConnectedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         endedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -24489,6 +24841,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             generationProviderJobId?: string | undefined;
             generationPrompt?: string | undefined;
             generationVoice?: "m" | "f" | null | undefined;
+            collectionTemplateIds?: string[] | undefined;
         } | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
@@ -24844,6 +25197,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             generationProviderJobId?: string | undefined;
             generationPrompt?: string | undefined;
             generationVoice?: "m" | "f" | null | undefined;
+            collectionTemplateIds?: string[] | undefined;
         } | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
@@ -25209,6 +25563,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             generationProviderJobId?: string | undefined;
             generationPrompt?: string | undefined;
             generationVoice?: "m" | "f" | null | undefined;
+            collectionTemplateIds?: string[] | undefined;
         } | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
@@ -25578,6 +25933,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             generationProviderJobId?: string | undefined;
             generationPrompt?: string | undefined;
             generationVoice?: "m" | "f" | null | undefined;
+            collectionTemplateIds?: string[] | undefined;
         } | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
@@ -27537,6 +27893,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             generationProviderJobId: z.ZodOptional<z.ZodString>;
             generationPrompt: z.ZodOptional<z.ZodString>;
             generationVoice: z.ZodOptional<z.ZodNullable<z.ZodEnum<["m", "f"]>>>;
+            collectionTemplateIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
             updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
         }, "strip", z.ZodTypeAny, {
@@ -27886,6 +28243,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             generationProviderJobId?: string | undefined;
             generationPrompt?: string | undefined;
             generationVoice?: "m" | "f" | null | undefined;
+            collectionTemplateIds?: string[] | undefined;
         }, {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -28233,6 +28591,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             generationProviderJobId?: string | undefined;
             generationPrompt?: string | undefined;
             generationVoice?: "m" | "f" | null | undefined;
+            collectionTemplateIds?: string[] | undefined;
         }>;
         tacticRefPath: z.ZodString;
         planId: z.ZodOptional<z.ZodString>;
@@ -28685,6 +29044,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             generationProviderJobId?: string | undefined;
             generationPrompt?: string | undefined;
             generationVoice?: "m" | "f" | null | undefined;
+            collectionTemplateIds?: string[] | undefined;
         };
         tacticRefPath: string;
         completed?: boolean | undefined;
@@ -29069,6 +29429,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             generationProviderJobId?: string | undefined;
             generationPrompt?: string | undefined;
             generationVoice?: "m" | "f" | null | undefined;
+            collectionTemplateIds?: string[] | undefined;
         };
         tacticRefPath: string;
         completed?: boolean | undefined;
@@ -29463,6 +29824,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             generationProviderJobId?: string | undefined;
             generationPrompt?: string | undefined;
             generationVoice?: "m" | "f" | null | undefined;
+            collectionTemplateIds?: string[] | undefined;
         };
         tacticRefPath: string;
         completed?: boolean | undefined;
@@ -29861,6 +30223,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             generationProviderJobId?: string | undefined;
             generationPrompt?: string | undefined;
             generationVoice?: "m" | "f" | null | undefined;
+            collectionTemplateIds?: string[] | undefined;
         };
         tacticRefPath: string;
         completed?: boolean | undefined;
@@ -30161,6 +30524,28 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationSignature: z.ZodOptional<z.ZodString>;
                 generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
+                planSteps: z.ZodOptional<z.ZodArray<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+                    type: z.ZodLiteral<"fixedTactic">;
+                    tacticRef: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
+                }, "strip", z.ZodTypeAny, {
+                    type: "fixedTactic";
+                    tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                }, {
+                    type: "fixedTactic";
+                    tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                }>, z.ZodObject<{
+                    type: z.ZodLiteral<"collectionPick">;
+                    collectionId: z.ZodString;
+                    label: z.ZodOptional<z.ZodString>;
+                }, "strip", z.ZodTypeAny, {
+                    type: "collectionPick";
+                    collectionId: string;
+                    label?: string | undefined;
+                }, {
+                    type: "collectionPick";
+                    collectionId: string;
+                    label?: string | undefined;
+                }>]>, "many">>;
                 behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 numberOfUses: z.ZodOptional<z.ZodNumber>;
                 numberOfSuccesses: z.ZodOptional<z.ZodNumber>;
@@ -30199,6 +30584,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationSignature?: string | undefined;
                 generatedFromTacticIds?: string[] | undefined;
                 generatedFromSessionCount?: number | undefined;
+                planSteps?: ({
+                    type: "fixedTactic";
+                    tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                } | {
+                    type: "collectionPick";
+                    collectionId: string;
+                    label?: string | undefined;
+                })[] | undefined;
                 numberOfUses?: number | undefined;
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
@@ -30233,6 +30626,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationSignature?: string | undefined;
                 generatedFromTacticIds?: string[] | undefined;
                 generatedFromSessionCount?: number | undefined;
+                planSteps?: ({
+                    type: "fixedTactic";
+                    tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                } | {
+                    type: "collectionPick";
+                    collectionId: string;
+                    label?: string | undefined;
+                })[] | undefined;
                 numberOfUses?: number | undefined;
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
@@ -30295,6 +30696,28 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationSignature: z.ZodOptional<z.ZodString>;
                 generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
+                planSteps: z.ZodOptional<z.ZodArray<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+                    type: z.ZodLiteral<"fixedTactic">;
+                    tacticRef: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
+                }, "strip", z.ZodTypeAny, {
+                    type: "fixedTactic";
+                    tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                }, {
+                    type: "fixedTactic";
+                    tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                }>, z.ZodObject<{
+                    type: z.ZodLiteral<"collectionPick">;
+                    collectionId: z.ZodString;
+                    label: z.ZodOptional<z.ZodString>;
+                }, "strip", z.ZodTypeAny, {
+                    type: "collectionPick";
+                    collectionId: string;
+                    label?: string | undefined;
+                }, {
+                    type: "collectionPick";
+                    collectionId: string;
+                    label?: string | undefined;
+                }>]>, "many">>;
                 behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 numberOfUses: z.ZodOptional<z.ZodNumber>;
                 numberOfSuccesses: z.ZodOptional<z.ZodNumber>;
@@ -30311,10 +30734,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 type: "scheduled";
                 name: string;
                 tactics: import("../..").DocumentReferenceLike<unknown>[];
-                questions: import("../..").DocumentReferenceLike<unknown>[];
                 hour: number;
                 minute: number;
                 weekdays: number[];
+                questions: import("../..").DocumentReferenceLike<unknown>[];
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -30338,6 +30761,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationSignature?: string | undefined;
                 generatedFromTacticIds?: string[] | undefined;
                 generatedFromSessionCount?: number | undefined;
+                planSteps?: ({
+                    type: "fixedTactic";
+                    tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                } | {
+                    type: "collectionPick";
+                    collectionId: string;
+                    label?: string | undefined;
+                })[] | undefined;
                 numberOfUses?: number | undefined;
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
@@ -30374,6 +30805,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationSignature?: string | undefined;
                 generatedFromTacticIds?: string[] | undefined;
                 generatedFromSessionCount?: number | undefined;
+                planSteps?: ({
+                    type: "fixedTactic";
+                    tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                } | {
+                    type: "collectionPick";
+                    collectionId: string;
+                    label?: string | undefined;
+                })[] | undefined;
                 numberOfUses?: number | undefined;
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
@@ -30435,6 +30874,28 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationSignature: z.ZodOptional<z.ZodString>;
                 generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
+                planSteps: z.ZodOptional<z.ZodArray<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+                    type: z.ZodLiteral<"fixedTactic">;
+                    tacticRef: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
+                }, "strip", z.ZodTypeAny, {
+                    type: "fixedTactic";
+                    tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                }, {
+                    type: "fixedTactic";
+                    tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                }>, z.ZodObject<{
+                    type: z.ZodLiteral<"collectionPick">;
+                    collectionId: z.ZodString;
+                    label: z.ZodOptional<z.ZodString>;
+                }, "strip", z.ZodTypeAny, {
+                    type: "collectionPick";
+                    collectionId: string;
+                    label?: string | undefined;
+                }, {
+                    type: "collectionPick";
+                    collectionId: string;
+                    label?: string | undefined;
+                }>]>, "many">>;
                 behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -30476,6 +30937,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationSignature?: string | undefined;
                 generatedFromTacticIds?: string[] | undefined;
                 generatedFromSessionCount?: number | undefined;
+                planSteps?: ({
+                    type: "fixedTactic";
+                    tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                } | {
+                    type: "collectionPick";
+                    collectionId: string;
+                    label?: string | undefined;
+                })[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
@@ -30507,6 +30976,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationSignature?: string | undefined;
                 generatedFromTacticIds?: string[] | undefined;
                 generatedFromSessionCount?: number | undefined;
+                planSteps?: ({
+                    type: "fixedTactic";
+                    tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                } | {
+                    type: "collectionPick";
+                    collectionId: string;
+                    label?: string | undefined;
+                })[] | undefined;
                 numberOfUses?: number | undefined;
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
@@ -30548,6 +31025,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationSignature?: string | undefined;
                 generatedFromTacticIds?: string[] | undefined;
                 generatedFromSessionCount?: number | undefined;
+                planSteps?: ({
+                    type: "fixedTactic";
+                    tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                } | {
+                    type: "collectionPick";
+                    collectionId: string;
+                    label?: string | undefined;
+                })[] | undefined;
                 numberOfUses?: number | undefined;
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
@@ -30561,10 +31046,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 type: "scheduled";
                 name: string;
                 tactics: import("../..").DocumentReferenceLike<unknown>[];
-                questions: import("../..").DocumentReferenceLike<unknown>[];
                 hour: number;
                 minute: number;
                 weekdays: number[];
+                questions: import("../..").DocumentReferenceLike<unknown>[];
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -30588,6 +31073,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationSignature?: string | undefined;
                 generatedFromTacticIds?: string[] | undefined;
                 generatedFromSessionCount?: number | undefined;
+                planSteps?: ({
+                    type: "fixedTactic";
+                    tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                } | {
+                    type: "collectionPick";
+                    collectionId: string;
+                    label?: string | undefined;
+                })[] | undefined;
                 numberOfUses?: number | undefined;
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
@@ -30627,6 +31120,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationSignature?: string | undefined;
                 generatedFromTacticIds?: string[] | undefined;
                 generatedFromSessionCount?: number | undefined;
+                planSteps?: ({
+                    type: "fixedTactic";
+                    tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                } | {
+                    type: "collectionPick";
+                    collectionId: string;
+                    label?: string | undefined;
+                })[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
@@ -30666,6 +31167,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationSignature?: string | undefined;
                 generatedFromTacticIds?: string[] | undefined;
                 generatedFromSessionCount?: number | undefined;
+                planSteps?: ({
+                    type: "fixedTactic";
+                    tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                } | {
+                    type: "collectionPick";
+                    collectionId: string;
+                    label?: string | undefined;
+                })[] | undefined;
                 numberOfUses?: number | undefined;
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
@@ -30706,6 +31215,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationSignature?: string | undefined;
                 generatedFromTacticIds?: string[] | undefined;
                 generatedFromSessionCount?: number | undefined;
+                planSteps?: ({
+                    type: "fixedTactic";
+                    tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                } | {
+                    type: "collectionPick";
+                    collectionId: string;
+                    label?: string | undefined;
+                })[] | undefined;
                 numberOfUses?: number | undefined;
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
@@ -30742,6 +31259,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationSignature?: string | undefined;
                 generatedFromTacticIds?: string[] | undefined;
                 generatedFromSessionCount?: number | undefined;
+                planSteps?: ({
+                    type: "fixedTactic";
+                    tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                } | {
+                    type: "collectionPick";
+                    collectionId: string;
+                    label?: string | undefined;
+                })[] | undefined;
                 numberOfUses?: number | undefined;
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
@@ -30789,6 +31314,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationSignature?: string | undefined;
                 generatedFromTacticIds?: string[] | undefined;
                 generatedFromSessionCount?: number | undefined;
+                planSteps?: ({
+                    type: "fixedTactic";
+                    tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                } | {
+                    type: "collectionPick";
+                    collectionId: string;
+                    label?: string | undefined;
+                })[] | undefined;
                 numberOfUses?: number | undefined;
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
@@ -30802,10 +31335,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 type: "scheduled";
                 name: string;
                 tactics: import("../..").DocumentReferenceLike<unknown>[];
-                questions: import("../..").DocumentReferenceLike<unknown>[];
                 hour: number;
                 minute: number;
                 weekdays: number[];
+                questions: import("../..").DocumentReferenceLike<unknown>[];
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -30829,6 +31362,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationSignature?: string | undefined;
                 generatedFromTacticIds?: string[] | undefined;
                 generatedFromSessionCount?: number | undefined;
+                planSteps?: ({
+                    type: "fixedTactic";
+                    tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                } | {
+                    type: "collectionPick";
+                    collectionId: string;
+                    label?: string | undefined;
+                })[] | undefined;
                 numberOfUses?: number | undefined;
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
@@ -30868,6 +31409,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationSignature?: string | undefined;
                 generatedFromTacticIds?: string[] | undefined;
                 generatedFromSessionCount?: number | undefined;
+                planSteps?: ({
+                    type: "fixedTactic";
+                    tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                } | {
+                    type: "collectionPick";
+                    collectionId: string;
+                    label?: string | undefined;
+                })[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
@@ -30914,6 +31463,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationSignature?: string | undefined;
                 generatedFromTacticIds?: string[] | undefined;
                 generatedFromSessionCount?: number | undefined;
+                planSteps?: ({
+                    type: "fixedTactic";
+                    tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                } | {
+                    type: "collectionPick";
+                    collectionId: string;
+                    label?: string | undefined;
+                })[] | undefined;
                 numberOfUses?: number | undefined;
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
@@ -30954,6 +31511,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationSignature?: string | undefined;
                 generatedFromTacticIds?: string[] | undefined;
                 generatedFromSessionCount?: number | undefined;
+                planSteps?: ({
+                    type: "fixedTactic";
+                    tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                } | {
+                    type: "collectionPick";
+                    collectionId: string;
+                    label?: string | undefined;
+                })[] | undefined;
                 numberOfUses?: number | undefined;
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
@@ -30990,6 +31555,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationSignature?: string | undefined;
                 generatedFromTacticIds?: string[] | undefined;
                 generatedFromSessionCount?: number | undefined;
+                planSteps?: ({
+                    type: "fixedTactic";
+                    tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                } | {
+                    type: "collectionPick";
+                    collectionId: string;
+                    label?: string | undefined;
+                })[] | undefined;
                 numberOfUses?: number | undefined;
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
@@ -31049,6 +31622,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationSignature?: string | undefined;
                 generatedFromTacticIds?: string[] | undefined;
                 generatedFromSessionCount?: number | undefined;
+                planSteps?: ({
+                    type: "fixedTactic";
+                    tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                } | {
+                    type: "collectionPick";
+                    collectionId: string;
+                    label?: string | undefined;
+                })[] | undefined;
                 numberOfUses?: number | undefined;
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
@@ -31062,10 +31643,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 type: "scheduled";
                 name: string;
                 tactics: import("../..").DocumentReferenceLike<unknown>[];
-                questions: import("../..").DocumentReferenceLike<unknown>[];
                 hour: number;
                 minute: number;
                 weekdays: number[];
+                questions: import("../..").DocumentReferenceLike<unknown>[];
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
                 updatedAt?: import("../../types").Timestamp | undefined;
@@ -31089,6 +31670,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationSignature?: string | undefined;
                 generatedFromTacticIds?: string[] | undefined;
                 generatedFromSessionCount?: number | undefined;
+                planSteps?: ({
+                    type: "fixedTactic";
+                    tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                } | {
+                    type: "collectionPick";
+                    collectionId: string;
+                    label?: string | undefined;
+                })[] | undefined;
                 numberOfUses?: number | undefined;
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
@@ -31128,6 +31717,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationSignature?: string | undefined;
                 generatedFromTacticIds?: string[] | undefined;
                 generatedFromSessionCount?: number | undefined;
+                planSteps?: ({
+                    type: "fixedTactic";
+                    tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                } | {
+                    type: "collectionPick";
+                    collectionId: string;
+                    label?: string | undefined;
+                })[] | undefined;
                 lastUsedAt?: import("../../types").Timestamp | undefined;
                 deletedAt?: import("../../types").Timestamp | undefined;
                 isActive?: boolean | undefined;
@@ -31188,6 +31785,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationSignature?: string | undefined;
                 generatedFromTacticIds?: string[] | undefined;
                 generatedFromSessionCount?: number | undefined;
+                planSteps?: ({
+                    type: "fixedTactic";
+                    tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                } | {
+                    type: "collectionPick";
+                    collectionId: string;
+                    label?: string | undefined;
+                })[] | undefined;
                 numberOfUses?: number | undefined;
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
@@ -31228,6 +31833,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationSignature?: string | undefined;
                 generatedFromTacticIds?: string[] | undefined;
                 generatedFromSessionCount?: number | undefined;
+                planSteps?: ({
+                    type: "fixedTactic";
+                    tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                } | {
+                    type: "collectionPick";
+                    collectionId: string;
+                    label?: string | undefined;
+                })[] | undefined;
                 numberOfUses?: number | undefined;
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
@@ -31264,6 +31877,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationSignature?: string | undefined;
                 generatedFromTacticIds?: string[] | undefined;
                 generatedFromSessionCount?: number | undefined;
+                planSteps?: ({
+                    type: "fixedTactic";
+                    tacticRef: import("../..").DocumentReferenceLike<unknown>;
+                } | {
+                    type: "collectionPick";
+                    collectionId: string;
+                    label?: string | undefined;
+                })[] | undefined;
                 numberOfUses?: number | undefined;
                 numberOfSuccesses?: number | undefined;
                 numberOfSetbacks?: number | undefined;
@@ -32132,38 +32753,49 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 title: z.ZodOptional<z.ZodString>;
                 behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 tags: z.ZodDefault<z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>>;
+                triggerType: z.ZodOptional<z.ZodEnum<["arrival", "departure"]>>;
+                locationName: z.ZodOptional<z.ZodString>;
             }, "strip", z.ZodTypeAny, {
                 tags: Record<string, string | string[]>;
                 id?: string | undefined;
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
+                triggerType?: "arrival" | "departure" | undefined;
+                locationName?: string | undefined;
             }, {
                 id?: string | undefined;
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
                 tags?: Record<string, string | string[]> | undefined;
+                triggerType?: "arrival" | "departure" | undefined;
+                locationName?: string | undefined;
             }>;
         }, "strip", z.ZodTypeAny, {
             type: "create_trigger";
-            clientId: string;
             trigger: {
                 tags: Record<string, string | string[]>;
                 id?: string | undefined;
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
+                triggerType?: "arrival" | "departure" | undefined;
+                locationName?: string | undefined;
             };
+            clientId: string;
         }, {
             type: "create_trigger";
-            clientId: string;
             trigger: {
                 id?: string | undefined;
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
                 tags?: Record<string, string | string[]> | undefined;
+                triggerType?: "arrival" | "departure" | undefined;
+                locationName?: string | undefined;
             };
+            clientId: string;
         }>, z.ZodObject<{
             type: z.ZodLiteral<"create_plan">;
-            triggerClientId: z.ZodString;
+            triggerClientId: z.ZodOptional<z.ZodString>;
+            existingTriggerId: z.ZodOptional<z.ZodString>;
             plan: z.ZodObject<{
                 id: z.ZodOptional<z.ZodString>;
                 name: z.ZodString;
@@ -32178,6 +32810,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     title: string;
                     description?: string | undefined;
                 }>, "many">>;
+                planType: z.ZodOptional<z.ZodEnum<["trigger", "scheduled"]>>;
+                hour: z.ZodOptional<z.ZodNumber>;
+                minute: z.ZodOptional<z.ZodNumber>;
+                weekdays: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
             }, "strip", z.ZodTypeAny, {
                 name: string;
                 tacticIds: string[];
@@ -32186,6 +32822,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     title: string;
                     description?: string | undefined;
                 }[] | undefined;
+                planType?: "scheduled" | "trigger" | undefined;
+                hour?: number | undefined;
+                minute?: number | undefined;
+                weekdays?: number[] | undefined;
             }, {
                 name: string;
                 id?: string | undefined;
@@ -32194,10 +32834,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     title: string;
                     description?: string | undefined;
                 }[] | undefined;
+                planType?: "scheduled" | "trigger" | undefined;
+                hour?: number | undefined;
+                minute?: number | undefined;
+                weekdays?: number[] | undefined;
             }>;
         }, "strip", z.ZodTypeAny, {
             type: "create_plan";
-            triggerClientId: string;
             plan: {
                 name: string;
                 tacticIds: string[];
@@ -32206,10 +32849,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     title: string;
                     description?: string | undefined;
                 }[] | undefined;
+                planType?: "scheduled" | "trigger" | undefined;
+                hour?: number | undefined;
+                minute?: number | undefined;
+                weekdays?: number[] | undefined;
             };
+            triggerClientId?: string | undefined;
+            existingTriggerId?: string | undefined;
         }, {
             type: "create_plan";
-            triggerClientId: string;
             plan: {
                 name: string;
                 id?: string | undefined;
@@ -32218,7 +32866,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     title: string;
                     description?: string | undefined;
                 }[] | undefined;
+                planType?: "scheduled" | "trigger" | undefined;
+                hour?: number | undefined;
+                minute?: number | undefined;
+                weekdays?: number[] | undefined;
             };
+            triggerClientId?: string | undefined;
+            existingTriggerId?: string | undefined;
         }>]>, "many">;
         acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         declinedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -32229,16 +32883,17 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         title: string;
         operations: ({
             type: "create_trigger";
-            clientId: string;
             trigger: {
                 tags: Record<string, string | string[]>;
                 id?: string | undefined;
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
+                triggerType?: "arrival" | "departure" | undefined;
+                locationName?: string | undefined;
             };
+            clientId: string;
         } | {
             type: "create_plan";
-            triggerClientId: string;
             plan: {
                 name: string;
                 tacticIds: string[];
@@ -32247,7 +32902,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     title: string;
                     description?: string | undefined;
                 }[] | undefined;
+                planType?: "scheduled" | "trigger" | undefined;
+                hour?: number | undefined;
+                minute?: number | undefined;
+                weekdays?: number[] | undefined;
             };
+            triggerClientId?: string | undefined;
+            existingTriggerId?: string | undefined;
         })[];
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
@@ -32258,16 +32919,17 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         title: string;
         operations: ({
             type: "create_trigger";
-            clientId: string;
             trigger: {
                 id?: string | undefined;
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
                 tags?: Record<string, string | string[]> | undefined;
+                triggerType?: "arrival" | "departure" | undefined;
+                locationName?: string | undefined;
             };
+            clientId: string;
         } | {
             type: "create_plan";
-            triggerClientId: string;
             plan: {
                 name: string;
                 id?: string | undefined;
@@ -32276,7 +32938,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     title: string;
                     description?: string | undefined;
                 }[] | undefined;
+                planType?: "scheduled" | "trigger" | undefined;
+                hour?: number | undefined;
+                minute?: number | undefined;
+                weekdays?: number[] | undefined;
             };
+            triggerClientId?: string | undefined;
+            existingTriggerId?: string | undefined;
         })[];
         status?: "declined" | "pending" | "accepted" | undefined;
         summary?: string | undefined;
@@ -32299,16 +32967,17 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         title: string;
         operations: ({
             type: "create_trigger";
-            clientId: string;
             trigger: {
                 tags: Record<string, string | string[]>;
                 id?: string | undefined;
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
+                triggerType?: "arrival" | "departure" | undefined;
+                locationName?: string | undefined;
             };
+            clientId: string;
         } | {
             type: "create_plan";
-            triggerClientId: string;
             plan: {
                 name: string;
                 tacticIds: string[];
@@ -32317,7 +32986,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     title: string;
                     description?: string | undefined;
                 }[] | undefined;
+                planType?: "scheduled" | "trigger" | undefined;
+                hour?: number | undefined;
+                minute?: number | undefined;
+                weekdays?: number[] | undefined;
             };
+            triggerClientId?: string | undefined;
+            existingTriggerId?: string | undefined;
         })[];
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
@@ -32342,16 +33017,17 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         title: string;
         operations: ({
             type: "create_trigger";
-            clientId: string;
             trigger: {
                 id?: string | undefined;
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
                 tags?: Record<string, string | string[]> | undefined;
+                triggerType?: "arrival" | "departure" | undefined;
+                locationName?: string | undefined;
             };
+            clientId: string;
         } | {
             type: "create_plan";
-            triggerClientId: string;
             plan: {
                 name: string;
                 id?: string | undefined;
@@ -32360,7 +33036,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     title: string;
                     description?: string | undefined;
                 }[] | undefined;
+                planType?: "scheduled" | "trigger" | undefined;
+                hour?: number | undefined;
+                minute?: number | undefined;
+                weekdays?: number[] | undefined;
             };
+            triggerClientId?: string | undefined;
+            existingTriggerId?: string | undefined;
         })[];
         status?: "declined" | "pending" | "accepted" | undefined;
         summary?: string | undefined;
@@ -34571,6 +35253,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationProviderJobId: z.ZodOptional<z.ZodString>;
                 generationPrompt: z.ZodOptional<z.ZodString>;
                 generationVoice: z.ZodOptional<z.ZodNullable<z.ZodEnum<["m", "f"]>>>;
+                collectionTemplateIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
                 updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
             }, "strip", z.ZodTypeAny, {
@@ -34920,6 +35603,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationProviderJobId?: string | undefined;
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
+                collectionTemplateIds?: string[] | undefined;
             }, {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
@@ -35267,6 +35951,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationProviderJobId?: string | undefined;
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
+                collectionTemplateIds?: string[] | undefined;
             }>;
             tacticLogId: z.ZodString;
             rating: z.ZodOptional<z.ZodNullable<z.ZodEnum<["helpful", "not_helpful"]>>>;
@@ -35619,6 +36304,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationProviderJobId?: string | undefined;
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
+                collectionTemplateIds?: string[] | undefined;
             };
             tacticLogId: string;
             rating?: "helpful" | "not_helpful" | null | undefined;
@@ -35971,6 +36657,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationProviderJobId?: string | undefined;
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
+                collectionTemplateIds?: string[] | undefined;
             };
             tacticLogId: string;
             rating?: "helpful" | "not_helpful" | null | undefined;
@@ -36326,6 +37013,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationProviderJobId?: string | undefined;
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
+                collectionTemplateIds?: string[] | undefined;
             };
             tacticLogId: string;
             rating?: "helpful" | "not_helpful" | null | undefined;
@@ -36681,6 +37369,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationProviderJobId?: string | undefined;
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
+                collectionTemplateIds?: string[] | undefined;
             };
             tacticLogId: string;
             rating?: "helpful" | "not_helpful" | null | undefined;
@@ -37046,6 +37735,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationProviderJobId?: string | undefined;
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
+                collectionTemplateIds?: string[] | undefined;
             };
             tacticLogId: string;
             rating?: "helpful" | "not_helpful" | null | undefined;
@@ -37415,6 +38105,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 generationProviderJobId?: string | undefined;
                 generationPrompt?: string | undefined;
                 generationVoice?: "m" | "f" | null | undefined;
+                collectionTemplateIds?: string[] | undefined;
             };
             tacticLogId: string;
             rating?: "helpful" | "not_helpful" | null | undefined;

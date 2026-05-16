@@ -13,7 +13,6 @@ import { RecapSession, recapSessionSchema } from "./recap";
 import { OnboardingSession, onboardingSessionSchema } from "./onboarding";
 // TODO: Remove after 2026-05-26 — legacy import for "alignment" → "onboarding" rename
 import { AlignmentSession, alignmentSessionSchema } from "./alignment";
-import { CommitmentSession, commitmentSessionSchema } from "./commitment";
 import { TacticSession, tacticSessionSchema } from "./tactic";
 import { WelcomeSession, welcomeSessionSchema } from "./welcome";
 import { RecoveryKeySession, recoveryKeySessionSchema } from "./recoveryKey";
@@ -36,7 +35,6 @@ export * from "./recap";
 export * from "./onboarding";
 // TODO: Remove after 2026-05-26 — legacy re-export for "alignment" → "onboarding" rename
 export * from "./alignment";
-export * from "./commitment";
 export * from "./tactic";
 export * from "./welcome";
 export * from "./recoveryKey";
@@ -57,7 +55,6 @@ export const sessionSchemas: Record<string, z.ZodTypeAny> = {
   onboarding: onboardingSessionSchema,
   // TODO: Remove after 2026-05-26 — legacy key for "alignment" → "onboarding" rename
   alignment: alignmentSessionSchema,
-  commitment: commitmentSessionSchema,
   tactic: tacticSessionSchema,
   welcome: welcomeSessionSchema,
   recoveryKey: recoveryKeySessionSchema,
@@ -80,7 +77,6 @@ export const sessionSchema: z.ZodDiscriminatedUnion<
     typeof recapSessionSchema,
     typeof locationPlanSessionSchema,
     typeof adjustmentSessionSchema,
-    typeof commitmentSessionSchema,
     typeof tacticSessionSchema,
     typeof welcomeSessionSchema,
     typeof recoveryKeySessionSchema,
@@ -100,7 +96,6 @@ export const sessionSchema: z.ZodDiscriminatedUnion<
   recapSessionSchema,
   locationPlanSessionSchema,
   adjustmentSessionSchema,
-  commitmentSessionSchema,
   tacticSessionSchema,
   welcomeSessionSchema,
   recoveryKeySessionSchema,
@@ -168,14 +163,6 @@ export const isValidAdjustmentSession = (
   value: unknown,
 ): value is AdjustmentSession =>
   adjustmentSessionSchema.safeParse(value).success;
-
-export const sessionIsCommitmentSession = (
-  value: Session,
-): value is CommitmentSession => value.type === "commitment";
-export const isValidCommitmentSession = (
-  value: unknown,
-): value is CommitmentSession =>
-  commitmentSessionSchema.safeParse(value).success;
 
 export const sessionIsTacticSession = (
   value: Session,

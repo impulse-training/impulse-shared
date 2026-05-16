@@ -1,7 +1,7 @@
 import { z } from "zod";
 export declare const sessionBaseSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
-    type: z.ZodDefault<z.ZodEnum<["impulse", "general", "onboarding", "recap", "behavior", "dayRecap", "timePlan", "locationPlan", "adjustment", "alignment", "commitment", "welcome", "tactic", "recoveryKey", "tasks", "demo", "milestone", "toolkitPlanning"]>>;
+    type: z.ZodDefault<z.ZodEnum<["impulse", "general", "onboarding", "recap", "behavior", "dayRecap", "timePlan", "locationPlan", "adjustment", "alignment", "welcome", "tactic", "recoveryKey", "tasks", "demo", "milestone", "toolkitPlanning"]>>;
     title: z.ZodString;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     date: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -1774,6 +1774,7 @@ export declare const sessionBaseSchema: z.ZodObject<{
         generationProviderJobId: z.ZodOptional<z.ZodString>;
         generationPrompt: z.ZodOptional<z.ZodString>;
         generationVoice: z.ZodOptional<z.ZodNullable<z.ZodEnum<["m", "f"]>>>;
+        collectionTemplateIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
         updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
     }, "strip", z.ZodTypeAny, {
@@ -2123,6 +2124,7 @@ export declare const sessionBaseSchema: z.ZodObject<{
         generationProviderJobId?: string | undefined;
         generationPrompt?: string | undefined;
         generationVoice?: "m" | "f" | null | undefined;
+        collectionTemplateIds?: string[] | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -2470,6 +2472,7 @@ export declare const sessionBaseSchema: z.ZodObject<{
         generationProviderJobId?: string | undefined;
         generationPrompt?: string | undefined;
         generationVoice?: "m" | "f" | null | undefined;
+        collectionTemplateIds?: string[] | undefined;
     }>>;
     currentTacticStepIndex: z.ZodOptional<z.ZodNumber>;
     isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
@@ -2567,7 +2570,7 @@ export declare const sessionBaseSchema: z.ZodObject<{
     startedDeletingAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     deletingError: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    type: "behavior" | "tactic" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | "alignment" | "commitment" | "welcome" | "recoveryKey" | "tasks" | "demo" | "milestone" | "toolkitPlanning";
+    type: "behavior" | "tactic" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | "alignment" | "welcome" | "recoveryKey" | "tasks" | "demo" | "milestone" | "toolkitPlanning";
     date: import("../../types").Timestamp;
     dateString: string;
     title: string;
@@ -2936,6 +2939,7 @@ export declare const sessionBaseSchema: z.ZodObject<{
         generationProviderJobId?: string | undefined;
         generationPrompt?: string | undefined;
         generationVoice?: "m" | "f" | null | undefined;
+        collectionTemplateIds?: string[] | undefined;
     } | undefined;
     currentTacticStepIndex?: number | undefined;
     showTactics?: boolean | undefined;
@@ -2993,7 +2997,7 @@ export declare const sessionBaseSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    type?: "behavior" | "tactic" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | "alignment" | "commitment" | "welcome" | "recoveryKey" | "tasks" | "demo" | "milestone" | "toolkitPlanning" | undefined;
+    type?: "behavior" | "tactic" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | "alignment" | "welcome" | "recoveryKey" | "tasks" | "demo" | "milestone" | "toolkitPlanning" | undefined;
     behaviorIds?: string[] | undefined;
     tags?: Record<string, string[]> | undefined;
     mode?: "text" | "voice" | undefined;
@@ -3348,6 +3352,7 @@ export declare const sessionBaseSchema: z.ZodObject<{
         generationProviderJobId?: string | undefined;
         generationPrompt?: string | undefined;
         generationVoice?: "m" | "f" | null | undefined;
+        collectionTemplateIds?: string[] | undefined;
     } | undefined;
     currentTacticStepIndex?: number | undefined;
     isDraft?: boolean | undefined;

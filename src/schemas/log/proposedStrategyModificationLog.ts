@@ -7,6 +7,8 @@ const strategyTriggerDraftSchema = z.object({
   title: z.string().optional(),
   behaviorIds: z.array(z.string()).optional(),
   tags: z.record(z.string(), z.union([z.string(), z.array(z.string())])).default({}),
+  triggerType: z.enum(["arrival", "departure"]).optional(),
+  locationName: z.string().optional(),
 });
 
 const newTacticDraftSchema = z.object({
@@ -19,6 +21,10 @@ const strategyPlanDraftSchema = z.object({
   name: z.string().min(1),
   tacticIds: z.array(z.string()).default([]),
   newTactics: z.array(newTacticDraftSchema).optional(),
+  planType: z.enum(["trigger", "scheduled"]).optional(),
+  hour: z.number().min(0).max(23).optional(),
+  minute: z.number().min(0).max(59).optional(),
+  weekdays: z.array(z.number().min(0).max(6)).optional(),
 });
 
 export const createTriggerStrategyOperationSchema = z.object({
@@ -29,7 +35,8 @@ export const createTriggerStrategyOperationSchema = z.object({
 
 export const createPlanStrategyOperationSchema = z.object({
   type: z.literal("create_plan"),
-  triggerClientId: z.string().min(1),
+  triggerClientId: z.string().min(1).optional(),
+  existingTriggerId: z.string().min(1).optional(),
   plan: strategyPlanDraftSchema,
 });
 

@@ -9,6 +9,8 @@ const strategyTriggerDraftSchema = zod_1.z.object({
     title: zod_1.z.string().optional(),
     behaviorIds: zod_1.z.array(zod_1.z.string()).optional(),
     tags: zod_1.z.record(zod_1.z.string(), zod_1.z.union([zod_1.z.string(), zod_1.z.array(zod_1.z.string())])).default({}),
+    triggerType: zod_1.z.enum(["arrival", "departure"]).optional(),
+    locationName: zod_1.z.string().optional(),
 });
 const newTacticDraftSchema = zod_1.z.object({
     title: zod_1.z.string().min(1),
@@ -19,6 +21,10 @@ const strategyPlanDraftSchema = zod_1.z.object({
     name: zod_1.z.string().min(1),
     tacticIds: zod_1.z.array(zod_1.z.string()).default([]),
     newTactics: zod_1.z.array(newTacticDraftSchema).optional(),
+    planType: zod_1.z.enum(["trigger", "scheduled"]).optional(),
+    hour: zod_1.z.number().min(0).max(23).optional(),
+    minute: zod_1.z.number().min(0).max(59).optional(),
+    weekdays: zod_1.z.array(zod_1.z.number().min(0).max(6)).optional(),
 });
 exports.createTriggerStrategyOperationSchema = zod_1.z.object({
     type: zod_1.z.literal("create_trigger"),
@@ -27,7 +33,8 @@ exports.createTriggerStrategyOperationSchema = zod_1.z.object({
 });
 exports.createPlanStrategyOperationSchema = zod_1.z.object({
     type: zod_1.z.literal("create_plan"),
-    triggerClientId: zod_1.z.string().min(1),
+    triggerClientId: zod_1.z.string().min(1).optional(),
+    existingTriggerId: zod_1.z.string().min(1).optional(),
     plan: strategyPlanDraftSchema,
 });
 exports.strategyModificationOperationSchema = zod_1.z.discriminatedUnion("type", [

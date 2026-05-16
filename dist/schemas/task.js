@@ -1,10 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isSuggestTacticTask = exports.isToolkitPlanningTask = exports.isReviewTriggerTask = exports.isRecapQuestionTask = exports.isProposeMaskBehaviorTask = exports.isProposeExperimentTask = exports.isSuggestStrategyTask = exports.isMergeBehaviorsTask = exports.isTask = exports.taskSchema = exports.suggestTacticTaskSchema = exports.toolkitPlanningTaskSchema = exports.reviewTriggerTaskSchema = exports.recapQuestionTaskSchema = exports.createSessionTaskSchema = exports.proposeMaskBehaviorTaskSchema = exports.proposeExperimentTaskSchema = exports.proposedMetricSchema = exports.suggestStrategyTaskSchema = exports.mergeBehaviorsTaskSchema = exports.taskBaseSchema = exports.taskCategorySchema = exports.taskStatusSchema = void 0;
+exports.isSuggestTacticTask = exports.isToolkitPlanningTask = exports.isReviewTriggerTask = exports.isRecapQuestionTask = exports.isProposeMaskBehaviorTask = exports.isProposeExperimentTask = exports.isSuggestStrategyTask = exports.isMergeBehaviorsTask = exports.isTask = exports.taskSchema = exports.suggestTacticTaskSchema = exports.toolkitPlanningTaskSchema = exports.reviewTriggerTaskSchema = exports.recapQuestionTaskSchema = exports.createSessionTaskSchema = exports.proposeMaskBehaviorTaskSchema = exports.proposeExperimentTaskSchema = exports.proposedMetricSchema = exports.suggestStrategyTaskSchema = exports.mergeBehaviorsTaskSchema = exports.taskBaseSchema = exports.claimableSessionTypeSchema = exports.taskCategorySchema = exports.taskStatusSchema = void 0;
 const zod_1 = require("zod");
 const timestampSchema_1 = require("../utils/timestampSchema");
 exports.taskStatusSchema = zod_1.z.enum(["open", "completed", "dismissed"]);
 exports.taskCategorySchema = zod_1.z.enum(["zara", "deterministic"]);
+exports.claimableSessionTypeSchema = zod_1.z.enum(["recap", "general", "toolkitPlanning"]);
 exports.taskBaseSchema = zod_1.z.object({
     id: zod_1.z.string().optional(),
     userId: zod_1.z.string(),
@@ -17,6 +18,7 @@ exports.taskBaseSchema = zod_1.z.object({
     minAppVersion: zod_1.z.string().optional(),
     requiredTools: zod_1.z.array(zod_1.z.string()).optional(),
     dependsOnTaskId: zod_1.z.string().optional(),
+    claimableSessionTypes: zod_1.z.array(exports.claimableSessionTypeSchema).min(1),
     createdBy: zod_1.z.string().optional(),
     createdAt: timestampSchema_1.timestampSchema,
     updatedAt: timestampSchema_1.timestampSchema,
@@ -41,14 +43,21 @@ const strategyOperationSchema = zod_1.z.discriminatedUnion("type", [
             title: zod_1.z.string().optional(),
             tags: zod_1.z.record(zod_1.z.string(), zod_1.z.string()).optional(),
             behaviorIds: zod_1.z.array(zod_1.z.string()).optional(),
+            triggerType: zod_1.z.enum(["arrival", "departure"]).optional(),
+            locationName: zod_1.z.string().optional(),
         }),
     }),
     zod_1.z.object({
         type: zod_1.z.literal("create_plan"),
-        triggerClientId: zod_1.z.string().min(1),
+        triggerClientId: zod_1.z.string().min(1).optional(),
+        existingTriggerId: zod_1.z.string().min(1).optional(),
         plan: zod_1.z.object({
             name: zod_1.z.string().min(1),
             tacticIds: zod_1.z.array(zod_1.z.string()).min(1),
+            planType: zod_1.z.enum(["trigger", "scheduled"]).optional(),
+            hour: zod_1.z.number().min(0).max(23).optional(),
+            minute: zod_1.z.number().min(0).max(59).optional(),
+            weekdays: zod_1.z.array(zod_1.z.number().min(0).max(6)).optional(),
         }),
     }),
 ]);

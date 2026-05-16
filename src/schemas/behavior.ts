@@ -233,7 +233,7 @@ export const behaviorSchema = behaviorTemplateBase
     // When true, the recap session should collect baseline usage data for this behavior
     needsBaselineData: z.boolean().optional().default(false),
     customMilestoneRungs: z.array(milestoneRungSchema).optional(),
-    isDefault: z.boolean().optional().default(true),
+    isDefault: z.boolean().optional().default(false),
     mergedIntoBehaviorId: z.string().optional(),
     mergedFromBehaviorIds: z.array(z.string()).optional(),
     mergedAt: timestampSchema.optional(),

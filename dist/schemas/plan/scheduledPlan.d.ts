@@ -46,6 +46,28 @@ export declare const scheduledPlanSchema: z.ZodObject<{
     generationSignature: z.ZodOptional<z.ZodString>;
     generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
+    planSteps: z.ZodOptional<z.ZodArray<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+        type: z.ZodLiteral<"fixedTactic">;
+        tacticRef: z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>;
+    }, "strip", z.ZodTypeAny, {
+        type: "fixedTactic";
+        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+    }, {
+        type: "fixedTactic";
+        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+    }>, z.ZodObject<{
+        type: z.ZodLiteral<"collectionPick">;
+        collectionId: z.ZodString;
+        label: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        type: "collectionPick";
+        collectionId: string;
+        label?: string | undefined;
+    }, {
+        type: "collectionPick";
+        collectionId: string;
+        label?: string | undefined;
+    }>]>, "many">>;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     numberOfUses: z.ZodOptional<z.ZodNumber>;
     numberOfSuccesses: z.ZodOptional<z.ZodNumber>;
@@ -62,10 +84,10 @@ export declare const scheduledPlanSchema: z.ZodObject<{
     type: "scheduled";
     name: string;
     tactics: import("../..").DocumentReferenceLike<unknown>[];
-    questions: import("../..").DocumentReferenceLike<unknown>[];
     hour: number;
     minute: number;
     weekdays: number[];
+    questions: import("../..").DocumentReferenceLike<unknown>[];
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
@@ -89,6 +111,14 @@ export declare const scheduledPlanSchema: z.ZodObject<{
     generationSignature?: string | undefined;
     generatedFromTacticIds?: string[] | undefined;
     generatedFromSessionCount?: number | undefined;
+    planSteps?: ({
+        type: "fixedTactic";
+        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+    } | {
+        type: "collectionPick";
+        collectionId: string;
+        label?: string | undefined;
+    })[] | undefined;
     numberOfUses?: number | undefined;
     numberOfSuccesses?: number | undefined;
     numberOfSetbacks?: number | undefined;
@@ -125,6 +155,14 @@ export declare const scheduledPlanSchema: z.ZodObject<{
     generationSignature?: string | undefined;
     generatedFromTacticIds?: string[] | undefined;
     generatedFromSessionCount?: number | undefined;
+    planSteps?: ({
+        type: "fixedTactic";
+        tacticRef: import("../..").DocumentReferenceLike<unknown>;
+    } | {
+        type: "collectionPick";
+        collectionId: string;
+        label?: string | undefined;
+    })[] | undefined;
     numberOfUses?: number | undefined;
     numberOfSuccesses?: number | undefined;
     numberOfSetbacks?: number | undefined;

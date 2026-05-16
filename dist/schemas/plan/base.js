@@ -5,6 +5,7 @@ exports.planBaseSchema = planBaseSchema;
 const zod_1 = require("zod");
 const documentReferenceSchema_1 = require("../../utils/documentReferenceSchema");
 const timestampSchema_1 = require("../../utils/timestampSchema");
+const planStep_1 = require("./planStep");
 exports.planTagIndicationSchema = zod_1.z.object({
     // Tag group name (e.g. "emotion") matched by label so shared plans can work
     // across users with different Firestore tag-group IDs.
@@ -43,6 +44,9 @@ function planBaseSchema(type) {
         generationSignature: zod_1.z.string().optional(),
         generatedFromTacticIds: zod_1.z.array(zod_1.z.string()).optional(),
         generatedFromSessionCount: zod_1.z.number().int().nonnegative().optional(),
+        // Mixed step types: fixed tactics and collection picks.
+        // When present, takes precedence over the `tactics` array.
+        planSteps: zod_1.z.array(planStep_1.planStepSchema).optional(),
         // Which behaviors this plan applies to. Empty/undefined = all behaviors.
         behaviorIds: zod_1.z.array(zod_1.z.string()).optional(),
         // Cross-user effectiveness counters (incremented atomically on shared plan docs)

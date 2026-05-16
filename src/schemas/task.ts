@@ -5,6 +5,8 @@ export const taskStatusSchema = z.enum(["open", "completed", "dismissed"]);
 
 export const taskCategorySchema = z.enum(["zara", "deterministic"]);
 
+export const claimableSessionTypeSchema = z.enum(["recap", "general", "toolkitPlanning"]);
+
 export const taskBaseSchema = z.object({
   id: z.string().optional(),
   userId: z.string(),
@@ -17,6 +19,7 @@ export const taskBaseSchema = z.object({
   minAppVersion: z.string().optional(),
   requiredTools: z.array(z.string()).optional(),
   dependsOnTaskId: z.string().optional(),
+  claimableSessionTypes: z.array(claimableSessionTypeSchema).min(1),
   createdBy: z.string().optional(),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
@@ -43,14 +46,21 @@ const strategyOperationSchema = z.discriminatedUnion("type", [
       title: z.string().optional(),
       tags: z.record(z.string(), z.string()).optional(),
       behaviorIds: z.array(z.string()).optional(),
+      triggerType: z.enum(["arrival", "departure"]).optional(),
+      locationName: z.string().optional(),
     }),
   }),
   z.object({
     type: z.literal("create_plan"),
-    triggerClientId: z.string().min(1),
+    triggerClientId: z.string().min(1).optional(),
+    existingTriggerId: z.string().min(1).optional(),
     plan: z.object({
       name: z.string().min(1),
       tacticIds: z.array(z.string()).min(1),
+      planType: z.enum(["trigger", "scheduled"]).optional(),
+      hour: z.number().min(0).max(23).optional(),
+      minute: z.number().min(0).max(59).optional(),
+      weekdays: z.array(z.number().min(0).max(6)).optional(),
     }),
   }),
 ]);
@@ -173,6 +183,7 @@ export const taskSchema = z.discriminatedUnion("type", [
 
 export type TaskCategory = z.infer<typeof taskCategorySchema>;
 export type TaskStatus = z.infer<typeof taskStatusSchema>;
+export type ClaimableSessionType = z.infer<typeof claimableSessionTypeSchema>;
 export type MergeBehaviorsTask = z.infer<typeof mergeBehaviorsTaskSchema>;
 export type SuggestStrategyTask = z.infer<typeof suggestStrategyTaskSchema>;
 export type ProposeExperimentTask = z.infer<typeof proposeExperimentTaskSchema>;
