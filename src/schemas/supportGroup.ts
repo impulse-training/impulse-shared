@@ -76,6 +76,17 @@ export const supportGroupSchema = z.object({
   isOpen: z.boolean().optional(),
   // Maximum number of members for this group
   maxMembers: z.number().optional(),
+
+  // Recurring coaching call slot claimed by the user
+  scheduledCallSlot: z
+    .object({
+      dayOfWeek: z.number().int().min(0).max(6),
+      startTime: z.string(),
+      endTime: z.string(),
+      timezone: z.string(),
+    })
+    .nullable()
+    .optional(),
 });
 
 // Export types inferred from schemas

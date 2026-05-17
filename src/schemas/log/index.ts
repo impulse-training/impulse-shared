@@ -108,6 +108,10 @@ import {
   TacticSuggestionsLog,
   tacticSuggestionsLogSchema,
 } from "./tacticSuggestionsLog";
+import {
+  CoachBookingPromptLog,
+  coachBookingPromptLogSchema,
+} from "./coachBookingPromptLog";
 
 export const logSchemas = {
   user: userMessageLogSchema,
@@ -148,6 +152,7 @@ export const logSchemas = {
   mask_behavior_proposal: maskBehaviorProposalLogSchema,
   shortcut_setup_intro: shortcutSetupIntroLogSchema,
   tactic_suggestions: tacticSuggestionsLogSchema,
+  coach_booking_prompt: coachBookingPromptLogSchema,
 };
 export const logTypes = Object.keys(logSchemas);
 
@@ -189,7 +194,8 @@ export type Log =
   | MergeBehaviorsProposalLog
   | MaskBehaviorProposalLog
   | ShortcutSetupIntroLog
-  | TacticSuggestionsLog;
+  | TacticSuggestionsLog
+  | CoachBookingPromptLog;
 
 export * from "./behaviorLog";
 export * from "./breathingLog";
@@ -227,6 +233,7 @@ export * from "./mergeBehaviorsProposalLog";
 export * from "./maskBehaviorProposalLog";
 export * from "./shortcutSetupIntroLog";
 export * from "./tacticSuggestionsLog";
+export * from "./coachBookingPromptLog";
 
 // Discriminated union schema across all log variants
 export const logSchema = z.discriminatedUnion("type", [
@@ -266,6 +273,7 @@ export const logSchema = z.discriminatedUnion("type", [
   maskBehaviorProposalLogSchema,
   shortcutSetupIntroLogSchema,
   tacticSuggestionsLogSchema,
+  coachBookingPromptLogSchema,
 ]);
 
 // Export log type guards
@@ -508,3 +516,8 @@ export const logIsTacticSuggestionsLog = (
   value: Omit<Log, "id">,
 ): value is TacticSuggestionsLog =>
   value.type === "tactic_suggestions";
+
+export const logIsCoachBookingPromptLog = (
+  value: Omit<Log, "id">,
+): value is CoachBookingPromptLog =>
+  value.type === "coach_booking_prompt";
