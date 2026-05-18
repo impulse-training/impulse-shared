@@ -95,8 +95,13 @@ export function shouldRespondToLogWithAI(
     afterData.data.resolvedAt != null &&
     fieldChanged(beforeData, afterData, "data.resolvedAt");
 
-  const isDayTotalsPromptAction =
-    beforeData && afterData && logIsDayTotalsPromptLog(afterData);
+  const isDayTotalsDiscussRequested =
+    beforeData &&
+    afterData &&
+    logIsDayTotalsPromptLog(afterData) &&
+    !!afterData.data.discussRequestedAt &&
+    (!logIsDayTotalsPromptLog(beforeData) ||
+      !beforeData.data.discussRequestedAt);
 
   const isSetupModeTextChoice =
     beforeData &&
@@ -160,7 +165,7 @@ export function shouldRespondToLogWithAI(
   if (
     !isMetricRating &&
     !isDebriefOutcomeResolved &&
-    !isDayTotalsPromptAction &&
+    !isDayTotalsDiscussRequested &&
     !isSetupModeTextChoice &&
     !isShortcutSetupTextChoice &&
     !isTacticCompleted &&

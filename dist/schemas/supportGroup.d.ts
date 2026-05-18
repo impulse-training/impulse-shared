@@ -574,6 +574,22 @@ export declare const supportGroupSchema: z.ZodObject<{
     timezoneOffsets: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
     isOpen: z.ZodOptional<z.ZodBoolean>;
     maxMembers: z.ZodOptional<z.ZodNumber>;
+    scheduledCallSlot: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        dayOfWeek: z.ZodNumber;
+        startTime: z.ZodString;
+        endTime: z.ZodString;
+        timezone: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        dayOfWeek: number;
+        startTime: string;
+        endTime: string;
+        timezone: string;
+    }, {
+        dayOfWeek: number;
+        startTime: string;
+        endTime: string;
+        timezone: string;
+    }>>>;
 }, "strip", z.ZodTypeAny, {
     type: "onboarding" | "system" | "alignment" | "social" | "coach";
     name: string;
@@ -692,6 +708,12 @@ export declare const supportGroupSchema: z.ZodObject<{
     timezoneOffsets?: number[] | undefined;
     isOpen?: boolean | undefined;
     maxMembers?: number | undefined;
+    scheduledCallSlot?: {
+        dayOfWeek: number;
+        startTime: string;
+        endTime: string;
+        timezone: string;
+    } | null | undefined;
 }, {
     name: string;
     membersById: Record<string, {
@@ -810,6 +832,12 @@ export declare const supportGroupSchema: z.ZodObject<{
     timezoneOffsets?: number[] | undefined;
     isOpen?: boolean | undefined;
     maxMembers?: number | undefined;
+    scheduledCallSlot?: {
+        dayOfWeek: number;
+        startTime: string;
+        endTime: string;
+        timezone: string;
+    } | null | undefined;
 }>;
 export type SupportGroupMember = z.infer<typeof supportGroupMemberSchema>;
 export type SupportGroup = z.infer<typeof supportGroupSchema>;

@@ -1,5 +1,6 @@
 import { z } from "zod";
-export declare const notifySupportStepSchema: z.ZodObject<{
+export declare const phoneCallStepSchema: z.ZodObject<{
+    text: z.ZodOptional<z.ZodString>;
     backgroundImage: z.ZodOptional<z.ZodObject<{
         createdAt: z.ZodOptional<z.ZodType<import("../../../types").Timestamp, z.ZodTypeDef, import("../../../types").Timestamp>>;
         updatedAt: z.ZodOptional<z.ZodType<import("../../../types").Timestamp, z.ZodTypeDef, import("../../../types").Timestamp>>;
@@ -81,13 +82,14 @@ export declare const notifySupportStepSchema: z.ZodObject<{
     }>>;
     tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
 } & {
-    mode: z.ZodLiteral<"notifySupport">;
-    groupId: z.ZodString;
-    text: z.ZodString;
+    mode: z.ZodLiteral<"phoneCall">;
+    contactName: z.ZodString;
+    phoneNumber: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    text: string;
-    groupId: string;
-    mode: "notifySupport";
+    mode: "phoneCall";
+    contactName: string;
+    phoneNumber: string;
+    text?: string | undefined;
     backgroundImage?: {
         uri: string;
         storagePath: string;
@@ -109,9 +111,10 @@ export declare const notifySupportStepSchema: z.ZodObject<{
     } | undefined;
     tags?: string[] | undefined;
 }, {
-    text: string;
-    groupId: string;
-    mode: "notifySupport";
+    mode: "phoneCall";
+    contactName: string;
+    phoneNumber: string;
+    text?: string | undefined;
     backgroundImage?: {
         uri: string;
         storagePath: string;
@@ -133,4 +136,4 @@ export declare const notifySupportStepSchema: z.ZodObject<{
     } | undefined;
     tags?: string[] | undefined;
 }>;
-export type NotifySupportStep = z.infer<typeof notifySupportStepSchema>;
+export type PhoneCallStep = z.infer<typeof phoneCallStepSchema>;

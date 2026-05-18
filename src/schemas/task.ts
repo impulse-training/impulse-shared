@@ -19,7 +19,7 @@ export const taskBaseSchema = z.object({
   minAppVersion: z.string().optional(),
   requiredTools: z.array(z.string()).optional(),
   dependsOnTaskId: z.string().optional(),
-  claimableSessionTypes: z.array(claimableSessionTypeSchema).min(1),
+  claimableSessionTypes: z.array(claimableSessionTypeSchema).min(1).optional(),
   createdBy: z.string().optional(),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
@@ -169,6 +169,15 @@ export const suggestTacticTaskSchema = taskBaseSchema.extend({
   suggestions: z.array(tacticSuggestionSchema).min(1),
 });
 
+export const reflectOnMetricsTaskSchema = taskBaseSchema.extend({
+  type: z.literal("reflect_on_metrics"),
+  behaviorName: z.string().min(1),
+  metricIds: z.array(z.string().min(1)).min(1),
+  metricNames: z.array(z.string().min(1)).min(1),
+  experimentQuestion: z.string().min(1),
+  timeWindowDays: z.number().int().positive(),
+});
+
 export const taskSchema = z.discriminatedUnion("type", [
   mergeBehaviorsTaskSchema,
   suggestStrategyTaskSchema,
@@ -179,6 +188,7 @@ export const taskSchema = z.discriminatedUnion("type", [
   reviewTriggerTaskSchema,
   toolkitPlanningTaskSchema,
   suggestTacticTaskSchema,
+  reflectOnMetricsTaskSchema,
 ]);
 
 export type TaskCategory = z.infer<typeof taskCategorySchema>;
@@ -193,6 +203,7 @@ export type RecapQuestionTask = z.infer<typeof recapQuestionTaskSchema>;
 export type ReviewTriggerTask = z.infer<typeof reviewTriggerTaskSchema>;
 export type ToolkitPlanningTask = z.infer<typeof toolkitPlanningTaskSchema>;
 export type SuggestTacticTask = z.infer<typeof suggestTacticTaskSchema>;
+export type ReflectOnMetricsTask = z.infer<typeof reflectOnMetricsTaskSchema>;
 export type Task = z.infer<typeof taskSchema>;
 
 export const isTask = (value: unknown): value is Task =>
@@ -237,3 +248,8 @@ export const isSuggestTacticTask = (
   value: unknown,
 ): value is SuggestTacticTask =>
   suggestTacticTaskSchema.safeParse(value).success;
+
+export const isReflectOnMetricsTask = (
+  value: unknown,
+): value is ReflectOnMetricsTask =>
+  reflectOnMetricsTaskSchema.safeParse(value).success;

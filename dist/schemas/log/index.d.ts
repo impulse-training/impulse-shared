@@ -34,6 +34,7 @@ import { MergeBehaviorsProposalLog } from "./mergeBehaviorsProposalLog";
 import { MaskBehaviorProposalLog } from "./maskBehaviorProposalLog";
 import { ShortcutSetupIntroLog } from "./shortcutSetupIntroLog";
 import { TacticSuggestionsLog } from "./tacticSuggestionsLog";
+import { CoachBookingPromptLog } from "./coachBookingPromptLog";
 export declare const logSchemas: {
     user: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
@@ -396,6 +397,22 @@ export declare const logSchemas: {
                 id: z.ZodOptional<z.ZodString>;
                 title: z.ZodOptional<z.ZodString>;
                 description: z.ZodOptional<z.ZodString>;
+                links: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                    url: z.ZodString;
+                    title: z.ZodOptional<z.ZodString>;
+                    imageUrl: z.ZodOptional<z.ZodString>;
+                    domain: z.ZodOptional<z.ZodString>;
+                }, "strip", z.ZodTypeAny, {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }, {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }>, "many">>;
                 aiInstructions: z.ZodOptional<z.ZodString>;
                 createdByUid: z.ZodOptional<z.ZodString>;
                 recommended: z.ZodOptional<z.ZodBoolean>;
@@ -779,8 +796,8 @@ export declare const logSchemas: {
                     text: z.ZodString;
                 }, "strip", z.ZodTypeAny, {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -803,8 +820,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 }, {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -2491,8 +2508,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -2625,6 +2642,12 @@ export declare const logSchemas: {
                 description?: string | undefined;
                 tags?: string[] | undefined;
                 autoplay?: boolean | undefined;
+                links?: {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
@@ -2662,7 +2685,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -2864,8 +2887,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -2998,6 +3021,12 @@ export declare const logSchemas: {
                 description?: string | undefined;
                 tags?: string[] | undefined;
                 autoplay?: boolean | undefined;
+                links?: {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
@@ -3035,7 +3064,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -3052,6 +3081,7 @@ export declare const logSchemas: {
         }, "strip", z.ZodTypeAny, {
             livekitRoomName: string;
             livekitSessionId: string;
+            endedAt?: import("../../types").Timestamp | undefined;
             tactic?: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
@@ -3247,8 +3277,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -3381,6 +3411,12 @@ export declare const logSchemas: {
                 description?: string | undefined;
                 tags?: string[] | undefined;
                 autoplay?: boolean | undefined;
+                links?: {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
@@ -3418,7 +3454,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -3427,12 +3463,12 @@ export declare const logSchemas: {
                 collectionTemplateIds?: string[] | undefined;
             } | undefined;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
-            endedAt?: import("../../types").Timestamp | undefined;
             token?: string | undefined;
             summary?: string | undefined;
         }, {
             livekitRoomName: string;
             livekitSessionId: string;
+            endedAt?: import("../../types").Timestamp | undefined;
             tactic?: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
@@ -3628,8 +3664,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -3762,6 +3798,12 @@ export declare const logSchemas: {
                 description?: string | undefined;
                 tags?: string[] | undefined;
                 autoplay?: boolean | undefined;
+                links?: {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
@@ -3799,7 +3841,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -3808,7 +3850,6 @@ export declare const logSchemas: {
                 collectionTemplateIds?: string[] | undefined;
             } | undefined;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
-            endedAt?: import("../../types").Timestamp | undefined;
             token?: string | undefined;
             summary?: string | undefined;
         }>;
@@ -3824,6 +3865,7 @@ export declare const logSchemas: {
         data: {
             livekitRoomName: string;
             livekitSessionId: string;
+            endedAt?: import("../../types").Timestamp | undefined;
             tactic?: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
@@ -4019,8 +4061,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -4153,6 +4195,12 @@ export declare const logSchemas: {
                 description?: string | undefined;
                 tags?: string[] | undefined;
                 autoplay?: boolean | undefined;
+                links?: {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
@@ -4190,7 +4238,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -4199,7 +4247,6 @@ export declare const logSchemas: {
                 collectionTemplateIds?: string[] | undefined;
             } | undefined;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
-            endedAt?: import("../../types").Timestamp | undefined;
             token?: string | undefined;
             summary?: string | undefined;
         };
@@ -4219,6 +4266,7 @@ export declare const logSchemas: {
         data: {
             livekitRoomName: string;
             livekitSessionId: string;
+            endedAt?: import("../../types").Timestamp | undefined;
             tactic?: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
@@ -4414,8 +4462,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -4548,6 +4596,12 @@ export declare const logSchemas: {
                 description?: string | undefined;
                 tags?: string[] | undefined;
                 autoplay?: boolean | undefined;
+                links?: {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
@@ -4585,7 +4639,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -4594,7 +4648,6 @@ export declare const logSchemas: {
                 collectionTemplateIds?: string[] | undefined;
             } | undefined;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
-            endedAt?: import("../../types").Timestamp | undefined;
             token?: string | undefined;
             summary?: string | undefined;
         };
@@ -4792,6 +4845,22 @@ export declare const logSchemas: {
                 id: z.ZodOptional<z.ZodString>;
                 title: z.ZodOptional<z.ZodString>;
                 description: z.ZodOptional<z.ZodString>;
+                links: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                    url: z.ZodString;
+                    title: z.ZodOptional<z.ZodString>;
+                    imageUrl: z.ZodOptional<z.ZodString>;
+                    domain: z.ZodOptional<z.ZodString>;
+                }, "strip", z.ZodTypeAny, {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }, {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }>, "many">>;
                 aiInstructions: z.ZodOptional<z.ZodString>;
                 createdByUid: z.ZodOptional<z.ZodString>;
                 recommended: z.ZodOptional<z.ZodBoolean>;
@@ -5175,8 +5244,8 @@ export declare const logSchemas: {
                     text: z.ZodString;
                 }, "strip", z.ZodTypeAny, {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -5199,8 +5268,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 }, {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -6887,8 +6956,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -7021,6 +7090,12 @@ export declare const logSchemas: {
                 description?: string | undefined;
                 tags?: string[] | undefined;
                 autoplay?: boolean | undefined;
+                links?: {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
@@ -7058,7 +7133,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -7260,8 +7335,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -7394,6 +7469,12 @@ export declare const logSchemas: {
                 description?: string | undefined;
                 tags?: string[] | undefined;
                 autoplay?: boolean | undefined;
+                links?: {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
@@ -7431,7 +7512,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -7738,8 +7819,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -7872,6 +7953,12 @@ export declare const logSchemas: {
                 description?: string | undefined;
                 tags?: string[] | undefined;
                 autoplay?: boolean | undefined;
+                links?: {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
@@ -7909,7 +7996,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -8148,8 +8235,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -8282,6 +8369,12 @@ export declare const logSchemas: {
                 description?: string | undefined;
                 tags?: string[] | undefined;
                 autoplay?: boolean | undefined;
+                links?: {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
@@ -8319,7 +8412,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -8568,8 +8661,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -8702,6 +8795,12 @@ export declare const logSchemas: {
                 description?: string | undefined;
                 tags?: string[] | undefined;
                 autoplay?: boolean | undefined;
+                links?: {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
@@ -8739,7 +8838,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -8992,8 +9091,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -9126,6 +9225,12 @@ export declare const logSchemas: {
                 description?: string | undefined;
                 tags?: string[] | undefined;
                 autoplay?: boolean | undefined;
+                links?: {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
@@ -9163,7 +9268,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -9231,6 +9336,22 @@ export declare const logSchemas: {
                 id: z.ZodOptional<z.ZodString>;
                 title: z.ZodOptional<z.ZodString>;
                 description: z.ZodOptional<z.ZodString>;
+                links: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                    url: z.ZodString;
+                    title: z.ZodOptional<z.ZodString>;
+                    imageUrl: z.ZodOptional<z.ZodString>;
+                    domain: z.ZodOptional<z.ZodString>;
+                }, "strip", z.ZodTypeAny, {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }, {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }>, "many">>;
                 aiInstructions: z.ZodOptional<z.ZodString>;
                 createdByUid: z.ZodOptional<z.ZodString>;
                 recommended: z.ZodOptional<z.ZodBoolean>;
@@ -9614,8 +9735,8 @@ export declare const logSchemas: {
                     text: z.ZodString;
                 }, "strip", z.ZodTypeAny, {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -9638,8 +9759,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 }, {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -11326,8 +11447,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -11460,6 +11581,12 @@ export declare const logSchemas: {
                 description?: string | undefined;
                 tags?: string[] | undefined;
                 autoplay?: boolean | undefined;
+                links?: {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
@@ -11497,7 +11624,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -11699,8 +11826,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -11833,6 +11960,12 @@ export declare const logSchemas: {
                 description?: string | undefined;
                 tags?: string[] | undefined;
                 autoplay?: boolean | undefined;
+                links?: {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
@@ -11870,7 +12003,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -12177,8 +12310,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -12311,6 +12444,12 @@ export declare const logSchemas: {
                 description?: string | undefined;
                 tags?: string[] | undefined;
                 autoplay?: boolean | undefined;
+                links?: {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
@@ -12348,7 +12487,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -12587,8 +12726,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -12721,6 +12860,12 @@ export declare const logSchemas: {
                 description?: string | undefined;
                 tags?: string[] | undefined;
                 autoplay?: boolean | undefined;
+                links?: {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
@@ -12758,7 +12903,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -13007,8 +13152,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -13141,6 +13286,12 @@ export declare const logSchemas: {
                 description?: string | undefined;
                 tags?: string[] | undefined;
                 autoplay?: boolean | undefined;
+                links?: {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
@@ -13178,7 +13329,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -13431,8 +13582,8 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -13565,6 +13716,12 @@ export declare const logSchemas: {
                 description?: string | undefined;
                 tags?: string[] | undefined;
                 autoplay?: boolean | undefined;
+                links?: {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
@@ -13602,7 +13759,7 @@ export declare const logSchemas: {
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -16897,6 +17054,22 @@ export declare const logSchemas: {
                     id: z.ZodOptional<z.ZodString>;
                     title: z.ZodOptional<z.ZodString>;
                     description: z.ZodOptional<z.ZodString>;
+                    links: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                        url: z.ZodString;
+                        title: z.ZodOptional<z.ZodString>;
+                        imageUrl: z.ZodOptional<z.ZodString>;
+                        domain: z.ZodOptional<z.ZodString>;
+                    }, "strip", z.ZodTypeAny, {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }, {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }>, "many">>;
                     aiInstructions: z.ZodOptional<z.ZodString>;
                     createdByUid: z.ZodOptional<z.ZodString>;
                     recommended: z.ZodOptional<z.ZodBoolean>;
@@ -17280,8 +17453,8 @@ export declare const logSchemas: {
                         text: z.ZodString;
                     }, "strip", z.ZodTypeAny, {
                         text: string;
-                        mode: "notifySupport";
                         groupId: string;
+                        mode: "notifySupport";
                         backgroundImage?: {
                             uri: string;
                             storagePath: string;
@@ -17304,8 +17477,8 @@ export declare const logSchemas: {
                         tags?: string[] | undefined;
                     }, {
                         text: string;
-                        mode: "notifySupport";
                         groupId: string;
+                        mode: "notifySupport";
                         backgroundImage?: {
                             uri: string;
                             storagePath: string;
@@ -18992,8 +19165,8 @@ export declare const logSchemas: {
                         tags?: string[] | undefined;
                     } | {
                         text: string;
-                        mode: "notifySupport";
                         groupId: string;
+                        mode: "notifySupport";
                         backgroundImage?: {
                             uri: string;
                             storagePath: string;
@@ -19126,6 +19299,12 @@ export declare const logSchemas: {
                     description?: string | undefined;
                     tags?: string[] | undefined;
                     autoplay?: boolean | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
                     aiInstructions?: string | undefined;
                     createdByUid?: string | undefined;
                     recommended?: boolean | undefined;
@@ -19163,7 +19342,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
-                    generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                    generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                     generationError?: string | undefined;
                     generationProvider?: string | undefined;
                     generationProviderJobId?: string | undefined;
@@ -19365,8 +19544,8 @@ export declare const logSchemas: {
                         tags?: string[] | undefined;
                     } | {
                         text: string;
-                        mode: "notifySupport";
                         groupId: string;
+                        mode: "notifySupport";
                         backgroundImage?: {
                             uri: string;
                             storagePath: string;
@@ -19499,6 +19678,12 @@ export declare const logSchemas: {
                     description?: string | undefined;
                     tags?: string[] | undefined;
                     autoplay?: boolean | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
                     aiInstructions?: string | undefined;
                     createdByUid?: string | undefined;
                     recommended?: boolean | undefined;
@@ -19536,7 +19721,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
-                    generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                    generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                     generationError?: string | undefined;
                     generationProvider?: string | undefined;
                     generationProviderJobId?: string | undefined;
@@ -19743,8 +19928,8 @@ export declare const logSchemas: {
                         tags?: string[] | undefined;
                     } | {
                         text: string;
-                        mode: "notifySupport";
                         groupId: string;
+                        mode: "notifySupport";
                         backgroundImage?: {
                             uri: string;
                             storagePath: string;
@@ -19877,6 +20062,12 @@ export declare const logSchemas: {
                     description?: string | undefined;
                     tags?: string[] | undefined;
                     autoplay?: boolean | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
                     aiInstructions?: string | undefined;
                     createdByUid?: string | undefined;
                     recommended?: boolean | undefined;
@@ -19914,7 +20105,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
-                    generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                    generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                     generationError?: string | undefined;
                     generationProvider?: string | undefined;
                     generationProviderJobId?: string | undefined;
@@ -20121,8 +20312,8 @@ export declare const logSchemas: {
                         tags?: string[] | undefined;
                     } | {
                         text: string;
-                        mode: "notifySupport";
                         groupId: string;
+                        mode: "notifySupport";
                         backgroundImage?: {
                             uri: string;
                             storagePath: string;
@@ -20255,6 +20446,12 @@ export declare const logSchemas: {
                     description?: string | undefined;
                     tags?: string[] | undefined;
                     autoplay?: boolean | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
                     aiInstructions?: string | undefined;
                     createdByUid?: string | undefined;
                     recommended?: boolean | undefined;
@@ -20292,7 +20489,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
-                    generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                    generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                     generationError?: string | undefined;
                     generationProvider?: string | undefined;
                     generationProviderJobId?: string | undefined;
@@ -20502,8 +20699,8 @@ export declare const logSchemas: {
                         tags?: string[] | undefined;
                     } | {
                         text: string;
-                        mode: "notifySupport";
                         groupId: string;
+                        mode: "notifySupport";
                         backgroundImage?: {
                             uri: string;
                             storagePath: string;
@@ -20636,6 +20833,12 @@ export declare const logSchemas: {
                     description?: string | undefined;
                     tags?: string[] | undefined;
                     autoplay?: boolean | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
                     aiInstructions?: string | undefined;
                     createdByUid?: string | undefined;
                     recommended?: boolean | undefined;
@@ -20673,7 +20876,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
-                    generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                    generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                     generationError?: string | undefined;
                     generationProvider?: string | undefined;
                     generationProviderJobId?: string | undefined;
@@ -20883,8 +21086,8 @@ export declare const logSchemas: {
                         tags?: string[] | undefined;
                     } | {
                         text: string;
-                        mode: "notifySupport";
                         groupId: string;
+                        mode: "notifySupport";
                         backgroundImage?: {
                             uri: string;
                             storagePath: string;
@@ -21017,6 +21220,12 @@ export declare const logSchemas: {
                     description?: string | undefined;
                     tags?: string[] | undefined;
                     autoplay?: boolean | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
                     aiInstructions?: string | undefined;
                     createdByUid?: string | undefined;
                     recommended?: boolean | undefined;
@@ -21054,7 +21263,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
-                    generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                    generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                     generationError?: string | undefined;
                     generationProvider?: string | undefined;
                     generationProviderJobId?: string | undefined;
@@ -21274,8 +21483,8 @@ export declare const logSchemas: {
                         tags?: string[] | undefined;
                     } | {
                         text: string;
-                        mode: "notifySupport";
                         groupId: string;
+                        mode: "notifySupport";
                         backgroundImage?: {
                             uri: string;
                             storagePath: string;
@@ -21408,6 +21617,12 @@ export declare const logSchemas: {
                     description?: string | undefined;
                     tags?: string[] | undefined;
                     autoplay?: boolean | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
                     aiInstructions?: string | undefined;
                     createdByUid?: string | undefined;
                     recommended?: boolean | undefined;
@@ -21445,7 +21660,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
-                    generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                    generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                     generationError?: string | undefined;
                     generationProvider?: string | undefined;
                     generationProviderJobId?: string | undefined;
@@ -21669,8 +21884,8 @@ export declare const logSchemas: {
                         tags?: string[] | undefined;
                     } | {
                         text: string;
-                        mode: "notifySupport";
                         groupId: string;
+                        mode: "notifySupport";
                         backgroundImage?: {
                             uri: string;
                             storagePath: string;
@@ -21803,6 +22018,12 @@ export declare const logSchemas: {
                     description?: string | undefined;
                     tags?: string[] | undefined;
                     autoplay?: boolean | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
                     aiInstructions?: string | undefined;
                     createdByUid?: string | undefined;
                     recommended?: boolean | undefined;
@@ -21840,7 +22061,7 @@ export declare const logSchemas: {
                         defaultConversationMode?: "text" | "voice" | undefined;
                         prompt?: string | undefined;
                     } | undefined;
-                    generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                    generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                     generationError?: string | undefined;
                     generationProvider?: string | undefined;
                     generationProviderJobId?: string | undefined;
@@ -22820,10 +23041,140 @@ export declare const logSchemas: {
         tacticId?: string | undefined;
         impulseId?: string | undefined;
     }>;
+    coach_booking_prompt: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        sessionId: z.ZodString;
+        tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        impulseId: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"coach_booking_prompt">;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            slots: z.ZodArray<z.ZodObject<{
+                dayOfWeek: z.ZodNumber;
+                startTime: z.ZodString;
+                endTime: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }, {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }>, "many">;
+            coachTimezone: z.ZodString;
+            selectedSlot: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+                dayOfWeek: z.ZodNumber;
+                startTime: z.ZodString;
+                endTime: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }, {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }>>>;
+            respondedAt: z.ZodOptional<z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>>;
+            taskId: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            slots: {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }[];
+            coachTimezone: string;
+            respondedAt?: import("../../types").Timestamp | null | undefined;
+            taskId?: string | undefined;
+            selectedSlot?: {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            } | null | undefined;
+        }, {
+            slots: {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }[];
+            coachTimezone: string;
+            respondedAt?: import("../../types").Timestamp | null | undefined;
+            taskId?: string | undefined;
+            selectedSlot?: {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            } | null | undefined;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "coach_booking_prompt";
+        sessionId: string;
+        dateString: string;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: true;
+        data: {
+            slots: {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }[];
+            coachTimezone: string;
+            respondedAt?: import("../../types").Timestamp | null | undefined;
+            taskId?: string | undefined;
+            selectedSlot?: {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            } | null | undefined;
+        };
+        id?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
+        impulseId?: string | undefined;
+    }, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "coach_booking_prompt";
+        sessionId: string;
+        dateString: string;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: true;
+        data: {
+            slots: {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }[];
+            coachTimezone: string;
+            respondedAt?: import("../../types").Timestamp | null | undefined;
+            taskId?: string | undefined;
+            selectedSlot?: {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            } | null | undefined;
+        };
+        id?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
+        impulseId?: string | undefined;
+    }>;
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ProposedExperimentLog | ProposedStrategyModificationLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | TriggerSelectionLog | RequestPermissionsLog | TacticReviewLog | SetupModeChoiceLog | TagsUpdatedLog | CrisisResourceLog | RecoveryKeyLog | CloseButtonLog | ImageLog | PhotoLog | MergeBehaviorsProposalLog | MaskBehaviorProposalLog | ShortcutSetupIntroLog | TacticSuggestionsLog;
+export type Log = TacticLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ProposedExperimentLog | ProposedStrategyModificationLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | TriggerSelectionLog | RequestPermissionsLog | TacticReviewLog | SetupModeChoiceLog | TagsUpdatedLog | CrisisResourceLog | RecoveryKeyLog | CloseButtonLog | ImageLog | PhotoLog | MergeBehaviorsProposalLog | MaskBehaviorProposalLog | ShortcutSetupIntroLog | TacticSuggestionsLog | CoachBookingPromptLog;
 export * from "./behaviorLog";
 export * from "./breathingLog";
 export * from "./callLog";
@@ -22860,6 +23211,7 @@ export * from "./mergeBehaviorsProposalLog";
 export * from "./maskBehaviorProposalLog";
 export * from "./shortcutSetupIntroLog";
 export * from "./tacticSuggestionsLog";
+export * from "./coachBookingPromptLog";
 export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -23218,6 +23570,22 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             id: z.ZodOptional<z.ZodString>;
             title: z.ZodOptional<z.ZodString>;
             description: z.ZodOptional<z.ZodString>;
+            links: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                url: z.ZodString;
+                title: z.ZodOptional<z.ZodString>;
+                imageUrl: z.ZodOptional<z.ZodString>;
+                domain: z.ZodOptional<z.ZodString>;
+            }, "strip", z.ZodTypeAny, {
+                url: string;
+                title?: string | undefined;
+                imageUrl?: string | undefined;
+                domain?: string | undefined;
+            }, {
+                url: string;
+                title?: string | undefined;
+                imageUrl?: string | undefined;
+                domain?: string | undefined;
+            }>, "many">>;
             aiInstructions: z.ZodOptional<z.ZodString>;
             createdByUid: z.ZodOptional<z.ZodString>;
             recommended: z.ZodOptional<z.ZodBoolean>;
@@ -23601,8 +23969,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 text: z.ZodString;
             }, "strip", z.ZodTypeAny, {
                 text: string;
-                mode: "notifySupport";
                 groupId: string;
+                mode: "notifySupport";
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -23625,8 +23993,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             }, {
                 text: string;
-                mode: "notifySupport";
                 groupId: string;
+                mode: "notifySupport";
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -25313,8 +25681,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                mode: "notifySupport";
                 groupId: string;
+                mode: "notifySupport";
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -25447,6 +25815,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             description?: string | undefined;
             tags?: string[] | undefined;
             autoplay?: boolean | undefined;
+            links?: {
+                url: string;
+                title?: string | undefined;
+                imageUrl?: string | undefined;
+                domain?: string | undefined;
+            }[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
@@ -25484,7 +25858,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -25686,8 +26060,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                mode: "notifySupport";
                 groupId: string;
+                mode: "notifySupport";
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -25820,6 +26194,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             description?: string | undefined;
             tags?: string[] | undefined;
             autoplay?: boolean | undefined;
+            links?: {
+                url: string;
+                title?: string | undefined;
+                imageUrl?: string | undefined;
+                domain?: string | undefined;
+            }[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
@@ -25857,7 +26237,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -25874,6 +26254,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     }, "strip", z.ZodTypeAny, {
         livekitRoomName: string;
         livekitSessionId: string;
+        endedAt?: import("../../types").Timestamp | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -26069,8 +26450,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                mode: "notifySupport";
                 groupId: string;
+                mode: "notifySupport";
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -26203,6 +26584,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             description?: string | undefined;
             tags?: string[] | undefined;
             autoplay?: boolean | undefined;
+            links?: {
+                url: string;
+                title?: string | undefined;
+                imageUrl?: string | undefined;
+                domain?: string | undefined;
+            }[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
@@ -26240,7 +26627,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -26249,12 +26636,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             collectionTemplateIds?: string[] | undefined;
         } | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
-        endedAt?: import("../../types").Timestamp | undefined;
         token?: string | undefined;
         summary?: string | undefined;
     }, {
         livekitRoomName: string;
         livekitSessionId: string;
+        endedAt?: import("../../types").Timestamp | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -26450,8 +26837,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                mode: "notifySupport";
                 groupId: string;
+                mode: "notifySupport";
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -26584,6 +26971,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             description?: string | undefined;
             tags?: string[] | undefined;
             autoplay?: boolean | undefined;
+            links?: {
+                url: string;
+                title?: string | undefined;
+                imageUrl?: string | undefined;
+                domain?: string | undefined;
+            }[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
@@ -26621,7 +27014,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -26630,7 +27023,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             collectionTemplateIds?: string[] | undefined;
         } | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
-        endedAt?: import("../../types").Timestamp | undefined;
         token?: string | undefined;
         summary?: string | undefined;
     }>;
@@ -26646,6 +27038,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: {
         livekitRoomName: string;
         livekitSessionId: string;
+        endedAt?: import("../../types").Timestamp | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -26841,8 +27234,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                mode: "notifySupport";
                 groupId: string;
+                mode: "notifySupport";
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -26975,6 +27368,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             description?: string | undefined;
             tags?: string[] | undefined;
             autoplay?: boolean | undefined;
+            links?: {
+                url: string;
+                title?: string | undefined;
+                imageUrl?: string | undefined;
+                domain?: string | undefined;
+            }[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
@@ -27012,7 +27411,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -27021,7 +27420,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             collectionTemplateIds?: string[] | undefined;
         } | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
-        endedAt?: import("../../types").Timestamp | undefined;
         token?: string | undefined;
         summary?: string | undefined;
     };
@@ -27041,6 +27439,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: {
         livekitRoomName: string;
         livekitSessionId: string;
+        endedAt?: import("../../types").Timestamp | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -27236,8 +27635,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                mode: "notifySupport";
                 groupId: string;
+                mode: "notifySupport";
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -27370,6 +27769,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             description?: string | undefined;
             tags?: string[] | undefined;
             autoplay?: boolean | undefined;
+            links?: {
+                url: string;
+                title?: string | undefined;
+                imageUrl?: string | undefined;
+                domain?: string | undefined;
+            }[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
@@ -27407,7 +27812,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -27416,7 +27821,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             collectionTemplateIds?: string[] | undefined;
         } | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
-        endedAt?: import("../../types").Timestamp | undefined;
         token?: string | undefined;
         summary?: string | undefined;
     };
@@ -27612,6 +28016,22 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             id: z.ZodOptional<z.ZodString>;
             title: z.ZodOptional<z.ZodString>;
             description: z.ZodOptional<z.ZodString>;
+            links: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                url: z.ZodString;
+                title: z.ZodOptional<z.ZodString>;
+                imageUrl: z.ZodOptional<z.ZodString>;
+                domain: z.ZodOptional<z.ZodString>;
+            }, "strip", z.ZodTypeAny, {
+                url: string;
+                title?: string | undefined;
+                imageUrl?: string | undefined;
+                domain?: string | undefined;
+            }, {
+                url: string;
+                title?: string | undefined;
+                imageUrl?: string | undefined;
+                domain?: string | undefined;
+            }>, "many">>;
             aiInstructions: z.ZodOptional<z.ZodString>;
             createdByUid: z.ZodOptional<z.ZodString>;
             recommended: z.ZodOptional<z.ZodBoolean>;
@@ -27995,8 +28415,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 text: z.ZodString;
             }, "strip", z.ZodTypeAny, {
                 text: string;
-                mode: "notifySupport";
                 groupId: string;
+                mode: "notifySupport";
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -28019,8 +28439,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             }, {
                 text: string;
-                mode: "notifySupport";
                 groupId: string;
+                mode: "notifySupport";
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -29707,8 +30127,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                mode: "notifySupport";
                 groupId: string;
+                mode: "notifySupport";
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -29841,6 +30261,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             description?: string | undefined;
             tags?: string[] | undefined;
             autoplay?: boolean | undefined;
+            links?: {
+                url: string;
+                title?: string | undefined;
+                imageUrl?: string | undefined;
+                domain?: string | undefined;
+            }[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
@@ -29878,7 +30304,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -30080,8 +30506,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                mode: "notifySupport";
                 groupId: string;
+                mode: "notifySupport";
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -30214,6 +30640,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             description?: string | undefined;
             tags?: string[] | undefined;
             autoplay?: boolean | undefined;
+            links?: {
+                url: string;
+                title?: string | undefined;
+                imageUrl?: string | undefined;
+                domain?: string | undefined;
+            }[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
@@ -30251,7 +30683,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -30558,8 +30990,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                mode: "notifySupport";
                 groupId: string;
+                mode: "notifySupport";
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -30692,6 +31124,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             description?: string | undefined;
             tags?: string[] | undefined;
             autoplay?: boolean | undefined;
+            links?: {
+                url: string;
+                title?: string | undefined;
+                imageUrl?: string | undefined;
+                domain?: string | undefined;
+            }[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
@@ -30729,7 +31167,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -30968,8 +31406,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                mode: "notifySupport";
                 groupId: string;
+                mode: "notifySupport";
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -31102,6 +31540,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             description?: string | undefined;
             tags?: string[] | undefined;
             autoplay?: boolean | undefined;
+            links?: {
+                url: string;
+                title?: string | undefined;
+                imageUrl?: string | undefined;
+                domain?: string | undefined;
+            }[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
@@ -31139,7 +31583,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -31388,8 +31832,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                mode: "notifySupport";
                 groupId: string;
+                mode: "notifySupport";
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -31522,6 +31966,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             description?: string | undefined;
             tags?: string[] | undefined;
             autoplay?: boolean | undefined;
+            links?: {
+                url: string;
+                title?: string | undefined;
+                imageUrl?: string | undefined;
+                domain?: string | undefined;
+            }[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
@@ -31559,7 +32009,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -31812,8 +32262,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                mode: "notifySupport";
                 groupId: string;
+                mode: "notifySupport";
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -31946,6 +32396,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             description?: string | undefined;
             tags?: string[] | undefined;
             autoplay?: boolean | undefined;
+            links?: {
+                url: string;
+                title?: string | undefined;
+                imageUrl?: string | undefined;
+                domain?: string | undefined;
+            }[] | undefined;
             aiInstructions?: string | undefined;
             createdByUid?: string | undefined;
             recommended?: boolean | undefined;
@@ -31983,7 +32439,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 defaultConversationMode?: "text" | "voice" | undefined;
                 prompt?: string | undefined;
             } | undefined;
-            generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+            generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
             generationError?: string | undefined;
             generationProvider?: string | undefined;
             generationProviderJobId?: string | undefined;
@@ -35258,6 +35714,22 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 id: z.ZodOptional<z.ZodString>;
                 title: z.ZodOptional<z.ZodString>;
                 description: z.ZodOptional<z.ZodString>;
+                links: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                    url: z.ZodString;
+                    title: z.ZodOptional<z.ZodString>;
+                    imageUrl: z.ZodOptional<z.ZodString>;
+                    domain: z.ZodOptional<z.ZodString>;
+                }, "strip", z.ZodTypeAny, {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }, {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }>, "many">>;
                 aiInstructions: z.ZodOptional<z.ZodString>;
                 createdByUid: z.ZodOptional<z.ZodString>;
                 recommended: z.ZodOptional<z.ZodBoolean>;
@@ -35641,8 +36113,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     text: z.ZodString;
                 }, "strip", z.ZodTypeAny, {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -35665,8 +36137,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tags?: string[] | undefined;
                 }, {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -37353,8 +37825,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -37487,6 +37959,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 description?: string | undefined;
                 tags?: string[] | undefined;
                 autoplay?: boolean | undefined;
+                links?: {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
@@ -37524,7 +38002,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -37726,8 +38204,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -37860,6 +38338,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 description?: string | undefined;
                 tags?: string[] | undefined;
                 autoplay?: boolean | undefined;
+                links?: {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
@@ -37897,7 +38381,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -38104,8 +38588,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -38238,6 +38722,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 description?: string | undefined;
                 tags?: string[] | undefined;
                 autoplay?: boolean | undefined;
+                links?: {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
@@ -38275,7 +38765,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -38482,8 +38972,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -38616,6 +39106,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 description?: string | undefined;
                 tags?: string[] | undefined;
                 autoplay?: boolean | undefined;
+                links?: {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
@@ -38653,7 +39149,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -38863,8 +39359,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -38997,6 +39493,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 description?: string | undefined;
                 tags?: string[] | undefined;
                 autoplay?: boolean | undefined;
+                links?: {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
@@ -39034,7 +39536,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -39244,8 +39746,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -39378,6 +39880,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 description?: string | undefined;
                 tags?: string[] | undefined;
                 autoplay?: boolean | undefined;
+                links?: {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
@@ -39415,7 +39923,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -39635,8 +40143,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -39769,6 +40277,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 description?: string | undefined;
                 tags?: string[] | undefined;
                 autoplay?: boolean | undefined;
+                links?: {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
@@ -39806,7 +40320,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -40030,8 +40544,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tags?: string[] | undefined;
                 } | {
                     text: string;
-                    mode: "notifySupport";
                     groupId: string;
+                    mode: "notifySupport";
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -40164,6 +40678,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 description?: string | undefined;
                 tags?: string[] | undefined;
                 autoplay?: boolean | undefined;
+                links?: {
+                    url: string;
+                    title?: string | undefined;
+                    imageUrl?: string | undefined;
+                    domain?: string | undefined;
+                }[] | undefined;
                 aiInstructions?: string | undefined;
                 createdByUid?: string | undefined;
                 recommended?: boolean | undefined;
@@ -40201,7 +40721,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     defaultConversationMode?: "text" | "voice" | undefined;
                     prompt?: string | undefined;
                 } | undefined;
-                generationStatus?: "pending" | "processing" | "completed" | "failed" | undefined;
+                generationStatus?: "completed" | "pending" | "processing" | "failed" | undefined;
                 generationError?: string | undefined;
                 generationProvider?: string | undefined;
                 generationProviderJobId?: string | undefined;
@@ -41111,6 +41631,135 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     behaviorIds?: string[] | undefined;
     tacticId?: string | undefined;
     impulseId?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    sessionId: z.ZodString;
+    tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    impulseId: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"coach_booking_prompt">;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        slots: z.ZodArray<z.ZodObject<{
+            dayOfWeek: z.ZodNumber;
+            startTime: z.ZodString;
+            endTime: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
+            dayOfWeek: number;
+            startTime: string;
+            endTime: string;
+        }, {
+            dayOfWeek: number;
+            startTime: string;
+            endTime: string;
+        }>, "many">;
+        coachTimezone: z.ZodString;
+        selectedSlot: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            dayOfWeek: z.ZodNumber;
+            startTime: z.ZodString;
+            endTime: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
+            dayOfWeek: number;
+            startTime: string;
+            endTime: string;
+        }, {
+            dayOfWeek: number;
+            startTime: string;
+            endTime: string;
+        }>>>;
+        respondedAt: z.ZodOptional<z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>>;
+        taskId: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        slots: {
+            dayOfWeek: number;
+            startTime: string;
+            endTime: string;
+        }[];
+        coachTimezone: string;
+        respondedAt?: import("../../types").Timestamp | null | undefined;
+        taskId?: string | undefined;
+        selectedSlot?: {
+            dayOfWeek: number;
+            startTime: string;
+            endTime: string;
+        } | null | undefined;
+    }, {
+        slots: {
+            dayOfWeek: number;
+            startTime: string;
+            endTime: string;
+        }[];
+        coachTimezone: string;
+        respondedAt?: import("../../types").Timestamp | null | undefined;
+        taskId?: string | undefined;
+        selectedSlot?: {
+            dayOfWeek: number;
+            startTime: string;
+            endTime: string;
+        } | null | undefined;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "coach_booking_prompt";
+    sessionId: string;
+    dateString: string;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: true;
+    data: {
+        slots: {
+            dayOfWeek: number;
+            startTime: string;
+            endTime: string;
+        }[];
+        coachTimezone: string;
+        respondedAt?: import("../../types").Timestamp | null | undefined;
+        taskId?: string | undefined;
+        selectedSlot?: {
+            dayOfWeek: number;
+            startTime: string;
+            endTime: string;
+        } | null | undefined;
+    };
+    id?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
+    impulseId?: string | undefined;
+}, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "coach_booking_prompt";
+    sessionId: string;
+    dateString: string;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: true;
+    data: {
+        slots: {
+            dayOfWeek: number;
+            startTime: string;
+            endTime: string;
+        }[];
+        coachTimezone: string;
+        respondedAt?: import("../../types").Timestamp | null | undefined;
+        taskId?: string | undefined;
+        selectedSlot?: {
+            dayOfWeek: number;
+            startTime: string;
+            endTime: string;
+        } | null | undefined;
+    };
+    id?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
+    impulseId?: string | undefined;
 }>]>;
 export declare const logIsAssistantMessageLog: (value: Omit<Log, "id">) => value is AssistantMessageLog;
 export declare const isValidAssistantMessageLog: (value: unknown) => value is AssistantMessageLog;
@@ -41170,3 +41819,4 @@ export declare const logIsMergeBehaviorsProposalLog: (value: Omit<Log, "id">) =>
 export declare const logIsMaskBehaviorProposalLog: (value: Omit<Log, "id">) => value is MaskBehaviorProposalLog;
 export declare const logIsShortcutSetupIntroLog: (value: Omit<Log, "id">) => value is ShortcutSetupIntroLog;
 export declare const logIsTacticSuggestionsLog: (value: Omit<Log, "id">) => value is TacticSuggestionsLog;
+export declare const logIsCoachBookingPromptLog: (value: Omit<Log, "id">) => value is CoachBookingPromptLog;

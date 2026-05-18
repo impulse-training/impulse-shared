@@ -29,10 +29,20 @@ export const indicationSchema = z.object({
 export const tacticPhaseSchema = z.enum(["regulate", "shift", "reengage"]);
 export type TacticPhase = z.infer<typeof tacticPhaseSchema>;
 
+export const tacticLinkSchema = z.object({
+  url: z.string().url(),
+  title: z.string().optional(),
+  imageUrl: z.string().optional(),
+  domain: z.string().optional(),
+});
+
+export type TacticLink = z.infer<typeof tacticLinkSchema>;
+
 export const tacticSchema = z.object({
   id: z.string().optional(),
   title: z.string().optional(),
   description: z.string().optional(),
+  links: z.array(tacticLinkSchema).optional(),
   aiInstructions: z.string().optional(),
   createdByUid: z.string().optional(),
   recommended: z.boolean().optional(),

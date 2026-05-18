@@ -15,7 +15,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.logIsSetupModeChoiceLog = exports.isValidTacticReviewLog = exports.logIsTacticReviewLog = exports.isValidTriggerSelectionLog = exports.logIsTriggerSelectionLog = exports.isValidRequestPermissionsLog = exports.logIsRequestPermissionsLog = exports.isValidImpulseStartedLog = exports.logIsImpulseStartedLog = exports.isValidDayTotalsPromptLog = exports.logIsDayTotalsPromptLog = exports.isValidRecapTimePreferenceLog = exports.logIsRecapTimePreferenceLog = exports.isValidMetricLog = exports.logIsMetricLog = exports.isValidEnableNotificationsCtaLog = exports.logIsEnableNotificationsCtaLog = exports.isValidSupportGroupDaySummaryLog = exports.logIsSupportGroupDaySummaryLog = exports.isValidBreathingLog = exports.logIsBreathingLog = exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidPlansLog = exports.logIsPlansLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorLog = exports.logIsBehaviorLog = exports.isValidSharedMomentLog = exports.logIsSharedMomentLog = exports.isValidNotifySupportGroupLog = exports.logIsNotifySupportGroupLog = exports.isValidSystemMessageLog = exports.logIsSystemMessageLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
-exports.logIsTacticSuggestionsLog = exports.logIsShortcutSetupIntroLog = exports.logIsMaskBehaviorProposalLog = exports.logIsMergeBehaviorsProposalLog = exports.logIsPhotoLog = exports.logIsImageLog = exports.logIsCloseButtonLog = exports.logIsRecoveryKeyLog = exports.logIsCrisisResourceLog = exports.logIsTagsUpdatedLog = exports.logIsProposedStrategyModificationLog = void 0;
+exports.logIsCoachBookingPromptLog = exports.logIsTacticSuggestionsLog = exports.logIsShortcutSetupIntroLog = exports.logIsMaskBehaviorProposalLog = exports.logIsMergeBehaviorsProposalLog = exports.logIsPhotoLog = exports.logIsImageLog = exports.logIsCloseButtonLog = exports.logIsRecoveryKeyLog = exports.logIsCrisisResourceLog = exports.logIsTagsUpdatedLog = exports.logIsProposedStrategyModificationLog = void 0;
 const zod_1 = require("zod");
 const behaviorLog_1 = require("./behaviorLog");
 const breathingLog_1 = require("./breathingLog");
@@ -52,6 +52,7 @@ const mergeBehaviorsProposalLog_1 = require("./mergeBehaviorsProposalLog");
 const maskBehaviorProposalLog_1 = require("./maskBehaviorProposalLog");
 const shortcutSetupIntroLog_1 = require("./shortcutSetupIntroLog");
 const tacticSuggestionsLog_1 = require("./tacticSuggestionsLog");
+const coachBookingPromptLog_1 = require("./coachBookingPromptLog");
 exports.logSchemas = {
     user: messageLog_1.userMessageLogSchema,
     assistant_message: messageLog_1.assistantMessageLogSchema,
@@ -91,6 +92,7 @@ exports.logSchemas = {
     mask_behavior_proposal: maskBehaviorProposalLog_1.maskBehaviorProposalLogSchema,
     shortcut_setup_intro: shortcutSetupIntroLog_1.shortcutSetupIntroLogSchema,
     tactic_suggestions: tacticSuggestionsLog_1.tacticSuggestionsLogSchema,
+    coach_booking_prompt: coachBookingPromptLog_1.coachBookingPromptLogSchema,
 };
 exports.logTypes = Object.keys(exports.logSchemas);
 __exportStar(require("./behaviorLog"), exports);
@@ -129,6 +131,7 @@ __exportStar(require("./mergeBehaviorsProposalLog"), exports);
 __exportStar(require("./maskBehaviorProposalLog"), exports);
 __exportStar(require("./shortcutSetupIntroLog"), exports);
 __exportStar(require("./tacticSuggestionsLog"), exports);
+__exportStar(require("./coachBookingPromptLog"), exports);
 // Discriminated union schema across all log variants
 exports.logSchema = zod_1.z.discriminatedUnion("type", [
     messageLog_1.userMessageLogSchema,
@@ -167,6 +170,7 @@ exports.logSchema = zod_1.z.discriminatedUnion("type", [
     maskBehaviorProposalLog_1.maskBehaviorProposalLogSchema,
     shortcutSetupIntroLog_1.shortcutSetupIntroLogSchema,
     tacticSuggestionsLog_1.tacticSuggestionsLogSchema,
+    coachBookingPromptLog_1.coachBookingPromptLogSchema,
 ]);
 // Export log type guards
 const logIsAssistantMessageLog = (value) => value.type === "assistant_message";
@@ -331,3 +335,5 @@ const logIsShortcutSetupIntroLog = (value) => value.type === "shortcut_setup_int
 exports.logIsShortcutSetupIntroLog = logIsShortcutSetupIntroLog;
 const logIsTacticSuggestionsLog = (value) => value.type === "tactic_suggestions";
 exports.logIsTacticSuggestionsLog = logIsTacticSuggestionsLog;
+const logIsCoachBookingPromptLog = (value) => value.type === "coach_booking_prompt";
+exports.logIsCoachBookingPromptLog = logIsCoachBookingPromptLog;

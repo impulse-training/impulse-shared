@@ -50,7 +50,12 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         afterData.data.source === "scheduled" &&
         afterData.data.resolvedAt != null &&
         (0, fields_1.fieldChanged)(beforeData, afterData, "data.resolvedAt");
-    const isDayTotalsPromptAction = beforeData && afterData && (0, log_1.logIsDayTotalsPromptLog)(afterData);
+    const isDayTotalsDiscussRequested = beforeData &&
+        afterData &&
+        (0, log_1.logIsDayTotalsPromptLog)(afterData) &&
+        !!afterData.data.discussRequestedAt &&
+        (!(0, log_1.logIsDayTotalsPromptLog)(beforeData) ||
+            !beforeData.data.discussRequestedAt);
     const isSetupModeTextChoice = beforeData &&
         afterData &&
         (0, log_1.logIsSetupModeChoiceLog)(afterData) &&
@@ -94,7 +99,7 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
                 !latestSessionLog.data.completed));
     if (!isMetricRating &&
         !isDebriefOutcomeResolved &&
-        !isDayTotalsPromptAction &&
+        !isDayTotalsDiscussRequested &&
         !isSetupModeTextChoice &&
         !isShortcutSetupTextChoice &&
         !isTacticCompleted &&

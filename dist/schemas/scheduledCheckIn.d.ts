@@ -15,7 +15,7 @@ export declare const scheduledCheckInSchema: z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     message: string;
-    status: "pending" | "sent" | "cancelled";
+    status: "cancelled" | "pending" | "sent";
     instructions: string;
     scheduledFor: import("../types").Timestamp;
     sourceSessionId: string;
@@ -26,7 +26,7 @@ export declare const scheduledCheckInSchema: z.ZodObject<{
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
     message: string;
-    status: "pending" | "sent" | "cancelled";
+    status: "cancelled" | "pending" | "sent";
     instructions: string;
     scheduledFor: import("../types").Timestamp;
     sourceSessionId: string;

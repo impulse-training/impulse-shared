@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.tacticSchema = exports.tacticPhaseSchema = exports.indicationSchema = exports.tagIndicationSchema = exports.behaviorIndicationSchema = void 0;
+exports.tacticSchema = exports.tacticLinkSchema = exports.tacticPhaseSchema = exports.indicationSchema = exports.tagIndicationSchema = exports.behaviorIndicationSchema = void 0;
 const zod_1 = require("zod");
 const timestampSchema_1 = require("../../utils/timestampSchema");
 const step_1 = require("./step");
@@ -26,10 +26,17 @@ exports.indicationSchema = zod_1.z.object({
     tags: zod_1.z.array(exports.tagIndicationSchema).optional(),
 });
 exports.tacticPhaseSchema = zod_1.z.enum(["regulate", "shift", "reengage"]);
+exports.tacticLinkSchema = zod_1.z.object({
+    url: zod_1.z.string().url(),
+    title: zod_1.z.string().optional(),
+    imageUrl: zod_1.z.string().optional(),
+    domain: zod_1.z.string().optional(),
+});
 exports.tacticSchema = zod_1.z.object({
     id: zod_1.z.string().optional(),
     title: zod_1.z.string().optional(),
     description: zod_1.z.string().optional(),
+    links: zod_1.z.array(exports.tacticLinkSchema).optional(),
     aiInstructions: zod_1.z.string().optional(),
     createdByUid: zod_1.z.string().optional(),
     recommended: zod_1.z.boolean().optional(),

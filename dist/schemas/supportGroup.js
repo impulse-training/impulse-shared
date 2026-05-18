@@ -63,6 +63,16 @@ exports.supportGroupSchema = zod_1.z.object({
     isOpen: zod_1.z.boolean().optional(),
     // Maximum number of members for this group
     maxMembers: zod_1.z.number().optional(),
+    // Recurring coaching call slot claimed by the user
+    scheduledCallSlot: zod_1.z
+        .object({
+        dayOfWeek: zod_1.z.number().int().min(0).max(6),
+        startTime: zod_1.z.string(),
+        endTime: zod_1.z.string(),
+        timezone: zod_1.z.string(),
+    })
+        .nullable()
+        .optional(),
 });
 // Type guard functions
 const isValidSupportGroupMember = (value) => {
