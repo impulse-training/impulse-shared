@@ -33,6 +33,7 @@ function hasNewlyCompletedPlan(
   beforeData: Log | undefined,
   afterData: PlansLog,
 ): boolean {
+  if (!Array.isArray(afterData.data.plans)) return false;
   const beforePlans =
     beforeData && logIsPlansLog(beforeData) ? beforeData.data.plans : [];
 

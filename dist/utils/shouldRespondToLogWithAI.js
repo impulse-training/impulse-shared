@@ -6,6 +6,8 @@ const dates_1 = require("./dates");
 const log_1 = require("../schemas/log");
 const fields_1 = require("./fields");
 function hasNewlyCompletedPlan(beforeData, afterData) {
+    if (!Array.isArray(afterData.data.plans))
+        return false;
     const beforePlans = beforeData && (0, log_1.logIsPlansLog)(beforeData) ? beforeData.data.plans : [];
     for (const afterPlan of afterData.data.plans) {
         if (!afterPlan.completedAt)
