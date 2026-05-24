@@ -143,6 +143,34 @@ export declare const userDataSchema: z.ZodObject<{
     }>>>;
     seenRoadmapItemIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     roadmapNotificationsEnabled: z.ZodOptional<z.ZodBoolean>;
+    zaraVoiceId: z.ZodOptional<z.ZodEnum<["alloy", "shimmer", "echo"]>>;
+    zaraCoachId: z.ZodOptional<z.ZodString>;
+    zaraSlot: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        dayOfWeek: z.ZodNumber;
+        hour: z.ZodNumber;
+        minute: z.ZodNumber;
+    }, "strip", z.ZodTypeAny, {
+        dayOfWeek: number;
+        hour: number;
+        minute: number;
+    }, {
+        dayOfWeek: number;
+        hour: number;
+        minute: number;
+    }>>>;
+    coachAvailability: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        dayOfWeek: z.ZodNumber;
+        startTime: z.ZodString;
+        endTime: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        dayOfWeek: number;
+        startTime: string;
+        endTime: string;
+    }, {
+        dayOfWeek: number;
+        startTime: string;
+        endTime: string;
+    }>, "many">>;
     concurrentUserAccountIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     pseudonym: z.ZodOptional<z.ZodString>;
     emojiId: z.ZodOptional<z.ZodObject<{
@@ -227,6 +255,18 @@ export declare const userDataSchema: z.ZodObject<{
     }>> | undefined;
     seenRoadmapItemIds?: string[] | undefined;
     roadmapNotificationsEnabled?: boolean | undefined;
+    zaraVoiceId?: "alloy" | "shimmer" | "echo" | undefined;
+    zaraCoachId?: string | undefined;
+    zaraSlot?: {
+        dayOfWeek: number;
+        hour: number;
+        minute: number;
+    } | null | undefined;
+    coachAvailability?: {
+        dayOfWeek: number;
+        startTime: string;
+        endTime: string;
+    }[] | undefined;
     concurrentUserAccountIds?: string[] | undefined;
     pseudonym?: string | undefined;
     onboardingCompleted?: boolean | undefined;
@@ -303,6 +343,18 @@ export declare const userDataSchema: z.ZodObject<{
     }>> | undefined;
     seenRoadmapItemIds?: string[] | undefined;
     roadmapNotificationsEnabled?: boolean | undefined;
+    zaraVoiceId?: "alloy" | "shimmer" | "echo" | undefined;
+    zaraCoachId?: string | undefined;
+    zaraSlot?: {
+        dayOfWeek: number;
+        hour: number;
+        minute: number;
+    } | null | undefined;
+    coachAvailability?: {
+        dayOfWeek: number;
+        startTime: string;
+        endTime: string;
+    }[] | undefined;
     concurrentUserAccountIds?: string[] | undefined;
     pseudonym?: string | undefined;
     onboardingCompleted?: boolean | undefined;

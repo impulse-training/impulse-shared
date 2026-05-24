@@ -14,4 +14,6 @@ export const logBaseSchema = z.object({
   behaviorIds: z.array(z.string()).optional(),
   // Groups logs belonging to the same impulse flow
   impulseId: z.string().optional(),
+  // The log ID that triggered this response (e.g. the user message or tactic completion that caused the AI to reply)
+  respondingToLogId: z.string().optional(),
 });

@@ -10,6 +10,7 @@ export declare const widgetSetupLogSchema: z.ZodObject<{
     tacticId: z.ZodOptional<z.ZodString>;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     impulseId: z.ZodOptional<z.ZodString>;
+    respondingToLogId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"widget_setup">;
     isDisplayable: z.ZodLiteral<true>;
@@ -26,6 +27,7 @@ export declare const widgetSetupLogSchema: z.ZodObject<{
     behaviorIds?: string[] | undefined;
     tacticId?: string | undefined;
     impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
@@ -39,5 +41,6 @@ export declare const widgetSetupLogSchema: z.ZodObject<{
     behaviorIds?: string[] | undefined;
     tacticId?: string | undefined;
     impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
 }>;
 export type WidgetSetupLog = z.infer<typeof widgetSetupLogSchema>;

@@ -133,6 +133,31 @@ export const userDataSchema = z.object({
   seenRoadmapItemIds: z.array(z.string()).optional(),
   roadmapNotificationsEnabled: z.boolean().optional(),
 
+  // Voice preference for Zara check-in calls
+  zaraVoiceId: z.enum(["alloy", "shimmer", "echo"]).optional(),
+
+  // Zara configuration — which coach and which weekly slot the user has claimed
+  zaraCoachId: z.string().optional(),
+  zaraSlot: z
+    .object({
+      dayOfWeek: z.number().int().min(0).max(6),
+      hour: z.number().int().min(0).max(23),
+      minute: z.number().int().min(0).max(59),
+    })
+    .nullable()
+    .optional(),
+
+  // Slots this user offers as a coach (HH:MM string format matches existing Firestore data)
+  coachAvailability: z
+    .array(
+      z.object({
+        dayOfWeek: z.number().int().min(0).max(6),
+        startTime: z.string(), // "HH:MM"
+        endTime: z.string(),   // "HH:MM"
+      }),
+    )
+    .optional(),
+
   concurrentUserAccountIds: z.array(z.string()).optional(),
 
   // Generated fake name for admin display

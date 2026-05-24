@@ -406,6 +406,7 @@ export declare const supportGroupSchema: z.ZodObject<{
         tacticId: z.ZodOptional<z.ZodString>;
         behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         impulseId: z.ZodOptional<z.ZodString>;
+        respondingToLogId: z.ZodOptional<z.ZodString>;
         isDisplayable: z.ZodLiteral<true>;
         data: z.ZodObject<{
             message: z.ZodAny;
@@ -511,6 +512,7 @@ export declare const supportGroupSchema: z.ZodObject<{
         behaviorIds?: string[] | undefined;
         tacticId?: string | undefined;
         impulseId?: string | undefined;
+        respondingToLogId?: string | undefined;
         audioAttachment?: {
             uri: string;
             storagePath: string;
@@ -546,6 +548,7 @@ export declare const supportGroupSchema: z.ZodObject<{
         behaviorIds?: string[] | undefined;
         tacticId?: string | undefined;
         impulseId?: string | undefined;
+        respondingToLogId?: string | undefined;
         audioAttachment?: {
             uri: string;
             storagePath: string;
@@ -574,6 +577,19 @@ export declare const supportGroupSchema: z.ZodObject<{
     timezoneOffsets: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
     isOpen: z.ZodOptional<z.ZodBoolean>;
     maxMembers: z.ZodOptional<z.ZodNumber>;
+    availableSlots: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        dayOfWeek: z.ZodNumber;
+        hour: z.ZodNumber;
+        minute: z.ZodNumber;
+    }, "strip", z.ZodTypeAny, {
+        dayOfWeek: number;
+        hour: number;
+        minute: number;
+    }, {
+        dayOfWeek: number;
+        hour: number;
+        minute: number;
+    }>, "many">>;
     scheduledCallSlot: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         dayOfWeek: z.ZodNumber;
         startTime: z.ZodString;
@@ -684,6 +700,7 @@ export declare const supportGroupSchema: z.ZodObject<{
         behaviorIds?: string[] | undefined;
         tacticId?: string | undefined;
         impulseId?: string | undefined;
+        respondingToLogId?: string | undefined;
         audioAttachment?: {
             uri: string;
             storagePath: string;
@@ -708,6 +725,11 @@ export declare const supportGroupSchema: z.ZodObject<{
     timezoneOffsets?: number[] | undefined;
     isOpen?: boolean | undefined;
     maxMembers?: number | undefined;
+    availableSlots?: {
+        dayOfWeek: number;
+        hour: number;
+        minute: number;
+    }[] | undefined;
     scheduledCallSlot?: {
         dayOfWeek: number;
         startTime: string;
@@ -807,6 +829,7 @@ export declare const supportGroupSchema: z.ZodObject<{
         behaviorIds?: string[] | undefined;
         tacticId?: string | undefined;
         impulseId?: string | undefined;
+        respondingToLogId?: string | undefined;
         audioAttachment?: {
             uri: string;
             storagePath: string;
@@ -832,6 +855,11 @@ export declare const supportGroupSchema: z.ZodObject<{
     timezoneOffsets?: number[] | undefined;
     isOpen?: boolean | undefined;
     maxMembers?: number | undefined;
+    availableSlots?: {
+        dayOfWeek: number;
+        hour: number;
+        minute: number;
+    }[] | undefined;
     scheduledCallSlot?: {
         dayOfWeek: number;
         startTime: string;

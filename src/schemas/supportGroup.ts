@@ -77,6 +77,17 @@ export const supportGroupSchema = z.object({
   // Maximum number of members for this group
   maxMembers: z.number().optional(),
 
+  // Time slots the coach makes available for the user to choose from
+  availableSlots: z
+    .array(
+      z.object({
+        dayOfWeek: z.number().int().min(0).max(6),
+        hour: z.number().int().min(0).max(23),
+        minute: z.number().int().min(0).max(59),
+      }),
+    )
+    .optional(),
+
   // Recurring coaching call slot claimed by the user
   scheduledCallSlot: z
     .object({

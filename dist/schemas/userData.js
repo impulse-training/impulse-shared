@@ -106,6 +106,26 @@ exports.userDataSchema = zod_1.z.object({
     // Roadmap / "What we're building" seen tracker
     seenRoadmapItemIds: zod_1.z.array(zod_1.z.string()).optional(),
     roadmapNotificationsEnabled: zod_1.z.boolean().optional(),
+    // Voice preference for Zara check-in calls
+    zaraVoiceId: zod_1.z.enum(["alloy", "shimmer", "echo"]).optional(),
+    // Zara configuration — which coach and which weekly slot the user has claimed
+    zaraCoachId: zod_1.z.string().optional(),
+    zaraSlot: zod_1.z
+        .object({
+        dayOfWeek: zod_1.z.number().int().min(0).max(6),
+        hour: zod_1.z.number().int().min(0).max(23),
+        minute: zod_1.z.number().int().min(0).max(59),
+    })
+        .nullable()
+        .optional(),
+    // Slots this user offers as a coach (HH:MM string format matches existing Firestore data)
+    coachAvailability: zod_1.z
+        .array(zod_1.z.object({
+        dayOfWeek: zod_1.z.number().int().min(0).max(6),
+        startTime: zod_1.z.string(), // "HH:MM"
+        endTime: zod_1.z.string(), // "HH:MM"
+    }))
+        .optional(),
     concurrentUserAccountIds: zod_1.z.array(zod_1.z.string()).optional(),
     // Generated fake name for admin display
     pseudonym: zod_1.z.string().optional(),

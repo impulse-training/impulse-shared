@@ -10,6 +10,7 @@ export declare const recoveryKeyLogSchema: z.ZodObject<{
     tacticId: z.ZodOptional<z.ZodString>;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     impulseId: z.ZodOptional<z.ZodString>;
+    respondingToLogId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"recovery_key">;
     isDisplayable: z.ZodLiteral<true>;
@@ -36,6 +37,7 @@ export declare const recoveryKeyLogSchema: z.ZodObject<{
     behaviorIds?: string[] | undefined;
     tacticId?: string | undefined;
     impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
@@ -52,5 +54,6 @@ export declare const recoveryKeyLogSchema: z.ZodObject<{
     behaviorIds?: string[] | undefined;
     tacticId?: string | undefined;
     impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
 }>;
 export type RecoveryKeyLog = z.infer<typeof recoveryKeyLogSchema>;

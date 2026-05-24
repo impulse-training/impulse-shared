@@ -22,6 +22,7 @@ export declare const proposedExperimentLogSchema: z.ZodObject<{
     sessionId: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
     impulseId: z.ZodOptional<z.ZodString>;
+    respondingToLogId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"proposed_experiment">;
     isDisplayable: z.ZodLiteral<true>;
@@ -70,6 +71,7 @@ export declare const proposedExperimentLogSchema: z.ZodObject<{
     text?: string | undefined;
     tacticId?: string | undefined;
     impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
     buttonText?: string | undefined;
     behaviorNames?: string[] | undefined;
     metrics?: {
@@ -98,6 +100,7 @@ export declare const proposedExperimentLogSchema: z.ZodObject<{
     text?: string | undefined;
     tacticId?: string | undefined;
     impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
     buttonText?: string | undefined;
     behaviorNames?: string[] | undefined;
     metrics?: {

@@ -16,4 +16,6 @@ exports.logBaseSchema = zod_1.z.object({
     behaviorIds: zod_1.z.array(zod_1.z.string()).optional(),
     // Groups logs belonging to the same impulse flow
     impulseId: zod_1.z.string().optional(),
+    // The log ID that triggered this response (e.g. the user message or tactic completion that caused the AI to reply)
+    respondingToLogId: zod_1.z.string().optional(),
 });

@@ -229,6 +229,12 @@ export function getGptPayload(
 
   // Handle AssistantMessageLog
   if (logIsAssistantMessageLog(log)) {
+    // Recap follow-up reminders are pull notifications, not part of the conversation.
+    // Including them causes the context to end on a stale assistant message, which
+    // causes the LLM to return an empty response.
+    if ((log as any).source === "recap_follow_up") {
+      return [];
+    }
     return [log.data.message];
   }
 

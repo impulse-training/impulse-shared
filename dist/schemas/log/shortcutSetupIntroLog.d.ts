@@ -10,6 +10,7 @@ export declare const shortcutSetupIntroLogSchema: z.ZodObject<{
     tacticId: z.ZodOptional<z.ZodString>;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     impulseId: z.ZodOptional<z.ZodString>;
+    respondingToLogId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"shortcut_setup_intro">;
     isDisplayable: z.ZodLiteral<true>;
@@ -48,6 +49,7 @@ export declare const shortcutSetupIntroLogSchema: z.ZodObject<{
     behaviorIds?: string[] | undefined;
     tacticId?: string | undefined;
     impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
@@ -67,5 +69,6 @@ export declare const shortcutSetupIntroLogSchema: z.ZodObject<{
     behaviorIds?: string[] | undefined;
     tacticId?: string | undefined;
     impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
 }>;
 export type ShortcutSetupIntroLog = z.infer<typeof shortcutSetupIntroLogSchema>;

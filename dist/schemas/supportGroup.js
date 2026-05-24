@@ -63,6 +63,14 @@ exports.supportGroupSchema = zod_1.z.object({
     isOpen: zod_1.z.boolean().optional(),
     // Maximum number of members for this group
     maxMembers: zod_1.z.number().optional(),
+    // Time slots the coach makes available for the user to choose from
+    availableSlots: zod_1.z
+        .array(zod_1.z.object({
+        dayOfWeek: zod_1.z.number().int().min(0).max(6),
+        hour: zod_1.z.number().int().min(0).max(23),
+        minute: zod_1.z.number().int().min(0).max(59),
+    }))
+        .optional(),
     // Recurring coaching call slot claimed by the user
     scheduledCallSlot: zod_1.z
         .object({

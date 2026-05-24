@@ -10,6 +10,7 @@ export declare const messageBaseLogSchema: z.ZodObject<{
     tacticId: z.ZodOptional<z.ZodString>;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     impulseId: z.ZodOptional<z.ZodString>;
+    respondingToLogId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodEnum<["user_message", "assistant_message", "system_message"]>;
     isDisplayable: z.ZodLiteral<true>;
@@ -36,6 +37,7 @@ export declare const messageBaseLogSchema: z.ZodObject<{
     behaviorIds?: string[] | undefined;
     tacticId?: string | undefined;
     impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
 }, {
     createdAt: import("../../../types").Timestamp;
     updatedAt: import("../../../types").Timestamp;
@@ -52,4 +54,5 @@ export declare const messageBaseLogSchema: z.ZodObject<{
     behaviorIds?: string[] | undefined;
     tacticId?: string | undefined;
     impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
 }>;

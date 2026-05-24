@@ -10,6 +10,7 @@ export declare const notifySupportGroupLogSchema: z.ZodObject<{
     tacticId: z.ZodOptional<z.ZodString>;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     impulseId: z.ZodOptional<z.ZodString>;
+    respondingToLogId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"notify_support_group">;
     isDisplayable: z.ZodLiteral<true>;
@@ -168,6 +169,7 @@ export declare const notifySupportGroupLogSchema: z.ZodObject<{
     behaviorIds?: string[] | undefined;
     tacticId?: string | undefined;
     impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
@@ -201,5 +203,6 @@ export declare const notifySupportGroupLogSchema: z.ZodObject<{
     behaviorIds?: string[] | undefined;
     tacticId?: string | undefined;
     impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
 }>;
 export type NotifySupportGroupLog = z.infer<typeof notifySupportGroupLogSchema>;

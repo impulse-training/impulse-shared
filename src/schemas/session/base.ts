@@ -24,6 +24,7 @@ const sessionTypeSchema = z.enum([
   "demo",
   "milestone",
   "toolkitPlanning",
+  "zaraCheckIn", // Zara weekly voice check-in — excluded from the journal
 ]);
 
 // Session schema
@@ -91,6 +92,11 @@ export const sessionBaseSchema = z.object({
 
   // ID of the active call log document (in users/{userId}/logs)
   activeCallLogId: z.string().optional(),
+
+  // Coach guidance injected in real-time into a live voice session
+  coachGuidanceItems: z
+    .array(z.object({ id: z.string(), text: z.string(), sentAt: timestampSchema }))
+    .optional(),
 
   // Multi-select tags: tagGroupId → array of selected optionIds
   tags: z.record(z.string(), z.array(z.string())).optional(),

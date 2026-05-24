@@ -23,6 +23,7 @@ import {
   ToolkitPlanningSession,
   toolkitPlanningSessionSchema,
 } from "./toolkitPlanning";
+import { ZaraCheckInSession, zaraCheckInSessionSchema } from "./zaraCheckIn";
 
 export * from "../sessionSummary";
 export * from "./adjustment";
@@ -42,6 +43,7 @@ export * from "./tasks";
 export * from "./demo";
 export * from "./milestone";
 export * from "./toolkitPlanning";
+export * from "./zaraCheckIn";
 
 // Map of session types to their schemas
 export const sessionSchemas: Record<string, z.ZodTypeAny> = {
@@ -62,6 +64,7 @@ export const sessionSchemas: Record<string, z.ZodTypeAny> = {
   demo: demoSessionSchema,
   milestone: milestoneSessionSchema,
   toolkitPlanning: toolkitPlanningSessionSchema,
+  zaraCheckIn: zaraCheckInSessionSchema,
 };
 
 // Discriminated union over type
@@ -84,6 +87,7 @@ export const sessionSchema: z.ZodDiscriminatedUnion<
     typeof demoSessionSchema,
     typeof milestoneSessionSchema,
     typeof toolkitPlanningSessionSchema,
+    typeof zaraCheckInSessionSchema,
   ]
 > = z.discriminatedUnion("type", [
   generalSessionSchema,
@@ -103,6 +107,7 @@ export const sessionSchema: z.ZodDiscriminatedUnion<
   demoSessionSchema,
   milestoneSessionSchema,
   toolkitPlanningSessionSchema,
+  zaraCheckInSessionSchema,
 ]);
 
 export const sessionIsGeneralSession = (

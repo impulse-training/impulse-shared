@@ -156,14 +156,20 @@ export function buildPlansLogPayload(
         `A plan was suggested earlier in this session with ${tacticsCount} ${tacticsNoun}.`,
       );
       if (allTactics.length > 0) {
-        parts.push("Available tactics:");
+        parts.push("Tactics in this plan:");
         allTactics.forEach((t, i) => {
           parts.push(`${i + 1}. [id=${t.id}] "${t.title}"`);
         });
       }
-      parts.push(
-        "Follow the user's lead. You may suggest the next tactic if the moment feels right, but do not force progression.",
-      );
+      if (allTactics.length > 1) {
+        parts.push(
+          "Follow the user's lead. You may suggest the next uncompleted tactic if the moment feels right, but do not force progression.",
+        );
+      } else {
+        parts.push(
+          "Follow the user's lead. When the tactic is completed, acknowledge it — do not suggest additional tactics that are not listed here.",
+        );
+      }
     }
   }
 

@@ -10,6 +10,7 @@ export declare const linkLogSchema: z.ZodObject<{
     tacticId: z.ZodOptional<z.ZodString>;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     impulseId: z.ZodOptional<z.ZodString>;
+    respondingToLogId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"link">;
     isDisplayable: z.ZodLiteral<true>;
@@ -33,6 +34,7 @@ export declare const linkLogSchema: z.ZodObject<{
     behaviorIds?: string[] | undefined;
     tacticId?: string | undefined;
     impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
     icon?: "link" | "rocket" | "party" | "check" | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
@@ -50,6 +52,7 @@ export declare const linkLogSchema: z.ZodObject<{
     behaviorIds?: string[] | undefined;
     tacticId?: string | undefined;
     impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
     icon?: "link" | "rocket" | "party" | "check" | undefined;
 }>;
 export type LinkLog = z.infer<typeof linkLogSchema>;

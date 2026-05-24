@@ -33,6 +33,7 @@ export * from "./recapMessage";
 export * from "./recapQuestion";
 export * from "./scheduledCheckIn";
 export * from "./session";
+export * from "./slot";
 export * from "./supportGroup";
 export * from "./supportGroupTask";
 export * from "./supportRequest";

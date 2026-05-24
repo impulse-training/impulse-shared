@@ -70,6 +70,7 @@ export declare const toolCallLogSchema: z.ZodObject<{
     tacticId: z.ZodOptional<z.ZodString>;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     impulseId: z.ZodOptional<z.ZodString>;
+    respondingToLogId: z.ZodOptional<z.ZodString>;
 } & {
     isDisplayable: z.ZodLiteral<false>;
     type: z.ZodLiteral<"tool_call">;
@@ -198,6 +199,7 @@ export declare const toolCallLogSchema: z.ZodObject<{
     behaviorIds?: string[] | undefined;
     tacticId?: string | undefined;
     impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
@@ -228,6 +230,7 @@ export declare const toolCallLogSchema: z.ZodObject<{
     behaviorIds?: string[] | undefined;
     tacticId?: string | undefined;
     impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
 }>;
 export type ToolCallLog = z.infer<typeof toolCallLogSchema>;
 export type ToolCallResult = any;

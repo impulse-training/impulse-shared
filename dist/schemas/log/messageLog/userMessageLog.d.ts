@@ -10,6 +10,7 @@ export declare const userMessageLogSchema: z.ZodObject<{
     tacticId: z.ZodOptional<z.ZodString>;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     impulseId: z.ZodOptional<z.ZodString>;
+    respondingToLogId: z.ZodOptional<z.ZodString>;
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
         message: z.ZodAny;
@@ -115,6 +116,7 @@ export declare const userMessageLogSchema: z.ZodObject<{
     behaviorIds?: string[] | undefined;
     tacticId?: string | undefined;
     impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
     audioAttachment?: {
         uri: string;
         storagePath: string;
@@ -150,6 +152,7 @@ export declare const userMessageLogSchema: z.ZodObject<{
     behaviorIds?: string[] | undefined;
     tacticId?: string | undefined;
     impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
     audioAttachment?: {
         uri: string;
         storagePath: string;

@@ -334,6 +334,7 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
     tacticId: z.ZodOptional<z.ZodString>;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     impulseId: z.ZodOptional<z.ZodString>;
+    respondingToLogId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"proposed_strategy_modification">;
     isDisplayable: z.ZodLiteral<true>;
@@ -600,6 +601,7 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
     behaviorIds?: string[] | undefined;
     tacticId?: string | undefined;
     impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
@@ -651,6 +653,7 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
     behaviorIds?: string[] | undefined;
     tacticId?: string | undefined;
     impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
 }>;
 export type StrategyTriggerDraft = z.infer<typeof strategyTriggerDraftSchema>;
 export type StrategyPlanDraft = z.infer<typeof strategyPlanDraftSchema>;

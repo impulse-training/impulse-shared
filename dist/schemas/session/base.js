@@ -26,6 +26,7 @@ const sessionTypeSchema = zod_1.z.enum([
     "demo",
     "milestone",
     "toolkitPlanning",
+    "zaraCheckIn", // Zara weekly voice check-in — excluded from the journal
 ]);
 // Session schema
 exports.sessionBaseSchema = zod_1.z.object({
@@ -78,6 +79,10 @@ exports.sessionBaseSchema = zod_1.z.object({
     completedPlanIds: zod_1.z.array(zod_1.z.string()).optional(),
     // ID of the active call log document (in users/{userId}/logs)
     activeCallLogId: zod_1.z.string().optional(),
+    // Coach guidance injected in real-time into a live voice session
+    coachGuidanceItems: zod_1.z
+        .array(zod_1.z.object({ id: zod_1.z.string(), text: zod_1.z.string(), sentAt: timestampSchema_1.timestampSchema }))
+        .optional(),
     // Multi-select tags: tagGroupId → array of selected optionIds
     tags: zod_1.z.record(zod_1.z.string(), zod_1.z.array(zod_1.z.string())).optional(),
     // Set when the AI calls showCloseButton — indicates the conversation has reached a natural end

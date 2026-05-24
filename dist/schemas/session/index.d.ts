@@ -14,6 +14,7 @@ import { TasksSession, tasksSessionSchema } from "./tasks";
 import { DemoSession, demoSessionSchema } from "./demo";
 import { MilestoneSession, milestoneSessionSchema } from "./milestone";
 import { ToolkitPlanningSession, toolkitPlanningSessionSchema } from "./toolkitPlanning";
+import { zaraCheckInSessionSchema } from "./zaraCheckIn";
 export * from "../sessionSummary";
 export * from "./adjustment";
 export * from "./behavior";
@@ -31,6 +32,7 @@ export * from "./tasks";
 export * from "./demo";
 export * from "./milestone";
 export * from "./toolkitPlanning";
+export * from "./zaraCheckIn";
 export declare const sessionSchemas: Record<string, z.ZodTypeAny>;
 export declare const sessionSchema: z.ZodDiscriminatedUnion<"type", [
     typeof generalSessionSchema,
@@ -48,7 +50,8 @@ export declare const sessionSchema: z.ZodDiscriminatedUnion<"type", [
     typeof tasksSessionSchema,
     typeof demoSessionSchema,
     typeof milestoneSessionSchema,
-    typeof toolkitPlanningSessionSchema
+    typeof toolkitPlanningSessionSchema,
+    typeof zaraCheckInSessionSchema
 ]>;
 export declare const sessionIsGeneralSession: (value: Session) => value is GeneralSession;
 export declare const isValidGeneralSession: (value: unknown) => value is GeneralSession;

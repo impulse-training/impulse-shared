@@ -1,7 +1,7 @@
 import { z } from "zod";
 export declare const sessionBaseSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
-    type: z.ZodDefault<z.ZodEnum<["impulse", "general", "onboarding", "recap", "behavior", "dayRecap", "timePlan", "locationPlan", "adjustment", "alignment", "welcome", "tactic", "recoveryKey", "tasks", "demo", "milestone", "toolkitPlanning"]>>;
+    type: z.ZodDefault<z.ZodEnum<["impulse", "general", "onboarding", "recap", "behavior", "dayRecap", "timePlan", "locationPlan", "adjustment", "alignment", "welcome", "tactic", "recoveryKey", "tasks", "demo", "milestone", "toolkitPlanning", "zaraCheckIn"]>>;
     title: z.ZodString;
     behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     date: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -2779,12 +2779,25 @@ export declare const sessionBaseSchema: z.ZodObject<{
     startedPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     completedPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     activeCallLogId: z.ZodOptional<z.ZodString>;
+    coachGuidanceItems: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        id: z.ZodString;
+        text: z.ZodString;
+        sentAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    }, "strip", z.ZodTypeAny, {
+        id: string;
+        text: string;
+        sentAt: import("../../types").Timestamp;
+    }, {
+        id: string;
+        text: string;
+        sentAt: import("../../types").Timestamp;
+    }>, "many">>;
     tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodArray<z.ZodString, "many">>>;
     aiFinalizedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     startedDeletingAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     deletingError: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    type: "behavior" | "tactic" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | "alignment" | "welcome" | "recoveryKey" | "tasks" | "demo" | "milestone" | "toolkitPlanning";
+    type: "behavior" | "tactic" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | "alignment" | "welcome" | "recoveryKey" | "tasks" | "demo" | "milestone" | "toolkitPlanning" | "zaraCheckIn";
     date: import("../../types").Timestamp;
     dateString: string;
     title: string;
@@ -3225,6 +3238,11 @@ export declare const sessionBaseSchema: z.ZodObject<{
     startedPlanIds?: string[] | undefined;
     completedPlanIds?: string[] | undefined;
     activeCallLogId?: string | undefined;
+    coachGuidanceItems?: {
+        id: string;
+        text: string;
+        sentAt: import("../../types").Timestamp;
+    }[] | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
@@ -3242,7 +3260,7 @@ export declare const sessionBaseSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
-    type?: "behavior" | "tactic" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | "alignment" | "welcome" | "recoveryKey" | "tasks" | "demo" | "milestone" | "toolkitPlanning" | undefined;
+    type?: "behavior" | "tactic" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | "alignment" | "welcome" | "recoveryKey" | "tasks" | "demo" | "milestone" | "toolkitPlanning" | "zaraCheckIn" | undefined;
     behaviorIds?: string[] | undefined;
     tags?: Record<string, string[]> | undefined;
     mode?: "text" | "voice" | undefined;
@@ -3670,6 +3688,11 @@ export declare const sessionBaseSchema: z.ZodObject<{
     startedPlanIds?: string[] | undefined;
     completedPlanIds?: string[] | undefined;
     activeCallLogId?: string | undefined;
+    coachGuidanceItems?: {
+        id: string;
+        text: string;
+        sentAt: import("../../types").Timestamp;
+    }[] | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;

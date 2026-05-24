@@ -50,6 +50,7 @@ __exportStar(require("./recapMessage"), exports);
 __exportStar(require("./recapQuestion"), exports);
 __exportStar(require("./scheduledCheckIn"), exports);
 __exportStar(require("./session"), exports);
+__exportStar(require("./slot"), exports);
 __exportStar(require("./supportGroup"), exports);
 __exportStar(require("./supportGroupTask"), exports);
 __exportStar(require("./supportRequest"), exports);

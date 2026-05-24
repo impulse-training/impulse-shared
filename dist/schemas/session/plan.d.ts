@@ -2778,6 +2778,19 @@ export declare const timePlanSessionSchema: z.ZodObject<{
     startedPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     completedPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     activeCallLogId: z.ZodOptional<z.ZodString>;
+    coachGuidanceItems: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        id: z.ZodString;
+        text: z.ZodString;
+        sentAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    }, "strip", z.ZodTypeAny, {
+        id: string;
+        text: string;
+        sentAt: import("../../types").Timestamp;
+    }, {
+        id: string;
+        text: string;
+        sentAt: import("../../types").Timestamp;
+    }>, "many">>;
     tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodArray<z.ZodString, "many">>>;
     aiFinalizedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     startedDeletingAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -3228,6 +3241,11 @@ export declare const timePlanSessionSchema: z.ZodObject<{
     startedPlanIds?: string[] | undefined;
     completedPlanIds?: string[] | undefined;
     activeCallLogId?: string | undefined;
+    coachGuidanceItems?: {
+        id: string;
+        text: string;
+        sentAt: import("../../types").Timestamp;
+    }[] | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
@@ -3674,6 +3692,11 @@ export declare const timePlanSessionSchema: z.ZodObject<{
     startedPlanIds?: string[] | undefined;
     completedPlanIds?: string[] | undefined;
     activeCallLogId?: string | undefined;
+    coachGuidanceItems?: {
+        id: string;
+        text: string;
+        sentAt: import("../../types").Timestamp;
+    }[] | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
@@ -6457,6 +6480,19 @@ export declare const locationPlanSessionSchema: z.ZodObject<{
     startedPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     completedPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     activeCallLogId: z.ZodOptional<z.ZodString>;
+    coachGuidanceItems: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        id: z.ZodString;
+        text: z.ZodString;
+        sentAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    }, "strip", z.ZodTypeAny, {
+        id: string;
+        text: string;
+        sentAt: import("../../types").Timestamp;
+    }, {
+        id: string;
+        text: string;
+        sentAt: import("../../types").Timestamp;
+    }>, "many">>;
     tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodArray<z.ZodString, "many">>>;
     aiFinalizedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     startedDeletingAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -6907,6 +6943,11 @@ export declare const locationPlanSessionSchema: z.ZodObject<{
     startedPlanIds?: string[] | undefined;
     completedPlanIds?: string[] | undefined;
     activeCallLogId?: string | undefined;
+    coachGuidanceItems?: {
+        id: string;
+        text: string;
+        sentAt: import("../../types").Timestamp;
+    }[] | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
@@ -7353,6 +7394,11 @@ export declare const locationPlanSessionSchema: z.ZodObject<{
     startedPlanIds?: string[] | undefined;
     completedPlanIds?: string[] | undefined;
     activeCallLogId?: string | undefined;
+    coachGuidanceItems?: {
+        id: string;
+        text: string;
+        sentAt: import("../../types").Timestamp;
+    }[] | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
