@@ -3084,13 +3084,14 @@ export declare const logSchemas: {
             }>>;
             agentConnectedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             endedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-            livekitSessionId: z.ZodString;
-            livekitRoomName: z.ZodString;
+            livekitSessionId: z.ZodOptional<z.ZodString>;
+            livekitRoomName: z.ZodOptional<z.ZodString>;
+            elevenlabsAgentId: z.ZodOptional<z.ZodString>;
+            elevenlabsConversationId: z.ZodOptional<z.ZodString>;
             token: z.ZodOptional<z.ZodString>;
             summary: z.ZodOptional<z.ZodString>;
         }, "strip", z.ZodTypeAny, {
-            livekitRoomName: string;
-            livekitSessionId: string;
+            livekitRoomName?: string | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
             tactic?: {
                 createdAt: import("../../types").Timestamp;
@@ -3473,11 +3474,13 @@ export declare const logSchemas: {
                 collectionTemplateIds?: string[] | undefined;
             } | undefined;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
+            livekitSessionId?: string | undefined;
+            elevenlabsAgentId?: string | undefined;
+            elevenlabsConversationId?: string | undefined;
             token?: string | undefined;
             summary?: string | undefined;
         }, {
-            livekitRoomName: string;
-            livekitSessionId: string;
+            livekitRoomName?: string | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
             tactic?: {
                 createdAt: import("../../types").Timestamp;
@@ -3860,6 +3863,9 @@ export declare const logSchemas: {
                 collectionTemplateIds?: string[] | undefined;
             } | undefined;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
+            livekitSessionId?: string | undefined;
+            elevenlabsAgentId?: string | undefined;
+            elevenlabsConversationId?: string | undefined;
             token?: string | undefined;
             summary?: string | undefined;
         }>;
@@ -3873,8 +3879,7 @@ export declare const logSchemas: {
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
-            livekitRoomName: string;
-            livekitSessionId: string;
+            livekitRoomName?: string | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
             tactic?: {
                 createdAt: import("../../types").Timestamp;
@@ -4257,6 +4262,9 @@ export declare const logSchemas: {
                 collectionTemplateIds?: string[] | undefined;
             } | undefined;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
+            livekitSessionId?: string | undefined;
+            elevenlabsAgentId?: string | undefined;
+            elevenlabsConversationId?: string | undefined;
             token?: string | undefined;
             summary?: string | undefined;
         };
@@ -4275,8 +4283,7 @@ export declare const logSchemas: {
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
-            livekitRoomName: string;
-            livekitSessionId: string;
+            livekitRoomName?: string | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
             tactic?: {
                 createdAt: import("../../types").Timestamp;
@@ -4659,6 +4666,9 @@ export declare const logSchemas: {
                 collectionTemplateIds?: string[] | undefined;
             } | undefined;
             agentConnectedAt?: import("../../types").Timestamp | undefined;
+            livekitSessionId?: string | undefined;
+            elevenlabsAgentId?: string | undefined;
+            elevenlabsConversationId?: string | undefined;
             token?: string | undefined;
             summary?: string | undefined;
         };
@@ -26374,13 +26384,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }>>;
         agentConnectedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         endedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-        livekitSessionId: z.ZodString;
-        livekitRoomName: z.ZodString;
+        livekitSessionId: z.ZodOptional<z.ZodString>;
+        livekitRoomName: z.ZodOptional<z.ZodString>;
+        elevenlabsAgentId: z.ZodOptional<z.ZodString>;
+        elevenlabsConversationId: z.ZodOptional<z.ZodString>;
         token: z.ZodOptional<z.ZodString>;
         summary: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
-        livekitRoomName: string;
-        livekitSessionId: string;
+        livekitRoomName?: string | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
@@ -26763,11 +26774,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             collectionTemplateIds?: string[] | undefined;
         } | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
+        livekitSessionId?: string | undefined;
+        elevenlabsAgentId?: string | undefined;
+        elevenlabsConversationId?: string | undefined;
         token?: string | undefined;
         summary?: string | undefined;
     }, {
-        livekitRoomName: string;
-        livekitSessionId: string;
+        livekitRoomName?: string | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
@@ -27150,6 +27163,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             collectionTemplateIds?: string[] | undefined;
         } | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
+        livekitSessionId?: string | undefined;
+        elevenlabsAgentId?: string | undefined;
+        elevenlabsConversationId?: string | undefined;
         token?: string | undefined;
         summary?: string | undefined;
     }>;
@@ -27163,8 +27179,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
-        livekitRoomName: string;
-        livekitSessionId: string;
+        livekitRoomName?: string | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
@@ -27547,6 +27562,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             collectionTemplateIds?: string[] | undefined;
         } | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
+        livekitSessionId?: string | undefined;
+        elevenlabsAgentId?: string | undefined;
+        elevenlabsConversationId?: string | undefined;
         token?: string | undefined;
         summary?: string | undefined;
     };
@@ -27565,8 +27583,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
-        livekitRoomName: string;
-        livekitSessionId: string;
+        livekitRoomName?: string | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
@@ -27949,6 +27966,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             collectionTemplateIds?: string[] | undefined;
         } | undefined;
         agentConnectedAt?: import("../../types").Timestamp | undefined;
+        livekitSessionId?: string | undefined;
+        elevenlabsAgentId?: string | undefined;
+        elevenlabsConversationId?: string | undefined;
         token?: string | undefined;
         summary?: string | undefined;
     };

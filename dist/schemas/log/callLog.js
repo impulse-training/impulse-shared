@@ -13,8 +13,12 @@ exports.callLogSchema = base_1.logBaseSchema.extend({
         tactic: tactic_1.tacticSchema.optional(),
         agentConnectedAt: timestampSchema_1.timestampSchema.optional(),
         endedAt: timestampSchema_1.timestampSchema.optional(),
-        livekitSessionId: zod_1.z.string(),
-        livekitRoomName: zod_1.z.string(),
+        // Voice provider plumbing. Both vendor groups are optional — a call log
+        // either has LiveKit fields (legacy) OR ElevenLabs fields (current).
+        livekitSessionId: zod_1.z.string().optional(),
+        livekitRoomName: zod_1.z.string().optional(),
+        elevenlabsAgentId: zod_1.z.string().optional(),
+        elevenlabsConversationId: zod_1.z.string().optional(),
         token: zod_1.z.string().optional(),
         summary: zod_1.z.string().optional(),
     }),

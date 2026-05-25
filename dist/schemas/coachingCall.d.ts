@@ -9,6 +9,8 @@ export declare const coachingCallSchema: z.ZodObject<{
     livekitRoomName: z.ZodString;
     participantIds: z.ZodArray<z.ZodString, "many">;
     joinedByIds: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+    connectedParticipantIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    agentConnected: z.ZodOptional<z.ZodBoolean>;
     startedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     endedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     notifiedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -25,6 +27,8 @@ export declare const coachingCallSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
+    connectedParticipantIds?: string[] | undefined;
+    agentConnected?: boolean | undefined;
     startedAt?: import("../types").Timestamp | undefined;
     endedAt?: import("../types").Timestamp | undefined;
     notifiedAt?: import("../types").Timestamp | undefined;
@@ -39,6 +43,8 @@ export declare const coachingCallSchema: z.ZodObject<{
     status?: "scheduled" | "active" | "completed" | "missed" | "cancelled" | undefined;
     durationMinutes?: number | undefined;
     joinedByIds?: string[] | undefined;
+    connectedParticipantIds?: string[] | undefined;
+    agentConnected?: boolean | undefined;
     startedAt?: import("../types").Timestamp | undefined;
     endedAt?: import("../types").Timestamp | undefined;
     notifiedAt?: import("../types").Timestamp | undefined;

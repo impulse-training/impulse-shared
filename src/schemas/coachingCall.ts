@@ -18,6 +18,8 @@ export const coachingCallSchema = z.object({
   livekitRoomName: z.string(),
   participantIds: z.array(z.string()),
   joinedByIds: z.array(z.string()).default([]),
+  connectedParticipantIds: z.array(z.string()).optional(),
+  agentConnected: z.boolean().optional(),
   startedAt: timestampSchema.optional(),
   endedAt: timestampSchema.optional(),
   notifiedAt: timestampSchema.optional(),

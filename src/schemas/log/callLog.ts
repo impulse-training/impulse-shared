@@ -11,8 +11,12 @@ export const callLogSchema = logBaseSchema.extend({
     tactic: tacticSchema.optional(),
     agentConnectedAt: timestampSchema.optional(),
     endedAt: timestampSchema.optional(),
-    livekitSessionId: z.string(),
-    livekitRoomName: z.string(),
+    // Voice provider plumbing. Both vendor groups are optional — a call log
+    // either has LiveKit fields (legacy) OR ElevenLabs fields (current).
+    livekitSessionId: z.string().optional(),
+    livekitRoomName: z.string().optional(),
+    elevenlabsAgentId: z.string().optional(),
+    elevenlabsConversationId: z.string().optional(),
     token: z.string().optional(),
     summary: z.string().optional(),
   }),

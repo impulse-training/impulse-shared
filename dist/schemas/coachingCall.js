@@ -19,6 +19,8 @@ exports.coachingCallSchema = zod_1.z.object({
     livekitRoomName: zod_1.z.string(),
     participantIds: zod_1.z.array(zod_1.z.string()),
     joinedByIds: zod_1.z.array(zod_1.z.string()).default([]),
+    connectedParticipantIds: zod_1.z.array(zod_1.z.string()).optional(),
+    agentConnected: zod_1.z.boolean().optional(),
     startedAt: timestampSchema_1.timestampSchema.optional(),
     endedAt: timestampSchema_1.timestampSchema.optional(),
     notifiedAt: timestampSchema_1.timestampSchema.optional(),
