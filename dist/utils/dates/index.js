@@ -16,6 +16,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DATE_FORMAT = void 0;
 exports.getDateString = getDateString;
+exports.isRecapContextDateStale = isRecapContextDateStale;
 exports.getRecapDeadline = getRecapDeadline;
 __exportStar(require("./getUnrecappedDays"), exports);
 exports.DATE_FORMAT = "yyyy-MM-dd";
@@ -24,6 +25,14 @@ const date_fns_tz_1 = require("date-fns-tz");
 // Get a date string that can be used for SQL queries
 function getDateString(date, timezone) {
     return (0, date_fns_1.format)((0, date_fns_tz_1.toZonedTime)(date, timezone), exports.DATE_FORMAT);
+}
+/**
+ * Returns true if `computedAt` falls on a different calendar day than `now`
+ * in `userTimezone`. Used to detect stale recap prompt cache entries whose
+ * RECAP TIMING line ("today" vs "yesterday") may no longer be accurate.
+ */
+function isRecapContextDateStale(computedAt, now, userTimezone) {
+    return getDateString(computedAt, userTimezone) !== getDateString(now, userTimezone);
 }
 /**
  * Get the recap deadline for a given target date string.

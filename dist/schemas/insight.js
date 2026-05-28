@@ -6,20 +6,32 @@ const documentReferenceSchema_1 = require("../utils/documentReferenceSchema");
 const timestampSchema_1 = require("../utils/timestampSchema");
 exports.insightSchema = zod_1.z.object({
     id: zod_1.z.string().optional(),
-    emotion: zod_1.z.string(),
+    userId: zod_1.z.string().optional(),
+    emotion: zod_1.z.string().optional(),
     associatedBehaviorDocs: documentReferenceSchema_1.documentReferenceSchema.array().optional(),
     sourceSessionDoc: documentReferenceSchema_1.documentReferenceSchema.optional(),
     sourceLogDoc: documentReferenceSchema_1.documentReferenceSchema.optional(),
     text: zod_1.z.string(),
+    // Coach-review lifecycle (experiment-driven insights).
+    // System creates insights with status "pending"; coaches post or dismiss
+    // from the dashboard. Only "posted" insights surface to users.
+    status: zod_1.z.enum(["pending", "posted", "dismissed"]).optional(),
+    // ID of the experiment this insight belongs to (currently always "current")
+    experimentId: zod_1.z.string().optional(),
+    // Denormalized coach UID for efficient collection-group queries.
+    // Authorization uses isCoachFor(userId) in rules (checks the user doc),
+    // not this field — it is for query scoping only.
+    coachId: zod_1.z.string().nullable().optional(),
+    postedAt: timestampSchema_1.timestampSchema.optional(),
+    postedBy: zod_1.z.string().optional(), // coach UID who posted
     /**
-     * Insight lifecycle:
+     * Sharing lifecycle (user-created qualitative insights):
      * - Created private
      * - Eligibility evaluated async (null -> eligible | ineligible)
-     * - Some eligible insights are surfaced later
+     * - Some eligible insights are surfaced later for sharing UI
      * - Sharing is always user-initiated
      * - Public insights are copies, never live documents
      */
-    // contentEligibilityStatus === null || undefined -> not yet evaluated
     contentEligibilityStatus: zod_1.z
         .enum(["eligible", "ineligible"])
         .nullable()

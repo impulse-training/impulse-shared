@@ -4,20 +4,34 @@ import { timestampSchema } from "../utils/timestampSchema";
 
 export const insightSchema = z.object({
   id: z.string().optional(),
-  emotion: z.string(),
+  userId: z.string().optional(),
+  emotion: z.string().optional(),
   associatedBehaviorDocs: documentReferenceSchema.array().optional(),
   sourceSessionDoc: documentReferenceSchema.optional(),
   sourceLogDoc: documentReferenceSchema.optional(),
   text: z.string(),
+
+  // Coach-review lifecycle (experiment-driven insights).
+  // System creates insights with status "pending"; coaches post or dismiss
+  // from the dashboard. Only "posted" insights surface to users.
+  status: z.enum(["pending", "posted", "dismissed"]).optional(),
+  // ID of the experiment this insight belongs to (currently always "current")
+  experimentId: z.string().optional(),
+  // Denormalized coach UID for efficient collection-group queries.
+  // Authorization uses isCoachFor(userId) in rules (checks the user doc),
+  // not this field — it is for query scoping only.
+  coachId: z.string().nullable().optional(),
+  postedAt: timestampSchema.optional(),
+  postedBy: z.string().optional(), // coach UID who posted
+
   /**
-   * Insight lifecycle:
+   * Sharing lifecycle (user-created qualitative insights):
    * - Created private
    * - Eligibility evaluated async (null -> eligible | ineligible)
-   * - Some eligible insights are surfaced later
+   * - Some eligible insights are surfaced later for sharing UI
    * - Sharing is always user-initiated
    * - Public insights are copies, never live documents
    */
-  // contentEligibilityStatus === null || undefined -> not yet evaluated
   contentEligibilityStatus: z
     .enum(["eligible", "ineligible"])
     .nullable()
