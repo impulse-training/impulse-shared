@@ -183,6 +183,7 @@ export declare const userDataSchema: z.ZodObject<{
     onboardingCompleted: z.ZodOptional<z.ZodBoolean>;
     behaviorNames: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     engagement: z.ZodOptional<z.ZodNullable<z.ZodEnum<["engaged", "distant", "churned", "abandoned"]>>>;
+    coachInstructions: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     role: "user" | "coach" | "support";
     theme: "system" | "light" | "dark";
@@ -271,6 +272,7 @@ export declare const userDataSchema: z.ZodObject<{
     pseudonym?: string | undefined;
     onboardingCompleted?: boolean | undefined;
     engagement?: "engaged" | "distant" | "churned" | "abandoned" | null | undefined;
+    coachInstructions?: string | undefined;
 }, {
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
@@ -359,6 +361,7 @@ export declare const userDataSchema: z.ZodObject<{
     pseudonym?: string | undefined;
     onboardingCompleted?: boolean | undefined;
     engagement?: "engaged" | "distant" | "churned" | "abandoned" | null | undefined;
+    coachInstructions?: string | undefined;
 }>;
 export type UserData = z.infer<typeof userDataSchema>;
 export declare const isUserData: (value: unknown) => value is UserData;

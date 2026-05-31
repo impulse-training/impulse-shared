@@ -1,6 +1,30 @@
 import { z } from "zod";
 export declare const recapQuestionSourceSchema: z.ZodEnum<["sequence", "baseline", "milestone", "trend"]>;
 export type RecapQuestionSource = z.infer<typeof recapQuestionSourceSchema>;
+/**
+ * Authoritative streak figure for a focus behavior, computed synchronously when
+ * the user confirms day totals and pinned onto the recap session. The AI reads
+ * this directly so the streak it reports can't lag behind the async behavior-state
+ * recompute (the `afterDaySummaryWrite` trigger races `respondWithAI` otherwise).
+ */
+export declare const recapStreakContextEntrySchema: z.ZodObject<{
+    behaviorName: z.ZodString;
+    /** Days the current streak spans, inclusive of the just-confirmed day. */
+    streakDays: z.ZodNumber;
+    currentStreakStartDate: z.ZodOptional<z.ZodString>;
+    lastAchievedRungLabel: z.ZodOptional<z.ZodString>;
+}, "strip", z.ZodTypeAny, {
+    behaviorName: string;
+    streakDays: number;
+    currentStreakStartDate?: string | undefined;
+    lastAchievedRungLabel?: string | undefined;
+}, {
+    behaviorName: string;
+    streakDays: number;
+    currentStreakStartDate?: string | undefined;
+    lastAchievedRungLabel?: string | undefined;
+}>;
+export type RecapStreakContextEntry = z.infer<typeof recapStreakContextEntrySchema>;
 export declare const recapSessionSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     title: z.ZodString;
@@ -2808,6 +2832,23 @@ export declare const recapSessionSchema: z.ZodObject<{
     focusBehaviorName: z.ZodOptional<z.ZodString>;
     focusBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     focusBehaviorNames: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    recapStreakContextByBehaviorId: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodObject<{
+        behaviorName: z.ZodString;
+        /** Days the current streak spans, inclusive of the just-confirmed day. */
+        streakDays: z.ZodNumber;
+        currentStreakStartDate: z.ZodOptional<z.ZodString>;
+        lastAchievedRungLabel: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        behaviorName: string;
+        streakDays: number;
+        currentStreakStartDate?: string | undefined;
+        lastAchievedRungLabel?: string | undefined;
+    }, {
+        behaviorName: string;
+        streakDays: number;
+        currentStreakStartDate?: string | undefined;
+        lastAchievedRungLabel?: string | undefined;
+    }>>>;
 }, "strip", z.ZodTypeAny, {
     type: "recap";
     date: import("../../types").Timestamp;
@@ -3267,6 +3308,12 @@ export declare const recapSessionSchema: z.ZodObject<{
     focusBehaviorName?: string | undefined;
     focusBehaviorIds?: string[] | undefined;
     focusBehaviorNames?: string[] | undefined;
+    recapStreakContextByBehaviorId?: Record<string, {
+        behaviorName: string;
+        streakDays: number;
+        currentStreakStartDate?: string | undefined;
+        lastAchievedRungLabel?: string | undefined;
+    }> | undefined;
 }, {
     type: "recap";
     date: import("../../types").Timestamp;
@@ -3726,5 +3773,11 @@ export declare const recapSessionSchema: z.ZodObject<{
     focusBehaviorName?: string | undefined;
     focusBehaviorIds?: string[] | undefined;
     focusBehaviorNames?: string[] | undefined;
+    recapStreakContextByBehaviorId?: Record<string, {
+        behaviorName: string;
+        streakDays: number;
+        currentStreakStartDate?: string | undefined;
+        lastAchievedRungLabel?: string | undefined;
+    }> | undefined;
 }>;
 export type RecapSession = z.infer<typeof recapSessionSchema>;

@@ -139,6 +139,8 @@ exports.userDataSchema = zod_1.z.object({
         .enum(["engaged", "distant", "churned", "abandoned"])
         .nullable()
         .optional(),
+    // Coach-authored guidance shown to the user between calls
+    coachInstructions: zod_1.z.string().optional(),
 });
 // Type guard for User
 const isUserData = (value) => exports.userDataSchema.safeParse(value).success;

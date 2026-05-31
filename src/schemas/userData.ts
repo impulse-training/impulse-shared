@@ -176,6 +176,9 @@ export const userDataSchema = z.object({
     .enum(["engaged", "distant", "churned", "abandoned"])
     .nullable()
     .optional(),
+
+  // Coach-authored guidance shown to the user between calls
+  coachInstructions: z.string().optional(),
 });
 
 // Export User type inferred from schema
