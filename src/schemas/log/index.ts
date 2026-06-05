@@ -81,10 +81,6 @@ import {
   recoveryKeyLogSchema,
 } from "./recoveryKeyLog";
 import {
-  CloseButtonLog,
-  closeButtonLogSchema,
-} from "./closeButtonLog";
-import {
   ImageLog,
   imageLogSchema,
 } from "./imageLog";
@@ -145,7 +141,6 @@ export const logSchemas = {
   tags_updated: tagsUpdatedLogSchema,
   crisis_resource: crisisResourceLogSchema,
   recovery_key: recoveryKeyLogSchema,
-  close_button: closeButtonLogSchema,
   image: imageLogSchema,
   photo: photoLogSchema,
   merge_behaviors_proposal: mergeBehaviorsProposalLogSchema,
@@ -188,7 +183,6 @@ export type Log =
   | TagsUpdatedLog
   | CrisisResourceLog
   | RecoveryKeyLog
-  | CloseButtonLog
   | ImageLog
   | PhotoLog
   | MergeBehaviorsProposalLog
@@ -226,7 +220,6 @@ export * from "./setupModeChoiceLog";
 export * from "./tagsUpdatedLog";
 export * from "./crisisResourceLog";
 export * from "./recoveryKeyLog";
-export * from "./closeButtonLog";
 export * from "./imageLog";
 export * from "./photoLog";
 export * from "./mergeBehaviorsProposalLog";
@@ -266,7 +259,6 @@ export const logSchema = z.discriminatedUnion("type", [
   tagsUpdatedLogSchema,
   crisisResourceLogSchema,
   recoveryKeyLogSchema,
-  closeButtonLogSchema,
   imageLogSchema,
   photoLogSchema,
   mergeBehaviorsProposalLogSchema,
@@ -484,10 +476,6 @@ export const logIsCrisisResourceLog = (
 export const logIsRecoveryKeyLog = (
   value: Omit<Log, "id">,
 ): value is RecoveryKeyLog => value.type === "recovery_key";
-
-export const logIsCloseButtonLog = (
-  value: Omit<Log, "id">,
-): value is CloseButtonLog => value.type === "close_button";
 
 export const logIsImageLog = (
   value: Omit<Log, "id">,
