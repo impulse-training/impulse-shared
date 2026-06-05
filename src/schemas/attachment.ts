@@ -42,6 +42,31 @@ export const attachmentSchema = z.object({
 
       // Audio-specific fields
       transcript: z.string().optional(),
+      // Lyrics for generated songs (returned by the generation provider)
+      lyrics: z.string().optional(),
+      // Word-level + derived line-level timing for karaoke-style highlighting.
+      // Times are in seconds, matching the audio player's currentTime.
+      lyricsAlignment: z
+        .object({
+          words: z.array(
+            z.object({
+              text: z.string(),
+              startS: z.number(),
+              endS: z.number(),
+            })
+          ),
+          lines: z.array(
+            z.object({
+              text: z.string(),
+              startS: z.number(),
+              endS: z.number(),
+              // Inclusive indices into `words` that make up this line.
+              wordStart: z.number(),
+              wordEnd: z.number(),
+            })
+          ),
+        })
+        .optional(),
       meterings: z
         .array(
           z.object({

@@ -38,6 +38,27 @@ exports.attachmentSchema = zod_1.z.object({
         durationMs: zod_1.z.number().optional(),
         // Audio-specific fields
         transcript: zod_1.z.string().optional(),
+        // Lyrics for generated songs (returned by the generation provider)
+        lyrics: zod_1.z.string().optional(),
+        // Word-level + derived line-level timing for karaoke-style highlighting.
+        // Times are in seconds, matching the audio player's currentTime.
+        lyricsAlignment: zod_1.z
+            .object({
+            words: zod_1.z.array(zod_1.z.object({
+                text: zod_1.z.string(),
+                startS: zod_1.z.number(),
+                endS: zod_1.z.number(),
+            })),
+            lines: zod_1.z.array(zod_1.z.object({
+                text: zod_1.z.string(),
+                startS: zod_1.z.number(),
+                endS: zod_1.z.number(),
+                // Inclusive indices into `words` that make up this line.
+                wordStart: zod_1.z.number(),
+                wordEnd: zod_1.z.number(),
+            })),
+        })
+            .optional(),
         meterings: zod_1.z
             .array(zod_1.z.object({
             db: zod_1.z.number(),

@@ -31,6 +31,7 @@ export * from "./quote";
 export * from "./recapMessage";
 export * from "./recapQuestion";
 export * from "./scheduledCheckIn";
+export * from "./schemaValidationReport";
 export * from "./session";
 export * from "./slot";
 export * from "./supportGroup";

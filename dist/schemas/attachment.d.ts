@@ -19,6 +19,67 @@ export declare const attachmentSchema: z.ZodObject<{
         height: z.ZodOptional<z.ZodNumber>;
         durationMs: z.ZodOptional<z.ZodNumber>;
         transcript: z.ZodOptional<z.ZodString>;
+        lyrics: z.ZodOptional<z.ZodString>;
+        lyricsAlignment: z.ZodOptional<z.ZodObject<{
+            words: z.ZodArray<z.ZodObject<{
+                text: z.ZodString;
+                startS: z.ZodNumber;
+                endS: z.ZodNumber;
+            }, "strip", z.ZodTypeAny, {
+                text: string;
+                startS: number;
+                endS: number;
+            }, {
+                text: string;
+                startS: number;
+                endS: number;
+            }>, "many">;
+            lines: z.ZodArray<z.ZodObject<{
+                text: z.ZodString;
+                startS: z.ZodNumber;
+                endS: z.ZodNumber;
+                wordStart: z.ZodNumber;
+                wordEnd: z.ZodNumber;
+            }, "strip", z.ZodTypeAny, {
+                text: string;
+                startS: number;
+                endS: number;
+                wordStart: number;
+                wordEnd: number;
+            }, {
+                text: string;
+                startS: number;
+                endS: number;
+                wordStart: number;
+                wordEnd: number;
+            }>, "many">;
+        }, "strip", z.ZodTypeAny, {
+            words: {
+                text: string;
+                startS: number;
+                endS: number;
+            }[];
+            lines: {
+                text: string;
+                startS: number;
+                endS: number;
+                wordStart: number;
+                wordEnd: number;
+            }[];
+        }, {
+            words: {
+                text: string;
+                startS: number;
+                endS: number;
+            }[];
+            lines: {
+                text: string;
+                startS: number;
+                endS: number;
+                wordStart: number;
+                wordEnd: number;
+            }[];
+        }>>;
         meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
             db: z.ZodNumber;
             timestampMs: z.ZodOptional<z.ZodNumber>;
@@ -34,6 +95,21 @@ export declare const attachmentSchema: z.ZodObject<{
         height?: number | undefined;
         durationMs?: number | undefined;
         transcript?: string | undefined;
+        lyrics?: string | undefined;
+        lyricsAlignment?: {
+            words: {
+                text: string;
+                startS: number;
+                endS: number;
+            }[];
+            lines: {
+                text: string;
+                startS: number;
+                endS: number;
+                wordStart: number;
+                wordEnd: number;
+            }[];
+        } | undefined;
         meterings?: {
             db: number;
             timestampMs?: number | undefined;
@@ -43,6 +119,21 @@ export declare const attachmentSchema: z.ZodObject<{
         height?: number | undefined;
         durationMs?: number | undefined;
         transcript?: string | undefined;
+        lyrics?: string | undefined;
+        lyricsAlignment?: {
+            words: {
+                text: string;
+                startS: number;
+                endS: number;
+            }[];
+            lines: {
+                text: string;
+                startS: number;
+                endS: number;
+                wordStart: number;
+                wordEnd: number;
+            }[];
+        } | undefined;
         meterings?: {
             db: number;
             timestampMs?: number | undefined;
@@ -61,6 +152,21 @@ export declare const attachmentSchema: z.ZodObject<{
         height?: number | undefined;
         durationMs?: number | undefined;
         transcript?: string | undefined;
+        lyrics?: string | undefined;
+        lyricsAlignment?: {
+            words: {
+                text: string;
+                startS: number;
+                endS: number;
+            }[];
+            lines: {
+                text: string;
+                startS: number;
+                endS: number;
+                wordStart: number;
+                wordEnd: number;
+            }[];
+        } | undefined;
         meterings?: {
             db: number;
             timestampMs?: number | undefined;
@@ -79,6 +185,21 @@ export declare const attachmentSchema: z.ZodObject<{
         height?: number | undefined;
         durationMs?: number | undefined;
         transcript?: string | undefined;
+        lyrics?: string | undefined;
+        lyricsAlignment?: {
+            words: {
+                text: string;
+                startS: number;
+                endS: number;
+            }[];
+            lines: {
+                text: string;
+                startS: number;
+                endS: number;
+                wordStart: number;
+                wordEnd: number;
+            }[];
+        } | undefined;
         meterings?: {
             db: number;
             timestampMs?: number | undefined;

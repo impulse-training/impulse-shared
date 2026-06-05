@@ -49,6 +49,7 @@ __exportStar(require("./quote"), exports);
 __exportStar(require("./recapMessage"), exports);
 __exportStar(require("./recapQuestion"), exports);
 __exportStar(require("./scheduledCheckIn"), exports);
+__exportStar(require("./schemaValidationReport"), exports);
 __exportStar(require("./session"), exports);
 __exportStar(require("./slot"), exports);
 __exportStar(require("./supportGroup"), exports);
