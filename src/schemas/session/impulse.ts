@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { documentReferenceSchema } from "../../utils/documentReferenceSchema";
 import { timestampSchema } from "../../utils/timestampSchema";
+import { tacticPhaseSchema } from "../tactic/tactic";
 import { sessionBaseSchema } from "./base";
 import { sessionPhaseSchema } from "./phase";
 
@@ -8,7 +9,10 @@ export const recommendedTacticSchema = z.object({
   tacticId: z.string(),
   title: z.string(),
   description: z.string().optional(),
-  phase: z.string().optional(),
+  // Denormalised copy of the tactic's phase. `.catch(undefined)` keeps a stray
+  // legacy value from failing the whole-session safeParse used by the
+  // `isImpulseSession` type guard.
+  phase: tacticPhaseSchema.optional().catch(undefined),
   firstStepText: z.string().optional(),
   tacticRefPath: z.string().optional(),
 });
