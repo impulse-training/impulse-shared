@@ -12,6 +12,10 @@ export const coachingCallStatusSchema = z.enum([
 export const coachingCallSchema = z.object({
   id: z.string().optional(),
   groupId: z.string(),
+  // Set when the call originates from an on-demand booking against a recurring
+  // slot (handleBook / the recurrence trigger). Absent on calls generated from
+  // a group's scheduledCallSlot template.
+  slotId: z.string().optional(),
   scheduledAt: timestampSchema,
   durationMinutes: z.number().default(30),
   status: coachingCallStatusSchema.default("scheduled"),
