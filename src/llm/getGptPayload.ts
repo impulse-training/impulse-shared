@@ -342,7 +342,7 @@ export function getGptPayload(
       {
         role: "user",
         content:
-          "<CONTEXT>The user has confirmed their day totals. Transition to tonight's recap question.</CONTEXT>",
+          "<CONTEXT>The user has confirmed their day totals. Open by giving them space to reflect on the day on their own terms — do NOT fire tonight's recap question as your opening line. You still need to weave the recap question in naturally before the conversation closes.</CONTEXT>",
       },
     ];
   }
