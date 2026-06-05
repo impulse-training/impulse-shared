@@ -13,6 +13,10 @@ exports.coachingCallStatusSchema = zod_1.z.enum([
 exports.coachingCallSchema = zod_1.z.object({
     id: zod_1.z.string().optional(),
     groupId: zod_1.z.string(),
+    // Set when the call originates from an on-demand booking against a recurring
+    // slot (handleBook / the recurrence trigger). Absent on calls generated from
+    // a group's scheduledCallSlot template.
+    slotId: zod_1.z.string().optional(),
     scheduledAt: timestampSchema_1.timestampSchema,
     durationMinutes: zod_1.z.number().default(30),
     status: exports.coachingCallStatusSchema.default("scheduled"),

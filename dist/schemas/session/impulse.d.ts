@@ -3,21 +3,21 @@ export declare const recommendedTacticSchema: z.ZodObject<{
     tacticId: z.ZodString;
     title: z.ZodString;
     description: z.ZodOptional<z.ZodString>;
-    phase: z.ZodOptional<z.ZodString>;
+    phase: z.ZodCatch<z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>>;
     firstStepText: z.ZodOptional<z.ZodString>;
     tacticRefPath: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     title: string;
     tacticId: string;
     description?: string | undefined;
-    phase?: string | undefined;
+    phase?: "shift" | "regulate" | "reengage" | undefined;
     tacticRefPath?: string | undefined;
     firstStepText?: string | undefined;
 }, {
     title: string;
     tacticId: string;
     description?: string | undefined;
-    phase?: string | undefined;
+    phase?: unknown;
     tacticRefPath?: string | undefined;
     firstStepText?: string | undefined;
 }>;
@@ -2828,27 +2828,27 @@ export declare const impulseSessionSchema: z.ZodObject<{
     mostHelpfulTacticId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     debriefNote: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     generatedPlanId: z.ZodOptional<z.ZodString>;
-    phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage", "debrief"]>>;
+    phase: z.ZodOptional<z.ZodEnum<["regulate", "debrief"]>>;
     hasScheduledCheckIn: z.ZodOptional<z.ZodBoolean>;
     recommendedTactics: z.ZodOptional<z.ZodArray<z.ZodObject<{
         tacticId: z.ZodString;
         title: z.ZodString;
         description: z.ZodOptional<z.ZodString>;
-        phase: z.ZodOptional<z.ZodString>;
+        phase: z.ZodCatch<z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>>;
         firstStepText: z.ZodOptional<z.ZodString>;
         tacticRefPath: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
         title: string;
         tacticId: string;
         description?: string | undefined;
-        phase?: string | undefined;
+        phase?: "shift" | "regulate" | "reengage" | undefined;
         tacticRefPath?: string | undefined;
         firstStepText?: string | undefined;
     }, {
         title: string;
         tacticId: string;
         description?: string | undefined;
-        phase?: string | undefined;
+        phase?: unknown;
         tacticRefPath?: string | undefined;
         firstStepText?: string | undefined;
     }>, "many">>;
@@ -2872,7 +2872,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
     updatedAt?: import("../../types").Timestamp | undefined;
     behaviorIds?: string[] | undefined;
     tags?: Record<string, string[]> | undefined;
-    phase?: "shift" | "regulate" | "reengage" | "debrief" | undefined;
+    phase?: "regulate" | "debrief" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
     triggerId?: string | null | undefined;
@@ -3316,7 +3316,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
         title: string;
         tacticId: string;
         description?: string | undefined;
-        phase?: string | undefined;
+        phase?: "shift" | "regulate" | "reengage" | undefined;
         tacticRefPath?: string | undefined;
         firstStepText?: string | undefined;
     }[] | undefined;
@@ -3339,7 +3339,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
     behaviorIds?: string[] | undefined;
     tags?: Record<string, string[]> | undefined;
     mode?: "text" | "voice" | undefined;
-    phase?: "shift" | "regulate" | "reengage" | "debrief" | undefined;
+    phase?: "regulate" | "debrief" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
     triggerId?: string | null | undefined;
@@ -3784,7 +3784,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
         title: string;
         tacticId: string;
         description?: string | undefined;
-        phase?: string | undefined;
+        phase?: unknown;
         tacticRefPath?: string | undefined;
         firstStepText?: string | undefined;
     }[] | undefined;

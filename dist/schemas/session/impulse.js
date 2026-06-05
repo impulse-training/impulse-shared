@@ -4,13 +4,17 @@ exports.impulseSessionSchema = exports.recommendedTacticSchema = void 0;
 const zod_1 = require("zod");
 const documentReferenceSchema_1 = require("../../utils/documentReferenceSchema");
 const timestampSchema_1 = require("../../utils/timestampSchema");
+const tactic_1 = require("../tactic/tactic");
 const base_1 = require("./base");
 const phase_1 = require("./phase");
 exports.recommendedTacticSchema = zod_1.z.object({
     tacticId: zod_1.z.string(),
     title: zod_1.z.string(),
     description: zod_1.z.string().optional(),
-    phase: zod_1.z.string().optional(),
+    // Denormalised copy of the tactic's phase. `.catch(undefined)` keeps a stray
+    // legacy value from failing the whole-session safeParse used by the
+    // `isImpulseSession` type guard.
+    phase: tactic_1.tacticPhaseSchema.optional().catch(undefined),
     firstStepText: zod_1.z.string().optional(),
     tacticRefPath: zod_1.z.string().optional(),
 });

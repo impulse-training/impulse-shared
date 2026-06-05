@@ -3,6 +3,7 @@ export declare const coachingCallStatusSchema: z.ZodEnum<["scheduled", "active",
 export declare const coachingCallSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     groupId: z.ZodString;
+    slotId: z.ZodOptional<z.ZodString>;
     scheduledAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     durationMinutes: z.ZodDefault<z.ZodNumber>;
     status: z.ZodDefault<z.ZodEnum<["scheduled", "active", "completed", "missed", "cancelled"]>>;
@@ -27,6 +28,7 @@ export declare const coachingCallSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
+    slotId?: string | undefined;
     connectedParticipantIds?: string[] | undefined;
     agentConnected?: boolean | undefined;
     startedAt?: import("../types").Timestamp | undefined;
@@ -42,6 +44,7 @@ export declare const coachingCallSchema: z.ZodObject<{
     updatedAt?: import("../types").Timestamp | undefined;
     status?: "scheduled" | "active" | "completed" | "missed" | "cancelled" | undefined;
     durationMinutes?: number | undefined;
+    slotId?: string | undefined;
     joinedByIds?: string[] | undefined;
     connectedParticipantIds?: string[] | undefined;
     agentConnected?: boolean | undefined;

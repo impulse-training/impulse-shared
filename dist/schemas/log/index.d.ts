@@ -27,7 +27,6 @@ import { SetupModeChoiceLog } from "./setupModeChoiceLog";
 import { TagsUpdatedLog } from "./tagsUpdatedLog";
 import { CrisisResourceLog } from "./crisisResourceLog";
 import { RecoveryKeyLog } from "./recoveryKeyLog";
-import { CloseButtonLog } from "./closeButtonLog";
 import { ImageLog } from "./imageLog";
 import { PhotoLog } from "./photoLog";
 import { MergeBehaviorsProposalLog } from "./mergeBehaviorsProposalLog";
@@ -22409,63 +22408,6 @@ export declare const logSchemas: {
         impulseId?: string | undefined;
         respondingToLogId?: string | undefined;
     }>;
-    close_button: z.ZodObject<{
-        id: z.ZodOptional<z.ZodString>;
-        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-        userId: z.ZodString;
-        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-        dateString: z.ZodString;
-        sessionId: z.ZodString;
-        tacticId: z.ZodOptional<z.ZodString>;
-        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-        impulseId: z.ZodOptional<z.ZodString>;
-        respondingToLogId: z.ZodOptional<z.ZodString>;
-    } & {
-        type: z.ZodLiteral<"close_button">;
-        isDisplayable: z.ZodLiteral<true>;
-        data: z.ZodObject<{
-            label: z.ZodString;
-        }, "strip", z.ZodTypeAny, {
-            label: string;
-        }, {
-            label: string;
-        }>;
-    }, "strip", z.ZodTypeAny, {
-        createdAt: import("../../types").Timestamp;
-        updatedAt: import("../../types").Timestamp;
-        type: "close_button";
-        sessionId: string;
-        dateString: string;
-        userId: string;
-        timestamp: import("../../types").Timestamp;
-        isDisplayable: true;
-        data: {
-            label: string;
-        };
-        id?: string | undefined;
-        behaviorIds?: string[] | undefined;
-        tacticId?: string | undefined;
-        impulseId?: string | undefined;
-        respondingToLogId?: string | undefined;
-    }, {
-        createdAt: import("../../types").Timestamp;
-        updatedAt: import("../../types").Timestamp;
-        type: "close_button";
-        sessionId: string;
-        dateString: string;
-        userId: string;
-        timestamp: import("../../types").Timestamp;
-        isDisplayable: true;
-        data: {
-            label: string;
-        };
-        id?: string | undefined;
-        behaviorIds?: string[] | undefined;
-        tacticId?: string | undefined;
-        impulseId?: string | undefined;
-        respondingToLogId?: string | undefined;
-    }>;
     image: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -23301,7 +23243,7 @@ export declare const logSchemas: {
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ProposedExperimentLog | ProposedStrategyModificationLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | TriggerSelectionLog | RequestPermissionsLog | TacticReviewLog | SetupModeChoiceLog | TagsUpdatedLog | CrisisResourceLog | RecoveryKeyLog | CloseButtonLog | ImageLog | PhotoLog | MergeBehaviorsProposalLog | MaskBehaviorProposalLog | ShortcutSetupIntroLog | TacticSuggestionsLog | CoachBookingPromptLog;
+export type Log = TacticLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ProposedExperimentLog | ProposedStrategyModificationLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | TriggerSelectionLog | RequestPermissionsLog | TacticReviewLog | SetupModeChoiceLog | TagsUpdatedLog | CrisisResourceLog | RecoveryKeyLog | ImageLog | PhotoLog | MergeBehaviorsProposalLog | MaskBehaviorProposalLog | ShortcutSetupIntroLog | TacticSuggestionsLog | CoachBookingPromptLog;
 export * from "./behaviorLog";
 export * from "./breathingLog";
 export * from "./callLog";
@@ -23331,7 +23273,6 @@ export * from "./setupModeChoiceLog";
 export * from "./tagsUpdatedLog";
 export * from "./crisisResourceLog";
 export * from "./recoveryKeyLog";
-export * from "./closeButtonLog";
 export * from "./imageLog";
 export * from "./photoLog";
 export * from "./mergeBehaviorsProposalLog";
@@ -41140,62 +41081,6 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     impulseId: z.ZodOptional<z.ZodString>;
     respondingToLogId: z.ZodOptional<z.ZodString>;
 } & {
-    type: z.ZodLiteral<"close_button">;
-    isDisplayable: z.ZodLiteral<true>;
-    data: z.ZodObject<{
-        label: z.ZodString;
-    }, "strip", z.ZodTypeAny, {
-        label: string;
-    }, {
-        label: string;
-    }>;
-}, "strip", z.ZodTypeAny, {
-    createdAt: import("../../types").Timestamp;
-    updatedAt: import("../../types").Timestamp;
-    type: "close_button";
-    sessionId: string;
-    dateString: string;
-    userId: string;
-    timestamp: import("../../types").Timestamp;
-    isDisplayable: true;
-    data: {
-        label: string;
-    };
-    id?: string | undefined;
-    behaviorIds?: string[] | undefined;
-    tacticId?: string | undefined;
-    impulseId?: string | undefined;
-    respondingToLogId?: string | undefined;
-}, {
-    createdAt: import("../../types").Timestamp;
-    updatedAt: import("../../types").Timestamp;
-    type: "close_button";
-    sessionId: string;
-    dateString: string;
-    userId: string;
-    timestamp: import("../../types").Timestamp;
-    isDisplayable: true;
-    data: {
-        label: string;
-    };
-    id?: string | undefined;
-    behaviorIds?: string[] | undefined;
-    tacticId?: string | undefined;
-    impulseId?: string | undefined;
-    respondingToLogId?: string | undefined;
-}>, z.ZodObject<{
-    id: z.ZodOptional<z.ZodString>;
-    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-    userId: z.ZodString;
-    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
-    dateString: z.ZodString;
-    sessionId: z.ZodString;
-    tacticId: z.ZodOptional<z.ZodString>;
-    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-    impulseId: z.ZodOptional<z.ZodString>;
-    respondingToLogId: z.ZodOptional<z.ZodString>;
-} & {
     type: z.ZodLiteral<"image">;
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
@@ -42060,7 +41945,6 @@ export declare const logIsProposedStrategyModificationLog: (value: Omit<Log, "id
 export declare const logIsTagsUpdatedLog: (value: Omit<Log, "id">) => value is TagsUpdatedLog;
 export declare const logIsCrisisResourceLog: (value: Omit<Log, "id">) => value is CrisisResourceLog;
 export declare const logIsRecoveryKeyLog: (value: Omit<Log, "id">) => value is RecoveryKeyLog;
-export declare const logIsCloseButtonLog: (value: Omit<Log, "id">) => value is CloseButtonLog;
 export declare const logIsImageLog: (value: Omit<Log, "id">) => value is ImageLog;
 export declare const logIsPhotoLog: (value: Omit<Log, "id">) => value is PhotoLog;
 export declare const logIsMergeBehaviorsProposalLog: (value: Omit<Log, "id">) => value is MergeBehaviorsProposalLog;
