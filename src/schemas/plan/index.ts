@@ -3,16 +3,19 @@ import { withIdSchema } from "../../utils/withId";
 import { TriggerPlan, triggerPlanSchema } from "./triggerPlan";
 import { ScheduledPlan, scheduledPlanSchema } from "./scheduledPlan";
 import { DefaultPlan, defaultPlanSchema } from "./defaultPlan";
+import { BehaviorPlan, behaviorPlanSchema } from "./behaviorPlan";
 
 export * from "./triggerPlan";
 export * from "./scheduledPlan";
 export * from "./defaultPlan";
+export * from "./behaviorPlan";
 export * from "./planStep";
 
 export const planSchema = z.discriminatedUnion("type", [
   triggerPlanSchema,
   scheduledPlanSchema,
   defaultPlanSchema,
+  behaviorPlanSchema,
 ]);
 
 export type Plan = z.infer<typeof planSchema>;
@@ -22,6 +25,7 @@ export const planWithIdSchema = z.union([
   withIdSchema(triggerPlanSchema),
   withIdSchema(scheduledPlanSchema),
   withIdSchema(defaultPlanSchema),
+  withIdSchema(behaviorPlanSchema),
 ]);
 
 export const planIsTriggerPlan = (value: Plan): value is TriggerPlan =>
@@ -38,3 +42,8 @@ export const planIsScheduledPlan = (value: Plan): value is ScheduledPlan =>
   value.type === "scheduled";
 export const isValidScheduledPlan = (value: unknown): value is ScheduledPlan =>
   scheduledPlanSchema.safeParse(value).success;
+
+export const planIsBehaviorPlan = (value: Plan): value is BehaviorPlan =>
+  value.type === "behavior";
+export const isValidBehaviorPlan = (value: unknown): value is BehaviorPlan =>
+  behaviorPlanSchema.safeParse(value).success;

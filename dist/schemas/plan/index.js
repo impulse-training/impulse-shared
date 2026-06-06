@@ -14,26 +14,30 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidScheduledPlan = exports.planIsScheduledPlan = exports.isValidDefaultPlan = exports.planIsDefaultPlan = exports.isValidTriggerPlan = exports.planIsTriggerPlan = exports.planWithIdSchema = exports.planSchema = void 0;
+exports.isValidBehaviorPlan = exports.planIsBehaviorPlan = exports.isValidScheduledPlan = exports.planIsScheduledPlan = exports.isValidDefaultPlan = exports.planIsDefaultPlan = exports.isValidTriggerPlan = exports.planIsTriggerPlan = exports.planWithIdSchema = exports.planSchema = void 0;
 const zod_1 = require("zod");
 const withId_1 = require("../../utils/withId");
 const triggerPlan_1 = require("./triggerPlan");
 const scheduledPlan_1 = require("./scheduledPlan");
 const defaultPlan_1 = require("./defaultPlan");
+const behaviorPlan_1 = require("./behaviorPlan");
 __exportStar(require("./triggerPlan"), exports);
 __exportStar(require("./scheduledPlan"), exports);
 __exportStar(require("./defaultPlan"), exports);
+__exportStar(require("./behaviorPlan"), exports);
 __exportStar(require("./planStep"), exports);
 exports.planSchema = zod_1.z.discriminatedUnion("type", [
     triggerPlan_1.triggerPlanSchema,
     scheduledPlan_1.scheduledPlanSchema,
     defaultPlan_1.defaultPlanSchema,
+    behaviorPlan_1.behaviorPlanSchema,
 ]);
 // WithId variant for plans
 exports.planWithIdSchema = zod_1.z.union([
     (0, withId_1.withIdSchema)(triggerPlan_1.triggerPlanSchema),
     (0, withId_1.withIdSchema)(scheduledPlan_1.scheduledPlanSchema),
     (0, withId_1.withIdSchema)(defaultPlan_1.defaultPlanSchema),
+    (0, withId_1.withIdSchema)(behaviorPlan_1.behaviorPlanSchema),
 ]);
 const planIsTriggerPlan = (value) => value.type === "trigger";
 exports.planIsTriggerPlan = planIsTriggerPlan;
@@ -47,3 +51,7 @@ const planIsScheduledPlan = (value) => value.type === "scheduled";
 exports.planIsScheduledPlan = planIsScheduledPlan;
 const isValidScheduledPlan = (value) => scheduledPlan_1.scheduledPlanSchema.safeParse(value).success;
 exports.isValidScheduledPlan = isValidScheduledPlan;
+const planIsBehaviorPlan = (value) => value.type === "behavior";
+exports.planIsBehaviorPlan = planIsBehaviorPlan;
+const isValidBehaviorPlan = (value) => behaviorPlan_1.behaviorPlanSchema.safeParse(value).success;
+exports.isValidBehaviorPlan = isValidBehaviorPlan;
