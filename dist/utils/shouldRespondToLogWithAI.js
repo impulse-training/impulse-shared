@@ -46,10 +46,16 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         afterData.data.value !== null &&
         (0, log_1.logIsMetricLog)(beforeData) &&
         beforeData.data.value === null;
+    // A behavior log on an impulse session gained resolvedAt — the debrief urge
+    // outcome was just resolved. Key off resolvedAt (not source) so this fires for
+    // every outcome: "resisted"/"still_there" resolve the scheduled log in place,
+    // while "acted" goes through the tracking sheet, which replaces the log's
+    // `data` wholesale and drops the scheduled `source`.
     const isDebriefOutcomeResolved = beforeData &&
         afterData &&
         (0, log_1.logIsBehaviorLog)(afterData) &&
-        afterData.data.source === "scheduled" &&
+        !!session &&
+        (0, schemas_1.sessionIsImpulseSession)(session) &&
         afterData.data.resolvedAt != null &&
         (0, fields_1.fieldChanged)(beforeData, afterData, "data.resolvedAt");
     const isDayTotalsDiscussRequested = beforeData &&
@@ -89,6 +95,11 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         (0, log_1.logIsMaskBehaviorProposalLog)(afterData) &&
         !!afterData.data.selectedResponseText &&
         (0, fields_1.fieldChanged)(beforeData, afterData, "data.selectedResponseText");
+    const isDebriefQuestionResponseSelected = beforeData &&
+        afterData &&
+        (0, log_1.logIsDebriefQuestionLog)(afterData) &&
+        !!afterData.data.selectedResponseText &&
+        (0, fields_1.fieldChanged)(beforeData, afterData, "data.selectedResponseText");
     const isImpulseStartedDuringOnboarding = !beforeData &&
         afterData &&
         (0, log_1.logIsImpulseStartedLog)(afterData) &&
@@ -107,6 +118,7 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         !isTacticCompleted &&
         !isMergeBehaviorsResponseSelected &&
         !isMaskBehaviorResponseSelected &&
+        !isDebriefQuestionResponseSelected &&
         !isImpulseStartedDuringOnboarding &&
         latestIsAssistantOutput) {
         console.log("Latest log is assistant output. Not responding with AI.");
@@ -271,6 +283,10 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
     }
     if (isMaskBehaviorResponseSelected) {
         console.log("Mask behavior response selected. Responding with AI.");
+        return true;
+    }
+    if (isDebriefQuestionResponseSelected) {
+        console.log("Debrief question response selected. Responding with AI.");
         return true;
     }
     // Case: Tactic review completed — user finished reviewing tactics in the recap

@@ -62,7 +62,7 @@ function buildBehaviorLogPayload(log, options) {
     return [];
 }
 function getGptPayload(log, isFinalLogInSession, options) {
-    var _a, _b, _c, _d;
+    var _a, _b, _c, _d, _e;
     if (log.type === "proposed_experiment") {
         const behaviorName = "behaviorName" in log
             ? log.behaviorName
@@ -144,6 +144,23 @@ function getGptPayload(log, isFinalLogInSession, options) {
             {
                 role: "user",
                 content: `<SYSTEM>Zara showed the user a merge-behaviors proposal: ${log.data.title}. Task id: ${log.data.taskId}. No button has been selected yet.</SYSTEM>`,
+            },
+        ];
+    }
+    if ((0, log_1.logIsDebriefQuestionLog)(log)) {
+        const selected = (_d = log.data.selectedResponseText) === null || _d === void 0 ? void 0 : _d.trim();
+        if (selected) {
+            return [
+                {
+                    role: "user",
+                    content: selected,
+                },
+            ];
+        }
+        return [
+            {
+                role: "user",
+                content: `<SYSTEM>The user was shown a debrief question: "${log.data.question}". No option has been selected yet.</SYSTEM>`,
             },
         ];
     }
@@ -308,7 +325,7 @@ function getGptPayload(log, isFinalLogInSession, options) {
     if (log.type === "tags_updated") {
         if (options === null || options === void 0 ? void 0 : options.forSummarization)
             return [];
-        const tactics = (_d = log.data) === null || _d === void 0 ? void 0 : _d.recommendedTactics;
+        const tactics = (_e = log.data) === null || _e === void 0 ? void 0 : _e.recommendedTactics;
         let tacticsContext = "";
         if (tactics && tactics.length > 0) {
             const lines = tactics.map((t) => `- [id=${t.tacticId}] "${t.title}"${t.phase ? ` (${t.phase})` : ""}${t.description ? ` — ${t.description}` : ""}`);

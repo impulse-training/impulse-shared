@@ -34,6 +34,7 @@ import { MaskBehaviorProposalLog } from "./maskBehaviorProposalLog";
 import { ShortcutSetupIntroLog } from "./shortcutSetupIntroLog";
 import { TacticSuggestionsLog } from "./tacticSuggestionsLog";
 import { CoachBookingPromptLog } from "./coachBookingPromptLog";
+import { DebriefQuestionLog } from "./debriefQuestionLog";
 export declare const logSchemas: {
     user: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
@@ -36856,10 +36857,142 @@ export declare const logSchemas: {
         impulseId?: string | undefined;
         respondingToLogId?: string | undefined;
     }>;
+    debrief_question: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        sessionId: z.ZodString;
+        tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        impulseId: z.ZodOptional<z.ZodString>;
+        respondingToLogId: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"debrief_question">;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            debriefQuestionId: z.ZodString;
+            behaviorId: z.ZodString;
+            behaviorName: z.ZodOptional<z.ZodString>;
+            question: z.ZodString;
+            options: z.ZodArray<z.ZodObject<{
+                id: z.ZodString;
+                label: z.ZodString;
+                responseText: z.ZodString;
+                style: z.ZodOptional<z.ZodEnum<["primary", "secondary", "destructive"]>>;
+            }, "strip", z.ZodTypeAny, {
+                id: string;
+                label: string;
+                responseText: string;
+                style?: "primary" | "secondary" | "destructive" | undefined;
+            }, {
+                id: string;
+                label: string;
+                responseText: string;
+                style?: "primary" | "secondary" | "destructive" | undefined;
+            }>, "many">;
+            taskId: z.ZodString;
+            selectedOptionId: z.ZodOptional<z.ZodString>;
+            selectedResponseText: z.ZodOptional<z.ZodString>;
+            respondedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        }, "strip", z.ZodTypeAny, {
+            options: {
+                id: string;
+                label: string;
+                responseText: string;
+                style?: "primary" | "secondary" | "destructive" | undefined;
+            }[];
+            behaviorId: string;
+            taskId: string;
+            debriefQuestionId: string;
+            question: string;
+            behaviorName?: string | undefined;
+            respondedAt?: import("../../types").Timestamp | undefined;
+            selectedResponseText?: string | undefined;
+            selectedOptionId?: string | undefined;
+        }, {
+            options: {
+                id: string;
+                label: string;
+                responseText: string;
+                style?: "primary" | "secondary" | "destructive" | undefined;
+            }[];
+            behaviorId: string;
+            taskId: string;
+            debriefQuestionId: string;
+            question: string;
+            behaviorName?: string | undefined;
+            respondedAt?: import("../../types").Timestamp | undefined;
+            selectedResponseText?: string | undefined;
+            selectedOptionId?: string | undefined;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "debrief_question";
+        sessionId: string;
+        dateString: string;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: true;
+        data: {
+            options: {
+                id: string;
+                label: string;
+                responseText: string;
+                style?: "primary" | "secondary" | "destructive" | undefined;
+            }[];
+            behaviorId: string;
+            taskId: string;
+            debriefQuestionId: string;
+            question: string;
+            behaviorName?: string | undefined;
+            respondedAt?: import("../../types").Timestamp | undefined;
+            selectedResponseText?: string | undefined;
+            selectedOptionId?: string | undefined;
+        };
+        id?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
+        impulseId?: string | undefined;
+        respondingToLogId?: string | undefined;
+    }, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "debrief_question";
+        sessionId: string;
+        dateString: string;
+        userId: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: true;
+        data: {
+            options: {
+                id: string;
+                label: string;
+                responseText: string;
+                style?: "primary" | "secondary" | "destructive" | undefined;
+            }[];
+            behaviorId: string;
+            taskId: string;
+            debriefQuestionId: string;
+            question: string;
+            behaviorName?: string | undefined;
+            respondedAt?: import("../../types").Timestamp | undefined;
+            selectedResponseText?: string | undefined;
+            selectedOptionId?: string | undefined;
+        };
+        id?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
+        impulseId?: string | undefined;
+        respondingToLogId?: string | undefined;
+    }>;
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ProposedExperimentLog | ProposedStrategyModificationLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | TriggerSelectionLog | RequestPermissionsLog | TacticReviewLog | SetupModeChoiceLog | TagsUpdatedLog | CrisisResourceLog | RecoveryKeyLog | ImageLog | PhotoLog | MergeBehaviorsProposalLog | MaskBehaviorProposalLog | ShortcutSetupIntroLog | TacticSuggestionsLog | CoachBookingPromptLog;
+export type Log = TacticLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ProposedExperimentLog | ProposedStrategyModificationLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | TriggerSelectionLog | RequestPermissionsLog | TacticReviewLog | SetupModeChoiceLog | TagsUpdatedLog | CrisisResourceLog | RecoveryKeyLog | ImageLog | PhotoLog | MergeBehaviorsProposalLog | MaskBehaviorProposalLog | ShortcutSetupIntroLog | TacticSuggestionsLog | CoachBookingPromptLog | DebriefQuestionLog;
 export * from "./behaviorLog";
 export * from "./breathingLog";
 export * from "./callLog";
@@ -36896,6 +37029,7 @@ export * from "./maskBehaviorProposalLog";
 export * from "./shortcutSetupIntroLog";
 export * from "./tacticSuggestionsLog";
 export * from "./coachBookingPromptLog";
+export * from "./debriefQuestionLog";
 export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -65811,6 +65945,137 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     tacticId?: string | undefined;
     impulseId?: string | undefined;
     respondingToLogId?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    sessionId: z.ZodString;
+    tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    impulseId: z.ZodOptional<z.ZodString>;
+    respondingToLogId: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"debrief_question">;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        debriefQuestionId: z.ZodString;
+        behaviorId: z.ZodString;
+        behaviorName: z.ZodOptional<z.ZodString>;
+        question: z.ZodString;
+        options: z.ZodArray<z.ZodObject<{
+            id: z.ZodString;
+            label: z.ZodString;
+            responseText: z.ZodString;
+            style: z.ZodOptional<z.ZodEnum<["primary", "secondary", "destructive"]>>;
+        }, "strip", z.ZodTypeAny, {
+            id: string;
+            label: string;
+            responseText: string;
+            style?: "primary" | "secondary" | "destructive" | undefined;
+        }, {
+            id: string;
+            label: string;
+            responseText: string;
+            style?: "primary" | "secondary" | "destructive" | undefined;
+        }>, "many">;
+        taskId: z.ZodString;
+        selectedOptionId: z.ZodOptional<z.ZodString>;
+        selectedResponseText: z.ZodOptional<z.ZodString>;
+        respondedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    }, "strip", z.ZodTypeAny, {
+        options: {
+            id: string;
+            label: string;
+            responseText: string;
+            style?: "primary" | "secondary" | "destructive" | undefined;
+        }[];
+        behaviorId: string;
+        taskId: string;
+        debriefQuestionId: string;
+        question: string;
+        behaviorName?: string | undefined;
+        respondedAt?: import("../../types").Timestamp | undefined;
+        selectedResponseText?: string | undefined;
+        selectedOptionId?: string | undefined;
+    }, {
+        options: {
+            id: string;
+            label: string;
+            responseText: string;
+            style?: "primary" | "secondary" | "destructive" | undefined;
+        }[];
+        behaviorId: string;
+        taskId: string;
+        debriefQuestionId: string;
+        question: string;
+        behaviorName?: string | undefined;
+        respondedAt?: import("../../types").Timestamp | undefined;
+        selectedResponseText?: string | undefined;
+        selectedOptionId?: string | undefined;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "debrief_question";
+    sessionId: string;
+    dateString: string;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: true;
+    data: {
+        options: {
+            id: string;
+            label: string;
+            responseText: string;
+            style?: "primary" | "secondary" | "destructive" | undefined;
+        }[];
+        behaviorId: string;
+        taskId: string;
+        debriefQuestionId: string;
+        question: string;
+        behaviorName?: string | undefined;
+        respondedAt?: import("../../types").Timestamp | undefined;
+        selectedResponseText?: string | undefined;
+        selectedOptionId?: string | undefined;
+    };
+    id?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
+    impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
+}, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "debrief_question";
+    sessionId: string;
+    dateString: string;
+    userId: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: true;
+    data: {
+        options: {
+            id: string;
+            label: string;
+            responseText: string;
+            style?: "primary" | "secondary" | "destructive" | undefined;
+        }[];
+        behaviorId: string;
+        taskId: string;
+        debriefQuestionId: string;
+        question: string;
+        behaviorName?: string | undefined;
+        respondedAt?: import("../../types").Timestamp | undefined;
+        selectedResponseText?: string | undefined;
+        selectedOptionId?: string | undefined;
+    };
+    id?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
+    impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
 }>]>;
 export declare const logIsAssistantMessageLog: (value: Omit<Log, "id">) => value is AssistantMessageLog;
 export declare const isValidAssistantMessageLog: (value: unknown) => value is AssistantMessageLog;
@@ -65870,3 +66135,4 @@ export declare const logIsMaskBehaviorProposalLog: (value: Omit<Log, "id">) => v
 export declare const logIsShortcutSetupIntroLog: (value: Omit<Log, "id">) => value is ShortcutSetupIntroLog;
 export declare const logIsTacticSuggestionsLog: (value: Omit<Log, "id">) => value is TacticSuggestionsLog;
 export declare const logIsCoachBookingPromptLog: (value: Omit<Log, "id">) => value is CoachBookingPromptLog;
+export declare const logIsDebriefQuestionLog: (value: Omit<Log, "id">) => value is DebriefQuestionLog;
