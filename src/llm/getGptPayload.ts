@@ -6,6 +6,7 @@ import {
   logIsBehaviorLog,
   logIsCallLog,
   logIsDayTotalsPromptLog,
+  logIsDebriefQuestionLog,
   logIsMetricLog,
   logIsPlansLog,
   logIsMergeBehaviorsProposalLog,
@@ -207,6 +208,25 @@ export function getGptPayload(
       {
         role: "user",
         content: `<SYSTEM>Zara showed the user a merge-behaviors proposal: ${log.data.title}. Task id: ${log.data.taskId}. No button has been selected yet.</SYSTEM>`,
+      },
+    ];
+  }
+
+  if (logIsDebriefQuestionLog(log)) {
+    const selected = log.data.selectedResponseText?.trim();
+    if (selected) {
+      return [
+        {
+          role: "user",
+          content: selected,
+        },
+      ];
+    }
+
+    return [
+      {
+        role: "user",
+        content: `<SYSTEM>The user was shown a debrief question: "${log.data.question}". No option has been selected yet.</SYSTEM>`,
       },
     ];
   }

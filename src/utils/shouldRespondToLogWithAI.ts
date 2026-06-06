@@ -9,6 +9,7 @@ import {
   Log,
   logIsAssistantMessageLog,
   logIsBehaviorLog,
+  logIsDebriefQuestionLog,
   logIsDayTotalsPromptLog,
   logIsImpulseStartedLog,
   logIsMaskBehaviorProposalLog,
@@ -88,11 +89,17 @@ export function shouldRespondToLogWithAI(
     logIsMetricLog(beforeData) &&
     beforeData.data.value === null;
 
+  // A behavior log on an impulse session gained resolvedAt — the debrief urge
+  // outcome was just resolved. Key off resolvedAt (not source) so this fires for
+  // every outcome: "resisted"/"still_there" resolve the scheduled log in place,
+  // while "acted" goes through the tracking sheet, which replaces the log's
+  // `data` wholesale and drops the scheduled `source`.
   const isDebriefOutcomeResolved =
     beforeData &&
     afterData &&
     logIsBehaviorLog(afterData) &&
-    afterData.data.source === "scheduled" &&
+    !!session &&
+    sessionIsImpulseSession(session) &&
     afterData.data.resolvedAt != null &&
     fieldChanged(beforeData, afterData, "data.resolvedAt");
 
@@ -149,6 +156,13 @@ export function shouldRespondToLogWithAI(
     !!afterData.data.selectedResponseText &&
     fieldChanged(beforeData, afterData, "data.selectedResponseText");
 
+  const isDebriefQuestionResponseSelected =
+    beforeData &&
+    afterData &&
+    logIsDebriefQuestionLog(afterData) &&
+    !!afterData.data.selectedResponseText &&
+    fieldChanged(beforeData, afterData, "data.selectedResponseText");
+
   const isImpulseStartedDuringOnboarding =
     !beforeData &&
     afterData &&
@@ -172,6 +186,7 @@ export function shouldRespondToLogWithAI(
     !isTacticCompleted &&
     !isMergeBehaviorsResponseSelected &&
     !isMaskBehaviorResponseSelected &&
+    !isDebriefQuestionResponseSelected &&
     !isImpulseStartedDuringOnboarding &&
     latestIsAssistantOutput
   ) {
@@ -397,6 +412,11 @@ export function shouldRespondToLogWithAI(
 
   if (isMaskBehaviorResponseSelected) {
     console.log("Mask behavior response selected. Responding with AI.");
+    return true;
+  }
+
+  if (isDebriefQuestionResponseSelected) {
+    console.log("Debrief question response selected. Responding with AI.");
     return true;
   }
 
