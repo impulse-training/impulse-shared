@@ -49,6 +49,7 @@ __exportStar(require("./planEffectiveness"), exports);
 __exportStar(require("./quote"), exports);
 __exportStar(require("./recapMessage"), exports);
 __exportStar(require("./scheduledCheckIn"), exports);
+__exportStar(require("./scheduledNotification"), exports);
 __exportStar(require("./schemaValidationReport"), exports);
 __exportStar(require("./session"), exports);
 __exportStar(require("./slot"), exports);

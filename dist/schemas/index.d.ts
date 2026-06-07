@@ -31,6 +31,7 @@ export * from "./planEffectiveness";
 export * from "./quote";
 export * from "./recapMessage";
 export * from "./scheduledCheckIn";
+export * from "./scheduledNotification";
 export * from "./schemaValidationReport";
 export * from "./session";
 export * from "./slot";
