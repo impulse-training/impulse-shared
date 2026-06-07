@@ -6,6 +6,9 @@ export const recapQuestionSourceSchema = z.enum([
   "sequence",
   "baseline",
   "milestone",
+  // Active clean streak continuing on an in-between (non-rung) early day — a
+  // light "still going" beat, distinct from a milestone celebration.
+  "streak-progress",
   "trend",
 ]);
 export type RecapQuestionSource = z.infer<typeof recapQuestionSourceSchema>;

@@ -1,5 +1,5 @@
 import { z } from "zod";
-export declare const recapQuestionSourceSchema: z.ZodEnum<["sequence", "baseline", "milestone", "trend"]>;
+export declare const recapQuestionSourceSchema: z.ZodEnum<["sequence", "baseline", "milestone", "streak-progress", "trend"]>;
 export type RecapQuestionSource = z.infer<typeof recapQuestionSourceSchema>;
 /**
  * Authoritative streak figure for a focus behavior, computed synchronously when
@@ -5179,7 +5179,7 @@ export declare const recapSessionSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>>;
     pendingTaskResolution: z.ZodOptional<z.ZodBoolean>;
     recapQuestionId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    recapQuestionSource: z.ZodOptional<z.ZodEnum<["sequence", "baseline", "milestone", "trend"]>>;
+    recapQuestionSource: z.ZodOptional<z.ZodEnum<["sequence", "baseline", "milestone", "streak-progress", "trend"]>>;
     recapQuestionTaskId: z.ZodOptional<z.ZodString>;
     focusBehaviorId: z.ZodOptional<z.ZodString>;
     focusBehaviorName: z.ZodOptional<z.ZodString>;
@@ -5850,7 +5850,7 @@ export declare const recapSessionSchema: z.ZodObject<{
     deletingError?: string | undefined;
     pendingTaskResolution?: boolean | undefined;
     recapQuestionId?: string | null | undefined;
-    recapQuestionSource?: "trend" | "milestone" | "sequence" | "baseline" | undefined;
+    recapQuestionSource?: "trend" | "milestone" | "sequence" | "baseline" | "streak-progress" | undefined;
     recapQuestionTaskId?: string | undefined;
     focusBehaviorId?: string | undefined;
     focusBehaviorName?: string | undefined;
@@ -6510,7 +6510,7 @@ export declare const recapSessionSchema: z.ZodObject<{
     deletingError?: string | undefined;
     pendingTaskResolution?: boolean | undefined;
     recapQuestionId?: string | null | undefined;
-    recapQuestionSource?: "trend" | "milestone" | "sequence" | "baseline" | undefined;
+    recapQuestionSource?: "trend" | "milestone" | "sequence" | "baseline" | "streak-progress" | undefined;
     recapQuestionTaskId?: string | undefined;
     focusBehaviorId?: string | undefined;
     focusBehaviorName?: string | undefined;
