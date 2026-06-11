@@ -27,6 +27,12 @@ exports.coachingCallSchema = zod_1.z.object({
     agentConnected: zod_1.z.boolean().optional(),
     startedAt: timestampSchema_1.timestampSchema.optional(),
     endedAt: timestampSchema_1.timestampSchema.optional(),
+    reminderSentAt: zod_1.z
+        .object({
+        dayBefore: timestampSchema_1.timestampSchema.optional(),
+        tenMinutes: timestampSchema_1.timestampSchema.optional(),
+    })
+        .optional(),
     notifiedAt: timestampSchema_1.timestampSchema.optional(),
     createdAt: timestampSchema_1.timestampSchema.optional(),
     updatedAt: timestampSchema_1.timestampSchema.optional(),

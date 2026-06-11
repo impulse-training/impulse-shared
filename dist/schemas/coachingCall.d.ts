@@ -14,6 +14,16 @@ export declare const coachingCallSchema: z.ZodObject<{
     agentConnected: z.ZodOptional<z.ZodBoolean>;
     startedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     endedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    reminderSentAt: z.ZodOptional<z.ZodObject<{
+        dayBefore: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+        tenMinutes: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    }, "strip", z.ZodTypeAny, {
+        dayBefore?: import("../types").Timestamp | undefined;
+        tenMinutes?: import("../types").Timestamp | undefined;
+    }, {
+        dayBefore?: import("../types").Timestamp | undefined;
+        tenMinutes?: import("../types").Timestamp | undefined;
+    }>>;
     notifiedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -33,6 +43,10 @@ export declare const coachingCallSchema: z.ZodObject<{
     agentConnected?: boolean | undefined;
     startedAt?: import("../types").Timestamp | undefined;
     endedAt?: import("../types").Timestamp | undefined;
+    reminderSentAt?: {
+        dayBefore?: import("../types").Timestamp | undefined;
+        tenMinutes?: import("../types").Timestamp | undefined;
+    } | undefined;
     notifiedAt?: import("../types").Timestamp | undefined;
 }, {
     livekitRoomName: string;
@@ -50,6 +64,10 @@ export declare const coachingCallSchema: z.ZodObject<{
     agentConnected?: boolean | undefined;
     startedAt?: import("../types").Timestamp | undefined;
     endedAt?: import("../types").Timestamp | undefined;
+    reminderSentAt?: {
+        dayBefore?: import("../types").Timestamp | undefined;
+        tenMinutes?: import("../types").Timestamp | undefined;
+    } | undefined;
     notifiedAt?: import("../types").Timestamp | undefined;
 }>;
 export type CoachingCall = z.infer<typeof coachingCallSchema>;

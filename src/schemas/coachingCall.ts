@@ -26,6 +26,12 @@ export const coachingCallSchema = z.object({
   agentConnected: z.boolean().optional(),
   startedAt: timestampSchema.optional(),
   endedAt: timestampSchema.optional(),
+  reminderSentAt: z
+    .object({
+      dayBefore: timestampSchema.optional(),
+      tenMinutes: timestampSchema.optional(),
+    })
+    .optional(),
   notifiedAt: timestampSchema.optional(),
   createdAt: timestampSchema.optional(),
   updatedAt: timestampSchema.optional(),
