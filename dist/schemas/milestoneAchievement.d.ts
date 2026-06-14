@@ -25,7 +25,6 @@ export declare const milestoneAchievementSchema: z.ZodObject<{
     achievedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     streakLengthAtAchievement: z.ZodNumber;
     reflectionSessionId: z.ZodOptional<z.ZodString>;
-    reflectionSummary: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     rungDays: number;
     rungLabel: string;
@@ -33,7 +32,6 @@ export declare const milestoneAchievementSchema: z.ZodObject<{
     streakLengthAtAchievement: number;
     id?: string | undefined;
     reflectionSessionId?: string | undefined;
-    reflectionSummary?: string | undefined;
 }, {
     rungDays: number;
     rungLabel: string;
@@ -41,7 +39,6 @@ export declare const milestoneAchievementSchema: z.ZodObject<{
     streakLengthAtAchievement: number;
     id?: string | undefined;
     reflectionSessionId?: string | undefined;
-    reflectionSummary?: string | undefined;
 }>;
 export type MilestoneAchievement = z.infer<typeof milestoneAchievementSchema>;
 export declare const milestoneProgressSchema: z.ZodObject<{

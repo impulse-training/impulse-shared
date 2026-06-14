@@ -27,7 +27,7 @@ export const FIRST_DEFINITIONS: Record<FirstKind, FirstDefinition> = {
     order: 1,
   },
   voiceSession: {
-    label: "Talk with Zara using voice mode",
+    label: "Talk with Miro using voice mode",
     order: 2,
   },
   resistedUrge: {

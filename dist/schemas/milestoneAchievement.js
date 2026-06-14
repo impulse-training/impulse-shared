@@ -19,8 +19,10 @@ exports.milestoneAchievementSchema = zod_1.z.object({
     rungLabel: zod_1.z.string(),
     achievedAt: timestampSchema_1.timestampSchema,
     streakLengthAtAchievement: zod_1.z.number().int(),
+    // The recap session where the user reflected on this milestone.
+    // The UI shows that session's user-facing `summary` — there is no
+    // dedicated per-achievement summary.
     reflectionSessionId: zod_1.z.string().optional(),
-    reflectionSummary: zod_1.z.string().optional(),
 });
 exports.milestoneProgressSchema = zod_1.z.object({
     lastAchievedRung: exports.milestoneRungSchema.nullable(),

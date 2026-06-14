@@ -19,8 +19,10 @@ export const milestoneAchievementSchema = z.object({
   rungLabel: z.string(),
   achievedAt: timestampSchema,
   streakLengthAtAchievement: z.number().int(),
+  // The recap session where the user reflected on this milestone.
+  // The UI shows that session's user-facing `summary` — there is no
+  // dedicated per-achievement summary.
   reflectionSessionId: z.string().optional(),
-  reflectionSummary: z.string().optional(),
 });
 export type MilestoneAchievement = z.infer<typeof milestoneAchievementSchema>;
 
