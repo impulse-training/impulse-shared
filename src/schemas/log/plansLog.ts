@@ -11,6 +11,7 @@ export const plansLogSchema = logBaseSchema.extend({
   data: z.object({
     source: z.union([
       z.literal("trigger"),
+      z.literal("behavior"),
       z.literal("scheduled"),
       z.literal("tags"),
       z.literal("improvised"),
@@ -20,6 +21,8 @@ export const plansLogSchema = logBaseSchema.extend({
     mode: z.enum(["live", "planning"]).optional(),
     // The trigger these plans are for (optional - null means "something else")
     triggerId: z.string().nullable().optional(),
+    // The behavior these plans are for (set when source === "behavior")
+    behaviorId: z.string().nullable().optional(),
     // Array of plans (each plan has tacticsByPath on it)
     plans: z.array(
       z.object({

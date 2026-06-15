@@ -13,6 +13,7 @@ exports.plansLogSchema = base_1.logBaseSchema.extend({
     data: zod_1.z.object({
         source: zod_1.z.union([
             zod_1.z.literal("trigger"),
+            zod_1.z.literal("behavior"),
             zod_1.z.literal("scheduled"),
             zod_1.z.literal("tags"),
             zod_1.z.literal("improvised"),
@@ -22,6 +23,8 @@ exports.plansLogSchema = base_1.logBaseSchema.extend({
         mode: zod_1.z.enum(["live", "planning"]).optional(),
         // The trigger these plans are for (optional - null means "something else")
         triggerId: zod_1.z.string().nullable().optional(),
+        // The behavior these plans are for (set when source === "behavior")
+        behaviorId: zod_1.z.string().nullable().optional(),
         // Array of plans (each plan has tacticsByPath on it)
         plans: zod_1.z.array(zod_1.z.object({
             planId: zod_1.z.string(),

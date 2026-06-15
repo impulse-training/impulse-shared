@@ -25,19 +25,40 @@ export declare const triggerSelectionLogSchema: z.ZodObject<{
             id: string;
             label: string;
         }>, "many">;
+        behaviors: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            id: z.ZodString;
+            label: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
+            id: string;
+            label: string;
+        }, {
+            id: string;
+            label: string;
+        }>, "many">>;
         selectedTriggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        selectedBehaviorId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     }, "strip", z.ZodTypeAny, {
         triggers: {
             id: string;
             label: string;
         }[];
+        behaviors?: {
+            id: string;
+            label: string;
+        }[] | undefined;
         selectedTriggerId?: string | null | undefined;
+        selectedBehaviorId?: string | null | undefined;
     }, {
         triggers: {
             id: string;
             label: string;
         }[];
+        behaviors?: {
+            id: string;
+            label: string;
+        }[] | undefined;
         selectedTriggerId?: string | null | undefined;
+        selectedBehaviorId?: string | null | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
@@ -53,7 +74,12 @@ export declare const triggerSelectionLogSchema: z.ZodObject<{
             id: string;
             label: string;
         }[];
+        behaviors?: {
+            id: string;
+            label: string;
+        }[] | undefined;
         selectedTriggerId?: string | null | undefined;
+        selectedBehaviorId?: string | null | undefined;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;
@@ -74,7 +100,12 @@ export declare const triggerSelectionLogSchema: z.ZodObject<{
             id: string;
             label: string;
         }[];
+        behaviors?: {
+            id: string;
+            label: string;
+        }[] | undefined;
         selectedTriggerId?: string | null | undefined;
+        selectedBehaviorId?: string | null | undefined;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;
