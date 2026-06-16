@@ -5077,7 +5077,7 @@ export declare const recapSessionSchema: z.ZodObject<{
         emoji: string;
     }>>;
     summaryData: z.ZodOptional<z.ZodObject<{
-        type: z.ZodEnum<["impulse", "general", "onboarding", "recap", "behavior", "dayRecap", "timePlan", "locationPlan", "adjustment"]>;
+        type: z.ZodOptional<z.ZodEnum<["impulse", "general", "onboarding", "recap", "behavior", "dayRecap", "timePlan", "locationPlan", "adjustment"]>>;
         tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
         behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
         outcomeLogs: z.ZodArray<z.ZodAny, "many">;
@@ -5087,22 +5087,22 @@ export declare const recapSessionSchema: z.ZodObject<{
         firstCallLog: z.ZodOptional<z.ZodAny>;
         hasContent: z.ZodBoolean;
     }, "strip", z.ZodTypeAny, {
-        type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
         plansLogs: any[];
         hasContent: boolean;
+        type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
         metricLogs?: any[] | undefined;
         firstMessageLog?: any;
         firstCallLog?: any;
     }, {
-        type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
         plansLogs: any[];
         hasContent: boolean;
+        type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
         metricLogs?: any[] | undefined;
         firstMessageLog?: any;
         firstCallLog?: any;
@@ -5177,10 +5177,11 @@ export declare const recapSessionSchema: z.ZodObject<{
 } & {
     type: z.ZodLiteral<"recap">;
     completedAt: z.ZodOptional<z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>>;
+    recapPromptNotifiedAt: z.ZodOptional<z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>>;
     pendingTaskResolution: z.ZodOptional<z.ZodBoolean>;
     recapQuestionId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     recapQuestionSource: z.ZodOptional<z.ZodEnum<["sequence", "baseline", "milestone", "streak-progress", "trend"]>>;
-    recapQuestionTaskId: z.ZodOptional<z.ZodString>;
+    recapQuestionTaskId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     focusBehaviorId: z.ZodOptional<z.ZodString>;
     focusBehaviorName: z.ZodOptional<z.ZodString>;
     focusBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
@@ -5804,12 +5805,12 @@ export declare const recapSessionSchema: z.ZodObject<{
     currentTacticStepIndex?: number | undefined;
     showTactics?: boolean | undefined;
     summaryData?: {
-        type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
         plansLogs: any[];
         hasContent: boolean;
+        type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
         metricLogs?: any[] | undefined;
         firstMessageLog?: any;
         firstCallLog?: any;
@@ -5848,10 +5849,11 @@ export declare const recapSessionSchema: z.ZodObject<{
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
+    recapPromptNotifiedAt?: import("../../types").Timestamp | null | undefined;
     pendingTaskResolution?: boolean | undefined;
     recapQuestionId?: string | null | undefined;
     recapQuestionSource?: "trend" | "milestone" | "sequence" | "baseline" | "streak-progress" | undefined;
-    recapQuestionTaskId?: string | undefined;
+    recapQuestionTaskId?: string | null | undefined;
     focusBehaviorId?: string | undefined;
     focusBehaviorName?: string | undefined;
     focusBehaviorIds?: string[] | undefined;
@@ -6464,12 +6466,12 @@ export declare const recapSessionSchema: z.ZodObject<{
     isDraft?: boolean | undefined;
     showTactics?: boolean | undefined;
     summaryData?: {
-        type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
         plansLogs: any[];
         hasContent: boolean;
+        type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
         metricLogs?: any[] | undefined;
         firstMessageLog?: any;
         firstCallLog?: any;
@@ -6508,10 +6510,11 @@ export declare const recapSessionSchema: z.ZodObject<{
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
     startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
+    recapPromptNotifiedAt?: import("../../types").Timestamp | null | undefined;
     pendingTaskResolution?: boolean | undefined;
     recapQuestionId?: string | null | undefined;
     recapQuestionSource?: "trend" | "milestone" | "sequence" | "baseline" | "streak-progress" | undefined;
-    recapQuestionTaskId?: string | undefined;
+    recapQuestionTaskId?: string | null | undefined;
     focusBehaviorId?: string | undefined;
     focusBehaviorName?: string | undefined;
     focusBehaviorIds?: string[] | undefined;

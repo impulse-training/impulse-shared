@@ -34,11 +34,18 @@ export const recapSessionSchema = sessionBaseSchema.extend({
   type: z.literal("recap"),
   /** Set when user confirms day totals — mirrors daySummary.dayTotalsConfirmedAt */
   completedAt: timestampSchema.nullable().optional(),
+  /**
+   * Set by processRecaps when the recap-prompt push notification has been sent.
+   * Decouples notification idempotency from day_totals_prompt existence so a
+   * session pre-created by scheduled_preCreateRecaps doesn't suppress the
+   * trigger-time notification.
+   */
+  recapPromptNotifiedAt: timestampSchema.nullable().optional(),
   /** True while open tasks are being resolved before day totals */
   pendingTaskResolution: z.boolean().optional(),
   recapQuestionId: z.string().nullable().optional(),
   recapQuestionSource: recapQuestionSourceSchema.optional(),
-  recapQuestionTaskId: z.string().optional(),
+  recapQuestionTaskId: z.string().nullable().optional(),
   focusBehaviorId: z.string().optional(),
   focusBehaviorName: z.string().optional(),
   focusBehaviorIds: z.array(z.string()).optional(),
