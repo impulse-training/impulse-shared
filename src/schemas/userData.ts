@@ -123,6 +123,9 @@ export const userDataSchema = z.object({
   migrations: z
     .object({
       recommendedLibraryDone: z.boolean().optional(),
+      // Pre-seeds the curated starter tactics + their collections into the
+      // user's library (replaces the old in-library "Suggested" sections).
+      starterLibraryDone: z.boolean().optional(),
     })
     .optional(),
 
