@@ -13,7 +13,7 @@ export declare const plansLogSchema: z.ZodObject<{
     respondingToLogId: z.ZodOptional<z.ZodString>;
 } & {
     type: z.ZodLiteral<"plans">;
-    isDisplayable: z.ZodLiteral<true>;
+    isDisplayable: z.ZodBoolean;
     data: z.ZodObject<{
         source: z.ZodUnion<[z.ZodLiteral<"trigger">, z.ZodLiteral<"behavior">, z.ZodLiteral<"scheduled">, z.ZodLiteral<"tags">, z.ZodLiteral<"improvised">]>;
         mode: z.ZodOptional<z.ZodEnum<["live", "planning"]>>;
@@ -1494,7 +1494,7 @@ export declare const plansLogSchema: z.ZodObject<{
     dateString: string;
     userId: string;
     timestamp: import("../../types").Timestamp;
-    isDisplayable: true;
+    isDisplayable: boolean;
     data: {
         source: "scheduled" | "behavior" | "tags" | "trigger" | "improvised";
         plans: {
@@ -1704,7 +1704,7 @@ export declare const plansLogSchema: z.ZodObject<{
     dateString: string;
     userId: string;
     timestamp: import("../../types").Timestamp;
-    isDisplayable: true;
+    isDisplayable: boolean;
     data: {
         source: "scheduled" | "behavior" | "tags" | "trigger" | "improvised";
         plans: {

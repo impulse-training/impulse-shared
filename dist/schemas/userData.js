@@ -99,6 +99,9 @@ exports.userDataSchema = zod_1.z.object({
     migrations: zod_1.z
         .object({
         recommendedLibraryDone: zod_1.z.boolean().optional(),
+        // Pre-seeds the curated starter tactics + their collections into the
+        // user's library (replaces the old in-library "Suggested" sections).
+        starterLibraryDone: zod_1.z.boolean().optional(),
     })
         .optional(),
     // "Firsts" — one-time achievements (e.g. first impulse button press)

@@ -13,7 +13,9 @@ const sessionTypeSchema = z.enum([
 ]);
 
 export const sessionSummarySchema = z.object({
-  type: sessionTypeSchema,
+  // Optional: summaryData is computed client-side and the discriminator is not
+  // always written (and is read nowhere). Kept for forward-compat.
+  type: sessionTypeSchema.optional(),
   tacticsByTitle: z.record(z.string(), z.array(z.any())),
   behaviorsByName: z.record(z.string(), z.array(z.any())),
   outcomeLogs: z.array(z.any()),

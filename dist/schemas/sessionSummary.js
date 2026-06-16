@@ -14,7 +14,9 @@ const sessionTypeSchema = zod_1.z.enum([
     "adjustment",
 ]);
 exports.sessionSummarySchema = zod_1.z.object({
-    type: sessionTypeSchema,
+    // Optional: summaryData is computed client-side and the discriminator is not
+    // always written (and is read nowhere). Kept for forward-compat.
+    type: sessionTypeSchema.optional(),
     tacticsByTitle: zod_1.z.record(zod_1.z.string(), zod_1.z.array(zod_1.z.any())),
     behaviorsByName: zod_1.z.record(zod_1.z.string(), zod_1.z.array(zod_1.z.any())),
     outcomeLogs: zod_1.z.array(zod_1.z.any()),

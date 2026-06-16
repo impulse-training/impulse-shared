@@ -170,7 +170,7 @@ exports.behaviorSchema = behaviorTemplate_1.behaviorTemplateBase
     lastTrackedAt: timestampSchema_1.timestampSchema.optional(),
     tactics: zod_1.z.array(documentReferenceSchema_1.documentReferenceSchema).optional(),
     initialUsage: behaviorTrackingData_1.behaviorTrackingDataSchema.optional(),
-    hidden: zod_1.z.boolean().optional().default(false),
+    masked: zod_1.z.boolean().optional().default(false),
     behaviorTemplateId: zod_1.z.string().optional(),
     // Display color for this behavior (hex string, e.g. "#C4362C")
     color: zod_1.z.string().optional(),
@@ -180,7 +180,6 @@ exports.behaviorSchema = behaviorTemplate_1.behaviorTemplateBase
     // When true, the recap session should collect baseline usage data for this behavior
     needsBaselineData: zod_1.z.boolean().optional().default(false),
     customMilestoneRungs: zod_1.z.array(milestoneAchievement_1.milestoneRungSchema).optional(),
-    isDefault: zod_1.z.boolean().optional().default(false),
     mergedIntoBehaviorId: zod_1.z.string().optional(),
     mergedFromBehaviorIds: zod_1.z.array(zod_1.z.string()).optional(),
     mergedAt: timestampSchema_1.timestampSchema.optional(),

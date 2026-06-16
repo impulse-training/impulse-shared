@@ -17,7 +17,7 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
     data: z.ZodObject<{
         sessionRef: z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>;
         sessionSummaryData: z.ZodObject<{
-            type: z.ZodEnum<["impulse", "general", "onboarding", "recap", "behavior", "dayRecap", "timePlan", "locationPlan", "adjustment"]>;
+            type: z.ZodOptional<z.ZodEnum<["impulse", "general", "onboarding", "recap", "behavior", "dayRecap", "timePlan", "locationPlan", "adjustment"]>>;
             tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
             outcomeLogs: z.ZodArray<z.ZodAny, "many">;
@@ -27,22 +27,22 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
             firstCallLog: z.ZodOptional<z.ZodAny>;
             hasContent: z.ZodBoolean;
         }, "strip", z.ZodTypeAny, {
-            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
+            type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
             metricLogs?: any[] | undefined;
             firstMessageLog?: any;
             firstCallLog?: any;
         }, {
-            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
+            type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
             metricLogs?: any[] | undefined;
             firstMessageLog?: any;
             firstCallLog?: any;
@@ -58,12 +58,12 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
     }, "strip", z.ZodTypeAny, {
         sessionRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
         sessionSummaryData: {
-            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
+            type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
             metricLogs?: any[] | undefined;
             firstMessageLog?: any;
             firstCallLog?: any;
@@ -75,12 +75,12 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
     }, {
         sessionRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
         sessionSummaryData: {
-            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
+            type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
             metricLogs?: any[] | undefined;
             firstMessageLog?: any;
             firstCallLog?: any;
@@ -102,12 +102,12 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
     data: {
         sessionRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
         sessionSummaryData: {
-            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
+            type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
             metricLogs?: any[] | undefined;
             firstMessageLog?: any;
             firstCallLog?: any;
@@ -134,12 +134,12 @@ export declare const sharedMomentLogSchema: z.ZodObject<{
     data: {
         sessionRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
         sessionSummaryData: {
-            type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
             tacticsByTitle: Record<string, any[]>;
             behaviorsByName: Record<string, any[]>;
             outcomeLogs: any[];
             plansLogs: any[];
             hasContent: boolean;
+            type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
             metricLogs?: any[] | undefined;
             firstMessageLog?: any;
             firstCallLog?: any;

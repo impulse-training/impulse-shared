@@ -223,7 +223,7 @@ export const behaviorSchema = behaviorTemplateBase
     lastTrackedAt: timestampSchema.optional(),
     tactics: z.array(documentReferenceSchema).optional(),
     initialUsage: behaviorTrackingDataSchema.optional(),
-    hidden: z.boolean().optional().default(false),
+    masked: z.boolean().optional().default(false),
     behaviorTemplateId: z.string().optional(),
     // Display color for this behavior (hex string, e.g. "#C4362C")
     color: z.string().optional(),
@@ -233,7 +233,6 @@ export const behaviorSchema = behaviorTemplateBase
     // When true, the recap session should collect baseline usage data for this behavior
     needsBaselineData: z.boolean().optional().default(false),
     customMilestoneRungs: z.array(milestoneRungSchema).optional(),
-    isDefault: z.boolean().optional().default(false),
     mergedIntoBehaviorId: z.string().optional(),
     mergedFromBehaviorIds: z.array(z.string()).optional(),
     mergedAt: timestampSchema.optional(),

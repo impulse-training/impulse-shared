@@ -1,6 +1,6 @@
 import { z } from "zod";
 export declare const sessionSummarySchema: z.ZodObject<{
-    type: z.ZodEnum<["impulse", "general", "onboarding", "recap", "behavior", "dayRecap", "timePlan", "locationPlan", "adjustment"]>;
+    type: z.ZodOptional<z.ZodEnum<["impulse", "general", "onboarding", "recap", "behavior", "dayRecap", "timePlan", "locationPlan", "adjustment"]>>;
     tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
     behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
     outcomeLogs: z.ZodArray<z.ZodAny, "many">;
@@ -10,22 +10,22 @@ export declare const sessionSummarySchema: z.ZodObject<{
     firstCallLog: z.ZodOptional<z.ZodAny>;
     hasContent: z.ZodBoolean;
 }, "strip", z.ZodTypeAny, {
-    type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
     tacticsByTitle: Record<string, any[]>;
     behaviorsByName: Record<string, any[]>;
     outcomeLogs: any[];
     plansLogs: any[];
     hasContent: boolean;
+    type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
     metricLogs?: any[] | undefined;
     firstMessageLog?: any;
     firstCallLog?: any;
 }, {
-    type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
     tacticsByTitle: Record<string, any[]>;
     behaviorsByName: Record<string, any[]>;
     outcomeLogs: any[];
     plansLogs: any[];
     hasContent: boolean;
+    type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
     metricLogs?: any[] | undefined;
     firstMessageLog?: any;
     firstCallLog?: any;

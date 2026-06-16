@@ -1214,7 +1214,7 @@ export declare const behaviorSchema: z.ZodObject<{
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
     }>>;
-    hidden: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+    masked: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     behaviorTemplateId: z.ZodOptional<z.ZodString>;
     color: z.ZodOptional<z.ZodString>;
     behaviorTopicId: z.ZodOptional<z.ZodEnum<[string, ...string[]]>>;
@@ -1232,7 +1232,6 @@ export declare const behaviorSchema: z.ZodObject<{
         label: string;
         isCustom?: boolean | undefined;
     }>, "many">>;
-    isDefault: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     mergedIntoBehaviorId: z.ZodOptional<z.ZodString>;
     mergedFromBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     mergedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -2053,9 +2052,8 @@ export declare const behaviorSchema: z.ZodObject<{
     ordinal: number;
     benefits: string[];
     drawbacks: string[];
-    hidden: boolean;
+    masked: boolean;
     needsBaselineData: boolean;
-    isDefault: boolean;
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
@@ -2291,7 +2289,7 @@ export declare const behaviorSchema: z.ZodObject<{
         formattedValue?: string | undefined;
         period?: "daily" | "weekly" | undefined;
     } | undefined;
-    hidden?: boolean | undefined;
+    masked?: boolean | undefined;
     behaviorTemplateId?: string | undefined;
     behaviorTopicId?: string | undefined;
     needsBaselineData?: boolean | undefined;
@@ -2300,7 +2298,6 @@ export declare const behaviorSchema: z.ZodObject<{
         label: string;
         isCustom?: boolean | undefined;
     }[] | undefined;
-    isDefault?: boolean | undefined;
     mergedIntoBehaviorId?: string | undefined;
     mergedFromBehaviorIds?: string[] | undefined;
     mergedAt?: import("../types").Timestamp | undefined;

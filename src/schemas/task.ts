@@ -178,6 +178,11 @@ export const reflectOnMetricsTaskSchema = taskBaseSchema.extend({
   timeWindowDays: z.number().int().positive(),
 });
 
+export const collectBaselineTaskSchema = taskBaseSchema.extend({
+  type: z.literal("collect_baseline"),
+  behaviorId: z.string().min(1),
+});
+
 export const taskSchema = z.discriminatedUnion("type", [
   mergeBehaviorsTaskSchema,
   suggestStrategyTaskSchema,
@@ -189,6 +194,7 @@ export const taskSchema = z.discriminatedUnion("type", [
   toolkitPlanningTaskSchema,
   suggestTacticTaskSchema,
   reflectOnMetricsTaskSchema,
+  collectBaselineTaskSchema,
 ]);
 
 export type TaskCategory = z.infer<typeof taskCategorySchema>;
@@ -204,6 +210,7 @@ export type ReviewTriggerTask = z.infer<typeof reviewTriggerTaskSchema>;
 export type ToolkitPlanningTask = z.infer<typeof toolkitPlanningTaskSchema>;
 export type SuggestTacticTask = z.infer<typeof suggestTacticTaskSchema>;
 export type ReflectOnMetricsTask = z.infer<typeof reflectOnMetricsTaskSchema>;
+export type CollectBaselineTask = z.infer<typeof collectBaselineTaskSchema>;
 export type Task = z.infer<typeof taskSchema>;
 
 export const isTask = (value: unknown): value is Task =>

@@ -5069,13 +5069,6 @@ export declare const recapSessionSchema: z.ZodObject<{
     currentTacticStepIndex: z.ZodOptional<z.ZodNumber>;
     isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     showTactics: z.ZodOptional<z.ZodBoolean>;
-    emojiId: z.ZodNullable<z.ZodObject<{
-        emoji: z.ZodString;
-    }, "strip", z.ZodTypeAny, {
-        emoji: string;
-    }, {
-        emoji: string;
-    }>>;
     summaryData: z.ZodOptional<z.ZodObject<{
         type: z.ZodOptional<z.ZodEnum<["impulse", "general", "onboarding", "recap", "behavior", "dayRecap", "timePlan", "locationPlan", "adjustment"]>>;
         tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
@@ -5210,9 +5203,6 @@ export declare const recapSessionSchema: z.ZodObject<{
     title: string;
     userId: string;
     mode: "text" | "voice";
-    emojiId: {
-        emoji: string;
-    } | null;
     sharedWithUserIds: string[];
     isDraft: boolean;
     summarizedAt: import("../../types").Timestamp | null;
@@ -5870,9 +5860,6 @@ export declare const recapSessionSchema: z.ZodObject<{
     dateString: string;
     title: string;
     userId: string;
-    emojiId: {
-        emoji: string;
-    } | null;
     sharedWithUserIds: string[];
     summarizedAt: import("../../types").Timestamp | null;
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];

@@ -63,11 +63,22 @@ declare const dailyDataPointSchema: z.ZodObject<{
 }>;
 /**
  * Confidence level based on data quantity.
- * - low: 3-6 days (basic averages only)
+ * - low: 0-6 days (basic averages only)
  * - moderate: 7-13 days (+ trends)
  * - high: 14+ days (+ correlations)
  */
 declare const confidenceLevelEnum: z.ZodEnum<["low", "moderate", "high"]>;
+/**
+ * Map a number of days-with-data to a confidence level. Shared between the
+ * backend (computing experiment + per-metric confidence) and the app (deriving
+ * confidence for discovered insights from their overlap days) so the thresholds
+ * never drift apart.
+ */
+export declare function confidenceLevelForDays(daysWithData: number): "low" | "moderate" | "high";
+/** Lower of two confidence levels (the limiting factor). */
+export declare function minConfidence(a: "low" | "moderate" | "high", b: "low" | "moderate" | "high"): "low" | "moderate" | "high";
+/** Highest confidence in a list, or "low" if empty. */
+export declare function maxConfidence(levels: Array<"low" | "moderate" | "high">): "low" | "moderate" | "high";
 /**
  * Overall metric data for the experiment.
  */
@@ -102,9 +113,16 @@ declare const metricResultSchema: z.ZodObject<{
         date: string;
         rollingAvg7d?: number | undefined;
     }>, "many">>;
+    /**
+     * Confidence in inferences about THIS metric, based on how many days it was
+     * actually rated (not behavior tracking days). Optional for back-compat with
+     * caches written before per-metric confidence existed.
+     */
+    confidence: z.ZodOptional<z.ZodEnum<["low", "moderate", "high"]>>;
 }, "strip", z.ZodTypeAny, {
     metricId: string;
     metricName: string;
+    confidence?: "low" | "high" | "moderate" | undefined;
     minLabel?: string | undefined;
     maxLabel?: string | undefined;
     summary?: {
@@ -119,6 +137,7 @@ declare const metricResultSchema: z.ZodObject<{
 }, {
     metricId: string;
     metricName: string;
+    confidence?: "low" | "high" | "moderate" | undefined;
     minLabel?: string | undefined;
     maxLabel?: string | undefined;
     summary?: {
@@ -452,9 +471,16 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
             date: string;
             rollingAvg7d?: number | undefined;
         }>, "many">>;
+        /**
+         * Confidence in inferences about THIS metric, based on how many days it was
+         * actually rated (not behavior tracking days). Optional for back-compat with
+         * caches written before per-metric confidence existed.
+         */
+        confidence: z.ZodOptional<z.ZodEnum<["low", "moderate", "high"]>>;
     }, "strip", z.ZodTypeAny, {
         metricId: string;
         metricName: string;
+        confidence?: "low" | "high" | "moderate" | undefined;
         minLabel?: string | undefined;
         maxLabel?: string | undefined;
         summary?: {
@@ -469,6 +495,7 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
     }, {
         metricId: string;
         metricName: string;
+        confidence?: "low" | "high" | "moderate" | undefined;
         minLabel?: string | undefined;
         maxLabel?: string | undefined;
         summary?: {
@@ -612,6 +639,7 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
     metricResults: {
         metricId: string;
         metricName: string;
+        confidence?: "low" | "high" | "moderate" | undefined;
         minLabel?: string | undefined;
         maxLabel?: string | undefined;
         summary?: {
@@ -679,6 +707,7 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
     metricResults: {
         metricId: string;
         metricName: string;
+        confidence?: "low" | "high" | "moderate" | undefined;
         minLabel?: string | undefined;
         maxLabel?: string | undefined;
         summary?: {

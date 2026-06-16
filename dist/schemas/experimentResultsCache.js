@@ -1,6 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.experimentResultsCacheSchema = void 0;
+exports.confidenceLevelForDays = confidenceLevelForDays;
+exports.minConfidence = minConfidence;
+exports.maxConfidence = maxConfidence;
 const zod_1 = require("zod");
 const timestampSchema_1 = require("../utils/timestampSchema");
 /**
@@ -39,11 +42,37 @@ const dailyDataPointSchema = zod_1.z.object({
 });
 /**
  * Confidence level based on data quantity.
- * - low: 3-6 days (basic averages only)
+ * - low: 0-6 days (basic averages only)
  * - moderate: 7-13 days (+ trends)
  * - high: 14+ days (+ correlations)
  */
 const confidenceLevelEnum = zod_1.z.enum(["low", "moderate", "high"]);
+/**
+ * Map a number of days-with-data to a confidence level. Shared between the
+ * backend (computing experiment + per-metric confidence) and the app (deriving
+ * confidence for discovered insights from their overlap days) so the thresholds
+ * never drift apart.
+ */
+function confidenceLevelForDays(daysWithData) {
+    if (daysWithData >= 14)
+        return "high";
+    if (daysWithData >= 7)
+        return "moderate";
+    return "low";
+}
+const CONFIDENCE_RANK = {
+    low: 0,
+    moderate: 1,
+    high: 2,
+};
+/** Lower of two confidence levels (the limiting factor). */
+function minConfidence(a, b) {
+    return CONFIDENCE_RANK[a] <= CONFIDENCE_RANK[b] ? a : b;
+}
+/** Highest confidence in a list, or "low" if empty. */
+function maxConfidence(levels) {
+    return levels.reduce((best, l) => (CONFIDENCE_RANK[l] > CONFIDENCE_RANK[best] ? l : best), "low");
+}
 /**
  * Overall metric data for the experiment.
  */
@@ -55,6 +84,12 @@ const metricResultSchema = zod_1.z.object({
     summary: metricSummarySchema.optional(),
     /** Daily time series for charts */
     dailySeries: zod_1.z.array(dailyDataPointSchema).optional(),
+    /**
+     * Confidence in inferences about THIS metric, based on how many days it was
+     * actually rated (not behavior tracking days). Optional for back-compat with
+     * caches written before per-metric confidence existed.
+     */
+    confidence: confidenceLevelEnum.optional(),
 });
 /**
  * Overall behavior data for the experiment.

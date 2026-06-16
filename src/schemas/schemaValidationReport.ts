@@ -31,9 +31,15 @@ export type SchemaValidationSample = z.infer<
 
 export const schemaValidationTypeResultSchema = z.object({
   collectionGroup: z.string(),
+  // Count of docs the schema applies to (valid + invalid). When a type scopes its
+  // scan to one doc family (e.g. user-scoped tasks only), other families in the
+  // same collection-group are counted under `skipped`, not here.
   total: z.number(),
   valid: z.number(),
   invalid: z.number(),
+  // Docs in the collection-group this type's schema intentionally does not cover
+  // (different doc family living under the same group name).
+  skipped: z.number().optional(),
   // Up to a handful of failing docs for quick triage on the dashboard
   samples: z.array(schemaValidationSampleSchema),
   // Present if scanning this type threw (e.g. missing index) — total/valid/invalid are 0

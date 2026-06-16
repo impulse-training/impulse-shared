@@ -126,10 +126,13 @@ export declare const userDataSchema: z.ZodObject<{
     disclaimerAcceptedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     migrations: z.ZodOptional<z.ZodObject<{
         recommendedLibraryDone: z.ZodOptional<z.ZodBoolean>;
+        starterLibraryDone: z.ZodOptional<z.ZodBoolean>;
     }, "strip", z.ZodTypeAny, {
         recommendedLibraryDone?: boolean | undefined;
+        starterLibraryDone?: boolean | undefined;
     }, {
         recommendedLibraryDone?: boolean | undefined;
+        starterLibraryDone?: boolean | undefined;
     }>>;
     firsts: z.ZodOptional<z.ZodRecord<z.ZodEnum<["impulseButton", "triedTactic", "voiceSession", "resistedUrge"]>, z.ZodObject<{
         achievedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -214,12 +217,12 @@ export declare const userDataSchema: z.ZodObject<{
         } | undefined;
         pausedAt?: import("../types").Timestamp | undefined;
     } | undefined;
+    appVersion?: string | undefined;
     recoveryKeyHash?: string | undefined;
     llmProvider?: "openai" | "anthropic" | undefined;
     createdViaSimulator?: boolean | undefined;
     notifyOnSignUp?: boolean | undefined;
     notifyOnCoachingApplication?: boolean | undefined;
-    appVersion?: string | undefined;
     device?: {
         osName?: string | undefined;
         osVersion?: string | undefined;
@@ -249,6 +252,7 @@ export declare const userDataSchema: z.ZodObject<{
     disclaimerAcceptedAt?: import("../types").Timestamp | undefined;
     migrations?: {
         recommendedLibraryDone?: boolean | undefined;
+        starterLibraryDone?: boolean | undefined;
     } | undefined;
     firsts?: Partial<Record<"impulseButton" | "triedTactic" | "voiceSession" | "resistedUrge", {
         achievedAt: import("../types").Timestamp;
@@ -297,6 +301,7 @@ export declare const userDataSchema: z.ZodObject<{
     role?: "user" | "coach" | "support" | undefined;
     theme?: "system" | "light" | "dark" | undefined;
     notificationsEnabled?: boolean | undefined;
+    appVersion?: string | undefined;
     recoveryKeyHash?: string | undefined;
     defaultSessionMode?: "text" | "voice" | undefined;
     llmProvider?: "openai" | "anthropic" | undefined;
@@ -307,7 +312,6 @@ export declare const userDataSchema: z.ZodObject<{
     notificationSettings?: {
         debriefReminders?: boolean | undefined;
     } | undefined;
-    appVersion?: string | undefined;
     device?: {
         osName?: string | undefined;
         osVersion?: string | undefined;
@@ -338,6 +342,7 @@ export declare const userDataSchema: z.ZodObject<{
     disclaimerAcceptedAt?: import("../types").Timestamp | undefined;
     migrations?: {
         recommendedLibraryDone?: boolean | undefined;
+        starterLibraryDone?: boolean | undefined;
     } | undefined;
     firsts?: Partial<Record<"impulseButton" | "triedTactic" | "voiceSession" | "resistedUrge", {
         achievedAt: import("../types").Timestamp;

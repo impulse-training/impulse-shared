@@ -5,7 +5,6 @@ const zod_1 = require("zod");
 const documentReferenceSchema_1 = require("../../utils/documentReferenceSchema");
 const timestampSchema_1 = require("../../utils/timestampSchema");
 const behaviorTrackingData_1 = require("../behaviorTrackingData");
-const emojiId_1 = require("../emojiId");
 const tactic_1 = require("../tactic/tactic");
 const sessionSummary_1 = require("../sessionSummary");
 const sessionTypeSchema = zod_1.z.enum([
@@ -46,8 +45,6 @@ exports.sessionBaseSchema = zod_1.z.object({
     isDraft: zod_1.z.boolean().optional().default(false),
     // Whether to show the tactics sheet in this session (defaults to true for impulse/general)
     showTactics: zod_1.z.boolean().optional(),
-    // TODO: review if necessary
-    emojiId: emojiId_1.emojiIdSchema.nullable(),
     // Pre-computed summary data for session cards - updated when session is closed
     summaryData: sessionSummary_1.sessionSummarySchema.optional(),
     behaviorDataTotals: zod_1.z.array(behaviorTrackingData_1.behaviorTrackingDataSchema).optional(),

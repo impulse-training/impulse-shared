@@ -5043,15 +5043,8 @@ export declare const generalSessionSchema: z.ZodObject<{
     currentTacticStepIndex: z.ZodOptional<z.ZodNumber>;
     isDraft: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     showTactics: z.ZodOptional<z.ZodBoolean>;
-    emojiId: z.ZodNullable<z.ZodObject<{
-        emoji: z.ZodString;
-    }, "strip", z.ZodTypeAny, {
-        emoji: string;
-    }, {
-        emoji: string;
-    }>>;
     summaryData: z.ZodOptional<z.ZodObject<{
-        type: z.ZodEnum<["impulse", "general", "onboarding", "recap", "behavior", "dayRecap", "timePlan", "locationPlan", "adjustment"]>;
+        type: z.ZodOptional<z.ZodEnum<["impulse", "general", "onboarding", "recap", "behavior", "dayRecap", "timePlan", "locationPlan", "adjustment"]>>;
         tacticsByTitle: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
         behaviorsByName: z.ZodRecord<z.ZodString, z.ZodArray<z.ZodAny, "many">>;
         outcomeLogs: z.ZodArray<z.ZodAny, "many">;
@@ -5061,22 +5054,22 @@ export declare const generalSessionSchema: z.ZodObject<{
         firstCallLog: z.ZodOptional<z.ZodAny>;
         hasContent: z.ZodBoolean;
     }, "strip", z.ZodTypeAny, {
-        type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
         plansLogs: any[];
         hasContent: boolean;
+        type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
         metricLogs?: any[] | undefined;
         firstMessageLog?: any;
         firstCallLog?: any;
     }, {
-        type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
         plansLogs: any[];
         hasContent: boolean;
+        type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
         metricLogs?: any[] | undefined;
         firstMessageLog?: any;
         firstCallLog?: any;
@@ -5158,9 +5151,6 @@ export declare const generalSessionSchema: z.ZodObject<{
     title: string;
     userId: string;
     mode: "text" | "voice";
-    emojiId: {
-        emoji: string;
-    } | null;
     sharedWithUserIds: string[];
     isDraft: boolean;
     summarizedAt: import("../../types").Timestamp | null;
@@ -5752,12 +5742,12 @@ export declare const generalSessionSchema: z.ZodObject<{
     currentTacticStepIndex?: number | undefined;
     showTactics?: boolean | undefined;
     summaryData?: {
-        type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
         plansLogs: any[];
         hasContent: boolean;
+        type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
         metricLogs?: any[] | undefined;
         firstMessageLog?: any;
         firstCallLog?: any;
@@ -5803,9 +5793,6 @@ export declare const generalSessionSchema: z.ZodObject<{
     dateString: string;
     title: string;
     userId: string;
-    emojiId: {
-        emoji: string;
-    } | null;
     sharedWithUserIds: string[];
     summarizedAt: import("../../types").Timestamp | null;
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
@@ -6398,12 +6385,12 @@ export declare const generalSessionSchema: z.ZodObject<{
     isDraft?: boolean | undefined;
     showTactics?: boolean | undefined;
     summaryData?: {
-        type: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment";
         tacticsByTitle: Record<string, any[]>;
         behaviorsByName: Record<string, any[]>;
         outcomeLogs: any[];
         plansLogs: any[];
         hasContent: boolean;
+        type?: "behavior" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | undefined;
         metricLogs?: any[] | undefined;
         firstMessageLog?: any;
         firstCallLog?: any;

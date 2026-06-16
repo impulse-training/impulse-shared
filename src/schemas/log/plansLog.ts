@@ -6,8 +6,9 @@ import { logBaseSchema } from "./base";
 // Plans Log Schema - supports multiple plans (for behaviors or scheduled plans)
 export const plansLogSchema = logBaseSchema.extend({
   type: z.literal("plans"),
-  // Plans logs are always displayed in the UI
-  isDisplayable: z.literal(true),
+  // Usually displayed, but "planning"-mode plans logs (recap planning phase) are
+  // written non-displayable, so permit both.
+  isDisplayable: z.boolean(),
   data: z.object({
     source: z.union([
       z.literal("trigger"),

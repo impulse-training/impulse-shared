@@ -2,7 +2,6 @@ import { z } from "zod";
 import { documentReferenceSchema } from "../../utils/documentReferenceSchema";
 import { timestampSchema } from "../../utils/timestampSchema";
 import { behaviorTrackingDataSchema } from "../behaviorTrackingData";
-import { emojiIdSchema } from "../emojiId";
 import { tacticSchema } from "../tactic/tactic";
 import { sessionSummarySchema } from "../sessionSummary";
 
@@ -49,9 +48,6 @@ export const sessionBaseSchema = z.object({
 
   // Whether to show the tactics sheet in this session (defaults to true for impulse/general)
   showTactics: z.boolean().optional(),
-
-  // TODO: review if necessary
-  emojiId: emojiIdSchema.nullable(),
 
   // Pre-computed summary data for session cards - updated when session is closed
   summaryData: sessionSummarySchema.optional(),
