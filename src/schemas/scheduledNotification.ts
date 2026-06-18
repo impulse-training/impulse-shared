@@ -88,6 +88,11 @@ export type ScheduledNotification = z.infer<typeof scheduledNotificationSchema>;
  */
 export const scheduledNotificationDeliverySchema = z.object({
   id: z.string().optional(),
+  // Mirrors the doc id (the delivery doc is keyed by userId). Stored as a field
+  // too so a `collectionGroup("deliveries").where("userId","==",uid)` query can
+  // list every campaign delivered to one user (e.g. the dashboard's per-user
+  // outreach tab). Optional only because pre-backfill docs predate the field.
+  userId: z.string().optional(),
   status: z.enum(["pending", "sent"]),
   sessionId: z.string().optional(),
   createdAt: timestampSchema,
