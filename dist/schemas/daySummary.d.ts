@@ -1832,7 +1832,6 @@ export declare const daySummarySchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
     impulseSessionOutcomesById: z.ZodRecord<z.ZodString, z.ZodEnum<["success", "partial", "setback"]>>;
-    outcome: z.ZodOptional<z.ZodEnum<["success", "partial", "setback"]>>;
     behaviorDataTotalByBehaviorId: z.ZodRecord<z.ZodString, z.ZodObject<{
         behaviorId: z.ZodOptional<z.ZodString>;
         behaviorName: z.ZodOptional<z.ZodString>;
@@ -3300,7 +3299,6 @@ export declare const daySummarySchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
-    outcome?: "success" | "partial" | "setback" | undefined;
     goalComparisonByBehaviorId?: Record<string, {
         status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY" | "NO_GOAL";
         goalLabel: string;
@@ -3537,7 +3535,6 @@ export declare const daySummarySchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
-    outcome?: "success" | "partial" | "setback" | undefined;
     goalComparisonByBehaviorId?: Record<string, {
         status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY" | "NO_GOAL";
         goalLabel: string;
