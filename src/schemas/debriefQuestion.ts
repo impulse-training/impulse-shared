@@ -3,24 +3,46 @@ import { timestampSchema } from "../utils/timestampSchema";
 
 export const debriefQuestionOptionSchema = z.object({
   id: z.string().min(1),
-  label: z.string().min(1), // button text shown to the user
-  responseText: z.string().min(1), // becomes the user's effective chat reply when tapped
+  // Button text shown to the user; also used verbatim as the user's effective
+  // chat reply when tapped.
+  label: z.string().min(1),
 });
 
 export type DebriefQuestionOption = z.infer<typeof debriefQuestionOptionSchema>;
 
 /**
- * A configurable, per-behavior debrief question with selectable options.
+ * When a configurable question is asked, relative to the impulse flow:
+ * - `impulseMoment`: during the impulse moment itself, once the session's
+ *   behaviour(s) are known (i.e. when `setSessionTags` associates behaviours).
+ * - `debrief`: during the debrief, after the user resolves the urge as either
+ *   "I acted on it" or "I resisted".
  *
- * Stored at `users/{userId}/debriefQuestions/{id}`. When the user logs one of
- * the associated behaviors (acting on the urge) inside any session, a
- * deterministic `debrief_question` session task is queued to ask it.
+ * Defaults to `debrief` so existing documents (which predate this field)
+ * keep their original debrief-only behaviour.
+ */
+export const debriefQuestionTriggerSchema = z.enum([
+  "impulseMoment",
+  "debrief",
+]);
+
+export type DebriefQuestionTrigger = z.infer<
+  typeof debriefQuestionTriggerSchema
+>;
+
+/**
+ * A configurable, per-behavior question with selectable options, asked during
+ * an impulse moment or during a debrief (see `trigger`).
+ *
+ * Stored at `users/{userId}/debriefQuestions/{id}`. When the relevant moment
+ * occurs for one of the associated behaviors, a deterministic
+ * `debrief_question` session task is queued to ask it.
  */
 export const debriefQuestionSchema = z.object({
   id: z.string().optional(),
   question: z.string().min(1),
   options: z.array(debriefQuestionOptionSchema).min(2),
   behaviorIds: z.array(z.string().min(1)).min(1),
+  trigger: debriefQuestionTriggerSchema.default("debrief"),
   enabled: z.boolean().default(true),
   createdAt: timestampSchema.optional(),
   updatedAt: timestampSchema.optional(),
