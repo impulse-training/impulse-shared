@@ -12,7 +12,7 @@ export declare const insightSchema: z.ZodObject<{
     coachId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     postedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     postedBy: z.ZodOptional<z.ZodString>;
-    source: z.ZodOptional<z.ZodEnum<["experiment", "brain", "user"]>>;
+    source: z.ZodOptional<z.ZodEnum<["experiment", "brain", "coach", "user"]>>;
     category: z.ZodOptional<z.ZodString>;
     confidence: z.ZodOptional<z.ZodNumber>;
     behavior: z.ZodOptional<z.ZodString>;
@@ -40,7 +40,7 @@ export declare const insightSchema: z.ZodObject<{
     confidence?: number | undefined;
     userId?: string | undefined;
     behavior?: string | undefined;
-    source?: "user" | "experiment" | "brain" | undefined;
+    source?: "user" | "experiment" | "brain" | "coach" | undefined;
     experimentId?: string | undefined;
     emotion?: string | undefined;
     associatedBehaviorDocs?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
@@ -64,7 +64,7 @@ export declare const insightSchema: z.ZodObject<{
     confidence?: number | undefined;
     userId?: string | undefined;
     behavior?: string | undefined;
-    source?: "user" | "experiment" | "brain" | undefined;
+    source?: "user" | "experiment" | "brain" | "coach" | undefined;
     experimentId?: string | undefined;
     emotion?: string | undefined;
     associatedBehaviorDocs?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;

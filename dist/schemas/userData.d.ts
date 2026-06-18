@@ -243,7 +243,7 @@ export declare const userDataSchema: z.ZodObject<{
     markedAsEligibleAt?: import("../types").Timestamp | undefined;
     calendarBehaviorIds?: string[] | undefined;
     isCoach?: boolean | undefined;
-    latestSupportGroupMessages?: Partial<Record<"onboarding" | "system" | "alignment" | "social" | "coach", {
+    latestSupportGroupMessages?: Partial<Record<"onboarding" | "system" | "coach" | "alignment" | "social", {
         message: string;
         sentAt: import("../types").Timestamp;
         senderId: string;
@@ -333,7 +333,7 @@ export declare const userDataSchema: z.ZodObject<{
     markedAsEligibleAt?: import("../types").Timestamp | undefined;
     calendarBehaviorIds?: string[] | undefined;
     isCoach?: boolean | undefined;
-    latestSupportGroupMessages?: Partial<Record<"onboarding" | "system" | "alignment" | "social" | "coach", {
+    latestSupportGroupMessages?: Partial<Record<"onboarding" | "system" | "coach" | "alignment" | "social", {
         message: string;
         sentAt: import("../types").Timestamp;
         senderId: string;
