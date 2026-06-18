@@ -24,6 +24,16 @@ export const insightSchema = z.object({
   postedAt: timestampSchema.optional(),
   postedBy: z.string().optional(), // coach UID who posted
 
+  // Where this insight came from: "experiment" = auto-generated from experiment
+  // results, "brain" = promoted from the impulse-brain knowledge graph,
+  // "user" = user-authored. Absent on legacy docs (treat as experiment/user).
+  source: z.enum(["experiment", "brain", "user"]).optional(),
+  // Carried over when source === "brain" (for coach context + traceability).
+  category: z.string().optional(),
+  confidence: z.number().optional(),
+  behavior: z.string().optional(),
+  brainThoughtId: z.string().optional(), // id of the source thought in the brain
+
   /**
    * Sharing lifecycle (user-created qualitative insights):
    * - Created private

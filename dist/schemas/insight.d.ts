@@ -12,6 +12,11 @@ export declare const insightSchema: z.ZodObject<{
     coachId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     postedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     postedBy: z.ZodOptional<z.ZodString>;
+    source: z.ZodOptional<z.ZodEnum<["experiment", "brain", "user"]>>;
+    category: z.ZodOptional<z.ZodString>;
+    confidence: z.ZodOptional<z.ZodNumber>;
+    behavior: z.ZodOptional<z.ZodString>;
+    brainThoughtId: z.ZodOptional<z.ZodString>;
     /**
      * Sharing lifecycle (user-created qualitative insights):
      * - Created private
@@ -32,7 +37,10 @@ export declare const insightSchema: z.ZodObject<{
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     status?: "pending" | "posted" | "dismissed" | undefined;
+    confidence?: number | undefined;
     userId?: string | undefined;
+    behavior?: string | undefined;
+    source?: "user" | "experiment" | "brain" | undefined;
     experimentId?: string | undefined;
     emotion?: string | undefined;
     associatedBehaviorDocs?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
@@ -41,6 +49,8 @@ export declare const insightSchema: z.ZodObject<{
     coachId?: string | null | undefined;
     postedAt?: import("../types").Timestamp | undefined;
     postedBy?: string | undefined;
+    category?: string | undefined;
+    brainThoughtId?: string | undefined;
     contentEligibilityStatus?: "eligible" | "ineligible" | null | undefined;
     contentEligibilityEvaluatedAt?: import("../types").Timestamp | undefined;
     surfacedForSharingAt?: import("../types").Timestamp | undefined;
@@ -51,7 +61,10 @@ export declare const insightSchema: z.ZodObject<{
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     status?: "pending" | "posted" | "dismissed" | undefined;
+    confidence?: number | undefined;
     userId?: string | undefined;
+    behavior?: string | undefined;
+    source?: "user" | "experiment" | "brain" | undefined;
     experimentId?: string | undefined;
     emotion?: string | undefined;
     associatedBehaviorDocs?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
@@ -60,6 +73,8 @@ export declare const insightSchema: z.ZodObject<{
     coachId?: string | null | undefined;
     postedAt?: import("../types").Timestamp | undefined;
     postedBy?: string | undefined;
+    category?: string | undefined;
+    brainThoughtId?: string | undefined;
     contentEligibilityStatus?: "eligible" | "ineligible" | null | undefined;
     contentEligibilityEvaluatedAt?: import("../types").Timestamp | undefined;
     surfacedForSharingAt?: import("../types").Timestamp | undefined;
