@@ -5,10 +5,11 @@ const zod_1 = require("zod");
 const tactic_1 = require("../tactic");
 const attachment_1 = require("../attachment");
 const timestampSchema_1 = require("../../utils/timestampSchema");
+const answerSpec_1 = require("../question/answerSpec");
 const base_1 = require("./base");
-/** Response schema for tactic question steps - follows the same pattern as questionsLog */
+/** Response to a tactic question step, typed off the shared answer-type enum. */
 exports.tacticResponseSchema = zod_1.z.object({
-    responseType: zod_1.z.enum(["text", "slider1To10"]),
+    responseType: answerSpec_1.answerTypeSchema,
     value: zod_1.z.union([zod_1.z.string(), zod_1.z.number()]),
     formattedValue: zod_1.z.string(),
 });

@@ -2,11 +2,12 @@ import { z } from "zod";
 import { tacticSchema } from "../tactic";
 import { attachmentSchema } from "../attachment";
 import { timestampSchema } from "../../utils/timestampSchema";
+import { answerTypeSchema } from "../question/answerSpec";
 import { logBaseSchema } from "./base";
 
-/** Response schema for tactic question steps - follows the same pattern as questionsLog */
+/** Response to a tactic question step, typed off the shared answer-type enum. */
 export const tacticResponseSchema = z.object({
-  responseType: z.enum(["text", "slider1To10"]),
+  responseType: answerTypeSchema,
   value: z.union([z.string(), z.number()]),
   formattedValue: z.string(),
 });

@@ -1,50 +1,33 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __exportStar = (this && this.__exportStar) || function(m, exports) {
-    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isQuestionStep = exports.QuestionStepSchemas = exports.isValidSlider1To10QuestionStep = exports.questionStepIsSlider1To10Question = exports.isValidTextQuestionStep = exports.questionStepIsTextQuestion = exports.questionStepSchema = exports.isQuestionStepMode = exports.textQuestionStepSchema = exports.slider1To10QuestionStepSchema = void 0;
+exports.isQuestionStep = exports.questionStepIsChoiceQuestion = exports.questionStepIsSlider1To10Question = exports.questionStepIsTextQuestion = exports.isQuestionStepMode = exports.questionStepSchema = void 0;
 const zod_1 = require("zod");
-const slider1To10_1 = require("./slider1To10");
-Object.defineProperty(exports, "slider1To10QuestionStepSchema", { enumerable: true, get: function () { return slider1To10_1.slider1To10QuestionStepSchema; } });
-const text_1 = require("./text");
-Object.defineProperty(exports, "textQuestionStepSchema", { enumerable: true, get: function () { return text_1.textQuestionStepSchema; } });
-__exportStar(require("./slider1To10"), exports);
-__exportStar(require("./text"), exports);
-// Helper function to check if a step is any type of question step
-const isQuestionStepMode = (mode) => {
-    return mode === "question-text" || mode === "question-slider1To10";
-};
+const answerSpec_1 = require("../../../question/answerSpec");
+const base_1 = require("../base");
+const timestampSchema_1 = require("../../../../utils/timestampSchema");
+/**
+ * A single tactic question step. The answer model is the shared `answerSpec`
+ * (`text | choice | slider1To10`) — the same one debrief questions use. This
+ * replaced the legacy `question-text` / `question-slider1To10` modes; see the
+ * `preprocess` in `../index.ts` which lifts those legacy shapes on read.
+ */
+exports.questionStepSchema = base_1.baseStepSchema.extend({
+    mode: zod_1.z.literal("question"),
+    id: zod_1.z.string().optional(),
+    createdAt: timestampSchema_1.timestampSchema.optional(),
+    updatedAt: timestampSchema_1.timestampSchema.optional(),
+    // The question content (prompt).
+    text: zod_1.z.string().min(1),
+    answerSpec: answerSpec_1.answerSpecSchema,
+});
+// True for the unified question mode.
+const isQuestionStepMode = (mode) => mode === "question";
 exports.isQuestionStepMode = isQuestionStepMode;
-// Schema for discriminated union based on mode
-exports.questionStepSchema = zod_1.z.discriminatedUnion("mode", [
-    text_1.textQuestionStepSchema,
-    slider1To10_1.slider1To10QuestionStepSchema,
-]);
-// Type guards for question steps
-const questionStepIsTextQuestion = (value) => value.mode === "question-text";
+const questionStepIsTextQuestion = (step) => step.answerSpec.type === "text";
 exports.questionStepIsTextQuestion = questionStepIsTextQuestion;
-const isValidTextQuestionStep = (value) => text_1.textQuestionStepSchema.safeParse(value).success;
-exports.isValidTextQuestionStep = isValidTextQuestionStep;
-const questionStepIsSlider1To10Question = (value) => value.mode === "question-slider1To10";
+const questionStepIsSlider1To10Question = (step) => step.answerSpec.type === "slider1To10";
 exports.questionStepIsSlider1To10Question = questionStepIsSlider1To10Question;
-const isValidSlider1To10QuestionStep = (value) => slider1To10_1.slider1To10QuestionStepSchema.safeParse(value).success;
-exports.isValidSlider1To10QuestionStep = isValidSlider1To10QuestionStep;
-// Utility to dynamically select the correct schema based on the QuestionStep type
-exports.QuestionStepSchemas = {
-    "question-text": text_1.textQuestionStepSchema,
-    "question-slider1To10": slider1To10_1.slider1To10QuestionStepSchema,
-};
+const questionStepIsChoiceQuestion = (step) => step.answerSpec.type === "choice";
+exports.questionStepIsChoiceQuestion = questionStepIsChoiceQuestion;
 const isQuestionStep = (value) => exports.questionStepSchema.safeParse(value).success;
 exports.isQuestionStep = isQuestionStep;

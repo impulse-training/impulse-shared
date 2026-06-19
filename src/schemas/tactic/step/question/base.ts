@@ -1,14 +1,5 @@
-import { z } from "zod";
-import { timestampSchema } from "../../../../utils/timestampSchema";
-import { baseStepSchema } from "../base";
-
-export function questionStepBaseSchema<T extends string>(mode: T) {
-  return baseStepSchema.extend({
-    mode: z.literal(mode),
-    // Flatten question properties directly into the step schema
-    id: z.string().optional(),
-    createdAt: timestampSchema.optional(),
-    updatedAt: timestampSchema.optional(),
-    text: z.string().min(1), // The actual question content
-  });
-}
+// Superseded by the unified answer model. Tactic question steps now use a
+// single `question` mode carrying the shared `answerSpec` (see ./index.ts and
+// ../../../question/answerSpec). Kept as an empty module to avoid a dangling
+// import; safe to delete.
+export {};

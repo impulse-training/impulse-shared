@@ -18,8 +18,7 @@ export function getTacticStepInstructions(step: TacticStep): string {
       const label = step.text?.trim() || "Send a supportive message";
       return `${label}. Reach out to your support group now so they know you could use encouragement.`;
     }
-    case "question-text":
-    case "question-slider1To10": {
+    case "question": {
       const q = step.text.trim();
       return `Reflect and answer: ${q}`;
     }

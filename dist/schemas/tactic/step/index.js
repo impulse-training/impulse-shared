@@ -38,12 +38,11 @@ const notifySupport_1 = require("./notifySupport");
 const phoneCall_1 = require("./phoneCall");
 const question_1 = require("./question");
 const zara_1 = require("./zara");
-exports.tacticStepSchema = zod_1.z.discriminatedUnion("mode", [
+const tacticStepUnionSchema = zod_1.z.discriminatedUnion("mode", [
     default_1.defaultStepSchema,
     breathing_1.breathingStepSchema,
     notifySupport_1.notifySupportStepSchema,
-    question_1.textQuestionStepSchema,
-    question_1.slider1To10QuestionStepSchema,
+    question_1.questionStepSchema,
     media_1.mediaStepSchema,
     audio_1.audioStepSchema,
     affirmation_1.affirmationStepSchema,
@@ -51,11 +50,45 @@ exports.tacticStepSchema = zod_1.z.discriminatedUnion("mode", [
     phoneCall_1.phoneCallStepSchema,
     zara_1.zaraStepSchema,
 ]);
+/**
+ * Lift the legacy question step modes into the unified `question` mode + shared
+ * `answerSpec` on read, so existing tactic docs (which stored
+ * `question-text` / `question-slider1To10`) keep parsing without a migration.
+ */
+function liftLegacyQuestionStep(val) {
+    if (!val || typeof val !== "object" || Array.isArray(val))
+        return val;
+    const v = val;
+    if (v.mode === "question-text") {
+        const { suggestedResponses, mode, ...rest } = v;
+        return {
+            ...rest,
+            mode: "question",
+            answerSpec: {
+                type: "text",
+                ...(Array.isArray(suggestedResponses) ? { suggestedResponses } : {}),
+            },
+        };
+    }
+    if (v.mode === "question-slider1To10") {
+        const { sliderConfig, mode, ...rest } = v;
+        return {
+            ...rest,
+            mode: "question",
+            answerSpec: {
+                type: "slider1To10",
+                sliderConfig: sliderConfig !== null && sliderConfig !== void 0 ? sliderConfig : {},
+            },
+        };
+    }
+    return val;
+}
+exports.tacticStepSchema = zod_1.z.preprocess(liftLegacyQuestionStep, tacticStepUnionSchema);
 const stepIsMediaStep = (step) => step.mode === "media";
 exports.stepIsMediaStep = stepIsMediaStep;
 const stepIsAudioStep = (step) => step.mode === "audio";
 exports.stepIsAudioStep = stepIsAudioStep;
-const stepIsQuestionStep = (step) => step.mode === "question-text" || step.mode === "question-slider1To10";
+const stepIsQuestionStep = (step) => step.mode === "question";
 exports.stepIsQuestionStep = stepIsQuestionStep;
 const stepIsBreathingStep = (step) => step.mode === "breathing";
 exports.stepIsBreathingStep = stepIsBreathingStep;

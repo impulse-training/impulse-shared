@@ -1,58 +1,41 @@
 import { z } from "zod";
-import {
-  Slider1To10QuestionStep,
-  slider1To10QuestionStepSchema,
-} from "./slider1To10";
-import { TextQuestionStep, textQuestionStepSchema } from "./text";
+import { answerSpecSchema } from "../../../question/answerSpec";
+import { baseStepSchema } from "../base";
+import { timestampSchema } from "../../../../utils/timestampSchema";
 
-export * from "./slider1To10";
-export * from "./text";
+/**
+ * A single tactic question step. The answer model is the shared `answerSpec`
+ * (`text | choice | slider1To10`) — the same one debrief questions use. This
+ * replaced the legacy `question-text` / `question-slider1To10` modes; see the
+ * `preprocess` in `../index.ts` which lifts those legacy shapes on read.
+ */
+export const questionStepSchema = baseStepSchema.extend({
+  mode: z.literal("question"),
+  id: z.string().optional(),
+  createdAt: timestampSchema.optional(),
+  updatedAt: timestampSchema.optional(),
+  // The question content (prompt).
+  text: z.string().min(1),
+  answerSpec: answerSpecSchema,
+});
 
-// Re-export the individual schemas for use in the main discriminated union
-export { slider1To10QuestionStepSchema, textQuestionStepSchema };
+export type QuestionStep = z.infer<typeof questionStepSchema>;
 
-// Union type for all question step types
-export type QuestionStep = TextQuestionStep | Slider1To10QuestionStep;
+// True for the unified question mode.
+export const isQuestionStepMode = (mode: string): boolean =>
+  mode === "question";
 
-// Helper function to check if a step is any type of question step
-export const isQuestionStepMode = (mode: string): boolean => {
-  return mode === "question-text" || mode === "question-slider1To10";
-};
-
-// Schema for discriminated union based on mode
-export const questionStepSchema = z.discriminatedUnion("mode", [
-  textQuestionStepSchema,
-  slider1To10QuestionStepSchema,
-]);
-
-// Type guards for question steps
 export const questionStepIsTextQuestion = (
-  value: Omit<QuestionStep, "id">
-): value is TextQuestionStep => value.mode === "question-text";
-
-export const isValidTextQuestionStep = (
-  value: unknown
-): value is TextQuestionStep => textQuestionStepSchema.safeParse(value).success;
+  step: Pick<QuestionStep, "answerSpec">,
+): boolean => step.answerSpec.type === "text";
 
 export const questionStepIsSlider1To10Question = (
-  value: Omit<QuestionStep, "id">
-): value is Slider1To10QuestionStep => value.mode === "question-slider1To10";
+  step: Pick<QuestionStep, "answerSpec">,
+): boolean => step.answerSpec.type === "slider1To10";
 
-export const isValidSlider1To10QuestionStep = (
-  value: unknown
-): value is Slider1To10QuestionStep =>
-  slider1To10QuestionStepSchema.safeParse(value).success;
-
-// This type represents the union of all possible validated QuestionStep objects
-export type QuestionStepTypes = {
-  [K in QuestionStep["mode"]]: z.infer<(typeof QuestionStepSchemas)[K]>;
-};
-
-// Utility to dynamically select the correct schema based on the QuestionStep type
-export const QuestionStepSchemas = {
-  "question-text": textQuestionStepSchema,
-  "question-slider1To10": slider1To10QuestionStepSchema,
-} as const;
+export const questionStepIsChoiceQuestion = (
+  step: Pick<QuestionStep, "answerSpec">,
+): boolean => step.answerSpec.type === "choice";
 
 export const isQuestionStep = (value: unknown): value is QuestionStep =>
   questionStepSchema.safeParse(value).success;

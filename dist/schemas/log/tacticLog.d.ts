@@ -1,17 +1,17 @@
 import { z } from "zod";
-/** Response schema for tactic question steps - follows the same pattern as questionsLog */
+/** Response to a tactic question step, typed off the shared answer-type enum. */
 export declare const tacticResponseSchema: z.ZodObject<{
-    responseType: z.ZodEnum<["text", "slider1To10"]>;
+    responseType: z.ZodEnum<["text", "choice", "slider1To10"]>;
     value: z.ZodUnion<[z.ZodString, z.ZodNumber]>;
     formattedValue: z.ZodString;
 }, "strip", z.ZodTypeAny, {
     value: string | number;
     formattedValue: string;
-    responseType: "text" | "slider1To10";
+    responseType: "text" | "choice" | "slider1To10";
 }, {
     value: string | number;
     formattedValue: string;
-    responseType: "text" | "slider1To10";
+    responseType: "text" | "choice" | "slider1To10";
 }>;
 export type TacticResponse = z.infer<typeof tacticResponseSchema>;
 export declare const tacticLogSchema: z.ZodObject<{
@@ -54,7 +54,7 @@ export declare const tacticLogSchema: z.ZodObject<{
             createdByUid: z.ZodOptional<z.ZodString>;
             recommended: z.ZodOptional<z.ZodBoolean>;
             phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>;
-            steps: z.ZodArray<z.ZodDiscriminatedUnion<"mode", [z.ZodObject<{
+            steps: z.ZodArray<z.ZodEffects<z.ZodDiscriminatedUnion<"mode", [z.ZodObject<{
                 backgroundImage: z.ZodOptional<z.ZodObject<{
                     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -1135,322 +1135,87 @@ export declare const tacticLogSchema: z.ZodObject<{
                 }>>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             } & {
-                mode: z.ZodLiteral<"question-text">;
+                mode: z.ZodLiteral<"question">;
                 id: z.ZodOptional<z.ZodString>;
                 createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
                 text: z.ZodString;
-            } & {
-                suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-            }, "strip", z.ZodTypeAny, {
-                text: string;
-                mode: "question-text";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-                suggestedResponses?: string[] | undefined;
-            }, {
-                text: string;
-                mode: "question-text";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-                suggestedResponses?: string[] | undefined;
-            }>, z.ZodObject<{
-                backgroundImage: z.ZodOptional<z.ZodObject<{
-                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                    uri: z.ZodString;
-                    storagePath: z.ZodString;
-                    contentType: z.ZodString;
-                    title: z.ZodOptional<z.ZodString>;
-                    sizeBytes: z.ZodOptional<z.ZodNumber>;
-                    metadata: z.ZodOptional<z.ZodObject<{
-                        width: z.ZodOptional<z.ZodNumber>;
-                        height: z.ZodOptional<z.ZodNumber>;
-                        durationMs: z.ZodOptional<z.ZodNumber>;
-                        transcript: z.ZodOptional<z.ZodString>;
-                        lyrics: z.ZodOptional<z.ZodString>;
-                        lyricsAlignment: z.ZodOptional<z.ZodObject<{
-                            words: z.ZodArray<z.ZodObject<{
-                                text: z.ZodString;
-                                startS: z.ZodNumber;
-                                endS: z.ZodNumber;
-                            }, "strip", z.ZodTypeAny, {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }, {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }>, "many">;
-                            lines: z.ZodArray<z.ZodObject<{
-                                text: z.ZodString;
-                                startS: z.ZodNumber;
-                                endS: z.ZodNumber;
-                                wordStart: z.ZodNumber;
-                                wordEnd: z.ZodNumber;
-                            }, "strip", z.ZodTypeAny, {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }, {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }>, "many">;
-                        }, "strip", z.ZodTypeAny, {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        }, {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        }>>;
-                        meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
-                            db: z.ZodNumber;
-                            timestampMs: z.ZodOptional<z.ZodNumber>;
-                        }, "strip", z.ZodTypeAny, {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }, {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }>, "many">>;
+                answerSpec: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+                    type: z.ZodLiteral<"text">;
+                    suggestedResponses: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                }, "strip", z.ZodTypeAny, {
+                    type: "text";
+                    suggestedResponses?: string[] | undefined;
+                }, {
+                    type: "text";
+                    suggestedResponses?: string[] | undefined;
+                }>, z.ZodObject<{
+                    type: z.ZodLiteral<"choice">;
+                    options: z.ZodArray<z.ZodObject<{
+                        id: z.ZodString;
+                        label: z.ZodString;
                     }, "strip", z.ZodTypeAny, {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
+                        id: string;
+                        label: string;
                     }, {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
+                        id: string;
+                        label: string;
+                    }>, "many">;
+                }, "strip", z.ZodTypeAny, {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "choice";
+                }, {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "choice";
+                }>, z.ZodObject<{
+                    type: z.ZodLiteral<"slider1To10">;
+                    sliderConfig: z.ZodDefault<z.ZodObject<{
+                        minLabel: z.ZodOptional<z.ZodString>;
+                        maxLabel: z.ZodOptional<z.ZodString>;
+                    }, "strip", z.ZodTypeAny, {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
+                    }, {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
                     }>>;
                 }, "strip", z.ZodTypeAny, {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
+                    type: "slider1To10";
+                    sliderConfig: {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
+                    };
                 }, {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
+                    type: "slider1To10";
+                    sliderConfig?: {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
                     } | undefined;
-                }>>;
-                tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-            } & {
-                mode: z.ZodLiteral<"question-slider1To10">;
-                id: z.ZodOptional<z.ZodString>;
-                createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-                text: z.ZodString;
-            } & {
-                sliderConfig: z.ZodObject<{
-                    minLabel: z.ZodOptional<z.ZodString>;
-                    maxLabel: z.ZodOptional<z.ZodString>;
-                }, "strip", z.ZodTypeAny, {
-                    minLabel?: string | undefined;
-                    maxLabel?: string | undefined;
-                }, {
-                    minLabel?: string | undefined;
-                    maxLabel?: string | undefined;
-                }>;
+                }>]>;
             }, "strip", z.ZodTypeAny, {
                 text: string;
-                mode: "question-slider1To10";
-                sliderConfig: {
-                    minLabel?: string | undefined;
-                    maxLabel?: string | undefined;
+                mode: "question";
+                answerSpec: {
+                    type: "text";
+                    suggestedResponses?: string[] | undefined;
+                } | {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "choice";
+                } | {
+                    type: "slider1To10";
+                    sliderConfig: {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
+                    };
                 };
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
@@ -1492,10 +1257,22 @@ export declare const tacticLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
             }, {
                 text: string;
-                mode: "question-slider1To10";
-                sliderConfig: {
-                    minLabel?: string | undefined;
-                    maxLabel?: string | undefined;
+                mode: "question";
+                answerSpec: {
+                    type: "text";
+                    suggestedResponses?: string[] | undefined;
+                } | {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "choice";
+                } | {
+                    type: "slider1To10";
+                    sliderConfig?: {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
+                    } | undefined;
                 };
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
@@ -3784,7 +3561,492 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
-            }>]>, "many">;
+            }>]>, {
+                text: string;
+                mode: "affirmation";
+                affirmationText: string;
+                repeatCount: number;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+            } | {
+                mode: "audio";
+                audio?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                generationJobId?: string | undefined;
+                autoplay?: boolean | undefined;
+                loopCount?: number | undefined;
+            } | {
+                mode: "breathing";
+                breathingPattern: {
+                    inhale: number;
+                    exhale: number;
+                    hold?: number | undefined;
+                };
+                text?: string | undefined;
+                cycles?: number | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+            } | {
+                text: string;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                mode?: "default" | undefined;
+                durationSeconds?: number | undefined;
+                requiresPhotoVerification?: boolean | undefined;
+            } | {
+                mode: "media";
+                media: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }[];
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+            } | {
+                mode: "pedometer";
+                targetSteps: number;
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+            } | {
+                text: string;
+                groupId: string;
+                mode: "notifySupport";
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+            } | {
+                mode: "phoneCall";
+                contactName: string;
+                phoneNumber: string;
+                text?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+            } | {
+                text: string;
+                mode: "question";
+                answerSpec: {
+                    type: "text";
+                    suggestedResponses?: string[] | undefined;
+                } | {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "choice";
+                } | {
+                    type: "slider1To10";
+                    sliderConfig: {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
+                    };
+                };
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+            } | {
+                mode: "zara";
+                text?: string | undefined;
+                direction?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+            }, unknown>, "many">;
             tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             isMultiStep: z.ZodOptional<z.ZodBoolean>;
             autoplay: z.ZodOptional<z.ZodBoolean>;
@@ -4307,10 +4569,22 @@ export declare const tacticLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                mode: "question-slider1To10";
-                sliderConfig: {
-                    minLabel?: string | undefined;
-                    maxLabel?: string | undefined;
+                mode: "question";
+                answerSpec: {
+                    type: "text";
+                    suggestedResponses?: string[] | undefined;
+                } | {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "choice";
+                } | {
+                    type: "slider1To10";
+                    sliderConfig: {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
+                    };
                 };
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
@@ -4350,48 +4624,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
-            } | {
-                text: string;
-                mode: "question-text";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-                suggestedResponses?: string[] | undefined;
             } | {
                 mode: "zara";
                 text?: string | undefined;
@@ -4490,522 +4722,7 @@ export declare const tacticLogSchema: z.ZodObject<{
         }, {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
-            steps: ({
-                mode: "affirmation";
-                affirmationText: string;
-                text?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-                repeatCount?: number | undefined;
-            } | {
-                mode: "audio";
-                audio?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                text?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-                generationJobId?: string | undefined;
-                autoplay?: boolean | undefined;
-                loopCount?: number | undefined;
-            } | {
-                mode: "breathing";
-                breathingPattern: {
-                    inhale: number;
-                    exhale: number;
-                    hold?: number | undefined;
-                };
-                text?: string | undefined;
-                cycles?: number | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-                mode?: "default" | undefined;
-                durationSeconds?: number | undefined;
-                requiresPhotoVerification?: boolean | undefined;
-            } | {
-                mode: "media";
-                media: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                }[];
-                text?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                mode: "pedometer";
-                targetSteps: number;
-                text?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                groupId: string;
-                mode: "notifySupport";
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                mode: "phoneCall";
-                contactName: string;
-                phoneNumber: string;
-                text?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                mode: "question-slider1To10";
-                sliderConfig: {
-                    minLabel?: string | undefined;
-                    maxLabel?: string | undefined;
-                };
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                mode: "question-text";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-                suggestedResponses?: string[] | undefined;
-            } | {
-                mode: "zara";
-                text?: string | undefined;
-                direction?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            })[];
+            steps: unknown[];
             id?: string | undefined;
             title?: string | undefined;
             description?: string | undefined;
@@ -5069,17 +4786,17 @@ export declare const tacticLogSchema: z.ZodObject<{
         completedStepIndexes: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
         completed: z.ZodOptional<z.ZodBoolean>;
         response: z.ZodOptional<z.ZodObject<{
-            responseType: z.ZodEnum<["text", "slider1To10"]>;
+            responseType: z.ZodEnum<["text", "choice", "slider1To10"]>;
             value: z.ZodUnion<[z.ZodString, z.ZodNumber]>;
             formattedValue: z.ZodString;
         }, "strip", z.ZodTypeAny, {
             value: string | number;
             formattedValue: string;
-            responseType: "text" | "slider1To10";
+            responseType: "text" | "choice" | "slider1To10";
         }, {
             value: string | number;
             formattedValue: string;
-            responseType: "text" | "slider1To10";
+            responseType: "text" | "choice" | "slider1To10";
         }>>;
         conversationSummary: z.ZodOptional<z.ZodString>;
         startedSummarizingConversationAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -5681,10 +5398,22 @@ export declare const tacticLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                mode: "question-slider1To10";
-                sliderConfig: {
-                    minLabel?: string | undefined;
-                    maxLabel?: string | undefined;
+                mode: "question";
+                answerSpec: {
+                    type: "text";
+                    suggestedResponses?: string[] | undefined;
+                } | {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "choice";
+                } | {
+                    type: "slider1To10";
+                    sliderConfig: {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
+                    };
                 };
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
@@ -5724,48 +5453,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
-            } | {
-                text: string;
-                mode: "question-text";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-                suggestedResponses?: string[] | undefined;
             } | {
                 mode: "zara";
                 text?: string | undefined;
@@ -5871,7 +5558,7 @@ export declare const tacticLogSchema: z.ZodObject<{
         response?: {
             value: string | number;
             formattedValue: string;
-            responseType: "text" | "slider1To10";
+            responseType: "text" | "choice" | "slider1To10";
         } | undefined;
         conversationSummary?: string | undefined;
         startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
@@ -5916,522 +5603,7 @@ export declare const tacticLogSchema: z.ZodObject<{
         tactic: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
-            steps: ({
-                mode: "affirmation";
-                affirmationText: string;
-                text?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-                repeatCount?: number | undefined;
-            } | {
-                mode: "audio";
-                audio?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                text?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-                generationJobId?: string | undefined;
-                autoplay?: boolean | undefined;
-                loopCount?: number | undefined;
-            } | {
-                mode: "breathing";
-                breathingPattern: {
-                    inhale: number;
-                    exhale: number;
-                    hold?: number | undefined;
-                };
-                text?: string | undefined;
-                cycles?: number | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-                mode?: "default" | undefined;
-                durationSeconds?: number | undefined;
-                requiresPhotoVerification?: boolean | undefined;
-            } | {
-                mode: "media";
-                media: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                }[];
-                text?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                mode: "pedometer";
-                targetSteps: number;
-                text?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                groupId: string;
-                mode: "notifySupport";
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                mode: "phoneCall";
-                contactName: string;
-                phoneNumber: string;
-                text?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                mode: "question-slider1To10";
-                sliderConfig: {
-                    minLabel?: string | undefined;
-                    maxLabel?: string | undefined;
-                };
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                mode: "question-text";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-                suggestedResponses?: string[] | undefined;
-            } | {
-                mode: "zara";
-                text?: string | undefined;
-                direction?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            })[];
+            steps: unknown[];
             id?: string | undefined;
             title?: string | undefined;
             description?: string | undefined;
@@ -6497,7 +5669,7 @@ export declare const tacticLogSchema: z.ZodObject<{
         response?: {
             value: string | number;
             formattedValue: string;
-            responseType: "text" | "slider1To10";
+            responseType: "text" | "choice" | "slider1To10";
         } | undefined;
         conversationSummary?: string | undefined;
         startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
@@ -6943,10 +6115,22 @@ export declare const tacticLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
-                mode: "question-slider1To10";
-                sliderConfig: {
-                    minLabel?: string | undefined;
-                    maxLabel?: string | undefined;
+                mode: "question";
+                answerSpec: {
+                    type: "text";
+                    suggestedResponses?: string[] | undefined;
+                } | {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "choice";
+                } | {
+                    type: "slider1To10";
+                    sliderConfig: {
+                        minLabel?: string | undefined;
+                        maxLabel?: string | undefined;
+                    };
                 };
                 id?: string | undefined;
                 createdAt?: import("../../types").Timestamp | undefined;
@@ -6986,48 +6170,6 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
-            } | {
-                text: string;
-                mode: "question-text";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-                suggestedResponses?: string[] | undefined;
             } | {
                 mode: "zara";
                 text?: string | undefined;
@@ -7133,7 +6275,7 @@ export declare const tacticLogSchema: z.ZodObject<{
         response?: {
             value: string | number;
             formattedValue: string;
-            responseType: "text" | "slider1To10";
+            responseType: "text" | "choice" | "slider1To10";
         } | undefined;
         conversationSummary?: string | undefined;
         startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
@@ -7193,522 +6335,7 @@ export declare const tacticLogSchema: z.ZodObject<{
         tactic: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
-            steps: ({
-                mode: "affirmation";
-                affirmationText: string;
-                text?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-                repeatCount?: number | undefined;
-            } | {
-                mode: "audio";
-                audio?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                text?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-                generationJobId?: string | undefined;
-                autoplay?: boolean | undefined;
-                loopCount?: number | undefined;
-            } | {
-                mode: "breathing";
-                breathingPattern: {
-                    inhale: number;
-                    exhale: number;
-                    hold?: number | undefined;
-                };
-                text?: string | undefined;
-                cycles?: number | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-                mode?: "default" | undefined;
-                durationSeconds?: number | undefined;
-                requiresPhotoVerification?: boolean | undefined;
-            } | {
-                mode: "media";
-                media: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                }[];
-                text?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                mode: "pedometer";
-                targetSteps: number;
-                text?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                groupId: string;
-                mode: "notifySupport";
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                mode: "phoneCall";
-                contactName: string;
-                phoneNumber: string;
-                text?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                mode: "question-slider1To10";
-                sliderConfig: {
-                    minLabel?: string | undefined;
-                    maxLabel?: string | undefined;
-                };
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            } | {
-                text: string;
-                mode: "question-text";
-                id?: string | undefined;
-                createdAt?: import("../../types").Timestamp | undefined;
-                updatedAt?: import("../../types").Timestamp | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-                suggestedResponses?: string[] | undefined;
-            } | {
-                mode: "zara";
-                text?: string | undefined;
-                direction?: string | undefined;
-                backgroundImage?: {
-                    uri: string;
-                    storagePath: string;
-                    contentType: string;
-                    createdAt?: import("../../types").Timestamp | undefined;
-                    updatedAt?: import("../../types").Timestamp | undefined;
-                    title?: string | undefined;
-                    sizeBytes?: number | undefined;
-                    metadata?: {
-                        width?: number | undefined;
-                        height?: number | undefined;
-                        durationMs?: number | undefined;
-                        transcript?: string | undefined;
-                        lyrics?: string | undefined;
-                        lyricsAlignment?: {
-                            words: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                            }[];
-                            lines: {
-                                text: string;
-                                startS: number;
-                                endS: number;
-                                wordStart: number;
-                                wordEnd: number;
-                            }[];
-                        } | undefined;
-                        meterings?: {
-                            db: number;
-                            timestampMs?: number | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                } | undefined;
-                tags?: string[] | undefined;
-            })[];
+            steps: unknown[];
             id?: string | undefined;
             title?: string | undefined;
             description?: string | undefined;
@@ -7774,7 +6401,7 @@ export declare const tacticLogSchema: z.ZodObject<{
         response?: {
             value: string | number;
             formattedValue: string;
-            responseType: "text" | "slider1To10";
+            responseType: "text" | "choice" | "slider1To10";
         } | undefined;
         conversationSummary?: string | undefined;
         startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;

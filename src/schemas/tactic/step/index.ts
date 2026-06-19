@@ -21,19 +21,14 @@ import { MediaStep, mediaStepSchema } from "./media";
 import { PedometerStep, pedometerStepSchema } from "./pedometer";
 import { NotifySupportStep, notifySupportStepSchema } from "./notifySupport";
 import { PhoneCallStep, phoneCallStepSchema } from "./phoneCall";
-import {
-  QuestionStep,
-  slider1To10QuestionStepSchema,
-  textQuestionStepSchema,
-} from "./question";
+import { QuestionStep, questionStepSchema } from "./question";
 import { ZaraStep, zaraStepSchema } from "./zara";
 
-export const tacticStepSchema = z.discriminatedUnion("mode", [
+const tacticStepUnionSchema = z.discriminatedUnion("mode", [
   defaultStepSchema,
   breathingStepSchema,
   notifySupportStepSchema,
-  textQuestionStepSchema,
-  slider1To10QuestionStepSchema,
+  questionStepSchema,
   mediaStepSchema,
   audioStepSchema,
   affirmationStepSchema,
@@ -41,6 +36,44 @@ export const tacticStepSchema = z.discriminatedUnion("mode", [
   phoneCallStepSchema,
   zaraStepSchema,
 ]);
+
+/**
+ * Lift the legacy question step modes into the unified `question` mode + shared
+ * `answerSpec` on read, so existing tactic docs (which stored
+ * `question-text` / `question-slider1To10`) keep parsing without a migration.
+ */
+function liftLegacyQuestionStep(val: unknown): unknown {
+  if (!val || typeof val !== "object" || Array.isArray(val)) return val;
+  const v = val as Record<string, unknown>;
+  if (v.mode === "question-text") {
+    const { suggestedResponses, mode, ...rest } = v;
+    return {
+      ...rest,
+      mode: "question",
+      answerSpec: {
+        type: "text",
+        ...(Array.isArray(suggestedResponses) ? { suggestedResponses } : {}),
+      },
+    };
+  }
+  if (v.mode === "question-slider1To10") {
+    const { sliderConfig, mode, ...rest } = v;
+    return {
+      ...rest,
+      mode: "question",
+      answerSpec: {
+        type: "slider1To10",
+        sliderConfig: sliderConfig ?? {},
+      },
+    };
+  }
+  return val;
+}
+
+export const tacticStepSchema = z.preprocess(
+  liftLegacyQuestionStep,
+  tacticStepUnionSchema,
+);
 
 export type TacticStep = z.infer<typeof tacticStepSchema>;
 
@@ -51,7 +84,7 @@ export const stepIsAudioStep = (step: TacticStep): step is AudioStep =>
   step.mode === "audio";
 
 export const stepIsQuestionStep = (step: TacticStep): step is QuestionStep =>
-  step.mode === "question-text" || step.mode === "question-slider1To10";
+  step.mode === "question";
 
 export const stepIsBreathingStep = (step: TacticStep): step is BreathingStep =>
   step.mode === "breathing";

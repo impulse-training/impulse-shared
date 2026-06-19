@@ -20,8 +20,7 @@ function getTacticStepInstructions(step) {
             const label = ((_c = step.text) === null || _c === void 0 ? void 0 : _c.trim()) || "Send a supportive message";
             return `${label}. Reach out to your support group now so they know you could use encouragement.`;
         }
-        case "question-text":
-        case "question-slider1To10": {
+        case "question": {
             const q = step.text.trim();
             return `Reflect and answer: ${q}`;
         }

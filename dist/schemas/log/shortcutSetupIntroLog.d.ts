@@ -22,13 +22,13 @@ export declare const shortcutSetupIntroLogSchema: z.ZodObject<{
     }, "strip", z.ZodTypeAny, {
         message: string;
         shortcutType: "back_tap" | "lock_screen_widget";
-        respondedAt?: import("../../types").Timestamp | undefined;
         choice?: "text" | "voice" | "skip" | undefined;
+        respondedAt?: import("../../types").Timestamp | undefined;
     }, {
         message: string;
         shortcutType: "back_tap" | "lock_screen_widget";
-        respondedAt?: import("../../types").Timestamp | undefined;
         choice?: "text" | "voice" | "skip" | undefined;
+        respondedAt?: import("../../types").Timestamp | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
@@ -42,8 +42,8 @@ export declare const shortcutSetupIntroLogSchema: z.ZodObject<{
     data: {
         message: string;
         shortcutType: "back_tap" | "lock_screen_widget";
-        respondedAt?: import("../../types").Timestamp | undefined;
         choice?: "text" | "voice" | "skip" | undefined;
+        respondedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;
@@ -62,8 +62,8 @@ export declare const shortcutSetupIntroLogSchema: z.ZodObject<{
     data: {
         message: string;
         shortcutType: "back_tap" | "lock_screen_widget";
-        respondedAt?: import("../../types").Timestamp | undefined;
         choice?: "text" | "voice" | "skip" | undefined;
+        respondedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;

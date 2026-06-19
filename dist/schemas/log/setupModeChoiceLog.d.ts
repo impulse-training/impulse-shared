@@ -18,11 +18,11 @@ export declare const setupModeChoiceLogSchema: z.ZodObject<{
         respondedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         choice: z.ZodOptional<z.ZodEnum<["voice", "text"]>>;
     }, "strip", z.ZodTypeAny, {
-        respondedAt?: import("../../types").Timestamp | undefined;
         choice?: "text" | "voice" | undefined;
+        respondedAt?: import("../../types").Timestamp | undefined;
     }, {
-        respondedAt?: import("../../types").Timestamp | undefined;
         choice?: "text" | "voice" | undefined;
+        respondedAt?: import("../../types").Timestamp | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
@@ -34,8 +34,8 @@ export declare const setupModeChoiceLogSchema: z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
-        respondedAt?: import("../../types").Timestamp | undefined;
         choice?: "text" | "voice" | undefined;
+        respondedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;
@@ -52,8 +52,8 @@ export declare const setupModeChoiceLogSchema: z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
-        respondedAt?: import("../../types").Timestamp | undefined;
         choice?: "text" | "voice" | undefined;
+        respondedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;

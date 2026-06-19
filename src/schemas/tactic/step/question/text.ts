@@ -1,10 +1,3 @@
-import { z } from "zod";
-import { questionStepBaseSchema } from "./base";
-
-export const textQuestionStepSchema = questionStepBaseSchema(
-  "question-text"
-).extend({
-  suggestedResponses: z.array(z.string()).optional(),
-});
-
-export type TextQuestionStep = z.infer<typeof textQuestionStepSchema>;
+// Superseded by the unified answer model (answerSpec `type: "text"`). See
+// ./index.ts. Kept as an empty module to avoid a dangling import.
+export {};
