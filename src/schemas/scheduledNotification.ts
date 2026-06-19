@@ -36,24 +36,68 @@ export type ScheduledNotificationTargeting = z.infer<
   typeof scheduledNotificationTargetingSchema
 >;
 
+// Tappable link button rendered as a `link` log after the messages. `link` is
+// handed to the client (router.push for in-app routes, Linking.openURL for
+// external https URLs like a TestFlight link).
+export const outreachLinkSchema = z.object({
+  text: z.string(),
+  link: z.string(),
+  buttonText: z.string(),
+  icon: z.enum(["link", "rocket", "party", "check"]).optional(),
+});
+export type OutreachLink = z.infer<typeof outreachLinkSchema>;
+
 export const scheduledNotificationSessionTemplateSchema = z.object({
   // Journal session title.
   title: z.string(),
   // One assistant_message per entry, in order — the durable explanation.
   messages: z.array(z.string()).min(1),
   // Optional tappable link button rendered after the messages (a `link` log).
-  // `link` is an in-app route handed to router.push (e.g. "/journal").
-  link: z
-    .object({
-      text: z.string(),
-      link: z.string(),
-      buttonText: z.string(),
-      icon: z.enum(["link", "rocket", "party", "check"]).optional(),
-    })
-    .optional(),
+  link: outreachLinkSchema.optional(),
 });
 export type ScheduledNotificationSessionTemplate = z.infer<
   typeof scheduledNotificationSessionTemplateSchema
+>;
+
+/**
+ * Gate for a follow-up. ALL set conditions must hold at follow-up time. Reuses
+ * the same app-version-range vocabulary as `targeting` (same `appVersionInRange`
+ * evaluator), plus engagement gates derived from the outreach session's read
+ * state. All conditions here are monotonic (a user who has seen/replied/updated
+ * never un-does it), so a miss at due-time is permanent.
+ */
+export const scheduledNotificationFollowUpPredicateSchema = z.object({
+  // Same semantics as targeting: maxAppVersion "1.16" => only if still below 1.16.
+  minAppVersion: z.string().optional(),
+  maxAppVersion: z.string().optional(),
+  // Only fire if the user has NOT opened the outreach session (lastReadAt unset).
+  notSeen: z.boolean().optional(),
+  // Only fire if the user has NOT sent a message in the outreach session.
+  notReplied: z.boolean().optional(),
+});
+export type ScheduledNotificationFollowUpPredicate = z.infer<
+  typeof scheduledNotificationFollowUpPredicateSchema
+>;
+
+/**
+ * A scheduled follow-up appended to the campaign's existing session, `delayHours`
+ * after THIS user's initial delivery, if its predicate holds. Fires at most once
+ * per user (tracked in the delivery's firedFollowUpIds).
+ */
+export const scheduledNotificationFollowUpSchema = z.object({
+  id: z.string(),
+  // Hours after the user's initial delivery before this becomes eligible.
+  delayHours: z.number().min(0),
+  predicate: scheduledNotificationFollowUpPredicateSchema.optional(),
+  // Push copy for the follow-up.
+  title: z.string(),
+  body: z.string(),
+  // Assistant messages appended to the session, in order.
+  messages: z.array(z.string()).min(1),
+  link: outreachLinkSchema.optional(),
+});
+export type ScheduledNotificationFollowUp = z.infer<
+  typeof scheduledNotificationFollowUpSchema
 >;
 
 export const scheduledNotificationSchema = z.object({
@@ -79,6 +123,10 @@ export const scheduledNotificationSchema = z.object({
   // Optional user-local date window (YYYY-MM-DD). Fires only within [start, end].
   startDate: z.string().optional(),
   endDate: z.string().optional(),
+
+  // Optional drip follow-ups appended to the campaign's session after the
+  // initial delivery (only meaningful when sessionTemplate is set).
+  followUps: z.array(scheduledNotificationFollowUpSchema).optional(),
 
   targeting: scheduledNotificationTargetingSchema,
 
@@ -107,6 +155,9 @@ export const scheduledNotificationDeliverySchema = z.object({
   sessionId: z.string().optional(),
   createdAt: timestampSchema,
   sentAt: timestampSchema.optional(),
+  // Follow-ups (by id) that have fired / been permanently skipped for this user.
+  firedFollowUpIds: z.array(z.string()).optional(),
+  skippedFollowUpIds: z.array(z.string()).optional(),
 });
 export type ScheduledNotificationDelivery = z.infer<
   typeof scheduledNotificationDeliverySchema
