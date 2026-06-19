@@ -41,6 +41,16 @@ export const scheduledNotificationSessionTemplateSchema = z.object({
   title: z.string(),
   // One assistant_message per entry, in order — the durable explanation.
   messages: z.array(z.string()).min(1),
+  // Optional tappable link button rendered after the messages (a `link` log).
+  // `link` is an in-app route handed to router.push (e.g. "/journal").
+  link: z
+    .object({
+      text: z.string(),
+      link: z.string(),
+      buttonText: z.string(),
+      icon: z.enum(["link", "rocket", "party", "check"]).optional(),
+    })
+    .optional(),
 });
 export type ScheduledNotificationSessionTemplate = z.infer<
   typeof scheduledNotificationSessionTemplateSchema
