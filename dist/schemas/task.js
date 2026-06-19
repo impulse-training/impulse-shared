@@ -161,6 +161,15 @@ exports.reflectOnMetricsTaskSchema = exports.taskBaseSchema.extend({
     metricNames: zod_1.z.array(zod_1.z.string().min(1)).min(1),
     experimentQuestion: zod_1.z.string().min(1),
     timeWindowDays: zod_1.z.number().int().positive(),
+    /**
+     * Set when this check-in was triggered by a behavior milestone (e.g. 7 = the
+     * 1-week rung). Drives before/after framing in getTaskContext ("you just hit a
+     * week — how's X compared to when you started?"). Absent for the baseline
+     * check-in created at experiment start.
+     */
+    milestoneRungDays: zod_1.z.number().int().positive().optional(),
+    /** Human label for the milestone rung (e.g. "1 week"), for prompt wording. */
+    milestoneRungLabel: zod_1.z.string().optional(),
 });
 exports.collectBaselineTaskSchema = exports.taskBaseSchema.extend({
     type: zod_1.z.literal("collect_baseline"),

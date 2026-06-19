@@ -80,6 +80,25 @@ export declare function minConfidence(a: "low" | "moderate" | "high", b: "low" |
 /** Highest confidence in a list, or "low" if empty. */
 export declare function maxConfidence(levels: Array<"low" | "moderate" | "high">): "low" | "moderate" | "high";
 /**
+ * Confidence in an experiment metric, based on before/after evidence rather than
+ * raw days-with-data. An experiment asks "does the metric move when the behavior
+ * changes, and does it stick?" — so the meaningful signal is whether we have a
+ * baseline reading and how many post-behavior-change (milestone-anchored)
+ * readings confirm a direction.
+ *
+ * - low  ("Building")      — baseline only / no comparison possible yet
+ * - moderate ("Some signal") — baseline + ≥1 reading after a milestone
+ * - high ("Strong signal") — the change held across a higher rung (≥2 readings)
+ *
+ * Milestone check-ins are sparse by design (we only ask when the behavior
+ * actually changes), so day-counting would read "low" forever. This keeps
+ * confidence honest to the experiment's logic instead.
+ */
+export declare function metricConfidenceFromReadings(input: {
+    hasBaseline: boolean;
+    postMilestoneReadings: number;
+}): "low" | "moderate" | "high";
+/**
  * Overall metric data for the experiment.
  */
 declare const metricResultSchema: z.ZodObject<{
@@ -114,11 +133,23 @@ declare const metricResultSchema: z.ZodObject<{
         rollingAvg7d?: number | undefined;
     }>, "many">>;
     /**
-     * Confidence in inferences about THIS metric, based on how many days it was
-     * actually rated (not behavior tracking days). Optional for back-compat with
-     * caches written before per-metric confidence existed.
+     * Confidence in inferences about THIS metric. Derived from before/after
+     * evidence (see metricConfidenceFromReadings): whether a baseline exists and
+     * how many milestone-anchored readings confirm a direction. Optional for
+     * back-compat with caches written before per-metric confidence existed.
      */
     confidence: z.ZodOptional<z.ZodEnum<["low", "moderate", "high"]>>;
+    /**
+     * Whether a baseline reading (before the first behavior milestone) exists.
+     * Drives the before/after confidence model and the results-screen framing.
+     */
+    hasBaseline: z.ZodOptional<z.ZodBoolean>;
+    /**
+     * Number of distinct milestone-anchored readings taken after the behavior
+     * changed. 0 = baseline only, 1 = one before/after comparison, ≥2 = held
+     * across a higher rung.
+     */
+    postMilestoneReadings: z.ZodOptional<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
     metricId: string;
     metricName: string;
@@ -129,6 +160,8 @@ declare const metricResultSchema: z.ZodObject<{
         count: number;
         average: number;
     } | undefined;
+    hasBaseline?: boolean | undefined;
+    postMilestoneReadings?: number | undefined;
     dailySeries?: {
         value: number;
         date: string;
@@ -144,6 +177,8 @@ declare const metricResultSchema: z.ZodObject<{
         count: number;
         average: number;
     } | undefined;
+    hasBaseline?: boolean | undefined;
+    postMilestoneReadings?: number | undefined;
     dailySeries?: {
         value: number;
         date: string;
@@ -472,11 +507,23 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
             rollingAvg7d?: number | undefined;
         }>, "many">>;
         /**
-         * Confidence in inferences about THIS metric, based on how many days it was
-         * actually rated (not behavior tracking days). Optional for back-compat with
-         * caches written before per-metric confidence existed.
+         * Confidence in inferences about THIS metric. Derived from before/after
+         * evidence (see metricConfidenceFromReadings): whether a baseline exists and
+         * how many milestone-anchored readings confirm a direction. Optional for
+         * back-compat with caches written before per-metric confidence existed.
          */
         confidence: z.ZodOptional<z.ZodEnum<["low", "moderate", "high"]>>;
+        /**
+         * Whether a baseline reading (before the first behavior milestone) exists.
+         * Drives the before/after confidence model and the results-screen framing.
+         */
+        hasBaseline: z.ZodOptional<z.ZodBoolean>;
+        /**
+         * Number of distinct milestone-anchored readings taken after the behavior
+         * changed. 0 = baseline only, 1 = one before/after comparison, ≥2 = held
+         * across a higher rung.
+         */
+        postMilestoneReadings: z.ZodOptional<z.ZodNumber>;
     }, "strip", z.ZodTypeAny, {
         metricId: string;
         metricName: string;
@@ -487,6 +534,8 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
             count: number;
             average: number;
         } | undefined;
+        hasBaseline?: boolean | undefined;
+        postMilestoneReadings?: number | undefined;
         dailySeries?: {
             value: number;
             date: string;
@@ -502,6 +551,8 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
             count: number;
             average: number;
         } | undefined;
+        hasBaseline?: boolean | undefined;
+        postMilestoneReadings?: number | undefined;
         dailySeries?: {
             value: number;
             date: string;
@@ -646,6 +697,8 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
             count: number;
             average: number;
         } | undefined;
+        hasBaseline?: boolean | undefined;
+        postMilestoneReadings?: number | undefined;
         dailySeries?: {
             value: number;
             date: string;
@@ -714,6 +767,8 @@ export declare const experimentResultsCacheSchema: z.ZodObject<{
             count: number;
             average: number;
         } | undefined;
+        hasBaseline?: boolean | undefined;
+        postMilestoneReadings?: number | undefined;
         dailySeries?: {
             value: number;
             date: string;

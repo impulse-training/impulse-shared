@@ -176,6 +176,15 @@ export const reflectOnMetricsTaskSchema = taskBaseSchema.extend({
   metricNames: z.array(z.string().min(1)).min(1),
   experimentQuestion: z.string().min(1),
   timeWindowDays: z.number().int().positive(),
+  /**
+   * Set when this check-in was triggered by a behavior milestone (e.g. 7 = the
+   * 1-week rung). Drives before/after framing in getTaskContext ("you just hit a
+   * week — how's X compared to when you started?"). Absent for the baseline
+   * check-in created at experiment start.
+   */
+  milestoneRungDays: z.number().int().positive().optional(),
+  /** Human label for the milestone rung (e.g. "1 week"), for prompt wording. */
+  milestoneRungLabel: z.string().optional(),
 });
 
 export const collectBaselineTaskSchema = taskBaseSchema.extend({

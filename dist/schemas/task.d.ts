@@ -1162,6 +1162,15 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     metricNames: z.ZodArray<z.ZodString, "many">;
     experimentQuestion: z.ZodString;
     timeWindowDays: z.ZodNumber;
+    /**
+     * Set when this check-in was triggered by a behavior milestone (e.g. 7 = the
+     * 1-week rung). Drives before/after framing in getTaskContext ("you just hit a
+     * week — how's X compared to when you started?"). Absent for the baseline
+     * check-in created at experiment start.
+     */
+    milestoneRungDays: z.ZodOptional<z.ZodNumber>;
+    /** Human label for the milestone rung (e.g. "1 week"), for prompt wording. */
+    milestoneRungLabel: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -1186,6 +1195,8 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    milestoneRungDays?: number | undefined;
+    milestoneRungLabel?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -1210,6 +1221,8 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    milestoneRungDays?: number | undefined;
+    milestoneRungLabel?: string | undefined;
 }>;
 export declare const collectBaselineTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -2356,6 +2369,15 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     metricNames: z.ZodArray<z.ZodString, "many">;
     experimentQuestion: z.ZodString;
     timeWindowDays: z.ZodNumber;
+    /**
+     * Set when this check-in was triggered by a behavior milestone (e.g. 7 = the
+     * 1-week rung). Drives before/after framing in getTaskContext ("you just hit a
+     * week — how's X compared to when you started?"). Absent for the baseline
+     * check-in created at experiment start.
+     */
+    milestoneRungDays: z.ZodOptional<z.ZodNumber>;
+    /** Human label for the milestone rung (e.g. "1 week"), for prompt wording. */
+    milestoneRungLabel: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -2380,6 +2402,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    milestoneRungDays?: number | undefined;
+    milestoneRungLabel?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -2404,6 +2428,8 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    milestoneRungDays?: number | undefined;
+    milestoneRungLabel?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
