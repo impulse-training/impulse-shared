@@ -94,6 +94,14 @@ export declare const tacticLinkSchema: z.ZodObject<{
     domain?: string | undefined;
 }>;
 export type TacticLink = z.infer<typeof tacticLinkSchema>;
+export declare const tacticNoteSchema: z.ZodObject<{
+    text: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    text: string;
+}, {
+    text: string;
+}>;
+export type TacticNote = z.infer<typeof tacticNoteSchema>;
 export declare const tacticSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     title: z.ZodOptional<z.ZodString>;
@@ -113,6 +121,13 @@ export declare const tacticSchema: z.ZodObject<{
         title?: string | undefined;
         imageUrl?: string | undefined;
         domain?: string | undefined;
+    }>, "many">>;
+    notes: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        text: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        text: string;
+    }, {
+        text: string;
     }>, "many">>;
     aiInstructions: z.ZodOptional<z.ZodString>;
     createdByUid: z.ZodOptional<z.ZodString>;
@@ -4739,6 +4754,9 @@ export declare const tacticSchema: z.ZodObject<{
         imageUrl?: string | undefined;
         domain?: string | undefined;
     }[] | undefined;
+    notes?: {
+        text: string;
+    }[] | undefined;
     aiInstructions?: string | undefined;
     createdByUid?: string | undefined;
     recommended?: boolean | undefined;
@@ -4797,6 +4815,9 @@ export declare const tacticSchema: z.ZodObject<{
         title?: string | undefined;
         imageUrl?: string | undefined;
         domain?: string | undefined;
+    }[] | undefined;
+    notes?: {
+        text: string;
     }[] | undefined;
     aiInstructions?: string | undefined;
     createdByUid?: string | undefined;

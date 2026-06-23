@@ -28,6 +28,13 @@ export declare const milestoneSessionSchema: z.ZodObject<{
             imageUrl?: string | undefined;
             domain?: string | undefined;
         }>, "many">>;
+        notes: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            text: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
+            text: string;
+        }, {
+            text: string;
+        }>, "many">>;
         aiInstructions: z.ZodOptional<z.ZodString>;
         createdByUid: z.ZodOptional<z.ZodString>;
         recommended: z.ZodOptional<z.ZodBoolean>;
@@ -4653,6 +4660,9 @@ export declare const milestoneSessionSchema: z.ZodObject<{
             imageUrl?: string | undefined;
             domain?: string | undefined;
         }[] | undefined;
+        notes?: {
+            text: string;
+        }[] | undefined;
         aiInstructions?: string | undefined;
         createdByUid?: string | undefined;
         recommended?: boolean | undefined;
@@ -4711,6 +4721,9 @@ export declare const milestoneSessionSchema: z.ZodObject<{
             title?: string | undefined;
             imageUrl?: string | undefined;
             domain?: string | undefined;
+        }[] | undefined;
+        notes?: {
+            text: string;
         }[] | undefined;
         aiInstructions?: string | undefined;
         createdByUid?: string | undefined;
@@ -5388,6 +5401,9 @@ export declare const milestoneSessionSchema: z.ZodObject<{
             imageUrl?: string | undefined;
             domain?: string | undefined;
         }[] | undefined;
+        notes?: {
+            text: string;
+        }[] | undefined;
         aiInstructions?: string | undefined;
         createdByUid?: string | undefined;
         recommended?: boolean | undefined;
@@ -5517,6 +5533,9 @@ export declare const milestoneSessionSchema: z.ZodObject<{
             title?: string | undefined;
             imageUrl?: string | undefined;
             domain?: string | undefined;
+        }[] | undefined;
+        notes?: {
+            text: string;
         }[] | undefined;
         aiInstructions?: string | undefined;
         createdByUid?: string | undefined;

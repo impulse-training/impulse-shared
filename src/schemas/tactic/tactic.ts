@@ -38,11 +38,20 @@ export const tacticLinkSchema = z.object({
 
 export type TacticLink = z.infer<typeof tacticLinkSchema>;
 
+export const tacticNoteSchema = z.object({
+  // A single thing the user knows / wants to remember about this issue,
+  // e.g. "Every time I do this, I end up regretting it".
+  text: z.string().min(1),
+});
+
+export type TacticNote = z.infer<typeof tacticNoteSchema>;
+
 export const tacticSchema = z.object({
   id: z.string().optional(),
   title: z.string().optional(),
   description: z.string().optional(),
   links: z.array(tacticLinkSchema).optional(),
+  notes: z.array(tacticNoteSchema).optional(),
   aiInstructions: z.string().optional(),
   createdByUid: z.string().optional(),
   recommended: z.boolean().optional(),
