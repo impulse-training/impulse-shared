@@ -182,6 +182,19 @@ export const userDataSchema = z.object({
 
   // Coach-authored guidance shown to the user between calls
   coachInstructions: z.string().optional(),
+
+  // Ongoing support request — the user asks (from the native app, after their
+  // first Zara session) to be taken on for ongoing coaching. A coach reviews
+  // and approves/declines it from the coach dashboard. Placeholder for the
+  // premium coaching upgrade.
+  ongoingSupport: z
+    .object({
+      status: z.enum(["requested", "approved", "declined"]).default("requested"),
+      requestedAt: timestampSchema,
+      resolvedAt: timestampSchema.optional(),
+      resolvedByCoachId: z.string().optional(),
+    })
+    .optional(),
 });
 
 // Export User type inferred from schema

@@ -187,6 +187,22 @@ export declare const userDataSchema: z.ZodObject<{
     behaviorNames: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     engagement: z.ZodOptional<z.ZodNullable<z.ZodEnum<["engaged", "distant", "churned", "abandoned"]>>>;
     coachInstructions: z.ZodOptional<z.ZodString>;
+    ongoingSupport: z.ZodOptional<z.ZodObject<{
+        status: z.ZodDefault<z.ZodEnum<["requested", "approved", "declined"]>>;
+        requestedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+        resolvedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+        resolvedByCoachId: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        status: "declined" | "requested" | "approved";
+        requestedAt: import("../types").Timestamp;
+        resolvedAt?: import("../types").Timestamp | undefined;
+        resolvedByCoachId?: string | undefined;
+    }, {
+        requestedAt: import("../types").Timestamp;
+        status?: "declined" | "requested" | "approved" | undefined;
+        resolvedAt?: import("../types").Timestamp | undefined;
+        resolvedByCoachId?: string | undefined;
+    }>>;
 }, "strip", z.ZodTypeAny, {
     role: "user" | "coach" | "support";
     theme: "system" | "light" | "dark";
@@ -277,6 +293,12 @@ export declare const userDataSchema: z.ZodObject<{
     onboardingCompleted?: boolean | undefined;
     engagement?: "engaged" | "distant" | "churned" | "abandoned" | null | undefined;
     coachInstructions?: string | undefined;
+    ongoingSupport?: {
+        status: "declined" | "requested" | "approved";
+        requestedAt: import("../types").Timestamp;
+        resolvedAt?: import("../types").Timestamp | undefined;
+        resolvedByCoachId?: string | undefined;
+    } | undefined;
 }, {
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
@@ -367,6 +389,12 @@ export declare const userDataSchema: z.ZodObject<{
     onboardingCompleted?: boolean | undefined;
     engagement?: "engaged" | "distant" | "churned" | "abandoned" | null | undefined;
     coachInstructions?: string | undefined;
+    ongoingSupport?: {
+        requestedAt: import("../types").Timestamp;
+        status?: "declined" | "requested" | "approved" | undefined;
+        resolvedAt?: import("../types").Timestamp | undefined;
+        resolvedByCoachId?: string | undefined;
+    } | undefined;
 }>;
 export type UserData = z.infer<typeof userDataSchema>;
 export declare const isUserData: (value: unknown) => value is UserData;

@@ -144,6 +144,18 @@ exports.userDataSchema = zod_1.z.object({
         .optional(),
     // Coach-authored guidance shown to the user between calls
     coachInstructions: zod_1.z.string().optional(),
+    // Ongoing support request — the user asks (from the native app, after their
+    // first Zara session) to be taken on for ongoing coaching. A coach reviews
+    // and approves/declines it from the coach dashboard. Placeholder for the
+    // premium coaching upgrade.
+    ongoingSupport: zod_1.z
+        .object({
+        status: zod_1.z.enum(["requested", "approved", "declined"]).default("requested"),
+        requestedAt: timestampSchema_1.timestampSchema,
+        resolvedAt: timestampSchema_1.timestampSchema.optional(),
+        resolvedByCoachId: zod_1.z.string().optional(),
+    })
+        .optional(),
 });
 // Type guard for User
 const isUserData = (value) => exports.userDataSchema.safeParse(value).success;
