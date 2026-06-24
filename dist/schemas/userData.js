@@ -60,7 +60,9 @@ exports.userDataSchema = zod_1.z.object({
     isAppEnabled: zod_1.z.boolean().optional(),
     // Account deletion metadata
     deletionRequestedAt: timestampSchema_1.timestampSchema.optional(),
-    deletionRequestedBy: zod_1.z.enum(["user", "admin"]).optional(),
+    // "system" = auto-flagged by a scheduled job (e.g. inactive signups with no
+    // behaviors), as opposed to a user- or admin-initiated request.
+    deletionRequestedBy: zod_1.z.enum(["user", "admin", "system"]).optional(),
     // User preferences
     theme: zod_1.z.enum(["light", "dark", "system"]).default("system"),
     // Calendar preferences

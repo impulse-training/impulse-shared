@@ -69,7 +69,9 @@ export const userDataSchema = z.object({
 
   // Account deletion metadata
   deletionRequestedAt: timestampSchema.optional(),
-  deletionRequestedBy: z.enum(["user", "admin"]).optional(),
+  // "system" = auto-flagged by a scheduled job (e.g. inactive signups with no
+  // behaviors), as opposed to a user- or admin-initiated request.
+  deletionRequestedBy: z.enum(["user", "admin", "system"]).optional(),
 
   // User preferences
   theme: z.enum(["light", "dark", "system"]).default("system"),
