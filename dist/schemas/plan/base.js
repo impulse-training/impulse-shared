@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.planIndicationSchema = exports.planTagIndicationSchema = void 0;
+exports.planNotificationBodyModeSchema = exports.planIndicationSchema = exports.planTagIndicationSchema = void 0;
 exports.planBaseSchema = planBaseSchema;
 const zod_1 = require("zod");
 const documentReferenceSchema_1 = require("../../utils/documentReferenceSchema");
@@ -17,6 +17,11 @@ exports.planIndicationSchema = zod_1.z.object({
     tags: zod_1.z.array(exports.planTagIndicationSchema).optional(),
     behaviorTemplateNames: zod_1.z.array(zod_1.z.string().min(1)).optional(),
 });
+exports.planNotificationBodyModeSchema = zod_1.z.enum([
+    "default",
+    "firstTactic",
+    "custom",
+]);
 function planBaseSchema(type) {
     return zod_1.z.object({
         id: zod_1.z.string().optional(),
@@ -26,6 +31,8 @@ function planBaseSchema(type) {
         ordinal: zod_1.z.number().optional(),
         isTemplate: zod_1.z.boolean().optional(),
         summary: zod_1.z.string().optional(),
+        notificationBodyMode: exports.planNotificationBodyModeSchema.optional(),
+        notificationBodyCustomText: zod_1.z.string().optional(),
         tactics: zod_1.z.array(documentReferenceSchema_1.documentReferenceSchema),
         // Pre-fetched tactics data for efficient rendering (loosely typed for now)
         tacticsByPath: zod_1.z.record(zod_1.z.string(), zod_1.z.any()).optional(),
@@ -33,9 +40,7 @@ function planBaseSchema(type) {
         // Weighted tag affinities for plan matching
         // tagGroupId → { optionId → weight (0-1) }
         // e.g. { "emotionGroupId": { "anxious": 0.9, "stressed": 0.7 }, "activityGroupId": { "waiting": 0.6 } }
-        tags: zod_1.z
-            .record(zod_1.z.string(), zod_1.z.record(zod_1.z.string(), zod_1.z.number()))
-            .optional(),
+        tags: zod_1.z.record(zod_1.z.string(), zod_1.z.record(zod_1.z.string(), zod_1.z.number())).optional(),
         // Cross-user affinities for shared plans. These use human-readable labels
         // rather than user-specific Firestore IDs.
         indications: exports.planIndicationSchema.optional(),

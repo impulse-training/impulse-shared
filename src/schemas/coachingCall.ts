@@ -26,6 +26,11 @@ export const coachingCallSchema = z.object({
   agentConnected: z.boolean().optional(),
   startedAt: timestampSchema.optional(),
   endedAt: timestampSchema.optional(),
+  // Coach "checked in" ahead of time: when set, a scheduled job auto-rings the
+  // client at scheduledAt. Cleared if the coach un-checks-in.
+  coachReadyAt: timestampSchema.optional(),
+  // Set once the auto-ring has fired, so it only rings once.
+  autoRingSentAt: timestampSchema.optional(),
   reminderSentAt: z
     .object({
       dayBefore: timestampSchema.optional(),

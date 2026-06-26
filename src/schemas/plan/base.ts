@@ -16,6 +16,12 @@ export const planIndicationSchema = z.object({
   behaviorTemplateNames: z.array(z.string().min(1)).optional(),
 });
 
+export const planNotificationBodyModeSchema = z.enum([
+  "default",
+  "firstTactic",
+  "custom",
+]);
+
 export function planBaseSchema<T extends string>(type: T) {
   return z.object({
     id: z.string().optional(),
@@ -25,6 +31,8 @@ export function planBaseSchema<T extends string>(type: T) {
     ordinal: z.number().optional(),
     isTemplate: z.boolean().optional(),
     summary: z.string().optional(),
+    notificationBodyMode: planNotificationBodyModeSchema.optional(),
+    notificationBodyCustomText: z.string().optional(),
     tactics: z.array(documentReferenceSchema),
     // Pre-fetched tactics data for efficient rendering (loosely typed for now)
     tacticsByPath: z.record(z.string(), z.any()).optional(),
@@ -32,9 +40,7 @@ export function planBaseSchema<T extends string>(type: T) {
     // Weighted tag affinities for plan matching
     // tagGroupId → { optionId → weight (0-1) }
     // e.g. { "emotionGroupId": { "anxious": 0.9, "stressed": 0.7 }, "activityGroupId": { "waiting": 0.6 } }
-    tags: z
-      .record(z.string(), z.record(z.string(), z.number()))
-      .optional(),
+    tags: z.record(z.string(), z.record(z.string(), z.number())).optional(),
     // Cross-user affinities for shared plans. These use human-readable labels
     // rather than user-specific Firestore IDs.
     indications: planIndicationSchema.optional(),

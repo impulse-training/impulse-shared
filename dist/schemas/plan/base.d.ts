@@ -42,6 +42,7 @@ export declare const planIndicationSchema: z.ZodObject<{
     }[] | undefined;
     behaviorTemplateNames?: string[] | undefined;
 }>;
+export declare const planNotificationBodyModeSchema: z.ZodEnum<["default", "firstTactic", "custom"]>;
 export declare function planBaseSchema<T extends string>(type: T): z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     name: z.ZodString;
@@ -50,6 +51,8 @@ export declare function planBaseSchema<T extends string>(type: T): z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     isTemplate: z.ZodOptional<z.ZodBoolean>;
     summary: z.ZodOptional<z.ZodString>;
+    notificationBodyMode: z.ZodOptional<z.ZodEnum<["default", "firstTactic", "custom"]>>;
+    notificationBodyCustomText: z.ZodOptional<z.ZodString>;
     tactics: z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
     tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
     questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>>;
@@ -127,6 +130,8 @@ export declare function planBaseSchema<T extends string>(type: T): z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     isTemplate: z.ZodOptional<z.ZodBoolean>;
     summary: z.ZodOptional<z.ZodString>;
+    notificationBodyMode: z.ZodOptional<z.ZodEnum<["default", "firstTactic", "custom"]>>;
+    notificationBodyCustomText: z.ZodOptional<z.ZodString>;
     tactics: z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
     tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
     questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>>;
@@ -204,6 +209,8 @@ export declare function planBaseSchema<T extends string>(type: T): z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     isTemplate: z.ZodOptional<z.ZodBoolean>;
     summary: z.ZodOptional<z.ZodString>;
+    notificationBodyMode: z.ZodOptional<z.ZodEnum<["default", "firstTactic", "custom"]>>;
+    notificationBodyCustomText: z.ZodOptional<z.ZodString>;
     tactics: z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
     tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
     questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>>;
@@ -281,6 +288,8 @@ export declare function planBaseSchema<T extends string>(type: T): z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     isTemplate: z.ZodOptional<z.ZodBoolean>;
     summary: z.ZodOptional<z.ZodString>;
+    notificationBodyMode: z.ZodOptional<z.ZodEnum<["default", "firstTactic", "custom"]>>;
+    notificationBodyCustomText: z.ZodOptional<z.ZodString>;
     tactics: z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
     tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
     questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>>;
@@ -358,6 +367,8 @@ export declare function planBaseSchema<T extends string>(type: T): z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     isTemplate: z.ZodOptional<z.ZodBoolean>;
     summary: z.ZodOptional<z.ZodString>;
+    notificationBodyMode: z.ZodOptional<z.ZodEnum<["default", "firstTactic", "custom"]>>;
+    notificationBodyCustomText: z.ZodOptional<z.ZodString>;
     tactics: z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
     tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
     questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>>;

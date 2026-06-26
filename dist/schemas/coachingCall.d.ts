@@ -14,6 +14,8 @@ export declare const coachingCallSchema: z.ZodObject<{
     agentConnected: z.ZodOptional<z.ZodBoolean>;
     startedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     endedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    coachReadyAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    autoRingSentAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     reminderSentAt: z.ZodOptional<z.ZodObject<{
         dayBefore: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         tenMinutes: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -43,6 +45,8 @@ export declare const coachingCallSchema: z.ZodObject<{
     agentConnected?: boolean | undefined;
     startedAt?: import("../types").Timestamp | undefined;
     endedAt?: import("../types").Timestamp | undefined;
+    coachReadyAt?: import("../types").Timestamp | undefined;
+    autoRingSentAt?: import("../types").Timestamp | undefined;
     reminderSentAt?: {
         dayBefore?: import("../types").Timestamp | undefined;
         tenMinutes?: import("../types").Timestamp | undefined;
@@ -64,6 +68,8 @@ export declare const coachingCallSchema: z.ZodObject<{
     agentConnected?: boolean | undefined;
     startedAt?: import("../types").Timestamp | undefined;
     endedAt?: import("../types").Timestamp | undefined;
+    coachReadyAt?: import("../types").Timestamp | undefined;
+    autoRingSentAt?: import("../types").Timestamp | undefined;
     reminderSentAt?: {
         dayBefore?: import("../types").Timestamp | undefined;
         tenMinutes?: import("../types").Timestamp | undefined;

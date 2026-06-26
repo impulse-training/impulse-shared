@@ -37,6 +37,13 @@ exports.userDataSchema = zod_1.z.object({
     notifyOnSignUp: zod_1.z.boolean().optional(),
     notifyOnCoachingApplication: zod_1.z.boolean().optional(),
     expoPushToken: zod_1.z.string().nullable().default(null),
+    // Device-specific tokens for native incoming-call pushes (coach "call now").
+    // Distinct from expoPushToken because VoIP/CallKit and Android full-screen
+    // call notifications cannot be delivered through Expo's push service.
+    // voipPushToken: iOS PushKit token (sent direct to APNs, .voip topic).
+    // fcmCallToken: Android raw FCM token (high-priority data message).
+    voipPushToken: zod_1.z.string().nullable().default(null),
+    fcmCallToken: zod_1.z.string().nullable().default(null),
     notificationSettings: zod_1.z
         .object({
         debriefReminders: zod_1.z.boolean().default(true),

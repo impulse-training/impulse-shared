@@ -7,6 +7,8 @@ export declare const scheduledPlanSchema: z.ZodObject<{
     ordinal: z.ZodOptional<z.ZodNumber>;
     isTemplate: z.ZodOptional<z.ZodBoolean>;
     summary: z.ZodOptional<z.ZodString>;
+    notificationBodyMode: z.ZodOptional<z.ZodEnum<["default", "firstTactic", "custom"]>>;
+    notificationBodyCustomText: z.ZodOptional<z.ZodString>;
     tactics: z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">;
     tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
     questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../..").DocumentReferenceLike<unknown>>, "many">>>;
@@ -105,6 +107,8 @@ export declare const scheduledPlanSchema: z.ZodObject<{
     } | undefined;
     summary?: string | undefined;
     isTemplate?: boolean | undefined;
+    notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+    notificationBodyCustomText?: string | undefined;
     tacticsByPath?: Record<string, any> | undefined;
     isGenerated?: boolean | undefined;
     generationSource?: "impulse_debrief" | undefined;
@@ -148,6 +152,8 @@ export declare const scheduledPlanSchema: z.ZodObject<{
     } | undefined;
     summary?: string | undefined;
     isTemplate?: boolean | undefined;
+    notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+    notificationBodyCustomText?: string | undefined;
     tacticsByPath?: Record<string, any> | undefined;
     questions?: import("../..").DocumentReferenceLike<unknown>[] | undefined;
     isGenerated?: boolean | undefined;

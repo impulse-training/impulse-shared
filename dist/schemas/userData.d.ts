@@ -12,6 +12,8 @@ export declare const userDataSchema: z.ZodObject<{
     notifyOnSignUp: z.ZodOptional<z.ZodBoolean>;
     notifyOnCoachingApplication: z.ZodOptional<z.ZodBoolean>;
     expoPushToken: z.ZodDefault<z.ZodNullable<z.ZodString>>;
+    voipPushToken: z.ZodDefault<z.ZodNullable<z.ZodString>>;
+    fcmCallToken: z.ZodDefault<z.ZodNullable<z.ZodString>>;
     notificationSettings: z.ZodDefault<z.ZodObject<{
         debriefReminders: z.ZodDefault<z.ZodBoolean>;
     }, "strip", z.ZodTypeAny, {
@@ -209,6 +211,8 @@ export declare const userDataSchema: z.ZodObject<{
     notificationsEnabled: boolean;
     defaultSessionMode: "text" | "voice";
     expoPushToken: string | null;
+    voipPushToken: string | null;
+    fcmCallToken: string | null;
     notificationSettings: {
         debriefReminders: boolean;
     };
@@ -331,6 +335,8 @@ export declare const userDataSchema: z.ZodObject<{
     notifyOnSignUp?: boolean | undefined;
     notifyOnCoachingApplication?: boolean | undefined;
     expoPushToken?: string | null | undefined;
+    voipPushToken?: string | null | undefined;
+    fcmCallToken?: string | null | undefined;
     notificationSettings?: {
         debriefReminders?: boolean | undefined;
     } | undefined;
