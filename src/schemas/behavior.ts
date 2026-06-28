@@ -55,6 +55,21 @@ export const streaksSchema = z.object({
 });
 export type Streaks = z.infer<typeof streaksSchema>;
 
+// Stage of Change (Prochaska & DiClemente's Transtheoretical Model). A
+// first-class, user-declared primitive per behavior — NOT inferred from data.
+// Drives which reflective recap questions are surfaced: e.g. once a user is in
+// "action", questions designed to move them *toward* acting (readiness checks,
+// "when did you realize you wanted to change") are no longer served.
+export const changeStageSchema = z.enum([
+  "precontemplation",
+  "contemplation",
+  "preparation",
+  "action",
+  "maintenance",
+  "relapse",
+]);
+export type ChangeStage = z.infer<typeof changeStageSchema>;
+
 // Global streaks tracking (not limited to any window)
 export const globalStreaksSchema = z.object({
   currentStreak: z.number(),
@@ -232,6 +247,12 @@ export const behaviorSchema = behaviorTemplateBase
     behaviorTopicId: behaviorTopicIdSchema.optional(),
     // When true, the recap session should collect baseline usage data for this behavior
     needsBaselineData: z.boolean().optional().default(false),
+    // User-declared Stage of Change for this behavior (Transtheoretical Model).
+    // Set explicitly by the user; gates which reflective recap questions are
+    // surfaced. Absent = unknown → no stage gating applied.
+    changeStage: changeStageSchema.optional(),
+    // When the user last set/changed changeStage.
+    changeStageUpdatedAt: timestampSchema.optional(),
     customMilestoneRungs: z.array(milestoneRungSchema).optional(),
     mergedIntoBehaviorId: z.string().optional(),
     mergedFromBehaviorIds: z.array(z.string()).optional(),
