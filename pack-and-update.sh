@@ -13,7 +13,7 @@ resolve_dir() {
     functions)   echo "$SCRIPT_DIR/../impulse-functions" ;;
     voice-agent) echo "$SCRIPT_DIR/../impulse-voice-agent" ;;
     website)     echo "$SCRIPT_DIR/../impulse-website-tailwind" ;;
-    admin)       echo "$SCRIPT_DIR/../impulse-admin-next" ;;
+    admin)       echo "$SCRIPT_DIR/../impulse-admin" ;;
     dashboard)   echo "$SCRIPT_DIR/../impulse-dashboard" ;;
     *) echo ""; return 1 ;;
   esac

@@ -2,6 +2,7 @@ import { Plan, TagGroup, Tactic, TacticPhase } from "../schemas";
 import {
   TagGroupLookup,
   TacticRatings,
+  TacticScoringContext,
   TacticWithMeta,
   scoreTactic,
 } from "./tacticScoring";
@@ -18,6 +19,13 @@ export interface RankedPlanCandidate {
   totalScore: number;
   nextTacticId?: string;
   nextTacticPath?: string;
+  /**
+   * Plan tactic paths that survived scoring (not contraindicated/suppressed),
+   * ordered best-first. Consumers should surface only these — a tactic excluded
+   * by a contraindication or a pin/suppress control must not be shown even if it
+   * is listed on the plan.
+   */
+  eligibleTacticPaths: string[];
   sourceKind: "trigger" | "user" | "shared";
 }
 
@@ -155,6 +163,8 @@ export function rankPlansForNextTactic(params: {
   tacticRatings: Map<string, TacticRatings>;
   lookup: TagGroupLookup;
   sessionBehaviorNames: string[];
+  /** Behavior/topic fit + pin/suppress controls applied per tactic. */
+  scoringContext?: TacticScoringContext;
 }): RankedPlanCandidate[] {
   const {
     candidates,
@@ -163,6 +173,7 @@ export function rankPlansForNextTactic(params: {
     tacticRatings,
     lookup,
     sessionBehaviorNames,
+    scoringContext = {},
   } = params;
 
   const ranked: RankedPlanCandidate[] = [];
@@ -178,6 +189,7 @@ export function rankPlansForNextTactic(params: {
 
     const tacticRefs = Array.isArray(plan.tactics) ? plan.tactics : [];
     let bestTactic: { score: number; tactic: TacticWithMeta } | null = null;
+    const scoredTactics: Array<{ score: number; path: string }> = [];
 
     for (const tacticRef of tacticRefs) {
       const tacticPath = getDocPath(tacticRef);
@@ -190,18 +202,25 @@ export function rankPlansForNextTactic(params: {
         recentTacticIds,
         tacticRatings,
         lookup,
+        scoringContext,
       );
-      if (tacticScore === null) continue;
+      if (tacticScore === null) continue; // contraindicated / suppressed
 
       // Earlier tactics get a small premium so we respect plan order while still
       // allowing reviews/recency to demote a poor fit.
       const orderedScore =
         tacticScore + Math.max(0, 1 - tacticRefs.indexOf(tacticRef) * 0.35);
 
+      if (tactic.path) scoredTactics.push({ score: orderedScore, path: tactic.path });
+
       if (!bestTactic || orderedScore > bestTactic.score) {
         bestTactic = { score: orderedScore, tactic };
       }
     }
+
+    const eligibleTacticPaths = scoredTactics
+      .sort((a, b) => b.score - a.score)
+      .map((entry) => entry.path);
 
     const nextTacticScore = bestTactic?.score ?? null;
     const evidenceBonus =
@@ -219,6 +238,7 @@ export function rankPlansForNextTactic(params: {
       totalScore,
       nextTacticId: bestTactic?.tactic.id,
       nextTacticPath: bestTactic?.tactic.path,
+      eligibleTacticPaths,
       sourceKind: candidate.sourceKind,
     });
   }

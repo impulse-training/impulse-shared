@@ -48,6 +48,7 @@ export * from "./transcriptItem";
 export * from "./utils/supportGroupSummary";
 export * from "./tactic";
 export * from "./tacticCollection";
+export * from "./tacticPreferences";
 export * from "./session";
 export * from "./trigger";
 export * from "./userContext";

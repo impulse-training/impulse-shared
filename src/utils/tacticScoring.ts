@@ -20,6 +20,23 @@ export interface TacticRatings {
   notHelpful: number;
 }
 
+/**
+ * Per-session controls layered on top of tag/rating scoring. Carries the
+ * human-oversight and behavior-fit signals: which behaviors/topics the session
+ * is about, plus pinned (boost) and suppressed (hard-exclude) tactic IDs
+ * gathered from behavior- and user-level preferences.
+ */
+export interface TacticScoringContext {
+  behaviorIds?: string[];
+  behaviorTopicIds?: string[];
+  pinnedTacticIds?: string[];
+  suppressedTacticIds?: string[];
+}
+
+/** Ranking boost applied to a pinned tactic. Large enough to clear a tactic's
+ * recency penalty, small enough that a strong tag/topic match still competes. */
+export const PINNED_TACTIC_BONUS = 3;
+
 // ── Tag group lookup builder ─────────────────────────────────────────────────
 
 export function buildTagGroupLookup(
@@ -72,9 +89,21 @@ export function scoreTactic(
   recentTacticIds: string[],
   tacticRatings: Map<string, TacticRatings>,
   lookup: TagGroupLookup,
-  behaviorIds?: string[],
+  context: TacticScoringContext = {},
 ): number | null {
-  // 1. Hard exclude: tag contraindications
+  const {
+    behaviorIds,
+    behaviorTopicIds,
+    pinnedTacticIds,
+    suppressedTacticIds,
+  } = context;
+
+  // 1. Hard exclude: user/behavior suppression (human oversight)
+  if (suppressedTacticIds?.includes(tactic.id)) {
+    return null; // EXCLUDED
+  }
+
+  // 2. Hard exclude: tag contraindications
   if (tactic.contraindications?.tags) {
     for (const contra of tactic.contraindications.tags) {
       if (tagIndicationMatchesSession(contra, sessionTags, lookup)) {
@@ -83,10 +112,20 @@ export function scoreTactic(
     }
   }
 
-  // 2. Base score
+  // 3. Hard exclude: behavior-topic contraindications (e.g. anxiety
+  //    down-regulators are a poor fit for arousal-driven sexual urges)
+  if (tactic.contraindications?.behaviorTopics && behaviorTopicIds?.length) {
+    for (const contra of tactic.contraindications.behaviorTopics) {
+      if (behaviorTopicIds.includes(contra.behaviorTopicId)) {
+        return null; // EXCLUDED
+      }
+    }
+  }
+
+  // 4. Base score
   let score = 1;
 
-  // 3. Behavior indication boost
+  // 5. Behavior indication boost
   if (tactic.indications?.behaviors && behaviorIds?.length) {
     for (const indication of tactic.indications.behaviors) {
       if (behaviorIds.includes(indication.behaviorId)) {
@@ -95,7 +134,16 @@ export function scoreTactic(
     }
   }
 
-  // 4. Tag indication boost
+  // 6. Behavior-topic indication boost
+  if (tactic.indications?.behaviorTopics && behaviorTopicIds?.length) {
+    for (const indication of tactic.indications.behaviorTopics) {
+      if (behaviorTopicIds.includes(indication.behaviorTopicId)) {
+        score += indication.weight;
+      }
+    }
+  }
+
+  // 7. Tag indication boost
   if (tactic.indications?.tags) {
     for (const indication of tactic.indications.tags) {
       if (tagIndicationMatchesSession(indication, sessionTags, lookup)) {
@@ -104,13 +152,18 @@ export function scoreTactic(
     }
   }
 
-  // 5. Recency penalty -- most recent 3 completed tactics are penalized
+  // 8. Pinned-tactic boost (human oversight)
+  if (pinnedTacticIds?.includes(tactic.id)) {
+    score += PINNED_TACTIC_BONUS;
+  }
+
+  // 9. Recency penalty -- most recent 3 completed tactics are penalized
   const recencyIndex = recentTacticIds.indexOf(tactic.id);
   if (recencyIndex !== -1 && recencyIndex < 3) {
     score -= 3 - recencyIndex; // -3, -2, -1
   }
 
-  // 6. User rating boost
+  // 10. User rating boost
   const ratings = tacticRatings.get(tactic.id);
   if (ratings) {
     const total = ratings.helpful + ratings.notHelpful;
@@ -133,7 +186,7 @@ export function selectBestTacticsPerPhase(
   recentTacticIds: string[],
   tacticRatings: Map<string, TacticRatings>,
   lookup: TagGroupLookup,
-  behaviorIds?: string[],
+  context: TacticScoringContext = {},
 ): TacticWithMeta[] {
   const phases: TacticPhase[] = ["regulate", "shift", "reengage"];
   const selected: TacticWithMeta[] = [];
@@ -149,7 +202,7 @@ export function selectBestTacticsPerPhase(
         recentTacticIds,
         tacticRatings,
         lookup,
-        behaviorIds,
+        context,
       );
       if (score === null) continue;
       if (!best || score > best.score) {

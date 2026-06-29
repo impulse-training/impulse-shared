@@ -236,7 +236,13 @@ export const behaviorSchema = behaviorTemplateBase
     drawbacks: z.array(z.string()).default([]),
     goal: goalSchema.optional(),
     lastTrackedAt: timestampSchema.optional(),
+    // Tactics pinned to this behavior. Surfaced as a ranking boost for
+    // in-the-moment recommendations on sessions involving this behavior.
     tactics: z.array(documentReferenceSchema).optional(),
+    // Tactic IDs to never recommend in-the-moment for this behavior. Applied as
+    // a hard exclude in the scoring engine. Set by the user or a coach when a
+    // tactic is a poor fit for this behavior (e.g. cold-water for arousal urges).
+    suppressedTacticIds: z.array(z.string()).optional(),
     initialUsage: behaviorTrackingDataSchema.optional(),
     masked: z.boolean().optional().default(false),
     behaviorTemplateId: z.string().optional(),

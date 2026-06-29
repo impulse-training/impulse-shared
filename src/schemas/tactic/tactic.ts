@@ -21,8 +21,20 @@ export const tagIndicationSchema = z.object({
   weight: z.number(),
 });
 
+export const behaviorTopicIndicationSchema = z.object({
+  // Behavior topic this indication relates to (e.g. "sexual", "substances").
+  // Matched against the session behaviors' behaviorTopicId, so a tactic can be
+  // indicated/contraindicated for a whole class of behaviors rather than a
+  // single user-specific behaviorId. Lets us, e.g., contraindicate anxiety
+  // down-regulators for arousal-driven (sexual) urges.
+  behaviorTopicId: z.string(),
+  // Weight for how strongly this indication should influence ranking
+  weight: z.number(),
+});
+
 export const indicationSchema = z.object({
   behaviors: z.array(behaviorIndicationSchema).optional(),
+  behaviorTopics: z.array(behaviorTopicIndicationSchema).optional(),
   tags: z.array(tagIndicationSchema).optional(),
 });
 
@@ -91,5 +103,8 @@ export const tacticSchema = z.object({
 export type Tactic = z.infer<typeof tacticSchema>;
 
 export type BehaviorIndication = z.infer<typeof behaviorIndicationSchema>;
+export type BehaviorTopicIndication = z.infer<
+  typeof behaviorTopicIndicationSchema
+>;
 export type TagIndication = z.infer<typeof tagIndicationSchema>;
 export type Indication = z.infer<typeof indicationSchema>;

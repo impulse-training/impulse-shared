@@ -186,3 +186,57 @@ describe("crossUserEvidenceBonus via rankPlansForNextTactic", () => {
     expect(results[0].plan.id).toBe("proven-shared");
   });
 });
+
+describe("eligibleTacticPaths excludes contraindicated/suppressed tactics", () => {
+  function makeTwoTacticPlan(id: string): PlanWithMeta {
+    const p1 = `tactics/${id}-keep`;
+    const p2 = `tactics/${id}-drop`;
+    return {
+      name: id,
+      type: "default",
+      path: `plans/${id}`,
+      tactics: [{ path: p1 } as any, { path: p2 } as any],
+      tacticsByPath: {
+        [p1]: { id: `${id}-keep`, phase: "regulate", title: "Keep" },
+        [p2]: {
+          id: `${id}-drop`,
+          phase: "regulate",
+          title: "Drop",
+          contraindications: {
+            behaviorTopics: [{ behaviorTopicId: "sexual", weight: 1 }],
+          },
+        },
+      },
+    } as PlanWithMeta;
+  }
+
+  it("drops a topic-contraindicated tactic from eligibleTacticPaths", () => {
+    const [result] = rankPlansForNextTactic({
+      candidates: [{ plan: makeTwoTacticPlan("p"), sourceKind: "shared" }],
+      sessionTags: {},
+      recentTacticIds: [],
+      tacticRatings: new Map(),
+      lookup: emptyLookup,
+      sessionBehaviorNames: [],
+      scoringContext: { behaviorTopicIds: ["sexual"] },
+    });
+
+    expect(result.eligibleTacticPaths).toEqual(["tactics/p-keep"]);
+    expect(result.nextTacticId).toBe("p-keep");
+  });
+
+  it("keeps both tactics when topic does not match", () => {
+    const [result] = rankPlansForNextTactic({
+      candidates: [{ plan: makeTwoTacticPlan("q"), sourceKind: "shared" }],
+      sessionTags: {},
+      recentTacticIds: [],
+      tacticRatings: new Map(),
+      lookup: emptyLookup,
+      sessionBehaviorNames: [],
+      scoringContext: { behaviorTopicIds: ["substances"] },
+    });
+
+    expect(result.eligibleTacticPaths).toContain("tactics/q-keep");
+    expect(result.eligibleTacticPaths).toContain("tactics/q-drop");
+  });
+});
