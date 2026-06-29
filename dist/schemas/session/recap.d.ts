@@ -25,6 +25,51 @@ export declare const recapStreakContextEntrySchema: z.ZodObject<{
     lastAchievedRungLabel?: string | undefined;
 }>;
 export type RecapStreakContextEntry = z.infer<typeof recapStreakContextEntrySchema>;
+/**
+ * The salient streak event for a behavior on the recap day, derived from the
+ * goal-comparison history at day-totals confirmation. This is the factual spine
+ * the recap is grounded in — the question layer enriches it, never replaces it.
+ */
+export declare const recapDayEventSchema: z.ZodEnum<["relapse", "milestone", "streak_continues", "none"]>;
+export type RecapDayEvent = z.infer<typeof recapDayEventSchema>;
+/**
+ * Deterministic per-behavior fact for the recap day, computed and pinned at
+ * day-totals confirmation. Authoritative "what happened today" the recap leads
+ * with — so the opener can never miss a relapse or milestone.
+ */
+export declare const recapDayFactSchema: z.ZodObject<{
+    behaviorId: z.ZodString;
+    behaviorName: z.ZodString;
+    /** How today's logged total compared to this behavior's goal. */
+    goalStatus: z.ZodEnum<["met", "missed", "no_goal", "unknown"]>;
+    event: z.ZodEnum<["relapse", "milestone", "streak_continues", "none"]>;
+    /**
+     * For "relapse": length (days) of the run that ended today.
+     * For "streak_continues" / "milestone": current run length including today.
+     */
+    streakDays: z.ZodOptional<z.ZodNumber>;
+    /** Start date of the (broken or ongoing) run, when known. */
+    streakStartDate: z.ZodOptional<z.ZodString>;
+    /** For "milestone": the rung label reached today (e.g. "7 days"). */
+    milestoneLabel: z.ZodOptional<z.ZodString>;
+}, "strip", z.ZodTypeAny, {
+    behaviorId: string;
+    behaviorName: string;
+    goalStatus: "unknown" | "missed" | "met" | "no_goal";
+    event: "relapse" | "milestone" | "streak_continues" | "none";
+    streakDays?: number | undefined;
+    streakStartDate?: string | undefined;
+    milestoneLabel?: string | undefined;
+}, {
+    behaviorId: string;
+    behaviorName: string;
+    goalStatus: "unknown" | "missed" | "met" | "no_goal";
+    event: "relapse" | "milestone" | "streak_continues" | "none";
+    streakDays?: number | undefined;
+    streakStartDate?: string | undefined;
+    milestoneLabel?: string | undefined;
+}>;
+export type RecapDayFact = z.infer<typeof recapDayFactSchema>;
 export declare const recapSessionSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     title: z.ZodString;
@@ -4926,6 +4971,38 @@ export declare const recapSessionSchema: z.ZodObject<{
         currentStreakStartDate?: string | undefined;
         lastAchievedRungLabel?: string | undefined;
     }>>>;
+    recapDayFacts: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        behaviorId: z.ZodString;
+        behaviorName: z.ZodString;
+        /** How today's logged total compared to this behavior's goal. */
+        goalStatus: z.ZodEnum<["met", "missed", "no_goal", "unknown"]>;
+        event: z.ZodEnum<["relapse", "milestone", "streak_continues", "none"]>;
+        /**
+         * For "relapse": length (days) of the run that ended today.
+         * For "streak_continues" / "milestone": current run length including today.
+         */
+        streakDays: z.ZodOptional<z.ZodNumber>;
+        /** Start date of the (broken or ongoing) run, when known. */
+        streakStartDate: z.ZodOptional<z.ZodString>;
+        /** For "milestone": the rung label reached today (e.g. "7 days"). */
+        milestoneLabel: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        behaviorId: string;
+        behaviorName: string;
+        goalStatus: "unknown" | "missed" | "met" | "no_goal";
+        event: "relapse" | "milestone" | "streak_continues" | "none";
+        streakDays?: number | undefined;
+        streakStartDate?: string | undefined;
+        milestoneLabel?: string | undefined;
+    }, {
+        behaviorId: string;
+        behaviorName: string;
+        goalStatus: "unknown" | "missed" | "met" | "no_goal";
+        event: "relapse" | "milestone" | "streak_continues" | "none";
+        streakDays?: number | undefined;
+        streakStartDate?: string | undefined;
+        milestoneLabel?: string | undefined;
+    }>, "many">>;
 }, "strip", z.ZodTypeAny, {
     type: "recap";
     date: import("../../types").Timestamp;
@@ -5557,6 +5634,15 @@ export declare const recapSessionSchema: z.ZodObject<{
         currentStreakStartDate?: string | undefined;
         lastAchievedRungLabel?: string | undefined;
     }> | undefined;
+    recapDayFacts?: {
+        behaviorId: string;
+        behaviorName: string;
+        goalStatus: "unknown" | "missed" | "met" | "no_goal";
+        event: "relapse" | "milestone" | "streak_continues" | "none";
+        streakDays?: number | undefined;
+        streakStartDate?: string | undefined;
+        milestoneLabel?: string | undefined;
+    }[] | undefined;
 }, {
     type: "recap";
     date: import("../../types").Timestamp;
@@ -5703,5 +5789,14 @@ export declare const recapSessionSchema: z.ZodObject<{
         currentStreakStartDate?: string | undefined;
         lastAchievedRungLabel?: string | undefined;
     }> | undefined;
+    recapDayFacts?: {
+        behaviorId: string;
+        behaviorName: string;
+        goalStatus: "unknown" | "missed" | "met" | "no_goal";
+        event: "relapse" | "milestone" | "streak_continues" | "none";
+        streakDays?: number | undefined;
+        streakStartDate?: string | undefined;
+        milestoneLabel?: string | undefined;
+    }[] | undefined;
 }>;
 export type RecapSession = z.infer<typeof recapSessionSchema>;

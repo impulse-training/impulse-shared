@@ -30,6 +30,46 @@ export type RecapStreakContextEntry = z.infer<
   typeof recapStreakContextEntrySchema
 >;
 
+/**
+ * The salient streak event for a behavior on the recap day, derived from the
+ * goal-comparison history at day-totals confirmation. This is the factual spine
+ * the recap is grounded in — the question layer enriches it, never replaces it.
+ */
+export const recapDayEventSchema = z.enum([
+  // A meaningful streak ended today (the user logged the behavior past goal).
+  "relapse",
+  // The streak reached a milestone rung today.
+  "milestone",
+  // An active streak continued today (no rung hit, no break).
+  "streak_continues",
+  // Nothing notable about this behavior's streak today.
+  "none",
+]);
+export type RecapDayEvent = z.infer<typeof recapDayEventSchema>;
+
+/**
+ * Deterministic per-behavior fact for the recap day, computed and pinned at
+ * day-totals confirmation. Authoritative "what happened today" the recap leads
+ * with — so the opener can never miss a relapse or milestone.
+ */
+export const recapDayFactSchema = z.object({
+  behaviorId: z.string(),
+  behaviorName: z.string(),
+  /** How today's logged total compared to this behavior's goal. */
+  goalStatus: z.enum(["met", "missed", "no_goal", "unknown"]),
+  event: recapDayEventSchema,
+  /**
+   * For "relapse": length (days) of the run that ended today.
+   * For "streak_continues" / "milestone": current run length including today.
+   */
+  streakDays: z.number().optional(),
+  /** Start date of the (broken or ongoing) run, when known. */
+  streakStartDate: z.string().optional(),
+  /** For "milestone": the rung label reached today (e.g. "7 days"). */
+  milestoneLabel: z.string().optional(),
+});
+export type RecapDayFact = z.infer<typeof recapDayFactSchema>;
+
 export const recapSessionSchema = sessionBaseSchema.extend({
   type: z.literal("recap"),
   /** Set when user confirms day totals — mirrors daySummary.dayTotalsConfirmedAt */
@@ -57,6 +97,11 @@ export const recapSessionSchema = sessionBaseSchema.extend({
   recapStreakContextByBehaviorId: z
     .record(z.string(), recapStreakContextEntrySchema)
     .optional(),
+  /**
+   * Deterministic per-behavior facts for the recap day, pinned at day-totals
+   * confirmation. The factual spine the recap leads with.
+   */
+  recapDayFacts: z.array(recapDayFactSchema).optional(),
 });
 
 export type RecapSession = z.infer<typeof recapSessionSchema>;

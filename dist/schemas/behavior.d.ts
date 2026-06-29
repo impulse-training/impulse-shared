@@ -24,6 +24,8 @@ export declare const streaksSchema: z.ZodObject<{
     currentFail: number;
 }>;
 export type Streaks = z.infer<typeof streaksSchema>;
+export declare const changeStageSchema: z.ZodEnum<["precontemplation", "contemplation", "preparation", "action", "maintenance", "relapse"]>;
+export type ChangeStage = z.infer<typeof changeStageSchema>;
 export declare const globalStreaksSchema: z.ZodObject<{
     currentStreak: z.ZodNumber;
     longestStreak: z.ZodNumber;
@@ -1219,6 +1221,8 @@ export declare const behaviorSchema: z.ZodObject<{
     color: z.ZodOptional<z.ZodString>;
     behaviorTopicId: z.ZodOptional<z.ZodEnum<[string, ...string[]]>>;
     needsBaselineData: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
+    changeStage: z.ZodOptional<z.ZodEnum<["precontemplation", "contemplation", "preparation", "action", "maintenance", "relapse"]>>;
+    changeStageUpdatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     customMilestoneRungs: z.ZodOptional<z.ZodArray<z.ZodObject<{
         days: z.ZodNumber;
         label: z.ZodString;
@@ -2100,6 +2104,8 @@ export declare const behaviorSchema: z.ZodObject<{
     } | undefined;
     behaviorTemplateId?: string | undefined;
     behaviorTopicId?: string | undefined;
+    changeStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
+    changeStageUpdatedAt?: import("../types").Timestamp | undefined;
     customMilestoneRungs?: {
         days: number;
         label: string;
@@ -2293,6 +2299,8 @@ export declare const behaviorSchema: z.ZodObject<{
     behaviorTemplateId?: string | undefined;
     behaviorTopicId?: string | undefined;
     needsBaselineData?: boolean | undefined;
+    changeStage?: "precontemplation" | "contemplation" | "preparation" | "action" | "maintenance" | "relapse" | undefined;
+    changeStageUpdatedAt?: import("../types").Timestamp | undefined;
     customMilestoneRungs?: {
         days: number;
         label: string;

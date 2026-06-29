@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isBehavior = exports.behaviorSchema = exports.behaviorStateSchema = exports.WINDOW_SIZES = exports.recentSliceSchema = exports.behaviorStateMetaSchema = exports.behaviorStateGoalSchema = exports.trackingWindowSchema = exports.behaviorWindowSchema = exports.behaviorMeaningSchema = exports.globalStreaksSchema = exports.streaksSchema = exports.behaviorStateGoalTypeSchema = exports.dataCompletenessSchema = exports.stabilitySchema = exports.trendSchema = exports.behaviorTemplateSchema = exports.streakLabels = exports.baselinePeriods = exports.trackingTypes = void 0;
+exports.isBehavior = exports.behaviorSchema = exports.behaviorStateSchema = exports.WINDOW_SIZES = exports.recentSliceSchema = exports.behaviorStateMetaSchema = exports.behaviorStateGoalSchema = exports.trackingWindowSchema = exports.behaviorWindowSchema = exports.behaviorMeaningSchema = exports.globalStreaksSchema = exports.changeStageSchema = exports.streaksSchema = exports.behaviorStateGoalTypeSchema = exports.dataCompletenessSchema = exports.stabilitySchema = exports.trendSchema = exports.behaviorTemplateSchema = exports.streakLabels = exports.baselinePeriods = exports.trackingTypes = void 0;
 exports.isBehaviorState = isBehaviorState;
 const zod_1 = require("zod");
 const documentReferenceSchema_1 = require("../utils/documentReferenceSchema");
@@ -42,6 +42,19 @@ exports.streaksSchema = zod_1.z.object({
     currentMet: zod_1.z.number(),
     currentFail: zod_1.z.number(),
 });
+// Stage of Change (Prochaska & DiClemente's Transtheoretical Model). A
+// first-class, user-declared primitive per behavior — NOT inferred from data.
+// Drives which reflective recap questions are surfaced: e.g. once a user is in
+// "action", questions designed to move them *toward* acting (readiness checks,
+// "when did you realize you wanted to change") are no longer served.
+exports.changeStageSchema = zod_1.z.enum([
+    "precontemplation",
+    "contemplation",
+    "preparation",
+    "action",
+    "maintenance",
+    "relapse",
+]);
 // Global streaks tracking (not limited to any window)
 exports.globalStreaksSchema = zod_1.z.object({
     currentStreak: zod_1.z.number(),
@@ -179,6 +192,12 @@ exports.behaviorSchema = behaviorTemplate_1.behaviorTemplateBase
     behaviorTopicId: behaviorTopic_1.behaviorTopicIdSchema.optional(),
     // When true, the recap session should collect baseline usage data for this behavior
     needsBaselineData: zod_1.z.boolean().optional().default(false),
+    // User-declared Stage of Change for this behavior (Transtheoretical Model).
+    // Set explicitly by the user; gates which reflective recap questions are
+    // surfaced. Absent = unknown → no stage gating applied.
+    changeStage: exports.changeStageSchema.optional(),
+    // When the user last set/changed changeStage.
+    changeStageUpdatedAt: timestampSchema_1.timestampSchema.optional(),
     customMilestoneRungs: zod_1.z.array(milestoneAchievement_1.milestoneRungSchema).optional(),
     mergedIntoBehaviorId: zod_1.z.string().optional(),
     mergedFromBehaviorIds: zod_1.z.array(zod_1.z.string()).optional(),
