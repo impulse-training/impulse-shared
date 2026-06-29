@@ -35,6 +35,7 @@ export * from "./quote";
 export * from "./recapMessage";
 export * from "./scheduledCheckIn";
 export * from "./scheduledNotification";
+export * from "./dailyReviewReport";
 export * from "./schemaValidationReport";
 export * from "./session";
 export * from "./slot";
