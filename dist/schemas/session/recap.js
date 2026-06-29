@@ -12,6 +12,10 @@ exports.recapQuestionSourceSchema = zod_1.z.enum([
     // light "still going" beat, distinct from a milestone celebration.
     "streak-progress",
     "trend",
+    // A question chosen from the recap question graph by (day-event, change-stage,
+    // behavior similarity), pinned in `recapSelectedQuestion`. Enriches the day's
+    // facts; never replaces them.
+    "graph",
 ]);
 /**
  * Authoritative streak figure for a focus behavior, computed synchronously when
@@ -94,4 +98,16 @@ exports.recapSessionSchema = base_1.sessionBaseSchema.extend({
      * confirmation. The factual spine the recap leads with.
      */
     recapDayFacts: zod_1.z.array(exports.recapDayFactSchema).optional(),
+    /**
+     * The question chosen from the recap question graph at confirmation (source
+     * "graph"), pinned with its text so the prompt builder renders it without a
+     * lookup. Enriches the day's facts.
+     */
+    recapSelectedQuestion: zod_1.z
+        .object({
+        questionId: zod_1.z.string(),
+        question: zod_1.z.string(),
+        metaInstructions: zod_1.z.string(),
+    })
+        .optional(),
 });

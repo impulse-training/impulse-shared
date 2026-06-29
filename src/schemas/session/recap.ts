@@ -10,6 +10,10 @@ export const recapQuestionSourceSchema = z.enum([
   // light "still going" beat, distinct from a milestone celebration.
   "streak-progress",
   "trend",
+  // A question chosen from the recap question graph by (day-event, change-stage,
+  // behavior similarity), pinned in `recapSelectedQuestion`. Enriches the day's
+  // facts; never replaces them.
+  "graph",
 ]);
 export type RecapQuestionSource = z.infer<typeof recapQuestionSourceSchema>;
 
@@ -102,6 +106,18 @@ export const recapSessionSchema = sessionBaseSchema.extend({
    * confirmation. The factual spine the recap leads with.
    */
   recapDayFacts: z.array(recapDayFactSchema).optional(),
+  /**
+   * The question chosen from the recap question graph at confirmation (source
+   * "graph"), pinned with its text so the prompt builder renders it without a
+   * lookup. Enriches the day's facts.
+   */
+  recapSelectedQuestion: z
+    .object({
+      questionId: z.string(),
+      question: z.string(),
+      metaInstructions: z.string(),
+    })
+    .optional(),
 });
 
 export type RecapSession = z.infer<typeof recapSessionSchema>;

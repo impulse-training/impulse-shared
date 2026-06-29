@@ -1,5 +1,5 @@
 import { z } from "zod";
-export declare const recapQuestionSourceSchema: z.ZodEnum<["sequence", "baseline", "milestone", "streak-progress", "trend"]>;
+export declare const recapQuestionSourceSchema: z.ZodEnum<["sequence", "baseline", "milestone", "streak-progress", "trend", "graph"]>;
 export type RecapQuestionSource = z.infer<typeof recapQuestionSourceSchema>;
 /**
  * Authoritative streak figure for a focus behavior, computed synchronously when
@@ -4948,7 +4948,7 @@ export declare const recapSessionSchema: z.ZodObject<{
     recapPromptNotifiedAt: z.ZodOptional<z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>>;
     pendingTaskResolution: z.ZodOptional<z.ZodBoolean>;
     recapQuestionId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    recapQuestionSource: z.ZodOptional<z.ZodEnum<["sequence", "baseline", "milestone", "streak-progress", "trend"]>>;
+    recapQuestionSource: z.ZodOptional<z.ZodEnum<["sequence", "baseline", "milestone", "streak-progress", "trend", "graph"]>>;
     recapQuestionTaskId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     focusBehaviorId: z.ZodOptional<z.ZodString>;
     focusBehaviorName: z.ZodOptional<z.ZodString>;
@@ -5003,6 +5003,19 @@ export declare const recapSessionSchema: z.ZodObject<{
         streakStartDate?: string | undefined;
         milestoneLabel?: string | undefined;
     }>, "many">>;
+    recapSelectedQuestion: z.ZodOptional<z.ZodObject<{
+        questionId: z.ZodString;
+        question: z.ZodString;
+        metaInstructions: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        question: string;
+        questionId: string;
+        metaInstructions: string;
+    }, {
+        question: string;
+        questionId: string;
+        metaInstructions: string;
+    }>>;
 }, "strip", z.ZodTypeAny, {
     type: "recap";
     date: import("../../types").Timestamp;
@@ -5622,7 +5635,7 @@ export declare const recapSessionSchema: z.ZodObject<{
     recapPromptNotifiedAt?: import("../../types").Timestamp | null | undefined;
     pendingTaskResolution?: boolean | undefined;
     recapQuestionId?: string | null | undefined;
-    recapQuestionSource?: "trend" | "milestone" | "sequence" | "baseline" | "streak-progress" | undefined;
+    recapQuestionSource?: "trend" | "milestone" | "sequence" | "baseline" | "streak-progress" | "graph" | undefined;
     recapQuestionTaskId?: string | null | undefined;
     focusBehaviorId?: string | undefined;
     focusBehaviorName?: string | undefined;
@@ -5643,6 +5656,11 @@ export declare const recapSessionSchema: z.ZodObject<{
         streakStartDate?: string | undefined;
         milestoneLabel?: string | undefined;
     }[] | undefined;
+    recapSelectedQuestion?: {
+        question: string;
+        questionId: string;
+        metaInstructions: string;
+    } | undefined;
 }, {
     type: "recap";
     date: import("../../types").Timestamp;
@@ -5777,7 +5795,7 @@ export declare const recapSessionSchema: z.ZodObject<{
     recapPromptNotifiedAt?: import("../../types").Timestamp | null | undefined;
     pendingTaskResolution?: boolean | undefined;
     recapQuestionId?: string | null | undefined;
-    recapQuestionSource?: "trend" | "milestone" | "sequence" | "baseline" | "streak-progress" | undefined;
+    recapQuestionSource?: "trend" | "milestone" | "sequence" | "baseline" | "streak-progress" | "graph" | undefined;
     recapQuestionTaskId?: string | null | undefined;
     focusBehaviorId?: string | undefined;
     focusBehaviorName?: string | undefined;
@@ -5798,5 +5816,10 @@ export declare const recapSessionSchema: z.ZodObject<{
         streakStartDate?: string | undefined;
         milestoneLabel?: string | undefined;
     }[] | undefined;
+    recapSelectedQuestion?: {
+        question: string;
+        questionId: string;
+        metaInstructions: string;
+    } | undefined;
 }>;
 export type RecapSession = z.infer<typeof recapSessionSchema>;
