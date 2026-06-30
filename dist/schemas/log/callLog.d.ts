@@ -4056,6 +4056,16 @@ export declare const callLogSchema: z.ZodObject<{
                     behaviorName: string;
                     weight: number;
                 }>, "many">>;
+                behaviorTopics: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                    behaviorTopicId: z.ZodString;
+                    weight: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    behaviorTopicId: string;
+                    weight: number;
+                }, {
+                    behaviorTopicId: string;
+                    weight: number;
+                }>, "many">>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
                     tagGroupName: z.ZodString;
                     optionLabels: z.ZodArray<z.ZodString, "many">;
@@ -4080,6 +4090,10 @@ export declare const callLogSchema: z.ZodObject<{
                     behaviorName: string;
                     weight: number;
                 }[] | undefined;
+                behaviorTopics?: {
+                    behaviorTopicId: string;
+                    weight: number;
+                }[] | undefined;
             }, {
                 tags?: {
                     weight: number;
@@ -4089,6 +4103,10 @@ export declare const callLogSchema: z.ZodObject<{
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
+                    weight: number;
+                }[] | undefined;
+                behaviorTopics?: {
+                    behaviorTopicId: string;
                     weight: number;
                 }[] | undefined;
             }>>;
@@ -4106,6 +4124,16 @@ export declare const callLogSchema: z.ZodObject<{
                     behaviorName: string;
                     weight: number;
                 }>, "many">>;
+                behaviorTopics: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                    behaviorTopicId: z.ZodString;
+                    weight: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    behaviorTopicId: string;
+                    weight: number;
+                }, {
+                    behaviorTopicId: string;
+                    weight: number;
+                }>, "many">>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
                     tagGroupName: z.ZodString;
                     optionLabels: z.ZodArray<z.ZodString, "many">;
@@ -4130,6 +4158,10 @@ export declare const callLogSchema: z.ZodObject<{
                     behaviorName: string;
                     weight: number;
                 }[] | undefined;
+                behaviorTopics?: {
+                    behaviorTopicId: string;
+                    weight: number;
+                }[] | undefined;
             }, {
                 tags?: {
                     weight: number;
@@ -4139,6 +4171,10 @@ export declare const callLogSchema: z.ZodObject<{
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
+                    weight: number;
+                }[] | undefined;
+                behaviorTopics?: {
+                    behaviorTopicId: string;
                     weight: number;
                 }[] | undefined;
             }>>;
@@ -4686,6 +4722,10 @@ export declare const callLogSchema: z.ZodObject<{
                     behaviorName: string;
                     weight: number;
                 }[] | undefined;
+                behaviorTopics?: {
+                    behaviorTopicId: string;
+                    weight: number;
+                }[] | undefined;
             } | undefined;
             contraindications?: {
                 tags?: {
@@ -4696,6 +4736,10 @@ export declare const callLogSchema: z.ZodObject<{
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
+                    weight: number;
+                }[] | undefined;
+                behaviorTopics?: {
+                    behaviorTopicId: string;
                     weight: number;
                 }[] | undefined;
             } | undefined;
@@ -4748,6 +4792,10 @@ export declare const callLogSchema: z.ZodObject<{
                     behaviorName: string;
                     weight: number;
                 }[] | undefined;
+                behaviorTopics?: {
+                    behaviorTopicId: string;
+                    weight: number;
+                }[] | undefined;
             } | undefined;
             contraindications?: {
                 tags?: {
@@ -4758,6 +4806,10 @@ export declare const callLogSchema: z.ZodObject<{
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
+                    weight: number;
+                }[] | undefined;
+                behaviorTopics?: {
+                    behaviorTopicId: string;
                     weight: number;
                 }[] | undefined;
             } | undefined;
@@ -5307,6 +5359,10 @@ export declare const callLogSchema: z.ZodObject<{
                     behaviorName: string;
                     weight: number;
                 }[] | undefined;
+                behaviorTopics?: {
+                    behaviorTopicId: string;
+                    weight: number;
+                }[] | undefined;
             } | undefined;
             contraindications?: {
                 tags?: {
@@ -5317,6 +5373,10 @@ export declare const callLogSchema: z.ZodObject<{
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
+                    weight: number;
+                }[] | undefined;
+                behaviorTopics?: {
+                    behaviorTopicId: string;
                     weight: number;
                 }[] | undefined;
             } | undefined;
@@ -5379,6 +5439,10 @@ export declare const callLogSchema: z.ZodObject<{
                     behaviorName: string;
                     weight: number;
                 }[] | undefined;
+                behaviorTopics?: {
+                    behaviorTopicId: string;
+                    weight: number;
+                }[] | undefined;
             } | undefined;
             contraindications?: {
                 tags?: {
@@ -5389,6 +5453,10 @@ export declare const callLogSchema: z.ZodObject<{
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
+                    weight: number;
+                }[] | undefined;
+                behaviorTopics?: {
+                    behaviorTopicId: string;
                     weight: number;
                 }[] | undefined;
             } | undefined;
@@ -5946,6 +6014,10 @@ export declare const callLogSchema: z.ZodObject<{
                     behaviorName: string;
                     weight: number;
                 }[] | undefined;
+                behaviorTopics?: {
+                    behaviorTopicId: string;
+                    weight: number;
+                }[] | undefined;
             } | undefined;
             contraindications?: {
                 tags?: {
@@ -5956,6 +6028,10 @@ export declare const callLogSchema: z.ZodObject<{
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
+                    weight: number;
+                }[] | undefined;
+                behaviorTopics?: {
+                    behaviorTopicId: string;
                     weight: number;
                 }[] | undefined;
             } | undefined;
@@ -6033,6 +6109,10 @@ export declare const callLogSchema: z.ZodObject<{
                     behaviorName: string;
                     weight: number;
                 }[] | undefined;
+                behaviorTopics?: {
+                    behaviorTopicId: string;
+                    weight: number;
+                }[] | undefined;
             } | undefined;
             contraindications?: {
                 tags?: {
@@ -6043,6 +6123,10 @@ export declare const callLogSchema: z.ZodObject<{
                 behaviors?: {
                     behaviorId: string;
                     behaviorName: string;
+                    weight: number;
+                }[] | undefined;
+                behaviorTopics?: {
+                    behaviorTopicId: string;
                     weight: number;
                 }[] | undefined;
             } | undefined;

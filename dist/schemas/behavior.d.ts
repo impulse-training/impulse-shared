@@ -1191,6 +1191,7 @@ export declare const behaviorSchema: z.ZodObject<{
     }>]>>;
     lastTrackedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     tactics: z.ZodOptional<z.ZodArray<z.ZodType<import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>;
+    suppressedTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     initialUsage: z.ZodOptional<z.ZodObject<{
         behaviorId: z.ZodOptional<z.ZodString>;
         behaviorName: z.ZodOptional<z.ZodString>;
@@ -2093,6 +2094,7 @@ export declare const behaviorSchema: z.ZodObject<{
     } | undefined;
     lastTrackedAt?: import("../types").Timestamp | undefined;
     tactics?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+    suppressedTacticIds?: string[] | undefined;
     initialUsage?: {
         value?: number | undefined;
         behaviorId?: string | undefined;
@@ -2286,6 +2288,7 @@ export declare const behaviorSchema: z.ZodObject<{
     drawbacks?: string[] | undefined;
     lastTrackedAt?: import("../types").Timestamp | undefined;
     tactics?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+    suppressedTacticIds?: string[] | undefined;
     initialUsage?: {
         value?: number | undefined;
         behaviorId?: string | undefined;

@@ -237,6 +237,7 @@ export declare const userDataSchema: z.ZodObject<{
         } | undefined;
         pausedAt?: import("../types").Timestamp | undefined;
     } | undefined;
+    engagement?: "engaged" | "distant" | "churned" | "abandoned" | null | undefined;
     appVersion?: string | undefined;
     recoveryKeyHash?: string | undefined;
     llmProvider?: "openai" | "anthropic" | undefined;
@@ -295,7 +296,6 @@ export declare const userDataSchema: z.ZodObject<{
     concurrentUserAccountIds?: string[] | undefined;
     pseudonym?: string | undefined;
     onboardingCompleted?: boolean | undefined;
-    engagement?: "engaged" | "distant" | "churned" | "abandoned" | null | undefined;
     coachInstructions?: string | undefined;
     ongoingSupport?: {
         status: "declined" | "requested" | "approved";
@@ -327,6 +327,7 @@ export declare const userDataSchema: z.ZodObject<{
     role?: "user" | "coach" | "support" | undefined;
     theme?: "system" | "light" | "dark" | undefined;
     notificationsEnabled?: boolean | undefined;
+    engagement?: "engaged" | "distant" | "churned" | "abandoned" | null | undefined;
     appVersion?: string | undefined;
     recoveryKeyHash?: string | undefined;
     defaultSessionMode?: "text" | "voice" | undefined;
@@ -393,7 +394,6 @@ export declare const userDataSchema: z.ZodObject<{
     concurrentUserAccountIds?: string[] | undefined;
     pseudonym?: string | undefined;
     onboardingCompleted?: boolean | undefined;
-    engagement?: "engaged" | "distant" | "churned" | "abandoned" | null | undefined;
     coachInstructions?: string | undefined;
     ongoingSupport?: {
         requestedAt: import("../types").Timestamp;

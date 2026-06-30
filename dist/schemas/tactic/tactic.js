@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.tacticSchema = exports.tacticNoteSchema = exports.tacticLinkSchema = exports.tacticPhaseSchema = exports.indicationSchema = exports.tagIndicationSchema = exports.behaviorIndicationSchema = void 0;
+exports.tacticSchema = exports.tacticNoteSchema = exports.tacticLinkSchema = exports.tacticPhaseSchema = exports.indicationSchema = exports.behaviorTopicIndicationSchema = exports.tagIndicationSchema = exports.behaviorIndicationSchema = void 0;
 const zod_1 = require("zod");
 const timestampSchema_1 = require("../../utils/timestampSchema");
 const step_1 = require("./step");
@@ -21,8 +21,19 @@ exports.tagIndicationSchema = zod_1.z.object({
     // Weight for how strongly this indication should influence suggestion ranking
     weight: zod_1.z.number(),
 });
+exports.behaviorTopicIndicationSchema = zod_1.z.object({
+    // Behavior topic this indication relates to (e.g. "sexual", "substances").
+    // Matched against the session behaviors' behaviorTopicId, so a tactic can be
+    // indicated/contraindicated for a whole class of behaviors rather than a
+    // single user-specific behaviorId. Lets us, e.g., contraindicate anxiety
+    // down-regulators for arousal-driven (sexual) urges.
+    behaviorTopicId: zod_1.z.string(),
+    // Weight for how strongly this indication should influence ranking
+    weight: zod_1.z.number(),
+});
 exports.indicationSchema = zod_1.z.object({
     behaviors: zod_1.z.array(exports.behaviorIndicationSchema).optional(),
+    behaviorTopics: zod_1.z.array(exports.behaviorTopicIndicationSchema).optional(),
     tags: zod_1.z.array(exports.tagIndicationSchema).optional(),
 });
 exports.tacticPhaseSchema = zod_1.z.enum(["regulate", "shift", "reengage"]);

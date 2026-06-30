@@ -151,3 +151,52 @@ describe("crossUserEvidenceBonus via rankPlansForNextTactic", () => {
         expect(results[0].plan.id).toBe("proven-shared");
     });
 });
+describe("eligibleTacticPaths excludes contraindicated/suppressed tactics", () => {
+    function makeTwoTacticPlan(id) {
+        const p1 = `tactics/${id}-keep`;
+        const p2 = `tactics/${id}-drop`;
+        return {
+            name: id,
+            type: "default",
+            path: `plans/${id}`,
+            tactics: [{ path: p1 }, { path: p2 }],
+            tacticsByPath: {
+                [p1]: { id: `${id}-keep`, phase: "regulate", title: "Keep" },
+                [p2]: {
+                    id: `${id}-drop`,
+                    phase: "regulate",
+                    title: "Drop",
+                    contraindications: {
+                        behaviorTopics: [{ behaviorTopicId: "sexual", weight: 1 }],
+                    },
+                },
+            },
+        };
+    }
+    it("drops a topic-contraindicated tactic from eligibleTacticPaths", () => {
+        const [result] = (0, planScoring_1.rankPlansForNextTactic)({
+            candidates: [{ plan: makeTwoTacticPlan("p"), sourceKind: "shared" }],
+            sessionTags: {},
+            recentTacticIds: [],
+            tacticRatings: new Map(),
+            lookup: emptyLookup,
+            sessionBehaviorNames: [],
+            scoringContext: { behaviorTopicIds: ["sexual"] },
+        });
+        expect(result.eligibleTacticPaths).toEqual(["tactics/p-keep"]);
+        expect(result.nextTacticId).toBe("p-keep");
+    });
+    it("keeps both tactics when topic does not match", () => {
+        const [result] = (0, planScoring_1.rankPlansForNextTactic)({
+            candidates: [{ plan: makeTwoTacticPlan("q"), sourceKind: "shared" }],
+            sessionTags: {},
+            recentTacticIds: [],
+            tacticRatings: new Map(),
+            lookup: emptyLookup,
+            sessionBehaviorNames: [],
+            scoringContext: { behaviorTopicIds: ["substances"] },
+        });
+        expect(result.eligibleTacticPaths).toContain("tactics/q-keep");
+        expect(result.eligibleTacticPaths).toContain("tactics/q-drop");
+    });
+});

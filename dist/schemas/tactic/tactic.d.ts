@@ -25,6 +25,16 @@ export declare const tagIndicationSchema: z.ZodObject<{
     tagGroupName: string;
     optionLabels: string[];
 }>;
+export declare const behaviorTopicIndicationSchema: z.ZodObject<{
+    behaviorTopicId: z.ZodString;
+    weight: z.ZodNumber;
+}, "strip", z.ZodTypeAny, {
+    behaviorTopicId: string;
+    weight: number;
+}, {
+    behaviorTopicId: string;
+    weight: number;
+}>;
 export declare const indicationSchema: z.ZodObject<{
     behaviors: z.ZodOptional<z.ZodArray<z.ZodObject<{
         behaviorId: z.ZodString;
@@ -37,6 +47,16 @@ export declare const indicationSchema: z.ZodObject<{
     }, {
         behaviorId: string;
         behaviorName: string;
+        weight: number;
+    }>, "many">>;
+    behaviorTopics: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        behaviorTopicId: z.ZodString;
+        weight: z.ZodNumber;
+    }, "strip", z.ZodTypeAny, {
+        behaviorTopicId: string;
+        weight: number;
+    }, {
+        behaviorTopicId: string;
         weight: number;
     }>, "many">>;
     tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
@@ -63,6 +83,10 @@ export declare const indicationSchema: z.ZodObject<{
         behaviorName: string;
         weight: number;
     }[] | undefined;
+    behaviorTopics?: {
+        behaviorTopicId: string;
+        weight: number;
+    }[] | undefined;
 }, {
     tags?: {
         weight: number;
@@ -72,6 +96,10 @@ export declare const indicationSchema: z.ZodObject<{
     behaviors?: {
         behaviorId: string;
         behaviorName: string;
+        weight: number;
+    }[] | undefined;
+    behaviorTopics?: {
+        behaviorTopicId: string;
         weight: number;
     }[] | undefined;
 }>;
@@ -4143,6 +4171,16 @@ export declare const tacticSchema: z.ZodObject<{
             behaviorName: string;
             weight: number;
         }>, "many">>;
+        behaviorTopics: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            behaviorTopicId: z.ZodString;
+            weight: z.ZodNumber;
+        }, "strip", z.ZodTypeAny, {
+            behaviorTopicId: string;
+            weight: number;
+        }, {
+            behaviorTopicId: string;
+            weight: number;
+        }>, "many">>;
         tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
             tagGroupName: z.ZodString;
             optionLabels: z.ZodArray<z.ZodString, "many">;
@@ -4167,6 +4205,10 @@ export declare const tacticSchema: z.ZodObject<{
             behaviorName: string;
             weight: number;
         }[] | undefined;
+        behaviorTopics?: {
+            behaviorTopicId: string;
+            weight: number;
+        }[] | undefined;
     }, {
         tags?: {
             weight: number;
@@ -4176,6 +4218,10 @@ export declare const tacticSchema: z.ZodObject<{
         behaviors?: {
             behaviorId: string;
             behaviorName: string;
+            weight: number;
+        }[] | undefined;
+        behaviorTopics?: {
+            behaviorTopicId: string;
             weight: number;
         }[] | undefined;
     }>>;
@@ -4193,6 +4239,16 @@ export declare const tacticSchema: z.ZodObject<{
             behaviorName: string;
             weight: number;
         }>, "many">>;
+        behaviorTopics: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            behaviorTopicId: z.ZodString;
+            weight: z.ZodNumber;
+        }, "strip", z.ZodTypeAny, {
+            behaviorTopicId: string;
+            weight: number;
+        }, {
+            behaviorTopicId: string;
+            weight: number;
+        }>, "many">>;
         tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
             tagGroupName: z.ZodString;
             optionLabels: z.ZodArray<z.ZodString, "many">;
@@ -4217,6 +4273,10 @@ export declare const tacticSchema: z.ZodObject<{
             behaviorName: string;
             weight: number;
         }[] | undefined;
+        behaviorTopics?: {
+            behaviorTopicId: string;
+            weight: number;
+        }[] | undefined;
     }, {
         tags?: {
             weight: number;
@@ -4226,6 +4286,10 @@ export declare const tacticSchema: z.ZodObject<{
         behaviors?: {
             behaviorId: string;
             behaviorName: string;
+            weight: number;
+        }[] | undefined;
+        behaviorTopics?: {
+            behaviorTopicId: string;
             weight: number;
         }[] | undefined;
     }>>;
@@ -4773,6 +4837,10 @@ export declare const tacticSchema: z.ZodObject<{
             behaviorName: string;
             weight: number;
         }[] | undefined;
+        behaviorTopics?: {
+            behaviorTopicId: string;
+            weight: number;
+        }[] | undefined;
     } | undefined;
     contraindications?: {
         tags?: {
@@ -4783,6 +4851,10 @@ export declare const tacticSchema: z.ZodObject<{
         behaviors?: {
             behaviorId: string;
             behaviorName: string;
+            weight: number;
+        }[] | undefined;
+        behaviorTopics?: {
+            behaviorTopicId: string;
             weight: number;
         }[] | undefined;
     } | undefined;
@@ -4835,6 +4907,10 @@ export declare const tacticSchema: z.ZodObject<{
             behaviorName: string;
             weight: number;
         }[] | undefined;
+        behaviorTopics?: {
+            behaviorTopicId: string;
+            weight: number;
+        }[] | undefined;
     } | undefined;
     contraindications?: {
         tags?: {
@@ -4845,6 +4921,10 @@ export declare const tacticSchema: z.ZodObject<{
         behaviors?: {
             behaviorId: string;
             behaviorName: string;
+            weight: number;
+        }[] | undefined;
+        behaviorTopics?: {
+            behaviorTopicId: string;
             weight: number;
         }[] | undefined;
     } | undefined;
@@ -4866,5 +4946,6 @@ export declare const tacticSchema: z.ZodObject<{
 }>;
 export type Tactic = z.infer<typeof tacticSchema>;
 export type BehaviorIndication = z.infer<typeof behaviorIndicationSchema>;
+export type BehaviorTopicIndication = z.infer<typeof behaviorTopicIndicationSchema>;
 export type TagIndication = z.infer<typeof tagIndicationSchema>;
 export type Indication = z.infer<typeof indicationSchema>;

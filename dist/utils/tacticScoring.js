@@ -1,9 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.PINNED_TACTIC_BONUS = void 0;
 exports.buildTagGroupLookup = buildTagGroupLookup;
 exports.scoreTactic = scoreTactic;
 exports.selectBestTacticsPerPhase = selectBestTacticsPerPhase;
 exports.sessionHasPrimaryTagsOrBehaviors = sessionHasPrimaryTagsOrBehaviors;
+/** Ranking boost applied to a pinned tactic. Large enough to clear a tactic's
+ * recency penalty, small enough that a strong tag/topic match still competes. */
+exports.PINNED_TACTIC_BONUS = 3;
 // ── Tag group lookup builder ─────────────────────────────────────────────────
 function buildTagGroupLookup(tagGroups) {
     const byName = new Map();
@@ -33,9 +37,14 @@ function tagIndicationMatchesSession(indication, sessionTags, lookup) {
     return false;
 }
 // ── Score a single tactic ────────────────────────────────────────────────────
-function scoreTactic(tactic, sessionTags, recentTacticIds, tacticRatings, lookup, behaviorIds) {
-    var _a, _b, _c;
-    // 1. Hard exclude: tag contraindications
+function scoreTactic(tactic, sessionTags, recentTacticIds, tacticRatings, lookup, context = {}) {
+    var _a, _b, _c, _d, _e;
+    const { behaviorIds, behaviorTopicIds, pinnedTacticIds, suppressedTacticIds, } = context;
+    // 1. Hard exclude: user/behavior suppression (human oversight)
+    if (suppressedTacticIds === null || suppressedTacticIds === void 0 ? void 0 : suppressedTacticIds.includes(tactic.id)) {
+        return null; // EXCLUDED
+    }
+    // 2. Hard exclude: tag contraindications
     if ((_a = tactic.contraindications) === null || _a === void 0 ? void 0 : _a.tags) {
         for (const contra of tactic.contraindications.tags) {
             if (tagIndicationMatchesSession(contra, sessionTags, lookup)) {
@@ -43,30 +52,51 @@ function scoreTactic(tactic, sessionTags, recentTacticIds, tacticRatings, lookup
             }
         }
     }
-    // 2. Base score
+    // 3. Hard exclude: behavior-topic contraindications (e.g. anxiety
+    //    down-regulators are a poor fit for arousal-driven sexual urges)
+    if (((_b = tactic.contraindications) === null || _b === void 0 ? void 0 : _b.behaviorTopics) && (behaviorTopicIds === null || behaviorTopicIds === void 0 ? void 0 : behaviorTopicIds.length)) {
+        for (const contra of tactic.contraindications.behaviorTopics) {
+            if (behaviorTopicIds.includes(contra.behaviorTopicId)) {
+                return null; // EXCLUDED
+            }
+        }
+    }
+    // 4. Base score
     let score = 1;
-    // 3. Behavior indication boost
-    if (((_b = tactic.indications) === null || _b === void 0 ? void 0 : _b.behaviors) && (behaviorIds === null || behaviorIds === void 0 ? void 0 : behaviorIds.length)) {
+    // 5. Behavior indication boost
+    if (((_c = tactic.indications) === null || _c === void 0 ? void 0 : _c.behaviors) && (behaviorIds === null || behaviorIds === void 0 ? void 0 : behaviorIds.length)) {
         for (const indication of tactic.indications.behaviors) {
             if (behaviorIds.includes(indication.behaviorId)) {
                 score += indication.weight;
             }
         }
     }
-    // 4. Tag indication boost
-    if ((_c = tactic.indications) === null || _c === void 0 ? void 0 : _c.tags) {
+    // 6. Behavior-topic indication boost
+    if (((_d = tactic.indications) === null || _d === void 0 ? void 0 : _d.behaviorTopics) && (behaviorTopicIds === null || behaviorTopicIds === void 0 ? void 0 : behaviorTopicIds.length)) {
+        for (const indication of tactic.indications.behaviorTopics) {
+            if (behaviorTopicIds.includes(indication.behaviorTopicId)) {
+                score += indication.weight;
+            }
+        }
+    }
+    // 7. Tag indication boost
+    if ((_e = tactic.indications) === null || _e === void 0 ? void 0 : _e.tags) {
         for (const indication of tactic.indications.tags) {
             if (tagIndicationMatchesSession(indication, sessionTags, lookup)) {
                 score += indication.weight;
             }
         }
     }
-    // 5. Recency penalty -- most recent 3 completed tactics are penalized
+    // 8. Pinned-tactic boost (human oversight)
+    if (pinnedTacticIds === null || pinnedTacticIds === void 0 ? void 0 : pinnedTacticIds.includes(tactic.id)) {
+        score += exports.PINNED_TACTIC_BONUS;
+    }
+    // 9. Recency penalty -- most recent 3 completed tactics are penalized
     const recencyIndex = recentTacticIds.indexOf(tactic.id);
     if (recencyIndex !== -1 && recencyIndex < 3) {
         score -= 3 - recencyIndex; // -3, -2, -1
     }
-    // 6. User rating boost
+    // 10. User rating boost
     const ratings = tacticRatings.get(tactic.id);
     if (ratings) {
         const total = ratings.helpful + ratings.notHelpful;
@@ -80,14 +110,14 @@ function scoreTactic(tactic, sessionTags, recentTacticIds, tacticRatings, lookup
     return score;
 }
 // ── Select best tactic per phase ─────────────────────────────────────────────
-function selectBestTacticsPerPhase(allTactics, sessionTags, recentTacticIds, tacticRatings, lookup, behaviorIds) {
+function selectBestTacticsPerPhase(allTactics, sessionTags, recentTacticIds, tacticRatings, lookup, context = {}) {
     const phases = ["regulate", "shift", "reengage"];
     const selected = [];
     for (const phase of phases) {
         const phaseTactics = allTactics.filter((t) => t.phase === phase);
         let best = null;
         for (const tactic of phaseTactics) {
-            const score = scoreTactic(tactic, sessionTags, recentTacticIds, tacticRatings, lookup, behaviorIds);
+            const score = scoreTactic(tactic, sessionTags, recentTacticIds, tacticRatings, lookup, context);
             if (score === null)
                 continue;
             if (!best || score > best.score) {

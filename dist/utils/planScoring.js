@@ -107,28 +107,34 @@ function crossUserEvidenceBonus(plan) {
 }
 function rankPlansForNextTactic(params) {
     var _a;
-    const { candidates, sessionTags, recentTacticIds, tacticRatings, lookup, sessionBehaviorNames, } = params;
+    const { candidates, sessionTags, recentTacticIds, tacticRatings, lookup, sessionBehaviorNames, scoringContext = {}, } = params;
     const ranked = [];
     for (const candidate of candidates) {
         const plan = candidate.plan;
         const affinityScore = scorePlanAffinity(plan, sessionTags, lookup, sessionBehaviorNames);
         const tacticRefs = Array.isArray(plan.tactics) ? plan.tactics : [];
         let bestTactic = null;
+        const scoredTactics = [];
         for (const tacticRef of tacticRefs) {
             const tacticPath = getDocPath(tacticRef);
             const tactic = getTacticWithMetaFromPlan(plan, tacticPath);
             if (!tactic)
                 continue;
-            const tacticScore = (0, tacticScoring_1.scoreTactic)(tactic, sessionTags, recentTacticIds, tacticRatings, lookup);
+            const tacticScore = (0, tacticScoring_1.scoreTactic)(tactic, sessionTags, recentTacticIds, tacticRatings, lookup, scoringContext);
             if (tacticScore === null)
-                continue;
+                continue; // contraindicated / suppressed
             // Earlier tactics get a small premium so we respect plan order while still
             // allowing reviews/recency to demote a poor fit.
             const orderedScore = tacticScore + Math.max(0, 1 - tacticRefs.indexOf(tacticRef) * 0.35);
+            if (tactic.path)
+                scoredTactics.push({ score: orderedScore, path: tactic.path });
             if (!bestTactic || orderedScore > bestTactic.score) {
                 bestTactic = { score: orderedScore, tactic };
             }
         }
+        const eligibleTacticPaths = scoredTactics
+            .sort((a, b) => b.score - a.score)
+            .map((entry) => entry.path);
         const nextTacticScore = (_a = bestTactic === null || bestTactic === void 0 ? void 0 : bestTactic.score) !== null && _a !== void 0 ? _a : null;
         const evidenceBonus = candidate.sourceKind === "shared" ? crossUserEvidenceBonus(plan) : 0;
         const totalScore = affinityScore * 2 +
@@ -142,6 +148,7 @@ function rankPlansForNextTactic(params) {
             totalScore,
             nextTacticId: bestTactic === null || bestTactic === void 0 ? void 0 : bestTactic.tactic.id,
             nextTacticPath: bestTactic === null || bestTactic === void 0 ? void 0 : bestTactic.tactic.path,
+            eligibleTacticPaths,
             sourceKind: candidate.sourceKind,
         });
     }

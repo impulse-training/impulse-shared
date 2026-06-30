@@ -167,6 +167,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         }>]>>;
         lastTrackedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         tactics: z.ZodOptional<z.ZodArray<z.ZodType<import("..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("..").DocumentReferenceLike<unknown>>, "many">>;
+        suppressedTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         initialUsage: z.ZodOptional<z.ZodObject<{
             behaviorId: z.ZodOptional<z.ZodString>;
             behaviorName: z.ZodOptional<z.ZodString>;
@@ -1069,6 +1070,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         } | undefined;
         lastTrackedAt?: import("../types").Timestamp | undefined;
         tactics?: import("..").DocumentReferenceLike<unknown>[] | undefined;
+        suppressedTacticIds?: string[] | undefined;
         initialUsage?: {
             value?: number | undefined;
             behaviorId?: string | undefined;
@@ -1262,6 +1264,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         drawbacks?: string[] | undefined;
         lastTrackedAt?: import("../types").Timestamp | undefined;
         tactics?: import("..").DocumentReferenceLike<unknown>[] | undefined;
+        suppressedTacticIds?: string[] | undefined;
         initialUsage?: {
             value?: number | undefined;
             behaviorId?: string | undefined;
@@ -1474,6 +1477,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         } | undefined;
         lastTrackedAt?: import("../types").Timestamp | undefined;
         tactics?: import("..").DocumentReferenceLike<unknown>[] | undefined;
+        suppressedTacticIds?: string[] | undefined;
         initialUsage?: {
             value?: number | undefined;
             behaviorId?: string | undefined;
@@ -1682,6 +1686,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         drawbacks?: string[] | undefined;
         lastTrackedAt?: import("../types").Timestamp | undefined;
         tactics?: import("..").DocumentReferenceLike<unknown>[] | undefined;
+        suppressedTacticIds?: string[] | undefined;
         initialUsage?: {
             value?: number | undefined;
             behaviorId?: string | undefined;
@@ -1979,6 +1984,7 @@ export declare const daySummarySchema: z.ZodObject<{
         }>]>>;
         lastTrackedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         tactics: z.ZodOptional<z.ZodArray<z.ZodType<import("..").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("..").DocumentReferenceLike<unknown>>, "many">>;
+        suppressedTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         initialUsage: z.ZodOptional<z.ZodObject<{
             behaviorId: z.ZodOptional<z.ZodString>;
             behaviorName: z.ZodOptional<z.ZodString>;
@@ -2881,6 +2887,7 @@ export declare const daySummarySchema: z.ZodObject<{
         } | undefined;
         lastTrackedAt?: import("../types").Timestamp | undefined;
         tactics?: import("..").DocumentReferenceLike<unknown>[] | undefined;
+        suppressedTacticIds?: string[] | undefined;
         initialUsage?: {
             value?: number | undefined;
             behaviorId?: string | undefined;
@@ -3074,6 +3081,7 @@ export declare const daySummarySchema: z.ZodObject<{
         drawbacks?: string[] | undefined;
         lastTrackedAt?: import("../types").Timestamp | undefined;
         tactics?: import("..").DocumentReferenceLike<unknown>[] | undefined;
+        suppressedTacticIds?: string[] | undefined;
         initialUsage?: {
             value?: number | undefined;
             behaviorId?: string | undefined;
@@ -3366,6 +3374,7 @@ export declare const daySummarySchema: z.ZodObject<{
         } | undefined;
         lastTrackedAt?: import("../types").Timestamp | undefined;
         tactics?: import("..").DocumentReferenceLike<unknown>[] | undefined;
+        suppressedTacticIds?: string[] | undefined;
         initialUsage?: {
             value?: number | undefined;
             behaviorId?: string | undefined;
@@ -3602,6 +3611,7 @@ export declare const daySummarySchema: z.ZodObject<{
         drawbacks?: string[] | undefined;
         lastTrackedAt?: import("../types").Timestamp | undefined;
         tactics?: import("..").DocumentReferenceLike<unknown>[] | undefined;
+        suppressedTacticIds?: string[] | undefined;
         initialUsage?: {
             value?: number | undefined;
             behaviorId?: string | undefined;
