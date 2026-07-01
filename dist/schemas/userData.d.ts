@@ -3,6 +3,8 @@ export declare const userDataSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    lastActive: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    lastLogin: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     recoveryKeyHash: z.ZodOptional<z.ZodString>;
     defaultSessionMode: z.ZodDefault<z.ZodEnum<["text", "voice"]>>;
     llmProvider: z.ZodOptional<z.ZodEnum<["openai", "anthropic"]>>;
@@ -32,8 +34,8 @@ export declare const userDataSchema: z.ZodObject<{
         deviceName: z.ZodOptional<z.ZodString>;
         isDevice: z.ZodOptional<z.ZodBoolean>;
     }, "strip", z.ZodTypeAny, {
-        osName?: string | undefined;
         osVersion?: string | undefined;
+        osName?: string | undefined;
         brand?: string | undefined;
         manufacturer?: string | undefined;
         modelName?: string | undefined;
@@ -41,8 +43,8 @@ export declare const userDataSchema: z.ZodObject<{
         deviceName?: string | undefined;
         isDevice?: boolean | undefined;
     }, {
-        osName?: string | undefined;
         osVersion?: string | undefined;
+        osName?: string | undefined;
         brand?: string | undefined;
         manufacturer?: string | undefined;
         modelName?: string | undefined;
@@ -79,7 +81,6 @@ export declare const userDataSchema: z.ZodObject<{
             hour: number;
             minute: number;
         }>>;
-        pausedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     }, "strip", z.ZodTypeAny, {
         trigger: {
             hour: number;
@@ -90,7 +91,6 @@ export declare const userDataSchema: z.ZodObject<{
             hour: number;
             minute: number;
         } | undefined;
-        pausedAt?: import("../types").Timestamp | undefined;
     }, {
         trigger: {
             hour: number;
@@ -101,7 +101,6 @@ export declare const userDataSchema: z.ZodObject<{
             hour: number;
             minute: number;
         } | undefined;
-        pausedAt?: import("../types").Timestamp | undefined;
     }>>;
     isImpulseTeam: z.ZodOptional<z.ZodBoolean>;
     addToAccountabilitySupportGroups: z.ZodOptional<z.ZodBoolean>;
@@ -187,7 +186,6 @@ export declare const userDataSchema: z.ZodObject<{
     }>>;
     onboardingCompleted: z.ZodOptional<z.ZodBoolean>;
     behaviorNames: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-    engagement: z.ZodOptional<z.ZodNullable<z.ZodEnum<["engaged", "distant", "churned", "abandoned"]>>>;
     coachInstructions: z.ZodOptional<z.ZodString>;
     ongoingSupport: z.ZodOptional<z.ZodObject<{
         status: z.ZodDefault<z.ZodEnum<["requested", "approved", "declined"]>>;
@@ -221,6 +219,7 @@ export declare const userDataSchema: z.ZodObject<{
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     country?: string | undefined;
+    appVersion?: string | undefined;
     behaviorNames?: string[] | undefined;
     emojiId?: {
         emoji: string;
@@ -235,18 +234,17 @@ export declare const userDataSchema: z.ZodObject<{
             hour: number;
             minute: number;
         } | undefined;
-        pausedAt?: import("../types").Timestamp | undefined;
     } | undefined;
-    engagement?: "engaged" | "distant" | "churned" | "abandoned" | null | undefined;
-    appVersion?: string | undefined;
+    lastActive?: import("../types").Timestamp | undefined;
+    lastLogin?: import("../types").Timestamp | undefined;
     recoveryKeyHash?: string | undefined;
     llmProvider?: "openai" | "anthropic" | undefined;
     createdViaSimulator?: boolean | undefined;
     notifyOnSignUp?: boolean | undefined;
     notifyOnCoachingApplication?: boolean | undefined;
     device?: {
-        osName?: string | undefined;
         osVersion?: string | undefined;
+        osName?: string | undefined;
         brand?: string | undefined;
         manufacturer?: string | undefined;
         modelName?: string | undefined;
@@ -308,6 +306,7 @@ export declare const userDataSchema: z.ZodObject<{
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     country?: string | undefined;
+    appVersion?: string | undefined;
     behaviorNames?: string[] | undefined;
     emojiId?: {
         emoji: string;
@@ -322,13 +321,12 @@ export declare const userDataSchema: z.ZodObject<{
             hour: number;
             minute: number;
         } | undefined;
-        pausedAt?: import("../types").Timestamp | undefined;
     } | undefined;
     role?: "user" | "coach" | "support" | undefined;
     theme?: "system" | "light" | "dark" | undefined;
     notificationsEnabled?: boolean | undefined;
-    engagement?: "engaged" | "distant" | "churned" | "abandoned" | null | undefined;
-    appVersion?: string | undefined;
+    lastActive?: import("../types").Timestamp | undefined;
+    lastLogin?: import("../types").Timestamp | undefined;
     recoveryKeyHash?: string | undefined;
     defaultSessionMode?: "text" | "voice" | undefined;
     llmProvider?: "openai" | "anthropic" | undefined;
@@ -342,8 +340,8 @@ export declare const userDataSchema: z.ZodObject<{
         debriefReminders?: boolean | undefined;
     } | undefined;
     device?: {
-        osName?: string | undefined;
         osVersion?: string | undefined;
+        osName?: string | undefined;
         brand?: string | undefined;
         manufacturer?: string | undefined;
         modelName?: string | undefined;

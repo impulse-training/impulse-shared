@@ -27,9 +27,9 @@ export declare const videoLogSchema: z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "video";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -46,9 +46,9 @@ export declare const videoLogSchema: z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "video";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {

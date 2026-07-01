@@ -11575,9 +11575,9 @@ export declare const tacticReviewLogSchema: z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "tactic_review";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -12153,9 +12153,9 @@ export declare const tacticReviewLogSchema: z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "tactic_review";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {

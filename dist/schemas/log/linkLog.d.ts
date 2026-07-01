@@ -22,11 +22,11 @@ export declare const linkLogSchema: z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "link";
+    userId: string;
     sessionId: string;
     dateString: string;
     text: string;
     link: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     buttonText: string;
@@ -40,11 +40,11 @@ export declare const linkLogSchema: z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "link";
+    userId: string;
     sessionId: string;
     dateString: string;
     text: string;
     link: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     buttonText: string;

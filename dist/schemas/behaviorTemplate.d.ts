@@ -17,8 +17,8 @@ declare const behaviorTemplateBase: z.ZodObject<{
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
-    trackingType: "counter" | "timer" | "scale";
     name: string;
+    trackingType: "counter" | "timer" | "scale";
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     trackingUnit?: string | undefined;
@@ -28,8 +28,8 @@ declare const behaviorTemplateBase: z.ZodObject<{
     streakLabel?: "clean" | "free" | "sober" | undefined;
     recapQuestionSequence?: string[] | undefined;
 }, {
-    trackingType: "counter" | "timer" | "scale";
     name: string;
+    trackingType: "counter" | "timer" | "scale";
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     trackingUnit?: string | undefined;
@@ -51,8 +51,8 @@ export declare const behaviorTemplateSchema: z.ZodEffects<z.ZodObject<{
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
-    trackingType: "counter" | "timer" | "scale";
     name: string;
+    trackingType: "counter" | "timer" | "scale";
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     trackingUnit?: string | undefined;
@@ -62,8 +62,8 @@ export declare const behaviorTemplateSchema: z.ZodEffects<z.ZodObject<{
     streakLabel?: "clean" | "free" | "sober" | undefined;
     recapQuestionSequence?: string[] | undefined;
 }, {
-    trackingType: "counter" | "timer" | "scale";
     name: string;
+    trackingType: "counter" | "timer" | "scale";
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     trackingUnit?: string | undefined;
@@ -73,8 +73,8 @@ export declare const behaviorTemplateSchema: z.ZodEffects<z.ZodObject<{
     streakLabel?: "clean" | "free" | "sober" | undefined;
     recapQuestionSequence?: string[] | undefined;
 }>, {
-    trackingType: "counter" | "timer" | "scale";
     name: string;
+    trackingType: "counter" | "timer" | "scale";
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     trackingUnit?: string | undefined;
@@ -84,8 +84,8 @@ export declare const behaviorTemplateSchema: z.ZodEffects<z.ZodObject<{
     streakLabel?: "clean" | "free" | "sober" | undefined;
     recapQuestionSequence?: string[] | undefined;
 }, {
-    trackingType: "counter" | "timer" | "scale";
     name: string;
+    trackingType: "counter" | "timer" | "scale";
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     trackingUnit?: string | undefined;

@@ -4932,11 +4932,11 @@ export declare const milestoneSessionSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: "milestone";
     date: import("../../types").Timestamp;
+    userId: string;
     dateString: string;
     title: string;
     rungDays: number;
     rungLabel: string;
-    userId: string;
     mode: "text" | "voice";
     sharedWithUserIds: string[];
     isDraft: boolean;
@@ -5559,11 +5559,11 @@ export declare const milestoneSessionSchema: z.ZodObject<{
 }, {
     type: "milestone";
     date: import("../../types").Timestamp;
+    userId: string;
     dateString: string;
     title: string;
     rungDays: number;
     rungLabel: string;
-    userId: string;
     sharedWithUserIds: string[];
     summarizedAt: import("../../types").Timestamp | null;
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];

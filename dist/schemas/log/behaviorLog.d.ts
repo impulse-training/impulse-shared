@@ -61,9 +61,9 @@ export declare const behaviorLogSchema: z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "behavior";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     isAdjustment: boolean;
@@ -89,9 +89,9 @@ export declare const behaviorLogSchema: z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "behavior";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {

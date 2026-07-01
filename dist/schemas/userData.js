@@ -24,6 +24,11 @@ exports.userDataSchema = zod_1.z.object({
     id: zod_1.z.string().optional(),
     createdAt: timestampSchema_1.timestampSchema.optional(),
     updatedAt: timestampSchema_1.timestampSchema.optional(),
+    // Last-activity signals. `lastActive` is refreshed on app open + hourly by
+    // scheduled_updateLastActive; `lastLogin` is the legacy fallback. These drive
+    // the derived engagement level (see getEngagementLevel in impulse-shared).
+    lastActive: timestampSchema_1.timestampSchema.optional(),
+    lastLogin: timestampSchema_1.timestampSchema.optional(),
     // Authentication
     recoveryKeyHash: zod_1.z.string().optional(),
     defaultSessionMode: zod_1.z.enum(["text", "voice"]).default("text"),
@@ -79,7 +84,6 @@ exports.userDataSchema = zod_1.z.object({
         .object({
         trigger: recapTriggerSchema,
         reminderTime: recapReminderTimeSchema.optional(),
-        pausedAt: timestampSchema_1.timestampSchema.optional(),
     })
         .optional(),
     // If true, this user will be added to the tech support group for all new signups
@@ -147,10 +151,6 @@ exports.userDataSchema = zod_1.z.object({
     onboardingCompleted: zod_1.z.boolean().optional(),
     // Denormalized behavior names for admin list display
     behaviorNames: zod_1.z.array(zod_1.z.string()).optional(),
-    engagement: zod_1.z
-        .enum(["engaged", "distant", "churned", "abandoned"])
-        .nullable()
-        .optional(),
     // Coach-authored guidance shown to the user between calls
     coachInstructions: zod_1.z.string().optional(),
     // Ongoing support request — the user asks (from the native app, after their

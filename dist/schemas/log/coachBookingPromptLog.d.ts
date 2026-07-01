@@ -77,9 +77,9 @@ export declare const coachBookingPromptLogSchema: z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "coach_booking_prompt";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -106,9 +106,9 @@ export declare const coachBookingPromptLogSchema: z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "coach_booking_prompt";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {

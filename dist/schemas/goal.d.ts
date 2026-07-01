@@ -42,16 +42,16 @@ export declare const goalSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         0: number;
         1: number;
         2: number;
-        5: number;
         3: number;
+        5: number;
         6: number;
         4: number;
     }, {
         0: number;
         1: number;
         2: number;
-        5: number;
         3: number;
+        5: number;
         6: number;
         4: number;
     }>;
@@ -61,8 +61,8 @@ export declare const goalSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         0: number;
         1: number;
         2: number;
-        5: number;
         3: number;
+        5: number;
         6: number;
         4: number;
     };
@@ -72,8 +72,8 @@ export declare const goalSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         0: number;
         1: number;
         2: number;
-        5: number;
         3: number;
+        5: number;
         6: number;
         4: number;
     };

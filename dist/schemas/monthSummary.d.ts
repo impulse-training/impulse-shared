@@ -33,20 +33,20 @@ export declare const monthSummarySchema: z.ZodObject<{
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 }, "strip", z.ZodTypeAny, {
     month: string;
+    userId: string;
     days: Record<string, {
         confirmed: boolean;
         dots: Record<string, "full" | "pastel">;
     }>;
-    userId: string;
     id?: string | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
 }, {
     month: string;
+    userId: string;
     days: Record<string, {
         confirmed: boolean;
         dots: Record<string, "full" | "pastel">;
     }>;
-    userId: string;
     id?: string | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
 }>;

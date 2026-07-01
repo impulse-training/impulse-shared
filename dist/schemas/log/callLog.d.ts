@@ -4838,8 +4838,8 @@ export declare const callLogSchema: z.ZodObject<{
         token: z.ZodOptional<z.ZodString>;
         summary: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
-        livekitRoomName?: string | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
+        livekitRoomName?: string | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -5403,8 +5403,8 @@ export declare const callLogSchema: z.ZodObject<{
         token?: string | undefined;
         summary?: string | undefined;
     }, {
-        livekitRoomName?: string | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
+        livekitRoomName?: string | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -5487,14 +5487,14 @@ export declare const callLogSchema: z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "call";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
-        livekitRoomName?: string | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
+        livekitRoomName?: string | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -6067,14 +6067,14 @@ export declare const callLogSchema: z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "call";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
-        livekitRoomName?: string | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
+        livekitRoomName?: string | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;

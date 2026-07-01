@@ -262,9 +262,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "user_message";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -313,9 +313,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "user_message";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -387,9 +387,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "assistant_message";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -404,9 +404,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "assistant_message";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -489,9 +489,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "system_message";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -515,9 +515,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "system_message";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -5377,8 +5377,8 @@ export declare const logSchemas: {
             token: z.ZodOptional<z.ZodString>;
             summary: z.ZodOptional<z.ZodString>;
         }, "strip", z.ZodTypeAny, {
-            livekitRoomName?: string | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
+            livekitRoomName?: string | undefined;
             tactic?: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
@@ -5942,8 +5942,8 @@ export declare const logSchemas: {
             token?: string | undefined;
             summary?: string | undefined;
         }, {
-            livekitRoomName?: string | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
+            livekitRoomName?: string | undefined;
             tactic?: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
@@ -6026,14 +6026,14 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "call";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
-            livekitRoomName?: string | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
+            livekitRoomName?: string | undefined;
             tactic?: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
@@ -6606,14 +6606,14 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "call";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
-            livekitRoomName?: string | undefined;
             endedAt?: import("../../types").Timestamp | undefined;
+            livekitRoomName?: string | undefined;
             tactic?: {
                 createdAt: import("../../types").Timestamp;
                 updatedAt: import("../../types").Timestamp;
@@ -6812,9 +6812,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "tool_call";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: false;
         data: {
@@ -6843,9 +6843,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "tool_call";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: false;
         data: {
@@ -12659,9 +12659,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "tactic";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: boolean;
         data: {
@@ -13281,9 +13281,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "tactic";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: boolean;
         data: {
@@ -19203,9 +19203,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "tactic";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: boolean;
         data: {
@@ -19825,9 +19825,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "tactic";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: boolean;
         data: {
@@ -20015,9 +20015,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "behavior";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         isAdjustment: boolean;
@@ -20043,9 +20043,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "behavior";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -20109,9 +20109,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "breathing";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -20131,9 +20131,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "breathing";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -21697,9 +21697,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "plans";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: boolean;
         data: {
@@ -21915,9 +21915,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "plans";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: boolean;
         data: {
@@ -22156,9 +22156,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "summary";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -22173,9 +22173,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "summary";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -22206,9 +22206,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "widget_setup";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         id?: string | undefined;
@@ -22220,9 +22220,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "widget_setup";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         id?: string | undefined;
@@ -22254,11 +22254,11 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "link";
+        userId: string;
         sessionId: string;
         dateString: string;
         text: string;
         link: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         buttonText: string;
@@ -22272,11 +22272,11 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "link";
+        userId: string;
         sessionId: string;
         dateString: string;
         text: string;
         link: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         buttonText: string;
@@ -22428,9 +22428,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "notify_support_group";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -22462,9 +22462,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "notify_support_group";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -22521,9 +22521,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "video";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -22540,9 +22540,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "video";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -22651,9 +22651,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "shared_moment";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -22683,9 +22683,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "shared_moment";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -22769,9 +22769,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "support_group_day_summary";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -22795,9 +22795,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "support_group_day_summary";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -22850,9 +22850,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "enable_notifications_cta";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -22869,9 +22869,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "enable_notifications_cta";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -22933,10 +22933,10 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "proposed_experiment";
+        userId: string;
         sessionId: string;
         dateString: string;
         behaviorIds: string[];
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         metricLabels: string[];
@@ -22962,10 +22962,10 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "proposed_experiment";
+        userId: string;
         sessionId: string;
         dateString: string;
         behaviorIds: string[];
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         metricLabels: string[];
@@ -23219,9 +23219,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "proposed_strategy_modification";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -23271,9 +23271,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "proposed_strategy_modification";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -23346,9 +23346,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "impulse_started";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -23363,9 +23363,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "impulse_started";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -23422,9 +23422,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "metric";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -23446,9 +23446,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "metric";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -23502,9 +23502,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "recap_time_preference";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -23522,9 +23522,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "recap_time_preference";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -23571,9 +23571,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "day_totals_prompt";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -23590,9 +23590,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "day_totals_prompt";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -23671,9 +23671,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "trigger_selection";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -23697,9 +23697,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "trigger_selection";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -23755,9 +23755,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "request_permissions";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -23775,9 +23775,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "request_permissions";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -29909,9 +29909,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "tactic_review";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -30487,9 +30487,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "tactic_review";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -30606,9 +30606,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "setup_mode_choice";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -30624,9 +30624,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "setup_mode_choice";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -30665,9 +30665,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "tags_updated";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: false;
         data: {
@@ -30682,9 +30682,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "tags_updated";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: false;
         data: {
@@ -30725,9 +30725,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "crisis_resource";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -30743,9 +30743,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "crisis_resource";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -30784,9 +30784,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "recovery_key";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -30801,9 +30801,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "recovery_key";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -30844,9 +30844,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "image";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -30862,9 +30862,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "image";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -31171,9 +31171,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "photo";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -31222,9 +31222,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "photo";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -31339,9 +31339,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "merge_behaviors_proposal";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -31367,9 +31367,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "merge_behaviors_proposal";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -31464,9 +31464,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "mask_behavior_proposal";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -31493,9 +31493,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "mask_behavior_proposal";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -31557,9 +31557,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "shortcut_setup_intro";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -31578,9 +31578,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "shortcut_setup_intro";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -31655,9 +31655,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "tactic_suggestions";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -31679,9 +31679,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "tactic_suggestions";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -31778,9 +31778,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "coach_booking_prompt";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -31807,9 +31807,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "coach_booking_prompt";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -32003,9 +32003,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "debrief_question";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
@@ -32045,9 +32045,9 @@ export declare const logSchemas: {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
         type: "debrief_question";
+        userId: string;
         sessionId: string;
         dateString: string;
-        userId: string;
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         id?: string | undefined;
@@ -32324,9 +32324,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "user_message";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -32375,9 +32375,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "user_message";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -32448,9 +32448,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "assistant_message";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -32465,9 +32465,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "assistant_message";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -32549,9 +32549,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "system_message";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -32575,9 +32575,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "system_message";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -37436,8 +37436,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         token: z.ZodOptional<z.ZodString>;
         summary: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
-        livekitRoomName?: string | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
+        livekitRoomName?: string | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -38001,8 +38001,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         token?: string | undefined;
         summary?: string | undefined;
     }, {
-        livekitRoomName?: string | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
+        livekitRoomName?: string | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -38085,14 +38085,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "call";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
-        livekitRoomName?: string | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
+        livekitRoomName?: string | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -38665,14 +38665,14 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "call";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
-        livekitRoomName?: string | undefined;
         endedAt?: import("../../types").Timestamp | undefined;
+        livekitRoomName?: string | undefined;
         tactic?: {
             createdAt: import("../../types").Timestamp;
             updatedAt: import("../../types").Timestamp;
@@ -38870,9 +38870,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "tool_call";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: false;
     data: {
@@ -38901,9 +38901,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "tool_call";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: false;
     data: {
@@ -44716,9 +44716,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "tactic";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: boolean;
     data: {
@@ -45338,9 +45338,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "tactic";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: boolean;
     data: {
@@ -45527,9 +45527,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "behavior";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     isAdjustment: boolean;
@@ -45555,9 +45555,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "behavior";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -45620,9 +45620,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "breathing";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -45642,9 +45642,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "breathing";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -47207,9 +47207,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "plans";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: boolean;
     data: {
@@ -47425,9 +47425,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "plans";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: boolean;
     data: {
@@ -47665,9 +47665,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "summary";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -47682,9 +47682,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "summary";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -47714,9 +47714,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "widget_setup";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     id?: string | undefined;
@@ -47728,9 +47728,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "widget_setup";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     id?: string | undefined;
@@ -47761,11 +47761,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "link";
+    userId: string;
     sessionId: string;
     dateString: string;
     text: string;
     link: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     buttonText: string;
@@ -47779,11 +47779,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "link";
+    userId: string;
     sessionId: string;
     dateString: string;
     text: string;
     link: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     buttonText: string;
@@ -47934,9 +47934,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "notify_support_group";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -47968,9 +47968,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "notify_support_group";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -48093,9 +48093,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "shared_moment";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -48125,9 +48125,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "shared_moment";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -48181,9 +48181,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "video";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -48200,9 +48200,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "video";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -48272,9 +48272,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "support_group_day_summary";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -48298,9 +48298,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "support_group_day_summary";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -48352,9 +48352,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "enable_notifications_cta";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -48371,9 +48371,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "enable_notifications_cta";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -48434,10 +48434,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "proposed_experiment";
+    userId: string;
     sessionId: string;
     dateString: string;
     behaviorIds: string[];
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     metricLabels: string[];
@@ -48463,10 +48463,10 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "proposed_experiment";
+    userId: string;
     sessionId: string;
     dateString: string;
     behaviorIds: string[];
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     metricLabels: string[];
@@ -48719,9 +48719,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "proposed_strategy_modification";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -48771,9 +48771,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "proposed_strategy_modification";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -48845,9 +48845,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "impulse_started";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -48862,9 +48862,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "impulse_started";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -48920,9 +48920,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "metric";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -48944,9 +48944,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "metric";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -48999,9 +48999,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "recap_time_preference";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -49019,9 +49019,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "recap_time_preference";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -49067,9 +49067,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "day_totals_prompt";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -49086,9 +49086,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "day_totals_prompt";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -49166,9 +49166,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "trigger_selection";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -49192,9 +49192,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "trigger_selection";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -49249,9 +49249,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "request_permissions";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -49269,9 +49269,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "request_permissions";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -55402,9 +55402,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "tactic_review";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -55980,9 +55980,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "tactic_review";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -56095,9 +56095,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "tags_updated";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: false;
     data: {
@@ -56112,9 +56112,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "tags_updated";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: false;
     data: {
@@ -56154,9 +56154,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "crisis_resource";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -56172,9 +56172,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "crisis_resource";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -56212,9 +56212,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "recovery_key";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -56229,9 +56229,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "recovery_key";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -56271,9 +56271,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "image";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -56289,9 +56289,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "image";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -56597,9 +56597,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "photo";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -56648,9 +56648,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "photo";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -56764,9 +56764,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "merge_behaviors_proposal";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -56792,9 +56792,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "merge_behaviors_proposal";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -56888,9 +56888,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "mask_behavior_proposal";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -56917,9 +56917,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "mask_behavior_proposal";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -56980,9 +56980,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "shortcut_setup_intro";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -57001,9 +57001,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "shortcut_setup_intro";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -57077,9 +57077,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "tactic_suggestions";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -57101,9 +57101,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "tactic_suggestions";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -57199,9 +57199,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "coach_booking_prompt";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -57228,9 +57228,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "coach_booking_prompt";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -57423,9 +57423,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "debrief_question";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -57465,9 +57465,9 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
     type: "debrief_question";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     id?: string | undefined;

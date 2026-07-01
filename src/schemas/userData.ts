@@ -27,6 +27,12 @@ export const userDataSchema = z.object({
   createdAt: timestampSchema.optional(),
   updatedAt: timestampSchema.optional(),
 
+  // Last-activity signals. `lastActive` is refreshed on app open + hourly by
+  // scheduled_updateLastActive; `lastLogin` is the legacy fallback. These drive
+  // the derived engagement level (see getEngagementLevel in impulse-shared).
+  lastActive: timestampSchema.optional(),
+  lastLogin: timestampSchema.optional(),
+
   // Authentication
   recoveryKeyHash: z.string().optional(),
 
@@ -91,7 +97,6 @@ export const userDataSchema = z.object({
     .object({
       trigger: recapTriggerSchema,
       reminderTime: recapReminderTimeSchema.optional(),
-      pausedAt: timestampSchema.optional(),
     })
     .optional(),
 
@@ -183,11 +188,6 @@ export const userDataSchema = z.object({
 
   // Denormalized behavior names for admin list display
   behaviorNames: z.array(z.string()).optional(),
-
-  engagement: z
-    .enum(["engaged", "distant", "churned", "abandoned"])
-    .nullable()
-    .optional(),
 
   // Coach-authored guidance shown to the user between calls
   coachInstructions: z.string().optional(),

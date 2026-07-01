@@ -25,3 +25,4 @@ export * from "./utils/planScoring";
 export * from "./utils/behaviorColors";
 export * from "./utils/selfHarmKeywords";
 export * from "./utils/milestoneLadder";
+export * from "./utils/engagement";

@@ -100,16 +100,16 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                 0: number;
                 1: number;
                 2: number;
-                5: number;
                 3: number;
+                5: number;
                 6: number;
                 4: number;
             }, {
                 0: number;
                 1: number;
                 2: number;
-                5: number;
                 3: number;
+                5: number;
                 6: number;
                 4: number;
             }>;
@@ -119,8 +119,8 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                 0: number;
                 1: number;
                 2: number;
-                5: number;
                 3: number;
+                5: number;
                 6: number;
                 4: number;
             };
@@ -130,8 +130,8 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                 0: number;
                 1: number;
                 2: number;
-                5: number;
                 3: number;
+                5: number;
                 6: number;
                 4: number;
             };
@@ -1027,8 +1027,8 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             } | undefined;
         }>>;
     }, "strip", z.ZodTypeAny, {
-        trackingType: "counter" | "timer" | "scale";
         name: string;
+        trackingType: "counter" | "timer" | "scale";
         description: string;
         ordinal: number;
         benefits: string[];
@@ -1055,8 +1055,8 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                 0: number;
                 1: number;
                 2: number;
-                5: number;
                 3: number;
+                5: number;
                 6: number;
                 4: number;
             };
@@ -1223,8 +1223,8 @@ export declare const recapResponseValueSchema: z.ZodObject<{
             } | undefined;
         } | undefined;
     }, {
-        trackingType: "counter" | "timer" | "scale";
         name: string;
+        trackingType: "counter" | "timer" | "scale";
         description: string;
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -1246,8 +1246,8 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                 0: number;
                 1: number;
                 2: number;
-                5: number;
                 3: number;
+                5: number;
                 6: number;
                 4: number;
             };
@@ -1434,8 +1434,8 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         targetValue?: number | undefined;
     }> | undefined;
     behaviorsById?: Record<string, {
-        trackingType: "counter" | "timer" | "scale";
         name: string;
+        trackingType: "counter" | "timer" | "scale";
         description: string;
         ordinal: number;
         benefits: string[];
@@ -1462,8 +1462,8 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                 0: number;
                 1: number;
                 2: number;
-                5: number;
                 3: number;
+                5: number;
                 6: number;
                 4: number;
             };
@@ -1645,8 +1645,8 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         targetValue?: number | undefined;
     }> | undefined;
     behaviorsById?: Record<string, {
-        trackingType: "counter" | "timer" | "scale";
         name: string;
+        trackingType: "counter" | "timer" | "scale";
         description: string;
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -1668,8 +1668,8 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                 0: number;
                 1: number;
                 2: number;
-                5: number;
                 3: number;
+                5: number;
                 6: number;
                 4: number;
             };
@@ -1917,16 +1917,16 @@ export declare const daySummarySchema: z.ZodObject<{
                 0: number;
                 1: number;
                 2: number;
-                5: number;
                 3: number;
+                5: number;
                 6: number;
                 4: number;
             }, {
                 0: number;
                 1: number;
                 2: number;
-                5: number;
                 3: number;
+                5: number;
                 6: number;
                 4: number;
             }>;
@@ -1936,8 +1936,8 @@ export declare const daySummarySchema: z.ZodObject<{
                 0: number;
                 1: number;
                 2: number;
-                5: number;
                 3: number;
+                5: number;
                 6: number;
                 4: number;
             };
@@ -1947,8 +1947,8 @@ export declare const daySummarySchema: z.ZodObject<{
                 0: number;
                 1: number;
                 2: number;
-                5: number;
                 3: number;
+                5: number;
                 6: number;
                 4: number;
             };
@@ -2844,8 +2844,8 @@ export declare const daySummarySchema: z.ZodObject<{
             } | undefined;
         }>>;
     }, "strip", z.ZodTypeAny, {
-        trackingType: "counter" | "timer" | "scale";
         name: string;
+        trackingType: "counter" | "timer" | "scale";
         description: string;
         ordinal: number;
         benefits: string[];
@@ -2872,8 +2872,8 @@ export declare const daySummarySchema: z.ZodObject<{
                 0: number;
                 1: number;
                 2: number;
-                5: number;
                 3: number;
+                5: number;
                 6: number;
                 4: number;
             };
@@ -3040,8 +3040,8 @@ export declare const daySummarySchema: z.ZodObject<{
             } | undefined;
         } | undefined;
     }, {
-        trackingType: "counter" | "timer" | "scale";
         name: string;
+        trackingType: "counter" | "timer" | "scale";
         description: string;
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -3063,8 +3063,8 @@ export declare const daySummarySchema: z.ZodObject<{
                 0: number;
                 1: number;
                 2: number;
-                5: number;
                 3: number;
+                5: number;
                 6: number;
                 4: number;
             };
@@ -3331,8 +3331,8 @@ export declare const daySummarySchema: z.ZodObject<{
         targetValue?: number | undefined;
     }> | undefined;
     behaviorsById?: Record<string, {
-        trackingType: "counter" | "timer" | "scale";
         name: string;
+        trackingType: "counter" | "timer" | "scale";
         description: string;
         ordinal: number;
         benefits: string[];
@@ -3359,8 +3359,8 @@ export declare const daySummarySchema: z.ZodObject<{
                 0: number;
                 1: number;
                 2: number;
-                5: number;
                 3: number;
+                5: number;
                 6: number;
                 4: number;
             };
@@ -3570,8 +3570,8 @@ export declare const daySummarySchema: z.ZodObject<{
         targetValue?: number | undefined;
     }> | undefined;
     behaviorsById?: Record<string, {
-        trackingType: "counter" | "timer" | "scale";
         name: string;
+        trackingType: "counter" | "timer" | "scale";
         description: string;
         id?: string | undefined;
         createdAt?: import("../types").Timestamp | undefined;
@@ -3593,8 +3593,8 @@ export declare const daySummarySchema: z.ZodObject<{
                 0: number;
                 1: number;
                 2: number;
-                5: number;
                 3: number;
+                5: number;
                 6: number;
                 4: number;
             };

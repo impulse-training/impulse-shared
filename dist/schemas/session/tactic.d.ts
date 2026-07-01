@@ -4928,9 +4928,9 @@ export declare const tacticSessionSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: "tactic";
     date: import("../../types").Timestamp;
+    userId: string;
     dateString: string;
     title: string;
-    userId: string;
     mode: "text" | "voice";
     sharedWithUserIds: string[];
     isDraft: boolean;
@@ -5551,9 +5551,9 @@ export declare const tacticSessionSchema: z.ZodObject<{
 }, {
     type: "tactic";
     date: import("../../types").Timestamp;
+    userId: string;
     dateString: string;
     title: string;
-    userId: string;
     sharedWithUserIds: string[];
     summarizedAt: import("../../types").Timestamp | null;
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];

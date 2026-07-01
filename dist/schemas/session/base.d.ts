@@ -4927,9 +4927,9 @@ export declare const sessionBaseSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: "behavior" | "tactic" | "impulse" | "general" | "onboarding" | "recap" | "dayRecap" | "timePlan" | "locationPlan" | "adjustment" | "alignment" | "welcome" | "recoveryKey" | "tasks" | "demo" | "milestone" | "toolkitPlanning" | "zaraCheckIn";
     date: import("../../types").Timestamp;
+    userId: string;
     dateString: string;
     title: string;
-    userId: string;
     mode: "text" | "voice";
     sharedWithUserIds: string[];
     isDraft: boolean;
@@ -5549,9 +5549,9 @@ export declare const sessionBaseSchema: z.ZodObject<{
     deletingError?: string | undefined;
 }, {
     date: import("../../types").Timestamp;
+    userId: string;
     dateString: string;
     title: string;
-    userId: string;
     sharedWithUserIds: string[];
     summarizedAt: import("../../types").Timestamp | null;
     sharedWithSupportGroups: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];

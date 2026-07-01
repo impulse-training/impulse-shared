@@ -30,7 +30,7 @@ export type RecapStreakContextEntry = z.infer<typeof recapStreakContextEntrySche
  * goal-comparison history at day-totals confirmation. This is the factual spine
  * the recap is grounded in — the question layer enriches it, never replaces it.
  */
-export declare const recapDayEventSchema: z.ZodEnum<["relapse", "milestone", "streak_continues", "none"]>;
+export declare const recapDayEventSchema: z.ZodEnum<["relapse", "relapse_aftermath", "milestone", "streak_continues", "none"]>;
 export type RecapDayEvent = z.infer<typeof recapDayEventSchema>;
 /**
  * Deterministic per-behavior fact for the recap day, computed and pinned at
@@ -42,31 +42,39 @@ export declare const recapDayFactSchema: z.ZodObject<{
     behaviorName: z.ZodString;
     /** How today's logged total compared to this behavior's goal. */
     goalStatus: z.ZodEnum<["met", "missed", "no_goal", "unknown"]>;
-    event: z.ZodEnum<["relapse", "milestone", "streak_continues", "none"]>;
+    event: z.ZodEnum<["relapse", "relapse_aftermath", "milestone", "streak_continues", "none"]>;
     /**
-     * For "relapse": length (days) of the run that ended today.
+     * For "relapse" / "relapse_aftermath": length (days) of the run that broke.
      * For "streak_continues" / "milestone": current run length including today.
      */
     streakDays: z.ZodOptional<z.ZodNumber>;
     /** Start date of the (broken or ongoing) run, when known. */
     streakStartDate: z.ZodOptional<z.ZodString>;
+    /**
+     * For "relapse_aftermath": how many days into the current slip the user is
+     * (consecutive misses ending today, inclusive), so the arc reads in human
+     * terms ("day 2 of the slip").
+     */
+    daysIntoRelapse: z.ZodOptional<z.ZodNumber>;
     /** For "milestone": the rung label reached today (e.g. "7 days"). */
     milestoneLabel: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     behaviorId: string;
     behaviorName: string;
     goalStatus: "unknown" | "missed" | "met" | "no_goal";
-    event: "relapse" | "milestone" | "streak_continues" | "none";
+    event: "relapse" | "milestone" | "relapse_aftermath" | "streak_continues" | "none";
     streakDays?: number | undefined;
     streakStartDate?: string | undefined;
+    daysIntoRelapse?: number | undefined;
     milestoneLabel?: string | undefined;
 }, {
     behaviorId: string;
     behaviorName: string;
     goalStatus: "unknown" | "missed" | "met" | "no_goal";
-    event: "relapse" | "milestone" | "streak_continues" | "none";
+    event: "relapse" | "milestone" | "relapse_aftermath" | "streak_continues" | "none";
     streakDays?: number | undefined;
     streakStartDate?: string | undefined;
+    daysIntoRelapse?: number | undefined;
     milestoneLabel?: string | undefined;
 }>;
 export type RecapDayFact = z.infer<typeof recapDayFactSchema>;
@@ -5028,31 +5036,39 @@ export declare const recapSessionSchema: z.ZodObject<{
         behaviorName: z.ZodString;
         /** How today's logged total compared to this behavior's goal. */
         goalStatus: z.ZodEnum<["met", "missed", "no_goal", "unknown"]>;
-        event: z.ZodEnum<["relapse", "milestone", "streak_continues", "none"]>;
+        event: z.ZodEnum<["relapse", "relapse_aftermath", "milestone", "streak_continues", "none"]>;
         /**
-         * For "relapse": length (days) of the run that ended today.
+         * For "relapse" / "relapse_aftermath": length (days) of the run that broke.
          * For "streak_continues" / "milestone": current run length including today.
          */
         streakDays: z.ZodOptional<z.ZodNumber>;
         /** Start date of the (broken or ongoing) run, when known. */
         streakStartDate: z.ZodOptional<z.ZodString>;
+        /**
+         * For "relapse_aftermath": how many days into the current slip the user is
+         * (consecutive misses ending today, inclusive), so the arc reads in human
+         * terms ("day 2 of the slip").
+         */
+        daysIntoRelapse: z.ZodOptional<z.ZodNumber>;
         /** For "milestone": the rung label reached today (e.g. "7 days"). */
         milestoneLabel: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
         behaviorId: string;
         behaviorName: string;
         goalStatus: "unknown" | "missed" | "met" | "no_goal";
-        event: "relapse" | "milestone" | "streak_continues" | "none";
+        event: "relapse" | "milestone" | "relapse_aftermath" | "streak_continues" | "none";
         streakDays?: number | undefined;
         streakStartDate?: string | undefined;
+        daysIntoRelapse?: number | undefined;
         milestoneLabel?: string | undefined;
     }, {
         behaviorId: string;
         behaviorName: string;
         goalStatus: "unknown" | "missed" | "met" | "no_goal";
-        event: "relapse" | "milestone" | "streak_continues" | "none";
+        event: "relapse" | "milestone" | "relapse_aftermath" | "streak_continues" | "none";
         streakDays?: number | undefined;
         streakStartDate?: string | undefined;
+        daysIntoRelapse?: number | undefined;
         milestoneLabel?: string | undefined;
     }>, "many">>;
     recapSelectedQuestion: z.ZodOptional<z.ZodObject<{
@@ -5071,9 +5087,9 @@ export declare const recapSessionSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: "recap";
     date: import("../../types").Timestamp;
+    userId: string;
     dateString: string;
     title: string;
-    userId: string;
     mode: "text" | "voice";
     sharedWithUserIds: string[];
     isDraft: boolean;
@@ -5711,9 +5727,10 @@ export declare const recapSessionSchema: z.ZodObject<{
         behaviorId: string;
         behaviorName: string;
         goalStatus: "unknown" | "missed" | "met" | "no_goal";
-        event: "relapse" | "milestone" | "streak_continues" | "none";
+        event: "relapse" | "milestone" | "relapse_aftermath" | "streak_continues" | "none";
         streakDays?: number | undefined;
         streakStartDate?: string | undefined;
+        daysIntoRelapse?: number | undefined;
         milestoneLabel?: string | undefined;
     }[] | undefined;
     recapSelectedQuestion?: {
@@ -5724,9 +5741,9 @@ export declare const recapSessionSchema: z.ZodObject<{
 }, {
     type: "recap";
     date: import("../../types").Timestamp;
+    userId: string;
     dateString: string;
     title: string;
-    userId: string;
     sharedWithUserIds: string[];
     summarizedAt: import("../../types").Timestamp | null;
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
@@ -5879,9 +5896,10 @@ export declare const recapSessionSchema: z.ZodObject<{
         behaviorId: string;
         behaviorName: string;
         goalStatus: "unknown" | "missed" | "met" | "no_goal";
-        event: "relapse" | "milestone" | "streak_continues" | "none";
+        event: "relapse" | "milestone" | "relapse_aftermath" | "streak_continues" | "none";
         streakDays?: number | undefined;
         streakStartDate?: string | undefined;
+        daysIntoRelapse?: number | undefined;
         milestoneLabel?: string | undefined;
     }[] | undefined;
     recapSelectedQuestion?: {

@@ -37,8 +37,8 @@ export declare const insightSchema: z.ZodObject<{
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     status?: "pending" | "posted" | "dismissed" | undefined;
-    confidence?: number | undefined;
     userId?: string | undefined;
+    confidence?: number | undefined;
     behavior?: string | undefined;
     source?: "user" | "experiment" | "brain" | "coach" | undefined;
     experimentId?: string | undefined;
@@ -61,8 +61,8 @@ export declare const insightSchema: z.ZodObject<{
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     status?: "pending" | "posted" | "dismissed" | undefined;
-    confidence?: number | undefined;
     userId?: string | undefined;
+    confidence?: number | undefined;
     behavior?: string | undefined;
     source?: "user" | "experiment" | "brain" | "coach" | undefined;
     experimentId?: string | undefined;

@@ -40,11 +40,11 @@ export declare const coachingCallSchema: z.ZodObject<{
     id?: string | undefined;
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
+    startedAt?: import("../types").Timestamp | undefined;
+    endedAt?: import("../types").Timestamp | undefined;
     slotId?: string | undefined;
     connectedParticipantIds?: string[] | undefined;
     agentConnected?: boolean | undefined;
-    startedAt?: import("../types").Timestamp | undefined;
-    endedAt?: import("../types").Timestamp | undefined;
     coachReadyAt?: import("../types").Timestamp | undefined;
     autoRingSentAt?: import("../types").Timestamp | undefined;
     reminderSentAt?: {
@@ -61,13 +61,13 @@ export declare const coachingCallSchema: z.ZodObject<{
     createdAt?: import("../types").Timestamp | undefined;
     updatedAt?: import("../types").Timestamp | undefined;
     status?: "scheduled" | "active" | "completed" | "missed" | "cancelled" | undefined;
+    startedAt?: import("../types").Timestamp | undefined;
+    endedAt?: import("../types").Timestamp | undefined;
     durationMinutes?: number | undefined;
     slotId?: string | undefined;
     joinedByIds?: string[] | undefined;
     connectedParticipantIds?: string[] | undefined;
     agentConnected?: boolean | undefined;
-    startedAt?: import("../types").Timestamp | undefined;
-    endedAt?: import("../types").Timestamp | undefined;
     coachReadyAt?: import("../types").Timestamp | undefined;
     autoRingSentAt?: import("../types").Timestamp | undefined;
     reminderSentAt?: {

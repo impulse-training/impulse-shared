@@ -6,15 +6,15 @@ export declare const transcriptItemSchema: z.ZodObject<{
     interrupted: z.ZodOptional<z.ZodBoolean>;
     type: z.ZodOptional<z.ZodEnum<["final", "partial"]>>;
 }, "strip", z.ZodTypeAny, {
+    ts: import("../types").Timestamp;
     text: string;
     role: "assistant" | "user";
-    ts: import("../types").Timestamp;
     type?: "partial" | "final" | undefined;
     interrupted?: boolean | undefined;
 }, {
+    ts: import("../types").Timestamp;
     text: string;
     role: "assistant" | "user";
-    ts: import("../types").Timestamp;
     type?: "partial" | "final" | undefined;
     interrupted?: boolean | undefined;
 }>;

@@ -98,9 +98,9 @@ export declare const systemMessageLogSchema: z.ZodObject<{
     createdAt: import("../../../types").Timestamp;
     updatedAt: import("../../../types").Timestamp;
     type: "system_message";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../../types").Timestamp;
     isDisplayable: true;
     data: {
@@ -124,9 +124,9 @@ export declare const systemMessageLogSchema: z.ZodObject<{
     createdAt: import("../../../types").Timestamp;
     updatedAt: import("../../../types").Timestamp;
     type: "system_message";
+    userId: string;
     sessionId: string;
     dateString: string;
-    userId: string;
     timestamp: import("../../../types").Timestamp;
     isDisplayable: true;
     data: {

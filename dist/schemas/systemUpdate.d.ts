@@ -14,8 +14,8 @@ export declare const otaSystemUpdateSchema: z.ZodObject<{
     type: "ota";
     severity: "normal" | "severe";
     iosUpdateId: string;
-    androidUpdateId?: string | undefined;
     appVersion?: string | undefined;
+    androidUpdateId?: string | undefined;
     updateGroupId?: string | null | undefined;
 }, {
     createdAt: import("../types").Timestamp;
@@ -23,8 +23,8 @@ export declare const otaSystemUpdateSchema: z.ZodObject<{
     severity: "normal" | "severe";
     iosUpdateId: string;
     type?: "ota" | undefined;
-    androidUpdateId?: string | undefined;
     appVersion?: string | undefined;
+    androidUpdateId?: string | undefined;
     updateGroupId?: string | null | undefined;
 }>;
 export type OtaSystemUpdate = z.infer<typeof otaSystemUpdateSchema>;
@@ -111,8 +111,8 @@ export declare const systemUpdateSchema: z.ZodUnion<[z.ZodObject<{
     type: "ota";
     severity: "normal" | "severe";
     iosUpdateId: string;
-    androidUpdateId?: string | undefined;
     appVersion?: string | undefined;
+    androidUpdateId?: string | undefined;
     updateGroupId?: string | null | undefined;
 }, {
     createdAt: import("../types").Timestamp;
@@ -120,8 +120,8 @@ export declare const systemUpdateSchema: z.ZodUnion<[z.ZodObject<{
     severity: "normal" | "severe";
     iosUpdateId: string;
     type?: "ota" | undefined;
-    androidUpdateId?: string | undefined;
     appVersion?: string | undefined;
+    androidUpdateId?: string | undefined;
     updateGroupId?: string | null | undefined;
 }>]>;
 export type SystemUpdate = z.infer<typeof systemUpdateSchema>;

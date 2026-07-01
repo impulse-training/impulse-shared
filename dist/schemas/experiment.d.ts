@@ -73,8 +73,8 @@ export declare const experimentSchema: z.ZodObject<{
         heading: string;
     }>, "many">>;
 }, "strip", z.ZodTypeAny, {
-    behaviorIds: string[];
     name: string;
+    behaviorIds: string[];
     experimentQuestion: string;
     stage: "observe" | "intervene" | "maintain";
     metricIds: string[];
@@ -84,12 +84,12 @@ export declare const experimentSchema: z.ZodObject<{
         summary?: string | undefined;
         exitedAt?: import("../types").Timestamp | undefined;
     }[];
+    startedAt?: import("../types").Timestamp | undefined;
     goal?: {
         target: number;
         direction: "increase" | "decrease";
         metricId: string;
     } | undefined;
-    startedAt?: import("../types").Timestamp | undefined;
     insights?: {
         body: string;
         heading: string;
@@ -106,15 +106,15 @@ export declare const experimentSchema: z.ZodObject<{
     hypothesis?: string | undefined;
     chartUnlocked?: boolean | undefined;
 }, {
-    behaviorIds: string[];
     name: string;
+    behaviorIds: string[];
     experimentQuestion: string;
+    startedAt?: import("../types").Timestamp | undefined;
     goal?: {
         target: number;
         direction: "increase" | "decrease";
         metricId: string;
     } | undefined;
-    startedAt?: import("../types").Timestamp | undefined;
     insights?: {
         body: string;
         heading: string;

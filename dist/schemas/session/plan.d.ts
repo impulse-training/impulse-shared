@@ -4929,9 +4929,9 @@ export declare const timePlanSessionSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: "timePlan";
     date: import("../../types").Timestamp;
+    userId: string;
     dateString: string;
     title: string;
-    userId: string;
     mode: "text" | "voice";
     planId: string;
     sharedWithUserIds: string[];
@@ -5553,9 +5553,9 @@ export declare const timePlanSessionSchema: z.ZodObject<{
 }, {
     type: "timePlan";
     date: import("../../types").Timestamp;
+    userId: string;
     dateString: string;
     title: string;
-    userId: string;
     planId: string;
     sharedWithUserIds: string[];
     summarizedAt: import("../../types").Timestamp | null;
@@ -10620,9 +10620,9 @@ export declare const locationPlanSessionSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: "locationPlan";
     date: import("../../types").Timestamp;
+    userId: string;
     dateString: string;
     title: string;
-    userId: string;
     mode: "text" | "voice";
     planId: string;
     sharedWithUserIds: string[];
@@ -11244,9 +11244,9 @@ export declare const locationPlanSessionSchema: z.ZodObject<{
 }, {
     type: "locationPlan";
     date: import("../../types").Timestamp;
+    userId: string;
     dateString: string;
     title: string;
-    userId: string;
     planId: string;
     sharedWithUserIds: string[];
     summarizedAt: import("../../types").Timestamp | null;

@@ -4930,9 +4930,9 @@ export declare const tasksSessionSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: "tasks";
     date: import("../../types").Timestamp;
+    userId: string;
     dateString: string;
     title: string;
-    userId: string;
     mode: "text" | "voice";
     sharedWithUserIds: string[];
     isDraft: boolean;
@@ -5555,9 +5555,9 @@ export declare const tasksSessionSchema: z.ZodObject<{
 }, {
     type: "tasks";
     date: import("../../types").Timestamp;
+    userId: string;
     dateString: string;
     title: string;
-    userId: string;
     sharedWithUserIds: string[];
     summarizedAt: import("../../types").Timestamp | null;
     sharedWithSupportGroups: import("../..").DocumentReferenceLike<unknown>[];
