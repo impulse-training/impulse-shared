@@ -10,6 +10,10 @@ export const shortcutSetupIntroLogSchema = logBaseSchema.extend({
     message: z.string(),
     respondedAt: timestampSchema.optional(),
     choice: z.enum(["voice", "text", "skip"]).optional(),
+    // Set when this card is a returning nudge (resurfaced in a later recap
+    // after the user tapped "Set up later" during onboarding) rather than the
+    // first-time onboarding card. Lets the native UI tailor its copy.
+    returning: z.boolean().optional(),
   }),
 });
 

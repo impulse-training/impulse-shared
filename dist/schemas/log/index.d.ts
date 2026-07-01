@@ -31539,16 +31539,19 @@ export declare const logSchemas: {
             message: z.ZodString;
             respondedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             choice: z.ZodOptional<z.ZodEnum<["voice", "text", "skip"]>>;
+            returning: z.ZodOptional<z.ZodBoolean>;
         }, "strip", z.ZodTypeAny, {
             message: string;
             shortcutType: "back_tap" | "lock_screen_widget";
             choice?: "text" | "voice" | "skip" | undefined;
             respondedAt?: import("../../types").Timestamp | undefined;
+            returning?: boolean | undefined;
         }, {
             message: string;
             shortcutType: "back_tap" | "lock_screen_widget";
             choice?: "text" | "voice" | "skip" | undefined;
             respondedAt?: import("../../types").Timestamp | undefined;
+            returning?: boolean | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
         createdAt: import("../../types").Timestamp;
@@ -31564,6 +31567,7 @@ export declare const logSchemas: {
             shortcutType: "back_tap" | "lock_screen_widget";
             choice?: "text" | "voice" | "skip" | undefined;
             respondedAt?: import("../../types").Timestamp | undefined;
+            returning?: boolean | undefined;
         };
         id?: string | undefined;
         behaviorIds?: string[] | undefined;
@@ -31584,6 +31588,7 @@ export declare const logSchemas: {
             shortcutType: "back_tap" | "lock_screen_widget";
             choice?: "text" | "voice" | "skip" | undefined;
             respondedAt?: import("../../types").Timestamp | undefined;
+            returning?: boolean | undefined;
         };
         id?: string | undefined;
         behaviorIds?: string[] | undefined;
@@ -56957,16 +56962,19 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         message: z.ZodString;
         respondedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         choice: z.ZodOptional<z.ZodEnum<["voice", "text", "skip"]>>;
+        returning: z.ZodOptional<z.ZodBoolean>;
     }, "strip", z.ZodTypeAny, {
         message: string;
         shortcutType: "back_tap" | "lock_screen_widget";
         choice?: "text" | "voice" | "skip" | undefined;
         respondedAt?: import("../../types").Timestamp | undefined;
+        returning?: boolean | undefined;
     }, {
         message: string;
         shortcutType: "back_tap" | "lock_screen_widget";
         choice?: "text" | "voice" | "skip" | undefined;
         respondedAt?: import("../../types").Timestamp | undefined;
+        returning?: boolean | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
@@ -56982,6 +56990,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         shortcutType: "back_tap" | "lock_screen_widget";
         choice?: "text" | "voice" | "skip" | undefined;
         respondedAt?: import("../../types").Timestamp | undefined;
+        returning?: boolean | undefined;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;
@@ -57002,6 +57011,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         shortcutType: "back_tap" | "lock_screen_widget";
         choice?: "text" | "voice" | "skip" | undefined;
         respondedAt?: import("../../types").Timestamp | undefined;
+        returning?: boolean | undefined;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;

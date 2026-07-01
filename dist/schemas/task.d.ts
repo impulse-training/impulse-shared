@@ -1286,6 +1286,80 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }>;
+/**
+ * User-scoped persistence of the impulse-mode / shortcut setup step. Created
+ * when a user taps "Set up later" on the shortcut_setup_intro card during
+ * onboarding, so the setup is not lost with the onboarding session and is
+ * resurfaced (claimed) in the user's next recap. Rendering is handled by the
+ * existing `show_impulse_mode_intro` deterministic handler in impulse-functions.
+ */
+export declare const showImpulseModeIntroTaskSchema: z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    userId: z.ZodString;
+    category: z.ZodDefault<z.ZodEnum<["zara", "deterministic"]>>;
+    status: z.ZodDefault<z.ZodEnum<["open", "completed", "dismissed"]>>;
+    title: z.ZodString;
+    instructions: z.ZodString;
+    context: z.ZodOptional<z.ZodString>;
+    ordinal: z.ZodOptional<z.ZodNumber>;
+    minAppVersion: z.ZodOptional<z.ZodString>;
+    requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    createdBy: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+} & {
+    type: z.ZodLiteral<"show_impulse_mode_intro">;
+    /** Which setup card to show; if absent it is recomputed from behaviors. */
+    shortcutType: z.ZodOptional<z.ZodEnum<["back_tap", "lock_screen_widget"]>>;
+    /** Marks this as a returning nudge so the card copy can be tailored. */
+    returning: z.ZodOptional<z.ZodBoolean>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "show_impulse_mode_intro";
+    status: "completed" | "dismissed" | "open";
+    title: string;
+    userId: string;
+    category: "zara" | "deterministic";
+    instructions: string;
+    id?: string | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    shortcutType?: "back_tap" | "lock_screen_widget" | undefined;
+    returning?: boolean | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+}, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "show_impulse_mode_intro";
+    title: string;
+    userId: string;
+    instructions: string;
+    id?: string | undefined;
+    status?: "completed" | "dismissed" | "open" | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    shortcutType?: "back_tap" | "lock_screen_widget" | undefined;
+    returning?: boolean | undefined;
+    category?: "zara" | "deterministic" | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+}>;
 export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -2491,6 +2565,72 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    userId: z.ZodString;
+    category: z.ZodDefault<z.ZodEnum<["zara", "deterministic"]>>;
+    status: z.ZodDefault<z.ZodEnum<["open", "completed", "dismissed"]>>;
+    title: z.ZodString;
+    instructions: z.ZodString;
+    context: z.ZodOptional<z.ZodString>;
+    ordinal: z.ZodOptional<z.ZodNumber>;
+    minAppVersion: z.ZodOptional<z.ZodString>;
+    requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    createdBy: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+} & {
+    type: z.ZodLiteral<"show_impulse_mode_intro">;
+    /** Which setup card to show; if absent it is recomputed from behaviors. */
+    shortcutType: z.ZodOptional<z.ZodEnum<["back_tap", "lock_screen_widget"]>>;
+    /** Marks this as a returning nudge so the card copy can be tailored. */
+    returning: z.ZodOptional<z.ZodBoolean>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "show_impulse_mode_intro";
+    status: "completed" | "dismissed" | "open";
+    title: string;
+    userId: string;
+    category: "zara" | "deterministic";
+    instructions: string;
+    id?: string | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    shortcutType?: "back_tap" | "lock_screen_widget" | undefined;
+    returning?: boolean | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+}, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "show_impulse_mode_intro";
+    title: string;
+    userId: string;
+    instructions: string;
+    id?: string | undefined;
+    status?: "completed" | "dismissed" | "open" | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    shortcutType?: "back_tap" | "lock_screen_widget" | undefined;
+    returning?: boolean | undefined;
+    category?: "zara" | "deterministic" | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
 }>]>;
 export type TaskCategory = z.infer<typeof taskCategorySchema>;
 export type TaskStatus = z.infer<typeof taskStatusSchema>;
@@ -2506,6 +2646,7 @@ export type ToolkitPlanningTask = z.infer<typeof toolkitPlanningTaskSchema>;
 export type SuggestTacticTask = z.infer<typeof suggestTacticTaskSchema>;
 export type ReflectOnMetricsTask = z.infer<typeof reflectOnMetricsTaskSchema>;
 export type CollectBaselineTask = z.infer<typeof collectBaselineTaskSchema>;
+export type ShowImpulseModeIntroTask = z.infer<typeof showImpulseModeIntroTaskSchema>;
 export type Task = z.infer<typeof taskSchema>;
 export declare const isTask: (value: unknown) => value is Task;
 export declare const isMergeBehaviorsTask: (value: unknown) => value is MergeBehaviorsTask;
@@ -2517,3 +2658,4 @@ export declare const isReviewTriggerTask: (value: unknown) => value is ReviewTri
 export declare const isToolkitPlanningTask: (value: unknown) => value is ToolkitPlanningTask;
 export declare const isSuggestTacticTask: (value: unknown) => value is SuggestTacticTask;
 export declare const isReflectOnMetricsTask: (value: unknown) => value is ReflectOnMetricsTask;
+export declare const isShowImpulseModeIntroTask: (value: unknown) => value is ShowImpulseModeIntroTask;

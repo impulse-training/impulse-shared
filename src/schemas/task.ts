@@ -192,6 +192,21 @@ export const collectBaselineTaskSchema = taskBaseSchema.extend({
   behaviorId: z.string().min(1),
 });
 
+/**
+ * User-scoped persistence of the impulse-mode / shortcut setup step. Created
+ * when a user taps "Set up later" on the shortcut_setup_intro card during
+ * onboarding, so the setup is not lost with the onboarding session and is
+ * resurfaced (claimed) in the user's next recap. Rendering is handled by the
+ * existing `show_impulse_mode_intro` deterministic handler in impulse-functions.
+ */
+export const showImpulseModeIntroTaskSchema = taskBaseSchema.extend({
+  type: z.literal("show_impulse_mode_intro"),
+  /** Which setup card to show; if absent it is recomputed from behaviors. */
+  shortcutType: z.enum(["back_tap", "lock_screen_widget"]).optional(),
+  /** Marks this as a returning nudge so the card copy can be tailored. */
+  returning: z.boolean().optional(),
+});
+
 export const taskSchema = z.discriminatedUnion("type", [
   mergeBehaviorsTaskSchema,
   suggestStrategyTaskSchema,
@@ -204,6 +219,7 @@ export const taskSchema = z.discriminatedUnion("type", [
   suggestTacticTaskSchema,
   reflectOnMetricsTaskSchema,
   collectBaselineTaskSchema,
+  showImpulseModeIntroTaskSchema,
 ]);
 
 export type TaskCategory = z.infer<typeof taskCategorySchema>;
@@ -220,6 +236,9 @@ export type ToolkitPlanningTask = z.infer<typeof toolkitPlanningTaskSchema>;
 export type SuggestTacticTask = z.infer<typeof suggestTacticTaskSchema>;
 export type ReflectOnMetricsTask = z.infer<typeof reflectOnMetricsTaskSchema>;
 export type CollectBaselineTask = z.infer<typeof collectBaselineTaskSchema>;
+export type ShowImpulseModeIntroTask = z.infer<
+  typeof showImpulseModeIntroTaskSchema
+>;
 export type Task = z.infer<typeof taskSchema>;
 
 export const isTask = (value: unknown): value is Task =>
@@ -269,3 +288,8 @@ export const isReflectOnMetricsTask = (
   value: unknown,
 ): value is ReflectOnMetricsTask =>
   reflectOnMetricsTaskSchema.safeParse(value).success;
+
+export const isShowImpulseModeIntroTask = (
+  value: unknown,
+): value is ShowImpulseModeIntroTask =>
+  showImpulseModeIntroTaskSchema.safeParse(value).success;

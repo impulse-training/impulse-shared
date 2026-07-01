@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isReflectOnMetricsTask = exports.isSuggestTacticTask = exports.isToolkitPlanningTask = exports.isReviewTriggerTask = exports.isRecapQuestionTask = exports.isProposeMaskBehaviorTask = exports.isProposeExperimentTask = exports.isSuggestStrategyTask = exports.isMergeBehaviorsTask = exports.isTask = exports.taskSchema = exports.collectBaselineTaskSchema = exports.reflectOnMetricsTaskSchema = exports.suggestTacticTaskSchema = exports.toolkitPlanningTaskSchema = exports.reviewTriggerTaskSchema = exports.recapQuestionTaskSchema = exports.createSessionTaskSchema = exports.proposeMaskBehaviorTaskSchema = exports.proposeExperimentTaskSchema = exports.proposedMetricSchema = exports.suggestStrategyTaskSchema = exports.mergeBehaviorsTaskSchema = exports.taskBaseSchema = exports.claimableSessionTypeSchema = exports.taskCategorySchema = exports.taskStatusSchema = void 0;
+exports.isShowImpulseModeIntroTask = exports.isReflectOnMetricsTask = exports.isSuggestTacticTask = exports.isToolkitPlanningTask = exports.isReviewTriggerTask = exports.isRecapQuestionTask = exports.isProposeMaskBehaviorTask = exports.isProposeExperimentTask = exports.isSuggestStrategyTask = exports.isMergeBehaviorsTask = exports.isTask = exports.taskSchema = exports.showImpulseModeIntroTaskSchema = exports.collectBaselineTaskSchema = exports.reflectOnMetricsTaskSchema = exports.suggestTacticTaskSchema = exports.toolkitPlanningTaskSchema = exports.reviewTriggerTaskSchema = exports.recapQuestionTaskSchema = exports.createSessionTaskSchema = exports.proposeMaskBehaviorTaskSchema = exports.proposeExperimentTaskSchema = exports.proposedMetricSchema = exports.suggestStrategyTaskSchema = exports.mergeBehaviorsTaskSchema = exports.taskBaseSchema = exports.claimableSessionTypeSchema = exports.taskCategorySchema = exports.taskStatusSchema = void 0;
 const zod_1 = require("zod");
 const timestampSchema_1 = require("../utils/timestampSchema");
 exports.taskStatusSchema = zod_1.z.enum(["open", "completed", "dismissed"]);
@@ -175,6 +175,20 @@ exports.collectBaselineTaskSchema = exports.taskBaseSchema.extend({
     type: zod_1.z.literal("collect_baseline"),
     behaviorId: zod_1.z.string().min(1),
 });
+/**
+ * User-scoped persistence of the impulse-mode / shortcut setup step. Created
+ * when a user taps "Set up later" on the shortcut_setup_intro card during
+ * onboarding, so the setup is not lost with the onboarding session and is
+ * resurfaced (claimed) in the user's next recap. Rendering is handled by the
+ * existing `show_impulse_mode_intro` deterministic handler in impulse-functions.
+ */
+exports.showImpulseModeIntroTaskSchema = exports.taskBaseSchema.extend({
+    type: zod_1.z.literal("show_impulse_mode_intro"),
+    /** Which setup card to show; if absent it is recomputed from behaviors. */
+    shortcutType: zod_1.z.enum(["back_tap", "lock_screen_widget"]).optional(),
+    /** Marks this as a returning nudge so the card copy can be tailored. */
+    returning: zod_1.z.boolean().optional(),
+});
 exports.taskSchema = zod_1.z.discriminatedUnion("type", [
     exports.mergeBehaviorsTaskSchema,
     exports.suggestStrategyTaskSchema,
@@ -187,6 +201,7 @@ exports.taskSchema = zod_1.z.discriminatedUnion("type", [
     exports.suggestTacticTaskSchema,
     exports.reflectOnMetricsTaskSchema,
     exports.collectBaselineTaskSchema,
+    exports.showImpulseModeIntroTaskSchema,
 ]);
 const isTask = (value) => exports.taskSchema.safeParse(value).success;
 exports.isTask = isTask;
@@ -208,3 +223,5 @@ const isSuggestTacticTask = (value) => exports.suggestTacticTaskSchema.safeParse
 exports.isSuggestTacticTask = isSuggestTacticTask;
 const isReflectOnMetricsTask = (value) => exports.reflectOnMetricsTaskSchema.safeParse(value).success;
 exports.isReflectOnMetricsTask = isReflectOnMetricsTask;
+const isShowImpulseModeIntroTask = (value) => exports.showImpulseModeIntroTaskSchema.safeParse(value).success;
+exports.isShowImpulseModeIntroTask = isShowImpulseModeIntroTask;
