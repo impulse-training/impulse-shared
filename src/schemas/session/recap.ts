@@ -42,6 +42,13 @@ export type RecapStreakContextEntry = z.infer<
 export const recapDayEventSchema = z.enum([
   // A meaningful streak ended today (the user logged the behavior past goal).
   "relapse",
+  // Today is another miss in the ongoing aftermath of a meaningful streak that
+  // broke on an earlier day — i.e. day 2+ of a slip, still not back on track.
+  // The break itself was flagged "relapse" on its day; this keeps the recap
+  // grounded in the human-terms arc (long streak, recent break, N days into the
+  // slip) so the opener doesn't drift into "nice work / standard day." Awareness,
+  // not a fresh event to lead with.
+  "relapse_aftermath",
   // The streak reached a milestone rung today.
   "milestone",
   // An active streak continued today (no rung hit, no break).
@@ -63,12 +70,18 @@ export const recapDayFactSchema = z.object({
   goalStatus: z.enum(["met", "missed", "no_goal", "unknown"]),
   event: recapDayEventSchema,
   /**
-   * For "relapse": length (days) of the run that ended today.
+   * For "relapse" / "relapse_aftermath": length (days) of the run that broke.
    * For "streak_continues" / "milestone": current run length including today.
    */
   streakDays: z.number().optional(),
   /** Start date of the (broken or ongoing) run, when known. */
   streakStartDate: z.string().optional(),
+  /**
+   * For "relapse_aftermath": how many days into the current slip the user is
+   * (consecutive misses ending today, inclusive), so the arc reads in human
+   * terms ("day 2 of the slip").
+   */
+  daysIntoRelapse: z.number().optional(),
   /** For "milestone": the rung label reached today (e.g. "7 days"). */
   milestoneLabel: z.string().optional(),
 });
