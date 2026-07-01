@@ -1,5 +1,6 @@
 // Export all schema types and validation functions
 export * from "./adminDashboardCache";
+export * from "./analyticsSession";
 export * from "./answeredRecapQuestion";
 export * from "./attachment";
 export * from "./audit";
