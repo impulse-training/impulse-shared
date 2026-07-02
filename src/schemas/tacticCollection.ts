@@ -12,6 +12,10 @@ export const tacticCollectionSchema = z.object({
   // Legacy field — kept for backward compat with support group collections
   items: z.array(documentReferenceSchema).optional(),
   userHiddenTactics: z.record(z.string(), z.array(z.string())).optional(),
+  // Set when a user creates the collection themselves (vs. the seeded default
+  // templates, which have none). Lets the Library always show user-created
+  // collections, even while empty, instead of hiding them like empty defaults.
+  createdByUid: z.string().optional(),
   ordinal: z.number().optional(),
   createdAt: timestampSchema.optional(),
   updatedAt: timestampSchema.optional(),

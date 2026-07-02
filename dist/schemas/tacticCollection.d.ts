@@ -7,6 +7,7 @@ export declare const tacticCollectionSchema: z.ZodObject<{
     tacticIds: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
     items: z.ZodOptional<z.ZodArray<z.ZodType<import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>;
     userHiddenTactics: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodArray<z.ZodString, "many">>>;
+    createdByUid: z.ZodOptional<z.ZodString>;
     ordinal: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -18,6 +19,7 @@ export declare const tacticCollectionSchema: z.ZodObject<{
     updatedAt?: import("../types").Timestamp | undefined;
     description?: string | undefined;
     ordinal?: number | undefined;
+    createdByUid?: string | undefined;
     emoji?: string | undefined;
     items?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
     userHiddenTactics?: Record<string, string[]> | undefined;
@@ -28,6 +30,7 @@ export declare const tacticCollectionSchema: z.ZodObject<{
     updatedAt?: import("../types").Timestamp | undefined;
     description?: string | undefined;
     ordinal?: number | undefined;
+    createdByUid?: string | undefined;
     tacticIds?: string[] | undefined;
     emoji?: string | undefined;
     items?: import("../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
