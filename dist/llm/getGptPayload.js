@@ -143,7 +143,7 @@ function getGptPayload(log, isFinalLogInSession, options) {
         return [
             {
                 role: "user",
-                content: `<SYSTEM>Miro showed the user a merge-behaviors proposal: ${log.data.title}. Task id: ${log.data.taskId}. No button has been selected yet.</SYSTEM>`,
+                content: `<SYSTEM>Impulse showed the user a merge-behaviors proposal: ${log.data.title}. Task id: ${log.data.taskId}. No button has been selected yet.</SYSTEM>`,
             },
         ];
     }
@@ -253,14 +253,14 @@ function getGptPayload(log, isFinalLogInSession, options) {
             return [
                 {
                     role: "user",
-                    content: `<SYSTEM>Earlier in this session Miro suggested the tactic "${tacticTitle}", but the user did NOT start or complete it. Do not praise the user for doing this tactic.</SYSTEM>`,
+                    content: `<SYSTEM>Earlier in this session Impulse suggested the tactic "${tacticTitle}", but the user did NOT start or complete it. Do not praise the user for doing this tactic.</SYSTEM>`,
                 },
             ];
         }
         return [
             {
                 role: "user",
-                content: `<SYSTEM>Miro suggested the tactic "${tacticTitle}". The user has not engaged with it yet — do not assume they have done it.</SYSTEM>`,
+                content: `<SYSTEM>Impulse suggested the tactic "${tacticTitle}". The user has not engaged with it yet — do not assume they have done it.</SYSTEM>`,
             },
         ];
     }

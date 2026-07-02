@@ -25,7 +25,7 @@ const sessionTypeSchema = zod_1.z.enum([
     "demo",
     "milestone",
     "toolkitPlanning",
-    "zaraCheckIn", // Zara weekly voice check-in — excluded from the journal
+    "zaraCheckIn", // Weekly voice check-in with a coach — excluded from the journal
 ]);
 // Session schema
 exports.sessionBaseSchema = zod_1.z.object({

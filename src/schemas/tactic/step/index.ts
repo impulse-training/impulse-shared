@@ -11,7 +11,7 @@ export * from "./pedometer";
 export * from "./notifySupport";
 export * from "./phoneCall";
 export * from "./question";
-export * from "./zara";
+export * from "./voice";
 
 import { AffirmationStep, affirmationStepSchema } from "./affirmation";
 import { AudioStep, audioStepSchema } from "./audio";
@@ -22,7 +22,7 @@ import { PedometerStep, pedometerStepSchema } from "./pedometer";
 import { NotifySupportStep, notifySupportStepSchema } from "./notifySupport";
 import { PhoneCallStep, phoneCallStepSchema } from "./phoneCall";
 import { QuestionStep, questionStepSchema } from "./question";
-import { ZaraStep, zaraStepSchema } from "./zara";
+import { VoiceStep, voiceStepSchema } from "./voice";
 
 const tacticStepUnionSchema = z.discriminatedUnion("mode", [
   defaultStepSchema,
@@ -34,7 +34,7 @@ const tacticStepUnionSchema = z.discriminatedUnion("mode", [
   affirmationStepSchema,
   pedometerStepSchema,
   phoneCallStepSchema,
-  zaraStepSchema,
+  voiceStepSchema,
 ]);
 
 /**
@@ -107,7 +107,7 @@ export const stepIsPhoneCallStep = (
   step: TacticStep
 ): step is PhoneCallStep => step.mode === "phoneCall";
 
-export const stepIsZaraStep = (step: TacticStep): step is ZaraStep =>
+export const stepIsVoiceStep = (step: TacticStep): step is VoiceStep =>
   step.mode === "zara";
 
 // Re-export concrete step types for precise narrowing
@@ -120,5 +120,5 @@ export type {
   NotifySupportStep,
   PhoneCallStep,
   QuestionStep,
-  ZaraStep,
+  VoiceStep,
 };

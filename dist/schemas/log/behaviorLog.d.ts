@@ -17,7 +17,7 @@ export declare const behaviorLogSchema: z.ZodObject<{
     type: z.ZodLiteral<"behavior">;
     isDisplayable: z.ZodLiteral<true>;
     isAdjustment: z.ZodDefault<z.ZodBoolean>;
-    /** If true, Zara should respond to this behavior log */
+    /** If true, the assistant should respond to this behavior log */
     shouldZaraRespond: z.ZodOptional<z.ZodBoolean>;
     data: z.ZodObject<{
         behaviorId: z.ZodOptional<z.ZodString>;

@@ -18,7 +18,7 @@ export declare const metricLogSchema: z.ZodObject<{
 } & {
     type: z.ZodLiteral<"metric">;
     isDisplayable: z.ZodLiteral<true>;
-    /** If true, Zara should respond to this metric log (e.g. feeling discussion requested) */
+    /** If true, the assistant should respond to this metric log (e.g. feeling discussion requested) */
     shouldZaraRespond: z.ZodOptional<z.ZodBoolean>;
     data: z.ZodObject<{
         /** Reference to the metric document id */

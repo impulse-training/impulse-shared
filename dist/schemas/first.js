@@ -22,7 +22,7 @@ exports.FIRST_DEFINITIONS = {
         order: 1,
     },
     voiceSession: {
-        label: "Talk with Miro using voice mode during an impulse moment",
+        label: "Talk using voice mode during an impulse moment",
         order: 2,
     },
     resistedUrge: {

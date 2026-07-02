@@ -5,7 +5,7 @@ const zod_1 = require("zod");
 const base_1 = require("./base");
 /**
  * Created when the user manually updates session tags via the UI.
- * Non-displayable — exists solely to trigger an AI response so Zara
+ * Non-displayable — exists solely to trigger an AI response so the assistant
  * can react to the updated context (e.g. suggest tactics).
  */
 exports.tagsUpdatedLogSchema = base_1.logBaseSchema.extend({

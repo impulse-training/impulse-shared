@@ -9,7 +9,7 @@ export * from "./pedometer";
 export * from "./notifySupport";
 export * from "./phoneCall";
 export * from "./question";
-export * from "./zara";
+export * from "./voice";
 import { AffirmationStep } from "./affirmation";
 import { AudioStep } from "./audio";
 import { BreathingStep } from "./breathing";
@@ -19,7 +19,7 @@ import { PedometerStep } from "./pedometer";
 import { NotifySupportStep } from "./notifySupport";
 import { PhoneCallStep } from "./phoneCall";
 import { QuestionStep } from "./question";
-import { ZaraStep } from "./zara";
+import { VoiceStep } from "./voice";
 export declare const tacticStepSchema: z.ZodEffects<z.ZodDiscriminatedUnion<"mode", [z.ZodObject<{
     backgroundImage: z.ZodOptional<z.ZodObject<{
         createdAt: z.ZodOptional<z.ZodType<import("../../../types").Timestamp, z.ZodTypeDef, import("../../../types").Timestamp>>;
@@ -4023,5 +4023,5 @@ export declare const stepIsDefaultStep: (step: TacticStep) => step is DefaultSte
 export declare const stepIsAffirmationStep: (step: TacticStep) => step is AffirmationStep;
 export declare const stepIsPedometerStep: (step: TacticStep) => step is PedometerStep;
 export declare const stepIsPhoneCallStep: (step: TacticStep) => step is PhoneCallStep;
-export declare const stepIsZaraStep: (step: TacticStep) => step is ZaraStep;
-export type { AudioStep, BreathingStep, DefaultStep, MediaStep, PedometerStep, NotifySupportStep, PhoneCallStep, QuestionStep, ZaraStep, };
+export declare const stepIsVoiceStep: (step: TacticStep) => step is VoiceStep;
+export type { AudioStep, BreathingStep, DefaultStep, MediaStep, PedometerStep, NotifySupportStep, PhoneCallStep, QuestionStep, VoiceStep, };

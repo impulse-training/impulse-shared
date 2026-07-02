@@ -122,9 +122,9 @@ exports.userDataSchema = zod_1.z.object({
     // Roadmap / "What we're building" seen tracker
     seenRoadmapItemIds: zod_1.z.array(zod_1.z.string()).optional(),
     roadmapNotificationsEnabled: zod_1.z.boolean().optional(),
-    // Voice preference for Zara check-in calls
+    // Voice preference for coach check-in calls
     zaraVoiceId: zod_1.z.enum(["alloy", "shimmer", "echo"]).optional(),
-    // Zara configuration — which coach and which weekly slot the user has claimed
+    // Coach check-in configuration — which coach and which weekly slot the user has claimed
     zaraCoachId: zod_1.z.string().optional(),
     zaraSlot: zod_1.z
         .object({
@@ -154,7 +154,7 @@ exports.userDataSchema = zod_1.z.object({
     // Coach-authored guidance shown to the user between calls
     coachInstructions: zod_1.z.string().optional(),
     // Ongoing support request — the user asks (from the native app, after their
-    // first Zara session) to be taken on for ongoing coaching. A coach reviews
+    // first coach check-in) to be taken on for ongoing coaching. A coach reviews
     // and approves/declines it from the coach dashboard. Placeholder for the
     // premium coaching upgrade.
     ongoingSupport: zod_1.z

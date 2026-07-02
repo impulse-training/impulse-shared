@@ -1,7 +1,7 @@
 import { z } from "zod";
 /**
  * Created when the user manually updates session tags via the UI.
- * Non-displayable — exists solely to trigger an AI response so Zara
+ * Non-displayable — exists solely to trigger an AI response so the assistant
  * can react to the updated context (e.g. suggest tactics).
  */
 export declare const tagsUpdatedLogSchema: z.ZodObject<{

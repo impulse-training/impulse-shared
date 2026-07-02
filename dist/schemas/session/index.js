@@ -33,7 +33,7 @@ const tasks_1 = require("./tasks");
 const demo_1 = require("./demo");
 const milestone_1 = require("./milestone");
 const toolkitPlanning_1 = require("./toolkitPlanning");
-const zaraCheckIn_1 = require("./zaraCheckIn");
+const coachCheckIn_1 = require("./coachCheckIn");
 __exportStar(require("../sessionSummary"), exports);
 __exportStar(require("./adjustment"), exports);
 __exportStar(require("./behavior"), exports);
@@ -52,7 +52,7 @@ __exportStar(require("./tasks"), exports);
 __exportStar(require("./demo"), exports);
 __exportStar(require("./milestone"), exports);
 __exportStar(require("./toolkitPlanning"), exports);
-__exportStar(require("./zaraCheckIn"), exports);
+__exportStar(require("./coachCheckIn"), exports);
 // Map of session types to their schemas
 exports.sessionSchemas = {
     general: general_1.generalSessionSchema,
@@ -72,7 +72,7 @@ exports.sessionSchemas = {
     demo: demo_1.demoSessionSchema,
     milestone: milestone_1.milestoneSessionSchema,
     toolkitPlanning: toolkitPlanning_1.toolkitPlanningSessionSchema,
-    zaraCheckIn: zaraCheckIn_1.zaraCheckInSessionSchema,
+    zaraCheckIn: coachCheckIn_1.coachCheckInSessionSchema,
 };
 // Discriminated union over type
 exports.sessionSchema = zod_1.z.discriminatedUnion("type", [
@@ -93,7 +93,7 @@ exports.sessionSchema = zod_1.z.discriminatedUnion("type", [
     demo_1.demoSessionSchema,
     milestone_1.milestoneSessionSchema,
     toolkitPlanning_1.toolkitPlanningSessionSchema,
-    zaraCheckIn_1.zaraCheckInSessionSchema,
+    coachCheckIn_1.coachCheckInSessionSchema,
 ]);
 const sessionIsGeneralSession = (value) => value.type === "general";
 exports.sessionIsGeneralSession = sessionIsGeneralSession;

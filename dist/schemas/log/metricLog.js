@@ -10,7 +10,7 @@ const base_1 = require("./base");
 exports.metricLogSchema = base_1.logBaseSchema.extend({
     type: zod_1.z.literal("metric"),
     isDisplayable: zod_1.z.literal(true),
-    /** If true, Zara should respond to this metric log (e.g. feeling discussion requested) */
+    /** If true, the assistant should respond to this metric log (e.g. feeling discussion requested) */
     shouldZaraRespond: zod_1.z.boolean().optional(),
     data: zod_1.z.object({
         /** Reference to the metric document id */

@@ -13,7 +13,7 @@ export const behaviorLogSchema = logBaseSchema.extend({
   // Behavior tracked logs are always displayed in the UI
   isDisplayable: z.literal(true),
   isAdjustment: z.boolean().default(false),
-  /** If true, Zara should respond to this behavior log */
+  /** If true, the assistant should respond to this behavior log */
   shouldZaraRespond: z.boolean().optional(),
   data: behaviorTrackingDataSchema.extend({
     /** Source of the log: scheduled debrief or manual entry */

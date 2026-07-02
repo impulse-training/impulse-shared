@@ -5,7 +5,7 @@ import { timestampSchema } from "../utils/timestampSchema";
  * Report produced by the daily AI-review job (impulse-functions
  * `scheduled_generateDailyReview`). It samples up to a handful of users who were
  * active on a given day, has an LLM judge review each user's WHOLE day (every
- * session + log: what Miro/Zara suggested, what the user did, what outcome was
+ * session + log: what the app suggested, what the user did, what outcome was
  * recorded), then runs a second LLM pass to roll the per-user verdicts up into a
  * day-level story for Impulse staff. Read-only QA over real production logs —
  * distinct from the pre-deploy LLM session tests and the structural

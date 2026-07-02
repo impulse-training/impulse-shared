@@ -193,20 +193,20 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         console.log("Debrief urge outcome resolved. Responding with AI.");
         return true;
     }
-    // Case: A behavior log was explicitly marked for Zara to respond, or has debrief system prompt set
+    // Case: A behavior log was explicitly marked for the assistant to respond, or has debrief system prompt set
     if (isNotDeleting && (0, log_1.logIsBehaviorLog)(afterData)) {
         // Respond if shouldZaraRespond was set
         if ((0, fields_1.fieldChanged)(beforeData, afterData, "shouldZaraRespond") &&
             afterData.shouldZaraRespond) {
-            console.log("Behavior log was explicitly marked for Zara to respond. Responding with AI.");
+            console.log("Behavior log was explicitly marked for the assistant to respond. Responding with AI.");
             return true;
         }
     }
-    // Case: A metric log was explicitly marked for Zara to respond (e.g. feeling discussion requested)
+    // Case: A metric log was explicitly marked for the assistant to respond (e.g. feeling discussion requested)
     if (isNotDeleting && (0, log_1.logIsMetricLog)(afterData)) {
         if ((0, fields_1.fieldChanged)(beforeData, afterData, "shouldZaraRespond") &&
             afterData.shouldZaraRespond) {
-            console.log("Metric log marked for Zara to respond. Responding with AI.");
+            console.log("Metric log marked for the assistant to respond. Responding with AI.");
             return true;
         }
     }

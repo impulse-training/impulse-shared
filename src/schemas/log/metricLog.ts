@@ -8,7 +8,7 @@ import { logBaseSchema } from "./base";
 export const metricLogSchema = logBaseSchema.extend({
   type: z.literal("metric"),
   isDisplayable: z.literal(true),
-  /** If true, Zara should respond to this metric log (e.g. feeling discussion requested) */
+  /** If true, the assistant should respond to this metric log (e.g. feeling discussion requested) */
   shouldZaraRespond: z.boolean().optional(),
   data: z.object({
     /** Reference to the metric document id */
