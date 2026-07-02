@@ -29,6 +29,11 @@ exports.userDataSchema = zod_1.z.object({
     // the derived engagement level (see getEngagementLevel in impulse-shared).
     lastActive: timestampSchema_1.timestampSchema.optional(),
     lastLogin: timestampSchema_1.timestampSchema.optional(),
+    // Set true the first time we respond to one of the user's messages. Marks a
+    // user as having genuinely engaged (had a conversation) even if they never
+    // created a behavior — gates markInactiveUsersForDeletion so such accounts
+    // are never treated as dead signups.
+    hasEverEngaged: zod_1.z.boolean().optional(),
     // Authentication
     recoveryKeyHash: zod_1.z.string().optional(),
     defaultSessionMode: zod_1.z.enum(["text", "voice"]).default("text"),

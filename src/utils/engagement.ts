@@ -67,20 +67,28 @@ const toMillis = (value: DateLike): number | null => {
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 const MS_PER_MINUTE = 60 * 1000;
 
-/** A user "activated" once they created at least one (unmerged) behavior. */
-const hasActivated = (user: { behaviorNames?: readonly string[] }): boolean =>
-  (user.behaviorNames?.length ?? 0) > 0;
+/**
+ * A user has "activated" once they genuinely engaged: `hasEverEngaged` (set the
+ * first time we respond to a message) is the canonical signal; having created a
+ * behavior is kept as a fallback so a behavior-holder whose flag isn't set can't
+ * be mislabeled as a ghost.
+ */
+const hasActivated = (user: {
+  hasEverEngaged?: boolean;
+  behaviorNames?: readonly string[];
+}): boolean =>
+  user.hasEverEngaged === true || (user.behaviorNames?.length ?? 0) > 0;
 
 /**
  * Derive a user's engagement level.
  *
- * Two axes, not one. First an ACTIVATION gate: a user who never created a
- * behavior isn't on the recency ladder at all — they're `new` within the first
+ * Two axes, not one. First an ACTIVATION gate: a user who never genuinely
+ * engaged isn't on the recency ladder at all — they're `new` within the first
  * `ACTIVATION_GRACE_MINUTES` after signup (still plausibly onboarding), and
- * `ghost` after that (a dead signup). This mirrors the markedForDeletion flow's
- * definition of a real user (`userHasBehaviors`); `behaviorNames` is the
- * denormalized in-doc mirror of it. The gate fires regardless of how recently
- * the app was opened — opening the app and doing nothing doesn't make you real.
+ * `ghost` after that (a dead signup). Activation uses `hasEverEngaged` (set when
+ * we first respond to a message) with a behavior fallback — the same definition
+ * that gates markedForDeletion. The gate fires regardless of how recently the
+ * app was opened — opening the app and doing nothing doesn't make you real.
  *
  * Only once activated do we classify by RECENCY, using the freshest of
  * `lastActive` / `lastLogin` / `createdAt`. Accepts Firestore Timestamps,
@@ -91,6 +99,7 @@ export function getEngagementLevel(
     lastActive?: DateLike;
     lastLogin?: DateLike;
     createdAt?: DateLike;
+    hasEverEngaged?: boolean;
     behaviorNames?: readonly string[];
   },
   now: DateLike = new Date(),

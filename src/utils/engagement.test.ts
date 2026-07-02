@@ -80,6 +80,14 @@ describe("getEngagementLevel", () => {
     it("stays benign (`new`) when there is no timestamp at all", () => {
       expect(getEngagementLevel({}, NOW)).toBe("new");
     });
+
+    it("treats hasEverEngaged as activated even with no behavior", () => {
+      // Engaged (had a conversation) but never created a behavior => recency ladder.
+      expect(getEngagementLevel({ hasEverEngaged: true, lastActive: daysAgo(0) }, NOW)).toBe("engaged");
+      expect(getEngagementLevel({ hasEverEngaged: true, createdAt: daysAgo(90) }, NOW)).toBe("churned");
+      // Flag explicitly false and no behavior is still un-activated.
+      expect(getEngagementLevel({ hasEverEngaged: false, createdAt: daysAgo(1) }, NOW)).toBe("ghost");
+    });
   });
 
   it("shouldSendRecap only for engaged users", () => {

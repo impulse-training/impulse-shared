@@ -33,6 +33,12 @@ export const userDataSchema = z.object({
   lastActive: timestampSchema.optional(),
   lastLogin: timestampSchema.optional(),
 
+  // Set true the first time we respond to one of the user's messages. Marks a
+  // user as having genuinely engaged (had a conversation) even if they never
+  // created a behavior — gates markInactiveUsersForDeletion so such accounts
+  // are never treated as dead signups.
+  hasEverEngaged: z.boolean().optional(),
+
   // Authentication
   recoveryKeyHash: z.string().optional(),
 
