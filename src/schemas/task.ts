@@ -193,14 +193,16 @@ export const collectBaselineTaskSchema = taskBaseSchema.extend({
 });
 
 /**
- * User-scoped persistence of the impulse-mode / shortcut setup step. Created
- * when a user taps "Set up later" on the shortcut_setup_intro card during
- * onboarding, so the setup is not lost with the onboarding session and is
- * resurfaced (claimed) in the user's next recap. Rendering is handled by the
- * existing `show_impulse_mode_intro` deterministic handler in impulse-functions.
+ * The durable user-scoped "set up in-the-moment access" task — the parent of
+ * the concrete install steps (setup_back_tap_shortcut / setup_widget). It is
+ * generated up front for a new user, claimed into their onboarding session,
+ * and — if never completed there — re-claimed by later recaps. Completed only
+ * on real proof (an impulse_started log) or superseded by an explicit skip.
+ * Rendering is handled by the `setup_shortcut` deterministic handler in
+ * impulse-functions. (Renamed from `show_impulse_mode_intro` 2026-07.)
  */
-export const showImpulseModeIntroTaskSchema = taskBaseSchema.extend({
-  type: z.literal("show_impulse_mode_intro"),
+export const setupShortcutTaskSchema = taskBaseSchema.extend({
+  type: z.literal("setup_shortcut"),
   /** Which setup card to show; if absent it is recomputed from behaviors. */
   shortcutType: z.enum(["back_tap", "lock_screen_widget"]).optional(),
   /** Marks this as a returning nudge so the card copy can be tailored. */
@@ -219,7 +221,7 @@ export const taskSchema = z.discriminatedUnion("type", [
   suggestTacticTaskSchema,
   reflectOnMetricsTaskSchema,
   collectBaselineTaskSchema,
-  showImpulseModeIntroTaskSchema,
+  setupShortcutTaskSchema,
 ]);
 
 export type TaskCategory = z.infer<typeof taskCategorySchema>;
@@ -236,9 +238,7 @@ export type ToolkitPlanningTask = z.infer<typeof toolkitPlanningTaskSchema>;
 export type SuggestTacticTask = z.infer<typeof suggestTacticTaskSchema>;
 export type ReflectOnMetricsTask = z.infer<typeof reflectOnMetricsTaskSchema>;
 export type CollectBaselineTask = z.infer<typeof collectBaselineTaskSchema>;
-export type ShowImpulseModeIntroTask = z.infer<
-  typeof showImpulseModeIntroTaskSchema
->;
+export type SetupShortcutTask = z.infer<typeof setupShortcutTaskSchema>;
 export type Task = z.infer<typeof taskSchema>;
 
 export const isTask = (value: unknown): value is Task =>
@@ -289,7 +289,7 @@ export const isReflectOnMetricsTask = (
 ): value is ReflectOnMetricsTask =>
   reflectOnMetricsTaskSchema.safeParse(value).success;
 
-export const isShowImpulseModeIntroTask = (
+export const isSetupShortcutTask = (
   value: unknown,
-): value is ShowImpulseModeIntroTask =>
-  showImpulseModeIntroTaskSchema.safeParse(value).success;
+): value is SetupShortcutTask =>
+  setupShortcutTaskSchema.safeParse(value).success;

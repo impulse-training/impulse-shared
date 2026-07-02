@@ -1287,13 +1287,15 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
     dismissedAt?: import("../types").Timestamp | undefined;
 }>;
 /**
- * User-scoped persistence of the impulse-mode / shortcut setup step. Created
- * when a user taps "Set up later" on the shortcut_setup_intro card during
- * onboarding, so the setup is not lost with the onboarding session and is
- * resurfaced (claimed) in the user's next recap. Rendering is handled by the
- * existing `show_impulse_mode_intro` deterministic handler in impulse-functions.
+ * The durable user-scoped "set up in-the-moment access" task — the parent of
+ * the concrete install steps (setup_back_tap_shortcut / setup_widget). It is
+ * generated up front for a new user, claimed into their onboarding session,
+ * and — if never completed there — re-claimed by later recaps. Completed only
+ * on real proof (an impulse_started log) or superseded by an explicit skip.
+ * Rendering is handled by the `setup_shortcut` deterministic handler in
+ * impulse-functions. (Renamed from `show_impulse_mode_intro` 2026-07.)
  */
-export declare const showImpulseModeIntroTaskSchema: z.ZodObject<{
+export declare const setupShortcutTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
     category: z.ZodDefault<z.ZodEnum<["zara", "deterministic"]>>;
@@ -1312,7 +1314,7 @@ export declare const showImpulseModeIntroTaskSchema: z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 } & {
-    type: z.ZodLiteral<"show_impulse_mode_intro">;
+    type: z.ZodLiteral<"setup_shortcut">;
     /** Which setup card to show; if absent it is recomputed from behaviors. */
     shortcutType: z.ZodOptional<z.ZodEnum<["back_tap", "lock_screen_widget"]>>;
     /** Marks this as a returning nudge so the card copy can be tailored. */
@@ -1320,7 +1322,7 @@ export declare const showImpulseModeIntroTaskSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
-    type: "show_impulse_mode_intro";
+    type: "setup_shortcut";
     status: "completed" | "dismissed" | "open";
     userId: string;
     title: string;
@@ -1341,7 +1343,7 @@ export declare const showImpulseModeIntroTaskSchema: z.ZodObject<{
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
-    type: "show_impulse_mode_intro";
+    type: "setup_shortcut";
     userId: string;
     title: string;
     instructions: string;
@@ -2584,7 +2586,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
 } & {
-    type: z.ZodLiteral<"show_impulse_mode_intro">;
+    type: z.ZodLiteral<"setup_shortcut">;
     /** Which setup card to show; if absent it is recomputed from behaviors. */
     shortcutType: z.ZodOptional<z.ZodEnum<["back_tap", "lock_screen_widget"]>>;
     /** Marks this as a returning nudge so the card copy can be tailored. */
@@ -2592,7 +2594,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
-    type: "show_impulse_mode_intro";
+    type: "setup_shortcut";
     status: "completed" | "dismissed" | "open";
     userId: string;
     title: string;
@@ -2613,7 +2615,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
-    type: "show_impulse_mode_intro";
+    type: "setup_shortcut";
     userId: string;
     title: string;
     instructions: string;
@@ -2646,7 +2648,7 @@ export type ToolkitPlanningTask = z.infer<typeof toolkitPlanningTaskSchema>;
 export type SuggestTacticTask = z.infer<typeof suggestTacticTaskSchema>;
 export type ReflectOnMetricsTask = z.infer<typeof reflectOnMetricsTaskSchema>;
 export type CollectBaselineTask = z.infer<typeof collectBaselineTaskSchema>;
-export type ShowImpulseModeIntroTask = z.infer<typeof showImpulseModeIntroTaskSchema>;
+export type SetupShortcutTask = z.infer<typeof setupShortcutTaskSchema>;
 export type Task = z.infer<typeof taskSchema>;
 export declare const isTask: (value: unknown) => value is Task;
 export declare const isMergeBehaviorsTask: (value: unknown) => value is MergeBehaviorsTask;
@@ -2658,4 +2660,4 @@ export declare const isReviewTriggerTask: (value: unknown) => value is ReviewTri
 export declare const isToolkitPlanningTask: (value: unknown) => value is ToolkitPlanningTask;
 export declare const isSuggestTacticTask: (value: unknown) => value is SuggestTacticTask;
 export declare const isReflectOnMetricsTask: (value: unknown) => value is ReflectOnMetricsTask;
-export declare const isShowImpulseModeIntroTask: (value: unknown) => value is ShowImpulseModeIntroTask;
+export declare const isSetupShortcutTask: (value: unknown) => value is SetupShortcutTask;

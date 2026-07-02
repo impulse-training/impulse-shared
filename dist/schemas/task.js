@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isShowImpulseModeIntroTask = exports.isReflectOnMetricsTask = exports.isSuggestTacticTask = exports.isToolkitPlanningTask = exports.isReviewTriggerTask = exports.isRecapQuestionTask = exports.isProposeMaskBehaviorTask = exports.isProposeExperimentTask = exports.isSuggestStrategyTask = exports.isMergeBehaviorsTask = exports.isTask = exports.taskSchema = exports.showImpulseModeIntroTaskSchema = exports.collectBaselineTaskSchema = exports.reflectOnMetricsTaskSchema = exports.suggestTacticTaskSchema = exports.toolkitPlanningTaskSchema = exports.reviewTriggerTaskSchema = exports.recapQuestionTaskSchema = exports.createSessionTaskSchema = exports.proposeMaskBehaviorTaskSchema = exports.proposeExperimentTaskSchema = exports.proposedMetricSchema = exports.suggestStrategyTaskSchema = exports.mergeBehaviorsTaskSchema = exports.taskBaseSchema = exports.claimableSessionTypeSchema = exports.taskCategorySchema = exports.taskStatusSchema = void 0;
+exports.isSetupShortcutTask = exports.isReflectOnMetricsTask = exports.isSuggestTacticTask = exports.isToolkitPlanningTask = exports.isReviewTriggerTask = exports.isRecapQuestionTask = exports.isProposeMaskBehaviorTask = exports.isProposeExperimentTask = exports.isSuggestStrategyTask = exports.isMergeBehaviorsTask = exports.isTask = exports.taskSchema = exports.setupShortcutTaskSchema = exports.collectBaselineTaskSchema = exports.reflectOnMetricsTaskSchema = exports.suggestTacticTaskSchema = exports.toolkitPlanningTaskSchema = exports.reviewTriggerTaskSchema = exports.recapQuestionTaskSchema = exports.createSessionTaskSchema = exports.proposeMaskBehaviorTaskSchema = exports.proposeExperimentTaskSchema = exports.proposedMetricSchema = exports.suggestStrategyTaskSchema = exports.mergeBehaviorsTaskSchema = exports.taskBaseSchema = exports.claimableSessionTypeSchema = exports.taskCategorySchema = exports.taskStatusSchema = void 0;
 const zod_1 = require("zod");
 const timestampSchema_1 = require("../utils/timestampSchema");
 exports.taskStatusSchema = zod_1.z.enum(["open", "completed", "dismissed"]);
@@ -176,14 +176,16 @@ exports.collectBaselineTaskSchema = exports.taskBaseSchema.extend({
     behaviorId: zod_1.z.string().min(1),
 });
 /**
- * User-scoped persistence of the impulse-mode / shortcut setup step. Created
- * when a user taps "Set up later" on the shortcut_setup_intro card during
- * onboarding, so the setup is not lost with the onboarding session and is
- * resurfaced (claimed) in the user's next recap. Rendering is handled by the
- * existing `show_impulse_mode_intro` deterministic handler in impulse-functions.
+ * The durable user-scoped "set up in-the-moment access" task — the parent of
+ * the concrete install steps (setup_back_tap_shortcut / setup_widget). It is
+ * generated up front for a new user, claimed into their onboarding session,
+ * and — if never completed there — re-claimed by later recaps. Completed only
+ * on real proof (an impulse_started log) or superseded by an explicit skip.
+ * Rendering is handled by the `setup_shortcut` deterministic handler in
+ * impulse-functions. (Renamed from `show_impulse_mode_intro` 2026-07.)
  */
-exports.showImpulseModeIntroTaskSchema = exports.taskBaseSchema.extend({
-    type: zod_1.z.literal("show_impulse_mode_intro"),
+exports.setupShortcutTaskSchema = exports.taskBaseSchema.extend({
+    type: zod_1.z.literal("setup_shortcut"),
     /** Which setup card to show; if absent it is recomputed from behaviors. */
     shortcutType: zod_1.z.enum(["back_tap", "lock_screen_widget"]).optional(),
     /** Marks this as a returning nudge so the card copy can be tailored. */
@@ -201,7 +203,7 @@ exports.taskSchema = zod_1.z.discriminatedUnion("type", [
     exports.suggestTacticTaskSchema,
     exports.reflectOnMetricsTaskSchema,
     exports.collectBaselineTaskSchema,
-    exports.showImpulseModeIntroTaskSchema,
+    exports.setupShortcutTaskSchema,
 ]);
 const isTask = (value) => exports.taskSchema.safeParse(value).success;
 exports.isTask = isTask;
@@ -223,5 +225,5 @@ const isSuggestTacticTask = (value) => exports.suggestTacticTaskSchema.safeParse
 exports.isSuggestTacticTask = isSuggestTacticTask;
 const isReflectOnMetricsTask = (value) => exports.reflectOnMetricsTaskSchema.safeParse(value).success;
 exports.isReflectOnMetricsTask = isReflectOnMetricsTask;
-const isShowImpulseModeIntroTask = (value) => exports.showImpulseModeIntroTaskSchema.safeParse(value).success;
-exports.isShowImpulseModeIntroTask = isShowImpulseModeIntroTask;
+const isSetupShortcutTask = (value) => exports.setupShortcutTaskSchema.safeParse(value).success;
+exports.isSetupShortcutTask = isSetupShortcutTask;
