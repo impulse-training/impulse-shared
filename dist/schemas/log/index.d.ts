@@ -383,6 +383,7 @@ export declare const logSchemas: {
         }>;
     } & {
         type: z.ZodLiteral<"assistant_message">;
+        isPartial: z.ZodOptional<z.ZodBoolean>;
     }, "strip", z.ZodTypeAny, {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -400,6 +401,7 @@ export declare const logSchemas: {
         tacticId?: string | undefined;
         impulseId?: string | undefined;
         respondingToLogId?: string | undefined;
+        isPartial?: boolean | undefined;
     }, {
         createdAt: import("../../types").Timestamp;
         updatedAt: import("../../types").Timestamp;
@@ -417,6 +419,7 @@ export declare const logSchemas: {
         tacticId?: string | undefined;
         impulseId?: string | undefined;
         respondingToLogId?: string | undefined;
+        isPartial?: boolean | undefined;
     }>;
     system_message: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
@@ -32444,6 +32447,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     }>;
 } & {
     type: z.ZodLiteral<"assistant_message">;
+    isPartial: z.ZodOptional<z.ZodBoolean>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
@@ -32461,6 +32465,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     tacticId?: string | undefined;
     impulseId?: string | undefined;
     respondingToLogId?: string | undefined;
+    isPartial?: boolean | undefined;
 }, {
     createdAt: import("../../types").Timestamp;
     updatedAt: import("../../types").Timestamp;
@@ -32478,6 +32483,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     tacticId?: string | undefined;
     impulseId?: string | undefined;
     respondingToLogId?: string | undefined;
+    isPartial?: boolean | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;

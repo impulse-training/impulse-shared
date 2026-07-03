@@ -21,6 +21,7 @@ export declare const assistantMessageLogSchema: z.ZodObject<{
     }>;
 } & {
     type: z.ZodLiteral<"assistant_message">;
+    isPartial: z.ZodOptional<z.ZodBoolean>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../../types").Timestamp;
     updatedAt: import("../../../types").Timestamp;
@@ -38,6 +39,7 @@ export declare const assistantMessageLogSchema: z.ZodObject<{
     tacticId?: string | undefined;
     impulseId?: string | undefined;
     respondingToLogId?: string | undefined;
+    isPartial?: boolean | undefined;
 }, {
     createdAt: import("../../../types").Timestamp;
     updatedAt: import("../../../types").Timestamp;
@@ -55,5 +57,6 @@ export declare const assistantMessageLogSchema: z.ZodObject<{
     tacticId?: string | undefined;
     impulseId?: string | undefined;
     respondingToLogId?: string | undefined;
+    isPartial?: boolean | undefined;
 }>;
 export type AssistantMessageLog = z.infer<typeof assistantMessageLogSchema>;
