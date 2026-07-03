@@ -64,6 +64,16 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         !!afterData.data.discussRequestedAt &&
         (!(0, log_1.logIsDayTotalsPromptLog)(beforeData) ||
             !beforeData.data.discussRequestedAt);
+    // Day totals confirmed via the totals card — no user message is sent, so
+    // this must bypass the "latest is assistant" guard. In pending-task recaps
+    // the intro assistant message ("I have a couple of things to look at...")
+    // is the latest session log at confirm time; without this exclusion the
+    // confirmation is swallowed and the recap AI never responds.
+    const isDayTotalsConfirmed = beforeData &&
+        afterData &&
+        (0, log_1.logIsDayTotalsPromptLog)(afterData) &&
+        !!afterData.data.confirmedAt &&
+        (!(0, log_1.logIsDayTotalsPromptLog)(beforeData) || !beforeData.data.confirmedAt);
     const isSetupModeTextChoice = beforeData &&
         afterData &&
         (0, log_1.logIsSetupModeChoiceLog)(afterData) &&
@@ -113,6 +123,7 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
     if (!isMetricRating &&
         !isDebriefOutcomeResolved &&
         !isDayTotalsDiscussRequested &&
+        !isDayTotalsConfirmed &&
         !isSetupModeTextChoice &&
         !isShortcutSetupTextChoice &&
         !isTacticCompleted &&
@@ -221,13 +232,7 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
     }
     // Case: Day totals confirmed — the day_totals_prompt log is updated with confirmedAt.
     // Trigger experiment reflection. Only respond if within the recap deadline (10am next day).
-    if (isUpdating &&
-        afterData &&
-        (0, log_1.logIsDayTotalsPromptLog)(afterData) &&
-        afterData.data.confirmedAt &&
-        (!beforeData ||
-            !(0, log_1.logIsDayTotalsPromptLog)(beforeData) ||
-            !beforeData.data.confirmedAt)) {
+    if (isDayTotalsConfirmed && (0, log_1.logIsDayTotalsPromptLog)(afterData)) {
         const dateStr = afterData.data.targetDateString;
         const now = new Date();
         const todayStr = timezone

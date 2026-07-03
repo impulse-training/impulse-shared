@@ -111,6 +111,18 @@ export function shouldRespondToLogWithAI(
     (!logIsDayTotalsPromptLog(beforeData) ||
       !beforeData.data.discussRequestedAt);
 
+  // Day totals confirmed via the totals card — no user message is sent, so
+  // this must bypass the "latest is assistant" guard. In pending-task recaps
+  // the intro assistant message ("I have a couple of things to look at...")
+  // is the latest session log at confirm time; without this exclusion the
+  // confirmation is swallowed and the recap AI never responds.
+  const isDayTotalsConfirmed =
+    beforeData &&
+    afterData &&
+    logIsDayTotalsPromptLog(afterData) &&
+    !!afterData.data.confirmedAt &&
+    (!logIsDayTotalsPromptLog(beforeData) || !beforeData.data.confirmedAt);
+
   const isSetupModeTextChoice =
     beforeData &&
     afterData &&
@@ -181,6 +193,7 @@ export function shouldRespondToLogWithAI(
     !isMetricRating &&
     !isDebriefOutcomeResolved &&
     !isDayTotalsDiscussRequested &&
+    !isDayTotalsConfirmed &&
     !isSetupModeTextChoice &&
     !isShortcutSetupTextChoice &&
     !isTacticCompleted &&
@@ -328,15 +341,7 @@ export function shouldRespondToLogWithAI(
 
   // Case: Day totals confirmed — the day_totals_prompt log is updated with confirmedAt.
   // Trigger experiment reflection. Only respond if within the recap deadline (10am next day).
-  if (
-    isUpdating &&
-    afterData &&
-    logIsDayTotalsPromptLog(afterData) &&
-    afterData.data.confirmedAt &&
-    (!beforeData ||
-      !logIsDayTotalsPromptLog(beforeData) ||
-      !beforeData.data.confirmedAt)
-  ) {
+  if (isDayTotalsConfirmed && logIsDayTotalsPromptLog(afterData)) {
     const dateStr = afterData.data.targetDateString;
     const now = new Date();
     const todayStr = timezone

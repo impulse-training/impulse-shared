@@ -111,3 +111,57 @@ describe("shouldRespondToLogWithAI — debrief question", () => {
     ).toBe(false);
   });
 });
+
+describe("shouldRespondToLogWithAI — day totals confirmed", () => {
+  const recapSession = {
+    id: "2026-07-02",
+    type: "recap",
+  } as unknown as WithId<Session>;
+
+  const promptLog = (targetDateString: string, confirmed: boolean) =>
+    ({
+      type: "day_totals_prompt",
+      data: {
+        targetDateString,
+        ...(confirmed ? { confirmedAt: ts(1783083799) } : {}),
+      },
+    }) as unknown as Log;
+
+  const todayUTC = new Date().toISOString().slice(0, 10);
+
+  it("responds when totals are confirmed even if the latest session log is an assistant message (pending-task recap intro)", () => {
+    expect(
+      shouldRespondToLogWithAI(
+        recapSession,
+        promptLog(todayUTC, false),
+        promptLog(todayUTC, true),
+        assistantLog,
+        "UTC",
+      ),
+    ).toBe(true);
+  });
+
+  it("does not respond to a plain updatedAt bump on the prompt log when the latest log is an assistant message", () => {
+    expect(
+      shouldRespondToLogWithAI(
+        recapSession,
+        promptLog(todayUTC, false),
+        promptLog(todayUTC, false),
+        assistantLog,
+        "UTC",
+      ),
+    ).toBe(false);
+  });
+
+  it("still does not respond when totals are confirmed past the recap deadline", () => {
+    expect(
+      shouldRespondToLogWithAI(
+        recapSession,
+        promptLog("2020-01-01", false),
+        promptLog("2020-01-01", true),
+        assistantLog,
+        "UTC",
+      ),
+    ).toBe(false);
+  });
+});
