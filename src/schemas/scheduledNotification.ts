@@ -92,8 +92,10 @@ export const scheduledNotificationFollowUpSchema = z.object({
   // Push copy for the follow-up.
   title: z.string(),
   body: z.string(),
-  // Assistant messages appended to the session, in order.
-  messages: z.array(z.string()).min(1),
+  // Assistant messages appended to the session, in order. Empty = push-only
+  // follow-up: the notification deep-links back to the session without adding
+  // to it (a re-nudge at the same content, not a new drip beat).
+  messages: z.array(z.string()),
   link: outreachLinkSchema.optional(),
 });
 export type ScheduledNotificationFollowUp = z.infer<
