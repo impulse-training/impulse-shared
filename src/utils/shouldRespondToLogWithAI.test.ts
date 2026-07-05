@@ -112,6 +112,62 @@ describe("shouldRespondToLogWithAI — debrief question", () => {
   });
 });
 
+describe("shouldRespondToLogWithAI — impulse button re-press", () => {
+  const repressLog = {
+    type: "impulse_started",
+    isDisplayable: true,
+    data: { repress: true },
+  } as unknown as Log;
+
+  const initialImpulseStartedLog = {
+    type: "impulse_started",
+    isDisplayable: true,
+    data: {},
+  } as unknown as Log;
+
+  it("responds to a repress log even when the latest log is assistant output", () => {
+    expect(
+      shouldRespondToLogWithAI(impulseSession, undefined, repressLog, assistantLog),
+    ).toBe(true);
+  });
+
+  it("responds to a repress log when the latest log is a pending tactic card", () => {
+    const pendingTacticLog = {
+      type: "tactic",
+      data: { tactic: { id: "talk-to-zara", title: "Talk it through" }, completed: false },
+    } as unknown as Log;
+    expect(
+      shouldRespondToLogWithAI(
+        impulseSession,
+        undefined,
+        repressLog,
+        pendingTacticLog,
+      ),
+    ).toBe(true);
+  });
+
+  it("does not respond to the initial impulse_started (no repress flag)", () => {
+    expect(
+      shouldRespondToLogWithAI(
+        impulseSession,
+        undefined,
+        initialImpulseStartedLog,
+        assistantLog,
+      ),
+    ).toBe(false);
+  });
+
+  it("does not respond to a repress log outside an impulse session", () => {
+    const recapSession = {
+      id: "2026-07-02",
+      type: "recap",
+    } as unknown as WithId<Session>;
+    expect(
+      shouldRespondToLogWithAI(recapSession, undefined, repressLog, assistantLog),
+    ).toBe(false);
+  });
+});
+
 describe("shouldRespondToLogWithAI — day totals confirmed", () => {
   const recapSession = {
     id: "2026-07-02",

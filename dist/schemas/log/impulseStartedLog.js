@@ -8,5 +8,9 @@ exports.impulseStartedLogSchema = base_1.logBaseSchema.extend({
     isDisplayable: zod_1.z.literal(true),
     data: zod_1.z.object({
         behaviorIds: zod_1.z.array(zod_1.z.string()).optional(),
+        // True when the user pressed the impulse button again while an existing
+        // recent impulse session was reused (instead of a new session being
+        // created). Signals the backend to respond — the urge is back/ongoing.
+        repress: zod_1.z.boolean().optional(),
     }),
 });

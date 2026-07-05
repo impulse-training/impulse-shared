@@ -1385,6 +1385,302 @@ export declare const logSchemas: {
                     }>>;
                     tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 } & {
+                    mode: z.ZodLiteral<"capture">;
+                    id: z.ZodOptional<z.ZodString>;
+                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    text: z.ZodString;
+                    placeholder: z.ZodOptional<z.ZodString>;
+                    behaviorId: z.ZodOptional<z.ZodString>;
+                }, "strip", z.ZodTypeAny, {
+                    text: string;
+                    mode: "capture";
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    behaviorId?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    placeholder?: string | undefined;
+                }, {
+                    text: string;
+                    mode: "capture";
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    behaviorId?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    placeholder?: string | undefined;
+                }>, z.ZodObject<{
+                    backgroundImage: z.ZodOptional<z.ZodObject<{
+                        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        uri: z.ZodString;
+                        storagePath: z.ZodString;
+                        contentType: z.ZodString;
+                        title: z.ZodOptional<z.ZodString>;
+                        sizeBytes: z.ZodOptional<z.ZodNumber>;
+                        metadata: z.ZodOptional<z.ZodObject<{
+                            width: z.ZodOptional<z.ZodNumber>;
+                            height: z.ZodOptional<z.ZodNumber>;
+                            durationMs: z.ZodOptional<z.ZodNumber>;
+                            transcript: z.ZodOptional<z.ZodString>;
+                            lyrics: z.ZodOptional<z.ZodString>;
+                            lyricsAlignment: z.ZodOptional<z.ZodObject<{
+                                words: z.ZodArray<z.ZodObject<{
+                                    text: z.ZodString;
+                                    startS: z.ZodNumber;
+                                    endS: z.ZodNumber;
+                                }, "strip", z.ZodTypeAny, {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }, {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }>, "many">;
+                                lines: z.ZodArray<z.ZodObject<{
+                                    text: z.ZodString;
+                                    startS: z.ZodNumber;
+                                    endS: z.ZodNumber;
+                                    wordStart: z.ZodNumber;
+                                    wordEnd: z.ZodNumber;
+                                }, "strip", z.ZodTypeAny, {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }, {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }>, "many">;
+                            }, "strip", z.ZodTypeAny, {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            }, {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            }>>;
+                            meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                                db: z.ZodNumber;
+                                timestampMs: z.ZodOptional<z.ZodNumber>;
+                            }, "strip", z.ZodTypeAny, {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }, {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }>, "many">>;
+                        }, "strip", z.ZodTypeAny, {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        }, {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        }>>;
+                    }, "strip", z.ZodTypeAny, {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }, {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }>>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                } & {
                     mode: z.ZodLiteral<"notifySupport">;
                     groupId: z.ZodString;
                     text: z.ZodString;
@@ -4256,6 +4552,49 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
+                    mode: "capture";
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    behaviorId?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    placeholder?: string | undefined;
+                } | {
+                    text: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -4723,6 +5062,8 @@ export declare const logSchemas: {
                 completionTrigger: z.ZodOptional<z.ZodEnum<["device-restart"]>>;
                 effectiveness: z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>;
                 timeToComplete: z.ZodOptional<z.ZodEnum<["quick", "medium", "long"]>>;
+                effort: z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>;
+                worksAnywhere: z.ZodOptional<z.ZodBoolean>;
                 aiConfiguration: z.ZodOptional<z.ZodObject<{
                     defaultConversationMode: z.ZodOptional<z.ZodEnum<["voice", "text"]>>;
                     goal: z.ZodString;
@@ -4907,6 +5248,49 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                } | {
+                    text: string;
+                    mode: "capture";
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    behaviorId?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    placeholder?: string | undefined;
                 } | {
                     text: string;
                     backgroundImage?: {
@@ -5288,6 +5672,8 @@ export declare const logSchemas: {
                 completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
+                effort?: "medium" | "low" | "high" | undefined;
+                worksAnywhere?: boolean | undefined;
                 aiConfiguration?: {
                     goal: string;
                     defaultConversationMode?: "text" | "voice" | undefined;
@@ -5358,6 +5744,8 @@ export declare const logSchemas: {
                 completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
+                effort?: "medium" | "low" | "high" | undefined;
+                worksAnywhere?: boolean | undefined;
                 aiConfiguration?: {
                     goal: string;
                     defaultConversationMode?: "text" | "voice" | undefined;
@@ -5546,6 +5934,49 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
+                    mode: "capture";
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    behaviorId?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    placeholder?: string | undefined;
+                } | {
+                    text: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -5925,6 +6356,8 @@ export declare const logSchemas: {
                 completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
+                effort?: "medium" | "low" | "high" | undefined;
+                worksAnywhere?: boolean | undefined;
                 aiConfiguration?: {
                     goal: string;
                     defaultConversationMode?: "text" | "voice" | undefined;
@@ -6005,6 +6438,8 @@ export declare const logSchemas: {
                 completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
+                effort?: "medium" | "low" | "high" | undefined;
+                worksAnywhere?: boolean | undefined;
                 aiConfiguration?: {
                     goal: string;
                     defaultConversationMode?: "text" | "voice" | undefined;
@@ -6201,6 +6636,49 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
+                    mode: "capture";
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    behaviorId?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    placeholder?: string | undefined;
+                } | {
+                    text: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -6580,6 +7058,8 @@ export declare const logSchemas: {
                 completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
+                effort?: "medium" | "low" | "high" | undefined;
+                worksAnywhere?: boolean | undefined;
                 aiConfiguration?: {
                     goal: string;
                     defaultConversationMode?: "text" | "voice" | undefined;
@@ -6675,6 +7155,8 @@ export declare const logSchemas: {
                 completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
+                effort?: "medium" | "low" | "high" | undefined;
+                worksAnywhere?: boolean | undefined;
                 aiConfiguration?: {
                     goal: string;
                     defaultConversationMode?: "text" | "voice" | undefined;
@@ -7718,6 +8200,302 @@ export declare const logSchemas: {
                     }>>;
                     tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 } & {
+                    mode: z.ZodLiteral<"capture">;
+                    id: z.ZodOptional<z.ZodString>;
+                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    text: z.ZodString;
+                    placeholder: z.ZodOptional<z.ZodString>;
+                    behaviorId: z.ZodOptional<z.ZodString>;
+                }, "strip", z.ZodTypeAny, {
+                    text: string;
+                    mode: "capture";
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    behaviorId?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    placeholder?: string | undefined;
+                }, {
+                    text: string;
+                    mode: "capture";
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    behaviorId?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    placeholder?: string | undefined;
+                }>, z.ZodObject<{
+                    backgroundImage: z.ZodOptional<z.ZodObject<{
+                        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        uri: z.ZodString;
+                        storagePath: z.ZodString;
+                        contentType: z.ZodString;
+                        title: z.ZodOptional<z.ZodString>;
+                        sizeBytes: z.ZodOptional<z.ZodNumber>;
+                        metadata: z.ZodOptional<z.ZodObject<{
+                            width: z.ZodOptional<z.ZodNumber>;
+                            height: z.ZodOptional<z.ZodNumber>;
+                            durationMs: z.ZodOptional<z.ZodNumber>;
+                            transcript: z.ZodOptional<z.ZodString>;
+                            lyrics: z.ZodOptional<z.ZodString>;
+                            lyricsAlignment: z.ZodOptional<z.ZodObject<{
+                                words: z.ZodArray<z.ZodObject<{
+                                    text: z.ZodString;
+                                    startS: z.ZodNumber;
+                                    endS: z.ZodNumber;
+                                }, "strip", z.ZodTypeAny, {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }, {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }>, "many">;
+                                lines: z.ZodArray<z.ZodObject<{
+                                    text: z.ZodString;
+                                    startS: z.ZodNumber;
+                                    endS: z.ZodNumber;
+                                    wordStart: z.ZodNumber;
+                                    wordEnd: z.ZodNumber;
+                                }, "strip", z.ZodTypeAny, {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }, {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }>, "many">;
+                            }, "strip", z.ZodTypeAny, {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            }, {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            }>>;
+                            meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                                db: z.ZodNumber;
+                                timestampMs: z.ZodOptional<z.ZodNumber>;
+                            }, "strip", z.ZodTypeAny, {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }, {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }>, "many">>;
+                        }, "strip", z.ZodTypeAny, {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        }, {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        }>>;
+                    }, "strip", z.ZodTypeAny, {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }, {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }>>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                } & {
                     mode: z.ZodLiteral<"notifySupport">;
                     groupId: z.ZodString;
                     text: z.ZodString;
@@ -10589,6 +11367,49 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
+                    mode: "capture";
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    behaviorId?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    placeholder?: string | undefined;
+                } | {
+                    text: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -11056,6 +11877,8 @@ export declare const logSchemas: {
                 completionTrigger: z.ZodOptional<z.ZodEnum<["device-restart"]>>;
                 effectiveness: z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>;
                 timeToComplete: z.ZodOptional<z.ZodEnum<["quick", "medium", "long"]>>;
+                effort: z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>;
+                worksAnywhere: z.ZodOptional<z.ZodBoolean>;
                 aiConfiguration: z.ZodOptional<z.ZodObject<{
                     defaultConversationMode: z.ZodOptional<z.ZodEnum<["voice", "text"]>>;
                     goal: z.ZodString;
@@ -11240,6 +12063,49 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                } | {
+                    text: string;
+                    mode: "capture";
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    behaviorId?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    placeholder?: string | undefined;
                 } | {
                     text: string;
                     backgroundImage?: {
@@ -11621,6 +12487,8 @@ export declare const logSchemas: {
                 completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
+                effort?: "medium" | "low" | "high" | undefined;
+                worksAnywhere?: boolean | undefined;
                 aiConfiguration?: {
                     goal: string;
                     defaultConversationMode?: "text" | "voice" | undefined;
@@ -11691,6 +12559,8 @@ export declare const logSchemas: {
                 completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
+                effort?: "medium" | "low" | "high" | undefined;
+                worksAnywhere?: boolean | undefined;
                 aiConfiguration?: {
                     goal: string;
                     defaultConversationMode?: "text" | "voice" | undefined;
@@ -11710,6 +12580,7 @@ export declare const logSchemas: {
             stepCount: z.ZodOptional<z.ZodNumber>;
             completedStepIndexes: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
             completed: z.ZodOptional<z.ZodBoolean>;
+            autoAdvanced: z.ZodOptional<z.ZodBoolean>;
             response: z.ZodOptional<z.ZodObject<{
                 responseType: z.ZodEnum<["text", "choice", "slider1To10"]>;
                 value: z.ZodUnion<[z.ZodString, z.ZodNumber]>;
@@ -12093,6 +12964,49 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
+                    mode: "capture";
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    behaviorId?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    placeholder?: string | undefined;
+                } | {
+                    text: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -12472,6 +13386,8 @@ export declare const logSchemas: {
                 completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
+                effort?: "medium" | "low" | "high" | undefined;
+                worksAnywhere?: boolean | undefined;
                 aiConfiguration?: {
                     goal: string;
                     defaultConversationMode?: "text" | "voice" | undefined;
@@ -12491,6 +13407,7 @@ export declare const logSchemas: {
             planLogId?: string | undefined;
             stepCount?: number | undefined;
             completedStepIndexes?: number[] | undefined;
+            autoAdvanced?: boolean | undefined;
             response?: {
                 value: string | number;
                 formattedValue: string;
@@ -12594,6 +13511,8 @@ export declare const logSchemas: {
                 completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
+                effort?: "medium" | "low" | "high" | undefined;
+                worksAnywhere?: boolean | undefined;
                 aiConfiguration?: {
                     goal: string;
                     defaultConversationMode?: "text" | "voice" | undefined;
@@ -12613,6 +13532,7 @@ export declare const logSchemas: {
             planLogId?: string | undefined;
             stepCount?: number | undefined;
             completedStepIndexes?: number[] | undefined;
+            autoAdvanced?: boolean | undefined;
             response?: {
                 value: string | number;
                 formattedValue: string;
@@ -12832,6 +13752,49 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
+                    mode: "capture";
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    behaviorId?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    placeholder?: string | undefined;
+                } | {
+                    text: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -13211,6 +14174,8 @@ export declare const logSchemas: {
                 completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
+                effort?: "medium" | "low" | "high" | undefined;
+                worksAnywhere?: boolean | undefined;
                 aiConfiguration?: {
                     goal: string;
                     defaultConversationMode?: "text" | "voice" | undefined;
@@ -13230,6 +14195,7 @@ export declare const logSchemas: {
             planLogId?: string | undefined;
             stepCount?: number | undefined;
             completedStepIndexes?: number[] | undefined;
+            autoAdvanced?: boolean | undefined;
             response?: {
                 value: string | number;
                 formattedValue: string;
@@ -13348,6 +14314,8 @@ export declare const logSchemas: {
                 completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
+                effort?: "medium" | "low" | "high" | undefined;
+                worksAnywhere?: boolean | undefined;
                 aiConfiguration?: {
                     goal: string;
                     defaultConversationMode?: "text" | "voice" | undefined;
@@ -13367,6 +14335,7 @@ export declare const logSchemas: {
             planLogId?: string | undefined;
             stepCount?: number | undefined;
             completedStepIndexes?: number[] | undefined;
+            autoAdvanced?: boolean | undefined;
             response?: {
                 value: string | number;
                 formattedValue: string;
@@ -14262,6 +15231,302 @@ export declare const logSchemas: {
                     }>>;
                     tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
                 } & {
+                    mode: z.ZodLiteral<"capture">;
+                    id: z.ZodOptional<z.ZodString>;
+                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    text: z.ZodString;
+                    placeholder: z.ZodOptional<z.ZodString>;
+                    behaviorId: z.ZodOptional<z.ZodString>;
+                }, "strip", z.ZodTypeAny, {
+                    text: string;
+                    mode: "capture";
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    behaviorId?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    placeholder?: string | undefined;
+                }, {
+                    text: string;
+                    mode: "capture";
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    behaviorId?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    placeholder?: string | undefined;
+                }>, z.ZodObject<{
+                    backgroundImage: z.ZodOptional<z.ZodObject<{
+                        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        uri: z.ZodString;
+                        storagePath: z.ZodString;
+                        contentType: z.ZodString;
+                        title: z.ZodOptional<z.ZodString>;
+                        sizeBytes: z.ZodOptional<z.ZodNumber>;
+                        metadata: z.ZodOptional<z.ZodObject<{
+                            width: z.ZodOptional<z.ZodNumber>;
+                            height: z.ZodOptional<z.ZodNumber>;
+                            durationMs: z.ZodOptional<z.ZodNumber>;
+                            transcript: z.ZodOptional<z.ZodString>;
+                            lyrics: z.ZodOptional<z.ZodString>;
+                            lyricsAlignment: z.ZodOptional<z.ZodObject<{
+                                words: z.ZodArray<z.ZodObject<{
+                                    text: z.ZodString;
+                                    startS: z.ZodNumber;
+                                    endS: z.ZodNumber;
+                                }, "strip", z.ZodTypeAny, {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }, {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }>, "many">;
+                                lines: z.ZodArray<z.ZodObject<{
+                                    text: z.ZodString;
+                                    startS: z.ZodNumber;
+                                    endS: z.ZodNumber;
+                                    wordStart: z.ZodNumber;
+                                    wordEnd: z.ZodNumber;
+                                }, "strip", z.ZodTypeAny, {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }, {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }>, "many">;
+                            }, "strip", z.ZodTypeAny, {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            }, {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            }>>;
+                            meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                                db: z.ZodNumber;
+                                timestampMs: z.ZodOptional<z.ZodNumber>;
+                            }, "strip", z.ZodTypeAny, {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }, {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }>, "many">>;
+                        }, "strip", z.ZodTypeAny, {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        }, {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        }>>;
+                    }, "strip", z.ZodTypeAny, {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }, {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }>>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                } & {
                     mode: z.ZodLiteral<"notifySupport">;
                     groupId: z.ZodString;
                     text: z.ZodString;
@@ -17133,6 +18398,49 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
+                    mode: "capture";
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    behaviorId?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    placeholder?: string | undefined;
+                } | {
+                    text: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -17600,6 +18908,8 @@ export declare const logSchemas: {
                 completionTrigger: z.ZodOptional<z.ZodEnum<["device-restart"]>>;
                 effectiveness: z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>;
                 timeToComplete: z.ZodOptional<z.ZodEnum<["quick", "medium", "long"]>>;
+                effort: z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>;
+                worksAnywhere: z.ZodOptional<z.ZodBoolean>;
                 aiConfiguration: z.ZodOptional<z.ZodObject<{
                     defaultConversationMode: z.ZodOptional<z.ZodEnum<["voice", "text"]>>;
                     goal: z.ZodString;
@@ -17784,6 +19094,49 @@ export declare const logSchemas: {
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                } | {
+                    text: string;
+                    mode: "capture";
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    behaviorId?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    placeholder?: string | undefined;
                 } | {
                     text: string;
                     backgroundImage?: {
@@ -18165,6 +19518,8 @@ export declare const logSchemas: {
                 completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
+                effort?: "medium" | "low" | "high" | undefined;
+                worksAnywhere?: boolean | undefined;
                 aiConfiguration?: {
                     goal: string;
                     defaultConversationMode?: "text" | "voice" | undefined;
@@ -18235,6 +19590,8 @@ export declare const logSchemas: {
                 completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
+                effort?: "medium" | "low" | "high" | undefined;
+                worksAnywhere?: boolean | undefined;
                 aiConfiguration?: {
                     goal: string;
                     defaultConversationMode?: "text" | "voice" | undefined;
@@ -18254,6 +19611,7 @@ export declare const logSchemas: {
             stepCount: z.ZodOptional<z.ZodNumber>;
             completedStepIndexes: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
             completed: z.ZodOptional<z.ZodBoolean>;
+            autoAdvanced: z.ZodOptional<z.ZodBoolean>;
             response: z.ZodOptional<z.ZodObject<{
                 responseType: z.ZodEnum<["text", "choice", "slider1To10"]>;
                 value: z.ZodUnion<[z.ZodString, z.ZodNumber]>;
@@ -18637,6 +19995,49 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
+                    mode: "capture";
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    behaviorId?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    placeholder?: string | undefined;
+                } | {
+                    text: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -19016,6 +20417,8 @@ export declare const logSchemas: {
                 completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
+                effort?: "medium" | "low" | "high" | undefined;
+                worksAnywhere?: boolean | undefined;
                 aiConfiguration?: {
                     goal: string;
                     defaultConversationMode?: "text" | "voice" | undefined;
@@ -19035,6 +20438,7 @@ export declare const logSchemas: {
             planLogId?: string | undefined;
             stepCount?: number | undefined;
             completedStepIndexes?: number[] | undefined;
+            autoAdvanced?: boolean | undefined;
             response?: {
                 value: string | number;
                 formattedValue: string;
@@ -19138,6 +20542,8 @@ export declare const logSchemas: {
                 completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
+                effort?: "medium" | "low" | "high" | undefined;
+                worksAnywhere?: boolean | undefined;
                 aiConfiguration?: {
                     goal: string;
                     defaultConversationMode?: "text" | "voice" | undefined;
@@ -19157,6 +20563,7 @@ export declare const logSchemas: {
             planLogId?: string | undefined;
             stepCount?: number | undefined;
             completedStepIndexes?: number[] | undefined;
+            autoAdvanced?: boolean | undefined;
             response?: {
                 value: string | number;
                 formattedValue: string;
@@ -19376,6 +20783,49 @@ export declare const logSchemas: {
                     tags?: string[] | undefined;
                 } | {
                     text: string;
+                    mode: "capture";
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    behaviorId?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    placeholder?: string | undefined;
+                } | {
+                    text: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -19755,6 +21205,8 @@ export declare const logSchemas: {
                 completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
+                effort?: "medium" | "low" | "high" | undefined;
+                worksAnywhere?: boolean | undefined;
                 aiConfiguration?: {
                     goal: string;
                     defaultConversationMode?: "text" | "voice" | undefined;
@@ -19774,6 +21226,7 @@ export declare const logSchemas: {
             planLogId?: string | undefined;
             stepCount?: number | undefined;
             completedStepIndexes?: number[] | undefined;
+            autoAdvanced?: boolean | undefined;
             response?: {
                 value: string | number;
                 formattedValue: string;
@@ -19892,6 +21345,8 @@ export declare const logSchemas: {
                 completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
+                effort?: "medium" | "low" | "high" | undefined;
+                worksAnywhere?: boolean | undefined;
                 aiConfiguration?: {
                     goal: string;
                     defaultConversationMode?: "text" | "voice" | undefined;
@@ -19911,6 +21366,7 @@ export declare const logSchemas: {
             planLogId?: string | undefined;
             stepCount?: number | undefined;
             completedStepIndexes?: number[] | undefined;
+            autoAdvanced?: boolean | undefined;
             response?: {
                 value: string | number;
                 formattedValue: string;
@@ -23138,11 +24594,163 @@ export declare const logSchemas: {
                 };
                 triggerClientId?: string | undefined;
                 existingTriggerId?: string | undefined;
+            }>, z.ZodObject<{
+                type: z.ZodLiteral<"set_behavior_goal">;
+                behaviorId: z.ZodString;
+                goal: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+                    type: z.ZodLiteral<"eliminate">;
+                }, "strip", z.ZodTypeAny, {
+                    type: "eliminate";
+                }, {
+                    type: "eliminate";
+                }>, z.ZodObject<{
+                    type: z.ZodLiteral<"reduceEveryDay">;
+                    target: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    type: "reduceEveryDay";
+                    target: number;
+                }, {
+                    type: "reduceEveryDay";
+                    target: number;
+                }>, z.ZodObject<{
+                    type: z.ZodLiteral<"reduceIndividualDays">;
+                    dailyTargets: z.ZodObject<{
+                        0: z.ZodNumber;
+                        1: z.ZodNumber;
+                        2: z.ZodNumber;
+                        3: z.ZodNumber;
+                        4: z.ZodNumber;
+                        5: z.ZodNumber;
+                        6: z.ZodNumber;
+                    }, "strip", z.ZodTypeAny, {
+                        0: number;
+                        1: number;
+                        2: number;
+                        3: number;
+                        5: number;
+                        6: number;
+                        4: number;
+                    }, {
+                        0: number;
+                        1: number;
+                        2: number;
+                        3: number;
+                        5: number;
+                        6: number;
+                        4: number;
+                    }>;
+                }, "strip", z.ZodTypeAny, {
+                    type: "reduceIndividualDays";
+                    dailyTargets: {
+                        0: number;
+                        1: number;
+                        2: number;
+                        3: number;
+                        5: number;
+                        6: number;
+                        4: number;
+                    };
+                }, {
+                    type: "reduceIndividualDays";
+                    dailyTargets: {
+                        0: number;
+                        1: number;
+                        2: number;
+                        3: number;
+                        5: number;
+                        6: number;
+                        4: number;
+                    };
+                }>, z.ZodObject<{
+                    type: z.ZodLiteral<"contain">;
+                    allowedWindows: z.ZodArray<z.ZodObject<{
+                        dayOfWeek: z.ZodNumber;
+                        startTime: z.ZodString;
+                        endTime: z.ZodString;
+                    }, "strip", z.ZodTypeAny, {
+                        dayOfWeek: number;
+                        startTime: string;
+                        endTime: string;
+                    }, {
+                        dayOfWeek: number;
+                        startTime: string;
+                        endTime: string;
+                    }>, "many">;
+                }, "strip", z.ZodTypeAny, {
+                    type: "contain";
+                    allowedWindows: {
+                        dayOfWeek: number;
+                        startTime: string;
+                        endTime: string;
+                    }[];
+                }, {
+                    type: "contain";
+                    allowedWindows: {
+                        dayOfWeek: number;
+                        startTime: string;
+                        endTime: string;
+                    }[];
+                }>]>;
+            }, "strip", z.ZodTypeAny, {
+                type: "set_behavior_goal";
+                behaviorId: string;
+                goal: {
+                    type: "eliminate";
+                } | {
+                    type: "reduceEveryDay";
+                    target: number;
+                } | {
+                    type: "reduceIndividualDays";
+                    dailyTargets: {
+                        0: number;
+                        1: number;
+                        2: number;
+                        3: number;
+                        5: number;
+                        6: number;
+                        4: number;
+                    };
+                } | {
+                    type: "contain";
+                    allowedWindows: {
+                        dayOfWeek: number;
+                        startTime: string;
+                        endTime: string;
+                    }[];
+                };
+            }, {
+                type: "set_behavior_goal";
+                behaviorId: string;
+                goal: {
+                    type: "eliminate";
+                } | {
+                    type: "reduceEveryDay";
+                    target: number;
+                } | {
+                    type: "reduceIndividualDays";
+                    dailyTargets: {
+                        0: number;
+                        1: number;
+                        2: number;
+                        3: number;
+                        5: number;
+                        6: number;
+                        4: number;
+                    };
+                } | {
+                    type: "contain";
+                    allowedWindows: {
+                        dayOfWeek: number;
+                        startTime: string;
+                        endTime: string;
+                    }[];
+                };
             }>]>, "many">;
             acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             declinedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             createdTriggerIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             createdPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+            updatedBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         }, "strip", z.ZodTypeAny, {
             status: "declined" | "pending" | "accepted";
             title: string;
@@ -23174,12 +24782,40 @@ export declare const logSchemas: {
                 };
                 triggerClientId?: string | undefined;
                 existingTriggerId?: string | undefined;
+            } | {
+                type: "set_behavior_goal";
+                behaviorId: string;
+                goal: {
+                    type: "eliminate";
+                } | {
+                    type: "reduceEveryDay";
+                    target: number;
+                } | {
+                    type: "reduceIndividualDays";
+                    dailyTargets: {
+                        0: number;
+                        1: number;
+                        2: number;
+                        3: number;
+                        5: number;
+                        6: number;
+                        4: number;
+                    };
+                } | {
+                    type: "contain";
+                    allowedWindows: {
+                        dayOfWeek: number;
+                        startTime: string;
+                        endTime: string;
+                    }[];
+                };
             })[];
             summary?: string | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
             declinedAt?: import("../../types").Timestamp | undefined;
             createdTriggerIds?: string[] | undefined;
             createdPlanIds?: string[] | undefined;
+            updatedBehaviorIds?: string[] | undefined;
         }, {
             title: string;
             operations: ({
@@ -23210,6 +24846,33 @@ export declare const logSchemas: {
                 };
                 triggerClientId?: string | undefined;
                 existingTriggerId?: string | undefined;
+            } | {
+                type: "set_behavior_goal";
+                behaviorId: string;
+                goal: {
+                    type: "eliminate";
+                } | {
+                    type: "reduceEveryDay";
+                    target: number;
+                } | {
+                    type: "reduceIndividualDays";
+                    dailyTargets: {
+                        0: number;
+                        1: number;
+                        2: number;
+                        3: number;
+                        5: number;
+                        6: number;
+                        4: number;
+                    };
+                } | {
+                    type: "contain";
+                    allowedWindows: {
+                        dayOfWeek: number;
+                        startTime: string;
+                        endTime: string;
+                    }[];
+                };
             })[];
             status?: "declined" | "pending" | "accepted" | undefined;
             summary?: string | undefined;
@@ -23217,6 +24880,7 @@ export declare const logSchemas: {
             declinedAt?: import("../../types").Timestamp | undefined;
             createdTriggerIds?: string[] | undefined;
             createdPlanIds?: string[] | undefined;
+            updatedBehaviorIds?: string[] | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
         createdAt: import("../../types").Timestamp;
@@ -23258,12 +24922,40 @@ export declare const logSchemas: {
                 };
                 triggerClientId?: string | undefined;
                 existingTriggerId?: string | undefined;
+            } | {
+                type: "set_behavior_goal";
+                behaviorId: string;
+                goal: {
+                    type: "eliminate";
+                } | {
+                    type: "reduceEveryDay";
+                    target: number;
+                } | {
+                    type: "reduceIndividualDays";
+                    dailyTargets: {
+                        0: number;
+                        1: number;
+                        2: number;
+                        3: number;
+                        5: number;
+                        6: number;
+                        4: number;
+                    };
+                } | {
+                    type: "contain";
+                    allowedWindows: {
+                        dayOfWeek: number;
+                        startTime: string;
+                        endTime: string;
+                    }[];
+                };
             })[];
             summary?: string | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
             declinedAt?: import("../../types").Timestamp | undefined;
             createdTriggerIds?: string[] | undefined;
             createdPlanIds?: string[] | undefined;
+            updatedBehaviorIds?: string[] | undefined;
         };
         id?: string | undefined;
         behaviorIds?: string[] | undefined;
@@ -23309,6 +25001,33 @@ export declare const logSchemas: {
                 };
                 triggerClientId?: string | undefined;
                 existingTriggerId?: string | undefined;
+            } | {
+                type: "set_behavior_goal";
+                behaviorId: string;
+                goal: {
+                    type: "eliminate";
+                } | {
+                    type: "reduceEveryDay";
+                    target: number;
+                } | {
+                    type: "reduceIndividualDays";
+                    dailyTargets: {
+                        0: number;
+                        1: number;
+                        2: number;
+                        3: number;
+                        5: number;
+                        6: number;
+                        4: number;
+                    };
+                } | {
+                    type: "contain";
+                    allowedWindows: {
+                        dayOfWeek: number;
+                        startTime: string;
+                        endTime: string;
+                    }[];
+                };
             })[];
             status?: "declined" | "pending" | "accepted" | undefined;
             summary?: string | undefined;
@@ -23316,6 +25035,7 @@ export declare const logSchemas: {
             declinedAt?: import("../../types").Timestamp | undefined;
             createdTriggerIds?: string[] | undefined;
             createdPlanIds?: string[] | undefined;
+            updatedBehaviorIds?: string[] | undefined;
         };
         id?: string | undefined;
         behaviorIds?: string[] | undefined;
@@ -23340,10 +25060,13 @@ export declare const logSchemas: {
         isDisplayable: z.ZodLiteral<true>;
         data: z.ZodObject<{
             behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+            repress: z.ZodOptional<z.ZodBoolean>;
         }, "strip", z.ZodTypeAny, {
             behaviorIds?: string[] | undefined;
+            repress?: boolean | undefined;
         }, {
             behaviorIds?: string[] | undefined;
+            repress?: boolean | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
         createdAt: import("../../types").Timestamp;
@@ -23356,6 +25079,7 @@ export declare const logSchemas: {
         isDisplayable: true;
         data: {
             behaviorIds?: string[] | undefined;
+            repress?: boolean | undefined;
         };
         id?: string | undefined;
         behaviorIds?: string[] | undefined;
@@ -23373,6 +25097,7 @@ export declare const logSchemas: {
         isDisplayable: true;
         data: {
             behaviorIds?: string[] | undefined;
+            repress?: boolean | undefined;
         };
         id?: string | undefined;
         behaviorIds?: string[] | undefined;
@@ -24437,6 +26162,302 @@ export declare const logSchemas: {
                             } | undefined;
                         } | undefined;
                         tags?: string[] | undefined;
+                    }>, z.ZodObject<{
+                        backgroundImage: z.ZodOptional<z.ZodObject<{
+                            createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                            updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                            uri: z.ZodString;
+                            storagePath: z.ZodString;
+                            contentType: z.ZodString;
+                            title: z.ZodOptional<z.ZodString>;
+                            sizeBytes: z.ZodOptional<z.ZodNumber>;
+                            metadata: z.ZodOptional<z.ZodObject<{
+                                width: z.ZodOptional<z.ZodNumber>;
+                                height: z.ZodOptional<z.ZodNumber>;
+                                durationMs: z.ZodOptional<z.ZodNumber>;
+                                transcript: z.ZodOptional<z.ZodString>;
+                                lyrics: z.ZodOptional<z.ZodString>;
+                                lyricsAlignment: z.ZodOptional<z.ZodObject<{
+                                    words: z.ZodArray<z.ZodObject<{
+                                        text: z.ZodString;
+                                        startS: z.ZodNumber;
+                                        endS: z.ZodNumber;
+                                    }, "strip", z.ZodTypeAny, {
+                                        text: string;
+                                        startS: number;
+                                        endS: number;
+                                    }, {
+                                        text: string;
+                                        startS: number;
+                                        endS: number;
+                                    }>, "many">;
+                                    lines: z.ZodArray<z.ZodObject<{
+                                        text: z.ZodString;
+                                        startS: z.ZodNumber;
+                                        endS: z.ZodNumber;
+                                        wordStart: z.ZodNumber;
+                                        wordEnd: z.ZodNumber;
+                                    }, "strip", z.ZodTypeAny, {
+                                        text: string;
+                                        startS: number;
+                                        endS: number;
+                                        wordStart: number;
+                                        wordEnd: number;
+                                    }, {
+                                        text: string;
+                                        startS: number;
+                                        endS: number;
+                                        wordStart: number;
+                                        wordEnd: number;
+                                    }>, "many">;
+                                }, "strip", z.ZodTypeAny, {
+                                    words: {
+                                        text: string;
+                                        startS: number;
+                                        endS: number;
+                                    }[];
+                                    lines: {
+                                        text: string;
+                                        startS: number;
+                                        endS: number;
+                                        wordStart: number;
+                                        wordEnd: number;
+                                    }[];
+                                }, {
+                                    words: {
+                                        text: string;
+                                        startS: number;
+                                        endS: number;
+                                    }[];
+                                    lines: {
+                                        text: string;
+                                        startS: number;
+                                        endS: number;
+                                        wordStart: number;
+                                        wordEnd: number;
+                                    }[];
+                                }>>;
+                                meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                                    db: z.ZodNumber;
+                                    timestampMs: z.ZodOptional<z.ZodNumber>;
+                                }, "strip", z.ZodTypeAny, {
+                                    db: number;
+                                    timestampMs?: number | undefined;
+                                }, {
+                                    db: number;
+                                    timestampMs?: number | undefined;
+                                }>, "many">>;
+                            }, "strip", z.ZodTypeAny, {
+                                width?: number | undefined;
+                                height?: number | undefined;
+                                durationMs?: number | undefined;
+                                transcript?: string | undefined;
+                                lyrics?: string | undefined;
+                                lyricsAlignment?: {
+                                    words: {
+                                        text: string;
+                                        startS: number;
+                                        endS: number;
+                                    }[];
+                                    lines: {
+                                        text: string;
+                                        startS: number;
+                                        endS: number;
+                                        wordStart: number;
+                                        wordEnd: number;
+                                    }[];
+                                } | undefined;
+                                meterings?: {
+                                    db: number;
+                                    timestampMs?: number | undefined;
+                                }[] | undefined;
+                            }, {
+                                width?: number | undefined;
+                                height?: number | undefined;
+                                durationMs?: number | undefined;
+                                transcript?: string | undefined;
+                                lyrics?: string | undefined;
+                                lyricsAlignment?: {
+                                    words: {
+                                        text: string;
+                                        startS: number;
+                                        endS: number;
+                                    }[];
+                                    lines: {
+                                        text: string;
+                                        startS: number;
+                                        endS: number;
+                                        wordStart: number;
+                                        wordEnd: number;
+                                    }[];
+                                } | undefined;
+                                meterings?: {
+                                    db: number;
+                                    timestampMs?: number | undefined;
+                                }[] | undefined;
+                            }>>;
+                        }, "strip", z.ZodTypeAny, {
+                            uri: string;
+                            storagePath: string;
+                            contentType: string;
+                            createdAt?: import("../../types").Timestamp | undefined;
+                            updatedAt?: import("../../types").Timestamp | undefined;
+                            title?: string | undefined;
+                            sizeBytes?: number | undefined;
+                            metadata?: {
+                                width?: number | undefined;
+                                height?: number | undefined;
+                                durationMs?: number | undefined;
+                                transcript?: string | undefined;
+                                lyrics?: string | undefined;
+                                lyricsAlignment?: {
+                                    words: {
+                                        text: string;
+                                        startS: number;
+                                        endS: number;
+                                    }[];
+                                    lines: {
+                                        text: string;
+                                        startS: number;
+                                        endS: number;
+                                        wordStart: number;
+                                        wordEnd: number;
+                                    }[];
+                                } | undefined;
+                                meterings?: {
+                                    db: number;
+                                    timestampMs?: number | undefined;
+                                }[] | undefined;
+                            } | undefined;
+                        }, {
+                            uri: string;
+                            storagePath: string;
+                            contentType: string;
+                            createdAt?: import("../../types").Timestamp | undefined;
+                            updatedAt?: import("../../types").Timestamp | undefined;
+                            title?: string | undefined;
+                            sizeBytes?: number | undefined;
+                            metadata?: {
+                                width?: number | undefined;
+                                height?: number | undefined;
+                                durationMs?: number | undefined;
+                                transcript?: string | undefined;
+                                lyrics?: string | undefined;
+                                lyricsAlignment?: {
+                                    words: {
+                                        text: string;
+                                        startS: number;
+                                        endS: number;
+                                    }[];
+                                    lines: {
+                                        text: string;
+                                        startS: number;
+                                        endS: number;
+                                        wordStart: number;
+                                        wordEnd: number;
+                                    }[];
+                                } | undefined;
+                                meterings?: {
+                                    db: number;
+                                    timestampMs?: number | undefined;
+                                }[] | undefined;
+                            } | undefined;
+                        }>>;
+                        tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                    } & {
+                        mode: z.ZodLiteral<"capture">;
+                        id: z.ZodOptional<z.ZodString>;
+                        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        text: z.ZodString;
+                        placeholder: z.ZodOptional<z.ZodString>;
+                        behaviorId: z.ZodOptional<z.ZodString>;
+                    }, "strip", z.ZodTypeAny, {
+                        text: string;
+                        mode: "capture";
+                        id?: string | undefined;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        behaviorId?: string | undefined;
+                        backgroundImage?: {
+                            uri: string;
+                            storagePath: string;
+                            contentType: string;
+                            createdAt?: import("../../types").Timestamp | undefined;
+                            updatedAt?: import("../../types").Timestamp | undefined;
+                            title?: string | undefined;
+                            sizeBytes?: number | undefined;
+                            metadata?: {
+                                width?: number | undefined;
+                                height?: number | undefined;
+                                durationMs?: number | undefined;
+                                transcript?: string | undefined;
+                                lyrics?: string | undefined;
+                                lyricsAlignment?: {
+                                    words: {
+                                        text: string;
+                                        startS: number;
+                                        endS: number;
+                                    }[];
+                                    lines: {
+                                        text: string;
+                                        startS: number;
+                                        endS: number;
+                                        wordStart: number;
+                                        wordEnd: number;
+                                    }[];
+                                } | undefined;
+                                meterings?: {
+                                    db: number;
+                                    timestampMs?: number | undefined;
+                                }[] | undefined;
+                            } | undefined;
+                        } | undefined;
+                        tags?: string[] | undefined;
+                        placeholder?: string | undefined;
+                    }, {
+                        text: string;
+                        mode: "capture";
+                        id?: string | undefined;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        behaviorId?: string | undefined;
+                        backgroundImage?: {
+                            uri: string;
+                            storagePath: string;
+                            contentType: string;
+                            createdAt?: import("../../types").Timestamp | undefined;
+                            updatedAt?: import("../../types").Timestamp | undefined;
+                            title?: string | undefined;
+                            sizeBytes?: number | undefined;
+                            metadata?: {
+                                width?: number | undefined;
+                                height?: number | undefined;
+                                durationMs?: number | undefined;
+                                transcript?: string | undefined;
+                                lyrics?: string | undefined;
+                                lyricsAlignment?: {
+                                    words: {
+                                        text: string;
+                                        startS: number;
+                                        endS: number;
+                                    }[];
+                                    lines: {
+                                        text: string;
+                                        startS: number;
+                                        endS: number;
+                                        wordStart: number;
+                                        wordEnd: number;
+                                    }[];
+                                } | undefined;
+                                meterings?: {
+                                    db: number;
+                                    timestampMs?: number | undefined;
+                                }[] | undefined;
+                            } | undefined;
+                        } | undefined;
+                        tags?: string[] | undefined;
+                        placeholder?: string | undefined;
                     }>, z.ZodObject<{
                         backgroundImage: z.ZodOptional<z.ZodObject<{
                             createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -27511,6 +29532,49 @@ export declare const logSchemas: {
                         tags?: string[] | undefined;
                     } | {
                         text: string;
+                        mode: "capture";
+                        id?: string | undefined;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        behaviorId?: string | undefined;
+                        backgroundImage?: {
+                            uri: string;
+                            storagePath: string;
+                            contentType: string;
+                            createdAt?: import("../../types").Timestamp | undefined;
+                            updatedAt?: import("../../types").Timestamp | undefined;
+                            title?: string | undefined;
+                            sizeBytes?: number | undefined;
+                            metadata?: {
+                                width?: number | undefined;
+                                height?: number | undefined;
+                                durationMs?: number | undefined;
+                                transcript?: string | undefined;
+                                lyrics?: string | undefined;
+                                lyricsAlignment?: {
+                                    words: {
+                                        text: string;
+                                        startS: number;
+                                        endS: number;
+                                    }[];
+                                    lines: {
+                                        text: string;
+                                        startS: number;
+                                        endS: number;
+                                        wordStart: number;
+                                        wordEnd: number;
+                                    }[];
+                                } | undefined;
+                                meterings?: {
+                                    db: number;
+                                    timestampMs?: number | undefined;
+                                }[] | undefined;
+                            } | undefined;
+                        } | undefined;
+                        tags?: string[] | undefined;
+                        placeholder?: string | undefined;
+                    } | {
+                        text: string;
                         backgroundImage?: {
                             uri: string;
                             storagePath: string;
@@ -27978,6 +30042,8 @@ export declare const logSchemas: {
                     completionTrigger: z.ZodOptional<z.ZodEnum<["device-restart"]>>;
                     effectiveness: z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>;
                     timeToComplete: z.ZodOptional<z.ZodEnum<["quick", "medium", "long"]>>;
+                    effort: z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>;
+                    worksAnywhere: z.ZodOptional<z.ZodBoolean>;
                     aiConfiguration: z.ZodOptional<z.ZodObject<{
                         defaultConversationMode: z.ZodOptional<z.ZodEnum<["voice", "text"]>>;
                         goal: z.ZodString;
@@ -28164,6 +30230,49 @@ export declare const logSchemas: {
                         tags?: string[] | undefined;
                     } | {
                         text: string;
+                        mode: "capture";
+                        id?: string | undefined;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        behaviorId?: string | undefined;
+                        backgroundImage?: {
+                            uri: string;
+                            storagePath: string;
+                            contentType: string;
+                            createdAt?: import("../../types").Timestamp | undefined;
+                            updatedAt?: import("../../types").Timestamp | undefined;
+                            title?: string | undefined;
+                            sizeBytes?: number | undefined;
+                            metadata?: {
+                                width?: number | undefined;
+                                height?: number | undefined;
+                                durationMs?: number | undefined;
+                                transcript?: string | undefined;
+                                lyrics?: string | undefined;
+                                lyricsAlignment?: {
+                                    words: {
+                                        text: string;
+                                        startS: number;
+                                        endS: number;
+                                    }[];
+                                    lines: {
+                                        text: string;
+                                        startS: number;
+                                        endS: number;
+                                        wordStart: number;
+                                        wordEnd: number;
+                                    }[];
+                                } | undefined;
+                                meterings?: {
+                                    db: number;
+                                    timestampMs?: number | undefined;
+                                }[] | undefined;
+                            } | undefined;
+                        } | undefined;
+                        tags?: string[] | undefined;
+                        placeholder?: string | undefined;
+                    } | {
+                        text: string;
                         backgroundImage?: {
                             uri: string;
                             storagePath: string;
@@ -28543,6 +30652,8 @@ export declare const logSchemas: {
                     completionTrigger?: "device-restart" | undefined;
                     effectiveness?: "medium" | "low" | "high" | undefined;
                     timeToComplete?: "medium" | "long" | "quick" | undefined;
+                    effort?: "medium" | "low" | "high" | undefined;
+                    worksAnywhere?: boolean | undefined;
                     aiConfiguration?: {
                         goal: string;
                         defaultConversationMode?: "text" | "voice" | undefined;
@@ -28613,6 +30724,8 @@ export declare const logSchemas: {
                     completionTrigger?: "device-restart" | undefined;
                     effectiveness?: "medium" | "low" | "high" | undefined;
                     timeToComplete?: "medium" | "long" | "quick" | undefined;
+                    effort?: "medium" | "low" | "high" | undefined;
+                    worksAnywhere?: boolean | undefined;
                     aiConfiguration?: {
                         goal: string;
                         defaultConversationMode?: "text" | "voice" | undefined;
@@ -28794,6 +30907,49 @@ export declare const logSchemas: {
                         tags?: string[] | undefined;
                     } | {
                         text: string;
+                        mode: "capture";
+                        id?: string | undefined;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        behaviorId?: string | undefined;
+                        backgroundImage?: {
+                            uri: string;
+                            storagePath: string;
+                            contentType: string;
+                            createdAt?: import("../../types").Timestamp | undefined;
+                            updatedAt?: import("../../types").Timestamp | undefined;
+                            title?: string | undefined;
+                            sizeBytes?: number | undefined;
+                            metadata?: {
+                                width?: number | undefined;
+                                height?: number | undefined;
+                                durationMs?: number | undefined;
+                                transcript?: string | undefined;
+                                lyrics?: string | undefined;
+                                lyricsAlignment?: {
+                                    words: {
+                                        text: string;
+                                        startS: number;
+                                        endS: number;
+                                    }[];
+                                    lines: {
+                                        text: string;
+                                        startS: number;
+                                        endS: number;
+                                        wordStart: number;
+                                        wordEnd: number;
+                                    }[];
+                                } | undefined;
+                                meterings?: {
+                                    db: number;
+                                    timestampMs?: number | undefined;
+                                }[] | undefined;
+                            } | undefined;
+                        } | undefined;
+                        tags?: string[] | undefined;
+                        placeholder?: string | undefined;
+                    } | {
+                        text: string;
                         backgroundImage?: {
                             uri: string;
                             storagePath: string;
@@ -29173,6 +31329,8 @@ export declare const logSchemas: {
                     completionTrigger?: "device-restart" | undefined;
                     effectiveness?: "medium" | "low" | "high" | undefined;
                     timeToComplete?: "medium" | "long" | "quick" | undefined;
+                    effort?: "medium" | "low" | "high" | undefined;
+                    worksAnywhere?: boolean | undefined;
                     aiConfiguration?: {
                         goal: string;
                         defaultConversationMode?: "text" | "voice" | undefined;
@@ -29248,6 +31406,8 @@ export declare const logSchemas: {
                     completionTrigger?: "device-restart" | undefined;
                     effectiveness?: "medium" | "low" | "high" | undefined;
                     timeToComplete?: "medium" | "long" | "quick" | undefined;
+                    effort?: "medium" | "low" | "high" | undefined;
+                    worksAnywhere?: boolean | undefined;
                     aiConfiguration?: {
                         goal: string;
                         defaultConversationMode?: "text" | "voice" | undefined;
@@ -29432,6 +31592,49 @@ export declare const logSchemas: {
                         tags?: string[] | undefined;
                     } | {
                         text: string;
+                        mode: "capture";
+                        id?: string | undefined;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        behaviorId?: string | undefined;
+                        backgroundImage?: {
+                            uri: string;
+                            storagePath: string;
+                            contentType: string;
+                            createdAt?: import("../../types").Timestamp | undefined;
+                            updatedAt?: import("../../types").Timestamp | undefined;
+                            title?: string | undefined;
+                            sizeBytes?: number | undefined;
+                            metadata?: {
+                                width?: number | undefined;
+                                height?: number | undefined;
+                                durationMs?: number | undefined;
+                                transcript?: string | undefined;
+                                lyrics?: string | undefined;
+                                lyricsAlignment?: {
+                                    words: {
+                                        text: string;
+                                        startS: number;
+                                        endS: number;
+                                    }[];
+                                    lines: {
+                                        text: string;
+                                        startS: number;
+                                        endS: number;
+                                        wordStart: number;
+                                        wordEnd: number;
+                                    }[];
+                                } | undefined;
+                                meterings?: {
+                                    db: number;
+                                    timestampMs?: number | undefined;
+                                }[] | undefined;
+                            } | undefined;
+                        } | undefined;
+                        tags?: string[] | undefined;
+                        placeholder?: string | undefined;
+                    } | {
+                        text: string;
                         backgroundImage?: {
                             uri: string;
                             storagePath: string;
@@ -29811,6 +32014,8 @@ export declare const logSchemas: {
                     completionTrigger?: "device-restart" | undefined;
                     effectiveness?: "medium" | "low" | "high" | undefined;
                     timeToComplete?: "medium" | "long" | "quick" | undefined;
+                    effort?: "medium" | "low" | "high" | undefined;
+                    worksAnywhere?: boolean | undefined;
                     aiConfiguration?: {
                         goal: string;
                         defaultConversationMode?: "text" | "voice" | undefined;
@@ -29889,6 +32094,8 @@ export declare const logSchemas: {
                     completionTrigger?: "device-restart" | undefined;
                     effectiveness?: "medium" | "low" | "high" | undefined;
                     timeToComplete?: "medium" | "long" | "quick" | undefined;
+                    effort?: "medium" | "low" | "high" | undefined;
+                    worksAnywhere?: boolean | undefined;
                     aiConfiguration?: {
                         goal: string;
                         defaultConversationMode?: "text" | "voice" | undefined;
@@ -30083,6 +32290,49 @@ export declare const logSchemas: {
                         tags?: string[] | undefined;
                     } | {
                         text: string;
+                        mode: "capture";
+                        id?: string | undefined;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        behaviorId?: string | undefined;
+                        backgroundImage?: {
+                            uri: string;
+                            storagePath: string;
+                            contentType: string;
+                            createdAt?: import("../../types").Timestamp | undefined;
+                            updatedAt?: import("../../types").Timestamp | undefined;
+                            title?: string | undefined;
+                            sizeBytes?: number | undefined;
+                            metadata?: {
+                                width?: number | undefined;
+                                height?: number | undefined;
+                                durationMs?: number | undefined;
+                                transcript?: string | undefined;
+                                lyrics?: string | undefined;
+                                lyricsAlignment?: {
+                                    words: {
+                                        text: string;
+                                        startS: number;
+                                        endS: number;
+                                    }[];
+                                    lines: {
+                                        text: string;
+                                        startS: number;
+                                        endS: number;
+                                        wordStart: number;
+                                        wordEnd: number;
+                                    }[];
+                                } | undefined;
+                                meterings?: {
+                                    db: number;
+                                    timestampMs?: number | undefined;
+                                }[] | undefined;
+                            } | undefined;
+                        } | undefined;
+                        tags?: string[] | undefined;
+                        placeholder?: string | undefined;
+                    } | {
+                        text: string;
                         backgroundImage?: {
                             uri: string;
                             storagePath: string;
@@ -30462,6 +32712,8 @@ export declare const logSchemas: {
                     completionTrigger?: "device-restart" | undefined;
                     effectiveness?: "medium" | "low" | "high" | undefined;
                     timeToComplete?: "medium" | "long" | "quick" | undefined;
+                    effort?: "medium" | "low" | "high" | undefined;
+                    worksAnywhere?: boolean | undefined;
                     aiConfiguration?: {
                         goal: string;
                         defaultConversationMode?: "text" | "voice" | undefined;
@@ -30555,6 +32807,8 @@ export declare const logSchemas: {
                     completionTrigger?: "device-restart" | undefined;
                     effectiveness?: "medium" | "low" | "high" | undefined;
                     timeToComplete?: "medium" | "long" | "quick" | undefined;
+                    effort?: "medium" | "low" | "high" | undefined;
+                    worksAnywhere?: boolean | undefined;
                     aiConfiguration?: {
                         goal: string;
                         defaultConversationMode?: "text" | "voice" | undefined;
@@ -33447,6 +35701,302 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }>>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             } & {
+                mode: z.ZodLiteral<"capture">;
+                id: z.ZodOptional<z.ZodString>;
+                createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                text: z.ZodString;
+                placeholder: z.ZodOptional<z.ZodString>;
+                behaviorId: z.ZodOptional<z.ZodString>;
+            }, "strip", z.ZodTypeAny, {
+                text: string;
+                mode: "capture";
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                behaviorId?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                placeholder?: string | undefined;
+            }, {
+                text: string;
+                mode: "capture";
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                behaviorId?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                placeholder?: string | undefined;
+            }>, z.ZodObject<{
+                backgroundImage: z.ZodOptional<z.ZodObject<{
+                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    uri: z.ZodString;
+                    storagePath: z.ZodString;
+                    contentType: z.ZodString;
+                    title: z.ZodOptional<z.ZodString>;
+                    sizeBytes: z.ZodOptional<z.ZodNumber>;
+                    metadata: z.ZodOptional<z.ZodObject<{
+                        width: z.ZodOptional<z.ZodNumber>;
+                        height: z.ZodOptional<z.ZodNumber>;
+                        durationMs: z.ZodOptional<z.ZodNumber>;
+                        transcript: z.ZodOptional<z.ZodString>;
+                        lyrics: z.ZodOptional<z.ZodString>;
+                        lyricsAlignment: z.ZodOptional<z.ZodObject<{
+                            words: z.ZodArray<z.ZodObject<{
+                                text: z.ZodString;
+                                startS: z.ZodNumber;
+                                endS: z.ZodNumber;
+                            }, "strip", z.ZodTypeAny, {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }, {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }>, "many">;
+                            lines: z.ZodArray<z.ZodObject<{
+                                text: z.ZodString;
+                                startS: z.ZodNumber;
+                                endS: z.ZodNumber;
+                                wordStart: z.ZodNumber;
+                                wordEnd: z.ZodNumber;
+                            }, "strip", z.ZodTypeAny, {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }, {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }>, "many">;
+                        }, "strip", z.ZodTypeAny, {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        }, {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        }>>;
+                        meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                            db: z.ZodNumber;
+                            timestampMs: z.ZodOptional<z.ZodNumber>;
+                        }, "strip", z.ZodTypeAny, {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }, {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }>, "many">>;
+                    }, "strip", z.ZodTypeAny, {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    }, {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    }>>;
+                }, "strip", z.ZodTypeAny, {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }, {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }>>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+            } & {
                 mode: z.ZodLiteral<"notifySupport">;
                 groupId: z.ZodString;
                 text: z.ZodString;
@@ -36318,6 +38868,49 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "capture";
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                behaviorId?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                placeholder?: string | undefined;
+            } | {
+                text: string;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -36785,6 +39378,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             completionTrigger: z.ZodOptional<z.ZodEnum<["device-restart"]>>;
             effectiveness: z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>;
             timeToComplete: z.ZodOptional<z.ZodEnum<["quick", "medium", "long"]>>;
+            effort: z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>;
+            worksAnywhere: z.ZodOptional<z.ZodBoolean>;
             aiConfiguration: z.ZodOptional<z.ZodObject<{
                 defaultConversationMode: z.ZodOptional<z.ZodEnum<["voice", "text"]>>;
                 goal: z.ZodString;
@@ -36969,6 +39564,49 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+            } | {
+                text: string;
+                mode: "capture";
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                behaviorId?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                placeholder?: string | undefined;
             } | {
                 text: string;
                 backgroundImage?: {
@@ -37350,6 +39988,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
+            effort?: "medium" | "low" | "high" | undefined;
+            worksAnywhere?: boolean | undefined;
             aiConfiguration?: {
                 goal: string;
                 defaultConversationMode?: "text" | "voice" | undefined;
@@ -37420,6 +40060,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
+            effort?: "medium" | "low" | "high" | undefined;
+            worksAnywhere?: boolean | undefined;
             aiConfiguration?: {
                 goal: string;
                 defaultConversationMode?: "text" | "voice" | undefined;
@@ -37608,6 +40250,49 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "capture";
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                behaviorId?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                placeholder?: string | undefined;
+            } | {
+                text: string;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -37987,6 +40672,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
+            effort?: "medium" | "low" | "high" | undefined;
+            worksAnywhere?: boolean | undefined;
             aiConfiguration?: {
                 goal: string;
                 defaultConversationMode?: "text" | "voice" | undefined;
@@ -38067,6 +40754,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
+            effort?: "medium" | "low" | "high" | undefined;
+            worksAnywhere?: boolean | undefined;
             aiConfiguration?: {
                 goal: string;
                 defaultConversationMode?: "text" | "voice" | undefined;
@@ -38263,6 +40952,49 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "capture";
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                behaviorId?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                placeholder?: string | undefined;
+            } | {
+                text: string;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -38642,6 +41374,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
+            effort?: "medium" | "low" | "high" | undefined;
+            worksAnywhere?: boolean | undefined;
             aiConfiguration?: {
                 goal: string;
                 defaultConversationMode?: "text" | "voice" | undefined;
@@ -38737,6 +41471,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
+            effort?: "medium" | "low" | "high" | undefined;
+            worksAnywhere?: boolean | undefined;
             aiConfiguration?: {
                 goal: string;
                 defaultConversationMode?: "text" | "voice" | undefined;
@@ -39778,6 +42514,302 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }>>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             } & {
+                mode: z.ZodLiteral<"capture">;
+                id: z.ZodOptional<z.ZodString>;
+                createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                text: z.ZodString;
+                placeholder: z.ZodOptional<z.ZodString>;
+                behaviorId: z.ZodOptional<z.ZodString>;
+            }, "strip", z.ZodTypeAny, {
+                text: string;
+                mode: "capture";
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                behaviorId?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                placeholder?: string | undefined;
+            }, {
+                text: string;
+                mode: "capture";
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                behaviorId?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                placeholder?: string | undefined;
+            }>, z.ZodObject<{
+                backgroundImage: z.ZodOptional<z.ZodObject<{
+                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    uri: z.ZodString;
+                    storagePath: z.ZodString;
+                    contentType: z.ZodString;
+                    title: z.ZodOptional<z.ZodString>;
+                    sizeBytes: z.ZodOptional<z.ZodNumber>;
+                    metadata: z.ZodOptional<z.ZodObject<{
+                        width: z.ZodOptional<z.ZodNumber>;
+                        height: z.ZodOptional<z.ZodNumber>;
+                        durationMs: z.ZodOptional<z.ZodNumber>;
+                        transcript: z.ZodOptional<z.ZodString>;
+                        lyrics: z.ZodOptional<z.ZodString>;
+                        lyricsAlignment: z.ZodOptional<z.ZodObject<{
+                            words: z.ZodArray<z.ZodObject<{
+                                text: z.ZodString;
+                                startS: z.ZodNumber;
+                                endS: z.ZodNumber;
+                            }, "strip", z.ZodTypeAny, {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }, {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }>, "many">;
+                            lines: z.ZodArray<z.ZodObject<{
+                                text: z.ZodString;
+                                startS: z.ZodNumber;
+                                endS: z.ZodNumber;
+                                wordStart: z.ZodNumber;
+                                wordEnd: z.ZodNumber;
+                            }, "strip", z.ZodTypeAny, {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }, {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }>, "many">;
+                        }, "strip", z.ZodTypeAny, {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        }, {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        }>>;
+                        meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                            db: z.ZodNumber;
+                            timestampMs: z.ZodOptional<z.ZodNumber>;
+                        }, "strip", z.ZodTypeAny, {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }, {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }>, "many">>;
+                    }, "strip", z.ZodTypeAny, {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    }, {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    }>>;
+                }, "strip", z.ZodTypeAny, {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }, {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }>>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+            } & {
                 mode: z.ZodLiteral<"notifySupport">;
                 groupId: z.ZodString;
                 text: z.ZodString;
@@ -42649,6 +45681,49 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "capture";
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                behaviorId?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                placeholder?: string | undefined;
+            } | {
+                text: string;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -43116,6 +46191,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             completionTrigger: z.ZodOptional<z.ZodEnum<["device-restart"]>>;
             effectiveness: z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>;
             timeToComplete: z.ZodOptional<z.ZodEnum<["quick", "medium", "long"]>>;
+            effort: z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>;
+            worksAnywhere: z.ZodOptional<z.ZodBoolean>;
             aiConfiguration: z.ZodOptional<z.ZodObject<{
                 defaultConversationMode: z.ZodOptional<z.ZodEnum<["voice", "text"]>>;
                 goal: z.ZodString;
@@ -43300,6 +46377,49 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+            } | {
+                text: string;
+                mode: "capture";
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                behaviorId?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                placeholder?: string | undefined;
             } | {
                 text: string;
                 backgroundImage?: {
@@ -43681,6 +46801,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
+            effort?: "medium" | "low" | "high" | undefined;
+            worksAnywhere?: boolean | undefined;
             aiConfiguration?: {
                 goal: string;
                 defaultConversationMode?: "text" | "voice" | undefined;
@@ -43751,6 +46873,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
+            effort?: "medium" | "low" | "high" | undefined;
+            worksAnywhere?: boolean | undefined;
             aiConfiguration?: {
                 goal: string;
                 defaultConversationMode?: "text" | "voice" | undefined;
@@ -43770,6 +46894,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         stepCount: z.ZodOptional<z.ZodNumber>;
         completedStepIndexes: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
         completed: z.ZodOptional<z.ZodBoolean>;
+        autoAdvanced: z.ZodOptional<z.ZodBoolean>;
         response: z.ZodOptional<z.ZodObject<{
             responseType: z.ZodEnum<["text", "choice", "slider1To10"]>;
             value: z.ZodUnion<[z.ZodString, z.ZodNumber]>;
@@ -44153,6 +47278,49 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "capture";
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                behaviorId?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                placeholder?: string | undefined;
+            } | {
+                text: string;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -44532,6 +47700,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
+            effort?: "medium" | "low" | "high" | undefined;
+            worksAnywhere?: boolean | undefined;
             aiConfiguration?: {
                 goal: string;
                 defaultConversationMode?: "text" | "voice" | undefined;
@@ -44551,6 +47721,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         planLogId?: string | undefined;
         stepCount?: number | undefined;
         completedStepIndexes?: number[] | undefined;
+        autoAdvanced?: boolean | undefined;
         response?: {
             value: string | number;
             formattedValue: string;
@@ -44654,6 +47825,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
+            effort?: "medium" | "low" | "high" | undefined;
+            worksAnywhere?: boolean | undefined;
             aiConfiguration?: {
                 goal: string;
                 defaultConversationMode?: "text" | "voice" | undefined;
@@ -44673,6 +47846,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         planLogId?: string | undefined;
         stepCount?: number | undefined;
         completedStepIndexes?: number[] | undefined;
+        autoAdvanced?: boolean | undefined;
         response?: {
             value: string | number;
             formattedValue: string;
@@ -44892,6 +48066,49 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "capture";
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                behaviorId?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                placeholder?: string | undefined;
+            } | {
+                text: string;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -45271,6 +48488,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
+            effort?: "medium" | "low" | "high" | undefined;
+            worksAnywhere?: boolean | undefined;
             aiConfiguration?: {
                 goal: string;
                 defaultConversationMode?: "text" | "voice" | undefined;
@@ -45290,6 +48509,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         planLogId?: string | undefined;
         stepCount?: number | undefined;
         completedStepIndexes?: number[] | undefined;
+        autoAdvanced?: boolean | undefined;
         response?: {
             value: string | number;
             formattedValue: string;
@@ -45408,6 +48628,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
+            effort?: "medium" | "low" | "high" | undefined;
+            worksAnywhere?: boolean | undefined;
             aiConfiguration?: {
                 goal: string;
                 defaultConversationMode?: "text" | "voice" | undefined;
@@ -45427,6 +48649,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         planLogId?: string | undefined;
         stepCount?: number | undefined;
         completedStepIndexes?: number[] | undefined;
+        autoAdvanced?: boolean | undefined;
         response?: {
             value: string | number;
             formattedValue: string;
@@ -48641,11 +51864,163 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             };
             triggerClientId?: string | undefined;
             existingTriggerId?: string | undefined;
+        }>, z.ZodObject<{
+            type: z.ZodLiteral<"set_behavior_goal">;
+            behaviorId: z.ZodString;
+            goal: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+                type: z.ZodLiteral<"eliminate">;
+            }, "strip", z.ZodTypeAny, {
+                type: "eliminate";
+            }, {
+                type: "eliminate";
+            }>, z.ZodObject<{
+                type: z.ZodLiteral<"reduceEveryDay">;
+                target: z.ZodNumber;
+            }, "strip", z.ZodTypeAny, {
+                type: "reduceEveryDay";
+                target: number;
+            }, {
+                type: "reduceEveryDay";
+                target: number;
+            }>, z.ZodObject<{
+                type: z.ZodLiteral<"reduceIndividualDays">;
+                dailyTargets: z.ZodObject<{
+                    0: z.ZodNumber;
+                    1: z.ZodNumber;
+                    2: z.ZodNumber;
+                    3: z.ZodNumber;
+                    4: z.ZodNumber;
+                    5: z.ZodNumber;
+                    6: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                }, {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                }>;
+            }, "strip", z.ZodTypeAny, {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            }, {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            }>, z.ZodObject<{
+                type: z.ZodLiteral<"contain">;
+                allowedWindows: z.ZodArray<z.ZodObject<{
+                    dayOfWeek: z.ZodNumber;
+                    startTime: z.ZodString;
+                    endTime: z.ZodString;
+                }, "strip", z.ZodTypeAny, {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }, {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }>, "many">;
+            }, "strip", z.ZodTypeAny, {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            }, {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            }>]>;
+        }, "strip", z.ZodTypeAny, {
+            type: "set_behavior_goal";
+            behaviorId: string;
+            goal: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            } | {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            };
+        }, {
+            type: "set_behavior_goal";
+            behaviorId: string;
+            goal: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            } | {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            };
         }>]>, "many">;
         acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         declinedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         createdTriggerIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         createdPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        updatedBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     }, "strip", z.ZodTypeAny, {
         status: "declined" | "pending" | "accepted";
         title: string;
@@ -48677,12 +52052,40 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             };
             triggerClientId?: string | undefined;
             existingTriggerId?: string | undefined;
+        } | {
+            type: "set_behavior_goal";
+            behaviorId: string;
+            goal: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            } | {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            };
         })[];
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
         createdTriggerIds?: string[] | undefined;
         createdPlanIds?: string[] | undefined;
+        updatedBehaviorIds?: string[] | undefined;
     }, {
         title: string;
         operations: ({
@@ -48713,6 +52116,33 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             };
             triggerClientId?: string | undefined;
             existingTriggerId?: string | undefined;
+        } | {
+            type: "set_behavior_goal";
+            behaviorId: string;
+            goal: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            } | {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            };
         })[];
         status?: "declined" | "pending" | "accepted" | undefined;
         summary?: string | undefined;
@@ -48720,6 +52150,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         declinedAt?: import("../../types").Timestamp | undefined;
         createdTriggerIds?: string[] | undefined;
         createdPlanIds?: string[] | undefined;
+        updatedBehaviorIds?: string[] | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
@@ -48761,12 +52192,40 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             };
             triggerClientId?: string | undefined;
             existingTriggerId?: string | undefined;
+        } | {
+            type: "set_behavior_goal";
+            behaviorId: string;
+            goal: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            } | {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            };
         })[];
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
         createdTriggerIds?: string[] | undefined;
         createdPlanIds?: string[] | undefined;
+        updatedBehaviorIds?: string[] | undefined;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;
@@ -48812,6 +52271,33 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             };
             triggerClientId?: string | undefined;
             existingTriggerId?: string | undefined;
+        } | {
+            type: "set_behavior_goal";
+            behaviorId: string;
+            goal: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            } | {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            };
         })[];
         status?: "declined" | "pending" | "accepted" | undefined;
         summary?: string | undefined;
@@ -48819,6 +52305,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         declinedAt?: import("../../types").Timestamp | undefined;
         createdTriggerIds?: string[] | undefined;
         createdPlanIds?: string[] | undefined;
+        updatedBehaviorIds?: string[] | undefined;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;
@@ -48842,10 +52329,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
         behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        repress: z.ZodOptional<z.ZodBoolean>;
     }, "strip", z.ZodTypeAny, {
         behaviorIds?: string[] | undefined;
+        repress?: boolean | undefined;
     }, {
         behaviorIds?: string[] | undefined;
+        repress?: boolean | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
@@ -48858,6 +52348,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: true;
     data: {
         behaviorIds?: string[] | undefined;
+        repress?: boolean | undefined;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;
@@ -48875,6 +52366,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: true;
     data: {
         behaviorIds?: string[] | undefined;
+        repress?: boolean | undefined;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;
@@ -49933,6 +53425,302 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         } | undefined;
                     } | undefined;
                     tags?: string[] | undefined;
+                }>, z.ZodObject<{
+                    backgroundImage: z.ZodOptional<z.ZodObject<{
+                        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                        uri: z.ZodString;
+                        storagePath: z.ZodString;
+                        contentType: z.ZodString;
+                        title: z.ZodOptional<z.ZodString>;
+                        sizeBytes: z.ZodOptional<z.ZodNumber>;
+                        metadata: z.ZodOptional<z.ZodObject<{
+                            width: z.ZodOptional<z.ZodNumber>;
+                            height: z.ZodOptional<z.ZodNumber>;
+                            durationMs: z.ZodOptional<z.ZodNumber>;
+                            transcript: z.ZodOptional<z.ZodString>;
+                            lyrics: z.ZodOptional<z.ZodString>;
+                            lyricsAlignment: z.ZodOptional<z.ZodObject<{
+                                words: z.ZodArray<z.ZodObject<{
+                                    text: z.ZodString;
+                                    startS: z.ZodNumber;
+                                    endS: z.ZodNumber;
+                                }, "strip", z.ZodTypeAny, {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }, {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }>, "many">;
+                                lines: z.ZodArray<z.ZodObject<{
+                                    text: z.ZodString;
+                                    startS: z.ZodNumber;
+                                    endS: z.ZodNumber;
+                                    wordStart: z.ZodNumber;
+                                    wordEnd: z.ZodNumber;
+                                }, "strip", z.ZodTypeAny, {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }, {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }>, "many">;
+                            }, "strip", z.ZodTypeAny, {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            }, {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            }>>;
+                            meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                                db: z.ZodNumber;
+                                timestampMs: z.ZodOptional<z.ZodNumber>;
+                            }, "strip", z.ZodTypeAny, {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }, {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }>, "many">>;
+                        }, "strip", z.ZodTypeAny, {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        }, {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        }>>;
+                    }, "strip", z.ZodTypeAny, {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }, {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    }>>;
+                    tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                } & {
+                    mode: z.ZodLiteral<"capture">;
+                    id: z.ZodOptional<z.ZodString>;
+                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    text: z.ZodString;
+                    placeholder: z.ZodOptional<z.ZodString>;
+                    behaviorId: z.ZodOptional<z.ZodString>;
+                }, "strip", z.ZodTypeAny, {
+                    text: string;
+                    mode: "capture";
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    behaviorId?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    placeholder?: string | undefined;
+                }, {
+                    text: string;
+                    mode: "capture";
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    behaviorId?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    placeholder?: string | undefined;
                 }>, z.ZodObject<{
                     backgroundImage: z.ZodOptional<z.ZodObject<{
                         createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -53007,6 +56795,49 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tags?: string[] | undefined;
                 } | {
                     text: string;
+                    mode: "capture";
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    behaviorId?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    placeholder?: string | undefined;
+                } | {
+                    text: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -53474,6 +57305,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 completionTrigger: z.ZodOptional<z.ZodEnum<["device-restart"]>>;
                 effectiveness: z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>;
                 timeToComplete: z.ZodOptional<z.ZodEnum<["quick", "medium", "long"]>>;
+                effort: z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>;
+                worksAnywhere: z.ZodOptional<z.ZodBoolean>;
                 aiConfiguration: z.ZodOptional<z.ZodObject<{
                     defaultConversationMode: z.ZodOptional<z.ZodEnum<["voice", "text"]>>;
                     goal: z.ZodString;
@@ -53660,6 +57493,49 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tags?: string[] | undefined;
                 } | {
                     text: string;
+                    mode: "capture";
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    behaviorId?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    placeholder?: string | undefined;
+                } | {
+                    text: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -54039,6 +57915,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
+                effort?: "medium" | "low" | "high" | undefined;
+                worksAnywhere?: boolean | undefined;
                 aiConfiguration?: {
                     goal: string;
                     defaultConversationMode?: "text" | "voice" | undefined;
@@ -54109,6 +57987,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
+                effort?: "medium" | "low" | "high" | undefined;
+                worksAnywhere?: boolean | undefined;
                 aiConfiguration?: {
                     goal: string;
                     defaultConversationMode?: "text" | "voice" | undefined;
@@ -54290,6 +58170,49 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tags?: string[] | undefined;
                 } | {
                     text: string;
+                    mode: "capture";
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    behaviorId?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    placeholder?: string | undefined;
+                } | {
+                    text: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -54669,6 +58592,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
+                effort?: "medium" | "low" | "high" | undefined;
+                worksAnywhere?: boolean | undefined;
                 aiConfiguration?: {
                     goal: string;
                     defaultConversationMode?: "text" | "voice" | undefined;
@@ -54744,6 +58669,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
+                effort?: "medium" | "low" | "high" | undefined;
+                worksAnywhere?: boolean | undefined;
                 aiConfiguration?: {
                     goal: string;
                     defaultConversationMode?: "text" | "voice" | undefined;
@@ -54928,6 +58855,49 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tags?: string[] | undefined;
                 } | {
                     text: string;
+                    mode: "capture";
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    behaviorId?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    placeholder?: string | undefined;
+                } | {
+                    text: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -55307,6 +59277,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
+                effort?: "medium" | "low" | "high" | undefined;
+                worksAnywhere?: boolean | undefined;
                 aiConfiguration?: {
                     goal: string;
                     defaultConversationMode?: "text" | "voice" | undefined;
@@ -55385,6 +59357,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
+                effort?: "medium" | "low" | "high" | undefined;
+                worksAnywhere?: boolean | undefined;
                 aiConfiguration?: {
                     goal: string;
                     defaultConversationMode?: "text" | "voice" | undefined;
@@ -55579,6 +59553,49 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     tags?: string[] | undefined;
                 } | {
                     text: string;
+                    mode: "capture";
+                    id?: string | undefined;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    behaviorId?: string | undefined;
+                    backgroundImage?: {
+                        uri: string;
+                        storagePath: string;
+                        contentType: string;
+                        createdAt?: import("../../types").Timestamp | undefined;
+                        updatedAt?: import("../../types").Timestamp | undefined;
+                        title?: string | undefined;
+                        sizeBytes?: number | undefined;
+                        metadata?: {
+                            width?: number | undefined;
+                            height?: number | undefined;
+                            durationMs?: number | undefined;
+                            transcript?: string | undefined;
+                            lyrics?: string | undefined;
+                            lyricsAlignment?: {
+                                words: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                }[];
+                                lines: {
+                                    text: string;
+                                    startS: number;
+                                    endS: number;
+                                    wordStart: number;
+                                    wordEnd: number;
+                                }[];
+                            } | undefined;
+                            meterings?: {
+                                db: number;
+                                timestampMs?: number | undefined;
+                            }[] | undefined;
+                        } | undefined;
+                    } | undefined;
+                    tags?: string[] | undefined;
+                    placeholder?: string | undefined;
+                } | {
+                    text: string;
                     backgroundImage?: {
                         uri: string;
                         storagePath: string;
@@ -55958,6 +59975,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
+                effort?: "medium" | "low" | "high" | undefined;
+                worksAnywhere?: boolean | undefined;
                 aiConfiguration?: {
                     goal: string;
                     defaultConversationMode?: "text" | "voice" | undefined;
@@ -56051,6 +60070,8 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 completionTrigger?: "device-restart" | undefined;
                 effectiveness?: "medium" | "low" | "high" | undefined;
                 timeToComplete?: "medium" | "long" | "quick" | undefined;
+                effort?: "medium" | "low" | "high" | undefined;
+                worksAnywhere?: boolean | undefined;
                 aiConfiguration?: {
                     goal: string;
                     defaultConversationMode?: "text" | "voice" | undefined;

@@ -257,6 +257,19 @@ function getGptPayload(log, isFinalLogInSession, options) {
                 },
             ];
         }
+        // Auto-advanced card that is the latest thing in the session: the app just
+        // presented the plan's next tactic deterministically, and the assistant's
+        // reply is the bridging line into it.
+        if (log.data.autoAdvanced && isFinalLogInSession) {
+            return [
+                {
+                    role: "user",
+                    content: `<SYSTEM>The app just automatically presented the next tactic in the user's plan: "${tacticTitle}". ` +
+                        "Reply with one or two short sentences: first briefly credit the user for the tactic they just completed, then lead them straight into this one. " +
+                        "Do not ask whether they want to continue, do not re-explain the tactic's steps, and do NOT call suggestTactic — the card is already presented.</SYSTEM>",
+                },
+            ];
+        }
         return [
             {
                 role: "user",
@@ -354,6 +367,19 @@ function getGptPayload(log, isFinalLogInSession, options) {
                     content: "<SYSTEM>The user just activated Impulse Mode via their shortcut (widget or back-tap). " +
                         "This confirms their shortcut is installed and working. " +
                         "Acknowledge their success and move on to the next step.</SYSTEM>",
+                },
+            ];
+        }
+        // Re-press: the user hit the impulse button again and this existing
+        // session was reopened. The urge is still present or has returned.
+        if (log.data.repress === true) {
+            return [
+                {
+                    role: "user",
+                    content: "<SYSTEM>The user just pressed the impulse button again — the urge is still present or has returned. " +
+                        "Do not restart the conversation or re-ask what's going on. " +
+                        "Re-engage briefly and lead them into action: if a suggested tactic card is pending (not yet engaged), point them back to it in one short sentence; " +
+                        "if a new tactic card was just presented, lead into that one; otherwise offer the most fitting next step.</SYSTEM>",
                 },
             ];
         }

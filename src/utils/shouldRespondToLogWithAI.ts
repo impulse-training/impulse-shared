@@ -182,6 +182,18 @@ export function shouldRespondToLogWithAI(
     session &&
     sessionIsOnboardingSession(session);
 
+  // The user pressed the impulse button again while a recent impulse session
+  // was reused. The latest log is almost always assistant output at that
+  // point, so this must bypass the "latest is assistant" guard or the
+  // response is silently swallowed.
+  const isImpulseRepress =
+    !beforeData &&
+    afterData &&
+    logIsImpulseStartedLog(afterData) &&
+    afterData.data.repress === true &&
+    !!session &&
+    sessionIsImpulseSession(session);
+
   const latestIsAssistantOutput =
     latestSessionLog &&
     (logIsAssistantMessageLog(latestSessionLog) ||
@@ -201,6 +213,7 @@ export function shouldRespondToLogWithAI(
     !isMaskBehaviorResponseSelected &&
     !isDebriefQuestionResponseSelected &&
     !isImpulseStartedDuringOnboarding &&
+    !isImpulseRepress &&
     latestIsAssistantOutput
   ) {
     console.log("Latest log is assistant output. Not responding with AI.");
@@ -291,6 +304,13 @@ export function shouldRespondToLogWithAI(
   // Case: impulse_started during onboarding — user tested their shortcut
   if (isImpulseStartedDuringOnboarding) {
     console.log("Impulse started during onboarding. Responding with AI.");
+    return true;
+  }
+
+  // Case: impulse button re-pressed while an existing session was reused —
+  // the urge is back (or never left), so the AI should re-engage.
+  if (isImpulseRepress) {
+    console.log("Impulse button re-pressed. Responding with AI.");
     return true;
   }
 

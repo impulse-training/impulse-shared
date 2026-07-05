@@ -167,7 +167,7 @@ export function buildPlansLogPayload(
         );
       } else {
         parts.push(
-          "Follow the user's lead. When the tactic is completed, acknowledge it — do not suggest additional tactics that are not listed here.",
+          "Follow the user's lead. When the tactic is completed, acknowledge it — do not suggest additional tactics that are not listed here, and never tell the user to repeat a tactic they just completed.",
         );
       }
     }

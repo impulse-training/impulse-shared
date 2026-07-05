@@ -16,10 +16,13 @@ export declare const impulseStartedLogSchema: z.ZodObject<{
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
         behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        repress: z.ZodOptional<z.ZodBoolean>;
     }, "strip", z.ZodTypeAny, {
         behaviorIds?: string[] | undefined;
+        repress?: boolean | undefined;
     }, {
         behaviorIds?: string[] | undefined;
+        repress?: boolean | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
@@ -32,6 +35,7 @@ export declare const impulseStartedLogSchema: z.ZodObject<{
     isDisplayable: true;
     data: {
         behaviorIds?: string[] | undefined;
+        repress?: boolean | undefined;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;
@@ -49,6 +53,7 @@ export declare const impulseStartedLogSchema: z.ZodObject<{
     isDisplayable: true;
     data: {
         behaviorIds?: string[] | undefined;
+        repress?: boolean | undefined;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;

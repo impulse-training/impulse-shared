@@ -31,6 +31,9 @@ export const tacticLogSchema = logBaseSchema.extend({
     completedStepIndexes: z.array(z.number().int().nonnegative()).optional(),
     // whether the tactic is fully completed (all steps done)
     completed: z.boolean().optional(),
+    // True when the app presented this card deterministically as the next
+    // tactic in the session's plan (not via an AI suggestTactic call)
+    autoAdvanced: z.boolean().optional(),
     // Optional response for question-type tactic steps
     response: tacticResponseSchema.optional(),
     // Summary of the tactic chat conversation

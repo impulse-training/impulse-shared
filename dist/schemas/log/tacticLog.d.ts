@@ -858,6 +858,302 @@ export declare const tacticLogSchema: z.ZodObject<{
                 }>>;
                 tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             } & {
+                mode: z.ZodLiteral<"capture">;
+                id: z.ZodOptional<z.ZodString>;
+                createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                text: z.ZodString;
+                placeholder: z.ZodOptional<z.ZodString>;
+                behaviorId: z.ZodOptional<z.ZodString>;
+            }, "strip", z.ZodTypeAny, {
+                text: string;
+                mode: "capture";
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                behaviorId?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                placeholder?: string | undefined;
+            }, {
+                text: string;
+                mode: "capture";
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                behaviorId?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                placeholder?: string | undefined;
+            }>, z.ZodObject<{
+                backgroundImage: z.ZodOptional<z.ZodObject<{
+                    createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+                    uri: z.ZodString;
+                    storagePath: z.ZodString;
+                    contentType: z.ZodString;
+                    title: z.ZodOptional<z.ZodString>;
+                    sizeBytes: z.ZodOptional<z.ZodNumber>;
+                    metadata: z.ZodOptional<z.ZodObject<{
+                        width: z.ZodOptional<z.ZodNumber>;
+                        height: z.ZodOptional<z.ZodNumber>;
+                        durationMs: z.ZodOptional<z.ZodNumber>;
+                        transcript: z.ZodOptional<z.ZodString>;
+                        lyrics: z.ZodOptional<z.ZodString>;
+                        lyricsAlignment: z.ZodOptional<z.ZodObject<{
+                            words: z.ZodArray<z.ZodObject<{
+                                text: z.ZodString;
+                                startS: z.ZodNumber;
+                                endS: z.ZodNumber;
+                            }, "strip", z.ZodTypeAny, {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }, {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }>, "many">;
+                            lines: z.ZodArray<z.ZodObject<{
+                                text: z.ZodString;
+                                startS: z.ZodNumber;
+                                endS: z.ZodNumber;
+                                wordStart: z.ZodNumber;
+                                wordEnd: z.ZodNumber;
+                            }, "strip", z.ZodTypeAny, {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }, {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }>, "many">;
+                        }, "strip", z.ZodTypeAny, {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        }, {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        }>>;
+                        meterings: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                            db: z.ZodNumber;
+                            timestampMs: z.ZodOptional<z.ZodNumber>;
+                        }, "strip", z.ZodTypeAny, {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }, {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }>, "many">>;
+                    }, "strip", z.ZodTypeAny, {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    }, {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    }>>;
+                }, "strip", z.ZodTypeAny, {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }, {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                }>>;
+                tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+            } & {
                 mode: z.ZodLiteral<"notifySupport">;
                 groupId: z.ZodString;
                 text: z.ZodString;
@@ -3729,6 +4025,49 @@ export declare const tacticLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "capture";
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                behaviorId?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                placeholder?: string | undefined;
+            } | {
+                text: string;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -4196,6 +4535,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             completionTrigger: z.ZodOptional<z.ZodEnum<["device-restart"]>>;
             effectiveness: z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>;
             timeToComplete: z.ZodOptional<z.ZodEnum<["quick", "medium", "long"]>>;
+            effort: z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>;
+            worksAnywhere: z.ZodOptional<z.ZodBoolean>;
             aiConfiguration: z.ZodOptional<z.ZodObject<{
                 defaultConversationMode: z.ZodOptional<z.ZodEnum<["voice", "text"]>>;
                 goal: z.ZodString;
@@ -4380,6 +4721,49 @@ export declare const tacticLogSchema: z.ZodObject<{
                     } | undefined;
                 } | undefined;
                 tags?: string[] | undefined;
+            } | {
+                text: string;
+                mode: "capture";
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                behaviorId?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                placeholder?: string | undefined;
             } | {
                 text: string;
                 backgroundImage?: {
@@ -4761,6 +5145,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
+            effort?: "medium" | "low" | "high" | undefined;
+            worksAnywhere?: boolean | undefined;
             aiConfiguration?: {
                 goal: string;
                 defaultConversationMode?: "text" | "voice" | undefined;
@@ -4831,6 +5217,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
+            effort?: "medium" | "low" | "high" | undefined;
+            worksAnywhere?: boolean | undefined;
             aiConfiguration?: {
                 goal: string;
                 defaultConversationMode?: "text" | "voice" | undefined;
@@ -4850,6 +5238,7 @@ export declare const tacticLogSchema: z.ZodObject<{
         stepCount: z.ZodOptional<z.ZodNumber>;
         completedStepIndexes: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
         completed: z.ZodOptional<z.ZodBoolean>;
+        autoAdvanced: z.ZodOptional<z.ZodBoolean>;
         response: z.ZodOptional<z.ZodObject<{
             responseType: z.ZodEnum<["text", "choice", "slider1To10"]>;
             value: z.ZodUnion<[z.ZodString, z.ZodNumber]>;
@@ -5233,6 +5622,49 @@ export declare const tacticLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "capture";
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                behaviorId?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                placeholder?: string | undefined;
+            } | {
+                text: string;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -5612,6 +6044,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
+            effort?: "medium" | "low" | "high" | undefined;
+            worksAnywhere?: boolean | undefined;
             aiConfiguration?: {
                 goal: string;
                 defaultConversationMode?: "text" | "voice" | undefined;
@@ -5631,6 +6065,7 @@ export declare const tacticLogSchema: z.ZodObject<{
         planLogId?: string | undefined;
         stepCount?: number | undefined;
         completedStepIndexes?: number[] | undefined;
+        autoAdvanced?: boolean | undefined;
         response?: {
             value: string | number;
             formattedValue: string;
@@ -5734,6 +6169,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
+            effort?: "medium" | "low" | "high" | undefined;
+            worksAnywhere?: boolean | undefined;
             aiConfiguration?: {
                 goal: string;
                 defaultConversationMode?: "text" | "voice" | undefined;
@@ -5753,6 +6190,7 @@ export declare const tacticLogSchema: z.ZodObject<{
         planLogId?: string | undefined;
         stepCount?: number | undefined;
         completedStepIndexes?: number[] | undefined;
+        autoAdvanced?: boolean | undefined;
         response?: {
             value: string | number;
             formattedValue: string;
@@ -5972,6 +6410,49 @@ export declare const tacticLogSchema: z.ZodObject<{
                 tags?: string[] | undefined;
             } | {
                 text: string;
+                mode: "capture";
+                id?: string | undefined;
+                createdAt?: import("../../types").Timestamp | undefined;
+                updatedAt?: import("../../types").Timestamp | undefined;
+                behaviorId?: string | undefined;
+                backgroundImage?: {
+                    uri: string;
+                    storagePath: string;
+                    contentType: string;
+                    createdAt?: import("../../types").Timestamp | undefined;
+                    updatedAt?: import("../../types").Timestamp | undefined;
+                    title?: string | undefined;
+                    sizeBytes?: number | undefined;
+                    metadata?: {
+                        width?: number | undefined;
+                        height?: number | undefined;
+                        durationMs?: number | undefined;
+                        transcript?: string | undefined;
+                        lyrics?: string | undefined;
+                        lyricsAlignment?: {
+                            words: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                            }[];
+                            lines: {
+                                text: string;
+                                startS: number;
+                                endS: number;
+                                wordStart: number;
+                                wordEnd: number;
+                            }[];
+                        } | undefined;
+                        meterings?: {
+                            db: number;
+                            timestampMs?: number | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                } | undefined;
+                tags?: string[] | undefined;
+                placeholder?: string | undefined;
+            } | {
+                text: string;
                 backgroundImage?: {
                     uri: string;
                     storagePath: string;
@@ -6351,6 +6832,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
+            effort?: "medium" | "low" | "high" | undefined;
+            worksAnywhere?: boolean | undefined;
             aiConfiguration?: {
                 goal: string;
                 defaultConversationMode?: "text" | "voice" | undefined;
@@ -6370,6 +6853,7 @@ export declare const tacticLogSchema: z.ZodObject<{
         planLogId?: string | undefined;
         stepCount?: number | undefined;
         completedStepIndexes?: number[] | undefined;
+        autoAdvanced?: boolean | undefined;
         response?: {
             value: string | number;
             formattedValue: string;
@@ -6488,6 +6972,8 @@ export declare const tacticLogSchema: z.ZodObject<{
             completionTrigger?: "device-restart" | undefined;
             effectiveness?: "medium" | "low" | "high" | undefined;
             timeToComplete?: "medium" | "long" | "quick" | undefined;
+            effort?: "medium" | "low" | "high" | undefined;
+            worksAnywhere?: boolean | undefined;
             aiConfiguration?: {
                 goal: string;
                 defaultConversationMode?: "text" | "voice" | undefined;
@@ -6507,6 +6993,7 @@ export declare const tacticLogSchema: z.ZodObject<{
         planLogId?: string | undefined;
         stepCount?: number | undefined;
         completedStepIndexes?: number[] | undefined;
+        autoAdvanced?: boolean | undefined;
         response?: {
             value: string | number;
             formattedValue: string;

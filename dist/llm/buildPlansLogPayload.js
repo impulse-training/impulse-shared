@@ -109,7 +109,7 @@ function buildPlansLogPayload(log, isFinalLogInSession) {
                 parts.push("Follow the user's lead. You may suggest the next uncompleted tactic if the moment feels right, but do not force progression.");
             }
             else {
-                parts.push("Follow the user's lead. When the tactic is completed, acknowledge it — do not suggest additional tactics that are not listed here.");
+                parts.push("Follow the user's lead. When the tactic is completed, acknowledge it — do not suggest additional tactics that are not listed here, and never tell the user to repeat a tactic they just completed.");
             }
         }
     }
