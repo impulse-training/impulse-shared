@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { strategyModificationOperationSchema } from "./log/proposedStrategyModificationLog";
 import { timestampSchema } from "../utils/timestampSchema";
 
 export const taskStatusSchema = z.enum(["open", "completed", "dismissed"]);
@@ -38,39 +39,14 @@ export const mergeBehaviorsTaskSchema = taskBaseSchema.extend({
   }),
 });
 
-const strategyOperationSchema = z.discriminatedUnion("type", [
-  z.object({
-    type: z.literal("create_trigger"),
-    clientId: z.string().min(1),
-    trigger: z.object({
-      title: z.string().optional(),
-      tags: z.record(z.string(), z.string()).optional(),
-      behaviorIds: z.array(z.string()).optional(),
-      triggerType: z.enum(["arrival", "departure"]).optional(),
-      locationName: z.string().optional(),
-    }),
-  }),
-  z.object({
-    type: z.literal("create_plan"),
-    triggerClientId: z.string().min(1).optional(),
-    existingTriggerId: z.string().min(1).optional(),
-    plan: z.object({
-      name: z.string().min(1),
-      tacticIds: z.array(z.string()).min(1),
-      planType: z.enum(["trigger", "scheduled"]).optional(),
-      hour: z.number().min(0).max(23).optional(),
-      minute: z.number().min(0).max(59).optional(),
-      weekdays: z.array(z.number().min(0).max(6)).optional(),
-    }),
-  }),
-]);
-
 export const suggestStrategyTaskSchema = taskBaseSchema.extend({
   type: z.literal("suggest_strategy"),
   suggestedStrategy: z.object({
     title: z.string().min(1),
     summary: z.string().min(1),
-    operations: z.array(strategyOperationSchema).min(1),
+    // The same operations union proposals use (create_trigger, create_plan,
+    // set_behavior_goal) — previously a stricter local copy that drifted.
+    operations: z.array(strategyModificationOperationSchema).min(1),
   }),
 });
 

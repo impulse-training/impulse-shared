@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { logBaseSchema } from "./base";
+import { goalSchema } from "../goal";
 import { timestampSchema } from "../../utils/timestampSchema";
 
 const strategyTriggerDraftSchema = z.object({
@@ -40,9 +41,19 @@ export const createPlanStrategyOperationSchema = z.object({
   plan: strategyPlanDraftSchema,
 });
 
+// Replaces the behavior's goal wholesale on acceptance (e.g. switching to a
+// contain goal with fixed weekly windows). The behavior must belong to the
+// user; acceptance updates users/{uid}/behaviors/{behaviorId}.goal.
+export const setBehaviorGoalStrategyOperationSchema = z.object({
+  type: z.literal("set_behavior_goal"),
+  behaviorId: z.string().min(1),
+  goal: goalSchema,
+});
+
 export const strategyModificationOperationSchema = z.discriminatedUnion("type", [
   createTriggerStrategyOperationSchema,
   createPlanStrategyOperationSchema,
+  setBehaviorGoalStrategyOperationSchema,
 ]);
 
 export const proposedStrategyModificationLogSchema = logBaseSchema.extend({
@@ -57,6 +68,7 @@ export const proposedStrategyModificationLogSchema = logBaseSchema.extend({
     declinedAt: timestampSchema.optional(),
     createdTriggerIds: z.array(z.string()).optional(),
     createdPlanIds: z.array(z.string()).optional(),
+    updatedBehaviorIds: z.array(z.string()).optional(),
   }),
 });
 
@@ -67,6 +79,9 @@ export type CreateTriggerStrategyOperation = z.infer<
 >;
 export type CreatePlanStrategyOperation = z.infer<
   typeof createPlanStrategyOperationSchema
+>;
+export type SetBehaviorGoalStrategyOperation = z.infer<
+  typeof setBehaviorGoalStrategyOperationSchema
 >;
 export type StrategyModificationOperation = z.infer<
   typeof strategyModificationOperationSchema

@@ -5,6 +5,7 @@ export * from "./affirmation";
 export * from "./audio";
 export * from "./base";
 export * from "./breathing";
+export * from "./capture";
 export * from "./default";
 export * from "./media";
 export * from "./pedometer";
@@ -16,6 +17,7 @@ export * from "./voice";
 import { AffirmationStep, affirmationStepSchema } from "./affirmation";
 import { AudioStep, audioStepSchema } from "./audio";
 import { BreathingStep, breathingStepSchema } from "./breathing";
+import { CaptureStep, captureStepSchema } from "./capture";
 import { DefaultStep, defaultStepSchema } from "./default";
 import { MediaStep, mediaStepSchema } from "./media";
 import { PedometerStep, pedometerStepSchema } from "./pedometer";
@@ -27,6 +29,7 @@ import { VoiceStep, voiceStepSchema } from "./voice";
 const tacticStepUnionSchema = z.discriminatedUnion("mode", [
   defaultStepSchema,
   breathingStepSchema,
+  captureStepSchema,
   notifySupportStepSchema,
   questionStepSchema,
   mediaStepSchema,
@@ -110,10 +113,14 @@ export const stepIsPhoneCallStep = (
 export const stepIsVoiceStep = (step: TacticStep): step is VoiceStep =>
   step.mode === "zara";
 
+export const stepIsCaptureStep = (step: TacticStep): step is CaptureStep =>
+  step.mode === "capture";
+
 // Re-export concrete step types for precise narrowing
 export type {
   AudioStep,
   BreathingStep,
+  CaptureStep,
   DefaultStep,
   MediaStep,
   PedometerStep,

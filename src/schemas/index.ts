@@ -10,6 +10,7 @@ export * from "./behaviorState";
 export * from "./behaviorTemplate";
 export * from "./behaviorTopic";
 export * from "./call";
+export * from "./capturedItem";
 export * from "./coachingCall";
 export * from "./coachingApplication";
 export * from "./daySummary";
