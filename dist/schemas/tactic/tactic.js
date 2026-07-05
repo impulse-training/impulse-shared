@@ -68,6 +68,9 @@ exports.tacticSchema = zod_1.z.object({
     completionTrigger: zod_1.z.enum(["device-restart"]).optional(), // Auto-complete when this condition is detected
     effectiveness: zod_1.z.enum(["low", "medium", "high"]).optional(), // General effectiveness rating
     timeToComplete: zod_1.z.enum(["quick", "medium", "long"]).optional(), // How long the tactic takes
+    // Friction/fit metadata for library filtering (orthogonal to collections)
+    effort: zod_1.z.enum(["low", "medium", "high"]).optional(), // Activation energy required to start/do it
+    worksAnywhere: zod_1.z.boolean().optional(), // Doable regardless of location/context (public, work, in bed)
     aiConfiguration: zod_1.z
         .object({
         defaultConversationMode: zod_1.z.enum(["voice", "text"]).optional(),

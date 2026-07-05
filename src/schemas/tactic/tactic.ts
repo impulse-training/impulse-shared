@@ -78,6 +78,9 @@ export const tacticSchema = z.object({
   completionTrigger: z.enum(["device-restart"]).optional(), // Auto-complete when this condition is detected
   effectiveness: z.enum(["low", "medium", "high"]).optional(), // General effectiveness rating
   timeToComplete: z.enum(["quick", "medium", "long"]).optional(), // How long the tactic takes
+  // Friction/fit metadata for library filtering (orthogonal to collections)
+  effort: z.enum(["low", "medium", "high"]).optional(), // Activation energy required to start/do it
+  worksAnywhere: z.boolean().optional(), // Doable regardless of location/context (public, work, in bed)
   aiConfiguration: z
     .object({
       defaultConversationMode: z.enum(["voice", "text"]).optional(),
