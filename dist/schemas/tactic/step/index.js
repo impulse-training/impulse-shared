@@ -14,13 +14,14 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.stepIsVoiceStep = exports.stepIsPhoneCallStep = exports.stepIsPedometerStep = exports.stepIsAffirmationStep = exports.stepIsDefaultStep = exports.stepIsNotifySupportStep = exports.stepIsBreathingStep = exports.stepIsQuestionStep = exports.stepIsAudioStep = exports.stepIsMediaStep = exports.tacticStepSchema = void 0;
+exports.stepIsCaptureStep = exports.stepIsVoiceStep = exports.stepIsPhoneCallStep = exports.stepIsPedometerStep = exports.stepIsAffirmationStep = exports.stepIsDefaultStep = exports.stepIsNotifySupportStep = exports.stepIsBreathingStep = exports.stepIsQuestionStep = exports.stepIsAudioStep = exports.stepIsMediaStep = exports.tacticStepSchema = void 0;
 const zod_1 = require("zod");
 // Import all step schemas
 __exportStar(require("./affirmation"), exports);
 __exportStar(require("./audio"), exports);
 __exportStar(require("./base"), exports);
 __exportStar(require("./breathing"), exports);
+__exportStar(require("./capture"), exports);
 __exportStar(require("./default"), exports);
 __exportStar(require("./media"), exports);
 __exportStar(require("./pedometer"), exports);
@@ -31,6 +32,7 @@ __exportStar(require("./voice"), exports);
 const affirmation_1 = require("./affirmation");
 const audio_1 = require("./audio");
 const breathing_1 = require("./breathing");
+const capture_1 = require("./capture");
 const default_1 = require("./default");
 const media_1 = require("./media");
 const pedometer_1 = require("./pedometer");
@@ -41,6 +43,7 @@ const voice_1 = require("./voice");
 const tacticStepUnionSchema = zod_1.z.discriminatedUnion("mode", [
     default_1.defaultStepSchema,
     breathing_1.breathingStepSchema,
+    capture_1.captureStepSchema,
     notifySupport_1.notifySupportStepSchema,
     question_1.questionStepSchema,
     media_1.mediaStepSchema,
@@ -104,3 +107,5 @@ const stepIsPhoneCallStep = (step) => step.mode === "phoneCall";
 exports.stepIsPhoneCallStep = stepIsPhoneCallStep;
 const stepIsVoiceStep = (step) => step.mode === "zara";
 exports.stepIsVoiceStep = stepIsVoiceStep;
+const stepIsCaptureStep = (step) => step.mode === "capture";
+exports.stepIsCaptureStep = stepIsCaptureStep;

@@ -194,6 +194,158 @@ export declare const createPlanStrategyOperationSchema: z.ZodObject<{
     triggerClientId?: string | undefined;
     existingTriggerId?: string | undefined;
 }>;
+export declare const setBehaviorGoalStrategyOperationSchema: z.ZodObject<{
+    type: z.ZodLiteral<"set_behavior_goal">;
+    behaviorId: z.ZodString;
+    goal: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+        type: z.ZodLiteral<"eliminate">;
+    }, "strip", z.ZodTypeAny, {
+        type: "eliminate";
+    }, {
+        type: "eliminate";
+    }>, z.ZodObject<{
+        type: z.ZodLiteral<"reduceEveryDay">;
+        target: z.ZodNumber;
+    }, "strip", z.ZodTypeAny, {
+        type: "reduceEveryDay";
+        target: number;
+    }, {
+        type: "reduceEveryDay";
+        target: number;
+    }>, z.ZodObject<{
+        type: z.ZodLiteral<"reduceIndividualDays">;
+        dailyTargets: z.ZodObject<{
+            0: z.ZodNumber;
+            1: z.ZodNumber;
+            2: z.ZodNumber;
+            3: z.ZodNumber;
+            4: z.ZodNumber;
+            5: z.ZodNumber;
+            6: z.ZodNumber;
+        }, "strip", z.ZodTypeAny, {
+            0: number;
+            1: number;
+            2: number;
+            3: number;
+            5: number;
+            6: number;
+            4: number;
+        }, {
+            0: number;
+            1: number;
+            2: number;
+            3: number;
+            5: number;
+            6: number;
+            4: number;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        type: "reduceIndividualDays";
+        dailyTargets: {
+            0: number;
+            1: number;
+            2: number;
+            3: number;
+            5: number;
+            6: number;
+            4: number;
+        };
+    }, {
+        type: "reduceIndividualDays";
+        dailyTargets: {
+            0: number;
+            1: number;
+            2: number;
+            3: number;
+            5: number;
+            6: number;
+            4: number;
+        };
+    }>, z.ZodObject<{
+        type: z.ZodLiteral<"contain">;
+        allowedWindows: z.ZodArray<z.ZodObject<{
+            dayOfWeek: z.ZodNumber;
+            startTime: z.ZodString;
+            endTime: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
+            dayOfWeek: number;
+            startTime: string;
+            endTime: string;
+        }, {
+            dayOfWeek: number;
+            startTime: string;
+            endTime: string;
+        }>, "many">;
+    }, "strip", z.ZodTypeAny, {
+        type: "contain";
+        allowedWindows: {
+            dayOfWeek: number;
+            startTime: string;
+            endTime: string;
+        }[];
+    }, {
+        type: "contain";
+        allowedWindows: {
+            dayOfWeek: number;
+            startTime: string;
+            endTime: string;
+        }[];
+    }>]>;
+}, "strip", z.ZodTypeAny, {
+    type: "set_behavior_goal";
+    behaviorId: string;
+    goal: {
+        type: "eliminate";
+    } | {
+        type: "reduceEveryDay";
+        target: number;
+    } | {
+        type: "reduceIndividualDays";
+        dailyTargets: {
+            0: number;
+            1: number;
+            2: number;
+            3: number;
+            5: number;
+            6: number;
+            4: number;
+        };
+    } | {
+        type: "contain";
+        allowedWindows: {
+            dayOfWeek: number;
+            startTime: string;
+            endTime: string;
+        }[];
+    };
+}, {
+    type: "set_behavior_goal";
+    behaviorId: string;
+    goal: {
+        type: "eliminate";
+    } | {
+        type: "reduceEveryDay";
+        target: number;
+    } | {
+        type: "reduceIndividualDays";
+        dailyTargets: {
+            0: number;
+            1: number;
+            2: number;
+            3: number;
+            5: number;
+            6: number;
+            4: number;
+        };
+    } | {
+        type: "contain";
+        allowedWindows: {
+            dayOfWeek: number;
+            startTime: string;
+            endTime: string;
+        }[];
+    };
+}>;
 export declare const strategyModificationOperationSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     type: z.ZodLiteral<"create_trigger">;
     clientId: z.ZodString;
@@ -322,6 +474,157 @@ export declare const strategyModificationOperationSchema: z.ZodDiscriminatedUnio
     };
     triggerClientId?: string | undefined;
     existingTriggerId?: string | undefined;
+}>, z.ZodObject<{
+    type: z.ZodLiteral<"set_behavior_goal">;
+    behaviorId: z.ZodString;
+    goal: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+        type: z.ZodLiteral<"eliminate">;
+    }, "strip", z.ZodTypeAny, {
+        type: "eliminate";
+    }, {
+        type: "eliminate";
+    }>, z.ZodObject<{
+        type: z.ZodLiteral<"reduceEveryDay">;
+        target: z.ZodNumber;
+    }, "strip", z.ZodTypeAny, {
+        type: "reduceEveryDay";
+        target: number;
+    }, {
+        type: "reduceEveryDay";
+        target: number;
+    }>, z.ZodObject<{
+        type: z.ZodLiteral<"reduceIndividualDays">;
+        dailyTargets: z.ZodObject<{
+            0: z.ZodNumber;
+            1: z.ZodNumber;
+            2: z.ZodNumber;
+            3: z.ZodNumber;
+            4: z.ZodNumber;
+            5: z.ZodNumber;
+            6: z.ZodNumber;
+        }, "strip", z.ZodTypeAny, {
+            0: number;
+            1: number;
+            2: number;
+            3: number;
+            5: number;
+            6: number;
+            4: number;
+        }, {
+            0: number;
+            1: number;
+            2: number;
+            3: number;
+            5: number;
+            6: number;
+            4: number;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        type: "reduceIndividualDays";
+        dailyTargets: {
+            0: number;
+            1: number;
+            2: number;
+            3: number;
+            5: number;
+            6: number;
+            4: number;
+        };
+    }, {
+        type: "reduceIndividualDays";
+        dailyTargets: {
+            0: number;
+            1: number;
+            2: number;
+            3: number;
+            5: number;
+            6: number;
+            4: number;
+        };
+    }>, z.ZodObject<{
+        type: z.ZodLiteral<"contain">;
+        allowedWindows: z.ZodArray<z.ZodObject<{
+            dayOfWeek: z.ZodNumber;
+            startTime: z.ZodString;
+            endTime: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
+            dayOfWeek: number;
+            startTime: string;
+            endTime: string;
+        }, {
+            dayOfWeek: number;
+            startTime: string;
+            endTime: string;
+        }>, "many">;
+    }, "strip", z.ZodTypeAny, {
+        type: "contain";
+        allowedWindows: {
+            dayOfWeek: number;
+            startTime: string;
+            endTime: string;
+        }[];
+    }, {
+        type: "contain";
+        allowedWindows: {
+            dayOfWeek: number;
+            startTime: string;
+            endTime: string;
+        }[];
+    }>]>;
+}, "strip", z.ZodTypeAny, {
+    type: "set_behavior_goal";
+    behaviorId: string;
+    goal: {
+        type: "eliminate";
+    } | {
+        type: "reduceEveryDay";
+        target: number;
+    } | {
+        type: "reduceIndividualDays";
+        dailyTargets: {
+            0: number;
+            1: number;
+            2: number;
+            3: number;
+            5: number;
+            6: number;
+            4: number;
+        };
+    } | {
+        type: "contain";
+        allowedWindows: {
+            dayOfWeek: number;
+            startTime: string;
+            endTime: string;
+        }[];
+    };
+}, {
+    type: "set_behavior_goal";
+    behaviorId: string;
+    goal: {
+        type: "eliminate";
+    } | {
+        type: "reduceEveryDay";
+        target: number;
+    } | {
+        type: "reduceIndividualDays";
+        dailyTargets: {
+            0: number;
+            1: number;
+            2: number;
+            3: number;
+            5: number;
+            6: number;
+            4: number;
+        };
+    } | {
+        type: "contain";
+        allowedWindows: {
+            dayOfWeek: number;
+            startTime: string;
+            endTime: string;
+        }[];
+    };
 }>]>;
 export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -470,11 +773,163 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
             };
             triggerClientId?: string | undefined;
             existingTriggerId?: string | undefined;
+        }>, z.ZodObject<{
+            type: z.ZodLiteral<"set_behavior_goal">;
+            behaviorId: z.ZodString;
+            goal: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+                type: z.ZodLiteral<"eliminate">;
+            }, "strip", z.ZodTypeAny, {
+                type: "eliminate";
+            }, {
+                type: "eliminate";
+            }>, z.ZodObject<{
+                type: z.ZodLiteral<"reduceEveryDay">;
+                target: z.ZodNumber;
+            }, "strip", z.ZodTypeAny, {
+                type: "reduceEveryDay";
+                target: number;
+            }, {
+                type: "reduceEveryDay";
+                target: number;
+            }>, z.ZodObject<{
+                type: z.ZodLiteral<"reduceIndividualDays">;
+                dailyTargets: z.ZodObject<{
+                    0: z.ZodNumber;
+                    1: z.ZodNumber;
+                    2: z.ZodNumber;
+                    3: z.ZodNumber;
+                    4: z.ZodNumber;
+                    5: z.ZodNumber;
+                    6: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                }, {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                }>;
+            }, "strip", z.ZodTypeAny, {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            }, {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            }>, z.ZodObject<{
+                type: z.ZodLiteral<"contain">;
+                allowedWindows: z.ZodArray<z.ZodObject<{
+                    dayOfWeek: z.ZodNumber;
+                    startTime: z.ZodString;
+                    endTime: z.ZodString;
+                }, "strip", z.ZodTypeAny, {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }, {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }>, "many">;
+            }, "strip", z.ZodTypeAny, {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            }, {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            }>]>;
+        }, "strip", z.ZodTypeAny, {
+            type: "set_behavior_goal";
+            behaviorId: string;
+            goal: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            } | {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            };
+        }, {
+            type: "set_behavior_goal";
+            behaviorId: string;
+            goal: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            } | {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            };
         }>]>, "many">;
         acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         declinedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         createdTriggerIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         createdPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        updatedBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     }, "strip", z.ZodTypeAny, {
         status: "declined" | "pending" | "accepted";
         title: string;
@@ -506,12 +961,40 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
             };
             triggerClientId?: string | undefined;
             existingTriggerId?: string | undefined;
+        } | {
+            type: "set_behavior_goal";
+            behaviorId: string;
+            goal: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            } | {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            };
         })[];
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
         createdTriggerIds?: string[] | undefined;
         createdPlanIds?: string[] | undefined;
+        updatedBehaviorIds?: string[] | undefined;
     }, {
         title: string;
         operations: ({
@@ -542,6 +1025,33 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
             };
             triggerClientId?: string | undefined;
             existingTriggerId?: string | undefined;
+        } | {
+            type: "set_behavior_goal";
+            behaviorId: string;
+            goal: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            } | {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            };
         })[];
         status?: "declined" | "pending" | "accepted" | undefined;
         summary?: string | undefined;
@@ -549,6 +1059,7 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
         declinedAt?: import("../../types").Timestamp | undefined;
         createdTriggerIds?: string[] | undefined;
         createdPlanIds?: string[] | undefined;
+        updatedBehaviorIds?: string[] | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
@@ -590,12 +1101,40 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
             };
             triggerClientId?: string | undefined;
             existingTriggerId?: string | undefined;
+        } | {
+            type: "set_behavior_goal";
+            behaviorId: string;
+            goal: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            } | {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            };
         })[];
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
         createdTriggerIds?: string[] | undefined;
         createdPlanIds?: string[] | undefined;
+        updatedBehaviorIds?: string[] | undefined;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;
@@ -641,6 +1180,33 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
             };
             triggerClientId?: string | undefined;
             existingTriggerId?: string | undefined;
+        } | {
+            type: "set_behavior_goal";
+            behaviorId: string;
+            goal: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            } | {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            };
         })[];
         status?: "declined" | "pending" | "accepted" | undefined;
         summary?: string | undefined;
@@ -648,6 +1214,7 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
         declinedAt?: import("../../types").Timestamp | undefined;
         createdTriggerIds?: string[] | undefined;
         createdPlanIds?: string[] | undefined;
+        updatedBehaviorIds?: string[] | undefined;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;
@@ -659,6 +1226,7 @@ export type StrategyTriggerDraft = z.infer<typeof strategyTriggerDraftSchema>;
 export type StrategyPlanDraft = z.infer<typeof strategyPlanDraftSchema>;
 export type CreateTriggerStrategyOperation = z.infer<typeof createTriggerStrategyOperationSchema>;
 export type CreatePlanStrategyOperation = z.infer<typeof createPlanStrategyOperationSchema>;
+export type SetBehaviorGoalStrategyOperation = z.infer<typeof setBehaviorGoalStrategyOperationSchema>;
 export type StrategyModificationOperation = z.infer<typeof strategyModificationOperationSchema>;
 export type ProposedStrategyModificationLog = z.infer<typeof proposedStrategyModificationLogSchema>;
 export {};

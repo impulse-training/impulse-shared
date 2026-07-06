@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isSetupShortcutTask = exports.isReflectOnMetricsTask = exports.isSuggestTacticTask = exports.isToolkitPlanningTask = exports.isReviewTriggerTask = exports.isRecapQuestionTask = exports.isProposeMaskBehaviorTask = exports.isProposeExperimentTask = exports.isSuggestStrategyTask = exports.isMergeBehaviorsTask = exports.isTask = exports.taskSchema = exports.setupShortcutTaskSchema = exports.collectBaselineTaskSchema = exports.reflectOnMetricsTaskSchema = exports.suggestTacticTaskSchema = exports.toolkitPlanningTaskSchema = exports.reviewTriggerTaskSchema = exports.recapQuestionTaskSchema = exports.createSessionTaskSchema = exports.proposeMaskBehaviorTaskSchema = exports.proposeExperimentTaskSchema = exports.proposedMetricSchema = exports.suggestStrategyTaskSchema = exports.mergeBehaviorsTaskSchema = exports.taskBaseSchema = exports.claimableSessionTypeSchema = exports.taskCategorySchema = exports.taskStatusSchema = void 0;
 const zod_1 = require("zod");
+const proposedStrategyModificationLog_1 = require("./log/proposedStrategyModificationLog");
 const timestampSchema_1 = require("../utils/timestampSchema");
 exports.taskStatusSchema = zod_1.z.enum(["open", "completed", "dismissed"]);
 exports.taskCategorySchema = zod_1.z.enum(["zara", "deterministic"]);
@@ -35,38 +36,14 @@ exports.mergeBehaviorsTaskSchema = exports.taskBaseSchema.extend({
         synonyms: zod_1.z.array(zod_1.z.string()).optional(),
     }),
 });
-const strategyOperationSchema = zod_1.z.discriminatedUnion("type", [
-    zod_1.z.object({
-        type: zod_1.z.literal("create_trigger"),
-        clientId: zod_1.z.string().min(1),
-        trigger: zod_1.z.object({
-            title: zod_1.z.string().optional(),
-            tags: zod_1.z.record(zod_1.z.string(), zod_1.z.string()).optional(),
-            behaviorIds: zod_1.z.array(zod_1.z.string()).optional(),
-            triggerType: zod_1.z.enum(["arrival", "departure"]).optional(),
-            locationName: zod_1.z.string().optional(),
-        }),
-    }),
-    zod_1.z.object({
-        type: zod_1.z.literal("create_plan"),
-        triggerClientId: zod_1.z.string().min(1).optional(),
-        existingTriggerId: zod_1.z.string().min(1).optional(),
-        plan: zod_1.z.object({
-            name: zod_1.z.string().min(1),
-            tacticIds: zod_1.z.array(zod_1.z.string()).min(1),
-            planType: zod_1.z.enum(["trigger", "scheduled"]).optional(),
-            hour: zod_1.z.number().min(0).max(23).optional(),
-            minute: zod_1.z.number().min(0).max(59).optional(),
-            weekdays: zod_1.z.array(zod_1.z.number().min(0).max(6)).optional(),
-        }),
-    }),
-]);
 exports.suggestStrategyTaskSchema = exports.taskBaseSchema.extend({
     type: zod_1.z.literal("suggest_strategy"),
     suggestedStrategy: zod_1.z.object({
         title: zod_1.z.string().min(1),
         summary: zod_1.z.string().min(1),
-        operations: zod_1.z.array(strategyOperationSchema).min(1),
+        // The same operations union proposals use (create_trigger, create_plan,
+        // set_behavior_goal) — previously a stricter local copy that drifted.
+        operations: zod_1.z.array(proposedStrategyModificationLog_1.strategyModificationOperationSchema).min(1),
     }),
 });
 exports.proposedMetricSchema = zod_1.z.object({

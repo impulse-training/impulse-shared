@@ -22,12 +22,12 @@ export declare const coachingApplicationSchema: z.ZodObject<{
     name: string;
     email: string;
     userId?: string | undefined;
+    reviewedAt?: Timestamp | undefined;
     urgePattern?: string | undefined;
     note?: string | undefined;
     timezone?: string | undefined;
     sourceIpHash?: string | undefined;
     reviewedBy?: string | undefined;
-    reviewedAt?: Timestamp | undefined;
 }, {
     id: string;
     createdAt: Timestamp;
@@ -36,12 +36,12 @@ export declare const coachingApplicationSchema: z.ZodObject<{
     email: string;
     status?: "new" | "reviewed" | "contacted" | "enrolled" | "declined" | undefined;
     userId?: string | undefined;
+    reviewedAt?: Timestamp | undefined;
     urgePattern?: string | undefined;
     note?: string | undefined;
     timezone?: string | undefined;
     sourceIpHash?: string | undefined;
     reviewedBy?: string | undefined;
-    reviewedAt?: Timestamp | undefined;
 }>;
 export type CoachingApplication = z.infer<typeof coachingApplicationSchema> & {
     createdAt: Timestamp;

@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.proposedStrategyModificationLogSchema = exports.strategyModificationOperationSchema = exports.createPlanStrategyOperationSchema = exports.createTriggerStrategyOperationSchema = void 0;
+exports.proposedStrategyModificationLogSchema = exports.strategyModificationOperationSchema = exports.setBehaviorGoalStrategyOperationSchema = exports.createPlanStrategyOperationSchema = exports.createTriggerStrategyOperationSchema = void 0;
 const zod_1 = require("zod");
 const base_1 = require("./base");
+const goal_1 = require("../goal");
 const timestampSchema_1 = require("../../utils/timestampSchema");
 const strategyTriggerDraftSchema = zod_1.z.object({
     id: zod_1.z.string().optional(),
@@ -37,9 +38,18 @@ exports.createPlanStrategyOperationSchema = zod_1.z.object({
     existingTriggerId: zod_1.z.string().min(1).optional(),
     plan: strategyPlanDraftSchema,
 });
+// Replaces the behavior's goal wholesale on acceptance (e.g. switching to a
+// contain goal with fixed weekly windows). The behavior must belong to the
+// user; acceptance updates users/{uid}/behaviors/{behaviorId}.goal.
+exports.setBehaviorGoalStrategyOperationSchema = zod_1.z.object({
+    type: zod_1.z.literal("set_behavior_goal"),
+    behaviorId: zod_1.z.string().min(1),
+    goal: goal_1.goalSchema,
+});
 exports.strategyModificationOperationSchema = zod_1.z.discriminatedUnion("type", [
     exports.createTriggerStrategyOperationSchema,
     exports.createPlanStrategyOperationSchema,
+    exports.setBehaviorGoalStrategyOperationSchema,
 ]);
 exports.proposedStrategyModificationLogSchema = base_1.logBaseSchema.extend({
     type: zod_1.z.literal("proposed_strategy_modification"),
@@ -53,5 +63,6 @@ exports.proposedStrategyModificationLogSchema = base_1.logBaseSchema.extend({
         declinedAt: timestampSchema_1.timestampSchema.optional(),
         createdTriggerIds: zod_1.z.array(zod_1.z.string()).optional(),
         createdPlanIds: zod_1.z.array(zod_1.z.string()).optional(),
+        updatedBehaviorIds: zod_1.z.array(zod_1.z.string()).optional(),
     }),
 });

@@ -27,6 +27,7 @@ __exportStar(require("./behaviorState"), exports);
 __exportStar(require("./behaviorTemplate"), exports);
 __exportStar(require("./behaviorTopic"), exports);
 __exportStar(require("./call"), exports);
+__exportStar(require("./capturedItem"), exports);
 __exportStar(require("./coachingCall"), exports);
 __exportStar(require("./coachingApplication"), exports);
 __exportStar(require("./daySummary"), exports);

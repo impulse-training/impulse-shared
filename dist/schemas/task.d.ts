@@ -174,30 +174,34 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
             type: z.ZodLiteral<"create_trigger">;
             clientId: z.ZodString;
             trigger: z.ZodObject<{
+                id: z.ZodOptional<z.ZodString>;
                 title: z.ZodOptional<z.ZodString>;
-                tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
                 behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                tags: z.ZodDefault<z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>>;
                 triggerType: z.ZodOptional<z.ZodEnum<["arrival", "departure"]>>;
                 locationName: z.ZodOptional<z.ZodString>;
             }, "strip", z.ZodTypeAny, {
+                tags: Record<string, string | string[]>;
+                id?: string | undefined;
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
-                tags?: Record<string, string> | undefined;
                 triggerType?: "arrival" | "departure" | undefined;
                 locationName?: string | undefined;
             }, {
+                id?: string | undefined;
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
-                tags?: Record<string, string> | undefined;
+                tags?: Record<string, string | string[]> | undefined;
                 triggerType?: "arrival" | "departure" | undefined;
                 locationName?: string | undefined;
             }>;
         }, "strip", z.ZodTypeAny, {
             type: "create_trigger";
             trigger: {
+                tags: Record<string, string | string[]>;
+                id?: string | undefined;
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
-                tags?: Record<string, string> | undefined;
                 triggerType?: "arrival" | "departure" | undefined;
                 locationName?: string | undefined;
             };
@@ -205,9 +209,10 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
         }, {
             type: "create_trigger";
             trigger: {
+                id?: string | undefined;
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
-                tags?: Record<string, string> | undefined;
+                tags?: Record<string, string | string[]> | undefined;
                 triggerType?: "arrival" | "departure" | undefined;
                 locationName?: string | undefined;
             };
@@ -217,8 +222,19 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
             triggerClientId: z.ZodOptional<z.ZodString>;
             existingTriggerId: z.ZodOptional<z.ZodString>;
             plan: z.ZodObject<{
+                id: z.ZodOptional<z.ZodString>;
                 name: z.ZodString;
-                tacticIds: z.ZodArray<z.ZodString, "many">;
+                tacticIds: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+                newTactics: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                    title: z.ZodString;
+                    description: z.ZodOptional<z.ZodString>;
+                }, "strip", z.ZodTypeAny, {
+                    title: string;
+                    description?: string | undefined;
+                }, {
+                    title: string;
+                    description?: string | undefined;
+                }>, "many">>;
                 planType: z.ZodOptional<z.ZodEnum<["trigger", "scheduled"]>>;
                 hour: z.ZodOptional<z.ZodNumber>;
                 minute: z.ZodOptional<z.ZodNumber>;
@@ -226,13 +242,23 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
             }, "strip", z.ZodTypeAny, {
                 name: string;
                 tacticIds: string[];
+                id?: string | undefined;
+                newTactics?: {
+                    title: string;
+                    description?: string | undefined;
+                }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
                 minute?: number | undefined;
                 weekdays?: number[] | undefined;
             }, {
                 name: string;
-                tacticIds: string[];
+                id?: string | undefined;
+                tacticIds?: string[] | undefined;
+                newTactics?: {
+                    title: string;
+                    description?: string | undefined;
+                }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
                 minute?: number | undefined;
@@ -243,6 +269,11 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
             plan: {
                 name: string;
                 tacticIds: string[];
+                id?: string | undefined;
+                newTactics?: {
+                    title: string;
+                    description?: string | undefined;
+                }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
                 minute?: number | undefined;
@@ -254,7 +285,12 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
             type: "create_plan";
             plan: {
                 name: string;
-                tacticIds: string[];
+                id?: string | undefined;
+                tacticIds?: string[] | undefined;
+                newTactics?: {
+                    title: string;
+                    description?: string | undefined;
+                }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
                 minute?: number | undefined;
@@ -262,6 +298,157 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
             };
             triggerClientId?: string | undefined;
             existingTriggerId?: string | undefined;
+        }>, z.ZodObject<{
+            type: z.ZodLiteral<"set_behavior_goal">;
+            behaviorId: z.ZodString;
+            goal: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+                type: z.ZodLiteral<"eliminate">;
+            }, "strip", z.ZodTypeAny, {
+                type: "eliminate";
+            }, {
+                type: "eliminate";
+            }>, z.ZodObject<{
+                type: z.ZodLiteral<"reduceEveryDay">;
+                target: z.ZodNumber;
+            }, "strip", z.ZodTypeAny, {
+                type: "reduceEveryDay";
+                target: number;
+            }, {
+                type: "reduceEveryDay";
+                target: number;
+            }>, z.ZodObject<{
+                type: z.ZodLiteral<"reduceIndividualDays">;
+                dailyTargets: z.ZodObject<{
+                    0: z.ZodNumber;
+                    1: z.ZodNumber;
+                    2: z.ZodNumber;
+                    3: z.ZodNumber;
+                    4: z.ZodNumber;
+                    5: z.ZodNumber;
+                    6: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                }, {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                }>;
+            }, "strip", z.ZodTypeAny, {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            }, {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            }>, z.ZodObject<{
+                type: z.ZodLiteral<"contain">;
+                allowedWindows: z.ZodArray<z.ZodObject<{
+                    dayOfWeek: z.ZodNumber;
+                    startTime: z.ZodString;
+                    endTime: z.ZodString;
+                }, "strip", z.ZodTypeAny, {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }, {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }>, "many">;
+            }, "strip", z.ZodTypeAny, {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            }, {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            }>]>;
+        }, "strip", z.ZodTypeAny, {
+            type: "set_behavior_goal";
+            behaviorId: string;
+            goal: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            } | {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            };
+        }, {
+            type: "set_behavior_goal";
+            behaviorId: string;
+            goal: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            } | {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            };
         }>]>, "many">;
     }, "strip", z.ZodTypeAny, {
         title: string;
@@ -269,9 +456,10 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
         operations: ({
             type: "create_trigger";
             trigger: {
+                tags: Record<string, string | string[]>;
+                id?: string | undefined;
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
-                tags?: Record<string, string> | undefined;
                 triggerType?: "arrival" | "departure" | undefined;
                 locationName?: string | undefined;
             };
@@ -281,6 +469,11 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
             plan: {
                 name: string;
                 tacticIds: string[];
+                id?: string | undefined;
+                newTactics?: {
+                    title: string;
+                    description?: string | undefined;
+                }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
                 minute?: number | undefined;
@@ -288,6 +481,33 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
             };
             triggerClientId?: string | undefined;
             existingTriggerId?: string | undefined;
+        } | {
+            type: "set_behavior_goal";
+            behaviorId: string;
+            goal: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            } | {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            };
         })[];
     }, {
         title: string;
@@ -295,9 +515,10 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
         operations: ({
             type: "create_trigger";
             trigger: {
+                id?: string | undefined;
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
-                tags?: Record<string, string> | undefined;
+                tags?: Record<string, string | string[]> | undefined;
                 triggerType?: "arrival" | "departure" | undefined;
                 locationName?: string | undefined;
             };
@@ -306,7 +527,12 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
             type: "create_plan";
             plan: {
                 name: string;
-                tacticIds: string[];
+                id?: string | undefined;
+                tacticIds?: string[] | undefined;
+                newTactics?: {
+                    title: string;
+                    description?: string | undefined;
+                }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
                 minute?: number | undefined;
@@ -314,6 +540,33 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
             };
             triggerClientId?: string | undefined;
             existingTriggerId?: string | undefined;
+        } | {
+            type: "set_behavior_goal";
+            behaviorId: string;
+            goal: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            } | {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            };
         })[];
     }>;
 }, "strip", z.ZodTypeAny, {
@@ -331,9 +584,10 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
         operations: ({
             type: "create_trigger";
             trigger: {
+                tags: Record<string, string | string[]>;
+                id?: string | undefined;
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
-                tags?: Record<string, string> | undefined;
                 triggerType?: "arrival" | "departure" | undefined;
                 locationName?: string | undefined;
             };
@@ -343,6 +597,11 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
             plan: {
                 name: string;
                 tacticIds: string[];
+                id?: string | undefined;
+                newTactics?: {
+                    title: string;
+                    description?: string | undefined;
+                }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
                 minute?: number | undefined;
@@ -350,6 +609,33 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
             };
             triggerClientId?: string | undefined;
             existingTriggerId?: string | undefined;
+        } | {
+            type: "set_behavior_goal";
+            behaviorId: string;
+            goal: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            } | {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            };
         })[];
     };
     id?: string | undefined;
@@ -375,9 +661,10 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
         operations: ({
             type: "create_trigger";
             trigger: {
+                id?: string | undefined;
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
-                tags?: Record<string, string> | undefined;
+                tags?: Record<string, string | string[]> | undefined;
                 triggerType?: "arrival" | "departure" | undefined;
                 locationName?: string | undefined;
             };
@@ -386,7 +673,12 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
             type: "create_plan";
             plan: {
                 name: string;
-                tacticIds: string[];
+                id?: string | undefined;
+                tacticIds?: string[] | undefined;
+                newTactics?: {
+                    title: string;
+                    description?: string | undefined;
+                }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
                 minute?: number | undefined;
@@ -394,6 +686,33 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
             };
             triggerClientId?: string | undefined;
             existingTriggerId?: string | undefined;
+        } | {
+            type: "set_behavior_goal";
+            behaviorId: string;
+            goal: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            } | {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            };
         })[];
     };
     id?: string | undefined;
@@ -1478,30 +1797,34 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             type: z.ZodLiteral<"create_trigger">;
             clientId: z.ZodString;
             trigger: z.ZodObject<{
+                id: z.ZodOptional<z.ZodString>;
                 title: z.ZodOptional<z.ZodString>;
-                tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
                 behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+                tags: z.ZodDefault<z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>>;
                 triggerType: z.ZodOptional<z.ZodEnum<["arrival", "departure"]>>;
                 locationName: z.ZodOptional<z.ZodString>;
             }, "strip", z.ZodTypeAny, {
+                tags: Record<string, string | string[]>;
+                id?: string | undefined;
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
-                tags?: Record<string, string> | undefined;
                 triggerType?: "arrival" | "departure" | undefined;
                 locationName?: string | undefined;
             }, {
+                id?: string | undefined;
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
-                tags?: Record<string, string> | undefined;
+                tags?: Record<string, string | string[]> | undefined;
                 triggerType?: "arrival" | "departure" | undefined;
                 locationName?: string | undefined;
             }>;
         }, "strip", z.ZodTypeAny, {
             type: "create_trigger";
             trigger: {
+                tags: Record<string, string | string[]>;
+                id?: string | undefined;
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
-                tags?: Record<string, string> | undefined;
                 triggerType?: "arrival" | "departure" | undefined;
                 locationName?: string | undefined;
             };
@@ -1509,9 +1832,10 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }, {
             type: "create_trigger";
             trigger: {
+                id?: string | undefined;
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
-                tags?: Record<string, string> | undefined;
+                tags?: Record<string, string | string[]> | undefined;
                 triggerType?: "arrival" | "departure" | undefined;
                 locationName?: string | undefined;
             };
@@ -1521,8 +1845,19 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             triggerClientId: z.ZodOptional<z.ZodString>;
             existingTriggerId: z.ZodOptional<z.ZodString>;
             plan: z.ZodObject<{
+                id: z.ZodOptional<z.ZodString>;
                 name: z.ZodString;
-                tacticIds: z.ZodArray<z.ZodString, "many">;
+                tacticIds: z.ZodDefault<z.ZodArray<z.ZodString, "many">>;
+                newTactics: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                    title: z.ZodString;
+                    description: z.ZodOptional<z.ZodString>;
+                }, "strip", z.ZodTypeAny, {
+                    title: string;
+                    description?: string | undefined;
+                }, {
+                    title: string;
+                    description?: string | undefined;
+                }>, "many">>;
                 planType: z.ZodOptional<z.ZodEnum<["trigger", "scheduled"]>>;
                 hour: z.ZodOptional<z.ZodNumber>;
                 minute: z.ZodOptional<z.ZodNumber>;
@@ -1530,13 +1865,23 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             }, "strip", z.ZodTypeAny, {
                 name: string;
                 tacticIds: string[];
+                id?: string | undefined;
+                newTactics?: {
+                    title: string;
+                    description?: string | undefined;
+                }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
                 minute?: number | undefined;
                 weekdays?: number[] | undefined;
             }, {
                 name: string;
-                tacticIds: string[];
+                id?: string | undefined;
+                tacticIds?: string[] | undefined;
+                newTactics?: {
+                    title: string;
+                    description?: string | undefined;
+                }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
                 minute?: number | undefined;
@@ -1547,6 +1892,11 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             plan: {
                 name: string;
                 tacticIds: string[];
+                id?: string | undefined;
+                newTactics?: {
+                    title: string;
+                    description?: string | undefined;
+                }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
                 minute?: number | undefined;
@@ -1558,7 +1908,12 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             type: "create_plan";
             plan: {
                 name: string;
-                tacticIds: string[];
+                id?: string | undefined;
+                tacticIds?: string[] | undefined;
+                newTactics?: {
+                    title: string;
+                    description?: string | undefined;
+                }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
                 minute?: number | undefined;
@@ -1566,6 +1921,157 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             };
             triggerClientId?: string | undefined;
             existingTriggerId?: string | undefined;
+        }>, z.ZodObject<{
+            type: z.ZodLiteral<"set_behavior_goal">;
+            behaviorId: z.ZodString;
+            goal: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+                type: z.ZodLiteral<"eliminate">;
+            }, "strip", z.ZodTypeAny, {
+                type: "eliminate";
+            }, {
+                type: "eliminate";
+            }>, z.ZodObject<{
+                type: z.ZodLiteral<"reduceEveryDay">;
+                target: z.ZodNumber;
+            }, "strip", z.ZodTypeAny, {
+                type: "reduceEveryDay";
+                target: number;
+            }, {
+                type: "reduceEveryDay";
+                target: number;
+            }>, z.ZodObject<{
+                type: z.ZodLiteral<"reduceIndividualDays">;
+                dailyTargets: z.ZodObject<{
+                    0: z.ZodNumber;
+                    1: z.ZodNumber;
+                    2: z.ZodNumber;
+                    3: z.ZodNumber;
+                    4: z.ZodNumber;
+                    5: z.ZodNumber;
+                    6: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                }, {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                }>;
+            }, "strip", z.ZodTypeAny, {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            }, {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            }>, z.ZodObject<{
+                type: z.ZodLiteral<"contain">;
+                allowedWindows: z.ZodArray<z.ZodObject<{
+                    dayOfWeek: z.ZodNumber;
+                    startTime: z.ZodString;
+                    endTime: z.ZodString;
+                }, "strip", z.ZodTypeAny, {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }, {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }>, "many">;
+            }, "strip", z.ZodTypeAny, {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            }, {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            }>]>;
+        }, "strip", z.ZodTypeAny, {
+            type: "set_behavior_goal";
+            behaviorId: string;
+            goal: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            } | {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            };
+        }, {
+            type: "set_behavior_goal";
+            behaviorId: string;
+            goal: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            } | {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            };
         }>]>, "many">;
     }, "strip", z.ZodTypeAny, {
         title: string;
@@ -1573,9 +2079,10 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         operations: ({
             type: "create_trigger";
             trigger: {
+                tags: Record<string, string | string[]>;
+                id?: string | undefined;
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
-                tags?: Record<string, string> | undefined;
                 triggerType?: "arrival" | "departure" | undefined;
                 locationName?: string | undefined;
             };
@@ -1585,6 +2092,11 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             plan: {
                 name: string;
                 tacticIds: string[];
+                id?: string | undefined;
+                newTactics?: {
+                    title: string;
+                    description?: string | undefined;
+                }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
                 minute?: number | undefined;
@@ -1592,6 +2104,33 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             };
             triggerClientId?: string | undefined;
             existingTriggerId?: string | undefined;
+        } | {
+            type: "set_behavior_goal";
+            behaviorId: string;
+            goal: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            } | {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            };
         })[];
     }, {
         title: string;
@@ -1599,9 +2138,10 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         operations: ({
             type: "create_trigger";
             trigger: {
+                id?: string | undefined;
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
-                tags?: Record<string, string> | undefined;
+                tags?: Record<string, string | string[]> | undefined;
                 triggerType?: "arrival" | "departure" | undefined;
                 locationName?: string | undefined;
             };
@@ -1610,7 +2150,12 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             type: "create_plan";
             plan: {
                 name: string;
-                tacticIds: string[];
+                id?: string | undefined;
+                tacticIds?: string[] | undefined;
+                newTactics?: {
+                    title: string;
+                    description?: string | undefined;
+                }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
                 minute?: number | undefined;
@@ -1618,6 +2163,33 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             };
             triggerClientId?: string | undefined;
             existingTriggerId?: string | undefined;
+        } | {
+            type: "set_behavior_goal";
+            behaviorId: string;
+            goal: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            } | {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            };
         })[];
     }>;
 }, "strip", z.ZodTypeAny, {
@@ -1635,9 +2207,10 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         operations: ({
             type: "create_trigger";
             trigger: {
+                tags: Record<string, string | string[]>;
+                id?: string | undefined;
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
-                tags?: Record<string, string> | undefined;
                 triggerType?: "arrival" | "departure" | undefined;
                 locationName?: string | undefined;
             };
@@ -1647,6 +2220,11 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             plan: {
                 name: string;
                 tacticIds: string[];
+                id?: string | undefined;
+                newTactics?: {
+                    title: string;
+                    description?: string | undefined;
+                }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
                 minute?: number | undefined;
@@ -1654,6 +2232,33 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             };
             triggerClientId?: string | undefined;
             existingTriggerId?: string | undefined;
+        } | {
+            type: "set_behavior_goal";
+            behaviorId: string;
+            goal: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            } | {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            };
         })[];
     };
     id?: string | undefined;
@@ -1679,9 +2284,10 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         operations: ({
             type: "create_trigger";
             trigger: {
+                id?: string | undefined;
                 behaviorIds?: string[] | undefined;
                 title?: string | undefined;
-                tags?: Record<string, string> | undefined;
+                tags?: Record<string, string | string[]> | undefined;
                 triggerType?: "arrival" | "departure" | undefined;
                 locationName?: string | undefined;
             };
@@ -1690,7 +2296,12 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             type: "create_plan";
             plan: {
                 name: string;
-                tacticIds: string[];
+                id?: string | undefined;
+                tacticIds?: string[] | undefined;
+                newTactics?: {
+                    title: string;
+                    description?: string | undefined;
+                }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
                 minute?: number | undefined;
@@ -1698,6 +2309,33 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             };
             triggerClientId?: string | undefined;
             existingTriggerId?: string | undefined;
+        } | {
+            type: "set_behavior_goal";
+            behaviorId: string;
+            goal: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            } | {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            };
         })[];
     };
     id?: string | undefined;
