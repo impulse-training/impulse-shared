@@ -32,6 +32,10 @@ export const userDataSchema = z.object({
   // the derived engagement level (see getEngagementLevel in impulse-shared).
   lastActive: timestampSchema.optional(),
   lastLogin: timestampSchema.optional(),
+  // The true "opened the app" signal: written client-side (deferred) on every
+  // app foreground. Unlike `lastActive` (recomputed from genuine logs), this
+  // moves even on a pure browse-and-close with no logging.
+  lastVisit: timestampSchema.optional(),
 
   // Set true the first time we respond to one of the user's messages. Marks a
   // user as having genuinely engaged (had a conversation) even if they never

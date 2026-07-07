@@ -5,6 +5,7 @@ export declare const userDataSchema: z.ZodObject<{
     updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     lastActive: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     lastLogin: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    lastVisit: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     hasEverEngaged: z.ZodOptional<z.ZodBoolean>;
     recoveryKeyHash: z.ZodOptional<z.ZodString>;
     defaultSessionMode: z.ZodDefault<z.ZodEnum<["text", "voice"]>>;
@@ -238,6 +239,7 @@ export declare const userDataSchema: z.ZodObject<{
     } | undefined;
     lastActive?: import("../types").Timestamp | undefined;
     lastLogin?: import("../types").Timestamp | undefined;
+    lastVisit?: import("../types").Timestamp | undefined;
     hasEverEngaged?: boolean | undefined;
     recoveryKeyHash?: string | undefined;
     llmProvider?: "openai" | "anthropic" | undefined;
@@ -329,6 +331,7 @@ export declare const userDataSchema: z.ZodObject<{
     notificationsEnabled?: boolean | undefined;
     lastActive?: import("../types").Timestamp | undefined;
     lastLogin?: import("../types").Timestamp | undefined;
+    lastVisit?: import("../types").Timestamp | undefined;
     hasEverEngaged?: boolean | undefined;
     recoveryKeyHash?: string | undefined;
     defaultSessionMode?: "text" | "voice" | undefined;
