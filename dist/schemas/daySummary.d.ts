@@ -62,6 +62,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         baselinePeriod: z.ZodOptional<z.ZodEnum<["daily", "weekly"]>>;
         synonyms: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         streakLabel: z.ZodOptional<z.ZodEnum<["clean", "free", "sober"]>>;
+        defaultTolerance: z.ZodOptional<z.ZodNumber>;
         recapQuestionSequence: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -217,6 +218,17 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         mergedFromBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         mergedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         streakOverrideStartDate: z.ZodOptional<z.ZodString>;
+        tolerance: z.ZodOptional<z.ZodNumber>;
+        pendingTolerance: z.ZodOptional<z.ZodObject<{
+            value: z.ZodNumber;
+            effectiveDate: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
+            value: number;
+            effectiveDate: string;
+        }, {
+            value: number;
+            effectiveDate: string;
+        }>>;
         state: z.ZodOptional<z.ZodObject<{
             behaviorId: z.ZodString;
             goal: z.ZodOptional<z.ZodObject<{
@@ -1043,6 +1055,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         color?: string | undefined;
         synonyms?: string[] | undefined;
         streakLabel?: "clean" | "free" | "sober" | undefined;
+        defaultTolerance?: number | undefined;
         recapQuestionSequence?: string[] | undefined;
         goal?: {
             type: "eliminate";
@@ -1093,6 +1106,11 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         mergedFromBehaviorIds?: string[] | undefined;
         mergedAt?: import("../types").Timestamp | undefined;
         streakOverrideStartDate?: string | undefined;
+        tolerance?: number | undefined;
+        pendingTolerance?: {
+            value: number;
+            effectiveDate: string;
+        } | undefined;
         state?: {
             behaviorId: string;
             windows: {
@@ -1234,6 +1252,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         color?: string | undefined;
         synonyms?: string[] | undefined;
         streakLabel?: "clean" | "free" | "sober" | undefined;
+        defaultTolerance?: number | undefined;
         recapQuestionSequence?: string[] | undefined;
         goal?: {
             type: "eliminate";
@@ -1289,6 +1308,11 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         mergedFromBehaviorIds?: string[] | undefined;
         mergedAt?: import("../types").Timestamp | undefined;
         streakOverrideStartDate?: string | undefined;
+        tolerance?: number | undefined;
+        pendingTolerance?: {
+            value: number;
+            effectiveDate: string;
+        } | undefined;
         state?: {
             behaviorId: string;
             windows: {
@@ -1450,6 +1474,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         color?: string | undefined;
         synonyms?: string[] | undefined;
         streakLabel?: "clean" | "free" | "sober" | undefined;
+        defaultTolerance?: number | undefined;
         recapQuestionSequence?: string[] | undefined;
         goal?: {
             type: "eliminate";
@@ -1500,6 +1525,11 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         mergedFromBehaviorIds?: string[] | undefined;
         mergedAt?: import("../types").Timestamp | undefined;
         streakOverrideStartDate?: string | undefined;
+        tolerance?: number | undefined;
+        pendingTolerance?: {
+            value: number;
+            effectiveDate: string;
+        } | undefined;
         state?: {
             behaviorId: string;
             windows: {
@@ -1656,6 +1686,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         color?: string | undefined;
         synonyms?: string[] | undefined;
         streakLabel?: "clean" | "free" | "sober" | undefined;
+        defaultTolerance?: number | undefined;
         recapQuestionSequence?: string[] | undefined;
         goal?: {
             type: "eliminate";
@@ -1711,6 +1742,11 @@ export declare const recapResponseValueSchema: z.ZodObject<{
         mergedFromBehaviorIds?: string[] | undefined;
         mergedAt?: import("../types").Timestamp | undefined;
         streakOverrideStartDate?: string | undefined;
+        tolerance?: number | undefined;
+        pendingTolerance?: {
+            value: number;
+            effectiveDate: string;
+        } | undefined;
         state?: {
             behaviorId: string;
             windows: {
@@ -1879,6 +1915,7 @@ export declare const daySummarySchema: z.ZodObject<{
         baselinePeriod: z.ZodOptional<z.ZodEnum<["daily", "weekly"]>>;
         synonyms: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         streakLabel: z.ZodOptional<z.ZodEnum<["clean", "free", "sober"]>>;
+        defaultTolerance: z.ZodOptional<z.ZodNumber>;
         recapQuestionSequence: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         createdAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         updatedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
@@ -2034,6 +2071,17 @@ export declare const daySummarySchema: z.ZodObject<{
         mergedFromBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         mergedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
         streakOverrideStartDate: z.ZodOptional<z.ZodString>;
+        tolerance: z.ZodOptional<z.ZodNumber>;
+        pendingTolerance: z.ZodOptional<z.ZodObject<{
+            value: z.ZodNumber;
+            effectiveDate: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
+            value: number;
+            effectiveDate: string;
+        }, {
+            value: number;
+            effectiveDate: string;
+        }>>;
         state: z.ZodOptional<z.ZodObject<{
             behaviorId: z.ZodString;
             goal: z.ZodOptional<z.ZodObject<{
@@ -2860,6 +2908,7 @@ export declare const daySummarySchema: z.ZodObject<{
         color?: string | undefined;
         synonyms?: string[] | undefined;
         streakLabel?: "clean" | "free" | "sober" | undefined;
+        defaultTolerance?: number | undefined;
         recapQuestionSequence?: string[] | undefined;
         goal?: {
             type: "eliminate";
@@ -2910,6 +2959,11 @@ export declare const daySummarySchema: z.ZodObject<{
         mergedFromBehaviorIds?: string[] | undefined;
         mergedAt?: import("../types").Timestamp | undefined;
         streakOverrideStartDate?: string | undefined;
+        tolerance?: number | undefined;
+        pendingTolerance?: {
+            value: number;
+            effectiveDate: string;
+        } | undefined;
         state?: {
             behaviorId: string;
             windows: {
@@ -3051,6 +3105,7 @@ export declare const daySummarySchema: z.ZodObject<{
         color?: string | undefined;
         synonyms?: string[] | undefined;
         streakLabel?: "clean" | "free" | "sober" | undefined;
+        defaultTolerance?: number | undefined;
         recapQuestionSequence?: string[] | undefined;
         goal?: {
             type: "eliminate";
@@ -3106,6 +3161,11 @@ export declare const daySummarySchema: z.ZodObject<{
         mergedFromBehaviorIds?: string[] | undefined;
         mergedAt?: import("../types").Timestamp | undefined;
         streakOverrideStartDate?: string | undefined;
+        tolerance?: number | undefined;
+        pendingTolerance?: {
+            value: number;
+            effectiveDate: string;
+        } | undefined;
         state?: {
             behaviorId: string;
             windows: {
@@ -3347,6 +3407,7 @@ export declare const daySummarySchema: z.ZodObject<{
         color?: string | undefined;
         synonyms?: string[] | undefined;
         streakLabel?: "clean" | "free" | "sober" | undefined;
+        defaultTolerance?: number | undefined;
         recapQuestionSequence?: string[] | undefined;
         goal?: {
             type: "eliminate";
@@ -3397,6 +3458,11 @@ export declare const daySummarySchema: z.ZodObject<{
         mergedFromBehaviorIds?: string[] | undefined;
         mergedAt?: import("../types").Timestamp | undefined;
         streakOverrideStartDate?: string | undefined;
+        tolerance?: number | undefined;
+        pendingTolerance?: {
+            value: number;
+            effectiveDate: string;
+        } | undefined;
         state?: {
             behaviorId: string;
             windows: {
@@ -3581,6 +3647,7 @@ export declare const daySummarySchema: z.ZodObject<{
         color?: string | undefined;
         synonyms?: string[] | undefined;
         streakLabel?: "clean" | "free" | "sober" | undefined;
+        defaultTolerance?: number | undefined;
         recapQuestionSequence?: string[] | undefined;
         goal?: {
             type: "eliminate";
@@ -3636,6 +3703,11 @@ export declare const daySummarySchema: z.ZodObject<{
         mergedFromBehaviorIds?: string[] | undefined;
         mergedAt?: import("../types").Timestamp | undefined;
         streakOverrideStartDate?: string | undefined;
+        tolerance?: number | undefined;
+        pendingTolerance?: {
+            value: number;
+            effectiveDate: string;
+        } | undefined;
         state?: {
             behaviorId: string;
             windows: {

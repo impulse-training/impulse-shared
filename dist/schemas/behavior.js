@@ -210,6 +210,26 @@ exports.behaviorSchema = behaviorTemplate_1.behaviorTemplateBase
     mergedAt: timestampSchema_1.timestampSchema.optional(),
     // User-confirmed streak start date (ISO string), set when backdating a streak after a goal change
     streakOverrideStartDate: zod_1.z.string().optional(),
+    // Grace band for win-day streaks, in the same unit as the day's measured
+    // total (minutes for timers, raw count for counters). A day still counts
+    // toward the streak when its total stays within goal target + tolerance.
+    // Sourced from the behavior template's defaultTolerance at creation
+    // (0 for abstinence-style behaviors), user-overridable.
+    //
+    // IMPORTANT: tolerance is invisible prospectively. It is NEVER surfaced as a
+    // "remaining today"/spend-down budget anywhere in the UI. The displayed
+    // target stays at the goal (0 for eliminate); tolerance only ever operates
+    // silently as streak-survival, observed after the fact.
+    // Optional (not `.default(0)`) so it stays additive — absent is treated as 0
+    // by resolveEffectiveTolerance / computeGoalComparison.
+    tolerance: zod_1.z.number().optional(),
+    // A scheduled tolerance change that only takes effect from effectiveDate
+    // (local ISO date, YYYY-MM-DD) forward. This is the edit guard: editing
+    // tolerance sets effectiveDate = tomorrow so it cannot retroactively rescue
+    // a break already in progress for the current day.
+    pendingTolerance: zod_1.z
+        .object({ value: zod_1.z.number(), effectiveDate: zod_1.z.string() })
+        .optional(),
     // Computed state for this behavior (windows, trend, etc.)
     state: exports.behaviorStateSchema.optional(),
 });

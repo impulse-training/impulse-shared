@@ -21,6 +21,11 @@ const behaviorTemplateBase = zod_1.z.object({
     // "Pornography"). Used to mask masked behaviors when the AI uses variant wording in chat.
     synonyms: zod_1.z.array(zod_1.z.string()).optional(),
     streakLabel: zod_1.z.enum(exports.streakLabels).optional(),
+    // Default grace band (in the behavior's measured unit — minutes for timers,
+    // raw count for counters) copied onto a behavior's `tolerance` at creation.
+    // 0 for abstinence-style templates (e.g. pornography); a small allowance for
+    // reduce-style templates (e.g. ~10 min for social media). Absent → 0.
+    defaultTolerance: zod_1.z.number().optional(),
     recapQuestionSequence: zod_1.z.array(zod_1.z.string()).optional(),
     createdAt: timestampSchema_1.timestampSchema.optional(),
     updatedAt: timestampSchema_1.timestampSchema.optional(),

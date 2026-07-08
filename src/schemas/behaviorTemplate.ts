@@ -26,6 +26,11 @@ const behaviorTemplateBase = z.object({
   // "Pornography"). Used to mask masked behaviors when the AI uses variant wording in chat.
   synonyms: z.array(z.string()).optional(),
   streakLabel: z.enum(streakLabels).optional(),
+  // Default grace band (in the behavior's measured unit — minutes for timers,
+  // raw count for counters) copied onto a behavior's `tolerance` at creation.
+  // 0 for abstinence-style templates (e.g. pornography); a small allowance for
+  // reduce-style templates (e.g. ~10 min for social media). Absent → 0.
+  defaultTolerance: z.number().optional(),
   recapQuestionSequence: z.array(z.string()).optional(),
   createdAt: timestampSchema.optional(),
   updatedAt: timestampSchema.optional(),
