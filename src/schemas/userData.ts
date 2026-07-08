@@ -4,11 +4,12 @@ import { timestampSchema } from "../utils/timestampSchema";
 import { supportGroupTypeSchema } from "./supportGroup";
 import { firstsSchema } from "./first";
 
-// Inline recap trigger schema (time-based)
+// Inline recap trigger schema (time-based). Recaps are daily — they fire
+// every day at this time (Sunday additionally runs the weekly review). There
+// is no per-weekday cadence; any legacy `weekdays` on old docs is ignored.
 const recapTriggerSchema = z.object({
   hour: z.number().min(0).max(23),
   minute: z.number().min(0).max(59),
-  weekdays: z.array(z.number().min(0).max(6)).min(1),
 });
 
 const recapReminderTimeSchema = z.object({

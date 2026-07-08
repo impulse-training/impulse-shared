@@ -89,6 +89,13 @@ export type RecapDayFact = z.infer<typeof recapDayFactSchema>;
 
 export const recapSessionSchema = sessionBaseSchema.extend({
   type: z.literal("recap"),
+  /**
+   * "weekly" once a week (Sunday, at the user's configured recap time,
+   * regardless of their daily recap.trigger.weekdays cadence) — the recap
+   * runs with a week-scale look-back and the plan-review beat instead of the
+   * daily shape. Set once at session creation; never flips mid-conversation.
+   */
+  recapMode: z.enum(["daily", "weekly"]).default("daily").optional(),
   /** Set when user confirms day totals — mirrors daySummary.dayTotalsConfirmedAt */
   completedAt: timestampSchema.nullable().optional(),
   /**
@@ -131,6 +138,24 @@ export const recapSessionSchema = sessionBaseSchema.extend({
       metaInstructions: z.string(),
     })
     .optional(),
+  /**
+   * Set by judgeRecapReconciliation once the weekly-mode reflection has
+   * settled and pending strategy proposals have been reconciled against it.
+   * Idempotency marker — also gates the Plan Review prompt section and (for
+   * weekly mode) the close judge, so plan review can't be skipped or closed
+   * over before reconciliation has run.
+   */
+  recapReconciledAt: timestampSchema.nullable().optional(),
+  /**
+   * Pending, non-contradicted proposedStrategyModificationLog ids the weekly
+   * recap prompt is allowed to present — never the raw pending collection.
+   */
+  recapPresentableProposalLogIds: z.array(z.string()).optional(),
+  /**
+   * User-originated plan ideas surfaced during this session's reflection that
+   * weren't covered by any pending coach proposal (e.g. "morning walks").
+   */
+  recapUserRaisedIdeas: z.array(z.string()).optional(),
 });
 
 export type RecapSession = z.infer<typeof recapSessionSchema>;

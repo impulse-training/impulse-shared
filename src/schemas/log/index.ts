@@ -112,6 +112,10 @@ import {
   DebriefQuestionLog,
   debriefQuestionLogSchema,
 } from "./debriefQuestionLog";
+import {
+  PlanHistoryEntryLog,
+  planHistoryEntryLogSchema,
+} from "./planHistoryEntryLog";
 
 export const logSchemas = {
   user: userMessageLogSchema,
@@ -153,6 +157,7 @@ export const logSchemas = {
   tactic_suggestions: tacticSuggestionsLogSchema,
   coach_booking_prompt: coachBookingPromptLogSchema,
   debrief_question: debriefQuestionLogSchema,
+  plan_history_entry: planHistoryEntryLogSchema,
 };
 export const logTypes = Object.keys(logSchemas);
 
@@ -195,7 +200,8 @@ export type Log =
   | ShortcutSetupIntroLog
   | TacticSuggestionsLog
   | CoachBookingPromptLog
-  | DebriefQuestionLog;
+  | DebriefQuestionLog
+  | PlanHistoryEntryLog;
 
 export * from "./behaviorLog";
 export * from "./breathingLog";
@@ -234,6 +240,7 @@ export * from "./shortcutSetupIntroLog";
 export * from "./tacticSuggestionsLog";
 export * from "./coachBookingPromptLog";
 export * from "./debriefQuestionLog";
+export * from "./planHistoryEntryLog";
 
 // Discriminated union schema across all log variants
 export const logSchema = z.discriminatedUnion("type", [
@@ -274,6 +281,7 @@ export const logSchema = z.discriminatedUnion("type", [
   tacticSuggestionsLogSchema,
   coachBookingPromptLogSchema,
   debriefQuestionLogSchema,
+  planHistoryEntryLogSchema,
 ]);
 
 // Export log type guards
@@ -521,3 +529,7 @@ export const logIsCoachBookingPromptLog = (
 export const logIsDebriefQuestionLog = (
   value: Omit<Log, "id">,
 ): value is DebriefQuestionLog => value.type === "debrief_question";
+
+export const logIsPlanHistoryEntryLog = (
+  value: Omit<Log, "id">,
+): value is PlanHistoryEntryLog => value.type === "plan_history_entry";
