@@ -227,6 +227,18 @@ export function isBehaviorState(value: unknown): value is BehaviorState {
 }
 
 // These are stored at the user-level, as in, users/$userId/behaviors/$behaviorId
+// A coach-granted, retroactive streak rescue: a specific NOT_MET_FAIL day that
+// should NOT break the streak. The usage stays logged and honest — only the
+// streak forgives the day. Set only via the coach dashboard (coach-only for now).
+export const streakForgivenessEntrySchema = z.object({
+  /** Local ISO date (YYYY-MM-DD) of the forgiven day. */
+  date: z.string(),
+  reason: z.string().optional(),
+  byCoachId: z.string().optional(),
+  at: timestampSchema,
+});
+export type StreakForgivenessEntry = z.infer<typeof streakForgivenessEntrySchema>;
+
 export const behaviorSchema = behaviorTemplateBase
   .extend({
     id: z.string().optional(),
@@ -265,6 +277,11 @@ export const behaviorSchema = behaviorTemplateBase
     mergedAt: timestampSchema.optional(),
     // User-confirmed streak start date (ISO string), set when backdating a streak after a goal change
     streakOverrideStartDate: z.string().optional(),
+    // Coach-granted retroactive streak rescues (per-day). A forgiven NOT_MET_FAIL
+    // day is treated as non-breaking by computeGlobalStreaks; the underlying
+    // usage/logs are untouched. Complementary to `tolerance` (prospective by
+    // design and unable to rescue a past break).
+    streakForgiveness: z.array(streakForgivenessEntrySchema).optional(),
     // Grace band for win-day streaks, in the same unit as the day's measured
     // total (minutes for timers, raw count for counters). A day still counts
     // toward the streak when its total stays within goal target + tolerance.
