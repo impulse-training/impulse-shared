@@ -14,6 +14,7 @@ import {
   logIsImpulseStartedLog,
   logIsMaskBehaviorProposalLog,
   logIsMergeBehaviorsProposalLog,
+  logIsProposedGoalChangeLog,
   logIsMetricLog,
   logIsPlansLog,
   logIsSetupModeChoiceLog,
@@ -154,6 +155,20 @@ export function shouldRespondToLogWithAI(
     afterData.data.completed === true &&
     (!logIsTacticLog(beforeData) || beforeData.data.completed !== true);
 
+  // The user accepted/declined a proposed goal change card — an inline
+  // interaction with no user message, so it must bypass the "latest is
+  // assistant" guard. Keyed on the pending → accepted/declined transition so
+  // the server-side apply patch (appliedAt/previousGoal, status unchanged)
+  // doesn't re-trigger a second response.
+  const isGoalChangeResponded =
+    beforeData &&
+    afterData &&
+    logIsProposedGoalChangeLog(afterData) &&
+    (afterData.data.status === "accepted" ||
+      afterData.data.status === "declined") &&
+    logIsProposedGoalChangeLog(beforeData) &&
+    beforeData.data.status === "pending";
+
   const isMergeBehaviorsResponseSelected =
     beforeData &&
     afterData &&
@@ -209,6 +224,7 @@ export function shouldRespondToLogWithAI(
     !isSetupModeTextChoice &&
     !isShortcutSetupTextChoice &&
     !isTacticCompleted &&
+    !isGoalChangeResponded &&
     !isMergeBehaviorsResponseSelected &&
     !isMaskBehaviorResponseSelected &&
     !isDebriefQuestionResponseSelected &&
@@ -227,6 +243,12 @@ export function shouldRespondToLogWithAI(
   // Case: New message logs (creation event, no before data)
   if (isCreating && logIsUserMessageLog(afterData)) {
     console.log("New message log. Responding with AI.");
+    return true;
+  }
+
+  // Case: Proposed goal change responded to (accept/decline card tapped)
+  if (isGoalChangeResponded) {
+    console.log("Goal change proposal responded to. Responding with AI.");
     return true;
   }
 

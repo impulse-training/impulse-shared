@@ -11,6 +11,7 @@ import {
   logIsPlansLog,
   logIsMergeBehaviorsProposalLog,
   logIsProposedStrategyModificationLog,
+  logIsProposedGoalChangeLog,
   logIsTacticLog,
   logIsToolCallLog,
   logIsUserMessageLog,
@@ -189,6 +190,26 @@ export function getGptPayload(
       {
         role: "user",
         content: `<SYSTEM>The user accepted a suggested strategy update. Saved strategy: ${context}.</SYSTEM>`,
+      },
+    ];
+  }
+
+  if (logIsProposedGoalChangeLog(log)) {
+    if (log.data.status !== "accepted" && log.data.status !== "declined") {
+      return [];
+    }
+
+    const title = log.data.title.trim();
+    const name = log.data.behaviorName?.trim();
+    const label = name ? `"${title}" (${name})` : `"${title}"`;
+
+    return [
+      {
+        role: "user",
+        content:
+          log.data.status === "accepted"
+            ? `<SYSTEM>The user ACCEPTED the proposed goal change ${label} — the behavior's goal has been updated. Acknowledge briefly and move the conversation forward (the next prepared item, or winding down); do not re-explain or re-pitch the goal.</SYSTEM>`
+            : `<SYSTEM>The user DECLINED the proposed goal change ${label}. Respect the decision without persuasion and move on.</SYSTEM>`,
       },
     ];
   }
