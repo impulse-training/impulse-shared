@@ -185,6 +185,19 @@ export const setupShortcutTaskSchema = taskBaseSchema.extend({
   returning: z.boolean().optional(),
 });
 
+/**
+ * The weekly review's first beat: reflect on the week just passed as one shape.
+ * Injected as a session task on a weekly-mode recap (never user-level), it
+ * completes when the AI calls reconcileStrategyProposals (its requiredTool),
+ * which is the Phase-1 → Phase-2 (plan review) transition. The week-shape prose
+ * is rendered live in getTaskContext, so no data is snapshotted onto the task.
+ */
+export const weekLookbackTaskSchema = taskBaseSchema.extend({
+  type: z.literal("week_lookback"),
+  /** The Sunday review this beat belongs to (the recap dateString). */
+  weekOfDateString: z.string().optional(),
+});
+
 export const taskSchema = z.discriminatedUnion("type", [
   mergeBehaviorsTaskSchema,
   suggestStrategyTaskSchema,
@@ -198,6 +211,7 @@ export const taskSchema = z.discriminatedUnion("type", [
   reflectOnMetricsTaskSchema,
   collectBaselineTaskSchema,
   setupShortcutTaskSchema,
+  weekLookbackTaskSchema,
 ]);
 
 export type TaskCategory = z.infer<typeof taskCategorySchema>;
@@ -215,6 +229,7 @@ export type SuggestTacticTask = z.infer<typeof suggestTacticTaskSchema>;
 export type ReflectOnMetricsTask = z.infer<typeof reflectOnMetricsTaskSchema>;
 export type CollectBaselineTask = z.infer<typeof collectBaselineTaskSchema>;
 export type SetupShortcutTask = z.infer<typeof setupShortcutTaskSchema>;
+export type WeekLookbackTask = z.infer<typeof weekLookbackTaskSchema>;
 export type Task = z.infer<typeof taskSchema>;
 
 export const isTask = (value: unknown): value is Task =>
