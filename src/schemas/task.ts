@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { goalSchema } from "./goal";
 import { strategyModificationOperationSchema } from "./log/proposedStrategyModificationLog";
 import { timestampSchema } from "../utils/timestampSchema";
 
@@ -47,6 +48,25 @@ export const suggestStrategyTaskSchema = taskBaseSchema.extend({
     // The same operations union proposals use (create_trigger, create_plan,
     // set_behavior_goal) — previously a stricter local copy that drifted.
     operations: z.array(strategyModificationOperationSchema).min(1),
+  }),
+});
+
+/**
+ * A coach-prepared proposal to change one behavior's goal (e.g. switch to a
+ * contain goal with afternoon-only windows). Lighter than suggest_strategy —
+ * no triggers or plans, just the goal. In the weekly review it is claimed and
+ * surfaced BEFORE any suggest_strategy tasks, so the goal lands first and the
+ * strategy suggestions can build on it. The AI presents it by calling
+ * proposeGoalChange, which renders an accept/decline card; accepting sets the
+ * goal on the behavior (applied server-side).
+ */
+export const proposeGoalTaskSchema = taskBaseSchema.extend({
+  type: z.literal("propose_goal"),
+  behaviorId: z.string().min(1),
+  proposedGoal: z.object({
+    title: z.string().min(1),
+    summary: z.string().min(1),
+    goal: goalSchema,
   }),
 });
 
@@ -201,6 +221,7 @@ export const weekLookbackTaskSchema = taskBaseSchema.extend({
 export const taskSchema = z.discriminatedUnion("type", [
   mergeBehaviorsTaskSchema,
   suggestStrategyTaskSchema,
+  proposeGoalTaskSchema,
   proposeExperimentTaskSchema,
   proposeMaskBehaviorTaskSchema,
   createSessionTaskSchema,
@@ -219,6 +240,7 @@ export type TaskStatus = z.infer<typeof taskStatusSchema>;
 export type ClaimableSessionType = z.infer<typeof claimableSessionTypeSchema>;
 export type MergeBehaviorsTask = z.infer<typeof mergeBehaviorsTaskSchema>;
 export type SuggestStrategyTask = z.infer<typeof suggestStrategyTaskSchema>;
+export type ProposeGoalTask = z.infer<typeof proposeGoalTaskSchema>;
 export type ProposeExperimentTask = z.infer<typeof proposeExperimentTaskSchema>;
 export type ProposeMaskBehaviorTask = z.infer<typeof proposeMaskBehaviorTaskSchema>;
 export type CreateSessionTask = z.infer<typeof createSessionTaskSchema>;
@@ -244,6 +266,11 @@ export const isSuggestStrategyTask = (
   value: unknown,
 ): value is SuggestStrategyTask =>
   suggestStrategyTaskSchema.safeParse(value).success;
+
+export const isProposeGoalTask = (
+  value: unknown,
+): value is ProposeGoalTask =>
+  proposeGoalTaskSchema.safeParse(value).success;
 
 export const isProposeExperimentTask = (
   value: unknown,
