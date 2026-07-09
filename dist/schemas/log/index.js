@@ -14,13 +14,14 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.logIsSetupModeChoiceLog = exports.isValidTacticReviewLog = exports.logIsTacticReviewLog = exports.isValidTriggerSelectionLog = exports.logIsTriggerSelectionLog = exports.isValidRequestPermissionsLog = exports.logIsRequestPermissionsLog = exports.isValidImpulseStartedLog = exports.logIsImpulseStartedLog = exports.isValidDayTotalsPromptLog = exports.logIsDayTotalsPromptLog = exports.isValidRecapTimePreferenceLog = exports.logIsRecapTimePreferenceLog = exports.isValidMetricLog = exports.logIsMetricLog = exports.isValidEnableNotificationsCtaLog = exports.logIsEnableNotificationsCtaLog = exports.isValidSupportGroupDaySummaryLog = exports.logIsSupportGroupDaySummaryLog = exports.isValidBreathingLog = exports.logIsBreathingLog = exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidPlansLog = exports.logIsPlansLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorLog = exports.logIsBehaviorLog = exports.isValidSharedMomentLog = exports.logIsSharedMomentLog = exports.isValidNotifySupportGroupLog = exports.logIsNotifySupportGroupLog = exports.isValidSystemMessageLog = exports.logIsSystemMessageLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
-exports.logIsDebriefQuestionLog = exports.logIsCoachBookingPromptLog = exports.logIsTacticSuggestionsLog = exports.logIsShortcutSetupIntroLog = exports.logIsMaskBehaviorProposalLog = exports.logIsMergeBehaviorsProposalLog = exports.logIsPhotoLog = exports.logIsImageLog = exports.logIsRecoveryKeyLog = exports.logIsCrisisResourceLog = exports.logIsTagsUpdatedLog = exports.logIsProposedStrategyModificationLog = void 0;
+exports.logIsTriggerSelectionLog = exports.isValidRequestPermissionsLog = exports.logIsRequestPermissionsLog = exports.isValidImpulseStartedLog = exports.logIsImpulseStartedLog = exports.isValidWeekOverviewLog = exports.logIsWeekOverviewLog = exports.isValidDayTotalsPromptLog = exports.logIsDayTotalsPromptLog = exports.isValidRecapTimePreferenceLog = exports.logIsRecapTimePreferenceLog = exports.isValidMetricLog = exports.logIsMetricLog = exports.isValidHumanSupportEscalationLog = exports.logIsHumanSupportEscalationLog = exports.isValidEnableNotificationsCtaLog = exports.logIsEnableNotificationsCtaLog = exports.isValidSupportGroupDaySummaryLog = exports.logIsSupportGroupDaySummaryLog = exports.isValidBreathingLog = exports.logIsBreathingLog = exports.isValidLinkLog = exports.logIsLinkLog = exports.isValidSummaryLog = exports.logIsSummaryLog = exports.isValidPlansLog = exports.logIsPlansLog = exports.isValidUserMessageLog = exports.logIsUserMessageLog = exports.isValidTacticLog = exports.logIsTacticLog = exports.isValidWidgetSetupLog = exports.logIsWidgetSetupLog = exports.isValidToolCallLog = exports.logIsToolCallLog = exports.isValidCallLog = exports.logIsCallLog = exports.isValidBehaviorLog = exports.logIsBehaviorLog = exports.isValidSharedMomentLog = exports.logIsSharedMomentLog = exports.isValidNotifySupportGroupLog = exports.logIsNotifySupportGroupLog = exports.isValidSystemMessageLog = exports.logIsSystemMessageLog = exports.isValidAssistantMessageLog = exports.logIsAssistantMessageLog = exports.logSchema = exports.logTypes = exports.logSchemas = void 0;
+exports.logIsPlanHistoryEntryLog = exports.logIsDebriefQuestionLog = exports.logIsCoachBookingPromptLog = exports.logIsTacticSuggestionsLog = exports.logIsShortcutSetupIntroLog = exports.logIsMaskBehaviorProposalLog = exports.logIsMergeBehaviorsProposalLog = exports.logIsPhotoLog = exports.logIsImageLog = exports.logIsRecoveryKeyLog = exports.logIsCrisisResourceLog = exports.logIsTagsUpdatedLog = exports.logIsProposedStrategyModificationLog = exports.logIsSetupModeChoiceLog = exports.isValidTacticReviewLog = exports.logIsTacticReviewLog = exports.isValidTriggerSelectionLog = void 0;
 const zod_1 = require("zod");
 const behaviorLog_1 = require("./behaviorLog");
 const breathingLog_1 = require("./breathingLog");
 const callLog_1 = require("./callLog");
 const enableNotificationsCtaLog_1 = require("./enableNotificationsCtaLog");
+const humanSupportEscalationLog_1 = require("./humanSupportEscalationLog");
 const linkLog_1 = require("./linkLog");
 const impulseStartedLog_1 = require("./impulseStartedLog");
 const proposedExperimentLog_1 = require("./proposedExperimentLog");
@@ -37,6 +38,7 @@ const videoLog_1 = require("./videoLog");
 const metricLog_1 = require("./metricLog");
 const recapTimePreferenceLog_1 = require("./recapTimePreferenceLog");
 const dayTotalsPromptLog_1 = require("./dayTotalsPromptLog");
+const weekOverviewLog_1 = require("./weekOverviewLog");
 const triggerSelectionLog_1 = require("./triggerSelectionLog");
 const widgetSetupLog_1 = require("./widgetSetupLog");
 const requestPermissionsLog_1 = require("./requestPermissionsLog");
@@ -53,6 +55,7 @@ const shortcutSetupIntroLog_1 = require("./shortcutSetupIntroLog");
 const tacticSuggestionsLog_1 = require("./tacticSuggestionsLog");
 const coachBookingPromptLog_1 = require("./coachBookingPromptLog");
 const debriefQuestionLog_1 = require("./debriefQuestionLog");
+const planHistoryEntryLog_1 = require("./planHistoryEntryLog");
 exports.logSchemas = {
     user: messageLog_1.userMessageLogSchema,
     assistant_message: messageLog_1.assistantMessageLogSchema,
@@ -72,12 +75,14 @@ exports.logSchemas = {
     shared_moment: sharedMomentLog_1.sharedMomentLogSchema,
     support_group_day_summary: supportGroupDaySummaryLog_1.supportGroupDaySummaryLogSchema,
     enable_notifications_cta: enableNotificationsCtaLog_1.enableNotificationsCtaLogSchema,
+    human_support_escalation: humanSupportEscalationLog_1.humanSupportEscalationLogSchema,
     proposed_experiment: proposedExperimentLog_1.proposedExperimentLogSchema,
     proposed_strategy_modification: proposedStrategyModificationLog_1.proposedStrategyModificationLogSchema,
     impulse_started: impulseStartedLog_1.impulseStartedLogSchema,
     metric: metricLog_1.metricLogSchema,
     recap_time_preference: recapTimePreferenceLog_1.recapTimePreferenceLogSchema,
     day_totals_prompt: dayTotalsPromptLog_1.dayTotalsPromptLogSchema,
+    week_overview: weekOverviewLog_1.weekOverviewLogSchema,
     trigger_selection: triggerSelectionLog_1.triggerSelectionLogSchema,
     request_permissions: requestPermissionsLog_1.requestPermissionsLogSchema,
     tactic_review: tacticReviewLog_1.tacticReviewLogSchema,
@@ -93,12 +98,14 @@ exports.logSchemas = {
     tactic_suggestions: tacticSuggestionsLog_1.tacticSuggestionsLogSchema,
     coach_booking_prompt: coachBookingPromptLog_1.coachBookingPromptLogSchema,
     debrief_question: debriefQuestionLog_1.debriefQuestionLogSchema,
+    plan_history_entry: planHistoryEntryLog_1.planHistoryEntryLogSchema,
 };
 exports.logTypes = Object.keys(exports.logSchemas);
 __exportStar(require("./behaviorLog"), exports);
 __exportStar(require("./breathingLog"), exports);
 __exportStar(require("./callLog"), exports);
 __exportStar(require("./enableNotificationsCtaLog"), exports);
+__exportStar(require("./humanSupportEscalationLog"), exports);
 __exportStar(require("./linkLog"), exports);
 __exportStar(require("./messageLog"), exports);
 __exportStar(require("./notifySupportGroupLog"), exports);
@@ -117,6 +124,7 @@ __exportStar(require("./impulseStartedLog"), exports);
 __exportStar(require("./metricLog"), exports);
 __exportStar(require("./recapTimePreferenceLog"), exports);
 __exportStar(require("./dayTotalsPromptLog"), exports);
+__exportStar(require("./weekOverviewLog"), exports);
 __exportStar(require("./triggerSelectionLog"), exports);
 __exportStar(require("./requestPermissionsLog"), exports);
 __exportStar(require("./tacticReviewLog"), exports);
@@ -132,6 +140,7 @@ __exportStar(require("./shortcutSetupIntroLog"), exports);
 __exportStar(require("./tacticSuggestionsLog"), exports);
 __exportStar(require("./coachBookingPromptLog"), exports);
 __exportStar(require("./debriefQuestionLog"), exports);
+__exportStar(require("./planHistoryEntryLog"), exports);
 // Discriminated union schema across all log variants
 exports.logSchema = zod_1.z.discriminatedUnion("type", [
     messageLog_1.userMessageLogSchema,
@@ -151,12 +160,14 @@ exports.logSchema = zod_1.z.discriminatedUnion("type", [
     videoLog_1.videoLogSchema,
     supportGroupDaySummaryLog_1.supportGroupDaySummaryLogSchema,
     enableNotificationsCtaLog_1.enableNotificationsCtaLogSchema,
+    humanSupportEscalationLog_1.humanSupportEscalationLogSchema,
     proposedExperimentLog_1.proposedExperimentLogSchema,
     proposedStrategyModificationLog_1.proposedStrategyModificationLogSchema,
     impulseStartedLog_1.impulseStartedLogSchema,
     metricLog_1.metricLogSchema,
     recapTimePreferenceLog_1.recapTimePreferenceLogSchema,
     dayTotalsPromptLog_1.dayTotalsPromptLogSchema,
+    weekOverviewLog_1.weekOverviewLogSchema,
     triggerSelectionLog_1.triggerSelectionLogSchema,
     requestPermissionsLog_1.requestPermissionsLogSchema,
     tacticReviewLog_1.tacticReviewLogSchema,
@@ -171,6 +182,7 @@ exports.logSchema = zod_1.z.discriminatedUnion("type", [
     tacticSuggestionsLog_1.tacticSuggestionsLogSchema,
     coachBookingPromptLog_1.coachBookingPromptLogSchema,
     debriefQuestionLog_1.debriefQuestionLogSchema,
+    planHistoryEntryLog_1.planHistoryEntryLogSchema,
 ]);
 // Export log type guards
 const logIsAssistantMessageLog = (value) => value.type === "assistant_message";
@@ -269,6 +281,12 @@ const isValidEnableNotificationsCtaLog = (value) => {
     return enableNotificationsCtaLog_1.enableNotificationsCtaLogSchema.safeParse(value).success;
 };
 exports.isValidEnableNotificationsCtaLog = isValidEnableNotificationsCtaLog;
+const logIsHumanSupportEscalationLog = (value) => value.type === "human_support_escalation";
+exports.logIsHumanSupportEscalationLog = logIsHumanSupportEscalationLog;
+const isValidHumanSupportEscalationLog = (value) => {
+    return humanSupportEscalationLog_1.humanSupportEscalationLogSchema.safeParse(value).success;
+};
+exports.isValidHumanSupportEscalationLog = isValidHumanSupportEscalationLog;
 const logIsMetricLog = (value) => value.type === "metric";
 exports.logIsMetricLog = logIsMetricLog;
 const isValidMetricLog = (value) => {
@@ -287,6 +305,12 @@ const isValidDayTotalsPromptLog = (value) => {
     return dayTotalsPromptLog_1.dayTotalsPromptLogSchema.safeParse(value).success;
 };
 exports.isValidDayTotalsPromptLog = isValidDayTotalsPromptLog;
+const logIsWeekOverviewLog = (value) => value.type === "week_overview";
+exports.logIsWeekOverviewLog = logIsWeekOverviewLog;
+const isValidWeekOverviewLog = (value) => {
+    return weekOverviewLog_1.weekOverviewLogSchema.safeParse(value).success;
+};
+exports.isValidWeekOverviewLog = isValidWeekOverviewLog;
 const logIsImpulseStartedLog = (value) => value.type === "impulse_started";
 exports.logIsImpulseStartedLog = logIsImpulseStartedLog;
 const isValidImpulseStartedLog = (value) => {
@@ -337,3 +361,5 @@ const logIsCoachBookingPromptLog = (value) => value.type === "coach_booking_prom
 exports.logIsCoachBookingPromptLog = logIsCoachBookingPromptLog;
 const logIsDebriefQuestionLog = (value) => value.type === "debrief_question";
 exports.logIsDebriefQuestionLog = logIsDebriefQuestionLog;
+const logIsPlanHistoryEntryLog = (value) => value.type === "plan_history_entry";
+exports.logIsPlanHistoryEntryLog = logIsPlanHistoryEntryLog;

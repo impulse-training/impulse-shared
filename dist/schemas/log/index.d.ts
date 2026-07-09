@@ -3,6 +3,7 @@ import { BehaviorLog } from "./behaviorLog";
 import { BreathingLog } from "./breathingLog";
 import { CallLog } from "./callLog";
 import { EnableNotificationsCtaLog } from "./enableNotificationsCtaLog";
+import { HumanSupportEscalationLog } from "./humanSupportEscalationLog";
 import { LinkLog } from "./linkLog";
 import { ImpulseStartedLog } from "./impulseStartedLog";
 import { ProposedExperimentLog } from "./proposedExperimentLog";
@@ -19,6 +20,7 @@ import { VideoLog } from "./videoLog";
 import { MetricLog } from "./metricLog";
 import { RecapTimePreferenceLog } from "./recapTimePreferenceLog";
 import { DayTotalsPromptLog } from "./dayTotalsPromptLog";
+import { WeekOverviewLog } from "./weekOverviewLog";
 import { TriggerSelectionLog } from "./triggerSelectionLog";
 import { WidgetSetupLog } from "./widgetSetupLog";
 import { RequestPermissionsLog } from "./requestPermissionsLog";
@@ -35,6 +37,7 @@ import { ShortcutSetupIntroLog } from "./shortcutSetupIntroLog";
 import { TacticSuggestionsLog } from "./tacticSuggestionsLog";
 import { CoachBookingPromptLog } from "./coachBookingPromptLog";
 import { DebriefQuestionLog } from "./debriefQuestionLog";
+import { PlanHistoryEntryLog } from "./planHistoryEntryLog";
 export declare const logSchemas: {
     user: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
@@ -24344,6 +24347,63 @@ export declare const logSchemas: {
         impulseId?: string | undefined;
         respondingToLogId?: string | undefined;
     }>;
+    human_support_escalation: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        sessionId: z.ZodString;
+        tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        impulseId: z.ZodOptional<z.ZodString>;
+        respondingToLogId: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"human_support_escalation">;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            issueSummary: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            issueSummary?: string | undefined;
+        }, {
+            issueSummary?: string | undefined;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "human_support_escalation";
+        userId: string;
+        sessionId: string;
+        dateString: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: true;
+        data: {
+            issueSummary?: string | undefined;
+        };
+        id?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
+        impulseId?: string | undefined;
+        respondingToLogId?: string | undefined;
+    }, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "human_support_escalation";
+        userId: string;
+        sessionId: string;
+        dateString: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: true;
+        data: {
+            issueSummary?: string | undefined;
+        };
+        id?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
+        impulseId?: string | undefined;
+        respondingToLogId?: string | undefined;
+    }>;
     proposed_experiment: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -25327,6 +25387,143 @@ export declare const logSchemas: {
             targetDateString: string;
             confirmedAt?: import("../../types").Timestamp | undefined;
             discussRequestedAt?: import("../../types").Timestamp | undefined;
+        };
+        id?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
+        impulseId?: string | undefined;
+        respondingToLogId?: string | undefined;
+    }>;
+    week_overview: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        sessionId: z.ZodString;
+        tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        impulseId: z.ZodOptional<z.ZodString>;
+        respondingToLogId: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"week_overview">;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            weekStartDateString: z.ZodString;
+            weekEndDateString: z.ZodString;
+            behaviors: z.ZodArray<z.ZodObject<{
+                behaviorId: z.ZodString;
+                name: z.ZodString;
+                trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer", "scale"]>>;
+                unit: z.ZodOptional<z.ZodString>;
+                weeklyTotal: z.ZodNumber;
+                weeklyTotalFormatted: z.ZodString;
+                pctChangeFromLastWeek: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+                trend: z.ZodOptional<z.ZodEnum<["IMPROVING", "DECLINING", "STABLE", "VOLATILE", "INSUFFICIENT_DATA"]>>;
+                mainTriggers: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+            }, "strip", z.ZodTypeAny, {
+                name: string;
+                behaviorId: string;
+                weeklyTotal: number;
+                weeklyTotalFormatted: string;
+                trackingType?: "counter" | "timer" | "scale" | undefined;
+                trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
+                unit?: string | undefined;
+                pctChangeFromLastWeek?: number | null | undefined;
+                mainTriggers?: string[] | undefined;
+            }, {
+                name: string;
+                behaviorId: string;
+                weeklyTotal: number;
+                weeklyTotalFormatted: string;
+                trackingType?: "counter" | "timer" | "scale" | undefined;
+                trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
+                unit?: string | undefined;
+                pctChangeFromLastWeek?: number | null | undefined;
+                mainTriggers?: string[] | undefined;
+            }>, "many">;
+        }, "strip", z.ZodTypeAny, {
+            behaviors: {
+                name: string;
+                behaviorId: string;
+                weeklyTotal: number;
+                weeklyTotalFormatted: string;
+                trackingType?: "counter" | "timer" | "scale" | undefined;
+                trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
+                unit?: string | undefined;
+                pctChangeFromLastWeek?: number | null | undefined;
+                mainTriggers?: string[] | undefined;
+            }[];
+            weekStartDateString: string;
+            weekEndDateString: string;
+        }, {
+            behaviors: {
+                name: string;
+                behaviorId: string;
+                weeklyTotal: number;
+                weeklyTotalFormatted: string;
+                trackingType?: "counter" | "timer" | "scale" | undefined;
+                trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
+                unit?: string | undefined;
+                pctChangeFromLastWeek?: number | null | undefined;
+                mainTriggers?: string[] | undefined;
+            }[];
+            weekStartDateString: string;
+            weekEndDateString: string;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "week_overview";
+        userId: string;
+        sessionId: string;
+        dateString: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: true;
+        data: {
+            behaviors: {
+                name: string;
+                behaviorId: string;
+                weeklyTotal: number;
+                weeklyTotalFormatted: string;
+                trackingType?: "counter" | "timer" | "scale" | undefined;
+                trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
+                unit?: string | undefined;
+                pctChangeFromLastWeek?: number | null | undefined;
+                mainTriggers?: string[] | undefined;
+            }[];
+            weekStartDateString: string;
+            weekEndDateString: string;
+        };
+        id?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
+        impulseId?: string | undefined;
+        respondingToLogId?: string | undefined;
+    }, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "week_overview";
+        userId: string;
+        sessionId: string;
+        dateString: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: true;
+        data: {
+            behaviors: {
+                name: string;
+                behaviorId: string;
+                weeklyTotal: number;
+                weeklyTotalFormatted: string;
+                trackingType?: "counter" | "timer" | "scale" | undefined;
+                trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
+                unit?: string | undefined;
+                pctChangeFromLastWeek?: number | null | undefined;
+                mainTriggers?: string[] | undefined;
+            }[];
+            weekStartDateString: string;
+            weekEndDateString: string;
         };
         id?: string | undefined;
         behaviorIds?: string[] | undefined;
@@ -34314,14 +34511,159 @@ export declare const logSchemas: {
         respondingToLogId?: string | undefined;
         data?: unknown;
     }>;
+    plan_history_entry: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        sessionId: z.ZodString;
+        tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        impulseId: z.ZodOptional<z.ZodString>;
+        respondingToLogId: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"plan_history_entry">;
+        isDisplayable: z.ZodLiteral<false>;
+        data: z.ZodObject<{
+            kind: z.ZodEnum<["plan_activated", "plan_deactivated", "plan_paused_mid_week", "proposal_declined", "note"]>;
+            planId: z.ZodOptional<z.ZodString>;
+            planPath: z.ZodOptional<z.ZodString>;
+            planName: z.ZodOptional<z.ZodString>;
+            behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+            note: z.ZodString;
+            relatedProposalLogId: z.ZodOptional<z.ZodString>;
+            reflectionQuote: z.ZodOptional<z.ZodString>;
+            winRateWhileActive: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                behaviorId: z.ZodString;
+                metDays: z.ZodNumber;
+                totalDays: z.ZodNumber;
+                fromDateString: z.ZodString;
+                toDateString: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                behaviorId: string;
+                metDays: number;
+                totalDays: number;
+                fromDateString: string;
+                toDateString: string;
+            }, {
+                behaviorId: string;
+                metDays: number;
+                totalDays: number;
+                fromDateString: string;
+                toDateString: string;
+            }>, "many">>;
+            weekOfDateString: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            note: string;
+            kind: "note" | "plan_activated" | "plan_deactivated" | "plan_paused_mid_week" | "proposal_declined";
+            behaviorIds?: string[] | undefined;
+            planId?: string | undefined;
+            planPath?: string | undefined;
+            planName?: string | undefined;
+            relatedProposalLogId?: string | undefined;
+            reflectionQuote?: string | undefined;
+            winRateWhileActive?: {
+                behaviorId: string;
+                metDays: number;
+                totalDays: number;
+                fromDateString: string;
+                toDateString: string;
+            }[] | undefined;
+            weekOfDateString?: string | undefined;
+        }, {
+            note: string;
+            kind: "note" | "plan_activated" | "plan_deactivated" | "plan_paused_mid_week" | "proposal_declined";
+            behaviorIds?: string[] | undefined;
+            planId?: string | undefined;
+            planPath?: string | undefined;
+            planName?: string | undefined;
+            relatedProposalLogId?: string | undefined;
+            reflectionQuote?: string | undefined;
+            winRateWhileActive?: {
+                behaviorId: string;
+                metDays: number;
+                totalDays: number;
+                fromDateString: string;
+                toDateString: string;
+            }[] | undefined;
+            weekOfDateString?: string | undefined;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "plan_history_entry";
+        userId: string;
+        sessionId: string;
+        dateString: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: false;
+        data: {
+            note: string;
+            kind: "note" | "plan_activated" | "plan_deactivated" | "plan_paused_mid_week" | "proposal_declined";
+            behaviorIds?: string[] | undefined;
+            planId?: string | undefined;
+            planPath?: string | undefined;
+            planName?: string | undefined;
+            relatedProposalLogId?: string | undefined;
+            reflectionQuote?: string | undefined;
+            winRateWhileActive?: {
+                behaviorId: string;
+                metDays: number;
+                totalDays: number;
+                fromDateString: string;
+                toDateString: string;
+            }[] | undefined;
+            weekOfDateString?: string | undefined;
+        };
+        id?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
+        impulseId?: string | undefined;
+        respondingToLogId?: string | undefined;
+    }, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "plan_history_entry";
+        userId: string;
+        sessionId: string;
+        dateString: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: false;
+        data: {
+            note: string;
+            kind: "note" | "plan_activated" | "plan_deactivated" | "plan_paused_mid_week" | "proposal_declined";
+            behaviorIds?: string[] | undefined;
+            planId?: string | undefined;
+            planPath?: string | undefined;
+            planName?: string | undefined;
+            relatedProposalLogId?: string | undefined;
+            reflectionQuote?: string | undefined;
+            winRateWhileActive?: {
+                behaviorId: string;
+                metDays: number;
+                totalDays: number;
+                fromDateString: string;
+                toDateString: string;
+            }[] | undefined;
+            weekOfDateString?: string | undefined;
+        };
+        id?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
+        impulseId?: string | undefined;
+        respondingToLogId?: string | undefined;
+    }>;
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ProposedExperimentLog | ProposedStrategyModificationLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | TriggerSelectionLog | RequestPermissionsLog | TacticReviewLog | SetupModeChoiceLog | TagsUpdatedLog | CrisisResourceLog | RecoveryKeyLog | ImageLog | PhotoLog | MergeBehaviorsProposalLog | MaskBehaviorProposalLog | ShortcutSetupIntroLog | TacticSuggestionsLog | CoachBookingPromptLog | DebriefQuestionLog;
+export type Log = TacticLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | HumanSupportEscalationLog | ProposedExperimentLog | ProposedStrategyModificationLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | WeekOverviewLog | TriggerSelectionLog | RequestPermissionsLog | TacticReviewLog | SetupModeChoiceLog | TagsUpdatedLog | CrisisResourceLog | RecoveryKeyLog | ImageLog | PhotoLog | MergeBehaviorsProposalLog | MaskBehaviorProposalLog | ShortcutSetupIntroLog | TacticSuggestionsLog | CoachBookingPromptLog | DebriefQuestionLog | PlanHistoryEntryLog;
 export * from "./behaviorLog";
 export * from "./breathingLog";
 export * from "./callLog";
 export * from "./enableNotificationsCtaLog";
+export * from "./humanSupportEscalationLog";
 export * from "./linkLog";
 export * from "./messageLog";
 export * from "./notifySupportGroupLog";
@@ -34340,6 +34682,7 @@ export * from "./impulseStartedLog";
 export * from "./metricLog";
 export * from "./recapTimePreferenceLog";
 export * from "./dayTotalsPromptLog";
+export * from "./weekOverviewLog";
 export * from "./triggerSelectionLog";
 export * from "./requestPermissionsLog";
 export * from "./tacticReviewLog";
@@ -34355,6 +34698,7 @@ export * from "./shortcutSetupIntroLog";
 export * from "./tacticSuggestionsLog";
 export * from "./coachBookingPromptLog";
 export * from "./debriefQuestionLog";
+export * from "./planHistoryEntryLog";
 export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -51624,6 +51968,62 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dateString: z.ZodString;
     sessionId: z.ZodString;
     tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    impulseId: z.ZodOptional<z.ZodString>;
+    respondingToLogId: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"human_support_escalation">;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        issueSummary: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        issueSummary?: string | undefined;
+    }, {
+        issueSummary?: string | undefined;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "human_support_escalation";
+    userId: string;
+    sessionId: string;
+    dateString: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: true;
+    data: {
+        issueSummary?: string | undefined;
+    };
+    id?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
+    impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
+}, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "human_support_escalation";
+    userId: string;
+    sessionId: string;
+    dateString: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: true;
+    data: {
+        issueSummary?: string | undefined;
+    };
+    id?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
+    impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    sessionId: z.ZodString;
+    tacticId: z.ZodOptional<z.ZodString>;
     impulseId: z.ZodOptional<z.ZodString>;
     respondingToLogId: z.ZodOptional<z.ZodString>;
 } & {
@@ -52593,6 +52993,142 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         targetDateString: string;
         confirmedAt?: import("../../types").Timestamp | undefined;
         discussRequestedAt?: import("../../types").Timestamp | undefined;
+    };
+    id?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
+    impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    sessionId: z.ZodString;
+    tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    impulseId: z.ZodOptional<z.ZodString>;
+    respondingToLogId: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"week_overview">;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        weekStartDateString: z.ZodString;
+        weekEndDateString: z.ZodString;
+        behaviors: z.ZodArray<z.ZodObject<{
+            behaviorId: z.ZodString;
+            name: z.ZodString;
+            trackingType: z.ZodOptional<z.ZodEnum<["counter", "timer", "scale"]>>;
+            unit: z.ZodOptional<z.ZodString>;
+            weeklyTotal: z.ZodNumber;
+            weeklyTotalFormatted: z.ZodString;
+            pctChangeFromLastWeek: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+            trend: z.ZodOptional<z.ZodEnum<["IMPROVING", "DECLINING", "STABLE", "VOLATILE", "INSUFFICIENT_DATA"]>>;
+            mainTriggers: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        }, "strip", z.ZodTypeAny, {
+            name: string;
+            behaviorId: string;
+            weeklyTotal: number;
+            weeklyTotalFormatted: string;
+            trackingType?: "counter" | "timer" | "scale" | undefined;
+            trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
+            unit?: string | undefined;
+            pctChangeFromLastWeek?: number | null | undefined;
+            mainTriggers?: string[] | undefined;
+        }, {
+            name: string;
+            behaviorId: string;
+            weeklyTotal: number;
+            weeklyTotalFormatted: string;
+            trackingType?: "counter" | "timer" | "scale" | undefined;
+            trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
+            unit?: string | undefined;
+            pctChangeFromLastWeek?: number | null | undefined;
+            mainTriggers?: string[] | undefined;
+        }>, "many">;
+    }, "strip", z.ZodTypeAny, {
+        behaviors: {
+            name: string;
+            behaviorId: string;
+            weeklyTotal: number;
+            weeklyTotalFormatted: string;
+            trackingType?: "counter" | "timer" | "scale" | undefined;
+            trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
+            unit?: string | undefined;
+            pctChangeFromLastWeek?: number | null | undefined;
+            mainTriggers?: string[] | undefined;
+        }[];
+        weekStartDateString: string;
+        weekEndDateString: string;
+    }, {
+        behaviors: {
+            name: string;
+            behaviorId: string;
+            weeklyTotal: number;
+            weeklyTotalFormatted: string;
+            trackingType?: "counter" | "timer" | "scale" | undefined;
+            trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
+            unit?: string | undefined;
+            pctChangeFromLastWeek?: number | null | undefined;
+            mainTriggers?: string[] | undefined;
+        }[];
+        weekStartDateString: string;
+        weekEndDateString: string;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "week_overview";
+    userId: string;
+    sessionId: string;
+    dateString: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: true;
+    data: {
+        behaviors: {
+            name: string;
+            behaviorId: string;
+            weeklyTotal: number;
+            weeklyTotalFormatted: string;
+            trackingType?: "counter" | "timer" | "scale" | undefined;
+            trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
+            unit?: string | undefined;
+            pctChangeFromLastWeek?: number | null | undefined;
+            mainTriggers?: string[] | undefined;
+        }[];
+        weekStartDateString: string;
+        weekEndDateString: string;
+    };
+    id?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
+    impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
+}, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "week_overview";
+    userId: string;
+    sessionId: string;
+    dateString: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: true;
+    data: {
+        behaviors: {
+            name: string;
+            behaviorId: string;
+            weeklyTotal: number;
+            weeklyTotalFormatted: string;
+            trackingType?: "counter" | "timer" | "scale" | undefined;
+            trend?: "IMPROVING" | "DECLINING" | "STABLE" | "VOLATILE" | "INSUFFICIENT_DATA" | undefined;
+            unit?: string | undefined;
+            pctChangeFromLastWeek?: number | null | undefined;
+            mainTriggers?: string[] | undefined;
+        }[];
+        weekStartDateString: string;
+        weekEndDateString: string;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;
@@ -61503,6 +62039,149 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     impulseId?: string | undefined;
     respondingToLogId?: string | undefined;
     data?: unknown;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    sessionId: z.ZodString;
+    tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    impulseId: z.ZodOptional<z.ZodString>;
+    respondingToLogId: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"plan_history_entry">;
+    isDisplayable: z.ZodLiteral<false>;
+    data: z.ZodObject<{
+        kind: z.ZodEnum<["plan_activated", "plan_deactivated", "plan_paused_mid_week", "proposal_declined", "note"]>;
+        planId: z.ZodOptional<z.ZodString>;
+        planPath: z.ZodOptional<z.ZodString>;
+        planName: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        note: z.ZodString;
+        relatedProposalLogId: z.ZodOptional<z.ZodString>;
+        reflectionQuote: z.ZodOptional<z.ZodString>;
+        winRateWhileActive: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            behaviorId: z.ZodString;
+            metDays: z.ZodNumber;
+            totalDays: z.ZodNumber;
+            fromDateString: z.ZodString;
+            toDateString: z.ZodString;
+        }, "strip", z.ZodTypeAny, {
+            behaviorId: string;
+            metDays: number;
+            totalDays: number;
+            fromDateString: string;
+            toDateString: string;
+        }, {
+            behaviorId: string;
+            metDays: number;
+            totalDays: number;
+            fromDateString: string;
+            toDateString: string;
+        }>, "many">>;
+        weekOfDateString: z.ZodOptional<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        note: string;
+        kind: "note" | "plan_activated" | "plan_deactivated" | "plan_paused_mid_week" | "proposal_declined";
+        behaviorIds?: string[] | undefined;
+        planId?: string | undefined;
+        planPath?: string | undefined;
+        planName?: string | undefined;
+        relatedProposalLogId?: string | undefined;
+        reflectionQuote?: string | undefined;
+        winRateWhileActive?: {
+            behaviorId: string;
+            metDays: number;
+            totalDays: number;
+            fromDateString: string;
+            toDateString: string;
+        }[] | undefined;
+        weekOfDateString?: string | undefined;
+    }, {
+        note: string;
+        kind: "note" | "plan_activated" | "plan_deactivated" | "plan_paused_mid_week" | "proposal_declined";
+        behaviorIds?: string[] | undefined;
+        planId?: string | undefined;
+        planPath?: string | undefined;
+        planName?: string | undefined;
+        relatedProposalLogId?: string | undefined;
+        reflectionQuote?: string | undefined;
+        winRateWhileActive?: {
+            behaviorId: string;
+            metDays: number;
+            totalDays: number;
+            fromDateString: string;
+            toDateString: string;
+        }[] | undefined;
+        weekOfDateString?: string | undefined;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "plan_history_entry";
+    userId: string;
+    sessionId: string;
+    dateString: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: false;
+    data: {
+        note: string;
+        kind: "note" | "plan_activated" | "plan_deactivated" | "plan_paused_mid_week" | "proposal_declined";
+        behaviorIds?: string[] | undefined;
+        planId?: string | undefined;
+        planPath?: string | undefined;
+        planName?: string | undefined;
+        relatedProposalLogId?: string | undefined;
+        reflectionQuote?: string | undefined;
+        winRateWhileActive?: {
+            behaviorId: string;
+            metDays: number;
+            totalDays: number;
+            fromDateString: string;
+            toDateString: string;
+        }[] | undefined;
+        weekOfDateString?: string | undefined;
+    };
+    id?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
+    impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
+}, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "plan_history_entry";
+    userId: string;
+    sessionId: string;
+    dateString: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: false;
+    data: {
+        note: string;
+        kind: "note" | "plan_activated" | "plan_deactivated" | "plan_paused_mid_week" | "proposal_declined";
+        behaviorIds?: string[] | undefined;
+        planId?: string | undefined;
+        planPath?: string | undefined;
+        planName?: string | undefined;
+        relatedProposalLogId?: string | undefined;
+        reflectionQuote?: string | undefined;
+        winRateWhileActive?: {
+            behaviorId: string;
+            metDays: number;
+            totalDays: number;
+            fromDateString: string;
+            toDateString: string;
+        }[] | undefined;
+        weekOfDateString?: string | undefined;
+    };
+    id?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
+    impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
 }>]>;
 export declare const logIsAssistantMessageLog: (value: Omit<Log, "id">) => value is AssistantMessageLog;
 export declare const isValidAssistantMessageLog: (value: unknown) => value is AssistantMessageLog;
@@ -61536,12 +62215,16 @@ export declare const logIsSupportGroupDaySummaryLog: (value: Omit<Log, "id">) =>
 export declare const isValidSupportGroupDaySummaryLog: (value: unknown) => value is SupportGroupDaySummaryLog;
 export declare const logIsEnableNotificationsCtaLog: (value: Omit<Log, "id">) => value is EnableNotificationsCtaLog;
 export declare const isValidEnableNotificationsCtaLog: (value: unknown) => value is EnableNotificationsCtaLog;
+export declare const logIsHumanSupportEscalationLog: (value: Omit<Log, "id">) => value is HumanSupportEscalationLog;
+export declare const isValidHumanSupportEscalationLog: (value: unknown) => value is HumanSupportEscalationLog;
 export declare const logIsMetricLog: (value: Omit<Log, "id">) => value is MetricLog;
 export declare const isValidMetricLog: (value: unknown) => value is MetricLog;
 export declare const logIsRecapTimePreferenceLog: (value: Omit<Log, "id">) => value is RecapTimePreferenceLog;
 export declare const isValidRecapTimePreferenceLog: (value: unknown) => value is RecapTimePreferenceLog;
 export declare const logIsDayTotalsPromptLog: (value: Omit<Log, "id">) => value is DayTotalsPromptLog;
 export declare const isValidDayTotalsPromptLog: (value: unknown) => value is DayTotalsPromptLog;
+export declare const logIsWeekOverviewLog: (value: Omit<Log, "id">) => value is WeekOverviewLog;
+export declare const isValidWeekOverviewLog: (value: unknown) => value is WeekOverviewLog;
 export declare const logIsImpulseStartedLog: (value: Omit<Log, "id">) => value is ImpulseStartedLog;
 export declare const isValidImpulseStartedLog: (value: unknown) => value is ImpulseStartedLog;
 export declare const logIsRequestPermissionsLog: (value: Omit<Log, "id">) => value is RequestPermissionsLog;
@@ -61563,3 +62246,4 @@ export declare const logIsShortcutSetupIntroLog: (value: Omit<Log, "id">) => val
 export declare const logIsTacticSuggestionsLog: (value: Omit<Log, "id">) => value is TacticSuggestionsLog;
 export declare const logIsCoachBookingPromptLog: (value: Omit<Log, "id">) => value is CoachBookingPromptLog;
 export declare const logIsDebriefQuestionLog: (value: Omit<Log, "id">) => value is DebriefQuestionLog;
+export declare const logIsPlanHistoryEntryLog: (value: Omit<Log, "id">) => value is PlanHistoryEntryLog;

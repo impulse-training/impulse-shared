@@ -6,6 +6,10 @@ import {
   EnableNotificationsCtaLog,
   enableNotificationsCtaLogSchema,
 } from "./enableNotificationsCtaLog";
+import {
+  HumanSupportEscalationLog,
+  humanSupportEscalationLogSchema,
+} from "./humanSupportEscalationLog";
 import { LinkLog, linkLogSchema } from "./linkLog";
 import {
   ImpulseStartedLog,
@@ -140,6 +144,7 @@ export const logSchemas = {
   shared_moment: sharedMomentLogSchema,
   support_group_day_summary: supportGroupDaySummaryLogSchema,
   enable_notifications_cta: enableNotificationsCtaLogSchema,
+  human_support_escalation: humanSupportEscalationLogSchema,
   proposed_experiment: proposedExperimentLogSchema,
   proposed_strategy_modification: proposedStrategyModificationLogSchema,
   impulse_started: impulseStartedLogSchema,
@@ -185,6 +190,7 @@ export type Log =
   | VideoLog
   | SupportGroupDaySummaryLog
   | EnableNotificationsCtaLog
+  | HumanSupportEscalationLog
   | ProposedExperimentLog
   | ProposedStrategyModificationLog
   | ImpulseStartedLog
@@ -213,6 +219,7 @@ export * from "./behaviorLog";
 export * from "./breathingLog";
 export * from "./callLog";
 export * from "./enableNotificationsCtaLog";
+export * from "./humanSupportEscalationLog";
 export * from "./linkLog";
 export * from "./messageLog";
 export * from "./notifySupportGroupLog";
@@ -268,6 +275,7 @@ export const logSchema = z.discriminatedUnion("type", [
   videoLogSchema,
   supportGroupDaySummaryLogSchema,
   enableNotificationsCtaLogSchema,
+  humanSupportEscalationLogSchema,
   proposedExperimentLogSchema,
   proposedStrategyModificationLogSchema,
   impulseStartedLogSchema,
@@ -418,6 +426,16 @@ export const isValidEnableNotificationsCtaLog = (
   value: unknown,
 ): value is EnableNotificationsCtaLog => {
   return enableNotificationsCtaLogSchema.safeParse(value).success;
+};
+
+export const logIsHumanSupportEscalationLog = (
+  value: Omit<Log, "id">,
+): value is HumanSupportEscalationLog =>
+  value.type === "human_support_escalation";
+export const isValidHumanSupportEscalationLog = (
+  value: unknown,
+): value is HumanSupportEscalationLog => {
+  return humanSupportEscalationLogSchema.safeParse(value).success;
 };
 
 export const logIsMetricLog = (value: Omit<Log, "id">): value is MetricLog =>
