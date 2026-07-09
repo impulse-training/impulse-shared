@@ -18,6 +18,7 @@ exports.DATE_FORMAT = void 0;
 exports.getDateString = getDateString;
 exports.isRecapContextDateStale = isRecapContextDateStale;
 exports.getRecapDeadline = getRecapDeadline;
+exports.isDayRecappable = isDayRecappable;
 __exportStar(require("./getUnrecappedDays"), exports);
 exports.DATE_FORMAT = "yyyy-MM-dd";
 const date_fns_1 = require("date-fns");
@@ -55,4 +56,22 @@ function getRecapDeadline(targetDateString, timezone) {
     // Client-side: midnight in device local time
     deadlineLocalDate.setHours(0, 0, 0, 0);
     return deadlineLocalDate;
+}
+/**
+ * Determines whether a date can still be recapped or reset.
+ *
+ * Today is recappable, future dates are not yet recappable, and past dates are
+ * recappable only until the shared recap deadline.
+ */
+function isDayRecappable(dateString, options = {}) {
+    var _a;
+    const now = (_a = options.now) !== null && _a !== void 0 ? _a : new Date();
+    const todayString = options.timezone
+        ? getDateString(now, options.timezone)
+        : (0, date_fns_1.format)(now, exports.DATE_FORMAT);
+    if (dateString === todayString)
+        return true;
+    if (dateString > todayString)
+        return false;
+    return now < getRecapDeadline(dateString, options.timezone);
 }

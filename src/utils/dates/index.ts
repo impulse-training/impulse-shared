@@ -50,3 +50,24 @@ export function getRecapDeadline(
   deadlineLocalDate.setHours(0, 0, 0, 0);
   return deadlineLocalDate;
 }
+
+/**
+ * Determines whether a date can still be recapped or reset.
+ *
+ * Today is recappable, future dates are not yet recappable, and past dates are
+ * recappable only until the shared recap deadline.
+ */
+export function isDayRecappable(
+  dateString: string,
+  options: { now?: Date; timezone?: string } = {},
+): boolean {
+  const now = options.now ?? new Date();
+  const todayString = options.timezone
+    ? getDateString(now, options.timezone)
+    : format(now, DATE_FORMAT);
+
+  if (dateString === todayString) return true;
+  if (dateString > todayString) return false;
+
+  return now < getRecapDeadline(dateString, options.timezone);
+}

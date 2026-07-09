@@ -17,3 +17,13 @@ export declare function isRecapContextDateStale(computedAt: Date, now: Date, use
  *                   Omit on the client — JS local time is used instead.
  */
 export declare function getRecapDeadline(targetDateString: string, timezone?: string): Date;
+/**
+ * Determines whether a date can still be recapped or reset.
+ *
+ * Today is recappable, future dates are not yet recappable, and past dates are
+ * recappable only until the shared recap deadline.
+ */
+export declare function isDayRecappable(dateString: string, options?: {
+    now?: Date;
+    timezone?: string;
+}): boolean;
