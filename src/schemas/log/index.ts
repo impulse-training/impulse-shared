@@ -52,6 +52,10 @@ import {
   dayTotalsPromptLogSchema,
 } from "./dayTotalsPromptLog";
 import {
+  WeekOverviewLog,
+  weekOverviewLogSchema,
+} from "./weekOverviewLog";
+import {
   TriggerSelectionLog,
   triggerSelectionLogSchema,
 } from "./triggerSelectionLog";
@@ -142,6 +146,7 @@ export const logSchemas = {
   metric: metricLogSchema,
   recap_time_preference: recapTimePreferenceLogSchema,
   day_totals_prompt: dayTotalsPromptLogSchema,
+  week_overview: weekOverviewLogSchema,
   trigger_selection: triggerSelectionLogSchema,
   request_permissions: requestPermissionsLogSchema,
   tactic_review: tacticReviewLogSchema,
@@ -186,6 +191,7 @@ export type Log =
   | MetricLog
   | RecapTimePreferenceLog
   | DayTotalsPromptLog
+  | WeekOverviewLog
   | TriggerSelectionLog
   | RequestPermissionsLog
   | TacticReviewLog
@@ -225,6 +231,7 @@ export * from "./impulseStartedLog";
 export * from "./metricLog";
 export * from "./recapTimePreferenceLog";
 export * from "./dayTotalsPromptLog";
+export * from "./weekOverviewLog";
 export * from "./triggerSelectionLog";
 export * from "./requestPermissionsLog";
 export * from "./tacticReviewLog";
@@ -267,6 +274,7 @@ export const logSchema = z.discriminatedUnion("type", [
   metricLogSchema,
   recapTimePreferenceLogSchema,
   dayTotalsPromptLogSchema,
+  weekOverviewLogSchema,
   triggerSelectionLogSchema,
   requestPermissionsLogSchema,
   tacticReviewLogSchema,
@@ -434,6 +442,15 @@ export const isValidDayTotalsPromptLog = (
   value: unknown,
 ): value is DayTotalsPromptLog => {
   return dayTotalsPromptLogSchema.safeParse(value).success;
+};
+
+export const logIsWeekOverviewLog = (
+  value: Omit<Log, "id">,
+): value is WeekOverviewLog => value.type === "week_overview";
+export const isValidWeekOverviewLog = (
+  value: unknown,
+): value is WeekOverviewLog => {
+  return weekOverviewLogSchema.safeParse(value).success;
 };
 
 export const logIsImpulseStartedLog = (
