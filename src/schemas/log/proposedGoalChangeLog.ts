@@ -22,6 +22,8 @@ export const proposedGoalChangeLogSchema = logBaseSchema.extend({
     summary: z.string().optional(),
     goal: goalSchema,
     status: z.enum(["pending", "accepted", "declined"]).default("pending"),
+    /** The propose_goal session task this card realizes — resolved on respond. */
+    sourceTaskId: z.string().optional(),
     acceptedAt: timestampSchema.optional(),
     declinedAt: timestampSchema.optional(),
     /** The goal replaced on acceptance, captured server-side for history. */

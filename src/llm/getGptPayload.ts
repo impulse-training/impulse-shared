@@ -285,6 +285,16 @@ export function getGptPayload(
     if ((log as any).source === "recap_follow_up") {
       return [];
     }
+    // Sanitize legacy [SHOW_STRATEGY] markers out of replayed history — a
+    // marker in a past assistant message seeds the model to imitate it (we
+    // observed marker-only replies born exactly this way). A message that was
+    // only a marker is dropped entirely.
+    const content = log.data.message.content;
+    if (typeof content === "string" && content.includes("[SHOW_STRATEGY]")) {
+      const cleaned = content.replace(/\[SHOW_STRATEGY\]/g, "").trim();
+      if (!cleaned) return [];
+      return [{ ...log.data.message, content: cleaned }];
+    }
     return [log.data.message];
   }
 

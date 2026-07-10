@@ -15,6 +15,7 @@ import {
   logIsMaskBehaviorProposalLog,
   logIsMergeBehaviorsProposalLog,
   logIsProposedGoalChangeLog,
+  logIsProposedStrategyModificationLog,
   logIsMetricLog,
   logIsPlansLog,
   logIsSetupModeChoiceLog,
@@ -169,6 +170,20 @@ export function shouldRespondToLogWithAI(
     logIsProposedGoalChangeLog(beforeData) &&
     beforeData.data.status === "pending";
 
+  // The user accepted/declined a weekly-review strategy proposal card (or its
+  // full-screen view) — inline interaction, no user message. Scoped to queue
+  // cards (data.sourceTaskId) so accepting a coach-dashboard proposal elsewhere
+  // keeps its existing behavior. Keyed on the status transition.
+  const isStrategyCardResponded =
+    beforeData &&
+    afterData &&
+    logIsProposedStrategyModificationLog(afterData) &&
+    !!(afterData.data as { sourceTaskId?: string }).sourceTaskId &&
+    (afterData.data.status === "accepted" ||
+      afterData.data.status === "declined") &&
+    logIsProposedStrategyModificationLog(beforeData) &&
+    beforeData.data.status === "pending";
+
   const isMergeBehaviorsResponseSelected =
     beforeData &&
     afterData &&
@@ -225,6 +240,7 @@ export function shouldRespondToLogWithAI(
     !isShortcutSetupTextChoice &&
     !isTacticCompleted &&
     !isGoalChangeResponded &&
+    !isStrategyCardResponded &&
     !isMergeBehaviorsResponseSelected &&
     !isMaskBehaviorResponseSelected &&
     !isDebriefQuestionResponseSelected &&
@@ -243,6 +259,12 @@ export function shouldRespondToLogWithAI(
   // Case: New message logs (creation event, no before data)
   if (isCreating && logIsUserMessageLog(afterData)) {
     console.log("New message log. Responding with AI.");
+    return true;
+  }
+
+  // Case: Weekly strategy proposal responded to (accept/decline tapped)
+  if (isStrategyCardResponded) {
+    console.log("Strategy proposal card responded to. Responding with AI.");
     return true;
   }
 

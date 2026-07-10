@@ -62,10 +62,28 @@ export const proposedStrategyModificationLogSchema = logBaseSchema.extend({
   data: z.object({
     title: z.string().min(1),
     summary: z.string().optional(),
-    status: z.enum(["pending", "accepted", "declined"]).default("pending"),
+    status: z
+      .enum(["pending", "accepted", "declined", "superseded"])
+      .default("pending"),
     operations: z.array(strategyModificationOperationSchema).min(1),
     acceptedAt: timestampSchema.optional(),
     declinedAt: timestampSchema.optional(),
+    /** The suggest_strategy session task this proposal realizes (weekly queue). */
+    sourceTaskId: z.string().optional(),
+    /**
+     * When the user chose "Talk it through" (or resolved the proposal), making
+     * the card visible in the session thread. A pending, unrevealed proposal is
+     * hidden — it's only reachable via the [SHOW_STRATEGY] full-screen view.
+     */
+    revealedAt: timestampSchema.optional(),
+    /**
+     * Revision lineage: a revision is a NEW pending log (append-only — the
+     * thread stays temporally honest); the one it replaces is marked
+     * "superseded" and points forward is not needed — this points BACK.
+     */
+    revision: z.number().int().positive().optional(),
+    supersedesLogId: z.string().optional(),
+    supersededAt: timestampSchema.optional(),
     createdTriggerIds: z.array(z.string()).optional(),
     createdPlanIds: z.array(z.string()).optional(),
     updatedBehaviorIds: z.array(z.string()).optional(),

@@ -46,7 +46,6 @@ export * from "./supportGroupTask";
 export * from "./supportRequest";
 export * from "./systemUpdate";
 export * from "./task";
-export * from "./strategyDraft";
 export * from "./strategySnapshot";
 export * from "./tagGroup";
 export * from "./transcriptItem";
