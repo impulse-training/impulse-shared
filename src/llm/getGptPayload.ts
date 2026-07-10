@@ -180,18 +180,27 @@ export function getGptPayload(
   }
 
   if (logIsProposedStrategyModificationLog(log)) {
-    if (log.data.status !== "accepted") return [];
-
     const title = log.data.title.trim();
     const summary = log.data.summary?.trim();
     const context = summary ? `${title}: ${summary}` : title;
 
-    return [
-      {
-        role: "user",
-        content: `<SYSTEM>The user accepted a suggested strategy update. Saved strategy: ${context}.</SYSTEM>`,
-      },
-    ];
+    if (log.data.status === "accepted") {
+      return [
+        {
+          role: "user",
+          content: `<SYSTEM>The user accepted a suggested strategy update. Saved strategy: ${context}.</SYSTEM>`,
+        },
+      ];
+    }
+    if (log.data.status === "declined") {
+      return [
+        {
+          role: "user",
+          content: `<SYSTEM>The user DECLINED the suggested strategy update "${context}". Respect the decision without persuasion and move on (the next prepared item, or winding down).</SYSTEM>`,
+        },
+      ];
+    }
+    return [];
   }
 
   if (logIsProposedGoalChangeLog(log)) {
