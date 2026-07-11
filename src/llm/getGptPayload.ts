@@ -12,6 +12,7 @@ import {
   logIsMergeBehaviorsProposalLog,
   logIsProposedStrategyModificationLog,
   logIsProposedGoalChangeLog,
+  logIsResumeRecapRemindersCtaLog,
   logIsTacticLog,
   logIsToolCallLog,
   logIsUserMessageLog,
@@ -401,6 +402,27 @@ export function getGptPayload(
       {
         role: "user",
         content: `<SYSTEM>The user has installed the Impulse widget!</SYSTEM>`,
+      },
+    ];
+  }
+
+  if (logIsResumeRecapRemindersCtaLog(log)) {
+    if (!log.data.respondedAt) {
+      return [
+        {
+          role: "user",
+          content:
+            "<SYSTEM>Impulse showed the user a card asking whether to turn their daily recap reminders back on (reminders were paused while they were away). Briefly introduce it: welcome them back without making their absence a thing, and note they can restart daily reminders with the card whenever they are ready. No button has been selected yet.</SYSTEM>",
+        },
+      ];
+    }
+    return [
+      {
+        role: "user",
+        content:
+          log.data.resumed === true
+            ? "<SYSTEM>The user turned their daily recap reminders back on. Acknowledge briefly and move the conversation forward; do not celebrate excessively.</SYSTEM>"
+            : "<SYSTEM>The user chose not to resume daily recap reminders for now. Respect the decision without persuasion and move on; they can re-enable later.</SYSTEM>",
       },
     ];
   }

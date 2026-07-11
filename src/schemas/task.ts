@@ -22,6 +22,12 @@ export const taskBaseSchema = z.object({
   requiredTools: z.array(z.string()).optional(),
   dependsOnTaskId: z.string().optional(),
   claimableSessionTypes: z.array(claimableSessionTypeSchema).min(1).optional(),
+  /**
+   * Passive-display deterministic tasks: after processing, don't end the turn
+   * — let the AI still respond (see processDeterministicTasks). Copied onto
+   * the session task when claimed.
+   */
+  triggerAIAfter: z.boolean().optional(),
   createdBy: z.string().optional(),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
@@ -206,6 +212,18 @@ export const setupShortcutTaskSchema = taskBaseSchema.extend({
 });
 
 /**
+ * Durable user-scoped task for a returning user whose scheduled recap
+ * reminders are paused (userData recap.paused). Claimed into their next
+ * opened recap; the deterministic handler renders a resume_recap_reminders_cta
+ * card and hands off to the AI (triggerAIAfter) to introduce it. Responding
+ * "resume" clears recap.paused and completes the task; declining completes it
+ * too (they can re-enable any time in settings).
+ */
+export const resumeRecapRemindersTaskSchema = taskBaseSchema.extend({
+  type: z.literal("resume_recap_reminders"),
+});
+
+/**
  * The weekly review's first beat: reflect on the week just passed as one shape.
  * Injected as a session task on a weekly-mode recap (never user-level), it
  * completes when the AI calls reconcileStrategyProposals (its requiredTool),
@@ -232,6 +250,7 @@ export const taskSchema = z.discriminatedUnion("type", [
   reflectOnMetricsTaskSchema,
   collectBaselineTaskSchema,
   setupShortcutTaskSchema,
+  resumeRecapRemindersTaskSchema,
   weekLookbackTaskSchema,
 ]);
 
@@ -251,6 +270,9 @@ export type SuggestTacticTask = z.infer<typeof suggestTacticTaskSchema>;
 export type ReflectOnMetricsTask = z.infer<typeof reflectOnMetricsTaskSchema>;
 export type CollectBaselineTask = z.infer<typeof collectBaselineTaskSchema>;
 export type SetupShortcutTask = z.infer<typeof setupShortcutTaskSchema>;
+export type ResumeRecapRemindersTask = z.infer<
+  typeof resumeRecapRemindersTaskSchema
+>;
 export type WeekLookbackTask = z.infer<typeof weekLookbackTaskSchema>;
 export type Task = z.infer<typeof taskSchema>;
 

@@ -4,6 +4,7 @@ import { BreathingLog } from "./breathingLog";
 import { CallLog } from "./callLog";
 import { EnableNotificationsCtaLog } from "./enableNotificationsCtaLog";
 import { HumanSupportEscalationLog } from "./humanSupportEscalationLog";
+import { ResumeRecapRemindersCtaLog } from "./resumeRecapRemindersCtaLog";
 import { LinkLog } from "./linkLog";
 import { ImpulseStartedLog } from "./impulseStartedLog";
 import { ProposedExperimentLog } from "./proposedExperimentLog";
@@ -21,6 +22,7 @@ import { MetricLog } from "./metricLog";
 import { RecapTimePreferenceLog } from "./recapTimePreferenceLog";
 import { DayTotalsPromptLog } from "./dayTotalsPromptLog";
 import { WeekOverviewLog } from "./weekOverviewLog";
+import { ProposedGoalChangeLog } from "./proposedGoalChangeLog";
 import { TriggerSelectionLog } from "./triggerSelectionLog";
 import { WidgetSetupLog } from "./widgetSetupLog";
 import { RequestPermissionsLog } from "./requestPermissionsLog";
@@ -24347,6 +24349,73 @@ export declare const logSchemas: {
         impulseId?: string | undefined;
         respondingToLogId?: string | undefined;
     }>;
+    resume_recap_reminders_cta: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        sessionId: z.ZodString;
+        tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        impulseId: z.ZodOptional<z.ZodString>;
+        respondingToLogId: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"resume_recap_reminders_cta">;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            triggeredByTaskId: z.ZodString;
+            respondedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            resumed: z.ZodOptional<z.ZodBoolean>;
+        }, "strip", z.ZodTypeAny, {
+            triggeredByTaskId: string;
+            respondedAt?: import("../../types").Timestamp | undefined;
+            resumed?: boolean | undefined;
+        }, {
+            triggeredByTaskId: string;
+            respondedAt?: import("../../types").Timestamp | undefined;
+            resumed?: boolean | undefined;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "resume_recap_reminders_cta";
+        userId: string;
+        sessionId: string;
+        dateString: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: true;
+        data: {
+            triggeredByTaskId: string;
+            respondedAt?: import("../../types").Timestamp | undefined;
+            resumed?: boolean | undefined;
+        };
+        id?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
+        impulseId?: string | undefined;
+        respondingToLogId?: string | undefined;
+    }, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "resume_recap_reminders_cta";
+        userId: string;
+        sessionId: string;
+        dateString: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: true;
+        data: {
+            triggeredByTaskId: string;
+            respondedAt?: import("../../types").Timestamp | undefined;
+            resumed?: boolean | undefined;
+        };
+        id?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
+        impulseId?: string | undefined;
+        respondingToLogId?: string | undefined;
+    }>;
     human_support_escalation: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
@@ -24525,7 +24594,7 @@ export declare const logSchemas: {
         data: z.ZodObject<{
             title: z.ZodString;
             summary: z.ZodOptional<z.ZodString>;
-            status: z.ZodDefault<z.ZodEnum<["pending", "accepted", "declined"]>>;
+            status: z.ZodDefault<z.ZodEnum<["pending", "accepted", "declined", "superseded"]>>;
             operations: z.ZodArray<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 type: z.ZodLiteral<"create_trigger">;
                 clientId: z.ZodString;
@@ -24584,12 +24653,43 @@ export declare const logSchemas: {
                     newTactics: z.ZodOptional<z.ZodArray<z.ZodObject<{
                         title: z.ZodString;
                         description: z.ZodOptional<z.ZodString>;
+                        phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>;
+                        links: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                            url: z.ZodString;
+                            title: z.ZodOptional<z.ZodString>;
+                            imageUrl: z.ZodOptional<z.ZodString>;
+                            domain: z.ZodOptional<z.ZodString>;
+                        }, "strip", z.ZodTypeAny, {
+                            url: string;
+                            title?: string | undefined;
+                            imageUrl?: string | undefined;
+                            domain?: string | undefined;
+                        }, {
+                            url: string;
+                            title?: string | undefined;
+                            imageUrl?: string | undefined;
+                            domain?: string | undefined;
+                        }>, "many">>;
                     }, "strip", z.ZodTypeAny, {
                         title: string;
                         description?: string | undefined;
+                        links?: {
+                            url: string;
+                            title?: string | undefined;
+                            imageUrl?: string | undefined;
+                            domain?: string | undefined;
+                        }[] | undefined;
+                        phase?: "shift" | "regulate" | "reengage" | undefined;
                     }, {
                         title: string;
                         description?: string | undefined;
+                        links?: {
+                            url: string;
+                            title?: string | undefined;
+                            imageUrl?: string | undefined;
+                            domain?: string | undefined;
+                        }[] | undefined;
+                        phase?: "shift" | "regulate" | "reengage" | undefined;
                     }>, "many">>;
                     planType: z.ZodOptional<z.ZodEnum<["trigger", "scheduled"]>>;
                     hour: z.ZodOptional<z.ZodNumber>;
@@ -24602,6 +24702,13 @@ export declare const logSchemas: {
                     newTactics?: {
                         title: string;
                         description?: string | undefined;
+                        links?: {
+                            url: string;
+                            title?: string | undefined;
+                            imageUrl?: string | undefined;
+                            domain?: string | undefined;
+                        }[] | undefined;
+                        phase?: "shift" | "regulate" | "reengage" | undefined;
                     }[] | undefined;
                     planType?: "scheduled" | "trigger" | undefined;
                     hour?: number | undefined;
@@ -24614,6 +24721,13 @@ export declare const logSchemas: {
                     newTactics?: {
                         title: string;
                         description?: string | undefined;
+                        links?: {
+                            url: string;
+                            title?: string | undefined;
+                            imageUrl?: string | undefined;
+                            domain?: string | undefined;
+                        }[] | undefined;
+                        phase?: "shift" | "regulate" | "reengage" | undefined;
                     }[] | undefined;
                     planType?: "scheduled" | "trigger" | undefined;
                     hour?: number | undefined;
@@ -24629,6 +24743,13 @@ export declare const logSchemas: {
                     newTactics?: {
                         title: string;
                         description?: string | undefined;
+                        links?: {
+                            url: string;
+                            title?: string | undefined;
+                            imageUrl?: string | undefined;
+                            domain?: string | undefined;
+                        }[] | undefined;
+                        phase?: "shift" | "regulate" | "reengage" | undefined;
                     }[] | undefined;
                     planType?: "scheduled" | "trigger" | undefined;
                     hour?: number | undefined;
@@ -24646,6 +24767,13 @@ export declare const logSchemas: {
                     newTactics?: {
                         title: string;
                         description?: string | undefined;
+                        links?: {
+                            url: string;
+                            title?: string | undefined;
+                            imageUrl?: string | undefined;
+                            domain?: string | undefined;
+                        }[] | undefined;
+                        phase?: "shift" | "regulate" | "reengage" | undefined;
                     }[] | undefined;
                     planType?: "scheduled" | "trigger" | undefined;
                     hour?: number | undefined;
@@ -24808,11 +24936,16 @@ export declare const logSchemas: {
             }>]>, "many">;
             acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             declinedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            sourceTaskId: z.ZodOptional<z.ZodString>;
+            revealedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            revision: z.ZodOptional<z.ZodNumber>;
+            supersedesLogId: z.ZodOptional<z.ZodString>;
+            supersededAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
             createdTriggerIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             createdPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             updatedBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         }, "strip", z.ZodTypeAny, {
-            status: "declined" | "pending" | "accepted";
+            status: "declined" | "pending" | "accepted" | "superseded";
             title: string;
             operations: ({
                 type: "create_trigger";
@@ -24834,6 +24967,13 @@ export declare const logSchemas: {
                     newTactics?: {
                         title: string;
                         description?: string | undefined;
+                        links?: {
+                            url: string;
+                            title?: string | undefined;
+                            imageUrl?: string | undefined;
+                            domain?: string | undefined;
+                        }[] | undefined;
+                        phase?: "shift" | "regulate" | "reengage" | undefined;
                     }[] | undefined;
                     planType?: "scheduled" | "trigger" | undefined;
                     hour?: number | undefined;
@@ -24873,6 +25013,11 @@ export declare const logSchemas: {
             summary?: string | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
             declinedAt?: import("../../types").Timestamp | undefined;
+            sourceTaskId?: string | undefined;
+            revealedAt?: import("../../types").Timestamp | undefined;
+            revision?: number | undefined;
+            supersedesLogId?: string | undefined;
+            supersededAt?: import("../../types").Timestamp | undefined;
             createdTriggerIds?: string[] | undefined;
             createdPlanIds?: string[] | undefined;
             updatedBehaviorIds?: string[] | undefined;
@@ -24898,6 +25043,13 @@ export declare const logSchemas: {
                     newTactics?: {
                         title: string;
                         description?: string | undefined;
+                        links?: {
+                            url: string;
+                            title?: string | undefined;
+                            imageUrl?: string | undefined;
+                            domain?: string | undefined;
+                        }[] | undefined;
+                        phase?: "shift" | "regulate" | "reengage" | undefined;
                     }[] | undefined;
                     planType?: "scheduled" | "trigger" | undefined;
                     hour?: number | undefined;
@@ -24934,10 +25086,15 @@ export declare const logSchemas: {
                     }[];
                 };
             })[];
-            status?: "declined" | "pending" | "accepted" | undefined;
+            status?: "declined" | "pending" | "accepted" | "superseded" | undefined;
             summary?: string | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
             declinedAt?: import("../../types").Timestamp | undefined;
+            sourceTaskId?: string | undefined;
+            revealedAt?: import("../../types").Timestamp | undefined;
+            revision?: number | undefined;
+            supersedesLogId?: string | undefined;
+            supersededAt?: import("../../types").Timestamp | undefined;
             createdTriggerIds?: string[] | undefined;
             createdPlanIds?: string[] | undefined;
             updatedBehaviorIds?: string[] | undefined;
@@ -24952,7 +25109,7 @@ export declare const logSchemas: {
         timestamp: import("../../types").Timestamp;
         isDisplayable: true;
         data: {
-            status: "declined" | "pending" | "accepted";
+            status: "declined" | "pending" | "accepted" | "superseded";
             title: string;
             operations: ({
                 type: "create_trigger";
@@ -24974,6 +25131,13 @@ export declare const logSchemas: {
                     newTactics?: {
                         title: string;
                         description?: string | undefined;
+                        links?: {
+                            url: string;
+                            title?: string | undefined;
+                            imageUrl?: string | undefined;
+                            domain?: string | undefined;
+                        }[] | undefined;
+                        phase?: "shift" | "regulate" | "reengage" | undefined;
                     }[] | undefined;
                     planType?: "scheduled" | "trigger" | undefined;
                     hour?: number | undefined;
@@ -25013,6 +25177,11 @@ export declare const logSchemas: {
             summary?: string | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
             declinedAt?: import("../../types").Timestamp | undefined;
+            sourceTaskId?: string | undefined;
+            revealedAt?: import("../../types").Timestamp | undefined;
+            revision?: number | undefined;
+            supersedesLogId?: string | undefined;
+            supersededAt?: import("../../types").Timestamp | undefined;
             createdTriggerIds?: string[] | undefined;
             createdPlanIds?: string[] | undefined;
             updatedBehaviorIds?: string[] | undefined;
@@ -25053,6 +25222,13 @@ export declare const logSchemas: {
                     newTactics?: {
                         title: string;
                         description?: string | undefined;
+                        links?: {
+                            url: string;
+                            title?: string | undefined;
+                            imageUrl?: string | undefined;
+                            domain?: string | undefined;
+                        }[] | undefined;
+                        phase?: "shift" | "regulate" | "reengage" | undefined;
                     }[] | undefined;
                     planType?: "scheduled" | "trigger" | undefined;
                     hour?: number | undefined;
@@ -25089,10 +25265,15 @@ export declare const logSchemas: {
                     }[];
                 };
             })[];
-            status?: "declined" | "pending" | "accepted" | undefined;
+            status?: "declined" | "pending" | "accepted" | "superseded" | undefined;
             summary?: string | undefined;
             acceptedAt?: import("../../types").Timestamp | undefined;
             declinedAt?: import("../../types").Timestamp | undefined;
+            sourceTaskId?: string | undefined;
+            revealedAt?: import("../../types").Timestamp | undefined;
+            revision?: number | undefined;
+            supersedesLogId?: string | undefined;
+            supersededAt?: import("../../types").Timestamp | undefined;
             createdTriggerIds?: string[] | undefined;
             createdPlanIds?: string[] | undefined;
             updatedBehaviorIds?: string[] | undefined;
@@ -25524,6 +25705,483 @@ export declare const logSchemas: {
             }[];
             weekStartDateString: string;
             weekEndDateString: string;
+        };
+        id?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
+        impulseId?: string | undefined;
+        respondingToLogId?: string | undefined;
+    }>;
+    proposed_goal_change: z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        userId: z.ZodString;
+        timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+        dateString: z.ZodString;
+        sessionId: z.ZodString;
+        tacticId: z.ZodOptional<z.ZodString>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        impulseId: z.ZodOptional<z.ZodString>;
+        respondingToLogId: z.ZodOptional<z.ZodString>;
+    } & {
+        type: z.ZodLiteral<"proposed_goal_change">;
+        isDisplayable: z.ZodLiteral<true>;
+        data: z.ZodObject<{
+            behaviorId: z.ZodString;
+            behaviorName: z.ZodOptional<z.ZodString>;
+            title: z.ZodString;
+            summary: z.ZodOptional<z.ZodString>;
+            goal: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+                type: z.ZodLiteral<"eliminate">;
+            }, "strip", z.ZodTypeAny, {
+                type: "eliminate";
+            }, {
+                type: "eliminate";
+            }>, z.ZodObject<{
+                type: z.ZodLiteral<"reduceEveryDay">;
+                target: z.ZodNumber;
+            }, "strip", z.ZodTypeAny, {
+                type: "reduceEveryDay";
+                target: number;
+            }, {
+                type: "reduceEveryDay";
+                target: number;
+            }>, z.ZodObject<{
+                type: z.ZodLiteral<"reduceIndividualDays">;
+                dailyTargets: z.ZodObject<{
+                    0: z.ZodNumber;
+                    1: z.ZodNumber;
+                    2: z.ZodNumber;
+                    3: z.ZodNumber;
+                    4: z.ZodNumber;
+                    5: z.ZodNumber;
+                    6: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                }, {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                }>;
+            }, "strip", z.ZodTypeAny, {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            }, {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            }>, z.ZodObject<{
+                type: z.ZodLiteral<"contain">;
+                allowedWindows: z.ZodArray<z.ZodObject<{
+                    dayOfWeek: z.ZodNumber;
+                    startTime: z.ZodString;
+                    endTime: z.ZodString;
+                }, "strip", z.ZodTypeAny, {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }, {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }>, "many">;
+            }, "strip", z.ZodTypeAny, {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            }, {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            }>]>;
+            status: z.ZodDefault<z.ZodEnum<["pending", "accepted", "declined"]>>;
+            sourceTaskId: z.ZodOptional<z.ZodString>;
+            acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            declinedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            previousGoal: z.ZodOptional<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+                type: z.ZodLiteral<"eliminate">;
+            }, "strip", z.ZodTypeAny, {
+                type: "eliminate";
+            }, {
+                type: "eliminate";
+            }>, z.ZodObject<{
+                type: z.ZodLiteral<"reduceEveryDay">;
+                target: z.ZodNumber;
+            }, "strip", z.ZodTypeAny, {
+                type: "reduceEveryDay";
+                target: number;
+            }, {
+                type: "reduceEveryDay";
+                target: number;
+            }>, z.ZodObject<{
+                type: z.ZodLiteral<"reduceIndividualDays">;
+                dailyTargets: z.ZodObject<{
+                    0: z.ZodNumber;
+                    1: z.ZodNumber;
+                    2: z.ZodNumber;
+                    3: z.ZodNumber;
+                    4: z.ZodNumber;
+                    5: z.ZodNumber;
+                    6: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                }, {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                }>;
+            }, "strip", z.ZodTypeAny, {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            }, {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            }>, z.ZodObject<{
+                type: z.ZodLiteral<"contain">;
+                allowedWindows: z.ZodArray<z.ZodObject<{
+                    dayOfWeek: z.ZodNumber;
+                    startTime: z.ZodString;
+                    endTime: z.ZodString;
+                }, "strip", z.ZodTypeAny, {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }, {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }>, "many">;
+            }, "strip", z.ZodTypeAny, {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            }, {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            }>]>>;
+            appliedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        }, "strip", z.ZodTypeAny, {
+            status: "declined" | "pending" | "accepted";
+            title: string;
+            behaviorId: string;
+            goal: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            } | {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            };
+            behaviorName?: string | undefined;
+            summary?: string | undefined;
+            acceptedAt?: import("../../types").Timestamp | undefined;
+            declinedAt?: import("../../types").Timestamp | undefined;
+            sourceTaskId?: string | undefined;
+            previousGoal?: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            } | {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            } | undefined;
+            appliedAt?: import("../../types").Timestamp | undefined;
+        }, {
+            title: string;
+            behaviorId: string;
+            goal: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            } | {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            };
+            status?: "declined" | "pending" | "accepted" | undefined;
+            behaviorName?: string | undefined;
+            summary?: string | undefined;
+            acceptedAt?: import("../../types").Timestamp | undefined;
+            declinedAt?: import("../../types").Timestamp | undefined;
+            sourceTaskId?: string | undefined;
+            previousGoal?: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            } | {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            } | undefined;
+            appliedAt?: import("../../types").Timestamp | undefined;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "proposed_goal_change";
+        userId: string;
+        sessionId: string;
+        dateString: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: true;
+        data: {
+            status: "declined" | "pending" | "accepted";
+            title: string;
+            behaviorId: string;
+            goal: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            } | {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            };
+            behaviorName?: string | undefined;
+            summary?: string | undefined;
+            acceptedAt?: import("../../types").Timestamp | undefined;
+            declinedAt?: import("../../types").Timestamp | undefined;
+            sourceTaskId?: string | undefined;
+            previousGoal?: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            } | {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            } | undefined;
+            appliedAt?: import("../../types").Timestamp | undefined;
+        };
+        id?: string | undefined;
+        behaviorIds?: string[] | undefined;
+        tacticId?: string | undefined;
+        impulseId?: string | undefined;
+        respondingToLogId?: string | undefined;
+    }, {
+        createdAt: import("../../types").Timestamp;
+        updatedAt: import("../../types").Timestamp;
+        type: "proposed_goal_change";
+        userId: string;
+        sessionId: string;
+        dateString: string;
+        timestamp: import("../../types").Timestamp;
+        isDisplayable: true;
+        data: {
+            title: string;
+            behaviorId: string;
+            goal: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            } | {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            };
+            status?: "declined" | "pending" | "accepted" | undefined;
+            behaviorName?: string | undefined;
+            summary?: string | undefined;
+            acceptedAt?: import("../../types").Timestamp | undefined;
+            declinedAt?: import("../../types").Timestamp | undefined;
+            sourceTaskId?: string | undefined;
+            previousGoal?: {
+                type: "eliminate";
+            } | {
+                type: "reduceEveryDay";
+                target: number;
+            } | {
+                type: "reduceIndividualDays";
+                dailyTargets: {
+                    0: number;
+                    1: number;
+                    2: number;
+                    3: number;
+                    5: number;
+                    6: number;
+                    4: number;
+                };
+            } | {
+                type: "contain";
+                allowedWindows: {
+                    dayOfWeek: number;
+                    startTime: string;
+                    endTime: string;
+                }[];
+            } | undefined;
+            appliedAt?: import("../../types").Timestamp | undefined;
         };
         id?: string | undefined;
         behaviorIds?: string[] | undefined;
@@ -34658,11 +35316,12 @@ export declare const logSchemas: {
 };
 export declare const logTypes: string[];
 export type LogType = (typeof logTypes)[number];
-export type Log = TacticLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | HumanSupportEscalationLog | ProposedExperimentLog | ProposedStrategyModificationLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | WeekOverviewLog | TriggerSelectionLog | RequestPermissionsLog | TacticReviewLog | SetupModeChoiceLog | TagsUpdatedLog | CrisisResourceLog | RecoveryKeyLog | ImageLog | PhotoLog | MergeBehaviorsProposalLog | MaskBehaviorProposalLog | ShortcutSetupIntroLog | TacticSuggestionsLog | CoachBookingPromptLog | DebriefQuestionLog | PlanHistoryEntryLog;
+export type Log = TacticLog | BehaviorLog | BreathingLog | PlansLog | ToolCallLog | MessageLog | SummaryLog | CallLog | WidgetSetupLog | LinkLog | NotifySupportGroupLog | SharedMomentLog | VideoLog | SupportGroupDaySummaryLog | EnableNotificationsCtaLog | ResumeRecapRemindersCtaLog | HumanSupportEscalationLog | ProposedExperimentLog | ProposedStrategyModificationLog | ImpulseStartedLog | MetricLog | RecapTimePreferenceLog | DayTotalsPromptLog | WeekOverviewLog | ProposedGoalChangeLog | TriggerSelectionLog | RequestPermissionsLog | TacticReviewLog | SetupModeChoiceLog | TagsUpdatedLog | CrisisResourceLog | RecoveryKeyLog | ImageLog | PhotoLog | MergeBehaviorsProposalLog | MaskBehaviorProposalLog | ShortcutSetupIntroLog | TacticSuggestionsLog | CoachBookingPromptLog | DebriefQuestionLog | PlanHistoryEntryLog;
 export * from "./behaviorLog";
 export * from "./breathingLog";
 export * from "./callLog";
 export * from "./enableNotificationsCtaLog";
+export * from "./resumeRecapRemindersCtaLog";
 export * from "./humanSupportEscalationLog";
 export * from "./linkLog";
 export * from "./messageLog";
@@ -34683,6 +35342,7 @@ export * from "./metricLog";
 export * from "./recapTimePreferenceLog";
 export * from "./dayTotalsPromptLog";
 export * from "./weekOverviewLog";
+export * from "./proposedGoalChangeLog";
 export * from "./triggerSelectionLog";
 export * from "./requestPermissionsLog";
 export * from "./tacticReviewLog";
@@ -51972,6 +52632,72 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     impulseId: z.ZodOptional<z.ZodString>;
     respondingToLogId: z.ZodOptional<z.ZodString>;
 } & {
+    type: z.ZodLiteral<"resume_recap_reminders_cta">;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        triggeredByTaskId: z.ZodString;
+        respondedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        resumed: z.ZodOptional<z.ZodBoolean>;
+    }, "strip", z.ZodTypeAny, {
+        triggeredByTaskId: string;
+        respondedAt?: import("../../types").Timestamp | undefined;
+        resumed?: boolean | undefined;
+    }, {
+        triggeredByTaskId: string;
+        respondedAt?: import("../../types").Timestamp | undefined;
+        resumed?: boolean | undefined;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "resume_recap_reminders_cta";
+    userId: string;
+    sessionId: string;
+    dateString: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: true;
+    data: {
+        triggeredByTaskId: string;
+        respondedAt?: import("../../types").Timestamp | undefined;
+        resumed?: boolean | undefined;
+    };
+    id?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
+    impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
+}, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "resume_recap_reminders_cta";
+    userId: string;
+    sessionId: string;
+    dateString: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: true;
+    data: {
+        triggeredByTaskId: string;
+        respondedAt?: import("../../types").Timestamp | undefined;
+        resumed?: boolean | undefined;
+    };
+    id?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
+    impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    sessionId: z.ZodString;
+    tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    impulseId: z.ZodOptional<z.ZodString>;
+    respondingToLogId: z.ZodOptional<z.ZodString>;
+} & {
     type: z.ZodLiteral<"human_support_escalation">;
     isDisplayable: z.ZodLiteral<true>;
     data: z.ZodObject<{
@@ -52135,7 +52861,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     data: z.ZodObject<{
         title: z.ZodString;
         summary: z.ZodOptional<z.ZodString>;
-        status: z.ZodDefault<z.ZodEnum<["pending", "accepted", "declined"]>>;
+        status: z.ZodDefault<z.ZodEnum<["pending", "accepted", "declined", "superseded"]>>;
         operations: z.ZodArray<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             type: z.ZodLiteral<"create_trigger">;
             clientId: z.ZodString;
@@ -52194,12 +52920,43 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 newTactics: z.ZodOptional<z.ZodArray<z.ZodObject<{
                     title: z.ZodString;
                     description: z.ZodOptional<z.ZodString>;
+                    phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>;
+                    links: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                        url: z.ZodString;
+                        title: z.ZodOptional<z.ZodString>;
+                        imageUrl: z.ZodOptional<z.ZodString>;
+                        domain: z.ZodOptional<z.ZodString>;
+                    }, "strip", z.ZodTypeAny, {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }, {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }>, "many">>;
                 }, "strip", z.ZodTypeAny, {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }, {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }>, "many">>;
                 planType: z.ZodOptional<z.ZodEnum<["trigger", "scheduled"]>>;
                 hour: z.ZodOptional<z.ZodNumber>;
@@ -52212,6 +52969,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 newTactics?: {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
@@ -52224,6 +52988,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 newTactics?: {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
@@ -52239,6 +53010,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 newTactics?: {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
@@ -52256,6 +53034,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 newTactics?: {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
@@ -52418,11 +53203,16 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }>]>, "many">;
         acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         declinedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        sourceTaskId: z.ZodOptional<z.ZodString>;
+        revealedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        revision: z.ZodOptional<z.ZodNumber>;
+        supersedesLogId: z.ZodOptional<z.ZodString>;
+        supersededAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         createdTriggerIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         createdPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         updatedBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     }, "strip", z.ZodTypeAny, {
-        status: "declined" | "pending" | "accepted";
+        status: "declined" | "pending" | "accepted" | "superseded";
         title: string;
         operations: ({
             type: "create_trigger";
@@ -52444,6 +53234,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 newTactics?: {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
@@ -52483,6 +53280,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
+        sourceTaskId?: string | undefined;
+        revealedAt?: import("../../types").Timestamp | undefined;
+        revision?: number | undefined;
+        supersedesLogId?: string | undefined;
+        supersededAt?: import("../../types").Timestamp | undefined;
         createdTriggerIds?: string[] | undefined;
         createdPlanIds?: string[] | undefined;
         updatedBehaviorIds?: string[] | undefined;
@@ -52508,6 +53310,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 newTactics?: {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
@@ -52544,10 +53353,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[];
             };
         })[];
-        status?: "declined" | "pending" | "accepted" | undefined;
+        status?: "declined" | "pending" | "accepted" | "superseded" | undefined;
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
+        sourceTaskId?: string | undefined;
+        revealedAt?: import("../../types").Timestamp | undefined;
+        revision?: number | undefined;
+        supersedesLogId?: string | undefined;
+        supersededAt?: import("../../types").Timestamp | undefined;
         createdTriggerIds?: string[] | undefined;
         createdPlanIds?: string[] | undefined;
         updatedBehaviorIds?: string[] | undefined;
@@ -52562,7 +53376,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
-        status: "declined" | "pending" | "accepted";
+        status: "declined" | "pending" | "accepted" | "superseded";
         title: string;
         operations: ({
             type: "create_trigger";
@@ -52584,6 +53398,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 newTactics?: {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
@@ -52623,6 +53444,11 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
+        sourceTaskId?: string | undefined;
+        revealedAt?: import("../../types").Timestamp | undefined;
+        revision?: number | undefined;
+        supersedesLogId?: string | undefined;
+        supersededAt?: import("../../types").Timestamp | undefined;
         createdTriggerIds?: string[] | undefined;
         createdPlanIds?: string[] | undefined;
         updatedBehaviorIds?: string[] | undefined;
@@ -52663,6 +53489,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 newTactics?: {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
@@ -52699,10 +53532,15 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 }[];
             };
         })[];
-        status?: "declined" | "pending" | "accepted" | undefined;
+        status?: "declined" | "pending" | "accepted" | "superseded" | undefined;
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
+        sourceTaskId?: string | undefined;
+        revealedAt?: import("../../types").Timestamp | undefined;
+        revision?: number | undefined;
+        supersedesLogId?: string | undefined;
+        supersededAt?: import("../../types").Timestamp | undefined;
         createdTriggerIds?: string[] | undefined;
         createdPlanIds?: string[] | undefined;
         updatedBehaviorIds?: string[] | undefined;
@@ -53129,6 +53967,482 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }[];
         weekStartDateString: string;
         weekEndDateString: string;
+    };
+    id?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
+    impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    updatedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    userId: z.ZodString;
+    timestamp: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    dateString: z.ZodString;
+    sessionId: z.ZodString;
+    tacticId: z.ZodOptional<z.ZodString>;
+    behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    impulseId: z.ZodOptional<z.ZodString>;
+    respondingToLogId: z.ZodOptional<z.ZodString>;
+} & {
+    type: z.ZodLiteral<"proposed_goal_change">;
+    isDisplayable: z.ZodLiteral<true>;
+    data: z.ZodObject<{
+        behaviorId: z.ZodString;
+        behaviorName: z.ZodOptional<z.ZodString>;
+        title: z.ZodString;
+        summary: z.ZodOptional<z.ZodString>;
+        goal: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+            type: z.ZodLiteral<"eliminate">;
+        }, "strip", z.ZodTypeAny, {
+            type: "eliminate";
+        }, {
+            type: "eliminate";
+        }>, z.ZodObject<{
+            type: z.ZodLiteral<"reduceEveryDay">;
+            target: z.ZodNumber;
+        }, "strip", z.ZodTypeAny, {
+            type: "reduceEveryDay";
+            target: number;
+        }, {
+            type: "reduceEveryDay";
+            target: number;
+        }>, z.ZodObject<{
+            type: z.ZodLiteral<"reduceIndividualDays">;
+            dailyTargets: z.ZodObject<{
+                0: z.ZodNumber;
+                1: z.ZodNumber;
+                2: z.ZodNumber;
+                3: z.ZodNumber;
+                4: z.ZodNumber;
+                5: z.ZodNumber;
+                6: z.ZodNumber;
+            }, "strip", z.ZodTypeAny, {
+                0: number;
+                1: number;
+                2: number;
+                3: number;
+                5: number;
+                6: number;
+                4: number;
+            }, {
+                0: number;
+                1: number;
+                2: number;
+                3: number;
+                5: number;
+                6: number;
+                4: number;
+            }>;
+        }, "strip", z.ZodTypeAny, {
+            type: "reduceIndividualDays";
+            dailyTargets: {
+                0: number;
+                1: number;
+                2: number;
+                3: number;
+                5: number;
+                6: number;
+                4: number;
+            };
+        }, {
+            type: "reduceIndividualDays";
+            dailyTargets: {
+                0: number;
+                1: number;
+                2: number;
+                3: number;
+                5: number;
+                6: number;
+                4: number;
+            };
+        }>, z.ZodObject<{
+            type: z.ZodLiteral<"contain">;
+            allowedWindows: z.ZodArray<z.ZodObject<{
+                dayOfWeek: z.ZodNumber;
+                startTime: z.ZodString;
+                endTime: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }, {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }>, "many">;
+        }, "strip", z.ZodTypeAny, {
+            type: "contain";
+            allowedWindows: {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }[];
+        }, {
+            type: "contain";
+            allowedWindows: {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }[];
+        }>]>;
+        status: z.ZodDefault<z.ZodEnum<["pending", "accepted", "declined"]>>;
+        sourceTaskId: z.ZodOptional<z.ZodString>;
+        acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        declinedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        previousGoal: z.ZodOptional<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+            type: z.ZodLiteral<"eliminate">;
+        }, "strip", z.ZodTypeAny, {
+            type: "eliminate";
+        }, {
+            type: "eliminate";
+        }>, z.ZodObject<{
+            type: z.ZodLiteral<"reduceEveryDay">;
+            target: z.ZodNumber;
+        }, "strip", z.ZodTypeAny, {
+            type: "reduceEveryDay";
+            target: number;
+        }, {
+            type: "reduceEveryDay";
+            target: number;
+        }>, z.ZodObject<{
+            type: z.ZodLiteral<"reduceIndividualDays">;
+            dailyTargets: z.ZodObject<{
+                0: z.ZodNumber;
+                1: z.ZodNumber;
+                2: z.ZodNumber;
+                3: z.ZodNumber;
+                4: z.ZodNumber;
+                5: z.ZodNumber;
+                6: z.ZodNumber;
+            }, "strip", z.ZodTypeAny, {
+                0: number;
+                1: number;
+                2: number;
+                3: number;
+                5: number;
+                6: number;
+                4: number;
+            }, {
+                0: number;
+                1: number;
+                2: number;
+                3: number;
+                5: number;
+                6: number;
+                4: number;
+            }>;
+        }, "strip", z.ZodTypeAny, {
+            type: "reduceIndividualDays";
+            dailyTargets: {
+                0: number;
+                1: number;
+                2: number;
+                3: number;
+                5: number;
+                6: number;
+                4: number;
+            };
+        }, {
+            type: "reduceIndividualDays";
+            dailyTargets: {
+                0: number;
+                1: number;
+                2: number;
+                3: number;
+                5: number;
+                6: number;
+                4: number;
+            };
+        }>, z.ZodObject<{
+            type: z.ZodLiteral<"contain">;
+            allowedWindows: z.ZodArray<z.ZodObject<{
+                dayOfWeek: z.ZodNumber;
+                startTime: z.ZodString;
+                endTime: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }, {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }>, "many">;
+        }, "strip", z.ZodTypeAny, {
+            type: "contain";
+            allowedWindows: {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }[];
+        }, {
+            type: "contain";
+            allowedWindows: {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }[];
+        }>]>>;
+        appliedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    }, "strip", z.ZodTypeAny, {
+        status: "declined" | "pending" | "accepted";
+        title: string;
+        behaviorId: string;
+        goal: {
+            type: "eliminate";
+        } | {
+            type: "reduceEveryDay";
+            target: number;
+        } | {
+            type: "reduceIndividualDays";
+            dailyTargets: {
+                0: number;
+                1: number;
+                2: number;
+                3: number;
+                5: number;
+                6: number;
+                4: number;
+            };
+        } | {
+            type: "contain";
+            allowedWindows: {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }[];
+        };
+        behaviorName?: string | undefined;
+        summary?: string | undefined;
+        acceptedAt?: import("../../types").Timestamp | undefined;
+        declinedAt?: import("../../types").Timestamp | undefined;
+        sourceTaskId?: string | undefined;
+        previousGoal?: {
+            type: "eliminate";
+        } | {
+            type: "reduceEveryDay";
+            target: number;
+        } | {
+            type: "reduceIndividualDays";
+            dailyTargets: {
+                0: number;
+                1: number;
+                2: number;
+                3: number;
+                5: number;
+                6: number;
+                4: number;
+            };
+        } | {
+            type: "contain";
+            allowedWindows: {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }[];
+        } | undefined;
+        appliedAt?: import("../../types").Timestamp | undefined;
+    }, {
+        title: string;
+        behaviorId: string;
+        goal: {
+            type: "eliminate";
+        } | {
+            type: "reduceEveryDay";
+            target: number;
+        } | {
+            type: "reduceIndividualDays";
+            dailyTargets: {
+                0: number;
+                1: number;
+                2: number;
+                3: number;
+                5: number;
+                6: number;
+                4: number;
+            };
+        } | {
+            type: "contain";
+            allowedWindows: {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }[];
+        };
+        status?: "declined" | "pending" | "accepted" | undefined;
+        behaviorName?: string | undefined;
+        summary?: string | undefined;
+        acceptedAt?: import("../../types").Timestamp | undefined;
+        declinedAt?: import("../../types").Timestamp | undefined;
+        sourceTaskId?: string | undefined;
+        previousGoal?: {
+            type: "eliminate";
+        } | {
+            type: "reduceEveryDay";
+            target: number;
+        } | {
+            type: "reduceIndividualDays";
+            dailyTargets: {
+                0: number;
+                1: number;
+                2: number;
+                3: number;
+                5: number;
+                6: number;
+                4: number;
+            };
+        } | {
+            type: "contain";
+            allowedWindows: {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }[];
+        } | undefined;
+        appliedAt?: import("../../types").Timestamp | undefined;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "proposed_goal_change";
+    userId: string;
+    sessionId: string;
+    dateString: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: true;
+    data: {
+        status: "declined" | "pending" | "accepted";
+        title: string;
+        behaviorId: string;
+        goal: {
+            type: "eliminate";
+        } | {
+            type: "reduceEveryDay";
+            target: number;
+        } | {
+            type: "reduceIndividualDays";
+            dailyTargets: {
+                0: number;
+                1: number;
+                2: number;
+                3: number;
+                5: number;
+                6: number;
+                4: number;
+            };
+        } | {
+            type: "contain";
+            allowedWindows: {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }[];
+        };
+        behaviorName?: string | undefined;
+        summary?: string | undefined;
+        acceptedAt?: import("../../types").Timestamp | undefined;
+        declinedAt?: import("../../types").Timestamp | undefined;
+        sourceTaskId?: string | undefined;
+        previousGoal?: {
+            type: "eliminate";
+        } | {
+            type: "reduceEveryDay";
+            target: number;
+        } | {
+            type: "reduceIndividualDays";
+            dailyTargets: {
+                0: number;
+                1: number;
+                2: number;
+                3: number;
+                5: number;
+                6: number;
+                4: number;
+            };
+        } | {
+            type: "contain";
+            allowedWindows: {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }[];
+        } | undefined;
+        appliedAt?: import("../../types").Timestamp | undefined;
+    };
+    id?: string | undefined;
+    behaviorIds?: string[] | undefined;
+    tacticId?: string | undefined;
+    impulseId?: string | undefined;
+    respondingToLogId?: string | undefined;
+}, {
+    createdAt: import("../../types").Timestamp;
+    updatedAt: import("../../types").Timestamp;
+    type: "proposed_goal_change";
+    userId: string;
+    sessionId: string;
+    dateString: string;
+    timestamp: import("../../types").Timestamp;
+    isDisplayable: true;
+    data: {
+        title: string;
+        behaviorId: string;
+        goal: {
+            type: "eliminate";
+        } | {
+            type: "reduceEveryDay";
+            target: number;
+        } | {
+            type: "reduceIndividualDays";
+            dailyTargets: {
+                0: number;
+                1: number;
+                2: number;
+                3: number;
+                5: number;
+                6: number;
+                4: number;
+            };
+        } | {
+            type: "contain";
+            allowedWindows: {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }[];
+        };
+        status?: "declined" | "pending" | "accepted" | undefined;
+        behaviorName?: string | undefined;
+        summary?: string | undefined;
+        acceptedAt?: import("../../types").Timestamp | undefined;
+        declinedAt?: import("../../types").Timestamp | undefined;
+        sourceTaskId?: string | undefined;
+        previousGoal?: {
+            type: "eliminate";
+        } | {
+            type: "reduceEveryDay";
+            target: number;
+        } | {
+            type: "reduceIndividualDays";
+            dailyTargets: {
+                0: number;
+                1: number;
+                2: number;
+                3: number;
+                5: number;
+                6: number;
+                4: number;
+            };
+        } | {
+            type: "contain";
+            allowedWindows: {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }[];
+        } | undefined;
+        appliedAt?: import("../../types").Timestamp | undefined;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;
@@ -62215,6 +63529,8 @@ export declare const logIsSupportGroupDaySummaryLog: (value: Omit<Log, "id">) =>
 export declare const isValidSupportGroupDaySummaryLog: (value: unknown) => value is SupportGroupDaySummaryLog;
 export declare const logIsEnableNotificationsCtaLog: (value: Omit<Log, "id">) => value is EnableNotificationsCtaLog;
 export declare const isValidEnableNotificationsCtaLog: (value: unknown) => value is EnableNotificationsCtaLog;
+export declare const logIsResumeRecapRemindersCtaLog: (value: Omit<Log, "id">) => value is ResumeRecapRemindersCtaLog;
+export declare const isValidResumeRecapRemindersCtaLog: (value: unknown) => value is ResumeRecapRemindersCtaLog;
 export declare const logIsHumanSupportEscalationLog: (value: Omit<Log, "id">) => value is HumanSupportEscalationLog;
 export declare const isValidHumanSupportEscalationLog: (value: unknown) => value is HumanSupportEscalationLog;
 export declare const logIsMetricLog: (value: Omit<Log, "id">) => value is MetricLog;
@@ -62225,6 +63541,8 @@ export declare const logIsDayTotalsPromptLog: (value: Omit<Log, "id">) => value 
 export declare const isValidDayTotalsPromptLog: (value: unknown) => value is DayTotalsPromptLog;
 export declare const logIsWeekOverviewLog: (value: Omit<Log, "id">) => value is WeekOverviewLog;
 export declare const isValidWeekOverviewLog: (value: unknown) => value is WeekOverviewLog;
+export declare const logIsProposedGoalChangeLog: (value: Omit<Log, "id">) => value is ProposedGoalChangeLog;
+export declare const isValidProposedGoalChangeLog: (value: unknown) => value is ProposedGoalChangeLog;
 export declare const logIsImpulseStartedLog: (value: Omit<Log, "id">) => value is ImpulseStartedLog;
 export declare const isValidImpulseStartedLog: (value: unknown) => value is ImpulseStartedLog;
 export declare const logIsRequestPermissionsLog: (value: Omit<Log, "id">) => value is RequestPermissionsLog;

@@ -221,3 +221,55 @@ describe("shouldRespondToLogWithAI — day totals confirmed", () => {
     ).toBe(false);
   });
 });
+
+describe("shouldRespondToLogWithAI — resume recap reminders card", () => {
+  const recapSession = {
+    id: "2026-07-12",
+    type: "recap",
+  } as unknown as WithId<Session>;
+
+  const cta = (data: Record<string, unknown>) =>
+    ({
+      type: "resume_recap_reminders_cta",
+      data: { triggeredByTaskId: "resume_recap_reminders", ...data },
+    }) as unknown as Log;
+
+  it("responds when the card is answered, even with an assistant log latest", () => {
+    expect(
+      shouldRespondToLogWithAI(
+        recapSession,
+        cta({}),
+        cta({ respondedAt: ts(1783900000), resumed: true }),
+        assistantLog,
+      ),
+    ).toBe(true);
+  });
+
+  it("responds when the user declines (not now)", () => {
+    expect(
+      shouldRespondToLogWithAI(
+        recapSession,
+        cta({}),
+        cta({ respondedAt: ts(1783900000), resumed: false }),
+        assistantLog,
+      ),
+    ).toBe(true);
+  });
+
+  it("does not respond on the unanswered card write itself", () => {
+    expect(
+      shouldRespondToLogWithAI(recapSession, undefined, cta({}), assistantLog),
+    ).toBe(false);
+  });
+
+  it("does not re-respond when a later patch touches an already-answered card", () => {
+    expect(
+      shouldRespondToLogWithAI(
+        recapSession,
+        cta({ respondedAt: ts(1783900000), resumed: true }),
+        cta({ respondedAt: ts(1783900000), resumed: true, extra: 1 }),
+        assistantLog,
+      ),
+    ).toBe(false);
+  });
+});

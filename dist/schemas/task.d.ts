@@ -15,6 +15,12 @@ export declare const taskBaseSchema: z.ZodObject<{
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -37,6 +43,7 @@ export declare const taskBaseSchema: z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }, {
     createdAt: import("../types").Timestamp;
@@ -55,6 +62,7 @@ export declare const taskBaseSchema: z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }>;
 export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
@@ -70,6 +78,12 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -119,6 +133,7 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }, {
     createdAt: import("../types").Timestamp;
@@ -145,6 +160,7 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }>;
 export declare const suggestStrategyTaskSchema: z.ZodObject<{
@@ -160,6 +176,12 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -228,12 +250,43 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
                 newTactics: z.ZodOptional<z.ZodArray<z.ZodObject<{
                     title: z.ZodString;
                     description: z.ZodOptional<z.ZodString>;
+                    phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>;
+                    links: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                        url: z.ZodString;
+                        title: z.ZodOptional<z.ZodString>;
+                        imageUrl: z.ZodOptional<z.ZodString>;
+                        domain: z.ZodOptional<z.ZodString>;
+                    }, "strip", z.ZodTypeAny, {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }, {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }>, "many">>;
                 }, "strip", z.ZodTypeAny, {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }, {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }>, "many">>;
                 planType: z.ZodOptional<z.ZodEnum<["trigger", "scheduled"]>>;
                 hour: z.ZodOptional<z.ZodNumber>;
@@ -246,6 +299,13 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
                 newTactics?: {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
@@ -258,6 +318,13 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
                 newTactics?: {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
@@ -273,6 +340,13 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
                 newTactics?: {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
@@ -290,6 +364,13 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
                 newTactics?: {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
@@ -473,6 +554,13 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
                 newTactics?: {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
@@ -532,6 +620,13 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
                 newTactics?: {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
@@ -601,6 +696,13 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
                 newTactics?: {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
@@ -647,6 +749,7 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }, {
     createdAt: import("../types").Timestamp;
@@ -678,6 +781,13 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
                 newTactics?: {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
@@ -726,6 +836,294 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+}>;
+/**
+ * A coach-prepared proposal to change one behavior's goal (e.g. switch to a
+ * contain goal with afternoon-only windows). Lighter than suggest_strategy —
+ * no triggers or plans, just the goal. In the weekly review it is claimed and
+ * surfaced BEFORE any suggest_strategy tasks, so the goal lands first and the
+ * strategy suggestions can build on it. The AI presents it by calling
+ * proposeGoalChange, which renders an accept/decline card; accepting sets the
+ * goal on the behavior (applied server-side).
+ */
+export declare const proposeGoalTaskSchema: z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    userId: z.ZodString;
+    category: z.ZodDefault<z.ZodEnum<["zara", "deterministic"]>>;
+    status: z.ZodDefault<z.ZodEnum<["open", "completed", "dismissed"]>>;
+    title: z.ZodString;
+    instructions: z.ZodString;
+    context: z.ZodOptional<z.ZodString>;
+    ordinal: z.ZodOptional<z.ZodNumber>;
+    minAppVersion: z.ZodOptional<z.ZodString>;
+    requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
+    createdBy: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+} & {
+    type: z.ZodLiteral<"propose_goal">;
+    behaviorId: z.ZodString;
+    proposedGoal: z.ZodObject<{
+        title: z.ZodString;
+        summary: z.ZodString;
+        goal: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+            type: z.ZodLiteral<"eliminate">;
+        }, "strip", z.ZodTypeAny, {
+            type: "eliminate";
+        }, {
+            type: "eliminate";
+        }>, z.ZodObject<{
+            type: z.ZodLiteral<"reduceEveryDay">;
+            target: z.ZodNumber;
+        }, "strip", z.ZodTypeAny, {
+            type: "reduceEveryDay";
+            target: number;
+        }, {
+            type: "reduceEveryDay";
+            target: number;
+        }>, z.ZodObject<{
+            type: z.ZodLiteral<"reduceIndividualDays">;
+            dailyTargets: z.ZodObject<{
+                0: z.ZodNumber;
+                1: z.ZodNumber;
+                2: z.ZodNumber;
+                3: z.ZodNumber;
+                4: z.ZodNumber;
+                5: z.ZodNumber;
+                6: z.ZodNumber;
+            }, "strip", z.ZodTypeAny, {
+                0: number;
+                1: number;
+                2: number;
+                3: number;
+                5: number;
+                6: number;
+                4: number;
+            }, {
+                0: number;
+                1: number;
+                2: number;
+                3: number;
+                5: number;
+                6: number;
+                4: number;
+            }>;
+        }, "strip", z.ZodTypeAny, {
+            type: "reduceIndividualDays";
+            dailyTargets: {
+                0: number;
+                1: number;
+                2: number;
+                3: number;
+                5: number;
+                6: number;
+                4: number;
+            };
+        }, {
+            type: "reduceIndividualDays";
+            dailyTargets: {
+                0: number;
+                1: number;
+                2: number;
+                3: number;
+                5: number;
+                6: number;
+                4: number;
+            };
+        }>, z.ZodObject<{
+            type: z.ZodLiteral<"contain">;
+            allowedWindows: z.ZodArray<z.ZodObject<{
+                dayOfWeek: z.ZodNumber;
+                startTime: z.ZodString;
+                endTime: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }, {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }>, "many">;
+        }, "strip", z.ZodTypeAny, {
+            type: "contain";
+            allowedWindows: {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }[];
+        }, {
+            type: "contain";
+            allowedWindows: {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }[];
+        }>]>;
+    }, "strip", z.ZodTypeAny, {
+        title: string;
+        goal: {
+            type: "eliminate";
+        } | {
+            type: "reduceEveryDay";
+            target: number;
+        } | {
+            type: "reduceIndividualDays";
+            dailyTargets: {
+                0: number;
+                1: number;
+                2: number;
+                3: number;
+                5: number;
+                6: number;
+                4: number;
+            };
+        } | {
+            type: "contain";
+            allowedWindows: {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }[];
+        };
+        summary: string;
+    }, {
+        title: string;
+        goal: {
+            type: "eliminate";
+        } | {
+            type: "reduceEveryDay";
+            target: number;
+        } | {
+            type: "reduceIndividualDays";
+            dailyTargets: {
+                0: number;
+                1: number;
+                2: number;
+                3: number;
+                5: number;
+                6: number;
+                4: number;
+            };
+        } | {
+            type: "contain";
+            allowedWindows: {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }[];
+        };
+        summary: string;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "propose_goal";
+    status: "completed" | "dismissed" | "open";
+    userId: string;
+    title: string;
+    behaviorId: string;
+    category: "zara" | "deterministic";
+    instructions: string;
+    proposedGoal: {
+        title: string;
+        goal: {
+            type: "eliminate";
+        } | {
+            type: "reduceEveryDay";
+            target: number;
+        } | {
+            type: "reduceIndividualDays";
+            dailyTargets: {
+                0: number;
+                1: number;
+                2: number;
+                3: number;
+                5: number;
+                6: number;
+                4: number;
+            };
+        } | {
+            type: "contain";
+            allowedWindows: {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }[];
+        };
+        summary: string;
+    };
+    id?: string | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+}, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "propose_goal";
+    userId: string;
+    title: string;
+    behaviorId: string;
+    instructions: string;
+    proposedGoal: {
+        title: string;
+        goal: {
+            type: "eliminate";
+        } | {
+            type: "reduceEveryDay";
+            target: number;
+        } | {
+            type: "reduceIndividualDays";
+            dailyTargets: {
+                0: number;
+                1: number;
+                2: number;
+                3: number;
+                5: number;
+                6: number;
+                4: number;
+            };
+        } | {
+            type: "contain";
+            allowedWindows: {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }[];
+        };
+        summary: string;
+    };
+    id?: string | undefined;
+    status?: "completed" | "dismissed" | "open" | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    category?: "zara" | "deterministic" | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }>;
 export declare const proposedMetricSchema: z.ZodObject<{
@@ -754,6 +1152,12 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -821,6 +1225,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }, {
     createdAt: import("../types").Timestamp;
@@ -849,6 +1254,7 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }>;
 export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
@@ -864,6 +1270,12 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -891,6 +1303,7 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }, {
     createdAt: import("../types").Timestamp;
@@ -911,6 +1324,7 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }>;
 export declare const createSessionTaskSchema: z.ZodObject<{
@@ -926,6 +1340,12 @@ export declare const createSessionTaskSchema: z.ZodObject<{
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -1063,6 +1483,7 @@ export declare const createSessionTaskSchema: z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     taskIds?: string[] | undefined;
     notification?: {
@@ -1105,6 +1526,7 @@ export declare const createSessionTaskSchema: z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     lazy?: boolean | undefined;
     taskIds?: string[] | undefined;
@@ -1126,6 +1548,7 @@ export declare const recapQuestionTaskSchema: z.ZodObject<{
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -1161,6 +1584,7 @@ export declare const recapQuestionTaskSchema: z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     claimedBySessionId?: string | undefined;
 }, {
@@ -1185,6 +1609,7 @@ export declare const recapQuestionTaskSchema: z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     claimedBySessionId?: string | undefined;
 }>;
@@ -1201,6 +1626,12 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -1280,6 +1711,7 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }, {
     createdAt: import("../types").Timestamp;
@@ -1313,6 +1745,7 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }>;
 export declare const toolkitPlanningTaskSchema: z.ZodObject<{
@@ -1328,6 +1761,12 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -1353,6 +1792,7 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }, {
     createdAt: import("../types").Timestamp;
@@ -1372,6 +1812,7 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }>;
 export declare const suggestTacticTaskSchema: z.ZodObject<{
@@ -1387,6 +1828,12 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -1430,6 +1877,7 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }, {
     createdAt: import("../types").Timestamp;
@@ -1454,6 +1902,7 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }>;
 export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
@@ -1469,6 +1918,12 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -1513,6 +1968,7 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     milestoneRungDays?: number | undefined;
     milestoneRungLabel?: string | undefined;
@@ -1539,6 +1995,7 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     milestoneRungDays?: number | undefined;
     milestoneRungLabel?: string | undefined;
@@ -1556,6 +2013,12 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -1583,6 +2046,7 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }, {
     createdAt: import("../types").Timestamp;
@@ -1603,6 +2067,7 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }>;
 /**
@@ -1627,6 +2092,12 @@ export declare const setupShortcutTaskSchema: z.ZodObject<{
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -1658,6 +2129,7 @@ export declare const setupShortcutTaskSchema: z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }, {
     createdAt: import("../types").Timestamp;
@@ -1679,6 +2151,160 @@ export declare const setupShortcutTaskSchema: z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+}>;
+/**
+ * Durable user-scoped task for a returning user whose scheduled recap
+ * reminders are paused (userData recap.paused). Claimed into their next
+ * opened recap; the deterministic handler renders a resume_recap_reminders_cta
+ * card and hands off to the AI (triggerAIAfter) to introduce it. Responding
+ * "resume" clears recap.paused and completes the task; declining completes it
+ * too (they can re-enable any time in settings).
+ */
+export declare const resumeRecapRemindersTaskSchema: z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    userId: z.ZodString;
+    category: z.ZodDefault<z.ZodEnum<["zara", "deterministic"]>>;
+    status: z.ZodDefault<z.ZodEnum<["open", "completed", "dismissed"]>>;
+    title: z.ZodString;
+    instructions: z.ZodString;
+    context: z.ZodOptional<z.ZodString>;
+    ordinal: z.ZodOptional<z.ZodNumber>;
+    minAppVersion: z.ZodOptional<z.ZodString>;
+    requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
+    createdBy: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+} & {
+    type: z.ZodLiteral<"resume_recap_reminders">;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "resume_recap_reminders";
+    status: "completed" | "dismissed" | "open";
+    userId: string;
+    title: string;
+    category: "zara" | "deterministic";
+    instructions: string;
+    id?: string | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+}, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "resume_recap_reminders";
+    userId: string;
+    title: string;
+    instructions: string;
+    id?: string | undefined;
+    status?: "completed" | "dismissed" | "open" | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    category?: "zara" | "deterministic" | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+}>;
+/**
+ * The weekly review's first beat: reflect on the week just passed as one shape.
+ * Injected as a session task on a weekly-mode recap (never user-level), it
+ * completes when the AI calls reconcileStrategyProposals (its requiredTool),
+ * which is the Phase-1 → Phase-2 (plan review) transition. The week-shape prose
+ * is rendered live in getTaskContext, so no data is snapshotted onto the task.
+ */
+export declare const weekLookbackTaskSchema: z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    userId: z.ZodString;
+    category: z.ZodDefault<z.ZodEnum<["zara", "deterministic"]>>;
+    status: z.ZodDefault<z.ZodEnum<["open", "completed", "dismissed"]>>;
+    title: z.ZodString;
+    instructions: z.ZodString;
+    context: z.ZodOptional<z.ZodString>;
+    ordinal: z.ZodOptional<z.ZodNumber>;
+    minAppVersion: z.ZodOptional<z.ZodString>;
+    requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
+    createdBy: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+} & {
+    type: z.ZodLiteral<"week_lookback">;
+    /** The Sunday review this beat belongs to (the recap dateString). */
+    weekOfDateString: z.ZodOptional<z.ZodString>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "week_lookback";
+    status: "completed" | "dismissed" | "open";
+    userId: string;
+    title: string;
+    category: "zara" | "deterministic";
+    instructions: string;
+    id?: string | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    weekOfDateString?: string | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+}, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "week_lookback";
+    userId: string;
+    title: string;
+    instructions: string;
+    id?: string | undefined;
+    status?: "completed" | "dismissed" | "open" | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    weekOfDateString?: string | undefined;
+    category?: "zara" | "deterministic" | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }>;
 export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
@@ -1694,6 +2320,12 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -1743,6 +2375,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }, {
     createdAt: import("../types").Timestamp;
@@ -1769,6 +2402,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -1783,6 +2417,12 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -1851,12 +2491,43 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 newTactics: z.ZodOptional<z.ZodArray<z.ZodObject<{
                     title: z.ZodString;
                     description: z.ZodOptional<z.ZodString>;
+                    phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>;
+                    links: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                        url: z.ZodString;
+                        title: z.ZodOptional<z.ZodString>;
+                        imageUrl: z.ZodOptional<z.ZodString>;
+                        domain: z.ZodOptional<z.ZodString>;
+                    }, "strip", z.ZodTypeAny, {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }, {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }>, "many">>;
                 }, "strip", z.ZodTypeAny, {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }, {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }>, "many">>;
                 planType: z.ZodOptional<z.ZodEnum<["trigger", "scheduled"]>>;
                 hour: z.ZodOptional<z.ZodNumber>;
@@ -1869,6 +2540,13 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 newTactics?: {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
@@ -1881,6 +2559,13 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 newTactics?: {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
@@ -1896,6 +2581,13 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 newTactics?: {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
@@ -1913,6 +2605,13 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 newTactics?: {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
@@ -2096,6 +2795,13 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 newTactics?: {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
@@ -2155,6 +2861,13 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 newTactics?: {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
@@ -2224,6 +2937,13 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 newTactics?: {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
@@ -2270,6 +2990,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }, {
     createdAt: import("../types").Timestamp;
@@ -2301,6 +3022,13 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                 newTactics?: {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
@@ -2349,6 +3077,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -2363,6 +3092,289 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
+    createdBy: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+} & {
+    type: z.ZodLiteral<"propose_goal">;
+    behaviorId: z.ZodString;
+    proposedGoal: z.ZodObject<{
+        title: z.ZodString;
+        summary: z.ZodString;
+        goal: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+            type: z.ZodLiteral<"eliminate">;
+        }, "strip", z.ZodTypeAny, {
+            type: "eliminate";
+        }, {
+            type: "eliminate";
+        }>, z.ZodObject<{
+            type: z.ZodLiteral<"reduceEveryDay">;
+            target: z.ZodNumber;
+        }, "strip", z.ZodTypeAny, {
+            type: "reduceEveryDay";
+            target: number;
+        }, {
+            type: "reduceEveryDay";
+            target: number;
+        }>, z.ZodObject<{
+            type: z.ZodLiteral<"reduceIndividualDays">;
+            dailyTargets: z.ZodObject<{
+                0: z.ZodNumber;
+                1: z.ZodNumber;
+                2: z.ZodNumber;
+                3: z.ZodNumber;
+                4: z.ZodNumber;
+                5: z.ZodNumber;
+                6: z.ZodNumber;
+            }, "strip", z.ZodTypeAny, {
+                0: number;
+                1: number;
+                2: number;
+                3: number;
+                5: number;
+                6: number;
+                4: number;
+            }, {
+                0: number;
+                1: number;
+                2: number;
+                3: number;
+                5: number;
+                6: number;
+                4: number;
+            }>;
+        }, "strip", z.ZodTypeAny, {
+            type: "reduceIndividualDays";
+            dailyTargets: {
+                0: number;
+                1: number;
+                2: number;
+                3: number;
+                5: number;
+                6: number;
+                4: number;
+            };
+        }, {
+            type: "reduceIndividualDays";
+            dailyTargets: {
+                0: number;
+                1: number;
+                2: number;
+                3: number;
+                5: number;
+                6: number;
+                4: number;
+            };
+        }>, z.ZodObject<{
+            type: z.ZodLiteral<"contain">;
+            allowedWindows: z.ZodArray<z.ZodObject<{
+                dayOfWeek: z.ZodNumber;
+                startTime: z.ZodString;
+                endTime: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }, {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }>, "many">;
+        }, "strip", z.ZodTypeAny, {
+            type: "contain";
+            allowedWindows: {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }[];
+        }, {
+            type: "contain";
+            allowedWindows: {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }[];
+        }>]>;
+    }, "strip", z.ZodTypeAny, {
+        title: string;
+        goal: {
+            type: "eliminate";
+        } | {
+            type: "reduceEveryDay";
+            target: number;
+        } | {
+            type: "reduceIndividualDays";
+            dailyTargets: {
+                0: number;
+                1: number;
+                2: number;
+                3: number;
+                5: number;
+                6: number;
+                4: number;
+            };
+        } | {
+            type: "contain";
+            allowedWindows: {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }[];
+        };
+        summary: string;
+    }, {
+        title: string;
+        goal: {
+            type: "eliminate";
+        } | {
+            type: "reduceEveryDay";
+            target: number;
+        } | {
+            type: "reduceIndividualDays";
+            dailyTargets: {
+                0: number;
+                1: number;
+                2: number;
+                3: number;
+                5: number;
+                6: number;
+                4: number;
+            };
+        } | {
+            type: "contain";
+            allowedWindows: {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }[];
+        };
+        summary: string;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "propose_goal";
+    status: "completed" | "dismissed" | "open";
+    userId: string;
+    title: string;
+    behaviorId: string;
+    category: "zara" | "deterministic";
+    instructions: string;
+    proposedGoal: {
+        title: string;
+        goal: {
+            type: "eliminate";
+        } | {
+            type: "reduceEveryDay";
+            target: number;
+        } | {
+            type: "reduceIndividualDays";
+            dailyTargets: {
+                0: number;
+                1: number;
+                2: number;
+                3: number;
+                5: number;
+                6: number;
+                4: number;
+            };
+        } | {
+            type: "contain";
+            allowedWindows: {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }[];
+        };
+        summary: string;
+    };
+    id?: string | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+}, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "propose_goal";
+    userId: string;
+    title: string;
+    behaviorId: string;
+    instructions: string;
+    proposedGoal: {
+        title: string;
+        goal: {
+            type: "eliminate";
+        } | {
+            type: "reduceEveryDay";
+            target: number;
+        } | {
+            type: "reduceIndividualDays";
+            dailyTargets: {
+                0: number;
+                1: number;
+                2: number;
+                3: number;
+                5: number;
+                6: number;
+                4: number;
+            };
+        } | {
+            type: "contain";
+            allowedWindows: {
+                dayOfWeek: number;
+                startTime: string;
+                endTime: string;
+            }[];
+        };
+        summary: string;
+    };
+    id?: string | undefined;
+    status?: "completed" | "dismissed" | "open" | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    category?: "zara" | "deterministic" | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    userId: z.ZodString;
+    category: z.ZodDefault<z.ZodEnum<["zara", "deterministic"]>>;
+    status: z.ZodDefault<z.ZodEnum<["open", "completed", "dismissed"]>>;
+    title: z.ZodString;
+    instructions: z.ZodString;
+    context: z.ZodOptional<z.ZodString>;
+    ordinal: z.ZodOptional<z.ZodNumber>;
+    minAppVersion: z.ZodOptional<z.ZodString>;
+    requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -2430,6 +3442,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }, {
     createdAt: import("../types").Timestamp;
@@ -2458,6 +3471,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -2472,6 +3486,12 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -2499,6 +3519,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }, {
     createdAt: import("../types").Timestamp;
@@ -2519,6 +3540,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -2533,6 +3555,12 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -2670,6 +3698,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     taskIds?: string[] | undefined;
     notification?: {
@@ -2712,6 +3741,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     lazy?: boolean | undefined;
     taskIds?: string[] | undefined;
@@ -2732,6 +3762,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -2767,6 +3798,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     claimedBySessionId?: string | undefined;
 }, {
@@ -2791,6 +3823,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     claimedBySessionId?: string | undefined;
 }>, z.ZodObject<{
@@ -2806,6 +3839,12 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -2885,6 +3924,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }, {
     createdAt: import("../types").Timestamp;
@@ -2918,6 +3958,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -2932,6 +3973,12 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -2957,6 +4004,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }, {
     createdAt: import("../types").Timestamp;
@@ -2976,6 +4024,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -2990,6 +4039,12 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -3033,6 +4088,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }, {
     createdAt: import("../types").Timestamp;
@@ -3057,6 +4113,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -3071,6 +4128,12 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -3115,6 +4178,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     milestoneRungDays?: number | undefined;
     milestoneRungLabel?: string | undefined;
@@ -3141,6 +4205,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
     milestoneRungDays?: number | undefined;
     milestoneRungLabel?: string | undefined;
@@ -3157,6 +4222,12 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -3184,6 +4255,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }, {
     createdAt: import("../types").Timestamp;
@@ -3204,6 +4276,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -3218,6 +4291,12 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     dependsOnTaskId: z.ZodOptional<z.ZodString>;
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
@@ -3249,6 +4328,7 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }, {
     createdAt: import("../types").Timestamp;
@@ -3270,6 +4350,143 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     requiredTools?: string[] | undefined;
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    userId: z.ZodString;
+    category: z.ZodDefault<z.ZodEnum<["zara", "deterministic"]>>;
+    status: z.ZodDefault<z.ZodEnum<["open", "completed", "dismissed"]>>;
+    title: z.ZodString;
+    instructions: z.ZodString;
+    context: z.ZodOptional<z.ZodString>;
+    ordinal: z.ZodOptional<z.ZodNumber>;
+    minAppVersion: z.ZodOptional<z.ZodString>;
+    requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
+    createdBy: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+} & {
+    type: z.ZodLiteral<"resume_recap_reminders">;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "resume_recap_reminders";
+    status: "completed" | "dismissed" | "open";
+    userId: string;
+    title: string;
+    category: "zara" | "deterministic";
+    instructions: string;
+    id?: string | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+}, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "resume_recap_reminders";
+    userId: string;
+    title: string;
+    instructions: string;
+    id?: string | undefined;
+    status?: "completed" | "dismissed" | "open" | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    category?: "zara" | "deterministic" | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    userId: z.ZodString;
+    category: z.ZodDefault<z.ZodEnum<["zara", "deterministic"]>>;
+    status: z.ZodDefault<z.ZodEnum<["open", "completed", "dismissed"]>>;
+    title: z.ZodString;
+    instructions: z.ZodString;
+    context: z.ZodOptional<z.ZodString>;
+    ordinal: z.ZodOptional<z.ZodNumber>;
+    minAppVersion: z.ZodOptional<z.ZodString>;
+    requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
+    createdBy: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+} & {
+    type: z.ZodLiteral<"week_lookback">;
+    /** The Sunday review this beat belongs to (the recap dateString). */
+    weekOfDateString: z.ZodOptional<z.ZodString>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "week_lookback";
+    status: "completed" | "dismissed" | "open";
+    userId: string;
+    title: string;
+    category: "zara" | "deterministic";
+    instructions: string;
+    id?: string | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    weekOfDateString?: string | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+}, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "week_lookback";
+    userId: string;
+    title: string;
+    instructions: string;
+    id?: string | undefined;
+    status?: "completed" | "dismissed" | "open" | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    weekOfDateString?: string | undefined;
+    category?: "zara" | "deterministic" | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }>]>;
 export type TaskCategory = z.infer<typeof taskCategorySchema>;
@@ -3277,6 +4494,7 @@ export type TaskStatus = z.infer<typeof taskStatusSchema>;
 export type ClaimableSessionType = z.infer<typeof claimableSessionTypeSchema>;
 export type MergeBehaviorsTask = z.infer<typeof mergeBehaviorsTaskSchema>;
 export type SuggestStrategyTask = z.infer<typeof suggestStrategyTaskSchema>;
+export type ProposeGoalTask = z.infer<typeof proposeGoalTaskSchema>;
 export type ProposeExperimentTask = z.infer<typeof proposeExperimentTaskSchema>;
 export type ProposeMaskBehaviorTask = z.infer<typeof proposeMaskBehaviorTaskSchema>;
 export type CreateSessionTask = z.infer<typeof createSessionTaskSchema>;
@@ -3287,10 +4505,13 @@ export type SuggestTacticTask = z.infer<typeof suggestTacticTaskSchema>;
 export type ReflectOnMetricsTask = z.infer<typeof reflectOnMetricsTaskSchema>;
 export type CollectBaselineTask = z.infer<typeof collectBaselineTaskSchema>;
 export type SetupShortcutTask = z.infer<typeof setupShortcutTaskSchema>;
+export type ResumeRecapRemindersTask = z.infer<typeof resumeRecapRemindersTaskSchema>;
+export type WeekLookbackTask = z.infer<typeof weekLookbackTaskSchema>;
 export type Task = z.infer<typeof taskSchema>;
 export declare const isTask: (value: unknown) => value is Task;
 export declare const isMergeBehaviorsTask: (value: unknown) => value is MergeBehaviorsTask;
 export declare const isSuggestStrategyTask: (value: unknown) => value is SuggestStrategyTask;
+export declare const isProposeGoalTask: (value: unknown) => value is ProposeGoalTask;
 export declare const isProposeExperimentTask: (value: unknown) => value is ProposeExperimentTask;
 export declare const isProposeMaskBehaviorTask: (value: unknown) => value is ProposeMaskBehaviorTask;
 export declare const isRecapQuestionTask: (value: unknown) => value is RecapQuestionTask;

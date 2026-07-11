@@ -10,6 +10,10 @@ import {
   HumanSupportEscalationLog,
   humanSupportEscalationLogSchema,
 } from "./humanSupportEscalationLog";
+import {
+  ResumeRecapRemindersCtaLog,
+  resumeRecapRemindersCtaLogSchema,
+} from "./resumeRecapRemindersCtaLog";
 import { LinkLog, linkLogSchema } from "./linkLog";
 import {
   ImpulseStartedLog,
@@ -148,6 +152,7 @@ export const logSchemas = {
   shared_moment: sharedMomentLogSchema,
   support_group_day_summary: supportGroupDaySummaryLogSchema,
   enable_notifications_cta: enableNotificationsCtaLogSchema,
+  resume_recap_reminders_cta: resumeRecapRemindersCtaLogSchema,
   human_support_escalation: humanSupportEscalationLogSchema,
   proposed_experiment: proposedExperimentLogSchema,
   proposed_strategy_modification: proposedStrategyModificationLogSchema,
@@ -195,6 +200,7 @@ export type Log =
   | VideoLog
   | SupportGroupDaySummaryLog
   | EnableNotificationsCtaLog
+  | ResumeRecapRemindersCtaLog
   | HumanSupportEscalationLog
   | ProposedExperimentLog
   | ProposedStrategyModificationLog
@@ -225,6 +231,7 @@ export * from "./behaviorLog";
 export * from "./breathingLog";
 export * from "./callLog";
 export * from "./enableNotificationsCtaLog";
+export * from "./resumeRecapRemindersCtaLog";
 export * from "./humanSupportEscalationLog";
 export * from "./linkLog";
 export * from "./messageLog";
@@ -282,6 +289,7 @@ export const logSchema = z.discriminatedUnion("type", [
   videoLogSchema,
   supportGroupDaySummaryLogSchema,
   enableNotificationsCtaLogSchema,
+  resumeRecapRemindersCtaLogSchema,
   humanSupportEscalationLogSchema,
   proposedExperimentLogSchema,
   proposedStrategyModificationLogSchema,
@@ -434,6 +442,16 @@ export const isValidEnableNotificationsCtaLog = (
   value: unknown,
 ): value is EnableNotificationsCtaLog => {
   return enableNotificationsCtaLogSchema.safeParse(value).success;
+};
+
+export const logIsResumeRecapRemindersCtaLog = (
+  value: Omit<Log, "id">,
+): value is ResumeRecapRemindersCtaLog =>
+  value.type === "resume_recap_reminders_cta";
+export const isValidResumeRecapRemindersCtaLog = (
+  value: unknown,
+): value is ResumeRecapRemindersCtaLog => {
+  return resumeRecapRemindersCtaLogSchema.safeParse(value).success;
 };
 
 export const logIsHumanSupportEscalationLog = (

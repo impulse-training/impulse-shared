@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isBehavior = exports.behaviorSchema = exports.behaviorStateSchema = exports.WINDOW_SIZES = exports.recentSliceSchema = exports.behaviorStateMetaSchema = exports.behaviorStateGoalSchema = exports.trackingWindowSchema = exports.behaviorWindowSchema = exports.behaviorMeaningSchema = exports.globalStreaksSchema = exports.changeStageSchema = exports.streaksSchema = exports.behaviorStateGoalTypeSchema = exports.dataCompletenessSchema = exports.stabilitySchema = exports.trendSchema = exports.behaviorTemplateSchema = exports.streakLabels = exports.baselinePeriods = exports.trackingTypes = void 0;
+exports.isBehavior = exports.behaviorSchema = exports.streakForgivenessEntrySchema = exports.behaviorStateSchema = exports.WINDOW_SIZES = exports.recentSliceSchema = exports.behaviorStateMetaSchema = exports.behaviorStateGoalSchema = exports.trackingWindowSchema = exports.behaviorWindowSchema = exports.behaviorMeaningSchema = exports.globalStreaksSchema = exports.changeStageSchema = exports.streaksSchema = exports.behaviorStateGoalTypeSchema = exports.dataCompletenessSchema = exports.stabilitySchema = exports.trendSchema = exports.behaviorTemplateSchema = exports.streakLabels = exports.baselinePeriods = exports.trackingTypes = void 0;
 exports.isBehaviorState = isBehaviorState;
 const zod_1 = require("zod");
 const documentReferenceSchema_1 = require("../utils/documentReferenceSchema");
@@ -172,6 +172,16 @@ function isBehaviorState(value) {
     return exports.behaviorStateSchema.safeParse(value).success;
 }
 // These are stored at the user-level, as in, users/$userId/behaviors/$behaviorId
+// A coach-granted, retroactive streak rescue: a specific NOT_MET_FAIL day that
+// should NOT break the streak. The usage stays logged and honest — only the
+// streak forgives the day. Set only via the coach dashboard (coach-only for now).
+exports.streakForgivenessEntrySchema = zod_1.z.object({
+    /** Local ISO date (YYYY-MM-DD) of the forgiven day. */
+    date: zod_1.z.string(),
+    reason: zod_1.z.string().optional(),
+    byCoachId: zod_1.z.string().optional(),
+    at: timestampSchema_1.timestampSchema,
+});
 exports.behaviorSchema = behaviorTemplate_1.behaviorTemplateBase
     .extend({
     id: zod_1.z.string().optional(),
@@ -210,6 +220,11 @@ exports.behaviorSchema = behaviorTemplate_1.behaviorTemplateBase
     mergedAt: timestampSchema_1.timestampSchema.optional(),
     // User-confirmed streak start date (ISO string), set when backdating a streak after a goal change
     streakOverrideStartDate: zod_1.z.string().optional(),
+    // Coach-granted retroactive streak rescues (per-day). A forgiven NOT_MET_FAIL
+    // day is treated as non-breaking by computeGlobalStreaks; the underlying
+    // usage/logs are untouched. Complementary to `tolerance` (prospective by
+    // design and unable to rescue a past break).
+    streakForgiveness: zod_1.z.array(exports.streakForgivenessEntrySchema).optional(),
     // Grace band for win-day streaks, in the same unit as the day's measured
     // total (minutes for timers, raw count for counters). A day still counts
     // toward the streak when its total stays within goal target + tolerance.

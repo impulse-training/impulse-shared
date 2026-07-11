@@ -63,15 +63,12 @@ export declare const userDataSchema: z.ZodObject<{
         trigger: z.ZodObject<{
             hour: z.ZodNumber;
             minute: z.ZodNumber;
-            weekdays: z.ZodArray<z.ZodNumber, "many">;
         }, "strip", z.ZodTypeAny, {
             hour: number;
             minute: number;
-            weekdays: number[];
         }, {
             hour: number;
             minute: number;
-            weekdays: number[];
         }>;
         reminderTime: z.ZodOptional<z.ZodObject<{
             hour: z.ZodNumber;
@@ -83,12 +80,13 @@ export declare const userDataSchema: z.ZodObject<{
             hour: number;
             minute: number;
         }>>;
+        paused: z.ZodOptional<z.ZodBoolean>;
     }, "strip", z.ZodTypeAny, {
         trigger: {
             hour: number;
             minute: number;
-            weekdays: number[];
         };
+        paused?: boolean | undefined;
         reminderTime?: {
             hour: number;
             minute: number;
@@ -97,8 +95,8 @@ export declare const userDataSchema: z.ZodObject<{
         trigger: {
             hour: number;
             minute: number;
-            weekdays: number[];
         };
+        paused?: boolean | undefined;
         reminderTime?: {
             hour: number;
             minute: number;
@@ -230,8 +228,8 @@ export declare const userDataSchema: z.ZodObject<{
         trigger: {
             hour: number;
             minute: number;
-            weekdays: number[];
         };
+        paused?: boolean | undefined;
         reminderTime?: {
             hour: number;
             minute: number;
@@ -319,8 +317,8 @@ export declare const userDataSchema: z.ZodObject<{
         trigger: {
             hour: number;
             minute: number;
-            weekdays: number[];
         };
+        paused?: boolean | undefined;
         reminderTime?: {
             hour: number;
             minute: number;

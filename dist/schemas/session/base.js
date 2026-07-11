@@ -56,6 +56,16 @@ exports.sessionBaseSchema = zod_1.z.object({
     reflectRequestedAt: timestampSchema_1.timestampSchema.optional(),
     // Where the session was created from
     origin: zod_1.z.enum(["native", "mac"]).optional(),
+    // Which app feature/flow created this session (as opposed to `origin`,
+    // which is about the client device). Currently only set on "behavior"
+    // sessions created by the recap "adjust totals" flow.
+    source: zod_1.z.enum(["adjustment"]).optional(),
+    // True when this session represents a behavior total that wasn't tied to a
+    // specific time of day (e.g. a recap adjustment with no time picked).
+    // `date` still holds a real end-of-day timestamp so the session sorts last
+    // among the day's journal entries and range queries still match it — the
+    // UI uses this flag to hide the (meaningless) clock-time label.
+    timeUnspecified: zod_1.z.boolean().optional(),
     triggerId: zod_1.z.string().nullable().optional(),
     agentConnectedAt: timestampSchema_1.timestampSchema.optional(),
     // Allow for sharing with users

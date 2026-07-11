@@ -95,6 +95,41 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         (0, log_1.logIsTacticLog)(afterData) &&
         afterData.data.completed === true &&
         (!(0, log_1.logIsTacticLog)(beforeData) || beforeData.data.completed !== true);
+    // The user accepted/declined a proposed goal change card — an inline
+    // interaction with no user message, so it must bypass the "latest is
+    // assistant" guard. Keyed on the pending → accepted/declined transition so
+    // the server-side apply patch (appliedAt/previousGoal, status unchanged)
+    // doesn't re-trigger a second response.
+    const isGoalChangeResponded = beforeData &&
+        afterData &&
+        (0, log_1.logIsProposedGoalChangeLog)(afterData) &&
+        (afterData.data.status === "accepted" ||
+            afterData.data.status === "declined") &&
+        (0, log_1.logIsProposedGoalChangeLog)(beforeData) &&
+        beforeData.data.status === "pending";
+    // The user accepted/declined a weekly-review strategy proposal card (or its
+    // full-screen view) — inline interaction, no user message. Scoped to queue
+    // cards (data.sourceTaskId) so accepting a coach-dashboard proposal elsewhere
+    // keeps its existing behavior. Keyed on the status transition.
+    const isStrategyCardResponded = beforeData &&
+        afterData &&
+        (0, log_1.logIsProposedStrategyModificationLog)(afterData) &&
+        !!afterData.data.sourceTaskId &&
+        (afterData.data.status === "accepted" ||
+            afterData.data.status === "declined") &&
+        (0, log_1.logIsProposedStrategyModificationLog)(beforeData) &&
+        beforeData.data.status === "pending";
+    // The user answered the resume-reminders card (yes/not now) — an inline
+    // interaction with no user message, so it must bypass the "latest is
+    // assistant" guard or the response is silently swallowed. Keyed on the
+    // respondedAt transition so the server-side pause-clearing patch doesn't
+    // re-trigger a second response.
+    const isResumeRemindersResponded = beforeData &&
+        afterData &&
+        (0, log_1.logIsResumeRecapRemindersCtaLog)(afterData) &&
+        !!afterData.data.respondedAt &&
+        (!(0, log_1.logIsResumeRecapRemindersCtaLog)(beforeData) ||
+            !beforeData.data.respondedAt);
     const isMergeBehaviorsResponseSelected = beforeData &&
         afterData &&
         (0, log_1.logIsMergeBehaviorsProposalLog)(afterData) &&
@@ -137,6 +172,9 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         !isSetupModeTextChoice &&
         !isShortcutSetupTextChoice &&
         !isTacticCompleted &&
+        !isGoalChangeResponded &&
+        !isStrategyCardResponded &&
+        !isResumeRemindersResponded &&
         !isMergeBehaviorsResponseSelected &&
         !isMaskBehaviorResponseSelected &&
         !isDebriefQuestionResponseSelected &&
@@ -152,6 +190,21 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
     // Case: New message logs (creation event, no before data)
     if (isCreating && (0, log_1.logIsUserMessageLog)(afterData)) {
         console.log("New message log. Responding with AI.");
+        return true;
+    }
+    // Case: Weekly strategy proposal responded to (accept/decline tapped)
+    if (isStrategyCardResponded) {
+        console.log("Strategy proposal card responded to. Responding with AI.");
+        return true;
+    }
+    // Case: Proposed goal change responded to (accept/decline card tapped)
+    if (isGoalChangeResponded) {
+        console.log("Goal change proposal responded to. Responding with AI.");
+        return true;
+    }
+    // Case: Resume-reminders card responded to (yes/not now tapped)
+    if (isResumeRemindersResponded) {
+        console.log("Resume reminders card responded to. Responding with AI.");
         return true;
     }
     // Case: Tags updated from UI — user set/changed session tags manually

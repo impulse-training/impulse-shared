@@ -5276,6 +5276,8 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
     summarizedAt: z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     reflectRequestedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     origin: z.ZodOptional<z.ZodEnum<["native", "mac"]>>;
+    source: z.ZodOptional<z.ZodEnum<["adjustment"]>>;
+    timeUnspecified: z.ZodOptional<z.ZodBoolean>;
     triggerId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     agentConnectedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     sharingMessage: z.ZodOptional<z.ZodString>;
@@ -5340,6 +5342,7 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
     behaviorIds?: string[] | undefined;
+    source?: "adjustment" | undefined;
     tags?: Record<string, string[]> | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
     summary?: string | undefined;
@@ -5974,6 +5977,7 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
     reflectRequestedAt?: import("../../types").Timestamp | undefined;
     origin?: "native" | "mac" | undefined;
+    timeUnspecified?: boolean | undefined;
     sharingMessage?: string | undefined;
     openAfter?: import("../../types").Timestamp | undefined;
     firstOpenedAt?: import("../../types").Timestamp | undefined;
@@ -6012,6 +6016,7 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
     createdAt?: import("../../types").Timestamp | undefined;
     updatedAt?: import("../../types").Timestamp | undefined;
     behaviorIds?: string[] | undefined;
+    source?: "adjustment" | undefined;
     tags?: Record<string, string[]> | undefined;
     mode?: "text" | "voice" | undefined;
     agentConnectedAt?: import("../../types").Timestamp | undefined;
@@ -6120,6 +6125,7 @@ export declare const toolkitPlanningSessionSchema: z.ZodObject<{
     summaryRequestedAt?: import("../../types").Timestamp | undefined;
     reflectRequestedAt?: import("../../types").Timestamp | undefined;
     origin?: "native" | "mac" | undefined;
+    timeUnspecified?: boolean | undefined;
     sharingMessage?: string | undefined;
     openAfter?: import("../../types").Timestamp | undefined;
     firstOpenedAt?: import("../../types").Timestamp | undefined;

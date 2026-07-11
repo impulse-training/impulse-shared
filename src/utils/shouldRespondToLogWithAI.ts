@@ -18,6 +18,7 @@ import {
   logIsProposedStrategyModificationLog,
   logIsMetricLog,
   logIsPlansLog,
+  logIsResumeRecapRemindersCtaLog,
   logIsSetupModeChoiceLog,
   logIsShortcutSetupIntroLog,
   logIsTacticReviewLog,
@@ -184,6 +185,19 @@ export function shouldRespondToLogWithAI(
     logIsProposedStrategyModificationLog(beforeData) &&
     beforeData.data.status === "pending";
 
+  // The user answered the resume-reminders card (yes/not now) — an inline
+  // interaction with no user message, so it must bypass the "latest is
+  // assistant" guard or the response is silently swallowed. Keyed on the
+  // respondedAt transition so the server-side pause-clearing patch doesn't
+  // re-trigger a second response.
+  const isResumeRemindersResponded =
+    beforeData &&
+    afterData &&
+    logIsResumeRecapRemindersCtaLog(afterData) &&
+    !!afterData.data.respondedAt &&
+    (!logIsResumeRecapRemindersCtaLog(beforeData) ||
+      !beforeData.data.respondedAt);
+
   const isMergeBehaviorsResponseSelected =
     beforeData &&
     afterData &&
@@ -241,6 +255,7 @@ export function shouldRespondToLogWithAI(
     !isTacticCompleted &&
     !isGoalChangeResponded &&
     !isStrategyCardResponded &&
+    !isResumeRemindersResponded &&
     !isMergeBehaviorsResponseSelected &&
     !isMaskBehaviorResponseSelected &&
     !isDebriefQuestionResponseSelected &&
@@ -271,6 +286,12 @@ export function shouldRespondToLogWithAI(
   // Case: Proposed goal change responded to (accept/decline card tapped)
   if (isGoalChangeResponded) {
     console.log("Goal change proposal responded to. Responding with AI.");
+    return true;
+  }
+
+  // Case: Resume-reminders card responded to (yes/not now tapped)
+  if (isResumeRemindersResponded) {
+    console.log("Resume reminders card responded to. Responding with AI.");
     return true;
   }
 

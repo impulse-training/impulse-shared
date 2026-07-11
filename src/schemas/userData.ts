@@ -108,6 +108,11 @@ export const userDataSchema = z.object({
     .object({
       trigger: recapTriggerSchema,
       reminderTime: recapReminderTimeSchema.optional(),
+      // Pauses all scheduled recap notifications (prompt, follow-up,
+      // reminder) without touching the trigger config. Silent journal
+      // drafts and on-demand recaps still work. Cleared by the
+      // resume_recap_reminders card (or manually).
+      paused: z.boolean().optional(),
     })
     .optional(),
 

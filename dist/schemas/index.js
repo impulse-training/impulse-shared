@@ -63,6 +63,7 @@ __exportStar(require("./supportGroupTask"), exports);
 __exportStar(require("./supportRequest"), exports);
 __exportStar(require("./systemUpdate"), exports);
 __exportStar(require("./task"), exports);
+__exportStar(require("./strategySnapshot"), exports);
 __exportStar(require("./tagGroup"), exports);
 __exportStar(require("./transcriptItem"), exports);
 __exportStar(require("./utils/supportGroupSummary"), exports);

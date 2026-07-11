@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { logBaseSchema } from "./base";
 import { goalSchema } from "../goal";
+import { tacticLinkSchema, tacticPhaseSchema } from "../tactic";
 import { timestampSchema } from "../../utils/timestampSchema";
 
 const strategyTriggerDraftSchema = z.object({
@@ -15,6 +16,10 @@ const strategyTriggerDraftSchema = z.object({
 const newTacticDraftSchema = z.object({
   title: z.string().min(1),
   description: z.string().optional(),
+  phase: tacticPhaseSchema.optional(),
+  // External resources the tactic points at (e.g. specific podcasts), with
+  // pre-fetched preview metadata so the created tactic renders LinkCards.
+  links: z.array(tacticLinkSchema).optional(),
 });
 
 const strategyPlanDraftSchema = z.object({

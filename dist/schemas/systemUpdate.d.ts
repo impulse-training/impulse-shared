@@ -131,11 +131,11 @@ export declare const systemUpdateUserSchema: z.ZodObject<{
     appliedAt: z.ZodOptional<z.ZodNullable<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>>;
 }, "strip", z.ZodTypeAny, {
     firstOpenedAt: import("../types").Timestamp;
-    downloadedAt?: import("../types").Timestamp | null | undefined;
     appliedAt?: import("../types").Timestamp | null | undefined;
+    downloadedAt?: import("../types").Timestamp | null | undefined;
 }, {
     firstOpenedAt: import("../types").Timestamp;
-    downloadedAt?: import("../types").Timestamp | null | undefined;
     appliedAt?: import("../types").Timestamp | null | undefined;
+    downloadedAt?: import("../types").Timestamp | null | undefined;
 }>;
 export type SystemUpdateUser = z.infer<typeof systemUpdateUserSchema>;

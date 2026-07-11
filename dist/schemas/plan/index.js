@@ -14,7 +14,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isValidBehaviorPlan = exports.planIsBehaviorPlan = exports.isValidScheduledPlan = exports.planIsScheduledPlan = exports.isValidDefaultPlan = exports.planIsDefaultPlan = exports.isValidTriggerPlan = exports.planIsTriggerPlan = exports.planWithIdSchema = exports.planSchema = void 0;
+exports.planHasActionableContent = exports.isValidBehaviorPlan = exports.planIsBehaviorPlan = exports.isValidScheduledPlan = exports.planIsScheduledPlan = exports.isValidDefaultPlan = exports.planIsDefaultPlan = exports.isValidTriggerPlan = exports.planIsTriggerPlan = exports.planWithIdSchema = exports.planSchema = void 0;
 const zod_1 = require("zod");
 const withId_1 = require("../../utils/withId");
 const triggerPlan_1 = require("./triggerPlan");
@@ -55,3 +55,20 @@ const planIsBehaviorPlan = (value) => value.type === "behavior";
 exports.planIsBehaviorPlan = planIsBehaviorPlan;
 const isValidBehaviorPlan = (value) => behaviorPlan_1.behaviorPlanSchema.safeParse(value).success;
 exports.isValidBehaviorPlan = isValidBehaviorPlan;
+/**
+ * A plan is "actionable" when it has something to present when it fires:
+ * at least one tactic, question, or plan step, and it hasn't been soft-deleted.
+ * An empty placeholder plan (created but never filled in) would otherwise
+ * produce a blank session, so callers treat it as if the plan weren't there.
+ */
+const planHasActionableContent = (plan) => {
+    if (plan.deletedAt)
+        return false;
+    const tacticCount = Array.isArray(plan.tactics) ? plan.tactics.length : 0;
+    const questionCount = Array.isArray(plan.questions)
+        ? plan.questions.length
+        : 0;
+    const stepCount = Array.isArray(plan.planSteps) ? plan.planSteps.length : 0;
+    return tacticCount + questionCount + stepCount > 0;
+};
+exports.planHasActionableContent = planHasActionableContent;

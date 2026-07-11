@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isSetupShortcutTask = exports.isReflectOnMetricsTask = exports.isSuggestTacticTask = exports.isToolkitPlanningTask = exports.isReviewTriggerTask = exports.isRecapQuestionTask = exports.isProposeMaskBehaviorTask = exports.isProposeExperimentTask = exports.isSuggestStrategyTask = exports.isMergeBehaviorsTask = exports.isTask = exports.taskSchema = exports.setupShortcutTaskSchema = exports.collectBaselineTaskSchema = exports.reflectOnMetricsTaskSchema = exports.suggestTacticTaskSchema = exports.toolkitPlanningTaskSchema = exports.reviewTriggerTaskSchema = exports.recapQuestionTaskSchema = exports.createSessionTaskSchema = exports.proposeMaskBehaviorTaskSchema = exports.proposeExperimentTaskSchema = exports.proposedMetricSchema = exports.suggestStrategyTaskSchema = exports.mergeBehaviorsTaskSchema = exports.taskBaseSchema = exports.claimableSessionTypeSchema = exports.taskCategorySchema = exports.taskStatusSchema = void 0;
+exports.isSetupShortcutTask = exports.isReflectOnMetricsTask = exports.isSuggestTacticTask = exports.isToolkitPlanningTask = exports.isReviewTriggerTask = exports.isRecapQuestionTask = exports.isProposeMaskBehaviorTask = exports.isProposeExperimentTask = exports.isProposeGoalTask = exports.isSuggestStrategyTask = exports.isMergeBehaviorsTask = exports.isTask = exports.taskSchema = exports.weekLookbackTaskSchema = exports.resumeRecapRemindersTaskSchema = exports.setupShortcutTaskSchema = exports.collectBaselineTaskSchema = exports.reflectOnMetricsTaskSchema = exports.suggestTacticTaskSchema = exports.toolkitPlanningTaskSchema = exports.reviewTriggerTaskSchema = exports.recapQuestionTaskSchema = exports.createSessionTaskSchema = exports.proposeMaskBehaviorTaskSchema = exports.proposeExperimentTaskSchema = exports.proposedMetricSchema = exports.proposeGoalTaskSchema = exports.suggestStrategyTaskSchema = exports.mergeBehaviorsTaskSchema = exports.taskBaseSchema = exports.claimableSessionTypeSchema = exports.taskCategorySchema = exports.taskStatusSchema = void 0;
 const zod_1 = require("zod");
+const goal_1 = require("./goal");
 const proposedStrategyModificationLog_1 = require("./log/proposedStrategyModificationLog");
 const timestampSchema_1 = require("../utils/timestampSchema");
 exports.taskStatusSchema = zod_1.z.enum(["open", "completed", "dismissed"]);
@@ -20,6 +21,12 @@ exports.taskBaseSchema = zod_1.z.object({
     requiredTools: zod_1.z.array(zod_1.z.string()).optional(),
     dependsOnTaskId: zod_1.z.string().optional(),
     claimableSessionTypes: zod_1.z.array(exports.claimableSessionTypeSchema).min(1).optional(),
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: zod_1.z.boolean().optional(),
     createdBy: zod_1.z.string().optional(),
     createdAt: timestampSchema_1.timestampSchema,
     updatedAt: timestampSchema_1.timestampSchema,
@@ -44,6 +51,24 @@ exports.suggestStrategyTaskSchema = exports.taskBaseSchema.extend({
         // The same operations union proposals use (create_trigger, create_plan,
         // set_behavior_goal) — previously a stricter local copy that drifted.
         operations: zod_1.z.array(proposedStrategyModificationLog_1.strategyModificationOperationSchema).min(1),
+    }),
+});
+/**
+ * A coach-prepared proposal to change one behavior's goal (e.g. switch to a
+ * contain goal with afternoon-only windows). Lighter than suggest_strategy —
+ * no triggers or plans, just the goal. In the weekly review it is claimed and
+ * surfaced BEFORE any suggest_strategy tasks, so the goal lands first and the
+ * strategy suggestions can build on it. The AI presents it by calling
+ * proposeGoalChange, which renders an accept/decline card; accepting sets the
+ * goal on the behavior (applied server-side).
+ */
+exports.proposeGoalTaskSchema = exports.taskBaseSchema.extend({
+    type: zod_1.z.literal("propose_goal"),
+    behaviorId: zod_1.z.string().min(1),
+    proposedGoal: zod_1.z.object({
+        title: zod_1.z.string().min(1),
+        summary: zod_1.z.string().min(1),
+        goal: goal_1.goalSchema,
     }),
 });
 exports.proposedMetricSchema = zod_1.z.object({
@@ -168,9 +193,33 @@ exports.setupShortcutTaskSchema = exports.taskBaseSchema.extend({
     /** Marks this as a returning nudge so the card copy can be tailored. */
     returning: zod_1.z.boolean().optional(),
 });
+/**
+ * Durable user-scoped task for a returning user whose scheduled recap
+ * reminders are paused (userData recap.paused). Claimed into their next
+ * opened recap; the deterministic handler renders a resume_recap_reminders_cta
+ * card and hands off to the AI (triggerAIAfter) to introduce it. Responding
+ * "resume" clears recap.paused and completes the task; declining completes it
+ * too (they can re-enable any time in settings).
+ */
+exports.resumeRecapRemindersTaskSchema = exports.taskBaseSchema.extend({
+    type: zod_1.z.literal("resume_recap_reminders"),
+});
+/**
+ * The weekly review's first beat: reflect on the week just passed as one shape.
+ * Injected as a session task on a weekly-mode recap (never user-level), it
+ * completes when the AI calls reconcileStrategyProposals (its requiredTool),
+ * which is the Phase-1 → Phase-2 (plan review) transition. The week-shape prose
+ * is rendered live in getTaskContext, so no data is snapshotted onto the task.
+ */
+exports.weekLookbackTaskSchema = exports.taskBaseSchema.extend({
+    type: zod_1.z.literal("week_lookback"),
+    /** The Sunday review this beat belongs to (the recap dateString). */
+    weekOfDateString: zod_1.z.string().optional(),
+});
 exports.taskSchema = zod_1.z.discriminatedUnion("type", [
     exports.mergeBehaviorsTaskSchema,
     exports.suggestStrategyTaskSchema,
+    exports.proposeGoalTaskSchema,
     exports.proposeExperimentTaskSchema,
     exports.proposeMaskBehaviorTaskSchema,
     exports.createSessionTaskSchema,
@@ -181,6 +230,8 @@ exports.taskSchema = zod_1.z.discriminatedUnion("type", [
     exports.reflectOnMetricsTaskSchema,
     exports.collectBaselineTaskSchema,
     exports.setupShortcutTaskSchema,
+    exports.resumeRecapRemindersTaskSchema,
+    exports.weekLookbackTaskSchema,
 ]);
 const isTask = (value) => exports.taskSchema.safeParse(value).success;
 exports.isTask = isTask;
@@ -188,6 +239,8 @@ const isMergeBehaviorsTask = (value) => exports.mergeBehaviorsTaskSchema.safePar
 exports.isMergeBehaviorsTask = isMergeBehaviorsTask;
 const isSuggestStrategyTask = (value) => exports.suggestStrategyTaskSchema.safeParse(value).success;
 exports.isSuggestStrategyTask = isSuggestStrategyTask;
+const isProposeGoalTask = (value) => exports.proposeGoalTaskSchema.safeParse(value).success;
+exports.isProposeGoalTask = isProposeGoalTask;
 const isProposeExperimentTask = (value) => exports.proposeExperimentTaskSchema.safeParse(value).success;
 exports.isProposeExperimentTask = isProposeExperimentTask;
 const isProposeMaskBehaviorTask = (value) => exports.proposeMaskBehaviorTaskSchema.safeParse(value).success;

@@ -5,11 +5,12 @@ const zod_1 = require("zod");
 const timestampSchema_1 = require("../utils/timestampSchema");
 const supportGroup_1 = require("./supportGroup");
 const first_1 = require("./first");
-// Inline recap trigger schema (time-based)
+// Inline recap trigger schema (time-based). Recaps are daily — they fire
+// every day at this time (Sunday additionally runs the weekly review). There
+// is no per-weekday cadence; any legacy `weekdays` on old docs is ignored.
 const recapTriggerSchema = zod_1.z.object({
     hour: zod_1.z.number().min(0).max(23),
     minute: zod_1.z.number().min(0).max(59),
-    weekdays: zod_1.z.array(zod_1.z.number().min(0).max(6)).min(1),
 });
 const recapReminderTimeSchema = zod_1.z.object({
     hour: zod_1.z.number().min(0).max(23),
@@ -93,6 +94,11 @@ exports.userDataSchema = zod_1.z.object({
         .object({
         trigger: recapTriggerSchema,
         reminderTime: recapReminderTimeSchema.optional(),
+        // Pauses all scheduled recap notifications (prompt, follow-up,
+        // reminder) without touching the trigger config. Silent journal
+        // drafts and on-demand recaps still work. Cleared by the
+        // resume_recap_reminders card (or manually).
+        paused: zod_1.z.boolean().optional(),
     })
         .optional(),
     // If true, this user will be added to the tech support group for all new signups

@@ -62,7 +62,7 @@ function buildBehaviorLogPayload(log, options) {
     return [];
 }
 function getGptPayload(log, isFinalLogInSession, options) {
-    var _a, _b, _c, _d, _e;
+    var _a, _b, _c, _d, _e, _f;
     if (log.type === "proposed_experiment") {
         const behaviorName = "behaviorName" in log
             ? log.behaviorName
@@ -118,20 +118,45 @@ function getGptPayload(log, isFinalLogInSession, options) {
         ];
     }
     if ((0, log_1.logIsProposedStrategyModificationLog)(log)) {
-        if (log.data.status !== "accepted")
-            return [];
         const title = log.data.title.trim();
         const summary = (_b = log.data.summary) === null || _b === void 0 ? void 0 : _b.trim();
         const context = summary ? `${title}: ${summary}` : title;
+        if (log.data.status === "accepted") {
+            return [
+                {
+                    role: "user",
+                    content: `<SYSTEM>The user accepted a suggested strategy update. Saved strategy: ${context}.</SYSTEM>`,
+                },
+            ];
+        }
+        if (log.data.status === "declined") {
+            return [
+                {
+                    role: "user",
+                    content: `<SYSTEM>The user DECLINED the suggested strategy update "${context}". Respect the decision without persuasion and move on (the next prepared item, or winding down).</SYSTEM>`,
+                },
+            ];
+        }
+        return [];
+    }
+    if ((0, log_1.logIsProposedGoalChangeLog)(log)) {
+        if (log.data.status !== "accepted" && log.data.status !== "declined") {
+            return [];
+        }
+        const title = log.data.title.trim();
+        const name = (_c = log.data.behaviorName) === null || _c === void 0 ? void 0 : _c.trim();
+        const label = name ? `"${title}" (${name})` : `"${title}"`;
         return [
             {
                 role: "user",
-                content: `<SYSTEM>The user accepted a suggested strategy update. Saved strategy: ${context}.</SYSTEM>`,
+                content: log.data.status === "accepted"
+                    ? `<SYSTEM>The user ACCEPTED the proposed goal change ${label} — the behavior's goal has been updated. Acknowledge briefly and move the conversation forward (the next prepared item, or winding down); do not re-explain or re-pitch the goal.</SYSTEM>`
+                    : `<SYSTEM>The user DECLINED the proposed goal change ${label}. Respect the decision without persuasion and move on.</SYSTEM>`,
             },
         ];
     }
     if ((0, log_1.logIsMergeBehaviorsProposalLog)(log)) {
-        const selected = (_c = log.data.selectedResponseText) === null || _c === void 0 ? void 0 : _c.trim();
+        const selected = (_d = log.data.selectedResponseText) === null || _d === void 0 ? void 0 : _d.trim();
         if (selected) {
             return [
                 {
@@ -148,7 +173,7 @@ function getGptPayload(log, isFinalLogInSession, options) {
         ];
     }
     if ((0, log_1.logIsDebriefQuestionLog)(log)) {
-        const selected = (_d = log.data.selectedResponseText) === null || _d === void 0 ? void 0 : _d.trim();
+        const selected = (_e = log.data.selectedResponseText) === null || _e === void 0 ? void 0 : _e.trim();
         if (selected) {
             return [
                 {
@@ -186,6 +211,17 @@ function getGptPayload(log, isFinalLogInSession, options) {
         // causes the LLM to return an empty response.
         if (log.source === "recap_follow_up") {
             return [];
+        }
+        // Sanitize legacy [SHOW_STRATEGY] markers out of replayed history — a
+        // marker in a past assistant message seeds the model to imitate it (we
+        // observed marker-only replies born exactly this way). A message that was
+        // only a marker is dropped entirely.
+        const content = log.data.message.content;
+        if (typeof content === "string" && content.includes("[SHOW_STRATEGY]")) {
+            const cleaned = content.replace(/\[SHOW_STRATEGY\]/g, "").trim();
+            if (!cleaned)
+                return [];
+            return [{ ...log.data.message, content: cleaned }];
         }
         return [log.data.message];
     }
@@ -285,6 +321,24 @@ function getGptPayload(log, isFinalLogInSession, options) {
             },
         ];
     }
+    if ((0, log_1.logIsResumeRecapRemindersCtaLog)(log)) {
+        if (!log.data.respondedAt) {
+            return [
+                {
+                    role: "user",
+                    content: "<SYSTEM>Impulse showed the user a card asking whether to turn their daily recap reminders back on (reminders were paused while they were away). Briefly introduce it: welcome them back without making their absence a thing, and note they can restart daily reminders with the card whenever they are ready. No button has been selected yet.</SYSTEM>",
+                },
+            ];
+        }
+        return [
+            {
+                role: "user",
+                content: log.data.resumed === true
+                    ? "<SYSTEM>The user turned their daily recap reminders back on. Acknowledge briefly and move the conversation forward; do not celebrate excessively.</SYSTEM>"
+                    : "<SYSTEM>The user chose not to resume daily recap reminders for now. Respect the decision without persuasion and move on; they can re-enable later.</SYSTEM>",
+            },
+        ];
+    }
     // Handle BehaviorLog
     if ((0, log_1.logIsBehaviorLog)(log)) {
         return buildBehaviorLogPayload(log, options);
@@ -338,7 +392,7 @@ function getGptPayload(log, isFinalLogInSession, options) {
     if (log.type === "tags_updated") {
         if (options === null || options === void 0 ? void 0 : options.forSummarization)
             return [];
-        const tactics = (_e = log.data) === null || _e === void 0 ? void 0 : _e.recommendedTactics;
+        const tactics = (_f = log.data) === null || _f === void 0 ? void 0 : _f.recommendedTactics;
         let tacticsContext = "";
         if (tactics && tactics.length > 0) {
             const lines = tactics.map((t) => `- [id=${t.tacticId}] "${t.title}"${t.phase ? ` (${t.phase})` : ""}${t.description ? ` — ${t.description}` : ""}`);

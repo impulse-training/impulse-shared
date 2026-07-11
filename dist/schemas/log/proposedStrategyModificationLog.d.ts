@@ -28,12 +28,43 @@ declare const strategyPlanDraftSchema: z.ZodObject<{
     newTactics: z.ZodOptional<z.ZodArray<z.ZodObject<{
         title: z.ZodString;
         description: z.ZodOptional<z.ZodString>;
+        phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>;
+        links: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            url: z.ZodString;
+            title: z.ZodOptional<z.ZodString>;
+            imageUrl: z.ZodOptional<z.ZodString>;
+            domain: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            url: string;
+            title?: string | undefined;
+            imageUrl?: string | undefined;
+            domain?: string | undefined;
+        }, {
+            url: string;
+            title?: string | undefined;
+            imageUrl?: string | undefined;
+            domain?: string | undefined;
+        }>, "many">>;
     }, "strip", z.ZodTypeAny, {
         title: string;
         description?: string | undefined;
+        links?: {
+            url: string;
+            title?: string | undefined;
+            imageUrl?: string | undefined;
+            domain?: string | undefined;
+        }[] | undefined;
+        phase?: "shift" | "regulate" | "reengage" | undefined;
     }, {
         title: string;
         description?: string | undefined;
+        links?: {
+            url: string;
+            title?: string | undefined;
+            imageUrl?: string | undefined;
+            domain?: string | undefined;
+        }[] | undefined;
+        phase?: "shift" | "regulate" | "reengage" | undefined;
     }>, "many">>;
     planType: z.ZodOptional<z.ZodEnum<["trigger", "scheduled"]>>;
     hour: z.ZodOptional<z.ZodNumber>;
@@ -46,6 +77,13 @@ declare const strategyPlanDraftSchema: z.ZodObject<{
     newTactics?: {
         title: string;
         description?: string | undefined;
+        links?: {
+            url: string;
+            title?: string | undefined;
+            imageUrl?: string | undefined;
+            domain?: string | undefined;
+        }[] | undefined;
+        phase?: "shift" | "regulate" | "reengage" | undefined;
     }[] | undefined;
     planType?: "scheduled" | "trigger" | undefined;
     hour?: number | undefined;
@@ -58,6 +96,13 @@ declare const strategyPlanDraftSchema: z.ZodObject<{
     newTactics?: {
         title: string;
         description?: string | undefined;
+        links?: {
+            url: string;
+            title?: string | undefined;
+            imageUrl?: string | undefined;
+            domain?: string | undefined;
+        }[] | undefined;
+        phase?: "shift" | "regulate" | "reengage" | undefined;
     }[] | undefined;
     planType?: "scheduled" | "trigger" | undefined;
     hour?: number | undefined;
@@ -123,12 +168,43 @@ export declare const createPlanStrategyOperationSchema: z.ZodObject<{
         newTactics: z.ZodOptional<z.ZodArray<z.ZodObject<{
             title: z.ZodString;
             description: z.ZodOptional<z.ZodString>;
+            phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>;
+            links: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                url: z.ZodString;
+                title: z.ZodOptional<z.ZodString>;
+                imageUrl: z.ZodOptional<z.ZodString>;
+                domain: z.ZodOptional<z.ZodString>;
+            }, "strip", z.ZodTypeAny, {
+                url: string;
+                title?: string | undefined;
+                imageUrl?: string | undefined;
+                domain?: string | undefined;
+            }, {
+                url: string;
+                title?: string | undefined;
+                imageUrl?: string | undefined;
+                domain?: string | undefined;
+            }>, "many">>;
         }, "strip", z.ZodTypeAny, {
             title: string;
             description?: string | undefined;
+            links?: {
+                url: string;
+                title?: string | undefined;
+                imageUrl?: string | undefined;
+                domain?: string | undefined;
+            }[] | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
         }, {
             title: string;
             description?: string | undefined;
+            links?: {
+                url: string;
+                title?: string | undefined;
+                imageUrl?: string | undefined;
+                domain?: string | undefined;
+            }[] | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
         }>, "many">>;
         planType: z.ZodOptional<z.ZodEnum<["trigger", "scheduled"]>>;
         hour: z.ZodOptional<z.ZodNumber>;
@@ -141,6 +217,13 @@ export declare const createPlanStrategyOperationSchema: z.ZodObject<{
         newTactics?: {
             title: string;
             description?: string | undefined;
+            links?: {
+                url: string;
+                title?: string | undefined;
+                imageUrl?: string | undefined;
+                domain?: string | undefined;
+            }[] | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
         }[] | undefined;
         planType?: "scheduled" | "trigger" | undefined;
         hour?: number | undefined;
@@ -153,6 +236,13 @@ export declare const createPlanStrategyOperationSchema: z.ZodObject<{
         newTactics?: {
             title: string;
             description?: string | undefined;
+            links?: {
+                url: string;
+                title?: string | undefined;
+                imageUrl?: string | undefined;
+                domain?: string | undefined;
+            }[] | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
         }[] | undefined;
         planType?: "scheduled" | "trigger" | undefined;
         hour?: number | undefined;
@@ -168,6 +258,13 @@ export declare const createPlanStrategyOperationSchema: z.ZodObject<{
         newTactics?: {
             title: string;
             description?: string | undefined;
+            links?: {
+                url: string;
+                title?: string | undefined;
+                imageUrl?: string | undefined;
+                domain?: string | undefined;
+            }[] | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
         }[] | undefined;
         planType?: "scheduled" | "trigger" | undefined;
         hour?: number | undefined;
@@ -185,6 +282,13 @@ export declare const createPlanStrategyOperationSchema: z.ZodObject<{
         newTactics?: {
             title: string;
             description?: string | undefined;
+            links?: {
+                url: string;
+                title?: string | undefined;
+                imageUrl?: string | undefined;
+                domain?: string | undefined;
+            }[] | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
         }[] | undefined;
         planType?: "scheduled" | "trigger" | undefined;
         hour?: number | undefined;
@@ -404,12 +508,43 @@ export declare const strategyModificationOperationSchema: z.ZodDiscriminatedUnio
         newTactics: z.ZodOptional<z.ZodArray<z.ZodObject<{
             title: z.ZodString;
             description: z.ZodOptional<z.ZodString>;
+            phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>;
+            links: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                url: z.ZodString;
+                title: z.ZodOptional<z.ZodString>;
+                imageUrl: z.ZodOptional<z.ZodString>;
+                domain: z.ZodOptional<z.ZodString>;
+            }, "strip", z.ZodTypeAny, {
+                url: string;
+                title?: string | undefined;
+                imageUrl?: string | undefined;
+                domain?: string | undefined;
+            }, {
+                url: string;
+                title?: string | undefined;
+                imageUrl?: string | undefined;
+                domain?: string | undefined;
+            }>, "many">>;
         }, "strip", z.ZodTypeAny, {
             title: string;
             description?: string | undefined;
+            links?: {
+                url: string;
+                title?: string | undefined;
+                imageUrl?: string | undefined;
+                domain?: string | undefined;
+            }[] | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
         }, {
             title: string;
             description?: string | undefined;
+            links?: {
+                url: string;
+                title?: string | undefined;
+                imageUrl?: string | undefined;
+                domain?: string | undefined;
+            }[] | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
         }>, "many">>;
         planType: z.ZodOptional<z.ZodEnum<["trigger", "scheduled"]>>;
         hour: z.ZodOptional<z.ZodNumber>;
@@ -422,6 +557,13 @@ export declare const strategyModificationOperationSchema: z.ZodDiscriminatedUnio
         newTactics?: {
             title: string;
             description?: string | undefined;
+            links?: {
+                url: string;
+                title?: string | undefined;
+                imageUrl?: string | undefined;
+                domain?: string | undefined;
+            }[] | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
         }[] | undefined;
         planType?: "scheduled" | "trigger" | undefined;
         hour?: number | undefined;
@@ -434,6 +576,13 @@ export declare const strategyModificationOperationSchema: z.ZodDiscriminatedUnio
         newTactics?: {
             title: string;
             description?: string | undefined;
+            links?: {
+                url: string;
+                title?: string | undefined;
+                imageUrl?: string | undefined;
+                domain?: string | undefined;
+            }[] | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
         }[] | undefined;
         planType?: "scheduled" | "trigger" | undefined;
         hour?: number | undefined;
@@ -449,6 +598,13 @@ export declare const strategyModificationOperationSchema: z.ZodDiscriminatedUnio
         newTactics?: {
             title: string;
             description?: string | undefined;
+            links?: {
+                url: string;
+                title?: string | undefined;
+                imageUrl?: string | undefined;
+                domain?: string | undefined;
+            }[] | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
         }[] | undefined;
         planType?: "scheduled" | "trigger" | undefined;
         hour?: number | undefined;
@@ -466,6 +622,13 @@ export declare const strategyModificationOperationSchema: z.ZodDiscriminatedUnio
         newTactics?: {
             title: string;
             description?: string | undefined;
+            links?: {
+                url: string;
+                title?: string | undefined;
+                imageUrl?: string | undefined;
+                domain?: string | undefined;
+            }[] | undefined;
+            phase?: "shift" | "regulate" | "reengage" | undefined;
         }[] | undefined;
         planType?: "scheduled" | "trigger" | undefined;
         hour?: number | undefined;
@@ -644,7 +807,7 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
     data: z.ZodObject<{
         title: z.ZodString;
         summary: z.ZodOptional<z.ZodString>;
-        status: z.ZodDefault<z.ZodEnum<["pending", "accepted", "declined"]>>;
+        status: z.ZodDefault<z.ZodEnum<["pending", "accepted", "declined", "superseded"]>>;
         operations: z.ZodArray<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             type: z.ZodLiteral<"create_trigger">;
             clientId: z.ZodString;
@@ -703,12 +866,43 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                 newTactics: z.ZodOptional<z.ZodArray<z.ZodObject<{
                     title: z.ZodString;
                     description: z.ZodOptional<z.ZodString>;
+                    phase: z.ZodOptional<z.ZodEnum<["regulate", "shift", "reengage"]>>;
+                    links: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                        url: z.ZodString;
+                        title: z.ZodOptional<z.ZodString>;
+                        imageUrl: z.ZodOptional<z.ZodString>;
+                        domain: z.ZodOptional<z.ZodString>;
+                    }, "strip", z.ZodTypeAny, {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }, {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }>, "many">>;
                 }, "strip", z.ZodTypeAny, {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }, {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }>, "many">>;
                 planType: z.ZodOptional<z.ZodEnum<["trigger", "scheduled"]>>;
                 hour: z.ZodOptional<z.ZodNumber>;
@@ -721,6 +915,13 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                 newTactics?: {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
@@ -733,6 +934,13 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                 newTactics?: {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
@@ -748,6 +956,13 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                 newTactics?: {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
@@ -765,6 +980,13 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                 newTactics?: {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
@@ -927,11 +1149,27 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
         }>]>, "many">;
         acceptedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         declinedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        /** The suggest_strategy session task this proposal realizes (weekly queue). */
+        sourceTaskId: z.ZodOptional<z.ZodString>;
+        /**
+         * When the user chose "Talk it through" (or resolved the proposal), making
+         * the card visible in the session thread. A pending, unrevealed proposal is
+         * hidden — it's only reachable via the [SHOW_STRATEGY] full-screen view.
+         */
+        revealedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        /**
+         * Revision lineage: a revision is a NEW pending log (append-only — the
+         * thread stays temporally honest); the one it replaces is marked
+         * "superseded" and points forward is not needed — this points BACK.
+         */
+        revision: z.ZodOptional<z.ZodNumber>;
+        supersedesLogId: z.ZodOptional<z.ZodString>;
+        supersededAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
         createdTriggerIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         createdPlanIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         updatedBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     }, "strip", z.ZodTypeAny, {
-        status: "declined" | "pending" | "accepted";
+        status: "declined" | "pending" | "accepted" | "superseded";
         title: string;
         operations: ({
             type: "create_trigger";
@@ -953,6 +1191,13 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                 newTactics?: {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
@@ -992,6 +1237,11 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
+        sourceTaskId?: string | undefined;
+        revealedAt?: import("../../types").Timestamp | undefined;
+        revision?: number | undefined;
+        supersedesLogId?: string | undefined;
+        supersededAt?: import("../../types").Timestamp | undefined;
         createdTriggerIds?: string[] | undefined;
         createdPlanIds?: string[] | undefined;
         updatedBehaviorIds?: string[] | undefined;
@@ -1017,6 +1267,13 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                 newTactics?: {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
@@ -1053,10 +1310,15 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                 }[];
             };
         })[];
-        status?: "declined" | "pending" | "accepted" | undefined;
+        status?: "declined" | "pending" | "accepted" | "superseded" | undefined;
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
+        sourceTaskId?: string | undefined;
+        revealedAt?: import("../../types").Timestamp | undefined;
+        revision?: number | undefined;
+        supersedesLogId?: string | undefined;
+        supersededAt?: import("../../types").Timestamp | undefined;
         createdTriggerIds?: string[] | undefined;
         createdPlanIds?: string[] | undefined;
         updatedBehaviorIds?: string[] | undefined;
@@ -1071,7 +1333,7 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
     timestamp: import("../../types").Timestamp;
     isDisplayable: true;
     data: {
-        status: "declined" | "pending" | "accepted";
+        status: "declined" | "pending" | "accepted" | "superseded";
         title: string;
         operations: ({
             type: "create_trigger";
@@ -1093,6 +1355,13 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                 newTactics?: {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
@@ -1132,6 +1401,11 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
+        sourceTaskId?: string | undefined;
+        revealedAt?: import("../../types").Timestamp | undefined;
+        revision?: number | undefined;
+        supersedesLogId?: string | undefined;
+        supersededAt?: import("../../types").Timestamp | undefined;
         createdTriggerIds?: string[] | undefined;
         createdPlanIds?: string[] | undefined;
         updatedBehaviorIds?: string[] | undefined;
@@ -1172,6 +1446,13 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                 newTactics?: {
                     title: string;
                     description?: string | undefined;
+                    links?: {
+                        url: string;
+                        title?: string | undefined;
+                        imageUrl?: string | undefined;
+                        domain?: string | undefined;
+                    }[] | undefined;
+                    phase?: "shift" | "regulate" | "reengage" | undefined;
                 }[] | undefined;
                 planType?: "scheduled" | "trigger" | undefined;
                 hour?: number | undefined;
@@ -1208,10 +1489,15 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
                 }[];
             };
         })[];
-        status?: "declined" | "pending" | "accepted" | undefined;
+        status?: "declined" | "pending" | "accepted" | "superseded" | undefined;
         summary?: string | undefined;
         acceptedAt?: import("../../types").Timestamp | undefined;
         declinedAt?: import("../../types").Timestamp | undefined;
+        sourceTaskId?: string | undefined;
+        revealedAt?: import("../../types").Timestamp | undefined;
+        revision?: number | undefined;
+        supersedesLogId?: string | undefined;
+        supersededAt?: import("../../types").Timestamp | undefined;
         createdTriggerIds?: string[] | undefined;
         createdPlanIds?: string[] | undefined;
         updatedBehaviorIds?: string[] | undefined;

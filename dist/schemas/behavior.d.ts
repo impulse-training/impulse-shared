@@ -1079,6 +1079,24 @@ export declare const behaviorStateSchema: z.ZodObject<{
 }>;
 export type BehaviorState = z.infer<typeof behaviorStateSchema>;
 export declare function isBehaviorState(value: unknown): value is BehaviorState;
+export declare const streakForgivenessEntrySchema: z.ZodObject<{
+    /** Local ISO date (YYYY-MM-DD) of the forgiven day. */
+    date: z.ZodString;
+    reason: z.ZodOptional<z.ZodString>;
+    byCoachId: z.ZodOptional<z.ZodString>;
+    at: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+}, "strip", z.ZodTypeAny, {
+    at: import("../types").Timestamp;
+    date: string;
+    reason?: string | undefined;
+    byCoachId?: string | undefined;
+}, {
+    at: import("../types").Timestamp;
+    date: string;
+    reason?: string | undefined;
+    byCoachId?: string | undefined;
+}>;
+export type StreakForgivenessEntry = z.infer<typeof streakForgivenessEntrySchema>;
 export declare const behaviorSchema: z.ZodObject<{
     name: z.ZodString;
     trackingType: z.ZodEnum<["counter", "timer", "scale"]>;
@@ -1242,6 +1260,23 @@ export declare const behaviorSchema: z.ZodObject<{
     mergedFromBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     mergedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     streakOverrideStartDate: z.ZodOptional<z.ZodString>;
+    streakForgiveness: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        /** Local ISO date (YYYY-MM-DD) of the forgiven day. */
+        date: z.ZodString;
+        reason: z.ZodOptional<z.ZodString>;
+        byCoachId: z.ZodOptional<z.ZodString>;
+        at: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    }, "strip", z.ZodTypeAny, {
+        at: import("../types").Timestamp;
+        date: string;
+        reason?: string | undefined;
+        byCoachId?: string | undefined;
+    }, {
+        at: import("../types").Timestamp;
+        date: string;
+        reason?: string | undefined;
+        byCoachId?: string | undefined;
+    }>, "many">>;
     tolerance: z.ZodOptional<z.ZodNumber>;
     pendingTolerance: z.ZodOptional<z.ZodObject<{
         value: z.ZodNumber;
@@ -2130,6 +2165,12 @@ export declare const behaviorSchema: z.ZodObject<{
     mergedFromBehaviorIds?: string[] | undefined;
     mergedAt?: import("../types").Timestamp | undefined;
     streakOverrideStartDate?: string | undefined;
+    streakForgiveness?: {
+        at: import("../types").Timestamp;
+        date: string;
+        reason?: string | undefined;
+        byCoachId?: string | undefined;
+    }[] | undefined;
     tolerance?: number | undefined;
     pendingTolerance?: {
         value: number;
@@ -2332,6 +2373,12 @@ export declare const behaviorSchema: z.ZodObject<{
     mergedFromBehaviorIds?: string[] | undefined;
     mergedAt?: import("../types").Timestamp | undefined;
     streakOverrideStartDate?: string | undefined;
+    streakForgiveness?: {
+        at: import("../types").Timestamp;
+        date: string;
+        reason?: string | undefined;
+        byCoachId?: string | undefined;
+    }[] | undefined;
     tolerance?: number | undefined;
     pendingTolerance?: {
         value: number;

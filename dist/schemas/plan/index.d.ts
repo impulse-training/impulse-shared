@@ -1419,3 +1419,15 @@ export declare const planIsScheduledPlan: (value: Plan) => value is ScheduledPla
 export declare const isValidScheduledPlan: (value: unknown) => value is ScheduledPlan;
 export declare const planIsBehaviorPlan: (value: Plan) => value is BehaviorPlan;
 export declare const isValidBehaviorPlan: (value: unknown) => value is BehaviorPlan;
+/**
+ * A plan is "actionable" when it has something to present when it fires:
+ * at least one tactic, question, or plan step, and it hasn't been soft-deleted.
+ * An empty placeholder plan (created but never filled in) would otherwise
+ * produce a blank session, so callers treat it as if the plan weren't there.
+ */
+export declare const planHasActionableContent: (plan: {
+    tactics?: unknown[];
+    questions?: unknown[];
+    planSteps?: unknown[];
+    deletedAt?: unknown;
+}) => boolean;
