@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isSetupShortcutTask = exports.isReflectOnMetricsTask = exports.isSuggestTacticTask = exports.isToolkitPlanningTask = exports.isReviewTriggerTask = exports.isRecapQuestionTask = exports.isProposeMaskBehaviorTask = exports.isProposeExperimentTask = exports.isProposeGoalTask = exports.isSuggestStrategyTask = exports.isMergeBehaviorsTask = exports.isTask = exports.taskSchema = exports.weekLookbackTaskSchema = exports.resumeRecapRemindersTaskSchema = exports.setupShortcutTaskSchema = exports.collectBaselineTaskSchema = exports.reflectOnMetricsTaskSchema = exports.suggestTacticTaskSchema = exports.toolkitPlanningTaskSchema = exports.reviewTriggerTaskSchema = exports.recapQuestionTaskSchema = exports.createSessionTaskSchema = exports.proposeMaskBehaviorTaskSchema = exports.proposeExperimentTaskSchema = exports.proposedMetricSchema = exports.proposeGoalTaskSchema = exports.suggestStrategyTaskSchema = exports.mergeBehaviorsTaskSchema = exports.taskBaseSchema = exports.claimableSessionTypeSchema = exports.taskCategorySchema = exports.taskStatusSchema = void 0;
+exports.isSetupShortcutTask = exports.isReflectOnMetricsTask = exports.isSuggestTacticTask = exports.isToolkitPlanningTask = exports.isReviewTriggerTask = exports.isRecapQuestionTask = exports.isProposeMaskBehaviorTask = exports.isProposeExperimentTask = exports.isProposeGoalTask = exports.isSuggestStrategyTask = exports.isMergeBehaviorsTask = exports.isTask = exports.taskSchema = exports.weeklyReviewTaskSchema = exports.weekLookbackTaskSchema = exports.resumeRecapRemindersTaskSchema = exports.setupShortcutTaskSchema = exports.collectBaselineTaskSchema = exports.reflectOnMetricsTaskSchema = exports.suggestTacticTaskSchema = exports.toolkitPlanningTaskSchema = exports.reviewTriggerTaskSchema = exports.recapQuestionTaskSchema = exports.createSessionTaskSchema = exports.proposeMaskBehaviorTaskSchema = exports.proposeExperimentTaskSchema = exports.proposedMetricSchema = exports.proposeGoalTaskSchema = exports.suggestStrategyTaskSchema = exports.mergeBehaviorsTaskSchema = exports.taskBaseSchema = exports.claimableSessionTypeSchema = exports.taskCategorySchema = exports.taskStatusSchema = void 0;
 const zod_1 = require("zod");
 const goal_1 = require("./goal");
 const proposedStrategyModificationLog_1 = require("./log/proposedStrategyModificationLog");
@@ -216,6 +216,23 @@ exports.weekLookbackTaskSchema = exports.taskBaseSchema.extend({
     /** The Sunday review this beat belongs to (the recap dateString). */
     weekOfDateString: zod_1.z.string().optional(),
 });
+/**
+ * The weekly review as a claimable token, one per week. Created on the local
+ * Sunday (by any recap path that runs that day); the FIRST recap session the
+ * user actually engages with on or after that Sunday claims it, and claiming
+ * is what makes that session run in weekly mode — so reviewing Saturday on
+ * Sunday morning hosts the weekly review, and the 9pm Sunday session then runs
+ * as a plain daily. Unclaimed tasks roll forward within the week (a skipped
+ * Sunday means Monday's first recap picks it up); a new Sunday retires any
+ * older still-open token. Never becomes a session task: claiming stamps
+ * claimedBySessionId + completed in one transaction.
+ */
+exports.weeklyReviewTaskSchema = exports.taskBaseSchema.extend({
+    type: zod_1.z.literal("weekly_review"),
+    /** The local Sunday this review week is anchored to (YYYY-MM-DD). */
+    weekAnchorDateString: zod_1.z.string(),
+    claimedBySessionId: zod_1.z.string().optional(),
+});
 exports.taskSchema = zod_1.z.discriminatedUnion("type", [
     exports.mergeBehaviorsTaskSchema,
     exports.suggestStrategyTaskSchema,
@@ -232,6 +249,7 @@ exports.taskSchema = zod_1.z.discriminatedUnion("type", [
     exports.setupShortcutTaskSchema,
     exports.resumeRecapRemindersTaskSchema,
     exports.weekLookbackTaskSchema,
+    exports.weeklyReviewTaskSchema,
 ]);
 const isTask = (value) => exports.taskSchema.safeParse(value).success;
 exports.isTask = isTask;

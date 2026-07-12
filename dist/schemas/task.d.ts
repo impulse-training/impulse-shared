@@ -2307,6 +2307,91 @@ export declare const weekLookbackTaskSchema: z.ZodObject<{
     triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
 }>;
+/**
+ * The weekly review as a claimable token, one per week. Created on the local
+ * Sunday (by any recap path that runs that day); the FIRST recap session the
+ * user actually engages with on or after that Sunday claims it, and claiming
+ * is what makes that session run in weekly mode — so reviewing Saturday on
+ * Sunday morning hosts the weekly review, and the 9pm Sunday session then runs
+ * as a plain daily. Unclaimed tasks roll forward within the week (a skipped
+ * Sunday means Monday's first recap picks it up); a new Sunday retires any
+ * older still-open token. Never becomes a session task: claiming stamps
+ * claimedBySessionId + completed in one transaction.
+ */
+export declare const weeklyReviewTaskSchema: z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    userId: z.ZodString;
+    category: z.ZodDefault<z.ZodEnum<["zara", "deterministic"]>>;
+    status: z.ZodDefault<z.ZodEnum<["open", "completed", "dismissed"]>>;
+    title: z.ZodString;
+    instructions: z.ZodString;
+    context: z.ZodOptional<z.ZodString>;
+    ordinal: z.ZodOptional<z.ZodNumber>;
+    minAppVersion: z.ZodOptional<z.ZodString>;
+    requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
+    createdBy: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+} & {
+    type: z.ZodLiteral<"weekly_review">;
+    /** The local Sunday this review week is anchored to (YYYY-MM-DD). */
+    weekAnchorDateString: z.ZodString;
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "weekly_review";
+    status: "completed" | "dismissed" | "open";
+    userId: string;
+    title: string;
+    category: "zara" | "deterministic";
+    instructions: string;
+    weekAnchorDateString: string;
+    id?: string | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+    claimedBySessionId?: string | undefined;
+}, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "weekly_review";
+    userId: string;
+    title: string;
+    instructions: string;
+    weekAnchorDateString: string;
+    id?: string | undefined;
+    status?: "completed" | "dismissed" | "open" | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    category?: "zara" | "deterministic" | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+    claimedBySessionId?: string | undefined;
+}>;
 export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -4488,6 +4573,79 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+}>, z.ZodObject<{
+    id: z.ZodOptional<z.ZodString>;
+    userId: z.ZodString;
+    category: z.ZodDefault<z.ZodEnum<["zara", "deterministic"]>>;
+    status: z.ZodDefault<z.ZodEnum<["open", "completed", "dismissed"]>>;
+    title: z.ZodString;
+    instructions: z.ZodString;
+    context: z.ZodOptional<z.ZodString>;
+    ordinal: z.ZodOptional<z.ZodNumber>;
+    minAppVersion: z.ZodOptional<z.ZodString>;
+    requiredTools: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    dependsOnTaskId: z.ZodOptional<z.ZodString>;
+    claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
+    /**
+     * Passive-display deterministic tasks: after processing, don't end the turn
+     * — let the AI still respond (see processDeterministicTasks). Copied onto
+     * the session task when claimed.
+     */
+    triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
+    createdBy: z.ZodOptional<z.ZodString>;
+    createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+} & {
+    type: z.ZodLiteral<"weekly_review">;
+    /** The local Sunday this review week is anchored to (YYYY-MM-DD). */
+    weekAnchorDateString: z.ZodString;
+    claimedBySessionId: z.ZodOptional<z.ZodString>;
+}, "strip", z.ZodTypeAny, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "weekly_review";
+    status: "completed" | "dismissed" | "open";
+    userId: string;
+    title: string;
+    category: "zara" | "deterministic";
+    instructions: string;
+    weekAnchorDateString: string;
+    id?: string | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+    claimedBySessionId?: string | undefined;
+}, {
+    createdAt: import("../types").Timestamp;
+    updatedAt: import("../types").Timestamp;
+    type: "weekly_review";
+    userId: string;
+    title: string;
+    instructions: string;
+    weekAnchorDateString: string;
+    id?: string | undefined;
+    status?: "completed" | "dismissed" | "open" | undefined;
+    ordinal?: number | undefined;
+    completedAt?: import("../types").Timestamp | undefined;
+    category?: "zara" | "deterministic" | undefined;
+    minAppVersion?: string | undefined;
+    createdBy?: string | undefined;
+    context?: string | undefined;
+    requiredTools?: string[] | undefined;
+    dependsOnTaskId?: string | undefined;
+    claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
+    triggerAIAfter?: boolean | undefined;
+    dismissedAt?: import("../types").Timestamp | undefined;
+    claimedBySessionId?: string | undefined;
 }>]>;
 export type TaskCategory = z.infer<typeof taskCategorySchema>;
 export type TaskStatus = z.infer<typeof taskStatusSchema>;
@@ -4507,6 +4665,7 @@ export type CollectBaselineTask = z.infer<typeof collectBaselineTaskSchema>;
 export type SetupShortcutTask = z.infer<typeof setupShortcutTaskSchema>;
 export type ResumeRecapRemindersTask = z.infer<typeof resumeRecapRemindersTaskSchema>;
 export type WeekLookbackTask = z.infer<typeof weekLookbackTaskSchema>;
+export type WeeklyReviewTask = z.infer<typeof weeklyReviewTaskSchema>;
 export type Task = z.infer<typeof taskSchema>;
 export declare const isTask: (value: unknown) => value is Task;
 export declare const isMergeBehaviorsTask: (value: unknown) => value is MergeBehaviorsTask;

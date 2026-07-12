@@ -236,6 +236,24 @@ export const weekLookbackTaskSchema = taskBaseSchema.extend({
   weekOfDateString: z.string().optional(),
 });
 
+/**
+ * The weekly review as a claimable token, one per week. Created on the local
+ * Sunday (by any recap path that runs that day); the FIRST recap session the
+ * user actually engages with on or after that Sunday claims it, and claiming
+ * is what makes that session run in weekly mode — so reviewing Saturday on
+ * Sunday morning hosts the weekly review, and the 9pm Sunday session then runs
+ * as a plain daily. Unclaimed tasks roll forward within the week (a skipped
+ * Sunday means Monday's first recap picks it up); a new Sunday retires any
+ * older still-open token. Never becomes a session task: claiming stamps
+ * claimedBySessionId + completed in one transaction.
+ */
+export const weeklyReviewTaskSchema = taskBaseSchema.extend({
+  type: z.literal("weekly_review"),
+  /** The local Sunday this review week is anchored to (YYYY-MM-DD). */
+  weekAnchorDateString: z.string(),
+  claimedBySessionId: z.string().optional(),
+});
+
 export const taskSchema = z.discriminatedUnion("type", [
   mergeBehaviorsTaskSchema,
   suggestStrategyTaskSchema,
@@ -252,6 +270,7 @@ export const taskSchema = z.discriminatedUnion("type", [
   setupShortcutTaskSchema,
   resumeRecapRemindersTaskSchema,
   weekLookbackTaskSchema,
+  weeklyReviewTaskSchema,
 ]);
 
 export type TaskCategory = z.infer<typeof taskCategorySchema>;
@@ -274,6 +293,7 @@ export type ResumeRecapRemindersTask = z.infer<
   typeof resumeRecapRemindersTaskSchema
 >;
 export type WeekLookbackTask = z.infer<typeof weekLookbackTaskSchema>;
+export type WeeklyReviewTask = z.infer<typeof weeklyReviewTaskSchema>;
 export type Task = z.infer<typeof taskSchema>;
 
 export const isTask = (value: unknown): value is Task =>
