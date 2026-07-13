@@ -109,12 +109,17 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         beforeData.data.status === "pending";
     // The user accepted/declined a weekly-review strategy proposal card (or its
     // full-screen view) — inline interaction, no user message. Scoped to queue
-    // cards (data.sourceTaskId) so accepting a coach-dashboard proposal elsewhere
-    // keeps its existing behavior. Keyed on the status transition.
+    // cards (data.sourceTaskId) OR any card inside a weekly recap — v2 review
+    // beats create generative cards with no source task (gap offers), and
+    // without this the accept is swallowed and the review stalls. Accepting a
+    // coach-dashboard proposal elsewhere keeps its existing behavior. Keyed on
+    // the status transition.
     const isStrategyCardResponded = beforeData &&
         afterData &&
         (0, log_1.logIsProposedStrategyModificationLog)(afterData) &&
-        !!afterData.data.sourceTaskId &&
+        (!!afterData.data.sourceTaskId ||
+            ((session === null || session === void 0 ? void 0 : session.type) === "recap" &&
+                session.recapMode === "weekly")) &&
         (afterData.data.status === "accepted" ||
             afterData.data.status === "declined") &&
         (0, log_1.logIsProposedStrategyModificationLog)(beforeData) &&

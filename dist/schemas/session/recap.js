@@ -148,4 +148,16 @@ exports.recapSessionSchema = base_1.sessionBaseSchema.extend({
      * weren't covered by any pending coach proposal (e.g. "morning walks").
      */
     recapUserRaisedIdeas: zod_1.z.array(zod_1.z.string()).optional(),
+    /**
+     * Weekly-review flow version, stamped at beat-write time. 2 = per-behavior
+     * review beats (review_behavior tasks, per-behavior week cards, scoped
+     * reconciliation). Absent/1 = the original single week_lookback flow; old
+     * sessions keep running the v1 code paths.
+     */
+    weeklyReviewVersion: zod_1.z.number().optional(),
+    /**
+     * Behaviors whose review beat has completed this session (appended by
+     * completeBehaviorReview). Progress/debugging aid, not a control surface.
+     */
+    recapReviewedBehaviorIds: zod_1.z.array(zod_1.z.string()).optional(),
 });

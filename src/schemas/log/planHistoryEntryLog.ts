@@ -37,6 +37,11 @@ export const planHistoryEntryLogSchema = logBaseSchema.extend({
     planName: z.string().optional(),
     behaviorIds: z.array(z.string()).optional(),
     note: z.string().min(1),
+    // For kind "note" from a weekly review beat: how the forward-looking
+    // plan/goal check landed.
+    planSentiment: z
+      .enum(["confirmed", "changed", "declined_changes", "no_plan", "skipped"])
+      .optional(),
     relatedProposalLogId: z.string().optional(),
     reflectionQuote: z.string().optional(),
     winRateWhileActive: z.array(planHistoryWinRateSchema).optional(),

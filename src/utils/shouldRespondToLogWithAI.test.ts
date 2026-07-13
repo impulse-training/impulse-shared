@@ -273,3 +273,79 @@ describe("shouldRespondToLogWithAI — resume recap reminders card", () => {
     ).toBe(false);
   });
 });
+
+describe("shouldRespondToLogWithAI — strategy proposal card responded", () => {
+  const weeklyRecap = {
+    id: "2026-07-19",
+    type: "recap",
+    recapMode: "weekly",
+  } as unknown as WithId<Session>;
+
+  const dailyRecap = {
+    id: "2026-07-15",
+    type: "recap",
+    recapMode: "daily",
+  } as unknown as WithId<Session>;
+
+  const card = (status: string, sourceTaskId?: string) =>
+    ({
+      type: "proposed_strategy_modification",
+      data: {
+        title: "Add a stress plan",
+        summary: "Plan for stressed moments",
+        status,
+        operations: [],
+        ...(sourceTaskId ? { sourceTaskId } : {}),
+      },
+    }) as unknown as Log;
+
+  it("responds when a prepared (sourceTaskId) card is accepted", () => {
+    expect(
+      shouldRespondToLogWithAI(
+        weeklyRecap,
+        card("pending", "task1"),
+        card("accepted", "task1"),
+        assistantLog,
+      ),
+    ).toBe(true);
+  });
+
+  it("responds when a generative card (no sourceTaskId) is accepted in a weekly recap", () => {
+    expect(
+      shouldRespondToLogWithAI(
+        weeklyRecap,
+        card("pending"),
+        card("accepted"),
+        assistantLog,
+      ),
+    ).toBe(true);
+  });
+
+  it("responds when a generative card is declined in a weekly recap", () => {
+    expect(
+      shouldRespondToLogWithAI(
+        weeklyRecap,
+        card("pending"),
+        card("declined"),
+        assistantLog,
+      ),
+    ).toBe(true);
+  });
+
+  it("does not respond to a sourceless card outside a weekly recap", () => {
+    expect(
+      shouldRespondToLogWithAI(
+        dailyRecap,
+        card("pending"),
+        card("accepted"),
+        assistantLog,
+      ),
+    ).toBe(false);
+  });
+
+  it("does not respond on the pending card write itself", () => {
+    expect(
+      shouldRespondToLogWithAI(weeklyRecap, undefined, card("pending"), assistantLog),
+    ).toBe(false);
+  });
+});

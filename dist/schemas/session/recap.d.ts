@@ -5478,6 +5478,8 @@ export declare const recapSessionSchema: z.ZodObject<{
     recapReconciledAt: z.ZodOptional<z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>>;
     recapPresentableProposalLogIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     recapUserRaisedIdeas: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    weeklyReviewVersion: z.ZodOptional<z.ZodNumber>;
+    recapReviewedBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
 }, "strip", z.ZodTypeAny, {
     type: "recap";
     date: import("../../types").Timestamp;
@@ -6183,6 +6185,8 @@ export declare const recapSessionSchema: z.ZodObject<{
     recapReconciledAt?: import("../../types").Timestamp | null | undefined;
     recapPresentableProposalLogIds?: string[] | undefined;
     recapUserRaisedIdeas?: string[] | undefined;
+    weeklyReviewVersion?: number | undefined;
+    recapReviewedBehaviorIds?: string[] | undefined;
 }, {
     type: "recap";
     date: import("../../types").Timestamp;
@@ -6360,5 +6364,7 @@ export declare const recapSessionSchema: z.ZodObject<{
     recapReconciledAt?: import("../../types").Timestamp | null | undefined;
     recapPresentableProposalLogIds?: string[] | undefined;
     recapUserRaisedIdeas?: string[] | undefined;
+    weeklyReviewVersion?: number | undefined;
+    recapReviewedBehaviorIds?: string[] | undefined;
 }>;
 export type RecapSession = z.infer<typeof recapSessionSchema>;
