@@ -22,6 +22,13 @@ export const behaviorLogSchema = logBaseSchema.extend({
     debriefOutcome: z.enum(["acted", "resisted", "still_there"]).optional(),
     /** When the debrief was resolved/answered */
     resolvedAt: timestampSchema.optional(),
+    /**
+     * For a contain-goal behavior: whether this usage was kept inside the
+     * allowed time window. Self-reported at recap for scale behaviors (which
+     * have no real occurrence time). When set, it overrides timestamp-based
+     * window detection in computeGoalComparison. Absent for non-contain logs.
+     */
+    withinAllowedWindow: z.boolean().optional(),
   }),
 });
 

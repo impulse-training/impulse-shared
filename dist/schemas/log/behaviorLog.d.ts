@@ -34,6 +34,13 @@ export declare const behaviorLogSchema: z.ZodObject<{
         debriefOutcome: z.ZodOptional<z.ZodEnum<["acted", "resisted", "still_there"]>>;
         /** When the debrief was resolved/answered */
         resolvedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        /**
+         * For a contain-goal behavior: whether this usage was kept inside the
+         * allowed time window. Self-reported at recap for scale behaviors (which
+         * have no real occurrence time). When set, it overrides timestamp-based
+         * window detection in computeGoalComparison. Absent for non-contain logs.
+         */
+        withinAllowedWindow: z.ZodOptional<z.ZodBoolean>;
     }, "strip", z.ZodTypeAny, {
         value?: number | undefined;
         behaviorId?: string | undefined;
@@ -45,6 +52,7 @@ export declare const behaviorLogSchema: z.ZodObject<{
         source?: "scheduled" | "manual" | undefined;
         debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
         resolvedAt?: import("../../types").Timestamp | undefined;
+        withinAllowedWindow?: boolean | undefined;
     }, {
         value?: number | undefined;
         behaviorId?: string | undefined;
@@ -56,6 +64,7 @@ export declare const behaviorLogSchema: z.ZodObject<{
         source?: "scheduled" | "manual" | undefined;
         debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
         resolvedAt?: import("../../types").Timestamp | undefined;
+        withinAllowedWindow?: boolean | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
@@ -78,6 +87,7 @@ export declare const behaviorLogSchema: z.ZodObject<{
         source?: "scheduled" | "manual" | undefined;
         debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
         resolvedAt?: import("../../types").Timestamp | undefined;
+        withinAllowedWindow?: boolean | undefined;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;
@@ -105,6 +115,7 @@ export declare const behaviorLogSchema: z.ZodObject<{
         source?: "scheduled" | "manual" | undefined;
         debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
         resolvedAt?: import("../../types").Timestamp | undefined;
+        withinAllowedWindow?: boolean | undefined;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;
