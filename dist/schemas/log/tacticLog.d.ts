@@ -1,17 +1,17 @@
 import { z } from "zod";
 /** Response to a tactic question step, typed off the shared answer-type enum. */
 export declare const tacticResponseSchema: z.ZodObject<{
-    responseType: z.ZodEnum<["text", "choice", "slider1To10"]>;
+    responseType: z.ZodEnum<["text", "choice", "multiChoice", "slider1To10"]>;
     value: z.ZodUnion<[z.ZodString, z.ZodNumber]>;
     formattedValue: z.ZodString;
 }, "strip", z.ZodTypeAny, {
     value: string | number;
     formattedValue: string;
-    responseType: "text" | "choice" | "slider1To10";
+    responseType: "text" | "choice" | "multiChoice" | "slider1To10";
 }, {
     value: string | number;
     formattedValue: string;
-    responseType: "text" | "choice" | "slider1To10";
+    responseType: "text" | "choice" | "multiChoice" | "slider1To10";
 }>;
 export type TacticResponse = z.infer<typeof tacticResponseSchema>;
 export declare const tacticLogSchema: z.ZodObject<{
@@ -1477,6 +1477,30 @@ export declare const tacticLogSchema: z.ZodObject<{
                     }[];
                     type: "choice";
                 }>, z.ZodObject<{
+                    type: z.ZodLiteral<"multiChoice">;
+                    options: z.ZodArray<z.ZodObject<{
+                        id: z.ZodString;
+                        label: z.ZodString;
+                    }, "strip", z.ZodTypeAny, {
+                        id: string;
+                        label: string;
+                    }, {
+                        id: string;
+                        label: string;
+                    }>, "many">;
+                }, "strip", z.ZodTypeAny, {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "multiChoice";
+                }, {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "multiChoice";
+                }>, z.ZodObject<{
                     type: z.ZodLiteral<"slider1To10">;
                     sliderConfig: z.ZodDefault<z.ZodObject<{
                         minLabel: z.ZodOptional<z.ZodString>;
@@ -1513,6 +1537,12 @@ export declare const tacticLogSchema: z.ZodObject<{
                         label: string;
                     }[];
                     type: "choice";
+                } | {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "multiChoice";
                 } | {
                     type: "slider1To10";
                     sliderConfig: {
@@ -1570,6 +1600,12 @@ export declare const tacticLogSchema: z.ZodObject<{
                         label: string;
                     }[];
                     type: "choice";
+                } | {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "multiChoice";
                 } | {
                     type: "slider1To10";
                     sliderConfig?: {
@@ -4309,6 +4345,12 @@ export declare const tacticLogSchema: z.ZodObject<{
                     }[];
                     type: "choice";
                 } | {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "multiChoice";
+                } | {
                     type: "slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
@@ -5007,6 +5049,12 @@ export declare const tacticLogSchema: z.ZodObject<{
                     }[];
                     type: "choice";
                 } | {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "multiChoice";
+                } | {
                     type: "slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
@@ -5240,17 +5288,17 @@ export declare const tacticLogSchema: z.ZodObject<{
         completed: z.ZodOptional<z.ZodBoolean>;
         autoAdvanced: z.ZodOptional<z.ZodBoolean>;
         response: z.ZodOptional<z.ZodObject<{
-            responseType: z.ZodEnum<["text", "choice", "slider1To10"]>;
+            responseType: z.ZodEnum<["text", "choice", "multiChoice", "slider1To10"]>;
             value: z.ZodUnion<[z.ZodString, z.ZodNumber]>;
             formattedValue: z.ZodString;
         }, "strip", z.ZodTypeAny, {
             value: string | number;
             formattedValue: string;
-            responseType: "text" | "choice" | "slider1To10";
+            responseType: "text" | "choice" | "multiChoice" | "slider1To10";
         }, {
             value: string | number;
             formattedValue: string;
-            responseType: "text" | "choice" | "slider1To10";
+            responseType: "text" | "choice" | "multiChoice" | "slider1To10";
         }>>;
         conversationSummary: z.ZodOptional<z.ZodString>;
         startedSummarizingConversationAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -5906,6 +5954,12 @@ export declare const tacticLogSchema: z.ZodObject<{
                     }[];
                     type: "choice";
                 } | {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "multiChoice";
+                } | {
                     type: "slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
@@ -6069,7 +6123,7 @@ export declare const tacticLogSchema: z.ZodObject<{
         response?: {
             value: string | number;
             formattedValue: string;
-            responseType: "text" | "choice" | "slider1To10";
+            responseType: "text" | "choice" | "multiChoice" | "slider1To10";
         } | undefined;
         conversationSummary?: string | undefined;
         startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
@@ -6194,7 +6248,7 @@ export declare const tacticLogSchema: z.ZodObject<{
         response?: {
             value: string | number;
             formattedValue: string;
-            responseType: "text" | "choice" | "slider1To10";
+            responseType: "text" | "choice" | "multiChoice" | "slider1To10";
         } | undefined;
         conversationSummary?: string | undefined;
         startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
@@ -6694,6 +6748,12 @@ export declare const tacticLogSchema: z.ZodObject<{
                     }[];
                     type: "choice";
                 } | {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "multiChoice";
+                } | {
                     type: "slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
@@ -6857,7 +6917,7 @@ export declare const tacticLogSchema: z.ZodObject<{
         response?: {
             value: string | number;
             formattedValue: string;
-            responseType: "text" | "choice" | "slider1To10";
+            responseType: "text" | "choice" | "multiChoice" | "slider1To10";
         } | undefined;
         conversationSummary?: string | undefined;
         startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
@@ -6997,7 +7057,7 @@ export declare const tacticLogSchema: z.ZodObject<{
         response?: {
             value: string | number;
             formattedValue: string;
-            responseType: "text" | "choice" | "slider1To10";
+            responseType: "text" | "choice" | "multiChoice" | "slider1To10";
         } | undefined;
         conversationSummary?: string | undefined;
         startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;

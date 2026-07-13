@@ -1462,6 +1462,30 @@ export declare const callLogSchema: z.ZodObject<{
                     }[];
                     type: "choice";
                 }>, z.ZodObject<{
+                    type: z.ZodLiteral<"multiChoice">;
+                    options: z.ZodArray<z.ZodObject<{
+                        id: z.ZodString;
+                        label: z.ZodString;
+                    }, "strip", z.ZodTypeAny, {
+                        id: string;
+                        label: string;
+                    }, {
+                        id: string;
+                        label: string;
+                    }>, "many">;
+                }, "strip", z.ZodTypeAny, {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "multiChoice";
+                }, {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "multiChoice";
+                }>, z.ZodObject<{
                     type: z.ZodLiteral<"slider1To10">;
                     sliderConfig: z.ZodDefault<z.ZodObject<{
                         minLabel: z.ZodOptional<z.ZodString>;
@@ -1498,6 +1522,12 @@ export declare const callLogSchema: z.ZodObject<{
                         label: string;
                     }[];
                     type: "choice";
+                } | {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "multiChoice";
                 } | {
                     type: "slider1To10";
                     sliderConfig: {
@@ -1555,6 +1585,12 @@ export declare const callLogSchema: z.ZodObject<{
                         label: string;
                     }[];
                     type: "choice";
+                } | {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "multiChoice";
                 } | {
                     type: "slider1To10";
                     sliderConfig?: {
@@ -4294,6 +4330,12 @@ export declare const callLogSchema: z.ZodObject<{
                     }[];
                     type: "choice";
                 } | {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "multiChoice";
+                } | {
                     type: "slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
@@ -4992,6 +5034,12 @@ export declare const callLogSchema: z.ZodObject<{
                     }[];
                     type: "choice";
                 } | {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "multiChoice";
+                } | {
                     type: "slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
@@ -5675,6 +5723,12 @@ export declare const callLogSchema: z.ZodObject<{
                         label: string;
                     }[];
                     type: "choice";
+                } | {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "multiChoice";
                 } | {
                     type: "slider1To10";
                     sliderConfig: {
@@ -6377,6 +6431,12 @@ export declare const callLogSchema: z.ZodObject<{
                         label: string;
                     }[];
                     type: "choice";
+                } | {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "multiChoice";
                 } | {
                     type: "slider1To10";
                     sliderConfig: {

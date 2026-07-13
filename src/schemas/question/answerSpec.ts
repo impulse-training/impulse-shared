@@ -8,13 +8,21 @@ import { z } from "zod";
  *  - "text"        — a free-form typed answer, with optional quick-pick chips
  *                    (`suggestedResponses`) that pre-fill the text.
  *  - "choice"      — pick exactly one of a fixed set of `options`.
+ *  - "multiChoice" — pick ONE OR MORE of a fixed set of `options`; the chips
+ *                    toggle and the composer's send button submits the set
+ *                    (e.g. the weekly review's "which behaviors to review").
  *  - "slider1To10" — a 1–10 scale with optional end labels.
  *
  * Keeping one schema means a single renderer/input, one response shape, and the
  * ability to offer any answer type on any surface. Authoring UIs may still
  * expose a subset per surface.
  */
-export const answerTypeSchema = z.enum(["text", "choice", "slider1To10"]);
+export const answerTypeSchema = z.enum([
+  "text",
+  "choice",
+  "multiChoice",
+  "slider1To10",
+]);
 
 export type AnswerType = z.infer<typeof answerTypeSchema>;
 
@@ -41,6 +49,10 @@ export const answerSpecSchema = z.discriminatedUnion("type", [
   }),
   z.object({
     type: z.literal("choice"),
+    options: z.array(answerOptionSchema).min(2),
+  }),
+  z.object({
+    type: z.literal("multiChoice"),
     options: z.array(answerOptionSchema).min(2),
   }),
   z.object({

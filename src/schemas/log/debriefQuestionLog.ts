@@ -13,6 +13,8 @@ const debriefQuestionDataObjectSchema = z.object({
   taskId: z.string().min(1),
   // Choice answers.
   selectedOptionId: z.string().optional(),
+  // multiChoice answers (one or more option ids, submitted together).
+  selectedOptionIds: z.array(z.string()).optional(),
   // The user's effective reply text. For choice this is the picked option's
   // label; for text it mirrors `freeTextResponse`.
   selectedResponseText: z.string().optional(),

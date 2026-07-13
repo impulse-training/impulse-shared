@@ -2009,6 +2009,30 @@ export declare const logSchemas: {
                         }[];
                         type: "choice";
                     }>, z.ZodObject<{
+                        type: z.ZodLiteral<"multiChoice">;
+                        options: z.ZodArray<z.ZodObject<{
+                            id: z.ZodString;
+                            label: z.ZodString;
+                        }, "strip", z.ZodTypeAny, {
+                            id: string;
+                            label: string;
+                        }, {
+                            id: string;
+                            label: string;
+                        }>, "many">;
+                    }, "strip", z.ZodTypeAny, {
+                        options: {
+                            id: string;
+                            label: string;
+                        }[];
+                        type: "multiChoice";
+                    }, {
+                        options: {
+                            id: string;
+                            label: string;
+                        }[];
+                        type: "multiChoice";
+                    }>, z.ZodObject<{
                         type: z.ZodLiteral<"slider1To10">;
                         sliderConfig: z.ZodDefault<z.ZodObject<{
                             minLabel: z.ZodOptional<z.ZodString>;
@@ -2045,6 +2069,12 @@ export declare const logSchemas: {
                             label: string;
                         }[];
                         type: "choice";
+                    } | {
+                        options: {
+                            id: string;
+                            label: string;
+                        }[];
+                        type: "multiChoice";
                     } | {
                         type: "slider1To10";
                         sliderConfig: {
@@ -2102,6 +2132,12 @@ export declare const logSchemas: {
                             label: string;
                         }[];
                         type: "choice";
+                    } | {
+                        options: {
+                            id: string;
+                            label: string;
+                        }[];
+                        type: "multiChoice";
                     } | {
                         type: "slider1To10";
                         sliderConfig?: {
@@ -4841,6 +4877,12 @@ export declare const logSchemas: {
                         }[];
                         type: "choice";
                     } | {
+                        options: {
+                            id: string;
+                            label: string;
+                        }[];
+                        type: "multiChoice";
+                    } | {
                         type: "slider1To10";
                         sliderConfig: {
                             minLabel?: string | undefined;
@@ -5539,6 +5581,12 @@ export declare const logSchemas: {
                         }[];
                         type: "choice";
                     } | {
+                        options: {
+                            id: string;
+                            label: string;
+                        }[];
+                        type: "multiChoice";
+                    } | {
                         type: "slider1To10";
                         sliderConfig: {
                             minLabel?: string | undefined;
@@ -6222,6 +6270,12 @@ export declare const logSchemas: {
                             label: string;
                         }[];
                         type: "choice";
+                    } | {
+                        options: {
+                            id: string;
+                            label: string;
+                        }[];
+                        type: "multiChoice";
                     } | {
                         type: "slider1To10";
                         sliderConfig: {
@@ -6924,6 +6978,12 @@ export declare const logSchemas: {
                             label: string;
                         }[];
                         type: "choice";
+                    } | {
+                        options: {
+                            id: string;
+                            label: string;
+                        }[];
+                        type: "multiChoice";
                     } | {
                         type: "slider1To10";
                         sliderConfig: {
@@ -8824,6 +8884,30 @@ export declare const logSchemas: {
                         }[];
                         type: "choice";
                     }>, z.ZodObject<{
+                        type: z.ZodLiteral<"multiChoice">;
+                        options: z.ZodArray<z.ZodObject<{
+                            id: z.ZodString;
+                            label: z.ZodString;
+                        }, "strip", z.ZodTypeAny, {
+                            id: string;
+                            label: string;
+                        }, {
+                            id: string;
+                            label: string;
+                        }>, "many">;
+                    }, "strip", z.ZodTypeAny, {
+                        options: {
+                            id: string;
+                            label: string;
+                        }[];
+                        type: "multiChoice";
+                    }, {
+                        options: {
+                            id: string;
+                            label: string;
+                        }[];
+                        type: "multiChoice";
+                    }>, z.ZodObject<{
                         type: z.ZodLiteral<"slider1To10">;
                         sliderConfig: z.ZodDefault<z.ZodObject<{
                             minLabel: z.ZodOptional<z.ZodString>;
@@ -8860,6 +8944,12 @@ export declare const logSchemas: {
                             label: string;
                         }[];
                         type: "choice";
+                    } | {
+                        options: {
+                            id: string;
+                            label: string;
+                        }[];
+                        type: "multiChoice";
                     } | {
                         type: "slider1To10";
                         sliderConfig: {
@@ -8917,6 +9007,12 @@ export declare const logSchemas: {
                             label: string;
                         }[];
                         type: "choice";
+                    } | {
+                        options: {
+                            id: string;
+                            label: string;
+                        }[];
+                        type: "multiChoice";
                     } | {
                         type: "slider1To10";
                         sliderConfig?: {
@@ -11656,6 +11752,12 @@ export declare const logSchemas: {
                         }[];
                         type: "choice";
                     } | {
+                        options: {
+                            id: string;
+                            label: string;
+                        }[];
+                        type: "multiChoice";
+                    } | {
                         type: "slider1To10";
                         sliderConfig: {
                             minLabel?: string | undefined;
@@ -12354,6 +12456,12 @@ export declare const logSchemas: {
                         }[];
                         type: "choice";
                     } | {
+                        options: {
+                            id: string;
+                            label: string;
+                        }[];
+                        type: "multiChoice";
+                    } | {
                         type: "slider1To10";
                         sliderConfig: {
                             minLabel?: string | undefined;
@@ -12587,17 +12695,17 @@ export declare const logSchemas: {
             completed: z.ZodOptional<z.ZodBoolean>;
             autoAdvanced: z.ZodOptional<z.ZodBoolean>;
             response: z.ZodOptional<z.ZodObject<{
-                responseType: z.ZodEnum<["text", "choice", "slider1To10"]>;
+                responseType: z.ZodEnum<["text", "choice", "multiChoice", "slider1To10"]>;
                 value: z.ZodUnion<[z.ZodString, z.ZodNumber]>;
                 formattedValue: z.ZodString;
             }, "strip", z.ZodTypeAny, {
                 value: string | number;
                 formattedValue: string;
-                responseType: "text" | "choice" | "slider1To10";
+                responseType: "text" | "choice" | "multiChoice" | "slider1To10";
             }, {
                 value: string | number;
                 formattedValue: string;
-                responseType: "text" | "choice" | "slider1To10";
+                responseType: "text" | "choice" | "multiChoice" | "slider1To10";
             }>>;
             conversationSummary: z.ZodOptional<z.ZodString>;
             startedSummarizingConversationAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -13253,6 +13361,12 @@ export declare const logSchemas: {
                         }[];
                         type: "choice";
                     } | {
+                        options: {
+                            id: string;
+                            label: string;
+                        }[];
+                        type: "multiChoice";
+                    } | {
                         type: "slider1To10";
                         sliderConfig: {
                             minLabel?: string | undefined;
@@ -13416,7 +13530,7 @@ export declare const logSchemas: {
             response?: {
                 value: string | number;
                 formattedValue: string;
-                responseType: "text" | "choice" | "slider1To10";
+                responseType: "text" | "choice" | "multiChoice" | "slider1To10";
             } | undefined;
             conversationSummary?: string | undefined;
             startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
@@ -13541,7 +13655,7 @@ export declare const logSchemas: {
             response?: {
                 value: string | number;
                 formattedValue: string;
-                responseType: "text" | "choice" | "slider1To10";
+                responseType: "text" | "choice" | "multiChoice" | "slider1To10";
             } | undefined;
             conversationSummary?: string | undefined;
             startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
@@ -14041,6 +14155,12 @@ export declare const logSchemas: {
                         }[];
                         type: "choice";
                     } | {
+                        options: {
+                            id: string;
+                            label: string;
+                        }[];
+                        type: "multiChoice";
+                    } | {
                         type: "slider1To10";
                         sliderConfig: {
                             minLabel?: string | undefined;
@@ -14204,7 +14324,7 @@ export declare const logSchemas: {
             response?: {
                 value: string | number;
                 formattedValue: string;
-                responseType: "text" | "choice" | "slider1To10";
+                responseType: "text" | "choice" | "multiChoice" | "slider1To10";
             } | undefined;
             conversationSummary?: string | undefined;
             startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
@@ -14344,7 +14464,7 @@ export declare const logSchemas: {
             response?: {
                 value: string | number;
                 formattedValue: string;
-                responseType: "text" | "choice" | "slider1To10";
+                responseType: "text" | "choice" | "multiChoice" | "slider1To10";
             } | undefined;
             conversationSummary?: string | undefined;
             startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
@@ -15855,6 +15975,30 @@ export declare const logSchemas: {
                         }[];
                         type: "choice";
                     }>, z.ZodObject<{
+                        type: z.ZodLiteral<"multiChoice">;
+                        options: z.ZodArray<z.ZodObject<{
+                            id: z.ZodString;
+                            label: z.ZodString;
+                        }, "strip", z.ZodTypeAny, {
+                            id: string;
+                            label: string;
+                        }, {
+                            id: string;
+                            label: string;
+                        }>, "many">;
+                    }, "strip", z.ZodTypeAny, {
+                        options: {
+                            id: string;
+                            label: string;
+                        }[];
+                        type: "multiChoice";
+                    }, {
+                        options: {
+                            id: string;
+                            label: string;
+                        }[];
+                        type: "multiChoice";
+                    }>, z.ZodObject<{
                         type: z.ZodLiteral<"slider1To10">;
                         sliderConfig: z.ZodDefault<z.ZodObject<{
                             minLabel: z.ZodOptional<z.ZodString>;
@@ -15891,6 +16035,12 @@ export declare const logSchemas: {
                             label: string;
                         }[];
                         type: "choice";
+                    } | {
+                        options: {
+                            id: string;
+                            label: string;
+                        }[];
+                        type: "multiChoice";
                     } | {
                         type: "slider1To10";
                         sliderConfig: {
@@ -15948,6 +16098,12 @@ export declare const logSchemas: {
                             label: string;
                         }[];
                         type: "choice";
+                    } | {
+                        options: {
+                            id: string;
+                            label: string;
+                        }[];
+                        type: "multiChoice";
                     } | {
                         type: "slider1To10";
                         sliderConfig?: {
@@ -18687,6 +18843,12 @@ export declare const logSchemas: {
                         }[];
                         type: "choice";
                     } | {
+                        options: {
+                            id: string;
+                            label: string;
+                        }[];
+                        type: "multiChoice";
+                    } | {
                         type: "slider1To10";
                         sliderConfig: {
                             minLabel?: string | undefined;
@@ -19385,6 +19547,12 @@ export declare const logSchemas: {
                         }[];
                         type: "choice";
                     } | {
+                        options: {
+                            id: string;
+                            label: string;
+                        }[];
+                        type: "multiChoice";
+                    } | {
                         type: "slider1To10";
                         sliderConfig: {
                             minLabel?: string | undefined;
@@ -19618,17 +19786,17 @@ export declare const logSchemas: {
             completed: z.ZodOptional<z.ZodBoolean>;
             autoAdvanced: z.ZodOptional<z.ZodBoolean>;
             response: z.ZodOptional<z.ZodObject<{
-                responseType: z.ZodEnum<["text", "choice", "slider1To10"]>;
+                responseType: z.ZodEnum<["text", "choice", "multiChoice", "slider1To10"]>;
                 value: z.ZodUnion<[z.ZodString, z.ZodNumber]>;
                 formattedValue: z.ZodString;
             }, "strip", z.ZodTypeAny, {
                 value: string | number;
                 formattedValue: string;
-                responseType: "text" | "choice" | "slider1To10";
+                responseType: "text" | "choice" | "multiChoice" | "slider1To10";
             }, {
                 value: string | number;
                 formattedValue: string;
-                responseType: "text" | "choice" | "slider1To10";
+                responseType: "text" | "choice" | "multiChoice" | "slider1To10";
             }>>;
             conversationSummary: z.ZodOptional<z.ZodString>;
             startedSummarizingConversationAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -20284,6 +20452,12 @@ export declare const logSchemas: {
                         }[];
                         type: "choice";
                     } | {
+                        options: {
+                            id: string;
+                            label: string;
+                        }[];
+                        type: "multiChoice";
+                    } | {
                         type: "slider1To10";
                         sliderConfig: {
                             minLabel?: string | undefined;
@@ -20447,7 +20621,7 @@ export declare const logSchemas: {
             response?: {
                 value: string | number;
                 formattedValue: string;
-                responseType: "text" | "choice" | "slider1To10";
+                responseType: "text" | "choice" | "multiChoice" | "slider1To10";
             } | undefined;
             conversationSummary?: string | undefined;
             startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
@@ -20572,7 +20746,7 @@ export declare const logSchemas: {
             response?: {
                 value: string | number;
                 formattedValue: string;
-                responseType: "text" | "choice" | "slider1To10";
+                responseType: "text" | "choice" | "multiChoice" | "slider1To10";
             } | undefined;
             conversationSummary?: string | undefined;
             startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
@@ -21072,6 +21246,12 @@ export declare const logSchemas: {
                         }[];
                         type: "choice";
                     } | {
+                        options: {
+                            id: string;
+                            label: string;
+                        }[];
+                        type: "multiChoice";
+                    } | {
                         type: "slider1To10";
                         sliderConfig: {
                             minLabel?: string | undefined;
@@ -21235,7 +21415,7 @@ export declare const logSchemas: {
             response?: {
                 value: string | number;
                 formattedValue: string;
-                responseType: "text" | "choice" | "slider1To10";
+                responseType: "text" | "choice" | "multiChoice" | "slider1To10";
             } | undefined;
             conversationSummary?: string | undefined;
             startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
@@ -21375,7 +21555,7 @@ export declare const logSchemas: {
             response?: {
                 value: string | number;
                 formattedValue: string;
-                responseType: "text" | "choice" | "slider1To10";
+                responseType: "text" | "choice" | "multiChoice" | "slider1To10";
             } | undefined;
             conversationSummary?: string | undefined;
             startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
@@ -21452,6 +21632,7 @@ export declare const logSchemas: {
             source: z.ZodOptional<z.ZodEnum<["scheduled", "manual"]>>;
             debriefOutcome: z.ZodOptional<z.ZodEnum<["acted", "resisted", "still_there"]>>;
             resolvedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            withinAllowedWindow: z.ZodOptional<z.ZodBoolean>;
         }, "strip", z.ZodTypeAny, {
             value?: number | undefined;
             behaviorId?: string | undefined;
@@ -21463,6 +21644,7 @@ export declare const logSchemas: {
             source?: "scheduled" | "manual" | undefined;
             debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
             resolvedAt?: import("../../types").Timestamp | undefined;
+            withinAllowedWindow?: boolean | undefined;
         }, {
             value?: number | undefined;
             behaviorId?: string | undefined;
@@ -21474,6 +21656,7 @@ export declare const logSchemas: {
             source?: "scheduled" | "manual" | undefined;
             debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
             resolvedAt?: import("../../types").Timestamp | undefined;
+            withinAllowedWindow?: boolean | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
         createdAt: import("../../types").Timestamp;
@@ -21496,6 +21679,7 @@ export declare const logSchemas: {
             source?: "scheduled" | "manual" | undefined;
             debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
             resolvedAt?: import("../../types").Timestamp | undefined;
+            withinAllowedWindow?: boolean | undefined;
         };
         id?: string | undefined;
         behaviorIds?: string[] | undefined;
@@ -21523,6 +21707,7 @@ export declare const logSchemas: {
             source?: "scheduled" | "manual" | undefined;
             debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
             resolvedAt?: import("../../types").Timestamp | undefined;
+            withinAllowedWindow?: boolean | undefined;
         };
         id?: string | undefined;
         behaviorIds?: string[] | undefined;
@@ -27839,6 +28024,30 @@ export declare const logSchemas: {
                             }[];
                             type: "choice";
                         }>, z.ZodObject<{
+                            type: z.ZodLiteral<"multiChoice">;
+                            options: z.ZodArray<z.ZodObject<{
+                                id: z.ZodString;
+                                label: z.ZodString;
+                            }, "strip", z.ZodTypeAny, {
+                                id: string;
+                                label: string;
+                            }, {
+                                id: string;
+                                label: string;
+                            }>, "many">;
+                        }, "strip", z.ZodTypeAny, {
+                            options: {
+                                id: string;
+                                label: string;
+                            }[];
+                            type: "multiChoice";
+                        }, {
+                            options: {
+                                id: string;
+                                label: string;
+                            }[];
+                            type: "multiChoice";
+                        }>, z.ZodObject<{
                             type: z.ZodLiteral<"slider1To10">;
                             sliderConfig: z.ZodDefault<z.ZodObject<{
                                 minLabel: z.ZodOptional<z.ZodString>;
@@ -27875,6 +28084,12 @@ export declare const logSchemas: {
                                 label: string;
                             }[];
                             type: "choice";
+                        } | {
+                            options: {
+                                id: string;
+                                label: string;
+                            }[];
+                            type: "multiChoice";
                         } | {
                             type: "slider1To10";
                             sliderConfig: {
@@ -27932,6 +28147,12 @@ export declare const logSchemas: {
                                 label: string;
                             }[];
                             type: "choice";
+                        } | {
+                            options: {
+                                id: string;
+                                label: string;
+                            }[];
+                            type: "multiChoice";
                         } | {
                             type: "slider1To10";
                             sliderConfig?: {
@@ -30671,6 +30892,12 @@ export declare const logSchemas: {
                             }[];
                             type: "choice";
                         } | {
+                            options: {
+                                id: string;
+                                label: string;
+                            }[];
+                            type: "multiChoice";
+                        } | {
                             type: "slider1To10";
                             sliderConfig: {
                                 minLabel?: string | undefined;
@@ -31369,6 +31596,12 @@ export declare const logSchemas: {
                             }[];
                             type: "choice";
                         } | {
+                            options: {
+                                id: string;
+                                label: string;
+                            }[];
+                            type: "multiChoice";
+                        } | {
                             type: "slider1To10";
                             sliderConfig: {
                                 minLabel?: string | undefined;
@@ -32045,6 +32278,12 @@ export declare const logSchemas: {
                                 label: string;
                             }[];
                             type: "choice";
+                        } | {
+                            options: {
+                                id: string;
+                                label: string;
+                            }[];
+                            type: "multiChoice";
                         } | {
                             type: "slider1To10";
                             sliderConfig: {
@@ -32730,6 +32969,12 @@ export declare const logSchemas: {
                                 label: string;
                             }[];
                             type: "choice";
+                        } | {
+                            options: {
+                                id: string;
+                                label: string;
+                            }[];
+                            type: "multiChoice";
                         } | {
                             type: "slider1To10";
                             sliderConfig: {
@@ -33428,6 +33673,12 @@ export declare const logSchemas: {
                                 label: string;
                             }[];
                             type: "choice";
+                        } | {
+                            options: {
+                                id: string;
+                                label: string;
+                            }[];
+                            type: "multiChoice";
                         } | {
                             type: "slider1To10";
                             sliderConfig: {
@@ -34999,6 +35250,30 @@ export declare const logSchemas: {
                 }[];
                 type: "choice";
             }>, z.ZodObject<{
+                type: z.ZodLiteral<"multiChoice">;
+                options: z.ZodArray<z.ZodObject<{
+                    id: z.ZodString;
+                    label: z.ZodString;
+                }, "strip", z.ZodTypeAny, {
+                    id: string;
+                    label: string;
+                }, {
+                    id: string;
+                    label: string;
+                }>, "many">;
+            }, "strip", z.ZodTypeAny, {
+                options: {
+                    id: string;
+                    label: string;
+                }[];
+                type: "multiChoice";
+            }, {
+                options: {
+                    id: string;
+                    label: string;
+                }[];
+                type: "multiChoice";
+            }>, z.ZodObject<{
                 type: z.ZodLiteral<"slider1To10">;
                 sliderConfig: z.ZodDefault<z.ZodObject<{
                     minLabel: z.ZodOptional<z.ZodString>;
@@ -35025,6 +35300,7 @@ export declare const logSchemas: {
             }>]>;
             taskId: z.ZodString;
             selectedOptionId: z.ZodOptional<z.ZodString>;
+            selectedOptionIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             selectedResponseText: z.ZodOptional<z.ZodString>;
             freeTextResponse: z.ZodOptional<z.ZodString>;
             sliderValue: z.ZodOptional<z.ZodNumber>;
@@ -35042,6 +35318,12 @@ export declare const logSchemas: {
                 }[];
                 type: "choice";
             } | {
+                options: {
+                    id: string;
+                    label: string;
+                }[];
+                type: "multiChoice";
+            } | {
                 type: "slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
@@ -35054,6 +35336,7 @@ export declare const logSchemas: {
             respondedAt?: import("../../types").Timestamp | undefined;
             selectedResponseText?: string | undefined;
             selectedOptionId?: string | undefined;
+            selectedOptionIds?: string[] | undefined;
             freeTextResponse?: string | undefined;
             sliderValue?: number | undefined;
         }, {
@@ -35069,6 +35352,12 @@ export declare const logSchemas: {
                 }[];
                 type: "choice";
             } | {
+                options: {
+                    id: string;
+                    label: string;
+                }[];
+                type: "multiChoice";
+            } | {
                 type: "slider1To10";
                 sliderConfig?: {
                     minLabel?: string | undefined;
@@ -35081,6 +35370,7 @@ export declare const logSchemas: {
             respondedAt?: import("../../types").Timestamp | undefined;
             selectedResponseText?: string | undefined;
             selectedOptionId?: string | undefined;
+            selectedOptionIds?: string[] | undefined;
             freeTextResponse?: string | undefined;
             sliderValue?: number | undefined;
         }>, {
@@ -35096,6 +35386,12 @@ export declare const logSchemas: {
                 }[];
                 type: "choice";
             } | {
+                options: {
+                    id: string;
+                    label: string;
+                }[];
+                type: "multiChoice";
+            } | {
                 type: "slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
@@ -35108,6 +35404,7 @@ export declare const logSchemas: {
             respondedAt?: import("../../types").Timestamp | undefined;
             selectedResponseText?: string | undefined;
             selectedOptionId?: string | undefined;
+            selectedOptionIds?: string[] | undefined;
             freeTextResponse?: string | undefined;
             sliderValue?: number | undefined;
         }, unknown>;
@@ -35133,6 +35430,12 @@ export declare const logSchemas: {
                 }[];
                 type: "choice";
             } | {
+                options: {
+                    id: string;
+                    label: string;
+                }[];
+                type: "multiChoice";
+            } | {
                 type: "slider1To10";
                 sliderConfig: {
                     minLabel?: string | undefined;
@@ -35145,6 +35448,7 @@ export declare const logSchemas: {
             respondedAt?: import("../../types").Timestamp | undefined;
             selectedResponseText?: string | undefined;
             selectedOptionId?: string | undefined;
+            selectedOptionIds?: string[] | undefined;
             freeTextResponse?: string | undefined;
             sliderValue?: number | undefined;
         };
@@ -35191,6 +35495,7 @@ export declare const logSchemas: {
             planName: z.ZodOptional<z.ZodString>;
             behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             note: z.ZodString;
+            planSentiment: z.ZodOptional<z.ZodEnum<["confirmed", "changed", "declined_changes", "no_plan", "skipped"]>>;
             relatedProposalLogId: z.ZodOptional<z.ZodString>;
             reflectionQuote: z.ZodOptional<z.ZodString>;
             winRateWhileActive: z.ZodOptional<z.ZodArray<z.ZodObject<{
@@ -35220,6 +35525,7 @@ export declare const logSchemas: {
             planId?: string | undefined;
             planPath?: string | undefined;
             planName?: string | undefined;
+            planSentiment?: "confirmed" | "changed" | "declined_changes" | "no_plan" | "skipped" | undefined;
             relatedProposalLogId?: string | undefined;
             reflectionQuote?: string | undefined;
             winRateWhileActive?: {
@@ -35237,6 +35543,7 @@ export declare const logSchemas: {
             planId?: string | undefined;
             planPath?: string | undefined;
             planName?: string | undefined;
+            planSentiment?: "confirmed" | "changed" | "declined_changes" | "no_plan" | "skipped" | undefined;
             relatedProposalLogId?: string | undefined;
             reflectionQuote?: string | undefined;
             winRateWhileActive?: {
@@ -35264,6 +35571,7 @@ export declare const logSchemas: {
             planId?: string | undefined;
             planPath?: string | undefined;
             planName?: string | undefined;
+            planSentiment?: "confirmed" | "changed" | "declined_changes" | "no_plan" | "skipped" | undefined;
             relatedProposalLogId?: string | undefined;
             reflectionQuote?: string | undefined;
             winRateWhileActive?: {
@@ -35296,6 +35604,7 @@ export declare const logSchemas: {
             planId?: string | undefined;
             planPath?: string | undefined;
             planName?: string | undefined;
+            planSentiment?: "confirmed" | "changed" | "declined_changes" | "no_plan" | "skipped" | undefined;
             relatedProposalLogId?: string | undefined;
             reflectionQuote?: string | undefined;
             winRateWhileActive?: {
@@ -37324,6 +37633,30 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     }[];
                     type: "choice";
                 }>, z.ZodObject<{
+                    type: z.ZodLiteral<"multiChoice">;
+                    options: z.ZodArray<z.ZodObject<{
+                        id: z.ZodString;
+                        label: z.ZodString;
+                    }, "strip", z.ZodTypeAny, {
+                        id: string;
+                        label: string;
+                    }, {
+                        id: string;
+                        label: string;
+                    }>, "many">;
+                }, "strip", z.ZodTypeAny, {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "multiChoice";
+                }, {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "multiChoice";
+                }>, z.ZodObject<{
                     type: z.ZodLiteral<"slider1To10">;
                     sliderConfig: z.ZodDefault<z.ZodObject<{
                         minLabel: z.ZodOptional<z.ZodString>;
@@ -37360,6 +37693,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         label: string;
                     }[];
                     type: "choice";
+                } | {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "multiChoice";
                 } | {
                     type: "slider1To10";
                     sliderConfig: {
@@ -37417,6 +37756,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         label: string;
                     }[];
                     type: "choice";
+                } | {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "multiChoice";
                 } | {
                     type: "slider1To10";
                     sliderConfig?: {
@@ -40156,6 +40501,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     }[];
                     type: "choice";
                 } | {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "multiChoice";
+                } | {
                     type: "slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
@@ -40854,6 +41205,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     }[];
                     type: "choice";
                 } | {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "multiChoice";
+                } | {
                     type: "slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
@@ -41537,6 +41894,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         label: string;
                     }[];
                     type: "choice";
+                } | {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "multiChoice";
                 } | {
                     type: "slider1To10";
                     sliderConfig: {
@@ -42239,6 +42602,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         label: string;
                     }[];
                     type: "choice";
+                } | {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "multiChoice";
                 } | {
                     type: "slider1To10";
                     sliderConfig: {
@@ -44137,6 +44506,30 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     }[];
                     type: "choice";
                 }>, z.ZodObject<{
+                    type: z.ZodLiteral<"multiChoice">;
+                    options: z.ZodArray<z.ZodObject<{
+                        id: z.ZodString;
+                        label: z.ZodString;
+                    }, "strip", z.ZodTypeAny, {
+                        id: string;
+                        label: string;
+                    }, {
+                        id: string;
+                        label: string;
+                    }>, "many">;
+                }, "strip", z.ZodTypeAny, {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "multiChoice";
+                }, {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "multiChoice";
+                }>, z.ZodObject<{
                     type: z.ZodLiteral<"slider1To10">;
                     sliderConfig: z.ZodDefault<z.ZodObject<{
                         minLabel: z.ZodOptional<z.ZodString>;
@@ -44173,6 +44566,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         label: string;
                     }[];
                     type: "choice";
+                } | {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "multiChoice";
                 } | {
                     type: "slider1To10";
                     sliderConfig: {
@@ -44230,6 +44629,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         label: string;
                     }[];
                     type: "choice";
+                } | {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "multiChoice";
                 } | {
                     type: "slider1To10";
                     sliderConfig?: {
@@ -46969,6 +47374,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     }[];
                     type: "choice";
                 } | {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "multiChoice";
+                } | {
                     type: "slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
@@ -47667,6 +48078,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     }[];
                     type: "choice";
                 } | {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "multiChoice";
+                } | {
                     type: "slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
@@ -47900,17 +48317,17 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         completed: z.ZodOptional<z.ZodBoolean>;
         autoAdvanced: z.ZodOptional<z.ZodBoolean>;
         response: z.ZodOptional<z.ZodObject<{
-            responseType: z.ZodEnum<["text", "choice", "slider1To10"]>;
+            responseType: z.ZodEnum<["text", "choice", "multiChoice", "slider1To10"]>;
             value: z.ZodUnion<[z.ZodString, z.ZodNumber]>;
             formattedValue: z.ZodString;
         }, "strip", z.ZodTypeAny, {
             value: string | number;
             formattedValue: string;
-            responseType: "text" | "choice" | "slider1To10";
+            responseType: "text" | "choice" | "multiChoice" | "slider1To10";
         }, {
             value: string | number;
             formattedValue: string;
-            responseType: "text" | "choice" | "slider1To10";
+            responseType: "text" | "choice" | "multiChoice" | "slider1To10";
         }>>;
         conversationSummary: z.ZodOptional<z.ZodString>;
         startedSummarizingConversationAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
@@ -48566,6 +48983,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     }[];
                     type: "choice";
                 } | {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "multiChoice";
+                } | {
                     type: "slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
@@ -48729,7 +49152,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         response?: {
             value: string | number;
             formattedValue: string;
-            responseType: "text" | "choice" | "slider1To10";
+            responseType: "text" | "choice" | "multiChoice" | "slider1To10";
         } | undefined;
         conversationSummary?: string | undefined;
         startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
@@ -48854,7 +49277,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         response?: {
             value: string | number;
             formattedValue: string;
-            responseType: "text" | "choice" | "slider1To10";
+            responseType: "text" | "choice" | "multiChoice" | "slider1To10";
         } | undefined;
         conversationSummary?: string | undefined;
         startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
@@ -49354,6 +49777,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                     }[];
                     type: "choice";
                 } | {
+                    options: {
+                        id: string;
+                        label: string;
+                    }[];
+                    type: "multiChoice";
+                } | {
                     type: "slider1To10";
                     sliderConfig: {
                         minLabel?: string | undefined;
@@ -49517,7 +49946,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         response?: {
             value: string | number;
             formattedValue: string;
-            responseType: "text" | "choice" | "slider1To10";
+            responseType: "text" | "choice" | "multiChoice" | "slider1To10";
         } | undefined;
         conversationSummary?: string | undefined;
         startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
@@ -49657,7 +50086,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         response?: {
             value: string | number;
             formattedValue: string;
-            responseType: "text" | "choice" | "slider1To10";
+            responseType: "text" | "choice" | "multiChoice" | "slider1To10";
         } | undefined;
         conversationSummary?: string | undefined;
         startedSummarizingConversationAt?: import("../../types").Timestamp | undefined;
@@ -49733,6 +50162,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         source: z.ZodOptional<z.ZodEnum<["scheduled", "manual"]>>;
         debriefOutcome: z.ZodOptional<z.ZodEnum<["acted", "resisted", "still_there"]>>;
         resolvedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        withinAllowedWindow: z.ZodOptional<z.ZodBoolean>;
     }, "strip", z.ZodTypeAny, {
         value?: number | undefined;
         behaviorId?: string | undefined;
@@ -49744,6 +50174,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         source?: "scheduled" | "manual" | undefined;
         debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
         resolvedAt?: import("../../types").Timestamp | undefined;
+        withinAllowedWindow?: boolean | undefined;
     }, {
         value?: number | undefined;
         behaviorId?: string | undefined;
@@ -49755,6 +50186,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         source?: "scheduled" | "manual" | undefined;
         debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
         resolvedAt?: import("../../types").Timestamp | undefined;
+        withinAllowedWindow?: boolean | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
@@ -49777,6 +50209,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         source?: "scheduled" | "manual" | undefined;
         debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
         resolvedAt?: import("../../types").Timestamp | undefined;
+        withinAllowedWindow?: boolean | undefined;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;
@@ -49804,6 +50237,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         source?: "scheduled" | "manual" | undefined;
         debriefOutcome?: "acted" | "resisted" | "still_there" | undefined;
         resolvedAt?: import("../../types").Timestamp | undefined;
+        withinAllowedWindow?: boolean | undefined;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;
@@ -56097,6 +56531,30 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[];
                         type: "choice";
                     }>, z.ZodObject<{
+                        type: z.ZodLiteral<"multiChoice">;
+                        options: z.ZodArray<z.ZodObject<{
+                            id: z.ZodString;
+                            label: z.ZodString;
+                        }, "strip", z.ZodTypeAny, {
+                            id: string;
+                            label: string;
+                        }, {
+                            id: string;
+                            label: string;
+                        }>, "many">;
+                    }, "strip", z.ZodTypeAny, {
+                        options: {
+                            id: string;
+                            label: string;
+                        }[];
+                        type: "multiChoice";
+                    }, {
+                        options: {
+                            id: string;
+                            label: string;
+                        }[];
+                        type: "multiChoice";
+                    }>, z.ZodObject<{
                         type: z.ZodLiteral<"slider1To10">;
                         sliderConfig: z.ZodDefault<z.ZodObject<{
                             minLabel: z.ZodOptional<z.ZodString>;
@@ -56133,6 +56591,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                             label: string;
                         }[];
                         type: "choice";
+                    } | {
+                        options: {
+                            id: string;
+                            label: string;
+                        }[];
+                        type: "multiChoice";
                     } | {
                         type: "slider1To10";
                         sliderConfig: {
@@ -56190,6 +56654,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                             label: string;
                         }[];
                         type: "choice";
+                    } | {
+                        options: {
+                            id: string;
+                            label: string;
+                        }[];
+                        type: "multiChoice";
                     } | {
                         type: "slider1To10";
                         sliderConfig?: {
@@ -58929,6 +59399,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[];
                         type: "choice";
                     } | {
+                        options: {
+                            id: string;
+                            label: string;
+                        }[];
+                        type: "multiChoice";
+                    } | {
                         type: "slider1To10";
                         sliderConfig: {
                             minLabel?: string | undefined;
@@ -59627,6 +60103,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                         }[];
                         type: "choice";
                     } | {
+                        options: {
+                            id: string;
+                            label: string;
+                        }[];
+                        type: "multiChoice";
+                    } | {
                         type: "slider1To10";
                         sliderConfig: {
                             minLabel?: string | undefined;
@@ -60303,6 +60785,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                             label: string;
                         }[];
                         type: "choice";
+                    } | {
+                        options: {
+                            id: string;
+                            label: string;
+                        }[];
+                        type: "multiChoice";
                     } | {
                         type: "slider1To10";
                         sliderConfig: {
@@ -60988,6 +61476,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                             label: string;
                         }[];
                         type: "choice";
+                    } | {
+                        options: {
+                            id: string;
+                            label: string;
+                        }[];
+                        type: "multiChoice";
                     } | {
                         type: "slider1To10";
                         sliderConfig: {
@@ -61686,6 +62180,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
                             label: string;
                         }[];
                         type: "choice";
+                    } | {
+                        options: {
+                            id: string;
+                            label: string;
+                        }[];
+                        type: "multiChoice";
                     } | {
                         type: "slider1To10";
                         sliderConfig: {
@@ -63184,6 +63684,30 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             }[];
             type: "choice";
         }>, z.ZodObject<{
+            type: z.ZodLiteral<"multiChoice">;
+            options: z.ZodArray<z.ZodObject<{
+                id: z.ZodString;
+                label: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                id: string;
+                label: string;
+            }, {
+                id: string;
+                label: string;
+            }>, "many">;
+        }, "strip", z.ZodTypeAny, {
+            options: {
+                id: string;
+                label: string;
+            }[];
+            type: "multiChoice";
+        }, {
+            options: {
+                id: string;
+                label: string;
+            }[];
+            type: "multiChoice";
+        }>, z.ZodObject<{
             type: z.ZodLiteral<"slider1To10">;
             sliderConfig: z.ZodDefault<z.ZodObject<{
                 minLabel: z.ZodOptional<z.ZodString>;
@@ -63210,6 +63734,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         }>]>;
         taskId: z.ZodString;
         selectedOptionId: z.ZodOptional<z.ZodString>;
+        selectedOptionIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         selectedResponseText: z.ZodOptional<z.ZodString>;
         freeTextResponse: z.ZodOptional<z.ZodString>;
         sliderValue: z.ZodOptional<z.ZodNumber>;
@@ -63227,6 +63752,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             }[];
             type: "choice";
         } | {
+            options: {
+                id: string;
+                label: string;
+            }[];
+            type: "multiChoice";
+        } | {
             type: "slider1To10";
             sliderConfig: {
                 minLabel?: string | undefined;
@@ -63239,6 +63770,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         respondedAt?: import("../../types").Timestamp | undefined;
         selectedResponseText?: string | undefined;
         selectedOptionId?: string | undefined;
+        selectedOptionIds?: string[] | undefined;
         freeTextResponse?: string | undefined;
         sliderValue?: number | undefined;
     }, {
@@ -63254,6 +63786,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             }[];
             type: "choice";
         } | {
+            options: {
+                id: string;
+                label: string;
+            }[];
+            type: "multiChoice";
+        } | {
             type: "slider1To10";
             sliderConfig?: {
                 minLabel?: string | undefined;
@@ -63266,6 +63804,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         respondedAt?: import("../../types").Timestamp | undefined;
         selectedResponseText?: string | undefined;
         selectedOptionId?: string | undefined;
+        selectedOptionIds?: string[] | undefined;
         freeTextResponse?: string | undefined;
         sliderValue?: number | undefined;
     }>, {
@@ -63281,6 +63820,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             }[];
             type: "choice";
         } | {
+            options: {
+                id: string;
+                label: string;
+            }[];
+            type: "multiChoice";
+        } | {
             type: "slider1To10";
             sliderConfig: {
                 minLabel?: string | undefined;
@@ -63293,6 +63838,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         respondedAt?: import("../../types").Timestamp | undefined;
         selectedResponseText?: string | undefined;
         selectedOptionId?: string | undefined;
+        selectedOptionIds?: string[] | undefined;
         freeTextResponse?: string | undefined;
         sliderValue?: number | undefined;
     }, unknown>;
@@ -63318,6 +63864,12 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             }[];
             type: "choice";
         } | {
+            options: {
+                id: string;
+                label: string;
+            }[];
+            type: "multiChoice";
+        } | {
             type: "slider1To10";
             sliderConfig: {
                 minLabel?: string | undefined;
@@ -63330,6 +63882,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         respondedAt?: import("../../types").Timestamp | undefined;
         selectedResponseText?: string | undefined;
         selectedOptionId?: string | undefined;
+        selectedOptionIds?: string[] | undefined;
         freeTextResponse?: string | undefined;
         sliderValue?: number | undefined;
     };
@@ -63375,6 +63928,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         planName: z.ZodOptional<z.ZodString>;
         behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         note: z.ZodString;
+        planSentiment: z.ZodOptional<z.ZodEnum<["confirmed", "changed", "declined_changes", "no_plan", "skipped"]>>;
         relatedProposalLogId: z.ZodOptional<z.ZodString>;
         reflectionQuote: z.ZodOptional<z.ZodString>;
         winRateWhileActive: z.ZodOptional<z.ZodArray<z.ZodObject<{
@@ -63404,6 +63958,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         planId?: string | undefined;
         planPath?: string | undefined;
         planName?: string | undefined;
+        planSentiment?: "confirmed" | "changed" | "declined_changes" | "no_plan" | "skipped" | undefined;
         relatedProposalLogId?: string | undefined;
         reflectionQuote?: string | undefined;
         winRateWhileActive?: {
@@ -63421,6 +63976,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         planId?: string | undefined;
         planPath?: string | undefined;
         planName?: string | undefined;
+        planSentiment?: "confirmed" | "changed" | "declined_changes" | "no_plan" | "skipped" | undefined;
         relatedProposalLogId?: string | undefined;
         reflectionQuote?: string | undefined;
         winRateWhileActive?: {
@@ -63448,6 +64004,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         planId?: string | undefined;
         planPath?: string | undefined;
         planName?: string | undefined;
+        planSentiment?: "confirmed" | "changed" | "declined_changes" | "no_plan" | "skipped" | undefined;
         relatedProposalLogId?: string | undefined;
         reflectionQuote?: string | undefined;
         winRateWhileActive?: {
@@ -63480,6 +64037,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         planId?: string | undefined;
         planPath?: string | undefined;
         planName?: string | undefined;
+        planSentiment?: "confirmed" | "changed" | "declined_changes" | "no_plan" | "skipped" | undefined;
         relatedProposalLogId?: string | undefined;
         reflectionQuote?: string | undefined;
         winRateWhileActive?: {
