@@ -24831,6 +24831,7 @@ export declare const logSchemas: {
                 type: z.ZodLiteral<"create_plan">;
                 triggerClientId: z.ZodOptional<z.ZodString>;
                 existingTriggerId: z.ZodOptional<z.ZodString>;
+                existingBehaviorId: z.ZodOptional<z.ZodString>;
                 plan: z.ZodObject<{
                     id: z.ZodOptional<z.ZodString>;
                     name: z.ZodString;
@@ -24943,6 +24944,7 @@ export declare const logSchemas: {
                 };
                 triggerClientId?: string | undefined;
                 existingTriggerId?: string | undefined;
+                existingBehaviorId?: string | undefined;
             }, {
                 type: "create_plan";
                 plan: {
@@ -24967,6 +24969,7 @@ export declare const logSchemas: {
                 };
                 triggerClientId?: string | undefined;
                 existingTriggerId?: string | undefined;
+                existingBehaviorId?: string | undefined;
             }>, z.ZodObject<{
                 type: z.ZodLiteral<"set_behavior_goal">;
                 behaviorId: z.ZodString;
@@ -25167,6 +25170,7 @@ export declare const logSchemas: {
                 };
                 triggerClientId?: string | undefined;
                 existingTriggerId?: string | undefined;
+                existingBehaviorId?: string | undefined;
             } | {
                 type: "set_behavior_goal";
                 behaviorId: string;
@@ -25243,6 +25247,7 @@ export declare const logSchemas: {
                 };
                 triggerClientId?: string | undefined;
                 existingTriggerId?: string | undefined;
+                existingBehaviorId?: string | undefined;
             } | {
                 type: "set_behavior_goal";
                 behaviorId: string;
@@ -25331,6 +25336,7 @@ export declare const logSchemas: {
                 };
                 triggerClientId?: string | undefined;
                 existingTriggerId?: string | undefined;
+                existingBehaviorId?: string | undefined;
             } | {
                 type: "set_behavior_goal";
                 behaviorId: string;
@@ -25422,6 +25428,7 @@ export declare const logSchemas: {
                 };
                 triggerClientId?: string | undefined;
                 existingTriggerId?: string | undefined;
+                existingBehaviorId?: string | undefined;
             } | {
                 type: "set_behavior_goal";
                 behaviorId: string;
@@ -53347,6 +53354,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             type: z.ZodLiteral<"create_plan">;
             triggerClientId: z.ZodOptional<z.ZodString>;
             existingTriggerId: z.ZodOptional<z.ZodString>;
+            existingBehaviorId: z.ZodOptional<z.ZodString>;
             plan: z.ZodObject<{
                 id: z.ZodOptional<z.ZodString>;
                 name: z.ZodString;
@@ -53459,6 +53467,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             };
             triggerClientId?: string | undefined;
             existingTriggerId?: string | undefined;
+            existingBehaviorId?: string | undefined;
         }, {
             type: "create_plan";
             plan: {
@@ -53483,6 +53492,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             };
             triggerClientId?: string | undefined;
             existingTriggerId?: string | undefined;
+            existingBehaviorId?: string | undefined;
         }>, z.ZodObject<{
             type: z.ZodLiteral<"set_behavior_goal">;
             behaviorId: z.ZodString;
@@ -53683,6 +53693,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             };
             triggerClientId?: string | undefined;
             existingTriggerId?: string | undefined;
+            existingBehaviorId?: string | undefined;
         } | {
             type: "set_behavior_goal";
             behaviorId: string;
@@ -53759,6 +53770,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             };
             triggerClientId?: string | undefined;
             existingTriggerId?: string | undefined;
+            existingBehaviorId?: string | undefined;
         } | {
             type: "set_behavior_goal";
             behaviorId: string;
@@ -53847,6 +53859,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             };
             triggerClientId?: string | undefined;
             existingTriggerId?: string | undefined;
+            existingBehaviorId?: string | undefined;
         } | {
             type: "set_behavior_goal";
             behaviorId: string;
@@ -53938,6 +53951,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             };
             triggerClientId?: string | undefined;
             existingTriggerId?: string | undefined;
+            existingBehaviorId?: string | undefined;
         } | {
             type: "set_behavior_goal";
             behaviorId: string;

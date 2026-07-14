@@ -43,6 +43,11 @@ export const createPlanStrategyOperationSchema = z.object({
   type: z.literal("create_plan"),
   triggerClientId: z.string().min(1).optional(),
   existingTriggerId: z.string().min(1).optional(),
+  // Behavior-level (catch-all) plan: created under
+  // users/{uid}/behaviors/{id}/plans and made the ACTIVE plan on acceptance
+  // (any other active plan on the behavior is deactivated). For plans that
+  // don't hang off a trigger.
+  existingBehaviorId: z.string().min(1).optional(),
   plan: strategyPlanDraftSchema,
 });
 

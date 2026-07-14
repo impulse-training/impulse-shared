@@ -161,6 +161,7 @@ export declare const createPlanStrategyOperationSchema: z.ZodObject<{
     type: z.ZodLiteral<"create_plan">;
     triggerClientId: z.ZodOptional<z.ZodString>;
     existingTriggerId: z.ZodOptional<z.ZodString>;
+    existingBehaviorId: z.ZodOptional<z.ZodString>;
     plan: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         name: z.ZodString;
@@ -273,6 +274,7 @@ export declare const createPlanStrategyOperationSchema: z.ZodObject<{
     };
     triggerClientId?: string | undefined;
     existingTriggerId?: string | undefined;
+    existingBehaviorId?: string | undefined;
 }, {
     type: "create_plan";
     plan: {
@@ -297,6 +299,7 @@ export declare const createPlanStrategyOperationSchema: z.ZodObject<{
     };
     triggerClientId?: string | undefined;
     existingTriggerId?: string | undefined;
+    existingBehaviorId?: string | undefined;
 }>;
 export declare const setBehaviorGoalStrategyOperationSchema: z.ZodObject<{
     type: z.ZodLiteral<"set_behavior_goal">;
@@ -501,6 +504,7 @@ export declare const strategyModificationOperationSchema: z.ZodDiscriminatedUnio
     type: z.ZodLiteral<"create_plan">;
     triggerClientId: z.ZodOptional<z.ZodString>;
     existingTriggerId: z.ZodOptional<z.ZodString>;
+    existingBehaviorId: z.ZodOptional<z.ZodString>;
     plan: z.ZodObject<{
         id: z.ZodOptional<z.ZodString>;
         name: z.ZodString;
@@ -613,6 +617,7 @@ export declare const strategyModificationOperationSchema: z.ZodDiscriminatedUnio
     };
     triggerClientId?: string | undefined;
     existingTriggerId?: string | undefined;
+    existingBehaviorId?: string | undefined;
 }, {
     type: "create_plan";
     plan: {
@@ -637,6 +642,7 @@ export declare const strategyModificationOperationSchema: z.ZodDiscriminatedUnio
     };
     triggerClientId?: string | undefined;
     existingTriggerId?: string | undefined;
+    existingBehaviorId?: string | undefined;
 }>, z.ZodObject<{
     type: z.ZodLiteral<"set_behavior_goal">;
     behaviorId: z.ZodString;
@@ -859,6 +865,7 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
             type: z.ZodLiteral<"create_plan">;
             triggerClientId: z.ZodOptional<z.ZodString>;
             existingTriggerId: z.ZodOptional<z.ZodString>;
+            existingBehaviorId: z.ZodOptional<z.ZodString>;
             plan: z.ZodObject<{
                 id: z.ZodOptional<z.ZodString>;
                 name: z.ZodString;
@@ -971,6 +978,7 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
             };
             triggerClientId?: string | undefined;
             existingTriggerId?: string | undefined;
+            existingBehaviorId?: string | undefined;
         }, {
             type: "create_plan";
             plan: {
@@ -995,6 +1003,7 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
             };
             triggerClientId?: string | undefined;
             existingTriggerId?: string | undefined;
+            existingBehaviorId?: string | undefined;
         }>, z.ZodObject<{
             type: z.ZodLiteral<"set_behavior_goal">;
             behaviorId: z.ZodString;
@@ -1206,6 +1215,7 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
             };
             triggerClientId?: string | undefined;
             existingTriggerId?: string | undefined;
+            existingBehaviorId?: string | undefined;
         } | {
             type: "set_behavior_goal";
             behaviorId: string;
@@ -1282,6 +1292,7 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
             };
             triggerClientId?: string | undefined;
             existingTriggerId?: string | undefined;
+            existingBehaviorId?: string | undefined;
         } | {
             type: "set_behavior_goal";
             behaviorId: string;
@@ -1370,6 +1381,7 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
             };
             triggerClientId?: string | undefined;
             existingTriggerId?: string | undefined;
+            existingBehaviorId?: string | undefined;
         } | {
             type: "set_behavior_goal";
             behaviorId: string;
@@ -1461,6 +1473,7 @@ export declare const proposedStrategyModificationLogSchema: z.ZodObject<{
             };
             triggerClientId?: string | undefined;
             existingTriggerId?: string | undefined;
+            existingBehaviorId?: string | undefined;
         } | {
             type: "set_behavior_goal";
             behaviorId: string;

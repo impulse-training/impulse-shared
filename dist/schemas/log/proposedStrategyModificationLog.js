@@ -41,6 +41,11 @@ exports.createPlanStrategyOperationSchema = zod_1.z.object({
     type: zod_1.z.literal("create_plan"),
     triggerClientId: zod_1.z.string().min(1).optional(),
     existingTriggerId: zod_1.z.string().min(1).optional(),
+    // Behavior-level (catch-all) plan: created under
+    // users/{uid}/behaviors/{id}/plans and made the ACTIVE plan on acceptance
+    // (any other active plan on the behavior is deactivated). For plans that
+    // don't hang off a trigger.
+    existingBehaviorId: zod_1.z.string().min(1).optional(),
     plan: strategyPlanDraftSchema,
 });
 // Replaces the behavior's goal wholesale on acceptance (e.g. switching to a
