@@ -4,6 +4,33 @@ exports.getGptPayload = getGptPayload;
 const log_1 = require("../schemas/log");
 const buildPlansLogPayload_1 = require("./buildPlansLogPayload");
 const constants_1 = require("../constants");
+/**
+ * Drop the tactic-card `logId` from a replayed tool-call result before it goes
+ * back to the model. suggestTactic / findOrCreateTactic return it, but no tool
+ * ever reads a tactic logId back (tactic actions use tacticId), so it's dead
+ * context — and being a random Firestore doc id, it also makes request bodies
+ * nondeterministic across runs. The stored ToolCallLog keeps it; only the model
+ * payload is trimmed. (Behavior logIds the model DOES need come from the system
+ * prompt's [logId=...] markers, not tool results, so they're unaffected.)
+ */
+function stripReplayedToolResultIds(result) {
+    if (result.role !== "tool" ||
+        typeof result.content !== "string") {
+        return result;
+    }
+    const content = result.content;
+    try {
+        const parsed = JSON.parse(content);
+        if (parsed && typeof parsed === "object" && "logId" in parsed) {
+            delete parsed.logId;
+            return { ...result, content: JSON.stringify(parsed) };
+        }
+    }
+    catch (_a) {
+        // Non-JSON tool content — leave as-is.
+    }
+    return result;
+}
 function buildBehaviorLogPayload(log, options) {
     var _a, _b, _c;
     const { behaviorName, formattedValue, source, debriefOutcome } = log.data;
@@ -232,7 +259,7 @@ function getGptPayload(log, isFinalLogInSession, options) {
         // Add tool result messages
         if (log.data.toolCallResults && log.data.toolCallResults.length > 0) {
             log.data.toolCallResults.forEach((result) => {
-                messages.push(result);
+                messages.push(stripReplayedToolResultIds(result));
             });
         }
         return messages;
