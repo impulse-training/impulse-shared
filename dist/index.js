@@ -49,6 +49,7 @@ __exportStar(require("./llm"), exports);
 __exportStar(require("./schemas"), exports);
 __exportStar(require("./utils/attachments"), exports);
 __exportStar(require("./utils/behaviorData"), exports);
+__exportStar(require("./utils/clock"), exports);
 __exportStar(require("./utils/dates"), exports);
 __exportStar(require("./utils/days"), exports);
 __exportStar(require("./utils/documentReferenceSchema"), exports);
