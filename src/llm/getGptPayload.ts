@@ -28,6 +28,37 @@ interface PayloadOptions {
   sessionType?: string;
 }
 
+/**
+ * Drop the tactic-card `logId` from a replayed tool-call result before it goes
+ * back to the model. suggestTactic / findOrCreateTactic return it, but no tool
+ * ever reads a tactic logId back (tactic actions use tacticId), so it's dead
+ * context — and being a random Firestore doc id, it also makes request bodies
+ * nondeterministic across runs. The stored ToolCallLog keeps it; only the model
+ * payload is trimmed. (Behavior logIds the model DOES need come from the system
+ * prompt's [logId=...] markers, not tool results, so they're unaffected.)
+ */
+function stripReplayedToolResultIds(
+  result: ChatCompletionMessageParam,
+): ChatCompletionMessageParam {
+  if (
+    (result as { role?: string }).role !== "tool" ||
+    typeof (result as { content?: unknown }).content !== "string"
+  ) {
+    return result;
+  }
+  const content = (result as { content: string }).content;
+  try {
+    const parsed = JSON.parse(content);
+    if (parsed && typeof parsed === "object" && "logId" in parsed) {
+      delete (parsed as { logId?: unknown }).logId;
+      return { ...result, content: JSON.stringify(parsed) };
+    }
+  } catch {
+    // Non-JSON tool content — leave as-is.
+  }
+  return result;
+}
+
 function buildBehaviorLogPayload(
   log: BehaviorLog,
   options?: PayloadOptions,
@@ -307,7 +338,7 @@ export function getGptPayload(
     // Add tool result messages
     if (log.data.toolCallResults && log.data.toolCallResults.length > 0) {
       log.data.toolCallResults.forEach((result) => {
-        messages.push(result);
+        messages.push(stripReplayedToolResultIds(result));
       });
     }
 
