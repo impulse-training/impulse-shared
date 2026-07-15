@@ -18,6 +18,41 @@ function unitFor(quantity, unitPlural) {
     }
     return unitPlural;
 }
+/**
+ * A window's end is exclusive, so "00:00" means "up to midnight" rather than
+ * "at 00:00" — spelling it out avoids a range that reads as though it runs
+ * backwards ("10:00–00:00").
+ */
+function formatWindowTime(time) {
+    return time === "00:00" ? "midnight" : time;
+}
+/**
+ * Renders contain windows grouped by time range rather than one entry per day,
+ * so the common "same hours every day" goal reads as "10:00–midnight, every day"
+ * instead of the same range repeated seven times. Groups keep week order (Sun
+ * first), matching DAY_LABELS.
+ */
+function formatContainWindows(windows, dayLabels) {
+    const byRange = new Map();
+    for (const w of [...windows].sort((a, b) => a.dayOfWeek - b.dayOfWeek)) {
+        const range = `${formatWindowTime(w.startTime)}–${formatWindowTime(w.endTime)}`;
+        const days = byRange.get(range);
+        if (days) {
+            if (!days.includes(w.dayOfWeek))
+                days.push(w.dayOfWeek);
+        }
+        else {
+            byRange.set(range, [w.dayOfWeek]);
+        }
+    }
+    const parts = [...byRange.entries()].map(([range, days]) => {
+        if (days.length === 7)
+            return `${range}, every day`;
+        const labels = days.map((d) => dayLabels[d] || `Day ${d}`).join(", ");
+        return `${labels} ${range}`;
+    });
+    return `Only ${parts.join(", ")}`;
+}
 function formatBehaviorGoal(behavior, goal) {
     const effectiveGoal = goal !== null && goal !== void 0 ? goal : behavior.goal;
     if (!effectiveGoal)
@@ -68,11 +103,7 @@ function formatRichGoal(goal, unitPlural, isScale = false) {
         const { allowedWindows } = goal;
         if (allowedWindows.length === 0)
             return "Eliminate";
-        const parts = allowedWindows.map((w) => {
-            const day = DAY_LABELS[w.dayOfWeek] || `Day ${w.dayOfWeek}`;
-            return `${day} ${w.startTime}–${w.endTime}`;
-        });
-        return `Only ${parts.join(", ")}`;
+        return formatContainWindows(allowedWindows, DAY_LABELS);
     }
     if (goal.type === "reduceIndividualDays") {
         const { dailyTargets } = goal;
