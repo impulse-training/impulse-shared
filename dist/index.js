@@ -61,6 +61,7 @@ __exportStar(require("./utils/timestampSchema"), exports);
 __exportStar(require("./utils/validation"), exports);
 __exportStar(require("./utils/withId"), exports);
 __exportStar(require("./utils/formatBehaviorGoal"), exports);
+__exportStar(require("./utils/getBehaviorStreakLabel"), exports);
 __exportStar(require("./utils/tacticFit"), exports);
 __exportStar(require("./utils/tacticScoring"), exports);
 __exportStar(require("./utils/planScoring"), exports);
