@@ -189,6 +189,21 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         console.log("Latest log is assistant output. Not responding with AI.");
         return false;
     }
+    // A structured debrief question was posted (quick-tap chips) and is still
+    // unanswered — it is the latest log in the session. It stands on its own; any
+    // AI free-text reply layered on top of it hides the chips in the UI. This
+    // blocks the redundant reply that arises when a tracked behavior auto-posts
+    // the question and, a beat later, the user taps "Discuss" on the card (which
+    // flips shouldZaraRespond → true on the behavior log). Answering the question
+    // sets `selectedResponseText` (no longer "unanswered") and produces a newer
+    // log, so the deferred reply still fires then via isDebriefQuestionResponseSelected.
+    const latestIsUnansweredDebriefQuestion = !!latestSessionLog &&
+        (0, log_1.logIsDebriefQuestionLog)(latestSessionLog) &&
+        !latestSessionLog.data.selectedResponseText;
+    if (latestIsUnansweredDebriefQuestion) {
+        console.log("Latest log is an unanswered debrief question. Not responding with AI.");
+        return false;
+    }
     const isCreating = !beforeData && afterData;
     const isUpdating = beforeData && afterData;
     const isNotDeleting = !!afterData;

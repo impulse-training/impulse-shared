@@ -136,6 +136,20 @@ export const userDataSchema = z.object({
   // Coach flag - set when user is approved as a coach
   isCoach: z.boolean().optional(),
 
+  // Coach "notify me when they come back" one-shot. When armed, the next
+  // lastActive bump on this (client) user doc pushes the coach and then the
+  // whole object is deleted (one-shot; re-arming is a deliberate coach action).
+  // A silent app open counts, since auth alone bumps lastActive.
+  coachWatch: z
+    .object({
+      notifyOnReturn: z.boolean(),
+      // The coach uid to notify (denormalized so the trigger doesn't have to
+      // resolve coachId, and so it keeps working if the assignment changes).
+      coachId: z.string(),
+      armedAt: timestampSchema,
+    })
+    .optional(),
+
   latestSupportGroupMessages: z
     .record(supportGroupTypeSchema, latestSupportGroupMessageSchema)
     .optional(),

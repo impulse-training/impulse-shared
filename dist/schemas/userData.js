@@ -114,6 +114,19 @@ exports.userDataSchema = zod_1.z.object({
     calendarBehaviorIds: zod_1.z.array(zod_1.z.string()).optional(),
     // Coach flag - set when user is approved as a coach
     isCoach: zod_1.z.boolean().optional(),
+    // Coach "notify me when they come back" one-shot. When armed, the next
+    // lastActive bump on this (client) user doc pushes the coach and then the
+    // whole object is deleted (one-shot; re-arming is a deliberate coach action).
+    // A silent app open counts, since auth alone bumps lastActive.
+    coachWatch: zod_1.z
+        .object({
+        notifyOnReturn: zod_1.z.boolean(),
+        // The coach uid to notify (denormalized so the trigger doesn't have to
+        // resolve coachId, and so it keeps working if the assignment changes).
+        coachId: zod_1.z.string(),
+        armedAt: timestampSchema_1.timestampSchema,
+    })
+        .optional(),
     latestSupportGroupMessages: zod_1.z
         .record(supportGroup_1.supportGroupTypeSchema, latestSupportGroupMessageSchema)
         .optional(),
