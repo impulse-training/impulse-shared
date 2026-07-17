@@ -148,6 +148,7 @@ export declare const userDataSchema: z.ZodObject<{
     seenRoadmapItemIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     roadmapNotificationsEnabled: z.ZodOptional<z.ZodBoolean>;
     zaraVoiceId: z.ZodOptional<z.ZodEnum<["alloy", "shimmer", "echo"]>>;
+    coachingEnabled: z.ZodOptional<z.ZodBoolean>;
     zaraCoachId: z.ZodOptional<z.ZodString>;
     zaraSlot: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         dayOfWeek: z.ZodNumber;
@@ -282,6 +283,7 @@ export declare const userDataSchema: z.ZodObject<{
     seenRoadmapItemIds?: string[] | undefined;
     roadmapNotificationsEnabled?: boolean | undefined;
     zaraVoiceId?: "alloy" | "shimmer" | "echo" | undefined;
+    coachingEnabled?: boolean | undefined;
     zaraCoachId?: string | undefined;
     zaraSlot?: {
         dayOfWeek: number;
@@ -382,6 +384,7 @@ export declare const userDataSchema: z.ZodObject<{
     seenRoadmapItemIds?: string[] | undefined;
     roadmapNotificationsEnabled?: boolean | undefined;
     zaraVoiceId?: "alloy" | "shimmer" | "echo" | undefined;
+    coachingEnabled?: boolean | undefined;
     zaraCoachId?: string | undefined;
     zaraSlot?: {
         dayOfWeek: number;

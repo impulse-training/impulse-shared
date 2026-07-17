@@ -169,6 +169,11 @@ export const userDataSchema = z.object({
   // Voice preference for coach check-in calls
   zaraVoiceId: z.enum(["alloy", "shimmer", "echo"]).optional(),
 
+  // Coaching opt-in, toggled by a coach from the dashboard. Gates the
+  // client-facing coaching surfaces (e.g. the Home "Coaching" card that shows
+  // upcoming coach sessions). Absent/false = the user sees no coaching UI.
+  coachingEnabled: z.boolean().optional(),
+
   // Coach check-in configuration — which coach and which weekly slot the user has claimed
   zaraCoachId: z.string().optional(),
   zaraSlot: z
