@@ -109,6 +109,19 @@ export declare const userDataSchema: z.ZodObject<{
     markedAsEligibleAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     calendarBehaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     isCoach: z.ZodOptional<z.ZodBoolean>;
+    coachWatch: z.ZodOptional<z.ZodObject<{
+        notifyOnReturn: z.ZodBoolean;
+        coachId: z.ZodString;
+        armedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
+    }, "strip", z.ZodTypeAny, {
+        coachId: string;
+        notifyOnReturn: boolean;
+        armedAt: import("../types").Timestamp;
+    }, {
+        coachId: string;
+        notifyOnReturn: boolean;
+        armedAt: import("../types").Timestamp;
+    }>>;
     latestSupportGroupMessages: z.ZodOptional<z.ZodRecord<z.ZodEnum<["system", "social", "coach", "onboarding", "alignment"]>, z.ZodObject<{
         senderId: z.ZodString;
         message: z.ZodString;
@@ -265,6 +278,11 @@ export declare const userDataSchema: z.ZodObject<{
     markedAsEligibleAt?: import("../types").Timestamp | undefined;
     calendarBehaviorIds?: string[] | undefined;
     isCoach?: boolean | undefined;
+    coachWatch?: {
+        coachId: string;
+        notifyOnReturn: boolean;
+        armedAt: import("../types").Timestamp;
+    } | undefined;
     latestSupportGroupMessages?: Partial<Record<"onboarding" | "system" | "coach" | "alignment" | "social", {
         message: string;
         sentAt: import("../types").Timestamp;
@@ -366,6 +384,11 @@ export declare const userDataSchema: z.ZodObject<{
     markedAsEligibleAt?: import("../types").Timestamp | undefined;
     calendarBehaviorIds?: string[] | undefined;
     isCoach?: boolean | undefined;
+    coachWatch?: {
+        coachId: string;
+        notifyOnReturn: boolean;
+        armedAt: import("../types").Timestamp;
+    } | undefined;
     latestSupportGroupMessages?: Partial<Record<"onboarding" | "system" | "coach" | "alignment" | "social", {
         message: string;
         sentAt: import("../types").Timestamp;
