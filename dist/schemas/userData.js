@@ -139,6 +139,10 @@ exports.userDataSchema = zod_1.z.object({
     roadmapNotificationsEnabled: zod_1.z.boolean().optional(),
     // Voice preference for coach check-in calls
     zaraVoiceId: zod_1.z.enum(["alloy", "shimmer", "echo"]).optional(),
+    // Coaching opt-in, toggled by a coach from the dashboard. Gates the
+    // client-facing coaching surfaces (e.g. the Home "Coaching" card that shows
+    // upcoming coach sessions). Absent/false = the user sees no coaching UI.
+    coachingEnabled: zod_1.z.boolean().optional(),
     // Coach check-in configuration — which coach and which weekly slot the user has claimed
     zaraCoachId: zod_1.z.string().optional(),
     zaraSlot: zod_1.z
