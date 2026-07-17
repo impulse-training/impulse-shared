@@ -23,6 +23,8 @@ export * from "./utils/timestampSchema";
 export * from "./utils/validation";
 export * from "./utils/withId";
 export * from "./utils/formatBehaviorGoal";
+export * from "./utils/getBehaviorStreakLabel";
+export * from "./utils/weekOverviewCardHasSignal";
 export * from "./utils/tacticFit";
 export * from "./utils/tacticScoring";
 export * from "./utils/planScoring";
