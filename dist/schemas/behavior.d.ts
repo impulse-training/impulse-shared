@@ -2097,6 +2097,7 @@ export declare const behaviorSchema: z.ZodObject<{
             currentStreakDays: number;
         } | undefined;
     }>>;
+    maxTrackedPerDay: z.ZodOptional<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
     name: string;
     trackingType: "counter" | "timer" | "scale";
@@ -2305,6 +2306,7 @@ export declare const behaviorSchema: z.ZodObject<{
             currentStreakDays: number;
         } | undefined;
     } | undefined;
+    maxTrackedPerDay?: number | undefined;
 }, {
     name: string;
     trackingType: "counter" | "timer" | "scale";
@@ -2513,6 +2515,7 @@ export declare const behaviorSchema: z.ZodObject<{
             currentStreakDays: number;
         } | undefined;
     } | undefined;
+    maxTrackedPerDay?: number | undefined;
 }>;
 export type Behavior = z.infer<typeof behaviorSchema>;
 export declare const isBehavior: (value: unknown) => value is Behavior;

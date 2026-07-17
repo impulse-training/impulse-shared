@@ -247,6 +247,17 @@ exports.behaviorSchema = behaviorTemplate_1.behaviorTemplateBase
         .optional(),
     // Computed state for this behavior (windows, trend, etc.)
     state: exports.behaviorStateSchema.optional(),
+    // High-water mark: the largest single-day total ever recorded for this
+    // behavior, in the SAME canonical unit as daySummary
+    // behaviorDataTotalByBehaviorId.value (minutes for timer, raw count for
+    // counter, level for scale). Used purely as the fixed y-axis ceiling for
+    // behavior charts so bar heights stay comparable across weeks instead of
+    // rescaling to each week's own max. Maintained monotonically by
+    // reaggregateDaySummaryBehaviorTotals (bumped when a day's total exceeds
+    // it) and populated historically by backfillMaxTrackedPerDay. Absent for
+    // behaviors with no tracked data yet; consumers fall back to the visible
+    // window's max.
+    maxTrackedPerDay: zod_1.z.number().optional(),
 });
 const isBehavior = (value) => exports.behaviorSchema.safeParse(value).success;
 exports.isBehavior = isBehavior;

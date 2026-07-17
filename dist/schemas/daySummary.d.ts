@@ -1054,6 +1054,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                 currentStreakDays: number;
             } | undefined;
         }>>;
+        maxTrackedPerDay: z.ZodOptional<z.ZodNumber>;
     }, "strip", z.ZodTypeAny, {
         name: string;
         trackingType: "counter" | "timer" | "scale";
@@ -1262,6 +1263,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                 currentStreakDays: number;
             } | undefined;
         } | undefined;
+        maxTrackedPerDay?: number | undefined;
     }, {
         name: string;
         trackingType: "counter" | "timer" | "scale";
@@ -1470,6 +1472,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                 currentStreakDays: number;
             } | undefined;
         } | undefined;
+        maxTrackedPerDay?: number | undefined;
     }>>>;
 }, "strip", z.ZodTypeAny, {
     behaviorTotals: Record<string, {
@@ -1693,6 +1696,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                 currentStreakDays: number;
             } | undefined;
         } | undefined;
+        maxTrackedPerDay?: number | undefined;
     }> | undefined;
 }, {
     behaviorTotals: Record<string, {
@@ -1916,6 +1920,7 @@ export declare const recapResponseValueSchema: z.ZodObject<{
                 currentStreakDays: number;
             } | undefined;
         } | undefined;
+        maxTrackedPerDay?: number | undefined;
     }> | undefined;
 }>;
 export type RecapResponseValue = z.infer<typeof recapResponseValueSchema>;
@@ -2947,6 +2952,7 @@ export declare const daySummarySchema: z.ZodObject<{
                 currentStreakDays: number;
             } | undefined;
         }>>;
+        maxTrackedPerDay: z.ZodOptional<z.ZodNumber>;
     }, "strip", z.ZodTypeAny, {
         name: string;
         trackingType: "counter" | "timer" | "scale";
@@ -3155,6 +3161,7 @@ export declare const daySummarySchema: z.ZodObject<{
                 currentStreakDays: number;
             } | undefined;
         } | undefined;
+        maxTrackedPerDay?: number | undefined;
     }, {
         name: string;
         trackingType: "counter" | "timer" | "scale";
@@ -3363,6 +3370,7 @@ export declare const daySummarySchema: z.ZodObject<{
                 currentStreakDays: number;
             } | undefined;
         } | undefined;
+        maxTrackedPerDay?: number | undefined;
     }>>>;
     tacticsUsed: z.ZodDefault<z.ZodArray<z.ZodAny, "many">>;
     summaryText: z.ZodNullable<z.ZodString>;
@@ -3666,6 +3674,7 @@ export declare const daySummarySchema: z.ZodObject<{
                 currentStreakDays: number;
             } | undefined;
         } | undefined;
+        maxTrackedPerDay?: number | undefined;
     }> | undefined;
     supportGroupPermissionsById?: Record<string, {
         summary: boolean;
@@ -3917,6 +3926,7 @@ export declare const daySummarySchema: z.ZodObject<{
                 currentStreakDays: number;
             } | undefined;
         } | undefined;
+        maxTrackedPerDay?: number | undefined;
     }> | undefined;
     tacticsUsed?: any[] | undefined;
     supportGroupPermissionsById?: Record<string, {
