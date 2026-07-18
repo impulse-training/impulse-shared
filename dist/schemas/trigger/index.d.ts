@@ -37,7 +37,7 @@ export declare const triggerSchema: z.ZodObject<{
     lastOccurredAt: z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-    deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    deletedAt: z.ZodOptional<z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>>;
 }, "strip", z.ZodTypeAny, {
     tags: Record<string, string>;
     lastOccurredAt: import("../../types").Timestamp | null;
@@ -48,7 +48,7 @@ export declare const triggerSchema: z.ZodObject<{
     text?: string | undefined;
     ordinal?: number | undefined;
     triggerType?: "arrival" | "departure" | undefined;
-    deletedAt?: import("../../types").Timestamp | undefined;
+    deletedAt?: import("../../types").Timestamp | null | undefined;
     location?: {
         triggerType: "arrival" | "departure";
         locationName: string;
@@ -64,7 +64,7 @@ export declare const triggerSchema: z.ZodObject<{
     ordinal?: number | undefined;
     tags?: Record<string, string> | undefined;
     triggerType?: "arrival" | "departure" | undefined;
-    deletedAt?: import("../../types").Timestamp | undefined;
+    deletedAt?: import("../../types").Timestamp | null | undefined;
     location?: {
         triggerType: "arrival" | "departure";
         locationName: string;
@@ -105,7 +105,7 @@ export declare const triggerWithIdSchema: z.ZodIntersection<z.ZodObject<{
     lastOccurredAt: z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
-    deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    deletedAt: z.ZodOptional<z.ZodNullable<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>>;
 }, z.UnknownKeysParam, z.ZodTypeAny, {
     tags: Record<string, string>;
     lastOccurredAt: import("../../types").Timestamp | null;
@@ -116,7 +116,7 @@ export declare const triggerWithIdSchema: z.ZodIntersection<z.ZodObject<{
     text?: string | undefined;
     ordinal?: number | undefined;
     triggerType?: "arrival" | "departure" | undefined;
-    deletedAt?: import("../../types").Timestamp | undefined;
+    deletedAt?: import("../../types").Timestamp | null | undefined;
     location?: {
         triggerType: "arrival" | "departure";
         locationName: string;
@@ -132,7 +132,7 @@ export declare const triggerWithIdSchema: z.ZodIntersection<z.ZodObject<{
     ordinal?: number | undefined;
     tags?: Record<string, string> | undefined;
     triggerType?: "arrival" | "departure" | undefined;
-    deletedAt?: import("../../types").Timestamp | undefined;
+    deletedAt?: import("../../types").Timestamp | null | undefined;
     location?: {
         triggerType: "arrival" | "departure";
         locationName: string;

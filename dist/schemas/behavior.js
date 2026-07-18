@@ -132,8 +132,14 @@ exports.recentSliceSchema = zod_1.z.object({
         offset: zod_1.z.number().int().min(0),
         measured: zod_1.z.number(),
         status: zod_1.z.enum(["MET", "NOT_MET_FAIL", "UNSPECIFIED_FOR_DAY"]),
+        // Whether the user confirmed this day's totals (dayTotalsConfirmedAt on
+        // the daySummary). Unconfirmed days (incl. an in-progress today) are
+        // rendered as gaps in the behavior-card trendline rather than points.
+        // Optional so legacy docs (written before this field) stay valid; the
+        // writers always populate it, and a missing value reads as unconfirmed.
+        confirmed: zod_1.z.boolean().optional(),
     }))
-        .max(5),
+        .max(7),
     direction: zod_1.z.enum(["IMPROVING", "DECLINING", "FLAT", "MIXED"]),
     contrast: zod_1.z.enum(["LOW", "MODERATE", "STRONG"]),
     salience: zod_1.z.enum(["LOW", "MEDIUM", "HIGH"]),
@@ -247,6 +253,17 @@ exports.behaviorSchema = behaviorTemplate_1.behaviorTemplateBase
         .optional(),
     // Computed state for this behavior (windows, trend, etc.)
     state: exports.behaviorStateSchema.optional(),
+    // High-water mark: the largest single-day total ever recorded for this
+    // behavior, in the SAME canonical unit as daySummary
+    // behaviorDataTotalByBehaviorId.value (minutes for timer, raw count for
+    // counter, level for scale). Used purely as the fixed y-axis ceiling for
+    // behavior charts so bar heights stay comparable across weeks instead of
+    // rescaling to each week's own max. Maintained monotonically by
+    // reaggregateDaySummaryBehaviorTotals (bumped when a day's total exceeds
+    // it) and populated historically by backfillMaxTrackedPerDay. Absent for
+    // behaviors with no tracked data yet; consumers fall back to the visible
+    // window's max.
+    maxTrackedPerDay: zod_1.z.number().optional(),
 });
 const isBehavior = (value) => exports.behaviorSchema.safeParse(value).success;
 exports.isBehavior = isBehavior;

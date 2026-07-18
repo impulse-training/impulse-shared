@@ -27,7 +27,9 @@ exports.triggerSchema = zod_1.z.object({
     lastOccurredAt: timestampSchema_1.timestampSchema.nullable(),
     createdAt: timestampSchema_1.timestampSchema.optional(),
     updatedAt: timestampSchema_1.timestampSchema.optional(),
-    deletedAt: timestampSchema_1.timestampSchema.optional(),
+    // Soft-delete marker. Active triggers may have an explicit null (server
+    // writers) or omit the field entirely (app writers) — treat both as live.
+    deletedAt: timestampSchema_1.timestampSchema.nullable().optional(),
 });
 exports.triggerWithIdSchema = (0, withId_1.withIdSchema)(exports.triggerSchema);
 const isValidTrigger = (value) => exports.triggerSchema.safeParse(value).success;
