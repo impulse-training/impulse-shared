@@ -28,7 +28,9 @@ export const triggerSchema = z.object({
   lastOccurredAt: timestampSchema.nullable(),
   createdAt: timestampSchema.optional(),
   updatedAt: timestampSchema.optional(),
-  deletedAt: timestampSchema.optional(),
+  // Soft-delete marker. Active triggers may have an explicit null (server
+  // writers) or omit the field entirely (app writers) — treat both as live.
+  deletedAt: timestampSchema.nullable().optional(),
 });
 
 export type Trigger = z.infer<typeof triggerSchema>;
