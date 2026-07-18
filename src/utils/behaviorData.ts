@@ -18,12 +18,26 @@ type Args = {
   trackingType: BehaviorTrackingData["trackingType"];
   value: number;
   behaviorTrackingUnit?: BehaviorTrackingData["behaviorTrackingUnit"];
+  // Abbreviate long time units for tight spaces (e.g. "3 minutes" -> "3 mins").
+  // Only affects counter units; timer/scale are already compact.
+  compact?: boolean;
+};
+
+// Short forms for the common (pluralized) time units, applied in compact mode.
+const COMPACT_UNITS: Record<string, string> = {
+  minute: "min",
+  minutes: "mins",
+  second: "sec",
+  seconds: "secs",
+  hour: "hr",
+  hours: "hrs",
 };
 
 export function getFormattedValue({
   trackingType,
   value,
   behaviorTrackingUnit,
+  compact,
 }: Args) {
   if (trackingType === "timer") {
     const hours = Math.floor(value / 3600);
@@ -42,5 +56,7 @@ export function getFormattedValue({
     return getScaleLabel(value);
   }
 
-  return pluralize(behaviorTrackingUnit || "times", value, true);
+  const unit = pluralize(behaviorTrackingUnit || "times", value);
+  const displayUnit = compact ? (COMPACT_UNITS[unit.toLowerCase()] ?? unit) : unit;
+  return `${value} ${displayUnit}`;
 }
