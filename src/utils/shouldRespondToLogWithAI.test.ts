@@ -410,3 +410,58 @@ describe("shouldRespondToLogWithAI — strategy proposal card responded", () => 
     ).toBe(false);
   });
 });
+
+describe("shouldRespondToLogWithAI — tactic completion", () => {
+  const activeImpulseSession = {
+    id: "session1",
+    type: "impulse",
+  } as unknown as WithId<Session>;
+
+  const tacticLog = (completed: boolean) =>
+    ({
+      type: "tactic",
+      data: {
+        tactic: { id: "take-50-steps", title: "Take 50 Steps" },
+        tacticRefPath: "tactics/take-50-steps",
+        stepCount: 1,
+        completedStepIndexes: completed ? [0] : [],
+        completed,
+      },
+    }) as unknown as Log;
+
+  it("responds when an inline card's tactic log transitions to completed", () => {
+    expect(
+      shouldRespondToLogWithAI(
+        activeImpulseSession,
+        tacticLog(false),
+        tacticLog(true),
+        assistantLog,
+      ),
+    ).toBe(true);
+  });
+
+  // Plan tactics have no inline card: completing one from the plan sheet
+  // CREATES an already-completed tactic log, and that completion still needs
+  // an AI acknowledgment (it must not be swallowed by the creation path).
+  it("responds when a completed tactic log is created outright (plan-sheet completion)", () => {
+    expect(
+      shouldRespondToLogWithAI(
+        activeImpulseSession,
+        undefined,
+        tacticLog(true),
+        assistantLog,
+      ),
+    ).toBe(true);
+  });
+
+  it("does not respond when an incomplete tactic card is created (AI suggestion)", () => {
+    expect(
+      shouldRespondToLogWithAI(
+        activeImpulseSession,
+        undefined,
+        tacticLog(false),
+        assistantLog,
+      ),
+    ).toBe(false);
+  });
+});

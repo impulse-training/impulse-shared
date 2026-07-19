@@ -90,11 +90,16 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         !(session &&
             (0, schemas_1.sessionIsImpulseSession)(session) &&
             session.phase === "debrief");
-    const isTacticCompleted = beforeData &&
-        afterData &&
+    // Completed on update (an inline card's checkbox), OR created already
+    // completed — the plan sheet writes a fresh completed tactic log when the
+    // tactic never had an inline card, and that completion still needs an AI
+    // acknowledgment.
+    const isTacticCompleted = afterData &&
         (0, log_1.logIsTacticLog)(afterData) &&
         afterData.data.completed === true &&
-        (!(0, log_1.logIsTacticLog)(beforeData) || beforeData.data.completed !== true);
+        (!beforeData ||
+            !(0, log_1.logIsTacticLog)(beforeData) ||
+            beforeData.data.completed !== true);
     // The user accepted/declined a proposed goal change card — an inline
     // interaction with no user message, so it must bypass the "latest is
     // assistant" guard. Keyed on the pending → accepted/declined transition so

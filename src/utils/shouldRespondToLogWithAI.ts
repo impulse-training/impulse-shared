@@ -150,12 +150,17 @@ export function shouldRespondToLogWithAI(
       session.phase === "debrief"
     );
 
+  // Completed on update (an inline card's checkbox), OR created already
+  // completed — the plan sheet writes a fresh completed tactic log when the
+  // tactic never had an inline card, and that completion still needs an AI
+  // acknowledgment.
   const isTacticCompleted =
-    beforeData &&
     afterData &&
     logIsTacticLog(afterData) &&
     afterData.data.completed === true &&
-    (!logIsTacticLog(beforeData) || beforeData.data.completed !== true);
+    (!beforeData ||
+      !logIsTacticLog(beforeData) ||
+      beforeData.data.completed !== true);
 
   // The user accepted/declined a proposed goal change card — an inline
   // interaction with no user message, so it must bypass the "latest is
