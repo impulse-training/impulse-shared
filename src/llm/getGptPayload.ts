@@ -521,22 +521,47 @@ export function getGptPayload(
       | undefined;
 
     // recommendedTactics on a tags_updated log always come from the plan
-    // matched for the session (extractRecommendedTacticsFromPlans), so their
-    // presence means a plan is assigned — and the plan sheet is showing it.
+    // matched for the session (extractRecommendedTacticsFromPlans). Whether
+    // the plan sheet shows them depends on ownership: only the user's OWN
+    // plans (planSource trigger/behavior) render there — engine-matched
+    // plans are invisible and deliver inline, one suggestTactic card at a
+    // time.
     if (tactics && tactics.length > 0) {
+      const planSource = (log as any).data?.planSource as string | undefined;
+      const isUserOwnedPlan =
+        planSource === "trigger" || planSource === "behavior";
+
+      if (isUserOwnedPlan) {
+        const lines = tactics.map(
+          (t) =>
+            `- "${t.title}"${t.phase ? ` (${t.phase})` : ""}${t.description ? ` — ${t.description}` : ""}`,
+        );
+        return [
+          {
+            role: "user",
+            content:
+              "<SYSTEM>The user just updated their session tags using the tag bar, and their own plan was assigned. " +
+              "The app is displaying the plan to the user in the plan sheet with these steps (in order):\n" +
+              lines.join("\n") +
+              "\n\nReply with ONE short sentence pointing them to the first step by name. " +
+              "Do NOT call suggestTactic for these tactics and do NOT type out their step instructions — the plan sheet already shows them.</SYSTEM>",
+          },
+        ];
+      }
+
       const lines = tactics.map(
         (t) =>
-          `- "${t.title}"${t.phase ? ` (${t.phase})` : ""}${t.description ? ` — ${t.description}` : ""}`,
+          `- [id=${t.tacticId}] "${t.title}"${t.phase ? ` (${t.phase})` : ""}${t.description ? ` — ${t.description}` : ""}`,
       );
       return [
         {
           role: "user",
           content:
-            "<SYSTEM>The user just updated their session tags using the tag bar, and a plan was assigned. " +
-            "The app is displaying the plan to the user in the plan sheet with these steps (in order):\n" +
+            "<SYSTEM>The user just updated their session tags using the tag bar. " +
+            "Recommended tactics were matched for this moment — the user cannot see them yet. " +
+            "Call suggestTactic with the FIRST tactic's ID to present it as a card, then reply with one short connecting line:\n" +
             lines.join("\n") +
-            "\n\nReply with ONE short sentence pointing them to the first step by name. " +
-            "Do NOT call suggestTactic for these tactics and do NOT type out their step instructions — the plan sheet already shows them.</SYSTEM>",
+            "</SYSTEM>",
         },
       ];
     }
@@ -574,9 +599,12 @@ export function getGptPayload(
           role: "user",
           content:
             "<SYSTEM>The user just pressed the impulse button again — the urge is still present or has returned. " +
-            "Do not restart the conversation or re-ask what's going on. " +
-            "Re-engage briefly and lead them into action: if the session has an assigned plan, point them back to its current step by name (the plan sheet shows it); " +
-            "if a suggested tactic card is pending (not yet engaged), point them back to it in one short sentence; otherwise offer the most fitting next step.</SYSTEM>",
+            "Re-engage in ONE short message, matched to what you actually know: " +
+            "if the session has an assigned plan, point them back to its current step by name (the plan sheet shows it); " +
+            "if a suggested tactic card is pending (not yet engaged), point them back to it; " +
+            "if you know their tags or behavior but no plan, lead them into a fitting tactic. " +
+            "If you know NOTHING yet (no tags, no behavior, no plan — the user never answered the opening question), acknowledge the urge is still here and gently ask what's going on — that is the one case where re-asking is right. " +
+            "Never reference a plan or tactic that doesn't exist, and never call setSessionTags without real user input to infer from.</SYSTEM>",
         },
       ];
     }

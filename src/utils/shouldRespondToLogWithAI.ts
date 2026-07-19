@@ -239,7 +239,9 @@ export function shouldRespondToLogWithAI(
   // The user pressed the impulse button again while a recent impulse session
   // was reused. The latest log is almost always assistant output at that
   // point, so this must bypass the "latest is assistant" guard or the
-  // response is silently swallowed.
+  // response is silently swallowed. (Even a contextless re-press gets a
+  // response — the repress payload message steers the model to gently
+  // re-engage rather than pretend it has a plan or tactics to point at.)
   const isImpulseRepress =
     !beforeData &&
     afterData &&
