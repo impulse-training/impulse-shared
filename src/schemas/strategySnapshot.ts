@@ -32,6 +32,14 @@ export const strategyFieldChangeSchema = z.object({
 export const strategyPlanChangeSchema = z.object({
   planPath: z.string(),
   name: z.string(),
+  /**
+   * Parent identity, carried so the change prose can name the plan by what it
+   * belongs to (plans are rarely named). Optional: snapshots written before
+   * this field existed don't have it.
+   */
+  parentType: z.enum(["trigger", "behavior"]).optional(),
+  parentId: z.string().optional(),
+  parentLabel: z.string().optional(),
   changes: z.array(strategyFieldChangeSchema).min(1),
 });
 
