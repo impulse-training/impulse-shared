@@ -15,6 +15,7 @@ type Args = {
     trackingType: BehaviorTrackingData["trackingType"];
     value: number;
     behaviorTrackingUnit?: BehaviorTrackingData["behaviorTrackingUnit"];
+    compact?: boolean;
 };
-export declare function getFormattedValue({ trackingType, value, behaviorTrackingUnit, }: Args): any;
+export declare function getFormattedValue({ trackingType, value, behaviorTrackingUnit, compact, }: Args): string;
 export {};

@@ -110,6 +110,67 @@ describe("shouldRespondToLogWithAI — debrief question", () => {
       shouldRespondToLogWithAI(impulseSession, undefined, after, assistantLog),
     ).toBe(false);
   });
+
+  // Regression: a tracked behavior auto-posts a structured debrief question
+  // (quick-tap chips) that must stand on its own. Tapping "Discuss" on the card
+  // flips shouldZaraRespond → true on the behavior log a beat later. By then the
+  // debrief question is already the latest log and still unanswered; without a
+  // guard the AI writes a free-text reply that lands on top of the question and
+  // hides its chips in the UI. The reply must be deferred until the user answers
+  // (the selection then fires the AI via isDebriefQuestionResponseSelected).
+  describe("stands alone — unanswered question is the latest log", () => {
+    const behaviorSession = {
+      id: "session1",
+      type: "behavior",
+    } as unknown as WithId<Session>;
+
+    const behaviorLog = (shouldZaraRespond?: boolean) =>
+      ({
+        type: "behavior",
+        ...(shouldZaraRespond !== undefined ? { shouldZaraRespond } : {}),
+        data: {
+          behaviorId: "b1",
+          behaviorName: "Social media & videos",
+          value: 3600,
+          formattedValue: "1h",
+          trackingType: "timer",
+        },
+      }) as unknown as Log;
+
+    it("does not respond to a 'Discuss' tap (shouldZaraRespond → true) while the debrief question is unanswered", () => {
+      const before = behaviorLog();
+      const after = behaviorLog(true);
+      expect(
+        shouldRespondToLogWithAI(
+          behaviorSession,
+          before,
+          after,
+          debriefQuestionLog(),
+        ),
+      ).toBe(false);
+    });
+
+    it("still responds to the Discuss tap once the question has been answered", () => {
+      const before = behaviorLog();
+      const after = behaviorLog(true);
+      expect(
+        shouldRespondToLogWithAI(
+          behaviorSession,
+          before,
+          after,
+          debriefQuestionLog("It was on my phone."),
+        ),
+      ).toBe(true);
+    });
+
+    it("still responds when the user answers the question (selection) even though that answered question is the latest log", () => {
+      const before = debriefQuestionLog();
+      const after = debriefQuestionLog("It was on my phone.");
+      expect(
+        shouldRespondToLogWithAI(behaviorSession, before, after, after),
+      ).toBe(true);
+    });
+  });
 });
 
 describe("shouldRespondToLogWithAI — impulse button re-press", () => {
@@ -346,6 +407,61 @@ describe("shouldRespondToLogWithAI — strategy proposal card responded", () => 
   it("does not respond on the pending card write itself", () => {
     expect(
       shouldRespondToLogWithAI(weeklyRecap, undefined, card("pending"), assistantLog),
+    ).toBe(false);
+  });
+});
+
+describe("shouldRespondToLogWithAI — tactic completion", () => {
+  const activeImpulseSession = {
+    id: "session1",
+    type: "impulse",
+  } as unknown as WithId<Session>;
+
+  const tacticLog = (completed: boolean) =>
+    ({
+      type: "tactic",
+      data: {
+        tactic: { id: "take-50-steps", title: "Take 50 Steps" },
+        tacticRefPath: "tactics/take-50-steps",
+        stepCount: 1,
+        completedStepIndexes: completed ? [0] : [],
+        completed,
+      },
+    }) as unknown as Log;
+
+  it("responds when an inline card's tactic log transitions to completed", () => {
+    expect(
+      shouldRespondToLogWithAI(
+        activeImpulseSession,
+        tacticLog(false),
+        tacticLog(true),
+        assistantLog,
+      ),
+    ).toBe(true);
+  });
+
+  // Plan tactics have no inline card: completing one from the plan sheet
+  // CREATES an already-completed tactic log, and that completion still needs
+  // an AI acknowledgment (it must not be swallowed by the creation path).
+  it("responds when a completed tactic log is created outright (plan-sheet completion)", () => {
+    expect(
+      shouldRespondToLogWithAI(
+        activeImpulseSession,
+        undefined,
+        tacticLog(true),
+        assistantLog,
+      ),
+    ).toBe(true);
+  });
+
+  it("does not respond when an incomplete tactic card is created (AI suggestion)", () => {
+    expect(
+      shouldRespondToLogWithAI(
+        activeImpulseSession,
+        undefined,
+        tacticLog(false),
+        assistantLog,
+      ),
     ).toBe(false);
   });
 });

@@ -71,6 +71,12 @@ exports.tacticSchema = zod_1.z.object({
     // Friction/fit metadata for library filtering (orthogonal to collections)
     effort: zod_1.z.enum(["low", "medium", "high"]).optional(), // Activation energy required to start/do it
     worksAnywhere: zod_1.z.boolean().optional(), // Doable regardless of location/context (public, work, in bed)
+    // Marks a tactic that presumes a physical/environmental state we can't verify
+    // (e.g. "sitting or lying down", "at home", "phone in hand"). Such tactics are
+    // hard-excluded from low-signal suggestions (a session with no primary tags
+    // set) so we don't, e.g., tell someone who's already standing to "Stand up".
+    // Free text describing the presumed state; presence of the field is what gates.
+    presumesState: zod_1.z.string().optional(),
     aiConfiguration: zod_1.z
         .object({
         defaultConversationMode: zod_1.z.enum(["voice", "text"]).optional(),

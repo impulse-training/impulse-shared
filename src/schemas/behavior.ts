@@ -168,9 +168,15 @@ export const recentSliceSchema = z.object({
         offset: z.number().int().min(0),
         measured: z.number(),
         status: z.enum(["MET", "NOT_MET_FAIL", "UNSPECIFIED_FOR_DAY"]),
+        // Whether the user confirmed this day's totals (dayTotalsConfirmedAt on
+        // the daySummary). Unconfirmed days (incl. an in-progress today) are
+        // rendered as gaps in the behavior-card trendline rather than points.
+        // Optional so legacy docs (written before this field) stay valid; the
+        // writers always populate it, and a missing value reads as unconfirmed.
+        confirmed: z.boolean().optional(),
       }),
     )
-    .max(5),
+    .max(7),
 
   direction: z.enum(["IMPROVING", "DECLINING", "FLAT", "MIXED"]),
 

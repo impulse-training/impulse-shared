@@ -77,6 +77,44 @@ describe("scoreTactic – suppression (hard exclude)", () => {
   });
 });
 
+describe("scoreTactic – presumesState (low-signal hard exclude)", () => {
+  it("excludes a presumptuous tactic when the session is low-signal", () => {
+    const tactic = makeTactic({
+      id: "default-stand-up",
+      presumesState: "sitting or lying down",
+    });
+
+    expect(score(tactic, { lowSignal: true })).toBeNull();
+  });
+
+  it("keeps the tactic scoreable once the session has signal", () => {
+    const tactic = makeTactic({
+      id: "default-stand-up",
+      presumesState: "sitting or lying down",
+    });
+
+    expect(score(tactic, { lowSignal: false })).not.toBeNull();
+    // Absent lowSignal flag behaves as "has signal" (opt-in gate)
+    expect(score(tactic, {})).not.toBeNull();
+  });
+
+  it("does not exclude a non-presumptuous tactic on a low-signal session", () => {
+    const tactic = makeTactic({ id: "box-breathing" });
+    expect(score(tactic, { lowSignal: true })).not.toBeNull();
+  });
+
+  it("pinning does not rescue a presumptuous tactic on low signal", () => {
+    const tactic = makeTactic({
+      id: "default-stand-up",
+      presumesState: "sitting or lying down",
+    });
+
+    expect(
+      score(tactic, { lowSignal: true, pinnedTacticIds: ["default-stand-up"] }),
+    ).toBeNull();
+  });
+});
+
 describe("scoreTactic – pinning (boost)", () => {
   it("adds the pinned bonus to a pinned tactic", () => {
     const tactic = makeTactic({ id: "pinned" });

@@ -5,6 +5,17 @@ import { timestampSchema } from "../utils/timestampSchema";
 
 export const taskStatusSchema = z.enum(["open", "completed", "dismissed"]);
 
+/**
+ * Why a task reached the terminal `dismissed` status, when the distinction
+ * matters (currently the reclaimable weekly-review bundle):
+ * - `declined` — the user actively said no (tapped "Not this time" on the card).
+ * - `ignored`  — auto-closed after being re-presented across the cap (3) recaps
+ *   without ever being engaged/resolved. Not the same as a deliberate no; a
+ *   coach reading the dashboard should be able to tell "he passed on it" from
+ *   "he never actually saw/acted on it".
+ */
+export const dismissedReasonSchema = z.enum(["ignored", "declined"]);
+
 export const taskCategorySchema = z.enum(["zara", "deterministic"]);
 
 export const claimableSessionTypeSchema = z.enum(["recap", "general", "toolkitPlanning"]);
@@ -29,10 +40,21 @@ export const taskBaseSchema = z.object({
    */
   triggerAIAfter: z.boolean().optional(),
   createdBy: z.string().optional(),
+  /**
+   * How many recap sessions have surfaced this task. Set to 1 on first claim
+   * and incremented each time a fresh recap reclaims it off an earlier,
+   * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+   * after being presented across the cap number of recaps without resolution,
+   * the task is auto-closed (dismissed / `ignored`) instead of following the
+   * user forever. Absent on older tasks — treat missing as 1.
+   */
+  presentationCount: z.number().int().min(0).optional(),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
   completedAt: timestampSchema.optional(),
   dismissedAt: timestampSchema.optional(),
+  /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+  dismissedReason: dismissedReasonSchema.optional(),
 });
 
 export const mergeBehaviorsTaskSchema = taskBaseSchema.extend({
@@ -275,6 +297,7 @@ export const taskSchema = z.discriminatedUnion("type", [
 
 export type TaskCategory = z.infer<typeof taskCategorySchema>;
 export type TaskStatus = z.infer<typeof taskStatusSchema>;
+export type DismissedReason = z.infer<typeof dismissedReasonSchema>;
 export type ClaimableSessionType = z.infer<typeof claimableSessionTypeSchema>;
 export type MergeBehaviorsTask = z.infer<typeof mergeBehaviorsTaskSchema>;
 export type SuggestStrategyTask = z.infer<typeof suggestStrategyTaskSchema>;

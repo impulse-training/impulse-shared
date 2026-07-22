@@ -90,11 +90,16 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         !(session &&
             (0, schemas_1.sessionIsImpulseSession)(session) &&
             session.phase === "debrief");
-    const isTacticCompleted = beforeData &&
-        afterData &&
+    // Completed on update (an inline card's checkbox), OR created already
+    // completed — the plan sheet writes a fresh completed tactic log when the
+    // tactic never had an inline card, and that completion still needs an AI
+    // acknowledgment.
+    const isTacticCompleted = afterData &&
         (0, log_1.logIsTacticLog)(afterData) &&
         afterData.data.completed === true &&
-        (!(0, log_1.logIsTacticLog)(beforeData) || beforeData.data.completed !== true);
+        (!beforeData ||
+            !(0, log_1.logIsTacticLog)(beforeData) ||
+            beforeData.data.completed !== true);
     // The user accepted/declined a proposed goal change card — an inline
     // interaction with no user message, so it must bypass the "latest is
     // assistant" guard. Keyed on the pending → accepted/declined transition so
@@ -158,7 +163,9 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
     // The user pressed the impulse button again while a recent impulse session
     // was reused. The latest log is almost always assistant output at that
     // point, so this must bypass the "latest is assistant" guard or the
-    // response is silently swallowed.
+    // response is silently swallowed. (Even a contextless re-press gets a
+    // response — the repress payload message steers the model to gently
+    // re-engage rather than pretend it has a plan or tactics to point at.)
     const isImpulseRepress = !beforeData &&
         afterData &&
         (0, log_1.logIsImpulseStartedLog)(afterData) &&
@@ -187,6 +194,21 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         !isImpulseRepress &&
         latestIsAssistantOutput) {
         console.log("Latest log is assistant output. Not responding with AI.");
+        return false;
+    }
+    // A structured debrief question was posted (quick-tap chips) and is still
+    // unanswered — it is the latest log in the session. It stands on its own; any
+    // AI free-text reply layered on top of it hides the chips in the UI. This
+    // blocks the redundant reply that arises when a tracked behavior auto-posts
+    // the question and, a beat later, the user taps "Discuss" on the card (which
+    // flips shouldZaraRespond → true on the behavior log). Answering the question
+    // sets `selectedResponseText` (no longer "unanswered") and produces a newer
+    // log, so the deferred reply still fires then via isDebriefQuestionResponseSelected.
+    const latestIsUnansweredDebriefQuestion = !!latestSessionLog &&
+        (0, log_1.logIsDebriefQuestionLog)(latestSessionLog) &&
+        !latestSessionLog.data.selectedResponseText;
+    if (latestIsUnansweredDebriefQuestion) {
+        console.log("Latest log is an unanswered debrief question. Not responding with AI.");
         return false;
     }
     const isCreating = !beforeData && afterData;

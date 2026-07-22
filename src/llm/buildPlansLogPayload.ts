@@ -100,6 +100,10 @@ export function buildPlansLogPayload(
 
   const tacticsNoun = tacticsCount === 1 ? "tactic" : "tactics";
   const isPlanning = log.data.mode === "planning";
+  // trigger/behavior = a plan the user authored (shown in the plan sheet);
+  // tags/improvised = engine matchmaking (delivered inline as cards).
+  const isUserOwnedPlan =
+    log.data.source === "trigger" || log.data.source === "behavior";
 
   if (isPlanning) {
     // Planning mode framing (recap session — proposing a plan for next time)
@@ -114,63 +118,54 @@ export function buildPlansLogPayload(
     parts.push(
       "This plan will be ready for next time this trigger comes up. Ask the user if they'd like to keep this plan, adjust it, or skip it.",
     );
-  } else if (isFinalLogInSession) {
-    // Authoritative, directive framing when this is the most recent log.
-    // In an active impulse moment, the assistant should lead with the first
-    // tactic rather than pausing to ask whether the user wants to discuss the
-    // plan first.
-    parts.push("A plan is available for the user right now.");
-    parts.push(
-      `It includes ${tacticsCount} ${tacticsNoun}. Since this is an active impulse moment, guide the user into the first tactic right away instead of asking whether they want to discuss the plan first.`,
-    );
-
-    if (firstTacticTitle) {
-      parts.push(
-        `The first tactic in the plan is titled: ${firstTacticTitle}. Suggest that tactic now using the suggestTactic tool, but do not assume the user has already started it.`,
-      );
-    }
-
-    if (firstStepText) {
-      parts.push(
-        `The first step instructions are: ${firstStepText}. This is context for tool selection only. Do NOT repeat these instructions in the assistant message. Instead, write a short introduction to the tactic and let the tactic card carry the actual step-by-step guidance.`,
-      );
-    }
-
-    parts.push("Keep the response brief, direct, and focused on getting the user into the tactic immediately. If a tactic card is available, do not deliver the tactic in plain text.");
-  } else {
-    const isUserPlan = log.data.source === "trigger";
+  } else if (isUserOwnedPlan) {
+    // USER-OWNED plan (source trigger/behavior): the plan sheet — not the
+    // conversation — delivers the tactics. The assistant's job is one short
+    // line pointing at the current step by name.
     const allTactics = getAllTactics(plan?.tactics, plan?.tacticsByPath);
 
-    if (isUserPlan && allTactics.length > 0) {
+    if (isFinalLogInSession) {
       parts.push(
-        `The user's plan is active for this session with ${tacticsCount} ${tacticsNoun} (in order):`,
+        `The user's own plan was just assigned. The app is displaying it to them in the plan sheet with its ${tacticsCount} ${tacticsNoun}.`,
       );
+      if (firstTacticTitle) {
+        parts.push(
+          `The first tactic in the plan is titled: ${firstTacticTitle}. Point the user to it by name in ONE short sentence, but do not assume they have already started it.`,
+        );
+      }
+    } else {
+      parts.push(
+        `The user's own plan is assigned for this session, displayed to them in the plan sheet with ${tacticsCount} ${tacticsNoun}${allTactics.length > 0 ? " (in order):" : "."}`,
+      );
+      allTactics.forEach((t, i) => {
+        parts.push(`${i + 1}. "${t.title}"`);
+      });
+      parts.push(
+        "After the user completes a tactic, acknowledge it in one short sentence and point them to the next step of their plan by name — do not ask whether they want to continue. Never tell the user to repeat a tactic they just completed.",
+      );
+    }
+
+    parts.push(
+      "Do NOT call suggestTactic for the plan's tactics and do NOT type out their step instructions — the plan sheet already shows them.",
+    );
+  } else {
+    // ENGINE-MATCHED plan (source tags/improvised): an implementation detail
+    // the user can't see. The assistant guides them through it inline, one
+    // suggestTactic card at a time; completion auto-presents the next card.
+    const allTactics = getAllTactics(plan?.tactics, plan?.tacticsByPath);
+
+    parts.push(
+      `A plan was matched for this session with ${tacticsCount} ${tacticsNoun}. The user cannot see it — its tactics are delivered one at a time as cards.`,
+    );
+    if (allTactics.length > 0) {
+      parts.push("Tactics in this plan (in order):");
       allTactics.forEach((t, i) => {
         parts.push(`${i + 1}. [id=${t.id}] "${t.title}"`);
       });
-      parts.push(
-        "After the user completes a tactic, immediately suggest the next uncompleted tactic in the plan using the suggestTactic tool. Do not ask whether they want to continue — lead them directly into it.",
-      );
-    } else {
-      parts.push(
-        `A plan was suggested earlier in this session with ${tacticsCount} ${tacticsNoun}.`,
-      );
-      if (allTactics.length > 0) {
-        parts.push("Tactics in this plan:");
-        allTactics.forEach((t, i) => {
-          parts.push(`${i + 1}. [id=${t.id}] "${t.title}"`);
-        });
-      }
-      if (allTactics.length > 1) {
-        parts.push(
-          "Follow the user's lead. You may suggest the next uncompleted tactic if the moment feels right, but do not force progression.",
-        );
-      } else {
-        parts.push(
-          "Follow the user's lead. When the tactic is completed, acknowledge it — do not suggest additional tactics that are not listed here, and never tell the user to repeat a tactic they just completed.",
-        );
-      }
     }
+    parts.push(
+      "If no tactic card is pending, call suggestTactic with the next tactic's ID. When the user completes a tactic, the app automatically presents the next one as a card — reply with one short line leading into it, and do NOT call suggestTactic for a card that is already presented.",
+    );
   }
 
   return [

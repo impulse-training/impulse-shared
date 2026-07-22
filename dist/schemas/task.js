@@ -1,11 +1,21 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isSetupShortcutTask = exports.isReflectOnMetricsTask = exports.isSuggestTacticTask = exports.isToolkitPlanningTask = exports.isReviewTriggerTask = exports.isRecapQuestionTask = exports.isProposeMaskBehaviorTask = exports.isProposeExperimentTask = exports.isProposeGoalTask = exports.isSuggestStrategyTask = exports.isMergeBehaviorsTask = exports.isTask = exports.taskSchema = exports.weeklyReviewTaskSchema = exports.weekLookbackTaskSchema = exports.resumeRecapRemindersTaskSchema = exports.setupShortcutTaskSchema = exports.collectBaselineTaskSchema = exports.reflectOnMetricsTaskSchema = exports.suggestTacticTaskSchema = exports.toolkitPlanningTaskSchema = exports.reviewTriggerTaskSchema = exports.recapQuestionTaskSchema = exports.createSessionTaskSchema = exports.proposeMaskBehaviorTaskSchema = exports.proposeExperimentTaskSchema = exports.proposedMetricSchema = exports.proposeGoalTaskSchema = exports.suggestStrategyTaskSchema = exports.mergeBehaviorsTaskSchema = exports.taskBaseSchema = exports.claimableSessionTypeSchema = exports.taskCategorySchema = exports.taskStatusSchema = void 0;
+exports.isSetupShortcutTask = exports.isReflectOnMetricsTask = exports.isSuggestTacticTask = exports.isToolkitPlanningTask = exports.isReviewTriggerTask = exports.isRecapQuestionTask = exports.isProposeMaskBehaviorTask = exports.isProposeExperimentTask = exports.isProposeGoalTask = exports.isSuggestStrategyTask = exports.isMergeBehaviorsTask = exports.isTask = exports.taskSchema = exports.weeklyReviewTaskSchema = exports.weekLookbackTaskSchema = exports.resumeRecapRemindersTaskSchema = exports.setupShortcutTaskSchema = exports.collectBaselineTaskSchema = exports.reflectOnMetricsTaskSchema = exports.suggestTacticTaskSchema = exports.toolkitPlanningTaskSchema = exports.reviewTriggerTaskSchema = exports.recapQuestionTaskSchema = exports.createSessionTaskSchema = exports.proposeMaskBehaviorTaskSchema = exports.proposeExperimentTaskSchema = exports.proposedMetricSchema = exports.proposeGoalTaskSchema = exports.suggestStrategyTaskSchema = exports.mergeBehaviorsTaskSchema = exports.taskBaseSchema = exports.claimableSessionTypeSchema = exports.taskCategorySchema = exports.dismissedReasonSchema = exports.taskStatusSchema = void 0;
 const zod_1 = require("zod");
 const goal_1 = require("./goal");
 const proposedStrategyModificationLog_1 = require("./log/proposedStrategyModificationLog");
 const timestampSchema_1 = require("../utils/timestampSchema");
 exports.taskStatusSchema = zod_1.z.enum(["open", "completed", "dismissed"]);
+/**
+ * Why a task reached the terminal `dismissed` status, when the distinction
+ * matters (currently the reclaimable weekly-review bundle):
+ * - `declined` — the user actively said no (tapped "Not this time" on the card).
+ * - `ignored`  — auto-closed after being re-presented across the cap (3) recaps
+ *   without ever being engaged/resolved. Not the same as a deliberate no; a
+ *   coach reading the dashboard should be able to tell "he passed on it" from
+ *   "he never actually saw/acted on it".
+ */
+exports.dismissedReasonSchema = zod_1.z.enum(["ignored", "declined"]);
 exports.taskCategorySchema = zod_1.z.enum(["zara", "deterministic"]);
 exports.claimableSessionTypeSchema = zod_1.z.enum(["recap", "general", "toolkitPlanning"]);
 exports.taskBaseSchema = zod_1.z.object({
@@ -28,10 +38,21 @@ exports.taskBaseSchema = zod_1.z.object({
      */
     triggerAIAfter: zod_1.z.boolean().optional(),
     createdBy: zod_1.z.string().optional(),
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: zod_1.z.number().int().min(0).optional(),
     createdAt: timestampSchema_1.timestampSchema,
     updatedAt: timestampSchema_1.timestampSchema,
     completedAt: timestampSchema_1.timestampSchema.optional(),
     dismissedAt: timestampSchema_1.timestampSchema.optional(),
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: exports.dismissedReasonSchema.optional(),
 });
 exports.mergeBehaviorsTaskSchema = exports.taskBaseSchema.extend({
     type: zod_1.z.literal("merge_behaviors"),

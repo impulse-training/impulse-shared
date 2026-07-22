@@ -132,8 +132,14 @@ exports.recentSliceSchema = zod_1.z.object({
         offset: zod_1.z.number().int().min(0),
         measured: zod_1.z.number(),
         status: zod_1.z.enum(["MET", "NOT_MET_FAIL", "UNSPECIFIED_FOR_DAY"]),
+        // Whether the user confirmed this day's totals (dayTotalsConfirmedAt on
+        // the daySummary). Unconfirmed days (incl. an in-progress today) are
+        // rendered as gaps in the behavior-card trendline rather than points.
+        // Optional so legacy docs (written before this field) stay valid; the
+        // writers always populate it, and a missing value reads as unconfirmed.
+        confirmed: zod_1.z.boolean().optional(),
     }))
-        .max(5),
+        .max(7),
     direction: zod_1.z.enum(["IMPROVING", "DECLINING", "FLAT", "MIXED"]),
     contrast: zod_1.z.enum(["LOW", "MODERATE", "STRONG"]),
     salience: zod_1.z.enum(["LOW", "MEDIUM", "HIGH"]),

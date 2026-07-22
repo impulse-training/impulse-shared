@@ -230,14 +230,17 @@ export declare const recentSliceSchema: z.ZodObject<{
         offset: z.ZodNumber;
         measured: z.ZodNumber;
         status: z.ZodEnum<["MET", "NOT_MET_FAIL", "UNSPECIFIED_FOR_DAY"]>;
+        confirmed: z.ZodOptional<z.ZodBoolean>;
     }, "strip", z.ZodTypeAny, {
         status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
         offset: number;
         measured: number;
+        confirmed?: boolean | undefined;
     }, {
         status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
         offset: number;
         measured: number;
+        confirmed?: boolean | undefined;
     }>, "many">;
     direction: z.ZodEnum<["IMPROVING", "DECLINING", "FLAT", "MIXED"]>;
     contrast: z.ZodEnum<["LOW", "MODERATE", "STRONG"]>;
@@ -247,6 +250,7 @@ export declare const recentSliceSchema: z.ZodObject<{
         status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
         offset: number;
         measured: number;
+        confirmed?: boolean | undefined;
     }[];
     direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
     contrast: "LOW" | "MODERATE" | "STRONG";
@@ -256,6 +260,7 @@ export declare const recentSliceSchema: z.ZodObject<{
         status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
         offset: number;
         measured: number;
+        confirmed?: boolean | undefined;
     }[];
     direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
     contrast: "LOW" | "MODERATE" | "STRONG";
@@ -726,14 +731,17 @@ export declare const behaviorStateSchema: z.ZodObject<{
             offset: z.ZodNumber;
             measured: z.ZodNumber;
             status: z.ZodEnum<["MET", "NOT_MET_FAIL", "UNSPECIFIED_FOR_DAY"]>;
+            confirmed: z.ZodOptional<z.ZodBoolean>;
         }, "strip", z.ZodTypeAny, {
             status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
             offset: number;
             measured: number;
+            confirmed?: boolean | undefined;
         }, {
             status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
             offset: number;
             measured: number;
+            confirmed?: boolean | undefined;
         }>, "many">;
         direction: z.ZodEnum<["IMPROVING", "DECLINING", "FLAT", "MIXED"]>;
         contrast: z.ZodEnum<["LOW", "MODERATE", "STRONG"]>;
@@ -743,6 +751,7 @@ export declare const behaviorStateSchema: z.ZodObject<{
             status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
             offset: number;
             measured: number;
+            confirmed?: boolean | undefined;
         }[];
         direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
         contrast: "LOW" | "MODERATE" | "STRONG";
@@ -752,6 +761,7 @@ export declare const behaviorStateSchema: z.ZodObject<{
             status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
             offset: number;
             measured: number;
+            confirmed?: boolean | undefined;
         }[];
         direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
         contrast: "LOW" | "MODERATE" | "STRONG";
@@ -930,6 +940,7 @@ export declare const behaviorStateSchema: z.ZodObject<{
             status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
             offset: number;
             measured: number;
+            confirmed?: boolean | undefined;
         }[];
         direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
         contrast: "LOW" | "MODERATE" | "STRONG";
@@ -1058,6 +1069,7 @@ export declare const behaviorStateSchema: z.ZodObject<{
             status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
             offset: number;
             measured: number;
+            confirmed?: boolean | undefined;
         }[];
         direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
         contrast: "LOW" | "MODERATE" | "STRONG";
@@ -1746,14 +1758,17 @@ export declare const behaviorSchema: z.ZodObject<{
                 offset: z.ZodNumber;
                 measured: z.ZodNumber;
                 status: z.ZodEnum<["MET", "NOT_MET_FAIL", "UNSPECIFIED_FOR_DAY"]>;
+                confirmed: z.ZodOptional<z.ZodBoolean>;
             }, "strip", z.ZodTypeAny, {
                 status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
                 offset: number;
                 measured: number;
+                confirmed?: boolean | undefined;
             }, {
                 status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
                 offset: number;
                 measured: number;
+                confirmed?: boolean | undefined;
             }>, "many">;
             direction: z.ZodEnum<["IMPROVING", "DECLINING", "FLAT", "MIXED"]>;
             contrast: z.ZodEnum<["LOW", "MODERATE", "STRONG"]>;
@@ -1763,6 +1778,7 @@ export declare const behaviorSchema: z.ZodObject<{
                 status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
                 offset: number;
                 measured: number;
+                confirmed?: boolean | undefined;
             }[];
             direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
             contrast: "LOW" | "MODERATE" | "STRONG";
@@ -1772,6 +1788,7 @@ export declare const behaviorSchema: z.ZodObject<{
                 status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
                 offset: number;
                 measured: number;
+                confirmed?: boolean | undefined;
             }[];
             direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
             contrast: "LOW" | "MODERATE" | "STRONG";
@@ -1950,6 +1967,7 @@ export declare const behaviorSchema: z.ZodObject<{
                 status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
                 offset: number;
                 measured: number;
+                confirmed?: boolean | undefined;
             }[];
             direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
             contrast: "LOW" | "MODERATE" | "STRONG";
@@ -2078,6 +2096,7 @@ export declare const behaviorSchema: z.ZodObject<{
                 status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
                 offset: number;
                 measured: number;
+                confirmed?: boolean | undefined;
             }[];
             direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
             contrast: "LOW" | "MODERATE" | "STRONG";
@@ -2287,6 +2306,7 @@ export declare const behaviorSchema: z.ZodObject<{
                 status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
                 offset: number;
                 measured: number;
+                confirmed?: boolean | undefined;
             }[];
             direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
             contrast: "LOW" | "MODERATE" | "STRONG";
@@ -2496,6 +2516,7 @@ export declare const behaviorSchema: z.ZodObject<{
                 status: "MET" | "NOT_MET_FAIL" | "UNSPECIFIED_FOR_DAY";
                 offset: number;
                 measured: number;
+                confirmed?: boolean | undefined;
             }[];
             direction: "IMPROVING" | "DECLINING" | "FLAT" | "MIXED";
             contrast: "LOW" | "MODERATE" | "STRONG";

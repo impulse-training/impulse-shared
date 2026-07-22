@@ -22,6 +22,1134 @@ export declare const recommendedTacticSchema: z.ZodObject<{
     firstStepText?: string | undefined;
 }>;
 export type RecommendedTactic = z.infer<typeof recommendedTacticSchema>;
+/**
+ * An ENGINE-MATCHED plan for this session — the backend saying "this is a good
+ * plan, guide the user through it". Invisible to the user: its tactics are
+ * delivered inline one `suggestTactic` card at a time (see
+ * `advanceToNextPlanTactic`), never through the plan sheet and never as a
+ * "Plan assigned" card.
+ *
+ * Deliberately NOT a `plans` log — user-owned plans (source trigger/behavior)
+ * are the only plans logs, and they are what the plan sheet renders. Keeping
+ * the engine plan as session state is what makes it impossible to render it as
+ * a committed plan. The plan is embedded (with its `tacticsByPath`) so readers
+ * need no extra fetch, mirroring how plans logs denormalise.
+ */
+export declare const suggestedPlanSchema: z.ZodObject<{
+    planId: z.ZodString;
+    plan: z.ZodUnion<[z.ZodIntersection<z.ZodObject<{
+        id: z.ZodString;
+        _ref: z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>;
+    }, "strip", z.ZodTypeAny, {
+        id: string;
+        _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+    }, {
+        id: string;
+        _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+    }>, z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        name: z.ZodString;
+        description: z.ZodOptional<z.ZodString>;
+        type: z.ZodType<"trigger", z.ZodTypeDef, "trigger">;
+        ordinal: z.ZodOptional<z.ZodNumber>;
+        isTemplate: z.ZodOptional<z.ZodBoolean>;
+        summary: z.ZodOptional<z.ZodString>;
+        notificationBodyMode: z.ZodOptional<z.ZodEnum<["default", "firstTactic", "custom"]>>;
+        notificationBodyCustomText: z.ZodOptional<z.ZodString>;
+        tactics: z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
+        tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+        questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>>;
+        tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodRecord<z.ZodString, z.ZodNumber>>>;
+        indications: z.ZodOptional<z.ZodObject<{
+            tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                tagGroupName: z.ZodString;
+                optionLabels: z.ZodArray<z.ZodString, "many">;
+                weight: z.ZodNumber;
+            }, "strip", z.ZodTypeAny, {
+                weight: number;
+                tagGroupName: string;
+                optionLabels: string[];
+            }, {
+                weight: number;
+                tagGroupName: string;
+                optionLabels: string[];
+            }>, "many">>;
+            behaviorTemplateNames: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        }, "strip", z.ZodTypeAny, {
+            tags?: {
+                weight: number;
+                tagGroupName: string;
+                optionLabels: string[];
+            }[] | undefined;
+            behaviorTemplateNames?: string[] | undefined;
+        }, {
+            tags?: {
+                weight: number;
+                tagGroupName: string;
+                optionLabels: string[];
+            }[] | undefined;
+            behaviorTemplateNames?: string[] | undefined;
+        }>>;
+        isGenerated: z.ZodOptional<z.ZodBoolean>;
+        generationSource: z.ZodOptional<z.ZodEnum<["impulse_debrief"]>>;
+        generationSignature: z.ZodOptional<z.ZodString>;
+        generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
+        planSteps: z.ZodOptional<z.ZodArray<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+            type: z.ZodLiteral<"fixedTactic">;
+            tacticRef: z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>;
+        }, "strip", z.ZodTypeAny, {
+            type: "fixedTactic";
+            tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        }, {
+            type: "fixedTactic";
+            tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        }>, z.ZodObject<{
+            type: z.ZodLiteral<"collectionPick">;
+            collectionId: z.ZodString;
+            label: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            type: "collectionPick";
+            collectionId: string;
+            label?: string | undefined;
+        }, {
+            type: "collectionPick";
+            collectionId: string;
+            label?: string | undefined;
+        }>]>, "many">>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        numberOfUses: z.ZodOptional<z.ZodNumber>;
+        numberOfSuccesses: z.ZodOptional<z.ZodNumber>;
+        numberOfSetbacks: z.ZodOptional<z.ZodNumber>;
+        lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    } & {
+        isActive: z.ZodOptional<z.ZodBoolean>;
+    }, z.UnknownKeysParam, z.ZodTypeAny, {
+        type: "trigger";
+        name: string;
+        tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+        questions: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+        id?: string | undefined;
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        behaviorIds?: string[] | undefined;
+        description?: string | undefined;
+        ordinal?: number | undefined;
+        tags?: Record<string, Record<string, number>> | undefined;
+        indications?: {
+            tags?: {
+                weight: number;
+                tagGroupName: string;
+                optionLabels: string[];
+            }[] | undefined;
+            behaviorTemplateNames?: string[] | undefined;
+        } | undefined;
+        summary?: string | undefined;
+        isTemplate?: boolean | undefined;
+        notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+        notificationBodyCustomText?: string | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
+        isGenerated?: boolean | undefined;
+        generationSource?: "impulse_debrief" | undefined;
+        generationSignature?: string | undefined;
+        generatedFromTacticIds?: string[] | undefined;
+        generatedFromSessionCount?: number | undefined;
+        planSteps?: ({
+            type: "fixedTactic";
+            tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        } | {
+            type: "collectionPick";
+            collectionId: string;
+            label?: string | undefined;
+        })[] | undefined;
+        numberOfUses?: number | undefined;
+        numberOfSuccesses?: number | undefined;
+        numberOfSetbacks?: number | undefined;
+        lastUsedAt?: import("../../types").Timestamp | undefined;
+        deletedAt?: import("../../types").Timestamp | undefined;
+        isActive?: boolean | undefined;
+    }, {
+        type: "trigger";
+        name: string;
+        tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+        id?: string | undefined;
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        behaviorIds?: string[] | undefined;
+        description?: string | undefined;
+        ordinal?: number | undefined;
+        tags?: Record<string, Record<string, number>> | undefined;
+        indications?: {
+            tags?: {
+                weight: number;
+                tagGroupName: string;
+                optionLabels: string[];
+            }[] | undefined;
+            behaviorTemplateNames?: string[] | undefined;
+        } | undefined;
+        summary?: string | undefined;
+        isTemplate?: boolean | undefined;
+        notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+        notificationBodyCustomText?: string | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
+        questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+        isGenerated?: boolean | undefined;
+        generationSource?: "impulse_debrief" | undefined;
+        generationSignature?: string | undefined;
+        generatedFromTacticIds?: string[] | undefined;
+        generatedFromSessionCount?: number | undefined;
+        planSteps?: ({
+            type: "fixedTactic";
+            tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        } | {
+            type: "collectionPick";
+            collectionId: string;
+            label?: string | undefined;
+        })[] | undefined;
+        numberOfUses?: number | undefined;
+        numberOfSuccesses?: number | undefined;
+        numberOfSetbacks?: number | undefined;
+        lastUsedAt?: import("../../types").Timestamp | undefined;
+        deletedAt?: import("../../types").Timestamp | undefined;
+        isActive?: boolean | undefined;
+    }>>, z.ZodIntersection<z.ZodObject<{
+        id: z.ZodString;
+        _ref: z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>;
+    }, "strip", z.ZodTypeAny, {
+        id: string;
+        _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+    }, {
+        id: string;
+        _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+    }>, z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        name: z.ZodString;
+        description: z.ZodOptional<z.ZodString>;
+        type: z.ZodType<"scheduled", z.ZodTypeDef, "scheduled">;
+        ordinal: z.ZodOptional<z.ZodNumber>;
+        isTemplate: z.ZodOptional<z.ZodBoolean>;
+        summary: z.ZodOptional<z.ZodString>;
+        notificationBodyMode: z.ZodOptional<z.ZodEnum<["default", "firstTactic", "custom"]>>;
+        notificationBodyCustomText: z.ZodOptional<z.ZodString>;
+        tactics: z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
+        tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+        questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>>;
+        tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodRecord<z.ZodString, z.ZodNumber>>>;
+        indications: z.ZodOptional<z.ZodObject<{
+            tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                tagGroupName: z.ZodString;
+                optionLabels: z.ZodArray<z.ZodString, "many">;
+                weight: z.ZodNumber;
+            }, "strip", z.ZodTypeAny, {
+                weight: number;
+                tagGroupName: string;
+                optionLabels: string[];
+            }, {
+                weight: number;
+                tagGroupName: string;
+                optionLabels: string[];
+            }>, "many">>;
+            behaviorTemplateNames: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        }, "strip", z.ZodTypeAny, {
+            tags?: {
+                weight: number;
+                tagGroupName: string;
+                optionLabels: string[];
+            }[] | undefined;
+            behaviorTemplateNames?: string[] | undefined;
+        }, {
+            tags?: {
+                weight: number;
+                tagGroupName: string;
+                optionLabels: string[];
+            }[] | undefined;
+            behaviorTemplateNames?: string[] | undefined;
+        }>>;
+        isGenerated: z.ZodOptional<z.ZodBoolean>;
+        generationSource: z.ZodOptional<z.ZodEnum<["impulse_debrief"]>>;
+        generationSignature: z.ZodOptional<z.ZodString>;
+        generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
+        planSteps: z.ZodOptional<z.ZodArray<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+            type: z.ZodLiteral<"fixedTactic">;
+            tacticRef: z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>;
+        }, "strip", z.ZodTypeAny, {
+            type: "fixedTactic";
+            tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        }, {
+            type: "fixedTactic";
+            tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        }>, z.ZodObject<{
+            type: z.ZodLiteral<"collectionPick">;
+            collectionId: z.ZodString;
+            label: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            type: "collectionPick";
+            collectionId: string;
+            label?: string | undefined;
+        }, {
+            type: "collectionPick";
+            collectionId: string;
+            label?: string | undefined;
+        }>]>, "many">>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        numberOfUses: z.ZodOptional<z.ZodNumber>;
+        numberOfSuccesses: z.ZodOptional<z.ZodNumber>;
+        numberOfSetbacks: z.ZodOptional<z.ZodNumber>;
+        lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    } & {
+        hour: z.ZodNumber;
+        minute: z.ZodNumber;
+        weekdays: z.ZodArray<z.ZodNumber, "many">;
+    }, z.UnknownKeysParam, z.ZodTypeAny, {
+        type: "scheduled";
+        name: string;
+        tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+        hour: number;
+        minute: number;
+        weekdays: number[];
+        questions: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+        id?: string | undefined;
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        behaviorIds?: string[] | undefined;
+        description?: string | undefined;
+        ordinal?: number | undefined;
+        tags?: Record<string, Record<string, number>> | undefined;
+        indications?: {
+            tags?: {
+                weight: number;
+                tagGroupName: string;
+                optionLabels: string[];
+            }[] | undefined;
+            behaviorTemplateNames?: string[] | undefined;
+        } | undefined;
+        summary?: string | undefined;
+        isTemplate?: boolean | undefined;
+        notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+        notificationBodyCustomText?: string | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
+        isGenerated?: boolean | undefined;
+        generationSource?: "impulse_debrief" | undefined;
+        generationSignature?: string | undefined;
+        generatedFromTacticIds?: string[] | undefined;
+        generatedFromSessionCount?: number | undefined;
+        planSteps?: ({
+            type: "fixedTactic";
+            tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        } | {
+            type: "collectionPick";
+            collectionId: string;
+            label?: string | undefined;
+        })[] | undefined;
+        numberOfUses?: number | undefined;
+        numberOfSuccesses?: number | undefined;
+        numberOfSetbacks?: number | undefined;
+        lastUsedAt?: import("../../types").Timestamp | undefined;
+        deletedAt?: import("../../types").Timestamp | undefined;
+    }, {
+        type: "scheduled";
+        name: string;
+        tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+        hour: number;
+        minute: number;
+        weekdays: number[];
+        id?: string | undefined;
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        behaviorIds?: string[] | undefined;
+        description?: string | undefined;
+        ordinal?: number | undefined;
+        tags?: Record<string, Record<string, number>> | undefined;
+        indications?: {
+            tags?: {
+                weight: number;
+                tagGroupName: string;
+                optionLabels: string[];
+            }[] | undefined;
+            behaviorTemplateNames?: string[] | undefined;
+        } | undefined;
+        summary?: string | undefined;
+        isTemplate?: boolean | undefined;
+        notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+        notificationBodyCustomText?: string | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
+        questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+        isGenerated?: boolean | undefined;
+        generationSource?: "impulse_debrief" | undefined;
+        generationSignature?: string | undefined;
+        generatedFromTacticIds?: string[] | undefined;
+        generatedFromSessionCount?: number | undefined;
+        planSteps?: ({
+            type: "fixedTactic";
+            tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        } | {
+            type: "collectionPick";
+            collectionId: string;
+            label?: string | undefined;
+        })[] | undefined;
+        numberOfUses?: number | undefined;
+        numberOfSuccesses?: number | undefined;
+        numberOfSetbacks?: number | undefined;
+        lastUsedAt?: import("../../types").Timestamp | undefined;
+        deletedAt?: import("../../types").Timestamp | undefined;
+    }>>, z.ZodIntersection<z.ZodObject<{
+        id: z.ZodString;
+        _ref: z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>;
+    }, "strip", z.ZodTypeAny, {
+        id: string;
+        _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+    }, {
+        id: string;
+        _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+    }>, z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        name: z.ZodString;
+        description: z.ZodOptional<z.ZodString>;
+        type: z.ZodType<"default", z.ZodTypeDef, "default">;
+        ordinal: z.ZodOptional<z.ZodNumber>;
+        isTemplate: z.ZodOptional<z.ZodBoolean>;
+        summary: z.ZodOptional<z.ZodString>;
+        notificationBodyMode: z.ZodOptional<z.ZodEnum<["default", "firstTactic", "custom"]>>;
+        notificationBodyCustomText: z.ZodOptional<z.ZodString>;
+        tactics: z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
+        tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+        questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>>;
+        tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodRecord<z.ZodString, z.ZodNumber>>>;
+        indications: z.ZodOptional<z.ZodObject<{
+            tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                tagGroupName: z.ZodString;
+                optionLabels: z.ZodArray<z.ZodString, "many">;
+                weight: z.ZodNumber;
+            }, "strip", z.ZodTypeAny, {
+                weight: number;
+                tagGroupName: string;
+                optionLabels: string[];
+            }, {
+                weight: number;
+                tagGroupName: string;
+                optionLabels: string[];
+            }>, "many">>;
+            behaviorTemplateNames: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        }, "strip", z.ZodTypeAny, {
+            tags?: {
+                weight: number;
+                tagGroupName: string;
+                optionLabels: string[];
+            }[] | undefined;
+            behaviorTemplateNames?: string[] | undefined;
+        }, {
+            tags?: {
+                weight: number;
+                tagGroupName: string;
+                optionLabels: string[];
+            }[] | undefined;
+            behaviorTemplateNames?: string[] | undefined;
+        }>>;
+        isGenerated: z.ZodOptional<z.ZodBoolean>;
+        generationSource: z.ZodOptional<z.ZodEnum<["impulse_debrief"]>>;
+        generationSignature: z.ZodOptional<z.ZodString>;
+        generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
+        planSteps: z.ZodOptional<z.ZodArray<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+            type: z.ZodLiteral<"fixedTactic">;
+            tacticRef: z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>;
+        }, "strip", z.ZodTypeAny, {
+            type: "fixedTactic";
+            tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        }, {
+            type: "fixedTactic";
+            tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        }>, z.ZodObject<{
+            type: z.ZodLiteral<"collectionPick">;
+            collectionId: z.ZodString;
+            label: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            type: "collectionPick";
+            collectionId: string;
+            label?: string | undefined;
+        }, {
+            type: "collectionPick";
+            collectionId: string;
+            label?: string | undefined;
+        }>]>, "many">>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    } & {
+        lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        numberOfUses: z.ZodDefault<z.ZodNumber>;
+        numberOfSuccesses: z.ZodDefault<z.ZodNumber>;
+        numberOfSetbacks: z.ZodDefault<z.ZodNumber>;
+        isActive: z.ZodOptional<z.ZodBoolean>;
+    }, z.UnknownKeysParam, z.ZodTypeAny, {
+        type: "default";
+        name: string;
+        tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+        questions: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+        numberOfUses: number;
+        numberOfSuccesses: number;
+        numberOfSetbacks: number;
+        id?: string | undefined;
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        behaviorIds?: string[] | undefined;
+        description?: string | undefined;
+        ordinal?: number | undefined;
+        tags?: Record<string, Record<string, number>> | undefined;
+        indications?: {
+            tags?: {
+                weight: number;
+                tagGroupName: string;
+                optionLabels: string[];
+            }[] | undefined;
+            behaviorTemplateNames?: string[] | undefined;
+        } | undefined;
+        summary?: string | undefined;
+        isTemplate?: boolean | undefined;
+        notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+        notificationBodyCustomText?: string | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
+        isGenerated?: boolean | undefined;
+        generationSource?: "impulse_debrief" | undefined;
+        generationSignature?: string | undefined;
+        generatedFromTacticIds?: string[] | undefined;
+        generatedFromSessionCount?: number | undefined;
+        planSteps?: ({
+            type: "fixedTactic";
+            tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        } | {
+            type: "collectionPick";
+            collectionId: string;
+            label?: string | undefined;
+        })[] | undefined;
+        lastUsedAt?: import("../../types").Timestamp | undefined;
+        deletedAt?: import("../../types").Timestamp | undefined;
+        isActive?: boolean | undefined;
+    }, {
+        type: "default";
+        name: string;
+        tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+        id?: string | undefined;
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        behaviorIds?: string[] | undefined;
+        description?: string | undefined;
+        ordinal?: number | undefined;
+        tags?: Record<string, Record<string, number>> | undefined;
+        indications?: {
+            tags?: {
+                weight: number;
+                tagGroupName: string;
+                optionLabels: string[];
+            }[] | undefined;
+            behaviorTemplateNames?: string[] | undefined;
+        } | undefined;
+        summary?: string | undefined;
+        isTemplate?: boolean | undefined;
+        notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+        notificationBodyCustomText?: string | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
+        questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+        isGenerated?: boolean | undefined;
+        generationSource?: "impulse_debrief" | undefined;
+        generationSignature?: string | undefined;
+        generatedFromTacticIds?: string[] | undefined;
+        generatedFromSessionCount?: number | undefined;
+        planSteps?: ({
+            type: "fixedTactic";
+            tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        } | {
+            type: "collectionPick";
+            collectionId: string;
+            label?: string | undefined;
+        })[] | undefined;
+        numberOfUses?: number | undefined;
+        numberOfSuccesses?: number | undefined;
+        numberOfSetbacks?: number | undefined;
+        lastUsedAt?: import("../../types").Timestamp | undefined;
+        deletedAt?: import("../../types").Timestamp | undefined;
+        isActive?: boolean | undefined;
+    }>>, z.ZodIntersection<z.ZodObject<{
+        id: z.ZodString;
+        _ref: z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>;
+    }, "strip", z.ZodTypeAny, {
+        id: string;
+        _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+    }, {
+        id: string;
+        _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+    }>, z.ZodObject<{
+        id: z.ZodOptional<z.ZodString>;
+        name: z.ZodString;
+        description: z.ZodOptional<z.ZodString>;
+        type: z.ZodType<"behavior", z.ZodTypeDef, "behavior">;
+        ordinal: z.ZodOptional<z.ZodNumber>;
+        isTemplate: z.ZodOptional<z.ZodBoolean>;
+        summary: z.ZodOptional<z.ZodString>;
+        notificationBodyMode: z.ZodOptional<z.ZodEnum<["default", "firstTactic", "custom"]>>;
+        notificationBodyCustomText: z.ZodOptional<z.ZodString>;
+        tactics: z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
+        tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+        questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>>;
+        tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodRecord<z.ZodString, z.ZodNumber>>>;
+        indications: z.ZodOptional<z.ZodObject<{
+            tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                tagGroupName: z.ZodString;
+                optionLabels: z.ZodArray<z.ZodString, "many">;
+                weight: z.ZodNumber;
+            }, "strip", z.ZodTypeAny, {
+                weight: number;
+                tagGroupName: string;
+                optionLabels: string[];
+            }, {
+                weight: number;
+                tagGroupName: string;
+                optionLabels: string[];
+            }>, "many">>;
+            behaviorTemplateNames: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        }, "strip", z.ZodTypeAny, {
+            tags?: {
+                weight: number;
+                tagGroupName: string;
+                optionLabels: string[];
+            }[] | undefined;
+            behaviorTemplateNames?: string[] | undefined;
+        }, {
+            tags?: {
+                weight: number;
+                tagGroupName: string;
+                optionLabels: string[];
+            }[] | undefined;
+            behaviorTemplateNames?: string[] | undefined;
+        }>>;
+        isGenerated: z.ZodOptional<z.ZodBoolean>;
+        generationSource: z.ZodOptional<z.ZodEnum<["impulse_debrief"]>>;
+        generationSignature: z.ZodOptional<z.ZodString>;
+        generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
+        planSteps: z.ZodOptional<z.ZodArray<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+            type: z.ZodLiteral<"fixedTactic">;
+            tacticRef: z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>;
+        }, "strip", z.ZodTypeAny, {
+            type: "fixedTactic";
+            tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        }, {
+            type: "fixedTactic";
+            tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        }>, z.ZodObject<{
+            type: z.ZodLiteral<"collectionPick">;
+            collectionId: z.ZodString;
+            label: z.ZodOptional<z.ZodString>;
+        }, "strip", z.ZodTypeAny, {
+            type: "collectionPick";
+            collectionId: string;
+            label?: string | undefined;
+        }, {
+            type: "collectionPick";
+            collectionId: string;
+            label?: string | undefined;
+        }>]>, "many">>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+        numberOfUses: z.ZodOptional<z.ZodNumber>;
+        numberOfSuccesses: z.ZodOptional<z.ZodNumber>;
+        numberOfSetbacks: z.ZodOptional<z.ZodNumber>;
+        lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    } & {
+        isActive: z.ZodOptional<z.ZodBoolean>;
+    }, z.UnknownKeysParam, z.ZodTypeAny, {
+        type: "behavior";
+        name: string;
+        tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+        questions: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+        id?: string | undefined;
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        behaviorIds?: string[] | undefined;
+        description?: string | undefined;
+        ordinal?: number | undefined;
+        tags?: Record<string, Record<string, number>> | undefined;
+        indications?: {
+            tags?: {
+                weight: number;
+                tagGroupName: string;
+                optionLabels: string[];
+            }[] | undefined;
+            behaviorTemplateNames?: string[] | undefined;
+        } | undefined;
+        summary?: string | undefined;
+        isTemplate?: boolean | undefined;
+        notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+        notificationBodyCustomText?: string | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
+        isGenerated?: boolean | undefined;
+        generationSource?: "impulse_debrief" | undefined;
+        generationSignature?: string | undefined;
+        generatedFromTacticIds?: string[] | undefined;
+        generatedFromSessionCount?: number | undefined;
+        planSteps?: ({
+            type: "fixedTactic";
+            tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        } | {
+            type: "collectionPick";
+            collectionId: string;
+            label?: string | undefined;
+        })[] | undefined;
+        numberOfUses?: number | undefined;
+        numberOfSuccesses?: number | undefined;
+        numberOfSetbacks?: number | undefined;
+        lastUsedAt?: import("../../types").Timestamp | undefined;
+        deletedAt?: import("../../types").Timestamp | undefined;
+        isActive?: boolean | undefined;
+    }, {
+        type: "behavior";
+        name: string;
+        tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+        id?: string | undefined;
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        behaviorIds?: string[] | undefined;
+        description?: string | undefined;
+        ordinal?: number | undefined;
+        tags?: Record<string, Record<string, number>> | undefined;
+        indications?: {
+            tags?: {
+                weight: number;
+                tagGroupName: string;
+                optionLabels: string[];
+            }[] | undefined;
+            behaviorTemplateNames?: string[] | undefined;
+        } | undefined;
+        summary?: string | undefined;
+        isTemplate?: boolean | undefined;
+        notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+        notificationBodyCustomText?: string | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
+        questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+        isGenerated?: boolean | undefined;
+        generationSource?: "impulse_debrief" | undefined;
+        generationSignature?: string | undefined;
+        generatedFromTacticIds?: string[] | undefined;
+        generatedFromSessionCount?: number | undefined;
+        planSteps?: ({
+            type: "fixedTactic";
+            tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        } | {
+            type: "collectionPick";
+            collectionId: string;
+            label?: string | undefined;
+        })[] | undefined;
+        numberOfUses?: number | undefined;
+        numberOfSuccesses?: number | undefined;
+        numberOfSetbacks?: number | undefined;
+        lastUsedAt?: import("../../types").Timestamp | undefined;
+        deletedAt?: import("../../types").Timestamp | undefined;
+        isActive?: boolean | undefined;
+    }>>]>;
+    source: z.ZodEnum<["tags", "improvised"]>;
+    matchedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+}, "strip", z.ZodTypeAny, {
+    source: "tags" | "improvised";
+    plan: ({
+        id: string;
+        _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+    } & {
+        type: "trigger";
+        name: string;
+        tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+        questions: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+        id?: string | undefined;
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        behaviorIds?: string[] | undefined;
+        description?: string | undefined;
+        ordinal?: number | undefined;
+        tags?: Record<string, Record<string, number>> | undefined;
+        indications?: {
+            tags?: {
+                weight: number;
+                tagGroupName: string;
+                optionLabels: string[];
+            }[] | undefined;
+            behaviorTemplateNames?: string[] | undefined;
+        } | undefined;
+        summary?: string | undefined;
+        isTemplate?: boolean | undefined;
+        notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+        notificationBodyCustomText?: string | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
+        isGenerated?: boolean | undefined;
+        generationSource?: "impulse_debrief" | undefined;
+        generationSignature?: string | undefined;
+        generatedFromTacticIds?: string[] | undefined;
+        generatedFromSessionCount?: number | undefined;
+        planSteps?: ({
+            type: "fixedTactic";
+            tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        } | {
+            type: "collectionPick";
+            collectionId: string;
+            label?: string | undefined;
+        })[] | undefined;
+        numberOfUses?: number | undefined;
+        numberOfSuccesses?: number | undefined;
+        numberOfSetbacks?: number | undefined;
+        lastUsedAt?: import("../../types").Timestamp | undefined;
+        deletedAt?: import("../../types").Timestamp | undefined;
+        isActive?: boolean | undefined;
+    }) | ({
+        id: string;
+        _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+    } & {
+        type: "scheduled";
+        name: string;
+        tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+        hour: number;
+        minute: number;
+        weekdays: number[];
+        questions: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+        id?: string | undefined;
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        behaviorIds?: string[] | undefined;
+        description?: string | undefined;
+        ordinal?: number | undefined;
+        tags?: Record<string, Record<string, number>> | undefined;
+        indications?: {
+            tags?: {
+                weight: number;
+                tagGroupName: string;
+                optionLabels: string[];
+            }[] | undefined;
+            behaviorTemplateNames?: string[] | undefined;
+        } | undefined;
+        summary?: string | undefined;
+        isTemplate?: boolean | undefined;
+        notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+        notificationBodyCustomText?: string | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
+        isGenerated?: boolean | undefined;
+        generationSource?: "impulse_debrief" | undefined;
+        generationSignature?: string | undefined;
+        generatedFromTacticIds?: string[] | undefined;
+        generatedFromSessionCount?: number | undefined;
+        planSteps?: ({
+            type: "fixedTactic";
+            tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        } | {
+            type: "collectionPick";
+            collectionId: string;
+            label?: string | undefined;
+        })[] | undefined;
+        numberOfUses?: number | undefined;
+        numberOfSuccesses?: number | undefined;
+        numberOfSetbacks?: number | undefined;
+        lastUsedAt?: import("../../types").Timestamp | undefined;
+        deletedAt?: import("../../types").Timestamp | undefined;
+    }) | ({
+        id: string;
+        _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+    } & {
+        type: "default";
+        name: string;
+        tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+        questions: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+        numberOfUses: number;
+        numberOfSuccesses: number;
+        numberOfSetbacks: number;
+        id?: string | undefined;
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        behaviorIds?: string[] | undefined;
+        description?: string | undefined;
+        ordinal?: number | undefined;
+        tags?: Record<string, Record<string, number>> | undefined;
+        indications?: {
+            tags?: {
+                weight: number;
+                tagGroupName: string;
+                optionLabels: string[];
+            }[] | undefined;
+            behaviorTemplateNames?: string[] | undefined;
+        } | undefined;
+        summary?: string | undefined;
+        isTemplate?: boolean | undefined;
+        notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+        notificationBodyCustomText?: string | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
+        isGenerated?: boolean | undefined;
+        generationSource?: "impulse_debrief" | undefined;
+        generationSignature?: string | undefined;
+        generatedFromTacticIds?: string[] | undefined;
+        generatedFromSessionCount?: number | undefined;
+        planSteps?: ({
+            type: "fixedTactic";
+            tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        } | {
+            type: "collectionPick";
+            collectionId: string;
+            label?: string | undefined;
+        })[] | undefined;
+        lastUsedAt?: import("../../types").Timestamp | undefined;
+        deletedAt?: import("../../types").Timestamp | undefined;
+        isActive?: boolean | undefined;
+    }) | ({
+        id: string;
+        _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+    } & {
+        type: "behavior";
+        name: string;
+        tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+        questions: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+        id?: string | undefined;
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        behaviorIds?: string[] | undefined;
+        description?: string | undefined;
+        ordinal?: number | undefined;
+        tags?: Record<string, Record<string, number>> | undefined;
+        indications?: {
+            tags?: {
+                weight: number;
+                tagGroupName: string;
+                optionLabels: string[];
+            }[] | undefined;
+            behaviorTemplateNames?: string[] | undefined;
+        } | undefined;
+        summary?: string | undefined;
+        isTemplate?: boolean | undefined;
+        notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+        notificationBodyCustomText?: string | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
+        isGenerated?: boolean | undefined;
+        generationSource?: "impulse_debrief" | undefined;
+        generationSignature?: string | undefined;
+        generatedFromTacticIds?: string[] | undefined;
+        generatedFromSessionCount?: number | undefined;
+        planSteps?: ({
+            type: "fixedTactic";
+            tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        } | {
+            type: "collectionPick";
+            collectionId: string;
+            label?: string | undefined;
+        })[] | undefined;
+        numberOfUses?: number | undefined;
+        numberOfSuccesses?: number | undefined;
+        numberOfSetbacks?: number | undefined;
+        lastUsedAt?: import("../../types").Timestamp | undefined;
+        deletedAt?: import("../../types").Timestamp | undefined;
+        isActive?: boolean | undefined;
+    });
+    planId: string;
+    matchedAt: import("../../types").Timestamp;
+}, {
+    source: "tags" | "improvised";
+    plan: ({
+        id: string;
+        _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+    } & {
+        type: "trigger";
+        name: string;
+        tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+        id?: string | undefined;
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        behaviorIds?: string[] | undefined;
+        description?: string | undefined;
+        ordinal?: number | undefined;
+        tags?: Record<string, Record<string, number>> | undefined;
+        indications?: {
+            tags?: {
+                weight: number;
+                tagGroupName: string;
+                optionLabels: string[];
+            }[] | undefined;
+            behaviorTemplateNames?: string[] | undefined;
+        } | undefined;
+        summary?: string | undefined;
+        isTemplate?: boolean | undefined;
+        notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+        notificationBodyCustomText?: string | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
+        questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+        isGenerated?: boolean | undefined;
+        generationSource?: "impulse_debrief" | undefined;
+        generationSignature?: string | undefined;
+        generatedFromTacticIds?: string[] | undefined;
+        generatedFromSessionCount?: number | undefined;
+        planSteps?: ({
+            type: "fixedTactic";
+            tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        } | {
+            type: "collectionPick";
+            collectionId: string;
+            label?: string | undefined;
+        })[] | undefined;
+        numberOfUses?: number | undefined;
+        numberOfSuccesses?: number | undefined;
+        numberOfSetbacks?: number | undefined;
+        lastUsedAt?: import("../../types").Timestamp | undefined;
+        deletedAt?: import("../../types").Timestamp | undefined;
+        isActive?: boolean | undefined;
+    }) | ({
+        id: string;
+        _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+    } & {
+        type: "scheduled";
+        name: string;
+        tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+        hour: number;
+        minute: number;
+        weekdays: number[];
+        id?: string | undefined;
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        behaviorIds?: string[] | undefined;
+        description?: string | undefined;
+        ordinal?: number | undefined;
+        tags?: Record<string, Record<string, number>> | undefined;
+        indications?: {
+            tags?: {
+                weight: number;
+                tagGroupName: string;
+                optionLabels: string[];
+            }[] | undefined;
+            behaviorTemplateNames?: string[] | undefined;
+        } | undefined;
+        summary?: string | undefined;
+        isTemplate?: boolean | undefined;
+        notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+        notificationBodyCustomText?: string | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
+        questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+        isGenerated?: boolean | undefined;
+        generationSource?: "impulse_debrief" | undefined;
+        generationSignature?: string | undefined;
+        generatedFromTacticIds?: string[] | undefined;
+        generatedFromSessionCount?: number | undefined;
+        planSteps?: ({
+            type: "fixedTactic";
+            tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        } | {
+            type: "collectionPick";
+            collectionId: string;
+            label?: string | undefined;
+        })[] | undefined;
+        numberOfUses?: number | undefined;
+        numberOfSuccesses?: number | undefined;
+        numberOfSetbacks?: number | undefined;
+        lastUsedAt?: import("../../types").Timestamp | undefined;
+        deletedAt?: import("../../types").Timestamp | undefined;
+    }) | ({
+        id: string;
+        _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+    } & {
+        type: "default";
+        name: string;
+        tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+        id?: string | undefined;
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        behaviorIds?: string[] | undefined;
+        description?: string | undefined;
+        ordinal?: number | undefined;
+        tags?: Record<string, Record<string, number>> | undefined;
+        indications?: {
+            tags?: {
+                weight: number;
+                tagGroupName: string;
+                optionLabels: string[];
+            }[] | undefined;
+            behaviorTemplateNames?: string[] | undefined;
+        } | undefined;
+        summary?: string | undefined;
+        isTemplate?: boolean | undefined;
+        notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+        notificationBodyCustomText?: string | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
+        questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+        isGenerated?: boolean | undefined;
+        generationSource?: "impulse_debrief" | undefined;
+        generationSignature?: string | undefined;
+        generatedFromTacticIds?: string[] | undefined;
+        generatedFromSessionCount?: number | undefined;
+        planSteps?: ({
+            type: "fixedTactic";
+            tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        } | {
+            type: "collectionPick";
+            collectionId: string;
+            label?: string | undefined;
+        })[] | undefined;
+        numberOfUses?: number | undefined;
+        numberOfSuccesses?: number | undefined;
+        numberOfSetbacks?: number | undefined;
+        lastUsedAt?: import("../../types").Timestamp | undefined;
+        deletedAt?: import("../../types").Timestamp | undefined;
+        isActive?: boolean | undefined;
+    }) | ({
+        id: string;
+        _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+    } & {
+        type: "behavior";
+        name: string;
+        tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+        id?: string | undefined;
+        createdAt?: import("../../types").Timestamp | undefined;
+        updatedAt?: import("../../types").Timestamp | undefined;
+        behaviorIds?: string[] | undefined;
+        description?: string | undefined;
+        ordinal?: number | undefined;
+        tags?: Record<string, Record<string, number>> | undefined;
+        indications?: {
+            tags?: {
+                weight: number;
+                tagGroupName: string;
+                optionLabels: string[];
+            }[] | undefined;
+            behaviorTemplateNames?: string[] | undefined;
+        } | undefined;
+        summary?: string | undefined;
+        isTemplate?: boolean | undefined;
+        notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+        notificationBodyCustomText?: string | undefined;
+        tacticsByPath?: Record<string, any> | undefined;
+        questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+        isGenerated?: boolean | undefined;
+        generationSource?: "impulse_debrief" | undefined;
+        generationSignature?: string | undefined;
+        generatedFromTacticIds?: string[] | undefined;
+        generatedFromSessionCount?: number | undefined;
+        planSteps?: ({
+            type: "fixedTactic";
+            tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        } | {
+            type: "collectionPick";
+            collectionId: string;
+            label?: string | undefined;
+        })[] | undefined;
+        numberOfUses?: number | undefined;
+        numberOfSuccesses?: number | undefined;
+        numberOfSetbacks?: number | undefined;
+        lastUsedAt?: import("../../types").Timestamp | undefined;
+        deletedAt?: import("../../types").Timestamp | undefined;
+        isActive?: boolean | undefined;
+    });
+    planId: string;
+    matchedAt: import("../../types").Timestamp;
+}>;
+export type SuggestedPlan = z.infer<typeof suggestedPlanSchema>;
 export declare const impulseSessionSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     title: z.ZodString;
@@ -4580,6 +5708,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
         timeToComplete: z.ZodOptional<z.ZodEnum<["quick", "medium", "long"]>>;
         effort: z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>;
         worksAnywhere: z.ZodOptional<z.ZodBoolean>;
+        presumesState: z.ZodOptional<z.ZodString>;
         aiConfiguration: z.ZodOptional<z.ZodObject<{
             defaultConversationMode: z.ZodOptional<z.ZodEnum<["voice", "text"]>>;
             goal: z.ZodString;
@@ -5196,6 +6325,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
         timeToComplete?: "medium" | "long" | "quick" | undefined;
         effort?: "medium" | "low" | "high" | undefined;
         worksAnywhere?: boolean | undefined;
+        presumesState?: string | undefined;
         aiConfiguration?: {
             goal: string;
             defaultConversationMode?: "text" | "voice" | undefined;
@@ -5268,6 +6398,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
         timeToComplete?: "medium" | "long" | "quick" | undefined;
         effort?: "medium" | "low" | "high" | undefined;
         worksAnywhere?: boolean | undefined;
+        presumesState?: string | undefined;
         aiConfiguration?: {
             goal: string;
             defaultConversationMode?: "text" | "voice" | undefined;
@@ -5418,6 +6549,1120 @@ export declare const impulseSessionSchema: z.ZodObject<{
         tacticRefPath?: string | undefined;
         firstStepText?: string | undefined;
     }>, "many">>;
+    suggestedPlan: z.ZodOptional<z.ZodObject<{
+        planId: z.ZodString;
+        plan: z.ZodUnion<[z.ZodIntersection<z.ZodObject<{
+            id: z.ZodString;
+            _ref: z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>;
+        }, "strip", z.ZodTypeAny, {
+            id: string;
+            _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        }, {
+            id: string;
+            _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        }>, z.ZodObject<{
+            id: z.ZodOptional<z.ZodString>;
+            name: z.ZodString;
+            description: z.ZodOptional<z.ZodString>;
+            type: z.ZodType<"trigger", z.ZodTypeDef, "trigger">;
+            ordinal: z.ZodOptional<z.ZodNumber>;
+            isTemplate: z.ZodOptional<z.ZodBoolean>;
+            summary: z.ZodOptional<z.ZodString>;
+            notificationBodyMode: z.ZodOptional<z.ZodEnum<["default", "firstTactic", "custom"]>>;
+            notificationBodyCustomText: z.ZodOptional<z.ZodString>;
+            tactics: z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
+            tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+            questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>>;
+            tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodRecord<z.ZodString, z.ZodNumber>>>;
+            indications: z.ZodOptional<z.ZodObject<{
+                tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                    tagGroupName: z.ZodString;
+                    optionLabels: z.ZodArray<z.ZodString, "many">;
+                    weight: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }, {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }>, "many">>;
+                behaviorTemplateNames: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+            }, "strip", z.ZodTypeAny, {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
+                behaviorTemplateNames?: string[] | undefined;
+            }, {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
+                behaviorTemplateNames?: string[] | undefined;
+            }>>;
+            isGenerated: z.ZodOptional<z.ZodBoolean>;
+            generationSource: z.ZodOptional<z.ZodEnum<["impulse_debrief"]>>;
+            generationSignature: z.ZodOptional<z.ZodString>;
+            generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+            generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
+            planSteps: z.ZodOptional<z.ZodArray<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+                type: z.ZodLiteral<"fixedTactic">;
+                tacticRef: z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>;
+            }, "strip", z.ZodTypeAny, {
+                type: "fixedTactic";
+                tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+            }, {
+                type: "fixedTactic";
+                tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+            }>, z.ZodObject<{
+                type: z.ZodLiteral<"collectionPick">;
+                collectionId: z.ZodString;
+                label: z.ZodOptional<z.ZodString>;
+            }, "strip", z.ZodTypeAny, {
+                type: "collectionPick";
+                collectionId: string;
+                label?: string | undefined;
+            }, {
+                type: "collectionPick";
+                collectionId: string;
+                label?: string | undefined;
+            }>]>, "many">>;
+            behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+            numberOfUses: z.ZodOptional<z.ZodNumber>;
+            numberOfSuccesses: z.ZodOptional<z.ZodNumber>;
+            numberOfSetbacks: z.ZodOptional<z.ZodNumber>;
+            lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        } & {
+            isActive: z.ZodOptional<z.ZodBoolean>;
+        }, z.UnknownKeysParam, z.ZodTypeAny, {
+            type: "trigger";
+            name: string;
+            tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            questions: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            id?: string | undefined;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            behaviorIds?: string[] | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            tags?: Record<string, Record<string, number>> | undefined;
+            indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
+                behaviorTemplateNames?: string[] | undefined;
+            } | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+            notificationBodyCustomText?: string | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            isGenerated?: boolean | undefined;
+            generationSource?: "impulse_debrief" | undefined;
+            generationSignature?: string | undefined;
+            generatedFromTacticIds?: string[] | undefined;
+            generatedFromSessionCount?: number | undefined;
+            planSteps?: ({
+                type: "fixedTactic";
+                tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+            } | {
+                type: "collectionPick";
+                collectionId: string;
+                label?: string | undefined;
+            })[] | undefined;
+            numberOfUses?: number | undefined;
+            numberOfSuccesses?: number | undefined;
+            numberOfSetbacks?: number | undefined;
+            lastUsedAt?: import("../../types").Timestamp | undefined;
+            deletedAt?: import("../../types").Timestamp | undefined;
+            isActive?: boolean | undefined;
+        }, {
+            type: "trigger";
+            name: string;
+            tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            id?: string | undefined;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            behaviorIds?: string[] | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            tags?: Record<string, Record<string, number>> | undefined;
+            indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
+                behaviorTemplateNames?: string[] | undefined;
+            } | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+            notificationBodyCustomText?: string | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+            isGenerated?: boolean | undefined;
+            generationSource?: "impulse_debrief" | undefined;
+            generationSignature?: string | undefined;
+            generatedFromTacticIds?: string[] | undefined;
+            generatedFromSessionCount?: number | undefined;
+            planSteps?: ({
+                type: "fixedTactic";
+                tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+            } | {
+                type: "collectionPick";
+                collectionId: string;
+                label?: string | undefined;
+            })[] | undefined;
+            numberOfUses?: number | undefined;
+            numberOfSuccesses?: number | undefined;
+            numberOfSetbacks?: number | undefined;
+            lastUsedAt?: import("../../types").Timestamp | undefined;
+            deletedAt?: import("../../types").Timestamp | undefined;
+            isActive?: boolean | undefined;
+        }>>, z.ZodIntersection<z.ZodObject<{
+            id: z.ZodString;
+            _ref: z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>;
+        }, "strip", z.ZodTypeAny, {
+            id: string;
+            _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        }, {
+            id: string;
+            _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        }>, z.ZodObject<{
+            id: z.ZodOptional<z.ZodString>;
+            name: z.ZodString;
+            description: z.ZodOptional<z.ZodString>;
+            type: z.ZodType<"scheduled", z.ZodTypeDef, "scheduled">;
+            ordinal: z.ZodOptional<z.ZodNumber>;
+            isTemplate: z.ZodOptional<z.ZodBoolean>;
+            summary: z.ZodOptional<z.ZodString>;
+            notificationBodyMode: z.ZodOptional<z.ZodEnum<["default", "firstTactic", "custom"]>>;
+            notificationBodyCustomText: z.ZodOptional<z.ZodString>;
+            tactics: z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
+            tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+            questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>>;
+            tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodRecord<z.ZodString, z.ZodNumber>>>;
+            indications: z.ZodOptional<z.ZodObject<{
+                tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                    tagGroupName: z.ZodString;
+                    optionLabels: z.ZodArray<z.ZodString, "many">;
+                    weight: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }, {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }>, "many">>;
+                behaviorTemplateNames: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+            }, "strip", z.ZodTypeAny, {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
+                behaviorTemplateNames?: string[] | undefined;
+            }, {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
+                behaviorTemplateNames?: string[] | undefined;
+            }>>;
+            isGenerated: z.ZodOptional<z.ZodBoolean>;
+            generationSource: z.ZodOptional<z.ZodEnum<["impulse_debrief"]>>;
+            generationSignature: z.ZodOptional<z.ZodString>;
+            generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+            generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
+            planSteps: z.ZodOptional<z.ZodArray<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+                type: z.ZodLiteral<"fixedTactic">;
+                tacticRef: z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>;
+            }, "strip", z.ZodTypeAny, {
+                type: "fixedTactic";
+                tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+            }, {
+                type: "fixedTactic";
+                tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+            }>, z.ZodObject<{
+                type: z.ZodLiteral<"collectionPick">;
+                collectionId: z.ZodString;
+                label: z.ZodOptional<z.ZodString>;
+            }, "strip", z.ZodTypeAny, {
+                type: "collectionPick";
+                collectionId: string;
+                label?: string | undefined;
+            }, {
+                type: "collectionPick";
+                collectionId: string;
+                label?: string | undefined;
+            }>]>, "many">>;
+            behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+            numberOfUses: z.ZodOptional<z.ZodNumber>;
+            numberOfSuccesses: z.ZodOptional<z.ZodNumber>;
+            numberOfSetbacks: z.ZodOptional<z.ZodNumber>;
+            lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        } & {
+            hour: z.ZodNumber;
+            minute: z.ZodNumber;
+            weekdays: z.ZodArray<z.ZodNumber, "many">;
+        }, z.UnknownKeysParam, z.ZodTypeAny, {
+            type: "scheduled";
+            name: string;
+            tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            hour: number;
+            minute: number;
+            weekdays: number[];
+            questions: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            id?: string | undefined;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            behaviorIds?: string[] | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            tags?: Record<string, Record<string, number>> | undefined;
+            indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
+                behaviorTemplateNames?: string[] | undefined;
+            } | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+            notificationBodyCustomText?: string | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            isGenerated?: boolean | undefined;
+            generationSource?: "impulse_debrief" | undefined;
+            generationSignature?: string | undefined;
+            generatedFromTacticIds?: string[] | undefined;
+            generatedFromSessionCount?: number | undefined;
+            planSteps?: ({
+                type: "fixedTactic";
+                tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+            } | {
+                type: "collectionPick";
+                collectionId: string;
+                label?: string | undefined;
+            })[] | undefined;
+            numberOfUses?: number | undefined;
+            numberOfSuccesses?: number | undefined;
+            numberOfSetbacks?: number | undefined;
+            lastUsedAt?: import("../../types").Timestamp | undefined;
+            deletedAt?: import("../../types").Timestamp | undefined;
+        }, {
+            type: "scheduled";
+            name: string;
+            tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            hour: number;
+            minute: number;
+            weekdays: number[];
+            id?: string | undefined;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            behaviorIds?: string[] | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            tags?: Record<string, Record<string, number>> | undefined;
+            indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
+                behaviorTemplateNames?: string[] | undefined;
+            } | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+            notificationBodyCustomText?: string | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+            isGenerated?: boolean | undefined;
+            generationSource?: "impulse_debrief" | undefined;
+            generationSignature?: string | undefined;
+            generatedFromTacticIds?: string[] | undefined;
+            generatedFromSessionCount?: number | undefined;
+            planSteps?: ({
+                type: "fixedTactic";
+                tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+            } | {
+                type: "collectionPick";
+                collectionId: string;
+                label?: string | undefined;
+            })[] | undefined;
+            numberOfUses?: number | undefined;
+            numberOfSuccesses?: number | undefined;
+            numberOfSetbacks?: number | undefined;
+            lastUsedAt?: import("../../types").Timestamp | undefined;
+            deletedAt?: import("../../types").Timestamp | undefined;
+        }>>, z.ZodIntersection<z.ZodObject<{
+            id: z.ZodString;
+            _ref: z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>;
+        }, "strip", z.ZodTypeAny, {
+            id: string;
+            _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        }, {
+            id: string;
+            _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        }>, z.ZodObject<{
+            id: z.ZodOptional<z.ZodString>;
+            name: z.ZodString;
+            description: z.ZodOptional<z.ZodString>;
+            type: z.ZodType<"default", z.ZodTypeDef, "default">;
+            ordinal: z.ZodOptional<z.ZodNumber>;
+            isTemplate: z.ZodOptional<z.ZodBoolean>;
+            summary: z.ZodOptional<z.ZodString>;
+            notificationBodyMode: z.ZodOptional<z.ZodEnum<["default", "firstTactic", "custom"]>>;
+            notificationBodyCustomText: z.ZodOptional<z.ZodString>;
+            tactics: z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
+            tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+            questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>>;
+            tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodRecord<z.ZodString, z.ZodNumber>>>;
+            indications: z.ZodOptional<z.ZodObject<{
+                tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                    tagGroupName: z.ZodString;
+                    optionLabels: z.ZodArray<z.ZodString, "many">;
+                    weight: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }, {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }>, "many">>;
+                behaviorTemplateNames: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+            }, "strip", z.ZodTypeAny, {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
+                behaviorTemplateNames?: string[] | undefined;
+            }, {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
+                behaviorTemplateNames?: string[] | undefined;
+            }>>;
+            isGenerated: z.ZodOptional<z.ZodBoolean>;
+            generationSource: z.ZodOptional<z.ZodEnum<["impulse_debrief"]>>;
+            generationSignature: z.ZodOptional<z.ZodString>;
+            generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+            generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
+            planSteps: z.ZodOptional<z.ZodArray<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+                type: z.ZodLiteral<"fixedTactic">;
+                tacticRef: z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>;
+            }, "strip", z.ZodTypeAny, {
+                type: "fixedTactic";
+                tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+            }, {
+                type: "fixedTactic";
+                tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+            }>, z.ZodObject<{
+                type: z.ZodLiteral<"collectionPick">;
+                collectionId: z.ZodString;
+                label: z.ZodOptional<z.ZodString>;
+            }, "strip", z.ZodTypeAny, {
+                type: "collectionPick";
+                collectionId: string;
+                label?: string | undefined;
+            }, {
+                type: "collectionPick";
+                collectionId: string;
+                label?: string | undefined;
+            }>]>, "many">>;
+            behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+            createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        } & {
+            lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            numberOfUses: z.ZodDefault<z.ZodNumber>;
+            numberOfSuccesses: z.ZodDefault<z.ZodNumber>;
+            numberOfSetbacks: z.ZodDefault<z.ZodNumber>;
+            isActive: z.ZodOptional<z.ZodBoolean>;
+        }, z.UnknownKeysParam, z.ZodTypeAny, {
+            type: "default";
+            name: string;
+            tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            questions: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            numberOfUses: number;
+            numberOfSuccesses: number;
+            numberOfSetbacks: number;
+            id?: string | undefined;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            behaviorIds?: string[] | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            tags?: Record<string, Record<string, number>> | undefined;
+            indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
+                behaviorTemplateNames?: string[] | undefined;
+            } | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+            notificationBodyCustomText?: string | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            isGenerated?: boolean | undefined;
+            generationSource?: "impulse_debrief" | undefined;
+            generationSignature?: string | undefined;
+            generatedFromTacticIds?: string[] | undefined;
+            generatedFromSessionCount?: number | undefined;
+            planSteps?: ({
+                type: "fixedTactic";
+                tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+            } | {
+                type: "collectionPick";
+                collectionId: string;
+                label?: string | undefined;
+            })[] | undefined;
+            lastUsedAt?: import("../../types").Timestamp | undefined;
+            deletedAt?: import("../../types").Timestamp | undefined;
+            isActive?: boolean | undefined;
+        }, {
+            type: "default";
+            name: string;
+            tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            id?: string | undefined;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            behaviorIds?: string[] | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            tags?: Record<string, Record<string, number>> | undefined;
+            indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
+                behaviorTemplateNames?: string[] | undefined;
+            } | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+            notificationBodyCustomText?: string | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+            isGenerated?: boolean | undefined;
+            generationSource?: "impulse_debrief" | undefined;
+            generationSignature?: string | undefined;
+            generatedFromTacticIds?: string[] | undefined;
+            generatedFromSessionCount?: number | undefined;
+            planSteps?: ({
+                type: "fixedTactic";
+                tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+            } | {
+                type: "collectionPick";
+                collectionId: string;
+                label?: string | undefined;
+            })[] | undefined;
+            numberOfUses?: number | undefined;
+            numberOfSuccesses?: number | undefined;
+            numberOfSetbacks?: number | undefined;
+            lastUsedAt?: import("../../types").Timestamp | undefined;
+            deletedAt?: import("../../types").Timestamp | undefined;
+            isActive?: boolean | undefined;
+        }>>, z.ZodIntersection<z.ZodObject<{
+            id: z.ZodString;
+            _ref: z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>;
+        }, "strip", z.ZodTypeAny, {
+            id: string;
+            _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        }, {
+            id: string;
+            _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        }>, z.ZodObject<{
+            id: z.ZodOptional<z.ZodString>;
+            name: z.ZodString;
+            description: z.ZodOptional<z.ZodString>;
+            type: z.ZodType<"behavior", z.ZodTypeDef, "behavior">;
+            ordinal: z.ZodOptional<z.ZodNumber>;
+            isTemplate: z.ZodOptional<z.ZodBoolean>;
+            summary: z.ZodOptional<z.ZodString>;
+            notificationBodyMode: z.ZodOptional<z.ZodEnum<["default", "firstTactic", "custom"]>>;
+            notificationBodyCustomText: z.ZodOptional<z.ZodString>;
+            tactics: z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">;
+            tacticsByPath: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>;
+            questions: z.ZodDefault<z.ZodOptional<z.ZodArray<z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>, "many">>>;
+            tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodRecord<z.ZodString, z.ZodNumber>>>;
+            indications: z.ZodOptional<z.ZodObject<{
+                tags: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                    tagGroupName: z.ZodString;
+                    optionLabels: z.ZodArray<z.ZodString, "many">;
+                    weight: z.ZodNumber;
+                }, "strip", z.ZodTypeAny, {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }, {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }>, "many">>;
+                behaviorTemplateNames: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+            }, "strip", z.ZodTypeAny, {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
+                behaviorTemplateNames?: string[] | undefined;
+            }, {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
+                behaviorTemplateNames?: string[] | undefined;
+            }>>;
+            isGenerated: z.ZodOptional<z.ZodBoolean>;
+            generationSource: z.ZodOptional<z.ZodEnum<["impulse_debrief"]>>;
+            generationSignature: z.ZodOptional<z.ZodString>;
+            generatedFromTacticIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+            generatedFromSessionCount: z.ZodOptional<z.ZodNumber>;
+            planSteps: z.ZodOptional<z.ZodArray<z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
+                type: z.ZodLiteral<"fixedTactic">;
+                tacticRef: z.ZodType<import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>, z.ZodTypeDef, import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>>;
+            }, "strip", z.ZodTypeAny, {
+                type: "fixedTactic";
+                tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+            }, {
+                type: "fixedTactic";
+                tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+            }>, z.ZodObject<{
+                type: z.ZodLiteral<"collectionPick">;
+                collectionId: z.ZodString;
+                label: z.ZodOptional<z.ZodString>;
+            }, "strip", z.ZodTypeAny, {
+                type: "collectionPick";
+                collectionId: string;
+                label?: string | undefined;
+            }, {
+                type: "collectionPick";
+                collectionId: string;
+                label?: string | undefined;
+            }>]>, "many">>;
+            behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+            numberOfUses: z.ZodOptional<z.ZodNumber>;
+            numberOfSuccesses: z.ZodOptional<z.ZodNumber>;
+            numberOfSetbacks: z.ZodOptional<z.ZodNumber>;
+            lastUsedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            createdAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            updatedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+            deletedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+        } & {
+            isActive: z.ZodOptional<z.ZodBoolean>;
+        }, z.UnknownKeysParam, z.ZodTypeAny, {
+            type: "behavior";
+            name: string;
+            tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            questions: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            id?: string | undefined;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            behaviorIds?: string[] | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            tags?: Record<string, Record<string, number>> | undefined;
+            indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
+                behaviorTemplateNames?: string[] | undefined;
+            } | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+            notificationBodyCustomText?: string | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            isGenerated?: boolean | undefined;
+            generationSource?: "impulse_debrief" | undefined;
+            generationSignature?: string | undefined;
+            generatedFromTacticIds?: string[] | undefined;
+            generatedFromSessionCount?: number | undefined;
+            planSteps?: ({
+                type: "fixedTactic";
+                tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+            } | {
+                type: "collectionPick";
+                collectionId: string;
+                label?: string | undefined;
+            })[] | undefined;
+            numberOfUses?: number | undefined;
+            numberOfSuccesses?: number | undefined;
+            numberOfSetbacks?: number | undefined;
+            lastUsedAt?: import("../../types").Timestamp | undefined;
+            deletedAt?: import("../../types").Timestamp | undefined;
+            isActive?: boolean | undefined;
+        }, {
+            type: "behavior";
+            name: string;
+            tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            id?: string | undefined;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            behaviorIds?: string[] | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            tags?: Record<string, Record<string, number>> | undefined;
+            indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
+                behaviorTemplateNames?: string[] | undefined;
+            } | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+            notificationBodyCustomText?: string | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+            isGenerated?: boolean | undefined;
+            generationSource?: "impulse_debrief" | undefined;
+            generationSignature?: string | undefined;
+            generatedFromTacticIds?: string[] | undefined;
+            generatedFromSessionCount?: number | undefined;
+            planSteps?: ({
+                type: "fixedTactic";
+                tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+            } | {
+                type: "collectionPick";
+                collectionId: string;
+                label?: string | undefined;
+            })[] | undefined;
+            numberOfUses?: number | undefined;
+            numberOfSuccesses?: number | undefined;
+            numberOfSetbacks?: number | undefined;
+            lastUsedAt?: import("../../types").Timestamp | undefined;
+            deletedAt?: import("../../types").Timestamp | undefined;
+            isActive?: boolean | undefined;
+        }>>]>;
+        source: z.ZodEnum<["tags", "improvised"]>;
+        matchedAt: z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>;
+    }, "strip", z.ZodTypeAny, {
+        source: "tags" | "improvised";
+        plan: ({
+            id: string;
+            _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        } & {
+            type: "trigger";
+            name: string;
+            tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            questions: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            id?: string | undefined;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            behaviorIds?: string[] | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            tags?: Record<string, Record<string, number>> | undefined;
+            indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
+                behaviorTemplateNames?: string[] | undefined;
+            } | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+            notificationBodyCustomText?: string | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            isGenerated?: boolean | undefined;
+            generationSource?: "impulse_debrief" | undefined;
+            generationSignature?: string | undefined;
+            generatedFromTacticIds?: string[] | undefined;
+            generatedFromSessionCount?: number | undefined;
+            planSteps?: ({
+                type: "fixedTactic";
+                tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+            } | {
+                type: "collectionPick";
+                collectionId: string;
+                label?: string | undefined;
+            })[] | undefined;
+            numberOfUses?: number | undefined;
+            numberOfSuccesses?: number | undefined;
+            numberOfSetbacks?: number | undefined;
+            lastUsedAt?: import("../../types").Timestamp | undefined;
+            deletedAt?: import("../../types").Timestamp | undefined;
+            isActive?: boolean | undefined;
+        }) | ({
+            id: string;
+            _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        } & {
+            type: "scheduled";
+            name: string;
+            tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            hour: number;
+            minute: number;
+            weekdays: number[];
+            questions: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            id?: string | undefined;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            behaviorIds?: string[] | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            tags?: Record<string, Record<string, number>> | undefined;
+            indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
+                behaviorTemplateNames?: string[] | undefined;
+            } | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+            notificationBodyCustomText?: string | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            isGenerated?: boolean | undefined;
+            generationSource?: "impulse_debrief" | undefined;
+            generationSignature?: string | undefined;
+            generatedFromTacticIds?: string[] | undefined;
+            generatedFromSessionCount?: number | undefined;
+            planSteps?: ({
+                type: "fixedTactic";
+                tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+            } | {
+                type: "collectionPick";
+                collectionId: string;
+                label?: string | undefined;
+            })[] | undefined;
+            numberOfUses?: number | undefined;
+            numberOfSuccesses?: number | undefined;
+            numberOfSetbacks?: number | undefined;
+            lastUsedAt?: import("../../types").Timestamp | undefined;
+            deletedAt?: import("../../types").Timestamp | undefined;
+        }) | ({
+            id: string;
+            _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        } & {
+            type: "default";
+            name: string;
+            tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            questions: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            numberOfUses: number;
+            numberOfSuccesses: number;
+            numberOfSetbacks: number;
+            id?: string | undefined;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            behaviorIds?: string[] | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            tags?: Record<string, Record<string, number>> | undefined;
+            indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
+                behaviorTemplateNames?: string[] | undefined;
+            } | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+            notificationBodyCustomText?: string | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            isGenerated?: boolean | undefined;
+            generationSource?: "impulse_debrief" | undefined;
+            generationSignature?: string | undefined;
+            generatedFromTacticIds?: string[] | undefined;
+            generatedFromSessionCount?: number | undefined;
+            planSteps?: ({
+                type: "fixedTactic";
+                tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+            } | {
+                type: "collectionPick";
+                collectionId: string;
+                label?: string | undefined;
+            })[] | undefined;
+            lastUsedAt?: import("../../types").Timestamp | undefined;
+            deletedAt?: import("../../types").Timestamp | undefined;
+            isActive?: boolean | undefined;
+        }) | ({
+            id: string;
+            _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        } & {
+            type: "behavior";
+            name: string;
+            tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            questions: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            id?: string | undefined;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            behaviorIds?: string[] | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            tags?: Record<string, Record<string, number>> | undefined;
+            indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
+                behaviorTemplateNames?: string[] | undefined;
+            } | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+            notificationBodyCustomText?: string | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            isGenerated?: boolean | undefined;
+            generationSource?: "impulse_debrief" | undefined;
+            generationSignature?: string | undefined;
+            generatedFromTacticIds?: string[] | undefined;
+            generatedFromSessionCount?: number | undefined;
+            planSteps?: ({
+                type: "fixedTactic";
+                tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+            } | {
+                type: "collectionPick";
+                collectionId: string;
+                label?: string | undefined;
+            })[] | undefined;
+            numberOfUses?: number | undefined;
+            numberOfSuccesses?: number | undefined;
+            numberOfSetbacks?: number | undefined;
+            lastUsedAt?: import("../../types").Timestamp | undefined;
+            deletedAt?: import("../../types").Timestamp | undefined;
+            isActive?: boolean | undefined;
+        });
+        planId: string;
+        matchedAt: import("../../types").Timestamp;
+    }, {
+        source: "tags" | "improvised";
+        plan: ({
+            id: string;
+            _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        } & {
+            type: "trigger";
+            name: string;
+            tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            id?: string | undefined;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            behaviorIds?: string[] | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            tags?: Record<string, Record<string, number>> | undefined;
+            indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
+                behaviorTemplateNames?: string[] | undefined;
+            } | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+            notificationBodyCustomText?: string | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+            isGenerated?: boolean | undefined;
+            generationSource?: "impulse_debrief" | undefined;
+            generationSignature?: string | undefined;
+            generatedFromTacticIds?: string[] | undefined;
+            generatedFromSessionCount?: number | undefined;
+            planSteps?: ({
+                type: "fixedTactic";
+                tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+            } | {
+                type: "collectionPick";
+                collectionId: string;
+                label?: string | undefined;
+            })[] | undefined;
+            numberOfUses?: number | undefined;
+            numberOfSuccesses?: number | undefined;
+            numberOfSetbacks?: number | undefined;
+            lastUsedAt?: import("../../types").Timestamp | undefined;
+            deletedAt?: import("../../types").Timestamp | undefined;
+            isActive?: boolean | undefined;
+        }) | ({
+            id: string;
+            _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        } & {
+            type: "scheduled";
+            name: string;
+            tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            hour: number;
+            minute: number;
+            weekdays: number[];
+            id?: string | undefined;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            behaviorIds?: string[] | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            tags?: Record<string, Record<string, number>> | undefined;
+            indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
+                behaviorTemplateNames?: string[] | undefined;
+            } | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+            notificationBodyCustomText?: string | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+            isGenerated?: boolean | undefined;
+            generationSource?: "impulse_debrief" | undefined;
+            generationSignature?: string | undefined;
+            generatedFromTacticIds?: string[] | undefined;
+            generatedFromSessionCount?: number | undefined;
+            planSteps?: ({
+                type: "fixedTactic";
+                tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+            } | {
+                type: "collectionPick";
+                collectionId: string;
+                label?: string | undefined;
+            })[] | undefined;
+            numberOfUses?: number | undefined;
+            numberOfSuccesses?: number | undefined;
+            numberOfSetbacks?: number | undefined;
+            lastUsedAt?: import("../../types").Timestamp | undefined;
+            deletedAt?: import("../../types").Timestamp | undefined;
+        }) | ({
+            id: string;
+            _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        } & {
+            type: "default";
+            name: string;
+            tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            id?: string | undefined;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            behaviorIds?: string[] | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            tags?: Record<string, Record<string, number>> | undefined;
+            indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
+                behaviorTemplateNames?: string[] | undefined;
+            } | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+            notificationBodyCustomText?: string | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+            isGenerated?: boolean | undefined;
+            generationSource?: "impulse_debrief" | undefined;
+            generationSignature?: string | undefined;
+            generatedFromTacticIds?: string[] | undefined;
+            generatedFromSessionCount?: number | undefined;
+            planSteps?: ({
+                type: "fixedTactic";
+                tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+            } | {
+                type: "collectionPick";
+                collectionId: string;
+                label?: string | undefined;
+            })[] | undefined;
+            numberOfUses?: number | undefined;
+            numberOfSuccesses?: number | undefined;
+            numberOfSetbacks?: number | undefined;
+            lastUsedAt?: import("../../types").Timestamp | undefined;
+            deletedAt?: import("../../types").Timestamp | undefined;
+            isActive?: boolean | undefined;
+        }) | ({
+            id: string;
+            _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        } & {
+            type: "behavior";
+            name: string;
+            tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            id?: string | undefined;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            behaviorIds?: string[] | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            tags?: Record<string, Record<string, number>> | undefined;
+            indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
+                behaviorTemplateNames?: string[] | undefined;
+            } | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+            notificationBodyCustomText?: string | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+            isGenerated?: boolean | undefined;
+            generationSource?: "impulse_debrief" | undefined;
+            generationSignature?: string | undefined;
+            generatedFromTacticIds?: string[] | undefined;
+            generatedFromSessionCount?: number | undefined;
+            planSteps?: ({
+                type: "fixedTactic";
+                tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+            } | {
+                type: "collectionPick";
+                collectionId: string;
+                label?: string | undefined;
+            })[] | undefined;
+            numberOfUses?: number | undefined;
+            numberOfSuccesses?: number | undefined;
+            numberOfSetbacks?: number | undefined;
+            lastUsedAt?: import("../../types").Timestamp | undefined;
+            deletedAt?: import("../../types").Timestamp | undefined;
+            isActive?: boolean | undefined;
+        });
+        planId: string;
+        matchedAt: import("../../types").Timestamp;
+    }>>;
 }, "strip", z.ZodTypeAny, {
     type: "impulse";
     date: import("../../types").Timestamp;
@@ -6036,6 +8281,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
         timeToComplete?: "medium" | "long" | "quick" | undefined;
         effort?: "medium" | "low" | "high" | undefined;
         worksAnywhere?: boolean | undefined;
+        presumesState?: string | undefined;
         aiConfiguration?: {
             goal: string;
             defaultConversationMode?: "text" | "voice" | undefined;
@@ -6112,6 +8358,202 @@ export declare const impulseSessionSchema: z.ZodObject<{
         tacticRefPath?: string | undefined;
         firstStepText?: string | undefined;
     }[] | undefined;
+    suggestedPlan?: {
+        source: "tags" | "improvised";
+        plan: ({
+            id: string;
+            _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        } & {
+            type: "trigger";
+            name: string;
+            tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            questions: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            id?: string | undefined;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            behaviorIds?: string[] | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            tags?: Record<string, Record<string, number>> | undefined;
+            indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
+                behaviorTemplateNames?: string[] | undefined;
+            } | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+            notificationBodyCustomText?: string | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            isGenerated?: boolean | undefined;
+            generationSource?: "impulse_debrief" | undefined;
+            generationSignature?: string | undefined;
+            generatedFromTacticIds?: string[] | undefined;
+            generatedFromSessionCount?: number | undefined;
+            planSteps?: ({
+                type: "fixedTactic";
+                tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+            } | {
+                type: "collectionPick";
+                collectionId: string;
+                label?: string | undefined;
+            })[] | undefined;
+            numberOfUses?: number | undefined;
+            numberOfSuccesses?: number | undefined;
+            numberOfSetbacks?: number | undefined;
+            lastUsedAt?: import("../../types").Timestamp | undefined;
+            deletedAt?: import("../../types").Timestamp | undefined;
+            isActive?: boolean | undefined;
+        }) | ({
+            id: string;
+            _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        } & {
+            type: "scheduled";
+            name: string;
+            tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            hour: number;
+            minute: number;
+            weekdays: number[];
+            questions: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            id?: string | undefined;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            behaviorIds?: string[] | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            tags?: Record<string, Record<string, number>> | undefined;
+            indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
+                behaviorTemplateNames?: string[] | undefined;
+            } | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+            notificationBodyCustomText?: string | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            isGenerated?: boolean | undefined;
+            generationSource?: "impulse_debrief" | undefined;
+            generationSignature?: string | undefined;
+            generatedFromTacticIds?: string[] | undefined;
+            generatedFromSessionCount?: number | undefined;
+            planSteps?: ({
+                type: "fixedTactic";
+                tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+            } | {
+                type: "collectionPick";
+                collectionId: string;
+                label?: string | undefined;
+            })[] | undefined;
+            numberOfUses?: number | undefined;
+            numberOfSuccesses?: number | undefined;
+            numberOfSetbacks?: number | undefined;
+            lastUsedAt?: import("../../types").Timestamp | undefined;
+            deletedAt?: import("../../types").Timestamp | undefined;
+        }) | ({
+            id: string;
+            _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        } & {
+            type: "default";
+            name: string;
+            tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            questions: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            numberOfUses: number;
+            numberOfSuccesses: number;
+            numberOfSetbacks: number;
+            id?: string | undefined;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            behaviorIds?: string[] | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            tags?: Record<string, Record<string, number>> | undefined;
+            indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
+                behaviorTemplateNames?: string[] | undefined;
+            } | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+            notificationBodyCustomText?: string | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            isGenerated?: boolean | undefined;
+            generationSource?: "impulse_debrief" | undefined;
+            generationSignature?: string | undefined;
+            generatedFromTacticIds?: string[] | undefined;
+            generatedFromSessionCount?: number | undefined;
+            planSteps?: ({
+                type: "fixedTactic";
+                tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+            } | {
+                type: "collectionPick";
+                collectionId: string;
+                label?: string | undefined;
+            })[] | undefined;
+            lastUsedAt?: import("../../types").Timestamp | undefined;
+            deletedAt?: import("../../types").Timestamp | undefined;
+            isActive?: boolean | undefined;
+        }) | ({
+            id: string;
+            _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        } & {
+            type: "behavior";
+            name: string;
+            tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            questions: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            id?: string | undefined;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            behaviorIds?: string[] | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            tags?: Record<string, Record<string, number>> | undefined;
+            indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
+                behaviorTemplateNames?: string[] | undefined;
+            } | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+            notificationBodyCustomText?: string | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            isGenerated?: boolean | undefined;
+            generationSource?: "impulse_debrief" | undefined;
+            generationSignature?: string | undefined;
+            generatedFromTacticIds?: string[] | undefined;
+            generatedFromSessionCount?: number | undefined;
+            planSteps?: ({
+                type: "fixedTactic";
+                tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+            } | {
+                type: "collectionPick";
+                collectionId: string;
+                label?: string | undefined;
+            })[] | undefined;
+            numberOfUses?: number | undefined;
+            numberOfSuccesses?: number | undefined;
+            numberOfSetbacks?: number | undefined;
+            lastUsedAt?: import("../../types").Timestamp | undefined;
+            deletedAt?: import("../../types").Timestamp | undefined;
+            isActive?: boolean | undefined;
+        });
+        planId: string;
+        matchedAt: import("../../types").Timestamp;
+    } | undefined;
 }, {
     type: "impulse";
     date: import("../../types").Timestamp;
@@ -6195,6 +8637,7 @@ export declare const impulseSessionSchema: z.ZodObject<{
         timeToComplete?: "medium" | "long" | "quick" | undefined;
         effort?: "medium" | "low" | "high" | undefined;
         worksAnywhere?: boolean | undefined;
+        presumesState?: string | undefined;
         aiConfiguration?: {
             goal: string;
             defaultConversationMode?: "text" | "voice" | undefined;
@@ -6272,5 +8715,201 @@ export declare const impulseSessionSchema: z.ZodObject<{
         tacticRefPath?: string | undefined;
         firstStepText?: string | undefined;
     }[] | undefined;
+    suggestedPlan?: {
+        source: "tags" | "improvised";
+        plan: ({
+            id: string;
+            _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        } & {
+            type: "trigger";
+            name: string;
+            tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            id?: string | undefined;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            behaviorIds?: string[] | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            tags?: Record<string, Record<string, number>> | undefined;
+            indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
+                behaviorTemplateNames?: string[] | undefined;
+            } | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+            notificationBodyCustomText?: string | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+            isGenerated?: boolean | undefined;
+            generationSource?: "impulse_debrief" | undefined;
+            generationSignature?: string | undefined;
+            generatedFromTacticIds?: string[] | undefined;
+            generatedFromSessionCount?: number | undefined;
+            planSteps?: ({
+                type: "fixedTactic";
+                tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+            } | {
+                type: "collectionPick";
+                collectionId: string;
+                label?: string | undefined;
+            })[] | undefined;
+            numberOfUses?: number | undefined;
+            numberOfSuccesses?: number | undefined;
+            numberOfSetbacks?: number | undefined;
+            lastUsedAt?: import("../../types").Timestamp | undefined;
+            deletedAt?: import("../../types").Timestamp | undefined;
+            isActive?: boolean | undefined;
+        }) | ({
+            id: string;
+            _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        } & {
+            type: "scheduled";
+            name: string;
+            tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            hour: number;
+            minute: number;
+            weekdays: number[];
+            id?: string | undefined;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            behaviorIds?: string[] | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            tags?: Record<string, Record<string, number>> | undefined;
+            indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
+                behaviorTemplateNames?: string[] | undefined;
+            } | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+            notificationBodyCustomText?: string | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+            isGenerated?: boolean | undefined;
+            generationSource?: "impulse_debrief" | undefined;
+            generationSignature?: string | undefined;
+            generatedFromTacticIds?: string[] | undefined;
+            generatedFromSessionCount?: number | undefined;
+            planSteps?: ({
+                type: "fixedTactic";
+                tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+            } | {
+                type: "collectionPick";
+                collectionId: string;
+                label?: string | undefined;
+            })[] | undefined;
+            numberOfUses?: number | undefined;
+            numberOfSuccesses?: number | undefined;
+            numberOfSetbacks?: number | undefined;
+            lastUsedAt?: import("../../types").Timestamp | undefined;
+            deletedAt?: import("../../types").Timestamp | undefined;
+        }) | ({
+            id: string;
+            _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        } & {
+            type: "default";
+            name: string;
+            tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            id?: string | undefined;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            behaviorIds?: string[] | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            tags?: Record<string, Record<string, number>> | undefined;
+            indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
+                behaviorTemplateNames?: string[] | undefined;
+            } | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+            notificationBodyCustomText?: string | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+            isGenerated?: boolean | undefined;
+            generationSource?: "impulse_debrief" | undefined;
+            generationSignature?: string | undefined;
+            generatedFromTacticIds?: string[] | undefined;
+            generatedFromSessionCount?: number | undefined;
+            planSteps?: ({
+                type: "fixedTactic";
+                tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+            } | {
+                type: "collectionPick";
+                collectionId: string;
+                label?: string | undefined;
+            })[] | undefined;
+            numberOfUses?: number | undefined;
+            numberOfSuccesses?: number | undefined;
+            numberOfSetbacks?: number | undefined;
+            lastUsedAt?: import("../../types").Timestamp | undefined;
+            deletedAt?: import("../../types").Timestamp | undefined;
+            isActive?: boolean | undefined;
+        }) | ({
+            id: string;
+            _ref: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+        } & {
+            type: "behavior";
+            name: string;
+            tactics: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[];
+            id?: string | undefined;
+            createdAt?: import("../../types").Timestamp | undefined;
+            updatedAt?: import("../../types").Timestamp | undefined;
+            behaviorIds?: string[] | undefined;
+            description?: string | undefined;
+            ordinal?: number | undefined;
+            tags?: Record<string, Record<string, number>> | undefined;
+            indications?: {
+                tags?: {
+                    weight: number;
+                    tagGroupName: string;
+                    optionLabels: string[];
+                }[] | undefined;
+                behaviorTemplateNames?: string[] | undefined;
+            } | undefined;
+            summary?: string | undefined;
+            isTemplate?: boolean | undefined;
+            notificationBodyMode?: "custom" | "default" | "firstTactic" | undefined;
+            notificationBodyCustomText?: string | undefined;
+            tacticsByPath?: Record<string, any> | undefined;
+            questions?: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>[] | undefined;
+            isGenerated?: boolean | undefined;
+            generationSource?: "impulse_debrief" | undefined;
+            generationSignature?: string | undefined;
+            generatedFromTacticIds?: string[] | undefined;
+            generatedFromSessionCount?: number | undefined;
+            planSteps?: ({
+                type: "fixedTactic";
+                tacticRef: import("../../utils/documentReferenceSchema").DocumentReferenceLike<unknown>;
+            } | {
+                type: "collectionPick";
+                collectionId: string;
+                label?: string | undefined;
+            })[] | undefined;
+            numberOfUses?: number | undefined;
+            numberOfSuccesses?: number | undefined;
+            numberOfSetbacks?: number | undefined;
+            lastUsedAt?: import("../../types").Timestamp | undefined;
+            deletedAt?: import("../../types").Timestamp | undefined;
+            isActive?: boolean | undefined;
+        });
+        planId: string;
+        matchedAt: import("../../types").Timestamp;
+    } | undefined;
 }>;
 export type ImpulseSession = z.infer<typeof impulseSessionSchema>;

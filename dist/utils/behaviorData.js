@@ -13,7 +13,17 @@ function getScaleLabel(value) {
     var _a, _b;
     return (_b = (_a = exports.scaleLevels.find((l) => l.value === value)) === null || _a === void 0 ? void 0 : _a.label) !== null && _b !== void 0 ? _b : "Unknown";
 }
-function getFormattedValue({ trackingType, value, behaviorTrackingUnit, }) {
+// Short forms for the common (pluralized) time units, applied in compact mode.
+const COMPACT_UNITS = {
+    minute: "min",
+    minutes: "mins",
+    second: "sec",
+    seconds: "secs",
+    hour: "hr",
+    hours: "hrs",
+};
+function getFormattedValue({ trackingType, value, behaviorTrackingUnit, compact, }) {
+    var _a;
     if (trackingType === "timer") {
         const hours = Math.floor(value / 3600);
         const minutes = Math.floor((value % 3600) / 60);
@@ -30,5 +40,7 @@ function getFormattedValue({ trackingType, value, behaviorTrackingUnit, }) {
     if (trackingType === "scale") {
         return getScaleLabel(value);
     }
-    return pluralize(behaviorTrackingUnit || "times", value, true);
+    const unit = pluralize(behaviorTrackingUnit || "times", value);
+    const displayUnit = compact ? ((_a = COMPACT_UNITS[unit.toLowerCase()]) !== null && _a !== void 0 ? _a : unit) : unit;
+    return `${value} ${displayUnit}`;
 }

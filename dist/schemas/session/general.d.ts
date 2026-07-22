@@ -4557,6 +4557,7 @@ export declare const generalSessionSchema: z.ZodObject<{
         timeToComplete: z.ZodOptional<z.ZodEnum<["quick", "medium", "long"]>>;
         effort: z.ZodOptional<z.ZodEnum<["low", "medium", "high"]>>;
         worksAnywhere: z.ZodOptional<z.ZodBoolean>;
+        presumesState: z.ZodOptional<z.ZodString>;
         aiConfiguration: z.ZodOptional<z.ZodObject<{
             defaultConversationMode: z.ZodOptional<z.ZodEnum<["voice", "text"]>>;
             goal: z.ZodString;
@@ -5173,6 +5174,7 @@ export declare const generalSessionSchema: z.ZodObject<{
         timeToComplete?: "medium" | "long" | "quick" | undefined;
         effort?: "medium" | "low" | "high" | undefined;
         worksAnywhere?: boolean | undefined;
+        presumesState?: string | undefined;
         aiConfiguration?: {
             goal: string;
             defaultConversationMode?: "text" | "voice" | undefined;
@@ -5245,6 +5247,7 @@ export declare const generalSessionSchema: z.ZodObject<{
         timeToComplete?: "medium" | "long" | "quick" | undefined;
         effort?: "medium" | "low" | "high" | undefined;
         worksAnywhere?: boolean | undefined;
+        presumesState?: string | undefined;
         aiConfiguration?: {
             goal: string;
             defaultConversationMode?: "text" | "voice" | undefined;
@@ -5979,6 +5982,7 @@ export declare const generalSessionSchema: z.ZodObject<{
         timeToComplete?: "medium" | "long" | "quick" | undefined;
         effort?: "medium" | "low" | "high" | undefined;
         worksAnywhere?: boolean | undefined;
+        presumesState?: string | undefined;
         aiConfiguration?: {
             goal: string;
             defaultConversationMode?: "text" | "voice" | undefined;
@@ -6121,6 +6125,7 @@ export declare const generalSessionSchema: z.ZodObject<{
         timeToComplete?: "medium" | "long" | "quick" | undefined;
         effort?: "medium" | "low" | "high" | undefined;
         worksAnywhere?: boolean | undefined;
+        presumesState?: string | undefined;
         aiConfiguration?: {
             goal: string;
             defaultConversationMode?: "text" | "voice" | undefined;

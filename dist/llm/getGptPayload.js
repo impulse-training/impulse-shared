@@ -4,6 +4,33 @@ exports.getGptPayload = getGptPayload;
 const log_1 = require("../schemas/log");
 const buildPlansLogPayload_1 = require("./buildPlansLogPayload");
 const constants_1 = require("../constants");
+/**
+ * Drop the tactic-card `logId` from a replayed tool-call result before it goes
+ * back to the model. suggestTactic / findOrCreateTactic return it, but no tool
+ * ever reads a tactic logId back (tactic actions use tacticId), so it's dead
+ * context — and being a random Firestore doc id, it also makes request bodies
+ * nondeterministic across runs. The stored ToolCallLog keeps it; only the model
+ * payload is trimmed. (Behavior logIds the model DOES need come from the system
+ * prompt's [logId=...] markers, not tool results, so they're unaffected.)
+ */
+function stripReplayedToolResultIds(result) {
+    if (result.role !== "tool" ||
+        typeof result.content !== "string") {
+        return result;
+    }
+    const content = result.content;
+    try {
+        const parsed = JSON.parse(content);
+        if (parsed && typeof parsed === "object" && "logId" in parsed) {
+            delete parsed.logId;
+            return { ...result, content: JSON.stringify(parsed) };
+        }
+    }
+    catch (_a) {
+        // Non-JSON tool content — leave as-is.
+    }
+    return result;
+}
 function buildBehaviorLogPayload(log, options) {
     var _a, _b, _c;
     const { behaviorName, formattedValue, source, debriefOutcome } = log.data;
@@ -62,7 +89,7 @@ function buildBehaviorLogPayload(log, options) {
     return [];
 }
 function getGptPayload(log, isFinalLogInSession, options) {
-    var _a, _b, _c, _d, _e, _f;
+    var _a, _b, _c, _d, _e, _f, _g;
     if (log.type === "proposed_experiment") {
         const behaviorName = "behaviorName" in log
             ? log.behaviorName
@@ -232,7 +259,7 @@ function getGptPayload(log, isFinalLogInSession, options) {
         // Add tool result messages
         if (log.data.toolCallResults && log.data.toolCallResults.length > 0) {
             log.data.toolCallResults.forEach((result) => {
-                messages.push(result);
+                messages.push(stripReplayedToolResultIds(result));
             });
         }
         return messages;
@@ -393,21 +420,45 @@ function getGptPayload(log, isFinalLogInSession, options) {
         if (options === null || options === void 0 ? void 0 : options.forSummarization)
             return [];
         const tactics = (_f = log.data) === null || _f === void 0 ? void 0 : _f.recommendedTactics;
-        let tacticsContext = "";
+        // recommendedTactics on a tags_updated log always come from the plan
+        // matched for the session (extractRecommendedTacticsFromPlans). Whether
+        // the plan sheet shows them depends on ownership: only the user's OWN
+        // plans (planSource trigger/behavior) render there — engine-matched
+        // plans are invisible and deliver inline, one suggestTactic card at a
+        // time.
         if (tactics && tactics.length > 0) {
+            const planSource = (_g = log.data) === null || _g === void 0 ? void 0 : _g.planSource;
+            const isUserOwnedPlan = planSource === "trigger" || planSource === "behavior";
+            if (isUserOwnedPlan) {
+                const lines = tactics.map((t) => `- "${t.title}"${t.phase ? ` (${t.phase})` : ""}${t.description ? ` — ${t.description}` : ""}`);
+                return [
+                    {
+                        role: "user",
+                        content: "<SYSTEM>The user just updated their session tags using the tag bar, and their own plan was assigned. " +
+                            "The app is displaying the plan to the user in the plan sheet with these steps (in order):\n" +
+                            lines.join("\n") +
+                            "\n\nReply with ONE short sentence pointing them to the first step by name. " +
+                            "Do NOT call suggestTactic for these tactics and do NOT type out their step instructions — the plan sheet already shows them.</SYSTEM>",
+                    },
+                ];
+            }
             const lines = tactics.map((t) => `- [id=${t.tacticId}] "${t.title}"${t.phase ? ` (${t.phase})` : ""}${t.description ? ` — ${t.description}` : ""}`);
-            tacticsContext =
-                "\n\nRecommended tactics (use suggestTactic with the tactic ID):\n" +
-                    lines.join("\n");
+            return [
+                {
+                    role: "user",
+                    content: "<SYSTEM>The user just updated their session tags using the tag bar. " +
+                        "Recommended tactics were matched for this moment — the user cannot see them yet. " +
+                        "Call suggestTactic with the FIRST tactic's ID to present it as a card, then reply with one short connecting line:\n" +
+                        lines.join("\n") +
+                        "</SYSTEM>",
+                },
+            ];
         }
         return [
             {
                 role: "user",
                 content: "<SYSTEM>The user just updated their session tags using the tag bar. " +
-                    "Review the updated tags in your context and respond appropriately. " +
-                    "Suggest a tactic using the suggestTactic tool." +
-                    tacticsContext +
-                    "</SYSTEM>",
+                    "Review the updated tags in your context and respond appropriately.</SYSTEM>",
             },
         ];
     }
@@ -431,9 +482,12 @@ function getGptPayload(log, isFinalLogInSession, options) {
                 {
                     role: "user",
                     content: "<SYSTEM>The user just pressed the impulse button again — the urge is still present or has returned. " +
-                        "Do not restart the conversation or re-ask what's going on. " +
-                        "Re-engage briefly and lead them into action: if a suggested tactic card is pending (not yet engaged), point them back to it in one short sentence; " +
-                        "if a new tactic card was just presented, lead into that one; otherwise offer the most fitting next step.</SYSTEM>",
+                        "Re-engage in ONE short message, matched to what you actually know: " +
+                        "if the session has an assigned plan, point them back to its current step by name (the plan sheet shows it); " +
+                        "if a suggested tactic card is pending (not yet engaged), point them back to it; " +
+                        "if you know their tags or behavior but no plan, lead them into a fitting tactic. " +
+                        "If you know NOTHING yet (no tags, no behavior, no plan — the user never answered the opening question), acknowledge the urge is still here and gently ask what's going on — that is the one case where re-asking is right. " +
+                        "Never reference a plan or tactic that doesn't exist, and never call setSessionTags without real user input to infer from.</SYSTEM>",
                 },
             ];
         }

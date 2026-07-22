@@ -1,5 +1,15 @@
 import { z } from "zod";
 export declare const taskStatusSchema: z.ZodEnum<["open", "completed", "dismissed"]>;
+/**
+ * Why a task reached the terminal `dismissed` status, when the distinction
+ * matters (currently the reclaimable weekly-review bundle):
+ * - `declined` — the user actively said no (tapped "Not this time" on the card).
+ * - `ignored`  — auto-closed after being re-presented across the cap (3) recaps
+ *   without ever being engaged/resolved. Not the same as a deliberate no; a
+ *   coach reading the dashboard should be able to tell "he passed on it" from
+ *   "he never actually saw/acted on it".
+ */
+export declare const dismissedReasonSchema: z.ZodEnum<["ignored", "declined"]>;
 export declare const taskCategorySchema: z.ZodEnum<["zara", "deterministic"]>;
 export declare const claimableSessionTypeSchema: z.ZodEnum<["recap", "general", "toolkitPlanning"]>;
 export declare const taskBaseSchema: z.ZodObject<{
@@ -22,10 +32,21 @@ export declare const taskBaseSchema: z.ZodObject<{
      */
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -44,7 +65,9 @@ export declare const taskBaseSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -63,7 +86,9 @@ export declare const taskBaseSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }>;
 export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -85,10 +110,21 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
      */
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
 } & {
     type: z.ZodLiteral<"merge_behaviors">;
     sourceBehaviorIds: z.ZodArray<z.ZodString, "many">;
@@ -134,7 +170,9 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -161,7 +199,9 @@ export declare const mergeBehaviorsTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }>;
 export declare const suggestStrategyTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -183,10 +223,21 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
      */
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
 } & {
     type: z.ZodLiteral<"suggest_strategy">;
     suggestedStrategy: z.ZodObject<{
@@ -756,7 +807,9 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -844,7 +897,9 @@ export declare const suggestStrategyTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }>;
 /**
  * A coach-prepared proposal to change one behavior's goal (e.g. switch to a
@@ -875,10 +930,21 @@ export declare const proposeGoalTaskSchema: z.ZodObject<{
      */
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
 } & {
     type: z.ZodLiteral<"propose_goal">;
     behaviorId: z.ZodString;
@@ -1082,7 +1148,9 @@ export declare const proposeGoalTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -1131,7 +1199,9 @@ export declare const proposeGoalTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }>;
 export declare const proposedMetricSchema: z.ZodObject<{
     name: z.ZodString;
@@ -1166,10 +1236,21 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
      */
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
 } & {
     type: z.ZodLiteral<"propose_experiment">;
     proposedExperiment: z.ZodObject<{
@@ -1233,7 +1314,9 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -1262,7 +1345,9 @@ export declare const proposeExperimentTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }>;
 export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -1284,10 +1369,21 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
      */
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
 } & {
     type: z.ZodLiteral<"propose_mask_behavior">;
     behaviorId: z.ZodString;
@@ -1311,7 +1407,9 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -1332,7 +1430,9 @@ export declare const proposeMaskBehaviorTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }>;
 export declare const createSessionTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -1354,10 +1454,21 @@ export declare const createSessionTaskSchema: z.ZodObject<{
      */
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
 } & {
     type: z.ZodLiteral<"create_session">;
     lazy: z.ZodDefault<z.ZodBoolean>;
@@ -1491,7 +1602,9 @@ export declare const createSessionTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
     taskIds?: string[] | undefined;
     notification?: {
         title: string;
@@ -1534,7 +1647,9 @@ export declare const createSessionTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
     lazy?: boolean | undefined;
     taskIds?: string[] | undefined;
     notification?: {
@@ -1557,10 +1672,12 @@ export declare const recapQuestionTaskSchema: z.ZodObject<{
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
 } & {
     type: z.ZodLiteral<"recap_question">;
     recapQuestionId: z.ZodString;
@@ -1592,7 +1709,9 @@ export declare const recapQuestionTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
     claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
@@ -1617,7 +1736,9 @@ export declare const recapQuestionTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
     claimedBySessionId?: string | undefined;
 }>;
 export declare const reviewTriggerTaskSchema: z.ZodObject<{
@@ -1640,10 +1761,21 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
      */
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
 } & {
     type: z.ZodLiteral<"review_trigger">;
     impulseSessionId: z.ZodString;
@@ -1695,12 +1827,6 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     title: string;
     debriefOutcome: "acted" | "resisted";
     category: "zara" | "deterministic";
-    instructions: string;
-    impulseSessionId: string;
-    suggestedTrigger: {
-        tags: Record<string, string>;
-        behaviorIds?: string[] | undefined;
-    };
     suggestedPlan: {
         name: string;
         tacticIds?: string[] | undefined;
@@ -1708,6 +1834,12 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
             title: string;
             description?: string | undefined;
         }[] | undefined;
+    };
+    instructions: string;
+    impulseSessionId: string;
+    suggestedTrigger: {
+        tags: Record<string, string>;
+        behaviorIds?: string[] | undefined;
     };
     id?: string | undefined;
     ordinal?: number | undefined;
@@ -1719,7 +1851,9 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -1727,12 +1861,6 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     userId: string;
     title: string;
     debriefOutcome: "acted" | "resisted";
-    instructions: string;
-    impulseSessionId: string;
-    suggestedTrigger: {
-        tags: Record<string, string>;
-        behaviorIds?: string[] | undefined;
-    };
     suggestedPlan: {
         name: string;
         tacticIds?: string[] | undefined;
@@ -1740,6 +1868,12 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
             title: string;
             description?: string | undefined;
         }[] | undefined;
+    };
+    instructions: string;
+    impulseSessionId: string;
+    suggestedTrigger: {
+        tags: Record<string, string>;
+        behaviorIds?: string[] | undefined;
     };
     id?: string | undefined;
     status?: "completed" | "dismissed" | "open" | undefined;
@@ -1753,7 +1887,9 @@ export declare const reviewTriggerTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }>;
 export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -1775,10 +1911,21 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
      */
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
 } & {
     type: z.ZodLiteral<"toolkit_planning">;
 }, "strip", z.ZodTypeAny, {
@@ -1800,7 +1947,9 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -1820,7 +1969,9 @@ export declare const toolkitPlanningTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }>;
 export declare const suggestTacticTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -1842,10 +1993,21 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
      */
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
 } & {
     type: z.ZodLiteral<"suggest_tactic">;
     suggestions: z.ZodArray<z.ZodObject<{
@@ -1885,7 +2047,9 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -1910,7 +2074,9 @@ export declare const suggestTacticTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }>;
 export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -1932,10 +2098,21 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
      */
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
 } & {
     type: z.ZodLiteral<"reflect_on_metrics">;
     behaviorName: z.ZodString;
@@ -1976,7 +2153,9 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
     milestoneRungDays?: number | undefined;
     milestoneRungLabel?: string | undefined;
 }, {
@@ -2003,7 +2182,9 @@ export declare const reflectOnMetricsTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
     milestoneRungDays?: number | undefined;
     milestoneRungLabel?: string | undefined;
 }>;
@@ -2027,10 +2208,21 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
      */
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
 } & {
     type: z.ZodLiteral<"collect_baseline">;
     behaviorId: z.ZodString;
@@ -2054,7 +2246,9 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -2075,7 +2269,9 @@ export declare const collectBaselineTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }>;
 /**
  * The durable user-scoped "set up in-the-moment access" task — the parent of
@@ -2106,10 +2302,21 @@ export declare const setupShortcutTaskSchema: z.ZodObject<{
      */
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
 } & {
     type: z.ZodLiteral<"setup_shortcut">;
     /** Which setup card to show; if absent it is recomputed from behaviors. */
@@ -2137,7 +2344,9 @@ export declare const setupShortcutTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -2159,7 +2368,9 @@ export declare const setupShortcutTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }>;
 /**
  * Durable user-scoped task for a returning user whose scheduled recap
@@ -2189,10 +2400,21 @@ export declare const resumeRecapRemindersTaskSchema: z.ZodObject<{
      */
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
 } & {
     type: z.ZodLiteral<"resume_recap_reminders">;
 }, "strip", z.ZodTypeAny, {
@@ -2214,7 +2436,9 @@ export declare const resumeRecapRemindersTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -2234,7 +2458,9 @@ export declare const resumeRecapRemindersTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }>;
 /**
  * The weekly review's first beat: reflect on the week just passed as one shape.
@@ -2263,10 +2489,21 @@ export declare const weekLookbackTaskSchema: z.ZodObject<{
      */
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
 } & {
     type: z.ZodLiteral<"week_lookback">;
     /** The Sunday review this beat belongs to (the recap dateString). */
@@ -2291,7 +2528,9 @@ export declare const weekLookbackTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -2312,7 +2551,9 @@ export declare const weekLookbackTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }>;
 /**
  * The weekly review as a claimable token, one per week. Created on the local
@@ -2345,10 +2586,21 @@ export declare const weeklyReviewTaskSchema: z.ZodObject<{
      */
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
 } & {
     type: z.ZodLiteral<"weekly_review">;
     /** The local Sunday this review week is anchored to (YYYY-MM-DD). */
@@ -2374,7 +2626,9 @@ export declare const weeklyReviewTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
     claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
@@ -2396,7 +2650,9 @@ export declare const weeklyReviewTaskSchema: z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
     claimedBySessionId?: string | undefined;
 }>;
 export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
@@ -2419,10 +2675,21 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      */
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
 } & {
     type: z.ZodLiteral<"merge_behaviors">;
     sourceBehaviorIds: z.ZodArray<z.ZodString, "many">;
@@ -2468,7 +2735,9 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -2495,7 +2764,9 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -2516,10 +2787,21 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      */
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
 } & {
     type: z.ZodLiteral<"suggest_strategy">;
     suggestedStrategy: z.ZodObject<{
@@ -3089,7 +3371,9 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -3177,7 +3461,9 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -3198,10 +3484,21 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      */
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
 } & {
     type: z.ZodLiteral<"propose_goal">;
     behaviorId: z.ZodString;
@@ -3405,7 +3702,9 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -3454,7 +3753,9 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -3475,10 +3776,21 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      */
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
 } & {
     type: z.ZodLiteral<"propose_experiment">;
     proposedExperiment: z.ZodObject<{
@@ -3542,7 +3854,9 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -3571,7 +3885,9 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -3592,10 +3908,21 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      */
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
 } & {
     type: z.ZodLiteral<"propose_mask_behavior">;
     behaviorId: z.ZodString;
@@ -3619,7 +3946,9 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -3640,7 +3969,9 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -3661,10 +3992,21 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      */
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
 } & {
     type: z.ZodLiteral<"create_session">;
     lazy: z.ZodDefault<z.ZodBoolean>;
@@ -3798,7 +4140,9 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
     taskIds?: string[] | undefined;
     notification?: {
         title: string;
@@ -3841,7 +4185,9 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
     lazy?: boolean | undefined;
     taskIds?: string[] | undefined;
     notification?: {
@@ -3863,10 +4209,12 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     claimableSessionTypes: z.ZodOptional<z.ZodArray<z.ZodEnum<["recap", "general", "toolkitPlanning"]>, "many">>;
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
 } & {
     type: z.ZodLiteral<"recap_question">;
     recapQuestionId: z.ZodString;
@@ -3898,7 +4246,9 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
     claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
@@ -3923,7 +4273,9 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
     claimedBySessionId?: string | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
@@ -3945,10 +4297,21 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      */
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
 } & {
     type: z.ZodLiteral<"review_trigger">;
     impulseSessionId: z.ZodString;
@@ -4000,12 +4363,6 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     title: string;
     debriefOutcome: "acted" | "resisted";
     category: "zara" | "deterministic";
-    instructions: string;
-    impulseSessionId: string;
-    suggestedTrigger: {
-        tags: Record<string, string>;
-        behaviorIds?: string[] | undefined;
-    };
     suggestedPlan: {
         name: string;
         tacticIds?: string[] | undefined;
@@ -4013,6 +4370,12 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             title: string;
             description?: string | undefined;
         }[] | undefined;
+    };
+    instructions: string;
+    impulseSessionId: string;
+    suggestedTrigger: {
+        tags: Record<string, string>;
+        behaviorIds?: string[] | undefined;
     };
     id?: string | undefined;
     ordinal?: number | undefined;
@@ -4024,7 +4387,9 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -4032,12 +4397,6 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     userId: string;
     title: string;
     debriefOutcome: "acted" | "resisted";
-    instructions: string;
-    impulseSessionId: string;
-    suggestedTrigger: {
-        tags: Record<string, string>;
-        behaviorIds?: string[] | undefined;
-    };
     suggestedPlan: {
         name: string;
         tacticIds?: string[] | undefined;
@@ -4045,6 +4404,12 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             title: string;
             description?: string | undefined;
         }[] | undefined;
+    };
+    instructions: string;
+    impulseSessionId: string;
+    suggestedTrigger: {
+        tags: Record<string, string>;
+        behaviorIds?: string[] | undefined;
     };
     id?: string | undefined;
     status?: "completed" | "dismissed" | "open" | undefined;
@@ -4058,7 +4423,9 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -4079,10 +4446,21 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      */
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
 } & {
     type: z.ZodLiteral<"toolkit_planning">;
 }, "strip", z.ZodTypeAny, {
@@ -4104,7 +4482,9 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -4124,7 +4504,9 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -4145,10 +4527,21 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      */
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
 } & {
     type: z.ZodLiteral<"suggest_tactic">;
     suggestions: z.ZodArray<z.ZodObject<{
@@ -4188,7 +4581,9 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -4213,7 +4608,9 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -4234,10 +4631,21 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      */
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
 } & {
     type: z.ZodLiteral<"reflect_on_metrics">;
     behaviorName: z.ZodString;
@@ -4278,7 +4686,9 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
     milestoneRungDays?: number | undefined;
     milestoneRungLabel?: string | undefined;
 }, {
@@ -4305,7 +4715,9 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
     milestoneRungDays?: number | undefined;
     milestoneRungLabel?: string | undefined;
 }>, z.ZodObject<{
@@ -4328,10 +4740,21 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      */
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
 } & {
     type: z.ZodLiteral<"collect_baseline">;
     behaviorId: z.ZodString;
@@ -4355,7 +4778,9 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -4376,7 +4801,9 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -4397,10 +4824,21 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      */
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
 } & {
     type: z.ZodLiteral<"setup_shortcut">;
     /** Which setup card to show; if absent it is recomputed from behaviors. */
@@ -4428,7 +4866,9 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -4450,7 +4890,9 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -4471,10 +4913,21 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      */
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
 } & {
     type: z.ZodLiteral<"resume_recap_reminders">;
 }, "strip", z.ZodTypeAny, {
@@ -4496,7 +4949,9 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -4516,7 +4971,9 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -4537,10 +4994,21 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      */
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
 } & {
     type: z.ZodLiteral<"week_lookback">;
     /** The Sunday review this beat belongs to (the recap dateString). */
@@ -4565,7 +5033,9 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }, {
     createdAt: import("../types").Timestamp;
     updatedAt: import("../types").Timestamp;
@@ -4586,7 +5056,9 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
 }>, z.ZodObject<{
     id: z.ZodOptional<z.ZodString>;
     userId: z.ZodString;
@@ -4607,10 +5079,21 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
      */
     triggerAIAfter: z.ZodOptional<z.ZodBoolean>;
     createdBy: z.ZodOptional<z.ZodString>;
+    /**
+     * How many recap sessions have surfaced this task. Set to 1 on first claim
+     * and incremented each time a fresh recap reclaims it off an earlier,
+     * unresolved recap (see reclaimStrandedWeeklyReview). Drives the retry cap:
+     * after being presented across the cap number of recaps without resolution,
+     * the task is auto-closed (dismissed / `ignored`) instead of following the
+     * user forever. Absent on older tasks — treat missing as 1.
+     */
+    presentationCount: z.ZodOptional<z.ZodNumber>;
     createdAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     updatedAt: z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>;
     completedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
     dismissedAt: z.ZodOptional<z.ZodType<import("../types").Timestamp, z.ZodTypeDef, import("../types").Timestamp>>;
+    /** Set alongside `dismissedAt` when the distinction matters — see dismissedReasonSchema. */
+    dismissedReason: z.ZodOptional<z.ZodEnum<["ignored", "declined"]>>;
 } & {
     type: z.ZodLiteral<"weekly_review">;
     /** The local Sunday this review week is anchored to (YYYY-MM-DD). */
@@ -4636,7 +5119,9 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
     claimedBySessionId?: string | undefined;
 }, {
     createdAt: import("../types").Timestamp;
@@ -4658,11 +5143,14 @@ export declare const taskSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     dependsOnTaskId?: string | undefined;
     claimableSessionTypes?: ("general" | "recap" | "toolkitPlanning")[] | undefined;
     triggerAIAfter?: boolean | undefined;
+    presentationCount?: number | undefined;
     dismissedAt?: import("../types").Timestamp | undefined;
+    dismissedReason?: "declined" | "ignored" | undefined;
     claimedBySessionId?: string | undefined;
 }>]>;
 export type TaskCategory = z.infer<typeof taskCategorySchema>;
 export type TaskStatus = z.infer<typeof taskStatusSchema>;
+export type DismissedReason = z.infer<typeof dismissedReasonSchema>;
 export type ClaimableSessionType = z.infer<typeof claimableSessionTypeSchema>;
 export type MergeBehaviorsTask = z.infer<typeof mergeBehaviorsTaskSchema>;
 export type SuggestStrategyTask = z.infer<typeof suggestStrategyTaskSchema>;
