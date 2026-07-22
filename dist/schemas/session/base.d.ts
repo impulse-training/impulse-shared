@@ -5363,6 +5363,7 @@ export declare const sessionBaseSchema: z.ZodObject<{
     }>, "many">>;
     tags: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodArray<z.ZodString, "many">>>;
     aiFinalizedAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
+    closeDecidedBy: z.ZodOptional<z.ZodEnum<["ai", "reviewer"]>>;
     startedDeletingAt: z.ZodOptional<z.ZodType<import("../../types").Timestamp, z.ZodTypeDef, import("../../types").Timestamp>>;
     deletingError: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
@@ -6040,6 +6041,7 @@ export declare const sessionBaseSchema: z.ZodObject<{
         sentAt: import("../../types").Timestamp;
     }[] | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
+    closeDecidedBy?: "ai" | "reviewer" | undefined;
     startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
 }, {
@@ -6183,6 +6185,7 @@ export declare const sessionBaseSchema: z.ZodObject<{
         sentAt: import("../../types").Timestamp;
     }[] | undefined;
     aiFinalizedAt?: import("../../types").Timestamp | undefined;
+    closeDecidedBy?: "ai" | "reviewer" | undefined;
     startedDeletingAt?: import("../../types").Timestamp | undefined;
     deletingError?: string | undefined;
 }>;
