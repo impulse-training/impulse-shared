@@ -34056,10 +34056,13 @@ export declare const logSchemas: {
         isDisplayable: z.ZodLiteral<false>;
         data: z.ZodObject<{
             tags: z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>;
+            behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         }, "strip", z.ZodTypeAny, {
             tags: Record<string, string | string[]>;
+            behaviorIds?: string[] | undefined;
         }, {
             tags: Record<string, string | string[]>;
+            behaviorIds?: string[] | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
         createdAt: import("../../types").Timestamp;
@@ -34072,6 +34075,7 @@ export declare const logSchemas: {
         isDisplayable: false;
         data: {
             tags: Record<string, string | string[]>;
+            behaviorIds?: string[] | undefined;
         };
         id?: string | undefined;
         behaviorIds?: string[] | undefined;
@@ -34089,6 +34093,7 @@ export declare const logSchemas: {
         isDisplayable: false;
         data: {
             tags: Record<string, string | string[]>;
+            behaviorIds?: string[] | undefined;
         };
         id?: string | undefined;
         behaviorIds?: string[] | undefined;
@@ -62535,10 +62540,13 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: z.ZodLiteral<false>;
     data: z.ZodObject<{
         tags: z.ZodRecord<z.ZodString, z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>>;
+        behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     }, "strip", z.ZodTypeAny, {
         tags: Record<string, string | string[]>;
+        behaviorIds?: string[] | undefined;
     }, {
         tags: Record<string, string | string[]>;
+        behaviorIds?: string[] | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
     createdAt: import("../../types").Timestamp;
@@ -62551,6 +62559,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: false;
     data: {
         tags: Record<string, string | string[]>;
+        behaviorIds?: string[] | undefined;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;
@@ -62568,6 +62577,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
     isDisplayable: false;
     data: {
         tags: Record<string, string | string[]>;
+        behaviorIds?: string[] | undefined;
     };
     id?: string | undefined;
     behaviorIds?: string[] | undefined;

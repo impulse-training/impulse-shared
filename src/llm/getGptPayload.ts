@@ -520,6 +520,16 @@ export function getGptPayload(
       | Array<{ tacticId: string; title: string; description?: string; phase?: string }>
       | undefined;
 
+    // `behaviorIds` is only written when the update changed which behaviors
+    // the session is about, so its presence means the user flagged a
+    // behavior as also relevant — a different event from editing a tag, and
+    // the one the reply should acknowledge.
+    const behaviorsChanged =
+      ((log.data as { behaviorIds?: string[] }).behaviorIds?.length ?? 0) > 0;
+    const opener = behaviorsChanged
+      ? "The user just flagged another behavior as relevant to this moment using the tag bar. "
+      : "The user just updated their session tags using the tag bar. ";
+
     // recommendedTactics on a tags_updated log always come from the plan
     // matched for the session (extractRecommendedTacticsFromPlans). Whether
     // the plan sheet shows them depends on ownership: only the user's OWN
@@ -540,7 +550,7 @@ export function getGptPayload(
           {
             role: "user",
             content:
-              "<SYSTEM>The user just updated their session tags using the tag bar, and their own plan was assigned. " +
+              "<SYSTEM>" + opener + "Their own plan was assigned. " +
               "The app is displaying the plan to the user in the plan sheet with these steps (in order):\n" +
               lines.join("\n") +
               "\n\nReply with ONE short sentence pointing them to the first step by name. " +
@@ -557,7 +567,7 @@ export function getGptPayload(
         {
           role: "user",
           content:
-            "<SYSTEM>The user just updated their session tags using the tag bar. " +
+            "<SYSTEM>" + opener +
             "Recommended tactics were matched for this moment — the user cannot see them yet. " +
             "Call suggestTactic with the FIRST tactic's ID to present it as a card, then reply with one short connecting line:\n" +
             lines.join("\n") +
@@ -570,8 +580,8 @@ export function getGptPayload(
       {
         role: "user",
         content:
-          "<SYSTEM>The user just updated their session tags using the tag bar. " +
-          "Review the updated tags in your context and respond appropriately.</SYSTEM>",
+          "<SYSTEM>" + opener +
+          "Review the updated tags and behaviors in your context and respond appropriately.</SYSTEM>",
       },
     ];
   }

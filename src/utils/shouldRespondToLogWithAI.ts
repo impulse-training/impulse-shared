@@ -140,15 +140,30 @@ export function shouldRespondToLogWithAI(
     afterData.data.choice === "text" &&
     fieldChanged(beforeData, afterData, "data.choice");
 
+  // The user re-scoped which behaviors this moment is about (the tag bar's
+  // behavior picker writes `behaviorIds` only when the selection changed).
+  // That brings new plans and tactics into play, so it warrants a response
+  // even during debrief — unlike the retrospective feeling/activity edits the
+  // debrief skip below exists to stay quiet about. It also bypasses the
+  // "latest is assistant" guard: the user acts here without sending a
+  // message, and the assistant has almost always spoken last, so without the
+  // exclusion the update is silently swallowed.
+  const isSessionBehaviorsChanged =
+    !beforeData &&
+    afterData &&
+    logIsTagsUpdatedLog(afterData) &&
+    (afterData.data.behaviorIds?.length ?? 0) > 0;
+
   const isTagsUpdated =
     !beforeData &&
     afterData &&
     logIsTagsUpdatedLog(afterData) &&
-    !(
-      session &&
-      sessionIsImpulseSession(session) &&
-      session.phase === "debrief"
-    );
+    (isSessionBehaviorsChanged ||
+      !(
+        session &&
+        sessionIsImpulseSession(session) &&
+        session.phase === "debrief"
+      ));
 
   // Completed on update (an inline card's checkbox), OR created already
   // completed — the plan sheet writes a fresh completed tactic log when the
@@ -273,6 +288,7 @@ export function shouldRespondToLogWithAI(
     !isDebriefQuestionResponseSelected &&
     !isImpulseStartedDuringOnboarding &&
     !isImpulseRepress &&
+    !isSessionBehaviorsChanged &&
     latestIsAssistantOutput
   ) {
     console.log("Latest log is assistant output. Not responding with AI.");
