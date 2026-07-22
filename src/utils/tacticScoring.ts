@@ -31,6 +31,13 @@ export interface TacticScoringContext {
   behaviorTopicIds?: string[];
   pinnedTacticIds?: string[];
   suppressedTacticIds?: string[];
+  /**
+   * True when the session carries no primary-tag signal (only a behavior, or
+   * nothing). Used to hard-exclude presumptuous tactics (see `presumesState`)
+   * whose fit we can't justify without context — otherwise they win arbitrary
+   * ties on empty tags and get suggested regardless of the user's situation.
+   */
+  lowSignal?: boolean;
 }
 
 /** Ranking boost applied to a pinned tactic. Large enough to clear a tactic's
@@ -96,10 +103,20 @@ export function scoreTactic(
     behaviorTopicIds,
     pinnedTacticIds,
     suppressedTacticIds,
+    lowSignal,
   } = context;
 
   // 1. Hard exclude: user/behavior suppression (human oversight)
   if (suppressedTacticIds?.includes(tactic.id)) {
+    return null; // EXCLUDED
+  }
+
+  // 1b. Hard exclude: presumptuous tactic on a low-signal session. A tactic that
+  //     presumes a physical state we can't verify (e.g. "Stand Up" presumes the
+  //     user is sitting/lying) is only eligible once the session has real
+  //     context — otherwise we'd suggest it on empty tags, where the "choice" is
+  //     arbitrary and may contradict the user's situation.
+  if (tactic.presumesState && lowSignal) {
     return null; // EXCLUDED
   }
 
