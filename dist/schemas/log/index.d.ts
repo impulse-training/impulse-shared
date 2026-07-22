@@ -35530,6 +35530,7 @@ export declare const logSchemas: {
             planId: z.ZodOptional<z.ZodString>;
             planPath: z.ZodOptional<z.ZodString>;
             planName: z.ZodOptional<z.ZodString>;
+            planLabel: z.ZodOptional<z.ZodString>;
             behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
             note: z.ZodString;
             planSentiment: z.ZodOptional<z.ZodEnum<["confirmed", "changed", "declined_changes", "no_plan", "skipped"]>>;
@@ -35562,6 +35563,7 @@ export declare const logSchemas: {
             planId?: string | undefined;
             planPath?: string | undefined;
             planName?: string | undefined;
+            planLabel?: string | undefined;
             planSentiment?: "confirmed" | "changed" | "declined_changes" | "no_plan" | "skipped" | undefined;
             relatedProposalLogId?: string | undefined;
             reflectionQuote?: string | undefined;
@@ -35580,6 +35582,7 @@ export declare const logSchemas: {
             planId?: string | undefined;
             planPath?: string | undefined;
             planName?: string | undefined;
+            planLabel?: string | undefined;
             planSentiment?: "confirmed" | "changed" | "declined_changes" | "no_plan" | "skipped" | undefined;
             relatedProposalLogId?: string | undefined;
             reflectionQuote?: string | undefined;
@@ -35608,6 +35611,7 @@ export declare const logSchemas: {
             planId?: string | undefined;
             planPath?: string | undefined;
             planName?: string | undefined;
+            planLabel?: string | undefined;
             planSentiment?: "confirmed" | "changed" | "declined_changes" | "no_plan" | "skipped" | undefined;
             relatedProposalLogId?: string | undefined;
             reflectionQuote?: string | undefined;
@@ -35641,6 +35645,7 @@ export declare const logSchemas: {
             planId?: string | undefined;
             planPath?: string | undefined;
             planName?: string | undefined;
+            planLabel?: string | undefined;
             planSentiment?: "confirmed" | "changed" | "declined_changes" | "no_plan" | "skipped" | undefined;
             relatedProposalLogId?: string | undefined;
             reflectionQuote?: string | undefined;
@@ -63993,6 +63998,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         planId: z.ZodOptional<z.ZodString>;
         planPath: z.ZodOptional<z.ZodString>;
         planName: z.ZodOptional<z.ZodString>;
+        planLabel: z.ZodOptional<z.ZodString>;
         behaviorIds: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
         note: z.ZodString;
         planSentiment: z.ZodOptional<z.ZodEnum<["confirmed", "changed", "declined_changes", "no_plan", "skipped"]>>;
@@ -64025,6 +64031,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         planId?: string | undefined;
         planPath?: string | undefined;
         planName?: string | undefined;
+        planLabel?: string | undefined;
         planSentiment?: "confirmed" | "changed" | "declined_changes" | "no_plan" | "skipped" | undefined;
         relatedProposalLogId?: string | undefined;
         reflectionQuote?: string | undefined;
@@ -64043,6 +64050,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         planId?: string | undefined;
         planPath?: string | undefined;
         planName?: string | undefined;
+        planLabel?: string | undefined;
         planSentiment?: "confirmed" | "changed" | "declined_changes" | "no_plan" | "skipped" | undefined;
         relatedProposalLogId?: string | undefined;
         reflectionQuote?: string | undefined;
@@ -64071,6 +64079,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         planId?: string | undefined;
         planPath?: string | undefined;
         planName?: string | undefined;
+        planLabel?: string | undefined;
         planSentiment?: "confirmed" | "changed" | "declined_changes" | "no_plan" | "skipped" | undefined;
         relatedProposalLogId?: string | undefined;
         reflectionQuote?: string | undefined;
@@ -64104,6 +64113,7 @@ export declare const logSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
         planId?: string | undefined;
         planPath?: string | undefined;
         planName?: string | undefined;
+        planLabel?: string | undefined;
         planSentiment?: "confirmed" | "changed" | "declined_changes" | "no_plan" | "skipped" | undefined;
         relatedProposalLogId?: string | undefined;
         reflectionQuote?: string | undefined;

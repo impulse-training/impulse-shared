@@ -35,6 +35,11 @@ export const planHistoryEntryLogSchema = logBaseSchema.extend({
     // behaviors/, or defaultPlans/) — snapshot the full doc path.
     planPath: z.string().optional(),
     planName: z.string().optional(),
+    /**
+     * Display label for the plan, parent-derived when it has no name of its
+     * own ("your Vaping plan") — plans are rarely named.
+     */
+    planLabel: z.string().optional(),
     behaviorIds: z.array(z.string()).optional(),
     note: z.string().min(1),
     // For kind "note" from a weekly review beat: how the forward-looking
