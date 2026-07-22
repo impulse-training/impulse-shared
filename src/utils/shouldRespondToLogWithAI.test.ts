@@ -465,3 +465,72 @@ describe("shouldRespondToLogWithAI — tactic completion", () => {
     ).toBe(false);
   });
 });
+
+// Regression: mid-debrief the user opens the tag bar's behavior picker and
+// marks a second behavior as also relevant ("this one's in play too"). The
+// assistant has just spoken, and the session is in the debrief phase — the two
+// conditions that each suppress a tags_updated response — so the update was
+// silently swallowed and the user got nothing back.
+describe("shouldRespondToLogWithAI — tags updated", () => {
+  const debriefImpulseSession = {
+    id: "session1",
+    type: "impulse",
+    phase: "debrief",
+  } as unknown as WithId<Session>;
+
+  const tagsUpdatedLog = (behaviorIds?: string[]) =>
+    ({
+      type: "tags_updated",
+      isDisplayable: false,
+      data: {
+        tags: { emotion: ["anxious"] },
+        ...(behaviorIds ? { behaviorIds } : {}),
+      },
+    }) as unknown as Log;
+
+  it("responds when the behavior selection changed during debrief, after an assistant message", () => {
+    expect(
+      shouldRespondToLogWithAI(
+        debriefImpulseSession,
+        undefined,
+        tagsUpdatedLog(["social-media", "pornography"]),
+        assistantLog,
+      ),
+    ).toBe(true);
+  });
+
+  it("responds when the behavior selection changed mid-moment (no debrief yet)", () => {
+    expect(
+      shouldRespondToLogWithAI(
+        { id: "session1", type: "impulse" } as unknown as WithId<Session>,
+        undefined,
+        tagsUpdatedLog(["pornography"]),
+        assistantLog,
+      ),
+    ).toBe(true);
+  });
+
+  // A tags-only edit stays quiet: retrospectively labelling the feeling that
+  // led to a resolved urge is bookkeeping, not a new prompt to respond to.
+  it("stays quiet for a tags-only edit during debrief", () => {
+    expect(
+      shouldRespondToLogWithAI(
+        debriefImpulseSession,
+        undefined,
+        tagsUpdatedLog(),
+        assistantLog,
+      ),
+    ).toBe(false);
+  });
+
+  it("responds to a tags-only edit when the assistant did not just speak", () => {
+    expect(
+      shouldRespondToLogWithAI(
+        { id: "session1", type: "impulse" } as unknown as WithId<Session>,
+        undefined,
+        tagsUpdatedLog(),
+        undefined,
+      ),
+    ).toBe(true);
+  });
+});

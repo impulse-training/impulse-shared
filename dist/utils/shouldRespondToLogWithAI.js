@@ -37,7 +37,7 @@ function isTimePlanFullyCompleted(session, plansLog) {
  * @returns True if we should respond with AI, false otherwise
  */
 function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionLog, timezone) {
-    var _a;
+    var _a, _b, _c;
     // Skip the "latest is assistant" guard for inline interactions
     // where the user acts without sending a message
     const isMetricRating = beforeData &&
@@ -84,12 +84,25 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         (0, log_1.logIsShortcutSetupIntroLog)(afterData) &&
         afterData.data.choice === "text" &&
         (0, fields_1.fieldChanged)(beforeData, afterData, "data.choice");
+    // The user re-scoped which behaviors this moment is about (the tag bar's
+    // behavior picker writes `behaviorIds` only when the selection changed).
+    // That brings new plans and tactics into play, so it warrants a response
+    // even during debrief — unlike the retrospective feeling/activity edits the
+    // debrief skip below exists to stay quiet about. It also bypasses the
+    // "latest is assistant" guard: the user acts here without sending a
+    // message, and the assistant has almost always spoken last, so without the
+    // exclusion the update is silently swallowed.
+    const isSessionBehaviorsChanged = !beforeData &&
+        afterData &&
+        (0, log_1.logIsTagsUpdatedLog)(afterData) &&
+        ((_b = (_a = afterData.data.behaviorIds) === null || _a === void 0 ? void 0 : _a.length) !== null && _b !== void 0 ? _b : 0) > 0;
     const isTagsUpdated = !beforeData &&
         afterData &&
         (0, log_1.logIsTagsUpdatedLog)(afterData) &&
-        !(session &&
-            (0, schemas_1.sessionIsImpulseSession)(session) &&
-            session.phase === "debrief");
+        (isSessionBehaviorsChanged ||
+            !(session &&
+                (0, schemas_1.sessionIsImpulseSession)(session) &&
+                session.phase === "debrief"));
     // Completed on update (an inline card's checkbox), OR created already
     // completed — the plan sheet writes a fresh completed tactic log when the
     // tactic never had an inline card, and that completion still needs an AI
@@ -192,6 +205,7 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
         !isDebriefQuestionResponseSelected &&
         !isImpulseStartedDuringOnboarding &&
         !isImpulseRepress &&
+        !isSessionBehaviorsChanged &&
         latestIsAssistantOutput) {
         console.log("Latest log is assistant output. Not responding with AI.");
         return false;
@@ -258,7 +272,7 @@ function shouldRespondToLogWithAI(session, beforeData, afterData, latestSessionL
     // Case: A trigger plan is added to the session
     if (isCreating &&
         (0, log_1.logIsPlansLog)(afterData) &&
-        ((_a = afterData.data.plans[0]) === null || _a === void 0 ? void 0 : _a.plan.type) === "trigger") {
+        ((_c = afterData.data.plans[0]) === null || _c === void 0 ? void 0 : _c.plan.type) === "trigger") {
         console.log("Trigger plan was added. Responding with AI.");
         return true;
     }
